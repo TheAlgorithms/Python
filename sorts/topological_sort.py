@@ -30,7 +30,7 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
         if neighbor not in visited:
             sort = topological_sort(neighbor, visited, sort)
 
-    # After visiting all neigbors, add the current node to the sorted list
+    # After visiting all neighbors, add the current node to the sorted list
     sort.append(current)
 
     # If there are some nodes that were not visited (disconnected components)
