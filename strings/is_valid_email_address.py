@@ -32,6 +32,11 @@ email_tests: tuple[tuple[str, bool], ...] = (
     ),
     ("i.like.underscores@but_its_not_allowed_in_this_part", False),
     ("", False),
+    (".startdot@example", False),
+    ("enddot.@example", False),
+    ("double..dot@example", False),
+    ("example@-dashstart", False),
+    ("example@dashend-", False),
 )
 
 # The maximum octets (one character as a standard unicode character is one byte)
@@ -97,7 +102,7 @@ def is_valid_email_address(email: str) -> bool:
         return False
 
     # (6.) Validate the placement of "-" characters
-    if domain.startswith("-") or domain.endswith("."):
+    if domain.startswith("-") or domain.endswith("-"):
         return False
 
     # (7.) Validate the placement of "." characters

@@ -27,6 +27,8 @@ def luhn_validation(credit_card_number: str) -> bool:
     True
     >>> luhn_validation('41111111111111')
     False
+    >>> luhn_validation('4678001415')
+    True
     """
     cc_number = credit_card_number
     total = 0

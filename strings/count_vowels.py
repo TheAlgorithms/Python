@@ -6,6 +6,14 @@ def count_vowels(s: str) -> int:
     :return: Number of vowels in the input string.
 
     Examples:
+    >>> count_vowels(10)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must be a string
+    >>> count_vowels(True)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must be a string
     >>> count_vowels("hello world")
     3
     >>> count_vowels("HELLO WORLD")

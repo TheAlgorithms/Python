@@ -14,6 +14,8 @@ def can_string_be_rearranged_as_palindrome_counter(
     """
     A Palindrome is a String that reads the same forward as it does backwards.
     Examples of Palindromes mom, dad, malayalam
+    >>> can_string_be_rearranged_as_palindrome("")
+    True
     >>> can_string_be_rearranged_as_palindrome_counter("Momo")
     True
     >>> can_string_be_rearranged_as_palindrome_counter("Mother")
