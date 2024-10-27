@@ -11,6 +11,7 @@ def binary_search(arr, x):
             return mid  # Found
     return -1  # Not found
 
+
 # Example usage
 arr = [int(x) for x in input().split()]
 x = int(input())
