@@ -139,9 +139,11 @@ class JohnsonGraph:
                 vertex_b,
                 weight + hash_path[vertex_a] - hash_path[vertex_b],
             )
-            self.edges[i] = (vertex_a, 
-                            vertex_b, 
-                            weight + hash_path[vertex_a] - hash_path[vertex_b])
+            self.edges[i] = (
+                vertex_a,
+                vertex_b,
+                weight + hash_path[vertex_a] - hash_path[vertex_b],
+            )
 
         self.graph.pop("#")
         filtered_edges = []
@@ -154,7 +156,7 @@ class JohnsonGraph:
             for vertex1, vertex2, node_weight in self.edges:
                 if vertex1 == vertex:
                     self.graph[vertex].append((vertex2, node_weight))
-            
+
         distances = []
         for vertex1 in self.graph:
             new_dist = self.dijkstra(vertex1)
