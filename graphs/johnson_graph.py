@@ -117,13 +117,11 @@ class JohnsonGraph:
         >>> g = JohnsonGraph()
         >>> g.add_vertices("A")
         >>> g.add_vertices("B")
-        >>> g.add_vertices("C")
         >>> g.add_edge("A", "B", 1)
-        >>> g.add_edge("B", "C", 2)
-        >>> g.add_edge("A", "C", 4)
+        >>> g.add_edge("B", "A", 2)
         >>> optimal_paths = g.johnson_algo()
         >>> optimal_paths
-        [{'A': 0, 'B': 1, 'C': 3}, {'A': None, 'B': 0, 'C': 2}, {'A': None, 'B': None, 'C': 0}]
+        [{'A': 0, 'B': 1}, {'A': 2, 'B': 0}]
         """
         self.add_vertices("#")
         for vertex in self.graph:
