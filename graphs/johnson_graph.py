@@ -14,54 +14,54 @@ class JohnsonGraph:
         self.graph: dict[str, list[tuple[str, int]]] = {}
 
     # add vertices for a graph
-    def add_vertices(self, u: str) -> None:
+    def add_vertices(self, vertex: str) -> None:
         """
         Adds a vertex `u` to the graph with an empty adjacency list.
         """
-        self.graph[u] = []
+        self.graph[vertex] = []
 
     # assign weights for each edges formed of the directed graph
-    def add_edge(self, u: str, v: str, w: int) -> None:
+    def add_edge(self, vertex_a: str, vertex_b: str, weight: int) -> None:
         """
         Adds a directed edge from vertex `u` to vertex `v` with weight `w`.
         """
-        self.edges.append((u, v, w))
-        self.graph[u].append((v, w))
+        self.edges.append((vertex_a, vertex_b, weight))
+        self.graph[vertex_a].append((vertex_b, weight))
 
     # perform a dijkstra algorithm on a directed graph
-    def dijkstra(self, s: str) -> dict:
+    def dijkstra(self, start: str) -> dict:
         """
         Computes the shortest path from vertex `s`
         to all other vertices using Dijkstra's algorithm.
         """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
-        pq = [(0, s)]
-        distances[s] = 0
+        pq = [(0, start)]
+        distances[start] = 0
         while pq:
-            weight, v = heapq.heappop(pq)
+            weight, vertex = heapq.heappop(pq)
 
-            if weight > distances[v]:
+            if weight > distances[vertex]:
                 continue
 
-            for node, w in self.graph[v]:
-                if distances[v] + w < distances[node]:
-                    distances[node] = distances[v] + w
+            for node, node_weight in self.graph[vertex]:
+                if distances[vertex] + node_weight < distances[node]:
+                    distances[node] = distances[vertex] + node_weight
                     heapq.heappush(pq, (distances[node], node))
         return distances
 
     # carry out the bellman ford algorithm for a node and estimate its distance vector
-    def bellman_ford(self, s: str) -> dict:
+    def bellman_ford(self, start: str) -> dict:
         """
         Computes the shortest path from vertex `s`
         to all other vertices using the Bellman-Ford algorithm.
         """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
-        distances[s] = 0
+        distances[start] = 0
 
-        for u in self.graph:
-            for u, v, w in self.edges:
-                if distances[u] != sys.maxsize - 1 and distances[u] + w < distances[v]:
-                    distances[v] = distances[u] + w
+        for vertex_a in self.graph:
+            for vertex_a, vertex_b, weight in self.edges:
+                if distances[vertex_a] != sys.maxsize - 1 and distances[vertex_a] + weight < distances[vertex_b]:
+                    distances[vertex_b] = distances[vertex_a] + weight
 
         return distances
 
@@ -74,28 +74,28 @@ class JohnsonGraph:
         all pairs of vertices using Johnson's algorithm.
         """
         self.add_vertices("#")
-        for v in self.graph:
-            if v != "#":
-                self.add_edge("#", v, 0)
+        for vertex in self.graph:
+            if vertex != "#":
+                self.add_edge("#", vertex, 0)
 
-        n = self.bellman_ford("#")
+        hash_path = self.bellman_ford("#")
 
         for i in range(len(self.edges)):
-            u, v, weight = self.edges[i]
-            self.edges[i] = (u, v, weight + n[u] - n[v])
+            vertex_a, vertex_b, weight = self.edges[i]
+            self.edges[i] = (vertex_a, vertex_b, weight + hash_path[vertex_a] - hash_path[vertex_b])
 
         self.graph.pop("#")
-        self.edges = [(u, v, w) for u, v, w in self.edges if u != "#"]
+        self.edges = [(vertex1, vertex2, node_weight) for vertex1, vertex2, node_weight in self.edges if vertex1 != "#"]
 
-        for u in self.graph:
-            self.graph[u] = [(v, weight) for x, v, weight in self.edges if x == u]
+        for vertex in self.graph:
+            self.graph[vertex] = [(vertex2, node_weight) for vertex1, vertex2, node_weight in self.edges if vertex1 == vertex]
 
         distances = []
-        for u in self.graph:
-            new_dist = self.dijkstra(u)
-            for v in self.graph:
-                if new_dist[v] < sys.maxsize - 1:
-                    new_dist[v] += n[v] - n[u]
+        for vertex1 in self.graph:
+            new_dist = self.dijkstra(vertex1)
+            for vertex2 in self.graph:
+                if new_dist[vertex2] < sys.maxsize - 1:
+                    new_dist[vertex2] += hash_path[vertex1] - hash_path[vertex2]
             distances.append(new_dist)
         return distances
 
