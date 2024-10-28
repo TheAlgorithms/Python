@@ -32,7 +32,7 @@ class JohnsonGraph:
     # assign weights for each edges formed of the directed graph
     def add_edge(self, vertex_a: str, vertex_b: str, weight: int) -> None:
         """
-        Adds a directed edge from vertex `vertex_a` 
+        Adds a directed edge from vertex `vertex_a`
         to vertex `vertex_b` with weight `weight`.
         >>> g = JohnsonGraph()
         >>> g.add_vertices("A")
@@ -49,7 +49,7 @@ class JohnsonGraph:
     # perform a dijkstra algorithm on a directed graph
     def dijkstra(self, start: str) -> dict:
         """
-        Computes the shortest path from vertex `start` 
+        Computes the shortest path from vertex `start`
         to all other vertices using Dijkstra's algorithm.
         >>> g = JohnsonGraph()
         >>> g.add_vertices("A")
@@ -80,7 +80,7 @@ class JohnsonGraph:
     # carry out the bellman ford algorithm for a node and estimate its distance vector
     def bellman_ford(self, start: str) -> dict:
         """
-        Computes the shortest path from vertex `start` to 
+        Computes the shortest path from vertex `start` to
         all other vertices using the Bellman-Ford algorithm.
         >>> g = JohnsonGraph()
         >>> g.add_vertices("A")
@@ -111,7 +111,7 @@ class JohnsonGraph:
     # or the bellman ford algorithm efficiently
     def johnson_algo(self) -> list[dict]:
         """
-        Computes the shortest paths between 
+        Computes the shortest paths between
         all pairs of vertices using Johnson's algorithm
         for a directed graph.
         >>> g = JohnsonGraph()
@@ -161,10 +161,10 @@ class JohnsonGraph:
         for vertex1 in self.graph:
             new_dist = self.dijkstra(vertex1)
             for vertex2 in self.graph:
-                if new_dist[vertex2] < sys.maxsize-1:
+                if new_dist[vertex2] < sys.maxsize - 1:
                     new_dist[vertex2] += hash_path[vertex2] - hash_path[vertex1]
             for key in new_dist:
-                if new_dist[key] == sys.maxsize-1:
+                if new_dist[key] == sys.maxsize - 1:
                     new_dist[key] = None
             distances.append(new_dist)
         return distances
