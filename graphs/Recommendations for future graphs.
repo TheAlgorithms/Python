@@ -1,4 +1,4 @@
-#For the future, here are some unique enhancement ideas to expand the algorithms repository. 
+#For the future, here are some unique enhancement ideas to expand the algorithms repository.
 
 #Graph Visualization: Integrate tools for visualizing graph algorithms, such as Kahn's algorithm for topological sorting. This would aid users in understanding algorithm behavior in real time. Visuals could include node and edge color changes as the algorithm processes different vertices and edges.
 
