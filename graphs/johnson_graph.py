@@ -60,7 +60,8 @@ class JohnsonGraph:
 
         for vertex_a in self.graph:
             for vertex_a, vertex_b, weight in self.edges:
-                if distances[vertex_a] != sys.maxsize - 1 and distances[vertex_a] + weight < distances[vertex_b]:
+                if (distances[vertex_a] != sys.maxsize - 1 and
+                    distances[vertex_a] + weight < distances[vertex_b]):
                     distances[vertex_b] = distances[vertex_a] + weight
 
         return distances
@@ -82,14 +83,24 @@ class JohnsonGraph:
 
         for i in range(len(self.edges)):
             vertex_a, vertex_b, weight = self.edges[i]
-            self.edges[i] = (vertex_a, vertex_b, weight + hash_path[vertex_a] - hash_path[vertex_b])
+            self.edges[i] = (vertex_a, 
+                            vertex_b, 
+                            weight + hash_path[vertex_a] - hash_path[vertex_b])
 
         self.graph.pop("#")
-        self.edges = [(vertex1, vertex2, node_weight) for vertex1, vertex2, node_weight in self.edges if vertex1 != "#"]
+        filtered_edges = []
+        for vertex1, vertex2, node_weight in self.edges:
+            if vertex1 != "#":
+                filtered_edges.append((vertex1, vertex2, node_weight))
+        self.edges = filtered_edges
 
         for vertex in self.graph:
-            self.graph[vertex] = [(vertex2, node_weight) for vertex1, vertex2, node_weight in self.edges if vertex1 == vertex]
-
+            filtered_neighbors = []
+            for vertex1, vertex2, node_weight in self.edges:
+                if vertex1 == vertex:
+                    filtered_neighbors.append((vertex2, node_weight))
+            self.graph[vertex] = filtered_neighbors
+            
         distances = []
         for vertex1 in self.graph:
             new_dist = self.dijkstra(vertex1)
