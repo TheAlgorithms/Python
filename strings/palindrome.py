@@ -102,21 +102,32 @@ if __name__ == "__main__":
     benchmark_function("is_palindrome_recursive")
     # finished 500,000 runs in 2.08679 seconds
     benchmark_function("is_palindrome_traversal")
-    
-#TEST FOR CHECKING A NUMBER/INTEGER TO BE PALINDROME OR NOT. IF THE PROVIDED NUMBER/INTEGER IS PALINDROM THE FUNCTION WILL RETURN TRUE ELSE FALSE.
-N=int(input("Enter yor number: "))#our user will provide algorithm with a number which will be converted to int.
-def isPalindrome(N): #Function which will check if our provided input is a palindrom or not.
+
+# TEST FOR CHECKING A NUMBER/INTEGER TO BE PALINDROME OR NOT. IF THE PROVIDED NUMBER/INTEGER IS PALINDROM THE FUNCTION WILL RETURN TRUE ELSE FALSE.
+N = int(
+    input("Enter yor number: ")
+)  # our user will provide algorithm with a number which will be converted to int.
+
+
+def isPalindrome(
+    N,
+):  # Function which will check if our provided input is a palindrom or not.
     reverse = 0
-    original = N #storing the value of provided input
+    original = N  # storing the value of provided input
 
-    while(N>0):
-        digit = N%10 #Abstracting the values from ones place and hence moving forward
-        reverse = reverse*10 + digit #reversing the number 
-        N = N//10 
+    while N > 0:
+        digit = (
+            N % 10
+        )  # Abstracting the values from ones place and hence moving forward
+        reverse = reverse * 10 + digit  # reversing the number
+        N = N // 10
 
-    if reverse==original: #Checking if the number thus obtained is equal to the provided number or not 
-        return True #if it is then returning True
+    if (
+        reverse == original
+    ):  # Checking if the number thus obtained is equal to the provided number or not
+        return True  # if it is then returning True
     else:
-        return False #else False
+        return False  # else False
 
-print(isPalindrome(N)) #calling the function and hence print the bool answer.
+
+print(isPalindrome(N))  # calling the function and hence print the bool answer.
