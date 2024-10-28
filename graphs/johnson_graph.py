@@ -31,7 +31,8 @@ class JohnsonGraph:
     # perform a dijkstra algorithm on a directed graph
     def dijkstra(self, s: str) -> dict:
         """
-        Computes the shortest path from vertex `s` to all other vertices using Dijkstra's algorithm.
+        Computes the shortest path from vertex `s` 
+        to all other vertices using Dijkstra's algorithm.
         """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         pq = [(0, s)]
@@ -51,7 +52,8 @@ class JohnsonGraph:
     # carry out the bellman ford algorithm for a node and estimate its distance vector
     def bellman_ford(self, s: str) -> dict:
         """
-        Computes the shortest path from vertex `s` to all other vertices using the Bellman-Ford algorithm.
+        Computes the shortest path from vertex `s` 
+        to all other vertices using the Bellman-Ford algorithm.
         """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         distances[s] = 0
@@ -68,7 +70,8 @@ class JohnsonGraph:
     # or the bellman ford algorithm efficiently
     def johnson_algo(self) -> list[dict]:
         """
-        Computes the shortest paths between all pairs of vertices using Johnson's algorithm.
+        Computes the shortest paths between 
+        all pairs of vertices using Johnson's algorithm.
         """
         self.add_vertices("#")
         for v in self.graph:
