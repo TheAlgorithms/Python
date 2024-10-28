@@ -14,7 +14,7 @@ class JohnsonGraph:
         self.graph: dict[str, list[tuple[str, int]]] = {}
 
     # add vertices for a graph
-    def add_vertices(self, u: int) -> None:
+    def add_vertices(self, u: str) -> None:
         """
         Adds a vertex `u` to the graph with an empty adjacency list.
         """
