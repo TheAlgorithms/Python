@@ -7,20 +7,32 @@ import sys
 # https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
     def __init__(self) -> None:
-        self.edges: list[str] = []
-        self.graph: dict[str, list] = {}
+        """
+        Initializes an empty graph with no edges.
+        """
+        self.edges: list[tuple[str, str, int]] = []
+        self.graph: dict[str, list[tuple[str, int]]] = {}
 
     # add vertices for a graph
     def add_vertices(self, u:int) -> None:
+        """
+        Adds a vertex `u` to the graph with an empty adjacency list.
+        """
         self.graph[u] = []
 
     # assign weights for each edges formed of the directed graph
     def add_edge(self, u:str, v:str, w:int) -> None:
+        """
+        Adds a directed edge from vertex `u` to vertex `v` with weight `w`.
+        """
         self.edges.append((u, v, w))
         self.graph[u].append((v, w))
 
     # perform a dijkstra algorithm on a directed graph
     def dijkstra(self, s:str) -> dict:
+        """
+        Computes the shortest path from vertex `s` to all other vertices using Dijkstra's algorithm.
+        """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         pq = [(0, s)]
         distances[s] = 0
@@ -38,6 +50,9 @@ class JohnsonGraph:
 
     # carry out the bellman ford algorithm for a node and estimate its distance vector
     def bellman_ford(self, s:str) -> dict:
+        """
+        Computes the shortest path from vertex `s` to all other vertices using the Bellman-Ford algorithm.
+        """
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         distances[s] = 0
 
@@ -52,6 +67,9 @@ class JohnsonGraph:
     # could not be handled by either the dijkstra
     # or the bellman ford algorithm efficiently
     def johnson_algo(self) -> list[dict]:
+        """
+        Computes the shortest paths between all pairs of vertices using Johnson's algorithm.
+        """
         self.add_vertices("#")
         for v in self.graph:
             if v != "#":
