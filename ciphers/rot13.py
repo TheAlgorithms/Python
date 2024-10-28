@@ -25,6 +25,7 @@ def dencrypt(s: str) -> str:
             out.append(c)
     return "".join(out)
 
+
 def main() -> None:
     s0 = input("Enter message: ")
 
@@ -34,7 +35,9 @@ def main() -> None:
     s2 = dencrypt(s1)
     print("Decryption:", s2)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
