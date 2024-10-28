@@ -11,16 +11,16 @@ class JohnsonGraph:
         self.graph: dict[str, list] = {}
 
     # add vertices for a graph
-    def add_vertices(self, u:int) -> None:
+    def add_vertices(self, u: int) -> None:
         self.graph[u] = []
 
     # assign weights for each edges formed of the directed graph
-    def add_edge(self, u:str, v:str, w:int) -> None:
+    def add_edge(self, u: str, v: str, w: int) -> None:
         self.edges.append((u, v, w))
         self.graph[u].append((v, w))
 
     # perform a dijkstra algorithm on a directed graph
-    def dijkstra(self, s:str) -> dict:
+    def dijkstra(self, s: str) -> dict:
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         pq = [(0, s)]
         distances[s] = 0
@@ -37,7 +37,7 @@ class JohnsonGraph:
         return distances
 
     # carry out the bellman ford algorithm for a node and estimate its distance vector
-    def bellman_ford(self, s:str) -> dict:
+    def bellman_ford(self, s: str) -> dict:
         distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         distances[s] = 0
 
