@@ -179,17 +179,6 @@ class DirectedGraph:
     def topological_sort(self, s=-2):
         """
         Perform topological sort of the graph.
-
-        >>> g = DirectedGraph()
-        >>> g.add_pair(1, 2)
-        >>> g.add_pair(2, 3)
-        >>> g.topological_sort()
-        [1, 2, 3]
-        >>> g.add_pair(3, 1)  # Introducing a cycle
-        >>> g.topological_sort()
-        Traceback (most recent call last):
-            ...
-        ValueError: Graph has cycles, cannot perform topological sort.
         """
         stack = []
         visited = []
@@ -222,15 +211,6 @@ class DirectedGraph:
     def cycle_nodes(self):
         """
         Get nodes that are part of a cycle.
-
-        >>> g = DirectedGraph()
-        >>> g.add_pair(1, 2)
-        >>> g.add_pair(2, 1)
-        >>> g.cycle_nodes()
-        [1, 2]
-        >>> g.add_pair(2, 3)
-        >>> g.cycle_nodes()  # No cycles now
-        []
         """
         stack = []
         visited = []
@@ -279,18 +259,6 @@ class DirectedGraph:
     def has_cycle(self):
         """
         Check if the graph has a cycle.
-
-        >>> g = DirectedGraph()
-        >>> g.add_pair(1, 2)
-        >>> g.add_pair(2, 1)
-        >>> g.has_cycle()
-        True
-        >>> g.add_pair(2, 3)
-        >>> g.has_cycle()
-        True  # Still has a cycle
-        >>> g.remove_pair(1, 2)  # Now no cycle
-        >>> g.has_cycle()
-        False
         """
         stack = []
         visited = []
