@@ -1,7 +1,7 @@
 def dencrypt(s: str) -> str:
     """
     Applies ROT13 encryption or decryption to the input string.
-    
+
     Example usage:
     >>> msg = "My secret bank account number is 173-52946 so don't tell anyone!!"
     >>> encrypted = dencrypt(msg)
@@ -20,6 +20,7 @@ def dencrypt(s: str) -> str:
             result.append(c)
     return "".join(result)
 
+
 def main() -> None:
     s0 = input("Enter message: ")
 
@@ -32,5 +33,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
