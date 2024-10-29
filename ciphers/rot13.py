@@ -27,13 +27,13 @@ def apply_rot13(s: str) -> str:
 
 
 def main() -> None:
-    s0 = input("Enter message: ")
+    s0 = input("Enter message: ").strip()
 
     s1 = apply_rot13(s0)
     print("Encryption:", s1)
 
     s2 = apply_rot13(s1)
-    print("Decryption: ", s2)
+    print("Decryption:", s2)
 
 
 if __name__ == "__main__":
