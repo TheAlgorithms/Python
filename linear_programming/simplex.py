@@ -287,22 +287,25 @@ class Tableau:
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
         """
         # Stop simplex algorithm from cycling.
+    def run_simplex(self) -> Dict[str, Any]:
+        """Executes the simplex algorithm until an optimal solution is found.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing the optimal solution values.
+        """
         for _ in range(Tableau.maxiter):
-            # Completion of each stage removes an objective. If both stages
-            # are complete, then no objectives are left
             if not self.objectives:
-                # Find the values of each variable at optimal solution
-                return self.interpret_tableau()
+                return self.interpret_tableau()  # Final tableau interpretation
 
-            row_idx, col_idx = self.find_pivot()
+            row_idx, col_idx = self.find_pivot()  # Find the next pivot
 
-            # If there are no more negative values in objective row
             if self.stop_iter:
-                # Delete artificial variable columns and rows. Update attributes
+                # Transition to the next stage of the two-stage method
                 self.tableau = self.change_stage()
             else:
-                self.tableau = self.pivot(row_idx, col_idx)
-        return {}
+                self.tableau = self.pivot(row_idx, col_idx)  # Perform pivot operation
+
+        return {}  # Return an empty dictionary if max iterations are reached
 
     def interpret_tableau(self) -> dict[str, float]:
         """Given the final tableau, add the corresponding values of the basic
@@ -315,22 +318,18 @@ class Tableau:
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
         # P = RHS of final tableau
-        output_dict = {"P": abs(self.tableau[0, -1])}
+        output_dict = {"P": abs(self.tableau[0, -1])}  # Objective value from RHS
 
         for i in range(self.n_vars):
-            # Gives indices of nonzero entries in the ith column
-            nonzero = np.nonzero(self.tableau[:, i])
-            n_nonzero = len(nonzero[0])
+            nonzero = np.nonzero(self.tableau[:, i])  # Indices of nonzero entries
+            n_nonzero = len(nonzero[0])  # Count of nonzero entries
 
-            # First entry in the nonzero indices
-            nonzero_rowidx = nonzero[0][0]
-            nonzero_val = self.tableau[nonzero_rowidx, i]
+            if n_nonzero == 1 and self.tableau[nonzero[0][0], i] == 1:
+                # If this column corresponds to a basic variable
+                rhs_val = self.tableau[nonzero[0][0], -1]  # Get corresponding RHS value
+                output_dict[self.col_titles[i]] = rhs_val  # Store in output dictionary
 
-            # If there is only one nonzero value in column, which is one
-            if n_nonzero == 1 and nonzero_val == 1:
-                rhs_val = self.tableau[nonzero_rowidx, -1]
-                output_dict[self.col_titles[i]] = rhs_val
-        return output_dict
+        return output_dict  # Return the final solution
 
 
 if __name__ == "__main__":
