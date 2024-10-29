@@ -15,10 +15,11 @@ def add(first: int, second: int) -> int:
     -321
     """
     while second != 0:
-        carry = first & second       # Calculate carry
-        first = first ^ second       # Add without carry
-        second = carry << 1          # Prepare carry for next iteration
+        carry = first & second  # Calculate carry
+        first = first ^ second  # Add without carry
+        second = carry << 1  # Prepare carry for next iteration
     return first
+
 
 if __name__ == "__main__":
     import doctest
