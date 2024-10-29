@@ -287,6 +287,7 @@ class Tableau:
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
         """
         # Stop simplex algorithm from cycling.
+
     def run_simplex(self) -> Dict[str, Any]:
         """Executes the simplex algorithm until an optimal solution is found.
 
