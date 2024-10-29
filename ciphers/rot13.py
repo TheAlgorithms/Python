@@ -1,14 +1,19 @@
-def dencrypt(s: str) -> str:
+def apply_rot13(s: str) -> str:
     """
-    https://en.wikipedia.org/wiki/ROT13
+    Performs a special case of the Caesar cipher.
+    Rotates the plaintext by 13 letters.
+    Also see: https://en.wikipedia.org/wiki/ROT13
 
+    Example usage:
     >>> msg = "My secret bank account number is 173-52946 so don't tell anyone!!"
-    >>> s = dencrypt(msg)
+    >>> s = apply_rot13(msg)
     >>> s
     "Zl frperg onax nppbhag ahzore vf 173-52946 fb qba'g gryy nalbar!!"
-    >>> dencrypt(s) == msg
+    >>> apply_rot13(s) == msg
     True
     """
+    if not isinstance(s, str):
+        return "The input must be a string. Please try again."
     N = 13
     out = ""
     for c in s:
@@ -24,10 +29,10 @@ def dencrypt(s: str) -> str:
 def main() -> None:
     s0 = input("Enter message: ")
 
-    s1 = dencrypt(s0, 13)
+    s1 = apply_rot13(s0)
     print("Encryption:", s1)
 
-    s2 = dencrypt(s1, 13)
+    s2 = apply_rot13(s1)
     print("Decryption: ", s2)
 
 
