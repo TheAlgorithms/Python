@@ -31,8 +31,8 @@ class Shor:
         while pow(num, start, number) != 1:
             start += 1
         return start
-        
-    def shor_algorithm(self, number:int) -> tuple[int, int]:
+
+    def shor_algorithm(self, number: int) -> tuple[int, int]:
         """
         Run Shor's algorithm to factor a number.
         >>> shor = Shor()
