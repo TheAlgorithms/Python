@@ -1,7 +1,7 @@
 def apply_rot13(s: str) -> str:
     """
-    Performs a special case of the Caesar cipher.
-    Rotates the plaintext by 13 letters.
+    Performs a special reversible case of the Caesar cipher.
+    Rotates a text by 13 letters.
     Also see: https://en.wikipedia.org/wiki/ROT13
 
     Example usage:
