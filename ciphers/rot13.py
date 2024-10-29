@@ -14,13 +14,13 @@ def apply_rot13(s: str) -> str:
     """
     if not isinstance(s, str):
         return "The input must be a string. Please try again."
-    N = 13
+    n = 13
     out = ""
     for c in s:
         if "A" <= c <= "Z":
-            out += chr(ord("A") + (ord(c) - ord("A") + N) % 26)
+            out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
         elif "a" <= c <= "z":
-            out += chr(ord("a") + (ord(c) - ord("a") + N) % 26)
+            out += chr(ord("a") + (ord(c) - ord("a") + n) % 26)
         else:
             out += c
     return out
