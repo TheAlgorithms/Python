@@ -9,6 +9,9 @@ prime numbers that are used to create the public key value, n
 In this implementation, I have used a very simple construct without 
 the use of qiskit or cirq to help understand how Shor algorithm's
 idea actually works.
+
+Website referred for shor algorithm:
+https://www.geeksforgeeks.org/shors-factorization-algorithm/
 """
 class Shor:
     def period_find(self, num: int, number: int) -> int:
@@ -26,7 +29,7 @@ class Shor:
             start += 1
         return start
         
-    def shor_algorithm(self, number:int) -> list[int]:
+    def shor_algorithm(self, number:int) -> tuple[int, int]:
         """
         Run Shor's algorithm to factor a number.
         >>> shor = Shor()
