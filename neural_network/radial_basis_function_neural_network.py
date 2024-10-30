@@ -1,6 +1,7 @@
 import doctest
 import numpy as np
 
+
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
