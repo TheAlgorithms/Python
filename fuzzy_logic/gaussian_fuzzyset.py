@@ -11,11 +11,12 @@ from dataclasses import dataclass
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 @dataclass
 class GaussianFuzzySet:
     """
     A class for representing and manipulating Gaussian fuzzy sets.
-    
+
     Attributes:
         name: The name or label of the fuzzy set.
         mean: The mean value (center) of the Gaussian fuzzy set.
@@ -26,7 +27,7 @@ class GaussianFuzzySet:
         membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
         complement(): Create a new GaussianFuzzySet instance representing the complement.
         plot(): Plot the membership function of the fuzzy set.
-        
+
     >>> fuzzy_set = GaussianFuzzySet("Medium Temperature", mean=25, std_dev=5)
     >>> fuzzy_set.membership(25)
     1.0
@@ -45,7 +46,7 @@ class GaussianFuzzySet:
         """
         Calculate the membership value of an input 'x' in the Gaussian fuzzy set.
         If it's a complement set, returns 1 - the Gaussian membership.
-        
+
         >>> GaussianFuzzySet("Medium", 0, 1).membership(0)
         1.0
         >>> GaussianFuzzySet("Medium", 0, 1).membership(1)
@@ -57,25 +58,34 @@ class GaussianFuzzySet:
     def complement(self) -> GaussianFuzzySet:
         """
         Create a new GaussianFuzzySet instance representing the complement.
-        
+
         >>> GaussianFuzzySet("Medium", 0, 1).complement().membership(0)
         0.0
         """
-        return GaussianFuzzySet(f"¬{self.name}", self.mean, self.std_dev, is_complement=not self.is_complement)
+        return GaussianFuzzySet(
+            f"¬{self.name}",
+            self.mean,
+            self.std_dev,
+            is_complement=not self.is_complement,
+        )
 
     def plot(self):
         """
         Plot the membership function of the Gaussian fuzzy set.
         """
-        x = np.linspace(self.mean - 3 * self.std_dev, self.mean + 3 * self.std_dev, 1000)
+        x = np.linspace(
+            self.mean - 3 * self.std_dev, self.mean + 3 * self.std_dev, 1000
+        )
         y = [self.membership(xi) for xi in x]
         plt.plot(x, y, label=self.name)
         plt.xlabel("x")
         plt.ylabel("Membership")
         plt.legend()
 
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
     # Create an instance of GaussianFuzzySet
@@ -84,7 +94,9 @@ if __name__ == "__main__":
     # Display some membership values
     print(f"Membership at mean (25): {fuzzy_set.membership(25)}")
     print(f"Membership at 30: {fuzzy_set.membership(30)}")
-    print(f"Complement Membership at mean (25): {fuzzy_set.complement().membership(25)}")
+    print(
+        f"Complement Membership at mean (25): {fuzzy_set.complement().membership(25)}"
+    )
 
     # Plot the Gaussian Fuzzy Set and its complement
     fuzzy_set.plot()
