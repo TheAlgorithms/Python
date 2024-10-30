@@ -5,7 +5,7 @@ https://en.wikipedia.org/wiki/Moving_average
 """
 
 import numpy as np
-from typing import List
+from typing import Any
 
 
 class EMAFilter:
@@ -34,13 +34,13 @@ class EMAFilter:
         self.alpha = alpha
         self.ema_value = None
 
-    def apply(self, audio_signal: List[float]) -> np.ndarray:
+    def apply(self, audio_signal: list[float]) -> np.ndarray:
         """
         Apply the EMA filter to a sequence of
         audio signal values.
 
         Parameters:
-        audio_signal (List[float]): List of numerical values
+        audio_signal (list[float]): List of numerical values
         representing the audio signal.
 
         Returns:
