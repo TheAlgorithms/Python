@@ -7,9 +7,11 @@ https://en.wikipedia.org/wiki/Membership_function_(mathematics)
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 @dataclass
@@ -19,10 +21,11 @@ class GaussianFuzzySet:
 
     Attributes:
         name: The name or label of the fuzzy set.
-        mean: The mean value (center) of the Gaussian fuzzy set.
-        std_dev: The standard deviation (controls the spread) of the Gaussian fuzzy set.
-        is_complement: Indicates whether this is the complement of the original fuzzy set.
-
+        mean: The mean value (center) of the Gaussianfuzzy set.
+        std_dev: The standard deviation (controls the spread) of 
+        the Gaussian fuzzy set.
+        is_complement: Indicates whether this is the complement 
+        of the original fuzzy set.
     Methods:
         membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
         complement(): Create a new GaussianFuzzySet instance representing the complement.
