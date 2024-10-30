@@ -1,4 +1,3 @@
-
 """
 Radial Basis Function Neural Network (RBFNN)
 
@@ -11,7 +10,6 @@ and classification tasks.
 
 - Wikipedia https://en.wikipedia.org/wiki/Radial_basis_function_network
 """
-
 
 import numpy as np
 
