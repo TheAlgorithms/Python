@@ -1,3 +1,10 @@
+"""
+By @Shreya123714
+https://en.wikipedia.org/wiki/Fuzzy_set
+https://en.wikipedia.org/wiki/Fuzzy_set_operations
+https://en.wikipedia.org/wiki/Membership_function_(mathematics)
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -78,6 +85,10 @@ class TrapezoidalFuzzySet:
     def plot(self) -> None:
         """
         Plots the membership function of the trapezoidal fuzzy set.
+    
+        >>> fuzzy_set = TrapezoidalFuzzySet("Medium", left_base=0,left_peak=1, 
+        ...                                 right_peak=2, right_base=3)
+        >>> fuzzy_set.plot()
         """
         x = np.linspace(self.left_base - 1, self.right_base + 1, 1000)
         y = [self.membership(xi) for xi in x]
