@@ -1,19 +1,13 @@
 """
 Radial Basis Function Neural Network (RBFNN)
 
-A Radial Basis Function Neural Network (RBFNN) is a type of artificial neural
-network that uses radial basis functions as activation functions.
-RBFNNs are particularly effective for function approximation, regression, and
-classification tasks. The architecture typically consists of an input layer,
-a hidden layer with radial basis functions, and an output layer.
-
-In an RBFNN:
-- The hidden layer applies a radial basis function (often Gaussian) to the
-input data, transforming it into a higher-dimensional space.
-- The output layer combines the results from the hidden layer using
-weighted sums to produce the final output.
+A Radial Basis Function Neural Network (RBFNN) is a type of artificial
+neural network that uses radial basis functions as activation functions.
+RBFNNs are particularly effective for function approximation, regression,
+and classification tasks.
 
 #### Reference
+
 - Wikipedia: https://en.wikipedia.org/wiki/Radial_basis_function_network
 """
 
@@ -40,14 +34,14 @@ class RadialBasisFunctionNeuralNetwork:
             spread (float): Spread of the radial basis functions.
 
         Examples:
-            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=3,spread=1.0)
+            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=3, spread=1.0)
             >>> rbf_nn.num_centers
             3
         """
         self.num_centers = num_centers
         self.spread = spread
-        self.centers: np.ndarray = None
-        self.weights: np.ndarray = None
+        self.centers: np.ndarray = None  # To be initialized during training
+        self.weights: np.ndarray = None  # To be initialized during training
 
     def _gaussian_rbf(self, input_vector: np.ndarray, center: np.ndarray) -> float:
         """
@@ -66,9 +60,9 @@ class RadialBasisFunctionNeuralNetwork:
             >>> rbf_nn._gaussian_rbf(np.array([0, 0]), center)
             0.1353352832366127
         """
-        # Calculate the squared distances
-        distances = np.linalg.norm(input_vector[:, np.newaxis] - center, axis=2) ** 2
-        return np.exp(-distances / (2 * self.spread**2))
+        return np.exp(
+            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread**2)
+        )
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
         """
@@ -88,7 +82,12 @@ class RadialBasisFunctionNeuralNetwork:
                    [0.60653066, 1.        ]])
         """
         assert self.centers is not None, "Centers initialized before computing outputs."
-        return self._gaussian_rbf(input_data, self.centers)
+
+        rbf_outputs = np.zeros((input_data.shape[0], self.num_centers))
+        for i, center in enumerate(self.centers):
+            for j in range(input_data.shape[0]):
+                rbf_outputs[j, i] = self._gaussian_rbf(input_data[j], center)
+        return rbf_outputs
 
     def fit(self, input_data: np.ndarray, target_values: np.ndarray) -> None:
         """
@@ -115,7 +114,7 @@ class RadialBasisFunctionNeuralNetwork:
             )
 
         # Initialize centers using random samples from input_data
-        rng = np.random.default_rng()
+        rng = np.random.default_rng()  # Create a random number generator
         random_indices = rng.choice(
             input_data.shape[0], self.num_centers, replace=False
         )
