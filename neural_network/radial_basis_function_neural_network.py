@@ -1,14 +1,14 @@
-''' Radial Basis Function Neural Network (RBFNN)
+"""Radial Basis Function Neural Network (RBFNN)
 
-A Radial Basis Function Neural Network (RBFNN) is a type of artificial 
-neural network that uses radial basis functions as activation functions. 
-RBFNNs are particularly effective for function approximation, regression, 
+A Radial Basis Function Neural Network (RBFNN) is a type of artificial
+neural network that uses radial basis functions as activation functions.
+RBFNNs are particularly effective for function approximation, regression,
 and classification tasks.
 
 #### Reference
 
 - Wikipedia https://en.wikipedia.org/wiki/Radial_basis_function_network
-'''
+"""
 
 import numpy as np
 
@@ -143,6 +143,7 @@ class RadialBasisFunctionNeuralNetwork:
         """
         rbf_outputs = self._compute_rbf_outputs(input_data)
         return rbf_outputs.dot(self.weights)
+
 
 # Example Usage
 if __name__ == "__main__":
