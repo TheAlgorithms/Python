@@ -16,14 +16,14 @@ class ART1:
 
     def __init__(self, num_features: int, vigilance: float = 0.7) -> None:
         """
-        Initialize the ART1 model with the given number of features and vigilance parameter.
+        Initialize the ART1 model with number of features and vigilance parameter.
 
         Args:
             num_features (int): Number of features in the input data.
             vigilance (float): Threshold for similarity (default is 0.7).
 
         Raises:
-            ValueError: If num_features is not positive or if vigilance is not between 0 and 1.
+            ValueError: If num_features not positive or vigilance not between 0 and 1.
         """
         if num_features <= 0:
             raise ValueError("Number of features must be a positive integer.")
@@ -50,7 +50,7 @@ class ART1:
             or len(input_vector) != self.num_features
         ):
             raise ValueError(
-                f"Both weight_vector and input_vector must have {self.num_features} features."
+                "Both weight_vector and input_vector must have certain number."
             )
 
         return np.dot(weight_vector, input_vector) / self.num_features
@@ -107,7 +107,7 @@ def art1_example() -> None:
     """
     Example function demonstrating the usage of the ART1 model.
 
-    This function creates a dataset, trains the ART1 model, and prints the assigned clusters for each data point.
+    This function creates dataset, trains ART1 model, and prints assigned clusters.
 
     Examples:
         >>> art1_example()
