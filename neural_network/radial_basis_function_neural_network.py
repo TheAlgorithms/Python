@@ -81,6 +81,8 @@ class RadialBasisFunctionNeuralNetwork:
             array([[1.        , 0.60653066],
                    [0.60653066, 1.        ]])
         """
+        assert self.centers is not None, "Centers initialized before computing outputs."
+        
         rbf_outputs = np.zeros((input_data.shape[0], self.num_centers))
         for i, center in enumerate(self.centers):
             for j in range(input_data.shape[0]):
@@ -96,7 +98,7 @@ class RadialBasisFunctionNeuralNetwork:
             target_values (np.ndarray): Target values (num_samples x output_dim).
 
         Raises:
-            ValueError: If number of samples in input_data and target_values do not match.
+            ValueError: If number of samples in input_data and target_values not match.
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
@@ -135,7 +137,7 @@ class RadialBasisFunctionNeuralNetwork:
             np.ndarray: Predicted values (num_samples x output_dim).
 
         Examples:
-            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
+            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2,spread=1.0)
             >>> rbf_nn.centers = np.array([[0, 0], [1, 1]])
             >>> rbf_nn.weights = np.array([[0.5], [0.5]])
             >>> rbf_nn.predict(np.array([[0, 0], [1, 1]]))
@@ -159,3 +161,4 @@ if __name__ == "__main__":
     # Predict using the trained model
     predictions = rbf_nn.predict(X)
     print("Predictions:\n", predictions)
+
