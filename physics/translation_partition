@@ -1,9 +1,9 @@
 import math
 
-def translation_partition_function(mass: float, temperature: float, 
+def translation_partition_function(mass: float, temperature: float,
                                    volume: float) -> float:
     """
-    Calculates the translational partition 
+    Calculates the translational partition
     function using the formula:
     q_trans = ((2 * pi * m * k_B * T)^(3/2) * V) / h^3
 
