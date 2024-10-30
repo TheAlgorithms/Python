@@ -79,7 +79,8 @@ class ART1:
         return np.dot(weight_vector, input_vector) / self.num_features
 
     def _learn(
-        self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5) -> np.ndarray:
+        self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5
+    ) -> np.ndarray:
         """
         Update cluster weights using the learning rate.
 
