@@ -1,6 +1,7 @@
 import numpy as np
 from typing import List, Optional
 
+
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -36,13 +37,13 @@ class RadialBasisFunctionNeuralNetwork:
 
         Returns:
             float: The output of the RBF evaluated at x.
-        
+
         >>> import numpy as np
         >>> rbf_nn = RadialBasisFunctionNeuralNetwork(n_centers=2, sigma=0.5)
         >>> rbf_nn._gaussian(np.array([0, 0]), np.array([1, 1]))
         0.1353352832366127
         """
-        return np.exp(-np.linalg.norm(x - center)**2 / (2 * self.sigma**2))
+        return np.exp(-(np.linalg.norm(x - center) ** 2) / (2 * self.sigma**2))
 
     def _compute_rbf(self, X: np.ndarray) -> np.ndarray:
         """
@@ -96,6 +97,7 @@ class RadialBasisFunctionNeuralNetwork:
         """
         rbf_outputs = self._compute_rbf(X)
         return rbf_outputs.dot(self.weights)
+
 
 # Example Usage
 if __name__ == "__main__":
