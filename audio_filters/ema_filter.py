@@ -5,7 +5,6 @@ https://en.wikipedia.org/wiki/Moving_average
 """
 
 import numpy as np
-from typing import Any
 
 
 class EMAFilter:
