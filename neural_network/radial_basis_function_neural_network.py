@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -32,11 +31,11 @@ class RadialBasisFunctionNeuralNetwork:
 
     def _gaussian_rbf(self, input_vector: np.ndarray, center: np.ndarray) -> float:
         """
-        Calculate the Gaussian radial basis function output for a given input vector and center.
+        Calculate Gaussian radial basis function output for input vector and center.
 
         Args:
-            input_vector (np.ndarray): The input vector for which to calculate the RBF output.
-            center (np.ndarray): The center of the radial basis function.
+            input_vector (np.ndarray): Input vector for which to calculate the RBF output.
+            center (np.ndarray): Center of the radial basis function.
 
         Returns:
             float: The output of the radial basis function evaluated at the input vector.
@@ -48,7 +47,7 @@ class RadialBasisFunctionNeuralNetwork:
             0.1353352832366127
         """
         return np.exp(
-            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread**2)
+            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread ** 2)
         )
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
@@ -59,7 +58,7 @@ class RadialBasisFunctionNeuralNetwork:
             input_data (np.ndarray): Input data matrix (num_samples x num_features).
 
         Returns:
-            np.ndarray: A matrix of shape (num_samples x num_centers) containing the RBF outputs.
+            np.ndarray: A matrix of shape (num_samples x num_centers) with RBF outputs.
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
@@ -83,7 +82,7 @@ class RadialBasisFunctionNeuralNetwork:
             target_values (np.ndarray): Target values (num_samples x output_dim).
 
         Raises:
-            ValueError: If the number of samples in input_data and target_values do not match.
+            ValueError: If number of samples in input_data and target_values not match.
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
@@ -136,7 +135,6 @@ class RadialBasisFunctionNeuralNetwork:
 # Example Usage
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
     # Sample dataset for XOR problem
