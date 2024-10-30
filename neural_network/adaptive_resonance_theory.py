@@ -1,11 +1,33 @@
+"""
+adaptive_resonance_theory.py
+
+This module implements the Adaptive Resonance Theory 1 (ART1) model, a type 
+of neural network designed for unsupervised learning and clustering of binary 
+input data. The ART1 algorithm continuously learns to categorize inputs based 
+on their similarity while preserving previously learned categories. This is 
+achieved through a vigilance parameter that controls the strictness of 
+category matching, allowing for flexible and adaptive clustering.
+
+ART1 is particularly useful in applications where it is critical to learn new 
+patterns without forgetting previously learned ones, making it suitable for 
+real-time data clustering and pattern recognition tasks.
+
+References:
+1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory." 
+   In: Neural Networks for Pattern Recognition, Oxford University Press, 
+   pp. 194–203.
+2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern 
+   Recognition by a Self-Organizing Neural Network." IEEE Transactions on 
+   Neural Networks, 1(2), 115-130. DOI: 10.1109/TNN.1988.82656
+
+"""
+
 import numpy as np
 
 
 class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
-
-    ...
 
     Attributes:
         num_features (int): Number of features in the input data.
@@ -50,7 +72,7 @@ class ART1:
             or len(input_vector) != self.num_features
         ):
             raise ValueError(
-                "Both weight_vector and input_vector must have certain number."
+                "Both weight_vector and input_vector must have the same number of features."
             )
 
         return np.dot(weight_vector, input_vector) / self.num_features
@@ -77,6 +99,29 @@ class ART1:
             array([0.5, 1. , 0.5, 0. ])
         """
         return learning_rate * x + (1 - learning_rate) * w
+
+    def train(self, data: np.ndarray) -> None:
+        """
+        Train the ART1 model on the provided data.
+
+        Args:
+            data (np.ndarray): Input data for training.
+
+        Returns:
+            None
+        """
+        for x in data:
+            # Predict the cluster for the input data point
+            cluster_index = self.predict(x)
+
+            if cluster_index == -1:  # No existing cluster matches
+                # Create a new cluster with the current input
+                self.weights.append(x)
+            else:
+                # Update the existing cluster's weights
+                self.weights[cluster_index] = self._learn(
+                    self.weights[cluster_index], x
+                )
 
     def predict(self, x: np.ndarray) -> int:
         """
@@ -107,7 +152,7 @@ def art1_example() -> None:
     """
     Example function demonstrating the usage of the ART1 model.
 
-    This function creates dataset, trains ART1 model, and prints assigned clusters.
+    This function creates a dataset, trains the ART1 model, and prints assigned clusters.
 
     Examples:
         >>> art1_example()
