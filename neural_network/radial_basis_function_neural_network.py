@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -12,7 +11,7 @@ class RadialBasisFunctionNeuralNetwork:
         weights (np.ndarray): Weights for the output layer.
     """
 
-    def __init__(self, num_centers: int, spread: float):
+    def __init__(self, num_centers: int, spread: float) -> None:
         """
         Initialize the RBFNN with the given number of centers and spread.
 
@@ -48,7 +47,7 @@ class RadialBasisFunctionNeuralNetwork:
             0.1353352832366127
         """
         return np.exp(
-            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread**2)
+            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread ** 2)
         )
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
@@ -74,7 +73,7 @@ class RadialBasisFunctionNeuralNetwork:
                 rbf_outputs[j, i] = self._gaussian_rbf(input_data[j], center)
         return rbf_outputs
 
-    def fit(self, input_data: np.ndarray, target_values: np.ndarray):
+    def fit(self, input_data: np.ndarray, target_values: np.ndarray) -> None:
         """
         Train the RBFNN using the provided input data and target values.
 
@@ -87,8 +86,8 @@ class RadialBasisFunctionNeuralNetwork:
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
-            >>> X = np.array([[0, 0], [1, 0], [0, 1], [1, 1]])
-            >>> y = np.array([[0], [1], [1], [0]])
+            >>> X = np.array([[0, 0], [1, 0], [0, 1], [1, 1]])  # 2D input
+            >>> y = np.array([[0], [1], [1], [0]])  # Target output for XOR
             >>> rbf_nn.fit(X, y)
             >>> rbf_nn.weights is not None
             True
@@ -99,7 +98,7 @@ class RadialBasisFunctionNeuralNetwork:
             )
 
         # Initialize centers using random samples from input_data
-        rng = np.random.default_rng()  # Using new random number generator
+        rng = np.random.default_rng()  # Create a random number generator
         random_indices = rng.choice(
             input_data.shape[0], self.num_centers, replace=False
         )
@@ -136,7 +135,6 @@ class RadialBasisFunctionNeuralNetwork:
 # Example Usage
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
     # Sample dataset for XOR problem
