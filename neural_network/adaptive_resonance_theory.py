@@ -1,26 +1,27 @@
 """
 adaptive_resonance_theory.py
 
-This module implements the Adaptive Resonance Theory 1 (ART1) model, a type 
-of neural network designed for unsupervised learning and clustering of binary 
-input data. The ART1 algorithm continuously learns to categorize inputs based 
-on their similarity while preserving previously learned categories. This is 
-achieved through a vigilance parameter that controls the strictness of 
+This module implements the Adaptive Resonance Theory 1 (ART1) model, a type
+of neural network designed for unsupervised learning and clustering of binary
+input data. The ART1 algorithm continuously learns to categorize inputs based
+on their similarity while preserving previously learned categories. This is
+achieved through a vigilance parameter that controls the strictness of
 category matching, allowing for flexible and adaptive clustering.
 
-ART1 is particularly useful in applications where it is critical to learn new 
-patterns without forgetting previously learned ones, making it suitable for 
+ART1 is particularly useful in applications where it is critical to learn new
+patterns without forgetting previously learned ones, making it suitable for
 real-time data clustering and pattern recognition tasks.
 
 References:
-1. Carpenter, G. A., & Grossberg, S. (1987). "Adaptive Resonance Theory." 
+1. Carpenter, G. A., & Grossberg, S. (1987). "Adaptive Resonance Theory."
    In: Neural Networks for Pattern Recognition, Oxford University Press, pp..
-2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern 
-   Recognition by a Self-Organizing Neural Network." IEEE Transactions on 
+2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern
+   Recognition by a Self-Organizing Neural Network." IEEE Transactions on
    Neural Networks, 1(2) . DOI: 10.1109/TNN.1988.82656
 """
 
 import numpy as np
+
 
 class ART1:
     """
@@ -64,12 +65,22 @@ class ART1:
         Returns:
             float: The similarity score between the weight and the input.
         """
-        if len(weight_vector) != self.num_features or len(input_vector) != self.num_features:
-            raise ValueError("Both weight_vector and input_vector must have the same number of features.")
+        if (
+            len(weight_vector) != self.num_features
+            or len(input_vector) != self.num_features
+        ):
+            raise ValueError(
+                "Both weight_vector and input_vector must have the same number of features."
+            )
 
         return np.dot(weight_vector, input_vector) / self.num_features
 
-    def _learn(self, current_weights: np.ndarray, input_vector: np.ndarray, learning_rate: float = 0.5) -> np.ndarray:
+    def _learn(
+        self,
+        current_weights: np.ndarray,
+        input_vector: np.ndarray,
+        learning_rate: float = 0.5,
+    ) -> np.ndarray:
         """
         Update cluster weights using the learning rate.
 
@@ -100,7 +111,9 @@ class ART1:
                 self.weights.append(input_vector)
             else:
                 # Update the weights of the assigned cluster
-                self.weights[assigned_cluster_index] = self._learn(self.weights[assigned_cluster_index], input_vector)
+                self.weights[assigned_cluster_index] = self._learn(
+                    self.weights[assigned_cluster_index], input_vector
+                )
 
     def predict(self, input_vector: np.ndarray) -> int:
         """
@@ -112,8 +125,12 @@ class ART1:
         Returns:
             int: Index of the assigned cluster, or -1 if no match.
         """
-        similarities = [self._similarity(weight, input_vector) for weight in self.weights]
-        return np.argmax(similarities) if max(similarities) >= self.vigilance else -1  # -1 if no match
+        similarities = [
+            self._similarity(weight, input_vector) for weight in self.weights
+        ]
+        return (
+            np.argmax(similarities) if max(similarities) >= self.vigilance else -1
+        )  # -1 if no match
 
 
 # Example usage for ART1
