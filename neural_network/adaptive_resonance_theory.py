@@ -5,21 +5,21 @@ class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
 
-    This model is designed for unsupervised learning and clustering of binary 
-    input data. The ART1 algorithm continuously learns to categorize inputs based 
-    on their similarity while preserving previously learned categories. This is 
-    achieved through a vigilance parameter that controls the strictness of 
+    This model is designed for unsupervised learning and clustering of binary
+    input data. The ART1 algorithm continuously learns to categorize inputs based
+    on their similarity while preserving previously learned categories. This is
+    achieved through a vigilance parameter that controls the strictness of
     category matching, allowing for flexible and adaptive clustering.
 
-    ART1 is particularly useful in applications where it is critical to learn new 
-    patterns without forgetting previously learned ones, making it suitable for 
+    ART1 is particularly useful in applications where it is critical to learn new
+    patterns without forgetting previously learned ones, making it suitable for
     real-time data clustering and pattern recognition tasks.
 
     References:
-    1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory." 
+    1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory."
        In: Neural Networks for Pattern Recognition, Oxford University Press.
-    2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern 
-       Recognition by a Self-Organizing Neural Network." IEEE Transactions on 
+    2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern
+       Recognition by a Self-Organizing Neural Network." IEEE Transactions on
        Neural Networks, 1(2). DOI: 10.1109/TNN.1988.82656
     """
 
