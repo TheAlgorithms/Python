@@ -10,6 +10,7 @@ and classification tasks.
 - Wikipedia https://en.wikipedia.org/wiki/Radial_basis_function_network
 """
 
+
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -141,12 +142,12 @@ class RadialBasisFunctionNeuralNetwork:
         rbf_outputs = self._compute_rbf_outputs(input_data)
         return rbf_outputs.dot(self.weights)
 
+
 import numpy as np
 
 
 # Example Usage
 if __name__ == "__main__":
-
     # Sample dataset for XOR problem
     X = np.array([[0, 0], [1, 0], [0, 1], [1, 1]])  # 2D input
     y = np.array([[0], [1], [1], [0]])  # Target output for XOR
