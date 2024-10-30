@@ -446,6 +446,7 @@
   * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
+  * [Gaussian Fuzzy Set](fuzzy_logic/Gaussian_fuzzy_set.py)
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
 
 ## Genetic Algorithm
