@@ -132,7 +132,9 @@ class RadialBasisFunctionNeuralNetwork:
         rbf_outputs = self._compute_rbf_outputs(input_data)
         return rbf_outputs.dot(self.weights)
 
+
 from doctest import testmod
+
 # Example Usage
 if __name__ == "__main__":
     testmod()  # Running the doctest
