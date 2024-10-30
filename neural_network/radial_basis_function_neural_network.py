@@ -146,6 +146,7 @@ class RadialBasisFunctionNeuralNetwork:
         rbf_outputs = self._compute_rbf_outputs(input_data)
         return rbf_outputs.dot(self.weights)
 
+
 # Example Usage
 if __name__ == "__main__":
     # Sample dataset for XOR problem
