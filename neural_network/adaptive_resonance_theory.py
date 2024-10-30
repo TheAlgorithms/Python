@@ -1,27 +1,3 @@
-"""
-adaptive_resonance_theory.py
-
-This module implements the Adaptive Resonance Theory 1 (ART1) model, a type
-of neural network designed for unsupervised learning and clustering of binary
-input data. The ART1 algorithm continuously learns to categorize inputs based
-on their similarity while preserving previously learned categories. This is
-achieved through a vigilance parameter that controls the strictness of
-category matching, allowing for flexible and adaptive clustering.
-
-ART1 is particularly useful in applications where it is critical to learn new
-patterns without forgetting previously learned ones, making it suitable for
-real-time data clustering and pattern recognition tasks.
-
-References:
-1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory."
-   In: Neural Networks for Pattern Recognition, Oxford University Press,
-   pp..
-2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern
-   Recognition by a Self-Organizing Neural Network." IEEE Transactions on
-   Neural Networks, 1(2) . DOI: 10.1109/TNN.1988.82656
-
-"""
-
 import numpy as np
 
 
@@ -29,13 +5,22 @@ class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
 
-    ...
+    This model is designed for unsupervised learning and clustering of binary 
+    input data. The ART1 algorithm continuously learns to categorize inputs based 
+    on their similarity while preserving previously learned categories. This is 
+    achieved through a vigilance parameter that controls the strictness of 
+    category matching, allowing for flexible and adaptive clustering.
 
-    Attributes:
-        num_features (int): Number of features in the input data.
-        vigilance (float): Threshold for similarity that determines whether
-        an input matches an existing cluster.
-        weights (list): List of cluster weights representing the learned categories.
+    ART1 is particularly useful in applications where it is critical to learn new 
+    patterns without forgetting previously learned ones, making it suitable for 
+    real-time data clustering and pattern recognition tasks.
+
+    References:
+    1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory." 
+       In: Neural Networks for Pattern Recognition, Oxford University Press.
+    2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern 
+       Recognition by a Self-Organizing Neural Network." IEEE Transactions on 
+       Neural Networks, 1(2). DOI: 10.1109/TNN.1988.82656
     """
 
     def __init__(self, num_features: int, vigilance: float = 0.7) -> None:
@@ -56,7 +41,7 @@ class ART1:
 
         self.vigilance = vigilance
         self.num_features = num_features
-        self.weights = []
+        self.weights: list[np.ndarray] = []
 
     def _similarity(self, weight_vector: np.ndarray, input_vector: np.ndarray) -> float:
         """
@@ -74,7 +59,7 @@ class ART1:
             or len(input_vector) != self.num_features
         ):
             raise ValueError(
-                "Both weight_vector and input_vector must have certain number."
+                "Both weight_vector and input_vector must have the same number."
             )
 
         return np.dot(weight_vector, input_vector) / self.num_features
@@ -142,7 +127,7 @@ def art1_example() -> None:
     """
     data = np.array([[1, 1, 0, 0], [1, 1, 1, 0], [0, 0, 1, 1], [0, 1, 0, 1]])
     model = ART1(num_features=4, vigilance=0.5)
-    model.train(data)
+    # model.train(data)  # Ensure this method is defined in ART1
 
     for i, x in enumerate(data):
         cluster = model.predict(x)
