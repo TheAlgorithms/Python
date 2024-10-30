@@ -1,6 +1,7 @@
 import numpy as np
 import doctest
 
+
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -48,7 +49,7 @@ class RadialBasisFunctionNeuralNetwork:
             0.1353352832366127
         """
         return np.exp(
-            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread ** 2)
+            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread**2)
         )
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
