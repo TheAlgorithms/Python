@@ -1,23 +1,23 @@
 """
 adaptive_resonance_theory.py
 
-This module implements the Adaptive Resonance Theory 1 (ART1) model, a type
-of neural network designed for unsupervised learning and clustering of binary
-input data. The ART1 algorithm continuously learns to categorize inputs based
-on their similarity while preserving previously learned categories. This is
-achieved through a vigilance parameter that controls the strictness of
+This module implements the Adaptive Resonance Theory 1 (ART1) model, a type 
+of neural network designed for unsupervised learning and clustering of binary 
+input data. The ART1 algorithm continuously learns to categorize inputs based 
+on their similarity while preserving previously learned categories. This is 
+achieved through a vigilance parameter that controls the strictness of 
 category matching, allowing for flexible and adaptive clustering.
 
-ART1 is particularly useful in applications where it is critical to learn new
-patterns without forgetting previously learned ones, making it suitable for
+ART1 is particularly useful in applications where it is critical to learn new 
+patterns without forgetting previously learned ones, making it suitable for 
 real-time data clustering and pattern recognition tasks.
 
 References:
-1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory."
-   In: Neural Networks for Pattern Recognition, Oxford University Press,
+1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory." 
+   In: Neural Networks for Pattern Recognition, Oxford University Press, 
    pp. 194–203.
-2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern
-   Recognition by a Self-Organizing Neural Network." IEEE Transactions on
+2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern 
+   Recognition by a Self-Organizing Neural Network." IEEE Transactions on 
    Neural Networks, 1(2), 115-130. DOI: 10.1109/TNN.1988.82656
 
 """
@@ -55,7 +55,7 @@ class ART1:
 
         self.vigilance = vigilance
         self.num_features = num_features
-        self.weights: List[np.ndarray] = []  # Correctly typed list of numpy arrays
+        self.weights: List[np.ndarray] = []  # Type annotation added here
 
     def _similarity(self, weight_vector: np.ndarray, input_vector: np.ndarray) -> float:
         """
