@@ -832,6 +832,7 @@
   * [Input Data](neural_network/input_data.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
   * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
+  * [Radial Basis Function Neural Network](neural_network/radial_basis_function_neural_network.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)
