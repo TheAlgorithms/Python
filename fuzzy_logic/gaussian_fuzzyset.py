@@ -52,8 +52,10 @@ class GaussianFuzzySet:
         >>> GaussianFuzzySet("Medium", 0, 1).membership(1)
         0.6065306597126334
         """
+        
         membership_value = np.exp(-0.5 * ((x - self.mean) / self.std_dev) ** 2)
-        return 1 - membership_value if self.is_complement else membership_value
+        # Directly return for non-complement or return 1 - membership for complement
+        return membership_value if not self.is_complement else 1 - membership_value
 
     def complement(self) -> GaussianFuzzySet:
         """
