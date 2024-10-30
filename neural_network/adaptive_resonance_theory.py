@@ -5,12 +5,7 @@ class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
 
-    The ART1 algorithm is a type of neural network used for unsupervised
-    learning and clustering of binary input data. It continuously learns
-    to categorize inputs based on similarity while preserving previously
-    learned categories. The vigilance parameter controls the degree of
-    similarity required to assign an input to an existing category,
-    allowing for flexible and adaptive clustering.
+    ...
 
     Attributes:
         num_features (int): Number of features in the input data.
@@ -26,62 +21,34 @@ class ART1:
         Args:
             num_features (int): Number of features in the input data.
             vigilance (float): Threshold for similarity (default is 0.7).
-
-        Examples:
-            >>> model = ART1(num_features=4, vigilance=0.5)
-            >>> model.num_features
-            4
-            >>> model.vigilance
-            0.5
+        
+        Raises:
+            ValueError: If num_features is not positive or if vigilance is not between 0 and 1.
         """
-        self.vigilance = vigilance  # Controls cluster strictness
+        if num_features <= 0:
+            raise ValueError("Number of features must be a positive integer.")
+        if not (0 <= vigilance <= 1):
+            raise ValueError("Vigilance parameter must be between 0 and 1.")
+        
+        self.vigilance = vigilance
         self.num_features = num_features
-        self.weights = []  # List of cluster weights
+        self.weights = []
 
-    def train(self, data: np.ndarray) -> None:
-        """
-        Train the ART1 model on the provided data.
-
-        Args:
-            data (np.ndarray): A 2D array of binary input data (num_samples x num_features).
-
-        Examples:
-            >>> model = ART1(num_features=4, vigilance=0.5)
-            >>> data = np.array([[1, 1, 0, 0], [1, 1, 1, 0]])
-            >>> model.train(data)
-            >>> len(model.weights)
-            2
-        """
-        for x in data:
-            match = False
-            for i, w in enumerate(self.weights):
-                if self._similarity(w, x) >= self.vigilance:
-                    self.weights[i] = self._learn(w, x)
-                    match = True
-                    break
-            if not match:
-                self.weights.append(x.copy())  # Add a new cluster
-
-    def _similarity(self, w: np.ndarray, x: np.ndarray) -> float:
+    def _similarity(self, weight_vector: np.ndarray, input_vector: np.ndarray) -> float:
         """
         Calculate similarity between weight and input.
 
         Args:
-            w (np.ndarray): Weight vector representing a cluster.
-            x (np.ndarray): Input vector.
+            weight_vector (np.ndarray): Weight vector representing a cluster.
+            input_vector (np.ndarray): Input vector.
 
         Returns:
             float: The similarity score between the weight and the input.
-
-        Examples:
-            >>> model = ART1(num_features=4)
-            >>> w = np.array([1, 1, 0, 0])
-            >>> x = np.array([1, 0, 0, 0])
-            >>> model._similarity(w, x)
-            0.25
         """
-        return np.dot(w, x) / (self.num_features)
-
+        if len(weight_vector) != self.num_features or len(input_vector) != self.num_features:
+            raise ValueError(f"Both weight_vector and input_vector must have {self.num_features} features.")
+        
+        return np.dot(weight_vector, input_vector) / self.num_features
     def _learn(
         self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5
     ) -> np.ndarray:
