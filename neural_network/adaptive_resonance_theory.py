@@ -21,7 +21,7 @@ class ART1:
         Args:
             num_features (int): Number of features in the input data.
             vigilance (float): Threshold for similarity (default is 0.7).
-        
+
         Raises:
             ValueError: If num_features is not positive or if vigilance is not between 0 and 1.
         """
@@ -29,7 +29,7 @@ class ART1:
             raise ValueError("Number of features must be a positive integer.")
         if not (0 <= vigilance <= 1):
             raise ValueError("Vigilance parameter must be between 0 and 1.")
-        
+
         self.vigilance = vigilance
         self.num_features = num_features
         self.weights = []
@@ -45,10 +45,16 @@ class ART1:
         Returns:
             float: The similarity score between the weight and the input.
         """
-        if len(weight_vector) != self.num_features or len(input_vector) != self.num_features:
-            raise ValueError(f"Both weight_vector and input_vector must have {self.num_features} features.")
-        
+        if (
+            len(weight_vector) != self.num_features
+            or len(input_vector) != self.num_features
+        ):
+            raise ValueError(
+                f"Both weight_vector and input_vector must have {self.num_features} features."
+            )
+
         return np.dot(weight_vector, input_vector) / self.num_features
+
     def _learn(
         self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5
     ) -> np.ndarray:
