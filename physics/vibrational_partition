@@ -1,0 +1,33 @@
+def vibration_partition_function(frequency: float,
+                    temperature: float) -> float:
+    """
+    Calculates the vibrational partition function.
+
+    >>> round(vibration_partition_function(5e13, 300), 4)
+    1.0003
+    >>> round(vibration_partition_function(1e13, 300), 4)
+    1.2531
+    >>> round(vibration_partition_function(-1e13, 300), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Frequency must be positive
+    >>> round(vibration_partition_function(1e13, -300), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Temperature must be positive
+    """
+
+    if frequency <= 0:
+        raise ValueError("Frequency must be positive")
+    if temperature <= 0:
+        raise ValueError("Temperature must be positive")
+
+    h = 6.62607015e-34  # Planck's constant
+    k_B = 1.380649e-23  # Boltzmann constant
+
+    theta_v = (h * frequency) / k_B
+    return 1 / (1 - math.exp(-theta_v / temperature))
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(name="vibration_partition_function")
