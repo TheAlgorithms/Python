@@ -22,9 +22,9 @@ class GaussianFuzzySet:
     Attributes:
         name: The name or label of the fuzzy set.
         mean: The mean value (center) of the Gaussianfuzzy set.
-        std_dev: The standard deviation (controls the spread) of 
+        std_dev: The standard deviation (controls the spread) of
         the Gaussian fuzzy set.
-        is_complement: Indicates whether this is the complement 
+        is_complement: Indicates whether this is the complement
         of the original fuzzy set.
     Methods:
         membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
