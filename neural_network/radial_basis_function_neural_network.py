@@ -1,4 +1,5 @@
 import numpy as np
+import doctest
 
 class RadialBasisFunctionNeuralNetwork:
     """
@@ -134,7 +135,6 @@ class RadialBasisFunctionNeuralNetwork:
 
 # Example Usage
 if __name__ == "__main__":
-    import doctest
     doctest.testmod()
 
     # Sample dataset for XOR problem
