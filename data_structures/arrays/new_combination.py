@@ -1,5 +1,6 @@
 from itertools import combinations
 
+
 def permute_recursive(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations.
@@ -19,6 +20,7 @@ def permute_recursive(nums: list[int]) -> list[list[int]]:
         nums.append(n)
     return result
 
+
 def permute_backtrack(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations of the given list.
@@ -26,6 +28,7 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
     >>> permute_backtrack([1, 2, 3])
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
     """
+
     def backtrack(start: int) -> None:
         if start == len(nums) - 1:
             output.append(nums[:])
@@ -38,6 +41,7 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
     output: list[list[int]] = []
     backtrack(0)
     return output
+
 
 def get_combinations(nums: list[int], r: int) -> list[list[int]]:
     """
