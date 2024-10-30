@@ -1,6 +1,5 @@
-import numpy as np
 import doctest
-
+import numpy as np
 
 class RadialBasisFunctionNeuralNetwork:
     """
