@@ -1,4 +1,4 @@
-import doctest
+from doctest import testmod
 import numpy as np
 
 
