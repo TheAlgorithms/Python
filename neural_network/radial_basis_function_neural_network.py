@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class RadialBasisFunctionNeuralNetwork:
     """
     A simple implementation of a Radial Basis Function Neural Network (RBFNN).
@@ -46,7 +47,9 @@ class RadialBasisFunctionNeuralNetwork:
             >>> rbf_nn._gaussian_rbf(np.array([0, 0]), center)
             0.1353352832366127
         """
-        return np.exp(-(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread ** 2))
+        return np.exp(
+            -(np.linalg.norm(input_vector - center) ** 2) / (2 * self.spread**2)
+        )
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
         """
@@ -91,11 +94,15 @@ class RadialBasisFunctionNeuralNetwork:
             True
         """
         if input_data.shape[0] != target_values.shape[0]:
-            raise ValueError("Number of samples in input_data and target_values must match.")
+            raise ValueError(
+                "Number of samples in input_data and target_values must match."
+            )
 
         # Initialize centers using random samples from input_data
         rng = np.random.default_rng()  # Using new random number generator
-        random_indices = rng.choice(input_data.shape[0], self.num_centers, replace=False)
+        random_indices = rng.choice(
+            input_data.shape[0], self.num_centers, replace=False
+        )
         self.centers = input_data[random_indices]
 
         # Compute the RBF outputs for the training data
@@ -129,6 +136,7 @@ class RadialBasisFunctionNeuralNetwork:
 # Example Usage
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Sample dataset for XOR problem
