@@ -1,5 +1,5 @@
 """
-This program is a MNIST classifier using AlexNet. 
+This program is a MNIST classifier using AlexNet.
 
 For example, to train and test AlexNet with 1 and 2 MNIST samples with 4 training epochs.
 The command line input should be:
@@ -103,9 +103,9 @@ def test(model, test_loader):
         with torch.no_grad():
             data, target = Variable(data), Variable(target)
         output = model(data)
-        test_loss += F.cross_entropy(output, target, reduction="sum").item()  
+        test_loss += F.cross_entropy(output, target, reduction="sum").item()
         # size_average=False
-        pred = output.data.max(1, keepdim=True)[1]  
+        pred = output.data.max(1, keepdim=True)[1]
         # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
 
