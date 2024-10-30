@@ -27,8 +27,10 @@ class GaussianFuzzySet:
         is_complement: Indicates whether this is the complement
         of the original fuzzy set.
     Methods:
-        membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
-        complement(): Create a new GaussianFuzzySet instance representing the complement.
+        membership(member): Calculate the membership value of
+        an input 'member'in the fuzzy set.
+        complement(): Create a new GaussianFuzzySet instance representing
+        the complement.
         plot(): Plot the membership function of the fuzzy set.
 
     >>> fuzzy_set = GaussianFuzzySet("Medium Temperature", mean=25, std_dev=5)
@@ -45,9 +47,9 @@ class GaussianFuzzySet:
     std_dev: float
     is_complement: bool = False  # This flag indicates if it's the complement set
 
-    def membership(self, x: float) -> float:
+    def membership(self, member: float) -> float:
         """
-        Calculate the membership value of an input 'x' in the Gaussian fuzzy set.
+        Calculate the membership value of an input 'member' in the Gaussian fuzzy set.
         If it's a complement set, returns 1 - the Gaussian membership.
 
         >>> GaussianFuzzySet("Medium", 0, 1).membership(0)
@@ -56,7 +58,7 @@ class GaussianFuzzySet:
         0.6065306597126334
         """
 
-        membership_value = np.exp(-0.5 * ((x - self.mean) / self.std_dev) ** 2)
+        membership_value = np.exp(-0.5 * ((member - self.mean) / self.std_dev) ** 2)
         # Directly return for non-complement or return 1 - membership for complement
         return membership_value if not self.is_complement else 1 - membership_value
 
@@ -74,7 +76,7 @@ class GaussianFuzzySet:
             is_complement=not self.is_complement,
         )
 
-    def plot(self):
+    def plot(self) -> None:
         """
         Plot the membership function of the Gaussian fuzzy set.
         """
