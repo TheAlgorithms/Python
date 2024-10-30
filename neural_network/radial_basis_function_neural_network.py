@@ -8,7 +8,7 @@ and classification tasks.
 
 #### Reference
 
-- Wikipedia https://en.wikipedia.org/wiki/Radial_basis_function_network
+- Wikipedia: https://en.wikipedia.org/wiki/Radial_basis_function_network
 """
 
 import numpy as np
@@ -96,7 +96,7 @@ class RadialBasisFunctionNeuralNetwork:
             target_values (np.ndarray): Target values (num_samples x output_dim).
 
         Raises:
-            ValueError: If number of samples in input_data and target_values not match.
+            ValueError: If number of samples in input_data and target_values do not match.
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=1.0)
