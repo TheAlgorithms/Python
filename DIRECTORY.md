@@ -832,6 +832,7 @@
   * [Input Data](neural_network/input_data.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
   * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
+  * [Adaptive Resonance Theory](neural_network/adaptive_resonance_theory.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)
