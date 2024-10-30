@@ -10,7 +10,7 @@ import numpy as np
 class TrapezoidalFuzzySet:
     """
     Represents and manipulates trapezoidal fuzzy sets.
-    
+
     Attributes:
         name: The name or label of the fuzzy set.
         left_base: The left base of the trapezoid.
@@ -46,24 +46,34 @@ class TrapezoidalFuzzySet:
         if value < self.left_base or value > self.right_base:
             membership_value = 0.0
         elif self.left_base <= value < self.left_peak:
-            membership_value = (value - self.left_base) / (self.left_peak - self.left_base)
+            membership_value = (value - self.left_base) / (
+                self.left_peak - self.left_base
+            )
         elif self.left_peak <= value <= self.right_peak:
             membership_value = 1.0
         elif self.right_peak < value <= self.right_base:
-            membership_value = (self.right_base - value) / (self.right_base - self.right_peak)
-        
+            membership_value = (self.right_base - value) / (
+                self.right_base - self.right_peak
+            )
+
         # For complements, invert the membership value
         return membership_value if not self.is_complement else 1 - membership_value
 
     def complement(self) -> TrapezoidalFuzzySet:
         """
         Creates a new TrapezoidalFuzzySet instance representing the complement.
-        
+
         >>> TrapezoidalFuzzySet("Medium", 0, 1, 2, 3).complement().membership(1)
         0.0
         """
-        return TrapezoidalFuzzySet(f"¬{self.name}", self.left_base, self.left_peak, self.right_peak, self.right_base,
-                                   is_complement=not self.is_complement)
+        return TrapezoidalFuzzySet(
+            f"¬{self.name}",
+            self.left_base,
+            self.left_peak,
+            self.right_peak,
+            self.right_base,
+            is_complement=not self.is_complement,
+        )
 
     def plot(self) -> None:
         """
@@ -78,12 +88,16 @@ class TrapezoidalFuzzySet:
         plt.grid()
         plt.legend()
 
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
     # Create an instance of TrapezoidalFuzzySet
-    fuzzy_set = TrapezoidalFuzzySet("Medium Temperature", left_base=20, left_peak=25, right_peak=30, right_base=35)
+    fuzzy_set = TrapezoidalFuzzySet(
+        "Medium Temperature", left_base=20, left_peak=25, right_peak=30, right_base=35
+    )
 
     # Display some membership values
     print(f"Membership at 25: {fuzzy_set.membership(25)}")
@@ -95,4 +109,3 @@ if __name__ == "__main__":
     fuzzy_set.complement().plot()
     plt.title("Trapezoidal Fuzzy Set and its Complement")
     plt.show()
-
