@@ -36,11 +36,11 @@ class RadialBasisFunctionNeuralNetwork:
         Calculate Gaussian radial basis function output for input vector and center.
 
         Args:
-            input_vector (np.ndarray): Input vector for which to calculate the RBF output.
+            input_vector (np.ndarray): Input vector to calculate RBF output.
             center (np.ndarray): Center of the radial basis function.
 
         Returns:
-            float: The output of the radial basis function evaluated at the input vector.
+            float: The output of the radial basis function evaluated at input vector.
 
         Examples:
             >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=2, spread=0.5)
