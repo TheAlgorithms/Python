@@ -1,6 +1,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Ema Filter](audio_filters/ema_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
