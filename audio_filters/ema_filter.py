@@ -31,7 +31,7 @@ class EMAFilter:
         if not (0 < alpha <= 1):
             raise ValueError("Alpha must be between 0 and 1.")
         self.alpha = alpha
-        self.ema_value = None
+        self.ema_value = 0.0
 
     def apply(self, audio_signal: list[float]) -> np.ndarray:
         """
@@ -51,7 +51,7 @@ class EMAFilter:
         ...             [0.1, 0.18, 0.304, 0.3632, 0.35056, 0.460448, 0.4483584])
         True
         """
-        ema_signal = []
+        ema_signal: list[float] = []
         for sample in audio_signal:
             if self.ema_value is None:
                 # Initialize the EMA with the first sample
