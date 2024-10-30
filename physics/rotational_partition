@@ -1,7 +1,7 @@
-def rotation_partition_function(moment_of_inertia: float, 
+def rotation_partition_function(moment_of_inertia: float,
     temperature: float) -> float:
     """
-    Calculates the rotational partition 
+    Calculates the rotational partition
     function for linear molecules.
 
     >>> round(rotation_partition_function(1e-46, 300), 4)
