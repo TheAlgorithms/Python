@@ -15,10 +15,10 @@ real-time data clustering and pattern recognition tasks.
 References:
 1. Carpenter, G. A., & Grossberg, S. (1987). "A Adaptive Resonance Theory."
    In: Neural Networks for Pattern Recognition, Oxford University Press,
-   pp. 194–203.
+   pp.
 2. Carpenter, G. A., & Grossberg, S. (1988). "The ART of Adaptive Pattern
    Recognition by a Self-Organizing Neural Network." IEEE Transactions on
-   Neural Networks, 1(2), 115-130. DOI: 10.1109/TNN.1988.82656
+   Neural Networks, 1(2) DOI: 10.1109/TNN.1988.82656
 
 """
 
@@ -34,7 +34,7 @@ class ART1:
         num_features (int): Number of features in the input data.
         vigilance (float): Threshold for similarity that determines whether
         an input matches an existing cluster.
-        weights (List[np.ndarray]): List of cluster weights representing the learned categories.
+        weights (List[np.ndarray]): List of cluster weights representing learned categories.
     """
 
     def __init__(self, num_features: int, vigilance: float = 0.7) -> None:
@@ -73,14 +73,13 @@ class ART1:
             or len(input_vector) != self.num_features
         ):
             raise ValueError(
-                "Both weight_vector and input_vector must have the same number of features."
+                "Both weight_vector and input_vector must have the same features."
             )
 
         return np.dot(weight_vector, input_vector) / self.num_features
 
     def _learn(
-        self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5
-    ) -> np.ndarray:
+        self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5) -> np.ndarray:
         """
         Update cluster weights using the learning rate.
 
@@ -153,7 +152,7 @@ def art1_example() -> None:
     """
     Example function demonstrating the usage of the ART1 model.
 
-    This function creates a dataset, trains the ART1 model, and prints assigned clusters.
+    This function creates a dataset, trains the ART1 model, and prints clusters.
 
     Examples:
         >>> art1_example()
