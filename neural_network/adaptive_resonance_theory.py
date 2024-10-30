@@ -1,23 +1,24 @@
 import numpy as np
 
+
 class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
 
-    The ART1 algorithm is a type of neural network used for unsupervised 
-    learning and clustering of binary input data. It continuously learns 
-    to categorize inputs based on similarity while preserving previously 
-    learned categories. The vigilance parameter controls the degree of 
+    The ART1 algorithm is a type of neural network used for unsupervised
+    learning and clustering of binary input data. It continuously learns
+    to categorize inputs based on similarity while preserving previously
+    learned categories. The vigilance parameter controls the degree of
     similarity required to assign an input to an existing category,
     allowing for flexible and adaptive clustering.
 
     Attributes:
         num_features (int): Number of features in the input data.
-        vigilance (float): Threshold for similarity that determines whether 
+        vigilance (float): Threshold for similarity that determines whether
         an input matches an existing cluster.
         weights (list): List of cluster weights representing the learned categories.
     """
-    
+
     def __init__(self, num_features: int, vigilance: float = 0.7) -> None:
         """
         Initialize the ART1 model with the given number of features and vigilance parameter.
@@ -25,7 +26,7 @@ class ART1:
         Args:
             num_features (int): Number of features in the input data.
             vigilance (float): Threshold for similarity (default is 0.7).
-            
+
         Examples:
             >>> model = ART1(num_features=4, vigilance=0.5)
             >>> model.num_features
@@ -35,8 +36,8 @@ class ART1:
         """
         self.vigilance = vigilance  # Controls cluster strictness
         self.num_features = num_features
-        self.weights = []           # List of cluster weights
-        
+        self.weights = []  # List of cluster weights
+
     def train(self, data: np.ndarray) -> None:
         """
         Train the ART1 model on the provided data.
@@ -80,8 +81,10 @@ class ART1:
             0.25
         """
         return np.dot(w, x) / (self.num_features)
-    
-    def _learn(self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5) -> np.ndarray:
+
+    def _learn(
+        self, w: np.ndarray, x: np.ndarray, learning_rate: float = 0.5
+    ) -> np.ndarray:
         """
         Update cluster weights using the learning rate.
 
@@ -121,7 +124,9 @@ class ART1:
             -1
         """
         similarities = [self._similarity(w, x) for w in self.weights]
-        return np.argmax(similarities) if max(similarities) >= self.vigilance else -1  # -1 if no match
+        return (
+            np.argmax(similarities) if max(similarities) >= self.vigilance else -1
+        )  # -1 if no match
 
 
 # Example usage for ART1
@@ -145,6 +150,7 @@ def art1_example() -> None:
     for i, x in enumerate(data):
         cluster = model.predict(x)
         print(f"Data point {i} assigned to cluster: {cluster}")
+
 
 if __name__ == "__main__":
     art1_example()
