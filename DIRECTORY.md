@@ -447,6 +447,7 @@
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+  * [Trapazoidal Fuzzyset](fuzzy_logic/trapazoidal_fuzzyset.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
