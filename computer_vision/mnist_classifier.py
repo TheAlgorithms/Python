@@ -1,27 +1,25 @@
 """
-This program is a MNIST classifier using AlexNet. It accepts three parameters provided as a command line input.
-The first two inputs are two digits between 0-9 which are used to train and test the classifier and the third
-parameter controls the number of training epochs.
-Syntax: python program.py <number> <number> <number>
+This program is a MNIST classifier using AlexNet. 
 
-For example, to train and test AlexNet with 1 and 2 MNIST samples with 4 training epochs, the command line input should be:
+For example, to train and test AlexNet with 1 and 2 MNIST samples with 4 training epochs.
+The command line input should be:
 python program.py 1 2 4
 
 """
 
 import sys
 import torch
-import torch.nn as nn
+import torch.nn
 import torchvision.datasets as dset
-import torchvision.transforms as transforms
+import torchvision.transforms
 from torch.autograd import Variable
-import torch.nn.functional as F
-import torch.optim as optim
+import torch.nn.functional as f
+import torch.optim
 
 
 class AlexNet(nn.Module):
-    def __init__(self, num=10):
-        super(AlexNet, self).__init__()
+    def __init__(self, num):
+        super().__init__()
         self.feature = nn.Sequential(
             # Define feature extractor here...
             nn.Conv2d(1, 32, kernel_size=5, stride=1, padding=1),
@@ -84,13 +82,13 @@ def load_subset(full_train_set, full_test_set, label_one, label_two):
 
 def train(model, optimizer, train_loader, epoch):
     model.train()
-    for batch_idx, (data, target) in enumerate(train_loader):
+    for data, target in enumerate(train_loader):
         if torch.cuda.is_available():
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data), Variable(target)
         optimizer.zero_grad()
         output = model(data)
-        loss = F.cross_entropy(output, target)
+        loss = f.cross_entropy(output, target)
         loss.backward()
         optimizer.step()
 
@@ -105,12 +103,10 @@ def test(model, test_loader):
         with torch.no_grad():
             data, target = Variable(data), Variable(target)
         output = model(data)
-        test_loss += F.cross_entropy(
-            output, target, reduction="sum"
-        ).item()  # size_average=False
-        pred = output.data.max(1, keepdim=True)[
-            1
-        ]  # get the index of the max log-probability
+        test_loss += F.cross_entropy(output, target, reduction="sum").item()  
+        # size_average=False
+        pred = output.data.max(1, keepdim=True)[1]  
+        # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).long().cpu().sum()
 
     test_loss /= len(test_loader.dataset)
