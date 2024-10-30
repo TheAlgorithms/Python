@@ -9,7 +9,7 @@ python program.py 1 2 4
 
 import sys
 import torch
-import torch.nn
+import torch.nn as n
 import torchvision.datasets as dset
 import torchvision.transforms
 from torch.autograd import Variable
@@ -17,34 +17,34 @@ import torch.nn.functional as f
 import torch.optim
 
 
-class AlexNet(nn.Module):
+class AlexNet(n.Module):
     def __init__(self, num):
         super().__init__()
-        self.feature = nn.Sequential(
+        self.feature = n.Sequential(
             # Define feature extractor here...
-            nn.Conv2d(1, 32, kernel_size=5, stride=1, padding=1),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-            nn.Conv2d(64, 96, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(96, 64, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(64, 32, kernel_size=3, padding=1),
-            nn.ReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=2, stride=1),
+            n.Conv2d(1, 32, kernel_size=5, stride=1, padding=1),
+            n.ReLU(inplace=True),
+            n.Conv2d(32, 64, kernel_size=3, padding=1),
+            n.ReLU(inplace=True),
+            n.MaxPool2d(kernel_size=2, stride=2),
+            n.Conv2d(64, 96, kernel_size=3, padding=1),
+            n.ReLU(inplace=True),
+            n.Conv2d(96, 64, kernel_size=3, padding=1),
+            n.ReLU(inplace=True),
+            n.Conv2d(64, 32, kernel_size=3, padding=1),
+            n.ReLU(inplace=True),
+            n.MaxPool2d(kernel_size=2, stride=1),
         )
 
-        self.classifier = nn.Sequential(
+        self.classifier = n.Sequential(
             # Define classifier here...
-            nn.Dropout(),
-            nn.Linear(32 * 12 * 12, 2048),
-            nn.ReLU(inplace=True),
-            nn.Dropout(),
-            nn.Linear(2048, 1024),
-            nn.ReLU(inplace=True),
-            nn.Linear(1024, 10),
+            n.Dropout(),
+            n.Linear(32 * 12 * 12, 2048),
+            n.ReLU(inplace=True),
+            n.Dropout(),
+            n.Linear(2048, 1024),
+            n.ReLU(inplace=True),
+            n.Linear(1024, 10),
         )
 
     def forward(self, x):
