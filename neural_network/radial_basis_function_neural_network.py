@@ -1,5 +1,5 @@
-from doctest import testmod
 import numpy as np
+from doctest import testmod
 
 
 class RadialBasisFunctionNeuralNetwork:
@@ -136,7 +136,7 @@ class RadialBasisFunctionNeuralNetwork:
 
 # Example Usage
 if __name__ == "__main__":
-    doctest.testmod()
+    testmod()  # Running the doctest
 
     # Sample dataset for XOR problem
     X = np.array([[0, 0], [1, 0], [0, 1], [1, 1]])  # 2D input
