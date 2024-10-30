@@ -85,8 +85,8 @@ class TrapezoidalFuzzySet:
     def plot(self) -> None:
         """
         Plots the membership function of the trapezoidal fuzzy set.
-    
-        >>> fuzzy_set = TrapezoidalFuzzySet("Medium", left_base=0,left_peak=1, 
+
+        >>> fuzzy_set = TrapezoidalFuzzySet("Medium", left_base=0,left_peak=1,
         ...                                 right_peak=2, right_base=3)
         >>> fuzzy_set.plot()
         """
