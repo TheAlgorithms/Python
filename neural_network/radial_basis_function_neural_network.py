@@ -1,13 +1,19 @@
 """
 Radial Basis Function Neural Network (RBFNN)
 
-A Radial Basis Function Neural Network (RBFNN) is a type of artificial
-neural network that uses radial basis functions as activation functions.
-RBFNNs are particularly effective for function approximation, regression,
-and classification tasks.
+A Radial Basis Function Neural Network (RBFNN) is a type of artificial neural 
+network that uses radial basis functions as activation functions. 
+RBFNNs are particularly effective for function approximation, regression, and 
+classification tasks. The architecture typically consists of an input layer, 
+a hidden layer with radial basis functions, and an output layer.
+
+In an RBFNN:
+- The hidden layer applies a radial basis function (often Gaussian) to the 
+input data, transforming it into a higher-dimensional space.
+- The output layer combines the results from the hidden layer using 
+weighted sums to produce the final output.
 
 #### Reference
-
 - Wikipedia: https://en.wikipedia.org/wiki/Radial_basis_function_network
 """
 
@@ -34,7 +40,7 @@ class RadialBasisFunctionNeuralNetwork:
             spread (float): Spread of the radial basis functions.
 
         Examples:
-            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=3, spread=1.0)
+            >>> rbf_nn = RadialBasisFunctionNeuralNetwork(num_centers=3,spread=1.0)
             >>> rbf_nn.num_centers
             3
         """
@@ -61,7 +67,7 @@ class RadialBasisFunctionNeuralNetwork:
             0.1353352832366127
         """
         # Calculate the squared distances
-        distances = np.linalg.norm(input_data[:, np.newaxis] - centers, axis=2) ** 2
+        distances = np.linalg.norm(input_vector[:, np.newaxis] - center, axis=2)** 2
         return np.exp(-distances / (2 * self.spread**2))
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
