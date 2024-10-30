@@ -9,6 +9,8 @@ class RadialBasisFunctionNeuralNetwork:
         centers (np.ndarray): Centers of the radial basis functions.
         weights (np.ndarray): Weights for the output layer.
         sigma (float): Spread of the radial basis functions.
+    Reference:
+        Radial Basis Function Network: https://en.wikipedia.org/wiki/Radial_basis_function_network
     """
 
     def __init__(self, n_centers: int, sigma: float):
@@ -16,24 +18,29 @@ class RadialBasisFunctionNeuralNetwork:
         Initialize the RBFNN with the given number of centers and spread.
 
         Args:
-            n_centers: Number of centers for the radial basis functions.
-            sigma: Spread of the radial basis functions.
+            n_centers (int): Number of centers for the radial basis functions.
+            sigma (float): Spread of the radial basis functions.
         """
         self.n_centers = n_centers
         self.sigma = sigma
-        self.centers = None  # To be initialized during training
-        self.weights = None  # To be initialized during training
+        self.centers: Optional[np.ndarray] = None  # To be initialized during training
+        self.weights: Optional[np.ndarray] = None  # To be initialized during training
 
     def _gaussian(self, x: np.ndarray, center: np.ndarray) -> float:
         """
         Calculate the Gaussian radial basis function.
 
         Args:
-            x: Input vector.
-            center: Center of the RBF.
+            x (np.ndarray): Input vector.
+            center (np.ndarray): Center of the RBF.
 
         Returns:
-            The output of the RBF evaluated at x.
+            float: The output of the RBF evaluated at x.
+        
+        >>> import numpy as np
+        >>> rbf_nn = RadialBasisFunctionNeuralNetwork(n_centers=2, sigma=0.5)
+        >>> rbf_nn._gaussian(np.array([0, 0]), np.array([1, 1]))
+        0.1353352832366127
         """
         return np.exp(-np.linalg.norm(x - center)**2 / (2 * self.sigma**2))
 
@@ -42,10 +49,10 @@ class RadialBasisFunctionNeuralNetwork:
         Compute the output of the radial basis functions for input data.
 
         Args:
-            X: Input data matrix (num_samples x num_features).
+            X (np.ndarray): Input data matrix (num_samples x num_features).
 
         Returns:
-            A matrix of shape (num_samples x n_centers) containing the RBF outputs.
+            np.ndarray: A matrix of shape (num_samples x n_centers) containing the RBF outputs.
         """
         rbf_outputs = np.zeros((X.shape[0], self.n_centers))
         for i, center in enumerate(self.centers):
@@ -58,8 +65,8 @@ class RadialBasisFunctionNeuralNetwork:
         Train the RBFNN on the provided data.
 
         Args:
-            X: Input data matrix (num_samples x num_features).
-            y: Target values (num_samples x output_dim).
+            X (np.ndarray): Input data matrix (num_samples x num_features).
+            y (np.ndarray): Target values (num_samples x output_dim).
 
         Raises:
             ValueError: If number of samples in X and y do not match.
@@ -82,10 +89,10 @@ class RadialBasisFunctionNeuralNetwork:
         Predict the output for the given input data.
 
         Args:
-            X: Input data matrix (num_samples x num_features).
+            X (np.ndarray): Input data matrix (num_samples x num_features).
 
         Returns:
-            Predicted values (num_samples x output_dim).
+            np.ndarray: Predicted values (num_samples x output_dim).
         """
         rbf_outputs = self._compute_rbf(X)
         return rbf_outputs.dot(self.weights)
@@ -104,6 +111,7 @@ if __name__ == "__main__":
     predictions = rbf_nn.predict(X)
     print("Predictions:\n", predictions)
 
+# Expected Output:
 # Predictions:
 # [[0.24826229]
 # [0.06598867]
