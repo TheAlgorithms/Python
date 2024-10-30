@@ -4,14 +4,17 @@ class ART1:
     """
     Adaptive Resonance Theory 1 (ART1) model for binary data clustering.
 
-    The ART1 algorithm is a type of neural network used for unsupervised learning and clustering of binary input data.
-    It continuously learns to categorize inputs based on similarity while preserving previously learned categories.
-    The vigilance parameter controls the degree of similarity required to assign an input to an existing category,
+    The ART1 algorithm is a type of neural network used for unsupervised 
+    learning and clustering of binary input data. It continuously learns 
+    to categorize inputs based on similarity while preserving previously 
+    learned categories. The vigilance parameter controls the degree of 
+    similarity required to assign an input to an existing category,
     allowing for flexible and adaptive clustering.
 
     Attributes:
         num_features (int): Number of features in the input data.
-        vigilance (float): Threshold for similarity that determines whether an input matches an existing cluster.
+        vigilance (float): Threshold for similarity that determines whether 
+        an input matches an existing cluster.
         weights (list): List of cluster weights representing the learned categories.
     """
     
