@@ -61,7 +61,7 @@ class RadialBasisFunctionNeuralNetwork:
             0.1353352832366127
         """
         # Calculate the squared distances
-        distances = np.linalg.norm(input_data[:, np.newaxis] - centers, axis=2)**2
+        distances = np.linalg.norm(input_data[:, np.newaxis] - centers, axis=2) ** 2
         return np.exp(-distances / (2 * self.spread**2))
 
     def _compute_rbf_outputs(self, input_data: np.ndarray) -> np.ndarray:
@@ -104,18 +104,22 @@ class RadialBasisFunctionNeuralNetwork:
             True
         """
         if input_data.shape[0] != target_values.shape[0]:
-            raise ValueError("Number of samples in input_data and target_values must match.")
+            raise ValueError(
+                "Number of samples in input_data and target_values must match."
+            )
 
         # Initialize centers using random samples from input_data
         rng = np.random.default_rng()
-        random_indices = rng.choice(input_data.shape[0], self.num_centers, replace=False)
+        random_indices = rng.choice(
+            input_data.shape[0], self.num_centers, replace=False
+        )
         self.centers = input_data[random_indices]
 
         # Compute the RBF outputs for the training data
         rbf_outputs = self._compute_rbf_outputs(input_data)
 
         # Calculate weights using the pseudo-inverse
-        self.weights = np.linalg.pinv(rbf_outputs).dot(target_values)  
+        self.weights = np.linalg.pinv(rbf_outputs).dot(target_values)
 
     def predict(self, input_data: np.ndarray) -> np.ndarray:
         """
