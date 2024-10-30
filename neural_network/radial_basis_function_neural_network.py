@@ -1,5 +1,4 @@
 import numpy as np
-from typing import List, Optional
 
 
 class RadialBasisFunctionNeuralNetwork:
@@ -10,6 +9,7 @@ class RadialBasisFunctionNeuralNetwork:
         centers (np.ndarray): Centers of the radial basis functions.
         weights (np.ndarray): Weights for the output layer.
         sigma (float): Spread of the radial basis functions.
+
     Reference:
         Radial Basis Function Network: https://en.wikipedia.org/wiki/Radial_basis_function_network
     """
@@ -24,8 +24,8 @@ class RadialBasisFunctionNeuralNetwork:
         """
         self.n_centers = n_centers
         self.sigma = sigma
-        self.centers: Optional[np.ndarray] = None  # To be initialized during training
-        self.weights: Optional[np.ndarray] = None  # To be initialized during training
+        self.centers: np.ndarray | None = None  # To be initialized during training
+        self.weights: np.ndarray | None = None  # To be initialized during training
 
     def _gaussian(self, x: np.ndarray, center: np.ndarray) -> float:
         """
@@ -45,57 +45,57 @@ class RadialBasisFunctionNeuralNetwork:
         """
         return np.exp(-(np.linalg.norm(x - center) ** 2) / (2 * self.sigma**2))
 
-    def _compute_rbf(self, X: np.ndarray) -> np.ndarray:
+    def _compute_rbf(self, x: np.ndarray) -> np.ndarray:
         """
         Compute the output of the radial basis functions for input data.
 
         Args:
-            X (np.ndarray): Input data matrix (num_samples x num_features).
+            x (np.ndarray): Input data matrix (num_samples x num_features).
 
         Returns:
             np.ndarray: A matrix of shape (num_samples x n_centers) containing the RBF outputs.
         """
-        rbf_outputs = np.zeros((X.shape[0], self.n_centers))
+        rbf_outputs = np.zeros((x.shape[0], self.n_centers))
         for i, center in enumerate(self.centers):
-            for j in range(X.shape[0]):
-                rbf_outputs[j, i] = self._gaussian(X[j], center)
+            for j in range(x.shape[0]):
+                rbf_outputs[j, i] = self._gaussian(x[j], center)
         return rbf_outputs
 
-    def fit(self, X: np.ndarray, y: np.ndarray):
+    def fit(self, x: np.ndarray, y: np.ndarray):
         """
         Train the RBFNN on the provided data.
 
         Args:
-            X (np.ndarray): Input data matrix (num_samples x num_features).
+            x (np.ndarray): Input data matrix (num_samples x num_features).
             y (np.ndarray): Target values (num_samples x output_dim).
 
         Raises:
-            ValueError: If number of samples in X and y do not match.
+            ValueError: If number of samples in x and y do not match.
         """
-        if X.shape[0] != y.shape[0]:
-            raise ValueError("Number of samples in X and y must match.")
+        if x.shape[0] != y.shape[0]:
+            raise ValueError("Number of samples in x and y must match.")
 
-        # Initialize centers using random samples from X
-        random_indices = np.random.choice(X.shape[0], self.n_centers, replace=False)
-        self.centers = X[random_indices]
+        # Initialize centers using random samples from x
+        random_indices = np.random.choice(x.shape[0], self.n_centers, replace=False)
+        self.centers = x[random_indices]
 
         # Compute the RBF outputs for the training data
-        rbf_outputs = self._compute_rbf(X)
+        rbf_outputs = self._compute_rbf(x)
 
         # Calculate weights using the pseudo-inverse
         self.weights = np.linalg.pinv(rbf_outputs).dot(y)
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Predict the output for the given input data.
 
         Args:
-            X (np.ndarray): Input data matrix (num_samples x num_features).
+            x (np.ndarray): Input data matrix (num_samples x num_features).
 
         Returns:
             np.ndarray: Predicted values (num_samples x output_dim).
         """
-        rbf_outputs = self._compute_rbf(X)
+        rbf_outputs = self._compute_rbf(x)
         return rbf_outputs.dot(self.weights)
 
 
@@ -113,9 +113,12 @@ if __name__ == "__main__":
     predictions = rbf_nn.predict(X)
     print("Predictions:\n", predictions)
 
-# Expected Output:
+# Sample Expected Output:
 # Predictions:
 # [[0.24826229]
 # [0.06598867]
 # [0.06598867]
 # [0.24826229]]
+
+
+
