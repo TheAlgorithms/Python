@@ -5,7 +5,7 @@ def modified_newton_raphson(
     derivative_function: Callable[[float], float],
     initial_guess: float,
     tolerance: float = 1e-7,
-    max_iterations: int = 1000
+    max_iterations: int = 1000,
 ) -> float:
     """
     Perform the Modified Newton-Raphson method to find the root of f(x) = 0.
@@ -56,5 +56,9 @@ if __name__ == "__main__":
     def compute_derivative(current_x: float) -> float:
         return 3 * current_x**2 - 2
 
-    root = modified_newton_raphson(compute_function, compute_derivative, initial_guess=2.0)
-    print(f"Approximate root: {root}")
+    root = modified_newton_raphson(
+        function=polynomial_function,
+        derivative_function=derivative_polynomial_function,
+        initial_guess=2.0
+    )
+    print(f"The root is: {root}")
