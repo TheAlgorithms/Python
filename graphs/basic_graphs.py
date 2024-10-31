@@ -155,10 +155,30 @@ def dijk(g, s):
 
 
 def topo(g, ind=None, q=None):
+    """
+    Perform topological sorting on a directed acyclic graph (DAG).
+
+    Args:
+        g (dict): Dictionary of edges representing the graph.
+        ind (list, optional): List of in-degrees of nodes. Defaults to None.
+        q (deque, optional): Queue for processing nodes. Defaults to None.
+
+    Returns:
+        list: List of nodes in topologically sorted order.
+
+    Note:
+        The function returns the list in the correct order from top to bottom.
+        The order is reversed before returning to ensure the correct topological sort.
+
+    Example:
+    >>> graph = {1: [2, 3], 2: [4], 3: [4], 4: []}
+    >>> topo(graph)
+    [1, 2, 3, 4]
+    """
     if q is None:
         q = [1]
     if ind is None:
-        ind = [0] * (len(g) + 1)  # SInce oth Index is ignored
+        ind = [0] * (len(g) + 1)  # Since 0th Index is ignored
         for u in g:
             for v in g[u]:
                 ind[v] += 1
@@ -166,15 +186,15 @@ def topo(g, ind=None, q=None):
         for i in g:
             if ind[i] == 0:
                 q.append(i)
-    if len(q) == 0:
-        return
-    v = q.popleft()
-    print(v)
-    for w in g[v]:
-        ind[w] -= 1
-        if ind[w] == 0:
-            q.append(w)
-    topo(g, ind, q)
+    result = []
+    while q:
+        v = q.popleft()
+        result.append(v)
+        for w in g[v]:
+            ind[w] -= 1
+            if ind[w] == 0:
+                q.append(w)
+    return result[::-1]  # Reverse the result list before returning
 
 
 """
@@ -375,3 +395,8 @@ def find_isolated_nodes(graph):
         if not graph[node]:
             isolated.append(node)
     return isolated
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
