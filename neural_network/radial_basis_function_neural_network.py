@@ -14,6 +14,7 @@ Date: 2024.10.31
 
 import numpy as np  # For numerical operations
 
+
 class RBFNN:
     def __init__(self, input_size, hidden_size, output_size):
         """
@@ -32,17 +33,21 @@ class RBFNN:
         self.spread = np.random.rand(hidden_size)  # Spread for each RBF
 
         # Initialize weights for the output layer
-        self.weights = np.random.rand(hidden_size, output_size)  # Weights for output layer
+        self.weights = np.random.rand(
+            hidden_size, output_size
+        )  # Weights for output layer
 
     def rbf(self, x, center, spread):
-        """ Radial Basis Function (Gaussian). """
-        return np.exp(-np.linalg.norm(x - center) ** 2 / (2 * spread ** 2))
+        """Radial Basis Function (Gaussian)."""
+        return np.exp(-(np.linalg.norm(x - center) ** 2) / (2 * spread**2))
 
     def forward(self, x):
-        """ Forward pass through the network. """
+        """Forward pass through the network."""
         hidden_outputs = np.zeros(self.hidden_size)  # Outputs of hidden layer
         for i in range(self.hidden_size):
-            hidden_outputs[i] = self.rbf(x, self.centers[i], self.spread[i])  # Compute RBF outputs
+            hidden_outputs[i] = self.rbf(
+                x, self.centers[i], self.spread[i]
+            )  # Compute RBF outputs
 
         output = np.dot(hidden_outputs, self.weights)  # Compute final output
         return output
