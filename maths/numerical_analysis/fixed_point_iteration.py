@@ -12,6 +12,7 @@ Example:
 1.618033988749895
 """
 
+
 def fixed_point_iteration(g, x0, tol=1e-7, max_iter=1000):
     """
     Perform Fixed Point Iteration to find the root of the equation x = g(x).
@@ -45,7 +46,9 @@ def fixed_point_iteration(g, x0, tol=1e-7, max_iter=1000):
         x = x_new
     raise ValueError("Fixed Point Iteration did not converge")
 
+
 if __name__ == "__main__":
+
     def g(x):
         return (x**2 + 2) / 3
 
