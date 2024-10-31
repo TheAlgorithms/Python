@@ -399,4 +399,5 @@ def find_isolated_nodes(graph):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
