@@ -18,12 +18,13 @@ Example:
 
 from typing import Callable
 
+
 def modified_newton_raphson(
     f: Callable[[float], float],
     f_prime: Callable[[float], float],
     x0: float,
     tol: float = 1e-7,
-    max_iter: int = 1000
+    max_iter: int = 1000,
 ) -> float:
     """
     Perform the Modified Newton-Raphson method to find the root of the equation f(x) = 0.
@@ -63,14 +64,15 @@ def modified_newton_raphson(
         x = x_new
     raise ValueError("Modified Newton-Raphson method did not converge")
 
+
 if __name__ == "__main__":
     import math
 
     def f(x):
-        return x**3 - 2*x - 5
+        return x**3 - 2 * x - 5
 
     def f_prime(x):
-        return 3*x**2 - 2
+        return 3 * x**2 - 2
 
     root = modified_newton_raphson(f, f_prime, 2.0)
     print(f"The root is: {root}")
