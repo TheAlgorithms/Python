@@ -68,11 +68,11 @@ def modified_newton_raphson(
 if __name__ == "__main__":
     import math
 
-    def f(x):
-        return x**3 - 2 * x - 5
+    def polynomial_function(value: float) -> float:
+        return value**3 - 2 * value - 5
 
-    def f_prime(x):
-        return 3 * x**2 - 2
+    def f_prime(value: float) -> float:
+        return 3 * value**2 - 2
 
-    root = modified_newton_raphson(f, f_prime, 2.0)
+    root = modified_newton_raphson(polynomial_function, f_prime, 2.0)
     print(f"The root is: {root}")
