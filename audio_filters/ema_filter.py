@@ -33,8 +33,6 @@ class EMAFilter:
         self.alpha = alpha
         self.ema_value = 0.0
 
-    
-    
     def apply(self, audio_signal: list[float]) -> np.ndarray:
         """
         Apply the EMA filter to a sequence of
@@ -56,11 +54,11 @@ class EMAFilter:
         """
         if not audio_signal:
             return np.array([])
-        
+
         ema_signal: list[float] = []
         self.ema_value = audio_signal[0]
         ema_signal.append(self.ema_value)
-        
+
         for sample in audio_signal[1:]:
             if self.ema_value is None:
                 self.ema_value = self.alpha * sample + (1 - self.alpha) * self.ema_value
