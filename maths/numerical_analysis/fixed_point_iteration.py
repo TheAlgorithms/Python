@@ -44,8 +44,5 @@ if __name__ == "__main__":
         """Quadratic transformation function for iteration."""
         return (current_value**2 + 2) / 3
 
-    root = fixed_point_iteration(
-        iteration_function=quadratic_transform,
-        initial_guess=1.0
-    )
-    print(f"The root is: {root}")
+    root = fixed_point_iteration(quadratic_transform, initial_guess=1.0)
+    print(f"Approximate root: {root}")
