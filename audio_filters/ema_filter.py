@@ -48,7 +48,8 @@ class EMAFilter:
         Example:
         >>> ema_filter = EMAFilter(0.2)
         >>> np.allclose(ema_filter.apply([0.1, 0.5, 0.8, 0.6, 0.3, 0.9, 0.4]),
-        ...             [0.1, 0.18, 0.304, 0.3632, 0.35056, 0.460448, 0.4483584])
+        ...             [0.1, 0.18, 0.304, 0.3632, 0.35056, 0.460448, 0.4483584]
+        ...              rtol=1e-5, atol=1e-8)
         True
         """
         ema_signal: list[float] = []
