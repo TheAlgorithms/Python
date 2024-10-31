@@ -60,9 +60,8 @@ class EMAFilter:
         ema_signal.append(self.ema_value)
 
         for sample in audio_signal[1:]:
-            if self.ema_value is None:
-                self.ema_value = self.alpha * sample + (1 - self.alpha) * self.ema_value
-                ema_signal.append(self.ema_value)
+            self.ema_value = self.alpha * sample + (1 - self.alpha) * self.ema_value
+            ema_signal.append(self.ema_value)
         return np.array(ema_signal)
 
 
