@@ -61,7 +61,6 @@ if __name__ == "__main__":
         return (value**2 + 2) / 3
 
     root = fixed_point_iteration(
-        iteration_function=quadratic_transform,
-        initial_guess=1.0
+        iteration_function=quadratic_transform, initial_guess=1.0
     )
     print(f"The root is: {root}")
