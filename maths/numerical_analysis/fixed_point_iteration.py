@@ -14,11 +14,12 @@ Example:
 
 from typing import Callable
 
+
 def fixed_point_iteration(
     iteration_function: Callable[[float], float],
     initial_guess: float,
-    tolerance: float = 1e-7, 
-    max_iterations: int = 1000
+    tolerance: float = 1e-7,
+    max_iterations: int = 1000,
 ) -> float:
     """
     Perform Fixed Point Iteration to find the root of the equation x = g(x).
