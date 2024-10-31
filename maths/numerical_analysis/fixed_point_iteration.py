@@ -25,19 +25,19 @@ def fixed_point_iteration(
 
     Parameters:
     -----------
-    g : function
-        The function g(x) derived from f(x) such that x = g(x).
-    x0 : float
+    iteration_function : Callable[[float], float]
+        The function derived from f(x) such that x = g(x).
+    initial_guess : float
         Initial guess for the root.
-    tol : float, optional
-        Tolerance for the convergence of the method. Default is 1e-7.
-    max_iter : int, optional
+    tolerance : float, optional
+        Tolerance for convergence. Default is 1e-7.
+    max_iterations : int, optional
         Maximum number of iterations. Default is 1000.
 
     Returns:
     --------
     float
-        The approximate root of the equation x = g(x).
+        The approximate root of the equation.
 
     Raises:
     -------
@@ -45,7 +45,7 @@ def fixed_point_iteration(
         If the method does not converge within the maximum number of iterations.
     """
     x = initial_guess
-    for i in range(max_iterations):
+    for _ in range(max_iterations):
         x_new = iteration_function(x)
         if abs(x_new - x) < tolerance:
             return x_new
@@ -56,7 +56,11 @@ def fixed_point_iteration(
 if __name__ == "__main__":
 
     def quadratic_transform(value: float) -> float:
+        """Quadratic transformation function for iteration."""
         return (value**2 + 2) / 3
 
-    root = fixed_point_iteration(quadratic_transform, 1.0)
+    root = fixed_point_iteration(
+        iteration_function=quadratic_transform,
+        initial_guess=1.0
+    )
     print(f"The root is: {root}")
