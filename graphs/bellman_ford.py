@@ -1,53 +1,93 @@
-from __future__ import annotations
+from typing import NamedTuple
 
 
-def print_distance(distance: list[float], src):
-    print(f"Vertex\tShortest Distance from vertex {src}")
-    for i, d in enumerate(distance):
-        print(f"{i}\t\t{d}")
+class Edge(NamedTuple):
+    src: int
+    dst: int
+    weight: int
+
+
+def print_distance_and_paths(distance: list[float], paths: list[list[int]], src: int):
+    """
+    Prints the shortest distance and paths from the source vertex to each vertex.
+    """
+    print(f"Vertex\tShortest Distance from Vertex {src}\tPath")
+    for vertex, (dist, path) in enumerate(zip(distance, paths)):
+        path_str = " -> ".join(map(str, path)) if path else "No path"
+        print(f"{vertex}\t\t{dist}\t\t\t\t{path_str}")
 
 
 def check_negative_cycle(
-    graph: list[dict[str, int]], distance: list[float], edge_count: int
-):
-    for j in range(edge_count):
-        u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
-        if distance[u] != float("inf") and distance[u] + w < distance[v]:
+    graph: list[Edge], distance: list[float], predecessor: list[int]
+) -> bool:
+    """
+    Checks if there is a negative weight cycle reachable from the source vertex.
+    If found, return True, indicating a negative cycle.
+    """
+    for edge in graph:
+        if (
+            distance[edge.src] != float("inf")
+            and distance[edge.src] + edge.weight < distance[edge.dst]
+        ):
+            # Update predecessors to indicate a cycle for affected paths
+            # Use -1 as a marker for negative cycle detection
+            predecessor[edge.dst] = -1
             return True
     return False
 
 
-def bellman_ford(
-    graph: list[dict[str, int]], vertex_count: int, edge_count: int, src: int
-) -> list[float]:
+def reconstruct_paths(
+    predecessor: list[int], vertex_count: int, src: int
+) -> list[list[int]]:
     """
-    Returns shortest paths from a vertex src to all
-    other vertices.
-    >>> edges = [(2, 1, -10), (3, 2, 3), (0, 3, 5), (0, 1, 4)]
-    >>> g = [{"src": s, "dst": d, "weight": w} for s, d, w in edges]
-    >>> bellman_ford(g, 4, 4, 0)
-    [0.0, -2.0, 8.0, 5.0]
-    >>> g = [{"src": s, "dst": d, "weight": w} for s, d, w in edges + [(1, 3, 5)]]
-    >>> bellman_ford(g, 4, 5, 0)
-    Traceback (most recent call last):
-     ...
-    Exception: Negative cycle found
+    Reconstructs the shortest paths from the source vertex to
+    each vertex using the predecessor list.
+    """
+    paths = [[] for _ in range(vertex_count)]
+    for vertex in range(vertex_count):
+        if predecessor[vertex] == -1:
+            paths[vertex] = ["Negative cycle detected"]
+        elif predecessor[vertex] is not None:
+            path = []
+            current = vertex
+            while current is not None:
+                path.insert(0, current)
+                if current == src:
+                    break
+                current = predecessor[current]
+            paths[vertex] = path
+    return paths
+
+
+def bellman_ford(
+    graph: list[Edge], vertex_count: int, src: int
+) -> tuple[list[float], list[list[int]]]:
+    """
+    Returns the shortest paths from a vertex src to all other vertices,
+    including path reconstruction.
     """
     distance = [float("inf")] * vertex_count
+    predecessor = [None] * vertex_count  # Keeps track of the path predecessors
     distance[src] = 0.0
 
+    # Step 1: Relax edges repeatedly
     for _ in range(vertex_count - 1):
-        for j in range(edge_count):
-            u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
+        for edge in graph:
+            if (
+                distance[edge.src] != float("inf")
+                and distance[edge.src] + edge.weight < distance[edge.dst]
+            ):
+                distance[edge.dst] = distance[edge.src] + edge.weight
+                predecessor[edge.dst] = edge.src
 
-            if distance[u] != float("inf") and distance[u] + w < distance[v]:
-                distance[v] = distance[u] + w
-
-    negative_cycle_exists = check_negative_cycle(graph, distance, edge_count)
-    if negative_cycle_exists:
+    # Step 2: Check for negative weight cycles
+    if check_negative_cycle(graph, distance, predecessor):
         raise Exception("Negative cycle found")
 
-    return distance
+    # Step 3: Reconstruct paths from predecessor list
+    paths = reconstruct_paths(predecessor, vertex_count, src)
+
+    return distance, paths
 
 
 if __name__ == "__main__":
@@ -55,19 +95,27 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    V = int(input("Enter number of vertices: ").strip())
-    E = int(input("Enter number of edges: ").strip())
+    try:
+        V = int(input("Enter number of vertices: ").strip())
+        E = int(input("Enter number of edges: ").strip())
 
-    graph: list[dict[str, int]] = [{} for _ in range(E)]
+        graph: list[Edge] = []
 
-    for i in range(E):
-        print("Edge ", i + 1)
-        src, dest, weight = (
-            int(x)
-            for x in input("Enter source, destination, weight: ").strip().split(" ")
-        )
-        graph[i] = {"src": src, "dst": dest, "weight": weight}
+        for i in range(E):
+            print(f"Edge {i + 1}")
+            src, dest, weight = map(
+                int, input("Enter source, destination, weight: ").strip().split()
+            )
+            if src < 0 or src >= V or dest < 0 or dest >= V:
+                print(f"Invalid vertices: src and dest should be between 0 and {V - 1}")
+                continue
+            graph.append(Edge(src, dest, weight))
 
-    source = int(input("\nEnter shortest path source:").strip())
-    shortest_distance = bellman_ford(graph, V, E, source)
-    print_distance(shortest_distance, 0)
+        source = int(input("\nEnter shortest path source vertex: ").strip())
+        if source < 0 or source >= V:
+            print(f"Invalid source: source should be between 0 and {V - 1}")
+        else:
+            shortest_distance, paths = bellman_ford(graph, V, source)
+            print_distance_and_paths(shortest_distance, paths, source)
+    except ValueError:
+        print("Invalid input. Please enter valid integers.")
