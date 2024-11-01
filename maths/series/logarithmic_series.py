@@ -36,7 +36,9 @@ def logarithmic_series(x_value: float, n_terms: int = 5, expand: bool = False) -
             n_times_x_minus_1 *= x_value - 1
         else:
             sign: str = "-" if (-1) ** (n + 1) == -1 else ""
-            term: str = sign + "(" + str(x_value - 1) + "^" + str(n) + ")" + "/" + str(n)
+            term: str = (
+                sign + "(" + str(x_value - 1) + "^" + str(n) + ")" + "/" + str(n)
+            )
             if term.startswith("-(-"):
                 term = "(" + term[3::]
             elif term.startswith("(-"):
