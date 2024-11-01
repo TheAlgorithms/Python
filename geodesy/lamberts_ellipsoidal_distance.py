@@ -15,22 +15,21 @@ def lamberts_ellipsoidal_distance(
     two points on the surface of earth given longitudes and latitudes
     https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
 
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
-        sigma
-
+    NOTE: This algorithm uses geodesy/haversine_distance.py to compute the
+          central angle, sigma
     Representing the earth as an ellipsoid allows us to approximate distances between
     points on the surface much better than a sphere. Ellipsoidal formulas treat the
     Earth as an oblate ellipsoid which means accounting for the flattening that happens
-    at the North and South poles. Lambert's formulae provide accuracy on the order of
-    10 meteres over thousands of kilometeres. Other methods can provide
-    millimeter-level accuracy but this is a simpler method to calculate long range
+    at the North and South poles. Lambert's formulas provide accuracy on the order of
+    10 meters over thousands of kilometers. Other methods can provide
+    millimeter-level accuracy, but this is a simpler method to calculate long-range
     distances without increasing computational intensity.
 
     Args:
         lat1, lon1: latitude and longitude of coordinate 1
         lat2, lon2: latitude and longitude of coordinate 2
     Returns:
-        geographical distance between two points in metres
+        geographical distance between two points in meters
 
     >>> from collections import namedtuple
     >>> point_2d = namedtuple("point_2d", "lat lon")
@@ -39,25 +38,20 @@ def lamberts_ellipsoidal_distance(
     >>> NEW_YORK = point_2d(40.713019, -74.012647)
     >>> VENICE = point_2d(45.443012, 12.313071)
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *YOSEMITE):0,.0f} meters"
-    '254,351 meters'
+    '254,032 meters'
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *NEW_YORK):0,.0f} meters"
-    '4,138,992 meters'
+    '4,133,295 meters'
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *VENICE):0,.0f} meters"
-    '9,737,326 meters'
+    '9,719,525 meters'
     """
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
-    # Distance in metres(m)
-    # Equation Parameters
-    # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
     flattening = (AXIS_A - AXIS_B) / AXIS_A
     # Parametric latitudes
-    # https://en.wikipedia.org/wiki/Latitude#Parametric_(or_reduced)_latitude
     b_lat1 = atan((1 - flattening) * tan(radians(lat1)))
     b_lat2 = atan((1 - flattening) * tan(radians(lat2)))
 
-    # Compute central angle between two points
-    # using haversine theta. sigma =  haversine_distance / equatorial radius
+    # Compute the central angle between two points using the haversine function
     sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
 
     # Intermediate P and Q values
@@ -65,13 +59,11 @@ def lamberts_ellipsoidal_distance(
     q_value = (b_lat2 - b_lat1) / 2
 
     # Intermediate X value
-    # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
     x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
-    x_demonimator = cos(sigma / 2) ** 2
-    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
+    x_denominator = cos(sigma / 2) ** 2
+    x_value = (sigma - sin(sigma)) * (x_numerator / x_denominator)
 
     # Intermediate Y value
-    # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
     y_numerator = (cos(p_value) ** 2) * (sin(q_value) ** 2)
     y_denominator = sin(sigma / 2) ** 2
     y_value = (sigma + sin(sigma)) * (y_numerator / y_denominator)
