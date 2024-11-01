@@ -1,14 +1,6 @@
-"""
-Illustrate how to add the integer without arithmetic operation
-Author: suraj Kumar
-Time Complexity: 1
-https://en.wikipedia.org/wiki/Bitwise_operation
-"""
-
-
 def add(first: int, second: int) -> int:
     """
-    Implementation of addition of integer
+    Add two integers using bitwise operations.
 
     Examples:
     >>> add(3, 5)
@@ -23,9 +15,9 @@ def add(first: int, second: int) -> int:
     -321
     """
     while second != 0:
-        c = first & second
-        first ^= second
-        second = c << 1
+        carry = first & second  # Calculate carry
+        first = first ^ second  # Add without carry
+        second = carry << 1  # Prepare carry for next iteration
     return first
 
 
@@ -36,4 +28,4 @@ if __name__ == "__main__":
 
     first = int(input("Enter the first number: ").strip())
     second = int(input("Enter the second number: ").strip())
-    print(f"{add(first, second) = }")
+    print(f"The sum is: {add(first, second)}")
