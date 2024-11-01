@@ -1,0 +1,25 @@
+# solved #001
+"""
+Project Euler Problem 1: https://projecteuler.net/problem=1
+
+Multiples of 3 or 5
+
+"""
+
+def solution(n: int = 1000) -> int:
+    """
+    For number i in 1 to 1000 we take modulus of 3 and 5 with each number and when any of their value is zero we add that number to sum_count varialbe.
+
+    """
+    n = 1000
+    sum_count = 0
+    for i in range(1,n+1):
+        if i%3==0 or i%5==0:
+            sum_count += i
+
+    return sum_count
+
+
+if __name__ == "__main__":
+    print(f"{solution() = }")
+
