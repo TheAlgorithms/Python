@@ -65,12 +65,11 @@ Discord ve Gitter üzerindeyiz! Topluluk kanalları, sorularınızı sormak ve y
 Algoritmalar Listesi
 Proje hakkında daha kolay gezinmek ve daha iyi bir genel bakış için dizin sayfamıza göz atın.
 
-
 Topluluk Kanalları
 Discord ve Gitter üzerindeyiz! Topluluk kanalları, sorularınızı sormak ve yardım almak için harika bir yoldur. Lütfen bize katılın!
 
 Algoritmalar Listesi
 Proje hakkında daha kolay gezinmek ve daha iyi bir genel bakış için dizin sayfamıza göz atın.
-
+<br>
 <br>
 Translater and organiser: K. Umut Araz
