@@ -12,6 +12,7 @@ Output: 25
 Explanation: The subarray {5, 4, 1, 7, 8} has the largest sum 25.
 """
 
+
 def max_subarray(arr):
     result = arr[0]
 
@@ -21,6 +22,7 @@ def max_subarray(arr):
             current_sum += arr[y]
             result = max(result, current_sum)
     return result
+
 
 # Test the function with the provided inputs
 print(max_subarray([2, 3, -8, 7, -1, 2, 3]))  # Expected output: 11
