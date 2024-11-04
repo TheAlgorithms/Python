@@ -8,6 +8,7 @@ Code based on https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.htm
 Alternatively, you can use scipy.signal.butter, which should yield the same results.
 """
 
+
 def make_lowpass(
     frequency: int,
     samplerate: int,
@@ -234,4 +235,5 @@ def make_highshelf(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
