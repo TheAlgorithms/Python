@@ -1,6 +1,9 @@
 """
 One of reasons for learning about algorithms is
 that they can affect the efficiency of a program.
+
+More info on: https://en.wikipedia.org/wiki/Sorting_algorithm
+
 Therefore, it will be helpful for learners
 to see each algorithm's sorting process speed
 and compare the results of different algorithms.
