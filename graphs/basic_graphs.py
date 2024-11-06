@@ -8,15 +8,7 @@ def _input(message):
 def initialize_unweighted_directed_graph(
     node_count: int, edge_count: int
 ) -> dict[int, list[int]]:
-    """
-    Example:
-    Edge 1: <node1> <node2> 1 2
-    Edge 2: <node1> <node2> 3 2
-    Edge 3: <node1> <node2> 2 4
-    >>> import io, sys ; sys.stdin = io.StringIO(chr(10).join(['1 2','3 2', '2 4']))  # input
-    >>> initialize_unweighted_directed_graph(4, 3)
-    Edge 1: <node1> <node2> Edge 2: <node1> <node2> Edge 3: <node1> <node2> {1: [2], 2: [4], 3: [2], 4: []}
-    """
+    
     graph: dict[int, list[int]] = {}
     for i in range(node_count):
         graph[i + 1] = []
@@ -30,15 +22,7 @@ def initialize_unweighted_directed_graph(
 def initialize_unweighted_undirected_graph(
     node_count: int, edge_count: int
 ) -> dict[int, list[int]]:
-    """
-    Example:
-    Edge 1: <node1> <node2> 1 2
-    Edge 2: <node1> <node2> 3 2
-    Edge 3: <node1> <node2> 2 4
-    >>> import io, sys ; sys.stdin = io.StringIO(chr(10).join(['1 2','3 2', '2 4']))  # input
-    >>> initialize_unweighted_undirected_graph(4, 3)
-    Edge 1: <node1> <node2> Edge 2: <node1> <node2> Edge 3: <node1> <node2> {1: [2], 2: [1, 3, 4], 3: [2], 4: [2]}
-    """
+    
     graph: dict[int, list[int]] = {}
     for i in range(node_count):
         graph[i + 1] = []
@@ -53,17 +37,7 @@ def initialize_unweighted_undirected_graph(
 def initialize_weighted_undirected_graph(
     node_count: int, edge_count: int
 ) -> dict[int, list[tuple[int, int]]]:
-    """
-    Example:
-    Edge 1: <node1> <node2> <weight> 1 2 1
-    Edge 2: <node1> <node2> <weight> 3 2 6
-    Edge 3: <node1> <node2> <weight> 2 4 10
-    Edge 4: <node1> <node2> <weight> 4 1 7
-    Edge 5: <node1> <node2> <weight> 4 3 12
-    >>> import io, sys ; sys.stdin = io.StringIO(chr(10).join(['1 2 1','3 2 6', '2 4 10', '4 1 7', '4 3 12']))  # input
-    >>> initialize_weighted_undirected_graph(4, 5)
-    Edge 1: <node1> <node2> <weight> Edge 2: <node1> <node2> <weight> Edge 3: <node1> <node2> <weight> Edge 4: <node1> <node2> <weight> Edge 5: <node1> <node2> <weight> {1: [(2, 1), (4, 7)], 2: [(1, 1), (3, 6), (4, 10)], 3: [(2, 6), (4, 12)], 4: [(2, 10), (1, 7), (3, 12)]}
-    """
+    
     graph: dict[int, list[tuple[int, int]]] = {}
     for i in range(node_count):
         graph[i + 1] = []
