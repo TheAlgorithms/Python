@@ -16,15 +16,15 @@ takes to complete the sorting process.
 import random
 import time
 
-from binary_insertion_sort import binary_insertion_sort
-from bubble_sort import bubble_sort_iterative
-from bucket_sort import bucket_sort
-from counting_sort import counting_sort
-from heap_sort import heap_sort
-from merge_sort import merge_sort
-from quick_sort import quick_sort
-from radix_sort import radix_sort
-from selection_sort import selection_sort
+from sorts.binary_insertion_sort import binary_insertion_sort
+from sorts.bubble_sort import bubble_sort_iterative
+from sorts.bucket_sort import bucket_sort
+from sorts.counting_sort import counting_sort
+from sorts.heap_sort import heap_sort
+from sorts.merge_sort import merge_sort
+from sorts.quick_sort import quick_sort
+from sorts.radix_sort import radix_sort
+from sorts.selection_sort import selection_sort
 
 
 def stopwatch_sort(func_list: list, number_of_integers: int = 10000) -> list:
