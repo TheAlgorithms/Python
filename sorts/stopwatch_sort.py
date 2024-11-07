@@ -13,8 +13,13 @@ so it can be used to see how long each sorting algorithm
 takes to complete the sorting process.
 """
 
+import os
 import random
+import sys
 import time
+
+# Modify sys.path to include the 'sorts' directory by adding the parent directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from sorts.binary_insertion_sort import binary_insertion_sort
 from sorts.bubble_sort import bubble_sort_iterative
