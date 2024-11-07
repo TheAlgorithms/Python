@@ -50,6 +50,8 @@ def wye_to_delta(r: list) -> dict:
 
 def transform(mode: int, r: list) -> dict:
     """
+    r is a list with resistor float values to be transform
+
     >>> transform(1, [4.0, 5.0, 6.0])
     {'r1': 2.0, 'r2': 1.6, 'r3': 1.3333333333333333}
 
