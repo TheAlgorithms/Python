@@ -18,29 +18,25 @@ from sys import exit
 from unittest import mock
 
 
-def delta_to_wye(r: list) -> dict:
+def delta_to_wye(resistors: list) -> dict:
     """
-    r is a list with resistor values to be transform from delta to star
-
     >>> delta_to_wye([2.0, 3.0, 4.0])
     {'r1': 1.3333333333333333, 'r2': 0.8888888888888888, 'r3': 0.6666666666666666}
     """
     r_wye: dict = {}
-    ra, rb, rc = r[0], r[1], r[2]
+    ra, rb, rc = resistors[0], resistors[1], resistors[2]
     r_wye.update({"r1": rb * rc / (ra + rb + rc)})
     r_wye.update({"r2": ra * rc / (ra + rb + rc)})
     r_wye.update({"r3": ra * rb / (ra + rb + rc)})
     return r_wye
 
 
-def wye_to_delta(r: list) -> dict:
+def wye_to_delta(resistors: list) -> dict:
     """
-    r is a list with resistor values to be transform from star to delta
-
     >>> wye_to_delta([2.0, 3.0, 4.0])
     {'ra': 13.0, 'rb': 8.666666666666666, 'rc': 6.5}
     """
-    r1, r2, r3 = r[0], r[1], r[2]
+    r1, r2, r3 = resistors[0], resistors[1], resistors[2]
     r_delta: dict = {}
     r_delta.update({"ra": (r1 * r2 + r2 * r3 + r3 * r1) / r1})
     r_delta.update({"rb": (r1 * r2 + r2 * r3 + r3 * r1) / r2})
@@ -48,10 +44,8 @@ def wye_to_delta(r: list) -> dict:
     return r_delta
 
 
-def transform(mode: int, r: list) -> dict:
+def transform(mode: int, resistors: list) -> dict:
     """
-    r is a list with resistor float values to be transform
-
     >>> transform(1, [4.0, 5.0, 6.0])
     {'r1': 2.0, 'r2': 1.6, 'r3': 1.3333333333333333}
 
@@ -60,9 +54,9 @@ def transform(mode: int, r: list) -> dict:
     """
     r_transformed = {}
     if mode == 1:
-        r_transformed = delta_to_wye(r)
+        r_transformed = delta_to_wye(resistors)
     elif mode == 2:
-        r_transformed = wye_to_delta(r)
+        r_transformed = wye_to_delta(resistors)
     return r_transformed
 
 
