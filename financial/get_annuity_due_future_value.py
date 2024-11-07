@@ -13,7 +13,8 @@ the sum of each payment's future value at the end of term 3.
 More info on: https://www.investopedia.com/retirement/calculating-present-and-future-value-of-annuities
 
 This function can help to understand how much you will receive
-if you make a regular deposit for saving with a fix period and interest rate.
+if you make a regular deposit at the beginning of each term
+for saving with a fix period and interest rate.
 """
 
 
