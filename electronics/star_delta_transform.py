@@ -20,6 +20,8 @@ from unittest import mock
 
 def delta_to_wye(r: list) -> dict:
     """
+    r is a list with resistor values to be transform from delta to star
+
     >>> delta_to_wye([2.0, 3.0, 4.0])
     {'r1': 1.3333333333333333, 'r2': 0.8888888888888888, 'r3': 0.6666666666666666}
     """
@@ -33,6 +35,8 @@ def delta_to_wye(r: list) -> dict:
 
 def wye_to_delta(r: list) -> dict:
     """
+    r is a list with resistor values to be transform from star to delta
+
     >>> wye_to_delta([2.0, 3.0, 4.0])
     {'ra': 13.0, 'rb': 8.666666666666666, 'rc': 6.5}
     """
@@ -60,7 +64,7 @@ def transform(mode: int, r: list) -> dict:
     return r_transformed
 
 
-def get_type_transform():
+def get_type_transform() -> int:
     mode: int = 0
     try:
         print("""
