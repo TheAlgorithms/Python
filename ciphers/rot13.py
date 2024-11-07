@@ -1,5 +1,7 @@
-def dencrypt(s: str, n: int = 13) -> str:
+def dencrypt(s: str) -> str:
     """
+    Performs ROT13 encryption/decryption on the input string `s`.
+
     https://en.wikipedia.org/wiki/ROT13
 
     >>> msg = "My secret bank account number is 173-52946 so don't tell anyone!!"
@@ -9,25 +11,29 @@ def dencrypt(s: str, n: int = 13) -> str:
     >>> dencrypt(s) == msg
     True
     """
-    out = ""
+    # Validate input
+    assert isinstance(s, str), "Input must be a string"
+
+    # Using list to accumulate characters for efficiency
+    out = []
     for c in s:
         if "A" <= c <= "Z":
-            out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
+            out.append(chr(ord("A") + (ord(c) - ord("A") + 13) % 26))
         elif "a" <= c <= "z":
-            out += chr(ord("a") + (ord(c) - ord("a") + n) % 26)
+            out.append(chr(ord("a") + (ord(c) - ord("a") + 13) % 26))
         else:
-            out += c
-    return out
+            out.append(c)
+    return "".join(out)
 
 
 def main() -> None:
     s0 = input("Enter message: ")
 
-    s1 = dencrypt(s0, 13)
+    s1 = dencrypt(s0)
     print("Encryption:", s1)
 
-    s2 = dencrypt(s1, 13)
-    print("Decryption: ", s2)
+    s2 = dencrypt(s1)
+    print("Decryption:", s2)
 
 
 if __name__ == "__main__":
