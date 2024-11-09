@@ -9,6 +9,7 @@ def dencrypt(s: str) -> str:
     >>> dencrypt(s) == msg
     True
     """
+    n=13
     out:list[str] = []
     for c in s:
         if "A" <= c <= "Z":
@@ -18,6 +19,7 @@ def dencrypt(s: str) -> str:
         else:
             out += c
     return "".join(out)
+
 
 
 def main() -> None:
