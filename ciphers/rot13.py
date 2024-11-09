@@ -1,4 +1,4 @@
-def dencrypt(s: str, n: int = 13) -> str:
+def dencrypt(s: str) -> str:
     """
     https://en.wikipedia.org/wiki/ROT13
 
@@ -9,7 +9,8 @@ def dencrypt(s: str, n: int = 13) -> str:
     >>> dencrypt(s) == msg
     True
     """
-    out = ""
+    out: list[str] = []
+    n = 13
     for c in s:
         if "A" <= c <= "Z":
             out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
@@ -17,16 +18,16 @@ def dencrypt(s: str, n: int = 13) -> str:
             out += chr(ord("a") + (ord(c) - ord("a") + n) % 26)
         else:
             out += c
-    return out
+    return "".join(out)
 
 
 def main() -> None:
     s0 = input("Enter message: ")
 
-    s1 = dencrypt(s0, 13)
+    s1 = dencrypt(s0)
     print("Encryption:", s1)
 
-    s2 = dencrypt(s1, 13)
+    s2 = dencrypt(s1)
     print("Decryption: ", s2)
 
 
