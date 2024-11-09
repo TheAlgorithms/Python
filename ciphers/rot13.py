@@ -9,7 +9,7 @@ def dencrypt(s: str) -> str:
     >>> dencrypt(s) == msg
     True
     """
-    out: list[str] = [] 
+    out: list[str] = []
     n = 13
     for c in s:
         if "A" <= c <= "Z":
