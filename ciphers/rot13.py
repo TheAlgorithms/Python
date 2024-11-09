@@ -9,8 +9,8 @@ def dencrypt(s: str) -> str:
     >>> dencrypt(s) == msg
     True
     """
-    n=13
-    out:list[str] = []
+    n = 13
+    out: list[str] = []
     for c in s:
         if "A" <= c <= "Z":
             out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
@@ -19,7 +19,6 @@ def dencrypt(s: str) -> str:
         else:
             out += c
     return "".join(out)
-
 
 
 def main() -> None:
