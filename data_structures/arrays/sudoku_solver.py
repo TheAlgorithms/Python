@@ -23,8 +23,7 @@ unitlist = (
     + [cross(rs, cs) for rs in ("ABC", "DEF", "GHI") for cs in ("123", "456", "789")]
 )
 units = {s: [u for u in unitlist if s in u] for s in squares}
-peers = {s: set(x for u in units[s] for x in u) - {s} for s in squares}
-
+peers = {s: {x for u in units[s] for x in u} - {s} for s in squares}
 
 def test():
     "A set of unit tests."
