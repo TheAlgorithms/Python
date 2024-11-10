@@ -135,7 +135,9 @@ def plot_heterogeneity(heterogeneity, k):
 def plot_kmeans(data, centroids, cluster_assignment):
     ax = plt.axes(projection="3d")
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
-    ax.scatter(centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x")
+    ax.scatter(
+        centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x"
+    )
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
