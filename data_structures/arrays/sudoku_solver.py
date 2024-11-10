@@ -23,7 +23,7 @@ unitlist = (
     + [cross(rs, cs) for rs in ("ABC", "DEF", "GHI") for cs in ("123", "456", "789")]
 )
 units = {s: [u for u in unitlist if s in u] for s in squares}
-peers = {s: set(sum(units[s], [])) - {s} for s in squares} 
+peers = {s: set(x for u in units[s] for x in u) - {s} for s in squares}
 
 
 def test():
@@ -172,7 +172,7 @@ def solved(values):
 
 def from_file(filename, sep="\n"):
     "Parse a file into a list of strings, separated by sep."
-    return open(filename).read().strip().split(sep)  # noqa: SIM115
+    return open(filename).read().strip().split(sep)
 
 
 def random_puzzle(assignments=17):
