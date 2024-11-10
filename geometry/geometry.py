@@ -283,5 +283,6 @@ class Square(Rectangle):
     def area(self) -> float:
         return super().area()
 
+
 if __name__ == "__main__":
     __import__("doctest").testmod()
