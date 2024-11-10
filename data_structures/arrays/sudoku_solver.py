@@ -25,6 +25,7 @@ unitlist = (
 units = {s: [u for u in unitlist if s in u] for s in squares}
 peers = {s: {x for u in units[s] for x in u} - {s} for s in squares}
 
+
 def test():
     "A set of unit tests."
     assert len(squares) == 81
