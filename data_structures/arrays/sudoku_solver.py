@@ -23,7 +23,7 @@ unitlist = (
     + [cross(rs, cs) for rs in ("ABC", "DEF", "GHI") for cs in ("123", "456", "789")]
 )
 units = {s: [u for u in unitlist if s in u] for s in squares}
-peers = {s: set(sum(units[s], [])) - {s} for s in squares}  # noqa: RUF017
+peers = {s: set(sum(units[s], [])) - {s} for s in squares} 
 
 
 def test():
