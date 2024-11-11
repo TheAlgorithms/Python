@@ -172,7 +172,8 @@ def solved(values):
 
 def from_file(filename, sep="\n"):
     "Parse a file into a list of strings, separated by sep."
-    return open(filename).read().strip().split(sep)  # noqa: SIM115
+    with open(filename) as file:
+        return file.read().strip().split(sep)
 
 
 def random_puzzle(assignments=17):
