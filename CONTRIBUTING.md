@@ -73,6 +73,23 @@ That's it! The plugin will run every time you commit any changes. If there are a
 pre-commit run --all-files --show-diff-on-failure
 ```
 
+
+ <details>
+  <summary>Hint for windows users</summary>
+  <br/>
+  On Windows, the python3 command is not recognized. This can lead to the error below.
+  <pre>running into the error `hook id: validate-filenames exit code: 9009</pre>
+
+  You can create a symbolic link to the 'python.exe' file on your machine. Follow these steps:
+
+  1. Open the command prompt as admin (cmd).
+  2. Navigate to your Python directory.
+  3. Create a symbolic link using the following command:
+
+  <pre>mklink python3.exe python.exe</pre>
+
+</details>
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
