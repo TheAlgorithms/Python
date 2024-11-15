@@ -1,6 +1,7 @@
 import random
 from collections.abc import Callable, Sequence
 from concurrent.futures import ThreadPoolExecutor
+
 import numpy as np
 
 # Parameters
@@ -82,10 +83,10 @@ class GeneticAlgorithm:
         ... )
         >>> individual = np.array([1.0, 2.0])
         >>> ga.fitness(individual)
-        5.0  # The fitness should be 1^2 + 2^2 = 5
+        -5.0  # The fitness should be -1^2 + 2^2 = 5 for minimizing
         >>> ga.maximize = True
         >>> ga.fitness(individual)
-        -5.0  # The fitness should be -5 when maximizing
+        5.0  # The fitness should be 1^2 + 2^2 = 5 when maximizing
         """
         value = float(self.function(*individual))  # Ensure fitness is a float
         return value if self.maximize else -value  # If minimizing, invert the fitness
@@ -114,9 +115,11 @@ class GeneticAlgorithm:
         >>> selected_parents = ga.select_parents(population_score)
         >>> len(selected_parents)
         2  # Should select the two parents with the best fitness scores.
-        >>> np.array_equal(selected_parents[0], np.array([1.0, 2.0]))  # Parent 1 should be [1.0, 2.0]
+        >>> np.array_equal(selected_parents[0], np.array([1.0, 2.0]))
+        # Parent 1 should be [1.0, 2.0]
         True
-        >>> np.array_equal(selected_parents[1], np.array([-1.0, -2.0]))  # Parent 2 should be [-1.0, -2.0]
+        >>> np.array_equal(selected_parents[1], np.array([-1.0, -2.0]))
+        # Parent 2 should be [-1.0, -2.0]
         True
         """
         population_score.sort(key=lambda score_tuple: score_tuple[1], reverse=True)
@@ -237,6 +240,7 @@ class GeneticAlgorithm:
         >>> isinstance(best_solution[1], float)  # Second element should be a float
         True
         """
+        best_individual = None
         for generation in range(self.generations):
             # Evaluate population fitness (multithreaded)
             population_score = self.evaluate_population()
