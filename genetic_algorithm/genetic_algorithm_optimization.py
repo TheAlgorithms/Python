@@ -122,7 +122,7 @@ class GeneticAlgorithm:
 
         if not population_score:
             raise ValueError("Population score is empty, cannot select parents.")
-        
+
         population_score.sort(key=lambda score_tuple: score_tuple[1], reverse=True)
         selected_count = min(N_SELECTED, len(population_score))
         return [ind for ind, _ in population_score[:selected_count]]
@@ -245,32 +245,37 @@ class GeneticAlgorithm:
         for generation in range(self.generations):
             # Evaluate population fitness (multithreaded)
             population_score = self.evaluate_population()
-    
+
             # Ensure population_score isn't empty
             if not population_score:
                 raise ValueError("Population score is empty. No individuals evaluated.")
-    
+
             # Check the best individual
-            best_individual = max(population_score, key=lambda score_tuple: score_tuple[1])[0]
+            best_individual = max(
+                population_score, key=lambda score_tuple: score_tuple[1]
+            )[0]
             best_fitness = self.fitness(best_individual)
-    
+
             # Select parents for next generation
             parents = self.select_parents(population_score)
             next_generation = []
-    
+
             # Generate offspring using crossover and mutation
             for i in range(0, len(parents), 2):
-                parent1, parent2 = parents[i], parents[(i + 1) % len(parents)]  # Wrap around for odd cases
+                parent1, parent2 = (
+                    parents[i],
+                    parents[(i + 1) % len(parents)],
+                )  # Wrap around for odd cases
                 child1, child2 = self.crossover(parent1, parent2)
                 next_generation.append(self.mutate(child1))
                 next_generation.append(self.mutate(child2))
-    
+
             # Ensure population size remains the same
             self.population = next_generation[: self.population_size]
-    
+
             if verbose and generation % 10 == 0:
                 print(f"Generation {generation}: Best Fitness = {best_fitness}")
-    
+
         return best_individual
 
 
