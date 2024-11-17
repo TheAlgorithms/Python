@@ -28,11 +28,11 @@ class Node:
     """
 
     def __init__(self, key) -> None:
-        self.key = key
+        self.key = key or None
         self.degree = 0
         self.marked = False
-        self.parent = None
-        self.child = None
+        self.parent = Node(None)
+        self.child = Node(None)
         self.left = self
         self.right = self
 
@@ -70,7 +70,7 @@ class FibonacciHeap:
     """
 
     def __init__(self) -> None:
-        self.min_node = None
+        self.min_node = Node(None)
         self.total_nodes = 0
 
     def insert(self, key) -> Node:
@@ -127,7 +127,7 @@ class FibonacciHeap:
             >>> node2.left == node1
             True
         """
-        if base_node is None:
+        if base_node.key is None:
             return node_to_insert
 
         node_to_insert.right = base_node.right
@@ -166,7 +166,7 @@ class FibonacciHeap:
             the Fibonacci heap properties after removal of the minimum node.
         """
         if self.min_node is None:
-            return None
+            return Node(None)
 
         min_node = self.min_node
 
@@ -176,7 +176,7 @@ class FibonacciHeap:
             while True:
                 next_child = current_child.right
                 self._insert_into_circular_list(self.min_node, current_child)
-                current_child.parent = None
+                current_child.parent.key = None
                 if current_child == last_child:
                     break
                 current_child = next_child
@@ -185,7 +185,7 @@ class FibonacciHeap:
         min_node.right.left = min_node.left
 
         if min_node == min_node.right:
-            self.min_node = None
+            self.min_node.key = None
         else:
             self.min_node = min_node.right
             self._consolidate()
@@ -212,7 +212,7 @@ class FibonacciHeap:
             called directly from outside the class.
         """
         max_degree = int(self.total_nodes**0.5) + 1
-        degree_table = [None] * max_degree
+        degree_table = [Node(None)] * max_degree
 
         roots = []
         if self.min_node:
@@ -235,7 +235,7 @@ class FibonacciHeap:
                 other_root.left.right = other_root.right
                 other_root.right.left = other_root.left
 
-                if root_node.child is None:
+                if root_node.child.key is None:
                     root_node.child = other_root
                     other_root.right = other_root
                     other_root.left = other_root
@@ -246,15 +246,15 @@ class FibonacciHeap:
                 root_node.degree += 1
                 other_root.marked = False
 
-                degree_table[current_degree] = None
+                degree_table[current_degree] = Node(None)
                 current_degree += 1
 
             degree_table[current_degree] = root_node
 
-        self.min_node = None
+        self.min_node.key = None
         for degree in range(max_degree):
             if degree_table[degree] is not None and (
-                self.min_node is None or (degree_table[degree].key < self.min_node.key)
+                self.min_node is None or (degree_table[degree] < self.min_node.key)
             ):
                 self.min_node = degree_table[degree]
 
@@ -271,7 +271,7 @@ class FibonacciHeap:
 
         Example:
             >>> heap = FibonacciHeap()
-            >>> node = heap.insert(5)
+            >>> node1 = heap.insert(5)
             >>> heap.decrease_key(node, 3)
             >>> node.key
             3
@@ -289,7 +289,7 @@ class FibonacciHeap:
         node.key = new_key
         parent_node = node.parent
 
-        if parent_node is not None and node.key < parent_node.key:
+        if parent_node.key is not None and node.key < parent_node.key:
             self._cut(node, parent_node)
             self._cascading_cut(parent_node)
 
@@ -313,7 +313,7 @@ class FibonacciHeap:
             outside the class.
         """
         if child_node.right == child_node:
-            parent_node.child = None
+            parent_node.child = Node(None)
         else:
             parent_node.child = child_node.right
             child_node.right.left = child_node.left
@@ -322,7 +322,7 @@ class FibonacciHeap:
         parent_node.degree -= 1
 
         self._insert_into_circular_list(self.min_node, child_node)
-        child_node.parent = None
+        child_node.parent = Node(None)
         child_node.marked = False
 
     def _cascading_cut(self, current_node) -> None:
@@ -365,7 +365,7 @@ class FibonacciHeap:
         self.decrease_key(node, float("-inf"))
         self.extract_min()
 
-    def find_min(self) -> Any:
+    def find_min(self) -> float:
         """Return the minimum key without removing it from the heap.
 
         This operation provides quick access to the minimum key in the heap
@@ -382,7 +382,7 @@ class FibonacciHeap:
             >>> heap.find_min()
             3
         """
-        return self.min_node.key if self.min_node else None
+        return self.min_node.key if self.min_node else Node(None)
 
     def is_empty(self) -> bool:
         """Check if heap is empty.
@@ -398,7 +398,7 @@ class FibonacciHeap:
             >>> heap.is_empty()
             False
         """
-        return self.min_node is None
+        return self.min_node.key is None
 
     def merge(self, other_heap) -> None:
         """Merge another Fibonacci heap into this one.
@@ -421,9 +421,9 @@ class FibonacciHeap:
             >>> heap1.total_nodes
             2
         """
-        if other_heap.min_node is None:
+        if other_heap.min_node.key is None:
             return
-        if self.min_node is None:
+        if self.min_node.key is None:
             self.min_node = other_heap.min_node
         else:
             self.min_node.right.left = other_heap.min_node.left
