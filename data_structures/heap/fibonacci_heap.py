@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Node:
     """A node in the Fibonacci heap.
 
@@ -27,7 +30,7 @@ class Node:
         True
     """
 
-    def __init__(self, key) -> None:
+    def __init__(self, key: float | None) -> None:
         self.key = key or None
         self.degree = 0
         self.marked = False
@@ -73,7 +76,7 @@ class FibonacciHeap:
         self.min_node = Node(None)
         self.total_nodes = 0
 
-    def insert(self, key) -> Node:
+    def insert(self, key: float | None) -> Node:
         """Insert a new key into the heap.
 
         Args:
@@ -105,7 +108,8 @@ class FibonacciHeap:
         self.total_nodes += 1
         return new_node
 
-    def _insert_into_circular_list(self, base_node, node_to_insert) -> Node:
+    @staticmethod
+    def _insert_into_circular_list(base_node: Node, node_to_insert: Node) -> Node:
         """Insert node into circular linked list.
 
         Args:
@@ -136,7 +140,7 @@ class FibonacciHeap:
         base_node.right = node_to_insert
         return base_node
 
-    def extract_min(self) -> float:
+    def extract_min(self) -> float | None:
         """Remove and return the minimum key from the heap.
 
         This operation removes the node with the minimum key from the heap,
@@ -193,7 +197,7 @@ class FibonacciHeap:
         self.total_nodes -= 1
         return min_node.key
 
-    def _consolidate(self):
+    def _consolidate(self) -> None:
         """Consolidate the heap after removing the minimum node.
 
         This internal method maintains the Fibonacci heap properties by combining
@@ -258,7 +262,7 @@ class FibonacciHeap:
             ):
                 self.min_node = degree_table[degree]
 
-    def decrease_key(self, node, new_key):
+    def decrease_key(self, node: Node, new_key: float | None) -> None:
         """Decrease the key value of a given node.
 
         This operation updates the key of a node to a new, smaller value and
@@ -296,7 +300,7 @@ class FibonacciHeap:
         if node.key < self.min_node.key:
             self.min_node = node
 
-    def _cut(self, child_node, parent_node):
+    def _cut(self, child_node: Node, parent_node: Node) -> None:
         """Cut a node from its parent and add it to the root list.
 
         This is a helper method used in decrease_key operations. When a node's key
@@ -325,7 +329,7 @@ class FibonacciHeap:
         child_node.parent = Node(None)
         child_node.marked = False
 
-    def _cascading_cut(self, current_node) -> None:
+    def _cascading_cut(self, current_node: Node) -> None:
         """Perform cascading cut operation.
 
         Args:
@@ -338,7 +342,7 @@ class FibonacciHeap:
                 self._cut(current_node, parent_node)
                 self._cascading_cut(parent_node)
 
-    def delete(self, node) -> None:
+    def delete(self, node: Node) -> None:
         """Delete a node from the heap.
 
         This operation removes a given node from the heap by first decreasing
@@ -365,7 +369,7 @@ class FibonacciHeap:
         self.decrease_key(node, float("-inf"))
         self.extract_min()
 
-    def find_min(self) -> float:
+    def find_min(self) -> float | None:
         """Return the minimum key without removing it from the heap.
 
         This operation provides quick access to the minimum key in the heap
@@ -400,7 +404,7 @@ class FibonacciHeap:
         """
         return self.min_node.key is None
 
-    def merge(self, other_heap) -> None:
+    def merge(self, other_heap: FibonacciHeap) -> None:
         """Merge another Fibonacci heap into this one.
 
         This operation combines two Fibonacci heaps by concatenating their
