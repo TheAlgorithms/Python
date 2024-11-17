@@ -136,7 +136,7 @@ class FibonacciHeap:
         base_node.right = node_to_insert
         return base_node
 
-    def extract_min(self) -> Node:
+    def extract_min(self) -> float:
         """Remove and return the minimum key from the heap.
 
         This operation removes the node with the minimum key from the heap,
@@ -166,7 +166,7 @@ class FibonacciHeap:
             the Fibonacci heap properties after removal of the minimum node.
         """
         if self.min_node is None:
-            return Node(None)
+            return Node(None).key
 
         min_node = self.min_node
 
@@ -382,7 +382,7 @@ class FibonacciHeap:
             >>> heap.find_min()
             3
         """
-        return self.min_node.key if self.min_node else Node(None)
+        return self.min_node.key if self.min_node else Node(None).key
 
     def is_empty(self) -> bool:
         """Check if heap is empty.
