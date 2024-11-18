@@ -2,6 +2,7 @@
 Fibonacci Heap
 A more efficient priority queue implementation that provides amortized time bounds
 that are better than those of the binary and binomial heaps.
+reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
 Operations supported:
 - Insert: O(1) amortized
@@ -11,17 +12,22 @@ Operations supported:
 - Merge: O(1)
 """
 
-
 class Node:
     """
-    Node in a Fibonacci heap containing:
-        - value
-        - parent, child, and sibling links
-        - degree (number of children)
-        - mark (whether the node has lost a child since
-         becoming a child of its current parent)
-    """
+    A node in a Fibonacci heap.
 
+    Args:
+        val: The value stored in the node.
+
+    Attributes:
+        val: The value stored in the node.
+        parent: Reference to parent node.
+        child: Reference to one child node.
+        left: Reference to left sibling.
+        right: Reference to right sibling.
+        degree: Number of children.
+        mark: Boolean indicating if node has lost a child.
+    """
     def __init__(self, val):
         self.val = val
         self.parent = None
@@ -32,14 +38,24 @@ class Node:
         self.mark = False
 
     def add_sibling(self, node):
-        """Add node as a sibling"""
+        """
+        Adds a node as a sibling to the current node.
+
+        Args:
+            node: The node to add as a sibling.
+        """
         node.left = self
         node.right = self.right
         self.right.left = node
         self.right = node
 
     def add_child(self, node):
-        """Add node as a child"""
+        """
+        Adds a node as a child of the current node.
+
+        Args:
+            node: The node to add as a child.
+        """
         node.parent = self
         if not self.child:
             self.child = node
@@ -48,38 +64,65 @@ class Node:
         self.degree += 1
 
     def remove(self):
-        """Remove this node from its sibling list"""
+        """Removes this node from its sibling list."""
         self.left.right = self.right
         self.right.left = self.left
 
 
 class FibonacciHeap:
     """
-    Min-oriented Fibonacci heap implementation.
+    A Fibonacci heap implementation providing
+    amortized efficient priority queue operations.
+
+    This implementation provides the following time complexities:
+        - Insert: O(1) amortized
+        - Find minimum: O(1)
+        - Delete minimum: O(log n) amortized
+        - Decrease key: O(1) amortized
+        - Merge: O(1)
 
     Example:
     >>> heap = FibonacciHeap()
-    >>> heap.insert(3)
-    >>> heap.insert(2)
-    >>> heap.insert(15)
+    >>> node1 = heap.insert(3)
+    >>> node2 = heap.insert(2)
+    >>> node3 = heap.insert(15)
     >>> heap.peek()
     2
     >>> heap.delete_min()
     2
     >>> heap.peek()
     3
+    >>> other_heap = FibonacciHeap()
+    >>> node4 = other_heap.insert(1)
+    >>> heap.merge_heaps(other_heap)
+    >>> heap.peek()
+    1
     """
 
     def __init__(self):
+        """Initializes an empty Fibonacci heap."""
         self.min_node = None
         self.size = 0
 
     def is_empty(self):
-        """Return True if heap is empty"""
+        """
+        Checks if the heap is empty.
+
+        Returns:
+            bool: True if heap is empty, False otherwise.
+        """
         return self.min_node is None
 
     def insert(self, val):
-        """Insert a new key into the heap"""
+        """
+        Inserts a new value into the heap.
+
+        Args:
+            val: Value to insert.
+
+        Returns:
+            Node: The newly created node.
+        """
         node = Node(val)
         if not self.min_node:
             self.min_node = node
@@ -91,13 +134,26 @@ class FibonacciHeap:
         return node
 
     def peek(self):
-        """Return minimum value without removing it"""
+        """
+        Returns the minimum value without removing it.
+
+        Returns:
+            The minimum value in the heap.
+
+        Raises:
+            IndexError: If the heap is empty.
+        """
         if not self.min_node:
             raise IndexError("Heap is empty")
         return self.min_node.val
 
     def merge_heaps(self, other):
-        """Merge another Fibonacci heap with this one"""
+        """
+        Merges another Fibonacci heap into this one.
+
+        Args:
+            other: Another FibonacciHeap instance to merge with this one.
+        """
         if not other.min_node:
             return
         if not self.min_node:
@@ -115,7 +171,13 @@ class FibonacciHeap:
         self.size += other.size
 
     def __link_trees(self, node1, node2):
-        """Link two trees of same degree"""
+        """
+        Links two trees of same degree.
+
+        Args:
+            node1: First tree's root node.
+            node2: Second tree's root node.
+        """
         node1.remove()
         if node2.child:
             node2.child.add_sibling(node1)
@@ -126,7 +188,15 @@ class FibonacciHeap:
         node1.mark = False
 
     def delete_min(self):
-        """Remove and return the minimum value"""
+        """
+        Removes and returns the minimum value from the heap.
+
+        Returns:
+            The minimum value that was removed.
+
+        Raises:
+            IndexError: If the heap is empty.
+        """
         if not self.min_node:
             raise IndexError("Heap is empty")
 
@@ -156,8 +226,12 @@ class FibonacciHeap:
         return min_val
 
     def __consolidate(self):
-        """Consolidate trees after delete_min"""
-        max_degree = int(self.size**0.5) + 1
+        """
+        Consolidates the trees in the heap after a delete_min operation.
+
+        This is an internal method that maintains the heap's structure.
+        """
+        max_degree = int(self.size ** 0.5) + 1
         degree_table = [None] * max_degree
 
         # Collect all roots
@@ -195,7 +269,16 @@ class FibonacciHeap:
                         self.min_node = degree_table[degree]
 
     def decrease_key(self, node, new_val):
-        """Decrease the value of a node"""
+        """
+        Decreases the value of a node.
+        
+        Args:
+            node: The node whose value should be decreased.
+            new_val: The new value for the node.
+        
+        Raises:
+            ValueError: If new value is greater than current value.
+        """
         if new_val > node.val:
             raise ValueError("New value is greater than current value")
 
@@ -210,7 +293,19 @@ class FibonacciHeap:
             self.min_node = node
 
     def __cut(self, node, parent):
-        """Cut a node from its parent"""
+        """
+        Cuts a node from its parent.
+
+        Args:
+            node: Node to be cut.
+            parent: Parent of the node to be cut.
+        """"""
+        Performs cascading cut operation.
+        
+        Args:
+            node: Starting node for cascading cut.
+        """
+
         parent.degree -= 1
         if parent.child == node:
             parent.child = node.right if node.right != node else None
@@ -222,8 +317,15 @@ class FibonacciHeap:
         self.min_node.add_sibling(node)
 
     def __cascading_cut(self, node):
-        """Perform cascading cut operation"""
-        if parent := node.parent:
+        """
+        Performs cascading cut operation.
+
+        Args:
+            node: Starting node for cascading cut.
+        """
+
+        parent = node.parent
+        if parent:
             if not node.mark:
                 node.mark = True
             else:
@@ -231,7 +333,12 @@ class FibonacciHeap:
                 self.__cascading_cut(parent)
 
     def __str__(self):
-        """String representation of the heap"""
+        """
+        Returns a string representation of the heap.
+
+        Returns:
+            str: A string showing the heap structure.
+        """
         if not self.min_node:
             return "Empty heap"
 
@@ -252,5 +359,4 @@ class FibonacciHeap:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
