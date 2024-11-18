@@ -294,7 +294,7 @@ class FibonacciHeap:
 
     def __cut(self, node, parent):
         """
-        Cuts a node from its parent.
+        Cuts a node from its parent
 
         Args:
             node: Node to be cut.
