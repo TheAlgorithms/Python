@@ -12,6 +12,7 @@ Operations supported:
 - Merge: O(1)
 """
 
+
 class Node:
     """
     A node in a Fibonacci heap.
@@ -28,6 +29,7 @@ class Node:
         degree: Number of children.
         mark: Boolean indicating if node has lost a child.
     """
+
     def __init__(self, val):
         self.val = val
         self.parent = None
@@ -231,7 +233,7 @@ class FibonacciHeap:
 
         This is an internal method that maintains the heap's structure.
         """
-        max_degree = int(self.size ** 0.5) + 1
+        max_degree = int(self.size**0.5) + 1
         degree_table = [None] * max_degree
 
         # Collect all roots
@@ -271,11 +273,11 @@ class FibonacciHeap:
     def decrease_key(self, node, new_val):
         """
         Decreases the value of a node.
-        
+
         Args:
             node: The node whose value should be decreased.
             new_val: The new value for the node.
-        
+
         Raises:
             ValueError: If new value is greater than current value.
         """
@@ -299,9 +301,9 @@ class FibonacciHeap:
         Args:
             node: Node to be cut.
             parent: Parent of the node to be cut.
-        """"""
+        """ """
         Performs cascading cut operation.
-        
+
         Args:
             node: Starting node for cascading cut.
         """
@@ -324,8 +326,7 @@ class FibonacciHeap:
             node: Starting node for cascading cut.
         """
 
-        parent = node.parent
-        if parent:
+        if parent := node.parent:
             if not node.mark:
                 node.mark = True
             else:
@@ -359,4 +360,5 @@ class FibonacciHeap:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
