@@ -271,11 +271,11 @@ class FibonacciHeap:
     def decrease_key(self, node, new_val):
         """
         Decreases the value of a node.
-        
+
         Args:
             node: The node whose value should be decreased.
             new_val: The new value for the node.
-        
+
         Raises:
             ValueError: If new value is greater than current value.
         """
@@ -299,11 +299,6 @@ class FibonacciHeap:
         Args:
             node: Node to be cut.
             parent: Parent of the node to be cut.
-        """"""
-        Performs cascading cut operation.
-        
-        Args:
-            node: Starting node for cascading cut.
         """
 
         parent.degree -= 1
