@@ -182,7 +182,6 @@
   * [Weight Conversion](conversions/weight_conversion.py)
 
 ## Cryptography
-  * [Des Key Generation](cryptography/des_key_generation.ipynb)
   * [Extended Eucledian](cryptography/extended_eucledian.ipynb)
   * [Galois Field](cryptography/galois_field.ipynb)
   * [Lfsr Bit Stream](cryptography/lfsr_bit_stream.ipynb)
