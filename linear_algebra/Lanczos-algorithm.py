@@ -1,20 +1,22 @@
 import numpy as np
+
+
 def lanczos(A: np.ndarray) -> ([float], [float]):
     """
-        Implements the Lanczos algorithm for a symmetric matrix.
+    Implements the Lanczos algorithm for a symmetric matrix.
 
-        Parameters:
-        -----------
-        matrix : numpy.ndarray
-            Symmetric matrix of size (n, n).
+    Parameters:
+    -----------
+    matrix : numpy.ndarray
+        Symmetric matrix of size (n, n).
 
-        Returns:
-        --------
-        alpha : [float]
-            List of diagonal elements of the resulting tridiagonal matrix.
-        beta : [float]
-            List of off-diagonal elements of the resulting tridiagonal matrix.
-        """
+    Returns:
+    --------
+    alpha : [float]
+        List of diagonal elements of the resulting tridiagonal matrix.
+    beta : [float]
+        List of off-diagonal elements of the resulting tridiagonal matrix.
+    """
     n = A.shape[0]
     V = np.zeros((n, n))
     V[:, 0] = np.random.randn(n)
