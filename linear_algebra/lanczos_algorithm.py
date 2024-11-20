@@ -1,5 +1,5 @@
 import numpy as np
-def lanczos(A: np.ndarray) -> ([float], [float]):
+def lanczos(a: np.ndarray) -> tuple[list[float], list[float]]:
     """
         Implements the Lanczos algorithm for a symmetric matrix.
 
@@ -15,20 +15,21 @@ def lanczos(A: np.ndarray) -> ([float], [float]):
         beta : [float]
             List of off-diagonal elements of the resulting tridiagonal matrix.
         """
-    n = A.shape[0]
-    V = np.zeros((n, n))
-    V[:, 0] = np.random.randn(n)
-    V[:, 0] /= np.linalg.norm(V[:, 0])
-    alpha = []
-    beta = []
+    n = a.shape[0]
+    v = np.zeros((n, n))
+    rng = np.random.default_rng()
+    v[:, 0] = rng.standard_normal(n)
+    v[:, 0] /= np.linalg.norm(v[:, 0])
+    alpha : list[float] = []
+    beta : list[float] = []
     for j in range(n):
-        w = np.dot(A, V[:, j])
-        alpha.append(np.dot(w, V[:, j]))
+        w = np.dot(a, v[:, j])
+        alpha.append(np.dot(w, v[:, j]))
         if j == n - 1:
             break
-        w -= alpha[j] * V[:, j]
+        w -= alpha[j] * v[:, j]
         if j > 0:
-            w -= beta[j - 1] * V[:, j - 1]
+            w -= beta[j - 1] * v[:, j - 1]
         beta.append(np.linalg.norm(w))
-        V[:, j + 1] = w / beta[j]
+        v[:, j + 1] = w / beta[j]
     return alpha, beta
