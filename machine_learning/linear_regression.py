@@ -19,7 +19,8 @@ def collect_dataset():
     """
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
-        "master/Week1/ADRvsRating.csv"
+        "master/Week1/ADRvsRating.csv",
+        timeout=10,
     )
     lines = response.text.splitlines()
     data = []

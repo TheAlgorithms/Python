@@ -8,7 +8,7 @@ def get_ip_geolocation(ip_address: str) -> str:
         url = f"https://ipinfo.io/{ip_address}/json"
 
         # Send a GET request to the API
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
 
         # Check if the HTTP request was successful
         response.raise_for_status()

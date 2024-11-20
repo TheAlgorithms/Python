@@ -13,7 +13,7 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
     """
     Return a dict of current worldwide COVID-19 statistics
     """
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
     keys = soup.findAll("h1")
     values = soup.findAll("div", {"class": "maincounter-number"})
     keys += soup.findAll("span", {"class": "panel-title"})

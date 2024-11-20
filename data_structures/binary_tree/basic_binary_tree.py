@@ -85,7 +85,7 @@ class BinaryTree:
         """
         return self._depth(self.root)
 
-    def _depth(self, node: Node | None) -> int:  # noqa: UP007
+    def _depth(self, node: Node | None) -> int:
         if not node:
             return 0
         return 1 + max(self._depth(node.left), self._depth(node.right))

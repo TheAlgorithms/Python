@@ -43,7 +43,7 @@ except ImportError:
 
 def login_using_recaptcha(request):
     # Enter your recaptcha secret key here
-    secret_key = "secretKey"
+    secret_key = "secretKey"  # noqa: S105
     url = "https://www.google.com/recaptcha/api/siteverify"
 
     # when method is not POST, direct user to login page
@@ -56,7 +56,9 @@ def login_using_recaptcha(request):
     client_key = request.POST.get("g-recaptcha-response")
 
     # post recaptcha response to Google's recaptcha api
-    response = requests.post(url, data={"secret": secret_key, "response": client_key})
+    response = requests.post(
+        url, data={"secret": secret_key, "response": client_key}, timeout=10
+    )
     # if the recaptcha api verified our keys
     if response.json().get("success", False):
         # authenticate the user

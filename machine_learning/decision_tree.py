@@ -26,15 +26,15 @@ class DecisionTree:
         >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
         >>> test_prediction = float(6)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = float(2)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         """
         if labels.ndim != 1:
@@ -105,7 +105,7 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
                 continue
             elif len(x[i:]) < self.min_leaf_size:
                 continue
@@ -187,7 +187,8 @@ def main():
     tree = DecisionTree(depth=10, min_leaf_size=10)
     tree.train(x, y)
 
-    test_cases = (np.random.rand(10) * 2) - 1
+    rng = np.random.default_rng()
+    test_cases = (rng.random(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
     avg_error = np.mean((predictions - test_cases) ** 2)
 

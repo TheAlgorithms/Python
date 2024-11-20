@@ -16,8 +16,8 @@ assumed to be concentrated to visualize its motion. In other words, the center o
 is the particle equivalent of a given object for the application of Newton's laws of
 motion.
 
-In the case of a system of particles P_i, i = 1, ..., n , each with mass m_i that are
-located in space with coordinates r_i, i = 1, ..., n , the coordinates R of the center
+In the case of a system of particles P_i, i = 1, ..., n , each with mass m_i that are
+located in space with coordinates r_i, i = 1, ..., n , the coordinates R of the center
 of mass corresponds to:
 
 R = (Σ(mi * ri) / Σ(mi))
@@ -36,8 +36,8 @@ def center_of_mass(particles: list[Particle]) -> Coord3D:
     Input Parameters
     ----------------
     particles: list(Particle):
-    A list of particles where each particle is a tuple with it´s (x, y, z) position and
-    it´s mass.
+    A list of particles where each particle is a tuple with it's (x, y, z) position and
+    it's mass.
 
     Returns
     -------

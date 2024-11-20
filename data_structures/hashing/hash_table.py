@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from abc import abstractmethod
+
 from .number_theory.prime_numbers import next_prime
 
 
@@ -173,6 +175,7 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
 
+    @abstractmethod
     def _collision_resolution(self, key, data=None):
         """
         This method is a type of open addressing which is used for handling collision.

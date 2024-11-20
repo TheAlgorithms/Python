@@ -25,7 +25,7 @@ import numpy as np
 
 # Importing the Keras libraries and packages
 import tensorflow as tf
-from tensorflow.keras import layers, models
+from keras import layers, models
 
 if __name__ == "__main__":
     # Initialising the CNN

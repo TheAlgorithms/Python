@@ -68,7 +68,7 @@ def chain(number: int) -> bool:
     """
 
     if CHAINS[number - 1] is not None:
-        return CHAINS[number - 1]  # type: ignore
+        return CHAINS[number - 1]  # type: ignore[return-value]
 
     number_chain = chain(next_number(number))
     CHAINS[number - 1] = number_chain

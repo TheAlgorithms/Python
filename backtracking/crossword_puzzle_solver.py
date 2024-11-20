@@ -28,9 +28,8 @@ def is_valid(
         if vertical:
             if row + i >= len(puzzle) or puzzle[row + i][col] != "":
                 return False
-        else:
-            if col + i >= len(puzzle[0]) or puzzle[row][col + i] != "":
-                return False
+        elif col + i >= len(puzzle[0]) or puzzle[row][col + i] != "":
+            return False
     return True
 
 

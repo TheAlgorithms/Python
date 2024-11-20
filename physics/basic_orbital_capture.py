@@ -4,14 +4,14 @@ from scipy.constants import G, c, pi
 
 """
 These two functions will return the radii of impact for a target object
-of mass M and radius R as well as it's effective cross sectional area σ(sigma).
-That is to say any projectile with velocity v passing within σ, will impact the
+of mass M and radius R as well as it's effective cross sectional area sigma.
+That is to say any projectile with velocity v passing within sigma, will impact the
 target object with mass M. The derivation of which is given at the bottom
 of this file.
 
 The derivation shows that a projectile does not need to aim directly at the target
 body in order to hit it, as  R_capture>R_target. Astronomers refer to the effective
-cross section for capture as σ=π*R_capture**2.
+cross section for capture as sigma=π*R_capture**2.
 
 This algorithm does not account for an N-body problem.
 

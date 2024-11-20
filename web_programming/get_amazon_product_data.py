@@ -24,7 +24,9 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
         ),
         "Accept-Language": "en-US, en;q=0.5",
     }
-    soup = BeautifulSoup(requests.get(url, headers=header).text, features="lxml")
+    soup = BeautifulSoup(
+        requests.get(url, headers=header, timeout=10).text, features="lxml"
+    )
     # Initialize a Pandas dataframe with the column titles
     data_frame = DataFrame(
         columns=[

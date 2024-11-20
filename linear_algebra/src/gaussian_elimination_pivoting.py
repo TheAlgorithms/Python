@@ -1,15 +1,5 @@
 import numpy as np
 
-matrix = np.array(
-    [
-        [5.0, -5.0, -3.0, 4.0, -11.0],
-        [1.0, -4.0, 6.0, -4.0, -10.0],
-        [-2.0, -5.0, 4.0, -5.0, -12.0],
-        [-3.0, -3.0, 5.0, -5.0, 8.0],
-    ],
-    dtype=float,
-)
-
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
@@ -87,15 +77,18 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
 if __name__ == "__main__":
     from doctest import testmod
-    from pathlib import Path
 
     testmod()
-    file_path = Path(__file__).parent / "matrix.txt"
-    try:
-        matrix = np.loadtxt(file_path)
-    except FileNotFoundError:
-        print(f"Error: {file_path} not found.  Using default matrix instead.")
 
-    # Example usage:
-    print(f"Matrix:\n{matrix}")
-    print(f"{solve_linear_system(matrix) = }")
+    example_matrix = np.array(
+        [
+            [5.0, -5.0, -3.0, 4.0, -11.0],
+            [1.0, -4.0, 6.0, -4.0, -10.0],
+            [-2.0, -5.0, 4.0, -5.0, -12.0],
+            [-3.0, -3.0, 5.0, -5.0, 8.0],
+        ],
+        dtype=float,
+    )
+
+    print(f"Matrix:\n{example_matrix}")
+    print(f"{solve_linear_system(example_matrix) = }")

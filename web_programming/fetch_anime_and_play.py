@@ -28,7 +28,7 @@ def search_scraper(anime_name: str) -> list:
     search_url = f"{BASE_URL}/search/{anime_name}"
 
     response = requests.get(
-        search_url, headers={"UserAgent": UserAgent().chrome}
+        search_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
     )  # request the url.
 
     # Is the response ok?
@@ -82,7 +82,9 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
     request_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = requests.get(url=request_url, headers={"UserAgent": UserAgent().chrome})
+    response = requests.get(
+        url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
+    )
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -132,7 +134,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
     episode_page_url = f"{BASE_URL}{episode_endpoint}"
 
     response = requests.get(
-        url=episode_page_url, headers={"User-Agent": UserAgent().chrome}
+        url=episode_page_url, headers={"User-Agent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
 

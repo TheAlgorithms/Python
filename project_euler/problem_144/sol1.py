@@ -6,7 +6,7 @@ works its way back out.
 The specific white cell we will be considering is an ellipse with the equation
 4x^2 + y^2 = 100
 
-The section corresponding to −0.01 ≤ x ≤ +0.01 at the top is missing, allowing the
+The section corresponding to -0.01 ≤ x ≤ +0.01 at the top is missing, allowing the
 light to enter and exit through the hole.
 ￼￼
 The light beam in this problem starts at the point (0.0,10.1) just outside the white
@@ -20,7 +20,7 @@ In the figure on the left, the red line shows the first two points of contact be
 the laser beam and the wall of the white cell; the blue line shows the line tangent to
 the ellipse at the point of incidence of the first bounce.
 
-The slope m of the tangent line at any point (x,y) of the given ellipse is: m = −4x/y
+The slope m of the tangent line at any point (x,y) of the given ellipse is: m = -4x/y
 
 The normal line is perpendicular to this tangent line at the point of incidence.
 

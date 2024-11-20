@@ -18,7 +18,7 @@ def schur_complement(
     the pseudo_inv argument.
 
     Link to Wiki: https://en.wikipedia.org/wiki/Schur_complement
-    See also Convex Optimization – Boyd and Vandenberghe, A.5.5
+    See also Convex Optimization - Boyd and Vandenberghe, A.5.5
     >>> import numpy as np
     >>> a = np.array([[1, 2], [2, 1]])
     >>> b = np.array([[0, 3], [3, 0]])

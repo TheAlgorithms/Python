@@ -67,19 +67,19 @@ def text_justification(word: str, max_width: int) -> list:
     answer = []
     line: list[str] = []
     width = 0
-    for word in words:
-        if width + len(word) + len(line) <= max_width:
+    for inner_word in words:
+        if width + len(inner_word) + len(line) <= max_width:
             # keep adding words until we can fill out max_width
             # width = sum of length of all words (without overall_spaces_count)
-            # len(word) = length of current word
+            # len(inner_word) = length of current inner_word
             # len(line) = number of overall_spaces_count to insert between words
-            line.append(word)
-            width += len(word)
+            line.append(inner_word)
+            width += len(inner_word)
         else:
             # justify the line and add it to result
             answer.append(justify(line, width, max_width))
             # reset new line and new width
-            line, width = [word], len(word)
+            line, width = [inner_word], len(inner_word)
     remaining_spaces = max_width - width - len(line)
     answer.append(" ".join(line) + (remaining_spaces + 1) * " ")
     return answer

@@ -92,10 +92,9 @@ def eliminate(values, s, d):
         dplaces = [s for s in u if d in values[s]]
         if len(dplaces) == 0:
             return False  ## Contradiction: no place for this value
-        elif len(dplaces) == 1:
-            # d can only be in one place in unit; assign it there
-            if not assign(values, dplaces[0], d):
-                return False
+        # d can only be in one place in unit; assign it there
+        elif len(dplaces) == 1 and not assign(values, dplaces[0], d):
+            return False
     return values
 
 
@@ -151,7 +150,7 @@ def solve_all(grids, name="", showif=0.0):
             display(grid_values(grid))
             if values:
                 display(values)
-            print("(%.5f seconds)\n" % t)
+            print(f"({t:.5f} seconds)\n")
         return (t, solved(values))
 
     times, results = zip(*[time_solve(grid) for grid in grids])
@@ -173,7 +172,7 @@ def solved(values):
 
 def from_file(filename, sep="\n"):
     "Parse a file into a list of strings, separated by sep."
-    return open(filename).read().strip().split(sep)  # noqa: SIM115
+    return open(filename).read().strip().split(sep)
 
 
 def random_puzzle(assignments=17):
@@ -218,4 +217,4 @@ if __name__ == "__main__":
         start = time.monotonic()
         solve(puzzle)
         t = time.monotonic() - start
-        print("Solved: %.5f sec" % t)
+        print(f"Solved: {t:.5f} sec")

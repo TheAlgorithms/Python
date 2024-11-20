@@ -31,6 +31,7 @@ def get_subreddit_data(
     response = requests.get(
         f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
         headers={"User-agent": "A random string"},
+        timeout=10,
     )
     if response.status_code == 429:
         raise requests.HTTPError(response=response)
