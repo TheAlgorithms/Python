@@ -181,6 +181,13 @@
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
+## Cryptography
+  * [Des Key Generation](cryptography/des_key_generation.ipynb)
+  * [Extended Eucledian](cryptography/extended_eucledian.ipynb)
+  * [Galois Field](cryptography/galois_field.ipynb)
+  * [Lfsr Bit Stream](cryptography/lfsr_bit_stream.ipynb)
+  * [Playfire](cryptography/playfire.ipynb)
+
 ## Data Structures
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
