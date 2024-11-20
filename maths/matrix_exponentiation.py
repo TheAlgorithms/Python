@@ -39,6 +39,21 @@ def modular_exponentiation(a, b):
 
 
 def fibonacci_with_matrix_exponentiation(n, f1, f2):
+    """
+    Returns the n number of the Fibonacci sequence that
+    start with f1 and f2
+    Use the matrix exponentiation
+    >>> fibonacci_with_matrix_exponentiation(1, 5, 6)
+    5
+    >>> fibonacci_with_matrix_exponentiation(2, 10, 11)
+    11
+    >>> fibonacci_with_matrix_exponentiation(13, 0, 1)
+    144
+    >>> fibonacci_with_matrix_exponentiation(10, 5, 9)
+    411
+    >>> fibonacci_with_matrix_exponentiation(9, 2, 3)
+    89
+    """
     # Trivial Cases
     if n == 1:
         return f1
@@ -50,6 +65,21 @@ def fibonacci_with_matrix_exponentiation(n, f1, f2):
 
 
 def simple_fibonacci(n, f1, f2):
+    """
+    Returns the n number of the Fibonacci sequence that
+    start with f1 and f2
+    Use the definition
+    >>> simple_fibonacci(1, 5, 6)
+    5
+    >>> simple_fibonacci(2, 10, 11)
+    11
+    >>> simple_fibonacci(13, 0, 1)
+    144
+    >>> simple_fibonacci(10, 5, 9)
+    411
+    >>> simple_fibonacci(9, 2, 3)
+    89
+    """
     # Trivial Cases
     if n == 1:
         return f1
@@ -61,10 +91,10 @@ def simple_fibonacci(n, f1, f2):
     n -= 2
 
     while n > 0:
-        fn_1, fn_2 = fn_1 + fn_2, fn_1
+        fn_2, fn_1 = fn_1 + fn_2, fn_2
         n -= 1
 
-    return fn_1
+    return fn_2
 
 
 def matrix_exponentiation_time():
