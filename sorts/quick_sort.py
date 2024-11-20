@@ -35,12 +35,11 @@ def quick_sort(collection: list) -> list:
 
     lesser_partition, greater_partition = partition(collection, pivot)
 
-    return [*quick_sort(lesser_partition), pivot,
-            *quick_sort(greater_partition)]
+    return [*quick_sort(lesser_partition), pivot, *quick_sort(greater_partition)]
 
 
 def partition(collection: list, pivot) -> tuple[list, list]:
-    """Partition the collection into two lists: elements less 
+    """Partition the collection into two lists: elements less
     than or equal to the pivot, and elements greater than the pivot.
     :param collection: a mutable collection of comparable items
     :param pivot: the pivot element

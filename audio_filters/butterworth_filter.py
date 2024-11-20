@@ -113,7 +113,7 @@ def make_allpass(
 
     >>> filter = make_allpass(1000, 48000)
     >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
-    [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 
+    [1.0922959556412573, -1.9828897227476208, 0.9077040443587427,
     0.9077040443587427, -1.9828897227476208, 1.0922959556412573]
     """
     w0 = tau * frequency / samplerate
@@ -173,7 +173,7 @@ def make_lowshelf(
 
     >>> filter = make_lowshelf(1000, 48000, 6)
     >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
-    [3.0409336710888786, -5.608870992220748, 2.602157875636628, 
+    [3.0409336710888786, -5.608870992220748, 2.602157875636628,
     3.139954022810743, -5.591841778072785, 2.5201667380627257]
     """
     w0 = tau * frequency / samplerate
@@ -210,7 +210,7 @@ def make_highshelf(
 
     >>> filter = make_highshelf(1000, 48000, 6)
     >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
-    [2.2229172136088806, -3.9587208137297303, 1.7841414181566304, 
+    [2.2229172136088806, -3.9587208137297303, 1.7841414181566304,
     4.295432981120543, -7.922740859457287, 3.6756456963725253]
     """
     w0 = tau * frequency / samplerate
