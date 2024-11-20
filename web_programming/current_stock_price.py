@@ -3,6 +3,16 @@ from doctest import testmod
 from bs4 import BeautifulSoup
 from requests import get
 
+"""
+Get the HTML code of finance yahoo and select the current qsp-price
+Current AAPL stock price is   228.43
+Current AMZN stock price is   201.85
+Current IBM  stock price is   210.30
+Current GOOG stock price is   177.86
+Current MSFT stock price is   414.82
+Current ORCL stock price is   188.87
+"""
+
 
 def stock_price(symbol: str = "AAPL") -> str:
     """
