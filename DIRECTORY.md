@@ -559,6 +559,7 @@
     * [Test Knapsack](knapsack/tests/test_knapsack.py)
 
 ## Linear Algebra
+  * [Lanczos-Algorithm](linear_algebra/Lanczos-algorithm.py)
   * [Gaussian Elimination](linear_algebra/gaussian_elimination.py)
   * [Jacobi Iteration Method](linear_algebra/jacobi_iteration_method.py)
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
