@@ -1,4 +1,6 @@
 import numpy as np
+
+
 def lanczos(a: np.ndarray) -> tuple[list[float], list[float]]:
     """
         Implements the Lanczos algorithm for a symmetric matrix.
@@ -20,8 +22,8 @@ def lanczos(a: np.ndarray) -> tuple[list[float], list[float]]:
     rng = np.random.default_rng()
     v[:, 0] = rng.standard_normal(n)
     v[:, 0] /= np.linalg.norm(v[:, 0])
-    alpha : list[float] = []
-    beta : list[float] = []
+    alpha: list[float] = []
+    beta: list[float] = []
     for j in range(n):
         w = np.dot(a, v[:, j])
         alpha.append(np.dot(w, v[:, j]))
