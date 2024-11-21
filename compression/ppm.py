@@ -44,7 +44,7 @@ class PPM:
             self.update_model(context, symbol)
             # Encode the symbol based on the current context
             compressed_output.append(self.encode_symbol(context, symbol))
-            # Update the context by appending the symbol, 
+            # Update the context by appending the symbol,
             # keeping it within the specified order
             context = (context + symbol)[-self.order :]  # Keep the context within order
 
