@@ -7,7 +7,7 @@ from collections import defaultdict
 
 class PPMNode:
     def __init__(self) -> None:
-        # Initialize a PPMNode with a dictionary for child nodes 
+        # Initialize a PPMNode with a dictionary for child nodes
         # and a count of total occurrences
         self.counts: dict[str, PPMNode] = defaultdict(PPMNode)
         self.total: int = 0
@@ -48,7 +48,7 @@ class PPM:
             context = (context + symbol)[-self.order :]  # Keep the context within order
 
         return compressed_output
-    
+
     def encode_symbol(self, context: str, symbol: str) -> float:
         # Encode a symbol based on the current context and return its probability
         node = self.root
@@ -93,7 +93,7 @@ class PPM:
             else:
                 return None  # Return None if the context is not found
 
-        # Iterate through the children of the node to 
+        # Iterate through the children of the node to
         # find the symbol matching the given probability
         for symbol, child in node.counts.items():
             if child.total / node.total == prob:
