@@ -2,7 +2,8 @@ from __future__ import annotations
 import sys
 from collections import defaultdict
 
-#Description for the ppm algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
+# Description for the ppm algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
+
 
 class PPMNode:
     def __init__(self) -> None:
@@ -43,7 +44,7 @@ class PPM:
             # Encode the symbol based on the current context
             compressed_output.append(self.encode_symbol(context, symbol))
             # Update the context by appending the symbol, keeping it within the specified order
-            context = (context + symbol)[-self.order:]  # Keep the context within order
+            context = (context + symbol)[-self.order :]  # Keep the context within order
 
         return compressed_output
 
@@ -73,11 +74,13 @@ class PPM:
             if symbol:
                 decompressed_output.append(symbol)
                 # Update the context with the newly decoded symbol
-                context = (context + symbol)[-self.order:]  # Keep the context within order
+                context = (context + symbol)[
+                    -self.order :
+                ]  # Keep the context within order
             else:
                 break  # Stop if a symbol cannot be found
 
-        return ''.join(decompressed_output)  # Join the list into a single string
+        return "".join(decompressed_output)  # Join the list into a single string
 
     def decode_symbol(self, context: str, prob: float) -> str | None:
         # Decode a symbol from the given context based on the probability
@@ -98,7 +101,7 @@ class PPM:
 
 def read_file(file_path: str) -> str:
     """Read the entire file and return its content as a string."""
-    with open(file_path, 'r') as f:
+    with open(file_path, "r") as f:
         return f.read()
 
 
