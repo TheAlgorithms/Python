@@ -1,6 +1,7 @@
 from __future__ import annotations
-from collections import defaultdict
+
 import sys
+from collections import defaultdict
 
 # Description for the ppm algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
 
