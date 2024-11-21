@@ -1,4 +1,7 @@
 
+## Algorithms
+  * [Graph](algorithms/Graph.ipynb)
+
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
@@ -177,6 +180,12 @@
   * [Time Conversions](conversions/time_conversions.py)
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
+
+## Cryptography
+  * [Extended Eucledian](cryptography/extended_eucledian.ipynb)
+  * [Galois Field](cryptography/galois_field.ipynb)
+  * [Lfsr Bit Stream](cryptography/lfsr_bit_stream.ipynb)
+  * [Playfire](cryptography/playfire.ipynb)
 
 ## Data Structures
   * Arrays
