@@ -1,6 +1,6 @@
-import sys
 from __future__ import annotations
 from collections import defaultdict
+import sys
 
 # Description for the ppm algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
 
@@ -44,7 +44,8 @@ class PPM:
             self.update_model(context, symbol)
             # Encode the symbol based on the current context
             compressed_output.append(self.encode_symbol(context, symbol))
-            # Update the context by appending the symbol, keeping it within the specified order
+            # Update the context by appending the symbol, 
+            # keeping it within the specified order
             context = (context + symbol)[-self.order :]  # Keep the context within order
 
         return compressed_output
@@ -103,7 +104,7 @@ class PPM:
 
 def read_file(file_path: str) -> str:
     """Read the entire file and return its content as a string."""
-    with open(file_path, "r") as f:
+    with open(file_path) as f:
         return f.read()
 
 
