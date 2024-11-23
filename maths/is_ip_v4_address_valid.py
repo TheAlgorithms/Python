@@ -51,25 +51,25 @@ def is_ip_v4_address_valid(ip: str) -> bool:
     False
     """
 
-    parts = ip.split('.')
+    parts = ip.split(".")
 
     if len(parts) != 4:
         return False
-    
+
     for part in parts:
         if not part:
             return False
-        
+
         for i in range(len(part)):
             if not part[i].isdigit():
                 return False
 
-        if part[0] == '0' and len(part) > 1:
+        if part[0] == "0" and len(part) > 1:
             return False
-        
-        if not (0 <= int(part) <= 255):  
+
+        if not (0 <= int(part) <= 255):
             return False
-    
+
     return True
 
 
