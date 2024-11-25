@@ -355,8 +355,7 @@ class FibonacciHeap:
         Args:
             node_to_cut (FibonacciHeapNode): The node to be cut recursively.
         """
-        temp_parent = node_to_cut.parent
-        if temp_parent:
+        if temp_parent := node_to_cut.parent:
             if not node_to_cut.mark:
                 node_to_cut.mark = True
             else:
