@@ -12,7 +12,7 @@ class _DoublyLinkedBase:
     """A Private class (to be inherited)"""
 
     class _Node:
-        __slots__ = "_prev", "_data", "_next"
+        __slots__ = "_data", "_next", "_prev"
 
         def __init__(self, link_p, element, link_n):
             self._prev = link_p

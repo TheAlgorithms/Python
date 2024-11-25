@@ -58,10 +58,8 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
             # 3. All other live cells die in the next generation.
             #    Similarly, all other dead cells stay dead.
             alive = cells[i][j] == 1
-            if (
-                (alive and 2 <= neighbour_count <= 3)
-                or not alive
-                and neighbour_count == 3
+            if (alive and 2 <= neighbour_count <= 3) or (
+                not alive and neighbour_count == 3
             ):
                 next_generation_row.append(1)
             else:
