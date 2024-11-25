@@ -38,9 +38,11 @@ class FibonacciHeapNode:
         degree (int): The number of children of this node.
         parent (FibonacciHeapNode): The parent of this node.
         child (FibonacciHeapNode): The first child of this node.
-        mark (bool): Whether this node has lost a child since it became a child of another node.
+        mark (bool): Whether this node has
+            lost a child since it became a child of another node.
         next (FibonacciHeapNode): The next sibling in the circular doubly-linked list.
-        prev (FibonacciHeapNode): The previous sibling in the circular doubly-linked list.
+        prev (FibonacciHeapNode): The previous sibling
+            in the circular doubly-linked list.
     """
 
     def __init__(self, key, value=None):
