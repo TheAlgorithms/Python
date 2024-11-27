@@ -59,7 +59,7 @@ def proth(number: int) -> int:
     return proth_list[number - 1]
 
 
-def isprothnumber(number: int) -> bool :
+def isprothnumber(number: int) -> bool:
     """
     :param number: nth number to calculate in the sequence
     :return: true if number is a Proth number, false etherwise
@@ -79,16 +79,14 @@ def isprothnumber(number: int) -> bool :
     if number < 1:
         msg = f"Input value of [number={number}] must be > 0"
         raise ValueError(msg)
-    
+
     num = number
     num -= 1
     n = 0
     while num%2 == 0 :
         num = num/2
         n += 1
-    return num < (2**n) 
-      
-
+    return num < (2**n)
 
 
 if __name__ == "__main__":
@@ -108,7 +106,7 @@ if __name__ == "__main__":
 
     listexe = [3, 5, 9, 13, 49, 57, 193, 241, 163, 201]
 
-    for number in listexe :
+    for number in listexe:
         if isprothnumber(number):
             print(f"{number} is a Proth number")
         else:
