@@ -64,9 +64,9 @@ def isprothnumber(number: int) -> bool:
     :param number: nth number to calculate in the sequence
     :return: true if number is a Proth number, false etherwise
     >>> isprothnumber(5)
-    true
+    True
     >>> isprothnumber(34)
-    false
+    False
     >>> isprothnumber(-1)
     Traceback (most recent call last):
         ...
