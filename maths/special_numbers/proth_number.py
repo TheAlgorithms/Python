@@ -111,5 +111,5 @@ if __name__ == "__main__":
     for number in listexe :
         if isprothnumber(number):
             print(f"{number} is a Proth number")
-        else :
+        else:
             print(f"{number} is not a Proth number")
