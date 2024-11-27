@@ -63,15 +63,15 @@ def isprothnumber(number: int) -> bool:
     """
     :param number: nth number to calculate in the sequence
     :return: true if number is a Proth number, false etherwise
-    >>> proth(5)
+    >>> isprothnumber(5)
     true
-    >>> proth(34)
+    >>> isprothnumber(34)
     false
-    >>> proth(-1)
+    >>> isprothnumber(-1)
     Traceback (most recent call last):
         ...
     ValueError: Input value of [number=-1] must be > 0
-    >>> proth(6.0)
+    >>> isprothnumber(6.0)
     Traceback (most recent call last):
         ...
     TypeError: Input value of [number=6.0] must be an integer
