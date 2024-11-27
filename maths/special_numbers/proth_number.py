@@ -84,7 +84,7 @@ def isprothnumber(number: int) -> bool:
     num -= 1
     n = 0
     while num % 2 == 0:
-        num = num / 2
+        num = num // 2
         n += 1
     return num < (2**n)
 
