@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.x
       - run: uv sync --group=euler-validate
-      - run: uvx pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+      - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
@@ -30,6 +30,6 @@ jobs:
         with:
           python-version: 3.x
       - run: uv sync --group=euler-validate
-      - run: uvx pytest scripts/validate_solutions.py
+      - run: uv run pytest scripts/validate_solutions.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
