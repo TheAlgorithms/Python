@@ -130,7 +130,7 @@ class GeneticAlgorithm:
         >>> np.array_equal(selected_parents[0], np.array([1.0, 2.0]))
         True  # Parent 1 should be [1.0, 2.0]
         """
-        
+
         if not population_score:
             raise ValueError("Population score is empty, cannot select parents.")
 
