@@ -794,6 +794,7 @@
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
+  * [Matrix Based Game](matrix/matrix_based_game.py)
   * [Matrix Class](matrix/matrix_class.py)
   * [Matrix Equalization](matrix/matrix_equalization.py)
   * [Matrix Multiplication Recursion](matrix/matrix_multiplication_recursion.py)
