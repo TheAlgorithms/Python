@@ -113,13 +113,24 @@ class GeneticAlgorithm:
         >>> len(selected_parents)
         2  # Should select the two parents with the best fitness scores.
         >>> np.array_equal(selected_parents[0], np.array([1.0, 2.0]))
-        # Parent 1 should be [1.0, 2.0]
-        True
+        True  # Parent 1 should be [1.0, 2.0]
         >>> np.array_equal(selected_parents[1], np.array([-1.0, -2.0]))
-        # Parent 2 should be [-1.0, -2.0]
-        True
-        """
+        True  # Parent 2 should be [-1.0, -2.0]
 
+        >>> population_score = [
+        ...     (np.array([1.0, 2.0]), 5.0),
+        ...     (np.array([1.0, -2.0]), 5.0),
+        ...     (np.array([0.0, 0.0]), 0.0),
+        ...     (np.array([-1.0, 2.0]), 5.0),
+        ...     (np.array([-1.0, -2.0]), 5.0)
+        ... ]
+        >>> selected_parents = ga.select_parents(population_score)
+        >>> len(selected_parents)
+        5  # Should select the top 5 parents with the best fitness scores.
+        >>> np.array_equal(selected_parents[0], np.array([1.0, 2.0]))
+        True  # Parent 1 should be [1.0, 2.0]
+        """
+        
         if not population_score:
             raise ValueError("Population score is empty, cannot select parents.")
 
