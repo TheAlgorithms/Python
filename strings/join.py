@@ -1,6 +1,8 @@
 """
 Program to join a list of strings with a separator
 """
+
+
 def join(separator: str, separated: list[str]) -> str:
     """
     Joins a list of strings using a separator
