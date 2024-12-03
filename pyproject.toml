@@ -31,6 +31,11 @@ dependencies = [
 ]
 
 [dependency-groups]
+test = [
+  "pytest>=8.3.4",
+  "pytest-cov>=6",
+]
+
 docs = [
   "myst-parser>=4",
   "sphinx-autoapi>=3.4",
@@ -39,10 +44,6 @@ docs = [
 euler-validate = [
   "numpy>=2.1.3",
   "requests>=2.32.3",
-]
-test = [
-  "pytest>=8.3.4",
-  "pytest-cov>=6",
 ]
 
 [tool.ruff]
