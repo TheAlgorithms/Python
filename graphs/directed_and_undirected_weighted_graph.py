@@ -10,7 +10,7 @@ class DirectedGraph:
     def __init__(self):
         """
         Initialize an empty directed graph.
-        
+
         Example:
         >>> g = DirectedGraph()
         >>> g.graph
@@ -545,4 +545,5 @@ class Graph:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
