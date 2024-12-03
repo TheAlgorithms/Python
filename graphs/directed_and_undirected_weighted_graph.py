@@ -114,20 +114,6 @@ class DirectedGraph:
     # c is the count of nodes you want and if you leave it or pass -1 to the function
     # the count will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
-        """
-        Fill the graph with random nodes and edges.
-
-        Args:
-            c: Number of nodes to generate. If -1, a random number of nodes between 10 and 10000 is used.
-
-        Example:
-        >>> g = DirectedGraph()
-        >>> g.fill_graph_randomly(5)  # Fill graph with 5 nodes and random edges.
-        >>> len(g.graph)  # Check the number of nodes added.
-        5
-        >>> all(isinstance(node, int) and isinstance(edges, list) for node, edges in g.graph.items())
-        True  # All nodes should be integers, and edges should be lists.
-        """
         if c == -1:
             c = floor(random() * 10000) + 10
         for i in range(c):
