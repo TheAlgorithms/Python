@@ -23,16 +23,6 @@ def legendre(n: int) -> list[float]:
     return p.deriv(n).coef.tolist()
 
 
-def jsp():
-    print(legendre(1))
-    print(legendre(2))
-    print(legendre(3))
-    print(legendre(4))
-
-
-jsp()
-
-
 def test_legendre_0():
     """Test the 0th Legendre polynomial."""
     assert legendre(0) == [1.0], "The 0th Legendre polynomial should be [1.0]"
