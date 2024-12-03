@@ -16,7 +16,7 @@ def legendre(n: int) -> list[float]:
     Returns:
         list[float]: Coefficients of the polynomial in ascending order of powers.
     """
-    p = (1 / (factorial(n) * (2 ** n))) * (Polynomial([-1, 0, 1]) ** n)
+    p = (1 / (factorial(n) * (2**n))) * (Polynomial([-1, 0, 1]) ** n)
     return p.deriv(n).coef.tolist()
 
 
@@ -42,12 +42,21 @@ def test_legendre_1():
 
 def test_legendre_2():
     """Test the 2nd Legendre polynomial."""
-    assert legendre(2) == [-0.5, 0.0, 1.5], "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
+    assert legendre(2) == [
+        -0.5,
+        0.0,
+        1.5,
+    ], "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
 
 
 def test_legendre_3():
     """Test the 3rd Legendre polynomial."""
-    assert legendre(3) == [0.0, -1.5, 0.0, 2.5], "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
+    assert legendre(3) == [
+        0.0,
+        -1.5,
+        0.0,
+        2.5,
+    ], "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
 
 
 def test_legendre_4():
@@ -56,5 +65,5 @@ def test_legendre_4():
     "The 4th Legendre polynomial should be [0.375, 0.0, -3.75, 0.0, 4.375]"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pytest.main()
