@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: 3.13
           allow-prereleases: true
-      - run: uv sync --dev
+      - run: uv sync --test
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: uv run pytest
