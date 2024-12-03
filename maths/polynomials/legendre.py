@@ -1,6 +1,9 @@
-from numpy.polynomial import Polynomial
+# Imports de bibliothèques standard
 from math import factorial
+
+# Imports de bibliothèques tierces
 import pytest
+from numpy.polynomial import Polynomial
 
 
 def legendre(n: int) -> list[float]:
