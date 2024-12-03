@@ -52,7 +52,6 @@ def join(separator: str, separated: list[str]) -> str:
     return separator.join(separated)
 
 
-
 if __name__ == "__main__":
     from doctest import testmod
 
