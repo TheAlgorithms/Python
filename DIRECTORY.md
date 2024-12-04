@@ -856,6 +856,7 @@
   * [Nested Brackets](other/nested_brackets.py)
   * [Number Container System](other/number_container_system.py)
   * [Password](other/password.py)
+  * [Pipeline](other/pipeline.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
