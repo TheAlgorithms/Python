@@ -23,29 +23,29 @@ def legendre(n: int) -> [float]:
     return legendre_polynomial.deriv(n).coef.tolist()
 
 
-def test_legendre_0():
+def test_legendre_0() -> None:
     """Test the 0th Legendre polynomial."""
     assert legendre(0) == [1.0], "The 0th Legendre polynomial should be [1.0]"
 
 
-def test_legendre_1():
+def test_legendre_1() -> None:
     """Test the 1st Legendre polynomial."""
     assert legendre(1) == [0.0, 1.0], "The 1st Legendre polynomial should be [0.0, 1.0]"
 
 
-def test_legendre_2():
+def test_legendre_2() -> None:
     """Test the 2nd Legendre polynomial."""
     assert legendre(2) == [-0.5, 0.0, 1.5]
     "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
 
 
-def test_legendre_3():
+def test_legendre_3() -> None:
     """Test the 3rd Legendre polynomial."""
     assert legendre(3) == [0.0, -1.5, 0.0, 2.5]
     "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
 
 
-def test_legendre_4():
+def test_legendre_4() -> None:
     """Test the 4th Legendre polynomial."""
     assert legendre(4) == pytest.approx([0.375, 0.0, -3.75, 0.0, 4.375])
     "The 4th Legendre polynomial should be [0.375, 0.0, -3.75, 0.0, 4.375]"
