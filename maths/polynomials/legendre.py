@@ -1,12 +1,13 @@
 # Imports de bibliothèques standard
 from math import factorial
+from typing import List
 
 # Imports de bibliothèques tierces
 import pytest
 from numpy.polynomial import Polynomial
 
 
-def legendre(n: int) -> [float]:
+def legendre(n: int) -> List[float]:
     """
     Compute the coefficients of the nth Legendre polynomial.
 
