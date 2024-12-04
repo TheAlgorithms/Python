@@ -72,44 +72,44 @@ def train_network(
     return w_co, bias_co, w_cs, bias_cs, error
 
 
-def relu(x: np.array) -> np.array:
+def relu(input_: np.array) -> np.array:
     """
     Relu activation function
     Hidden Layer due to it is less susceptible to vanish gradient
     """
-    for i in np.arange(0, len(x)):
-        x[i, 0] = max(x[i, 0], 0)
-    return x
+    for i in np.arange(0, len(input_)):
+        input_[i, 0] = max(input_[i, 0], 0)
+    return input_
 
 
-def d_relu(x: np.array) -> np.array:
+def d_relu(input_: np.array) -> np.array:
     """
     Relu Activation derivate function
     """
-    for i in np.arange(0, len(x)):
-        if x[i, 0] >= 0:
-            x[i, 0] = 1
+    for i in np.arange(0, len(input_)):
+        if input_[i, 0] >= 0:
+            input_[i, 0] = 1
         else:
-            x[i, 0] = 0
-    return x
+            input_[i, 0] = 0
+    return input_
 
 
-def sigmoid(x: float) -> float:
+def sigmoid(input_: float) -> float:
     """
     Sigmoid activation function
     Output layer
     """
-    return 1 / (1 + np.exp(-x))
+    return 1 / (1 + np.exp(-input_))
 
 
-def d_sigmoid(x: float) -> float:
+def d_sigmoid(input_: float) -> float:
     """
     Sigmoid activation derivate
     """
-    return sigmoid(x) ** 2 * np.exp(-x)
+    return sigmoid(input_) ** 2 * np.exp(-input_)
 
 
-def main():
+def main() -> None:
     """
     Import load_breast_cancer dataset
     It is a binary classification problem with 569 samples and 30 attributes
