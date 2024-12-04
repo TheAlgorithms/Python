@@ -8,7 +8,9 @@ from sklearn.preprocessing import MinMaxScaler
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
-def train_network(neurons, x_train, y_train, epochs):
+def train_network(
+    neurons: int, x_train: np.array, y_train: np.array, epochs: int
+) -> tuple:
     """
     Code the backpropagation algorithm with the technique of regularization
     weight decay.
@@ -70,7 +72,7 @@ def train_network(neurons, x_train, y_train, epochs):
     return w_co, bias_co, w_cs, bias_cs, error
 
 
-def relu(x):
+def relu(x: np.array) -> np.array:
     """
     Relu activation function
     Hidden Layer due to it is less susceptible to vanish gradient
@@ -80,7 +82,7 @@ def relu(x):
     return x
 
 
-def d_relu(x):
+def d_relu(x: np.array) -> np.array:
     """
     Relu Activation derivate function
     """
@@ -92,7 +94,7 @@ def d_relu(x):
     return x
 
 
-def sigmoid(x):
+def sigmoid(x: float) -> float:
     """
     Sigmoid activation function
     Output layer
@@ -100,7 +102,7 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
-def d_sigmoid(x):
+def d_sigmoid(x: float) -> float:
     """
     Sigmoid activation derivate
     """
