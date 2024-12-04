@@ -6,7 +6,7 @@ import pytest
 from numpy.polynomial import Polynomial
 
 
-def compute_legendre_polynomial_coefficients(n: int) -> [float]:
+def legendre(n: int) -> [float]:
     """
     Compute the coefficients of the nth Legendre polynomial.
 
@@ -23,30 +23,38 @@ def compute_legendre_polynomial_coefficients(n: int) -> [float]:
     return legendre_polynomial.deriv(n).coef.tolist()
 
 
-def test_legendre_polynomial_degree_0() -> None:
+def test_legendre_0():
     """Test the 0th Legendre polynomial."""
-    assert compute_legendre_polynomial_coefficients(0) == [1.0], "The 0th Legendre polynomial should be [1.0]"
+    assert legendre(0) == [1.0], "The 0th Legendre polynomial should be [1.0]"
 
 
-def test_legendre_polynomial_degree_1() -> None:
+def test_legendre_1():
     """Test the 1st Legendre polynomial."""
-    assert compute_legendre_polynomial_coefficients(1) == [0.0, 1.0], "The 1st Legendre polynomial should be [0.0, 1.0]"
+    assert legendre(1) == [0.0, 1.0], "The 1st Legendre polynomial should be [0.0, 1.0]"
 
 
-def test_legendre_polynomial_degree_2() -> None:
+def test_legendre_2():
     """Test the 2nd Legendre polynomial."""
-    assert compute_legendre_polynomial_coefficients(2) == [-0.5, 0.0, 1.5],
-    "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
+    assert legendre(2) == [
+        -0.5,
+        0.0,
+        1.5,
+    ], "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
 
 
-def test_legendre_polynomial_degree_3() -> None:
+def test_legendre_3():
     """Test the 3rd Legendre polynomial."""
-    assert compute_legendre_polynomial_coefficients(3) == [0.0, -1.5, 0.0, 2.5], "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
+    assert legendre(3) == [
+        0.0,
+        -1.5,
+        0.0,
+        2.5,
+    ], "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
 
 
-def test_legendre_polynomial_degree_4() -> None:
+def test_legendre_4():
     """Test the 4th Legendre polynomial."""
-    assert compute_legendre_polynomial_coefficients(4) == pytest.approx([0.375, 0.0, -3.75, 0.0, 4.375])
+    assert legendre(4) == pytest.approx([0.375, 0.0, -3.75, 0.0, 4.375])
     "The 4th Legendre polynomial should be [0.375, 0.0, -3.75, 0.0, 4.375]"
 
 
