@@ -35,21 +35,14 @@ def test_legendre_1():
 
 def test_legendre_2():
     """Test the 2nd Legendre polynomial."""
-    assert legendre(2) == [
-        -0.5,
-        0.0,
-        1.5,
-    ], "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
+    assert legendre(2) == [-0.5, 0.0, 1.5]
+    "The 2nd Legendre polynomial should be [-0.5, 0.0, 1.5]"
 
 
 def test_legendre_3():
     """Test the 3rd Legendre polynomial."""
-    assert legendre(3) == [
-        0.0,
-        -1.5,
-        0.0,
-        2.5,
-    ], "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
+    assert legendre(3) == [0.0, -1.5, 0.0, 2.5]
+    "The 3rd Legendre polynomial should be [0.0, -1.5, 0.0, 2.5]"
 
 
 def test_legendre_4():
