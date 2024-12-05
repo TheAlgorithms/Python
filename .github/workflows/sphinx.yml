@@ -26,14 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
       - uses: actions/setup-python@v5
         with:
           python-version: 3.13
           allow-prereleases: true
-      - run: pip install --upgrade pip
-      - run: pip install myst-parser sphinx-autoapi sphinx-pyproject
+      - run: uv sync --group=docs
       - uses: actions/configure-pages@v5
-      - run: sphinx-build -c docs . docs/_build/html
+      - run: uv run sphinx-build -c docs . docs/_build/html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/_build/html
