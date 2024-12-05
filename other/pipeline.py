@@ -27,17 +27,17 @@ class Pipeline:
         20
     """
 
-    def __init__(self, f_ls: Sequence[Callable] | None = None):
+    def __init__(self, f_ls: Sequence[Callable] | None = None) -> None:
         self._f_ls = f_ls or []
 
     def __or__(self, other: Callable) -> "Pipeline":
         return Pipeline(f_ls=[*self._f_ls, other])
 
-    def __call__(self, x: T, f_ls_: Sequence[Callable] | None = None) -> Any:
+    def __call__(self, input_object: T, f_ls_: Sequence[Callable] | None = None) -> Any:
         f_ls = f_ls_ or self._f_ls
         if len(f_ls) == 1:
-            return f_ls[0](x)
-        return self(f_ls[0](x), f_ls_=f_ls[1:])
+            return f_ls[0](input_object)
+        return self(f_ls[0](input_object), f_ls_=f_ls[1:])
 
 
 if __name__ == "__main__":
