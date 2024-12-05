@@ -7,12 +7,43 @@ requires-python = ">=3.13"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.13",
-
 ]
-optional-dependencies.docs = [
-  "myst-parser",
-  "sphinx-autoapi",
-  "sphinx-pyproject",
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "fake-useragent>=1.5.1",
+  "imageio>=2.36.1",
+  "keras>=3.7",
+  "lxml>=5.3",
+  "matplotlib>=3.9.3",
+  "numpy>=2.1.3",
+  "opencv-python>=4.10.0.84",
+  "pandas>=2.2.3",
+  "pillow>=11",
+  "requests>=2.32.3",
+  "rich>=13.9.4",
+  "scikit-learn>=1.5.2",
+  "sphinx-pyproject>=0.3",
+  "statsmodels>=0.14.4",
+  "sympy>=1.13.3",
+  "tweepy>=4.14",
+  "typing-extensions>=4.12.2",
+  "xgboost>=2.1.3",
+]
+
+[dependency-groups]
+test = [
+  "pytest>=8.3.4",
+  "pytest-cov>=6",
+]
+
+docs = [
+  "myst-parser>=4",
+  "sphinx-autoapi>=3.4",
+  "sphinx-pyproject>=0.3",
+]
+euler-validate = [
+  "numpy>=2.1.3",
+  "requests>=2.32.3",
 ]
 
 [tool.ruff]
@@ -61,8 +92,8 @@ lint.select = [
   "UP",    # pyupgrade
   "W",     # pycodestyle
   "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations  # FIX ME?
-  # "COM",  # flake8-commas
+  # "ANN",  # flake8-annotations -- FIX ME?
+  # "COM",  # flake8-commas -- DO NOT FIX
   # "D",    # pydocstyle -- FIX ME?
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
@@ -129,10 +160,7 @@ lint.pylint.max-statements = 88 # default: 50
 
 [tool.codespell]
 ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
-skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
-
-[tool.pyproject-fmt]
-max_supported_python = "3.13"
+skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
 
 [tool.pytest.ini_options]
 markers = [
