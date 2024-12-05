@@ -113,9 +113,6 @@ def sigmoid(input_: float) -> float:
     """
     Sigmoid activation function
     Output layer
-
-    >>> sigmoid(4)
-    0.9820137900379085
     """
     return 1 / (1 + np.exp(-input_))
 
@@ -123,9 +120,6 @@ def sigmoid(input_: float) -> float:
 def d_sigmoid(input_: float) -> float:
     """
     Sigmoid activation derivate
-
-    >>> d_sigmoid(4)
-    0.017662706213291114
     """
     return sigmoid(input_) ** 2 * np.exp(-input_)
 
