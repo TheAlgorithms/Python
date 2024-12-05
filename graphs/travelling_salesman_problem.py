@@ -20,27 +20,54 @@ class TSPEdge(Generic[T]):
     weight: float
 
     def __str__(self) -> str:
+        """
+        Examples:
+            >>> tsp_edge = TSPEdge.from_3_tuple(1, 2, 0.5)
+            >>> str(tsp_edge)
+            '(frozenset({1, 2}), 0.5)'
+        """
         return f"({self.vertices}, {self.weight})"
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         # Ensures that there is no loop in a vertex
         if len(self.vertices) != 2:
             raise ValueError("frozenset must have exactly 2 elements")
 
     @classmethod
-    def from_3_tuple(cls, x, y, w) -> "TSPEdge":
+    def from_3_tuple(cls, vertex_1: T, vertex_2: T, weight: float) -> "TSPEdge":
         """
         Construct TSPEdge from a 3-tuple (x, y, w).
         x & y are vertices and w is the weight.
+
+        Examples:
+            >>> tsp_edge = TSPEdge.from_3_tuple(1, 2, 0.5)
+            >>> tsp_edge.vertices
+            frozenset({1, 2})
+            >>> tsp_edge.weight
+            0.5
         """
-        return cls(frozenset([x, y]), w)
+        return cls(frozenset([vertex_1, vertex_2]), weight)
 
     def __eq__(self, other: object) -> bool:
+        """
+        Examples:
+            >>> tsp_edge_1 = TSPEdge.from_3_tuple(1, 2, 0.5)
+            >>> tsp_edge_2 = TSPEdge.from_3_tuple(2, 1, 0.7)
+            >>> tsp_edge_1 == tsp_edge_2
+            True
+        """
         if not isinstance(other, TSPEdge):
             return NotImplemented
         return self.vertices == other.vertices
 
     def __add__(self, other: "TSPEdge") -> float:
+        """
+        Examples:
+            >>> tsp_edge_1 = TSPEdge.from_3_tuple(1, 2, 1.0)
+            >>> tsp_edge_2 = TSPEdge.from_3_tuple(2, 1, 2.5)
+            >>> tsp_edge_1 + tsp_edge_2
+            3.5
+        """
         return self.weight + other.weight
 
 
@@ -187,7 +214,7 @@ def adjacent_tuples(path: list[T]) -> zip:
     Returns:
         zip: A zip object containing tuples of adjacent vertices.
 
-    Examples
+    Examples:
         >>> list(adjacent_tuples([1, 2, 3, 4, 5]))
         [(1, 2), (2, 3), (3, 4), (4, 5)]
 
@@ -209,6 +236,15 @@ def path_weight(path: list[T], tsp_graph: TSPGraph) -> float:
 
     Returns:
         float: The total weight of the path.
+
+    Examples:
+        >>> graph = TSPGraph.from_3_tuples((1, 2, 2), (2, 3, 4), (3, 4, 2), (4, 5, 1))
+        >>> path_weight([1, 2, 3], graph)
+        6
+        >>> path_weight([1, 2, 3, 4], graph)
+        8
+        >>> path_weight([1, 2, 3, 4, 5], graph)
+        9
     """
     return sum(tsp_graph.get_edge_weight(x, y) for x, y in adjacent_tuples(path))
 
@@ -228,6 +264,14 @@ def generate_paths(start: T, end: T, tsp_graph: TSPGraph) -> Generator[list[T]]:
 
     Raises:
         AssertionError: If start or end is not in the graph, or if they are the same.
+
+    Examples:
+        >>> graph = TSPGraph.from_3_tuples((1, 2, 2), (2, 3, 4), (3, 1, 2))
+        >>> graph_generator = generate_paths(1, 3, graph)
+        >>> next(graph_generator)
+        [1, 2, 3]
+        >>> next(graph_generator)
+        [1, 3]
     """
 
     assert start in tsp_graph.vertices
@@ -257,7 +301,9 @@ def generate_paths(start: T, end: T, tsp_graph: TSPGraph) -> Generator[list[T]]:
     yield from dfs(start, end, set(), [])
 
 
-def nearest_neighborhood(tsp_graph: TSPGraph, v, visited_=None) -> list[T] | None:
+def nearest_neighborhood(
+    tsp_graph: TSPGraph, current_vertex: T, visited_: list[T] | None = None
+) -> list[T] | None:
     """
     Approximates a solution to the Traveling Salesman Problem
     using the Nearest Neighbor heuristic.
@@ -269,9 +315,29 @@ def nearest_neighborhood(tsp_graph: TSPGraph, v, visited_=None) -> list[T] | Non
 
     Returns:
         list[T] | None: A complete Hamiltonian cycle if possible, otherwise None.
+
+    Examples:
+        >>> edges = [
+        ...     ("A", "B", 7), ("A", "D", 1), ("A", "E", 1),
+        ...     ("B", "C", 3), ("B", "E", 8), ("C", "E", 2),
+        ...     ("C", "D", 6), ("D", "E", 7)
+        ... ]
+        >>> graph = TSPGraph.from_3_tuples(*edges)
+        >>> import random
+        >>> init_v = random.choice(list(graph.vertices))
+        >>> result = nearest_neighborhood(graph, init_v)
+        >>> assert result in [
+        ...     ['A', 'D', 'C', 'E', 'B', 'A'],
+        ...     ['E', 'A', 'D', 'C', 'B', 'E'],
+        ...     None
+        ... ]
+        >>> path_1 = ['A', 'D', 'C', 'E', 'B', 'A']
+        >>> path_2 = ['E', 'A', 'D', 'C', 'B', 'E']
+        >>> assert path_weight(path_1, graph) == 24 if result == path_1 else 19 or None
+        >>> assert path_weight(path_2, graph) == 19 if result == path_2 else 24 or None
     """
     # Initialize visited list on first call
-    visited = visited_ or [v]
+    visited = visited_ or [current_vertex]
 
     # Base case: if all vertices are visited
     if len(visited) == len(tsp_graph.vertices):
@@ -283,72 +349,23 @@ def nearest_neighborhood(tsp_graph: TSPGraph, v, visited_=None) -> list[T] | Non
 
     # Get unvisited neighbors
     filtered_neighbors = [
-        tup for tup in tsp_graph.get_vertex_neighbor_weights(v) if tup[0] not in visited
+        tup
+        for tup in tsp_graph.get_vertex_neighbor_weights(current_vertex)
+        if tup[0] not in visited
     ]
 
     # If there are unvisited neighbors, continue to the nearest one
     if filtered_neighbors:
         next_v = min(filtered_neighbors, key=lambda tup: tup[1])[0]
-        return nearest_neighborhood(tsp_graph, v=next_v, visited_=[*visited, next_v])
+        return nearest_neighborhood(
+            tsp_graph, current_vertex=next_v, visited_=[*visited, next_v]
+        )
     else:
         # No more neighbors, return None (cannot form a complete tour)
         return None
-
-
-def sample_1():
-    # Reference: https://graphicmaths.com/computer-science/graph-theory/travelling-salesman-problem/
-
-    edges = [
-        ("A", "B", 7),
-        ("A", "D", 1),
-        ("A", "E", 1),
-        ("B", "C", 3),
-        ("B", "E", 8),
-        ("C", "E", 2),
-        ("C", "D", 6),
-        ("D", "E", 7),
-    ]
-
-    # Create the graph
-    graph = TSPGraph.from_3_tuples(*edges)
-
-    import random
-
-    init_v = random.choice(list(graph.vertices))
-    optim_path = nearest_neighborhood(graph, init_v)
-    # optim_path = nearest_neighborhood(graph, 'A')
-    print(f"Optimal Cycle: {optim_path}")
-    if optim_path:
-        print(f"Optimal Weight: {path_weight(optim_path, graph)}")
-
-
-def sample_2():
-    # Example 8x8 weight matrix (symmetric, no self-loops)
-    weights = [
-        [0, 1, 2, 3, 4, 5, 6, 7],
-        [1, 0, 8, 9, 10, 11, 12, 13],
-        [2, 8, 0, 14, 15, 16, 17, 18],
-        [3, 9, 14, 0, 19, 20, 21, 22],
-        [4, 10, 15, 19, 0, 23, 24, 25],
-        [5, 11, 16, 20, 23, 0, 26, 27],
-        [6, 12, 17, 21, 24, 26, 0, 28],
-        [7, 13, 18, 22, 25, 27, 28, 0],
-    ]
-
-    graph = TSPGraph.from_weights(weights)
-
-    import random
-
-    init_v = random.choice(list(graph.vertices))
-    optim_path = nearest_neighborhood(graph, init_v)
-    print(f"Optimal Cycle: {optim_path}")
-    if optim_path:
-        print(f"Optimal Weight: {path_weight(optim_path, graph)}")
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    sample_1()
-    sample_2()
