@@ -2,6 +2,7 @@ import heapq
 from collections import defaultdict
 import sys
 
+
 class HuffmanNode:
     def __init__(self, char=None, freq=0):
         self.char = char
@@ -18,7 +19,7 @@ def calculate_frequencies(file_path):
     Reads the file and calculates the frequency of each character.
     """
     freq = defaultdict(int)
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         for line in file:
             for char in line:
                 freq[char] += 1
@@ -67,12 +68,12 @@ def encode_file(file_path, code_map):
     Encodes the file contents using the Huffman codes.
     """
     encoded_output = []
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         for line in file:
             for char in line:
                 encoded_output.append(code_map[char])
 
-    return ''.join(encoded_output)
+    return "".join(encoded_output)
 
 
 def huffman(file_path):
