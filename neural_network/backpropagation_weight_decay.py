@@ -19,6 +19,15 @@ def train_network(
 
     Explanation here (Available just in Spanish):
     https://drive.google.com/file/d/1QTEbRVgevfK8QJ30tWcEbaNbBaKnvGWv/view?usp=sharing
+
+    >>> import numpy as np
+    >>> x_train = np.array([[0.1, 0.2], [0.4, 0.6]])
+    >>> y_train = np.array([[1], [0]])
+    >>> neurons = 2
+    >>> epochs = 10
+    >>> result = train_network(neurons, x_train, y_train, epochs)
+    >>> all(part is not None for part in result)
+    True
     """
     mu = 0.2
     lambda_ = 1e-4
@@ -76,21 +85,27 @@ def relu(input_: np.array) -> np.array:
     """
     Relu activation function
     Hidden Layer due to it is less susceptible to vanish gradient
+
+    >>> relu(np.array([[0, -1, 2, 3, 0], [0, -1, -2, -3, 5]]))
+    array([[0, 0, 2, 3, 0],
+           [0, 0, 0, 0, 5]])
     """
-    for i in np.arange(0, len(input_)):
-        input_[i, 0] = max(input_[i, 0], 0)
-    return input_
+    return np.maximum(input_, 0)
 
 
 def d_relu(input_: np.array) -> np.array:
     """
     Relu Activation derivate function
+    >>> d_relu(np.array([[0, -1, 2, 3, 0], [0, -1, -2, -3, 5]]))
+    array([[1, 0, 1, 1, 1],
+           [1, 0, 0, 0, 1]])
     """
     for i in np.arange(0, len(input_)):
-        if input_[i, 0] >= 0:
-            input_[i, 0] = 1
-        else:
-            input_[i, 0] = 0
+        for j in np.arange(0, len(input_[i])):
+            if input_[i, j] >= 0:
+                input_[i, j] = 1
+            else:
+                input_[i, j] = 0
     return input_
 
 
@@ -98,6 +113,9 @@ def sigmoid(input_: float) -> float:
     """
     Sigmoid activation function
     Output layer
+
+    >>> sigmoid(4)
+    0.9820137900379085
     """
     return 1 / (1 + np.exp(-input_))
 
@@ -105,6 +123,9 @@ def sigmoid(input_: float) -> float:
 def d_sigmoid(input_: float) -> float:
     """
     Sigmoid activation derivate
+
+    >>> d_sigmoid(4)
+    0.017662706213291114
     """
     return sigmoid(input_) ** 2 * np.exp(-input_)
 
@@ -119,7 +140,7 @@ def main() -> None:
 
     Before train the neural network, the data is normalized to [0 1] interval
 
-    The function trainNetwork() returns the weight and bias matrix to apply the
+    The function train_network() returns the weight and bias matrix to apply the
     transfer function to predict the output
     """
 
@@ -137,7 +158,8 @@ def main() -> None:
     y_train = target[0:train]
     y_test = target[train:]
 
-    epochs = 50
+    # play with epochs and neuron numbers
+    epochs = 5
     neurons = 5
     w_co, bias_co, w_cs, bias_cs, error = train_network(
         neurons, x_train, y_train, epochs
@@ -152,4 +174,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
