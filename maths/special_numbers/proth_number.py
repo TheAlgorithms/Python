@@ -59,16 +59,6 @@ def proth(number: int) -> int:
     return proth_list[number - 1]
 
 
-def test_proth_valid() -> None:
-    """Test the 6 first Proth numbers."""
-    assert proth(1) == 3, "The 1st Proth number should be 3"
-    assert proth(2) == 5, "The 2nd Proth number should be 5"
-    assert proth(3) == 9, "The 3rd Proth number should be 9"
-    assert proth(4) == 13, "The 4th Proth number should be 13"
-    assert proth(5) == 17, "The 5th Proth number should be 17"
-    assert proth(6) == 25, "The 6th Proth number should be 25"
-
-
 if __name__ == "__main__":
     import doctest
 
