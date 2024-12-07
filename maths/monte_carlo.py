@@ -18,6 +18,10 @@ def pi_estimator(iterations: int):
     4. After all the dots are placed, divide the dots in the circle by the total.
     5. Multiply this value by 4 to get your estimate of pi.
     6. Print the estimated and numpy value of pi
+    >>> pi_estimator(1000)
+    The estimated value of pi is 3.145
+    The numpy value of pi is 3.141592653589793
+    The total error is 0.003
     """
 
     # A local function to see if a dot lands in the circle.
@@ -61,8 +65,11 @@ def area_under_curve_estimator(
         c. Expected value = average of the function evaluations
     4. Estimated value of integral = Expected value * (max_value - min_value)
     5. Returns estimated value
+    >>> def test_function(x):
+    >>>     return x * x
+    >>> area_under_curve_estimator(1000, test_function)
+    0.334 (estimated value should be close to 1/3)
     """
-
     return mean(
         function_to_integrate(uniform(min_value, max_value)) for _ in range(iterations)
     ) * (max_value - min_value)
@@ -77,12 +84,19 @@ def area_under_line_estimator_check(
     1. Calls "area_under_curve_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
+    >>> area_under_line_estimator_check(1000)
+    ******************
+    Estimating area under y=x where x varies from 0.0 to 1.0
+    Estimated value is 0.332
+    Expected value is 0.5
+    Total error is 0.168
+    ******************
     """
 
     def identity_function(x: float) -> float:
         """
         Represents identity function
-        >>> [function_to_integrate(x) for x in [-2.0, -1.0, 0.0, 1.0, 2.0]]
+        >>> [identity_function(x) for x in [-2.0, -1.0, 0.0, 1.0, 2.0]]
         [-2.0, -1.0, 0.0, 1.0, 2.0]
         """
         return x
@@ -103,6 +117,13 @@ def area_under_line_estimator_check(
 def pi_estimator_using_area_under_curve(iterations: int) -> None:
     """
     Area under curve y = sqrt(4 - x^2) where x lies in 0 to 2 is equal to pi
+    >>> pi_estimator_using_area_under_curve(1000)
+    ******************
+    Estimating pi using area_under_curve_estimator
+    Estimated value is 3.141
+    Expected value is 3.141592653589793
+    Total error is 0.0004
+    ******************
     """
 
     def function_to_integrate(x: float) -> float:
