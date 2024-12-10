@@ -88,6 +88,8 @@ def to_pascal_case(text: str) -> str:
 
 def to_camel_case(text: str) -> str:
     """
+    >>> to_camel_case("")
+    'not valid string'
     >>> to_camel_case("one two 31235three4four")
     'oneTwo31235three4four'
     """
