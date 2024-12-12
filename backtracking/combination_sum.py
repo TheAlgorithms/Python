@@ -15,10 +15,10 @@ Time complexity (Average Case): O(n!)
 """
 
 def backtrack(
-    candidates: list[int], 
-    path: list[int], 
-    answer: list[list[int]], 
-    target: int, 
+    candidates: list[int],
+    path: list[int],
+    answer: list[list[int]],
+    target: int,
     start_index: int
 ) -> None:
     """
