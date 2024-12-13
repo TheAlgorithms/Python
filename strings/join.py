@@ -37,13 +37,13 @@ def join(separator: str, separated: list[str]) -> str:
     'apple-banana-cherry'
     """
 
-    joined : str = ""
+    joined: str = ""
     """
     The last element of the list is not followed by the separator.
     So, we need to iterate through the list and join each element
     with the separator except the last element.
     """
-    last_index : int = len(separated)-1
+    last_index: int = len(separated) - 1
     """
     Iterate through the list and join each element with the separator.
     Except the last element, all other elements are followed by the separator.
@@ -52,7 +52,7 @@ def join(separator: str, separated: list[str]) -> str:
         """
         If the element is not a string, raise an exception.
         """
-        if not isinstance( separated[index] ,str):
+        if not isinstance(separated[index], str):
             raise Exception("join() accepts only strings")
         """
         join the element with the separator.
@@ -61,13 +61,13 @@ def join(separator: str, separated: list[str]) -> str:
     """
     If the list is not empty, join the last element.
     """
-    if (separated != []) :
+    if separated != []:
         """
         If the last element is not a string, raise an exception.
         """
-        if not isinstance(separated[len(separated)-1], str):
+        if not isinstance(separated[len(separated) - 1], str):
             raise Exception("join() accepts only strings")
-        joined += separated[len(separated)-1]
+        joined += separated[len(separated) - 1]
     """
     RETURN the joined string.
     """
@@ -76,4 +76,5 @@ def join(separator: str, separated: list[str]) -> str:
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
