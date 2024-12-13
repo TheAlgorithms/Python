@@ -46,7 +46,7 @@ def get_week_day(year: int, month: int, day: int) -> str:
     ) % 7
     day_anchor = (
         DOOMSDAY_NOT_LEAP[month - 1]
-        if (year % 4 != 0) or (centurian == 0 and (year % 400) == 0)
+        if (year % 4 != 0) or ((centurian == 0) and (year % 400 != 0))
         else DOOMSDAY_LEAP[month - 1]
     )
     week_day = (dooms_day + day - day_anchor) % 7
