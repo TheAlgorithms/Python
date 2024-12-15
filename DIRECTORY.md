@@ -169,6 +169,7 @@
   * [Prefix Conversions](conversions/prefix_conversions.py)
   * [Prefix Conversions String](conversions/prefix_conversions_string.py)
   * [Pressure Conversions](conversions/pressure_conversions.py)
+  * [Rec To Pol](conversions/rec_to_pol.py)
   * [Rgb Cmyk Conversion](conversions/rgb_cmyk_conversion.py)
   * [Rgb Hsv Conversion](conversions/rgb_hsv_conversion.py)
   * [Roman Numerals](conversions/roman_numerals.py)
