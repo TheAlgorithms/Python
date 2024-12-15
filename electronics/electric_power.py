@@ -34,6 +34,8 @@ def electric_power(voltage: float, current: float, power: float) -> tuple:
     ValueError: Power cannot be negative in any electrical/electronics system
     >>> electric_power(voltage=2.2, current=2.2, power=0)
     Result(name='power', value=4.84)
+    >>> electric_power(current=0, power=6, voltage=2)
+    Result(name='current', value=3.0)
     """
     if (voltage, current, power).count(0) != 1:
         raise ValueError("Only one argument must be 0")
