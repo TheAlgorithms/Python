@@ -13,6 +13,10 @@ def hamming(n_element: int) -> list:
     :param n_element: The number of elements on the list
     :return: The nth element of the list
 
+    >>> hamming(-5)
+    Traceback (most recent call last):
+        ...
+    ValueError: a should be a positive number
     >>> hamming(5)
     [1, 2, 3, 4, 5]
     >>> hamming(10)
