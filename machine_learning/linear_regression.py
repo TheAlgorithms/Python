@@ -40,7 +40,16 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     :param alpha    : Learning rate of the model
     :param theta    : Feature vector (weight's for our model)
     ;param return    : Updated Feature's, using
-                       curr_features - alpha_ * gradient(w.r.t. feature)
+    curr_features - alpha_ * gradient(w.r.t. feature)
+
+    >>> data_x = np.array([[1, 2], [1, 3], [1, 4]])
+    >>> data_y = np.array([[2], [2], [2]])
+    >>> theta = np.array([[0.0, 0.0]])
+    >>> alpha = 0.01
+    >>> len_data = len(data_x)
+    >>> new_theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
+    >>> new_theta.round(2)
+    array([[0.02, 0.06]])
     """
     n = len_data
 
@@ -89,10 +98,17 @@ def run_linear_regression(data_x, data_y):
 
 
 def mean_absolute_error(predicted_y, original_y):
-    """Return sum of square error for error calculation
+    """
+    Return sum of square error for error calculation
+
     :param predicted_y   : contains the output of prediction (result vector)
     :param original_y    : contains values of expected outcome
     :return          : mean absolute error computed from given feature's
+
+    >>> mean_absolute_error([3.0, 2.0, 1.0], [2.5, 2.0, 1.0])
+    0.16666666666666666
+    >>> mean_absolute_error([5.0, 6.0], [5.0, 7.0])
+    0.5
     """
     total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     return total / len(original_y)
