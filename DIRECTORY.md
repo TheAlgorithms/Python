@@ -719,6 +719,7 @@
   * [Pollard Rho](maths/pollard_rho.py)
   * [Polynomial Evaluation](maths/polynomial_evaluation.py)
   * Polynomials
+    * [Legendre](maths/polynomials/legendre.py)
     * [Single Indeterminate Operations](maths/polynomials/single_indeterminate_operations.py)
   * [Power Using Recursion](maths/power_using_recursion.py)
   * [Prime Check](maths/prime_check.py)
