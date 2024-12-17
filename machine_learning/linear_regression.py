@@ -41,6 +41,14 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     :param theta    : Feature vector (weight's for our model)
     ;param return    : Updated Feature's, using
                        curr_features - alpha_ * gradient(w.r.t. feature)
+    >>> import numpy as np
+    >>> data_x = np.array([[1, 2], [3, 4]])
+    >>> data_y = np.array([5, 6])
+    >>> len_data = len(data_x)
+    >>> alpha = 0.01
+    >>> theta = np.array([0.1, 0.2])
+    >>> run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
+    array([0.196, 0.343])
     """
     n = len_data
 
@@ -58,6 +66,12 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
     :param len_data  : len of the dataset
     :param theta     : contains the feature vector
     :return          : sum of square error computed from given feature's
+
+    Example:
+    >>> vc_x = np.array([[1.1], [2.1], [3.1]])
+    >>> vc_y = np.array([1.2, 2.2, 3.2])
+    >>> round(sum_of_square_error(vc_x, vc_y, 3, np.array([1])),3)
+    np.float64(0.005)
     """
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
@@ -93,6 +107,11 @@ def mean_absolute_error(predicted_y, original_y):
     :param predicted_y   : contains the output of prediction (result vector)
     :param original_y    : contains values of expected outcome
     :return          : mean absolute error computed from given feature's
+
+    >>> predicted_y = [3, -0.5, 2, 7]
+    >>> original_y = [2.5, 0.0, 2, 8]
+    >>> mean_absolute_error(predicted_y, original_y)
+    0.5
     """
     total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     return total / len(original_y)
@@ -114,4 +133,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
