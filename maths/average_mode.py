@@ -7,6 +7,8 @@ def mode(input_list: list) -> list[Any]:
 
     The input list may contain any Datastructure or any Datatype.
 
+    >>> mode([])
+    []
     >>> mode([2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2])
     [2]
     >>> mode([3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 2, 2, 2])

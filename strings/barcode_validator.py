@@ -59,6 +59,10 @@ def get_barcode(barcode: str) -> int:
 
     >>> get_barcode("8718452538119")
     8718452538119
+    >>> get_barcode("-367062129")
+    Traceback (most recent call last):
+        ...
+    ValueError: The entered barcode has a negative value. Try again.
     >>> get_barcode("dwefgiweuf")
     Traceback (most recent call last):
         ...
