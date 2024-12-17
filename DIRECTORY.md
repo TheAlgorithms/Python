@@ -561,6 +561,7 @@
 ## Linear Algebra
   * [Gaussian Elimination](linear_algebra/gaussian_elimination.py)
   * [Jacobi Iteration Method](linear_algebra/jacobi_iteration_method.py)
+  * [Lanczos Algorithm](linear_algebra/lanczos_algorithm.py)
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
   * Src
     * [Conjugate Gradient](linear_algebra/src/conjugate_gradient.py)
