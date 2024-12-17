@@ -526,6 +526,7 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Activity Selection](greedy_methods/activity_selection.py)
   * [Best Time To Buy And Sell Stock](greedy_methods/best_time_to_buy_and_sell_stock.py)
   * [Fractional Cover Problem](greedy_methods/fractional_cover_problem.py)
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
