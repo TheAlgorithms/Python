@@ -18,15 +18,19 @@ def join(separator: str, separated: list[str]) -> str:
 
     >>> join("", ["a", "b", "c", "d"])
     'abcd'
+
     >>> join("#", ["a", "b", "c", "d"])
     'a#b#c#d'
-    >>> join("#", "a")
+
+    Single-element list:
+    >>> join("#", ["a"])
     'a'
+
+    Joining with space as a separator:
     >>> join(" ", ["You", "are", "amazing!"])
     'You are amazing!'
 
-    This example should raise an
-    exception for non-string elements:
+    This example should raise an exception for non-string elements:
     >>> join("#", ["a", "b", "c", 1])
     Traceback (most recent call last):
         ...
@@ -35,17 +39,17 @@ def join(separator: str, separated: list[str]) -> str:
     Additional test case with a different separator:
     >>> join("-", ["apple", "banana", "cherry"])
     'apple-banana-cherry'
+
+    Handling a list with empty strings:
+    >>> join(",", ["", "", ""])
+    ',,'
     """
+    # Ensure all elements in the list are strings
+    if not all(isinstance(item, str) for item in separated):
+        raise Exception("join() accepts only strings")
 
-    joined = ""
-    for word_or_phrase in separated:
-        if not isinstance(word_or_phrase, str):
-            raise Exception("join() accepts only strings")
-        joined += word_or_phrase + separator
-
-    # Remove the trailing separator
-    # by stripping it from the result
-    return joined.strip(separator)
+    # Use Python's built-in join method for simplicity and correctness
+    return separator.join(separated)
 
 
 if __name__ == "__main__":

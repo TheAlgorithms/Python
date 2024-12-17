@@ -3,17 +3,20 @@ def split(string: str, separator: str = " ") -> list:
     Will split the string up into all the values separated by the separator
     (defaults to spaces)
 
-    >>> split("apple#banana#cherry#orange",separator='#')
+    # >>> split("apple#banana#cherry#orange",separator='#')
     ['apple', 'banana', 'cherry', 'orange']
 
-    >>> split("Hello there")
+    # >>> split("Hello there")
     ['Hello', 'there']
 
-    >>> split("11/22/63",separator = '/')
+    # >>> split("11/22/63",separator = '/')
     ['11', '22', '63']
 
-    >>> split("12:43:39",separator = ":")
+    # >>> split("12:43:39",separator = ":")
     ['12', '43', '39']
+
+    # >>> split(";abbb;;c;", separator=';')
+    ['', 'abbb', '', 'c', '']
     """
 
     split_words = []
@@ -25,6 +28,9 @@ def split(string: str, separator: str = " ") -> list:
             last_index = index + 1
         elif index + 1 == len(string):
             split_words.append(string[last_index : index + 1])
+
+    # Append the last segment, including cases where the string ends with the separator
+    split_words.append(string[last_index:])
     return split_words
 
 
