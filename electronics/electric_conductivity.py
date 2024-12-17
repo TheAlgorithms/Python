@@ -21,6 +21,26 @@ def electric_conductivity(
     ('conductivity', 5.12672e-14)
     >>> electric_conductivity(conductivity=1000, electron_conc=0, mobility=1200)
     ('electron_conc', 5.201506356240767e+18)
+    >>> electric_conductivity(conductivity=-10, electron_conc=100, mobility=0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Conductivity cannot be negative
+    >>> electric_conductivity(conductivity=50, electron_conc=-10, mobility=0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Electron concentration cannot be negative
+    >>> electric_conductivity(conductivity=50, electron_conc=0, mobility=-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: mobility cannot be negative
+    >>> electric_conductivity(conductivity=50, electron_conc=0, mobility=0)
+    Traceback (most recent call last):
+        ...
+    ValueError: You cannot supply more or less than 2 values
+    >>> electric_conductivity(conductivity=50, electron_conc=200, mobility=300)
+    Traceback (most recent call last):
+        ...
+    ValueError: You cannot supply more or less than 2 values
     """
     if (conductivity, electron_conc, mobility).count(0) != 1:
         raise ValueError("You cannot supply more or less than 2 values")
