@@ -8,7 +8,7 @@ def join(separator: str, separated: list[str]) -> str:
     :param separated: A list of strings to join.
 
     :return: A single string with elements joined by the separator.
-    
+
     :raises Exception: If any element in the list is not a string.
     """
     if not all(isinstance(word_or_phrase, str) for word_or_phrase in separated):
