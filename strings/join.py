@@ -36,7 +36,7 @@ def join(separator: str, separated: list[str]) -> str:
         # Check if the element is a string
         if not isinstance(word_or_phrase, str):
             raise Exception("join() accepts only strings")
-        
+
         # Add the current word or phrase to the result
         result += word_or_phrase
         # Add the separator if it's not the last element
