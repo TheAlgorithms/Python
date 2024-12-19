@@ -10,15 +10,37 @@ def join(separator: str, separated: list[str]) -> str:
     :return: A single string with elements joined by the separator.
 
     :raises Exception: If any element in the list is not a string.
-    """
-    if not all(isinstance(word_or_phrase, str) for word_or_phrase in separated):
-        raise Exception("join() accepts only strings")
 
-    # Manually handle concatenation
+    Examples:
+    >>> join("", ["a", "b", "c", "d"])
+    'abcd'
+    >>> join("#", ["a", "b", "c", "d"])
+    'a#b#c#d'
+    >>> join("#", "a")  # Single string instead of list
+    Traceback (most recent call last):
+        ...
+    Exception: join() accepts only strings
+    >>> join(" ", ["You", "are", "amazing!"])
+    'You are amazing!'
+    >>> join("#", ["a", "b", "c", 1])
+    Traceback (most recent call last):
+        ...
+    Exception: join() accepts only strings
+    >>> join("-", ["apple", "banana", "cherry"])
+    'apple-banana-cherry'
+    >>> join(",", ["", "", ""])
+    ',,'
+    """
     result = ""
-    for i, element in enumerate(separated):
-        result += element
-        if i < len(separated) - 1:  # Add separator only between elements
+    for i, word_or_phrase in enumerate(separated):
+        # Check if the element is a string
+        if not isinstance(word_or_phrase, str):
+            raise Exception("join() accepts only strings")
+        
+        # Add the current word or phrase to the result
+        result += word_or_phrase
+        # Add the separator if it's not the last element
+        if i < len(separated) - 1:
             result += separator
 
     return result
