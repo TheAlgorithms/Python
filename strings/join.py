@@ -1,51 +1,49 @@
-"""
-Program to join a list of strings with a separator
-"""
-
-
 def join(separator: str, separated: list[str]) -> str:
     """
-    Joins a list of strings using a separator
-    and returns the result.
+    Custom implementation of the join() function.
+    This function manually concatenates the strings in the list,
+    using the provided separator, without relying on str.join().
 
-    :param separator: Separator to be used
-                for joining the strings.
-    :param separated: List of strings to be joined.
+    :param separator: The separator to place between strings.
+    :param separated: A list of strings to join.
 
-    :return: Joined string with the specified separator.
+    :return: A single string with elements joined by the separator.
+
+    :raises Exception: If any element in the list is not a string.
 
     Examples:
-
     >>> join("", ["a", "b", "c", "d"])
     'abcd'
     >>> join("#", ["a", "b", "c", "d"])
     'a#b#c#d'
-    >>> join("#", "a")
-    'a'
+    >>> join("#", "a")  # Single string instead of list
+    Traceback (most recent call last):
+        ...
+    Exception: join() accepts only strings
     >>> join(" ", ["You", "are", "amazing!"])
     'You are amazing!'
-
-    This example should raise an
-    exception for non-string elements:
     >>> join("#", ["a", "b", "c", 1])
     Traceback (most recent call last):
         ...
     Exception: join() accepts only strings
-
-    Additional test case with a different separator:
     >>> join("-", ["apple", "banana", "cherry"])
     'apple-banana-cherry'
+    >>> join(",", ["", "", ""])
+    ',,'
     """
-
-    joined = ""
-    for word_or_phrase in separated:
+    result = ""
+    for i, word_or_phrase in enumerate(separated):
+        # Check if the element is a string
         if not isinstance(word_or_phrase, str):
             raise Exception("join() accepts only strings")
-        joined += word_or_phrase + separator
 
-    # Remove the trailing separator
-    # by stripping it from the result
-    return joined.strip(separator)
+        # Add the current word or phrase to the result
+        result += word_or_phrase
+        # Add the separator if it's not the last element
+        if i < len(separated) - 1:
+            result += separator
+
+    return result
 
 
 if __name__ == "__main__":
