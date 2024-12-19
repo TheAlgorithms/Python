@@ -100,9 +100,51 @@ def floyd_warshall(graph: list[list[float]], vertex: int) -> tuple:
                 ):
                     dist[i][j] = dist[i][k] + dist[k][j]
     return dist, vertex
-
-
+    
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
+    
+    v = int(input("Enter number of vertices: "))
+    e = int(input("Enter number of edges: "))
+
+    graph = [[float("inf") for i in range(v)] for j in range(v)]
+
+    for i in range(v):
+        graph[i][i] = 0.0
+
+        # src and dst are indices that must be within the array size graph[e][v]
+        # failure to follow this will result in an error
+    for i in range(e):
+        print("\nEdge ", i + 1)
+        src = int(input("Enter source:"))
+        dst = int(input("Enter destination:"))
+        weight = float(input("Enter weight:"))
+        graph[src][dst] = weight
+
+    floyd_warshall(graph, v)
+
+    # Example Input
+    # Enter number of vertices: 3
+    # Enter number of edges: 2
+
+    # # generated graph from vertex and edge inputs
+    # [[inf, inf, inf], [inf, inf, inf], [inf, inf, inf]]
+    # [[0.0, inf, inf], [inf, 0.0, inf], [inf, inf, 0.0]]
+
+    # specify source, destination and weight for edge #1
+    # Edge  1
+    # Enter source:1
+    # Enter destination:2
+    # Enter weight:2
+
+    # specify source, destination and weight for edge #2
+    # Edge  2
+    # Enter source:2
+    # Enter destination:1
+    # Enter weight:1
+
+    # # Expected Output from the vertice, edge and src, dst, weight inputs!!
+    # 0		INF	INF
+    # INF	0	2
+    # INF	1	0
