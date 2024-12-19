@@ -100,11 +100,13 @@ def floyd_warshall(graph: list[list[float]], vertex: int) -> tuple:
                 ):
                     dist[i][j] = dist[i][k] + dist[k][j]
     return dist, vertex
-    
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     v = int(input("Enter number of vertices: "))
     e = int(input("Enter number of edges: "))
 
