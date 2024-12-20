@@ -26,6 +26,8 @@ def merge_sort(collection: list) -> list:
     []
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
+    >>> merge_sort([90,-90,2,15,39,-54,0])
+    [-90,-54,0,2,15,39,90]
     """
 
     def merge(left: list, right: list) -> list:
