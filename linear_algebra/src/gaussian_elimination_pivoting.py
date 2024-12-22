@@ -37,7 +37,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     x_lst: list[float] = []
 
     if num_of_rows != num_of_columns:
-            raise ValueError("Matrix is not square")
+        raise ValueError("Matrix is not square")
 
     for column_num in range(num_of_rows):
         # Lead element search
