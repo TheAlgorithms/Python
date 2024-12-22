@@ -20,6 +20,7 @@ def smallest_range(nums: list[list[int]]) -> list[int]:
         list: Smallest range as a two-element list.
 
     Examples:
+
     >>> smallest_range([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])
     [20, 24]
     >>> smallest_range([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
