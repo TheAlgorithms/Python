@@ -306,7 +306,9 @@ class LRUCache(Generic[T, U]):
 
         def cache_decorator_inner(func: Callable[[T], U]) -> Callable[..., U]:
             # variable to map the decorator functions to their respective instance
-            decorator_function_to_instance_map: dict[Callable[[T], U], LRUCache[T, U]] = {}
+            decorator_function_to_instance_map: dict[
+                Callable[[T], U], LRUCache[T, U]
+            ] = {}
 
             def cache_decorator_wrapper(*args: T) -> U:
                 if func not in decorator_function_to_instance_map:
