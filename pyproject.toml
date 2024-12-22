@@ -104,7 +104,6 @@ lint.select = [
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
 ]
-
 lint.ignore = [
   # `ruff rule S101` for a description of that rule
   "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
@@ -135,9 +134,6 @@ lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
 ]
 lint.per-file-ignores."matrix/sherman_morrison.py" = [
   "SIM103",
-]
-lint.per-file-ignores."other/l*u_cache.py" = [
-  "RUF012",
 ]
 lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
   "BLE001",
