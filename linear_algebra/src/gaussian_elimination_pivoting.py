@@ -22,17 +22,22 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
-    >>> solve_linear_system(np.array([[0, 0, 0], [0, 0, 0]],  dtype=float))
+    >>> solve_linear_system(np.array([[0, 0, 0]], dtype=float))
     Traceback (most recent call last):
         ...
-    ValueError: Matrix is not correct
+    ValueError: Matrix is not square
+    >>> solve_linear_system(np.array([[0, 0, 0], [0, 0, 0]], dtype=float))
+    Traceback (most recent call last):
+        ...
+    ValueError: Matrix is singular
     """
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
     num_of_columns = ab.shape[1] - 1
     x_lst: list[float] = []
 
-    assert num_of_rows == num_of_columns
+    if num_of_rows != num_of_columns:
+            raise ValueError("Matrix is not square")
 
     for column_num in range(num_of_rows):
         # Lead element search
@@ -41,8 +46,8 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
                 ab[[column_num, i]] = ab[[i, column_num]]
 
         # Upper triangular matrix
-        if ab[column_num, column_num] == 0.0:
-            raise ValueError("Matrix is not correct")
+        if abs(ab[column_num, column_num]) < 1e-8:
+            raise ValueError("Matrix is singular")
 
         if column_num != 0:
             for i in range(column_num, num_of_rows):
