@@ -181,6 +181,7 @@ class Vector:
             return math.degrees(math.acos(num / den))
         else:
             return math.acos(num / den)
+
     def __eq__(self, vector: object) -> bool:
         """
         performs the comparison between two vectors
@@ -441,4 +442,3 @@ def random_matrix(width: int, height: int, a: int, b: int) -> Matrix:
         [random.randint(a, b) for _ in range(width)] for _ in range(height)
     ]
     return Matrix(matrix, width, height)
-
