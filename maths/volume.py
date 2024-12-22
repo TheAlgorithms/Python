@@ -6,7 +6,7 @@ Find the volume of various shapes.
 
 from __future__ import annotations
 
-from math import pi, pow
+from math import pi, pow  # noqa: A004
 
 
 def vol_cube(side_length: float) -> float:
