@@ -46,7 +46,6 @@ class Vector:
         change_component(pos: int, value: float): changes specified component
         euclidean_length(): returns the euclidean length of the vector
         angle(other: Vector, deg: bool): returns the angle between two vectors
-        TODO: compare-operator
     """
 
     def __init__(self, components: Collection[float] | None = None) -> None:
@@ -182,6 +181,15 @@ class Vector:
             return math.degrees(math.acos(num / den))
         else:
             return math.acos(num / den)
+    def __eq__(self, vector: object) -> bool:
+        """
+        performs the comparison between two vectors
+        """
+        if not isinstance(vector, Vector):
+            return NotImplemented
+        if len(self) != len(vector):
+            return False
+        return all(self.component(i) == vector.component(i) for i in range(len(self)))
 
 
 def zero_vector(dimension: int) -> Vector:
@@ -433,3 +441,4 @@ def random_matrix(width: int, height: int, a: int, b: int) -> Matrix:
         [random.randint(a, b) for _ in range(width)] for _ in range(height)
     ]
     return Matrix(matrix, width, height)
+
