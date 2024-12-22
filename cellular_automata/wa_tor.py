@@ -352,11 +352,11 @@ class WaTor:
 
         For prey the rules are:
           1. At each chronon, a prey moves randomly to one of the adjacent unoccupied
-            squares. If there are no free squares, no movement takes place.
+             squares. If there are no free squares, no movement takes place.
           2. Once a prey has survived a certain number of chronons it may reproduce.
-            This is done as it moves to a neighbouring square,
-            leaving behind a new prey in its old position.
-            Its reproduction time is also reset to zero.
+             This is done as it moves to a neighbouring square,
+             leaving behind a new prey in its old position.
+             Its reproduction time is also reset to zero.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> reproducable_entity = Entity(True, coords=(0, 1))
@@ -383,14 +383,14 @@ class WaTor:
 
         For predators the rules are:
           1. At each chronon, a predator moves randomly to an adjacent square occupied
-            by a prey. If there is none, the predator moves to a random adjacent
-            unoccupied square. If there are no free squares, no movement takes place.
+             by a prey. If there is none, the predator moves to a random adjacent
+             unoccupied square. If there are no free squares, no movement takes place.
           2. At each chronon, each predator is deprived of a unit of energy.
           3. Upon reaching zero energy, a predator dies.
           4. If a predator moves to a square occupied by a prey,
-            it eats the prey and earns a certain amount of energy.
+             it eats the prey and earns a certain amount of energy.
           5. Once a predator has survived a certain number of chronons
-          it may reproduce in exactly the same way as the prey.
+             it may reproduce in exactly the same way as the prey.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.set_planet([[Entity(True, coords=(0, 0)), Entity(False, coords=(0, 1))]])
