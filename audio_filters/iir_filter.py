@@ -10,7 +10,7 @@ class IIRFilter:
 
     Implementation details:
     Based on the 2nd-order function from
-     https://en.wikipedia.org/wiki/Digital_biquad_filter,
+    https://en.wikipedia.org/wiki/Digital_biquad_filter,
     this generalized N-order function was made.
 
     Using the following transfer function
