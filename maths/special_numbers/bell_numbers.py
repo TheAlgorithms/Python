@@ -61,8 +61,7 @@ def _binomial_coefficient(total_elements: int, elements_to_choose: int) -> int:
     if elements_to_choose in {0, total_elements}:
         return 1
 
-    if elements_to_choose > total_elements - elements_to_choose:
-        elements_to_choose = total_elements - elements_to_choose
+    elements_to_choose = min(elements_to_choose, total_elements - elements_to_choose)
 
     coefficient = 1
     for i in range(elements_to_choose):

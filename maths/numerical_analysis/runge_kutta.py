@@ -19,7 +19,7 @@ def runge_kutta(f, y0, x0, h, x_end):
     ...     return y
     >>> y0 = 1
     >>> y = runge_kutta(f, y0, 0.0, 0.01, 5)
-    >>> y[-1]
+    >>> float(y[-1])
     148.41315904125113
     """
     n = int(np.ceil((x_end - x0) / h))

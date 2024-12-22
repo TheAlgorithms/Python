@@ -4,7 +4,7 @@ Github : faizan2700
 
 Purpose : You have one function f(x) which takes float integer and returns
 float you have to integrate the function in limits a to b.
-The approximation proposed by Thomas Simpsons in 1743 is one way to calculate
+The approximation proposed by Thomas Simpson in 1743 is one way to calculate
 integration.
 
 ( read article : https://cp-algorithms.com/num_methods/simpson-integration.html )

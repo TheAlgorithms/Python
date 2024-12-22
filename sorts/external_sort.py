@@ -77,10 +77,7 @@ class FilesArray:
                     self.empty.add(i)
                     self.files[i].close()
 
-        if len(self.empty) == self.num_buffers:
-            return False
-
-        return True
+        return len(self.empty) != self.num_buffers
 
     def unshift(self, index):
         value = self.buffers[index]

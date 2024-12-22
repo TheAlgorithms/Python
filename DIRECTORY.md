@@ -22,6 +22,8 @@
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
+  * [Word Break](backtracking/word_break.py)
+  * [Word Ladder](backtracking/word_ladder.py)
   * [Word Search](backtracking/word_search.py)
 
 ## Bit Manipulation
@@ -98,6 +100,7 @@
   * [Elgamal Key Generator](ciphers/elgamal_key_generator.py)
   * [Enigma Machine2](ciphers/enigma_machine2.py)
   * [Fractionated Morse Cipher](ciphers/fractionated_morse_cipher.py)
+  * [Gronsfeld Cipher](ciphers/gronsfeld_cipher.py)
   * [Hill Cipher](ciphers/hill_cipher.py)
   * [Mixed Keyword Cypher](ciphers/mixed_keyword_cypher.py)
   * [Mono Alphabetic Ciphers](ciphers/mono_alphabetic_ciphers.py)
@@ -210,6 +213,7 @@
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
     * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
+    * [Maximum Sum Bst](data_structures/binary_tree/maximum_sum_bst.py)
     * [Merge Two Binary Trees](data_structures/binary_tree/merge_two_binary_trees.py)
     * [Mirror Binary Tree](data_structures/binary_tree/mirror_binary_tree.py)
     * [Non Recursive Segment Tree](data_structures/binary_tree/non_recursive_segment_tree.py)
@@ -243,6 +247,15 @@
     * [Min Heap](data_structures/heap/min_heap.py)
     * [Randomized Heap](data_structures/heap/randomized_heap.py)
     * [Skew Heap](data_structures/heap/skew_heap.py)
+  * Kd Tree
+    * [Build Kdtree](data_structures/kd_tree/build_kdtree.py)
+    * Example
+      * [Example Usage](data_structures/kd_tree/example/example_usage.py)
+      * [Hypercube Points](data_structures/kd_tree/example/hypercube_points.py)
+    * [Kd Node](data_structures/kd_tree/kd_node.py)
+    * [Nearest Neighbour Search](data_structures/kd_tree/nearest_neighbour_search.py)
+    * Tests
+      * [Test Kdtree](data_structures/kd_tree/tests/test_kdtree.py)
   * Linked List
     * [Circular Linked List](data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](data_structures/linked_list/deque_doubly.py)
@@ -274,6 +287,7 @@
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
+    * [Lexicographical Numbers](data_structures/stacks/lexicographical_numbers.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
     * [Postfix Evaluation](data_structures/stacks/postfix_evaluation.py)
     * [Prefix Evaluation](data_structures/stacks/prefix_evaluation.py)
@@ -282,6 +296,13 @@
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
     * [Stock Span Problem](data_structures/stacks/stock_span_problem.py)
+  * Suffix Tree
+    * Example
+      * [Example Usage](data_structures/suffix_tree/example/example_usage.py)
+    * [Suffix Tree](data_structures/suffix_tree/suffix_tree.py)
+    * [Suffix Tree Node](data_structures/suffix_tree/suffix_tree_node.py)
+    * Tests
+      * [Test Suffix Tree](data_structures/suffix_tree/tests/test_suffix_tree.py)
   * Trie
     * [Radix Tree](data_structures/trie/radix_tree.py)
     * [Trie](data_structures/trie/trie.py)
@@ -329,6 +350,9 @@
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
   * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
+
+## Docs
+  * [Conf](docs/conf.py)
 
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
@@ -540,8 +564,7 @@
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
   * Src
     * [Conjugate Gradient](linear_algebra/src/conjugate_gradient.py)
-    * Gaussian Elimination Pivoting
-      * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting/gaussian_elimination_pivoting.py)
+    * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting.py)
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
@@ -661,7 +684,6 @@
   * [Manhattan Distance](maths/manhattan_distance.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
-  * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Minkowski Distance](maths/minkowski_distance.py)
   * [Mobius Function](maths/mobius_function.py)
   * [Modular Division](maths/modular_division.py)
@@ -772,6 +794,7 @@
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
+  * [Matrix Based Game](matrix/matrix_based_game.py)
   * [Matrix Class](matrix/matrix_class.py)
   * [Matrix Equalization](matrix/matrix_equalization.py)
   * [Matrix Multiplication Recursion](matrix/matrix_multiplication_recursion.py)
@@ -864,6 +887,7 @@
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
   * [Photoelectric Effect](physics/photoelectric_effect.py)
   * [Potential Energy](physics/potential_energy.py)
+  * [Rainfall Intensity](physics/rainfall_intensity.py)
   * [Reynolds Number](physics/reynolds_number.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
@@ -1185,6 +1209,7 @@
   * [Binary Tree Traversal](searches/binary_tree_traversal.py)
   * [Double Linear Search](searches/double_linear_search.py)
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
+  * [Exponential Search](searches/exponential_search.py)
   * [Fibonacci Search](searches/fibonacci_search.py)
   * [Hill Climbing](searches/hill_climbing.py)
   * [Interpolation Search](searches/interpolation_search.py)
@@ -1260,6 +1285,7 @@
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
+  * [Count Vowels](strings/count_vowels.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Damerau Levenshtein Distance](strings/damerau_levenshtein_distance.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
@@ -1327,7 +1353,6 @@
   * [Get Ip Geolocation](web_programming/get_ip_geolocation.py)
   * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
-  * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
   * [Instagram Crawler](web_programming/instagram_crawler.py)
   * [Instagram Pic](web_programming/instagram_pic.py)
