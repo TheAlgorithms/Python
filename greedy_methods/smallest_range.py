@@ -14,7 +14,7 @@ def smallest_range(nums: list[list[int]]) -> list[int]:
     Uses min heap for efficiency. The range includes at least one number from each list.
 
     Args:
-        nums: List of k sorted integer lists.
+        `nums`: List of k sorted integer lists.
 
     Returns:
         list: Smallest range as a two-element list.
