@@ -135,7 +135,7 @@ def vol_spheres_union(
 
     :return: ``vol_sphere`` (:math:`radius_1`) + ``vol_sphere`` (:math:`radius_2`)
              - ``vol_spheres_intersect``
-               (:math:`radius_1`, :math:`radius_2`, :math:`centers\_distance`)
+             (:math:`radius_1`, :math:`radius_2`, :math:`centers\_distance`)
 
     >>> vol_spheres_union(2, 2, 1)
     45.814892864851146
