@@ -49,6 +49,30 @@ euler-validate = [
 [tool.ruff]
 target-version = "py313"
 
+[tool.codespell]
+ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
+skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
+
+[tool.pytest.ini_options]
+markers = [
+  "mat_ops: mark a test as utilizing matrix operations.",
+]
+addopts = [
+  "--durations=10",
+  "--doctest-modules",
+  "--showlocals",
+]
+
+[tool.coverage.report]
+omit = [
+  ".env/*",
+  "project_euler/*",
+]
+sort = "Cover"
+
+[tool.mypy]
+python_version = "3.12"
+
 output-format = "full"
 lint.select = [
   # https://beta.ruff.rs/docs/rules
@@ -157,27 +181,6 @@ lint.pylint.max-args = 10 # default: 5
 lint.pylint.max-branches = 20 # default: 12
 lint.pylint.max-returns = 8 # default: 6
 lint.pylint.max-statements = 88 # default: 50
-
-[tool.codespell]
-ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
-skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
-
-[tool.pytest.ini_options]
-markers = [
-  "mat_ops: mark a test as utilizing matrix operations.",
-]
-addopts = [
-  "--durations=10",
-  "--doctest-modules",
-  "--showlocals",
-]
-
-[tool.coverage.report]
-omit = [
-  ".env/*",
-  "project_euler/*",
-]
-sort = "Cover"
 
 [tool.sphinx-pyproject]
 copyright = "2014, TheAlgorithms"

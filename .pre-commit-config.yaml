@@ -32,6 +32,7 @@ repos:
     rev: "v2.5.0"
     hooks:
       - id: pyproject-fmt
+        language_version: python3.12
 
   - repo: local
     hooks:
