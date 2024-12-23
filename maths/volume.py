@@ -259,7 +259,7 @@ def vol_right_circ_cone(radius: float, height: float) -> float:
 
 
 def vol_prism(area_of_base: float, height: float) -> float:
-    """
+    r"""
     | Calculate the Volume of a Prism.
     | Wikipedia reference: https://en.wikipedia.org/wiki/Prism_(geometry)
 
@@ -370,7 +370,7 @@ def vol_hemisphere(radius: float) -> float:
 
 
 def vol_circular_cylinder(radius: float, height: float) -> float:
-    """
+    r"""
     | Calculate the Volume of a Circular Cylinder.
     | Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
 
@@ -480,7 +480,7 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
 
 
 def vol_torus(torus_radius: float, tube_radius: float) -> float:
-    """
+    r"""
     | Calculate the Volume of a Torus.
     | Wikipedia reference: https://en.wikipedia.org/wiki/Torus
 
