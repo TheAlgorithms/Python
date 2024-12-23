@@ -124,7 +124,7 @@ def vol_spheres_intersect(
 def vol_spheres_union(
     radius_1: float, radius_2: float, centers_distance: float
 ) -> float:
-    """
+    r"""
     Calculate the volume of the union of two spheres that possibly intersect.
 
     It is the sum of sphere :math:`A` and sphere :math:`B` minus their intersection.
