@@ -30,8 +30,3 @@ def print_butterfly(n: int) -> None:
         print("*" * i, end="")
         print(" " * (2 * (n - i)), end="")
         print("*" * i)
-
-
-# Ask the user for input and print the butterfly
-n = int(input("Enter the value of n: "))
-print_butterfly(n)
