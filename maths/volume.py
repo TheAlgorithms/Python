@@ -64,8 +64,9 @@ def vol_spheres_intersect(
     Calculate the volume of the intersection of two spheres.
 
     The intersection is composed by two spherical caps and therefore its volume is the
-    sum of the volumes of the spherical caps. First, it calculates the heights :math:`(h_1, h_2)`
-    of the spherical caps, then the two volumes and it returns the sum.
+    sum of the volumes of the spherical caps.
+    First, it calculates the heights :math:`(h_1, h_2)` of the spherical caps,
+    then the two volumes and it returns the sum.
     The height formulas are
 
     .. math::
@@ -79,7 +80,8 @@ def vol_spheres_intersect(
 
     if `centers_distance` is 0 then it returns the volume of the smallers sphere
 
-    :return: ``vol_spherical_cap`` (:math:`h_1`, :math:`radius_2`) + ``vol_spherical_cap`` (:math:`h_2`, :math:`radius_1`)
+    :return: ``vol_spherical_cap`` (:math:`h_1`, :math:`radius_2`)
+             + ``vol_spherical_cap`` (:math:`h_2`, :math:`radius_1`)
 
     >>> vol_spheres_intersect(2, 2, 1)
     21.205750411731103
@@ -127,11 +129,13 @@ def vol_spheres_union(
 
     It is the sum of sphere :math:`A` and sphere :math:`B` minus their intersection.
     First, it calculates the volumes :math:`(v_1, v_2)` of the spheres,
-    then the volume of the intersection :math:`i` and it returns the sum :math:`v_1 + v_2 - i`.
+    then the volume of the intersection :math:`i` and
+    it returns the sum :math:`v_1 + v_2 - i`.
     If `centers_distance` is 0 then it returns the volume of the larger sphere
 
     :return: ``vol_sphere`` (:math:`radius_1`) + ``vol_sphere`` (:math:`radius_2`)
-             - ``vol_spheres_intersect`` (:math:`radius_1`, :math:`radius_2`, :math:`centers\_distance`)
+             - ``vol_spheres_intersect``
+               (:math:`radius_1`, :math:`radius_2`, :math:`centers\_distance`)
 
     >>> vol_spheres_union(2, 2, 1)
     45.814892864851146
