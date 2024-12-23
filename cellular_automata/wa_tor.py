@@ -2,7 +2,9 @@
 Wa-Tor algorithm (1984)
 
 @ https://en.wikipedia.org/wiki/Wa-Tor
+
 @ https://beltoforion.de/en/wator/
+
 @ https://beltoforion.de/en/wator/images/wator_medium.webm
 
 This solution aims to completely remove any systematic approach
@@ -97,8 +99,8 @@ class WaTor:
 
     :attr time_passed: A function that is called every time
         time passes (a chronon) in order to visually display
-        the new Wa-Tor planet. The time_passed function can block
-        using time.sleep to slow the algorithm progression.
+        the new Wa-Tor planet. The `time_passed` function can block
+        using `time.sleep` to slow the algorithm progression.
 
     >>> wt = WaTor(10, 15)
     >>> wt.width
@@ -216,7 +218,7 @@ class WaTor:
         """
         Returns all the prey entities around (N, S, E, W) a predator entity.
 
-        Subtly different to the try_to_move_to_unoccupied square.
+        Subtly different to the `move_and_reproduce`.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.set_planet([
@@ -260,7 +262,7 @@ class WaTor:
         """
         Attempts to move to an unoccupied neighbouring square
         in either of the four directions (North, South, East, West).
-        If the move was successful and the remaining_reproduction time is
+        If the move was successful and the `remaining_reproduction_time` is
         equal to 0, then a new prey or predator can also be created
         in the previous square.
 
@@ -430,7 +432,7 @@ class WaTor:
 
     def run(self, *, iteration_count: int) -> None:
         """
-        Emulate time passing by looping iteration_count times
+        Emulate time passing by looping `iteration_count` times
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.run(iteration_count=PREDATOR_INITIAL_ENERGY_VALUE - 1)
@@ -488,6 +490,7 @@ def visualise(wt: WaTor, iter_number: int, *, colour: bool = True) -> None:
     the predators and prey.
 
     (0x60f197) Prey = #
+
     (0xfffff) Predator = x
 
     >>> wt = WaTor(30, 30)
