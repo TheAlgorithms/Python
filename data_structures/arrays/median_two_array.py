@@ -53,11 +53,11 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
         partition2 = (m + n + 1) // 2 - partition1
 
         # Handle edges of the arrays with infinities
-        max_left1 = float('-inf') if partition1 == 0 else nums1[partition1 - 1]
-        min_right1 = float('inf') if partition1 == m else nums1[partition1]
+        max_left1 = float("-inf") if partition1 == 0 else nums1[partition1 - 1]
+        min_right1 = float("inf") if partition1 == m else nums1[partition1]
 
-        max_left2 = float('-inf') if partition2 == 0 else nums2[partition2 - 1]
-        min_right2 = float('inf') if partition2 == n else nums2[partition2]
+        max_left2 = float("-inf") if partition2 == 0 else nums2[partition2 - 1]
+        min_right2 = float("inf") if partition2 == n else nums2[partition2]
 
         # Insert 2: Debugging: Log partition indices and elements (useful for large arrays)
         # print(f"partition1: {partition1}, partition2: {partition2}")
@@ -77,6 +77,7 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
 
     # Insert 3: Remove redundant exception, already handled at the beginning
     # raise ValueError("Input arrays are not sorted.")  # This line is no longer necessary.
+
 
 def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
     """
@@ -106,7 +107,7 @@ def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
         []
     """
     # Insert 4: Edge case: If one array is empty, just return the other array
-    if not nums1: 
+    if not nums1:
         return nums2
     if not nums2:
         return nums1
@@ -139,6 +140,7 @@ def is_sorted(nums: list[int]) -> bool:
         True if the array is sorted, False otherwise.
     """
     return all(nums[i] <= nums[i + 1] for i in range(len(nums) - 1))
+
 
 if __name__ == "__main__":
     import doctest
