@@ -5,6 +5,8 @@ distribution is a probability distribution that describes the distribution of
 speeds of particles in an ideal gas.
 
 The distribution is given by the following equation:
+    f(v) = (M/2πRT)^(3/2) * 4πv^2 * e^(-Mv^2/2RT)
+
     .. math:: f(v) = \left(\frac{M}{2 \pi RT}\right)^{\frac{3}{2}} \cdot 4 \pi v^2
                      \cdot e^{-\frac{Mv^2}{2RT}}
 
