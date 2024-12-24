@@ -52,7 +52,8 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    >>> # FIXME: This test should fails with TypeError: list indices must be integers or...
+    >>> # FIXME: This test should fails with
+    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_dfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
@@ -142,7 +143,8 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    >>> # FIXME: This test should fails with TypeError: list indices must be integers or...
+    >>> # FIXME: This test should fails with
+    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_bfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_bfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
