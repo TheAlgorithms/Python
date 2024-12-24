@@ -5,7 +5,8 @@ distribution is a probability distribution that describes the distribution of
 speeds of particles in an ideal gas.
 
 The distribution is given by the following equation:
-    .. math:: f(v) = \left(\frac{M}{2 \pi RT}\right)^{\frac{3}{2}} \cdot 4 \pi v^2 \cdot e^{-\frac{Mv^2}{2RT}}
+    .. math:: f(v) = \left(\frac{M}{2 \pi RT}\right)^{\frac{3}{2}} \cdot 4 \pi v^2
+                     \cdot e^{-\frac{Mv^2}{2RT}}
 
 where:
     * :math:`f(v)` is the fraction of molecules with a speed :math:`v`
@@ -23,7 +24,8 @@ from 0 to infinity and dividing by the total number of molecules. The result is:
 
 The most probable speed is the speed at which the Maxwell-Boltzmann distribution
 is at its maximum. This can be found by differentiating the Maxwell-Boltzmann
-distribution with respect to :math:`v` and setting the result equal to zero. The result is:
+distribution with respect to :math:`v` and setting the result equal to zero.
+The result is:
 
     .. math:: v_{mp} = \sqrt{\frac{2RT}{M}}
 
