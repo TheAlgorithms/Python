@@ -29,10 +29,10 @@ class AuthenticationSystem:
     def register_user(self, user_id, username, password):
         new_user = User(user_id, username, password)
         self.users = pd.concat([self.users, pd.DataFrame({
-            "user_id": [user_id], 
-            "username": [username], 
-            "password": [password], 
-            "failed_attempts_left": [3], 
+            "user_id": [user_id],
+            "username": [username],
+            "password": [password],
+            "failed_attempts_left": [3],
             "is_locked": [False]
         })], ignore_index=True) # Add new user to DataFrame.
         print(f"User {username} registered successfully.")
@@ -44,9 +44,9 @@ class AuthenticationSystem:
             print(f"User {username} not found.")
             return
 
-        user = User(user_row['user_id'].values[0], user_row['username'].values[0], user_row['password'].values[0], 
+        user = User(user_row['user_id'].values[0], user_row['username'].values[0], user_row['password'].values[0],
                     user_row['failed_attempts_left'].values[0], user_row['is_locked'].values[0])
-        
+
         if user.is_locked:
             print(f"Account for {username} is locked. Please contact support.")
             return
@@ -65,12 +65,12 @@ class AuthenticationSystem:
         print(f"User {user.username}'s data updated.")
 
 auth_system = AuthenticationSystem()
-auth_system.register_user(1, "neena", "password123") 
-auth_system.register_user(2, "helios", "mysecurepassword") 
+auth_system.register_user(1, "neena", "password123")
+auth_system.register_user(2, "helios", "mysecurepassword")
 
-auth_system.login("neena", "password321")  
-auth_system.login("Neena", "password123")  
-auth_system.login("neena", "password321")  
-auth_system.login("neena", "password123")   
+auth_system.login("neena", "password321")
+auth_system.login("Neena", "password123")
+auth_system.login("neena", "password321")
+auth_system.login("neena", "password123")
 
 auth_system.login("helios", "mysecurepassword")
