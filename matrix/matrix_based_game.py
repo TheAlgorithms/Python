@@ -124,6 +124,7 @@ def parse_moves(input_str: str) -> list[tuple[int, int]]:
         moves.append((x, y))
     return moves
 
+
 # this is a comment.
 def find_repeat(
     matrix_g: list[list[str]], row: int, column: int, size: int
