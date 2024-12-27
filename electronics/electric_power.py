@@ -50,7 +50,7 @@ def electric_power(voltage: float, current: float, power: float) -> tuple:
     elif power == 0:
         return Result("power", float(round(abs(voltage * current), 2)))
     else:
-        raise AssertionError()
+        raise AssertionError
 
 
 if __name__ == "__main__":
