@@ -85,4 +85,3 @@ if __name__ == "__main__":
         raise ValueError(msg)
 
     print(f"{number} is {'' if perfect(number) else 'not '}a Perfect Number.")
-    
