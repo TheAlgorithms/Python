@@ -40,9 +40,9 @@ def modular_exponentiation(a, b):
 
 def fibonacci_with_matrix_exponentiation(n, f1, f2):
     """
-    Returns the n number of the Fibonacci sequence that
-    start with f1 and f2
-    Use the matrix exponentiation
+    Returns the nth number of the Fibonacci sequence that
+    starts with f1 and f2
+    Uses the matrix exponentiation
     >>> fibonacci_with_matrix_exponentiation(1, 5, 6)
     5
     >>> fibonacci_with_matrix_exponentiation(2, 10, 11)
@@ -66,9 +66,9 @@ def fibonacci_with_matrix_exponentiation(n, f1, f2):
 
 def simple_fibonacci(n, f1, f2):
     """
-    Returns the n number of the Fibonacci sequence that
-    start with f1 and f2
-    Use the definition
+    Returns the nth number of the Fibonacci sequence that
+    starts with f1 and f2
+    Uses the definition
     >>> simple_fibonacci(1, 5, 6)
     5
     >>> simple_fibonacci(2, 10, 11)
