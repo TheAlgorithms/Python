@@ -86,15 +86,13 @@ def simple_fibonacci(n, f1, f2):
     elif n == 2:
         return f2
 
-    fn_1 = f1
-    fn_2 = f2
     n -= 2
 
     while n > 0:
-        fn_2, fn_1 = fn_1 + fn_2, fn_2
+        f2, f1 = f1 + f2, f2
         n -= 1
 
-    return fn_2
+    return f2
 
 
 def matrix_exponentiation_time():
