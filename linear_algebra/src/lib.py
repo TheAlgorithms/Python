@@ -95,6 +95,14 @@ class Vector:
         else:  # error case
             raise Exception("must have the same size")
 
+    def __eq__(self, other: object) -> bool:
+        """
+        performs the comparison between two vectors
+        """
+        if len(self) != len(other):
+            return False
+        return all(self.component(i) == other.component(i) for i in range(len(self)))
+
     @overload
     def __mul__(self, other: float) -> Vector: ...
 
@@ -181,16 +189,6 @@ class Vector:
             return math.degrees(math.acos(num / den))
         else:
             return math.acos(num / den)
-
-    def __eq__(self, vector: object) -> bool:
-        """
-        performs the comparison between two vectors
-        """
-        if not isinstance(vector, Vector):
-            return NotImplemented
-        if len(self) != len(vector):
-            return False
-        return all(self.component(i) == vector.component(i) for i in range(len(self)))
 
 
 def zero_vector(dimension: int) -> Vector:
