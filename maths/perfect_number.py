@@ -81,7 +81,6 @@ if __name__ == "__main__":
         number = int(input("Enter a positive integer: ").strip())
     except ValueError:
         msg = "number must be an integer"
-        print(msg)
         raise ValueError(msg)
 
     print(f"{number} is {'' if perfect(number) else 'not '}a Perfect Number.")
