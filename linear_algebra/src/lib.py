@@ -95,7 +95,7 @@ class Vector:
         else:  # error case
             raise Exception("must have the same size")
 
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other: Vector) -> bool:
         """
         performs the comparison between two vectors
         """
