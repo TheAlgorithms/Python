@@ -95,10 +95,12 @@ class Vector:
         else:  # error case
             raise Exception("must have the same size")
 
-    def __eq__(self, other: Vector) -> bool:
+    def __eq__(self, other: object) -> bool:
         """
         performs the comparison between two vectors
         """
+        if not isinstance(other, Vector):
+            return NotImplemented
         if len(self) != len(other):
             return False
         return all(self.component(i) == other.component(i) for i in range(len(self)))
