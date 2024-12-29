@@ -9,102 +9,102 @@ def viterbi(
     emission_probabilities: dict,
 ) -> list:
     """
-        Viterbi Algorithm, to find the most likely path of
-        states from the start and the expected output.
+    Viterbi Algorithm, to find the most likely path of
+    states from the start and the expected output.
 
-        https://en.wikipedia.org/wiki/Viterbi_algorithm
+    https://en.wikipedia.org/wiki/Viterbi_algorithm
 
-        Wikipedia example
+    Wikipedia example
 
-        >>> observations = ["normal", "cold", "dizzy"]
-        >>> states = ["Healthy", "Fever"]
-        >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
-        >>> trans_p = {
-        ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
-        ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
-        ... }
-        >>> emit_p = {
-        ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
-        ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
-        ... }
-        >>> viterbi(observations, states, start_p, trans_p, emit_p)
-        ['Healthy', 'Healthy', 'Fever']
-        >>> viterbi((), states, start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
-        >>> viterbi(observations, (), start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
-        >>> viterbi(observations, states, {}, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
-        >>> viterbi(observations, states, start_p, {}, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
-        >>> viterbi(observations, states, start_p, trans_p, {})
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
-        >>> viterbi("invalid", states, start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: observations_space must be a list
-        >>> viterbi(["valid", 123], states, start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: observations_space must be a list of strings
-        >>> viterbi(observations, "invalid", start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: states_space must be a list
-        >>> viterbi(observations, ["valid", 123], start_p, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: states_space must be a list of strings
-        >>> viterbi(observations, states, "invalid", trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: initial_probabilities must be a dict
-        >>> viterbi(observations, states, {2:2}, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: initial_probabilities all keys must be strings
-        >>> viterbi(observations, states, {"a":2}, trans_p, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: initial_probabilities all values must be float
-        >>> viterbi(observations, states, start_p, "invalid", emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: transition_probabilities must be a dict
-        >>> viterbi(observations, states, start_p, {"a":2}, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: transition_probabilities all values must be dict
-        >>> viterbi(observations, states, start_p, {2:{2:2}}, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: transition_probabilities all keys must be strings
-        >>> viterbi(observations, states, start_p, {"a":{2:2}}, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: transition_probabilities all keys must be strings
-        >>> viterbi(observations, states, start_p, {"a":{"b":2}}, emit_p)
-        Traceback (most recent call last):
-            ...
-        ValueError: transition_probabilities nested dictionary all values must be float
-        >>> viterbi(observations, states, start_p, trans_p, "invalid")
-        Traceback (most recent call last):
-            ...
-        ValueError: emission_probabilities must be a dict
-        >>> viterbi(observations, states, start_p, trans_p, None)
-        Traceback (most recent call last):
-            ...
-        ValueError: There's an empty parameter
+    >>> observations = ["normal", "cold", "dizzy"]
+    >>> states = ["Healthy", "Fever"]
+    >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
+    >>> trans_p = {
+    ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
+    ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
+    ... }
+    >>> emit_p = {
+    ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
+    ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
+    ... }
+    >>> viterbi(observations, states, start_p, trans_p, emit_p)
+    ['Healthy', 'Healthy', 'Fever']
+    >>> viterbi((), states, start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, (), start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, states, {}, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, states, start_p, {}, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi(observations, states, start_p, trans_p, {})
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
+    >>> viterbi("invalid", states, start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: observations_space must be a list
+    >>> viterbi(["valid", 123], states, start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: observations_space must be a list of strings
+    >>> viterbi(observations, "invalid", start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: states_space must be a list
+    >>> viterbi(observations, ["valid", 123], start_p, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: states_space must be a list of strings
+    >>> viterbi(observations, states, "invalid", trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: initial_probabilities must be a dict
+    >>> viterbi(observations, states, {2:2}, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: initial_probabilities all keys must be strings
+    >>> viterbi(observations, states, {"a":2}, trans_p, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: initial_probabilities all values must be float
+    >>> viterbi(observations, states, start_p, "invalid", emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: transition_probabilities must be a dict
+    >>> viterbi(observations, states, start_p, {"a":2}, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: transition_probabilities all values must be dict
+    >>> viterbi(observations, states, start_p, {2:{2:2}}, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: transition_probabilities all keys must be strings
+    >>> viterbi(observations, states, start_p, {"a":{2:2}}, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: transition_probabilities all keys must be strings
+    >>> viterbi(observations, states, start_p, {"a":{"b":2}}, emit_p)
+    Traceback (most recent call last):
+        ...
+    ValueError: transition_probabilities nested dictionary all values must be float
+    >>> viterbi(observations, states, start_p, trans_p, "invalid")
+    Traceback (most recent call last):
+        ...
+    ValueError: emission_probabilities must be a dict
+    >>> viterbi(observations, states, start_p, trans_p, None)
+    Traceback (most recent call last):
+        ...
+    ValueError: There's an empty parameter
 
     """
     _validation(
