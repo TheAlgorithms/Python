@@ -1,17 +1,21 @@
+"""
+Program to join a list of strings with a separator
+"""
+
+
 def join(separator: str, separated: list[str]) -> str:
     """
-    Custom implementation of the join() function.
-    This function manually concatenates the strings in the list,
-    using the provided separator, without relying on str.join().
+    Joins a list of strings using a separator
+    and returns the result.
 
-    :param separator: The separator to place between strings.
-    :param separated: A list of strings to join.
+    :param separator: Separator to be used
+                for joining the strings.
+    :param separated: List of strings to be joined.
 
-    :return: A single string with elements joined by the separator.
-
-    :raises Exception: If any element in the list is not a string.
+    :return: Joined string with the specified separator.
 
     Examples:
+
     >>> join("", ["a", "b", "c", "d"])
     'abcd'
     >>> join("#", ["a", "b", "c", "d"])
