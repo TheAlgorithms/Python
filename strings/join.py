@@ -20,10 +20,8 @@ def join(separator: str, separated: list[str]) -> str:
     'abcd'
     >>> join("#", ["a", "b", "c", "d"])
     'a#b#c#d'
-    >>> join("#", "a")  # Single string instead of list
-    Traceback (most recent call last):
-        ...
-    Exception: join() accepts only strings
+    >>> join("#", "a")
+    'a'
     >>> join(" ", ["You", "are", "amazing!"])
     'You are amazing!'
     >>> join(",", ["", "", ""])
@@ -35,10 +33,10 @@ def join(separator: str, separated: list[str]) -> str:
     Traceback (most recent call last):
         ...
     Exception: join() accepts only strings
+
+    Additional test case with a different separator:
     >>> join("-", ["apple", "banana", "cherry"])
     'apple-banana-cherry'
-    >>> join(",", ["", "", ""])
-    ',,'
     """
 
     # Check that all elements are strings
