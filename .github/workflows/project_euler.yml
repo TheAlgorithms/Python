@@ -15,25 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - name: Install pytest and pytest-cov
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade numpy pytest pytest-cov
-      - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - name: Install pytest and requests
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade numpy pytest requests
-      - run: pytest scripts/validate_solutions.py
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest scripts/validate_solutions.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
