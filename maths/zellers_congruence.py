@@ -60,7 +60,7 @@ def zeller(date_input: str) -> str:
         ...
     TypeError: zeller() missing 1 required positional argument: 'date_input'
 
-    Test length of date_input:
+    Test length of `date_input`:
 
     >>> zeller('')
     Traceback (most recent call last):
