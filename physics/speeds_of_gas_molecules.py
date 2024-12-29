@@ -28,7 +28,7 @@ from 0 to infinity and dividing by the total number of molecules. The result is:
 
 The most probable speed is the speed at which the Maxwell-Boltzmann distribution
 is at its maximum. This can be found by differentiating the Maxwell-Boltzmann
-distribution with respect to v and setting the result equal to zero. The result is::
+distribution with respect to ``v`` and setting the result equal to zero. The result is::
 
         ---------------------
         | v_mp = √(2RT/M)    |
