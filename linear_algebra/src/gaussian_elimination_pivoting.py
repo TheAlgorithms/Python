@@ -6,17 +6,18 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     Solve a linear system of equations using Gaussian elimination with partial pivoting
 
     Args:
-    - matrix: Coefficient matrix with the last column representing the constants.
+      - `matrix`: Coefficient matrix with the last column representing the constants.
 
     Returns:
-    - Solution vector.
+      - Solution vector.
 
     Raises:
-    - ValueError: If the matrix is not correct (i.e., singular).
+      - ``ValueError``: If the matrix is not correct (i.e., singular).
 
     https://courses.engr.illinois.edu/cs357/su2013/lect.htm Lecture 7
 
     Example:
+
     >>> A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]], dtype=float)
     >>> B = np.array([8, -11, -3], dtype=float)
     >>> solution = solve_linear_system(np.column_stack((A, B)))
