@@ -17,7 +17,7 @@ def retroactive_resolution(
 
     Examples:
         1.
-            * 2x1 + 2x2 - 1x3 = 5 
+            * 2x1 + 2x2 - 1x3 = 5
             * 0x1 - 2x2 - 1x3 = -7
             * 0x1 + 0x2 + 5x3 = 15
         2.
