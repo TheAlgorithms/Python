@@ -34,7 +34,7 @@ Diagrammatic Explanation::
     __________________      ____________________
    | The acceleration |    | The acceleration   |
    | depends directly |    | depends inversely  |
-   | on the net Force |    | upon the object's  |
+   | on the net force |    | upon the object's  |
    |                  |    | mass               |
    |__________________|    |____________________|
 
@@ -66,6 +66,8 @@ Output::
 
 def newtons_second_law_of_motion(mass: float, acceleration: float) -> float:
     """
+    Calculates force from `mass` and `acceleration`
+
     >>> newtons_second_law_of_motion(10, 10)
     100
     >>> newtons_second_law_of_motion(2.0, 1)
