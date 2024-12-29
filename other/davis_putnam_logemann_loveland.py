@@ -287,7 +287,7 @@ def dpll_algorithm(
 ) -> tuple[bool | None, dict[str, bool | None] | None]:
     """
     Returns the model if the formula is satisfiable, else ``None``
-    
+
     This has the following steps:
       1. If every clause in clauses is ``True``, return ``True``.
       2. If some clause in clauses is ``False``, return ``False``.
