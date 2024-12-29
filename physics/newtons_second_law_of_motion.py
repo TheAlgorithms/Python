@@ -13,8 +13,7 @@ Description:
 
 Source: https://www.physicsclassroom.com/class/newtlaws/Lesson-3/Newton-s-Second-Law
 
-Formulation:
-    .. math:: F_{net} = m \cdot a
+Formulation: F_net = m • a
 
 Diagrammatic Explanation::
 
@@ -38,8 +37,7 @@ Diagrammatic Explanation::
    |                  |    | mass               |
    |__________________|    |____________________|
 
-Units:
-    .. math:: 1 \  Newton = 1 \  kg \times \frac{meters}{seconds^2}
+Units: 1 Newton = 1 kg • meters/seconds^2
 
 How to use?
 
