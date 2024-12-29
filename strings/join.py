@@ -24,6 +24,8 @@ def join(separator: str, separated: list[str]) -> str:
     'a'
     >>> join(" ", ["You", "are", "amazing!"])
     'You are amazing!'
+    >>> join(",", ["", "", ""])
+    ',,'
 
     This example should raise an
     exception for non-string elements:
