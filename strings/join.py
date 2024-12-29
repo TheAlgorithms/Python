@@ -22,6 +22,11 @@ def join(separator: str, separated: list[str]) -> str:
     Exception: join() accepts only strings
     >>> join(" ", ["You", "are", "amazing!"])
     'You are amazing!'
+    >>> join(",", ["", "", ""])
+    ',,'
+
+    This example should raise an
+    exception for non-string elements:
     >>> join("#", ["a", "b", "c", 1])
     Traceback (most recent call last):
         ...
@@ -31,19 +36,34 @@ def join(separator: str, separated: list[str]) -> str:
     >>> join(",", ["", "", ""])
     ',,'
     """
-    result = ""
-    for i, word_or_phrase in enumerate(separated):
-        # Check if the element is a string
+
+    # Check that all elements are strings
+    for word_or_phrase in separated:
+        # If the element is not a string, raise an exception
         if not isinstance(word_or_phrase, str):
             raise Exception("join() accepts only strings")
 
-        # Add the current word or phrase to the result
-        result += word_or_phrase
-        # Add the separator if it's not the last element
-        if i < len(separated) - 1:
-            result += separator
+    joined: str = ""
+    """
+    The last element of the list is not followed by the separator.
+    So, we need to iterate through the list and join each element
+    with the separator except the last element.
+    """
+    last_index: int = len(separated) - 1
+    """
+    Iterate through the list and join each element with the separator.
+    Except the last element, all other elements are followed by the separator.
+    """
+    for word_or_phrase in separated[:last_index]:
+        # join the element with the separator.
+        joined += word_or_phrase + separator
 
-    return result
+    # If the list is not empty, join the last element.
+    if separated != []:
+        joined += separated[last_index]
+
+    # Return the joined string.
+    return joined
 
 
 if __name__ == "__main__":
