@@ -19,9 +19,10 @@ class Clause:
     """
     | A clause represented in Conjunctive Normal Form.
     | A clause is a set of literals, either complemented or otherwise.
-    | For example:
-    |   * {A1, A2, A3'} is the clause (A1 v A2 v A3')
-    |   * {A5', A2', A1} is the clause (A5' v A2' v A1)
+
+    For example:
+        * {A1, A2, A3'} is the clause (A1 v A2 v A3')
+        * {A5', A2', A1} is the clause (A5' v A2' v A1)
 
     Create model
 
@@ -74,12 +75,14 @@ class Clause:
 
     def evaluate(self, model: dict[str, bool | None]) -> bool | None:
         """
-        | Evaluates the clause with the assignments in model.
-        | This has the following steps:
-        |   1. Return ``True`` if both a literal and its complement exist in the clause.
-        |   2. Return ``True`` if a single literal has the assignment ``True``.
-        |   3. Return ``None`` (unable to complete evaluation) if a literal has no assignment.
-        |   4. Compute disjunction of all values assigned in clause.
+        Evaluates the clause with the assignments in model.
+
+        This has the following steps:
+          1. Return ``True`` if both a literal and its complement exist in the clause.
+          2. Return ``True`` if a single literal has the assignment ``True``.
+          3. Return ``None`` (unable to complete evaluation)
+             if a literal has no assignment.
+          4. Compute disjunction of all values assigned in clause.
         """
         for literal in self.literals:
             symbol = literal.rstrip("'") if literal.endswith("'") else literal + "'"
@@ -155,9 +158,10 @@ def generate_parameters(formula: Formula) -> tuple[list[Clause], list[str]]:
     """
     | Return the clauses and symbols from a formula.
     | A symbol is the uncomplemented form of a literal.
-    | For example,
-    |   * Symbol of A3 is A3.
-    |   * Symbol of A5' is A5.
+
+    For example,
+      * Symbol of A3 is A3.
+      * Symbol of A5' is A5.
 
     >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
     >>> clauses, symbols = generate_parameters(formula)
@@ -233,15 +237,17 @@ def find_unit_clauses(
     model: dict[str, bool | None],  # noqa: ARG001
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
-    | Returns the unit symbols and their values to satisfy clause.
-    | Unit symbols are symbols in a formula that are:
-    |   - Either the only symbol in a clause
-    |   - Or all other literals in that clause have been assigned ``False``
-    | This has the following steps:
-    |   1. Find symbols that are the only occurrences in a clause.
-    |   2. Find symbols in a clause where all other literals are assigned ``False``.
-    |   3. Assign ``True`` or ``False`` depending on whether the symbols occurs in
-    |      normal or complemented form respectively.
+    Returns the unit symbols and their values to satisfy clause.
+
+    Unit symbols are symbols in a formula that are:
+      - Either the only symbol in a clause
+      - Or all other literals in that clause have been assigned ``False``
+
+    This has the following steps:
+      1. Find symbols that are the only occurrences in a clause.
+      2. Find symbols in a clause where all other literals are assigned ``False``.
+      3. Assign ``True`` or ``False`` depending on whether the symbols occurs in
+         normal or complemented form respectively.
 
     >>> clause1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
     >>> clause2 = Clause(["A4"])
@@ -280,12 +286,13 @@ def dpll_algorithm(
     clauses: list[Clause], symbols: list[str], model: dict[str, bool | None]
 ) -> tuple[bool | None, dict[str, bool | None] | None]:
     """
-    | Returns the model if the formula is satisfiable, else ``None``
-    | This has the following steps:
-    |   1. If every clause in clauses is ``True``, return ``True``.
-    |   2. If some clause in clauses is ``False``, return ``False``.
-    |   3. Find pure symbols.
-    |   4. Find unit symbols.
+    Returns the model if the formula is satisfiable, else ``None``
+    
+    This has the following steps:
+      1. If every clause in clauses is ``True``, return ``True``.
+      2. If some clause in clauses is ``False``, return ``False``.
+      3. Find pure symbols.
+      4. Find unit symbols.
 
     >>> formula = Formula([Clause(["A4", "A3", "A5'", "A1", "A3'"]), Clause(["A4"])])
     >>> clauses, symbols = generate_parameters(formula)
