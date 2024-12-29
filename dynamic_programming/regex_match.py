@@ -11,7 +11,7 @@ More info:
 
 
 def recursive_match(text: str, pattern: str) -> bool:
-    """
+    r"""
     Recursive matching algorithm.
 
     | Time complexity: O(2^(\|text\| + \|pattern\|))
@@ -50,7 +50,7 @@ def recursive_match(text: str, pattern: str) -> bool:
 
 
 def dp_match(text: str, pattern: str) -> bool:
-    """
+    r"""
     Dynamic programming matching algorithm.
 
     | Time complexity: O(\|text\| * \|pattern\|)

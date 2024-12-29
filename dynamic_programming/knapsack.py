@@ -108,7 +108,8 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
     Parameters
     ----------
 
-    * `dp`: list of list, the table of a solved integer weight dynamic programming problem
+    * `dp`: list of list, the table of a solved integer weight dynamic programming
+      problem
     * `wt`: list or tuple, the vector of weights of the items
     * `i`: int, the index of the item under consideration
     * `j`: int, the current possible maximum weight

@@ -69,8 +69,8 @@ def top_down_cut_rod(n: int, prices: list):
       price for a rod of length ``i``
 
     .. note::
-      For convenience and because Python's lists using ``0``-indexing, ``length(max_rev) =
-      n + 1``, to accommodate for the revenue obtainable from a rod of length ``0```.
+      For convenience and because Python's lists using ``0``-indexing, ``length(max_rev)
+      = n + 1``, to accommodate for the revenue obtainable from a rod of length ``0``.
 
     Returns
     -------

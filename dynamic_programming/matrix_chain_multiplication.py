@@ -17,13 +17,13 @@ Python doctests can be run with the following command::
 
   python -m doctest -v matrix_chain_multiply.py
 
-Given a sequence ``arr[]`` that represents chain of 2D matrices such that the dimension of
-the ``i`` th matrix is ``arr[i-1]*arr[i]``.
+Given a sequence ``arr[]`` that represents chain of 2D matrices such that the dimension
+of the ``i`` th matrix is ``arr[i-1]*arr[i]``.
 So suppose ``arr = [40, 20, 30, 10, 30]`` means we have ``4`` matrices of dimensions
 ``40*20``, ``20*30``, ``30*10`` and ``10*30``.
 
-``matrix_chain_multiply()`` returns an integer denoting minimum number of multiplications to
-multiply the chain.
+``matrix_chain_multiply()`` returns an integer denoting minimum number of
+multiplications to multiply the chain.
 
 We do not need to perform actual multiplication here.
 We only need to decide the order in which to perform the multiplication.
@@ -32,7 +32,8 @@ Hints:
   1. Number of multiplications (ie cost) to multiply ``2`` matrices
      of size ``m*p`` and ``p*n`` is ``m*p*n``.
   2. Cost of matrix multiplication is not associative ie ``(M1*M2)*M3 != M1*(M2*M3)``
-  3. Matrix multiplication is not commutative. So, ``M1*M2`` does not mean ``M2*M1`` can be done.
+  3. Matrix multiplication is not commutative. So, ``M1*M2`` does not mean ``M2*M1``
+     can be done.
   4. To determine the required order, we can try different combinations.
 
 So, this problem has overlapping sub-problems and can be solved using recursion.
