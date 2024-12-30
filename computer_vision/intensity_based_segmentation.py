@@ -1,9 +1,9 @@
 # Source: "https://www.ijcse.com/docs/IJCSE11-02-03-117.pdf"
 
 # Importing necessary libraries
+import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
 
 
 def segment_image(image: np.ndarray, thresholds: list[int]) -> np.ndarray:
@@ -11,11 +11,11 @@ def segment_image(image: np.ndarray, thresholds: list[int]) -> np.ndarray:
     Performs image segmentation based on intensity thresholds.
 
     Args:
-        image (np.ndarray): Input grayscale image as a 2D array.
-        thresholds (list[int]): Intensity thresholds to define segments.
+        image: Input grayscale image as a 2D array.
+        thresholds: Intensity thresholds to define segments.
 
     Returns:
-        np.ndarray: A labeled 2D array where each region corresponds to a threshold range.
+        A labeled 2D array where each region corresponds to a threshold range.
 
     Example:
         >>> img = np.array([[80, 120, 180], [40, 90, 150], [20, 60, 100]])
