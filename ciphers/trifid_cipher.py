@@ -22,7 +22,7 @@ TEST_NUMBER_TO_CHARACTER = {val: key for key, val in TEST_CHARACTER_TO_NUMBER.it
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
-    Arrange the triagram value of each letter of 'message_part' vertically and join
+    Arrange the triagram value of each letter of `message_part` vertically and join
     them horizontally.
 
     >>> __encrypt_part('ASK', TEST_CHARACTER_TO_NUMBER)
@@ -65,8 +65,8 @@ def __prepare(
     """
     A helper function that generates the triagrams and assigns each letter of the
     alphabet to its corresponding triagram and stores this in a dictionary
-    ("character_to_number" and "number_to_character") after confirming if the
-    alphabet's length is 27.
+    (`character_to_number` and `number_to_character`) after confirming if the
+    alphabet's length is ``27``.
 
     >>> test = __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
     >>> expected = ('IAMABOY','ABCDEFGHIJKLMNOPQRSTUVWXYZ+',
@@ -75,24 +75,28 @@ def __prepare(
     True
 
     Testing with incomplete alphabet
+
     >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVw')
     Traceback (most recent call last):
         ...
     KeyError: 'Length of alphabet has to be 27.'
 
     Testing with extra long alphabets
+
     >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxyzzwwtyyujjgfd')
     Traceback (most recent call last):
         ...
     KeyError: 'Length of alphabet has to be 27.'
 
     Testing with punctuations that are not in the given alphabet
+
     >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
         ...
     ValueError: Each message character has to be included in alphabet!
 
     Testing with numbers
+
     >>> __prepare(500,'abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
         ...
@@ -130,9 +134,9 @@ def encrypt_message(
     PARAMETERS
     ----------
 
-    *   message: The message you want to encrypt.
-    *   alphabet (optional): The characters to be used for the cipher .
-    *   period (optional): The number of characters you want in a group whilst
+    *   `message`: The message you want to encrypt.
+    *   `alphabet` (optional): The characters to be used for the cipher .
+    *   `period` (optional): The number of characters you want in a group whilst
         encrypting.
 
     >>> encrypt_message('I am a boy')
@@ -169,20 +173,21 @@ def decrypt_message(
     decrypt_message
     ===============
 
-    Decrypts a trifid_cipher encrypted message .
+    Decrypts a trifid_cipher encrypted message.
 
     PARAMETERS
     ----------
 
-    *   message: The message you want to decrypt .
-    *   alphabet (optional): The characters used for the cipher.
-    *   period (optional): The number of characters used in grouping when it
+    *   `message`: The message you want to decrypt.
+    *   `alphabet` (optional): The characters used for the cipher.
+    *   `period` (optional): The number of characters used in grouping when it
         was encrypted.
 
     >>> decrypt_message('BCDGBQY')
     'IAMABOY'
 
     Decrypting with your own alphabet and period
+
     >>> decrypt_message('FMJFVOISSUFTFPUFEQQC','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
     'AIDETOILECIELTAIDERA'
     """
