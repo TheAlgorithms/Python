@@ -188,8 +188,8 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
     complex the cipher, the larger amount of time it will take to do brute force
 
     Ex:
-    Say we have a ``5`` letter alphabet (``abcde``), for simplicity and we intercepted the
-    following message: ``dbc``,
+    Say we have a ``5`` letter alphabet (``abcde``), for simplicity and we intercepted
+    the following message: ``dbc``,
     we could then just write out every combination:
     ``ecd``... and so on, until we reach a combination that makes sense:
     ``cab``

@@ -65,8 +65,8 @@ def decrypt_caesar_with_chi_squared(
     Each letter in the english alphabet has a frequency, or the amount of times
     it shows up compared to other letters (usually expressed as a decimal
     representing the percentage likelihood). The most common letter in the
-    english language is ``e`` with a frequency of ``0.11162`` or ``11.162%``. The test is
-    completed in the following fashion.
+    english language is ``e`` with a frequency of ``0.11162`` or ``11.162%``.
+    The test is completed in the following fashion.
 
     1. The ciphertext is decoded in a brute force way (every combination of the
        ``26`` possible combinations)
@@ -75,7 +75,8 @@ def decrypt_caesar_with_chi_squared(
        multiplying the total number of characters by the frequency of the letter.
 
        | For example:
-       | In a message of ``100`` characters, ``e`` should appear around ``11.162`` times.
+       | In a message of ``100`` characters, ``e`` should appear around ``11.162``
+         times.
 
     3. Then, to calculate the margin of error (the amount of times the letter
        SHOULD appear with the amount of times the letter DOES appear), we use
