@@ -1,7 +1,5 @@
-from doctest import testmod
-
+import requests
 from bs4 import BeautifulSoup
-from requests import get
 
 """
 Get the HTML code of finance yahoo and select the current qsp-price
@@ -22,11 +20,11 @@ def stock_price(symbol: str = "AAPL") -> str:
     True
     """
     url = f"https://finance.yahoo.com/quote/{symbol}?p={symbol}"
-    yahoo_finance_source = get(
+    yahoo_finance_source = requests.get(
         url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10
     ).text
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
-    specific_fin_streamer_tag = soup.find("fin-streamer", {"data-testid": "qsp-price"})
+    specific_fin_streamer_tag = soup.find("fin-streamer", {"data-test": "qsp-price"})
 
     if specific_fin_streamer_tag:
         text = specific_fin_streamer_tag.get_text()
@@ -36,6 +34,8 @@ def stock_price(symbol: str = "AAPL") -> str:
 
 # Search for the symbol at https://finance.yahoo.com/lookup
 if __name__ == "__main__":
+    from doctest import testmod
     testmod()
+
     for symbol in "AAPL AMZN IBM GOOG MSFT ORCL".split():
         print(f"Current {symbol:<4} stock price is {stock_price(symbol):>8}")
