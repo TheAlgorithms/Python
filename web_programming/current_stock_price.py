@@ -35,6 +35,7 @@ def stock_price(symbol: str = "AAPL") -> str:
 # Search for the symbol at https://finance.yahoo.com/lookup
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
     for symbol in "AAPL AMZN IBM GOOG MSFT ORCL".split():
