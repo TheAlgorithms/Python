@@ -4,6 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from typing import List
 
+
 def segment_image(image: np.ndarray, thresholds: List[int]) -> np.ndarray:
     """
     Performs image segmentation based on intensity thresholds.
@@ -27,6 +28,7 @@ def segment_image(image: np.ndarray, thresholds: List[int]) -> np.ndarray:
         segmented[image > threshold] = i + 1
 
     return segmented
+
 
 if __name__ == "__main__":
     # Path to the image file
