@@ -1,8 +1,7 @@
-import doctest
 import math
 
 
-def rec_to_pol(real: float, img: float) -> tuple:
+def rectangular_to_polar(real: float, img: float) -> tuple[float, float]:
     """
     https://en.wikipedia.org/wiki/Polar_coordinate_system
 
@@ -20,7 +19,6 @@ def rec_to_pol(real: float, img: float) -> tuple:
     (11.41, 31.31)
     >>> rec_to_pol(10000,99999)
     (100497.76, 84.29)
-
     """
 
     mod = round(math.sqrt((real**2) + (img**2)), 2)
@@ -30,4 +28,6 @@ def rec_to_pol(real: float, img: float) -> tuple:
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
