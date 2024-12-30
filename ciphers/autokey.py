@@ -1,5 +1,6 @@
 """
 https://en.wikipedia.org/wiki/Autokey_cipher
+
 An autokey cipher (also known as the autoclave cipher) is a cipher that
 incorporates the message (the plaintext) into the key.
 The key is generated from the message in some automated fashion,
@@ -10,8 +11,9 @@ by adding a short primer key to the front of the message.
 
 def encrypt(plaintext: str, key: str) -> str:
     """
-    Encrypt a given plaintext (string) and key (string), returning the
+    Encrypt a given `plaintext` (string) and `key` (string), returning the
     encrypted ciphertext.
+
     >>> encrypt("hello world", "coffee")
     'jsqqs avvwo'
     >>> encrypt("coffee is good as python", "TheAlgorithms")
@@ -74,8 +76,9 @@ def encrypt(plaintext: str, key: str) -> str:
 
 def decrypt(ciphertext: str, key: str) -> str:
     """
-    Decrypt a given ciphertext (string) and key (string), returning the decrypted
+    Decrypt a given `ciphertext` (string) and `key` (string), returning the decrypted
     ciphertext.
+
     >>> decrypt("jsqqs avvwo", "coffee")
     'hello world'
     >>> decrypt("vvjfpk wj ohvp su ddylsv", "TheAlgorithms")

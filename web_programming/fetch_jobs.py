@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 url = "https://www.indeed.co.in/jobs?q=mobile+app+development&l="
 
 
-def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
+def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str]]:
     soup = BeautifulSoup(
         requests.get(url + location, timeout=10).content, "html.parser"
     )

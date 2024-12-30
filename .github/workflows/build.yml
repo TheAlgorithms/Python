@@ -10,21 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
       - uses: actions/setup-python@v5
         with:
           python-version: 3.13
           allow-prereleases: true
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install pytest-cov -r requirements.txt
+      - run: uv sync --group=test
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
-        run: pytest
+        run: uv run pytest
           --ignore=computer_vision/cnn_classification.py
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py

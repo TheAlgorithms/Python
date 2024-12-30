@@ -156,7 +156,7 @@ def solve_all(grids, name="", showif=0.0):
     times, results = zip(*[time_solve(grid) for grid in grids])
     if (n := len(grids)) > 1:
         print(
-            "Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)."
+            "Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)."  # noqa: UP031
             % (sum(results), n, name, sum(times) / n, n / sum(times), max(times))
         )
 
