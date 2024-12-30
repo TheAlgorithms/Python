@@ -1,4 +1,5 @@
-# Source:"https://www.ijcse.com/docs/IJCSE11-02-03-117.pdf"
+# Source: "https://www.ijcse.com/docs/IJCSE11-02-03-117.pdf"
+
 # Importing necessary libraries
 import numpy as np
 from PIL import Image
@@ -18,7 +19,9 @@ def segment_image(image: np.ndarray, thresholds: list[int]) -> np.ndarray:
     Example:
         >>> img = np.array([[80, 120, 180], [40, 90, 150], [20, 60, 100]])
         >>> segment_image(img, [50, 100, 150])
-        array([[1, 2, 3], [0, 1, 2], [0, 1, 1]])
+        array([[1, 2, 3], 
+               [0, 1, 2], 
+               [0, 1, 1]])
     """
     # Initialize segmented array with zeros
     segmented = np.zeros_like(image, dtype=np.int32)
