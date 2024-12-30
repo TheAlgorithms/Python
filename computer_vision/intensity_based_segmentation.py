@@ -22,7 +22,7 @@ def segment_image(image: np.ndarray, thresholds: list[int]) -> np.ndarray:
         >>> segment_image(img, [50, 100, 150])
         array([[1, 2, 3],
                [0, 1, 2],
-               [0, 1, 1]])
+               [0, 1, 1]], dtype=int32)
     """
     # Initialize segmented array with zeros
     segmented = np.zeros_like(image, dtype=np.int32)
