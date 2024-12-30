@@ -1,9 +1,9 @@
+# Source:"https://www.ijcse.com/docs/IJCSE11-02-03-117.pdf"
 # Importing necessary libraries
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 from typing import List
-
 
 def segment_image(image: np.ndarray, thresholds: List[int]) -> np.ndarray:
     """
@@ -28,7 +28,6 @@ def segment_image(image: np.ndarray, thresholds: List[int]) -> np.ndarray:
         segmented[image > threshold] = i + 1
 
     return segmented
-
 
 if __name__ == "__main__":
     # Path to the image file
