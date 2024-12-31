@@ -21,6 +21,7 @@ g = acceleration due to gravity (approx 9.8 m/s²)
 
 Reference : https://byjus.com/jee/simple-pendulum/
 """
+
 from math import pi
 
 from scipy.constants import g
