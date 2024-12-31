@@ -42,7 +42,7 @@ if __name__ == "__main__":
     y1 = int(input("Enter the y-coordinate of the starting point: "))
     x2 = int(input("Enter the x-coordinate of the ending point: "))
     y2 = int(input("Enter the y-coordinate of the ending point: "))
-    coordinates = digital_differential_analyzer_line(x1, y1, x2, y2)
+    coordinates = digital_differential_analyzer_line((x1, y1), (x2, y2))
     x_points, y_points = zip(*coordinates)
     plt.plot(x_points, y_points, marker="o")
     plt.title("Digital Differential Analyzer Line Drawing Algorithm")
