@@ -29,14 +29,14 @@ def compute_geometric_mean(*args: int) -> float:
     """
     product = 1
     for number in args:
-        if (not isinstance(number, int)) and (not isinstance(number, float)):
+        if not isinstance(number, int) and not isinstance(number, float):
             raise TypeError("Not a Number")
         product *= number
     # Cannot calculate the even root for negative product.
     # Frequently they are restricted to being positive.
     if product < 0 and len(args) % 2 == 0:
         raise ArithmeticError("Cannot Compute Geometric Mean for these numbers.")
-    mean = abs(product) ** (1.0 / len(args))
+    mean = abs(product) ** (1 / len(args))
     # Since python calculates complex roots for negative products with odd roots.
     if product < 0:
         mean = -mean
