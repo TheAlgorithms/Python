@@ -2,22 +2,22 @@ import matplotlib.pyplot as plt
 
 
 def digital_differential_analyzer_line(
-    x1: int, y1: int, x2: int, y2: int
+    p1: tuple[int, int], p2: tuple[int, int]
 ) -> list[tuple[int, int]]:
     """
     Draws a line between two points using the DDA algorithm.
 
     Args:
-    - x1, y1: Coordinates of the starting point.
-    - x2, y2: Coordinates of the ending point.
-
+    - p1: Coordinates of the starting point.
+    - p2: Coordinates of the ending point.
     Returns:
     - List of coordinate points that form the line.
 
     >>> digital_differential_analyzer_line(1, 1, 4, 4)
     [(2, 2), (3, 3), (4, 4)]
     """
-
+    x1, y1 = p1
+    x2, y2 = p2
     dx = x2 - x1
     dy = y2 - y1
     steps = max(abs(dx), abs(dy))
