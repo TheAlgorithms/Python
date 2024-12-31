@@ -43,7 +43,8 @@ def make_points(a, b, h):
     :yield: The next x-value in the range (a, b)
 
     >>> list(make_points(0, 1, 0.1))    # doctest: +NORMALIZE_WHITESPACE
-    [0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6, 0.7, 0.7999999999999999, 0.8999999999999999]
+    [0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6, 0.7, 0.7999999999999999, \
+    0.8999999999999999]
     >>> list(make_points(0, 10, 2.5))
     [2.5, 5.0, 7.5]
     >>> list(make_points(0, 10, 2))
