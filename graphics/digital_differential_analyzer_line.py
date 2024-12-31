@@ -13,7 +13,7 @@ def digital_differential_analyzer_line(
     Returns:
     - List of coordinate points that form the line.
 
-    >>> digital_differential_analyzer_line(1, 1, 4, 4)
+    >>> digital_differential_analyzer_line((1, 1), (4, 4))
     [(2, 2), (3, 3), (4, 4)]
     """
     x1, y1 = p1
