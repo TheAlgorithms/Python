@@ -1,15 +1,19 @@
 """
-Longest Common Substring Problem Statement: Given two sequences, find the
-longest common substring present in both of them. A substring is
-necessarily continuous.
-Example: "abcdef" and "xabded" have two longest common substrings, "ab" or "de".
-Therefore, algorithm should return any one of them.
+Longest Common Substring Problem Statement:
+    Given two sequences, find the
+    longest common substring present in both of them. A substring is
+    necessarily continuous.
+
+Example:
+    ``abcdef`` and ``xabded`` have two longest common substrings, ``ab`` or ``de``.
+    Therefore, algorithm should return any one of them.
 """
 
 
 def longest_common_substring(text1: str, text2: str) -> str:
     """
     Finds the longest common substring between two strings.
+
     >>> longest_common_substring("", "")
     ''
     >>> longest_common_substring("a","")

@@ -1,14 +1,11 @@
 """
 Numerical integration or quadrature for a smooth function f with known values at x_i
-
-The trapezoidal rule is the classical approach of summing 'Equally Spaced Abscissas'
-
 """
 
 
 def trapezoidal_rule(boundary, steps):
     """
-    This function implements the extended trapezoidal rule for numerical integration.
+    Implements the extended trapezoidal rule for numerical integration.
     The function f(x) is provided below.
 
     :param boundary: List containing the lower and upper bounds of integration [a, b]
@@ -17,13 +14,10 @@ def trapezoidal_rule(boundary, steps):
 
     >>> abs(trapezoidal_rule([0, 1], 10) - 0.33333) < 0.01
     True
-
     >>> abs(trapezoidal_rule([0, 1], 100) - 0.33333) < 0.01
     True
-
     >>> abs(trapezoidal_rule([0, 2], 1000) - 2.66667) < 0.01
     True
-
     >>> abs(trapezoidal_rule([1, 2], 1000) - 2.33333) < 0.01
     True
     """
@@ -41,7 +35,7 @@ def trapezoidal_rule(boundary, steps):
 
 def make_points(a, b, h):
     """
-    Generates the points between a and b with spacing h for trapezoidal integration.
+    Generates points between a and b with step size h for trapezoidal integration.
 
     :param a: The lower bound of integration
     :param b: The upper bound of integration
@@ -50,14 +44,24 @@ def make_points(a, b, h):
 
     >>> list(make_points(0, 1, 0.1))
     [0.1, 0.2, 0.30000000000000004, \
-0.4, 0.5, 0.6, 0.7, \
-0.7999999999999999, \
-0.8999999999999999]
+    0.4, 0.5, 0.6, 0.7, \
+    0.7999999999999999, \
+    0.8999999999999999]
+    >>> list(make_points(0, 10, 2.5))
+    [2.5, 5.0, 7.5]
+    >>> list(make_points(0, 10, 2))
+    [2, 4, 6, 8]
+    >>> list(make_points(1, 21, 5))
+    [6, 11, 16]
+    >>> list(make_points(1, 5, 2))
+    [3]
+    >>> list(make_points(1, 4, 3))
+    []
     """
     x = a + h
-    while x < (b - h):
+    while x <= (b - h):
         yield x
-        x = x + h
+        x += h
 
 
 def f(x):
@@ -69,10 +73,8 @@ def f(x):
 
     >>> f(0)
     0
-
     >>> f(1)
     1
-
     >>> f(0.5)
     0.25
     """
@@ -99,4 +101,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
