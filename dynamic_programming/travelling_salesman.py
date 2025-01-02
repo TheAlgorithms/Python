@@ -1,6 +1,5 @@
 import sys
 
-
 def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     """
     Solves Traveling Salesman Problem using dynamic programming.
@@ -28,6 +27,13 @@ def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     parent = {}
 
     def solve(mask: int, pos: int) -> float:
+        """
+        Recursive helper function for solving the TSP using dynamic programming.
+
+        :param mask: Bitmask representing visited nodes.
+        :param pos: Current position in the tour.
+        :return: Minimum cost to complete the tour.
+        """
         if mask == all_points:
             return distances[pos][0]
 
