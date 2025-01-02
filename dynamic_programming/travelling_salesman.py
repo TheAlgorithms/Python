@@ -1,6 +1,3 @@
-import sys
-
-
 def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     """
     Solves Traveling Salesman Problem using dynamic programming.
@@ -42,7 +39,7 @@ def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
         if state in dp:
             return dp[state]
 
-        minimum = float("inf")
+        minimum = float('inf')
         min_next = -1
 
         for next_city in range(n):
@@ -67,7 +64,7 @@ def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     for _ in range(n - 1):
         next_pos = parent[(mask, pos)]
         path.append(next_pos)
-        mask |= 1 << next_pos
+        mask |= (1 << next_pos)
         pos = next_pos
 
     return optimal_cost, path
