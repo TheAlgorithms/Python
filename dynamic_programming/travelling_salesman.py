@@ -1,5 +1,6 @@
 import sys
 
+
 def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     """
     Solves Traveling Salesman Problem using dynamic programming.
