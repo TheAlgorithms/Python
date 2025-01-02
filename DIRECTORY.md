@@ -462,6 +462,7 @@
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
+  * [Digital Differential Analyzer Line](graphics/digital_differential_analyzer_line.py)
   * [Vector3 For 2D Rendering](graphics/vector3_for_2d_rendering.py)
 
 ## Graphs
@@ -663,6 +664,7 @@
   * [Gamma](maths/gamma.py)
   * [Gaussian](maths/gaussian.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
+  * [Geometric Mean](maths/geometric_mean.py)
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
