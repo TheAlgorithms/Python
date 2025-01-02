@@ -1,7 +1,7 @@
 from typing import List, Tuple
 
 
-def tsp_dp(distances: List[List[float]]) -> Tuple[float, List[int]]:
+def tsp_dp(distances: list[list[float]]) -> tuple[float, list[int]]:
     """
     Solves Traveling Salesman Problem using dynamic programming.
 
