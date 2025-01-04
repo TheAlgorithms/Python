@@ -58,9 +58,18 @@ def rotate_array_n_space(nums: list[int], k: int) -> list[int]:
     >>> rotate_array_n_space([8, -7, 22, -6], 9)
     [-6, 8, -7, 22]
     """
+
     length = len(nums)
     k = k % length
-    return nums[-k:] + nums[: length - k]
+    new_nums = []
+
+    for i in range(length - k, length):
+        new_nums.append(nums[i])
+
+    for i in range(length - k):
+        new_nums.append(nums[i])
+
+    return new_nums
 
 
 # Time: O(n)     Space: O(k)
