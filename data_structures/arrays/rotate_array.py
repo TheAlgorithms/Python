@@ -60,7 +60,7 @@ def rotate_array_n_space(nums: list[int], k: int) -> list[int]:
     """
     length = len(nums)
     k = k % length
-    return nums[-k:] + nums[:k]
+    return nums[-k:] + nums[: length - k]
 
 
 # Time: O(n)     Space: O(k)
