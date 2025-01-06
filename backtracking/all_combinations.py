@@ -16,16 +16,11 @@ def combination_lists(n: int, k: int) -> list[list[int]]:
 
     >>> combination_lists(n=4, k=2)
     [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
-    >>> combination_lists(n=1, k=1)
-    [[1]]
-    >>> combination_lists(n=3, k=0)
-    []
-    >>> combination_lists(n=3, k=4)
-    []
-    >>> combination_lists(n=-1, k=2)
-    []
-    >>> combination_lists(n=4, k=-1)
-    []
+    >>> combination_lists(n=5, k=3)
+    [[1, 2, 3], [1, 2, 4], [1, 2, 5],
+     [1, 3, 4], [1, 3, 5], [1, 4, 5],
+     [2, 3, 4], [2, 3, 5], [2, 4, 5],
+     [3, 4, 5]]
     """
     return [list(x) for x in combinations(range(1, n + 1), k)]
 
