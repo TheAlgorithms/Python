@@ -12,14 +12,32 @@ from itertools import combinations
 
 def combination_lists(n: int, k: int) -> list[list[int]]:
     """
+    Generates all possible combinations of k numbers out of 1 ... n using itertools.
+
     >>> combination_lists(n=4, k=2)
     [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+    >>> combination_lists(n=5, k=3)
+    [[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]]
+    >>> combination_lists(n=0, k=0)
+    []
+    >>> combination_lists(n=1, k=1)
+    [[1]]
+    >>> combination_lists(n=3, k=0)
+    []
+    >>> combination_lists(n=3, k=4)
+    []
+    >>> combination_lists(n=-1, k=2)
+    []
+    >>> combination_lists(n=4, k=-1)
+    []
     """
     return [list(x) for x in combinations(range(1, n + 1), k)]
 
 
 def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     """
+    Generates all possible combinations of k numbers out of 1 ... n using backtracking.
+
     >>> generate_all_combinations(n=4, k=2)
     [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
     >>> generate_all_combinations(n=0, k=0)
@@ -34,6 +52,14 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     ValueError: n must not be negative
     >>> generate_all_combinations(n=5, k=4)
     [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
+    >>> generate_all_combinations(n=3, k=3)
+    [[1, 2, 3]]
+    >>> generate_all_combinations(n=3, k=1)
+    [[1], [2], [3]]
+    >>> generate_all_combinations(n=1, k=0)
+    [[]]
+    >>> generate_all_combinations(n=1, k=1)
+    [[1]]
     >>> from itertools import combinations
     >>> all(generate_all_combinations(n, k) == combination_lists(n, k)
     ...     for n in range(1, 6) for k in range(1, 6))
@@ -56,6 +82,28 @@ def create_all_state(
     current_list: list[int],
     total_list: list[list[int]],
 ) -> None:
+    """
+    Helper function to recursively build all combinations.
+
+    >>> create_all_state(1, 4, 2, [], result := [])
+    >>> result
+    [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+    >>> create_all_state(1, 3, 3, [], result := [])
+    >>> result
+    [[1, 2, 3]]
+    >>> create_all_state(2, 2, 1, [1], result := [])
+    >>> result
+    [[1, 2]]
+    >>> create_all_state(1, 0, 0, [], result := [])
+    >>> result
+    [[]]
+    >>> create_all_state(1, 4, 0, [1, 2], result := [])
+    >>> result
+    [[1, 2]]
+    >>> create_all_state(5, 4, 2, [1, 2], result := [])
+    >>> result
+    []
+    """
     if level == 0:
         total_list.append(current_list[:])
         return
