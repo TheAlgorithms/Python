@@ -1,4 +1,3 @@
-
 def partition(arr: list[int], low: int, high: int) -> int:
     """
     Partitions list based on the pivot element.
