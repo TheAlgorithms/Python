@@ -1,4 +1,3 @@
-# floyd_warshall.py
 """
 The problem is to find and return the shortest distance between all pairs of vertices
 in a weighted directed graph that can have negative edge weights.
