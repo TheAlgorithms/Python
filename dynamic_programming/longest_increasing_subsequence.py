@@ -15,48 +15,53 @@ Example:
 
 from __future__ import annotations
 
+import copy
+
 
 def longest_subsequence(array: list[int]) -> list[int]:  # This function is recursive
     """
     Some examples
 
     >>> longest_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
-    [10, 22, 33, 41, 60, 80]
+    [10, 22, 33, 50, 60, 80]
     >>> longest_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
     [1, 2, 3, 9]
     >>> longest_subsequence([9, 8, 7, 6, 5, 7])
-    [8]
+    [7, 7]
     >>> longest_subsequence([1, 1, 1])
     [1, 1, 1]
     >>> longest_subsequence([])
     []
     """
-    array_length = len(array)
-    # If the array contains only one element, we return it (it's the stop condition of
-    # recursion)
-    if array_length <= 1:
-        return array
-        # Else
-    pivot = array[0]
-    is_found = False
-    i = 1
-    longest_subseq: list[int] = []
-    while not is_found and i < array_length:
-        if array[i] < pivot:
-            is_found = True
-            temp_array = [element for element in array[i:] if element >= array[i]]
-            temp_array = longest_subsequence(temp_array)
-            if len(temp_array) > len(longest_subseq):
-                longest_subseq = temp_array
-        else:
-            i += 1
+    n = len(array)
+    # The longest increasing subsequence ending at array[i]
+    longest_increasing_subsequence = []
+    for i in range(n):
+        longest_increasing_subsequence.append([array[i]])
 
-    temp_array = [element for element in array[1:] if element >= pivot]
-    temp_array = [pivot, *longest_subsequence(temp_array)]
-    if len(temp_array) > len(longest_subseq):
-        return temp_array
-    else:
-        return longest_subseq
+    for i in range(1, n):
+        for prev in range(i):
+            # If array[prev] is less than array[i], then
+            # longest_increasing_subsequence[prev] + array[i]
+            # is a valid increasing subsequence
+
+            # longest_increasing_subsequence[i] is only set to
+            # longest_increasing_subsequence[prev] + array[i] if the length is longer.
+
+            if array[prev] <= array[i] and len(
+                longest_increasing_subsequence[prev]
+            ) + 1 > len(longest_increasing_subsequence[i]):
+                longest_increasing_subsequence[i] = copy.copy(
+                    longest_increasing_subsequence[prev]
+                )
+                longest_increasing_subsequence[i].append(array[i])
+
+    result: list[int] = []
+    for i in range(n):
+        if len(longest_increasing_subsequence[i]) > len(result):
+            result = longest_increasing_subsequence[i]
+
+    return result
 
 
 if __name__ == "__main__":
