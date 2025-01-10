@@ -1,6 +1,5 @@
 <div align="center">
 <!-- Title: -->
-  <a href="https://github.com/TheAlgorithms/">
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
   </a>
   <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
@@ -29,6 +28,10 @@
   </a>
   <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square" height="20" alt="code style: black">
+  </a>
+  </a>
+  <a href="https://github.com/Bhavesh9908">
+    <img src="https://avatars.githubusercontent.com/u/141760947?v=4 alt="pre-commit>
   </a>
 <!-- Short description: -->
   <h3>All algorithms implemented in Python - for education</h3>

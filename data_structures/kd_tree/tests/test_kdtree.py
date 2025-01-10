@@ -16,21 +16,20 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
 
 
 @pytest.mark.parametrize(
-    ("num_points", "cube_size", "num_dimensions", "depth", "expected_result"),
+    ("num_points", "cube_size", "num_dimensions", "expected_result"),
     [
-        (0, 10.0, 2, 0, None),  # Empty points list
-        (10, 10.0, 2, 2, KDNode),  # Depth = 2, 2D points
-        (10, 10.0, 3, -2, KDNode),  # Depth = -2, 3D points
+        (0, 10.0, 2, None),  # Empty points list
+        (10, 10.0, 2, KDNode),  # 2D points
+        (10, 10.0, 3, KDNode),  # 3D points
     ],
 )
-def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_result):
+def test_build_kdtree(num_points, cube_size, num_dimensions, expected_result):
     """
     Test that KD-Tree is built correctly.
 
     Cases:
         - Empty points list.
-        - Positive depth value.
-        - Negative depth value.
+        - Valid points list with correct dimensions.
     """
     points = (
         hypercube_points(num_points, cube_size, num_dimensions).tolist()
@@ -38,24 +37,20 @@ def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_res
         else []
     )
 
-    kdtree = build_kdtree(points, depth=depth)
+    kdtree = build_kdtree(points)
 
     if expected_result is None:
         # Empty points list case
         assert kdtree is None, f"Expected None for empty points list, got {kdtree}"
     else:
-        # Check if root node is not None
+        # Check if KD-Tree is built correctly
         assert kdtree is not None, "Expected a KDNode, got None"
-
-        # Check if root has correct dimensions
-        assert (
-            len(kdtree.point) == num_dimensions
-        ), f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
-
-        # Check that the tree is balanced to some extent (simplistic check)
         assert isinstance(
             kdtree, KDNode
         ), f"Expected KDNode instance, got {type(kdtree)}"
+        assert (
+            len(kdtree.point) == num_dimensions
+        ), f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
 
 
 def test_nearest_neighbour_search():
@@ -103,6 +98,4 @@ def test_edge_cases():
 
 
 if __name__ == "__main__":
-    import pytest
-
     pytest.main()
