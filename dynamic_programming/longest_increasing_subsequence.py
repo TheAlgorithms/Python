@@ -41,8 +41,8 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
         # Else
     pivot = array[0]
 
-    #Either the subsequence contains the pivot or it doesnt
-    #The sub_sequence which is longer will be returned
+    # Either the subsequence contains the pivot or it doesnt
+    # The sub_sequence which is longer will be returned
     without_pivot = longest_subsequence(array[1:])
     with_pivot = [element for element in array[1:] if element >= pivot]
     with_pivot = [pivot, *longest_subsequence(with_pivot)]
