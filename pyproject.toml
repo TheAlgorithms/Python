@@ -147,6 +147,7 @@ lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
 lint.per-file-ignores."sorts/external_sort.py" = [
   "SIM115",
 ]
+
 lint.flake8-builtins.builtins-allowed-modules = [ "base64", "wave" ]
 
 lint.mccabe.max-complexity = 17 # default: 10
