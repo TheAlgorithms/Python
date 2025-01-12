@@ -1,5 +1,6 @@
 """
 Author  : Mehdi ALAOUI
+Co-Author : Sanjay Muthu
 
 This is a pure Python implementation of Dynamic Programming solution to the longest
 increasing subsequence of a given sequence.
@@ -28,6 +29,8 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     [1, 2, 3, 9]
     >>> longest_subsequence([9, 8, 7, 6, 5, 7])
     [7, 7]
+    >>> longest_subsequence([28, 26, 12, 23, 35, 39])
+    [12, 23, 35, 39]
     >>> longest_subsequence([1, 1, 1])
     [1, 1, 1]
     >>> longest_subsequence([])
