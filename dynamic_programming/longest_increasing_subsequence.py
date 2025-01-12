@@ -25,7 +25,7 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     >>> longest_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
     [1, 2, 3, 9]
     >>> longest_subsequence([9, 8, 7, 6, 5, 7])
-    [8]
+    [5, 7]
     >>> longest_subsequence([1, 1, 1])
     [1, 1, 1]
     >>> longest_subsequence([])
@@ -38,25 +38,16 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
         return array
         # Else
     pivot = array[0]
-    is_found = False
-    i = 1
-    longest_subseq: list[int] = []
-    while not is_found and i < array_length:
-        if array[i] < pivot:
-            is_found = True
-            temp_array = [element for element in array[i:] if element >= array[i]]
-            temp_array = longest_subsequence(temp_array)
-            if len(temp_array) > len(longest_subseq):
-                longest_subseq = temp_array
-        else:
-            i += 1
 
-    temp_array = [element for element in array[1:] if element >= pivot]
-    temp_array = [pivot, *longest_subsequence(temp_array)]
-    if len(temp_array) > len(longest_subseq):
-        return temp_array
+    #Either the subsequence contains the pivot or it doesnt
+    #The sub_sequence which is longer will be returned
+    without_pivot = longest_subsequence(array[1:])
+    with_pivot = [element for element in array[1:] if element >= pivot]
+    with_pivot = [pivot, *longest_subsequence(with_pivot)]
+    if len(with_pivot) > len(without_pivot):
+        return with_pivot
     else:
-        return longest_subseq
+        return without_pivot
 
 
 if __name__ == "__main__":
