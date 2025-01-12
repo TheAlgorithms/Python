@@ -123,6 +123,8 @@ lint.ignore = [
   "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 
+lint.flake8-builtins.builtins-allowed-modules = ["base64", "wave"]
+
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
   "BLE001",
 ]
