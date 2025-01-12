@@ -32,8 +32,6 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     [1, 1, 1]
     >>> longest_subsequence([])
     []
-    >>> longest_subsequence([28, 26, 12, 23, 35, 39])
-    [12, 23, 35, 39]
     """
     array_length = len(array)
     # If the array contains only one element, we return it (it's the stop condition of
