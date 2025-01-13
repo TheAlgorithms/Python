@@ -273,7 +273,7 @@ if __name__ == "__main__":
         size = int(input("Enter the size of the matrix: "))
         validate_matrix_size(size)
         print(f"Enter the {size} rows of the matrix:")
-        matrix = [input(f"Row {i+1}: ") for i in range(size)]
+        matrix = [input(f"Row {i + 1}: ") for i in range(size)]
         validate_matrix_content(matrix, size)
         moves_input = input("Enter the moves (e.g., '0 0, 1 1'): ")
         moves = parse_moves(moves_input)
