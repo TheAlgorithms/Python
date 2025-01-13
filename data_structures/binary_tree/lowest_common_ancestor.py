@@ -1,14 +1,17 @@
+# https://en.wikipedia.org/wiki/Lowest_common_ancestor
+# https://en.wikipedia.org/wiki/Breadth-first_search
+
 from __future__ import annotations
+
 from queue import Queue
 
 
 def swap(a: int, b: int) -> tuple[int, int]:
     """
-    Return a tuple (b, a) when given two integers a and b.
-
-    >>> swap(2, 3)
+    Return a tuple (b, a) when given two integers a and b
+    >>> swap(2,3)
     (3, 2)
-    >>> swap(3, 4)
+    >>> swap(3,4)
     (4, 3)
     >>> swap(67, 12)
     (12, 67)
@@ -33,7 +36,7 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     For example, consider a small tree where:
       - Node 1 is the root (its parent is 0),
       - Nodes 2 and 3 have parent 1.
-
+    
     We set up the parent table for only two levels (row 0 and row 1)
     for max_node = 3. (Note that in practice the table has many rows.)
     
@@ -52,23 +55,17 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     return parent
 
 
+# returns lca of node u,v
 def lowest_common_ancestor(
     u: int, v: int, level: list[int], parent: list[list[int]]
 ) -> int:
     """
     Return the lowest common ancestor (LCA) of nodes u and v in a tree.
-<<<<<<< HEAD
     
     The lists ``level`` and ``parent`` must be precomputed. ``level[i]`` is the depth
     of node i, and ``parent`` is a sparse table where parent[0][i] is the direct parent
     of node i.
     
-=======
-
-    The lists `level` and `parent` must be precomputed. `level[i]` is the depth of node i,
-    and `parent` is a sparse table where parent[0][i] is the direct parent of node i.
-
->>>>>>> 097e9c6149e80f095be1b3dbef1c04ff94a7325a
     >>> # Consider a simple tree:
     >>> #       1
     >>> #      / \\
@@ -81,23 +78,25 @@ def lowest_common_ancestor(
     >>> lowest_common_ancestor(2, 2, level, parent)
     2
     """
-    # Ensure u is at least as deep as v.
+    # u must be deeper in the tree than v
     if level[u] < level[v]:
         u, v = swap(u, v)
-    # Bring u up to the same level as v.
+    # making depth of u same as depth of v
     for i in range(18, -1, -1):
         if level[u] - (1 << i) >= level[v]:
             u = parent[i][u]
-    # If they are the same, we've found the LCA.
+    # at the same depth if u==v that mean lca is found
     if u == v:
         return u
-    # Move u and v up together until the LCA is found.
+    # moving both nodes upwards till lca in found
     for i in range(18, -1, -1):
         if parent[i][u] not in [0, parent[i][v]]:
             u, v = parent[i][u], parent[i][v]
+    # returning longest common ancestor of u,v
     return parent[0][u]
 
 
+# runs a breadth first search from root node of the tree
 def breadth_first_search(
     level: list[int],
     parent: list[list[int]],
@@ -143,7 +142,6 @@ def main() -> None:
     sparse table and compute several lowest common ancestors.
     
     The sample tree used is:
-<<<<<<< HEAD
     
                 1
              /  |  \ 
@@ -153,17 +151,6 @@ def main() -> None:
          / \\   |    / \\
         9  10  11  12  13
     
-=======
-
-            1
-         /  |  \
-        2   3   4
-       /   / \\  \\
-      5   6   7  8
-     / \\  |     / \\
-    9  10  11   12 13
-
->>>>>>> 097e9c6149e80f095be1b3dbef1c04ff94a7325a
     The expected lowest common ancestors are:
       - LCA(1, 3)  --> 1
       - LCA(5, 6)  --> 1
@@ -173,7 +160,7 @@ def main() -> None:
       - LCA(8, 8)  --> 8
     
     To test main() without it printing to the console, we capture the output.
-
+    
     >>> import sys
     >>> from io import StringIO
     >>> backup = sys.stdout
@@ -187,7 +174,9 @@ def main() -> None:
     True
     """
     max_node = 13
+    # initializing with 0
     parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
+    # initializing with -1 which means every node is unvisited
     level = [-1 for _ in range(max_node + 10)]
     graph: dict[int, list[int]] = {
         1: [2, 3, 4],
