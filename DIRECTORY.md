@@ -86,7 +86,7 @@
   * [Baconian Cipher](ciphers/baconian_cipher.py)
   * [Base16](ciphers/base16.py)
   * [Base32](ciphers/base32.py)
-  * [Base64](ciphers/base64.py)
+  * [Base64 Cipher](ciphers/base64_cipher.py)
   * [Base85](ciphers/base85.py)
   * [Beaufort Cipher](ciphers/beaufort_cipher.py)
   * [Bifid](ciphers/bifid.py)
@@ -462,6 +462,7 @@
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
+  * [Digital Differential Analyzer Line](graphics/digital_differential_analyzer_line.py)
   * [Vector3 For 2D Rendering](graphics/vector3_for_2d_rendering.py)
 
 ## Graphs
@@ -663,6 +664,7 @@
   * [Gamma](maths/gamma.py)
   * [Gaussian](maths/gaussian.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
+  * [Geometric Mean](maths/geometric_mean.py)
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
@@ -1329,7 +1331,7 @@
   * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
   * [Upper](strings/upper.py)
-  * [Wave](strings/wave.py)
+  * [Wave String](strings/wave_string.py)
   * [Wildcard Pattern Matching](strings/wildcard_pattern_matching.py)
   * [Word Occurrence](strings/word_occurrence.py)
   * [Word Patterns](strings/word_patterns.py)
