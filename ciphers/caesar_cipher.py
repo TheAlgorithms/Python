@@ -225,7 +225,7 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 
 if __name__ == "__main__":
     while True:
-        print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
+        print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
         print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
 
         # get user input
