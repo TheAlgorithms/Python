@@ -25,21 +25,21 @@ def swap(a: int, b: int) -> tuple[int, int]:
 def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     """
     Create a sparse table that saves each node's 2^i-th parent.
-    
+
     The given ``parent`` table should have the direct parent of each node in row 0.
     This function fills in:
-    
+
         parent[j][i] = parent[j - 1][parent[j - 1][i]]
-    
+
     for each j where 2^j is less than max_node.
-    
+
     For example, consider a small tree where:
       - Node 1 is the root (its parent is 0),
       - Nodes 2 and 3 have parent 1.
-    
+
     We set up the parent table for only two levels (row 0 and row 1)
     for max_node = 3. (Note that in practice the table has many rows.)
-    
+
     >>> parent0 = [0, 0, 1, 1]  # 0 is unused; node1's parent=0, nodes 2 and 3's parent=1.
     >>> parent1 = [0, 0, 0, 0]
     >>> parent = [parent0, parent1]
@@ -61,11 +61,11 @@ def lowest_common_ancestor(
 ) -> int:
     """
     Return the lowest common ancestor (LCA) of nodes u and v in a tree.
-    
+
     The lists ``level`` and ``parent`` must be precomputed. ``level[i]`` is the depth
     of node i, and ``parent`` is a sparse table where parent[0][i] is the direct parent
     of node i.
-    
+
     >>> # Consider a simple tree:
     >>> #       1
     >>> #      / \\
@@ -106,10 +106,10 @@ def breadth_first_search(
 ) -> tuple[list[int], list[list[int]]]:
     """
     Run a breadth-first search (BFS) from the root node of the tree.
-    
+
     This sets each node's direct parent (stored in parent[0]) and calculates the
     depth (level) of each node from the root.
-    
+
     >>> # Consider a simple tree:
     >>> #    1
     >>> #   / \\
@@ -140,17 +140,17 @@ def main() -> None:
     """
     Run a BFS to set node depths and parents in a sample tree, then create the
     sparse table and compute several lowest common ancestors.
-    
+
     The sample tree used is:
-    
+
                 1
-             /  |  \ 
+             /  |  \
             2   3   4
            /   / \\   \\
           5   6   7   8
          / \\   |    / \\
         9  10  11  12  13
-    
+
     The expected lowest common ancestors are:
       - LCA(1, 3)  --> 1
       - LCA(5, 6)  --> 1
@@ -158,9 +158,9 @@ def main() -> None:
       - LCA(6, 7)  --> 3
       - LCA(4, 12) --> 4
       - LCA(8, 8)  --> 8
-    
+
     To test main() without it printing to the console, we capture the output.
-    
+
     >>> import sys
     >>> from io import StringIO
     >>> backup = sys.stdout
