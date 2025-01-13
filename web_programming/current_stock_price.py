@@ -26,8 +26,7 @@ def stock_price(symbol: str = "AAPL") -> str:
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
 
     if specific_fin_streamer_tag := soup.find("span", {"data-testid": "qsp-price"}):
-        text = specific_fin_streamer_tag.get_text()
-        return text
+        return specific_fin_streamer_tag.get_text()
     return "No <fin-streamer> tag with the specified data-testid attribute found."
 
 
