@@ -33,7 +33,7 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     For example, consider a small tree where:
       - Node 1 is the root (its parent is 0),
       - Nodes 2 and 3 have parent 1.
-    
+
     We set up the parent table for only two levels (row 0 and row 1)
     for max_node = 3. (Note that in practice the table has many rows.)
     
@@ -57,11 +57,18 @@ def lowest_common_ancestor(
 ) -> int:
     """
     Return the lowest common ancestor (LCA) of nodes u and v in a tree.
+<<<<<<< HEAD
     
     The lists ``level`` and ``parent`` must be precomputed. ``level[i]`` is the depth
     of node i, and ``parent`` is a sparse table where parent[0][i] is the direct parent
     of node i.
     
+=======
+
+    The lists `level` and `parent` must be precomputed. `level[i]` is the depth of node i,
+    and `parent` is a sparse table where parent[0][i] is the direct parent of node i.
+
+>>>>>>> 097e9c6149e80f095be1b3dbef1c04ff94a7325a
     >>> # Consider a simple tree:
     >>> #       1
     >>> #      / \\
@@ -136,6 +143,7 @@ def main() -> None:
     sparse table and compute several lowest common ancestors.
     
     The sample tree used is:
+<<<<<<< HEAD
     
                 1
              /  |  \ 
@@ -145,6 +153,17 @@ def main() -> None:
          / \\   |    / \\
         9  10  11  12  13
     
+=======
+
+            1
+         /  |  \
+        2   3   4
+       /   / \\  \\
+      5   6   7  8
+     / \\  |     / \\
+    9  10  11   12 13
+
+>>>>>>> 097e9c6149e80f095be1b3dbef1c04ff94a7325a
     The expected lowest common ancestors are:
       - LCA(1, 3)  --> 1
       - LCA(5, 6)  --> 1
@@ -154,7 +173,7 @@ def main() -> None:
       - LCA(8, 8)  --> 8
     
     To test main() without it printing to the console, we capture the output.
-    
+
     >>> import sys
     >>> from io import StringIO
     >>> backup = sys.stdout
