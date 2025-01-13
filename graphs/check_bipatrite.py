@@ -85,10 +85,10 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         return visited[node] == color
 
     for node, neighbours in graph.items():
-        if type(node) != type(int()):
+        if not isinstance(node, int):
             raise TypeError("Nodes must be integers")
         for neighbour in neighbours:
-            if type(neighbour) != type(int()):
+            if not isinstance(neighbour, int):
                 raise TypeError("Nodes must be integers")
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
     for node in graph:
