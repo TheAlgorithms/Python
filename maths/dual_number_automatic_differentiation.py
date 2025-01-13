@@ -19,7 +19,7 @@ class Dual:
     def __repr__(self):
         return (
             f"{self.real}+"
-            f"{'+'.join('{dual}E{n}'.format(dual, n) for n, dual in enumerate(self.duals, 1))}"
+            f"{'+'.join('{}E{}'.format(dual, n) for n, dual in enumerate(self.duals, 1))}"
         )
 
     def reduce(self):
