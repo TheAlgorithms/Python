@@ -7,6 +7,7 @@ from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
+
 def data_handling(data: dict) -> tuple:
     # Split dataset into features and target
     # data is features
@@ -19,6 +20,7 @@ def data_handling(data: dict) -> tuple:
     ('[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', [0, 0])
     """
     return (data["data"], data["target"])
+
 
 class XGBClassifier:
     """
@@ -38,14 +40,19 @@ class XGBClassifier:
         Maximum depth of the regression trees.
     random_state : int, default=0
         Random seed.
-    
-    **Important:**  
+
+    **Important:**
     Due to limitations of our custom DecisionTree (which only supports one-dimensional input),
     only the first feature (column 0) of the dataset is used when training each tree.
     """
 
-    def __init__(self, n_estimators: int = 100, learning_rate: float = 0.3,
-                 max_depth: int = 3, random_state: int = 0):
+    def __init__(
+        self,
+        n_estimators: int = 100,
+        learning_rate: float = 0.3,
+        max_depth: int = 3,
+        random_state: int = 0,
+    ):
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
         self.max_depth = max_depth
@@ -85,7 +92,9 @@ class XGBClassifier:
         for t in range(self.n_estimators):
             # Compute probabilities using softmax.
             exp_F = np.exp(F)
-            p = exp_F / np.sum(exp_F, axis=1, keepdims=True)  # shape: (n_samples, num_class)
+            p = exp_F / np.sum(
+                exp_F, axis=1, keepdims=True
+            )  # shape: (n_samples, num_class)
             trees_per_class = []
 
             for k in range(self.num_class):
@@ -145,6 +154,7 @@ class XGBClassifier:
         """
         proba = self.predict_proba(X)
         return np.argmax(proba, axis=1)
+
 
 def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
     """
