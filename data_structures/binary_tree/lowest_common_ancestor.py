@@ -24,7 +24,22 @@ def swap(a: int, b: int) -> tuple[int, int]:
 
 def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     """
-    creating sparse table which saves each nodes 2^i-th parent
+    Create a sparse table which saves each node's 2^i-th parent.
+
+    >>> max_node = 5
+    >>> parent = [
+    ...     [0, 0, 1, 1, 2, 2],  # 2^0-th parents
+    ...     [0, 0, 0, 0, 1, 1]   # 2^1-th parents
+    ... ]
+    >>> create_sparse(max_node, parent)
+    [[0, 0, 1, 1, 2, 2], [0, 0, 0, 0, 1, 1]]
+    >>> max_node = 3
+    >>> parent = [
+    ...     [0, 0, 1, 1],  # 2^0-th parents
+    ...     [0, 0, 0, 0]   # 2^1-th parents
+    ... ]
+    >>> create_sparse(max_node, parent)
+    [[0, 0, 1, 1], [0, 0, 0, 0]]
     """
     j = 1
     while (1 << j) < max_node:
@@ -38,6 +53,46 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
 def lowest_common_ancestor(
     u: int, v: int, level: list[int], parent: list[list[int]]
 ) -> int:
+    """
+    Return the lowest common ancestor of nodes u and v.
+
+    >>> max_node = 13
+    >>> parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
+    >>> level = [-1 for _ in range(max_node + 10)]
+    >>> graph = {
+    ...     1: [2, 3, 4],
+    ...     2: [5],
+    ...     3: [6, 7],
+    ...     4: [8],
+    ...     5: [9, 10],
+    ...     6: [11],
+    ...     7: [],
+    ...     8: [12, 13],
+    ...     9: [],
+    ...     10: [],
+    ...     11: [],
+    ...     12: [],
+    ...     13: [],
+    ... }
+    >>> level, parent = breadth_first_search(level, parent, max_node, graph, 1)
+    >>> parent = create_sparse(max_node, parent)
+    >>> lowest_common_ancestor(1, 3, level, parent)
+    1
+    >>> lowest_common_ancestor(5, 6, level, parent)
+    1
+    >>> lowest_common_ancestor(7, 11, level, parent)
+    1
+    >>> lowest_common_ancestor(6, 7, level, parent)
+    3
+    >>> lowest_common_ancestor(4, 12, level, parent)
+    4
+    >>> lowest_common_ancestor(8, 8, level, parent)
+    8
+    >>> lowest_common_ancestor(9, 10, level, parent)
+    5
+    >>> lowest_common_ancestor(12, 13, level, parent)
+    8
+    """
     # u must be deeper in the tree than v
     if level[u] < level[v]:
         u, v = swap(u, v)
@@ -65,9 +120,54 @@ def breadth_first_search(
     root: int = 1,
 ) -> tuple[list[int], list[list[int]]]:
     """
-    sets every nodes direct parent
-    parent of root node is set to 0
-    calculates depth of each node from root node
+    Perform a breadth-first search from the root node of the tree.
+    Sets every node's direct parent and calculates the depth of each node from the root.
+
+    >>> max_node = 5
+    >>> parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
+    >>> level = [-1 for _ in range(max_node + 10)]
+    >>> graph = {
+    ...     1: [2, 3],
+    ...     2: [4],
+    ...     3: [5],
+    ...     4: [],
+    ...     5: []
+    ... }
+    >>> level, parent = breadth_first_search(level, parent, max_node, graph, 1)
+    >>> level[:6]
+    [ -1, 0, 1, 1, 2, 2]
+    >>> parent[0][1] == 0
+    True
+    >>> parent[0][2] == 1
+    True
+    >>> parent[0][3] == 1
+    True
+    >>> parent[0][4] == 2
+    True
+    >>> parent[0][5] == 3
+    True
+
+    >>> # Test with disconnected graph
+    >>> max_node = 4
+    >>> parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
+    >>> level = [-1 for _ in range(max_node + 10)]
+    >>> graph = {
+    ...     1: [2],
+    ...     2: [],
+    ...     3: [4],
+    ...     4: []
+    ... }
+    >>> level, parent = breadth_first_search(level, parent, max_node, graph, 1)
+    >>> level[:5]
+    [ -1, 0, 1, -1, -1]
+    >>> parent[0][1] == 0
+    True
+    >>> parent[0][2] == 1
+    True
+    >>> parent[0][3] == 0
+    True
+    >>> parent[0][4] == 3
+    True
     """
     level[root] = 0
     q: Queue[int] = Queue(maxsize=max_node)
