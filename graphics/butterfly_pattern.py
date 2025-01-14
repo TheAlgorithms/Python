@@ -2,7 +2,7 @@ def butterfly_pattern(n: int) -> str:
     """
     Creates a butterfly pattern of size n and returns it as a string.
 
-    >>> butterfly_pattern(3)
+    >>> print(butterfly_pattern(3))
     *   *
     ** **
     *****
