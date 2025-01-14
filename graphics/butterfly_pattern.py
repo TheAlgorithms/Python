@@ -14,14 +14,14 @@ def butterfly_pattern(n: int) -> str:
     # Upper part
     for i in range(1, n + 1):
         left_stars = "*" * i
-        spaces = " " * (2 * (n - i + 2))
+        spaces = " " * (2 * (n - i))
         right_stars = "*" * i
         result.append(left_stars + spaces + right_stars)
 
     # Lower part
     for i in range(n - 1, 0, -1):
         left_stars = "*" * i
-        spaces = " " * (2 * (n - i + 2))
+        spaces = " " * (2 * (n - i))
         right_stars = "*" * i
         result.append(left_stars + spaces + right_stars)
 
