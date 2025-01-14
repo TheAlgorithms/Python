@@ -18,7 +18,7 @@ from __future__ import annotations
 import copy
 
 
-def longest_subsequence(array: list[int]) -> list[int]:  # This function is recursive
+def longest_subsequence(array: list[int]) -> list[int]:
     """
     Some examples
 
