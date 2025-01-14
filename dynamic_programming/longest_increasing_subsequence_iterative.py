@@ -43,7 +43,7 @@ def longest_subsequence(array: list[int]) -> list[int]:
 
     for i in range(1, n):
         for prev in range(i):
-            # If array[prev] is less than array[i], then
+            # If array[prev] is less than or equal to array[i], then
             # longest_increasing_subsequence[prev] + array[i]
             # is a valid increasing subsequence
 
