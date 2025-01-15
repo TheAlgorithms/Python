@@ -165,7 +165,7 @@ if __name__ == "__main__":
         print(f"Found {len(anime_list)} results: ")
         for i, anime in enumerate(anime_list):
             anime_title = anime["title"]
-            print(f"{i+1}. {anime_title}")
+            print(f"{i + 1}. {anime_title}")
 
         anime_choice = int(input("\nPlease choose from the following list: ").strip())
         chosen_anime = anime_list[anime_choice - 1]
@@ -177,7 +177,7 @@ if __name__ == "__main__":
         else:
             print(f"Found {len(episode_list)} results: ")
             for i, episode in enumerate(episode_list):
-                print(f"{i+1}. {episode['title']}")
+                print(f"{i + 1}. {episode['title']}")
 
             episode_choice = int(input("\nChoose an episode by serial no: ").strip())
             chosen_episode = episode_list[episode_choice - 1]

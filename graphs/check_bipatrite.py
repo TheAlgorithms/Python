@@ -6,16 +6,17 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     Check if a graph is bipartite using depth-first search (DFS).
 
     Args:
-        graph: Adjacency list representing the graph.
+        `graph`: Adjacency list representing the graph.
 
     Returns:
-        True if bipartite, False otherwise.
+        ``True`` if bipartite, ``False`` otherwise.
 
     Checks if the graph can be divided into two sets of vertices, such that no two
     vertices within the same set are connected by an edge.
 
     Examples:
-    # FIXME: This test should pass.
+
+    >>> # FIXME: This test should pass.
     >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
     Traceback (most recent call last):
         ...
@@ -37,7 +38,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    # FIXME: This test should fails with KeyError: 4.
+    >>> # FIXME: This test should fails with KeyError: 4.
     >>> is_bipartite_dfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
     False
     >>> is_bipartite_dfs({0: [-1, 3], 1: [0, -2]})
@@ -51,7 +52,8 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    # FIXME: This test should fails with TypeError: list indices must be integers or...
+    >>> # FIXME: This test should fails with
+    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_dfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
@@ -95,16 +97,17 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     Check if a graph is bipartite using a breadth-first search (BFS).
 
     Args:
-        graph: Adjacency list representing the graph.
+        `graph`: Adjacency list representing the graph.
 
     Returns:
-        True if bipartite, False otherwise.
+        ``True`` if bipartite, ``False`` otherwise.
 
     Check if the graph can be divided into two sets of vertices, such that no two
     vertices within the same set are connected by an edge.
 
     Examples:
-    # FIXME: This test should pass.
+
+    >>> # FIXME: This test should pass.
     >>> is_bipartite_bfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
     Traceback (most recent call last):
         ...
@@ -126,7 +129,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    # FIXME: This test should fails with KeyError: 4.
+    >>> # FIXME: This test should fails with KeyError: 4.
     >>> is_bipartite_bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
     False
     >>> is_bipartite_bfs({0: [-1, 3], 1: [0, -2]})
@@ -140,7 +143,8 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
         ...
     KeyError: 0
 
-    # FIXME: This test should fails with TypeError: list indices must be integers or...
+    >>> # FIXME: This test should fails with
+    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_bfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_bfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
