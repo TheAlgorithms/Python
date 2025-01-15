@@ -17,13 +17,15 @@ from collections.abc import Iterable
 
 class Clause:
     """
-    A clause represented in Conjunctive Normal Form.
-    A clause is a set of literals, either complemented or otherwise.
+    | A clause represented in Conjunctive Normal Form.
+    | A clause is a set of literals, either complemented or otherwise.
+
     For example:
-        {A1, A2, A3'} is the clause (A1 v A2 v A3')
-        {A5', A2', A1} is the clause (A5' v A2' v A1)
+        * {A1, A2, A3'} is the clause (A1 v A2 v A3')
+        * {A5', A2', A1} is the clause (A5' v A2' v A1)
 
     Create model
+
     >>> clause = Clause(["A1", "A2'", "A3"])
     >>> clause.evaluate({"A1": True})
     True
@@ -39,6 +41,7 @@ class Clause:
     def __str__(self) -> str:
         """
         To print a clause as in Conjunctive Normal Form.
+
         >>> str(Clause(["A1", "A2'", "A3"]))
         "{A1 , A2' , A3}"
         """
@@ -47,6 +50,7 @@ class Clause:
     def __len__(self) -> int:
         """
         To print a clause as in Conjunctive Normal Form.
+
         >>> len(Clause([]))
         0
         >>> len(Clause(["A1", "A2'", "A3"]))
@@ -72,11 +76,13 @@ class Clause:
     def evaluate(self, model: dict[str, bool | None]) -> bool | None:
         """
         Evaluates the clause with the assignments in model.
+
         This has the following steps:
-        1. Return True if both a literal and its complement exist in the clause.
-        2. Return True if a single literal has the assignment True.
-        3. Return None(unable to complete evaluation) if a literal has no assignment.
-        4. Compute disjunction of all values assigned in clause.
+          1. Return ``True`` if both a literal and its complement exist in the clause.
+          2. Return ``True`` if a single literal has the assignment ``True``.
+          3. Return ``None`` (unable to complete evaluation)
+             if a literal has no assignment.
+          4. Compute disjunction of all values assigned in clause.
         """
         for literal in self.literals:
             symbol = literal.rstrip("'") if literal.endswith("'") else literal + "'"
@@ -92,10 +98,10 @@ class Clause:
 
 class Formula:
     """
-    A formula represented in Conjunctive Normal Form.
-    A formula is a set of clauses.
-    For example,
-        {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
+    | A formula represented in Conjunctive Normal Form.
+    | A formula is a set of clauses.
+    | For example,
+    |   {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
     """
 
     def __init__(self, clauses: Iterable[Clause]) -> None:
@@ -107,7 +113,8 @@ class Formula:
     def __str__(self) -> str:
         """
         To print a formula as in Conjunctive Normal Form.
-        str(Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])]))
+
+        >>> str(Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])]))
         "{{A1 , A2' , A3} , {A5' , A2' , A1}}"
         """
         return "{" + " , ".join(str(clause) for clause in self.clauses) + "}"
@@ -115,8 +122,8 @@ class Formula:
 
 def generate_clause() -> Clause:
     """
-    Randomly generate a clause.
-    All literals have the name Ax, where x is an integer from 1 to 5.
+    | Randomly generate a clause.
+    | All literals have the name Ax, where x is an integer from ``1`` to ``5``.
     """
     literals = []
     no_of_literals = random.randint(1, 5)
@@ -149,11 +156,12 @@ def generate_formula() -> Formula:
 
 def generate_parameters(formula: Formula) -> tuple[list[Clause], list[str]]:
     """
-    Return the clauses and symbols from a formula.
-    A symbol is the uncomplemented form of a literal.
+    | Return the clauses and symbols from a formula.
+    | A symbol is the uncomplemented form of a literal.
+
     For example,
-        Symbol of A3 is A3.
-        Symbol of A5' is A5.
+      * Symbol of A3 is A3.
+      * Symbol of A5' is A5.
 
     >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
     >>> clauses, symbols = generate_parameters(formula)
@@ -177,21 +185,20 @@ def find_pure_symbols(
     clauses: list[Clause], symbols: list[str], model: dict[str, bool | None]
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
-    Return pure symbols and their values to satisfy clause.
-    Pure symbols are symbols in a formula that exist only
-    in one form, either complemented or otherwise.
-    For example,
-        { { A4 , A3 , A5' , A1 , A3' } , { A4 } , { A3 } } has
-        pure symbols A4, A5' and A1.
+    | Return pure symbols and their values to satisfy clause.
+    | Pure symbols are symbols in a formula that exist only in one form,
+    | either complemented or otherwise.
+    | For example,
+    |   {{A4 , A3 , A5' , A1 , A3'} , {A4} , {A3}} has pure symbols A4, A5' and A1.
+
     This has the following steps:
-    1. Ignore clauses that have already evaluated to be True.
-    2. Find symbols that occur only in one form in the rest of the clauses.
-    3. Assign value True or False depending on whether the symbols occurs
-    in normal or complemented form respectively.
+      1. Ignore clauses that have already evaluated to be ``True``.
+      2. Find symbols that occur only in one form in the rest of the clauses.
+      3. Assign value ``True`` or ``False`` depending on whether the symbols occurs
+         in normal or complemented form respectively.
 
     >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
     >>> clauses, symbols = generate_parameters(formula)
-
     >>> pure_symbols, values = find_pure_symbols(clauses, symbols, {})
     >>> pure_symbols
     ['A1', 'A2', 'A3', 'A5']
@@ -231,20 +238,21 @@ def find_unit_clauses(
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
     Returns the unit symbols and their values to satisfy clause.
+
     Unit symbols are symbols in a formula that are:
-    - Either the only symbol in a clause
-    - Or all other literals in that clause have been assigned False
+      - Either the only symbol in a clause
+      - Or all other literals in that clause have been assigned ``False``
+
     This has the following steps:
-    1. Find symbols that are the only occurrences in a clause.
-    2. Find symbols in a clause where all other literals are assigned False.
-    3. Assign True or False depending on whether the symbols occurs in
-    normal or complemented form respectively.
+      1. Find symbols that are the only occurrences in a clause.
+      2. Find symbols in a clause where all other literals are assigned ``False``.
+      3. Assign ``True`` or ``False`` depending on whether the symbols occurs in
+         normal or complemented form respectively.
 
     >>> clause1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
     >>> clause2 = Clause(["A4"])
     >>> clause3 = Clause(["A3"])
     >>> clauses, symbols = generate_parameters(Formula([clause1, clause2, clause3]))
-
     >>> unit_clauses, values = find_unit_clauses(clauses, {})
     >>> unit_clauses
     ['A4', 'A3']
@@ -278,16 +286,16 @@ def dpll_algorithm(
     clauses: list[Clause], symbols: list[str], model: dict[str, bool | None]
 ) -> tuple[bool | None, dict[str, bool | None] | None]:
     """
-    Returns the model if the formula is satisfiable, else None
+    Returns the model if the formula is satisfiable, else ``None``
+
     This has the following steps:
-    1. If every clause in clauses is True, return True.
-    2. If some clause in clauses is False, return False.
-    3. Find pure symbols.
-    4. Find unit symbols.
+      1. If every clause in clauses is ``True``, return ``True``.
+      2. If some clause in clauses is ``False``, return ``False``.
+      3. Find pure symbols.
+      4. Find unit symbols.
 
     >>> formula = Formula([Clause(["A4", "A3", "A5'", "A1", "A3'"]), Clause(["A4"])])
     >>> clauses, symbols = generate_parameters(formula)
-
     >>> soln, model = dpll_algorithm(clauses, symbols, {})
     >>> soln
     True

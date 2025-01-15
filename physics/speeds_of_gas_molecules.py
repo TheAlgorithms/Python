@@ -4,43 +4,43 @@ derived from the Maxwell-Boltzmann distribution. The Maxwell-Boltzmann
 distribution is a probability distribution that describes the distribution of
 speeds of particles in an ideal gas.
 
-The distribution is given by the following equation:
+The distribution is given by the following equation::
 
         -------------------------------------------------
         | f(v) = (M/2πRT)^(3/2) * 4πv^2 * e^(-Mv^2/2RT) |
         -------------------------------------------------
 
 where:
-    f(v) is the fraction of molecules with a speed v
-    M is the molar mass of the gas in kg/mol
-    R is the gas constant
-    T is the absolute temperature
+    * ``f(v)`` is the fraction of molecules with a speed ``v``
+    * ``M`` is the molar mass of the gas in kg/mol
+    * ``R`` is the gas constant
+    * ``T`` is the absolute temperature
 
 More information about the Maxwell-Boltzmann distribution can be found here:
 https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution
 
 The average speed can be calculated by integrating the Maxwell-Boltzmann distribution
-from 0 to infinity and dividing by the total number of molecules. The result is:
+from 0 to infinity and dividing by the total number of molecules. The result is::
 
-        ---------------------
-        | vavg = √(8RT/πM)  |
-        ---------------------
+        ----------------------
+        | v_avg = √(8RT/πM)  |
+        ----------------------
 
 The most probable speed is the speed at which the Maxwell-Boltzmann distribution
 is at its maximum. This can be found by differentiating the Maxwell-Boltzmann
-distribution with respect to v and setting the result equal to zero. The result is:
+distribution with respect to ``v`` and setting the result equal to zero. The result is::
 
-        ---------------------
-        | vmp = √(2RT/M)    |
-        ---------------------
+        ----------------------
+        | v_mp = √(2RT/M)    |
+        ----------------------
 
 The root-mean-square speed is another measure of the average speed
 of the molecules in a gas. It is calculated by taking the square root
-of the average of the squares of the speeds of the molecules. The result is:
+of the average of the squares of the speeds of the molecules. The result is::
 
-        ---------------------
-        | vrms = √(3RT/M)   |
-        ---------------------
+        ----------------------
+        | v_rms = √(3RT/M)   |
+        ----------------------
 
 Here we have defined functions to calculate the average and
 most probable speeds of molecules in a gas given the
@@ -57,6 +57,7 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     and returns the average speed of a molecule in the gas (in m/s).
 
     Examples:
+
     >>> avg_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     454.3488755020387
     >>> avg_speed_of_molecule(300, 0.032) # oxygen at 300 K
@@ -84,6 +85,7 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     and returns the most probable speed of a molecule in the gas (in m/s).
 
     Examples:
+
     >>> mps_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     402.65620701908966
     >>> mps_speed_of_molecule(300, 0.032) # oxygen at 300 K

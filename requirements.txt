@@ -1,5 +1,5 @@
 beautifulsoup4
-fake_useragent
+fake-useragent
 imageio
 keras
 lxml
@@ -8,18 +8,12 @@ numpy
 opencv-python
 pandas
 pillow
-# projectq  # uncomment once quantum/quantum_random.py is fixed
-qiskit ; python_version < '3.12'
-qiskit-aer ; python_version < '3.12'
 requests
 rich
-# scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn
-sphinx_pyproject
+sphinx-pyproject
 statsmodels
 sympy
-tensorflow ; python_version < '3.13'
 tweepy
-# yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
 xgboost
