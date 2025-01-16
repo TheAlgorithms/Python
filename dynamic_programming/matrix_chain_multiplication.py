@@ -134,7 +134,7 @@ def elapsed_time(msg: str) -> Iterator:
 
     start = perf_counter_ns()
     yield
-    print(f"Finished: {msg} in {(perf_counter_ns() - start) / 10 ** 9} seconds.")
+    print(f"Finished: {msg} in {(perf_counter_ns() - start) / 10**9} seconds.")
 
 
 if __name__ == "__main__":

@@ -24,8 +24,10 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     [10, 22, 33, 41, 60, 80]
     >>> longest_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
     [1, 2, 3, 9]
+    >>> longest_subsequence([28, 26, 12, 23, 35, 39])
+    [12, 23, 35, 39]
     >>> longest_subsequence([9, 8, 7, 6, 5, 7])
-    [8]
+    [5, 7]
     >>> longest_subsequence([1, 1, 1])
     [1, 1, 1]
     >>> longest_subsequence([])
@@ -44,7 +46,7 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     while not is_found and i < array_length:
         if array[i] < pivot:
             is_found = True
-            temp_array = [element for element in array[i:] if element >= array[i]]
+            temp_array = array[i:]
             temp_array = longest_subsequence(temp_array)
             if len(temp_array) > len(longest_subseq):
                 longest_subseq = temp_array
