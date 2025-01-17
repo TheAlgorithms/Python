@@ -22,7 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-# https://gist.github.com/harigro/28df9ec639f74f217473f85065acf9d8
+"""
+Reference: https://gist.github.com/harigro/28df9ec639f74f217473f85065acf9d8
+"""
 
 
 def divide_array_to_graph(arr: list[int], base: int) -> dict[int, list[int]]:
