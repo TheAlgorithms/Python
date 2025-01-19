@@ -377,6 +377,7 @@
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
   * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
+  * [Longest Increasing Subsequence Iterative](dynamic_programming/longest_increasing_subsequence_iterative.py)
   * [Longest Increasing Subsequence O Nlogn](dynamic_programming/longest_increasing_subsequence_o_nlogn.py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
@@ -462,6 +463,7 @@
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
+  * [Butterfly Pattern](graphics/butterfly_pattern.py)
   * [Digital Differential Analyzer Line](graphics/digital_differential_analyzer_line.py)
   * [Vector3 For 2D Rendering](graphics/vector3_for_2d_rendering.py)
 
