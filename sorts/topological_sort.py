@@ -14,10 +14,12 @@ edges: dict[str, list[str]] = {
 }
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
+
 class Topo:
     def topo_sort(self):
         visited = set()
         stack = []
+
         def dfs(node):
             visited.add(node)
 
@@ -26,9 +28,9 @@ class Topo:
                     dfs(neighbor)
 
             stack.append(node)
-            
+
             return stack
-        
+
         result = dfs("a")
         return result[::-1]
 
