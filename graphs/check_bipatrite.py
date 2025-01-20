@@ -50,20 +50,19 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     >>> is_bipartite_dfs({0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
     Traceback (most recent call last):
         ...
-    KeyError: 0
-
-    >>> # FIXME: This test should fails with
-    >>> # TypeError: list indices must be integers or...
+    TypeError: Nodes must be integers
     >>> is_bipartite_dfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
-    True
+    Traceback (most recent call last):
+        ...
+    TypeError: Nodes must be integers
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
     Traceback (most recent call last):
         ...
-    KeyError: 1
+    TypeError: Nodes must be integers
     >>> is_bipartite_dfs({0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]})
     Traceback (most recent call last):
         ...
-    KeyError: 'b'
+    TypeError: Nodes must be integers
     """
 
     def depth_first_search(node: int, color: int) -> bool:
@@ -85,6 +84,12 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
                     return False
         return visited[node] == color
 
+    for node, neighbours in graph.items():
+        if not isinstance(node, int):
+            raise TypeError("Nodes must be integers")
+        for neighbour in neighbours:
+            if not isinstance(neighbour, int):
+                raise TypeError("Nodes must be integers")
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
     for node in graph:
         if visited[node] == -1 and not depth_first_search(node, 0):
@@ -173,7 +178,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     return True
 
 
-if __name__ == "__main":
+if __name__ == "__main__":
     import doctest
 
     result = doctest.testmod()
