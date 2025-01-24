@@ -34,9 +34,8 @@ def divide_array_to_graph(arr: list[int], base: int) -> dict[int, list[int]]:
     >>> divide_array_to_graph(arr=[1, 2, 3, 4, 5, 6, 7, 8], base=3)
     {0: [1, 2, 3, 4], 1: [5, 6, 7, 8]}
     """
-    length = len(arr)
     parts = len(arr) // base  # Desired number of parts
-    part_size = length // parts  # Size of each part
+    part_size = len(arr) // parts  # Size of each part
 
     # Divide the array into smaller parts
     result = [arr[i * part_size : (i + 1) * part_size] for i in range(parts)]
@@ -50,7 +49,7 @@ def divide_array_to_graph(arr: list[int], base: int) -> dict[int, list[int]]:
 if __name__ == "__main__":
     # Example usage
     array = [1, 2, 3, 4, 5, 6, 7, 8]
-    print(divide_array_to_graph(array, 2))
+    print(divide_array_to_graph(array, 3))
 
     import doctest
 
