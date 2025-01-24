@@ -1,4 +1,5 @@
-""" A Stack using a linked list like structure """
+"""A Stack using a linked list like structure"""
+
 from __future__ import annotations
 
 from collections.abc import Iterator
@@ -109,7 +110,7 @@ class LinkedStack(Generic[T]):
         >>> stack = LinkedStack()
         >>> stack.pop()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: pop from empty stack
         >>> stack.push("c")
         >>> stack.push("b")

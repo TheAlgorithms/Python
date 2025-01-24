@@ -58,7 +58,7 @@ class FixedPriorityQueue:
     4
     >>> fpq.dequeue()
     Traceback (most recent call last):
-    ...
+        ...
     data_structures.queue.priority_queue_using_list.UnderFlowError: All queues are empty
     >>> print(fpq)
     Priority 0: []

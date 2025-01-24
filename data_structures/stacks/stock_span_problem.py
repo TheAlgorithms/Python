@@ -8,19 +8,17 @@ on the current day is less than or equal to its price on the given day.
 """
 
 
-def calculateSpan(price, S):
-
+def calculation_span(price, s):
     n = len(price)
     # Create a stack and push index of fist element to it
     st = []
     st.append(0)
 
     # Span value of first element is always 1
-    S[0] = 1
+    s[0] = 1
 
     # Calculate span values for rest of the elements
     for i in range(1, n):
-
         # Pop elements from stack while stack is not
         # empty and top of stack is smaller than price[i]
         while len(st) > 0 and price[st[0]] <= price[i]:
@@ -30,15 +28,15 @@ def calculateSpan(price, S):
         # than all elements on left of it, i.e. price[0],
         # price[1], ..price[i-1]. Else the price[i]  is
         # greater than elements after top of stack
-        S[i] = i + 1 if len(st) <= 0 else (i - st[0])
+        s[i] = i + 1 if len(st) <= 0 else (i - st[0])
 
         # Push this element to stack
         st.append(i)
 
 
 # A utility function to print elements of array
-def printArray(arr, n):
-    for i in range(0, n):
+def print_array(arr, n):
+    for i in range(n):
         print(arr[i], end=" ")
 
 
@@ -47,7 +45,7 @@ price = [10, 4, 5, 90, 120, 80]
 S = [0 for i in range(len(price) + 1)]
 
 # Fill the span values in array S[]
-calculateSpan(price, S)
+calculation_span(price, S)
 
 # Print the calculated span values
-printArray(S, len(price))
+print_array(S, len(price))

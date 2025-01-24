@@ -1,107 +1,195 @@
 """
-README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
-Requirements:
-  - scikit-fuzzy
-  - numpy
-  - matplotlib
-Python:
-  - 3.5
+By @Shreya123714
+
+https://en.wikipedia.org/wiki/Fuzzy_set
 """
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import matplotlib.pyplot as plt
 import numpy as np
 
-try:
-    import skfuzzy as fuzz
-except ImportError:
-    fuzz = None
+
+@dataclass
+class FuzzySet:
+    """
+    A class for representing and manipulating triangular fuzzy sets.
+    Attributes:
+        name: The name or label of the fuzzy set.
+        left_boundary: The left boundary of the fuzzy set.
+        peak: The peak (central) value of the fuzzy set.
+        right_boundary: The right boundary of the fuzzy set.
+    Methods:
+        membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
+        union(other): Calculate the union of this fuzzy set with another fuzzy set.
+        intersection(other): Calculate the intersection of this fuzzy set with another.
+        complement(): Calculate the complement (negation) of this fuzzy set.
+        plot(): Plot the membership function of the fuzzy set.
+
+    >>> sheru = FuzzySet("Sheru", 0.4, 1, 0.6)
+    >>> sheru
+    FuzzySet(name='Sheru', left_boundary=0.4, peak=1, right_boundary=0.6)
+    >>> str(sheru)
+    'Sheru: [0.4, 1, 0.6]'
+
+    >>> siya = FuzzySet("Siya", 0.5, 1, 0.7)
+    >>> siya
+    FuzzySet(name='Siya', left_boundary=0.5, peak=1, right_boundary=0.7)
+
+    # Complement Operation
+    >>> sheru.complement()
+    FuzzySet(name='¬Sheru', left_boundary=0.4, peak=0.6, right_boundary=0)
+    >>> siya.complement()  # doctest: +NORMALIZE_WHITESPACE
+    FuzzySet(name='¬Siya', left_boundary=0.30000000000000004, peak=0.5,
+     right_boundary=0)
+
+    # Intersection Operation
+    >>> siya.intersection(sheru)
+    FuzzySet(name='Siya ∩ Sheru', left_boundary=0.5, peak=0.6, right_boundary=1.0)
+
+    # Membership Operation
+    >>> sheru.membership(0.5)
+    0.16666666666666663
+    >>> sheru.membership(0.6)
+    0.0
+
+    # Union Operations
+    >>> siya.union(sheru)
+    FuzzySet(name='Siya U Sheru', left_boundary=0.4, peak=0.7, right_boundary=1.0)
+    """
+
+    name: str
+    left_boundary: float
+    peak: float
+    right_boundary: float
+
+    def __str__(self) -> str:
+        """
+        >>> FuzzySet("fuzzy_set", 0.1, 0.2, 0.3)
+        FuzzySet(name='fuzzy_set', left_boundary=0.1, peak=0.2, right_boundary=0.3)
+        """
+        return (
+            f"{self.name}: [{self.left_boundary}, {self.peak}, {self.right_boundary}]"
+        )
+
+    def complement(self) -> FuzzySet:
+        """
+        Calculate the complement (negation) of this fuzzy set.
+        Returns:
+            FuzzySet: A new fuzzy set representing the complement.
+
+        >>> FuzzySet("fuzzy_set", 0.1, 0.2, 0.3).complement()
+        FuzzySet(name='¬fuzzy_set', left_boundary=0.7, peak=0.9, right_boundary=0.8)
+        """
+        return FuzzySet(
+            f"¬{self.name}",
+            1 - self.right_boundary,
+            1 - self.left_boundary,
+            1 - self.peak,
+        )
+
+    def intersection(self, other) -> FuzzySet:
+        """
+        Calculate the intersection of this fuzzy set
+        with another fuzzy set.
+        Args:
+            other: Another fuzzy set to intersect with.
+        Returns:
+            A new fuzzy set representing the intersection.
+
+        >>> FuzzySet("a", 0.1, 0.2, 0.3).intersection(FuzzySet("b", 0.4, 0.5, 0.6))
+        FuzzySet(name='a ∩ b', left_boundary=0.4, peak=0.3, right_boundary=0.35)
+        """
+        return FuzzySet(
+            f"{self.name} ∩ {other.name}",
+            max(self.left_boundary, other.left_boundary),
+            min(self.right_boundary, other.right_boundary),
+            (self.peak + other.peak) / 2,
+        )
+
+    def membership(self, x: float) -> float:
+        """
+        Calculate the membership value of an input 'x' in the fuzzy set.
+        Returns:
+            The membership value of 'x' in the fuzzy set.
+
+        >>> a = FuzzySet("a", 0.1, 0.2, 0.3)
+        >>> a.membership(0.09)
+        0.0
+        >>> a.membership(0.1)
+        0.0
+        >>> a.membership(0.11)
+        0.09999999999999995
+        >>> a.membership(0.4)
+        0.0
+        >>> FuzzySet("A", 0, 0.5, 1).membership(0.1)
+        0.2
+        >>> FuzzySet("B", 0.2, 0.7, 1).membership(0.6)
+        0.8
+        """
+        if x <= self.left_boundary or x >= self.right_boundary:
+            return 0.0
+        elif self.left_boundary < x <= self.peak:
+            return (x - self.left_boundary) / (self.peak - self.left_boundary)
+        elif self.peak < x < self.right_boundary:
+            return (self.right_boundary - x) / (self.right_boundary - self.peak)
+        msg = f"Invalid value {x} for fuzzy set {self}"
+        raise ValueError(msg)
+
+    def union(self, other) -> FuzzySet:
+        """
+        Calculate the union of this fuzzy set with another fuzzy set.
+        Args:
+            other (FuzzySet): Another fuzzy set to union with.
+        Returns:
+            FuzzySet: A new fuzzy set representing the union.
+
+        >>> FuzzySet("a", 0.1, 0.2, 0.3).union(FuzzySet("b", 0.4, 0.5, 0.6))
+        FuzzySet(name='a U b', left_boundary=0.1, peak=0.6, right_boundary=0.35)
+        """
+        return FuzzySet(
+            f"{self.name} U {other.name}",
+            min(self.left_boundary, other.left_boundary),
+            max(self.right_boundary, other.right_boundary),
+            (self.peak + other.peak) / 2,
+        )
+
+    def plot(self):
+        """
+        Plot the membership function of the fuzzy set.
+        """
+        x = np.linspace(0, 1, 1000)
+        y = [self.membership(xi) for xi in x]
+
+        plt.plot(x, y, label=self.name)
+
 
 if __name__ == "__main__":
-    # Create universe of discourse in Python using linspace ()
-    X = np.linspace(start=0, stop=75, num=75, endpoint=True, retstep=False)
+    from doctest import testmod
 
-    # Create two fuzzy sets by defining any membership function
-    # (trapmf(), gbellmf(), gaussmf(), etc).
-    abc1 = [0, 25, 50]
-    abc2 = [25, 50, 75]
-    young = fuzz.membership.trimf(X, abc1)
-    middle_aged = fuzz.membership.trimf(X, abc2)
+    testmod()
+    a = FuzzySet("A", 0, 0.5, 1)
+    b = FuzzySet("B", 0.2, 0.7, 1)
 
-    # Compute the different operations using inbuilt functions.
-    one = np.ones(75)
-    zero = np.zeros((75,))
-    # 1. Union = max(µA(x), µB(x))
-    union = fuzz.fuzzy_or(X, young, X, middle_aged)[1]
-    # 2. Intersection = min(µA(x), µB(x))
-    intersection = fuzz.fuzzy_and(X, young, X, middle_aged)[1]
-    # 3. Complement (A) = (1- min(µA(x))
-    complement_a = fuzz.fuzzy_not(young)
-    # 4. Difference (A/B) = min(µA(x),(1- µB(x)))
-    difference = fuzz.fuzzy_and(X, young, X, fuzz.fuzzy_not(middle_aged)[1])[1]
-    # 5. Algebraic Sum = [µA(x) + µB(x) – (µA(x) * µB(x))]
-    alg_sum = young + middle_aged - (young * middle_aged)
-    # 6. Algebraic Product = (µA(x) * µB(x))
-    alg_product = young * middle_aged
-    # 7. Bounded Sum = min[1,(µA(x), µB(x))]
-    bdd_sum = fuzz.fuzzy_and(X, one, X, young + middle_aged)[1]
-    # 8. Bounded difference = min[0,(µA(x), µB(x))]
-    bdd_difference = fuzz.fuzzy_or(X, zero, X, young - middle_aged)[1]
+    a.plot()
+    b.plot()
 
-    # max-min composition
-    # max-product composition
+    plt.xlabel("x")
+    plt.ylabel("Membership")
+    plt.legend()
+    plt.show()
 
-    # Plot each set A, set B and each operation result using plot() and subplot().
-    from matplotlib import pyplot as plt
+    union_ab = a.union(b)
+    intersection_ab = a.intersection(b)
+    complement_a = a.complement()
 
-    plt.figure()
+    union_ab.plot()
+    intersection_ab.plot()
+    complement_a.plot()
 
-    plt.subplot(4, 3, 1)
-    plt.plot(X, young)
-    plt.title("Young")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 2)
-    plt.plot(X, middle_aged)
-    plt.title("Middle aged")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 3)
-    plt.plot(X, union)
-    plt.title("union")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 4)
-    plt.plot(X, intersection)
-    plt.title("intersection")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 5)
-    plt.plot(X, complement_a)
-    plt.title("complement_a")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 6)
-    plt.plot(X, difference)
-    plt.title("difference a/b")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 7)
-    plt.plot(X, alg_sum)
-    plt.title("alg_sum")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 8)
-    plt.plot(X, alg_product)
-    plt.title("alg_product")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 9)
-    plt.plot(X, bdd_sum)
-    plt.title("bdd_sum")
-    plt.grid(True)
-
-    plt.subplot(4, 3, 10)
-    plt.plot(X, bdd_difference)
-    plt.title("bdd_difference")
-    plt.grid(True)
-
-    plt.subplots_adjust(hspace=0.5)
+    plt.xlabel("x")
+    plt.ylabel("Membership")
+    plt.legend()
     plt.show()

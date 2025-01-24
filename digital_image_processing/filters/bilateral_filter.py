@@ -9,6 +9,7 @@ Inputs:
 Output:
     img:A 2d zero padded image with values in between 0 and 1
 """
+
 import math
 import sys
 
@@ -31,8 +32,8 @@ def get_slice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
 def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
     # Creates a gaussian kernel of given dimension.
     arr = np.zeros((kernel_size, kernel_size))
-    for i in range(0, kernel_size):
-        for j in range(0, kernel_size):
+    for i in range(kernel_size):
+        for j in range(kernel_size):
             arr[i, j] = math.sqrt(
                 abs(i - kernel_size // 2) ** 2 + abs(j - kernel_size // 2) ** 2
             )
@@ -46,16 +47,15 @@ def bilateral_filter(
     kernel_size: int,
 ) -> np.ndarray:
     img2 = np.zeros(img.shape)
-    gaussKer = get_gauss_kernel(kernel_size, spatial_variance)
-    sizeX, sizeY = img.shape
-    for i in range(kernel_size // 2, sizeX - kernel_size // 2):
-        for j in range(kernel_size // 2, sizeY - kernel_size // 2):
-
-            imgS = get_slice(img, i, j, kernel_size)
-            imgI = imgS - imgS[kernel_size // 2, kernel_size // 2]
-            imgIG = vec_gaussian(imgI, intensity_variance)
-            weights = np.multiply(gaussKer, imgIG)
-            vals = np.multiply(imgS, weights)
+    gauss_ker = get_gauss_kernel(kernel_size, spatial_variance)
+    size_x, size_y = img.shape
+    for i in range(kernel_size // 2, size_x - kernel_size // 2):
+        for j in range(kernel_size // 2, size_y - kernel_size // 2):
+            img_s = get_slice(img, i, j, kernel_size)
+            img_i = img_s - img_s[kernel_size // 2, kernel_size // 2]
+            img_ig = vec_gaussian(img_i, intensity_variance)
+            weights = np.multiply(gauss_ker, img_ig)
+            vals = np.multiply(img_s, weights)
             val = np.sum(vals) / np.sum(weights)
             img2[i, j] = val
     return img2

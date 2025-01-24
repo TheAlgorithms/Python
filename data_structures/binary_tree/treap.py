@@ -39,26 +39,23 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     Left tree contains all values less than split value.
     Right tree contains all values greater or equal, than split value
     """
-    if root is None:  # None tree is split into 2 Nones
+    if root is None or root.value is None:  # None tree is split into 2 Nones
         return None, None
-    elif root.value is None:
-        return None, None
+    elif value < root.value:
+        """
+        Right tree's root will be current node.
+        Now we split(with the same value) current node's left son
+        Left tree: left part of that split
+        Right tree's left son: right part of that split
+        """
+        left, root.left = split(root.left, value)
+        return left, root
     else:
-        if value < root.value:
-            """
-            Right tree's root will be current node.
-            Now we split(with the same value) current node's left son
-            Left tree: left part of that split
-            Right tree's left son: right part of that split
-            """
-            left, root.left = split(root.left, value)
-            return left, root
-        else:
-            """
-            Just symmetric to previous case
-            """
-            root.right, right = split(root.right, value)
-            return root, right
+        """
+        Just symmetric to previous case
+        """
+        root.right, right = split(root.right, value)
+        return root, right
 
 
 def merge(left: Node | None, right: Node | None) -> Node | None:
@@ -121,28 +118,28 @@ def inorder(root: Node | None) -> None:
         inorder(root.right)
 
 
-def interactTreap(root: Node | None, args: str) -> Node | None:
+def interact_treap(root: Node | None, args: str) -> Node | None:
     """
     Commands:
     + value to add value into treap
     - value to erase all nodes with value
 
-        >>> root = interactTreap(None, "+1")
+        >>> root = interact_treap(None, "+1")
         >>> inorder(root)
         1,
-        >>> root = interactTreap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
+        >>> root = interact_treap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
         >>> inorder(root)
         0,1,2,3,4,5,16,17,19,
-        >>> root = interactTreap(root, "+4 +4 +4")
+        >>> root = interact_treap(root, "+4 +4 +4")
         >>> inorder(root)
         0,1,2,3,4,4,4,4,5,16,17,19,
-        >>> root = interactTreap(root, "-0")
+        >>> root = interact_treap(root, "-0")
         >>> inorder(root)
         1,2,3,4,4,4,4,5,16,17,19,
-        >>> root = interactTreap(root, "-4")
+        >>> root = interact_treap(root, "-4")
         >>> inorder(root)
         1,2,3,5,16,17,19,
-        >>> root = interactTreap(root, "=0")
+        >>> root = interact_treap(root, "=0")
         Unknown command
     """
     for arg in args.split():
@@ -168,7 +165,7 @@ def main() -> None:
 
     args = input()
     while args != "q":
-        root = interactTreap(root, args)
+        root = interact_treap(root, args)
         print(root)
         args = input()
 

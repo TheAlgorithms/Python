@@ -71,7 +71,7 @@ def sum_digits(num: int) -> int:
     return digit_sum
 
 
-def solution(max: int = 100) -> int:
+def solution(max_n: int = 100) -> int:
     """
     Returns the sum of the digits in the numerator of the max-th convergent of
     the continued fraction for e.
@@ -86,7 +86,7 @@ def solution(max: int = 100) -> int:
     pre_numerator = 1
     cur_numerator = 2
 
-    for i in range(2, max + 1):
+    for i in range(2, max_n + 1):
         temp = pre_numerator
         e_cont = 2 * i // 3 if i % 3 == 0 else 1
         pre_numerator = cur_numerator

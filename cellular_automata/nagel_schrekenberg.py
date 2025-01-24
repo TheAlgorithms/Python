@@ -24,6 +24,7 @@ Examples for doctest:
 >>> simulate(construct_highway(5, 2, -2), 3, 0, 2)
 [[0, -1, 0, -1, 0], [0, -1, 0, -1, -1], [0, -1, -1, 1, -1], [-1, 1, -1, 0, -1]]
 """
+
 from random import randint, random
 
 
@@ -45,8 +46,7 @@ def construct_highway(
 
     highway = [[-1] * number_of_cells]  # Create a highway without any car
     i = 0
-    if initial_speed < 0:
-        initial_speed = 0
+    initial_speed = max(initial_speed, 0)
     while i < number_of_cells:
         highway[0][i] = (
             randint(0, max_speed) if random_speed else initial_speed

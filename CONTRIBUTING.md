@@ -2,20 +2,20 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before submitting your pull requests, please ensure that you __read the whole guidelines__. If you have any doubts about the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community on [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
 ### Contributor
 
-We are very happy that you consider implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
+We are delighted that you are considering implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. By being one of our contributors, you agree and confirm that:
 
-- You did your work - no plagiarism allowed
+- You did your work - no plagiarism allowed.
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- Your submitted work fulfils or mostly fulfils our styles and standards
+- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged.
+- Your submitted work fulfills or mostly fulfills our styles and standards.
 
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity, but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
 __Improving comments__ and __writing proper tests__ are also highly welcome.
 
@@ -23,9 +23,20 @@ __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, then click on the ___details___ button to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
-Please help us keep our issue list small by adding fixes: #{$ISSUE_NO} to the commit message of pull requests that resolve open issues. GitHub will use this tag to auto-close the issue when the PR is merged.
+#### Issues
+
+If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__ so please do not ask for permission to work on an issue.
+
+__Do not__ create an issue to contribute an algorithm. Please submit a pull request instead.
+
+Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
+For example, if your pull request fixes issue #10, then please add the following to its description:
+```
+Fixes #10
+```
+GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if and when the PR is merged.
 
 #### What is an Algorithm?
 
@@ -47,7 +58,7 @@ Algorithms should:
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
 
-Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
 
 #### Pre-commit plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
@@ -66,7 +77,7 @@ pre-commit run --all-files --show-diff-on-failure
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.9+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
+- Please write in Python 3.13+. For instance: `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
 - Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
@@ -81,11 +92,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  python3 -m pip install flake8  # only required the first time
-  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
+  python3 -m pip install ruff  # only required the first time
+  ruff check
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -134,7 +145,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m doctest -v my_submission.py
   ```
 
-  The use of the Python builtin `input()` function is __not__ encouraged:
+  The use of the Python built-in `input()` function is __not__ encouraged:
 
   ```python
   input('Enter your input:')
@@ -176,7 +187,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ [Gitter](https://gitter.im/TheAlgorithms) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.

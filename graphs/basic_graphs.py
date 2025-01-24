@@ -76,20 +76,28 @@ if __name__ == "__main__":
 """
 
 
-def dfs(G, s):
-    vis, S = {s}, [s]
+def dfs(g, s):
+    """
+    >>> dfs({1: [2, 3], 2: [4, 5], 3: [], 4: [], 5: []}, 1)
+    1
+    2
+    4
+    5
+    3
+    """
+    vis, _s = {s}, [s]
     print(s)
-    while S:
+    while _s:
         flag = 0
-        for i in G[S[-1]]:
+        for i in g[_s[-1]]:
             if i not in vis:
-                S.append(i)
+                _s.append(i)
                 vis.add(i)
                 flag = 1
                 print(i)
                 break
         if not flag:
-            S.pop()
+            _s.pop()
 
 
 """
@@ -103,15 +111,26 @@ def dfs(G, s):
 """
 
 
-def bfs(G, s):
-    vis, Q = {s}, deque([s])
+def bfs(g, s):
+    """
+    >>> bfs({1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [], 5: [8], 6: [], 7: [], 8: []}, 1)
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    """
+    vis, q = {s}, deque([s])
     print(s)
-    while Q:
-        u = Q.popleft()
-        for v in G[u]:
+    while q:
+        u = q.popleft()
+        for v in g[u]:
             if v not in vis:
                 vis.add(v)
-                Q.append(v)
+                q.append(v)
                 print(v)
 
 
@@ -127,25 +146,37 @@ def bfs(G, s):
 """
 
 
-def dijk(G, s):
+def dijk(g, s):
+    """
+    dijk({1: [(2, 7), (3, 9), (6, 14)],
+        2: [(1, 7), (3, 10), (4, 15)],
+        3: [(1, 9), (2, 10), (4, 11), (6, 2)],
+        4: [(2, 15), (3, 11), (5, 6)],
+        5: [(4, 6), (6, 9)],
+        6: [(1, 14), (3, 2), (5, 9)]}, 1)
+    7
+    9
+    11
+    20
+    20
+    """
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
-        for i in dist:
-            if i not in known and dist[i] < mini:
-                mini = dist[i]
-                u = i
+        for key, value in dist:
+            if key not in known and value < mini:
+                mini = value
+                u = key
         known.add(u)
-        for v in G[u]:
-            if v[0] not in known:
-                if dist[u] + v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = dist[u] + v[1]
-                    path[v[0]] = u
-    for i in dist:
-        if i != s:
-            print(dist[i])
+        for v in g[u]:
+            if v[0] not in known and dist[u] + v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = dist[u] + v[1]
+                path[v[0]] = u
+    for key, value in dist.items():
+        if key != s:
+            print(value)
 
 
 """
@@ -155,27 +186,27 @@ def dijk(G, s):
 """
 
 
-def topo(G, ind=None, Q=None):
-    if Q is None:
-        Q = [1]
+def topo(g, ind=None, q=None):
+    if q is None:
+        q = [1]
     if ind is None:
-        ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
-        for u in G:
-            for v in G[u]:
+        ind = [0] * (len(g) + 1)  # SInce oth Index is ignored
+        for u in g:
+            for v in g[u]:
                 ind[v] += 1
-        Q = deque()
-        for i in G:
+        q = deque()
+        for i in g:
             if ind[i] == 0:
-                Q.append(i)
-    if len(Q) == 0:
+                q.append(i)
+    if len(q) == 0:
         return
-    v = Q.popleft()
+    v = q.popleft()
     print(v)
-    for w in G[v]:
+    for w in g[v]:
         ind[w] -= 1
         if ind[w] == 0:
-            Q.append(w)
-    topo(G, ind, Q)
+            q.append(w)
+    topo(g, ind, q)
 
 
 """
@@ -186,10 +217,29 @@ def topo(G, ind=None, Q=None):
 
 
 def adjm():
-    n = input().strip()
+    r"""
+    Reading an Adjacency matrix
+
+    Parameters:
+        None
+
+    Returns:
+        tuple: A tuple containing a list of edges and number of edges
+
+    Example:
+    >>> # Simulate user input for 3 nodes
+    >>> input_data = "4\n0 1 0 1\n1 0 1 0\n0 1 0 1\n1 0 1 0\n"
+    >>> import sys,io
+    >>> original_input = sys.stdin
+    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
+    >>> adjm()
+    ([(0, 1, 0, 1), (1, 0, 1, 0), (0, 1, 0, 1), (1, 0, 1, 0)], 4)
+    >>> sys.stdin = original_input  # Restore original stdin
+    """
+    n = int(input().strip())
     a = []
-    for i in range(n):
-        a.append(map(int, input().strip().split()))
+    for _ in range(n):
+        a.append(tuple(map(int, input().strip().split())))
     return a, n
 
 
@@ -206,9 +256,9 @@ def adjm():
 """
 
 
-def floy(A_and_n):
-    (A, n) = A_and_n
-    dist = list(A)
+def floy(a_and_n):
+    (a, n) = a_and_n
+    dist = list(a)
     path = [[0] * n for i in range(n)]
     for k in range(n):
         for i in range(n):
@@ -231,22 +281,21 @@ def floy(A_and_n):
 """
 
 
-def prim(G, s):
+def prim(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
-        for i in dist:
-            if i not in known and dist[i] < mini:
-                mini = dist[i]
-                u = i
+        for key, value in dist.items():
+            if key not in known and value < mini:
+                mini = value
+                u = key
         known.add(u)
-        for v in G[u]:
-            if v[0] not in known:
-                if v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = v[1]
-                    path[v[0]] = u
+        for v in g[u]:
+            if v[0] not in known and v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = v[1]
+                path[v[0]] = u
     return dist
 
 
@@ -262,10 +311,29 @@ def prim(G, s):
 
 
 def edglist():
-    n, m = map(int, input().split(" "))
+    r"""
+    Get the edges and number of edges from the user
+
+    Parameters:
+        None
+
+    Returns:
+        tuple: A tuple containing a list of edges and number of edges
+
+    Example:
+    >>> # Simulate user input for 3 edges and 4 vertices: (1, 2), (2, 3), (3, 4)
+    >>> input_data = "4 3\n1 2\n2 3\n3 4\n"
+    >>> import sys,io
+    >>> original_input = sys.stdin
+    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
+    >>> edglist()
+    ([(1, 2), (2, 3), (3, 4)], 4)
+    >>> sys.stdin = original_input  # Restore original stdin
+    """
+    n, m = tuple(map(int, input().split(" ")))
     edges = []
-    for i in range(m):
-        edges.append(map(int, input().split(" ")))
+    for _ in range(m):
+        edges.append(tuple(map(int, input().split(" "))))
     return edges, n
 
 
@@ -279,16 +347,18 @@ def edglist():
 """
 
 
-def krusk(E_and_n):
-    # Sort edges on the basis of distance
-    (E, n) = E_and_n
-    E.sort(reverse=True, key=lambda x: x[2])
+def krusk(e_and_n):
+    """
+    Sort edges on the basis of distance
+    """
+    (e, n) = e_and_n
+    e.sort(reverse=True, key=lambda x: x[2])
     s = [{i} for i in range(1, n + 1)]
     while True:
         if len(s) == 1:
             break
         print(s)
-        x = E.pop()
+        x = e.pop()
         for i in range(len(s)):
             if x[0] in s[i]:
                 break
@@ -301,8 +371,37 @@ def krusk(E_and_n):
                 break
 
 
-# find the isolated node in the graph
 def find_isolated_nodes(graph):
+    """
+    Find the isolated node in the graph
+
+    Parameters:
+    graph (dict): A dictionary representing a graph.
+
+    Returns:
+    list: A list of isolated nodes.
+
+    Examples:
+    >>> graph1 = {1: [2, 3], 2: [1, 3], 3: [1, 2], 4: []}
+    >>> find_isolated_nodes(graph1)
+    [4]
+
+    >>> graph2 = {'A': ['B', 'C'], 'B': ['A'], 'C': ['A'], 'D': []}
+    >>> find_isolated_nodes(graph2)
+    ['D']
+
+    >>> graph3 = {'X': [], 'Y': [], 'Z': []}
+    >>> find_isolated_nodes(graph3)
+    ['X', 'Y', 'Z']
+
+    >>> graph4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+    >>> find_isolated_nodes(graph4)
+    []
+
+    >>> graph5 = {}
+    >>> find_isolated_nodes(graph5)
+    []
+    """
     isolated = []
     for node in graph:
         if not graph[node]:

@@ -36,7 +36,6 @@ def evaluate(expression):
 
     # iterate over the string in reverse order
     for c in expression.split()[::-1]:
-
         # push operand to stack
         if is_operand(c):
             stack.append(int(c))

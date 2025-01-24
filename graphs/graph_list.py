@@ -18,7 +18,7 @@ class GraphAdjacencyList(Generic[T]):
 
     Directed graph example:
     >>> d_graph = GraphAdjacencyList()
-    >>> d_graph
+    >>> print(d_graph)
     {}
     >>> d_graph.add_edge(0, 1)
     {0: [1], 1: []}
@@ -26,7 +26,7 @@ class GraphAdjacencyList(Generic[T]):
     {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
     >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>> print(d_graph)
+    >>> d_graph
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
     >>> print(repr(d_graph))
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
@@ -68,7 +68,7 @@ class GraphAdjacencyList(Generic[T]):
      {'a': ['b'], 'b': ['a']}
      >>> char_graph.add_edge('b', 'c').add_edge('b', 'e').add_edge('b', 'f')
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
-     >>> print(char_graph)
+     >>> char_graph
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
     """
 
@@ -120,29 +120,29 @@ class GraphAdjacencyList(Generic[T]):
             else:
                 self.adj_list[source_vertex] = [destination_vertex]
                 self.adj_list[destination_vertex] = [source_vertex]
-        else:  # For directed graphs
-            # if both source vertex and destination vertex are present in adjacency
-            # list, add destination vertex to source vertex list of adjacent vertices.
-            if source_vertex in self.adj_list and destination_vertex in self.adj_list:
-                self.adj_list[source_vertex].append(destination_vertex)
-            # if only source vertex is present in adjacency list, add destination
-            # vertex to source vertex list of adjacent vertices and create a new vertex
-            # with destination vertex as key, which has no adjacent vertex
-            elif source_vertex in self.adj_list:
-                self.adj_list[source_vertex].append(destination_vertex)
-                self.adj_list[destination_vertex] = []
-            # if only destination vertex is present in adjacency list, create a new
-            # vertex with source vertex as key and assign a list containing destination
-            # vertex as first adjacent vertex
-            elif destination_vertex in self.adj_list:
-                self.adj_list[source_vertex] = [destination_vertex]
-            # if both source vertex and destination vertex are not present in adjacency
-            # list, create a new vertex with source vertex as key and a list containing
-            # destination vertex as it's first adjacent vertex. Then create a new vertex
-            # with destination vertex as key, which has no adjacent vertex
-            else:
-                self.adj_list[source_vertex] = [destination_vertex]
-                self.adj_list[destination_vertex] = []
+        # For directed graphs
+        # if both source vertex and destination vertex are present in adjacency
+        # list, add destination vertex to source vertex list of adjacent vertices.
+        elif source_vertex in self.adj_list and destination_vertex in self.adj_list:
+            self.adj_list[source_vertex].append(destination_vertex)
+        # if only source vertex is present in adjacency list, add destination
+        # vertex to source vertex list of adjacent vertices and create a new vertex
+        # with destination vertex as key, which has no adjacent vertex
+        elif source_vertex in self.adj_list:
+            self.adj_list[source_vertex].append(destination_vertex)
+            self.adj_list[destination_vertex] = []
+        # if only destination vertex is present in adjacency list, create a new
+        # vertex with source vertex as key and assign a list containing destination
+        # vertex as first adjacent vertex
+        elif destination_vertex in self.adj_list:
+            self.adj_list[source_vertex] = [destination_vertex]
+        # if both source vertex and destination vertex are not present in adjacency
+        # list, create a new vertex with source vertex as key and a list containing
+        # destination vertex as it's first adjacent vertex. Then create a new vertex
+        # with destination vertex as key, which has no adjacent vertex
+        else:
+            self.adj_list[source_vertex] = [destination_vertex]
+            self.adj_list[destination_vertex] = []
 
         return self
 

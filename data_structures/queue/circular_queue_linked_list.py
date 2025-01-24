@@ -39,7 +39,7 @@ class CircularQueueLinkedList:
 
     def is_empty(self) -> bool:
         """
-        Checks where the queue is empty or not
+        Checks whether the queue is empty or not
         >>> cq = CircularQueueLinkedList()
         >>> cq.is_empty()
         True
@@ -127,7 +127,7 @@ class CircularQueueLinkedList:
         """
         self.check_can_perform_operation()
         if self.rear is None or self.front is None:
-            return
+            return None
         if self.front == self.rear:
             data = self.front.data
             self.front.data = None

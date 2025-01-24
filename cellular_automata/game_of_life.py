@@ -10,7 +10,7 @@ Python:
   - 3.5
 
 Usage:
-  - $python3 game_o_life <canvas_size:int>
+  - $python3 game_of_life <canvas_size:int>
 
 Game-Of-Life Rules:
 
@@ -26,7 +26,8 @@ Game-Of-Life Rules:
  4.
  Any dead cell with exactly three live neighbours be-
  comes a live cell, as if by reproduction.
- """
+"""
+
 import random
 import sys
 
@@ -34,7 +35,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 
-usage_doc = "Usage of script: script_nama <size_of_canvas:int>"
+usage_doc = "Usage of script: script_name <size_of_canvas:int>"
 
 choice = [0] * 100 + [1] * 10
 random.shuffle(choice)
@@ -52,7 +53,8 @@ def seed(canvas: list[list[bool]]) -> None:
 
 
 def run(canvas: list[list[bool]]) -> list[list[bool]]:
-    """This  function runs the rules of game through all points, and changes their
+    """
+    This function runs the rules of game through all points, and changes their
     status accordingly.(in the same canvas)
     @Args:
     --
@@ -60,21 +62,17 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
 
     @returns:
     --
-    None
+    canvas of population after one step
     """
     current_canvas = np.array(canvas)
     next_gen_canvas = np.array(create_canvas(current_canvas.shape[0]))
     for r, row in enumerate(current_canvas):
         for c, pt in enumerate(row):
-            # print(r-1,r+2,c-1,c+2)
             next_gen_canvas[r][c] = __judge_point(
                 pt, current_canvas[r - 1 : r + 2, c - 1 : c + 2]
             )
 
-    current_canvas = next_gen_canvas
-    del next_gen_canvas  # cleaning memory as we move on.
-    return_canvas: list[list[bool]] = current_canvas.tolist()
-    return return_canvas
+    return next_gen_canvas.tolist()
 
 
 def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
@@ -99,13 +97,12 @@ def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
     if pt:
         if alive < 2:
             state = False
-        elif alive == 2 or alive == 3:
+        elif alive in {2, 3}:
             state = True
         elif alive > 3:
             state = False
-    else:
-        if alive == 3:
-            state = True
+    elif alive == 3:
+        state = True
 
     return state
 

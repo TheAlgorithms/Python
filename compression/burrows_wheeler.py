@@ -1,7 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform
 
-The Burrows–Wheeler transform (BWT, also called block-sorting compression)
+The Burrows-Wheeler transform (BWT, also called block-sorting compression)
 rearranges a character string into runs of similar characters. This is useful
 for compression, since it tends to be easy to compress a string that has runs
 of repeated characters by techniques such as move-to-front transform and
@@ -10,6 +10,7 @@ without needing to store any additional data except the position of the first
 original character. The BWT is thus a "free" method of improving the efficiency
 of text compression algorithms, costing only some extra computation.
 """
+
 from __future__ import annotations
 
 from typing import TypedDict
@@ -150,11 +151,11 @@ def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
         raise ValueError("The parameter idx_original_string must not be lower than 0.")
     if idx_original_string >= len(bwt_string):
         raise ValueError(
-            "The parameter idx_original_string must be lower than" " len(bwt_string)."
+            "The parameter idx_original_string must be lower than len(bwt_string)."
         )
 
     ordered_rotations = [""] * len(bwt_string)
-    for x in range(len(bwt_string)):
+    for _ in range(len(bwt_string)):
         for i in range(len(bwt_string)):
             ordered_rotations[i] = bwt_string[i] + ordered_rotations[i]
         ordered_rotations.sort()

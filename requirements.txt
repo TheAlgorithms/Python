@@ -1,5 +1,6 @@
 beautifulsoup4
-fake_useragent
+fake-useragent
+imageio
 keras
 lxml
 matplotlib
@@ -7,13 +8,12 @@ numpy
 opencv-python
 pandas
 pillow
-qiskit
 requests
-# scikit-fuzzy  # Causing broken builds
-sklearn
+rich
+scikit-learn
+sphinx-pyproject
 statsmodels
 sympy
-tensorflow
-texttable
 tweepy
+typing_extensions
 xgboost

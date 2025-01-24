@@ -17,6 +17,7 @@ with your token::
 #!/usr/bin/env bash
 export USER_TOKEN=""
 """
+
 from __future__ import annotations
 
 import os
@@ -41,7 +42,7 @@ def fetch_github_info(auth_token: str) -> dict[Any, Any]:
         "Authorization": f"token {auth_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers).json()
+    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers, timeout=10).json()
 
 
 if __name__ == "__main__":  # pragma: no cover

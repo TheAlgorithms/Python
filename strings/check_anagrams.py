@@ -1,8 +1,8 @@
 """
 wiki: https://en.wikipedia.org/wiki/Anagram
 """
+
 from collections import defaultdict
-from typing import DefaultDict
 
 
 def check_anagrams(first_str: str, second_str: str) -> bool:
@@ -30,7 +30,7 @@ def check_anagrams(first_str: str, second_str: str) -> bool:
         return False
 
     # Default values for count should be 0
-    count: DefaultDict[str, int] = defaultdict(int)
+    count: defaultdict[str, int] = defaultdict(int)
 
     # For each character in input strings,
     # increment count in the corresponding
@@ -38,18 +38,15 @@ def check_anagrams(first_str: str, second_str: str) -> bool:
         count[first_str[i]] += 1
         count[second_str[i]] -= 1
 
-    for _count in count.values():
-        if _count != 0:
-            return False
-    return True
+    return all(_count == 0 for _count in count.values())
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    input_A = input("Enter the first string ").strip()
-    input_B = input("Enter the second string ").strip()
+    input_a = input("Enter the first string ").strip()
+    input_b = input("Enter the second string ").strip()
 
-    status = check_anagrams(input_A, input_B)
-    print(f"{input_A} and {input_B} are {'' if status else 'not '}anagrams.")
+    status = check_anagrams(input_a, input_b)
+    print(f"{input_a} and {input_b} are {'' if status else 'not '}anagrams.")

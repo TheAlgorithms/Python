@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from math import pi
 from typing import Protocol
 
@@ -8,6 +9,7 @@ import numpy as np
 
 
 class FilterType(Protocol):
+    @abstractmethod
     def process(self, sample: float) -> float:
         """
         Calculate y[n]
@@ -15,7 +17,6 @@ class FilterType(Protocol):
         >>> issubclass(FilterType, Protocol)
         True
         """
-        return 0.0
 
 
 def get_bounds(
@@ -34,7 +35,7 @@ def get_bounds(
     return lowest, highest
 
 
-def show_frequency_response(filter: FilterType, samplerate: int) -> None:
+def show_frequency_response(filter_type: FilterType, samplerate: int) -> None:
     """
     Show frequency response of a filter
 
@@ -45,7 +46,7 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [filter.process(item) for item in inputs]
+    outputs = [filter_type.process(item) for item in inputs]
 
     filler = [0] * (samplerate - size)  # zero-padding
     outputs += filler
@@ -66,7 +67,7 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     plt.show()
 
 
-def show_phase_response(filter: FilterType, samplerate: int) -> None:
+def show_phase_response(filter_type: FilterType, samplerate: int) -> None:
     """
     Show phase response of a filter
 
@@ -77,7 +78,7 @@ def show_phase_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [filter.process(item) for item in inputs]
+    outputs = [filter_type.process(item) for item in inputs]
 
     filler = [0] * (samplerate - size)  # zero-padding
     outputs += filler

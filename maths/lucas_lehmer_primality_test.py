@@ -1,13 +1,13 @@
 """
-        In mathematics, the Lucas–Lehmer test (LLT) is a primality test for Mersenne
-        numbers.  https://en.wikipedia.org/wiki/Lucas%E2%80%93Lehmer_primality_test
+In mathematics, the Lucas-Lehmer test (LLT) is a primality test for Mersenne
+numbers.  https://en.wikipedia.org/wiki/Lucas%E2%80%93Lehmer_primality_test
 
-        A Mersenne number is a number that is one less than a power of two.
-        That is M_p = 2^p - 1
-        https://en.wikipedia.org/wiki/Mersenne_prime
+A Mersenne number is a number that is one less than a power of two.
+That is M_p = 2^p - 1
+https://en.wikipedia.org/wiki/Mersenne_prime
 
-        The Lucas–Lehmer test is the primality test used by the
-        Great Internet Mersenne Prime Search (GIMPS) to locate large primes.
+The Lucas-Lehmer test is the primality test used by the
+Great Internet Mersenne Prime Search (GIMPS) to locate large primes.
 """
 
 
@@ -30,9 +30,9 @@ def lucas_lehmer_test(p: int) -> bool:
         return True
 
     s = 4
-    M = (1 << p) - 1
-    for i in range(p - 2):
-        s = ((s * s) - 2) % M
+    m = (1 << p) - 1
+    for _ in range(p - 2):
+        s = ((s * s) - 2) % m
     return s == 0
 
 

@@ -11,6 +11,7 @@ Find the maximum total from top to bottom in triangle.txt (right click and
 'Save Link/Target As...'), a 15K text file containing a triangle with
 one-hundred rows.
 """
+
 import os
 
 
@@ -28,19 +29,17 @@ def solution():
     with open(triangle) as f:
         triangle = f.readlines()
 
-    a = map(lambda x: x.rstrip("\r\n").split(" "), triangle)
-    a = list(map(lambda x: list(map(int, x)), a))
+    a = []
+    for line in triangle:
+        numbers_from_line = []
+        for number in line.strip().split(" "):
+            numbers_from_line.append(int(number))
+        a.append(numbers_from_line)
 
     for i in range(1, len(a)):
         for j in range(len(a[i])):
-            if j != len(a[i - 1]):
-                number1 = a[i - 1][j]
-            else:
-                number1 = 0
-            if j > 0:
-                number2 = a[i - 1][j - 1]
-            else:
-                number2 = 0
+            number1 = a[i - 1][j] if j != len(a[i - 1]) else 0
+            number2 = a[i - 1][j - 1] if j > 0 else 0
             a[i][j] += max(number1, number2)
     return max(a[-1])
 

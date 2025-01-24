@@ -8,43 +8,43 @@ def main() -> None:
 
     if mode.lower().startswith("e"):
         mode = "encrypt"
-        translated = encryptMessage(key, message)
+        translated = encrypt_message(key, message)
     elif mode.lower().startswith("d"):
         mode = "decrypt"
-        translated = decryptMessage(key, message)
+        translated = decrypt_message(key, message)
 
     print(f"\n{mode.title()}ed message:")
     print(translated)
 
 
-def encryptMessage(key: str, message: str) -> str:
+def encrypt_message(key: str, message: str) -> str:
     """
-    >>> encryptMessage('HDarji', 'This is Harshil Darji from Dharmaj.')
+    >>> encrypt_message('HDarji', 'This is Harshil Darji from Dharmaj.')
     'Akij ra Odrjqqs Gaisq muod Mphumrs.'
     """
-    return translateMessage(key, message, "encrypt")
+    return translate_message(key, message, "encrypt")
 
 
-def decryptMessage(key: str, message: str) -> str:
+def decrypt_message(key: str, message: str) -> str:
     """
-    >>> decryptMessage('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
+    >>> decrypt_message('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
     'This is Harshil Darji from Dharmaj.'
     """
-    return translateMessage(key, message, "decrypt")
+    return translate_message(key, message, "decrypt")
 
 
-def translateMessage(key: str, message: str, mode: str) -> str:
+def translate_message(key: str, message: str, mode: str) -> str:
     translated = []
-    keyIndex = 0
+    key_index = 0
     key = key.upper()
 
     for symbol in message:
         num = LETTERS.find(symbol.upper())
         if num != -1:
             if mode == "encrypt":
-                num += LETTERS.find(key[keyIndex])
+                num += LETTERS.find(key[key_index])
             elif mode == "decrypt":
-                num -= LETTERS.find(key[keyIndex])
+                num -= LETTERS.find(key[key_index])
 
             num %= len(LETTERS)
 
@@ -53,9 +53,9 @@ def translateMessage(key: str, message: str, mode: str) -> str:
             elif symbol.islower():
                 translated.append(LETTERS[num].lower())
 
-            keyIndex += 1
-            if keyIndex == len(key):
-                keyIndex = 0
+            key_index += 1
+            if key_index == len(key):
+                key_index = 0
         else:
             translated.append(symbol)
     return "".join(translated)

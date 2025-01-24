@@ -1,3 +1,7 @@
+from doctest import testmod
+from math import sqrt
+
+
 def factors_of_a_number(num: int) -> list:
     """
     >>> factors_of_a_number(1)
@@ -9,10 +13,22 @@ def factors_of_a_number(num: int) -> list:
     >>> factors_of_a_number(-24)
     []
     """
-    return [i for i in range(1, num + 1) if num % i == 0]
+    facs: list[int] = []
+    if num < 1:
+        return facs
+    facs.append(1)
+    if num == 1:
+        return facs
+    facs.append(num)
+    for i in range(2, int(sqrt(num)) + 1):
+        if num % i == 0:  # If i is a factor of num
+            facs.append(i)
+            d = num // i  # num//i is the other factor of num
+            if d != i:  # If d and i are distinct
+                facs.append(d)  # we have found another factor
+    facs.sort()
+    return facs
 
 
 if __name__ == "__main__":
-    num = int(input("Enter a number to find its factors: "))
-    factors = factors_of_a_number(num)
-    print(f"{num} has {len(factors)} factors: {', '.join(str(f) for f in factors)}")
+    testmod(name="factors_of_a_number", verbose=True)

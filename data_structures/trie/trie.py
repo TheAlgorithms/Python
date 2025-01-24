@@ -8,7 +8,7 @@ longest word)) lookup time making it an optimal approach when space is not an is
 
 class TrieNode:
     def __init__(self) -> None:
-        self.nodes: dict[str, TrieNode] = dict()  # Mapping from char to TrieNode
+        self.nodes: dict[str, TrieNode] = {}  # Mapping from char to TrieNode
         self.is_leaf = False
 
     def insert_many(self, words: list[str]) -> None:

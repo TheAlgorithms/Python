@@ -1,15 +1,18 @@
 """
 Horizontal Projectile Motion problem in physics.
+
 This algorithm solves a specific problem in which
-the motion starts from the ground as can be seen below:
-      (v = 0)
-        **
-       *  *
-      *    *
-     *      *
-    *        *
-   *          *
-GROUND      GROUND
+the motion starts from the ground as can be seen below::
+
+          (v = 0)
+                   *  *
+               *          *
+            *                *
+          *                    *
+        *                        *
+       *                          *
+    GROUND                      GROUND
+
 For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
@@ -43,14 +46,17 @@ def check_args(init_velocity: float, angle: float) -> None:
 
 
 def horizontal_distance(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns the horizontal distance that the object cover
+
     Formula:
-            v_0^2 * sin(2 * alpha)
-            ---------------------
-                   g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{v_0^2 \cdot \sin(2 \alpha)}{g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> horizontal_distance(30, 45)
     91.77
     >>> horizontal_distance(100, 78)
@@ -70,14 +76,17 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
 
 
 def max_height(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns the maximum height that the object reach
+
     Formula:
-            v_0^2 * sin^2(alpha)
-            --------------------
-                   2g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{v_0^2 \cdot \sin^2 (\alpha)}{2 g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> max_height(30, 45)
     22.94
     >>> max_height(100, 78)
@@ -97,14 +106,17 @@ def max_height(init_velocity: float, angle: float) -> float:
 
 
 def total_time(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns total time of the motion
+
     Formula:
-            2 * v_0 * sin(alpha)
-            --------------------
-                   g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{2 v_0 \cdot \sin (\alpha)}{g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> total_time(30, 45)
     4.33
     >>> total_time(100, 78)
@@ -125,6 +137,8 @@ def total_time(init_velocity: float, angle: float) -> float:
 
 def test_motion() -> None:
     """
+    Test motion
+
     >>> test_motion()
     """
     v0, angle = 25, 20
@@ -147,6 +161,6 @@ if __name__ == "__main__":
     # Print results
     print()
     print("Results: ")
-    print(f"Horizontal Distance: {str(horizontal_distance(init_vel, angle))} [m]")
-    print(f"Maximum Height: {str(max_height(init_vel, angle))} [m]")
-    print(f"Total Time: {str(total_time(init_vel, angle))} [s]")
+    print(f"Horizontal Distance: {horizontal_distance(init_vel, angle)!s} [m]")
+    print(f"Maximum Height: {max_height(init_vel, angle)!s} [m]")
+    print(f"Total Time: {total_time(init_vel, angle)!s} [s]")

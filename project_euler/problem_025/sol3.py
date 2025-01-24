@@ -1,7 +1,7 @@
 """
 The Fibonacci sequence is defined by the recurrence relation:
 
-    Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+    Fn = Fn-1 + Fn-2, where F1 = 1 and F2 = 1.
 
 Hence the first 12 terms will be:
 
@@ -45,7 +45,7 @@ def solution(n: int = 1000) -> int:
         f = f1 + f2
         f1, f2 = f2, f
         index += 1
-        for j in str(f):
+        for _ in str(f):
             i += 1
         if i == n:
             break

@@ -11,6 +11,7 @@ What is the 10001st prime number?
 References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
+
 import itertools
 import math
 

@@ -33,6 +33,7 @@ The generation of the chain stops before a repeating item or if the size of the 
 is greater then the desired one.
 After generating each chain, the length is checked and the counter increases.
 """
+
 from math import factorial
 
 DIGIT_FACTORIAL: dict[str, int] = {str(digit): factorial(digit) for digit in range(10)}
@@ -111,7 +112,6 @@ def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     chain_sets_lengths: dict[int, int] = {}
 
     for start_chain_element in range(1, number_limit):
-
         # The temporary set will contain the elements of the chain
         chain_set = set()
         chain_set_length = 0

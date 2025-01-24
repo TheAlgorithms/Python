@@ -25,19 +25,19 @@ def carrier_concentration(
     ('hole_conc', 1440.0)
     >>> carrier_concentration(electron_conc=1000, hole_conc=400, intrinsic_conc=1200)
     Traceback (most recent call last):
-        File "<stdin>", line 37, in <module>
+        ...
     ValueError: You cannot supply more or less than 2 values
     >>> carrier_concentration(electron_conc=-1000, hole_conc=0, intrinsic_conc=1200)
     Traceback (most recent call last):
-        File "<stdin>", line 40, in <module>
+        ...
     ValueError: Electron concentration cannot be negative in a semiconductor
     >>> carrier_concentration(electron_conc=0, hole_conc=-400, intrinsic_conc=1200)
     Traceback (most recent call last):
-        File "<stdin>", line 44, in <module>
+        ...
     ValueError: Hole concentration cannot be negative in a semiconductor
     >>> carrier_concentration(electron_conc=0, hole_conc=400, intrinsic_conc=-1200)
     Traceback (most recent call last):
-        File "<stdin>", line 48, in <module>
+        ...
     ValueError: Intrinsic concentration cannot be negative in a semiconductor
     """
     if (electron_conc, hole_conc, intrinsic_conc).count(0) != 1:

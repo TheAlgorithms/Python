@@ -1,6 +1,7 @@
 """
 Implementation of double ended queue.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -15,8 +16,8 @@ class Deque:
     ----------
     append(val: Any) -> None
     appendleft(val: Any) -> None
-    extend(iter: Iterable) -> None
-    extendleft(iter: Iterable) -> None
+    extend(iterable: Iterable) -> None
+    extendleft(iterable: Iterable) -> None
     pop() -> Any
     popleft() -> Any
     Observers
@@ -32,7 +33,7 @@ class Deque:
         the number of nodes
     """
 
-    __slots__ = ["_front", "_back", "_len"]
+    __slots__ = ("_back", "_front", "_len")
 
     @dataclass
     class _Node:
@@ -42,8 +43,8 @@ class Deque:
         """
 
         val: Any = None
-        next: Deque._Node | None = None
-        prev: Deque._Node | None = None
+        next_node: Deque._Node | None = None
+        prev_node: Deque._Node | None = None
 
     class _Iterator:
         """
@@ -54,7 +55,7 @@ class Deque:
             the current node of the iteration.
         """
 
-        __slots__ = ["_cur"]
+        __slots__ = ("_cur",)
 
         def __init__(self, cur: Deque._Node | None) -> None:
             self._cur = cur
@@ -81,7 +82,7 @@ class Deque:
                 # finished iterating
                 raise StopIteration
             val = self._cur.val
-            self._cur = self._cur.next
+            self._cur = self._cur.next_node
 
             return val
 
@@ -128,8 +129,8 @@ class Deque:
             self._len = 1
         else:
             # connect nodes
-            self._back.next = node
-            node.prev = self._back
+            self._back.next_node = node
+            node.prev_node = self._back
             self._back = node  # assign new back to the new node
 
             self._len += 1
@@ -170,8 +171,8 @@ class Deque:
             self._len = 1
         else:
             # connect nodes
-            node.next = self._front
-            self._front.prev = node
+            node.next_node = self._front
+            self._front.prev_node = node
             self._front = node  # assign new front to the new node
 
             self._len += 1
@@ -179,9 +180,9 @@ class Deque:
             # make sure there were no errors
             assert not self.is_empty(), "Error on appending value."
 
-    def extend(self, iter: Iterable[Any]) -> None:
+    def extend(self, iterable: Iterable[Any]) -> None:
         """
-        Appends every value of iter to the end of the deque.
+        Appends every value of iterable to the end of the deque.
         Time complexity: O(n)
         >>> our_deque_1 = Deque([1, 2, 3])
         >>> our_deque_1.extend([4, 5])
@@ -205,12 +206,12 @@ class Deque:
         >>> list(our_deque_2) == list(deque_collections_2)
         True
         """
-        for val in iter:
+        for val in iterable:
             self.append(val)
 
-    def extendleft(self, iter: Iterable[Any]) -> None:
+    def extendleft(self, iterable: Iterable[Any]) -> None:
         """
-        Appends every value of iter to the beginning of the deque.
+        Appends every value of iterable to the beginning of the deque.
         Time complexity: O(n)
         >>> our_deque_1 = Deque([1, 2, 3])
         >>> our_deque_1.extendleft([0, -1])
@@ -234,7 +235,7 @@ class Deque:
         >>> list(our_deque_2) == list(deque_collections_2)
         True
         """
-        for val in iter:
+        for val in iterable:
             self.appendleft(val)
 
     def pop(self) -> Any:
@@ -242,12 +243,20 @@ class Deque:
         Removes the last element of the deque and returns it.
         Time complexity: O(1)
         @returns topop.val: the value of the node to pop.
-        >>> our_deque = Deque([1, 2, 3, 15182])
-        >>> our_popped = our_deque.pop()
-        >>> our_popped
+        >>> our_deque1 = Deque([1])
+        >>> our_popped1 = our_deque1.pop()
+        >>> our_popped1
+        1
+        >>> our_deque1
+        []
+
+        >>> our_deque2 = Deque([1, 2, 3, 15182])
+        >>> our_popped2 = our_deque2.pop()
+        >>> our_popped2
         15182
-        >>> our_deque
+        >>> our_deque2
         [1, 2, 3]
+
         >>> from collections import deque
         >>> deque_collections = deque([1, 2, 3, 15182])
         >>> collections_popped = deque_collections.pop()
@@ -255,19 +264,24 @@ class Deque:
         15182
         >>> deque_collections
         deque([1, 2, 3])
-        >>> list(our_deque) == list(deque_collections)
+        >>> list(our_deque2) == list(deque_collections)
         True
-        >>> our_popped == collections_popped
+        >>> our_popped2 == collections_popped
         True
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._back
-        self._back = self._back.prev  # set new back
-        self._back.next = (
-            None  # drop the last node - python will deallocate memory automatically
-        )
+        # if only one element in the queue: point the front and back to None
+        # else remove one element from back
+        if self._front == self._back:
+            self._front = None
+            self._back = None
+        else:
+            self._back = self._back.prev_node  # set new back
+            # drop the last node, python will deallocate memory automatically
+            self._back.next_node = None
 
         self._len -= 1
 
@@ -278,11 +292,17 @@ class Deque:
         Removes the first element of the deque and returns it.
         Time complexity: O(1)
         @returns topop.val: the value of the node to pop.
-        >>> our_deque = Deque([15182, 1, 2, 3])
-        >>> our_popped = our_deque.popleft()
-        >>> our_popped
+        >>> our_deque1 = Deque([1])
+        >>> our_popped1 = our_deque1.pop()
+        >>> our_popped1
+        1
+        >>> our_deque1
+        []
+        >>> our_deque2 = Deque([15182, 1, 2, 3])
+        >>> our_popped2 = our_deque2.popleft()
+        >>> our_popped2
         15182
-        >>> our_deque
+        >>> our_deque2
         [1, 2, 3]
         >>> from collections import deque
         >>> deque_collections = deque([15182, 1, 2, 3])
@@ -291,17 +311,23 @@ class Deque:
         15182
         >>> deque_collections
         deque([1, 2, 3])
-        >>> list(our_deque) == list(deque_collections)
+        >>> list(our_deque2) == list(deque_collections)
         True
-        >>> our_popped == collections_popped
+        >>> our_popped2 == collections_popped
         True
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._front
-        self._front = self._front.next  # set new front and drop the first node
-        self._front.prev = None
+        # if only one element in the queue: point the front and back to None
+        # else remove one element from front
+        if self._front == self._back:
+            self._front = None
+            self._back = None
+        else:
+            self._front = self._front.next_node  # set new front and drop the first node
+            self._front.prev_node = None
 
         self._len -= 1
 
@@ -377,7 +403,7 @@ class Deque:
         me = self._front
         oth = other._front
 
-        # if the length of the deques are not the same, they are not equal
+        # if the length of the dequeues are not the same, they are not equal
         if len(self) != len(other):
             return False
 
@@ -385,8 +411,8 @@ class Deque:
             # compare every value
             if me.val != oth.val:
                 return False
-            me = me.next
-            oth = oth.next
+            me = me.next_node
+            oth = oth.next_node
 
         return True
 
@@ -424,12 +450,14 @@ class Deque:
         while aux is not None:
             # append the values in a list to display
             values_list.append(aux.val)
-            aux = aux.next
+            aux = aux.next_node
 
-        return "[" + ", ".join(repr(val) for val in values_list) + "]"
+        return f"[{', '.join(repr(val) for val in values_list)}]"
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    dq = Deque([3])
+    dq.pop()

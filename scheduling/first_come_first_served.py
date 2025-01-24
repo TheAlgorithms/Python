@@ -79,7 +79,7 @@ if __name__ == "__main__":
     # ensure that we actually have processes
     if len(processes) == 0:
         print("Zero amount of processes")
-        exit()
+        raise SystemExit(0)
 
     # duration time of all processes
     duration_times = [19, 8, 9]
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     # ensure we can match each id to a duration time
     if len(duration_times) != len(processes):
         print("Unable to match all id's with their duration time")
-        exit()
+        raise SystemExit(0)
 
     # get the waiting times and the turnaround times
     waiting_times = calculate_waiting_times(duration_times)

@@ -11,13 +11,18 @@ goes to infinity).
 (See also http://www.shodor.org/refdesk/Resources/Algorithms/EulersMethod/ )
 """
 
-
 from __future__ import annotations
 
 import random
 
 from matplotlib import animation
 from matplotlib import pyplot as plt
+
+# Frame rate of the animation
+INTERVAL = 20
+
+# Time between time steps in seconds
+DELTA_TIME = INTERVAL / 1000
 
 
 class Body:
@@ -159,9 +164,7 @@ class BodySystem:
 
                     # Calculation of the distance using Pythagoras's theorem
                     # Extra factor due to the softening technique
-                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (
-                        1 / 2
-                    )
+                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (1 / 2)
 
                     # Newton's law of universal gravitation.
                     force_x += (
@@ -219,12 +222,8 @@ def plot(
     Utility function to plot how the given body-system evolves over time.
     No doctest provided since this function does not have a return value.
     """
-
-    INTERVAL = 20  # Frame rate of the animation
-    DELTA_TIME = INTERVAL / 1000  # Time between time steps in seconds
-
     fig = plt.figure()
-    fig.canvas.set_window_title(title)
+    fig.canvas.manager.set_window_title(title)
     ax = plt.axes(
         xlim=(x_start, x_end), ylim=(y_start, y_end)
     )  # Set section to be plotted
@@ -240,7 +239,7 @@ def plot(
         ax.add_patch(patch)
 
     # Function called at each step of the animation
-    def update(frame: int) -> list[plt.Circle]:
+    def update(frame: int) -> list[plt.Circle]:  # noqa: ARG001
         update_step(body_system, DELTA_TIME, patches)
         return patches
 
@@ -308,7 +307,7 @@ def example_3() -> BodySystem:
     """
 
     bodies = []
-    for i in range(10):
+    for _ in range(10):
         velocity_x = random.uniform(-0.5, 0.5)
         velocity_y = random.uniform(-0.5, 0.5)
 

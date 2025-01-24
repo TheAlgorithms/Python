@@ -8,16 +8,17 @@ https://www.braingle.com/brainteasers/codes/polybius.php
 
 import numpy as np
 
+SQUARE = [
+    ["a", "b", "c", "d", "e"],
+    ["f", "g", "h", "i", "k"],
+    ["l", "m", "n", "o", "p"],
+    ["q", "r", "s", "t", "u"],
+    ["v", "w", "x", "y", "z"],
+]
+
 
 class PolybiusCipher:
     def __init__(self) -> None:
-        SQUARE = [
-            ["a", "b", "c", "d", "e"],
-            ["f", "g", "h", "i", "k"],
-            ["l", "m", "n", "o", "p"],
-            ["q", "r", "s", "t", "u"],
-            ["v", "w", "x", "y", "z"],
-        ]
         self.SQUARE = np.array(SQUARE)
 
     def letter_to_numbers(self, letter: str) -> np.ndarray:
@@ -30,7 +31,7 @@ class PolybiusCipher:
         >>> np.array_equal(PolybiusCipher().letter_to_numbers('u'), [4,5])
         True
         """
-        index1, index2 = np.where(self.SQUARE == letter)
+        index1, index2 = np.where(letter == self.SQUARE)
         indexes = np.concatenate([index1 + 1, index2 + 1])
         return indexes
 

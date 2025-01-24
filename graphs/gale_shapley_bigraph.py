@@ -17,7 +17,7 @@ def stable_matching(
 
     >>> donor_pref = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
     >>> recipient_pref = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
-    >>> print(stable_matching(donor_pref, recipient_pref))
+    >>> stable_matching(donor_pref, recipient_pref)
     [1, 2, 3, 0]
     """
     assert len(donor_pref) == len(recipient_pref)

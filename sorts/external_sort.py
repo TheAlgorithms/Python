@@ -77,10 +77,7 @@ class FilesArray:
                     self.empty.add(i)
                     self.files[i].close()
 
-        if len(self.empty) == self.num_buffers:
-            return False
-
-        return True
+        return len(self.empty) != self.num_buffers
 
     def unshift(self, index):
         value = self.buffers[index]
@@ -104,7 +101,7 @@ class FileMerger:
         files = {}
 
         for i in range(len(filenames)):
-            files[i] = open(filenames[i], "r", buffer_size)
+            files[i] = open(filenames[i], "r", buffer_size)  # noqa: UP015
 
         return files
 

@@ -24,6 +24,7 @@ python tabu_search.py -f your_file_name.txt -number_of_iterations_of_tabu_search
     -s size_of_tabu_search
 e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 """
+
 import argparse
 import copy
 
@@ -51,7 +52,7 @@ def generate_neighbours(path):
     with open(path) as f:
         for line in f:
             if line.split()[0] not in dict_of_neighbours:
-                _list = list()
+                _list = []
                 _list.append([line.split()[1], line.split()[2]])
                 dict_of_neighbours[line.split()[0]] = _list
             else:
@@ -59,7 +60,7 @@ def generate_neighbours(path):
                     [line.split()[1], line.split()[2]]
                 )
             if line.split()[1] not in dict_of_neighbours:
-                _list = list()
+                _list = []
                 _list.append([line.split()[0], line.split()[2]])
                 dict_of_neighbours[line.split()[1]] = _list
             else:
@@ -178,9 +179,9 @@ def find_neighborhood(solution, dict_of_neighbours):
             if _tmp not in neighborhood_of_solution:
                 neighborhood_of_solution.append(_tmp)
 
-    indexOfLastItemInTheList = len(neighborhood_of_solution[0]) - 1
+    index_of_last_item_in_the_list = len(neighborhood_of_solution[0]) - 1
 
-    neighborhood_of_solution.sort(key=lambda x: x[indexOfLastItemInTheList])
+    neighborhood_of_solution.sort(key=lambda x: x[index_of_last_item_in_the_list])
     return neighborhood_of_solution
 
 
@@ -206,7 +207,7 @@ def tabu_search(
     """
     count = 1
     solution = first_solution
-    tabu_list = list()
+    tabu_list = []
     best_cost = distance_of_first_solution
     best_solution_ever = solution
 
@@ -220,7 +221,6 @@ def tabu_search(
         while not found:
             i = 0
             while i < len(best_solution):
-
                 if best_solution[i] != solution[i]:
                     first_exchange_node = best_solution[i]
                     second_exchange_node = solution[i]

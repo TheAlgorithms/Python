@@ -297,17 +297,23 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     1.660540199e-23
     >>> weight_conversion("atomic-mass-unit","atomic-mass-unit",2)
     1.999999998903455
+    >>> weight_conversion("slug", "kilogram", 1)
+    Traceback (most recent call last):
+    ...
+    ValueError: Invalid 'from_type' or 'to_type' value: 'slug', 'kilogram'
+    Supported values are: kilogram, gram, milligram, metric-ton, long-ton, short-ton, \
+pound, stone, ounce, carrat, atomic-mass-unit
     """
     if to_type not in KILOGRAM_CHART or from_type not in WEIGHT_TYPE_CHART:
-        raise ValueError(
+        msg = (
             f"Invalid 'from_type' or 'to_type' value: {from_type!r}, {to_type!r}\n"
             f"Supported values are: {', '.join(WEIGHT_TYPE_CHART)}"
         )
+        raise ValueError(msg)
     return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()

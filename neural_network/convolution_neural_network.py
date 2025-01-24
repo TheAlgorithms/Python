@@ -1,18 +1,19 @@
 """
-     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-    Name - - CNN - Convolution Neural Network For Photo Recognizing
-    Goal - - Recognize Handing Writing Word Photo
-    Detail：Total 5 layers neural network
-            * Convolution layer
-            * Pooling layer
-            * Input layer layer of BP
-            * Hidden layer of BP
-            * Output layer of BP
-    Author: Stephen Lee
-    Github: 245885195@qq.com
-    Date: 2017.9.20
-    - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+ - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+Name - - CNN - Convolution Neural Network For Photo Recognizing
+Goal - - Recognize Handwriting Word Photo
+Detail: Total 5 layers neural network
+        * Convolution layer
+        * Pooling layer
+        * Input layer layer of BP
+        * Hidden layer of BP
+        * Output layer of BP
+Author: Stephen Lee
+Github: 245885195@qq.com
+Date: 2017.9.20
+- - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
+
 import pickle
 
 import numpy as np
@@ -24,7 +25,7 @@ class CNN:
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
     ):
         """
-        :param conv1_get: [a,c,d]，size, number, step of convolution kernel
+        :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size
         :param bp_num1: units number of flatten layer
         :param bp_num2: units number of hidden layer
@@ -40,15 +41,16 @@ class CNN:
         self.size_pooling1 = size_p1
         self.rate_weight = rate_w
         self.rate_thre = rate_t
+        rng = np.random.default_rng()
         self.w_conv1 = [
-            np.mat(-1 * np.random.rand(self.conv1[0], self.conv1[0]) + 0.5)
+            np.asmatrix(-1 * rng.random((self.conv1[0], self.conv1[0])) + 0.5)
             for i in range(self.conv1[1])
         ]
-        self.wkj = np.mat(-1 * np.random.rand(self.num_bp3, self.num_bp2) + 0.5)
-        self.vji = np.mat(-1 * np.random.rand(self.num_bp2, self.num_bp1) + 0.5)
-        self.thre_conv1 = -2 * np.random.rand(self.conv1[1]) + 1
-        self.thre_bp2 = -2 * np.random.rand(self.num_bp2) + 1
-        self.thre_bp3 = -2 * np.random.rand(self.num_bp3) + 1
+        self.wkj = np.asmatrix(-1 * rng.random((self.num_bp3, self.num_bp2)) + 0.5)
+        self.vji = np.asmatrix(-1 * rng.random((self.num_bp2, self.num_bp1)) + 0.5)
+        self.thre_conv1 = -2 * rng.random(self.conv1[1]) + 1
+        self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
+        self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
     def save_model(self, save_path):
         # save model dict with pickle
@@ -71,13 +73,13 @@ class CNN:
         with open(save_path, "wb") as f:
             pickle.dump(model_dic, f)
 
-        print(f"Model saved： {save_path}")
+        print(f"Model saved: {save_path}")
 
     @classmethod
-    def ReadModel(cls, model_path):
+    def read_model(cls, model_path):
         # read saved model
         with open(model_path, "rb") as f:
-            model_dic = pickle.load(f)
+            model_dic = pickle.load(f)  # noqa: S301
 
         conv_get = model_dic.get("conv1")
         conv_get.append(model_dic.get("step_conv1"))
@@ -119,7 +121,7 @@ class CNN:
                 data_focus.append(focus)
         # calculate the feature map of every single kernel, and saved as list of matrix
         data_featuremap = []
-        Size_FeatureMap = int((size_data - size_conv) / conv_step + 1)
+        size_feature_map = int((size_data - size_conv) / conv_step + 1)
         for i_map in range(num_conv):
             featuremap = []
             for i_focus in range(len(data_focus)):
@@ -129,35 +131,35 @@ class CNN:
                 )
                 featuremap.append(self.sig(net_focus))
             featuremap = np.asmatrix(featuremap).reshape(
-                Size_FeatureMap, Size_FeatureMap
+                size_feature_map, size_feature_map
             )
             data_featuremap.append(featuremap)
 
-        # expanding the data slice to One dimenssion
+        # expanding the data slice to one dimension
         focus1_list = []
         for each_focus in data_focus:
             focus1_list.extend(self.Expand_Mat(each_focus))
         focus_list = np.asarray(focus1_list)
         return focus_list, data_featuremap
 
-    def pooling(self, featuremaps, size_pooling, type="average_pool"):
+    def pooling(self, featuremaps, size_pooling, pooling_type="average_pool"):
         # pooling process
         size_map = len(featuremaps[0])
         size_pooled = int(size_map / size_pooling)
         featuremap_pooled = []
         for i_map in range(len(featuremaps)):
-            map = featuremaps[i_map]
+            feature_map = featuremaps[i_map]
             map_pooled = []
             for i_focus in range(0, size_map, size_pooling):
                 for j_focus in range(0, size_map, size_pooling):
-                    focus = map[
+                    focus = feature_map[
                         i_focus : i_focus + size_pooling,
                         j_focus : j_focus + size_pooling,
                     ]
-                    if type == "average_pool":
+                    if pooling_type == "average_pool":
                         # average pooling
                         map_pooled.append(np.average(focus))
-                    elif type == "max_pooling":
+                    elif pooling_type == "max_pooling":
                         # max pooling
                         map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled, size_pooled)
@@ -210,7 +212,7 @@ class CNN:
     def train(
         self, patterns, datas_train, datas_teach, n_repeat, error_accuracy, draw_e=bool
     ):
-        # model traning
+        # model training
         print("----------------------Start Training-------------------------")
         print((" - - Shape: Train_Data  ", np.shape(datas_train)))
         print((" - - Shape: Teach_Data  ", np.shape(datas_teach)))
@@ -219,7 +221,7 @@ class CNN:
         mse = 10000
         while rp < n_repeat and mse >= error_accuracy:
             error_count = 0
-            print("-------------Learning Time %d--------------" % rp)
+            print(f"-------------Learning Time {rp}--------------")
             for p in range(len(datas_train)):
                 # print('------------Learning Image: %d--------------'%p)
                 data_train = np.asmatrix(datas_train[p])
@@ -302,7 +304,7 @@ class CNN:
             plt.grid(True, alpha=0.5)
             plt.show()
 
-        print("------------------Training Complished---------------------")
+        print("------------------Training Complete---------------------")
         print((" - - Training epoch: ", rp, f"     - - Mse: {mse:.6f}"))
         if draw_e:
             draw_error()
@@ -351,5 +353,5 @@ class CNN:
 
 if __name__ == "__main__":
     """
-    I will put the example on other file
+    I will put the example in another file
     """

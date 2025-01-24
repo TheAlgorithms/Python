@@ -1,8 +1,9 @@
-if __name__ == "__main__":
-    import socket  # Import socket module
+import socket
 
-    sock = socket.socket()  # Create a socket object
-    host = socket.gethostname()  # Get local machine name
+
+def main():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = socket.gethostname()
     port = 12312
 
     sock.connect((host, port))
@@ -13,11 +14,14 @@ if __name__ == "__main__":
         print("Receiving data...")
         while True:
             data = sock.recv(1024)
-            print(f"{data = }")
             if not data:
                 break
-            out_file.write(data)  # Write data to a file
+            out_file.write(data)
 
-    print("Successfully got the file")
+    print("Successfully received the file")
     sock.close()
     print("Connection closed")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,264 @@
+[project]
+name = "thealgorithms-python"
+version = "0.0.1"
+description = "TheAlgorithms in Python"
+authors = [ { name = "TheAlgorithms Contributors" } ]
+requires-python = ">=3.13"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "fake-useragent>=1.5.1",
+  "imageio>=2.36.1",
+  "keras>=3.7",
+  "lxml>=5.3",
+  "matplotlib>=3.9.3",
+  "numpy>=2.1.3",
+  "opencv-python>=4.10.0.84",
+  "pandas>=2.2.3",
+  "pillow>=11",
+  "requests>=2.32.3",
+  "rich>=13.9.4",
+  "scikit-learn>=1.5.2",
+  "sphinx-pyproject>=0.3",
+  "statsmodels>=0.14.4",
+  "sympy>=1.13.3",
+  "tweepy>=4.14",
+  "typing-extensions>=4.12.2",
+  "xgboost>=2.1.3",
+]
+
+[dependency-groups]
+test = [
+  "pytest>=8.3.4",
+  "pytest-cov>=6",
+]
+
+docs = [
+  "myst-parser>=4",
+  "sphinx-autoapi>=3.4",
+  "sphinx-pyproject>=0.3",
+]
+euler-validate = [
+  "numpy>=2.1.3",
+  "requests>=2.32.3",
+]
+
+[tool.ruff]
+target-version = "py313"
+
+output-format = "full"
+lint.select = [
+  # https://beta.ruff.rs/docs/rules
+  "A",     # flake8-builtins
+  "ARG",   # flake8-unused-arguments
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C4",    # flake8-comprehensions
+  "C90",   # McCabe cyclomatic complexity
+  "DJ",    # flake8-django
+  "DTZ",   # flake8-datetimez
+  "E",     # pycodestyle
+  "EM",    # flake8-errmsg
+  "EXE",   # flake8-executable
+  "F",     # Pyflakes
+  "FA",    # flake8-future-annotations
+  "FLY",   # flynt
+  "G",     # flake8-logging-format
+  "I",     # isort
+  "ICN",   # flake8-import-conventions
+  "INP",   # flake8-no-pep420
+  "INT",   # flake8-gettext
+  "ISC",   # flake8-implicit-str-concat
+  "N",     # pep8-naming
+  "NPY",   # NumPy-specific rules
+  "PD",    # pandas-vet
+  "PGH",   # pygrep-hooks
+  "PIE",   # flake8-pie
+  "PL",    # Pylint
+  "PT",    # flake8-pytest-style
+  "PYI",   # flake8-pyi
+  "RSE",   # flake8-raise
+  "RUF",   # Ruff-specific rules
+  "S",     # flake8-bandit
+  "SIM",   # flake8-simplify
+  "SLF",   # flake8-self
+  "T10",   # flake8-debugger
+  "TD",    # flake8-todos
+  "TID",   # flake8-tidy-imports
+  "UP",    # pyupgrade
+  "W",     # pycodestyle
+  "YTT",   # flake8-2020
+  # "ANN",  # flake8-annotations -- FIX ME?
+  # "COM",  # flake8-commas -- DO NOT FIX
+  # "D",    # pydocstyle -- FIX ME?
+  # "ERA",  # eradicate -- DO NOT FIX
+  # "FBT",  # flake8-boolean-trap  # FIX ME
+  # "PTH",  # flake8-use-pathlib  # FIX ME
+  # "Q",    # flake8-quotes
+  # "RET",  # flake8-return  # FIX ME?
+  # "T20",  # flake8-print
+  # "TCH",  # flake8-type-checking
+  # "TRY",  # tryceratops
+]
+lint.ignore = [
+  # `ruff rule S101` for a description of that rule
+  "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
+  "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
+  "EM101",   # Exception must not use a string literal, assign to variable first
+  "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
+  "G004",    # Logging statement uses f-string
+  "ISC001",  # Conflicts with ruff format -- DO NOT FIX
+  "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
+  "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
+  "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
+  "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
+  "PT018",   # Assertion should be broken down into multiple parts
+  "S101",    # Use of `assert` detected -- DO NOT FIX
+  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
+  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
+  "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
+]
+
+lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."hashes/enigma_machine.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
+  "SIM115",
+]
+lint.per-file-ignores."matrix/sherman_morrison.py" = [
+  "SIM103",
+]
+lint.per-file-ignores."other/l*u_cache.py" = [
+  "RUF012",
+]
+lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
+  "SIM115",
+]
+lint.per-file-ignores."sorts/external_sort.py" = [
+  "SIM115",
+]
+lint.mccabe.max-complexity = 17 # default: 10
+lint.pylint.allow-magic-value-types = [
+  "float",
+  "int",
+  "str",
+]
+lint.pylint.max-args = 10 # default: 5
+lint.pylint.max-branches = 20 # default: 12
+lint.pylint.max-returns = 8 # default: 6
+lint.pylint.max-statements = 88 # default: 50
+
+[tool.codespell]
+ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
+skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
+
+[tool.pytest.ini_options]
+markers = [
+  "mat_ops: mark a test as utilizing matrix operations.",
+]
+addopts = [
+  "--durations=10",
+  "--doctest-modules",
+  "--showlocals",
+]
+
+[tool.coverage.report]
+omit = [
+  ".env/*",
+  "project_euler/*",
+]
+sort = "Cover"
+
+[tool.sphinx-pyproject]
+copyright = "2014, TheAlgorithms"
+autoapi_dirs = [
+  "audio_filters",
+  "backtracking",
+  "bit_manipulation",
+  "blockchain",
+  "boolean_algebra",
+  "cellular_automata",
+  "ciphers",
+  "compression",
+  "computer_vision",
+  "conversions",
+  "data_structures",
+  "digital_image_processing",
+  "divide_and_conquer",
+  "dynamic_programming",
+  "electronics",
+  "file_transfer",
+  "financial",
+  "fractals",
+  "fuzzy_logic",
+  "genetic_algorithm",
+  "geodesy",
+  "geometry",
+  "graphics",
+  "graphs",
+  "greedy_methods",
+  "hashes",
+  "knapsack",
+  "linear_algebra",
+  "linear_programming",
+  "machine_learning",
+  "maths",
+  "matrix",
+  "networking_flow",
+  "neural_network",
+  "other",
+  "physics",
+  "project_euler",
+  "quantum",
+  "scheduling",
+  "searches",
+  "sorts",
+  "strings",
+  "web_programming",
+]
+autoapi_member_order = "groupwise"
+# autoapi_python_use_implicit_namespaces = true
+exclude_patterns = [
+  ".*/*",
+  "docs/",
+]
+extensions = [
+  "autoapi.extension",
+  "myst_parser",
+]
+html_static_path = [ "_static" ]
+html_theme = "alabaster"
+myst_enable_extensions = [
+  "amsmath",
+  "attrs_inline",
+  "colon_fence",
+  "deflist",
+  "dollarmath",
+  "fieldlist",
+  "html_admonition",
+  "html_image",
+  # "linkify",
+  "replacements",
+  "smartquotes",
+  "strikethrough",
+  "substitution",
+  "tasklist",
+]
+myst_fence_as_directive = [
+  "include",
+]
+templates_path = [ "_templates" ]
+[tool.sphinx-pyproject.source_suffix]
+".rst" = "restructuredtext"
+# ".txt" = "markdown"
+".md" = "markdown"

@@ -49,7 +49,7 @@ def counting_sort(collection):
 
     # place the elements in the output, respecting the original order (stable
     # sort) from end to begin, updating counting_arr
-    for i in reversed(range(0, coll_len)):
+    for i in reversed(range(coll_len)):
         ordered[counting_arr[collection[i] - coll_min] - 1] = collection[i]
         counting_arr[collection[i] - coll_min] -= 1
 
@@ -66,7 +66,7 @@ def counting_sort_string(string):
 
 if __name__ == "__main__":
     # Test string sort
-    assert "eghhiiinrsssttt" == counting_sort_string("thisisthestring")
+    assert counting_sort_string("thisisthestring") == "eghhiiinrsssttt"
 
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]

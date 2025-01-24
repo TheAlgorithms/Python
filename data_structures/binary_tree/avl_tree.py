@@ -5,6 +5,7 @@ python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
 """
+
 from __future__ import annotations
 
 import math
@@ -12,7 +13,7 @@ import random
 from typing import Any
 
 
-class my_queue:
+class MyQueue:
     def __init__(self) -> None:
         self.data: list[Any] = []
         self.head: int = 0
@@ -33,26 +34,26 @@ class my_queue:
     def count(self) -> int:
         return self.tail - self.head
 
-    def print(self) -> None:
+    def print_queue(self) -> None:
         print(self.data)
         print("**************")
         print(self.data[self.head : self.tail])
 
 
-class my_node:
+class MyNode:
     def __init__(self, data: Any) -> None:
         self.data = data
-        self.left: my_node | None = None
-        self.right: my_node | None = None
+        self.left: MyNode | None = None
+        self.right: MyNode | None = None
         self.height: int = 1
 
     def get_data(self) -> Any:
         return self.data
 
-    def get_left(self) -> my_node | None:
+    def get_left(self) -> MyNode | None:
         return self.left
 
-    def get_right(self) -> my_node | None:
+    def get_right(self) -> MyNode | None:
         return self.right
 
     def get_height(self) -> int:
@@ -60,22 +61,18 @@ class my_node:
 
     def set_data(self, data: Any) -> None:
         self.data = data
-        return
 
-    def set_left(self, node: my_node | None) -> None:
+    def set_left(self, node: MyNode | None) -> None:
         self.left = node
-        return
 
-    def set_right(self, node: my_node | None) -> None:
+    def set_right(self, node: MyNode | None) -> None:
         self.right = node
-        return
 
     def set_height(self, height: int) -> None:
         self.height = height
-        return
 
 
-def get_height(node: my_node | None) -> int:
+def get_height(node: MyNode | None) -> int:
     if node is None:
         return 0
     return node.get_height()
@@ -87,7 +84,7 @@ def my_max(a: int, b: int) -> int:
     return b
 
 
-def right_rotation(node: my_node) -> my_node:
+def right_rotation(node: MyNode) -> MyNode:
     r"""
             A                      B
            / \                    / \
@@ -110,7 +107,7 @@ def right_rotation(node: my_node) -> my_node:
     return ret
 
 
-def left_rotation(node: my_node) -> my_node:
+def left_rotation(node: MyNode) -> MyNode:
     """
     a mirror symmetry rotation of the left_rotation
     """
@@ -126,7 +123,7 @@ def left_rotation(node: my_node) -> my_node:
     return ret
 
 
-def lr_rotation(node: my_node) -> my_node:
+def lr_rotation(node: MyNode) -> MyNode:
     r"""
             A              A                    Br
            / \            / \                  /  \
@@ -143,16 +140,16 @@ def lr_rotation(node: my_node) -> my_node:
     return right_rotation(node)
 
 
-def rl_rotation(node: my_node) -> my_node:
+def rl_rotation(node: MyNode) -> MyNode:
     right_child = node.get_right()
     assert right_child is not None
     node.set_right(right_rotation(right_child))
     return left_rotation(node)
 
 
-def insert_node(node: my_node | None, data: Any) -> my_node | None:
+def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if node is None:
-        return my_node(data)
+        return MyNode(data)
     if data < node.get_data():
         node.set_left(insert_node(node.get_left(), data))
         if (
@@ -180,7 +177,7 @@ def insert_node(node: my_node | None, data: Any) -> my_node | None:
     return node
 
 
-def get_rightMost(root: my_node) -> Any:
+def get_right_most(root: MyNode) -> Any:
     while True:
         right_child = root.get_right()
         if right_child is None:
@@ -189,7 +186,7 @@ def get_rightMost(root: my_node) -> Any:
     return root.get_data()
 
 
-def get_leftMost(root: my_node) -> Any:
+def get_left_most(root: MyNode) -> Any:
     while True:
         left_child = root.get_left()
         if left_child is None:
@@ -198,12 +195,12 @@ def get_leftMost(root: my_node) -> Any:
     return root.get_data()
 
 
-def del_node(root: my_node, data: Any) -> my_node | None:
+def del_node(root: MyNode, data: Any) -> MyNode | None:
     left_child = root.get_left()
     right_child = root.get_right()
     if root.get_data() == data:
         if left_child is not None and right_child is not None:
-            temp_data = get_leftMost(right_child)
+            temp_data = get_left_most(right_child)
             root.set_data(temp_data)
             root.set_right(del_node(right_child, temp_data))
         elif left_child is not None:
@@ -218,11 +215,15 @@ def del_node(root: my_node, data: Any) -> my_node | None:
             return root
         else:
             root.set_left(del_node(left_child, data))
-    else:  # root.get_data() < data
-        if right_child is None:
-            return root
-        else:
-            root.set_right(del_node(right_child, data))
+    # root.get_data() < data
+    elif right_child is None:
+        return root
+    else:
+        root.set_right(del_node(right_child, data))
+
+    # Re-fetch left_child and right_child references
+    left_child = root.get_left()
+    right_child = root.get_right()
 
     if get_height(right_child) - get_height(left_child) == 2:
         assert right_child is not None
@@ -276,7 +277,7 @@ class AVLtree:
     """
 
     def __init__(self) -> None:
-        self.root: my_node | None = None
+        self.root: MyNode | None = None
 
     def get_height(self) -> int:
         return get_height(self.root)
@@ -296,7 +297,7 @@ class AVLtree:
         self,
     ) -> str:  # a level traversale, gives a more intuitive look on the tree
         output = ""
-        q = my_queue()
+        q = MyQueue()
         q.push(self.root)
         layer = self.get_height()
         if layer == 0:

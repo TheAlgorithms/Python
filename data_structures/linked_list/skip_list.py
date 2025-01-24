@@ -2,8 +2,10 @@
 Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William Pugh
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
+
 from __future__ import annotations
 
+from itertools import pairwise
 from random import random
 from typing import Generic, TypeVar
 
@@ -205,7 +207,7 @@ class SkipList(Generic[KT, VT]):
 
             if level > self.level:
                 # After level increase we have to add additional nodes to head.
-                for i in range(self.level - 1, level):
+                for _ in range(self.level - 1, level):
                     update_vector.append(self.head)
                 self.level = level
 
@@ -388,10 +390,7 @@ def test_delete_doesnt_leave_dead_nodes():
 
 def test_iter_always_yields_sorted_values():
     def is_sorted(lst):
-        for item, next_item in zip(lst, lst[1:]):
-            if next_item < item:
-                return False
-        return True
+        return all(next_item >= item for item, next_item in pairwise(lst))
 
     skip_list = SkipList()
     for i in range(10):
@@ -407,7 +406,7 @@ def test_iter_always_yields_sorted_values():
 
 
 def pytests():
-    for i in range(100):
+    for _ in range(100):
         # Repeat test 100 times due to the probabilistic nature of skip list
         # random values == random bugs
         test_insert()
@@ -443,4 +442,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()

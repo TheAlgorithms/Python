@@ -26,15 +26,15 @@ def explicit_euler(
     ...     return y
     >>> y0 = 1
     >>> y = explicit_euler(f, y0, 0.0, 0.01, 5)
-    >>> y[-1]
+    >>> float(y[-1])
     144.77277243257308
     """
-    N = int(np.ceil((x_end - x0) / step_size))
-    y = np.zeros((N + 1,))
+    n = int(np.ceil((x_end - x0) / step_size))
+    y = np.zeros((n + 1,))
     y[0] = y0
     x = x0
 
-    for k in range(N):
+    for k in range(n):
         y[k + 1] = y[k] + step_size * ode_func(x, y[k])
         x += step_size
 

@@ -8,7 +8,6 @@ COULOMBS_CONSTANT = 8.988e9  # units = N * m^s * C^-2
 def couloumbs_law(
     force: float, charge1: float, charge2: float, distance: float
 ) -> dict[str, float]:
-
     """
     Apply Coulomb's Law on any three given values. These can be force, charge1,
     charge2, or distance, and then in a Python dict return name/value pair of
@@ -21,8 +20,8 @@ def couloumbs_law(
 
     Reference
     ----------
-    Coulomb (1785) "Premier mémoire sur l’électricité et le magnétisme,"
-    Histoire de l’Académie Royale des Sciences, pp. 569–577.
+    Coulomb (1785) "Premier mémoire sur l'électricité et le magnétisme,"
+    Histoire de l'Académie Royale des Sciences, pp. 569-577.
 
     Parameters
     ----------

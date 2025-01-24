@@ -4,8 +4,8 @@ Changing contrast with PIL
 This algorithm is used in
 https://noivce.pythonanywhere.com/ Python web app.
 
-python/black: True
-flake8 : True
+psf/black: True
+ruff : True
 """
 
 from PIL import Image
