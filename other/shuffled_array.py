@@ -25,9 +25,9 @@ class Solution:
     # generating a 4 digit number randomly
     # by taking the last four numbers of the system generated time
     # pseudo random number generator
-    def prng(self, num: int) -> int:
+    def pseudo_random_number_generator(self, num: int) -> int:
         """
-        >>> Solution([56]).prng(1)
+        >>> Solution([56]).pseudo_random_number_generator(1)
         0
         """
         if num == 1:
@@ -40,7 +40,7 @@ class Solution:
             any = any[:] + str(len(self.arr) // 2)
         if int(any[-1]) < num:
             return int(any[-1])
-        return self.prng(num)
+        return self.pseudo_random_number_generator(num)
 
     def reset(self) -> list:
         # it will return the original given array
@@ -59,14 +59,14 @@ class Solution:
         """
         temp = self.arr.copy()
         for i in range(len(self.arr)):
-            a = self.prng(len(self.arr))
+            a = self.pseudo_random_number_generator(len(self.arr))
             temp[a], temp[i] = temp[i], temp[a]
         return temp
 
 
 if __name__ == "__main__":
-    solclass = Solution([18, 2, 3, 4, 5, 7, 8, 10, 21])
-    shuffled_arr = solclass.shuffle()
+    solution_class = Solution([18, 2, 3, 4, 5, 7, 8, 10, 21])
+    shuffled_arr = solution_class.shuffle()
     print(shuffled_arr)
 
     doctest.testmod()
