@@ -12,6 +12,7 @@ Complexity:
 Wiki page:- <https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm>
 """
 
+
 def floyd_warshall(graph, n):
     """
     Returns the shortest distance between all pairs of nodes
@@ -34,15 +35,16 @@ def floyd_warshall(graph, n):
                 distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j])
     return distance
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     INF = 999999
     G1 = [
-    [0, 2, INF, INF, INF, 3],
-    [2, 0, 2, INF, INF, INF],
-    [INF, 2, 0, 1, INF, INF],
-    [INF, INF, 1, 0, 1, INF],
-    [INF, INF, INF, 1, 0, 5],
-    [3, INF, INF, INF, 5, 0]
+        [0, 2, INF, INF, INF, 3],
+        [2, 0, 2, INF, INF, INF],
+        [INF, 2, 0, 1, INF, INF],
+        [INF, INF, 1, 0, 1, INF],
+        [INF, INF, INF, 1, 0, 5],
+        [3, INF, INF, INF, 5, 0],
     ]
     """
     Layout of G1:-
