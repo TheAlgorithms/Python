@@ -29,6 +29,12 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
 
     >>> sigmoid(np.array([0.0]))
     array([0.5])
+
+    >>> sigmoid(np.array([100.0]))
+    array([1.])
+
+    >>> sigmoid(np.array([-100.0]))
+    array([3.72007598e-44])
     """
     return 1 / (1 + np.exp(-vector))
 
