@@ -215,6 +215,7 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             return root
         else:
             root.set_left(del_node(left_child, data))
+    # root.get_data() < data
     elif right_child is None:
         return root
     else:
