@@ -1,5 +1,5 @@
 # To create a shuffled array. Generate a pseudo random number
-# Swap that number with any other element in the list run this swapping len(Array)
+# Swap that number with str_square_seed other element in the list run this swapping len(Array)
 # times to get desired shuffled array
 
 # To Understand more of random number generation
@@ -33,13 +33,13 @@ class Solution:
         if num == 1:
             return 0
         self.seed *= self.seed
-        any = str(self.seed)
-        if any != "0":
-            self.seed = int(any[-1:-5:-1])
+        str_square_seed = str(self.seed)
+        if str_square_seed != "0":
+            self.seed = int(str_square_seed[-1:-5:-1])
         else:
-            any = any[:] + str(len(self.arr) // 2)
-        if int(any[-1]) < num:
-            return int(any[-1])
+            str_square_seed = str_square_seed[:] + str(len(self.arr) // 2)
+        if int(str_square_seed[-1]) < num:
+            return int(str_square_seed[-1])
         return self.pseudo_random_number_generator(num)
 
     def reset(self) -> list:
