@@ -10,7 +10,6 @@ import time
 
 
 class Solution:
-
     # """
     # >>> Solution().__init__(array=[1,2,3])
     # Traceback (most recent call last):
