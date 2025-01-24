@@ -45,8 +45,8 @@ class Solution:
     def reset(self) -> list:
         # it will return the original given array
         """
-        >>> Solution([-2, 0, 140, 15, 220]).reset()
-        [-2, 0, 140, 15, 220]
+        >>> Solution([-7, 0, 4, -56.7]).reset()
+        [-7, 0, 4, -56.7]
         """
         return self.arr
 
