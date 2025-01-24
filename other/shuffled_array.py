@@ -1,7 +1,6 @@
 # To create a shuffled array. Generate a pseudo random number
 # Swap that number with str_square_seed other element in the list run this
-# swapping len(Array)
-# times to get desired shuffled array
+# swapping len(Array) times to get desired shuffled array
 
 # To Understand more of random number generation
 # follow https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator
