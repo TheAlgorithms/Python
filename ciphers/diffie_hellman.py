@@ -1,9 +1,14 @@
+"""
+https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
+"""
+
 import random
 
-# RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
-# Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
-
-PRIMES = {
+"""
+RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
+Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
+"""
+GROUPS = {
     # 1536-bit
     5: {
         "prime": int(
@@ -179,28 +184,29 @@ PRIMES = {
 
 class DiffieHellman:
     """
-    Class to represent the Diffie-Hellman key exchange protocol
+    Class to represent one party in the Diffie-Hellman key exchange protocol
 
+    Current minimum recommendation is 2048 bit
+    >>> group = GROUPS[14]
+    >>> prime, generator = group['prime'], group['generator']
+    >>> alice = DiffieHellman(prime, generator)
 
-    >>> alice = DiffieHellman()
-    >>> bob = DiffieHellman()
+    Both parties should agree on the same public parameters
+    >>> bob = DiffieHellman(alice.prime, alice.generator)
 
-    >>> alice_public = alice.public_key
-    >>> bob_public = bob.public_key
+    Alice sends Bob its public key,
+    >>> bob_shared = bob.generate_shared_key(alice.public_key)
 
-    Generating shared key using the DH object
-    >>> alice_shared = alice.generate_shared_key(bob_public)
-    >>> bob_shared = bob.generate_shared_key(alice_public)
-    >>> assert alice_shared == bob_shared
+    and the same vice versa:
+    >>> alice_shared = alice.generate_shared_key(bob.public_key)
+
+    >>> alice_shared == bob_shared
+    True
     """
 
-    # Current minimum recommendation is 2048 bit (group 14)
-    def __init__(self, group: int = 14) -> None:
-        if group not in PRIMES:
-            raise ValueError("Unsupported Group")
-        self.prime = PRIMES[group]["prime"]
-        self.generator = PRIMES[group]["generator"]
-
+    def __init__(self, prime: int, generator: int) -> None:
+        self.prime = prime
+        self.generator = generator
         self.__private_key = random.getrandbits(256)
 
     @property
