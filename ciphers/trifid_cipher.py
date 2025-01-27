@@ -88,7 +88,7 @@ def __prepare(
         ...
     KeyError: 'Length of alphabet has to be 27.'
 
-    Testing with punctuations that are not in the given alphabet
+    Testing with punctuation not in the given alphabet
 
     >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
@@ -128,7 +128,7 @@ def encrypt_message(
     encrypt_message
     ===============
 
-    Encrypts a message using the trifid_cipher. Any punctuatuions that
+    Encrypts a message using the trifid_cipher. Any punctuatuion chars that
     would be used should be added to the alphabet.
 
     PARAMETERS
