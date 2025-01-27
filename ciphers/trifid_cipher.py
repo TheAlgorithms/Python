@@ -88,7 +88,7 @@ def __prepare(
         ...
     KeyError: 'Length of alphabet has to be 27.'
 
-    Testing with punctuations that are not in the given alphabet
+    Testing with punctuation not in the given alphabet
 
     >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
