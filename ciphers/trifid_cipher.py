@@ -128,7 +128,7 @@ def encrypt_message(
     encrypt_message
     ===============
 
-    Encrypts a message using the trifid_cipher. Any punctuatuions that
+    Encrypts a message using the trifid_cipher. Any punctuatuion chars that
     would be used should be added to the alphabet.
 
     PARAMETERS
