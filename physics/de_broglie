@@ -1,0 +1,46 @@
+PLANCK_CONSTANT_JS = 6.62607015e-34  # Planck's constant in Joule-seconds
+PLANCK_CONSTANT_EVS = 4.135667696e-15  # Planck's constant in eV-seconds
+
+def de_broglie_wavelength(momentum: float, in_ev: bool = False) -> str:
+    """
+    Calculates the de Broglie wavelength of a particle using the given momentum.
+
+    Parameters:
+        momentum (float): Momentum of the particle.
+        in_ev (bool, optional): True if momentum is in eV·s.
+                                If False, momentum is in kg·m/s.
+
+    Returns:
+        str: The calculated de Broglie wavelength of the particle in meters,
+        formatted in scientific notation.
+
+    Raises:
+        ValueError: If the momentum is zero or negative.
+
+    Usage example:
+    >>> de_broglie_wavelength(1e-24)
+    '6.62607015e-10'
+    >>> de_broglie_wavelength(1e-24, True)
+    '4.13566770e+09'
+    >>> de_broglie_wavelength(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Momentum can't be zero or negative.
+    >>> de_broglie_wavelength(-1e-24)
+    Traceback (most recent call last):
+        ...
+    ValueError: Momentum can't be zero or negative.
+    >>> de_broglie_wavelength(5e-20)
+    '1.32521403e-14'
+    """
+
+    if momentum <= 0:
+        raise ValueError("Momentum can't be zero or negative.")
+
+
+    wavelength = PLANCK_CONSTANT_EVS / momentum if in_ev else PLANCK_CONSTANT_JS / momentum
+    return f"{wavelength:.8e}"
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
