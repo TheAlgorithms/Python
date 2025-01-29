@@ -1,11 +1,13 @@
 import math
 import random
 
+
 def gcd(a, b):
     """Computes the greatest common divisor using Euclidean algorithm."""
     while b:
         a, b = b, a % b
     return a
+
 
 def modular_exponentiation(base, exp, mod):
     """Computes (base^exp) % mod using fast modular exponentiation."""
@@ -17,6 +19,7 @@ def modular_exponentiation(base, exp, mod):
         exp //= 2
     return result
 
+
 def find_order(a, N):
     """Finds the smallest r such that a^r ≡ 1 (mod N)"""
     r = 1
@@ -25,6 +28,7 @@ def find_order(a, N):
         if r > N:  # Prevent infinite loops
             return None
     return r
+
 
 def shor_algorithm(N):
     """Simulates Shor’s Algorithm classically to factorize N."""
@@ -48,6 +52,7 @@ def shor_algorithm(N):
             return factor1, N // factor1
         if 1 < factor2 < N:
             return factor2, N // factor2
+
 
 # Example usage
 if __name__ == "__main__":
