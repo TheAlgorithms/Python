@@ -1,5 +1,4 @@
-#person_pace = [1, 2, 5, 10,12,16]
-person_pace = list(map(int, input().split()))
+person_pace = [1, 2, 5, 10,12,16]
 person_pace.sort()  # Sort the array for optimal pairing
 people = len(person_pace)
 
