@@ -1,4 +1,10 @@
 """
+Diffie-Hellman is a cryptographic protocol that allows two parties to
+securely share a secret over an insecure channel without needing a previously
+shared key.
+
+Its strength is based on the difficulty of solving the discrete logarithm.
+
 https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
 """
 
