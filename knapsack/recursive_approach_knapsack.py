@@ -11,9 +11,10 @@ Constraints:
     profit[i] >= 0
     weight[i] >= 0
 
-Calculate the maximum profit the shopkeeper can make given the maximum weight 
+Calculate the maximum profit the shopkeeper can make given the maximum weight
 that can be carried.
 """
+
 
 def knapsack(
     weights: list, values: list, number_of_items: int, max_weight: int, index: int
@@ -41,7 +42,7 @@ def knapsack(
         ans2 = values[index] + knapsack(
             weights, values, number_of_items, max_weight - weights[index], index + 1
         )
-    
+
     return max(ans1, ans2)
 
 
