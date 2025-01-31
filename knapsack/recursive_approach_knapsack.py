@@ -16,7 +16,15 @@ Calculate the maximum profit the shopkeeper can make given the maximum weight th
 
 from functools import lru_cache
 
-def knapsack(weights: list, values: list, number_of_items: int, max_weight: int, index: int, memo=None) -> int:
+
+def knapsack(
+    weights: list,
+    values: list,
+    number_of_items: int,
+    max_weight: int,
+    index: int,
+    memo=None,
+) -> int:
     """
     Optimized Recursive Knapsack with Memoization.
 
@@ -49,7 +57,14 @@ def knapsack(weights: list, values: list, number_of_items: int, max_weight: int,
     # Case 2: Include the current item (if weight allows)
     ans2 = 0
     if weights[index] <= max_weight:
-        ans2 = values[index] + knapsack(weights, values, number_of_items, max_weight - weights[index], index + 1, memo)
+        ans2 = values[index] + knapsack(
+            weights,
+            values,
+            number_of_items,
+            max_weight - weights[index],
+            index + 1,
+            memo,
+        )
 
     # Store and return the maximum value obtained
     memo[(index, max_weight)] = max(ans1, ans2)
@@ -58,4 +73,5 @@ def knapsack(weights: list, values: list, number_of_items: int, max_weight: int,
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
