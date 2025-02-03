@@ -4,18 +4,18 @@ from sklearn import datasets
 
 # Ridge Regression function
 # reference : https://en.wikipedia.org/wiki/Ridge_regression
-def ridge_cost_function(X: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float) -> float:
+def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float) -> float:
     """
     Compute the Ridge regression cost function with L2 regularization.
 
-    J(θ) = (1/2m) * Σ (y_i - hθ(x))^2 + (α/2) * Σ θ_j^2 (for j=1 to n)
+    J(θ) = (1/2m) * Σ (y_i - hθ(x))^2 + (a/2) * Σ θ_j^2 (for j=1 to n)
 
     Where:
        - J(θ) is the cost function we aim to minimize
        - m is the number of training examples
        - hθ(x) = X * θ (prediction)
        - y_i is the actual target value for example i
-       - α is the regularization parameter
+       - a is the regularization parameter
 
     @param X: The feature matrix (m x n)
     @param y: The target vector (m,)
@@ -26,10 +26,11 @@ def ridge_cost_function(X: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: 
     """
     m = len(y)
     predictions = np.dot(X, theta)
-    cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + (alpha / 2) * np.sum(theta[1:] ** 2)
+    cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2)
+    cost += (alpha / 2) * np.sum(theta[1:] ** 2)
     return cost
 
-def ridge_gradient_descent(X: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, learning_rate: float, max_iterations: int) -> np.ndarray:
+def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, learning_rate: float, max_iterations: int) -> np.ndarray:
     """
     Perform gradient descent to minimize the cost function and fit the Ridge regression model.
 
@@ -63,6 +64,7 @@ def ridge_gradient_descent(X: np.ndarray, y: np.ndarray, theta: np.ndarray, alph
 
 if __name__ == "__main__":
     import doctest
+    doctest.testmod()
 
     # Load California Housing dataset
     california_housing = datasets.fetch_california_housing()
@@ -97,4 +99,5 @@ if __name__ == "__main__":
     plt.ylabel("Predicted values")
     plt.title("Ridge Regression: Actual vs Predicted Values")
     plt.legend()
+    #plots on a graph
     plt.show()
