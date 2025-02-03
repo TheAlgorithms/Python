@@ -34,7 +34,8 @@ def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: 
 
 def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, learning_rate: float, max_iterations: int) -> np.ndarray:
     """
-    Perform gradient descent to minimize the cost function and fit the Ridge regression model.
+    Perform gradient descent to minimize the
+    cost function and fit the Ridge regression model.
 
     @param X: The feature matrix (m x n)
     @param y: The target vector (m,)
