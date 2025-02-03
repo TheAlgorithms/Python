@@ -1,3 +1,4 @@
+
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import datasets
@@ -27,7 +28,7 @@ def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: 
     m = len(y)
     predictions = np.dot(x, theta)
     cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + \
-       (alpha / 2) * np.sum(theta[1:] ** 2)
+        (alpha / 2) * np.sum(theta[1:] ** 2)
 
     return cost
 
@@ -61,8 +62,6 @@ def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alph
 
     return theta
 
-
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
@@ -90,6 +89,7 @@ if __name__ == "__main__":
     # Prediction
     def predict(x, theta):
         return np.dot(x, theta)
+
     y_pred = predict(x, optimized_theta)
 
     # Plotting the results (here we visualize predicted vs actual values)
@@ -101,3 +101,4 @@ if __name__ == "__main__":
     plt.title("Ridge Regression: Actual vs Predicted Values")
     plt.legend()
     plt.show()
+
