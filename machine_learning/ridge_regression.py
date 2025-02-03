@@ -25,9 +25,10 @@ def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: 
     @returns: The computed cost value
     """
     m = len(y)
-    predictions = np.dot(X, theta)
-    cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2)
-    cost += (alpha / 2) * np.sum(theta[1:] ** 2)
+    predictions = np.dot(x, theta)
+    cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + \
+       (alpha / 2) * np.sum(theta[1:] ** 2)
+
     return cost
 
 def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, learning_rate: float, max_iterations: int) -> np.ndarray:
@@ -46,16 +47,16 @@ def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alph
     m = len(y)
 
     for iteration in range(max_iterations):
-        predictions = np.dot(X, theta)
+        predictions = np.dot(x, theta)
         error = predictions - y
 
         # calculate the gradient
-        gradient = (1 / m) * np.dot(X.T, error)
+        gradient = (1 / m) * np.dot(x.T, error)
         gradient[1:] += (alpha / m) * theta[1:]
         theta -= learning_rate * gradient
 
         if iteration % 100 == 0:
-            cost = ridge_cost_function(X, y, theta, alpha)
+            cost = ridge_cost_function(x, y, theta, alpha)
             print(f"Iteration {iteration}, Cost: {cost}")
 
     return theta
@@ -68,28 +69,28 @@ if __name__ == "__main__":
 
     # Load California Housing dataset
     california_housing = datasets.fetch_california_housing()
-    X = california_housing.data[:, :2]  # 2 features for simplicity
+    x = california_housing.data[:, :2]  # 2 features for simplicity
     y = california_housing.target
-    X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
+    x = (x - np.mean(x, axis=0)) / np.std(x, axis=0)
 
     # Add a bias column (intercept) to X
-    X = np.c_[np.ones(X.shape[0]), X]
+    x = np.c_[np.ones(x.shape[0]), x]
 
     # Initialize parameters (theta)
-    theta_initial = np.zeros(X.shape[1])
+    theta_initial = np.zeros(x.shape[1])
 
     # Set hyperparameters
     alpha = 0.1
     learning_rate = 0.01
     max_iterations = 1000
 
-    optimized_theta = ridge_gradient_descent(X, y, theta_initial, alpha, learning_rate, max_iterations)
+    optimized_theta = ridge_gradient_descent(x, y, theta_initial, alpha, learning_rate, max_iterations)
     print(f"Optimized theta: {optimized_theta}")
 
     # Prediction
-    def predict(X, theta):
-        return np.dot(X, theta)
-    y_pred = predict(X, optimized_theta)
+    def predict(x, theta):
+        return np.dot(x, theta)
+    y_pred = predict(x, optimized_theta)
 
     # Plotting the results (here we visualize predicted vs actual values)
     plt.figure(figsize=(10, 6))
