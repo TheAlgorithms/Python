@@ -2,9 +2,16 @@ import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import datasets
 
+
 # Ridge Regression function
 # reference : https://en.wikipedia.org/wiki/Ridge_regression
+<<<<<<< HEAD
 def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float) -> float:
+=======
+def ridge_cost_function(
+    X: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float
+) -> float:
+>>>>>>> a4f585c89d4426f2ddace3ead610ff1742922713
     """
     Compute the Ridge regression cost function with L2 regularization.
 
@@ -26,11 +33,28 @@ def ridge_cost_function(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: 
     """
     m = len(y)
     predictions = np.dot(X, theta)
+<<<<<<< HEAD
     cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2)
     cost += (alpha / 2) * np.sum(theta[1:] ** 2)
     return cost
 
 def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alpha: float, learning_rate: float, max_iterations: int) -> np.ndarray:
+=======
+    cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + (alpha / 2) * np.sum(
+        theta[1:] ** 2
+    )
+    return cost
+
+
+def ridge_gradient_descent(
+    X: np.ndarray,
+    y: np.ndarray,
+    theta: np.ndarray,
+    alpha: float,
+    learning_rate: float,
+    max_iterations: int,
+) -> np.ndarray:
+>>>>>>> a4f585c89d4426f2ddace3ead610ff1742922713
     """
     Perform gradient descent to minimize the cost function and fit the Ridge regression model.
 
@@ -61,7 +85,6 @@ def ridge_gradient_descent(x: np.ndarray, y: np.ndarray, theta: np.ndarray, alph
     return theta
 
 
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
@@ -83,18 +106,21 @@ if __name__ == "__main__":
     learning_rate = 0.01
     max_iterations = 1000
 
-    optimized_theta = ridge_gradient_descent(X, y, theta_initial, alpha, learning_rate, max_iterations)
+    optimized_theta = ridge_gradient_descent(
+        X, y, theta_initial, alpha, learning_rate, max_iterations
+    )
     print(f"Optimized theta: {optimized_theta}")
 
     # Prediction
     def predict(X, theta):
         return np.dot(X, theta)
+
     y_pred = predict(X, optimized_theta)
 
     # Plotting the results (here we visualize predicted vs actual values)
     plt.figure(figsize=(10, 6))
-    plt.scatter(y, y_pred, color='b', label='Predictions vs Actual')
-    plt.plot([min(y), max(y)], [min(y), max(y)], color='r', label='Perfect Fit')
+    plt.scatter(y, y_pred, color="b", label="Predictions vs Actual")
+    plt.plot([min(y), max(y)], [min(y), max(y)], color="r", label="Perfect Fit")
     plt.xlabel("Actual values")
     plt.ylabel("Predicted values")
     plt.title("Ridge Regression: Actual vs Predicted Values")
