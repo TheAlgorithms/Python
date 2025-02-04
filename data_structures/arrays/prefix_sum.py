@@ -20,7 +20,11 @@ class PrefixSum:
         if start < 0 or end >= len(self.prefix_sum) or start > end:
             raise ValueError("Invalid range specified.")
 
-        return self.prefix_sum[end] if start == 0 else self.prefix_sum[end] - self.prefix_sum[start - 1]
+        return (
+            self.prefix_sum[end]
+            if start == 0
+            else self.prefix_sum[end] - self.prefix_sum[start - 1]
+        )
 
     def contains_sum(self, target_sum: int) -> bool:
         """
@@ -37,4 +41,5 @@ class PrefixSum:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
