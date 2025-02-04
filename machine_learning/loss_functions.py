@@ -659,9 +659,13 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
 
-    kl_loss = np.concatenate((y_true[None, :], y_pred[None, :])) # true probs in first row and predicted in second
-    kl_loss = kl_loss[:, np.any(kl_loss == 0, axis=0) == False] # Filtered zero probabilities from both probability arrays
-    kl_loss = kl_loss[0] * np.log(kl_loss[0] / kl_loss[1]) # Calculating safely now
+    kl_loss = np.concatenate(
+        (y_true[None, :], y_pred[None, :])
+    )  # true probs in first row and predicted in second
+    kl_loss = kl_loss[
+        :, np.any(kl_loss == 0, axis=0) == False
+    ]  # Filtered zero probabilities from both probability arrays
+    kl_loss = kl_loss[0] * np.log(kl_loss[0] / kl_loss[1])  # Calculating safely now
     return np.sum(kl_loss)
 
 
