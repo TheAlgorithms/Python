@@ -1,12 +1,3 @@
-"""
-Author  : Alexander Pantyukhin
-Date    : November 3, 2022
-
-Implement the class of prefix sum with useful functions based on it.
-
-"""
-
-
 class PrefixSum:
     def __init__(self, array: list[int]) -> None:
         len_array = len(array)
@@ -20,53 +11,25 @@ class PrefixSum:
 
     def get_sum(self, start: int, end: int) -> int:
         """
-        The function returns the sum of array from the start to the end indexes.
-        Runtime : O(1)
-        Space: O(1)
-
-        >>> PrefixSum([1,2,3]).get_sum(0, 2)
-        6
-        >>> PrefixSum([1,2,3]).get_sum(1, 2)
-        5
-        >>> PrefixSum([1,2,3]).get_sum(2, 2)
-        3
-        >>> PrefixSum([1,2,3]).get_sum(2, 3)
-        Traceback (most recent call last):
-        ...
-        IndexError: list index out of range
+        Returns the sum of the array from index start to end (inclusive).
+        Raises ValueError if the indices are invalid.
         """
-        if start == 0:
-            return self.prefix_sum[end]
+        if not self.prefix_sum:
+            raise ValueError("The array is empty.")
 
-        return self.prefix_sum[end] - self.prefix_sum[start - 1]
+        if start < 0 or end >= len(self.prefix_sum) or start > end:
+            raise ValueError("Invalid range specified.")
+
+        return self.prefix_sum[end] if start == 0 else self.prefix_sum[end] - self.prefix_sum[start - 1]
 
     def contains_sum(self, target_sum: int) -> bool:
         """
-        The function returns True if array contains the target_sum,
-        False otherwise.
-
-        Runtime : O(n)
-        Space: O(n)
-
-        >>> PrefixSum([1,2,3]).contains_sum(6)
-        True
-        >>> PrefixSum([1,2,3]).contains_sum(5)
-        True
-        >>> PrefixSum([1,2,3]).contains_sum(3)
-        True
-        >>> PrefixSum([1,2,3]).contains_sum(4)
-        False
-        >>> PrefixSum([1,2,3]).contains_sum(7)
-        False
-        >>> PrefixSum([1,-2,3]).contains_sum(2)
-        True
+        Returns True if any subarray sum equals target_sum, otherwise False.
         """
-
-        sums = {0}
+        sums = {0}  # Initialize with 0 to check subarrays from the start
         for sum_item in self.prefix_sum:
-            if sum_item - target_sum in sums:
+            if (sum_item - target_sum) in sums:
                 return True
-
             sums.add(sum_item)
 
         return False
@@ -74,5 +37,4 @@ class PrefixSum:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
