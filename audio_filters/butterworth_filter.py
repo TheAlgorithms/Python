@@ -9,18 +9,20 @@ Code based on https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.htm
 Alternatively you can use scipy.signal.butter, which should yield the same results.
 """
 
+
 # All calls to filter creators must have keyword arguments
 def safe_checks(filter_creator):
     def safe_filter_creator(**kwargs):
-        if not isinstance(kwargs['frequency'], int) or kwargs['frequency'] <= 0:
-            raise ValueError('Frequency must be a positive integer.')
-        if not isinstance(kwargs['samplerate'], int) or kwargs['samplerate'] <= 0:
-            raise ValueError('Samplerate must be a positive integer.')
-        if not (0 < kwargs['frequency'] < kwargs['samplerate'] / 2):
-            raise ValueError('Frequency must be less than half of the samplerate.')
-        if kwargs['q_factor'] <= 0:
-            raise ValueError('Q factor must be positive.')
+        if not isinstance(kwargs["frequency"], int) or kwargs["frequency"] <= 0:
+            raise ValueError("Frequency must be a positive integer.")
+        if not isinstance(kwargs["samplerate"], int) or kwargs["samplerate"] <= 0:
+            raise ValueError("Samplerate must be a positive integer.")
+        if not (0 < kwargs["frequency"] < kwargs["samplerate"] / 2):
+            raise ValueError("Frequency must be less than half of the samplerate.")
+        if kwargs["q_factor"] <= 0:
+            raise ValueError("Q factor must be positive.")
         return filter_creator(**kwargs)
+
     return safe_filter_creator
 
 
