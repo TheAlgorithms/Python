@@ -17,8 +17,8 @@ class Matrix:  # Public class to implement a graph
         4
         >>> m.graph
         [[True, False, False, False],
-         [True, False, True, False],
-         [False, False, True, True]]
+        ...[True, False, True, False],
+        ...[False, False, True, True]]
         """
         self.graph = graph
         self.ROW = len(graph)
@@ -26,8 +26,6 @@ class Matrix:  # Public class to implement a graph
 
     def is_safe(self, i: int, j: int, visited: list[list[bool]]) -> bool:
         """
-        Checks if the cell (i, j) can be visited.
-
         >>> visited = [[False, False, False],
         ...             [False, False, False],
         ...             [False, False, False]]
@@ -63,8 +61,8 @@ class Matrix:  # Public class to implement a graph
         >>> m.diffs(0, 0, visited)
         >>> visited
         [[True, True, False],
-         [False, True, False],
-         [True, False, True]]
+        ...[False, True, False],
+        ...[True, False, True]]
         """
         row_nbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
         col_nbr = [-1, 0, 1, -1, 1, -1, 0, 1]
@@ -92,7 +90,7 @@ class Matrix:  # Public class to implement a graph
         count = 0
         for i in range(self.ROW):
             for j in range(self.COL):
-                if visited[i][j] is False and self.graph[i][j] == 1:
+                if not visited[i][j] and self.graph[i][j]:
                     self.diffs(i, j, visited)
                     count += 1
         return count
