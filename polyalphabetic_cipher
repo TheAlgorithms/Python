@@ -1,0 +1,55 @@
+def encrypt(text, key):
+
+    #Encrypts the plaintext using the polyalphabetic cipher.
+
+    encrypted_text = []
+    key = key.upper()
+    key_length = len(key)
+    key_index = 0
+
+    for char in text:
+        if char.isalpha():
+            shift = ord(key[key_index]) - ord('A')
+            if char.isupper():
+                new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+            else:
+                new_char = chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+            encrypted_text.append(new_char)
+            key_index = (key_index + 1) % key_length
+        else:
+            encrypted_text.append(char)
+
+    return ''.join(encrypted_text)
+
+
+def decrypt(text, key):
+    #Decrypts the ciphertext using the polyalphabetic cipher
+
+    decrypted_text = []
+    key = key.upper()
+    key_length = len(key)
+    key_index = 0
+
+    for char in text:
+        if char.isalpha():
+            shift = ord(key[key_index]) - ord('A')
+            if char.isupper():
+                new_char = chr((ord(char) - ord('A') - shift) % 26 + ord('A'))
+            else:
+                new_char = chr((ord(char) - ord('a') - shift) % 26 + ord('a'))
+            decrypted_text.append(new_char)
+            key_index = (key_index + 1) % key_length
+        else:
+            decrypted_text.append(char)
+
+    return ''.join(decrypted_text)
+
+
+plaintext = "HELLO, WORLD!"
+key = "KEY"
+
+ciphertext = encrypt(plaintext, key)
+print("Encrypted Text:", ciphertext)
+
+decrypted_text = decrypt(ciphertext, key)
+print("Decrypted Text:", decrypted_text)
