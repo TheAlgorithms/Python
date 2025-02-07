@@ -59,6 +59,40 @@ def proth(number: int) -> int:
     return proth_list[number - 1]
 
 
+def isprothnumber(number: int) -> bool:
+    """
+    :param number: nth number to calculate in the sequence
+    :return: true if number is a Proth number, false etherwise
+    >>> isprothnumber(5)
+    True
+    >>> isprothnumber(34)
+    False
+    >>> isprothnumber(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input value of [number=-1] must be > 0
+    >>> isprothnumber(6.0)
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value of [number=6.0] must be an integer
+    """
+    if not isinstance(number, int):
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
+
+    if number < 1:
+        msg = f"Input value of [number={number}] must be > 0"
+        raise ValueError(msg)
+
+    num = number
+    num -= 1
+    n = 0
+    while num % 2 == 0:
+        num = num // 2
+        n += 1
+    return num < (2**n)
+
+
 if __name__ == "__main__":
     import doctest
 
@@ -73,3 +107,11 @@ if __name__ == "__main__":
             continue
 
         print(f"The {number}th Proth number: {value}")
+
+    listexe = [3, 5, 9, 13, 49, 57, 193, 241, 163, 201]
+
+    for number in listexe:
+        if isprothnumber(number):
+            print(f"{number} is a Proth number")
+        else:
+            print(f"{number} is not a Proth number")
