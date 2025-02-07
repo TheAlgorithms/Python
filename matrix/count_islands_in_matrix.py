@@ -73,8 +73,6 @@ class Matrix:  # Public class to implement a graph
 
     def count_islands(self) -> int:
         """
-        Counts the number of islands in the matrix.
-
         >>> m = Matrix([[True, True, False, False],
         ...              [False, True, False, True],
         ...              [True, False, False, True]])
