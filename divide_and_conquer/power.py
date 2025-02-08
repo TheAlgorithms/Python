@@ -1,4 +1,4 @@
-def actual_power(a: int, b: int)-> int:
+def actual_power(a: int, b: int) -> int:
     """
     Function using divide and conquer to calculate a^b.
     It only works for integer a,b.
