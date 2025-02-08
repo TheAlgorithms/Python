@@ -25,8 +25,6 @@ def actual_power(a: int, b: int):
         return actual_power(a, int(b / 2)) * actual_power(a, int(b / 2))
     else:
         return half * half
-    else:
-        return a * half * half
 
 def power(a: int, b: int) -> float:
     """
