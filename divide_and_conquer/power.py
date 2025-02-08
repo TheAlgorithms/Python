@@ -29,7 +29,7 @@ def actual_power(a: int, b: int):
         return a * half * half
 
 def power(a: int, b: int) -> float:
-    """ 
+    """
     :param a: The base (integer).
     :param b: The exponent (integer).
     :return: The result of a^b, as a float for negative exponents.
