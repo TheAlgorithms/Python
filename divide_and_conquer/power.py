@@ -1,4 +1,4 @@
-def actual_power(a: int, b: int):
+def actual_power(a: int, b: int)-> int:
     """
     Function using divide and conquer to calculate a^b.
     It only works for integer a,b.
@@ -22,9 +22,9 @@ def actual_power(a: int, b: int):
     half = actual_power(a, b // 2)
 
     if (b % 2) == 0:
-        return actual_power(a, int(b / 2)) * actual_power(a, int(b / 2))
-    else:
         return half * half
+    else:
+        return a * half * half
 
 
 def power(a: int, b: int) -> float:
