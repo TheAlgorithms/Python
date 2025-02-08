@@ -27,7 +27,7 @@ def actual_power(a: int, b: int):
         return half * half
     else:
         return a * half * half
-        
+
 def power(a: int, b: int) -> float:
     """
     :param a: The base (integer).
