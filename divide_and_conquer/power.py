@@ -19,12 +19,15 @@ def actual_power(a: int, b: int):
     """
     if b == 0:
         return 1
+    half = actual_power(a, b // 2)
+
     if (b % 2) == 0:
         return actual_power(a, int(b / 2)) * actual_power(a, int(b / 2))
     else:
-        return a * actual_power(a, int(b / 2)) * actual_power(a, int(b / 2))
-
-
+        return half * half
+    else:
+        return a * half * half
+        
 def power(a: int, b: int) -> float:
     """
     :param a: The base (integer).
