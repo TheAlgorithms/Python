@@ -26,6 +26,7 @@ def actual_power(a: int, b: int):
     else:
         return half * half
 
+
 def power(a: int, b: int) -> float:
     """
     :param a: The base (integer).
@@ -33,8 +34,9 @@ def power(a: int, b: int) -> float:
     :return: The result of a^b, as a float for negative exponents.
     """
     if b < 0:
-      return 1 / actual_power(a, -b)
+        return 1 / actual_power(a, -b)
     return actual_power(a, b)
 
+
 if __name__ == "__main__":
-    print(power(-2, -3)) #output -0.125
+    print(power(-2, -3))  # output -0.125
