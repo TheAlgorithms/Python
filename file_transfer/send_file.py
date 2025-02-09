@@ -13,6 +13,8 @@ def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
         conn, addr = sock.accept()  # Establish connection with client.
         print(f"Got connection from {addr}")
         data = conn.recv(1024)
+        if not data:
+            break  # IF NOT data received,the Client has closed the Connection.
         print(f"Server received: {data = }")
 
         with open(filename, "rb") as in_file:
