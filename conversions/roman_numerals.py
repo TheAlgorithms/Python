@@ -25,6 +25,8 @@ ROMAN = [
     (4, "IV"),
     (1, "I"),
 ]
+
+
 def roman_to_int(roman: str) -> int:
     """
     Convert a Roman numeral to an integer, supporting Vinculum notation
@@ -45,13 +47,15 @@ def roman_to_int(roman: str) -> int:
     i, total = 0, 0
     while i < len(roman):
         # Check for 2-character symbols first (like I_ or X_)
-        if i + 1 < len(roman) and roman[i:i+2] in vals:
-            total += vals[roman[i:i+2]]
+        if i + 1 < len(roman) and roman[i : i + 2] in vals:
+            total += vals[roman[i : i + 2]]
             i += 2
         else:
             total += vals[roman[i]]
             i += 1
     return total
+
+
 def int_to_roman(number: int) -> str:
     """
     Convert an integer to a Roman numeral, supporting Vinculum notation
@@ -74,7 +78,9 @@ def int_to_roman(number: int) -> str:
         if number == 0:
             break
     return "".join(result)
-    
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
