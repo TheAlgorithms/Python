@@ -8,8 +8,8 @@ ROMAN = [
 ]
 def roman_to_int(roman: str) -> int:
     """
-    Convert a Roman numeral to an integer, supporting Vinculum notation (underscore _ represents 1000 times).
-    LeetCode No. 13 Roman to Integer
+     Convert a Roman numeral to an integer, supporting Vinculum notation (underscore _ represents 1000 times).
+     LeetCode No. 13 Roman to Integer
  ​    Given a roman numeral, convert it to an integer.
  ​    Input is guaranteed to be within the range from 1 to 3999.
  ​    https://en.wikipedia.org/wiki/Roman_numerals
@@ -31,7 +31,7 @@ def roman_to_int(roman: str) -> int:
             total += vals[roman[i]]
             i += 1
     return total
-    def int_to_roman(number: int) -> str:
+ def int_to_roman(number: int) -> str:
     """
    Convert an integer to a Roman numeral, supporting Vinculum notation (underscore _ represents 1000 times).
     Given a integer, convert it to an roman numeral.
@@ -48,7 +48,7 @@ def roman_to_int(roman: str) -> int:
         factor, number = divmod(number, arabic)
         result.append(roman * factor)
         if number == 0:
-        reak
+           break
     return "".join(result)
 
 if __name__ == "__main__":
