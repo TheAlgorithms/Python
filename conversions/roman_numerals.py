@@ -9,10 +9,10 @@ ROMAN = [
 def roman_to_int(roman: str) -> int:
     """
     Convert a Roman numeral to an integer, supporting Vinculum notation (underscore _ represents 1000 times).
-    LeetCode No. 13 Roman to Integer 
- ​    Given a roman numeral, convert it to an integer. 
- ​    Input is guaranteed to be within the range from 1 to 3999. 
- ​    https://en.wikipedia.org/wiki/Roman_numerals 
+    LeetCode No. 13 Roman to Integer
+ ​    Given a roman numeral, convert it to an integer.
+ ​    Input is guaranteed to be within the range from 1 to 3999.
+ ​    https://en.wikipedia.org/wiki/Roman_numerals
  ​    >>> all(roman_to_int(key) == value for key, value in tests.items())
     >>> tests = {"III": 3, "CLIV": 154, "MIX": 1009, "MMD": 2500, "MMMCMXCIX": 3999, "I_V_": 4000, "X_": 10000, "M_": 1000000}
     >>> all(roman_to_int(key) == value for key, value in tests.items())
@@ -34,7 +34,7 @@ def roman_to_int(roman: str) -> int:
     def int_to_roman(number: int) -> str:
     """
    Convert an integer to a Roman numeral, supporting Vinculum notation (underscore _ represents 1000 times).
-    Given a integer, convert it to an roman numeral. 
+    Given a integer, convert it to an roman numeral.
  ​    https://en.wikipedia.org/wiki/Roman_numerals
     >>> tests = {"III": 3, "CLIV": 154, "MIX": 1009, "MMD": 2500, "MMMCMXCIX": 3999, "I_V_": 4000, "X_": 10000, "M_": 1000000}
     >>> all(int_to_roman(value) == key for key, value in tests.items())
