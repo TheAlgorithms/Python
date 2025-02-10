@@ -24,7 +24,7 @@ def roman_to_int(roman):
     vals = {roman: arabic for arabic, roman in ROMAN}
     i, total = 0, 0
     while i < len(roman):
-    if i + 1 < len(roman) and roman[i + 1] == "_": 
+    if i + 1 < len(roman) and roman[i + 1] == "_":
         total += vals[roman[i] + "_"]
         i += 2
     else:
@@ -52,7 +52,7 @@ def int_to_roman(number):
         if number == 0:
             break
     return "".join(result)
-    
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
