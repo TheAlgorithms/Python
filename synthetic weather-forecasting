@@ -87,18 +87,18 @@ results = {}
 for model_name, model in models.items():
     # Train the model
     model.fit(X_train, y_train)
-    
+
     # Make predictions
     y_pred = model.predict(X_test)
-    
+
     # Evaluate the model
     mae = mean_absolute_error(y_test, y_pred)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    
+
     # Store the results
     results[model_name] = {'MAE': mae, 'MSE': mse, 'R2 Score': r2}
-    
+
     # Print evaluation metrics
     print(f"{model_name} Evaluation:")
     print(f"MAE: {mae:.2f}")
