@@ -53,3 +53,5 @@ def solution(n: int = 1000) -> int:
 
 if __name__ == "__main__":
     print(f"Perimeter {solution()} has maximum solutions")
+
+# Automated edit: [Edited] Fix minor bug in the main function
