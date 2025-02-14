@@ -45,6 +45,12 @@ euler-validate = [
   "numpy>=2.1.3",
   "requests>=2.32.3",
 ]
+dev = [
+    "pytest>=8.3.4",
+]
+lint = [
+    "ruff>=0.9.6",
+]
 
 [tool.ruff]
 target-version = "py313"
