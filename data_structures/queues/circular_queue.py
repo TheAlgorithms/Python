@@ -17,7 +17,9 @@ class CircularQueue:
         >>> len(cq)
         0
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queue.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...
+        >>> cq.array
+        ['A', None, None, None, None]
         >>> len(cq)
         1
         """
@@ -51,11 +53,13 @@ class CircularQueue:
         as an index.
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queue.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...
         >>> (cq.size, cq.first())
         (1, 'A')
         >>> cq.enqueue("B")  # doctest: +ELLIPSIS
-        <data_structures.queue.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...
+        >>> cq.array
+        ['A', 'B', None, None, None]
         >>> (cq.size, cq.first())
         (2, 'A')
         """
