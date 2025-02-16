@@ -1,11 +1,5 @@
 import sys
 from doctest import testmod
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> d4d24a610a66bec4f2232a6c1e6460054c46463e
 """
 Test cases:
 Do you want to enter your denominations ? (Y/N) :N
@@ -35,6 +29,7 @@ The total value cannot be zero or negative.
 Do you want to enter your denominations ? (Y/N) :N
 Enter the change you want to make: -98
 The total value cannot be zero or negative.
+
 Do you want to enter your denominations ? (Y/N) :Y
 Enter number of denomination:5
 1
@@ -46,12 +41,6 @@ Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
-<<<<<<< HEAD
->>>>>>> 0bbf0ea76e478706b1fa9ea377465c52f5195c6f
-=======
-
-
->>>>>>> d4d24a610a66bec4f2232a6c1e6460054c46463e
 def find_minimum_change(denominations: list[int], value: int) -> list[int]:
     """
     Find the minimum change from the given denominations and value.
