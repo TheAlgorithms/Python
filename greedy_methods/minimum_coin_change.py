@@ -1,3 +1,4 @@
+from doctest import testmod
 """
 Test cases:
 Do you want to enter your denominations ? (Y/N) :N
@@ -39,12 +40,19 @@ Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
-
-
-def find_minimum_change(denominations: list[int], value: str) -> list[int]:
+def find_minimum_change(denominations: list[int], value: int) -> list[int]:
     """
-    Find the minimum change from the given denominations and value
-    >>> find_minimum_change([1, 5, 10, 20, 50, 100, 200, 500, 1000,2000], 18745)
+    Find the minimum change from the given denominations and value.
+
+    Args:
+        denominations (list[int]): List of available denominations.
+        value (int): The amount of money to be changed.
+
+    Returns:
+        list[int]: List of denominations representing the minimal change.
+
+    Examples:
+    >>> find_minimum_change([1, 5, 10, 20, 50, 100, 200, 500, 1000, 2000], 18745)
     [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 500, 200, 20, 20, 5]
     >>> find_minimum_change([1, 2, 5, 10, 20, 50, 100, 500, 2000], 987)
     [500, 100, 100, 100, 100, 50, 20, 10, 5, 2]
@@ -55,46 +63,54 @@ def find_minimum_change(denominations: list[int], value: str) -> list[int]:
     >>> find_minimum_change([1, 5, 100, 500, 1000], 456)
     [100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1]
     """
-    total_value = int(value)
+
+    # Sort denominations in descending order (biggest first)
+    denominations.sort(reverse=True)
 
     # Initialize Result
     answer = []
-
-    # Traverse through all denomination
-    for denomination in reversed(denominations):
-        # Find denominations
-        while int(total_value) >= int(denomination):
-            total_value -= int(denomination)
-            answer.append(denomination)  # Append the "answers" array
+    
+    # Find minimal change using largest denominations first
+    for denomination in denominations:
+        while value >= denomination:
+            value -= denomination
+            answer.append(denomination)
 
     return answer
 
 
 # Driver Code
 if __name__ == "__main__":
+    # Run doctest
+    testmod()
+
     denominations = []
-    value = "0"
+    value = 0
 
-    if (
-        input("Do you want to enter your denominations ? (yY/n): ").strip().lower()
-        == "y"
-    ):
-        n = int(input("Enter the number of denominations you want to add: ").strip())
-
-        for i in range(n):
-            denominations.append(int(input(f"Denomination {i}: ").strip()))
-        value = input("Enter the change you want to make in Indian Currency: ").strip()
+    if input("Do you want to enter your denominations ? (y/n): ").strip().lower() == "y":
+        try:
+            n = int(input("Enter the number of denominations you want to add: ").strip())
+            for i in range(n):
+                denominations.append(int(input(f"Denomination {i+1}: ").strip()))
+            value = int(input("Enter the change you want to make in Indian Currency: ").strip())
+        except ValueError:
+            print("Invalid input. Please enter valid numbers.")
+            exit(1)
     else:
-        # All denominations of Indian Currency if user does not enter
+        # Default denominations for Indian Currency
         denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
-        value = input("Enter the change you want to make: ").strip()
+        try:
+            value = int(input("Enter the change you want to make: ").strip())
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+            exit(1)
 
-    if int(value) == 0 or int(value) < 0:
+    # Ensure denominations are sorted in descending order
+    denominations.sort(reverse=True)
+
+    if value <= 0:
         print("The total value cannot be zero or negative.")
-
     else:
         print(f"Following is minimal change for {value}: ")
         answer = find_minimum_change(denominations, value)
-        # Print result
-        for i in range(len(answer)):
-            print(answer[i], end=" ")
+        print(" ".join(map(str, answer)))  # Optimized printing format
