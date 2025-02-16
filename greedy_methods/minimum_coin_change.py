@@ -1,4 +1,5 @@
 from doctest import testmod
+
 """
 Test cases:
 Do you want to enter your denominations ? (Y/N) :N
@@ -40,6 +41,8 @@ Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
+
+
 def find_minimum_change(denominations: list[int], value: int) -> list[int]:
     """
     Find the minimum change from the given denominations and value.
@@ -69,7 +72,7 @@ def find_minimum_change(denominations: list[int], value: int) -> list[int]:
 
     # Initialize Result
     answer = []
-    
+
     # Find minimal change using largest denominations first
     for denomination in denominations:
         while value >= denomination:
@@ -87,12 +90,19 @@ if __name__ == "__main__":
     denominations = []
     value = 0
 
-    if input("Do you want to enter your denominations ? (y/n): ").strip().lower() == "y":
+    if (
+        input("Do you want to enter your denominations ? (y/n): ").strip().lower()
+        == "y"
+    ):
         try:
-            n = int(input("Enter the number of denominations you want to add: ").strip())
+            n = int(
+                input("Enter the number of denominations you want to add: ").strip()
+            )
             for i in range(n):
-                denominations.append(int(input(f"Denomination {i+1}: ").strip()))
-            value = int(input("Enter the change you want to make in Indian Currency: ").strip())
+                denominations.append(int(input(f"Denomination {i + 1}: ").strip()))
+            value = int(
+                input("Enter the change you want to make in Indian Currency: ").strip()
+            )
         except ValueError:
             print("Invalid input. Please enter valid numbers.")
             exit(1)
