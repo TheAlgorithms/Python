@@ -1,5 +1,6 @@
 import sys
 from doctest import testmod
+
 """
 Test cases:
 Do you want to enter your denominations ? (Y/N) :N
@@ -41,6 +42,8 @@ Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
+
+
 def find_minimum_change(denominations: list[int], value: int) -> list[int]:
     """
     Find the minimum change from the given denominations and value.
@@ -71,6 +74,8 @@ def find_minimum_change(denominations: list[int], value: int) -> list[int]:
             value -= denomination
             answer.append(denomination)
     return answer
+
+
 # Driver Code
 if __name__ == "__main__":
     # Run doctest
