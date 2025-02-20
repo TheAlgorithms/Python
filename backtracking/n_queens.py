@@ -33,15 +33,15 @@ def is_safe(board: list[list[int]], row: int, column: int) -> bool:
 
     n = len(board)  # Size of the board
 
-    # Check if there is any queen in the same row, column,
-    # left upper diagonal, and right upper diagonal
+    # Check if there is any queen in the same upper column,
+    # left upper diagonal and left lower diagonal
     return (
-        all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, n)))
+        all(board[i][j] != 1 for i, j in zip(range(row), [column] * row))
         and all(
-            board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, -1, -1))
+            board[i][j] != 1 for i, j in zip(range(row - 1, -1, -1), range(column - 1, -1, -1))
         )
         and all(
-            board[i][j] != 1 for i, j in zip(range(row, -1, -1), [column] * (row + 1))
+            board[i][j] != 1 for i, j in zip(range(row - 1, -1, -1), range(column + 1, n))
         )
     )
 
