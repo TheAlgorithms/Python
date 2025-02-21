@@ -1,10 +1,10 @@
-'''
+"""
 Benefits of This Version:
 * Uses Exception instead of BaseException
 * Uses deque for better performance
 * Implements __len__() for Pythonic len(stack)
 * Uses raise StackUnderflowError("Stack is empty") for better error messages
-'''
+"""
 
 from __future__ import annotations
 from collections import deque
