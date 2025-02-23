@@ -44,9 +44,14 @@ def fibonacci(n, method="iterative"):
 
     else:
         raise ValueError(
+<<<<<<< HEAD
             "Invalid method. Choose 'iterative', 'recursive', or 'memoized'."
         )
 
+=======
+    "Invalid method. Choose 'iterative', 'recursive', or 'memoized'."
+)
+>>>>>>> 7237ecd5 (Fix whitespace issue in fibonacci.py)
 
 # Example Usage:
 if __name__ == "__main__":
