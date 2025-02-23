@@ -43,11 +43,13 @@ def fibonacci(n, method="iterative"):
         return fib_memo(n)
 
     else:
-        raise ValueError("Invalid method. Choose 'iterative', 'recursive', or 'memoized'.")
+        raise ValueError(
+            "Invalid method. Choose 'iterative', 'recursive', or 'memoized'."
+        )
 
 
 # Example Usage:
 if __name__ == "__main__":
-    print(fibonacci(10))                # Default (iterative)
-    print(fibonacci(10, "recursive"))   # Recursive method
-    print(fibonacci(10, "memoized"))    # Memoized method
+    print(fibonacci(10))  # Default (iterative)
+    print(fibonacci(10, "recursive"))  # Recursive method
+    print(fibonacci(10, "memoized"))  # Memoized method
