@@ -91,6 +91,8 @@ Why is it the best?
 
 3. Handles Duplicate efficiently by skipping repeated values.
 """
+
+
 def find_triplets_with_0_sum_two_pointer(arr: list[int]) -> list[list[int]]:
     """
     Function for finding the triplets with a given sum in the array using hashing.
@@ -122,15 +124,15 @@ def find_triplets_with_0_sum_two_pointer(arr: list[int]) -> list[list[int]]:
     n = len(nums)
 
     # Step 2: iterate through the array, fixing one number at a time
-    for i in range(n - 2):      # We need atleast 3 elements for a triplet
+    for i in range(n - 2):  # We need atleast 3 elements for a triplet
         # skip duplicate elements for the first number
         if i > 0 and nums[i] == nums[i - 1]:
-            continue        #Move to the distinct number
+            continue  # Move to the distinct number
 
         # Step 3: Use the two pointer technique to find pairs that sum up to -nums[i]
         left, right = i + 1, n - 1  # Initialize two pointers
         while left < right:
-            total = nums[i] + nums[left] + nums[right]      #Calculate sum of three numbers
+            total = nums[i] + nums[left] + nums[right]  # Calculate sum of three numbers
 
             if total == 0:
                 # If the sum is zero, we found a valid triplet
@@ -159,4 +161,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-
