@@ -1,11 +1,11 @@
 """
 Author  : Sanjay Muthu <https://github.com/XenoBytesX>
 
-This is an implementation of the Dynamic Programming solution to the Range Sum Query problem.
+This is an implementation of the Dynamic Programming solution to the Range Sum Query.
 
 The problem statement is:
     Given an array and q queries,
-    each query stating you to find the sum of elements l to r (inclusive) (l and r are given in the query)
+    each query stating you to find the sum of elements l to r (inclusive)
 
 Example:
     arr = [1, 4, 6, 2, 61, 12]
@@ -51,9 +51,14 @@ The prefix sum calculated for this array would be:-
 ==> [4, 6, 7, 13, 16]
 If the query was l=3, r=4,
 The answer would be 6+3 = 9 but this would require O(r-l) time ≈ O(N) time
-If we use prefix sums we can find it in O(1) time by using the formula prefix[r]-prefix[l-1]
-This formula works because prefix[r] is the sum of elements from [0, r] and prefix[l-1] is the sum of elements from [0, l-1],
-so if we do prefix[r]-prefix[l-1] it will be [0, r] - [0, l-1] = [0, l-1] + [l, r] - [0, l-1] = [l, r]
+
+
+If we use prefix sums we can find it in O(1) by using the formula prefix[r]-prefix[l-1]
+This formula works because prefix[r] is the sum of elements from [0, r]
+    and prefix[l-1] is the sum of elements from [0, l-1],
+so if we do prefix[r]-prefix[l-1] it will be [0, r] - [0, l-1]
+                                             = [0, l-1] + [l, r] - [0, l-1]
+                                             = [l, r]
 """
 
 from __future__ import annotations
@@ -71,14 +76,14 @@ def prefix_sum(array: list[int], queries: list[tuple[int, int]]) -> list[int]:
     dp = [0] * len(array)
     dp[0] = array[0]
     for i in range(1, len(array)):
-        dp[i] = dp[i - 1] + array[i]
+        dp[i] = dp[i-1] + array[i]
 
     # Read Algorithm section (Line 38)
     result = []
     for query in queries:
         res = dp[query[1]]
         if query[0] != 0:
-            res -= dp[query[0] - 1]
+            res -= dp[query[0]-1]
         result.append(res)
 
     return result
