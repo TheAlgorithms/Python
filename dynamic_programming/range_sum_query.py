@@ -77,10 +77,10 @@ def prefix_sum(array: list[int], queries: list[tuple[int, int]]) -> list[int]:
     # See Algorithm section (Line 44)
     result = []
     for query in queries:
-        l, r = query
-        res = dp[r]
-        if l > 0:
-            res -= dp[l - 1]
+        left, right = query
+        res = dp[right]
+        if left > 0:
+            res -= dp[left - 1]
         result.append(res)
 
     return result
