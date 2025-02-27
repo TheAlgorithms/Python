@@ -59,6 +59,8 @@ and prefix[l - 1] is the sum of elements from [0, l - 1],
 so if we do prefix[r] - prefix[l - 1] it will be
 [0, r] - [0, l - 1] = [0, l - 1] + [l, r] - [0, l - 1] = [l, r]
 """
+
+
 def prefix_sum(array: list[int], queries: list[tuple[int, int]]) -> list[int]:
     """
     >>> prefix_sum([1, 4, 6, 2, 61, 12], [(2, 5), (1, 5), (3, 4)])
