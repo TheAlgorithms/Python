@@ -36,7 +36,8 @@ Space Complexity: O(N)
 
 Algorithm:
 So, first we calculate the prefix sum (dp) of the array.
-The prefix sum of the index i is the sum of all elements indexed from 0 to i (inclusive).
+The prefix sum of the index i is the sum of all elements indexed
+from 0 to i (inclusive).
 The prefix sum of the index i is the prefix sum of index (i - 1) + the current element.
 So, the state of the dp is dp[i] = dp[i - 1] + a[i].
 
@@ -51,7 +52,8 @@ The prefix sum calculated for this array would be:
 If the query was l = 3, r = 4,
 the answer would be 6 + 3 = 9 but this would require O(r - l + 1) time ≈ O(N) time
 
-If we use prefix sums we can find it in O(1) by using the formula prefix[r] - prefix[l - 1].
+If we use prefix sums we can find it in O(1) by using the formula
+prefix[r] - prefix[l - 1].
 This formula works because prefix[r] is the sum of elements from [0, r]
 and prefix[l - 1] is the sum of elements from [0, l - 1],
 so if we do prefix[r] - prefix[l - 1] it will be
