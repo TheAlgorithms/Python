@@ -1,13 +1,8 @@
 """
-This is a pure Python implementation of the binary insertion sort algorithm
+A variant of insertion sort that may yield in better performance if the
+cost of comparisons exceeds the cost of swaps.
 
-For doctests run following command:
-python -m doctest -v binary_insertion_sort.py
-or
-python3 -m doctest -v binary_insertion_sort.py
-
-For manual testing run:
-python binary_insertion_sort.py
+https://en.wikipedia.org/wiki/Insertion_sort#Variants
 """
 
 
