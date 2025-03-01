@@ -81,6 +81,7 @@ We start from the root(the topmost element) and go down, each node has one of 3 
         Query both the children and add their results and return that
 """
 
+
 class SegmentTree:
     def __init__(self, arr, merge_func, default):
         """
@@ -95,7 +96,7 @@ class SegmentTree:
         self.n = len(arr)
 
         # while self.n is not a power of two
-        while (self.n & (self.n-1)) != 0:
+        while (self.n & (self.n - 1)) != 0:
             self.n += 1
             self.arr.append(default)
 
@@ -107,8 +108,9 @@ class SegmentTree:
             self.segment_tree[self.n + i] = arr[i]
 
         for i in range(self.n - 1, 0, -1):
-            self.segment_tree[i] = self.merge_func(self.segment_tree[2 * i],
-                                                   self.segment_tree[2 * i + 1])
+            self.segment_tree[i] = self.merge_func(
+                self.segment_tree[2 * i], self.segment_tree[2 * i + 1]
+            )
 
     def update(self, index, value):
         """
@@ -118,8 +120,9 @@ class SegmentTree:
 
         while index >= 1:
             index //= 2  # Go to the parent of index
-            self.segment_tree[index] = self.merge_func(self.segment_tree[2 * index],
-                                                       self.segment_tree[2 * index + 1])
+            self.segment_tree[index] = self.merge_func(
+                self.segment_tree[2 * index], self.segment_tree[2 * index + 1]
+            )
 
     def query(self, left, right, node_index=1, node_left=0, node_right=None):
         """
@@ -146,5 +149,5 @@ class SegmentTree:
         # of the query values of both the children nodes
         return self.merge_func(
             self.query(left, right, node_index * 2, node_left, mid),
-            self.query(left, right, node_index * 2 + 1, mid + 1, node_right)
+            self.query(left, right, node_index * 2 + 1, mid + 1, node_right),
         )
