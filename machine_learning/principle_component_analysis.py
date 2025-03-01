@@ -12,7 +12,6 @@ We reduce the number of columns form 4 to 2
 """
 
 import numpy as np
-import requests
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import load_iris
