@@ -27,14 +27,12 @@ Example:
         - a[1] + a[2] + a[3] + a[4] + a[5] = 3+3+1+7+2 = 16
         - answer is 16
 
-Time Complexity:- O(N + Q)
--- O(N) pre-calculation time to calculate the prefix sum array
--- and O(1) time per each query = O(1 * Q) = O(Q) time
-
-Space Complexity:- O(N Log N + Q Log N)
+Time Complexity:- O(N Log N + Q Log N)
 -- O(N Log N) time for building the segment tree
 -- O(log n) time for each query
 -- Q queries are there so total time complexity is O(Q Log n)
+
+Space Complexity:- O(N)
 
 Algorithm:-
 We first build the segment tree. An example of what the tree would look like:-
@@ -83,7 +81,6 @@ We start from the root(the topmost element) and go down, each node has one of 3 
         Query both the children and add their results and return that
 """
 
-
 class SegmentTree:
     def __init__(self, arr, merge_func, default):
         """
@@ -98,7 +95,7 @@ class SegmentTree:
         self.n = len(arr)
 
         # while self.n is not a power of two
-        while (self.n & (self.n - 1)) != 0:
+        while (self.n & (self.n-1)) != 0:
             self.n += 1
             self.arr.append(default)
 
@@ -110,9 +107,8 @@ class SegmentTree:
             self.segment_tree[self.n + i] = arr[i]
 
         for i in range(self.n - 1, 0, -1):
-            self.segment_tree[i] = self.merge_func(
-                self.segment_tree[2 * i], self.segment_tree[2 * i + 1]
-            )
+            self.segment_tree[i] = self.merge_func(self.segment_tree[2 * i],
+                                                   self.segment_tree[2 * i + 1])
 
     def update(self, index, value):
         """
@@ -122,16 +118,15 @@ class SegmentTree:
 
         while index >= 1:
             index //= 2  # Go to the parent of index
-            self.segment_tree[index] = self.merge_func(
-                self.segment_tree[2 * index], self.segment_tree[2 * index + 1]
-            )
+            self.segment_tree[index] = self.merge_func(self.segment_tree[2 * index],
+                                                       self.segment_tree[2 * index + 1])
 
     def query(self, left, right, node_index=1, node_left=0, node_right=None):
         """
         Finds the answer of self.merge_query(left, left+1, left+2, left+3, ..., right)
         """
         if not node_right:
-            # We cant add self.n as the default value in the function
+            # We can't add self.n as the default value in the function
             # because self itself is a parameter so we do it this way
             node_right = self.n
 
@@ -151,5 +146,5 @@ class SegmentTree:
         # of the query values of both the children nodes
         return self.merge_func(
             self.query(left, right, node_index * 2, node_left, mid),
-            self.query(left, right, node_index * 2 + 1, mid + 1, node_right),
+            self.query(left, right, node_index * 2 + 1, mid + 1, node_right)
         )
