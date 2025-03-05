@@ -18,3 +18,4 @@ sympy
 tweepy
 typing_extensions
 xgboost
+pygame
