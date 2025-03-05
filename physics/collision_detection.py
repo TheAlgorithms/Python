@@ -86,8 +86,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             print("Number of collisions occurred are",collision_count)
-
-
     pygame.display.update()
 
 # Quit Pygame
