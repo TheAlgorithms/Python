@@ -878,6 +878,7 @@
   * [Casimir Effect](physics/casimir_effect.py)
   * [Center Of Mass](physics/center_of_mass.py)
   * [Centripetal Force](physics/centripetal_force.py)
+  * [Collision Detection](physics/collision_detection.py)
   * [Coulombs Law](physics/coulombs_law.py)
   * [Doppler Frequency](physics/doppler_frequency.py)
   * [Grahams Law](physics/grahams_law.py)
