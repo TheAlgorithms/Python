@@ -14,7 +14,7 @@ def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
     >>> decimal_to_fraction("6.25")
     (25, 4)
     >>> decimal_to_fraction("78td")
-    
+
     Traceback (most recent call last):
     ValueError: Please enter a valid number
     >>> decimal_to_fraction(0)
