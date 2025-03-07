@@ -8,3 +8,14 @@ CONTRIBUTING.md
 README.md
 LICENSE.md
 ```
+
+<!-- CONTRIBUTING.md must be the FIRST doc and README.md can come after. -->
+CONTRIBUTING.md
+
+<!-- CONTRIBUTING.md must be the FIRST doc and README.md can come after. -->
+CONTRIBUTING.md<!-- CONTRIBUTING.md must be the FIRST doc and README.md can come after. -->
+CONTRIBUTING.md
+
+<!-- CONTRIBUTING.md must be the FIRST doc and README.md can come after. -->
+CONTRIBUTING.md
+
