@@ -23,7 +23,7 @@ def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
     >>> decimal_to_fraction(0.125)
     (1, 8)
     >>> decimal_to_fraction(1000000.25)
-    (4000001, 4000)
+    (4000001, 4)
     >>> decimal_to_fraction(1.3333)
     (13333, 10000)
     >>> decimal_to_fraction("1.23e2")
