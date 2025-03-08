@@ -1,12 +1,11 @@
 from math import cos, sin, sqrt, tau
-
 from audio_filters.iir_filter import IIRFilter
 
 """
 Create 2nd-order IIR filters with Butterworth design.
 
 Code based on https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html
-Alternatively you can use scipy.signal.butter, which should yield the same results.
+Alternatively, you can use scipy.signal.butter, which should yield the same results.
 """
 
 
@@ -208,27 +207,33 @@ def make_highshelf(
 
     >>> filter = make_highshelf(1000, 48000, 6)
     >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
-    [2.2229172136088806, -3.9587208137297303, 1.7841414181566304, 4.295432981120543,
-     -7.922740859457287, 3.6756456963725253]
+    [2.2229172136088806, -3.616080374557819, 1.4122939941901636, 0.5690651073937642,
+     -1.3335115824061685, 0.7666141956641752]
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
     alpha = _sin / (2 * q_factor)
     big_a = 10 ** (gain_db / 40)
-    pmc = (big_a + 1) - (big_a - 1) * _cos
-    ppmc = (big_a + 1) + (big_a - 1) * _cos
-    mpc = (big_a - 1) - (big_a + 1) * _cos
-    pmpc = (big_a - 1) + (big_a + 1) * _cos
+    pmc = (big_a + 1) + (big_a - 1) * _cos
+    ppmc = (big_a + 1) - (big_a - 1) * _cos
+    mpc = (big_a - 1) + (big_a + 1) * _cos
+    pmpc = (big_a - 1) - (big_a + 1) * _cos
     aa2 = 2 * sqrt(big_a) * alpha
 
-    b0 = big_a * (ppmc + aa2)
-    b1 = -2 * big_a * pmpc
-    b2 = big_a * (ppmc - aa2)
-    a0 = pmc + aa2
-    a1 = 2 * mpc
-    a2 = pmc - aa2
+    b0 = big_a * (pmc - aa2)
+    b1 = -2 * big_a * mpc
+    b2 = big_a * (pmc + aa2)
+    a0 = ppmc - aa2
+    a1 = 2 * pmpc
+    a2 = ppmc + aa2
 
     filt = IIRFilter(2)
     filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
     return filt
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
