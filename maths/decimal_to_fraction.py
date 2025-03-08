@@ -48,8 +48,8 @@ def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
             if remainder == 0:
                 break
             dividend, divisor = divisor, remainder
-        numerator, denominator = numerator / divisor, denominator / divisor
-        return int(numerator), int(denominator)
+        numerator, denominator = numerator // divisor, denominator // divisor
+        return numerator, denominator
 
 
 if __name__ == "__main__":
