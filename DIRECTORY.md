@@ -267,6 +267,7 @@
     * [From Sequence](data_structures/linked_list/from_sequence.py)
     * [Has Loop](data_structures/linked_list/has_loop.py)
     * [Is Palindrome](data_structures/linked_list/is_palindrome.py)
+    * [Merge Sort Linked List](data_structures/linked_list/merge_sort_linked_list.py)
     * [Merge Two Lists](data_structures/linked_list/merge_two_lists.py)
     * [Middle Element Of Linked List](data_structures/linked_list/middle_element_of_linked_list.py)
     * [Print Reverse](data_structures/linked_list/print_reverse.py)
