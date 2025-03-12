@@ -18,7 +18,7 @@ def _print_dist(dist, v):
 
 def floyd_warshall(graph, v):
     """
-    Computes the shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles).
+    Computes the shortest paths in a weighted graph.
 
     :param graph: 2D list where each element represents the weight from i to j.
     :type graph: List[List[float]]
