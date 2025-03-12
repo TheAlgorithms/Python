@@ -14,6 +14,8 @@ def _print_dist(dist, v):
             else:
                 print("INF", end="\t")
         print()
+
+
 def floyd_warshall(graph, v):
     """
     Computes the shortest paths in a weighted graph with positive or negative edge weights (but with no negative cycles).
@@ -79,6 +81,7 @@ def floyd_warshall(graph, v):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     v = int(input("Enter number of vertices: "))
     e = int(input("Enter number of edges: "))
