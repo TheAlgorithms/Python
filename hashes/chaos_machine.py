@@ -1,7 +1,7 @@
 """example of simple chaos machine
- Simple Chaos Machine refers to computational model that demonstrates chaotic behavior. 
- It takes input values, applies a chaotic transformation using control theory principles, and generates 
- unpredictable output ( meaning small changes in input lead to drastically different outputs over time),"""
+Simple Chaos Machine refers to computational model that demonstrates chaotic behavior.
+It takes input values, applies a chaotic transformation using control theory principles, and generates
+unpredictable output ( meaning small changes in input lead to drastically different outputs over time),"""
 
 """ Chaos Machine (K, t, m)
     K --> Initial values for the buffer space.
@@ -22,8 +22,10 @@ params_space: list[float] = []
 machine_time = 0
 
 """The push() function updates the buffer_space and params_space by applying chaotic transformations
-based on control theory. It modifies all values in the buffer_space using an orbit change and trajectory change formula, 
+based on control theory. It modifies all values in the buffer_space using an orbit change and trajectory change formula,
 which ensure values to stay within controlled chaotic limits. Finally, it increments machine_time."""
+
+
 def push(seed):
     global buffer_space, params_space, machine_time, K, m, t
 
@@ -50,9 +52,11 @@ def push(seed):
     machine_time += 1
 
 
-"""The pull() function generates a chaotic pseudo-random number using a logistic map transformation 
-and the Xorshift algorithm. It updates buffer_space and params_space over multiple iterations, ensuring chaotic evolution. 
+"""The pull() function generates a chaotic pseudo-random number using a logistic map transformation
+and the Xorshift algorithm. It updates buffer_space and params_space over multiple iterations, ensuring chaotic evolution.
 Finally, it selects two chaotic values, applies Xorshift, and returns a 32-bit random number."""
+
+
 def pull():
     global buffer_space, params_space, machine_time, K, m, t
 
