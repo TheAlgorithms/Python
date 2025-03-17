@@ -36,7 +36,7 @@ class Clause:
         Represent the literals and an assignment in a clause."
         """
         # Assign all literals to None initially
-        self.literals: dict[str, bool | None] = {literal: None for literal in literals}
+        self.literals: dict[str, bool | None] = dict.fromkeys(literals)
 
     def __str__(self) -> str:
         """

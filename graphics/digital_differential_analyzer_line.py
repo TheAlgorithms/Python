@@ -29,7 +29,7 @@ def digital_differential_analyzer_line(
     for _ in range(steps):
         x += x_increment
         y += y_increment
-        coordinates.append((int(round(x)), int(round(y))))
+        coordinates.append((round(x), round(y)))
     return coordinates
 
 

@@ -36,7 +36,7 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def get_letter_count(message: str) -> dict[str, int]:
-    letter_count = {letter: 0 for letter in string.ascii_uppercase}
+    letter_count = dict.fromkeys(string.ascii_uppercase, 0)
     for letter in message.upper():
         if letter in LETTERS:
             letter_count[letter] += 1
