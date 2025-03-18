@@ -54,7 +54,7 @@ def parse_grid(grid):
     return False if a contradiction is detected.
     """
     ## To start, every square can be any digit; then assign values from the grid.
-    values = {s: digits for s in squares}
+    values = dict.fromkeys(squares, digits)
     for s, d in grid_values(grid).items():
         if d in digits and not assign(values, s, d):
             return False  ## (Fail if we can't assign d to square s.)
@@ -203,7 +203,7 @@ def random_puzzle(assignments=17):
     Note the resulting puzzle is not guaranteed to be solvable, but empirically
     about 99.8% of them are solvable. Some have multiple solutions.
     """
-    values = {s: digits for s in squares}
+    values = dict.fromkeys(squares, digits)
     for s in shuffled(squares):
         if not assign(values, s, random.choice(values[s])):
             break
