@@ -119,8 +119,8 @@ lint.ignore = [
   "PT018",   # Assertion should be broken down into multiple parts
   "S101",    # Use of `assert` detected -- DO NOT FIX
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
-  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
   "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
+  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
   "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 
