@@ -8,6 +8,7 @@ numpy
 opencv-python
 pandas
 pillow
+pygame
 requests
 rich
 scikit-learn
