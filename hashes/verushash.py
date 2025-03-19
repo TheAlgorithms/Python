@@ -1,7 +1,7 @@
 #Author : Hugo Cheung
 
 """
-This repository contains a Python implementation of the VerusHash algorithm, a unique proof-of-work (PoW) hashing algorithm used by Verus Coin (VRSC). 
+This repository contains a Python implementation of the VerusHash algorithm, a unique proof-of-work (PoW) hashing algorithm used by Verus Coin (VRSC).
 VerusHash combines SHA-256 and Keccak-256 in a specific sequence to create a secure and ASIC-resistant hashing algorithm.
 This implementation is designed to be self-contained, relying only on custom implementations of SHA-256 and Keccak-256, with no external dependencies.
 """
