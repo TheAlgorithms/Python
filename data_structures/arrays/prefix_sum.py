@@ -1,3 +1,10 @@
+"""
+Author  : Alexander Pantyukhin
+Date    : November 3, 2022
+Implement the class of prefix sum with useful functions based on it.
+"""
+
+
 class PrefixSum:
     def __init__(self, array: list[int]) -> None:
         len_array = len(array)
@@ -28,12 +35,29 @@ class PrefixSum:
 
     def contains_sum(self, target_sum: int) -> bool:
         """
-        Returns True if any subarray sum equals target_sum, otherwise False.
+        The function returns True if array contains the target_sum,
+        False otherwise.
+        Runtime : O(n)
+        Space: O(n)
+        >>> PrefixSum([1,2,3]).contains_sum(6)
+        True
+        >>> PrefixSum([1,2,3]).contains_sum(5)
+        True
+        >>> PrefixSum([1,2,3]).contains_sum(3)
+        True
+        >>> PrefixSum([1,2,3]).contains_sum(4)
+        False
+        >>> PrefixSum([1,2,3]).contains_sum(7)
+        False
+        >>> PrefixSum([1,-2,3]).contains_sum(2)
+        True
         """
-        sums = {0}  # Initialize with 0 to check subarrays from the start
+
+        sums = {0}
         for sum_item in self.prefix_sum:
-            if (sum_item - target_sum) in sums:
+            if sum_item - target_sum in sums:
                 return True
+
             sums.add(sum_item)
 
         return False
