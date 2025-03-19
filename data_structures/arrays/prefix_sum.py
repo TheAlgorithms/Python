@@ -20,7 +20,7 @@ class PrefixSum:
 
     def get_sum(self, start: int, end: int) -> int:
         """
-        The function returns the sum of array from the start to the end indexes
+        The function returns the sum of array from the start to the end indexes.
         Runtime : O(1)
         Space: O(1)
 
@@ -41,11 +41,10 @@ class PrefixSum:
         if start < 0 or end >= len(self.prefix_sum) or start > end:
             raise ValueError("Invalid range specified.")
 
-        return (
-            self.prefix_sum[end]
-            if start == 0
-            else self.prefix_sum[end] - self.prefix_sum[start - 1]
-        )
+        if start == 0:
+            return self.prefix_sum[end]
+
+        return self.prefix_sum[end] - self.prefix_sum[start - 1]
 
     def contains_sum(self, target_sum: int) -> bool:
         """
