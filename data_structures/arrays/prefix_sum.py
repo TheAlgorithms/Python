@@ -1,7 +1,9 @@
 """
 Author  : Alexander Pantyukhin
 Date    : November 3, 2022
+
 Implement the class of prefix sum with useful functions based on it.
+
 """
 
 
@@ -18,8 +20,20 @@ class PrefixSum:
 
     def get_sum(self, start: int, end: int) -> int:
         """
-        Returns the sum of the array from index start to end (inclusive).
-        Raises ValueError if the indices are invalid.
+        The function returns the sum of array from the start to the end indexes
+        Runtime : O(1)
+        Space: O(1)
+
+        >>> PrefixSum([1,2,3]).get_sum(0, 2)	
+        6	
+        >>> PrefixSum([1,2,3]).get_sum(1, 2)	
+        5	
+        >>> PrefixSum([1,2,3]).get_sum(2, 2)	
+        3	
+        >>> PrefixSum([1,2,3]).get_sum(2, 3)	
+        Traceback (most recent call last):	
+        ...	
+        IndexError: list index out of range	
         """
         if not self.prefix_sum:
             raise ValueError("The array is empty.")
@@ -37,8 +51,10 @@ class PrefixSum:
         """
         The function returns True if array contains the target_sum,
         False otherwise.
+
         Runtime : O(n)
         Space: O(n)
+
         >>> PrefixSum([1,2,3]).contains_sum(6)
         True
         >>> PrefixSum([1,2,3]).contains_sum(5)
