@@ -24,16 +24,16 @@ class PrefixSum:
         Runtime : O(1)
         Space: O(1)
 
-        >>> PrefixSum([1,2,3]).get_sum(0, 2)	
-        6	
-        >>> PrefixSum([1,2,3]).get_sum(1, 2)	
-        5	
-        >>> PrefixSum([1,2,3]).get_sum(2, 2)	
-        3	
-        >>> PrefixSum([1,2,3]).get_sum(2, 3)	
-        Traceback (most recent call last):	
-        ...	
-        IndexError: list index out of range	
+        >>> PrefixSum([1,2,3]).get_sum(0, 2)
+        6
+        >>> PrefixSum([1,2,3]).get_sum(1, 2)
+        5
+        >>> PrefixSum([1,2,3]).get_sum(2, 2)
+        3
+        >>> PrefixSum([1,2,3]).get_sum(2, 3)
+        Traceback (most recent call last):
+        ...
+        IndexError: list index out of range
         """
         if not self.prefix_sum:
             raise ValueError("The array is empty.")
