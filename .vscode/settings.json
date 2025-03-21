@@ -1,5 +1,3 @@
-{
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "master"
-    ]
-}
+a=[3,4,2,5]
+r=a.sort
+print(r)
