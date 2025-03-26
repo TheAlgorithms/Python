@@ -1,92 +1,100 @@
-from __future__ import annotations
-
+import heapq
+from collections import defaultdict
 import sys
 
 
-class Letter:
-    def __init__(self, letter: str, freq: int):
-        self.letter: str = letter
-        self.freq: int = freq
-        self.bitstring: dict[str, str] = {}
+class HuffmanNode:
+    def __init__(self, char=None, freq=0):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
 
-    def __repr__(self) -> str:
-        return f"{self.letter}:{self.freq}"
-
-
-class TreeNode:
-    def __init__(self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode):
-        self.freq: int = freq
-        self.left: Letter | TreeNode = left
-        self.right: Letter | TreeNode = right
+    def __lt__(self, other):
+        return self.freq < other.freq
 
 
-def parse_file(file_path: str) -> list[Letter]:
+def calculate_frequencies(file_path):
     """
-    Read the file and build a dict of all letters and their
-    frequencies, then convert the dict into a list of Letters.
+    Reads the file and calculates the frequency of each character.
     """
-    chars: dict[str, int] = {}
-    with open(file_path) as f:
-        while True:
-            c = f.read(1)
-            if not c:
-                break
-            chars[c] = chars[c] + 1 if c in chars else 1
-    return sorted((Letter(c, f) for c, f in chars.items()), key=lambda x: x.freq)
+    freq = defaultdict(int)
+    with open(file_path, "r") as file:
+        for line in file:
+            for char in line:
+                freq[char] += 1
+    return freq
 
 
-def build_tree(letters: list[Letter]) -> Letter | TreeNode:
+def build_huffman_tree(freq_dict):
     """
-    Run through the list of Letters and build the min heap
-    for the Huffman Tree.
+    Builds the Huffman tree using a priority queue.
     """
-    response: list[Letter | TreeNode] = list(letters)
-    while len(response) > 1:
-        left = response.pop(0)
-        right = response.pop(0)
-        total_freq = left.freq + right.freq
-        node = TreeNode(total_freq, left, right)
-        response.append(node)
-        response.sort(key=lambda x: x.freq)
-    return response[0]
+    priority_queue = [HuffmanNode(char, freq) for char, freq in freq_dict.items()]
+    heapq.heapify(priority_queue)
+
+    while len(priority_queue) > 1:
+        left = heapq.heappop(priority_queue)
+        right = heapq.heappop(priority_queue)
+
+        merged = HuffmanNode(freq=left.freq + right.freq)
+        merged.left = left
+        merged.right = right
+
+        heapq.heappush(priority_queue, merged)
+
+    return priority_queue[0]
 
 
-def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
+def generate_codes(node, current_code="", code_map=None):
     """
-    Recursively traverse the Huffman Tree to set each
-    Letter's bitstring dictionary, and return the list of Letters
+    Generates the Huffman codes by traversing the tree recursively.
     """
-    if isinstance(root, Letter):
-        root.bitstring[root.letter] = bitstring
-        return [root]
-    treenode: TreeNode = root
-    letters = []
-    letters += traverse_tree(treenode.left, bitstring + "0")
-    letters += traverse_tree(treenode.right, bitstring + "1")
-    return letters
+    if code_map is None:
+        code_map = {}
+
+    if node is not None:
+        if node.char is not None:
+            code_map[node.char] = current_code
+
+        generate_codes(node.left, current_code + "0", code_map)
+        generate_codes(node.right, current_code + "1", code_map)
+
+    return code_map
 
 
-def huffman(file_path: str) -> None:
+def encode_file(file_path, code_map):
     """
-    Parse the file, build the tree, then run through the file
-    again, using the letters dictionary to find and print out the
-    bitstring for each letter.
+    Encodes the file contents using the Huffman codes.
     """
-    letters_list = parse_file(file_path)
-    root = build_tree(letters_list)
-    letters = {
-        k: v for letter in traverse_tree(root, "") for k, v in letter.bitstring.items()
-    }
-    print(f"Huffman Coding  of {file_path}: ")
-    with open(file_path) as f:
-        while True:
-            c = f.read(1)
-            if not c:
-                break
-            print(letters[c], end=" ")
-    print()
+    encoded_output = []
+    with open(file_path, "r") as file:
+        for line in file:
+            for char in line:
+                encoded_output.append(code_map[char])
+
+    return "".join(encoded_output)
+
+
+def huffman(file_path):
+    """
+    Main function to perform Huffman encoding on a given file.
+    """
+    freq_dict = calculate_frequencies(file_path)
+    huffman_tree_root = build_huffman_tree(freq_dict)
+    code_map = generate_codes(huffman_tree_root)
+
+    print(f"Huffman Codes for characters in {file_path}:")
+    for char, code in code_map.items():
+        print(f"'{char}': {code}")
+
+    encoded_data = encode_file(file_path, code_map)
+    print("\nEncoded Data:")
+    print(encoded_data)
 
 
 if __name__ == "__main__":
-    # pass the file path to the huffman function
-    huffman(sys.argv[1])
+    if len(sys.argv) < 2:
+        print("Usage: python huffman.py <file_path>")
+    else:
+        huffman(sys.argv[1])
