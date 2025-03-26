@@ -26,6 +26,15 @@ def quick_sort(collection: list) -> list:
     []
     >>> quick_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
+
+    Time Complexity:
+    Best Case: O(n log n)
+    Average case: O(n log n)
+    Worst Case: O(n^2)
+
+    Space Complexity:
+    Best Case: O(log n)
+    Worst Case: O(n)
     """
     # Base case: if the collection has 0 or 1 elements, it is already sorted
     if len(collection) < 2:
