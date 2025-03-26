@@ -1,0 +1,4 @@
+Vansh Aneja
+1. Enhanced Documentation: Add clear instructions for installation, usage, and contribution. Include code examples, screenshots, and a troubleshooting section.
+
+2. Automated Testing: Implement CI/CD pipelines with automated tests to ensure code stability and reliability.
