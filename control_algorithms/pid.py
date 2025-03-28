@@ -11,9 +11,14 @@ Refer - https://en.wikipedia.org/wiki/PID_controller
 """
 
 
+<<<<<<< HEAD
 class PID:
 
     def __init__(self, kp: float, ki: float, kd: float, setpoint: float = 0):
+=======
+class pid:
+    def __init__(self, Kp: float, Ki: float, Kd: float, setpoint: float = 0):
+>>>>>>> 588538eaddcee6fa4733a1775487123c0ed09a43
         """
         Initialize the PID controller.
 
