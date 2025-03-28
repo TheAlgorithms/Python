@@ -11,7 +11,7 @@ Refer - https://en.wikipedia.org/wiki/PID_controller
 """
 
 
-class pid:
+class PID:
     def __init__(self, Kp: float, Ki: float, Kd: float, setpoint: float = 0):
         """
         Initialize the PID controller.
