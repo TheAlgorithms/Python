@@ -11,6 +11,7 @@ Efficient for searching in sorted arrays where the target is near the beginning.
 Author: Michael Alexander Montoya
 """
 
+
 def exponential_search(arr, target):
     if len(arr) == 0:
         return -1
@@ -24,7 +25,7 @@ def exponential_search(arr, target):
         index *= 2
 
     # Perform binary search in the found range
-    return binary_search(arr, target, index // 2, min(index, len(arr)-1))
+    return binary_search(arr, target, index // 2, min(index, len(arr) - 1))
 
 
 def binary_search(arr, target, left, right):
