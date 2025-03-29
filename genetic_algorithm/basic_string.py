@@ -155,7 +155,6 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
         #     population_score = [item.result() for item in futures]
         #
         # but with a simple algorithm like this, it will probably be slower.
-
         # (Option 2) We just need to call evaluate for every item inside the population.
         population_score = [evaluate(item, target) for item in population]
 
