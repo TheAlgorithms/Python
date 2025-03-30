@@ -14,6 +14,7 @@ Author: Michael Alexander Montoya
 
 import random
 
+
 def reservoir_sampling(stream, k):
     """
     Performs reservoir sampling on a stream of items.
