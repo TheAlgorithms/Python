@@ -11,6 +11,7 @@ Time Complexity:
 Author: Michael Alexander Montoya
 """
 
+
 class UnionFind:
     def __init__(self, size):
         self.parent = list(range(size))
