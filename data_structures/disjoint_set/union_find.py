@@ -68,6 +68,7 @@ class UnionFind:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     uf = UnionFind(10)
