@@ -11,7 +11,6 @@ Time Complexity:
 Author: Michael Alexander Montoya
 """
 
-
 class UnionFind:
     def __init__(self, size: int) -> None:
         """
@@ -36,9 +35,9 @@ class UnionFind:
             self.parent[node] = self.find(self.parent[node])  # Path compression
         return self.parent[node]
 
-    def union(self, a: int, b: int) -> bool:
+    def union(self, node_a: int, node_b: int) -> bool:
         """
-        Unites the sets that contain elements `a` and `b`.
+        Unites the sets that contain elements `node_a` and `node_b`.
 
         >>> uf = UnionFind(5)
         >>> uf.union(0, 1)
@@ -48,13 +47,12 @@ class UnionFind:
         >>> uf.union(0, 1)
         False
         """
-        root_a = self.find(a)
-        root_b = self.find(b)
+        root_a = self.find(node_a)
+        root_b = self.find(node_b)
 
         if root_a == root_b:
             return False  # Already connected
 
-        # Union by rank
         if self.rank[root_a] < self.rank[root_b]:
             self.parent[root_a] = root_b
         elif self.rank[root_a] > self.rank[root_b]:
