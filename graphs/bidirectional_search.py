@@ -14,7 +14,6 @@ https://en.wikipedia.org/wiki/Bidirectional_search
 from collections import deque
 
 
-
 def bidirectional_search(
     graph: dict[int, list[int]], start: int, goal: int
 ) -> list[int] | None:
