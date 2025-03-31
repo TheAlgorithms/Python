@@ -1,5 +1,6 @@
 """
-Python3 program to evaluate a prefix expression.
+Program to evaluate a prefix expression.
+https://en.wikipedia.org/wiki/Polish_notation
 """
 
 calc = {
