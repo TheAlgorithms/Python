@@ -12,12 +12,12 @@ https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
 from collections import deque
-from typing import Dict, List, Optional
+from typing import Optional
 
 
 def bidirectional_search(
-    graph: Dict[int, List[int]], start: int, goal: int
-) -> Optional[List[int]]:
+    graph: dict[int, list[int]], start: int, goal: int
+) -> list[int] | None:
     """
     Perform bidirectional search on a graph to find the shortest path.
 
@@ -67,8 +67,8 @@ def bidirectional_search(
 
     # Initialize forward and backward search dictionaries
     # Each maps a node to its parent in the search
-    forward_parents = {start: None}
-    backward_parents = {goal: None}
+    forward_parents: dict[int, int | None] = {start: None}
+    backward_parents: dict[int, int | None] = {goal: None}
 
     # Initialize forward and backward search queues
     forward_queue = deque([start])
@@ -110,19 +110,19 @@ def bidirectional_search(
         return None
 
     # Construct path from start to intersection
-    forward_path = []
-    current = intersection
-    while current is not None:
-        forward_path.append(current)
-        current = forward_parents[current]
+    forward_path: list[int] = []
+    current_forward: int | None = intersection
+    while current_forward is not None:
+        forward_path.append(current_forward)
+        current_forward = forward_parents[current_forward]
     forward_path.reverse()
 
     # Construct path from intersection to goal
-    backward_path = []
-    current = backward_parents[intersection]
-    while current is not None:
-        backward_path.append(current)
-        current = backward_parents[current]
+    backward_path: list[int] = []
+    current_backward: int | None = backward_parents[intersection]
+    while current_backward is not None:
+        backward_path.append(current_backward)
+        current_backward = backward_parents[current_backward]
 
     # Return the complete path
     return forward_path + backward_path
@@ -131,7 +131,7 @@ def bidirectional_search(
 def main() -> None:
     """
     Run example of bidirectional search algorithm.
-    
+
     Examples:
         >>> main()  # doctest: +NORMALIZE_WHITESPACE
         Path from 0 to 11: [0, 1, 3, 7, 11]
