@@ -12,7 +12,7 @@ https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
 from collections import deque
-from typing import Optional
+
 
 
 def bidirectional_search(
