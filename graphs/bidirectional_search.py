@@ -1,25 +1,25 @@
 """
-Bidirectional Search Algorithm
+Bidirectional Search Algorithm.
 
-A bidirectional search algorithm searches from both the source and the target
-simultaneously, meeting somewhere in the middle. This can significantly reduce
-the search space and improve performance compared to a single-direction search
-in many scenarios.
+This algorithm searches from both the source and target nodes simultaneously,
+meeting somewhere in the middle. This approach can significantly reduce the
+search space compared to a traditional one-directional search.
 
 Time Complexity: O(b^(d/2)) where b is the branching factor and d is the depth
 Space Complexity: O(b^(d/2))
+
+https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
 from collections import deque
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional
 
 
 def bidirectional_search(
     graph: Dict[int, List[int]], start: int, goal: int
 ) -> Optional[List[int]]:
     """
-    Perform bidirectional search on a graph to find the shortest path
-    between start and goal nodes.
+    Perform bidirectional search on a graph to find the shortest path.
 
     Args:
         graph: A dictionary where keys are nodes and values are lists of adjacent nodes
@@ -28,6 +28,35 @@ def bidirectional_search(
 
     Returns:
         A list representing the path from start to goal, or None if no path exists
+
+    Examples:
+        >>> graph = {
+        ...     0: [1, 2],
+        ...     1: [0, 3, 4],
+        ...     2: [0, 5, 6],
+        ...     3: [1, 7],
+        ...     4: [1, 8],
+        ...     5: [2, 9],
+        ...     6: [2, 10],
+        ...     7: [3, 11],
+        ...     8: [4, 11],
+        ...     9: [5, 11],
+        ...     10: [6, 11],
+        ...     11: [7, 8, 9, 10],
+        ... }
+        >>> bidirectional_search(graph, 0, 11)
+        [0, 1, 3, 7, 11]
+        >>> bidirectional_search(graph, 5, 5)
+        [5]
+        >>> disconnected_graph = {
+        ...     0: [1, 2],
+        ...     1: [0],
+        ...     2: [0],
+        ...     3: [4],
+        ...     4: [3],
+        ... }
+        >>> bidirectional_search(disconnected_graph, 0, 3) is None
+        True
     """
     if start == goal:
         return [start]
@@ -36,107 +65,73 @@ def bidirectional_search(
     if start not in graph or goal not in graph:
         return None
 
+    # Initialize forward and backward search dictionaries
+    # Each maps a node to its parent in the search
+    forward_parents = {start: None}
+    backward_parents = {goal: None}
+
     # Initialize forward and backward search queues
-    forward_queue = deque([(start, [start])])
-    backward_queue = deque([(goal, [goal])])
+    forward_queue = deque([start])
+    backward_queue = deque([goal])
 
-    # Initialize visited sets for both directions
-    forward_visited: Set[int] = {start}
-    backward_visited: Set[int] = {goal}
+    # Intersection node (where the two searches meet)
+    intersection = None
 
-    # Dictionary to store paths
-    forward_paths: Dict[int, List[int]] = {start: [start]}
-    backward_paths: Dict[int, List[int]] = {goal: [goal]}
-
-    while forward_queue and backward_queue:
+    # Continue until both queues are empty or an intersection is found
+    while forward_queue and backward_queue and intersection is None:
         # Expand forward search
-        intersection = expand_search(
-            graph, forward_queue, forward_visited, forward_paths, backward_visited
-        )
-        if intersection:
-            return construct_path(intersection, forward_paths, backward_paths)
+        if forward_queue:
+            current = forward_queue.popleft()
+            for neighbor in graph[current]:
+                if neighbor not in forward_parents:
+                    forward_parents[neighbor] = current
+                    forward_queue.append(neighbor)
 
-        # Expand backward search
-        intersection = expand_search(
-            graph, backward_queue, backward_visited, backward_paths, forward_visited
-        )
-        if intersection:
-            return construct_path(intersection, forward_paths, backward_paths)
+                    # Check if this creates an intersection
+                    if neighbor in backward_parents:
+                        intersection = neighbor
+                        break
 
-    # No path found
-    return None
+        # If no intersection found, expand backward search
+        if intersection is None and backward_queue:
+            current = backward_queue.popleft()
+            for neighbor in graph[current]:
+                if neighbor not in backward_parents:
+                    backward_parents[neighbor] = current
+                    backward_queue.append(neighbor)
 
+                    # Check if this creates an intersection
+                    if neighbor in forward_parents:
+                        intersection = neighbor
+                        break
 
-def expand_search(
-    graph: Dict[int, List[int]],
-    queue: deque,
-    visited: Set[int],
-    paths: Dict[int, List[int]],
-    other_visited: Set[int],
-) -> Optional[int]:
-    """
-    Expand the search in one direction and check for intersection.
-
-    Args:
-        graph: The graph
-        queue: The queue for this direction
-        visited: Set of visited nodes for this direction
-        paths: Dictionary to store paths for this direction
-        other_visited: Set of visited nodes for the other direction
-
-    Returns:
-        The intersection node if found, None otherwise
-    """
-    if not queue:
+    # If no intersection found, there's no path
+    if intersection is None:
         return None
 
-    current, path = queue.popleft()
+    # Construct path from start to intersection
+    forward_path = []
+    current = intersection
+    while current is not None:
+        forward_path.append(current)
+        current = forward_parents[current]
+    forward_path.reverse()
 
-    for neighbor in graph[current]:
-        if neighbor not in visited:
-            visited.add(neighbor)
-            new_path = path + [neighbor]
-            paths[neighbor] = new_path
-            queue.append((neighbor, new_path))
+    # Construct path from intersection to goal
+    backward_path = []
+    current = backward_parents[intersection]
+    while current is not None:
+        backward_path.append(current)
+        current = backward_parents[current]
 
-            # Check if the neighbor is in the other visited set (intersection)
-            if neighbor in other_visited:
-                return neighbor
-
-    return None
-
-
-def construct_path(
-    intersection: int, forward_paths: Dict[int, List[int]], backward_paths: Dict[int, List[int]]
-) -> List[int]:
-    """
-    Construct the full path from the intersection point.
-
-    Args:
-        intersection: The node where the two searches met
-        forward_paths: Paths from start to intersection
-        backward_paths: Paths from goal to intersection
-
-    Returns:
-        The complete path from start to goal
-    """
-    # Get the path from start to intersection
-    forward_path = forward_paths[intersection]
-
-    # Get the path from goal to intersection and reverse it
-    backward_path = backward_paths[intersection]
-    backward_path.reverse()
-
-    # Combine the paths (remove the duplicate intersection node)
-    return forward_path + backward_path[1:]
+    # Return the complete path
+    return forward_path + backward_path
 
 
-def main():
-    """
-    Example usage and test cases for bidirectional search
-    """
+def main() -> None:
+    """Run example of bidirectional search algorithm."""
     # Example graph represented as an adjacency list
-    graph = {
+    example_graph = {
         0: [1, 2],
         1: [0, 3, 4],
         2: [0, 5, 6],
@@ -153,15 +148,13 @@ def main():
 
     # Test case 1: Path exists
     start, goal = 0, 11
-    path = bidirectional_search(graph, start, goal)
+    path = bidirectional_search(example_graph, start, goal)
     print(f"Path from {start} to {goal}: {path}")
-    # Expected: Path from 0 to 11: [0, 1, 3, 7, 11] or similar valid shortest path
 
     # Test case 2: Start and goal are the same
     start, goal = 5, 5
-    path = bidirectional_search(graph, start, goal)
+    path = bidirectional_search(example_graph, start, goal)
     print(f"Path from {start} to {goal}: {path}")
-    # Expected: Path from 5 to 5: [5]
 
     # Test case 3: No path exists (disconnected graph)
     disconnected_graph = {
@@ -174,7 +167,6 @@ def main():
     start, goal = 0, 3
     path = bidirectional_search(disconnected_graph, start, goal)
     print(f"Path from {start} to {goal}: {path}")
-    # Expected: Path from 0 to 3: None
 
 
 if __name__ == "__main__":
