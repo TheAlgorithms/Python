@@ -129,7 +129,15 @@ def bidirectional_search(
 
 
 def main() -> None:
-    """Run example of bidirectional search algorithm."""
+    """
+    Run example of bidirectional search algorithm.
+    
+    Examples:
+        >>> main()  # doctest: +NORMALIZE_WHITESPACE
+        Path from 0 to 11: [0, 1, 3, 7, 11]
+        Path from 5 to 5: [5]
+        Path from 0 to 3: None
+    """
     # Example graph represented as an adjacency list
     example_graph = {
         0: [1, 2],
