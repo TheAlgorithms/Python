@@ -107,7 +107,9 @@ def expand_search(
 
 
 def construct_path(
-    intersection: int, forward_paths: Dict[int, List[int]], backward_paths: Dict[int, List[int]]
+    intersection: int,
+    forward_paths: Dict[int, List[int]],
+    backward_paths: Dict[int, List[int]],
 ) -> List[int]:
     """
     Construct the full path from the intersection point.
