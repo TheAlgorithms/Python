@@ -3,7 +3,7 @@ Program to evaluate a prefix expression.
 https://en.wikipedia.org/wiki/Polish_notation
 """
 
-calc = {
+operators = {
     "+": lambda x, y: x + y,
     "-": lambda x, y: x - y,
     "*": lambda x, y: x * y,
@@ -42,11 +42,11 @@ def evaluate(expression):
             stack.append(int(c))
 
         else:
-            # pop values from stack can calculate the result
+            # pop values from stack can operatorsulate the result
             # push the result onto the stack again
             o1 = stack.pop()
             o2 = stack.pop()
-            stack.append(calc[c](o1, o2))
+            stack.append(operators[c](o1, o2))
 
     return stack.pop()
 
@@ -65,10 +65,10 @@ def evaluate_recursive(expression: list):
     """
 
     op = expression.pop(0)
-    if op not in calc:
+    if op not in operators:
         return float(op)
 
-    operation = calc[op]
+    operation = operators[op]
 
     a = evaluate_recursive(expression)
     b = evaluate_recursive(expression)
