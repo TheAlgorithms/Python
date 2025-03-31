@@ -93,6 +93,7 @@ class LinkedList:
         if self.head is None:
             self.set_head(node)
         else:
+            assert self.tail
             self.insert_after_node(self.tail, node)
 
     def insert(self, value: int) -> None:
@@ -134,6 +135,8 @@ class LinkedList:
                 return
             current_position += 1
             node = node.next
+        if not self.tail:
+            raise IndexError(position)
         self.insert_after_node(self.tail, new_node)
 
     def get_node(self, item: int) -> Node:
