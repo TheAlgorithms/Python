@@ -106,7 +106,7 @@ class LinkedList:
         node_to_insert.next = node
         node_to_insert.previous = node.previous
 
-        if node.get_previous() is None:
+        if not node.previous:
             self.head = node_to_insert
         else:
             node.previous.next = node_to_insert
@@ -117,7 +117,7 @@ class LinkedList:
         node_to_insert.previous = node
         node_to_insert.next = node.next
 
-        if node.get_next() is None:
+        if node.next is None:
             self.tail = node_to_insert
         else:
             node.next.previous = node_to_insert
@@ -156,10 +156,10 @@ class LinkedList:
 
     @staticmethod
     def remove_node_pointers(node: Node) -> None:
-        if node.get_next():
+        if node.next:
             node.next.previous = node.previous
 
-        if node.get_previous():
+        if node.previous:
             node.previous.next = node.next
 
         node.next = None
