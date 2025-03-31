@@ -57,7 +57,7 @@ def evaluate(expression):
 
 def evaluate_recursive(expression: list[str]):
     """
-    Alternative implementation
+    Alternative recursive implementation
 
     >>> evaluate_recursive(['2'])
     2
