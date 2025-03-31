@@ -42,7 +42,7 @@ def evaluate(expression):
             stack.append(int(c))
 
         else:
-            # pop values from stack can operatorsulate the result
+            # pop values from stack can calculate the result
             # push the result onto the stack again
             o1 = stack.pop()
             o2 = stack.pop()
