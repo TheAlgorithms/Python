@@ -19,6 +19,15 @@ def quick_sort(collection: list) -> list:
     :param collection: a mutable collection of comparable items
     :return: the same collection ordered in ascending order
 
+    Time Complexity:
+    Best Case: O(n log n)
+    Average case: O(n log n)
+    Worst Case: O(n^2)
+
+    Space Complexity:
+    Best Case: O(log n) for In-place implementation
+    Worst Case: O(n)
+
     Examples:
     >>> quick_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -35,9 +44,17 @@ def quick_sort(collection: list) -> list:
     pivot_index = randrange(len(collection))
     pivot = collection.pop(pivot_index)
 
-    # Partition the remaining elements into two groups: lesser or equal, and greater
-    lesser = [item for item in collection if item <= pivot]
-    greater = [item for item in collection if item > pivot]
+    # Initialise empty lists to store the elements
+
+    lesser = []  # Stores elements less than or equal to the pivot
+    greater = []  # Stores elements greater than the pivot
+
+    # Loop through the collections and partition
+    for item in collection:
+        if item <= pivot:
+            lesser.append(item)
+        else:
+            greater.append(item)
 
     # Recursively sort the lesser and greater groups, and combine with the pivot
     return [*quick_sort(lesser), pivot, *quick_sort(greater)]
