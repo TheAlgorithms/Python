@@ -31,6 +31,24 @@ def floyd_warshall(graph, v):
     4. The above is repeated for each vertex k in the graph.
     5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is
         updated to the next vertex[i][k].
+
+    >>> v = 4
+    >>> graph = [[0.0, 2.0, float("inf"), float("inf")],\
+                [1.0, 0.0, 3.0, float("inf")],\
+                [float("inf"), float("inf"), 0.0, float("inf")],\
+                [3.0, 5.0, 4.0, 0.0]]
+    >>> floyd_warshall(graph, v) # doctest: +NORMALIZE_WHITESPACE
+    <BLANKLINE>
+    The shortest path matrix using Floyd Warshall algorithm
+    <BLANKLINE>
+    0   2       5       INF
+    1   0       3       INF
+    INF INF     0       INF
+    3   5       4       0
+    ([[0.0, 2.0, 5.0, inf],\
+     [1.0, 0.0, 3.0, inf],\
+     [inf, inf, 0.0, inf],\
+     [3.0, 5.0, 4.0, 0.0]], 4)
     """
 
     dist = [[float("inf") for _ in range(v)] for _ in range(v)]
