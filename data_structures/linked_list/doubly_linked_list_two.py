@@ -9,12 +9,15 @@
      Delete operation is more efficient
 """
 
+from dataclasses import dataclass
+from typing import Any, Self
 
+
+@dataclass
 class Node:
-    def __init__(self, data: int, previous=None, next_node=None):
-        self.data = data
-        self.previous = previous
-        self.next = next_node
+    data: Any
+    previous: Self | None = None
+    next: Self | None = None
 
     def __str__(self) -> str:
         return f"{self.data}"
