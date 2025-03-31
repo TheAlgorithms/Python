@@ -39,7 +39,6 @@ class ADRC:
         :param dt: Time difference since the last update
         :return: Control output
         """
-        error = self.setpoint - measured_value
 
         # Extended State Observer (ESO) Update
         self.z1 += dt * (self.z2 - self.beta1 * (self.z1 - measured_value))
