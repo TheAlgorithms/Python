@@ -66,9 +66,9 @@ def evaluate_recursive(expression: list[str]):
     8.0
     >>> expression
     []
-    >>> evaluate(['+', '9', '*', '2', '6'])
+    >>> evaluate_recursive(['+', '9', '*', '2', '6'])
     21
-    >>> evaluate(['/', '*', '10', '2', '+', '4', '1'])
+    >>> evaluate_recursive(['/', '*', '10', '2', '+', '4', '1'])
     4.0
     """
 
