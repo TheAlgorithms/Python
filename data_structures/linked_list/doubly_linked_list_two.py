@@ -48,10 +48,10 @@ class LinkedListIterator:
             return value
 
 
+@dataclass
 class LinkedList:
-    def __init__(self):
-        self.head = None  # First node in list
-        self.tail = None  # Last node in list
+    head: Node | None = None
+    tail: Node | None = None
 
     def __str__(self):
         current = self.head
