@@ -32,6 +32,10 @@ def evaluate(expression):
     21
     >>> evaluate("/ * 10 2 + 4 1 ")
     4.0
+    >>> evaluate("2")
+    2
+    >>> evaluate("+ * 2 3 / 8 4")
+    8.0
     """
     stack = []
 
@@ -51,22 +55,26 @@ def evaluate(expression):
     return stack.pop()
 
 
-def evaluate_recursive(expression: list):
+def evaluate_recursive(expression: list[str]):
     """
     Alternative implementation
 
     >>> evaluate_recursive(['2'])
-    2.0
-    >>> expression = ['+', '*', '2', '3', '/', '8', 4]
+    2
+    >>> expression = ['+', '*', '2', '3', '/', '8', '4']
     >>> evaluate_recursive(expression)
     8.0
     >>> expression
     []
+    >>> evaluate(['+', '9', '*', '2', '6'])
+    21
+    >>> evaluate(['/', '*', '10', '2', '+', '4', '1'])
+    4.0
     """
 
     op = expression.pop(0)
-    if op not in operators:
-        return float(op)
+    if is_operand(op):
+        return int(op)
 
     operation = operators[op]
 
