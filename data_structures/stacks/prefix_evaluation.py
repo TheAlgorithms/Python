@@ -50,6 +50,30 @@ def evaluate(expression):
     return stack.pop()
 
 
+def evaluate_recursive(expression: list):
+    """
+    Alternative implementation
+
+    >>> evaluate_recursive(['2'])
+    2.0
+    >>> expression = ['+', '*', '2', '3', '/', '8', 4]
+    >>> evaluate_recursive(expression)
+    8.0
+    >>> expression
+    []
+    """
+
+    op = expression.pop(0)
+    if op not in calc:
+        return float(op)
+
+    operation = calc[op]
+
+    a = evaluate_recursive(expression)
+    b = evaluate_recursive(expression)
+    return operation(a, b)
+
+
 # Driver code
 if __name__ == "__main__":
     test_expression = "+ 9 * 2 6"
