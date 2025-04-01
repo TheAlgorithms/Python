@@ -22,15 +22,6 @@ class Node:
     def __str__(self) -> str:
         return f"{self.data}"
 
-    def get_data(self) -> int:
-        return self.data
-
-    def get_next(self):
-        return self.next
-
-    def get_previous(self):
-        return self.previous
-
 
 class LinkedListIterator:
     def __init__(self, head):
