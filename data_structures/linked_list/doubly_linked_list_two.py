@@ -104,7 +104,7 @@ class LinkedList:
 
         node.previous = node_to_insert
 
-    def insert_after_node(self, node: Node, node_to_insert: Node) -> None:
+    def insert_after_node(self, node: Node | None, node_to_insert: Node) -> None:
         node_to_insert.previous = node
         node_to_insert.next = node.next
 
