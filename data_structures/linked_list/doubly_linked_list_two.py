@@ -135,8 +135,6 @@ class LinkedList:
                 return
             current_position += 1
             node = node.next
-        if not self.tail:
-            raise IndexError(position)
         self.insert_after_node(self.tail, new_node)
 
     def get_node(self, item: int) -> Node:
