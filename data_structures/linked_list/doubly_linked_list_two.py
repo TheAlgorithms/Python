@@ -237,17 +237,24 @@ def create_linked_list() -> None:
     8
     9
     >>> linked_list = LinkedList()
+    >>> linked_list
+    >>> str(linked_list)
     >>> linked_list.insert_at_position(position=1, value=10)
     >>> linked_list
+    >>> str(linked_list)
     LinkedList(head=Node(data=10, previous=None, next=None), tail=Node(data=10, previous=None, next=None))
     >>> linked_list.insert_at_position(position=2, value=20)
     >>> linked_list
+    >>> str(linked_list)
     >>> linked_list.insert_at_position(position=1, value=30)
     >>> linked_list
+    >>> str(linked_list)
     >>> linked_list.insert_at_position(position=2, value=40)
     >>> linked_list
+    >>> str(linked_list)
     >>> linked_list.insert_at_position(position=3, value=50)
     >>> linked_list
+    >>> str(linked_list)
     """
 
 
