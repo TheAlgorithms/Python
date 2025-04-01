@@ -97,7 +97,7 @@ class LinkedList:
         node_to_insert.next = node
         node_to_insert.previous = node.previous
 
-        if not node.previous:
+        if node.previous is None:
             self.head = node_to_insert
         else:
             node.previous.next = node_to_insert
