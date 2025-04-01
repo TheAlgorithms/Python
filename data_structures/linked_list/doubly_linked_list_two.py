@@ -35,7 +35,7 @@ class LinkedListIterator:
             raise StopIteration
         else:
             value = self.current.data
-            self.current = self.current.get_next()
+            self.current = self.current.next
             return value
 
 
@@ -49,7 +49,7 @@ class LinkedList:
         nodes = []
         while current is not None:
             nodes.append(current.data)
-            current = current.get_next()
+            current = current.next
         return " ".join(str(node) for node in nodes)
 
     def __contains__(self, value: int):
@@ -57,7 +57,7 @@ class LinkedList:
         while current:
             if current.data == value:
                 return True
-            current = current.get_next()
+            current = current.next
         return False
 
     def __iter__(self):
@@ -132,13 +132,13 @@ class LinkedList:
         while node:
             if node.data == item:
                 return node
-            node = node.get_next()
+            node = node.next
         raise Exception("Node not found")
 
     def delete_value(self, value):
         if (node := self.get_node(value)) is not None:
             if node == self.head:
-                self.head = self.head.get_next()
+                self.head = self.head.next
 
             if node == self.tail:
                 self.tail = self.tail.previous
