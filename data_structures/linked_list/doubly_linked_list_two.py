@@ -84,7 +84,6 @@ class LinkedList:
         if self.head is None:
             self.set_head(node)
         else:
-            assert self.tail
             self.insert_after_node(self.tail, node)
 
     def insert(self, value: int) -> None:
