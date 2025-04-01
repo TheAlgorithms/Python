@@ -238,6 +238,7 @@ def create_linked_list() -> None:
     9
     >>> linked_list = LinkedList()
     >>> linked_list
+    LinkedList(head=None, tail=None)
     >>> str(linked_list)
     >>> linked_list.insert_at_position(position=1, value=10)
     >>> linked_list
