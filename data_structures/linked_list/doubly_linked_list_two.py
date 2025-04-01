@@ -10,12 +10,12 @@
 """
 
 from dataclasses import dataclass
-from typing import Any, Self
+from typing import Self
 
 
 @dataclass
 class Node:
-    data: Any
+    data: int
     previous: Self | None = None
     next: Self | None = None
 
