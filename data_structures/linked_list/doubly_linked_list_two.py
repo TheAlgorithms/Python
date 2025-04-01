@@ -236,6 +236,8 @@ def create_linked_list() -> None:
     7
     8
     9
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert_at_position(position=1, value=10)
     """
 
 
