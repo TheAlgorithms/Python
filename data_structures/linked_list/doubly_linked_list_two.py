@@ -81,8 +81,9 @@ class LinkedList:
             self.insert_before_node(self.head, node)
 
     def set_tail(self, node: Node) -> None:
-        if self.head is None:
-            self.set_head(node)
+        if self.tail is None:
+            self.head = node
+            self.tail = node
         else:
             self.insert_after_node(self.tail, node)
 
