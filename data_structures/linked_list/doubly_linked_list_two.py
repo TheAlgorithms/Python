@@ -243,23 +243,20 @@ def create_linked_list() -> None:
     ''
     >>> linked_list.insert_at_position(position=1, value=10)
     >>> linked_list
-    LinkedList(head=Node(data=10, previous=None, next=None), tail=Node(data=10, previous=None, next=None))
+    LinkedList(
+        head=Node(data=10, previous=None, next=None), tail=Node(data=10, previous=None, next=None))
     >>> str(linked_list)
     '10'
     >>> linked_list.insert_at_position(position=2, value=20)
-    >>> linked_list
     >>> str(linked_list)
     '10 20'
     >>> linked_list.insert_at_position(position=1, value=30)
-    >>> linked_list
     >>> str(linked_list)
     '30 10 20'
     >>> linked_list.insert_at_position(position=3, value=40)
-    >>> linked_list
     >>> str(linked_list)
     '30 10 40 20'
     >>> linked_list.insert_at_position(position=5, value=50)
-    >>> linked_list
     >>> str(linked_list)
     '30 10 40 20 50'
     """
