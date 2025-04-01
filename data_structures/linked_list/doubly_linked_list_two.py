@@ -141,7 +141,7 @@ class LinkedList:
                 self.head = self.head.get_next()
 
             if node == self.tail:
-                self.tail = self.tail.get_previous()
+                self.tail = self.tail.previous
 
             self.remove_node_pointers(node)
 
