@@ -244,7 +244,7 @@ def create_linked_list() -> None:
     >>> linked_list.insert_at_position(position=1, value=10)
     >>> linked_list
     LinkedList(head=Node(data=10, previous=None, next=None),
-    tail=Node(data=10, previous=None, next=None))
+     tail=Node(data=10, previous=None, next=None))
     >>> str(linked_list)
     '10'
     >>> linked_list.insert_at_position(position=2, value=20)
