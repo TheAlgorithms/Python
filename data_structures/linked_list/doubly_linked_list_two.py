@@ -41,8 +41,8 @@ class LinkedListIterator:
 
 @dataclass
 class LinkedList:
-    head: Node | None = None
-    tail: Node | None = None
+    head: Node | None = None  # First node in list
+    tail: Node | None = None  # Last node in list
 
     def __str__(self):
         current = self.head
