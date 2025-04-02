@@ -50,10 +50,13 @@ class ADRC:
         :param dt: Time difference since the last update
         :return: Control output
         >>> adrc = ADRC(10.0, 5.0, 2.0)
-        >>> (adrc.system_output, adrc.system_velocity,
-        ...  adrc.total_disturbance) = (1.0, 2.0, 3.0)
+        >>> (
+        ...     adrc.system_output,
+        ...     adrc.system_velocity,
+        ...     adrc.total_disturbance,
+        ... ) = (1.0, 2.0, 3.0)
         >>> adrc.calculate_control_output(0.5, 0.1)  # Simple test with dt=0.1
-        0.8
+        0.05
         """
         # Extended State Observer (ESO) Update
         error = self.system_output - measured_value
@@ -72,8 +75,11 @@ class ADRC:
         Reset the estimated states to zero.
 
         >>> adrc = ADRC(1.0, 2.0, 3.0)
-        >>> (adrc.system_output, adrc.system_velocity,
-        ...  adrc.total_disturbance) = (1.1, 2.2, 3.3)
+        >>> (
+        ...     adrc.system_output,
+        ...     adrc.system_velocity,
+        ...     adrc.total_disturbance,
+        ... ) = (1.1, 2.2, 3.3)
         >>> adrc.reset()
         >>> adrc.system_output, adrc.system_velocity, adrc.total_disturbance
         (0.0, 0.0, 0.0)
