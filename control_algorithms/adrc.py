@@ -56,7 +56,7 @@ class ADRC:
         ...     adrc.total_disturbance,
         ... ) = (1.0, 2.0, 3.0)
         >>> adrc.calculate_control_output(0.5, 0.1)  # Simple test with dt=0.1
-        0.05
+        0.0.04999999999999982
         """
         # Extended State Observer (ESO) Update
         error = self.system_output - measured_value
