@@ -27,9 +27,9 @@ class ADRC:
         self.beta3 = beta3
         self.setpoint = setpoint
 
-        self.z1 = 0.0  # Estimated system output
-        self.z2 = 0.0  # Estimated system velocity
-        self.z3 = 0.0  # Estimated total disturbance
+        self.system_output = 0.0  # Estimated system output
+        self.system_velocity = 0.0  # Estimated system velocity
+        self.total_disturbance = 0.0  # Estimated total disturbance
 
     def compute(self, measured_value: float, dt: float) -> float:
         """
