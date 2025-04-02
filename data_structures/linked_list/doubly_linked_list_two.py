@@ -81,8 +81,9 @@ class LinkedList:
             self.insert_before_node(self.head, node)
 
     def set_tail(self, node: Node) -> None:
-        if self.head is None:
-            self.set_head(node)
+        if self.tail is None:
+            self.head = node
+            self.tail = node
         else:
             self.insert_after_node(self.tail, node)
 
@@ -104,9 +105,7 @@ class LinkedList:
 
         node.previous = node_to_insert
 
-    def insert_after_node(self, node: Node | None, node_to_insert: Node) -> None:
-        assert node is not None
-
+    def insert_after_node(self, node: Node, node_to_insert: Node) -> None:
         node_to_insert.previous = node
         node_to_insert.next = node.next
 
@@ -127,7 +126,7 @@ class LinkedList:
                 return
             current_position += 1
             node = node.next
-        self.insert_after_node(self.tail, new_node)
+        self.set_tail(new_node)
 
     def get_node(self, item: int) -> Node:
         node = self.head
@@ -237,6 +236,22 @@ def create_linked_list() -> None:
     7
     8
     9
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert_at_position(position=1, value=10)
+    >>> str(linked_list)
+    '10'
+    >>> linked_list.insert_at_position(position=2, value=20)
+    >>> str(linked_list)
+    '10 20'
+    >>> linked_list.insert_at_position(position=1, value=30)
+    >>> str(linked_list)
+    '30 10 20'
+    >>> linked_list.insert_at_position(position=3, value=40)
+    >>> str(linked_list)
+    '30 10 40 20'
+    >>> linked_list.insert_at_position(position=5, value=50)
+    >>> str(linked_list)
+    '30 10 40 20 50'
     """
 
 
