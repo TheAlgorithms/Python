@@ -13,7 +13,13 @@ Refer - https://en.wikipedia.org/wiki/Active_disturbance_rejection_control
 
 
 class ADRC:
-    def __init__(self, error_correction: float, disturbance: float, acceleration: float, target: float = 0.0):
+    def __init__(
+        self,
+        error_correction: float,
+        disturbance: float,
+        acceleration: float,
+        target: float = 0.0,
+    ):
         """
         Initialize the ADRC controller.
 
