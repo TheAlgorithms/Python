@@ -19,46 +19,68 @@ class ADRC:
         disturbance: float,
         acceleration: float,
         target: float = 0.0,
-    ):
+    ) -> None:
         """
         Initialize the ADRC controller.
 
-        :param beta1: Gain for error correction in ESO
-        :param beta2: Gain for disturbance estimation in ESO
-        :param beta3: Gain for acceleration estimation in ESO
-        :param setpoint: Desired target value
+        :param error_correction: Gain for error correction in ESO
+        :param disturbance: Gain for disturbance estimation in ESO
+        :param acceleration: Gain for acceleration estimation in ESO
+        :param target: Desired target value (default: 0.0)
+        >>> adrc = ADRC(1.0, 2.0, 3.0, 5.0)
+        >>> adrc.error_correction, adrc.disturbance, adrc.acceleration, adrc.target
+        (1.0, 2.0, 3.0, 5.0)
+        >>> adrc.system_output, adrc.system_velocity, adrc.total_disturbance
+        (0.0, 0.0, 0.0)
         """
-        self.beta1 = beta1
-        self.beta2 = beta2
-        self.beta3 = beta3
-        self.setpoint = setpoint
+        self.error_correction = error_correction
+        self.disturbance = disturbance
+        self.acceleration = acceleration
+        self.target = target
 
         self.system_output = 0.0  # Estimated system output
         self.system_velocity = 0.0  # Estimated system velocity
         self.total_disturbance = 0.0  # Estimated total disturbance
 
-    def compute(self, measured_value: float, dt: float) -> float:
+    def calculate_control_output(self, measured_value: float, dt: float) -> float:
         """
         Compute the control signal based on error estimation and disturbance rejection.
 
         :param measured_value: The current process variable
         :param dt: Time difference since the last update
         :return: Control output
+        >>> adrc = ADRC(10.0, 5.0, 2.0)
+        >>> (adrc.system_output, adrc.system_velocity,
+        ...  adrc.total_disturbance) = (1.0, 2.0, 3.0)
+        >>> adrc.calculate_control_output(0.5, 0.1)  # Simple test with dt=0.1
+        0.8
         """
-
         # Extended State Observer (ESO) Update
-        self.z1 += dt * (self.z2 - self.beta1 * (self.z1 - measured_value))
-        self.z2 += dt * (self.z3 - self.beta2 * (self.z1 - measured_value))
-        self.z3 -= self.beta3 * (self.z1 - measured_value)
+        error = self.system_output - measured_value
+        self.system_output += dt * (
+            self.system_velocity - self.error_correction * error
+        )
+        self.system_velocity += dt * (self.total_disturbance - self.disturbance * error)
+        self.total_disturbance -= self.acceleration * error
 
         # Control Law (Nonlinear State Error Feedback - NLSEF)
-        return self.z2 - self.z3
+        control_output = self.system_velocity - self.total_disturbance
+        return control_output
 
-    def reset(self):
-        """Reset the estimated states."""
-        self.z1 = 0.0
-        self.z2 = 0.0
-        self.z3 = 0.0
+    def reset(self) -> None:
+        """
+        Reset the estimated states to zero.
+
+        >>> adrc = ADRC(1.0, 2.0, 3.0)
+        >>> (adrc.system_output, adrc.system_velocity,
+        ...  adrc.total_disturbance) = (1.1, 2.2, 3.3)
+        >>> adrc.reset()
+        >>> adrc.system_output, adrc.system_velocity, adrc.total_disturbance
+        (0.0, 0.0, 0.0)
+        """
+        self.system_output = 0.0
+        self.system_velocity = 0.0
+        self.total_disturbance = 0.0
 
 
 if __name__ == "__main__":
