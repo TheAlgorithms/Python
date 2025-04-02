@@ -52,8 +52,7 @@ class ADRC:
         self.z3 -= self.beta3 * (self.z1 - measured_value)
 
         # Control Law (Nonlinear State Error Feedback - NLSEF)
-        control_output = self.z2 - self.z3
-        return control_output
+        return self.z2 - self.z3
 
     def reset(self):
         """Reset the estimated states."""
