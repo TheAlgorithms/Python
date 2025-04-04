@@ -11,5 +11,6 @@ def is_palindrome(txt):
     bool: True if the text is a palindrome, False otherwise.
     """
     return txt == txt[::-1]
-    
+
+
 print(is_palindrome("radar"))
