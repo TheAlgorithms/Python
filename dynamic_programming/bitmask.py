@@ -42,7 +42,7 @@ class AssignmentUsingBitmask:
             return self.dp[mask][task_no]
 
         # Number of ways when we don't this task in the arrangement
-        total_ways_util = self.count_ways_until(mask, task_no + 1)
+        total_ways_until = self.count_ways_until(mask, task_no + 1)
 
         # now assign the tasks one by one to all possible persons and recursively
         # assign for the remaining tasks.
@@ -54,10 +54,10 @@ class AssignmentUsingBitmask:
 
                 # assign this task to p and change the mask value. And recursively
                 # assign tasks with the new mask value.
-                total_ways_util += self.count_ways_until(mask | (1 << p), task_no + 1)
+                total_ways_until += self.count_ways_until(mask | (1 << p), task_no + 1)
 
         # save the value.
-        self.dp[mask][task_no] = total_ways_util
+        self.dp[mask][task_no] = total_ways_until
 
         return self.dp[mask][task_no]
 
