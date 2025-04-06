@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
     """
     Returns the inverse of a square matrix using NumPy.
@@ -19,10 +20,7 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
 
 if __name__ == "__main__":
-    mat = [
-        [4, 7],
-        [2, 6]
-    ]
+    mat = [[4, 7], [2, 6]]
     print("Original Matrix:")
     print(mat)
     print("Inverted Matrix:")
