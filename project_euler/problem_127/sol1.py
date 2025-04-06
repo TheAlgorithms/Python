@@ -8,6 +8,9 @@ It takes about 10 minutes to run.
 - if gcd(a, b) = 1 then gcd(a, c) = 1 and gcd(b, c) = 1
 - rad(a*b*c) = rad(a) * rad(b) * rad(c), for gcd(a, b) = 1
 - if a is even, b cannot b even for gcd(a, b) = 1 to be true.
+
+>>> solution(1000)
+12523
 """
 
 from numpy import sqrt
@@ -18,6 +21,11 @@ N = 120000
 def generate_primes(n: int) -> list[bool]:
     """
     Generates primes boolean array up to n.
+
+    >>> generate_primes(2)
+    [False, False, True]
+    >>> generate_primes(5)
+    [False, False, True, True, False, True]
     """
     primes = [True] * (n + 1)
     primes[0] = primes[1] = False
@@ -34,6 +42,11 @@ def rad(n: int, primes_list: list[int]) -> int:
     """
     Calculated rad - product of unique prime factors for n, using prime numbers
     list primes_list.
+
+    >>> rad(1, [1])
+    1
+    >>> rad(12, [2, 3])
+    6
     """
     f = 1
     for p in primes_list:
@@ -48,6 +61,10 @@ def gcd(a: int, b: int) -> int:
     """
     Calculates greatest common divisor of a and b.
 
+    >>> gcd(1, 10)
+    1
+    >>> gcd(14, 48)
+    2
     """
     while b:
         a, b = b, a % b
@@ -58,6 +75,10 @@ def solution(c_less: int = 120000) -> int:
     """
     Calculates all primes, rads, and then loops over a, b checking the conditions.
 
+    >>> solution(10)
+    9
+    >>> solution(100)
+    316
     """
     primes_bool = generate_primes(c_less)
     primes_list = []
@@ -67,8 +88,6 @@ def solution(c_less: int = 120000) -> int:
 
     rads = [1] * (c_less + 1)
     for i in range(c_less + 1):
-        if i % 100 == 0:
-            print("rads", i)
         rads[i] = rad(i, primes_list)
 
     sum_c = 0
