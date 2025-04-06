@@ -1,9 +1,24 @@
+"""
+Project Euler Problem 127: https://projecteuler.net/problem=127
+
+abc-hits
+
+It takes about 10 minutes to run.
+'Brute-force' solution that uses the following simplifications:
+- if gcd(a, b) = 1 then gcd(a, c) = 1 and gcd(b, c) = 1
+- rad(a*b*c) = rad(a) * rad(b) * rad(c), for gcd(a, b) = 1
+- if a is even, b cannot b even for gcd(a, b) = 1 to be true.
+"""
+
 from numpy import sqrt
 
 N = 120000
 
 
-def generate_primes(n: int):
+def generate_primes(n: int) -> list[bool]:
+    """
+    Generates primes boolean array up to n.
+    """
     primes = [True] * (n + 1)
     primes[0] = primes[1] = False
     for i in range(2, int(sqrt(n + 1)) + 1):
@@ -15,7 +30,11 @@ def generate_primes(n: int):
     return primes
 
 
-def rad(n: int, primes_list: list[int]):
+def rad(n: int, primes_list: list[int]) -> int:
+    """
+    Calculated rad - product of unique prime factors for n, using prime numbers
+    list primes_list.
+    """
     f = 1
     for p in primes_list:
         if p > n:
@@ -25,16 +44,23 @@ def rad(n: int, primes_list: list[int]):
     return f
 
 
-def gcd(a: int, b: int):
+def gcd(a: int, b: int) -> int:
+    """
+    Calculates greatest common divisor of a and b.
+
+    """
     while b:
         a, b = b, a % b
     return a
 
 
 def solution(c_less: int = 120000) -> int:
+    """
+    Calculates all primes, rads, and then loops over a, b checking the conditions.
+
+    """
     primes_bool = generate_primes(c_less)
     primes_list = []
-    print("primes generated")
     for i in range(2, len(primes_bool)):
         if primes_bool[i]:
             primes_list += [i]
@@ -46,7 +72,6 @@ def solution(c_less: int = 120000) -> int:
         rads[i] = rad(i, primes_list)
 
     sum_c = 0
-    print("start main")
     for a in range(1, c_less):
         rad_a = rads[a]
         if a % 2 == 1:
