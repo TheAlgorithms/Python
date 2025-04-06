@@ -20,7 +20,7 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
 
 if __name__ == "__main__":
-    mat = [[4, 7], [2, 6]]
+    mat = [[4.0, 7.0], [2.0, 6.0]]
     print("Original Matrix:")
     print(mat)
     print("Inverted Matrix:")
