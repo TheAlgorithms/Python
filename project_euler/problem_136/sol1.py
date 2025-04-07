@@ -1,7 +1,41 @@
+"""
+Project Euler Problem 136: https://projecteuler.net/problem=136
+
+Singleton Difference
+
+By change of variables
+
+x = y + delta
+z = y - delta
+
+The expression can be rewritten:
+
+x^2 - y^2 - z^2 = y*(4*delta - y) = n
+
+The algorithm loops over delta and y, which is restricted in upper and lower limits,
+to count how many solutions each n has.
+In the end it is counted how many n's have one solution.
+
+
+>>> solution(100)
+25
+"""
+
 N = 50000000
 
 
 def solution(n_limit: int = N) -> int:
+    """
+    Define n count list and loop over delta, y to get the counts, then check
+    which n has count == 1.
+
+    >>> solution(3)
+    0
+    >>> solution(10)
+    2
+    >>> solution(110)
+    26
+    """
     n_sol = [0] * n_limit
 
     for delta in range(1, (n_limit + 1) // 4):
