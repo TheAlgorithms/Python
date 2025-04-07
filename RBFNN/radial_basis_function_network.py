@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 from numpy.linalg import pinv
 
+
 class RBFNN:
     def __init__(self, num_centers=10, gamma=1.0):
         self.num_centers = num_centers

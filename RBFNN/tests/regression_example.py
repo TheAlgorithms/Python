@@ -17,8 +17,8 @@ model.train(X_train, y_train)
 y_pred = model.predict(X_test)
 
 # Plot
-plt.scatter(X_test, y_test, label='True')
-plt.scatter(X_test, y_pred, label='Predicted', color='red', marker='x')
+plt.scatter(X_test, y_test, label="True")
+plt.scatter(X_test, y_pred, label="Predicted", color="red", marker="x")
 plt.title("RBFNN Regression - Sine Function")
 plt.legend()
 plt.show()
