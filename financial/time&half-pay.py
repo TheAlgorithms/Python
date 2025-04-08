@@ -2,12 +2,18 @@
 Calculate time and a half pay
 
 """
-def pay(hours_worked, pay_rate, hours = 40):
+def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
 	"""
 	hours_worked = The total hours worked
 	pay_rate = Ammount of money per hour
 	hours = Number of hours that must be worked before you recieve time and a half
 	"""
+
+	# Check that all input parameters are float or integer
+	assert (type(hours_worked) == float or type(hours_worked) == int), "Parameter 'hours_worked' must be of type 'int' or 'float'"
+	assert (type(pay_rate) == float or type(pay_rate) == int), "Parameter 'hours_worked' must be of type 'int' or 'float'"
+	assert (type(hours) == float or type(hours) == int), "Parameter 'hours_worked' must be of type 'int' or 'float'"
+
 	normal_pay = hours_worked * pay_rate
 	over_time = hours_worked - hours
 	# Another way
