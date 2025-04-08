@@ -7,8 +7,13 @@ def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
 	hours_worked = The total hours worked
 	pay_rate = Ammount of money per hour
 	hours = Number of hours that must be worked before you recieve time and a half
+	>>> pay(41, 1)
+	41.5
+	>>> pay(65, 19)
+	1472.5
+	>>> pay(10, 1)
+	10.0
 	"""
-
 	# Check that all input parameters are float or integer
 	assert (type(hours_worked) == float or type(hours_worked) == int), "Parameter 'hours_worked' must be of type 'int' or 'float'"
 	assert (type(pay_rate) == float or type(pay_rate) == int), "Parameter 'hours_worked' must be of type 'int' or 'float'"
@@ -25,6 +30,5 @@ def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
 
 if __name__ == "__main__":
 	# Test
-	print(pay(41, 1))
-	print(pay(65, 19))
-	print(pay(10, 1))
+	import doctest
+	doctest.testmod()
