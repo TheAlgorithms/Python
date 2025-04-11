@@ -1371,7 +1371,7 @@
   * [Nasa Data](web_programming/nasa_data.py)
   * [Open Google Results](web_programming/open_google_results.py)
   * [Random Anime Character](web_programming/random_anime_character.py)
-  * [Recaptcha Verification](web_programming/recaptcha_verification.py)
+  * [reCAPTCHA Verification](web_programming/recaptcha_verification.py)
   * [Reddit](web_programming/reddit.py)
   * [Search Books By Isbn](web_programming/search_books_by_isbn.py)
   * [Slack Message](web_programming/slack_message.py)
