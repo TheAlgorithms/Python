@@ -48,10 +48,15 @@ class Bandit:
         Pull an arm of the bandit.
 
         Args:
-            arm: The arm to pull.
+            arm_index: The arm to pull.
 
         Returns:
             The reward for the arm.
+
+        Example:
+            >>> bandit = Bandit([0.1, 0.5, 0.9])
+            >>> isinstance(bandit.pull(0), int)
+            True
         """
         rng = np.random.default_rng()
         return 1 if rng.random() < self.probabilities[arm_index] else 0
@@ -86,6 +91,11 @@ class EpsilonGreedy:
 
         Returns:
             The index of the arm to pull.
+
+        Example:
+            >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
+            >>> 0 <= strategy.select_arm() < 3
+            True
         """
         rng = np.random.default_rng()
 
@@ -101,6 +111,12 @@ class EpsilonGreedy:
         Args:
             arm_index: The index of the arm to pull.
             reward: The reward for the arm.
+
+        Example:
+            >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
+            >>> strategy.update(0, 1)
+            >>> strategy.counts[0] == 1
+            True
         """
         self.counts[arm_index] += 1
         n = self.counts[arm_index]
@@ -135,6 +151,11 @@ class UCB:
 
         Returns:
             The index of the arm to pull.
+
+        Example:
+            >>> strategy = UCB(k=3)
+            >>> 0 <= strategy.select_arm() < 3
+            True
         """
         if self.total_counts < self.k:
             return self.total_counts
@@ -149,6 +170,12 @@ class UCB:
         Args:
             arm_index: The index of the arm to pull.
             reward: The reward for the arm.
+
+        Example:
+            >>> strategy = UCB(k=3)
+            >>> strategy.update(0, 1)
+            >>> strategy.counts[0] == 1
+            True
         """
         self.counts[arm_index] += 1
         self.total_counts += 1
@@ -184,6 +211,11 @@ class ThompsonSampling:
         Returns:
             The index of the arm to pull based on the Thompson Sampling strategy
             which relies on the Beta distribution.
+
+        Example:
+            >>> strategy = ThompsonSampling(k=3)
+            >>> 0 <= strategy.select_arm() < 3
+            True
         """
         rng = np.random.default_rng()
 
@@ -199,6 +231,12 @@ class ThompsonSampling:
         Args:
             arm_index: The index of the arm to pull.
             reward: The reward for the arm.
+
+        Example:
+            >>> strategy = ThompsonSampling(k=3)
+            >>> strategy.update(0, 1)
+            >>> strategy.successes[0] == 1
+            True
         """
         if reward == 1:
             self.successes[arm_index] += 1
@@ -210,7 +248,7 @@ class ThompsonSampling:
 class RandomStrategy:
     """
     A class for choosing totally random at each round to give
-    a better comparison with the other optimisedstrategies.
+    a better comparison with the other optimised strategies.
     """
 
     def __init__(self, k: int):
@@ -228,6 +266,11 @@ class RandomStrategy:
 
         Returns:
             The index of the arm to pull.
+
+        Example:
+            >>> strategy = RandomStrategy(k=3)
+            >>> 0 <= strategy.select_arm() < 3
+            True
         """
         rng = np.random.default_rng()
         return rng.integers(self.k)
@@ -239,6 +282,10 @@ class RandomStrategy:
         Args:
             arm_index: The index of the arm to pull.
             reward: The reward for the arm.
+
+        Example:
+            >>> strategy = RandomStrategy(k=3)
+            >>> strategy.update(0, 1)
         """
 
 
@@ -268,6 +315,11 @@ class GreedyStrategy:
 
         Returns:
             The index of the arm to pull.
+
+        Example:
+            >>> strategy = GreedyStrategy(k=3)
+            >>> 0 <= strategy.select_arm() < 3
+            True
         """
         return np.argmax(self.values)
 
@@ -278,6 +330,12 @@ class GreedyStrategy:
         Args:
             arm_index: The index of the arm to pull.
             reward: The reward for the arm.
+
+        Example:
+            >>> strategy = GreedyStrategy(k=3)
+            >>> strategy.update(0, 1)
+            >>> strategy.counts[0] == 1
+            True
         """
         self.counts[arm_index] += 1
         n = self.counts[arm_index]
@@ -329,4 +387,6 @@ def test_mab_strategies():
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     test_mab_strategies()
