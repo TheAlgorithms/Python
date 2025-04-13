@@ -159,8 +159,7 @@ class UCB:
         """
         if self.total_counts < self.k:
             return self.total_counts
-        ucb_values = self.values + \
-            np.sqrt(2 * np.log(self.total_counts) / self.counts)
+        ucb_values = self.values + np.sqrt(2 * np.log(self.total_counts) / self.counts)
         return np.argmax(ucb_values)
 
     def update(self, arm_index: int, reward: int):
@@ -388,5 +387,6 @@ def test_mab_strategies():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     test_mab_strategies()
