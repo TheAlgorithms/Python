@@ -95,7 +95,7 @@ class EpsilonGreedy:
         Example:
             >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
             >>> 0 <= strategy.select_arm() < 3
-            True
+            np.True_
         """
         rng = np.random.default_rng()
 
@@ -116,7 +116,7 @@ class EpsilonGreedy:
             >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
-            True
+            np.True_
         """
         self.counts[arm_index] += 1
         n = self.counts[arm_index]
@@ -175,7 +175,7 @@ class UCB:
             >>> strategy = UCB(k=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
-            True
+            np.True_
         """
         self.counts[arm_index] += 1
         self.total_counts += 1
@@ -215,7 +215,7 @@ class ThompsonSampling:
         Example:
             >>> strategy = ThompsonSampling(k=3)
             >>> 0 <= strategy.select_arm() < 3
-            True
+            np.True_
         """
         rng = np.random.default_rng()
 
@@ -236,7 +236,7 @@ class ThompsonSampling:
             >>> strategy = ThompsonSampling(k=3)
             >>> strategy.update(0, 1)
             >>> strategy.successes[0] == 1
-            True
+            np.True_
         """
         if reward == 1:
             self.successes[arm_index] += 1
@@ -270,7 +270,7 @@ class RandomStrategy:
         Example:
             >>> strategy = RandomStrategy(k=3)
             >>> 0 <= strategy.select_arm() < 3
-            True
+            np.True_
         """
         rng = np.random.default_rng()
         return rng.integers(self.k)
@@ -319,7 +319,7 @@ class GreedyStrategy:
         Example:
             >>> strategy = GreedyStrategy(k=3)
             >>> 0 <= strategy.select_arm() < 3
-            True
+            np.True_
         """
         return np.argmax(self.values)
 
@@ -335,7 +335,7 @@ class GreedyStrategy:
             >>> strategy = GreedyStrategy(k=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
-            True
+            np.True_
         """
         self.counts[arm_index] += 1
         n = self.counts[arm_index]
