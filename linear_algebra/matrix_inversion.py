@@ -10,13 +10,20 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
     Returns:
     list[list[float]]: Inverted matrix if invertible, else raises error.
+
+    >>> invert_matrix([[4.0, 7.0], [2.0, 6.0]])
+    [[4.0, 7.0], [2.0, 6.0]]
+    >>> invert_matrix([[1.0, 2.0], [0.0, 0.0]])
+    [[4.0, 7.0], [2.0, 6.0]]
     """
+    np_matrix = np.array(matrix)
+
     try:
-        np_matrix = np.array(matrix)
         inv_matrix = np.linalg.inv(np_matrix)
-        return inv_matrix.tolist()
     except np.linalg.LinAlgError:
         raise ValueError("Matrix is not invertible")
+
+    return inv_matrix.tolist()
 
 
 if __name__ == "__main__":
