@@ -29,14 +29,10 @@ We shall define m(k) to be the minimum number of multiplications to compute n^k;
 Find sum_{k = 1}^200 m(k).
 
 It uses the fact that for rather small n, applicable for this problem, the solution
-for each number
-can be formed by increasing the largest element.
+for each number can be formed by increasing the largest element.
 
 References:
 - https://en.wikipedia.org/wiki/Addition_chain
-
->>> solution(14)
-45
 """
 
 
@@ -71,6 +67,8 @@ def solution(n: int = 200) -> int:
     0
     >>> solution(2)
     1
+    >>> solution(14)
+    45
     >>> solution(15)
     50
     """
