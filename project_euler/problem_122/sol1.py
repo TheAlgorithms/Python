@@ -24,7 +24,8 @@ However it is yet possible to compute it in only five multiplications:
                                                             n^6 x n^6 = n^12
                                                            n^12 x n^3 = n^15
 
-We shall define m(k) to be the minimum number of multiplications to compute n^k; for example m(15) = 5.
+We shall define m(k) to be the minimum number of multiplications to compute n^k;
+for example m(15) = 5.
 
 Find sum_{k = 1}^200 m(k).
 
