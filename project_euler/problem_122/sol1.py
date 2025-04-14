@@ -38,7 +38,7 @@ References:
 
 def solve(nums: list[int], goal: int, depth: int) -> bool:
     """
-    Checks if nums can can have a sum equal to goal, given that length of nums does
+    Checks if nums can have a sum equal to goal, given that length of nums does
     not exceed depth.
 
     >>> solve([1], 2, 2)
