@@ -72,7 +72,7 @@ def solution(n: int = 200) -> int:
     >>> solution(15)
     50
     """
-    m = [0]
+    sum = 0
     for i in range(2, n + 1):
         max_length = 0
         while True:
@@ -80,8 +80,8 @@ def solution(n: int = 200) -> int:
             max_length += 1
             if solve(nums, i, max_length):
                 break
-        m.append(len(nums))
-    return sum(m)
+        sum += max_length
+    return sum
 
 
 if __name__ == "__main__":
