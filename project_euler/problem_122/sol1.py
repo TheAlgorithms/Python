@@ -53,7 +53,7 @@ def solve(nums: list[int], goal: int, depth: int) -> bool:
         if el + nums[-1] == goal:
             return True
         nums.append(el + nums[-1])
-        if solve(nums, goal, depth):
+        if solve(nums=nums, goal=goal, depth=depth):
             return True
         del nums[-1]
     return False
@@ -73,16 +73,16 @@ def solution(n: int = 200) -> int:
     >>> solution(15)
     50
     """
-    sum = 0
+    total = 0
     for i in range(2, n + 1):
         max_length = 0
         while True:
             nums = [1]
             max_length += 1
-            if solve(nums, i, max_length):
+            if solve(nums=nums, goal=i, depth=max_length):
                 break
-        sum += max_length
-    return sum
+        total += max_length
+    return total
 
 
 if __name__ == "__main__":
