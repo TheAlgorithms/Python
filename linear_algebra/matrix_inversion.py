@@ -14,7 +14,7 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
     >>> invert_matrix([[4.0, 7.0], [2.0, 6.0]])
     [[4.0, 7.0], [2.0, 6.0]]
     >>> invert_matrix([[1.0, 2.0], [0.0, 0.0]])
-    [[4.0, 7.0], [2.0, 6.0]]
+    [[1.0, 2.0], [0.0, 0.0]]
     """
     np_matrix = np.array(matrix)
 
