@@ -159,8 +159,7 @@ class UCB:
         """
         if self.total_counts < self.num_arms:
             return self.total_counts
-        ucb_values = self.values + \
-            np.sqrt(2 * np.log(self.total_counts) / self.counts)
+        ucb_values = self.values + np.sqrt(2 * np.log(self.total_counts) / self.counts)
         return np.argmax(ucb_values)
 
     def update(self, arm_index: int, reward: int) -> None:
