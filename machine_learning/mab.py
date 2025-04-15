@@ -33,7 +33,7 @@ class Bandit:
     A class to represent a multi-armed bandit.
     """
 
-    def __init__(self, probabilities: list[float]):
+    def __init__(self, probabilities: list[float]) -> None:
         """
         Initialize the bandit with a list of probabilities for each arm.
 
@@ -72,7 +72,7 @@ class EpsilonGreedy:
     https://medium.com/analytics-vidhya/the-epsilon-greedy-algorithm-for-reinforcement-learning-5fe6f96dc870
     """
 
-    def __init__(self, epsilon: float, k: int):
+    def __init__(self, epsilon: float, k: int) -> None:
         """
         Initialize the Epsilon-Greedy strategy.
 
@@ -85,7 +85,7 @@ class EpsilonGreedy:
         self.counts = np.zeros(k)
         self.values = np.zeros(k)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         """
         Select an arm to pull.
 
@@ -104,7 +104,7 @@ class EpsilonGreedy:
         else:
             return np.argmax(self.values)
 
-    def update(self, arm_index: int, reward: int):
+    def update(self, arm_index: int, reward: int) -> None:
         """
         Update the strategy.
 
@@ -133,7 +133,7 @@ class UCB:
     https://people.maths.bris.ac.uk/~maajg/teaching/stochopt/ucb.pdf
     """
 
-    def __init__(self, k: int):
+    def __init__(self, k: int) -> None:
         """
         Initialize the UCB strategy.
 
@@ -145,7 +145,7 @@ class UCB:
         self.values = np.zeros(k)
         self.total_counts = 0
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         """
         Select an arm to pull.
 
@@ -159,10 +159,11 @@ class UCB:
         """
         if self.total_counts < self.k:
             return self.total_counts
-        ucb_values = self.values + np.sqrt(2 * np.log(self.total_counts) / self.counts)
+        ucb_values = self.values + \
+            np.sqrt(2 * np.log(self.total_counts) / self.counts)
         return np.argmax(ucb_values)
 
-    def update(self, arm_index: int, reward: int):
+    def update(self, arm_index: int, reward: int) -> None:
         """
         Update the strategy.
 
@@ -192,7 +193,7 @@ class ThompsonSampling:
     https://en.wikipedia.org/wiki/Thompson_sampling
     """
 
-    def __init__(self, k: int):
+    def __init__(self, k: int) -> None:
         """
         Initialize the Thompson Sampling strategy.
 
@@ -203,7 +204,7 @@ class ThompsonSampling:
         self.successes = np.zeros(k)
         self.failures = np.zeros(k)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         """
         Select an arm to pull.
 
@@ -223,7 +224,7 @@ class ThompsonSampling:
         ]
         return np.argmax(samples)
 
-    def update(self, arm_index: int, reward: int):
+    def update(self, arm_index: int, reward: int) -> None:
         """
         Update the strategy.
 
@@ -259,7 +260,7 @@ class RandomStrategy:
         """
         self.k = k
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         """
         Select an arm to pull.
 
@@ -274,7 +275,7 @@ class RandomStrategy:
         rng = np.random.default_rng()
         return rng.integers(self.k)
 
-    def update(self, arm_index: int, reward: int):
+    def update(self, arm_index: int, reward: int) -> None:
         """
         Update the strategy.
 
@@ -308,7 +309,7 @@ class GreedyStrategy:
         self.counts = np.zeros(k)
         self.values = np.zeros(k)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         """
         Select an arm to pull.
 
@@ -322,7 +323,7 @@ class GreedyStrategy:
         """
         return np.argmax(self.values)
 
-    def update(self, arm_index: int, reward: int):
+    def update(self, arm_index: int, reward: int) -> None:
         """
         Update the strategy.
 
