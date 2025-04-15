@@ -342,7 +342,7 @@ class GreedyStrategy:
         self.values[arm_index] += (reward - self.values[arm_index]) / n
 
 
-def test_mab_strategies():
+def test_mab_strategies() -> None:
     """
     Test the MAB strategies.
     """
