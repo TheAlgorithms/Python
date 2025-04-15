@@ -41,7 +41,7 @@ class Bandit:
             probabilities: List of probabilities for each arm.
         """
         self.probabilities = probabilities
-        self.k = len(probabilities)
+        self.num_arms = len(probabilities)
 
     def pull(self, arm_index: int) -> int:
         """
@@ -72,18 +72,18 @@ class EpsilonGreedy:
     https://medium.com/analytics-vidhya/the-epsilon-greedy-algorithm-for-reinforcement-learning-5fe6f96dc870
     """
 
-    def __init__(self, epsilon: float, k: int) -> None:
+    def __init__(self, epsilon: float, num_arms: int) -> None:
         """
         Initialize the Epsilon-Greedy strategy.
 
         Args:
             epsilon: The probability of exploring new arms.
-            k: The number of arms.
+            num_arms: The number of arms.
         """
         self.epsilon = epsilon
-        self.k = k
-        self.counts = np.zeros(k)
-        self.values = np.zeros(k)
+        self.num_arms = num_arms
+        self.counts = np.zeros(num_arms)
+        self.values = np.zeros(num_arms)
 
     def select_arm(self) -> int:
         """
@@ -93,14 +93,14 @@ class EpsilonGreedy:
             The index of the arm to pull.
 
         Example:
-            >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
+            >>> strategy = EpsilonGreedy(epsilon=0.1, num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
             np.True_
         """
         rng = np.random.default_rng()
 
         if rng.random() < self.epsilon:
-            return rng.integers(self.k)
+            return rng.integers(self.num_arms)
         else:
             return np.argmax(self.values)
 
@@ -113,7 +113,7 @@ class EpsilonGreedy:
             reward: The reward for the arm.
 
         Example:
-            >>> strategy = EpsilonGreedy(epsilon=0.1, k=3)
+            >>> strategy = EpsilonGreedy(epsilon=0.1, num_arms=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
             np.True_
@@ -133,16 +133,16 @@ class UCB:
     https://people.maths.bris.ac.uk/~maajg/teaching/stochopt/ucb.pdf
     """
 
-    def __init__(self, k: int) -> None:
+    def __init__(self, num_arms: int) -> None:
         """
         Initialize the UCB strategy.
 
         Args:
-            k: The number of arms.
+            num_arms: The number of arms.
         """
-        self.k = k
-        self.counts = np.zeros(k)
-        self.values = np.zeros(k)
+        self.num_arms = num_arms
+        self.counts = np.zeros(num_arms)
+        self.values = np.zeros(num_arms)
         self.total_counts = 0
 
     def select_arm(self) -> int:
@@ -153,13 +153,14 @@ class UCB:
             The index of the arm to pull.
 
         Example:
-            >>> strategy = UCB(k=3)
+            >>> strategy = UCB(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
             True
         """
-        if self.total_counts < self.k:
+        if self.total_counts < self.num_arms:
             return self.total_counts
-        ucb_values = self.values + np.sqrt(2 * np.log(self.total_counts) / self.counts)
+        ucb_values = self.values + \
+            np.sqrt(2 * np.log(self.total_counts) / self.counts)
         return np.argmax(ucb_values)
 
     def update(self, arm_index: int, reward: int) -> None:
@@ -171,7 +172,7 @@ class UCB:
             reward: The reward for the arm.
 
         Example:
-            >>> strategy = UCB(k=3)
+            >>> strategy = UCB(num_arms=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
             np.True_
@@ -192,16 +193,16 @@ class ThompsonSampling:
     https://en.wikipedia.org/wiki/Thompson_sampling
     """
 
-    def __init__(self, k: int) -> None:
+    def __init__(self, num_arms: int) -> None:
         """
         Initialize the Thompson Sampling strategy.
 
         Args:
-            k: The number of arms.
+            num_arms: The number of arms.
         """
-        self.k = k
-        self.successes = np.zeros(k)
-        self.failures = np.zeros(k)
+        self.num_arms = num_arms
+        self.successes = np.zeros(num_arms)
+        self.failures = np.zeros(num_arms)
 
     def select_arm(self) -> int:
         """
@@ -212,14 +213,15 @@ class ThompsonSampling:
             which relies on the Beta distribution.
 
         Example:
-            >>> strategy = ThompsonSampling(k=3)
+            >>> strategy = ThompsonSampling(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
             np.True_
         """
         rng = np.random.default_rng()
 
         samples = [
-            rng.beta(self.successes[i] + 1, self.failures[i] + 1) for i in range(self.k)
+            rng.beta(self.successes[i] + 1, self.failures[i] + 1)
+            for i in range(self.num_arms)
         ]
         return np.argmax(samples)
 
@@ -232,7 +234,7 @@ class ThompsonSampling:
             reward: The reward for the arm.
 
         Example:
-            >>> strategy = ThompsonSampling(k=3)
+            >>> strategy = ThompsonSampling(num_arms=3)
             >>> strategy.update(0, 1)
             >>> strategy.successes[0] == 1
             np.True_
@@ -250,14 +252,14 @@ class RandomStrategy:
     a better comparison with the other optimised strategies.
     """
 
-    def __init__(self, k: int):
+    def __init__(self, num_arms: int) -> None:
         """
         Initialize the Random strategy.
 
         Args:
-            k: The number of arms.
+            num_arms: The number of arms.
         """
-        self.k = k
+        self.num_arms = num_arms
 
     def select_arm(self) -> int:
         """
@@ -267,12 +269,12 @@ class RandomStrategy:
             The index of the arm to pull.
 
         Example:
-            >>> strategy = RandomStrategy(k=3)
+            >>> strategy = RandomStrategy(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
             np.True_
         """
         rng = np.random.default_rng()
-        return rng.integers(self.k)
+        return rng.integers(self.num_arms)
 
     def update(self, arm_index: int, reward: int) -> None:
         """
@@ -283,7 +285,7 @@ class RandomStrategy:
             reward: The reward for the arm.
 
         Example:
-            >>> strategy = RandomStrategy(k=3)
+            >>> strategy = RandomStrategy(num_arms=3)
             >>> strategy.update(0, 1)
         """
 
@@ -297,16 +299,16 @@ class GreedyStrategy:
     detrimental to the performance of the strategy.
     """
 
-    def __init__(self, k: int):
+    def __init__(self, num_arms: int) -> None:
         """
         Initialize the Greedy strategy.
 
         Args:
-            k: The number of arms.
+            num_arms: The number of arms.
         """
-        self.k = k
-        self.counts = np.zeros(k)
-        self.values = np.zeros(k)
+        self.num_arms = num_arms
+        self.counts = np.zeros(num_arms)
+        self.values = np.zeros(num_arms)
 
     def select_arm(self) -> int:
         """
@@ -316,7 +318,7 @@ class GreedyStrategy:
             The index of the arm to pull.
 
         Example:
-            >>> strategy = GreedyStrategy(k=3)
+            >>> strategy = GreedyStrategy(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
             np.True_
         """
@@ -331,7 +333,7 @@ class GreedyStrategy:
             reward: The reward for the arm.
 
         Example:
-            >>> strategy = GreedyStrategy(k=3)
+            >>> strategy = GreedyStrategy(num_arms=3)
             >>> strategy.update(0, 1)
             >>> strategy.counts[0] == 1
             np.True_
@@ -346,16 +348,16 @@ def test_mab_strategies() -> None:
     Test the MAB strategies.
     """
     # Simulation
-    k = 4
+    num_arms = 4
     arms_probabilities = [0.1, 0.3, 0.5, 0.8]  # True probabilities
 
     bandit = Bandit(arms_probabilities)
     strategies = {
-        "Epsilon-Greedy": EpsilonGreedy(epsilon=0.1, k=k),
-        "UCB": UCB(k=k),
-        "Thompson Sampling": ThompsonSampling(k=k),
-        "Full Exploration(Random)": RandomStrategy(k=k),
-        "Full Exploitation(Greedy)": GreedyStrategy(k=k),
+        "Epsilon-Greedy": EpsilonGreedy(epsilon=0.1, num_arms=num_arms),
+        "UCB": UCB(num_arms=num_arms),
+        "Thompson Sampling": ThompsonSampling(num_arms=num_arms),
+        "Full Exploration(Random)": RandomStrategy(num_arms=num_arms),
+        "Full Exploitation(Greedy)": GreedyStrategy(num_arms=num_arms),
     }
 
     num_rounds = 1000
