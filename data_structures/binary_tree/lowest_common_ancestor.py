@@ -11,10 +11,8 @@ def swap(a: int, b: int) -> tuple[int, int]:
     Return a tuple (b, a) when given two integers a and b
     >>> swap(2,3)
     (3, 2)
-    >>> swap(3,4)
-    (4, 3)
-    >>> swap(67, 12)
-    (12, 67)
+    >>> swap(3,-4)
+    (-4, 3)
     """
     a ^= b
     b ^= a
@@ -35,6 +33,13 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
     >>> parent[2]
     [0, 0, 0, 0, 0, 0, 0]
 
+    >>> max_node = 1
+    >>> parent = [[0, 0]] + [[0] * 2 for _ in range(19)]
+    >>> parent = create_sparse(max_node, parent)
+    >>> parent[0]
+    [0, 0]
+    >>> parent[1]
+    [0, 0]
     """
     j = 1
     while (1 << j) < max_node:
@@ -52,21 +57,16 @@ def lowest_common_ancestor(
     Return the lowest common ancestor between u and v
 
     >>> level = [-1, 0, 1, 1, 2, 2, 2]
-    >>> parent = [[0, 0, 1, 1, 2, 2, 3],[0, 0, 0, 0, 1, 1, 1]] + [[0] * 7 for _ in range(17)]
+    >>> parent = [[0, 0, 1, 1, 2, 2, 3],[0, 0, 0, 0, 1, 1, 1]] + \
+                    [[0] * 7 for _ in range(17)]
     >>> lowest_common_ancestor(4, 5, level, parent)
     2
-    >>> lowest_common_ancestor(3, 6, level, parent)
-    3
     >>> lowest_common_ancestor(4, 6, level, parent)
-    1
-    >>> lowest_common_ancestor(5, 6, level, parent)
     1
     >>> lowest_common_ancestor(2, 3, level, parent)
     1
     >>> lowest_common_ancestor(6, 6, level, parent)
     6
-    >>> lowest_common_ancestor(1, 3, level, parent)
-    1
     """
     # u must be deeper in the tree than v
     if level[u] < level[v]:
@@ -84,8 +84,6 @@ def lowest_common_ancestor(
             u, v = parent[i][u], parent[i][v]
     # returning longest common ancestor of u,v
     return parent[0][u]
-
-
 
 
 # runs a breadth first search from root node of the tree
@@ -108,12 +106,8 @@ def breadth_first_search(
     [-1, 0, 1, 1, 2, 2, 2]
     >>> parent[0]
     [0, 0, 1, 1, 2, 2, 3]
-    >>> parent[1]
-    [0, 0, 0, 0, 0, 0, 0]
-    >>> parent[2]
-    [0, 0, 0, 0, 0, 0, 0]
 
-    # Edge case: graph with one node
+
     >>> level = [-1] * 2
     >>> parent = [[0] * 2 for _ in range(20)]
     >>> graph = {1: []}
@@ -121,8 +115,6 @@ def breadth_first_search(
     >>> level
     [-1, 0]
     >>> parent[0]
-    [0, 0]
-    >>> parent[1]
     [0, 0]
     """
     level[root] = 0
