@@ -24,6 +24,8 @@ over a number of rounds.
 
 """
 
+from abc import ABC, abstractmethod
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -65,7 +67,32 @@ class Bandit:
 # Epsilon-Greedy strategy
 
 
-class EpsilonGreedy:
+class Strategy(ABC):
+    """
+    Base class for all strategies.
+    """
+
+    @abstractmethod
+    def select_arm(self) -> int:
+        """
+        Select an arm to pull.
+
+        Returns:
+            The index of the arm to pull.
+        """
+
+    @abstractmethod
+    def update(self, arm_index: int, reward: int) -> None:
+        """
+        Update the strategy.
+
+        Args:
+            arm_index: The index of the arm to pull.
+            reward: The reward for the arm.
+        """
+
+
+class EpsilonGreedy(Strategy):
     """
     A class for a simple implementation of the Epsilon-Greedy strategy.
     Follow this link to learn more:
@@ -126,7 +153,7 @@ class EpsilonGreedy:
 # Upper Confidence Bound (UCB)
 
 
-class UCB:
+class UCB(Strategy):
     """
     A class for the Upper Confidence Bound (UCB) strategy.
     Follow this link to learn more:
@@ -185,7 +212,7 @@ class UCB:
 # Thompson Sampling
 
 
-class ThompsonSampling:
+class ThompsonSampling(Strategy):
     """
     A class for the Thompson Sampling strategy.
     Follow this link to learn more:
@@ -245,7 +272,7 @@ class ThompsonSampling:
 
 
 # Random strategy (full exploration)
-class RandomStrategy:
+class RandomStrategy(Strategy):
     """
     A class for choosing totally random at each round to give
     a better comparison with the other optimised strategies.
@@ -292,7 +319,7 @@ class RandomStrategy:
 # Greedy strategy (full exploitation)
 
 
-class GreedyStrategy:
+class GreedyStrategy(Strategy):
     """
     A class for the Greedy strategy to show how full exploitation can be
     detrimental to the performance of the strategy.
@@ -351,7 +378,7 @@ def test_mab_strategies() -> None:
     arms_probabilities = [0.1, 0.3, 0.5, 0.8]  # True probabilities
 
     bandit = Bandit(arms_probabilities)
-    strategies = {
+    strategies: dict[str, Strategy] = {
         "Epsilon-Greedy": EpsilonGreedy(epsilon=0.1, num_arms=num_arms),
         "UCB": UCB(num_arms=num_arms),
         "Thompson Sampling": ThompsonSampling(num_arms=num_arms),
