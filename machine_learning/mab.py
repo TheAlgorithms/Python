@@ -95,14 +95,14 @@ class EpsilonGreedy:
         Example:
             >>> strategy = EpsilonGreedy(epsilon=0.1, num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
-            np.True_
+            True
         """
         rng = np.random.default_rng()
 
         if rng.random() < self.epsilon:
             return rng.integers(self.num_arms)
         else:
-            return np.argmax(self.values)
+            return int(np.argmax(self.values))
 
     def update(self, arm_index: int, reward: int) -> None:
         """
@@ -160,7 +160,7 @@ class UCB:
         if self.total_counts < self.num_arms:
             return self.total_counts
         ucb_values = self.values + np.sqrt(2 * np.log(self.total_counts) / self.counts)
-        return np.argmax(ucb_values)
+        return int(np.argmax(ucb_values))
 
     def update(self, arm_index: int, reward: int) -> None:
         """
@@ -214,7 +214,7 @@ class ThompsonSampling:
         Example:
             >>> strategy = ThompsonSampling(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
-            np.True_
+            True
         """
         rng = np.random.default_rng()
 
@@ -222,7 +222,7 @@ class ThompsonSampling:
             rng.beta(self.successes[i] + 1, self.failures[i] + 1)
             for i in range(self.num_arms)
         ]
-        return np.argmax(samples)
+        return int(np.argmax(samples))
 
     def update(self, arm_index: int, reward: int) -> None:
         """
@@ -319,9 +319,9 @@ class GreedyStrategy:
         Example:
             >>> strategy = GreedyStrategy(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
-            np.True_
+            True
         """
-        return np.argmax(self.values)
+        return int(np.argmax(self.values))
 
     def update(self, arm_index: int, reward: int) -> None:
         """
