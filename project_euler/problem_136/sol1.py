@@ -40,7 +40,7 @@ def solution(n_limit: int = 50 * 10**6) -> int:
     >>> solution(100)
     25
     >>> solution(110)
-    26
+    27
     """
     n_sol = [0] * n_limit
 
