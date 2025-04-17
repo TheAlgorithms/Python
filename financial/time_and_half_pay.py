@@ -6,8 +6,8 @@ Calculate time and a half pay
 def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
     """
     hours_worked = The total hours worked
-    pay_rate = Ammount of money per hour
-    hours = Number of hours that must be worked before you recieve time and a half
+    pay_rate = Amount of money per hour
+    hours = Number of hours that must be worked before you receive time and a half
 
     >>> pay(41, 1)
     41.5
