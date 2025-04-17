@@ -27,6 +27,7 @@ to count how many solutions each n has.
 In the end it is counted how many n's have one solution.
 """
 
+
 def solution(n_limit: int = 50 * 10**6) -> int:
     """
     Define n count list and loop over delta, y to get the counts, then check
