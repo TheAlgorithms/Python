@@ -75,7 +75,7 @@ class CircularBuffer:
             yield self._array[i]
             i = self.wrap(i + 1)
 
-    def __getitem__(self, index_from_tail):
+    def __getitem__(self, index):
         """
         >>> cb = CircularBuffer(8)
         >>> for i in range(10):
@@ -116,8 +116,29 @@ class CircularBuffer:
         Traceback (most recent call last):
         ...
         IndexError: ...
+
+        >>> cq[0:2]
+        [5, 6]
+        >>> cq[1:4]
+        [6, 7, 8]
+        >>> cq[3:5]
+        [8, 9]
         """
 
+        if isinstance(index, slice):
+            if index.step is not None:
+                raise NotImplementedError
+            start = index.start if index.start is not None else 0
+            stop = (index.stop) if index.stop is not None else self.size
+            from_array = self._map_index(start)
+            to_array = self._map_index(stop) if stop != self.size else self._head
+            if to_array >= from_array:
+                return self._array[from_array: to_array]
+            return self._array[from_array:] + self._array[:to_array]
+
+        return self._array[self._map_index(index)]
+
+    def _map_index(self, index_from_tail):
         if not -self.size <= index_from_tail < self.size:
             raise IndexError(
                 "%d not in range [%d, %d)" % (index_from_tail, -self.size, self.size)
@@ -126,7 +147,7 @@ class CircularBuffer:
             index_array = index_from_tail + self._tail
         else:
             index_array = self._head + index_from_tail
-        return self._array[self.wrap(index_array)]
+        return self.wrap(index_array)
 
     def __str__(self):
         res = ""
