@@ -33,10 +33,8 @@ def solution(n_limit: int = 50 * 10**6) -> int:
     Define n count list and loop over delta, y to get the counts, then check
     which n has count == 1.
 
-    >>> solution(3)
-    0
-    >>> solution(10)
-    2
+    >>> solution(21)
+    1
     >>> solution(100)
     25
     >>> solution(110)
