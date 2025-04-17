@@ -17,13 +17,13 @@ def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
     10.0
     """
     # Check that all input parameters are float or integer
-    assert isinstance(hours_worked, float) or isinstance(hours_worked, int) (
+    assert isinstance(hours_worked, float) or isinstance(hours_worked, int)(
         "Parameter 'hours_worked' must be of type 'int' or 'float'"
     )
-    assert isinstance(pay_rate, float) or isinstance(pay_rate, int) (
+    assert isinstance(pay_rate, float) or isinstance(pay_rate, int)(
         "Parameter 'pay_rate' must be of type 'int' or 'float'"
     )
-    assert isinstance(hours, float) or isinstance(hours, int) (
+    assert isinstance(hours, float) or isinstance(hours, int)(
         "Parameter 'hours' must be of type 'int' or 'float'"
     )
 
