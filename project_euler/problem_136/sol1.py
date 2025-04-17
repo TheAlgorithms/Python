@@ -44,7 +44,7 @@ def solution(n_limit: int = 50 * 10**6) -> int:
     """
     n_sol = [0] * n_limit
 
-    for delta in range(1, (n_limit + 1) // 4):
+    for delta in range(1, n_limit // 4 + 1):
         for y in range(4 * delta - 1, delta, -1):
             n = y * (4 * delta - y)
             if n >= n_limit:
