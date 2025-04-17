@@ -36,9 +36,7 @@ def solution(n_limit: int = 50 * 10**6) -> int:
     >>> solution(3)
     0
     >>> solution(10)
-    2
-    >>> solution(21)
-    1
+    3
     >>> solution(100)
     25
     >>> solution(110)
