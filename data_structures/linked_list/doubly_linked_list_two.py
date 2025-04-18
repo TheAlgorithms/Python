@@ -10,12 +10,14 @@
 """
 
 from dataclasses import dataclass
-from typing import Self
+from typing import Self, TypeVar
+
+Data = TypeVar("Data")
 
 
 @dataclass
-class Node:
-    data: int
+class Node[Data]:
+    data: Data
     previous: Self | None = None
     next: Self | None = None
 
@@ -52,7 +54,7 @@ class LinkedList:
             current = current.next
         return " ".join(str(node) for node in nodes)
 
-    def __contains__(self, value: int):
+    def __contains__(self, value: Data):
         current = self.head
         while current:
             if current.data == value:
@@ -87,7 +89,7 @@ class LinkedList:
         else:
             self.insert_after_node(self.tail, node)
 
-    def insert(self, value: int) -> None:
+    def insert(self, value: Data) -> None:
         node = Node(value)
         if self.head is None:
             self.set_head(node)
@@ -116,7 +118,7 @@ class LinkedList:
 
         node.next = node_to_insert
 
-    def insert_at_position(self, position: int, value: int) -> None:
+    def insert_at_position(self, position: int, value: Data) -> None:
         current_position = 1
         new_node = Node(value)
         node = self.head
@@ -128,7 +130,7 @@ class LinkedList:
             node = node.next
         self.set_tail(new_node)
 
-    def get_node(self, item: int) -> Node:
+    def get_node(self, item: Data) -> Node:
         node = self.head
         while node:
             if node.data == item:
