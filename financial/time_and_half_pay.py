@@ -5,9 +5,15 @@ Calculate time and a half pay
 
 def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
     """
-    hours_worked = The total hours worked
-    pay_rate = Amount of money per hour
-    hours = Number of hours that must be worked before you receive time and a half
+    Calculate total pay including time-and-a-half for overtime.
+
+    Parameters:
+    hours_worked: Total number of hours worked.
+    pay_rate: Pay rate per hour.
+    hours: Number of hours to work before overtime applies (default 40).
+
+    Returns:
+    Total pay including overtime compensation.
 
     >>> pay(41, 1)
     41.5
@@ -27,14 +33,17 @@ def pay(hours_worked: float, pay_rate: float, hours: float = 40) -> float:
         "Parameter 'hours' must be of type 'int' or 'float'"
     )
 
-    normal_pay = hours_worked * pay_rate
-    over_time = max(0, hours_worked - hours)
-    over_time_pay = over_time * pay_rate / 2
-    return normal_pay + over_time_pay
+    regular_hours = min(hours_worked, hours)
+    overtime_hours = max(0, hours_worked - hours)
+
+    regular_pay = regular_hours * pay_rate
+    overtime_pay = overtime_hours * pay_rate * 1.5
+
+    return regular_pay + overtime_pay
 
 
 if __name__ == "__main__":
-    # Test
+    # Run doctests
     import doctest
 
     doctest.testmod()
