@@ -16,7 +16,7 @@ KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class _Item(Generic[KEY, VAL]):
     key: KEY
     val: VAL
@@ -81,7 +81,7 @@ class HashMap(MutableMapping[KEY, VAL]):
             self._len += 1
             return True
         elif stored.key == key:
-            self._buckets[ind] = _Item(key, val)
+            stored.val = val
             return True
         else:
             return False
