@@ -72,11 +72,11 @@ class HashMap(MutableMapping[KEY, VAL]):
 
         If bucket is empty or key is the same, does insert and return True.
 
-        If bucket has another key or deleted placeholder,
-        that means that we need to check next bucket.
+        If bucket has another key that means that we need to check next bucket.
         """
         stored = self._buckets[ind]
         if not stored:
+            # A falsy item means that is None (bucket never used) or _deleted.
             self._buckets[ind] = _Item(key, val)
             self._len += 1
             return True
