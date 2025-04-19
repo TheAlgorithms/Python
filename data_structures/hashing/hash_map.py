@@ -228,6 +228,28 @@ class HashMap(MutableMapping[KEY, VAL]):
         Traceback (most recent call last):
         ...
         KeyError: 4
+
+        # Test resize down when sparse
+        ## Setup: resize up
+        >>> hm = HashMap(100, capacity_factor=0.75)
+        >>> len(hm._buckets)
+        100
+        >>> for i in range(75):
+        ...     hm[i] = i
+        >>> len(hm._buckets)
+        100
+        >>> hm[75] = 75
+        >>> len(hm._buckets)
+        200
+
+        ## Resize down
+        >>> for i in range(38, 76):
+        ...     del hm[i]
+        >>> len(hm._buckets)
+        200
+        >>> del hm[37]
+        >>> len(hm._buckets)
+        100
         """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
