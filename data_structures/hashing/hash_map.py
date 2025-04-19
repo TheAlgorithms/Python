@@ -243,11 +243,8 @@ class HashMap(MutableMapping[KEY, VAL]):
         200
 
         ## Resize down
-        >>> for i in range(38, 76):
-        ...     del hm[i]
-        >>> len(hm._buckets)
-        200
-        >>> del hm[37]
+        >>> del hm[75]
+        >>> del hm[74]
         >>> len(hm._buckets)
         100
         """
