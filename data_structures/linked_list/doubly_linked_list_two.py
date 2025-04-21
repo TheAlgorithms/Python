@@ -130,7 +130,7 @@ class LinkedList:
             node = node.next
         self.set_tail(new_node)
 
-    def get_node(self, item: Data) -> Node:
+    def get_node(self, item: DataType) -> Node:
         node = self.head
         while node:
             if node.data == item:
