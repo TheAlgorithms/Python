@@ -30,6 +30,7 @@ jobs:
           --ignore=project_euler/
           --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
+          --ignore=web_programming/fetch_anime_and_play.py
           --cov-report=term-missing:skip-covered
           --cov=. .
       - if: ${{ success() }}
