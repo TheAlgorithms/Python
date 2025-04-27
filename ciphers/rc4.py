@@ -5,6 +5,7 @@ Reference:
 - https://en.wikipedia.org/wiki/RC4
 """
 
+
 def ksa(key: bytes) -> list[int]:
     """
     Key Scheduling Algorithm (KSA) for RC4.
@@ -77,10 +78,12 @@ def rc4(key: bytes, data: bytes) -> bytes:
     """
     s_box = ksa(key)
     keystream = prga(s_box, len(data))
-    output = bytes([
-        data_byte ^ keystream_byte
-        for data_byte, keystream_byte in zip(data, keystream)
-    ])
+    output = bytes(
+        [
+            data_byte ^ keystream_byte
+            for data_byte, keystream_byte in zip(data, keystream)
+        ]
+    )
     return output
 
 
@@ -93,17 +96,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "mode", choices=["encrypt", "decrypt"], help="Mode: encrypt or decrypt"
     )
-    parser.add_argument(
-        "key", type=str, help="Encryption/Decryption key"
-    )
-    parser.add_argument(
-        "input", type=str, help="Input text"
-    )
+    parser.add_argument("key", type=str, help="Encryption/Decryption key")
+    parser.add_argument("input", type=str, help="Input text")
 
     args = parser.parse_args()
 
-    key_bytes = args.key.encode('ascii')
-    input_bytes = args.input.encode('ascii')
+    key_bytes = args.key.encode("ascii")
+    input_bytes = args.input.encode("ascii")
 
     result_bytes = rc4(key_bytes, input_bytes)
 
@@ -114,6 +113,6 @@ if __name__ == "__main__":
             # if user passed hex data, decode it
             input_bytes = bytes.fromhex(args.input)
             result_bytes = rc4(key_bytes, input_bytes)
-            print(result_bytes.decode('ascii'))
+            print(result_bytes.decode("ascii"))
         except ValueError:
             print("Error: Input must be valid hex string when decrypting.")
