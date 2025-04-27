@@ -11,7 +11,6 @@ class Watermark:
     def add_text_watermark(
         self, image, text, text_color, font_style, font_size, position=(0, 0)
     ):
-
         font = ImageFont.truetype(font_style, font_size)
         draw = ImageDraw.Draw(image)
         draw.text(position, text, fill=text_color, font=font)
