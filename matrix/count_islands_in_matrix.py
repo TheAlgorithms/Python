@@ -1,7 +1,9 @@
 class Matrix:
     """
-    Class to represent a 2D grid as a matrix and count the number of islands.
-    An island is a group of connected 1s (connections can be vertical, horizontal, or diagonal).
+    Class to represent a 2D binary grid as a matrix and count the number of islands.
+    An island is a group of connected 1s.
+    We call cells with 1 "land" and cells with 0 "water".
+    Connections can be vertical, horizontal, or diagonal.
     """
 
     def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
@@ -44,8 +46,6 @@ class Matrix:
         self.COL = col
         self.graph = graph
 
-
-
     def is_safe(self, i: int, j: int, visited: list[list[bool]]) -> bool:
         """
         Check if a cell (i, j) is "safe".
@@ -53,14 +53,14 @@ class Matrix:
         We consider a cell "safe" if:
         - It is within the bounds of the matrix
         - It has not been visited yet
-        - It contains land (i.e., value is nonzero)
+        - It contains land (i.e., value is 1)
 
         :param i: row index
         :param j: column index
         :param visitied: 2D list indicating which cells we have visited
         :return: True if cell is safe, else False
 
-        >>> m = Matrix(3, 3, [[1, 0, 0], [0, 0, 1]])
+        >>> m = Matrix(3, 3, [[1, 0, 0], [0, 0, 1], [0, 0, 0]])
         >>> visited = [[False]*3 for _ in range(3)]
 
         # Within bounds, unvisited, and value is 1 (land)
@@ -71,7 +71,7 @@ class Matrix:
         >>> m.is_safe(0, 1, visited)
         False
 
-        # Within bounds, already visited
+        # Within bounds, land, but already visited
         >>> visited[0][0] = True
         >>> m.is_safe(0, 0, visited)
         False
@@ -92,15 +92,15 @@ class Matrix:
 
     def diffs(self, i: int, j: int, visited: list[list[bool]]) -> None:
         """
-        Depth-first search (DFS) to mark all land cells (1s) connected to (i, j) as visited.
+        Check the 8 cells connected to (i, j) and marks the land cells as visited.
+
+        Depth-first search (DFS) to mark land cells connected to (i, j) as visited.
 
         :param i: Row index of current cell
         :param j: Column index of current cell
         :param visited: 2D list tracking visited cells
 
-        diffs() checks the 8 cells surrounding the current cell (i, j) and marks the land cells as visited.  
-        
-        >>> graph = [[1, 1, 0], [0, 1, 0], [0, 0, 1]]
+        >>> graph = [[1, 1, 0], [0, 1, 0], [0, 0, 0]]
         >>> m = Matrix(3, 3, graph)
         >>> visited = [[False] * 3 for _ in range(3)]
         >>> m.diffs(0, 0, visited)
@@ -127,16 +127,21 @@ class Matrix:
 
         :return: Number of islands found
 
-        >>> graph[[1, 1, 0], [0, 1, 0], [1, 0, 0]]
+        >>> graph = [[1, 1, 0], [0, 1, 0], [1, 0, 0]]
         >>> m = Matrix(3, 3, graph)
         >>> m.count_islands()
+        1
+
+        >>> graph1 = [[1, 1, 0], [0, 0, 0], [1, 0, 0]]
+        >>> m1 = Matrix(3, 3, graph1)
+        >>> m1.count_islands()
         2
 
         >>> graph2 = [[0, 0, 0], [0, 0, 0]]
         >>> m2 = Matrix(2, 3, graph2)
         >>> m2.count_islands()
         0
-        
+
         >>> graph3 = [[1]]
         >>> m3 = Matrix(1, 1, graph3)
         >>> m3.count_islands()
@@ -148,6 +153,5 @@ class Matrix:
             for j in range(self.COL):
                 if not visited[i][j] and self.graph[i][j] == 1:
                     self.diffs(i, j, visited)
-                count += 1
+                    count += 1
         return count
-
