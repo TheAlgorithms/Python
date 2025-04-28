@@ -87,7 +87,7 @@ class Matrix:
             0 <= i < self.ROW
             and 0 <= j < self.COL
             and not visited[i][j]
-            and self.graph[i][j]
+            and self.graph[i][j] == 1
         )
 
     def diffs(self, i: int, j: int, visited: list[list[bool]]) -> None:
