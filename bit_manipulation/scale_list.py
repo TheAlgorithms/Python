@@ -4,6 +4,7 @@ Scale List Elements
 This function multiplies every element of the input list by a given factor.
 """
 
+
 def scale_list(numbers: list, factor: float) -> list:
     """
     Scale each number in the list by a given factor.
