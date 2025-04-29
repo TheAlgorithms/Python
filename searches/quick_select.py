@@ -60,3 +60,34 @@ def quick_select(items: list, index: int):
     # must be in larger
     else:
         return quick_select(larger, index - (m + count))
+
+
+def median(data: list):
+    """One common application of Quickselect is finding the median, which is
+    the middle element (or average of the two middle elements) in a dataset. It
+    works efficiently on unsorted lists by partially sorting the data without
+    fully sorting the entire list.
+
+    >>> import random
+    >>> random.seed(0)
+
+    >>> d = [2, 2, 3, 9, 9]
+    >>> random.shuffle(d)
+    >>> d
+    [3, 2, 2, 9, 9]
+    >>> median(d)
+    3
+
+    >>> d = [2, 2, 3, 9, 9, 9]
+    >>> random.shuffle(d)
+    >>> median(d)
+    6.0
+
+    """
+    mid, rest = divmod(len(data), 2)
+    if rest:
+        return quick_select(data, mid)
+    else:
+        low_mid = quick_select(data, mid - 1)
+        high_mid = quick_select(data, mid)
+        return (low_mid + high_mid) / 2
