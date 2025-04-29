@@ -53,3 +53,5 @@ We're on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and better overview of the project.
+
+lingangugliguliwachalingangu
