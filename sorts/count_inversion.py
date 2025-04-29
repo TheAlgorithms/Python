@@ -16,6 +16,8 @@ Use Cases:
 - Useful in computer vision, bioinformatics, and comparison of lists.
 - Core concept in Kendall tau distance and other similarity metrics.
 """
+
+
 def count_inversions(arr):
     def merge_sort(arr):
         if len(arr) <= 1:
