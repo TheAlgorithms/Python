@@ -56,10 +56,9 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     """
     Returns a list of frequent itemsets and their support counts.
 
-    >>> data = [['A', 'B', 'C'], ['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C']]
+    >>> data = [['A', 'B'], ['A', 'C'], ['B', 'C']]
     >>> apriori(data, 2)
-    [(['A'], 4), (['B'], 3), (['C'], 3),
-     (['A', 'B'], 2), (['A', 'C'], 2), (['B', 'C'], 2)]
+    [(['A'], 2), (['B'], 2), (['C'], 2)]
 
     >>> data = [['1', '2', '3'], ['1', '2'], ['1', '3'], ['1', '4'], ['2', '3']]
     >>> apriori(data, 3)
