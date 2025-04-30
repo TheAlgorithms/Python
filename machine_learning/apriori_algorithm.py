@@ -22,12 +22,7 @@ def load_data() -> list[list[str]]:
     >>> load_data()
     [['milk'], ['milk', 'butter'], ['milk', 'bread'], ['milk', 'bread', 'chips']]
     """
-    return [
-        ["milk"],
-        ["milk", "butter"],
-        ["milk", "bread"],
-        ["milk", "bread", "chips"]
-    ]
+    return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
 
 
 def prune(
