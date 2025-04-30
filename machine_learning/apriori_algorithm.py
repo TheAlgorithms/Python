@@ -81,7 +81,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     k = 2
     while current_frequents:
         candidates = [
-            sorted(list(set(i) | set(j)))
+            sorted(set(i) | set(j))
             for i in current_frequents
             for j in current_frequents
             if len(set(i).union(j)) == k
