@@ -11,8 +11,8 @@ WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
 
-from itertools import combinations
 from collections import defaultdict
+from itertools import combinations
 
 
 def load_data() -> list[list[str]]:
@@ -22,12 +22,18 @@ def load_data() -> list[list[str]]:
     >>> load_data()
     [['milk'], ['milk', 'butter'], ['milk', 'bread'], ['milk', 'bread', 'chips']]
     """
-    return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
+    return [
+        ["milk"],
+        ["milk", "butter"],
+        ["milk", "bread"],
+        ["milk", "bread", "chips"]
+    ]
 
 
 def prune(frequent_itemsets: list[list[str]], candidates: list[list[str]]) -> list[list[str]]:
     """
-    Prunes candidate itemsets by ensuring all (k-1)-subsets exist in previous frequent itemsets.
+    Prunes candidate itemsets by ensuring all (k-1)-subsets exist in
+    previous frequent itemsets.
 
     >>> frequent_itemsets = [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
     >>> candidates = [['X', 'Y', 'Z'], ['X', 'Y', 'W']]
@@ -35,7 +41,7 @@ def prune(frequent_itemsets: list[list[str]], candidates: list[list[str]]) -> li
     [['X', 'Y', 'Z']]
     """
 
-    previous_frequents = set(frozenset(itemset) for itemset in frequent_itemsets)
+    previous_frequents = {frozenset(itemset) for itemset in frequent_itemsets}
 
     pruned_candidates = []
     for candidate in candidates:
@@ -55,14 +61,15 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
 
     >>> data = [['A', 'B', 'C'], ['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C']]
     >>> apriori(data, 2)
-    [(['A'], 4), (['B'], 3), (['C'], 3), (['A', 'B'], 2), (['A', 'C'], 2), (['B', 'C'], 2)]
+    [(['A'], 4), (['B'], 3), (['C'], 3),
+     (['A', 'B'], 2), (['A', 'C'], 2), (['B', 'C'], 2)]
 
     >>> data = [['1', '2', '3'], ['1', '2'], ['1', '3'], ['1', '4'], ['2', '3']]
     >>> apriori(data, 3)
     [(['1'], 4), (['2'], 3), (['3'], 3)]
     """
 
-    item_counts = defaultdict(int)
+    item_counts: defaultdict[str, int] = defaultdict(int)
     for transaction in data:
         for item in transaction:
             item_counts[item] += 1
@@ -72,7 +79,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
 
     k = 2
     while current_frequents:
-        candidates = [sorted(list(set(i) | set(j)))
+        candidates = [sorted(set(i) | set(j))
                       for i in current_frequents
                       for j in current_frequents
                       if len(set(i).union(j)) == k]
@@ -81,7 +88,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
 
         candidates = prune(current_frequents, candidates)
 
-        candidate_counts = defaultdict(int)
+        candidate_counts: defaultdict[tuple[str, ...], int] = defaultdict(int)
         for transaction in data:
             t_set = set(transaction)
             for candidate in candidates:
