@@ -30,7 +30,9 @@ def load_data() -> list[list[str]]:
     ]
 
 
-def prune(frequent_itemsets: list[list[str]], candidates: list[list[str]]) -> list[list[str]]:
+def prune(
+    frequent_itemsets: list[list[str]], candidates: list[list[str]]
+) -> list[list[str]]:
     """
     Prunes candidate itemsets by ensuring all (k-1)-subsets exist in
     previous frequent itemsets.
@@ -74,15 +76,21 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
         for item in transaction:
             item_counts[item] += 1
 
-    current_frequents = [[item] for item, count in item_counts.items() if count >= min_support]
-    frequent_itemsets = [([item], count) for item, count in item_counts.items() if count >= min_support]
+    current_frequents = [
+        [item] for item, count in item_counts.items() if count >= min_support
+    ]
+    frequent_itemsets = [
+        ([item], count) for item, count in item_counts.items() if count >= min_support
+    ]
 
     k = 2
     while current_frequents:
-        candidates = [sorted(set(i) | set(j))
-                      for i in current_frequents
-                      for j in current_frequents
-                      if len(set(i).union(j)) == k]
+        candidates = [
+            sorted(list(set(i) | set(j)))
+            for i in current_frequents
+            for j in current_frequents
+            if len(set(i).union(j)) == k
+        ]
 
         candidates = [list(c) for c in {frozenset(c) for c in candidates}]
 
@@ -95,10 +103,14 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
                 if set(candidate).issubset(t_set):
                     candidate_counts[tuple(sorted(candidate))] += 1
 
-        current_frequents = [list(key) for key, count in candidate_counts.items() if count >= min_support]
+        current_frequents = [
+            list(key) for key, count in candidate_counts.items() if count >= min_support
+        ]
         frequent_itemsets.extend(
             [
-                (list(key), count) for key, count in candidate_counts.items() if count >= min_support
+                (list(key), count)
+                for key, count in candidate_counts.items()
+                if count >= min_support
             ]
         )
 
