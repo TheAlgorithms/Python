@@ -171,9 +171,3 @@ def pi_estimator_using_area_under_curve(iterations: int) -> tuple[float, float, 
     error = abs(estimated_value - expected_value)
 
     return estimated_value, expected_value, error
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
