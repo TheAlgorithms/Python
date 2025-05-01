@@ -183,6 +183,7 @@ def insort_right(
 # It works by repeatedly dividing in half the portion of the list that could contain the item,
 # until you've narrowed the possible locations to just one.
 
+
 def binary_search(arr, x):
     """
     Perform a binary search to find the element `x` in the sorted list `arr`.
@@ -212,6 +213,7 @@ def binary_search(arr, x):
 
     # Return -1 if element is not present in the list
     return -1
+
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python using stdlib
