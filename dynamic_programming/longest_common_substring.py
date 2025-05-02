@@ -44,7 +44,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
         raise ValueError("longest_common_substring() takes two strings for inputs")
 
     if not text1 or not text2:
-        return ''
+        return ""
 
     dp = [[0] * (len(text2) + 1) for _ in range(len(text1) + 1)]
     max_length, end_pos = 0, 0
@@ -57,7 +57,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
                     max_length = dp[i][j]
                     end_pos = i
 
-    return text1[end_pos - max_length:end_pos]
+    return text1[end_pos - max_length : end_pos]
 
 
 if __name__ == "__main__":
