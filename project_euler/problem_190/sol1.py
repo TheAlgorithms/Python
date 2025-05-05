@@ -33,16 +33,15 @@ def solution(n: int = 15) -> int:
     >>> solution(5)
     10
     """
-
-    ans = 0
+    total = 0
     for m in range(2, n + 1):
         x1 = 2 / (m + 1)
-        capital_p = 1.0
+        p = 1.0
         for i in range(1, m + 1):
             xi = i * x1
-            capital_p *= pow(xi, i)
-        ans += int(capital_p)
-    return ans
+            p *= xi ** i
+        total += int(p)
+    return total
 
 
 if __name__ == "__main__":
