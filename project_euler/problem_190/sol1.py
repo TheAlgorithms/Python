@@ -39,7 +39,7 @@ def solution(n: int = 15) -> int:
         p = 1.0
         for i in range(1, m + 1):
             xi = i * x1
-            p *= xi ** i
+            p *= xi**i
         total += int(p)
     return total
 
