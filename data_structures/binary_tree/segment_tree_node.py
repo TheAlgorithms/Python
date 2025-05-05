@@ -1,4 +1,4 @@
-class Node():
+class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
         self.start = start
@@ -7,7 +7,7 @@ class Node():
         self.left = None
         self.right = None
 
-class SegmentTree():
+class SegmentTree:
     def __init__(self, nums: list[int], mode: str='max') -> None:
         """
         Initializes the Segment Tree.
@@ -103,14 +103,9 @@ class SegmentTree():
         else:
             # Range spans both children
             if self.mode == "max":
-                return max(
-                    self.query(node.left, start_index, end_index, start, mid),
-                    self.query(node.right, start_index, end_index, mid + 1, end),
-                )
+                return max(self.query(node.left, start_index, end_index, start, mid), self.query(node.right, start_index, end_index, mid + 1, end))
             else:
-                return self.query(
-                    node.left, start_index, end_index, start, mid
-                ) + self.query(node.right, start_index, end_index, mid + 1, end)
+                return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
 
     def update(self, index: int, new_value: int) -> int:
         """
