@@ -1,4 +1,4 @@
-class Node():
+class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
         self.start = start
@@ -7,8 +7,9 @@ class Node():
         self.left = None
         self.right = None
 
-class SegmentTree():
-    def __init__(self, nums: list[int], mode: str='max') -> None:
+
+class SegmentTree:
+    def __init__(self, nums: list[int], mode: str = "max") -> None:
         """
         Initializes the Segment Tree.
         :param nums: List of integers to build the tree from.
@@ -78,7 +79,9 @@ class SegmentTree():
 
         return self.query(self.root, start_index, end_index, 0, self.size - 1)
 
-    def query(self, node: Node, start_index: int, end_index: int, start: int, end: int) -> int:
+    def query(
+        self, node: Node, start_index: int, end_index: int, start: int, end: int
+    ) -> int:
         """
         Recursively queries a value (max or sum) in a given range.
         :param node: Current node in the tree.
@@ -123,7 +126,9 @@ class SegmentTree():
 
         self.modify(self.root, index, new_value, 0, self.size - 1)
 
-    def modify(self, node: Node, index: int, new_value: int, start: int, end: int) -> int:
+    def modify(
+        self, node: Node, index: int, new_value: int, start: int, end: int
+    ) -> int:
         """
         Recursively updates the tree to reflect a change at a specific index.
         :param node: Current node being processed.
