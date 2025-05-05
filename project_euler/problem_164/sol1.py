@@ -18,9 +18,9 @@ def solve(
     previous-previous 'prev2' number, total sum of 'sum_max'.
     Pass around 'cache' to store/reuse intermediate results.
 
-    >>> solve(1, 0, 0, 9, True, {})
+    >>> solve(digit=1, prev1=0, prev2=0, sum_max=9, first=True, cache={})
     9
-    >>> solve(1, 0, 0, 9, False, {})
+    >>> solve(digit=1, prev1=0, prev2=0, sum_max=9, first=False, cache={})
     10
     """
     if digit == 0:
@@ -32,7 +32,7 @@ def solve(
     for v in range(sum_max - prev1 - prev2 + 1):
         if first and v == 0:
             continue
-        comb += solve(digit - 1, v, prev1, sum_max, False, cache)
+        comb += solve(digit=digit - 1, prev1=v, prev2=prev1, sum_max=sum_max, first=False, cache=cache)
     cache[cache_str] = comb
     return comb
 
