@@ -11,10 +11,10 @@ Brute-force recursive solution with caching of intermediate results.
 
 
 def solve(
-    digit: int, prev: int, prev2: int, sum_max: int, first: bool, cache: dict[str, int]
+    digit: int, prev1: int, prev2: int, sum_max: int, first: bool, cache: dict[str, int]
 ) -> int:
     """
-    Solve for remaining 'digit' digits, with previous 'prev' number, and
+    Solve for remaining 'digit' digits, with previous 'prev1' number, and
     previous-previous 'prev2' number, total sum of 'sum_max'.
     Pass around 'cache' to store/reuse intermediate results.
 
@@ -26,13 +26,13 @@ def solve(
     if digit == 0:
         return 1
     comb = 0
-    cache_str = f"{digit},{prev},{prev2}"
+    cache_str = f"{digit},{prev1},{prev2}"
     if cache_str in cache:
         return cache[cache_str]
-    for v in range(sum_max - prev - prev2 + 1):
+    for v in range(sum_max - prev1 - prev2 + 1):
         if first and v == 0:
             continue
-        comb += solve(digit - 1, v, prev, sum_max, False, cache)
+        comb += solve(digit - 1, v, prev1, sum_max, False, cache)
     cache[cache_str] = comb
     return comb
 
@@ -47,7 +47,7 @@ def solution(n_digits: int = 20) -> int:
     21838806
     """
     cache: dict[str, int] = {}
-    return solve(digit=n_digits, prev=0, prev2=0, sum_max=9, first=True, cache=cache)
+    return solve(digit=n_digits, prev1=0, prev2=0, sum_max=9, first=True, cache=cache)
 
 
 if __name__ == "__main__":
