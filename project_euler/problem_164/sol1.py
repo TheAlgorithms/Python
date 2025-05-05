@@ -7,9 +7,6 @@ How many 20 digit numbers n (without any leading zero) exist such that no three
 consecutive digits of n have a sum greater than 9?
 
 Brute-force recursive solution with caching of intermediate results.
-
->>> solution(10)
-21838806
 """
 
 
@@ -46,6 +43,8 @@ def solution(n_digits: int = 20) -> int:
 
     >>> solution(2)
     45
+    >>> solution(10)
+    21838806
     """
     sum_max = 9
     cache: dict[str, int] = {}
