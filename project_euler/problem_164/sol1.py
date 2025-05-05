@@ -46,11 +46,8 @@ def solution(n_digits: int = 20) -> int:
     >>> solution(10)
     21838806
     """
-    sum_max = 9
     cache: dict[str, int] = {}
-    ans = solve(n_digits, 0, 0, sum_max, True, cache)
-
-    return ans
+    return solve(digit=n_digits, prev=0, prev2=0, sum_max=9, first=True, cache=cache)
 
 
 if __name__ == "__main__":
