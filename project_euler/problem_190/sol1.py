@@ -22,7 +22,7 @@ Solution:
 
 def solution(n: int = 15) -> int:
     """
-    Calculate sum of P_m for m from 2 to n.
+    Calculate sum of |_ P_m _| for m from 2 to n.
 
     >>> solution(2)
     1
