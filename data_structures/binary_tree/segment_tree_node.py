@@ -7,7 +7,6 @@ class Node():
         self.left = None
         self.right = None
 
-
 class SegmentTree():
     def __init__(self, nums, mode='max'):
         """
@@ -15,13 +14,13 @@ class SegmentTree():
         :param nums: List of integers to build the tree from.
         :param mode: Operation mode of the tree ('max' or 'sum').
         """
-        self.siz = len(nums)
+        self.size = len(nums)
         self.mode = mode
         if mode not in {'max', 'sum'}:
             self.mode = 'max'  # Default to max if invalid mode is given
 
         # Build the tree from the input list
-        self.root = self.build(0, self.siz - 1, nums)
+        self.root = self.build(0, self.size - 1, nums)
 
     def build(self, start, end, nums):
         """
@@ -61,10 +60,10 @@ class SegmentTree():
         if self.mode == 'sum':
             raise Exception('Current Segment Tree doesn\'t support finding max') 
         
-        if start_index > end_index or start_index < 0 or end_index >= self.siz:
+        if start_index > end_index or start_index < 0 or end_index >= self.size:
             raise Exception('Invalid index')
         
-        return self.query(self.root, start_index, end_index, 0, self.siz - 1)
+        return self.query(self.root, start_index, end_index, 0, self.size - 1)
 
     def sum_in_range(self, start_index, end_index):
         """
@@ -74,10 +73,10 @@ class SegmentTree():
         if self.mode == 'max':
             raise Exception('Current Segment Tree doesn\'t support summing') 
         
-        if start_index > end_index or start_index < 0 or end_index >= self.siz:
+        if start_index > end_index or start_index < 0 or end_index >= self.size:
             raise Exception('Invalid index')
 
-        return self.query(self.root, start_index, end_index, 0, self.siz - 1)
+        return self.query(self.root, start_index, end_index, 0, self.size - 1)
 
     def query(self, node, start_index, end_index, start, end):
         """
@@ -104,15 +103,9 @@ class SegmentTree():
         else:
             # Range spans both children
             if self.mode == 'max':
-                return max(
-                    self.query(node.left, start_index, end_index, start, mid),
-                    self.query(node.right, start_index, end_index, mid + 1, end)
-                )
+                return max(self.query(node.left, start_index, end_index, start, mid), self.query(node.right, start_index, end_index, mid + 1, end))
             else:
-                return (
-                    self.query(node.left, start_index, end_index, start, mid) +
-                    self.query(node.right, start_index, end_index, mid + 1, end)
-                )
+                return (self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end))
 
     def update(self, index, new_value):
         """
@@ -120,10 +113,10 @@ class SegmentTree():
         :param index: Index to update.
         :param new_value: New value to set.
         """
-        if index < 0 or index >= self.siz:
+        if index < 0 or index >= self.size:
             raise Exception('Invalid index')
         
-        self.modify(self.root, index, new_value, 0, self.siz - 1)
+        self.modify(self.root, index, new_value, 0, self.size - 1)
 
     def modify(self, node, index, new_value, start, end):
         """
@@ -137,7 +130,7 @@ class SegmentTree():
         if start == end:
             node.value = new_value
             return
-        
+
         mid = (start + end) // 2
 
         if index <= mid:
@@ -150,55 +143,3 @@ class SegmentTree():
             node.value = max(node.left.value, node.right.value)
         else:
             node.value = node.left.value + node.right.value
-
-
-"""
-nums = [1, 3, 5, 7, 9, 11]
-
-st_max = SegmentTree(nums, mode='max')
-print(st_max.max_in_range(1, 3))  # Expected: 7 (max of [3,5,7])
-print(st_max.max_in_range(0, 5))  # Expected: 11
-st_max.update(3, 10)  # nums[3] = 10
-print(st_max.max_in_range(1, 4))  # Expected: 10
-
-try:
-    st_max.sum_in_range(0, 2)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Current Segment Tree doesn't support summing
-
-try:
-    st_max.max_in_range(3, 2)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Invalid index
-
-try:
-    st_max.max_in_range(1, 200)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Invalid index
-
-
-st_sum = SegmentTree(nums, mode='sum')
-print(st_sum.sum_in_range(1, 3))  # Expected: 15 (3+5+7)
-print(st_sum.sum_in_range(0, 5))  # Expected: 36 (sum of all elements)
-print(st_sum.sum_in_range(1, 3))  # Expected: 15 (3+5+7)
-print(st_sum.sum_in_range(0, 5))  # Expected: 36 (sum of all elements)
-
-try:
-    st_sum.max_in_range(0, 2)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Current Segment Tree doesn't support finding max
-
-try:
-    st_sum.sum_in_range(3, 2)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Invalid index
-
-try:
-    st_sum.sum_in_range(1, 200)  # Should raise exception
-except Exception as e:
-    print(e)  # Expected: Invalid index
-
-
-st_invalid = SegmentTree(nums, mode='unknown')  # Should default to 'max'
-print(st_invalid.mode)  # Expected: 'max'
-"""
