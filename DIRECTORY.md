@@ -1174,6 +1174,8 @@
     * [Sol1](project_euler/problem_144/sol1.py)
   * Problem 145
     * [Sol1](project_euler/problem_145/sol1.py)
+  * Problem 164
+    * [Sol1](project_euler/problem_164/sol1.py)
   * Problem 173
     * [Sol1](project_euler/problem_173/sol1.py)
   * Problem 174
@@ -1184,6 +1186,8 @@
     * [Sol1](project_euler/problem_187/sol1.py)
   * Problem 188
     * [Sol1](project_euler/problem_188/sol1.py)
+  * Problem 190
+    * [Sol1](project_euler/problem_190/sol1.py)
   * Problem 191
     * [Sol1](project_euler/problem_191/sol1.py)
   * Problem 203
