@@ -32,7 +32,14 @@ def solve(
     for v in range(sum_max - prev1 - prev2 + 1):
         if first and v == 0:
             continue
-        comb += solve(digit=digit - 1, prev1=v, prev2=prev1, sum_max=sum_max, first=False, cache=cache)
+        comb += solve(
+            digit=digit - 1,
+            prev1=v,
+            prev2=prev1,
+            sum_max=sum_max,
+            first=False,
+            cache=cache,
+        )
     cache[cache_str] = comb
     return comb
 
