@@ -64,7 +64,7 @@ def generate_primes(num: int) -> list[int]:
     return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
 
 
-def multiply(chain, primes, prime, prev_n, n_max, prev_sum, primes_d):
+def multiply(chain: list, primes: set[int], prime: int, prev_n: int, n_max: int, prev_sum: int, primes_d: dict[int, int]) -> None:
     """
     Run over all prime combinations to generate non-prime numbers.
 
@@ -123,14 +123,14 @@ def solution(max_num: int = 1000000) -> int:
     12496
     """
 
-    primes = generate_primes(n_max)
-    chain = [0] * (n_max + 1)
+    primes = generate_primes(max_num)
+    chain = [0] * (max_num + 1)
     for p in primes:
-        if p * p > n_max:
+        if p * p > max_num:
             break
-        multiply(chain, primes, p, 1, n_max, 0, {})
+        multiply(chain, primes, p, 1, max_num, 0, {})
 
-    chain_start, _ = find_longest_chain(chain, n_max)
+    chain_start, _ = find_longest_chain(chain, max_num)
     return chain_start
 
 
