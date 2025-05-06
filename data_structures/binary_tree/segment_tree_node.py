@@ -4,8 +4,8 @@ class Node:
         self.start = start
         self.end = end
         self.value: int = None
-        self.left: Node | None  = None
-        self.right: Node | None  = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
 
 class SegmentTree:
