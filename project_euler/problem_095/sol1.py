@@ -97,7 +97,15 @@ def multiply(
             number_n = p * number
             if number_n > max_num:
                 break
-            multiply(chain=chain, primes=primes, prime=p, prev_n=num, max_num=max_num, prev_sum=new_sum, primes_degrees=primes_degrees.copy())
+            multiply(
+                chain=chain,
+                primes=primes,
+                prime=p,
+                prev_n=num,
+                max_num=max_num,
+                prev_sum=new_sum,
+                primes_degrees=primes_degrees.copy(),
+            )
 
 
 def find_longest_chain(chain: list[int], max_num: int) -> int:
@@ -143,7 +151,15 @@ def solution(max_num: int = 1000000) -> int:
         if prime**2 > max_num:
             break
 
-        multiply(chain=chain, primes=primes, prime=prime, prev_n=1, max_num=max_num, prev_sum=0, primes_degrees={})
+        multiply(
+            chain=chain,
+            primes=primes,
+            prime=prime,
+            prev_n=1,
+            max_num=max_num,
+            prev_sum=0,
+            primes_degrees={},
+        )
 
     return find_longest_chain(chain, max_num)
 
