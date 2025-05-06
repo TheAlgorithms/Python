@@ -1,19 +1,49 @@
 def power(base: float, exponent: int) -> float:
     """
     Optimized power function using exponentiation by squaring.
-    It handles both positive and negative exponents efficiently.
-    This function take time complexity O(log n) for exponentiation.
-    space complexity is O(1) as it uses a constant amount of space.
+
+    Args:
+        base (float): The base number.
+        exponent (int): The exponent.
+
+    Returns:
+        float: The result of base raised to the power of exponent.
+
+    Examples:
+        >>> power(2, 3)
+        8.0
+        >>> power(5, -2)
+        0.04
+        >>> power(10, 0)
+        1.0
+        >>> power(7, 2)
+        49.0
+        >>> power(2, -3)
+        0.125
+        >>> power(2.5, 4)
+        39.0625
+        >>> power(-3.5, 2)
+        12.25
+        >>> power(-2, 3)    
+        -8.0
+        >>> power(0, 5)
+        0.0
+        >>> power(0, 0)
+        1.0
+        >>> power(0, -1)
+        Traceback (most recent call last):
+            ...
+        ZeroDivisionError: 0.0 cannot be raised to a negative power.
+        >>> power(1, 1000)     
+        1.0
+        
     """
-    # Handle negative exponents by taking reciprocal of the base
+    result = 1.0
     if exponent < 0:
         base = 1 / base
         exponent = -exponent
-
-    result = 1
-    # Use exponentiation by squaring for efficiency
     while exponent:
-        if exponent % 2 == 1:  # If the current exponent is odd
+        if exponent % 2 == 1:
             result *= base
         base *= base  # Square the base
         exponent //= 2  # Halve the exponent
@@ -22,7 +52,6 @@ def power(base: float, exponent: int) -> float:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     print("Raise base to the power of exponent using an optimized approach...")
 
