@@ -28,25 +28,17 @@ Solution is doing the following:
 - Iterate over found some factors to find longest chain
 """
 
-from math import isqrt
+from math import isqrt, prod
 
 
-def sum_primes(factor_d, num):
+def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
     """
     Calculates the sum of factors from all prime exponents.
 
-    >>> sum_primes({2: 1, 3: 1}, 6)
+    >>> sum_primes(primes_degrees={2: 1, 3: 1}, num=6)
     6
     """
-    tot = 1
-    for p in factor_d:
-        comp = 0
-        ex_factor = 1
-        for _ in range(factor_d[p] + 1):
-            comp += ex_factor
-            ex_factor *= p
-        tot *= comp
-    return tot - num
+    return prod((prime ** (degree + 1) - 1) // (prime - 1) for prime, degree in primes_degrees.items()) - num
 
 
 def generate_primes(n: int):
