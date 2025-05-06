@@ -1,13 +1,11 @@
-from typing import Optional
-
 class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
         self.start = start
         self.end = end
-        self.value: Optional[int] = None
-        self.left: Optional["Node"] = None
-        self.right: Optional["Node"] = None
+        self.value: int | None = None
+        self.left: Node | None  = None
+        self.right: Node | None  = None
 
 class SegmentTree:
     def __init__(self, nums: list[int], mode: str = "max") -> None:
@@ -22,9 +20,9 @@ class SegmentTree:
             self.mode = "max"  # Default to max if invalid mode is given
 
         # Build the tree from the input list
-        self.root: Optional[Node] = self.build(0, self.size - 1, nums)
+        self.root: Node | None = self.build(0, self.size - 1, nums)
 
-    def build(self, start: int, end: int, nums: list[int]) -> Optional[Node]:
+    def build(self, start: int, end: int, nums: list[int]) -> Node| None:
         """
         Recursively builds the segment tree.
         :param start: Start index of the segment.
