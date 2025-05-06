@@ -131,9 +131,8 @@ def solution(max_num: int = 1000000) -> int:
     12496
     """
 
-    isqrt_max_num = isqrt(max_num)
-    primes = generate_primes(isqrt_max_num)
-    chain = [0] * (isqrt_max_num + 1)
+    primes = generate_primes(isqrt(max_num))
+    chain = [0] * (max_num + 1)
     for prime in primes:
         multiply(chain, primes, prime, 1, max_num, 0, {})
 
