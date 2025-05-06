@@ -7,6 +7,7 @@ class Node:
         self.left: Node | None  = None
         self.right: Node | None  = None
 
+
 class SegmentTree:
     def __init__(self, nums: list[int], mode: str = "max") -> None:
         """
@@ -108,7 +109,9 @@ class SegmentTree:
                 self.query(node.right, start_index, end_index, mid + 1, end),
             )
         else:
-            return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
+            return self.query(
+                node.left, start_index, end_index, start, mid
+            ) + self.query(node.right, start_index, end_index, mid + 1, end)
 
     def update(self, index: int, new_value: int) -> int:
         """
