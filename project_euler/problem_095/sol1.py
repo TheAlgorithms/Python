@@ -67,7 +67,7 @@ def generate_primes(max_prime: int) -> list[int]:
 def multiply(
     chain: list[int],
     primes: list[int],
-    prime: int,
+    min_prime: int,
     prev_num: int,
     max_num: int,
     prev_sum: int,
@@ -78,30 +78,30 @@ def multiply(
 
     >>> chain = [0] * 3
     >>> primes_degrees = {}
-    >>> multiply(chain=chain, primes=[2], prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
+    >>> multiply(chain=chain, primes=[2], min_prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
     >>> chain
     [0, 0, 0]
     >>> primes_degrees
     {}
     """
 
-    num = prev_n * prime
-    primes_degrees[prime] = primes_degrees.get(prime, 0) + 1
-    if prev_num % prime != 0:
-        new_sum = prev_sum * (prime + 1) + prev_num
+    num = prev_num * min_prime
+    primes_degrees[prime] = primes_degrees.get(min_prime, 0) + 1
+    if prev_num % min_prime != 0:
+        new_sum = prev_sum * (min_prime + 1) + prev_num
     else:
         new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
     for prime in primes:
-        if prime >= prime:
-            num_n = p * num
+        if prime >= min_prime:
+            num_n = prime * num
             if num_n > max_num:
                 break
             multiply(
                 chain=chain,
                 primes=primes,
-                prime=prime,
-                prev_n=num,
+                min_prime=prime,
+                prev_num=num,
                 max_num=max_num,
                 prev_sum=new_sum,
                 primes_degrees=primes_degrees.copy(),
@@ -154,7 +154,7 @@ def solution(max_num: int = 1000000) -> int:
         multiply(
             chain=chain,
             primes=primes,
-            prime=prime,
+            min_prime=prime,
             prev_num=1,
             max_num=max_num,
             prev_sum=0,
