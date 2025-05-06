@@ -4,8 +4,8 @@ class Node:
         self.start = start
         self.end = end
         self.value: int | None = None
-        self.left: Node | None  = None
-        self.right: Node | None  = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
 
 class SegmentTree:
@@ -23,7 +23,7 @@ class SegmentTree:
         # Build the tree from the input list
         self.root: Node | None = self.build(0, self.size - 1, nums)
 
-    def build(self, start: int, end: int, nums: list[int]) -> Node| None:
+    def build(self, start: int, end: int, nums: list[int]) -> Node | None:
         """
         Recursively builds the segment tree.
         :param start: Start index of the segment.
