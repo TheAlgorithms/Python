@@ -73,7 +73,7 @@ def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
     np.int64(5)
     """
 
-    cache_id = f"{row_ind}, {sorted(include_set)}"
+    cache_id = f"{row}, {sorted(cols)}"
     if cache_id in cache:
         return cache[cache_id]
 
