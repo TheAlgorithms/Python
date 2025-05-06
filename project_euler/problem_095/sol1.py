@@ -65,10 +65,10 @@ def generate_primes(max_prime: int) -> list[int]:
 
 
 def multiply(
-    chain: list,
+    chain: list[int],
     primes: list[int],
     prime: int,
-    prev_n: int,
+    prev_num: int,
     max_num: int,
     prev_sum: int,
     primes_degrees: dict[int, int],
@@ -86,21 +86,21 @@ def multiply(
     """
 
     num = prev_n * prime
-    primes_d[prime] = primes_d.get(prime, 0) + 1
-    if prev_n % prime != 0:
-        new_sum = prev_sum * (prime + 1) + prev_n
+    primes_degrees[prime] = primes_degrees.get(prime, 0) + 1
+    if prev_num % prime != 0:
+        new_sum = prev_sum * (prime + 1) + prev_num
     else:
-        new_sum = sum_primes(primes_d, num)
+        new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
-    for p in primes:
-        if p >= prime:
-            number_n = p * number
-            if number_n > max_num:
+    for prime in primes:
+        if prime >= prime:
+            num_n = p * num
+            if num_n > max_num:
                 break
             multiply(
                 chain=chain,
                 primes=primes,
-                prime=p,
+                prime=prime,
                 prev_n=num,
                 max_num=max_num,
                 prev_sum=new_sum,
@@ -155,13 +155,13 @@ def solution(max_num: int = 1000000) -> int:
             chain=chain,
             primes=primes,
             prime=prime,
-            prev_n=1,
+            prev_num=1,
             max_num=max_num,
             prev_sum=0,
             primes_degrees={},
         )
 
-    return find_longest_chain(chain, max_num)
+    return find_longest_chain(chain=chain, max_num=max_num)
 
 
 if __name__ == "__main__":
