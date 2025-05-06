@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
@@ -8,6 +9,7 @@ class Node:
         self.value: Optional[int] = None
         self.left: Optional["Node"] = None
         self.right: Optional["Node"] = None
+
 
 class SegmentTree:
     def __init__(self, nums: list[int], mode: str = "max") -> None:
@@ -110,7 +112,9 @@ class SegmentTree:
                 self.query(node.right, start_index, end_index, mid + 1, end),
             )
         else:
-            return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
+            return self.query(
+                node.left, start_index, end_index, start, mid
+            ) + self.query(node.right, start_index, end_index, mid + 1, end)
 
     def update(self, index: int, new_value: int) -> int:
         """
