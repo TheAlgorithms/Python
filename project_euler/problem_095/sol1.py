@@ -28,7 +28,7 @@ Solution is doing the following:
 - Iterate over found some factors to find longest chain
 """
 
-from numpy import sqrt
+from math import isqrt
 
 
 def sum_primes(factor_d, num):
@@ -58,7 +58,7 @@ def generate_primes(n: int):
     """
     primes = [True] * (n + 1)
     primes[0] = primes[1] = False
-    for i in range(2, int(sqrt(n + 1)) + 1):
+    for i in range(2, isqrt(n) + 1):
         if primes[i]:
             j = i * i
             while j <= n:
