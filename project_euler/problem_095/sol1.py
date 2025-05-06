@@ -134,7 +134,7 @@ def solution(max_num: int = 1000000) -> int:
     primes = generate_primes(max_num)
     chain = [0] * (max_num + 1)
     for prime in primes:
-        if prime ** 2 > max_num:
+        if prime**2 > max_num:
             break
 
         multiply(chain, primes, prime, 1, max_num, 0, {})
