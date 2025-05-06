@@ -101,7 +101,7 @@ def multiply(
     else:
         new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
-    for prime_idx, prime in primes[min_prime_idx:]:
+    for prime_idx, prime in enumerate(primes[min_prime_idx:]):
         num_n = prime * num
         if num_n > max_num:
             break
