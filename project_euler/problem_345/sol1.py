@@ -65,29 +65,31 @@ MATRIX_2 = [
 
 
 def solve(
-    arr: NDArray, row_ind: int, include_set: set[int], cache: dict[str, int]
+    arr: NDArray, row: int, cols: set[int], cache: dict[str, int]
 ) -> int:
     """
-    finds the max sum for array arr starting with row number row_ind, and with columns
-    included in include_set. cache is used for caching intermediate results.
+    Finds the max sum for array `arr` starting with row index `row`, and with columns
+    included in `cols`. `cache` is used for caching intermediate results.
 
-    >>> solve(np.array([[1, 2], [3, 4]]), 0, {0, 1}, {})
+    >>> solve(arr=np.array([[1, 2], [3, 4]]), row=0, cols={0, 1}, cache={})
     np.int64(5)
     """
 
     cache_id = f"{row_ind}, {sorted(include_set)}"
     if cache_id in cache:
         return cache[cache_id]
-    if row_ind == len(arr):
+
+    if row == len(arr):
         return 0
-    sub_max = 0
-    for i in include_set:
-        new_set = include_set - {i}
-        sub_max = max(
-            sub_max, arr[row_ind, i] + solve(arr, row_ind + 1, new_set, cache)
+
+    max_sum = 0
+    for col in cols:
+        new_cols = cols - {col}
+        max_sum = max(
+            max_sum, arr[row, col] + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache)
         )
-    cache[cache_id] = sub_max
-    return sub_max
+    cache[cache_id] = max_sum
+    return max_sum
 
 
 def solution(matrix_str: list[str] = MATRIX_2) -> int:
