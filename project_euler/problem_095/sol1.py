@@ -67,7 +67,7 @@ def generate_primes(max_prime: int) -> list[int]:
 def multiply(
     chain: list[int],
     primes: list[int],
-    min_prime: int,
+    min_prime_idx: int,
     prev_num: int,
     max_num: int,
     prev_sum: int,
@@ -81,7 +81,7 @@ def multiply(
     >>> multiply(
     ...     chain=chain,
     ...     primes=[2],
-    ...     min_prime=2,
+    ...     min_prime_idx=0,
     ...     prev_num=1,
     ...     max_num=2,
     ...     prev_sum=0,
@@ -93,6 +93,7 @@ def multiply(
     {2: 1}
     """
 
+    min_prime = primes[min_prime_idx]
     num = prev_num * min_prime
     primes_degrees[min_prime] = primes_degrees.get(min_prime, 0) + 1
     if prev_num % min_prime != 0:
@@ -100,20 +101,19 @@ def multiply(
     else:
         new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
-    for prime in primes:
-        if prime >= min_prime:
-            num_n = prime * num
-            if num_n > max_num:
-                break
-            multiply(
-                chain=chain,
-                primes=primes,
-                min_prime=prime,
-                prev_num=num,
-                max_num=max_num,
-                prev_sum=new_sum,
-                primes_degrees=primes_degrees.copy(),
-            )
+    for prime_idx in range(min_prime_idx, len(primes)):
+        num_n = primes[prime_idx] * num
+        if num_n > max_num:
+            break
+        multiply(
+            chain=chain,
+            primes=primes,
+            min_prime_idx=prime_idx,
+            prev_num=num,
+            max_num=max_num,
+            prev_sum=new_sum,
+            primes_degrees=primes_degrees.copy(),
+        )
 
 
 def find_longest_chain(chain: list[int], max_num: int) -> int:
@@ -155,14 +155,14 @@ def solution(max_num: int = 1000000) -> int:
 
     primes = generate_primes(max_num)
     chain = [0] * (max_num + 1)
-    for prime in primes:
+    for prime_idx, prime in enumerate(primes):
         if prime**2 > max_num:
             break
 
         multiply(
             chain=chain,
             primes=primes,
-            min_prime=prime,
+            min_prime_idx=prime_idx,
             prev_num=1,
             max_num=max_num,
             prev_sum=0,
