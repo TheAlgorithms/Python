@@ -104,8 +104,11 @@ class SegmentTree:
         elif start_index > mid:
             # Entire range is in the right child
             return self.query(node.right, start_index, end_index, mid + 1, end)
-        elif self.mode == 'max':
-            return max(self.query(node.left, start_index, end_index, start, mid), self.query(node.right, start_index, end_index, mid + 1, end))
+        elif self.mode == "max":
+            return max(
+                self.query(node.left, start_index, end_index, start, mid),
+                self.query(node.right, start_index, end_index, mid + 1, end),
+            )
         else:
             return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
 
