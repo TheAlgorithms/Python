@@ -131,9 +131,12 @@ def solution(max_num: int = 1000000) -> int:
     12496
     """
 
-    primes = generate_primes(isqrt(max_num))
+    primes = generate_primes(max_num)
     chain = [0] * (max_num + 1)
     for prime in primes:
+        if prime ** 2 > max_num:
+            break
+
         multiply(chain, primes, prime, 1, max_num, 0, {})
 
     chain_start, _ = find_longest_chain(chain, max_num)
