@@ -32,7 +32,7 @@ class SegmentTree:
         :return: Root node of the constructed subtree.
         """
         if start > end:
-            return
+            return Node(0, 0)
 
         if start == end:
             # Leaf node
