@@ -3,7 +3,7 @@ class Node:
         # Initializes a segment tree node with start and end indices
         self.start = start
         self.end = end
-        self.value: int | None = None
+        self.value: int = None
         self.left: Node | None  = None
         self.right: Node | None  = None
 
@@ -23,7 +23,7 @@ class SegmentTree:
         # Build the tree from the input list
         self.root: Node | None = self.build(0, self.size - 1, nums)
 
-    def build(self, start: int, end: int, nums: list[int]) -> Node| None:
+    def build(self, start: int, end: int, nums: list[int]) -> Node:
         """
         Recursively builds the segment tree.
         :param start: Start index of the segment.
@@ -32,7 +32,7 @@ class SegmentTree:
         :return: Root node of the constructed subtree.
         """
         if start > end:
-            return None
+            return
 
         if start == end:
             # Leaf node
@@ -64,6 +64,9 @@ class SegmentTree:
         if start_index > end_index or start_index < 0 or end_index >= self.size:
             raise Exception("Invalid index")
 
+        if self.root is None:
+            raise ValueError("Tree not initialized")
+
         return self.query(self.root, start_index, end_index, 0, self.size - 1)
 
     def sum_in_range(self, start_index: int, end_index: int) -> int:
@@ -76,6 +79,9 @@ class SegmentTree:
 
         if start_index > end_index or start_index < 0 or end_index >= self.size:
             raise Exception("Invalid index")
+
+        if self.root is None:
+            raise ValueError("Tree not initialized")
 
         return self.query(self.root, start_index, end_index, 0, self.size - 1)
 
@@ -113,7 +119,7 @@ class SegmentTree:
                 node.left, start_index, end_index, start, mid
             ) + self.query(node.right, start_index, end_index, mid + 1, end)
 
-    def update(self, index: int, new_value: int) -> int:
+    def update(self, index: int, new_value: int) -> None:
         """
         Updates a value at a specific index in the segment tree.
         :param index: Index to update.
@@ -126,7 +132,7 @@ class SegmentTree:
 
     def modify(
         self, node: Node, index: int, new_value: int, start: int, end: int
-    ) -> int:
+    ) -> None:
         """
         Recursively updates the tree to reflect a change at a specific index.
         :param node: Current node being processed.
