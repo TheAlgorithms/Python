@@ -93,7 +93,7 @@ def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
 
 def solution(matrix_str: list[str] = MATRIX_2) -> int:
     """
-    Takes list of strings matrix_str to parse the matrix and calculates the max sum.
+    Takes list of strings `matrix_str` to parse the matrix and calculates the max sum.
 
     >>> solution(["1 2", "3 4"])
     5
@@ -102,15 +102,14 @@ def solution(matrix_str: list[str] = MATRIX_2) -> int:
     """
 
     n = len(matrix_str)
-    arr = np.empty((n, n), dtype=np.int64)
-    for i in range(n):
-        els = matrix_str[i].strip().split(" ")
-        for j in range(len(els)):
-            arr[i, j] = int(els[j])
+    arr = np.empty(shape=(n, n), dtype=np.int64)
+    for row, matrix_row_str in enumerate(matrix_str):
+        matrix_row_list_str = matrix_row_str.split()
+        for col, elem_str in enumerate(matrix_row_list_str):
+            arr[row, col] = int(elem_str)
 
     cache: dict[str, int] = {}
-    ans = solve(arr, 0, set(range(n)), cache)
-    return int(ans)
+    return solve(arr=arr, row=0, cols=set(range(n)), cache=cache)
 
 
 if __name__ == "__main__":
