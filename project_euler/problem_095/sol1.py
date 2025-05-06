@@ -101,14 +101,14 @@ def multiply(
     else:
         new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
-    for prime_idx, prime in enumerate(primes[min_prime_idx:]):
-        num_n = prime * num
+    for prime_idx in range(min_prime_idx, len(primes)):
+        num_n = primes[prime_idx] * num
         if num_n > max_num:
             break
         multiply(
             chain=chain,
             primes=primes,
-            min_prime_idx=min_prime_idx + prime_idx,
+            min_prime_idx=prime_idx,
             prev_num=num,
             max_num=max_num,
             prev_sum=new_sum,
