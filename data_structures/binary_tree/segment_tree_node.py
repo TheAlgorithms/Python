@@ -3,9 +3,9 @@ class Node:
         # Initializes a segment tree node with start and end indices
         self.start = start
         self.end = end
-        self.value: int = None
-        self.left: Node | None  = None
-        self.right: Node | None  = None
+        self.value: int = 0
+        self.left: Node = self
+        self.right: Node = self
 
 
 class SegmentTree:
@@ -21,7 +21,7 @@ class SegmentTree:
             self.mode = "max"  # Default to max if invalid mode is given
 
         # Build the tree from the input list
-        self.root: Node | None = self.build(0, self.size - 1, nums)
+        self.root: Node = self.build(0, self.size - 1, nums)
 
     def build(self, start: int, end: int, nums: list[int]) -> Node:
         """
