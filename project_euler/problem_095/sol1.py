@@ -38,7 +38,13 @@ def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
     >>> sum_primes(primes_degrees={2: 1, 3: 1}, num=6)
     6
     """
-    return prod((prime ** (degree + 1) - 1) // (prime - 1) for prime, degree in primes_degrees.items()) - num
+    return (
+        prod(
+            (prime ** (degree + 1) - 1) // (prime - 1)
+            for prime, degree in primes_degrees.items()
+        )
+        - num
+    )
 
 
 def generate_primes(n: int):
