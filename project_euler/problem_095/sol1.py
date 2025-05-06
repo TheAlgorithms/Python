@@ -90,7 +90,7 @@ def multiply(
     >>> chain
     [0, 0, 1]
     >>> primes_degrees
-    {}
+    {2: 1}
     """
 
     num = prev_num * min_prime
