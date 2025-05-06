@@ -61,7 +61,7 @@ def generate_primes(num: int) -> list[int]:
             for j in range(start=i * i, stop=num + 1, step=i)
                 are_primes[j] = False
 
-    return [prime for prime, is_prime in enumerate(are_primes_ if is_prime]
+    return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
 
 
 def multiply(chain, primes, prime, prev_n, n_max, prev_sum, primes_d):
