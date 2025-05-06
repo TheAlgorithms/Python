@@ -106,20 +106,7 @@ class SegmentTree:
         elif self.mode == 'max':
             return max(self.query(node.left, start_index, end_index, start, mid), self.query(node.right, start_index, end_index, mid + 1, end))
         else:
-<<<<<<< HEAD
             return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
-=======
-            # Range spans both children
-            if self.mode == "max":
-                return max(
-                    self.query(node.left, start_index, end_index, start, mid),
-                    self.query(node.right, start_index, end_index, mid + 1, end),
-                )
-            else:
-                return self.query(
-                    node.left, start_index, end_index, start, mid
-                ) + self.query(node.right, start_index, end_index, mid + 1, end)
->>>>>>> cb5762c2a5f27c98c3a8958b8977ac23c9e2f0aa
 
     def update(self, index: int, new_value: int) -> int:
         """
