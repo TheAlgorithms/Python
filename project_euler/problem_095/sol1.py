@@ -64,7 +64,15 @@ def generate_primes(num: int) -> list[int]:
     return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
 
 
-def multiply(chain: list, primes: set[int], prime: int, prev_n: int, n_max: int, prev_sum: int, primes_d: dict[int, int]) -> None:
+def multiply(
+    chain: list,
+    primes: set[int],
+    prime: int,
+    prev_n: int,
+    n_max: int,
+    prev_sum: int,
+    primes_d: dict[int, int],
+) -> None:
     """
     Run over all prime combinations to generate non-prime numbers.
 
