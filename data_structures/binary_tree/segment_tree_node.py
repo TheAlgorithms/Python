@@ -1,12 +1,13 @@
+from typing import Optional
+
 class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
         self.start = start
         self.end = end
-        self.value = None
-        self.left = None
-        self.right = None
-
+        self.value: Optional[int] = None
+        self.left: Optional["Node"] = None
+        self.right: Optional["Node"] = None
 
 class SegmentTree:
     def __init__(self, nums: list[int], mode: str = "max") -> None:
@@ -21,9 +22,9 @@ class SegmentTree:
             self.mode = "max"  # Default to max if invalid mode is given
 
         # Build the tree from the input list
-        self.root = self.build(0, self.size - 1, nums)
+        self.root: Optional[Node] = self.build(0, self.size - 1, nums)
 
-    def build(self, start: int, end: int, nums: list[int]) -> Node:
+    def build(self, start: int, end: int, nums: list[int]) -> Optional[Node]:
         """
         Recursively builds the segment tree.
         :param start: Start index of the segment.
@@ -106,20 +107,7 @@ class SegmentTree:
         elif self.mode == 'max':
             return max(self.query(node.left, start_index, end_index, start, mid), self.query(node.right, start_index, end_index, mid + 1, end))
         else:
-<<<<<<< HEAD
             return self.query(node.left, start_index, end_index, start, mid) + self.query(node.right, start_index, end_index, mid + 1, end)
-=======
-            # Range spans both children
-            if self.mode == "max":
-                return max(
-                    self.query(node.left, start_index, end_index, start, mid),
-                    self.query(node.right, start_index, end_index, mid + 1, end),
-                )
-            else:
-                return self.query(
-                    node.left, start_index, end_index, start, mid
-                ) + self.query(node.right, start_index, end_index, mid + 1, end)
->>>>>>> cb5762c2a5f27c98c3a8958b8977ac23c9e2f0aa
 
     def update(self, index: int, new_value: int) -> int:
         """
