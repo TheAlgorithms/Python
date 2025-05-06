@@ -28,16 +28,25 @@ def power(base: float, exponent: int) -> float:
         -8.0
         >>> power(0, 5)
         0.0
-        >>> power(0, 0)
-        1.0
+        >>> power(0, 1)
+        0.0
         >>> power(0, -1)
         Traceback (most recent call last):
             ...
         ZeroDivisionError: 0.0 cannot be raised to a negative power.
+        >>> power(0, 0)
+        Traceback (most recent call last):
+            ...
+        ValueError: 0.0 raised to the power of 0 is indeterminate.
         >>> power(1, 1000)     
         1.0
         
     """
+    if base == 0 and exponent == 0:
+        raise ValueError("0.0 raised to the power of 0 is indeterminate.")
+    if base == 0 and exponent < 0:
+        raise ZeroDivisionError("0.0 cannot be raised to a negative power.")
+    
     result = 1.0
     if exponent < 0:
         base = 1 / base
@@ -51,6 +60,7 @@ def power(base: float, exponent: int) -> float:
 
 
 if __name__ == "__main__":
+    
     import doctest
     doctest.testmod()
     print("Raise base to the power of exponent using an optimized approach...")
@@ -68,6 +78,9 @@ if __name__ == "__main__":
         # Display the result
         print(f"{base} to the power of {exponent} is {result}")
 
-    except ValueError:
-        # Handle invalid input
-        print("Invalid input! Please enter numeric values for base and exponent.")
+    except ValueError as e:
+        # Handle invalid input or indeterminate cases
+        print(e)
+    except ZeroDivisionError as e:
+        # Handle division by zero
+        print(e)
