@@ -17,7 +17,8 @@ For example, starting with 12496, we form a chain of five numbers:
 
 Since this chain returns to its starting point, it is called an amicable chain.
 
-Find the smallest member of the longest amicable chain with no element exceeding one million.
+Find the smallest member of the longest amicable chain with
+no element exceeding one million.
 
 Solution is doing the following:
 - Get relevant prime numbers
