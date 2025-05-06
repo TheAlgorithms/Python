@@ -47,18 +47,18 @@ def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
     )
 
 
-def generate_primes(max_num: int) -> list[int]:
+def generate_primes(max_prime: int) -> list[int]:
     """
-    Calculates the list of primes up to and including `max_num`.
+    Calculates the list of primes up to and including `max_prime`.
 
     >>> generate_primes(6)
     [2, 3, 5]
     """
-    are_primes = [True] * (max_num + 1)
+    are_primes = [True] * (max_prime + 1)
     are_primes[0] = are_primes[1] = False
-    for i in range(2, isqrt(max_num) + 1):
+    for i in range(2, isqrt(max_prime) + 1):
         if are_primes[i]:
-            for j in range(i * i, max_num + 1, i):
+            for j in range(i * i, max_prime + 1, i):
                 are_primes[j] = False
 
     return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
@@ -94,12 +94,12 @@ def multiply(
             multiply(chain, primes, p, number, n_max, new_sum, primes_d.copy())
 
 
-def find_longest_chain(chain: list[int], max_num: int) -> tuple[int, int]:
+def find_longest_chain(chain: list[int], max_num: int) -> int:
     """
-    Finds the greatest element and length of longest chain
+    Finds the smallest element of longest chain
 
     >>> find_longest_chain([0, 0, 0, 0, 0, 0, 6], 6)
-    (6, 1)
+    6
     """
 
     length_max = 0
@@ -139,8 +139,7 @@ def solution(max_num: int = 1000000) -> int:
 
         multiply(chain, primes, prime, 1, max_num, 0, {})
 
-    chain_start, _ = find_longest_chain(chain, max_num)
-    return chain_start
+    return find_longest_chain(chain, max_num)
 
 
 if __name__ == "__main__":
