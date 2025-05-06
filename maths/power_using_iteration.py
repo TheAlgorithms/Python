@@ -24,7 +24,7 @@ def power(base: float, exponent: int) -> float:
         39.0625
         >>> power(-3.5, 2)
         12.25
-        >>> power(-2, 3)    
+        >>> power(-2, 3)
         -8.0
         >>> power(0, 5)
         0.0
@@ -38,9 +38,9 @@ def power(base: float, exponent: int) -> float:
         Traceback (most recent call last):
             ...
         ValueError: 0.0 raised to the power of 0 is indeterminate.
-        >>> power(1, 1000)     
+        >>> power(1, 1000)
         1.0
-        
+
     """
     if base == 0 and exponent == 0:
         raise ValueError("0.0 raised to the power of 0 is indeterminate.")
@@ -62,6 +62,7 @@ def power(base: float, exponent: int) -> float:
 if __name__ == "__main__":
     
     import doctest
+
     doctest.testmod()
     print("Raise base to the power of exponent using an optimized approach...")
 
