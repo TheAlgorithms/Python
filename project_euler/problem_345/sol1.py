@@ -70,7 +70,7 @@ def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
     included in `cols`. `cache` is used for caching intermediate results.
 
     >>> solve(arr=np.array([[1, 2], [3, 4]]), row=0, cols={0, 1}, cache={})
-    np.int64(5)
+    5
     """
 
     cache_id = f"{row}, {sorted(cols)}"
@@ -85,7 +85,7 @@ def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
         new_cols = cols - {col}
         max_sum = max(
             max_sum,
-            arr[row, col] + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache),
+            int(arr[row, col]) + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache),
         )
     cache[cache_id] = max_sum
     return max_sum
@@ -102,7 +102,7 @@ def solution(matrix_str: list[str] = MATRIX_2) -> int:
     """
 
     n = len(matrix_str)
-    arr = np.empty(shape=(n, n), dtype=np.int64)
+    arr = np.empty(shape=(n, n), dtype=int)
     for row, matrix_row_str in enumerate(matrix_str):
         matrix_row_list_str = matrix_row_str.split()
         for col, elem_str in enumerate(matrix_row_list_str):
