@@ -69,29 +69,35 @@ def multiply(
     primes: list[int],
     prime: int,
     prev_n: int,
-    n_max: int,
+    max_num: int,
     prev_sum: int,
-    primes_d: dict[int, int],
+    primes_degrees: dict[int, int],
 ) -> None:
     """
     Run over all prime combinations to generate non-prime numbers.
 
-    >>> multiply([None] * 3, [2], 2, 1, 2, 0, {})
+    >>> chain = [0] * 3
+    >>> primes_degrees = {}
+    >>> multiply(chain=chain, primes=[2], prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
+    >>> chain
+    [0, 0, 0]
+    >>> primes_degrees
+    {}
     """
 
-    number = prev_n * prime
+    num = prev_n * prime
     primes_d[prime] = primes_d.get(prime, 0) + 1
     if prev_n % prime != 0:
         new_sum = prev_sum * (prime + 1) + prev_n
     else:
-        new_sum = sum_primes(primes_d, number)
-    chain[number] = new_sum
+        new_sum = sum_primes(primes_d, num)
+    chain[num] = new_sum
     for p in primes:
         if p >= prime:
             number_n = p * number
-            if number_n > n_max:
+            if number_n > max_num:
                 break
-            multiply(chain, primes, p, number, n_max, new_sum, primes_d.copy())
+            multiply(chain=chain, primes=primes, prime=p, prev_n=num, max_num=max_num, prev_sum=new_sum, primes_degrees=primes_degrees.copy())
 
 
 def find_longest_chain(chain: list[int], max_num: int) -> int:
@@ -137,7 +143,7 @@ def solution(max_num: int = 1000000) -> int:
         if prime**2 > max_num:
             break
 
-        multiply(chain, primes, prime, 1, max_num, 0, {})
+        multiply(chain=chain, primes=primes, prime=prime, prev_n=1, max_num=max_num, prev_sum=0, primes_degrees={})
 
     return find_longest_chain(chain, max_num)
 
