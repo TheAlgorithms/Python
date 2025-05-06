@@ -183,4 +183,3 @@ class SegmentTree:
             node.value = max(node.left.value, node.right.value)
         else:
             node.value = node.left.value + node.right.value
-
