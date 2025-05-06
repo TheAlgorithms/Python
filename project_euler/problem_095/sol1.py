@@ -47,18 +47,18 @@ def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
     )
 
 
-def generate_primes(num: int) -> list[int]:
+def generate_primes(max_num: int) -> list[int]:
     """
-    Calculates the list of primes up to and including `num`.
+    Calculates the list of primes up to and including `max_num`.
 
     >>> generate_primes(6)
     [2, 3, 5]
     """
-    are_primes = [True] * (num + 1)
+    are_primes = [True] * (max_num + 1)
     are_primes[0] = are_primes[1] = False
-    for i in range(2, isqrt(num) + 1):
+    for i in range(2, isqrt(max_num) + 1):
         if are_primes[i]:
-            for j in range(i * i, num + 1, i):
+            for j in range(i * i, max_num + 1, i):
                 are_primes[j] = False
 
     return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
@@ -131,12 +131,11 @@ def solution(max_num: int = 1000000) -> int:
     12496
     """
 
-    primes = generate_primes(max_num)
-    chain = [0] * (max_num + 1)
-    for p in primes:
-        if p * p > max_num:
-            break
-        multiply(chain, primes, p, 1, max_num, 0, {})
+    isqrt_max_num = isqrt(max_num)
+    primes = generate_primes(isqrt_max_num)
+    chain = [0] * (isqrt_max_num + 1)
+    for prime in primes:
+        multiply(chain, primes, prime, 1, max_num, 0, {})
 
     chain_start, _ = find_longest_chain(chain, max_num)
     return chain_start
