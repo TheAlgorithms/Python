@@ -79,7 +79,14 @@ def multiply(
     >>> chain = [0] * 3
     >>> primes_degrees = {}
     >>> multiply(
-    ...     chain=chain, primes=[2], min_prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
+    ...     chain=chain,
+    ...     primes=[2],
+    ...     min_prime=2
+    ...     prev_n=1,
+    ...     max_num=2,
+    ...     prev_sum=0,
+    ...     primes_degrees=primes_degrees,
+    ... )
     >>> chain
     [0, 0, 0]
     >>> primes_degrees
@@ -113,7 +120,7 @@ def find_longest_chain(chain: list[int], max_num: int) -> int:
     """
     Finds the smallest element of longest chain
 
-    >>> find_longest_chain([0, 0, 0, 0, 0, 0, 6], 6)
+    >>> find_longest_chain(chain=[0, 0, 0, 0, 0, 0, 6], max_num=6)
     6
     """
 
