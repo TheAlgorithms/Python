@@ -64,9 +64,7 @@ MATRIX_2 = [
 ]
 
 
-def solve(
-    arr: NDArray, row: int, cols: set[int], cache: dict[str, int]
-) -> int:
+def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
     """
     Finds the max sum for array `arr` starting with row index `row`, and with columns
     included in `cols`. `cache` is used for caching intermediate results.
@@ -86,7 +84,8 @@ def solve(
     for col in cols:
         new_cols = cols - {col}
         max_sum = max(
-            max_sum, arr[row, col] + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache)
+            max_sum,
+            arr[row, col] + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache),
         )
     cache[cache_id] = max_sum
     return max_sum
