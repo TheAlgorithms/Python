@@ -81,7 +81,7 @@ def multiply(
     >>> multiply(
     ...     chain=chain,
     ...     primes=[2],
-    ...     min_prime=2
+    ...     min_prime=2,
     ...     prev_n=1,
     ...     max_num=2,
     ...     prev_sum=0,
