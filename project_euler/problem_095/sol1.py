@@ -78,7 +78,8 @@ def multiply(
 
     >>> chain = [0] * 3
     >>> primes_degrees = {}
-    >>> multiply(chain=chain, primes=[2], min_prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
+    >>> multiply(
+    ...     chain=chain, primes=[2], min_prime=2, prev_n=1, max_num=2, prev_sum=0, primes_degrees=primes_degrees)
     >>> chain
     [0, 0, 0]
     >>> primes_degrees
