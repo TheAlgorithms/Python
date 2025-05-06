@@ -30,6 +30,10 @@ class SegmentTree:
         :param end: End index of the segment.
         :param nums: Original input array.
         :return: Root node of the constructed subtree.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="max")
+        >>> tree.root.value
+        5
         """
         if start > end:
             return Node(0, 0)
@@ -57,6 +61,10 @@ class SegmentTree:
         """
         Queries the maximum value in a given range.
         Only works in 'max' mode.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="max")
+        >>> tree.max_in_range(1, 3)
+        4
         """
         if self.mode == "sum":
             raise Exception("Current Segment Tree doesn't support finding max")
@@ -73,6 +81,10 @@ class SegmentTree:
         """
         Queries the sum of values in a given range.
         Only works in 'sum' mode.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="sum")
+        >>> tree.sum_in_range(1, 3)
+        9
         """
         if self.mode == "max":
             raise Exception("Current Segment Tree doesn't support summing")
@@ -96,6 +108,10 @@ class SegmentTree:
         :param start: Node's segment start.
         :param end: Node's segment end.
         :return: Result of query in the range.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="max")
+        >>> tree.query(tree.root, 1, 3, 0, 4)
+        4
         """
         # Complete overlap
         if start_index <= start and end <= end_index:
@@ -124,6 +140,11 @@ class SegmentTree:
         Updates a value at a specific index in the segment tree.
         :param index: Index to update.
         :param new_value: New value to set.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="max")
+        >>> tree.update(2, 6)
+        >>> tree.max_in_range(1, 3)
+        6
         """
         if index < 0 or index >= self.size:
             raise Exception("Invalid index")
@@ -140,6 +161,11 @@ class SegmentTree:
         :param new_value: New value to assign.
         :param start: Start index of node's segment.
         :param end: End index of node's segment.
+
+        >>> tree = SegmentTree([1, 2, 3, 4, 5], mode="max")
+        >>> tree.modify(tree.root, 2, 6, 0, 4)
+        >>> tree.max_in_range(0, 4)
+        6
         """
         if start == end:
             node.value = new_value
@@ -157,3 +183,4 @@ class SegmentTree:
             node.value = max(node.left.value, node.right.value)
         else:
             node.value = node.left.value + node.right.value
+
