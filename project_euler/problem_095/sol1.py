@@ -47,26 +47,21 @@ def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
     )
 
 
-def generate_primes(n: int):
+def generate_primes(num: int) -> list[int]:
     """
-    Calculates the list of primes up to and including n.
+    Calculates the list of primes up to and including `num`.
 
     >>> generate_primes(6)
     [2, 3, 5]
     """
-    primes = [True] * (n + 1)
-    primes[0] = primes[1] = False
-    for i in range(2, isqrt(n) + 1):
-        if primes[i]:
-            j = i * i
-            while j <= n:
-                primes[j] = False
-                j += i
-    primes_list = []
-    for i in range(2, len(primes)):
-        if primes[i]:
-            primes_list += [i]
-    return primes_list
+    are_primes = [True] * (num + 1)
+    are_primes[0] = are_primes[1] = False
+    for i in range(start=2, stop=isqrt(num) + 1):
+        if are_primes[i]:
+            for j in range(start=i * i, stop=num + 1, step=i)
+                are_primes[j] = False
+
+    return [prime for prime, is_prime in enumerate(are_primes_ if is_prime]
 
 
 def multiply(chain, primes, prime, prev_n, n_max, prev_sum, primes_d):
