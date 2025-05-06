@@ -85,7 +85,8 @@ def solve(arr: NDArray, row: int, cols: set[int], cache: dict[str, int]) -> int:
         new_cols = cols - {col}
         max_sum = max(
             max_sum,
-            int(arr[row, col]) + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache),
+            int(arr[row, col])
+            + solve(arr=arr, row=row + 1, cols=new_cols, cache=cache),
         )
     cache[cache_id] = max_sum
     return max_sum
