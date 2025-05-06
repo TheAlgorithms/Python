@@ -86,9 +86,9 @@ def multiply(chain, primes, prime, prev_n, n_max, prev_sum, primes_d):
             multiply(chain, primes, p, number, n_max, new_sum, primes_d.copy())
 
 
-def find_longest_chain(chain, n_max):
+def find_longest_chain(chain: list[int], max_num: int) -> tuple[int, int]:
     """
-    Finds the smallest element and length of longest chain
+    Finds the greatest element and length of longest chain
 
     >>> find_longest_chain([0, 0, 0, 0, 0, 0, 6], 6)
     (6, 1)
@@ -101,7 +101,7 @@ def find_longest_chain(chain, n_max):
         length = 1
         el = chain[i]
         visited = {i}
-        while el > 1 and el <= n_max and el not in visited:
+        while el > 1 and el <= max_num and el not in visited:
             length += 1
             visited.add(el)
             el = chain[el]
@@ -113,9 +113,9 @@ def find_longest_chain(chain, n_max):
     return elem_max, length_max
 
 
-def solution(n_max: int = 1000000) -> int:
+def solution(max_num: int = 1000000) -> int:
     """
-    Runs the calculation for numbers <= n_max.
+    Runs the calculation for numbers <= `max_num`.
 
     >>> solution(10)
     6
