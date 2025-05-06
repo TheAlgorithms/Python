@@ -66,7 +66,7 @@ def generate_primes(num: int) -> list[int]:
 
 def multiply(
     chain: list,
-    primes: set[int],
+    primes: list[int],
     prime: int,
     prev_n: int,
     n_max: int,
@@ -76,7 +76,7 @@ def multiply(
     """
     Run over all prime combinations to generate non-prime numbers.
 
-    >>> multiply([None] * 3, {2}, 2, 1, 2, 0, {})
+    >>> multiply([None] * 3, [2], 2, 1, 2, 0, {})
     """
 
     number = prev_n * prime
