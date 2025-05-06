@@ -71,7 +71,7 @@ def solve(
     finds the max sum for array arr starting with row number row_ind, and with columns
     included in include_set. cache is used for caching intermediate results.
 
-    >>> solve(np.array([[1, 2], [3,4]]), 0, {0, 1}, {})
+    >>> solve(np.array([[1, 2], [3, 4]]), 0, {0, 1}, {})
     np.int64(5)
     """
 
