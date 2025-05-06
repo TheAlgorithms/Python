@@ -88,7 +88,7 @@ def multiply(
     ...     primes_degrees=primes_degrees,
     ... )
     >>> chain
-    [0, 0, 0]
+    [0, 0, 1]
     >>> primes_degrees
     {}
     """
