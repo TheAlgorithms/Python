@@ -118,7 +118,7 @@ def find_longest_chain(chain: list[int], max_num: int) -> int:
             length_max = length
             elem_max = start
 
-    return elem_max, length_max
+    return elem_max
 
 
 def solution(max_num: int = 1000000) -> int:
