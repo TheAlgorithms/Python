@@ -100,10 +100,7 @@ def multiply(
     min_prime_degree += 1
     primes_degrees[min_prime] = min_prime_degree
 
-    new_sum = (
-        prev_sum * (min_prime ** (min_prime_degree + 1) - 1)
-        + prev_num * (min_prime**min_prime_degree - 1)
-    ) // (min_prime - 1)
+    new_sum = prev_sum * min_prime + (prev_sum * (min_prime - 1) -  prev_num // min_prime ** (min_prime_degree - 1) * (min_prime ** (min_prime_degree - 1) - 1)) // (min_prime ** min_prime_degree - 1) + prev_num // min_prime ** (min_prime_degree - 1)
     assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num), (
         f"{num} {primes_degrees} {prev_num} {min_prime} {prev_num} {new_sum} {sum_primes(primes_degrees=primes_degrees, num=num)}"
     )
