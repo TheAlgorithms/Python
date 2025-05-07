@@ -95,13 +95,15 @@ def multiply(
 
     min_prime = primes[min_prime_idx]
     num = prev_num * min_prime
-    primes_degrees[min_prime] = primes_degrees.get(min_prime, 0) + 1
-    if prev_num % min_prime != 0:
-        new_sum = prev_sum * (min_prime + 1) + prev_num
-    else:
-        new_sum = prev_sum * (min_prime + 1) + prev_num
+
+    min_prime_degree = primes_degrees.get(min_prime, 0)
+    min_prime_degree += 1
+    primes_degrees[min_prime] = min_prime_degree
+
+    new_sum = (prev_sum * (min_prime ** (min_prime_degree + 1) - 1) + prev_num * (min_prime ** min_prime_degree - 1)) // (min_prime - 1)
     assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
+
     for prime_idx in range(min_prime_idx, len(primes)):
         num_n = primes[prime_idx] * num
         if num_n > max_num:
