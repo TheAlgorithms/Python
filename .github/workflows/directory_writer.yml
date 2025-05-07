@@ -11,7 +11,8 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
+          python-version: 3.14
+          allow-prereleases: true
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
