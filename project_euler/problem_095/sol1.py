@@ -99,7 +99,8 @@ def multiply(
     if prev_num % min_prime != 0:
         new_sum = prev_sum * (min_prime + 1) + prev_num
     else:
-        new_sum = sum_primes(primes_degrees=primes_degrees, num=num)
+        new_sum = prev_sum * (min_prime + 1) + prev_num
+    assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num)
     chain[num] = new_sum
     for prime_idx in range(min_prime_idx, len(primes)):
         num_n = primes[prime_idx] * num
