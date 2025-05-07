@@ -95,7 +95,7 @@ def multiply(
 
     min_prime = primes[min_prime_idx]
     num = prev_num * min_prime
-    primes_degrees[min_prime] = primes_degrees.get(key=min_prime, default=0) + 1
+    primes_degrees[min_prime] = primes_degrees.get(min_prime, 0) + 1
     if prev_num % min_prime != 0:
         new_sum = prev_sum * (min_prime + 1) + prev_num
     else:
