@@ -104,7 +104,9 @@ def multiply(
         prev_sum * (min_prime ** (min_prime_degree + 1) - 1)
         + prev_num * (min_prime**min_prime_degree - 1)
     ) // (min_prime - 1)
-    assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num), f'{num} {primes_degrees} {prev_num} {min_prime} {prev_num} {new_sum} {sum_primes(primes_degrees=primes_degrees, num=num)}'
+    assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num), (
+        f"{num} {primes_degrees} {prev_num} {min_prime} {prev_num} {new_sum} {sum_primes(primes_degrees=primes_degrees, num=num)}"
+    )
     chain[num] = new_sum
 
     for prime_idx in range(min_prime_idx, len(primes)):
