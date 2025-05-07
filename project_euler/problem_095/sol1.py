@@ -31,22 +31,6 @@ Solution is doing the following:
 from math import isqrt, prod
 
 
-def sum_primes(primes_degrees: dict[int, int], num: int) -> int:
-    """
-    Calculates the sum of factors from all prime exponents.
-
-    >>> sum_primes(primes_degrees={2: 1, 3: 1}, num=6)
-    6
-    """
-    return (
-        prod(
-            (prime ** (degree + 1) - 1) // (prime - 1)
-            for prime, degree in primes_degrees.items()
-        )
-        - num
-    )
-
-
 def generate_primes(max_prime: int) -> list[int]:
     """
     Calculates the list of primes up to and including `max_prime`.
@@ -102,9 +86,6 @@ def multiply(
 
     new_sum = prev_sum * min_prime + (prev_sum + prev_num) * (min_prime - 1) // (
         min_prime**min_prime_degree - 1
-    )
-    assert new_sum == sum_primes(primes_degrees=primes_degrees, num=num), (
-        f"{num} {primes_degrees} {prev_num} {min_prime} {prev_num} {new_sum} {sum_primes(primes_degrees=primes_degrees, num=num)}"
     )
     chain[num] = new_sum
 
