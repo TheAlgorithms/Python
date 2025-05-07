@@ -25,11 +25,18 @@ jobs:
   build_docs:
     runs-on: ubuntu-24.04-arm
     steps:
+      - run:
+          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+          libharfbuzz-dev libfribidi-dev libxcb1-dev
+          libxml2-dev libxslt-dev
+          libhdf5-dev
+          libopenblas-dev
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.14
           allow-prereleases: true
       - run: uv sync --group=docs
       - uses: actions/configure-pages@v5
