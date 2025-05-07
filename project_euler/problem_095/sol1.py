@@ -28,7 +28,7 @@ Solution is doing the following:
 - Iterate over found some factors to find longest chain
 """
 
-from math import isqrt, prod
+from math import isqrt
 
 
 def generate_primes(max_prime: int) -> list[int]:
