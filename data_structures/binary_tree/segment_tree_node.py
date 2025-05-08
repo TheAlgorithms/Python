@@ -1,4 +1,3 @@
-
 class Node:
     def __init__(self, start: int, end: int) -> None:
         # Initializes a segment tree node with start and end indices
