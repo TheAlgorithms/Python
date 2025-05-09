@@ -32,6 +32,18 @@ def and_gate(input_1: int, input_2: int) -> int:
     return int(input_1 and input_2)
 
 
+def n_and_gate(inputs: tuple) -> int:
+	"""
+	Calcul le And de la liste des nombres
+	binaires fournie. Nécessaire pour
+	implémenter une porte And à n entrées
+	Par exemple
+	>>> n_and_gate((1, 0, 1, 1, 0))
+	0
+	"""
+	return int(all(inputs))
+
+
 if __name__ == "__main__":
     import doctest
 
