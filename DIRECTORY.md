@@ -128,15 +128,6 @@
   * [Vigenere Cipher](ciphers/vigenere_cipher.py)
   * [Xor Cipher](ciphers/xor_cipher.py)
 
-## Compression
-  * [Burrows Wheeler](compression/burrows_wheeler.py)
-  * [Huffman](compression/huffman.py)
-  * [Lempel Ziv](compression/lempel_ziv.py)
-  * [Lempel Ziv Decompress](compression/lempel_ziv_decompress.py)
-  * [Lz77](compression/lz77.py)
-  * [Peak Signal To Noise Ratio](compression/peak_signal_to_noise_ratio.py)
-  * [Run Length Encoding](compression/run_length_encoding.py)
-
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
@@ -180,6 +171,15 @@
   * [Time Conversions](conversions/time_conversions.py)
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
+
+## Data Compression
+  * [Burrows Wheeler](data_compression/burrows_wheeler.py)
+  * [Huffman](data_compression/huffman.py)
+  * [Lempel Ziv](data_compression/lempel_ziv.py)
+  * [Lempel Ziv Decompress](data_compression/lempel_ziv_decompress.py)
+  * [Lz77](data_compression/lz77.py)
+  * [Peak Signal To Noise Ratio](data_compression/peak_signal_to_noise_ratio.py)
+  * [Run Length Encoding](data_compression/run_length_encoding.py)
 
 ## Data Structures
   * Arrays
@@ -1202,6 +1202,8 @@
     * [Sol1](project_euler/problem_234/sol1.py)
   * Problem 301
     * [Sol1](project_euler/problem_301/sol1.py)
+  * Problem 345
+    * [Sol1](project_euler/problem_345/sol1.py)
   * Problem 493
     * [Sol1](project_euler/problem_493/sol1.py)
   * Problem 551
