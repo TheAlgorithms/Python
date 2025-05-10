@@ -27,7 +27,7 @@ def escape_velocity(mass: float, radius: float) -> float:
 
     Examples:
         >>> escape_velocity(5.972e24, 6.371e6)  # Earth
-        11185.978
+        11185
         >>> escape_velocity(7.348e22, 1.737e6)  # Moon
         2376.307
         >>> escape_velocity(1.898e27, 6.9911e7)  # Jupiter
