@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     try:
         mass = float(input("Enter mass of the celestial body (in kgs): ").strip())
-        radius = float(input("Enter radius from center (in meters): ").strip())
+        radius = float(input("Enter radius from the center of mass (in ms): ").strip())
 
         velocity = escape_velocity(mass=mass, radius=radius)
         print(f"Escape velocity is {velocity} m/s")
