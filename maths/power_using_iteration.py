@@ -46,7 +46,7 @@ def power(base: float, exponent: int) -> float:
         raise ValueError("0.0 raised to the power of 0 is indeterminate.")
     if base == 0 and exponent < 0:
         raise ZeroDivisionError("0.0 cannot be raised to a negative power.")
-    
+
     result = 1.0
     if exponent < 0:
         base = 1 / base
@@ -60,7 +60,6 @@ def power(base: float, exponent: int) -> float:
 
 
 if __name__ == "__main__":
-    
     import doctest
 
     doctest.testmod()
