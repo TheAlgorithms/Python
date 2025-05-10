@@ -1,5 +1,5 @@
 import math
-
+# Escape velocity calculator script
 def escape_velocity(mass: float, radius: float) -> float:
     """
     Calculates the escape velocity needed to break free from a celestial body's gravitational field.
