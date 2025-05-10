@@ -1,5 +1,6 @@
 import math
 
+
 def escape_velocity(mass: float, radius: float) -> float:
     """
     Calculates the escape velocity needed to break free from a celestial body's gravitational field.
@@ -45,8 +46,8 @@ def escape_velocity(mass: float, radius: float) -> float:
 
 
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
     print("Calculate escape velocity of a celestial body...\n")
 
