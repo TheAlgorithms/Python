@@ -31,18 +31,18 @@ Solution is doing the following:
 from math import isqrt
 
 
-def generate_primes(max_prime: int) -> list[int]:
+def generate_primes(max_num: int) -> list[int]:
     """
-    Calculates the list of primes up to and including `max_prime`.
+    Calculates the list of primes up to and including `max_num`.
 
     >>> generate_primes(6)
     [2, 3, 5]
     """
-    are_primes = [True] * (max_prime + 1)
+    are_primes = [True] * (max_num + 1)
     are_primes[0] = are_primes[1] = False
-    for i in range(2, isqrt(max_prime) + 1):
+    for i in range(2, isqrt(max_num) + 1):
         if are_primes[i]:
-            for j in range(i * i, max_prime + 1, i):
+            for j in range(i * i, max_num + 1, i):
                 are_primes[j] = False
 
     return [prime for prime, is_prime in enumerate(are_primes) if is_prime]
@@ -118,10 +118,11 @@ def find_longest_chain(chain: list[int], max_num: int) -> int:
         elem = chain[start]
         length = 1
         visited = {start}
+
         while elem > 1 and elem <= max_num and elem not in visited:
+            elem = chain[elem]
             length += 1
             visited.add(elem)
-            elem = chain[elem]
 
         if elem == start and length > max_len:
             max_len = length
