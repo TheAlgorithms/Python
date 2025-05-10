@@ -63,13 +63,13 @@ def lowest_common_ancestor(
     >>> level = [-1, 0, 1, 1, 2, 2, 2]
     >>> parent = [[0, 0, 1, 1, 2, 2, 3],[0, 0, 0, 0, 1, 1, 1]] + \
                     [[0] * 7 for _ in range(17)]
-    >>> lowest_common_ancestor(4, 5, level, parent)
+    >>> lowest_common_ancestor(u=4, v=5, level=level, parent=parent)
     2
-    >>> lowest_common_ancestor(4, 6, level, parent)
+    >>> lowest_common_ancestor(u=4, v=6, level=level, parent=parent)
     1
-    >>> lowest_common_ancestor(2, 3, level, parent)
+    >>> lowest_common_ancestor(u=2, v=3, level=level, parent=parent)
     1
-    >>> lowest_common_ancestor(6, 6, level, parent)
+    >>> lowest_common_ancestor(u=6, v=6, level=level, parent=parent)
     6
     """
     # u must be deeper in the tree than v
