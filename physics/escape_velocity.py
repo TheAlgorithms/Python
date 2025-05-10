@@ -39,12 +39,12 @@ def escape_velocity(mass: float, radius: float) -> float:
             ...
         ZeroDivisionError: Radius cannot be zero.
     """
-    GRAVITATIONAL_CONSTANT = 6.67430e-11  # m^3 kg^-1 s^-2
+    gravitational_constant = 6.67430e-11  # m^3 kg^-1 s^-2
 
     if radius == 0:
         raise ZeroDivisionError("Radius cannot be zero.")
 
-    velocity = math.sqrt(2 * GRAVITATIONAL_CONSTANT * mass / radius)
+    velocity = math.sqrt(2 * gravitational_constant * mass / radius)
     return round(velocity, 3)
 
 
