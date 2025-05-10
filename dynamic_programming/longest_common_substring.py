@@ -48,7 +48,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
 
     text1_length = len(text1)
     text2_length = len(text2)
-    
+
     dp = [[0] * (text2_length + 1) for _ in range(text1_length + 1)]
     end_pos = 0
     max_length = 0
