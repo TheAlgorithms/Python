@@ -90,9 +90,9 @@ def multiply(
     chain[num] = new_sum
 
     for prime_idx in range(min_prime_idx, len(primes)):
-        num_n = primes[prime_idx] * num
-        if num_n > max_num:
+        if primes[prime_idx] * num > max_num:
             break
+
         multiply(
             chain=chain,
             primes=primes,
