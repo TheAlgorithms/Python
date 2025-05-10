@@ -112,23 +112,22 @@ def find_longest_chain(chain: list[int], max_num: int) -> int:
     6
     """
 
-    length_max = 0
-    elem_max = 0
-    for i in range(2, len(chain)):
-        start = i
+    max_len = 0
+    min_elem = 0
+    for start in range(2, len(chain)):
+        elem = chain[start]
         length = 1
-        el = chain[i]
-        visited = {i}
-        while el > 1 and el <= max_num and el not in visited:
+        visited = {start}
+        while elem > 1 and elem <= max_num and elem not in visited:
             length += 1
-            visited.add(el)
-            el = chain[el]
+            visited.add(elem)
+            elem = chain[elem]
 
-        if el == start and length > length_max:
-            length_max = length
-            elem_max = start
+        if elem == start and length > max_len:
+            max_len = length
+            min_elem = start
 
-    return elem_max
+    return min_elem
 
 
 def solution(max_num: int = 1000000) -> int:
