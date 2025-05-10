@@ -1,19 +1,22 @@
 import math
 
 
-# Escape velocity calculator script
-# Minor change to trigger pull request again
 def escape_velocity(mass: float, radius: float) -> float:
     """
-    Calculates the escape velocity needed to break free from a celestial body's gravitational field.
+    Calculates the escape velocity needed to break free from a celestial body's
+    gravitational field.
 
     The formula used is:
         v = sqrt(2 * G * M / R)
+
     where:
         v = escape velocity (m/s)
-        G = gravitational constant (6.67430 × 10^-11 m^3 kg^-1 s^-2)
+        G = gravitational constant (6.67430 * 10^-11 m^3 kg^-1 s^-2)
         M = mass of the celestial body (kg)
         R = radius from the center of mass (m)
+
+    Source:
+        https://en.wikipedia.org/wiki/Escape_velocity
 
     Args:
         mass (float): Mass of the celestial body in kilograms.
@@ -36,14 +39,14 @@ def escape_velocity(mass: float, radius: float) -> float:
             ...
         ZeroDivisionError: Radius cannot be zero.
     """
-    G = 6.67430e-11  # Gravitational constant in m^3 kg^-1 s^-2
+    gravitational_constant = 6.67430e-11  # m^3 kg^-1 s^-2
 
     if radius == 0:
         raise ZeroDivisionError("Radius cannot be zero.")
     if mass == 0:
         return 0.0
 
-    velocity = math.sqrt(2 * G * mass / radius)
+    velocity = math.sqrt(2 * gravitational_constant * mass / radius)
     return round(velocity, 3)
 
 
@@ -54,11 +57,9 @@ if __name__ == "__main__":
     print("Calculate escape velocity of a celestial body...\n")
 
     try:
-        # User input
         mass = float(input("Enter mass of the celestial body (in kg): ").strip())
         radius = float(input("Enter radius from center (in meters): ").strip())
 
-        # Result
         velocity = escape_velocity(mass, radius)
         print(f"Escape velocity is {velocity} m/s")
 
