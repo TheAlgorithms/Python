@@ -105,7 +105,8 @@ def breadth_first_search(
     >>> level = [-1] * 7
     >>> parent = [[0] * 7 for _ in range(20)]
     >>> graph = {1: [2, 3], 2: [4, 5], 3: [6], 4: [], 5: [], 6: []}
-    >>> level, parent = breadth_first_search(level=level, parent=parent, max_node=6, graph=graph, root=1)
+    >>> level, parent = breadth_first_search(
+    ...     level=level, parent=parent, max_node=6, graph=graph, root=1)
     >>> level
     [-1, 0, 1, 1, 2, 2, 2]
     >>> parent[0]
@@ -115,7 +116,8 @@ def breadth_first_search(
     >>> level = [-1] * 2
     >>> parent = [[0] * 2 for _ in range(20)]
     >>> graph = {1: []}
-    >>> level, parent = breadth_first_search(level=level, parent=parent, max_node=1, graph=graph, root=1)
+    >>> level, parent = breadth_first_search(
+    ...     level=level, parent=parent, max_node=1, graph=graph, root=1)
     >>> level
     [-1, 0]
     >>> parent[0]
