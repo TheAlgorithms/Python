@@ -1,4 +1,6 @@
 import math
+
+
 # Escape velocity calculator script
 # Minor change to trigger pull request again
 def escape_velocity(mass: float, radius: float) -> float:
@@ -46,8 +48,8 @@ def escape_velocity(mass: float, radius: float) -> float:
 
 
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
     print("Calculate escape velocity of a celestial body...\n")
 
