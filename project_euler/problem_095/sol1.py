@@ -115,14 +115,14 @@ def find_longest_chain(chain: list[int], max_num: int) -> int:
     max_len = 0
     min_elem = 0
     for start in range(2, len(chain)):
+        visited = {start}
         elem = chain[start]
         length = 1
-        visited = {start}
 
         while elem > 1 and elem <= max_num and elem not in visited:
+            visited.add(elem)
             elem = chain[elem]
             length += 1
-            visited.add(elem)
 
         if elem == start and length > max_len:
             max_len = length
