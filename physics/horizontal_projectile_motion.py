@@ -94,11 +94,11 @@ def max_height(init_velocity: float, angle: float) -> float:
     >>> max_height("a", 20)
     Traceback (most recent call last):
         ...
-    TypeError: Invalid velocity. Should be a positive number.
+    TypeError: Invalid velocity. Should be an integer or float.
     >>> horizontal_distance(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
     radians = deg_to_rad(angle)
@@ -128,7 +128,7 @@ def total_time(init_velocity: float, angle: float) -> float:
     >>> total_time(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
     radians = deg_to_rad(angle)
