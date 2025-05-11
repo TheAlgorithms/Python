@@ -1,0 +1,10 @@
+"""
+Arquivo criado como parte do Bootcamp I - 2025.
+Exemplo educacional para pull request seguro.
+"""
+
+def mensagem():
+    return "Olá! Esta contribuição é apenas um exemplo para o Bootcamp I."
+
+if _name_ == "_main_":
+    print(mensagem())
