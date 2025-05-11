@@ -19,7 +19,7 @@ def is_kaprekar_number(n: int) -> bool:
         >>> is_kaprekar_number(10)
         False
     """
-    square = str(n ** 2)
+    square = str(n**2)
     for i in range(1, len(square)):
         left, right = square[:i], square[i:]
         if int(right) == 0:
@@ -31,5 +31,5 @@ def is_kaprekar_number(n: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
