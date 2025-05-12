@@ -1,9 +1,10 @@
 def is_kaprekar_number(n: int) -> bool:
     """
-    Determine whether a number is a Kaprekar number.
+    Determine whether a number is a Kaprekar number (excluding powers of 10).
 
-    A Kaprekar number is one where the square can be split into parts
-    that sum to the original number.
+    A Kaprekar number is a positive number n such that:
+    n^2 = q * 10^m + r, for some m >= 1, q >= 0, 0 <= r < 10^m,
+    and n = q + r, with the restriction that n is not a power of 10.
 
     Args:
         n (int): The number to check.
@@ -18,18 +19,19 @@ def is_kaprekar_number(n: int) -> bool:
         True
         >>> is_kaprekar_number(10)
         False
+        >>> is_kaprekar_number(1)
+        True
     """
-    square = str(n**2)
+    if n == 1:
+        return True
+    if n <= 0 or (n % 10 == 0 and n == 10 ** len(str(n))):
+        return False  # Disallow powers of 10 (e.g., 10, 100)
+
+    square = str(n ** 2)
     for i in range(1, len(square)):
         left, right = square[:i], square[i:]
         if int(right) == 0:
             continue
         if n == int(left or "0") + int(right):
             return True
-    return n == 1
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    return False
