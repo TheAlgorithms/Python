@@ -1,5 +1,6 @@
 from typing import List
 
+
 class RC4:
     def __init__(self, key: bytes):
         self.key = key
@@ -8,7 +9,7 @@ class RC4:
     def _ksa(self, key: bytes) -> List[int]:
         """
         Key Scheduling Algorithm (KSA)
-        
+
         >>> rc4 = RC4(b"SecretKey")
         >>> len(rc4._ksa(b"SecretKey"))
         256
@@ -24,7 +25,7 @@ class RC4:
     def _prga(self) -> int:
         """
         Pseudo-Random Generation Algorithm (PRGA)
-        
+
         >>> rc4 = RC4(b"SecretKey")
         >>> prga = rc4._prga()
         >>> isinstance(next(prga), int)
@@ -45,7 +46,7 @@ class RC4:
     def encrypt(self, plaintext: bytes) -> bytes:
         """
         Encrypt plaintext using RC4
-        
+
         >>> rc4 = RC4(b"SecretKey")
         >>> plaintext = b"Hello"
         >>> encrypted = rc4.encrypt(plaintext)
@@ -59,7 +60,7 @@ class RC4:
     def decrypt(self, ciphertext: bytes) -> bytes:
         """
         Decrypt ciphertext using RC4
-        
+
         >>> rc4 = RC4(b"SecretKey")
         >>> ciphertext = rc4.encrypt(b"Hello")
         >>> rc4.decrypt(ciphertext) == b"Hello"
@@ -70,19 +71,20 @@ class RC4:
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()  
+
+    doctest.testmod()
 
     key = b"SecretKey"
     rc4 = RC4(key)
-    
+
     plaintext = b"Hello, RC4 Cipher!"
     print(f"Original: {plaintext}")
-    
+
     ciphertext = rc4.encrypt(plaintext)
     print(f"Encrypted: {ciphertext}")
-    
+
     decrypted_text = rc4.decrypt(ciphertext)
     print(f"Decrypted: {decrypted_text}")
-    
+
     assert plaintext == decrypted_text, "Decryption failed!"
     print("Encryption and decryption successful.")
