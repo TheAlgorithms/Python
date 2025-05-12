@@ -27,7 +27,7 @@ def is_kaprekar_number(n: int) -> bool:
     if n <= 0 or (n % 10 == 0 and n == 10 ** len(str(n))):
         return False  # Disallow powers of 10 (e.g., 10, 100)
 
-    square = str(n ** 2)
+    square = str(n**2)
     for i in range(1, len(square)):
         left, right = square[:i], square[i:]
         if int(right) == 0:
