@@ -1,7 +1,9 @@
 import math
 
-def orbital_transfer_work(mass_central: float, mass_object: float,
-                          r_initial: float, r_final: float) -> str:
+
+def orbital_transfer_work(
+    mass_central: float, mass_object: float, r_initial: float, r_final: float
+) -> str:
     """
     Calculates the work required to move an object from one orbit to another in a
     gravitational field based on the change in total mechanical energy.
@@ -39,12 +41,15 @@ def orbital_transfer_work(mass_central: float, mass_object: float,
     if r_initial <= 0 or r_final <= 0:
         raise ValueError("Orbital radii must be greater than zero.")
 
-    work = (gravitational_constant * mass_central * mass_object / 2) * (1 / r_initial - 1 / r_final)
+    work = (gravitational_constant * mass_central * mass_object / 2) * (
+        1 / r_initial - 1 / r_final
+    )
     return f"{work:.3e}"
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print("Orbital transfer work calculator\n")
 
