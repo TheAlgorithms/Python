@@ -24,7 +24,7 @@ def escape_velocity(mass: float, radius: float) -> float:
 
     Returns:
         float: Escape velocity in meters per second, rounded to 3 decimal places.
-
+    
     Examples:
         >>> escape_velocity(5.972e24, 6.371e6)  # Earth
         11185.978
@@ -39,7 +39,7 @@ def escape_velocity(mass: float, radius: float) -> float:
             ...
         ZeroDivisionError: Radius cannot be zero.
     """
-    gravitational_constant = 6.67430e-11  # m^3 kg^-1 s^-2
+    gravitational_constant = 6.67430e-11
 
     if radius == 0:
         raise ZeroDivisionError("Radius cannot be zero.")
@@ -48,7 +48,6 @@ def escape_velocity(mass: float, radius: float) -> float:
 
     velocity = math.sqrt(2 * gravitational_constant * mass / radius)
     return round(velocity, 3)
-
 
 if __name__ == "__main__":
     import doctest
