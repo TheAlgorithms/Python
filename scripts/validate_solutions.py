@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "pytest",
+#     "requests",
+# ]
+# ///
+
 import hashlib
 import importlib.util
 import json
