@@ -26,25 +26,23 @@ def escape_velocity(mass: float, radius: float) -> float:
         float: Escape velocity in meters per second, rounded to 3 decimal places.
 
     Examples:
-        >>> escape_velocity(5.972e24, 6.371e6)  # Earth
+        >>> escape_velocity(mass=5.972e24, radius=6.371e6)  # Earth
         11185.978
-        >>> escape_velocity(7.348e22, 1.737e6)  # Moon
+        >>> escape_velocity(mass=7.348e22, radius=1.737e6)  # Moon
         2376.307
-        >>> escape_velocity(1.898e27, 6.9911e7)  # Jupiter
+        >>> escape_velocity(mass=1.898e27, radius=6.9911e7)  # Jupiter
         60199.545
-        >>> escape_velocity(0, 1.0)
+        >>> escape_velocity(mass=0, radius=1.0)
         0.0
-        >>> escape_velocity(1.0, 0)
+        >>> escape_velocity(mass=1.0, radius=0)
         Traceback (most recent call last):
             ...
         ZeroDivisionError: Radius cannot be zero.
     """
-    gravitational_constant = 6.67430e-11
+    gravitational_constant = 6.67430e-11  # m^3 kg^-1 s^-2
 
     if radius == 0:
         raise ZeroDivisionError("Radius cannot be zero.")
-    if mass == 0:
-        return 0.0
 
     velocity = math.sqrt(2 * gravitational_constant * mass / radius)
     return round(velocity, 3)
@@ -57,10 +55,10 @@ if __name__ == "__main__":
     print("Calculate escape velocity of a celestial body...\n")
 
     try:
-        mass = float(input("Enter mass of the celestial body (in kg): ").strip())
-        radius = float(input("Enter radius from center (in meters): ").strip())
+        mass = float(input("Enter mass of the celestial body (in kgs): ").strip())
+        radius = float(input("Enter radius from the center of mass (in ms): ").strip())
 
-        velocity = escape_velocity(mass, radius)
+        velocity = escape_velocity(mass=mass, radius=radius)
         print(f"Escape velocity is {velocity} m/s")
 
     except ValueError:
