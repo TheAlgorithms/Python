@@ -61,15 +61,8 @@ def rotate_array_n_space(nums: list[int], k: int) -> list[int]:
 
     length = len(nums)
     k = k % length
-    new_nums = []
 
-    for i in range(length - k, length):
-        new_nums.append(nums[i])
-
-    for i in range(length - k):
-        new_nums.append(nums[i])
-
-    return new_nums
+    return nums[length - k :] + nums[: length - k]
 
 
 # Time: O(n)     Space: O(k)
