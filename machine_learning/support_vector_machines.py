@@ -57,7 +57,7 @@ class SVC:
     >>> SVC(kernel="polynomial",degree=None)
     Traceback (most recent call last):
         ...
-    ValueError: degree must be int
+    ValueError: degree must be float or int
     >>> SVC(kernel="polynomial",degree=-1)
     Traceback (most recent call last):
         ...
@@ -70,7 +70,7 @@ class SVC:
         regularization: float = np.inf,
         kernel: str = "linear",
         gamma: float = 0.0,
-        degree: int =0.0,
+        degree: float =0.0,
         coef0: float = 0.0,
     ) -> None:
         self.regularization = regularization
@@ -93,8 +93,8 @@ class SVC:
         elif kernel == "polynomial":
             if self.degree == 0:
                 raise ValueError("polynomial kernel requires degree")
-            if not isinstance(self.degree, int) :
-                raise ValueError("degree must be int")
+            if not isinstance(self.degree, (float, int)) :
+                raise ValueError("degree must be float or int")
             if not self.degree > 0:
                 raise ValueError("degree must be > 0")
             self.kernel = self.__polynomial
