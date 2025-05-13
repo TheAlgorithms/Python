@@ -1,3 +1,5 @@
+import math
+
 def is_kaprekar_number(n: int) -> bool:
     """
     Determine whether a number is a Kaprekar number (excluding powers of 10).
@@ -24,10 +26,10 @@ def is_kaprekar_number(n: int) -> bool:
     """
     if n == 1:
         return True
-    if n <= 0 or (n % 10 == 0 and n == 10 ** len(str(n))):
-        return False  # Disallow powers of 10 (e.g., 10, 100)
+    if n <= 0 or math.log10(n).is_integer():
+        return False  # Disallow powers of 10 (e.g., 10, 100, 1000)
 
-    square = str(n**2)
+    square = str(n ** 2)
     for i in range(1, len(square)):
         left, right = square[:i], square[i:]
         if n == int(left or "0") + int(right):
