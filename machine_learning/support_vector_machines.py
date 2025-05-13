@@ -70,7 +70,7 @@ class SVC:
         regularization: float = np.inf,
         kernel: str = "linear",
         gamma: float = 0.0,
-        degree: float=0.0,
+        degree: float = 0.0,
         coef0: float = 0.0,
     ) -> None:
         self.regularization = regularization
@@ -93,7 +93,7 @@ class SVC:
         elif kernel == "polynomial":
             if self.degree == 0:
                 raise ValueError("polynomial kernel requires degree")
-            if not isinstance(self.degree, (float, int)) :
+            if not isinstance(self.degree, (float, int)):
                 raise ValueError("degree must be float or int")
             if not self.degree > 0:
                 raise ValueError("degree must be > 0")
@@ -122,7 +122,6 @@ class SVC:
             float: exp(-(gamma * norm_squared(vector1 - vector2)))
         """
         return np.exp(-(self.gamma * norm_squared(vector1 - vector2)))
-
 
     def __polynomial(self, vector1: ndarray, vector2: ndarray) -> float:
         """
