@@ -1,6 +1,3 @@
-import math
-
-
 def orbital_transfer_work(
     mass_central: float, mass_object: float, r_initial: float, r_final: float
 ) -> str:
