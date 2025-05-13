@@ -55,7 +55,6 @@ repos:
           - --ignore-missing-imports
           - --install-types # See mirrors-mypy README.md
           - --non-interactive
-        additional_dependencies: [types-requests]
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v4.0.0-alpha.8"
