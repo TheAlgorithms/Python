@@ -1,4 +1,7 @@
 import numpy as np
+from numpy.random import default_rng
+
+rng = default_rng(42)
 
 
 class Dataloader:
@@ -39,7 +42,7 @@ class Dataloader:
 
     def get_train_test_data(
         self,
-    ) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
+    ) -> tuple[np.ndarray, np.ndarray, list[np.ndarray], list[np.ndarray]]:
         """
         Splits the data into training and testing sets.
         Here, we manually split the data.
@@ -136,8 +139,13 @@ class MLP:
     """
 
     def __init__(
-        self, dataloader, epoch: int, learning_rate: float, gamma=1, hidden_dim=2
-    ):
+        self,
+        dataloader: Dataloader,
+        epoch: int,
+        learning_rate: float,
+        gamma: float = 1.0,
+        hidden_dim: int = 2,
+    ) -> None:
         self.learning_rate = learning_rate
         self.gamma = gamma  # learning_rate decay hyperparameter gamma
         self.epoch = epoch
@@ -173,23 +181,24 @@ class MLP:
         """
         Initialize weights using He initialization.
 
-        :return: Tuple of weights (W1, W2) for the network.
+        :return: Tuple of weights (w1, w2) for the network.
 
         >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
         >>> y = [0, 1, 0, 0]
         >>> loader = Dataloader(X, y)
         >>> mlp = MLP(loader, 10, 0.1)
-        >>> W1, W2 = mlp.initialize()
-        >>> W1.shape
+        >>> w1, w2 = mlp.initialize()
+        >>> w1.shape
         (3, 2)
-        >>> W2.shape
+        >>> w2.shape
         (2, 3)
         """
 
         in_dim, out_dim = self.dataloader.get_inout_dim()
-        w1 = np.random.Generator(in_dim + 1, self.hidden_dim) * 0.01
-
-        w2 = np.random.Generator(self.hidden_dim, out_dim) * 0.01
+        w1 = rng.standard_normal((in_dim + 1, self.hidden_dim)) * np.sqrt(2.0 / in_dim)
+        w2 = rng.standard_normal((self.hidden_dim, out_dim)) * np.sqrt(
+            2.0 / self.hidden_dim
+        )
         return w1, w2
 
     def relu(self, input_array: np.ndarray) -> np.ndarray:
@@ -284,6 +293,7 @@ class MLP:
             >>> mlp = MLP(None, 1, 0.1, hidden_dim=2)
             >>> x = np.array([[1.0, 2.0, 1.0]])  # batch_size=1, input_dim=2 + bias
             >>> y = np.array([[0.0, 1.0]])  # batch_size=1, output_dim=2
+            >>> w1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
             >>> w2 = np.array([[0.7, 0.8], [0.9, 1.0]])  # (hidden_dim=2, output_dim=2)
             >>> _ = mlp.forward(x, w1, w2)  # Run forward to set inter_variable
             >>> grad_w1, grad_w2 = mlp.back_prop(x, y, w2)
@@ -394,7 +404,7 @@ class MLP:
             >>> label = np.array([[1, 0], [0, 1], [1, 0]])
             >>> y_hat = np.array([[0.9, 0.1], [0.2, 0.8], [0.6, 0.4]])
             >>> mlp.accuracy(label, y_hat)
-            1.0
+            np.float64(1.0)
         """
         return (y_hat.argmax(axis=1) == label.argmax(axis=1)).mean()
 
@@ -415,7 +425,7 @@ class MLP:
             >>> output = np.array([[0.9, 0.1], [0.2, 0.8]])
             >>> label = np.array([[1.0, 0.0], [0.0, 1.0]])
             >>> round(mlp.loss(output, label), 3)
-            0.025
+            np.float64(0.025)
         """
         return np.sum((output - label) ** 2) / (2 * label.shape[0])
 
