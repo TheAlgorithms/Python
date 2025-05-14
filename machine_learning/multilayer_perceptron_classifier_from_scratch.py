@@ -142,15 +142,15 @@ class MLP:
         self.gamma = gamma  # learning_rate decay hyperparameter gamma
         self.epoch = epoch
         self.hidden_dim = hidden_dim
-
-        self.train_loss = []
-        self.train_accuracy = []
-        self.test_loss = []
-        self.test_accuracy = []
+        
+        self.train_loss: list[float] = []
+        self.train_accuracy: list[float] = []
+        self.test_loss: list[float] = []
+        self.test_accuracy: list[float] = []
 
         self.dataloader = dataloader
-        self.inter_variable = {}
-        self.weights1_list = []
+        self.inter_variable: dict[str, np.ndarray] = {}
+        self.weights1_list: list[np.ndarray]       = []
 
     def get_inout_dim(self) -> tuple[int, int]:
         """
@@ -469,7 +469,8 @@ class MLP:
 
         w1, w2 = self.initialize()
 
-        test_accuracy_list, test_loss_list = [], []
+        test_accuracy_list: list[float] = []
+        test_loss_list: list[float] = []
 
         batch_size = 1
 
