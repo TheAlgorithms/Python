@@ -899,6 +899,7 @@
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
+  * [Orbital Transfer Work](physics/orbital_transfer_work.py)
   * [Period Of Pendulum](physics/period_of_pendulum.py)
   * [Photoelectric Effect](physics/photoelectric_effect.py)
   * [Potential Energy](physics/potential_energy.py)

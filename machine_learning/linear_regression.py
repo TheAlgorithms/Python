@@ -8,8 +8,16 @@ fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+#     "numpy",
+# ]
+# ///
+
+import httpx
 import numpy as np
-import requests
 
 
 def collect_dataset():
@@ -17,7 +25,7 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    response = requests.get(
+    response = httpx.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,

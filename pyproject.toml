@@ -11,6 +11,7 @@ classifiers = [
 dependencies = [
   "beautifulsoup4>=4.12.3",
   "fake-useragent>=1.5.1",
+  "httpx>=0.28.1",
   "imageio>=2.36.1",
   "keras>=3.7",
   "lxml>=5.3",
@@ -19,7 +20,6 @@ dependencies = [
   "opencv-python>=4.10.0.84",
   "pandas>=2.2.3",
   "pillow>=11",
-  "requests>=2.32.3",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
   "sphinx-pyproject>=0.3",
@@ -42,8 +42,8 @@ docs = [
   "sphinx-pyproject>=0.3",
 ]
 euler-validate = [
+  "httpx>=0.28.1",
   "numpy>=2.1.3",
-  "requests>=2.32.3",
 ]
 
 [tool.ruff]
