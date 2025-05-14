@@ -1,9 +1,6 @@
 import numpy as np
 from numpy.random import default_rng
-
 rng = default_rng(42)
-
-
 class Dataloader:
     """
     DataLoader class for handling dataset, including data shuffling,
@@ -139,12 +136,12 @@ class MLP:
     """
 
     def __init__(
-        self,
-        dataloader: Dataloader,
-        epoch: int,
-        learning_rate: float,
-        gamma: float = 1.0,
-        hidden_dim: int = 2,
+            self,
+            dataloader: Dataloader,
+            epoch: int,
+            learning_rate: float,
+            gamma: float = 1.0,
+            hidden_dim: int = 2,
     ) -> None:
         self.learning_rate = learning_rate
         self.gamma = gamma  # learning_rate decay hyperparameter gamma
@@ -195,7 +192,8 @@ class MLP:
         """
 
         in_dim, out_dim = self.dataloader.get_inout_dim()
-        w1 = rng.standard_normal((in_dim + 1, self.hidden_dim)) * np.sqrt(2.0 / in_dim)
+        w1 = (rng.standard_normal((in_dim + 1, self.hidden_dim)) *
+              np.sqrt(2.0 / in_dim))
         w2 = rng.standard_normal((self.hidden_dim, out_dim)) * np.sqrt(
             2.0 / self.hidden_dim
         )
@@ -404,7 +402,7 @@ class MLP:
             >>> label = np.array([[1, 0], [0, 1], [1, 0]])
             >>> y_hat = np.array([[0.9, 0.1], [0.2, 0.8], [0.6, 0.4]])
             >>> mlp.accuracy(label, y_hat)
-            1.0
+            np.float64(1.0)
         """
         return (y_hat.argmax(axis=1) == label.argmax(axis=1)).mean()
 
@@ -425,7 +423,7 @@ class MLP:
             >>> output = np.array([[0.9, 0.1], [0.2, 0.8]])
             >>> label = np.array([[1.0, 0.0], [0.0, 1.0]])
             >>> round(mlp.loss(output, label), 3)
-            0.025
+            np.float64(0.025)
         """
         return np.sum((output - label) ** 2) / (2 * label.shape[0])
 
