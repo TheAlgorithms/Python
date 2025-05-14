@@ -27,7 +27,6 @@ if __name__ == "__main__":
         headers={"User-Agent": str(UserAgent().random)},
         timeout=10,
     )
-    print(BeautifulSoup(res.text, "html.parser"))
 
     try:
         link = BeautifulSoup(res.text, "html.parser").find("div").find("a").get("href")
