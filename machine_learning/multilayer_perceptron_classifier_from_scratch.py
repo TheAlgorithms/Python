@@ -42,7 +42,7 @@ class Dataloader:
 
     def get_train_test_data(
         self,
-    ) -> tuple[np.ndarray, np.ndarray, list[np.ndarray], list[np.ndarray]]:
+    ) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, list[np.ndarray]]:
         """
         Splits the data into training and testing sets.
         Here, we manually split the data.
