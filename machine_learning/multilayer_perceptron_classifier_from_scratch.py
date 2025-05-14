@@ -51,7 +51,9 @@ class Dataloader:
         self.y = np.array(labels)
         self.class_weights = {0: 1.0, 1: 1.0}
 
-    def get_train_test_data(self) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
+    def get_train_test_data(
+            self
+    ) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
         """
         Splits the data into training and testing sets.
         Here, we manually split the data.
@@ -63,13 +65,17 @@ class Dataloader:
             - Test data
             - Test labels
         """
-        train_data = np.array([self.X[0], self.X[1], self.X[2]])  # First 3 samples for training
-        train_labels = [np.array([self.y[0]]), np.array([self.y[1]]), np.array([self.y[2]])]
+        train_data = np.array([self.X[0], self.X[1], self.X[2]]) 
+        train_labels = \
+            [np.array([self.y[0]]), np.array([self.y[1]]), np.array([self.y[2]])]
         test_data = np.array([self.X[3]])  # Last sample for testing
         test_labels = [np.array([self.y[3]])]  # Labels as np.ndarray
         return train_data, train_labels, test_data, test_labels
 
-    def shuffle_data(self, paired_data: list[tuple[np.ndarray, int]]) -> list[tuple[np.ndarray, int]]:
+    def shuffle_data(
+            self,
+            paired_data: list[tuple[np.ndarray, int]]
+    ) -> list[tuple[np.ndarray, int]]:
         """
         Shuffles the data randomly.
 
@@ -84,7 +90,8 @@ class Dataloader:
         return paired_data
 
     def get_inout_dim(self) -> tuple[int, int]:
-        train_data, train_labels, test_data, test_labels = self.get_train_test_data()
+        train_data, train_labels, test_data, test_labels = (
+            self.get_train_test_data())
         in_dim = train_data[0].shape[0]
         out_dim = len(train_labels)
         return in_dim, out_dim
@@ -203,9 +210,11 @@ class MLP():
         (2, 3)
         """
 
-        in_dim, out_dim = self.dataloader.get_inout_dim()  # in_dim here is image dim
-        w1 = rng.standard_normal((in_dim + 1, self.hidden_dim)) * np.sqrt(2.0 / in_dim)
-        w2 = rng.standard_normal((self.hidden_dim, out_dim)) * np.sqrt(2.0 / self.hidden_dim)
+        in_dim, out_dim = self.dataloader.get_inout_dim()
+        w1 = (rng.standard_normal((in_dim + 1, self.hidden_dim))
+              * np.sqrt(2.0 / in_dim))
+        w2 = (rng.standard_normal((self.hidden_dim, out_dim))
+              * np.sqrt(2.0 / self.hidden_dim))
         return w1, w2
 
     def relu(self, input_array: np.ndarray) -> np.ndarray:
@@ -256,7 +265,8 @@ class MLP():
             no_gradient: If True, returns output without storing intermediates.
 
         Returns:
-            Output of the network after forward pass, shape (batch_size, output_dim).
+            Output of the network after forward pass, 
+                    shape (batch_size, output_dim).
 
         Examples:
             >>> mlp = MLP(None, 1, 0.1, hidden_dim=2)
@@ -334,11 +344,11 @@ class MLP():
 
         grad_w2 = (
             np.dot(a1.T, delta_k) / batch_size
-        )  # (hidden, batch).dot(batch, output) = (hidden, output)
-        input_data_flat = input_data.reshape(input_data.shape[0], -1)  # (batch_size, input_dim)
+        ) 
+        input_data_flat = input_data.reshape(input_data.shape[0], -1) 
         grad_w1 = (
             np.dot(input_data_flat.T, delta_j) / batch_size
-        )  # (input_dim, batch_size).dot(batch, hidden) = (input, hidden)
+        ) 
 
         return grad_w1, grad_w2
 
@@ -351,11 +361,14 @@ class MLP():
             learning_rate: float
     ) -> tuple[np.ndarray, np.ndarray]:
         """
-        Updates the weight matrices using the computed gradients and learning rate.
+        Updates the weight matrices using 
+                the computed gradients and learning rate.
 
         Args:
-            w1: Weight matrix for input to hidden layer, shape (input_dim + 1, hidden_dim).
-            w2: Weight matrix for hidden to output layer, shape (hidden_dim, output_dim).
+            w1: Weight matrix for input to hidden layer, shape 
+                    (input_dim + 1, hidden_dim).
+            w2: Weight matrix for hidden to output layer, shape 
+                    (hidden_dim, output_dim).
             grad_w1: Gradient for w1, shape (input_dim + 1, hidden_dim).
             grad_w2: Gradient for w2, shape (hidden_dim, output_dim).
             learning_rate: Learning rate for weight updates.
@@ -405,7 +418,8 @@ class MLP():
     @staticmethod
     def accuracy(label: np.ndarray, y_hat: np.ndarray) -> float:
         """
-        Computes the accuracy of predictions by comparing predicted and true labels.
+        Computes the accuracy of predictions 
+                by comparing predicted and true labels.
 
         Args:
             label: True labels, shape (batch_size, num_classes).
@@ -426,7 +440,8 @@ class MLP():
     @staticmethod
     def loss(output: np.ndarray, label: np.ndarray) -> float:
         """
-        Computes the mean squared error loss between predictions and true labels.
+        Computes the mean squared error loss 
+                    between predictions and true labels.
 
         Args:
             output: Predicted outputs, shape (batch_size, num_classes).
@@ -465,9 +480,11 @@ class MLP():
 
     def train(self) -> None:
         """
-        Trains the MLP model using the provided dataloader for multiple folds and epochs.
+        Trains the MLP model using the provided dataloader 
+                    for multiple folds and epochs.
 
-        Saves the best model parameters for each fold and records accuracy/loss.
+        Saves the best model parameters 
+                    for each fold and records accuracy/loss.
 
         Examples:
             >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
@@ -479,7 +496,8 @@ class MLP():
         """
 
         learning_rate = self.learning_rate
-        train_data, train_labels, test_data, test_labels = self.dataloader.get_train_test_data()
+        train_data, train_labels, test_data, test_labels = (
+            self.dataloader.get_train_test_data())
 
         train_data = np.c_[train_data, np.ones(train_data.shape[0])]
         test_data = np.c_[test_data, np.ones(test_data.shape[0])]
@@ -498,12 +516,16 @@ class MLP():
         batch_size = 1
 
         for j in tqdm(range(self.epoch)):
-            for k in range(0, train_data.shape[0], batch_size):  # retrieve every image
+            for k in range(0, train_data.shape[0], batch_size):  
 
                 batch_imgs = train_data[k: k + batch_size]
                 batch_labels = train_labels[k: k + batch_size]
 
-                output = self.forward(input_data=batch_imgs, w1=w1, w2=w2, no_gradient=False)
+                output = self.forward(
+                    input_data=batch_imgs, 
+                    w1=w1, 
+                    w2=w2, 
+                    no_gradient=False)
 
                 grad_w1, grad_w2 = self.back_prop(
                     input_data=batch_imgs,
