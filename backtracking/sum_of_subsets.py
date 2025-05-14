@@ -1,5 +1,5 @@
 """
-The sum-of-subsetsproblem states that a set of non-negative integers, and a
+The sum-of-subsets problem states that a set of non-negative integers, and a
 value M, determine all possible subsets of the given set whose summation sum
 equal to given M.
 
@@ -7,10 +7,19 @@ Summation of the chosen numbers must be equal to given number M and one number
 can be used only once.
 """
 
-from __future__ import annotations
 
+def generate_sum_of_subsets_solutions(nums: list[int], max_sum: int) -> list[list[int]]:
+    """
+    The main function. For list of numbers 'nums' find the the subsets with sum
+    equal to 'max_sum'
+    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 9)
+    [[3, 4, 2], [4, 5]]
+    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 3)
+    [[3]]
+    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 1)
+    []
+    """
 
-def generate_sum_of_subsets_soln(nums: list[int], max_sum: int) -> list[list[int]]:
     result: list[list[int]] = []
     path: list[int] = []
     num_index = 0
@@ -34,7 +43,9 @@ def create_state_space_tree(
     This algorithm follows depth-fist-search and backtracks when the node is not
     branchable.
 
+    >>> create_state_space_tree([1], 1, 0, [], [], 1)
     """
+
     if sum(path) > max_sum or (remaining_nums_sum + sum(path)) < max_sum:
         return
     if sum(path) == max_sum:
@@ -51,16 +62,7 @@ def create_state_space_tree(
         )
 
 
-"""
-remove the comment to take an input from the user
+if __name__ == "__main__":
+    import doctest
 
-print("Enter the elements")
-nums = list(map(int, input().split()))
-print("Enter max_sum sum")
-max_sum = int(input())
-
-"""
-nums = [3, 34, 4, 12, 5, 2]
-max_sum = 9
-result = generate_sum_of_subsets_soln(nums, max_sum)
-print(*result)
+    doctest.testmod()
