@@ -1,5 +1,4 @@
 import numpy as np
-from tqdm import tqdm
 
 
 class Dataloader:
@@ -474,7 +473,7 @@ class MLP:
 
         batch_size = 1
 
-        for _j in tqdm(range(self.epoch)):
+        for _j in range(self.epoch):
             for k in range(0, train_data.shape[0], batch_size):  # retrieve every image
                 batch_imgs = train_data[k : k + batch_size]
                 batch_labels = train_labels[k : k + batch_size]
