@@ -1,8 +1,7 @@
 import numpy as np
-from tqdm import tqdm
 from numpy.random import default_rng
-
-
+from tqdm import tqdm
+rng = default_rng(42)
 class Dataloader:
     """
     DataLoader class for handling dataset operations. Supports:
@@ -36,22 +35,23 @@ class Dataloader:
 
     def __init__(self, features: list[list[float]], labels: list[int]) -> None:
         """
-        Initializes the Dataloader instance with a feature matrix (`features`)
+        Initializes the Dataloader instance
+        with a feature matrix (`features`)
         and corresponding labels (`labels`).
 
         Args:
-            features: Feature matrix of shape (n_samples, n_features).
-            labels: List of labels of shape (n_samples,).
+            features: Feature matrix of shape
+                            (n_samples, n_features).
+            labels: List of labels of shape
+                            (n_samples,).
         """
         # random seed
-        self.rng = default_rng(42)  # Create a random number generator with a seed
+        self.rng = default_rng(42)
         self.X = np.array(features)
         self.y = np.array(labels)
-        self.class_weights = {0: 1.0, 1: 1.0}  # Example class weights, adjust as needed
+        self.class_weights = {0: 1.0, 1: 1.0}
 
-    def get_train_test_data(
-        self,
-    ) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
+    def get_train_test_data(self) -> tuple[list[np.ndarray], list[np.ndarray], list[np.ndarray], list[np.ndarray]]:
         """
         Splits the data into training and testing sets.
         Here, we manually split the data.
@@ -63,26 +63,19 @@ class Dataloader:
             - Test data
             - Test labels
         """
-        train_data = np.array(
-            [self.X[0], self.X[1], self.X[2]]
-        )  # First 3 samples for training
-        train_labels = [
-            np.array([self.y[0]]),
-            np.array([self.y[1]]),
-            np.array([self.y[2]]),
-        ]  # Labels as np.ndarray
+        train_data = np.array([self.X[0], self.X[1], self.X[2]])  # First 3 samples for training
+        train_labels = [np.array([self.y[0]]), np.array([self.y[1]]), np.array([self.y[2]])]
         test_data = np.array([self.X[3]])  # Last sample for testing
         test_labels = [np.array([self.y[3]])]  # Labels as np.ndarray
         return train_data, train_labels, test_data, test_labels
 
-    def shuffle_data(
-        self, paired_data: list[tuple[np.ndarray, int]]
-    ) -> list[tuple[np.ndarray, int]]:
+    def shuffle_data(self, paired_data: list[tuple[np.ndarray, int]]) -> list[tuple[np.ndarray, int]]:
         """
         Shuffles the data randomly.
 
         Args:
-            paired_data: List of tuples containing data and corresponding labels.
+            paired_data: List of tuples containing data
+                            and corresponding labels.
 
         Returns:
             A shuffled list of data-label pairs.
@@ -114,45 +107,54 @@ class Dataloader:
         return one_hot
 
 
-class MLP:
+class MLP():
     """
-    A custom MLP class for implementing a simple multi-layer perceptron with
-    forward propagation, backpropagation.
+        A custom MLP class for implementing a simple multi-layer perceptron with
+        forward propagation, backpropagation.
 
-    Attributes:
-        learning_rate (float): Learning rate for gradient descent.
-        gamma (float): Parameter to control learning rate adjustment.
-        epoch (int): Number of epochs for training.
-        hidden_dim (int): Dimension of the hidden layer.
-        batch_size (int): Number of samples per mini-batch.
-        train_loss (List[float]): List to store training loss for each fold.
-        train_accuracy (List[float]): List to store training accuracy for each fold.
-        test_loss (List[float]): List to store test loss for each fold.
-        test_accuracy (List[float]): List to store test accuracy for each fold.
-        dataloader (Dataloader): DataLoader object for handling training data.
-        inter_variable (dict):
-            Dictionary to store intermediate variables for backpropagation.
-        weights1_list (List[Tuple[np.ndarray, np.ndarray]]):
-            List of weights for each fold.
+        Attributes:
+            learning_rate (float): Learning rate for gradient descent.
+            gamma (float): Parameter to control learning rate adjustment.
+            epoch (int): Number of epochs for training.
+            hidden_dim (int): Dimension of the hidden layer.
+            batch_size (int): Number of samples per mini-batch.
+            train_loss (List[float]):
+                List to store training loss for each fold.
+            train_accuracy (List[float]):
+                List to store training accuracy for each fold.
+            test_loss (List[float]): List to store test loss for each fold.
+            test_accuracy (List[float]):
+                List to store test accuracy for each fold.
+            dataloader (Dataloader):
+                DataLoader object for handling training data.
+            inter_variable (dict):
+                Dictionary to store intermediate variables for backpropagation.
+            weights1_list (List[Tuple[np.ndarray, np.ndarray]]):
+                List of weights for each fold.
 
-    Methods:
-        get_inout_dim:obtain input dimension and output dimension.
-        relu: Apply the ReLU activation function.
-        relu_derivative: Compute the derivative of the ReLU function.
-        forward: Perform a forward pass through the network.
-        back_prop: Perform backpropagation to compute gradients.
-        update_weights: Update the weights using gradients.
-        update_learning_rate: Adjust the learning rate based on test accuracy.
-        accuracy: Compute accuracy of the model.
-        loss: Compute weighted MSE loss.
-        train: Train the MLP over multiple folds with early stopping.
+        Methods:
+            get_inout_dim:obtain input dimension and output dimension.
+            relu: Apply the ReLU activation function.
+            relu_derivative: Compute the derivative of the ReLU function.
+            forward: Perform a forward pass through the network.
+            back_prop: Perform backpropagation to compute gradients.
+            update_weights: Update the weights using gradients.
+            update_learning_rate: Adjust the learning rate based on test accuracy.
+            accuracy: Compute accuracy of the model.
+            loss: Compute weighted MSE loss.
+            train: Train the MLP over multiple folds with early stopping.
 
 
-    """
+        """
 
     def __init__(
-        self, dataloader, epoch: int, learning_rate: float, gamma=1, hidden_dim=2
-    ):
+            self,
+            dataloader: Dataloader,
+            epoch: int,
+            learning_rate: float,
+            gamma: float = 1.0,
+            hidden_dim: int = 2,
+    ) -> None:
         self.learning_rate = learning_rate
         self.gamma = gamma  # learning_rate decay hyperparameter gamma
         self.epoch = epoch
@@ -188,23 +190,22 @@ class MLP:
         """
         Initialize weights using He initialization.
 
-        :return: Tuple of weights (W1, W2) for the network.
+        :return: Tuple of weights (w1, w2) for the network.
 
         >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
         >>> y = [0, 1, 0, 0]
         >>> loader = Dataloader(X, y)
         >>> mlp = MLP(loader, 10, 0.1)
-        >>> W1, W2 = mlp.initialize()
-        >>> W1.shape
+        >>> w1, w2 = mlp.initialize()
+        >>> w1.shape
         (3, 2)
-        >>> W2.shape
+        >>> w2.shape
         (2, 3)
         """
 
         in_dim, out_dim = self.dataloader.get_inout_dim()  # in_dim here is image dim
-        w1 = np.random.randn(in_dim + 1, self.hidden_dim) * 0.01  # (in_dim, hidden)
-
-        w2 = np.random.randn(self.hidden_dim, out_dim) * 0.01  # (hidden, output)
+        w1 = rng.standard_normal((in_dim + 1, self.hidden_dim)) * np.sqrt(2.0 / in_dim)
+        w2 = rng.standard_normal((self.hidden_dim, out_dim)) * np.sqrt(2.0 / self.hidden_dim)
         return w1, w2
 
     def relu(self, input_array: np.ndarray) -> np.ndarray:
@@ -235,20 +236,23 @@ class MLP:
         """
         return (input_array > 0).astype(float)
 
+
     def forward(
-        self,
-        input_data: np.ndarray,
-        W1: np.ndarray,
-        W2: np.ndarray,
-        no_gradient: bool = False,
+            self,
+            input_data: np.ndarray,
+            w1: np.ndarray,
+            w2: np.ndarray,
+            no_gradient: bool = False
     ) -> np.ndarray:
         """
         Performs a forward pass through the neural network with one hidden layer.
 
         Args:
             input_data: Input data, shape (batch_size, input_dim).
-            W1: Weight matrix for input to hidden layer, shape (input_dim + 1, hidden_dim).
-            W2: Weight matrix for hidden to output layer, shape (hidden_dim, output_dim).
+            w1: Weight matrix for input to hidden layer,
+                shape (input_dim + 1, hidden_dim).
+            w2: Weight matrix for hidden to output layer,
+                shape (hidden_dim, output_dim).
             no_gradient: If True, returns output without storing intermediates.
 
         Returns:
@@ -256,19 +260,22 @@ class MLP:
 
         Examples:
             >>> mlp = MLP(None, 1, 0.1, hidden_dim=2)
-            >>> x = np.array([[1.0, 2.0, 1.0]])  # batch_size=1, input_dim=2 + bias
-            >>> W1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])  # (input_dim=3, hidden_dim=2)
-            >>> W2 = np.array([[0.7, 0.8], [0.9, 1.0]])  # (hidden_dim=2, output_dim=2)
-            >>> output = mlp.forward(x, W1, W2)
+            >>> x = np.array([[1.0, 2.0, 1.0]])
+
+            >>> w1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
+
+            >>> w2 = np.array([[0.7, 0.8], [0.9, 1.0]])
+
+            >>> output = mlp.forward(x, w1, w2)
             >>> output.shape
             (1, 2)
         """
-        z1 = np.dot(input_data, W1)
+        z1 = np.dot(input_data, w1)
 
         a1 = self.relu(z1)  # relu
 
         # hidden → output
-        z2 = np.dot(a1, W2)
+        z2 = np.dot(a1, w2)
         a2 = z2
 
         if no_gradient:
@@ -280,55 +287,55 @@ class MLP:
             return a2
 
     def back_prop(
-        self,
-        input_data: np.ndarray,
-        true_labels: np.ndarray,
-        W1: np.ndarray,
-        W2: np.ndarray,
+            self,
+            input_data: np.ndarray,
+            true_labels: np.ndarray,
+            w2: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray]:
         """
         Performs backpropagation to compute gradients for the weights.
 
         Args:
-            input_data: Input data, shape (batch_size, input_dim).
-            true_labels: True labels, shape (batch_size, output_dim).
-            W1: Weight matrix for input to hidden layer, shape (input_dim + 1, hidden_dim).
-            W2: Weight matrix for hidden to output layer, shape (hidden_dim, output_dim).
+            input_data: Input data, shape
+                        (batch_size, input_dim).
+            true_labels: True labels, shape
+                        (batch_size, output_dim).
+            w1: Weight matrix for input to
+                        hidden layer, shape (input_dim + 1, hidden_dim).
+            w2: Weight matrix for hidden
+                        to output layer, shape (hidden_dim, output_dim).
 
         Returns:
-            Tuple of gradients (grad_W1, grad_W2) for the weight matrices.
+            Tuple of gradients (grad_w1, grad_w2) for the weight matrices.
         Examples:
             >>> mlp = MLP(None, 1, 0.1, hidden_dim=2)
-            >>> x = np.array([[1.0, 2.0, 1.0]])  # batch_size=1, input_dim=2 + bias
-            >>> y = np.array([[0.0, 1.0]])  # batch_size=1, output_dim=2
-            >>> W1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])  # (input_dim=3, hidden_dim=2)
-            >>> W2 = np.array([[0.7, 0.8], [0.9, 1.0]])  # (hidden_dim=2, output_dim=2)
-            >>> _ = mlp.forward(x, W1, W2)  # Run forward to set inter_variable
-            >>> grad_W1, grad_W2 = mlp.back_prop(x, y, W1, W2)
-            >>> grad_W1.shape
+            >>> x = np.array([[1.0, 2.0, 1.0]])
+            >>> y = np.array([[0.0, 1.0]])
+            >>> w1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
+            >>> w2 = np.array([[0.7, 0.8], [0.9, 1.0]])
+            >>> _ = mlp.forward(x, w1, w2)
+            >>> grad_w1, grad_w2 = mlp.back_prop(x, y, w2)
+            >>> grad_w1.shape
             (3, 2)
-            >>> grad_W2.shape
+            >>> grad_w2.shape
             (2, 2)
         """
-        a1 = self.inter_variable["a1"]  # (batch_size, hidden_dim)
+        a1 = self.inter_variable["a1"]
         z1 = self.inter_variable["z1"]
-        a2 = self.inter_variable["a2"]  # (batch_size, output_dim)
-        z2 = self.inter_variable["z2"]
+        a2 = self.inter_variable["a2"]
 
         batch_size = input_data.shape[0]
 
         # 1. output layer error
         delta_k = a2 - true_labels
-        delta_j = np.dot(delta_k, W2.T) * self.relu_derivative(
+        delta_j = np.dot(delta_k, w2.T) * self.relu_derivative(
             z1
         )  # (batch, hidden_dim) 使用relu时
 
         grad_w2 = (
             np.dot(a1.T, delta_k) / batch_size
         )  # (hidden, batch).dot(batch, output) = (hidden, output)
-        input_data_flat = input_data.reshape(
-            input_data.shape[0], -1
-        )  # (batch_size, input_dim)
+        input_data_flat = input_data.reshape(input_data.shape[0], -1)  # (batch_size, input_dim)
         grad_w1 = (
             np.dot(input_data_flat.T, delta_j) / batch_size
         )  # (input_dim, batch_size).dot(batch, hidden) = (input, hidden)
@@ -336,45 +343,46 @@ class MLP:
         return grad_w1, grad_w2
 
     def update_weights(
-        self,
-        w1: np.ndarray,
-        w2: np.ndarray,
-        grad_w1: np.ndarray,
-        grad_w2: np.ndarray,
-        learning_rate: float,
+            self,
+            w1: np.ndarray,
+            w2: np.ndarray,
+            grad_w1: np.ndarray,
+            grad_w2: np.ndarray,
+            learning_rate: float
     ) -> tuple[np.ndarray, np.ndarray]:
         """
         Updates the weight matrices using the computed gradients and learning rate.
 
         Args:
-            W1: Weight matrix for input to hidden layer, shape (input_dim + 1, hidden_dim).
-            W2: Weight matrix for hidden to output layer, shape (hidden_dim, output_dim).
-            grad_W1: Gradient for W1, shape (input_dim + 1, hidden_dim).
-            grad_W2: Gradient for W2, shape (hidden_dim, output_dim).
+            w1: Weight matrix for input to hidden layer, shape (input_dim + 1, hidden_dim).
+            w2: Weight matrix for hidden to output layer, shape (hidden_dim, output_dim).
+            grad_w1: Gradient for w1, shape (input_dim + 1, hidden_dim).
+            grad_w2: Gradient for w2, shape (hidden_dim, output_dim).
             learning_rate: Learning rate for weight updates.
 
         Returns:
-            Updated weight matrices (W1, W2).
+            Updated weight matrices (w1, w2).
 
         Examples:
             >>> mlp = MLP(None, 1, 0.1)
-            >>> W1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])  # (input_dim=3, hidden_dim=2)
-            >>> W2 = np.array([[0.7, 0.8], [0.9, 1.0]])  # (hidden_dim=2, output_dim=2)
-            >>> grad_W1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
-            >>> grad_W2 = np.array([[0.7, 0.8], [0.9, 1.0]])
+            >>> w1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
+            >>> w2 = np.array([[0.7, 0.8], [0.9, 1.0]])
+            >>> grad_w1 = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
+            >>> grad_w2 = np.array([[0.7, 0.8], [0.9, 1.0]])
             >>> learning_rate = 0.1
-            >>> new_W1, new_W2 = mlp.update_weights(W1, W2, grad_W1, grad_W2, learning_rate)
-            >>> new_W1==np.array([[0.09, 0.18], [0.27, 0.36], [0.45, 0.54]])
+            >>> new_w1, new_w2 = mlp.update_weights(w1, w2, grad_w1, grad_w2, learning_rate)
+            >>> new_w1==np.array([[0.09, 0.18], [0.27, 0.36], [0.45, 0.54]])
             array([[ True,  True],
                    [ True,  True],
                    [ True,  True]])
-            >>> new_W2==np.array([[0.63, 0.72], [0.81, 0.90]])
+            >>> new_w2==np.array([[0.63, 0.72], [0.81, 0.90]])
             array([[ True,  True],
                    [ True,  True]])
         """
         w1 -= learning_rate * grad_w1
         w2 -= learning_rate * grad_w2
         return w1, w2
+
 
     def update_learning_rate(self, learning_rate: float) -> float:
         """
@@ -471,19 +479,18 @@ class MLP:
         """
 
         learning_rate = self.learning_rate
-        train_data, train_labels, test_data, test_labels = (
-            self.dataloader.get_train_test_data()
-        )
+        train_data, train_labels, test_data, test_labels = self.dataloader.get_train_test_data()
 
         train_data = np.c_[train_data, np.ones(train_data.shape[0])]
         test_data = np.c_[test_data, np.ones(test_data.shape[0])]
+
 
         _, total_label_num = self.dataloader.get_inout_dim()
 
         train_labels = self.dataloader.one_hot_encode(train_labels, total_label_num)
         test_labels = self.dataloader.one_hot_encode(test_labels, total_label_num)
 
-        W1, W2 = self.initialize()
+        w1, w2 = self.initialize()
 
         train_accuracy_list, train_loss_list = [], []
         test_accuracy_list, test_loss_list = [], []
@@ -492,20 +499,21 @@ class MLP:
 
         for j in tqdm(range(self.epoch)):
             for k in range(0, train_data.shape[0], batch_size):  # retrieve every image
-                batch_imgs = train_data[k : k + batch_size]
-                batch_labels = train_labels[k : k + batch_size]
 
-                output = self.forward(
-                    input_data=batch_imgs, W1=W1, W2=W2, no_gradient=False
+                batch_imgs = train_data[k: k + batch_size]
+                batch_labels = train_labels[k: k + batch_size]
+
+                output = self.forward(input_data=batch_imgs, w1=w1, w2=w2, no_gradient=False)
+
+                grad_w1, grad_w2 = self.back_prop(
+                    input_data=batch_imgs,
+                    true_labels=batch_labels,
+                    w2=w2
                 )
 
-                grad_W1, grad_W2 = self.back_prop(
-                    input_data=batch_imgs, true_labels=batch_labels, W1=W1, W2=W2
-                )
+                w1, w2 = self.update_weights(w1, w2, grad_w1, grad_w2, learning_rate)
 
-                W1, W2 = self.update_weights(W1, W2, grad_W1, grad_W2, learning_rate)
-
-            test_output = self.forward(test_data, W1, W2, no_gradient=True)
+            test_output = self.forward(test_data, w1, w2, no_gradient=True)
             test_accuracy = self.accuracy(test_labels, test_output)
             test_loss = self.loss(test_output, test_labels)
 
@@ -516,7 +524,7 @@ class MLP:
 
         self.test_accuracy = test_accuracy_list
         self.test_loss = test_loss_list
-        print(f"Test accuracy:", sum(test_accuracy_list) / len(test_accuracy_list))
+        print(f"Test accuracy:", sum(test_accuracy_list)/len(test_accuracy_list))
 
 
 if __name__ == "__main__":
