@@ -11,17 +11,20 @@ class Point:
         True, if the point lies in the unit circle
         False, otherwise
         """
+
         return (self.x**2 + self.y**2) <= 1
 
     @classmethod
-    def random_unit_square(cls):
+    def random_unit_square(cls, ran: random.Random):
         """
-        Generates a point randomly drawn from the unit square [0, 1) x [0, 1).
+        Generates a point randomly drawn from the unit square [0, 1) x [0, 1),
+        using 'ran' random number generator
         """
-        return cls(x=random.random(), y=random.random())
+
+        return cls(x=ran.random(), y=ran.random())
 
 
-def estimate_pi(number_of_simulations: int) -> float:
+def estimate_pi(number_of_simulations: int, seed: int | None = None) -> float:
     """
     Generates an estimate of the mathematical constant PI.
     See https://en.wikipedia.org/wiki/Monte_Carlo_method#Overview
@@ -42,13 +45,24 @@ def estimate_pi(number_of_simulations: int) -> float:
         2. Repeat the first step n times and count the number of points in the unit
             circle, which is called m.
         3. An estimate of P[U in unit circle] is m/n
+
+    'seed' provides seed for the number generator - if None, no seed is used.
+
+    >>> estimate_pi(100, 1)
+    3.2
+    >>> estimate_pi(1000, 11)
+    3.156
+    >>> estimate_pi(1000000, 111)
+    3.139892
+
     """
     if number_of_simulations < 1:
         raise ValueError("At least one simulation is necessary to estimate PI.")
 
     number_in_unit_circle = 0
+    ran = random.Random(seed)
     for _ in range(number_of_simulations):
-        random_point = Point.random_unit_square()
+        random_point = Point.random_unit_square(ran)
 
         if random_point.is_in_unit_circle():
             number_in_unit_circle += 1
@@ -57,11 +71,6 @@ def estimate_pi(number_of_simulations: int) -> float:
 
 
 if __name__ == "__main__":
-    # import doctest
+    import doctest
 
-    # doctest.testmod()
-    from math import pi
-
-    prompt = "Please enter the desired number of Monte Carlo simulations: "
-    my_pi = estimate_pi(int(input(prompt).strip()))
-    print(f"An estimate of PI is {my_pi} with an error of {abs(my_pi - pi)}")
+    doctest.testmod()
