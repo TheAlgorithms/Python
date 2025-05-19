@@ -464,6 +464,7 @@
 
 ## Geometry
   * [Geometry](geometry/geometry.py)
+  * [Shoelace](geometry/shoelace.py)
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
