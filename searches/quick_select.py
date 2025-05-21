@@ -86,8 +86,8 @@ def median(items: list):
     >>> median(d)
     6.0
     """
-    mid, rest = divmod(len(items), 2)
-    if rest != 0:
+    mid, rem = divmod(len(items), 2)
+    if rem != 0:
         return quick_select(items=items, index=mid)
     else:
         low_mid = quick_select(items=items, index=mid - 1)
