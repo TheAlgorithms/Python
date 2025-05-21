@@ -69,21 +69,10 @@ def median(items: list):
     It works efficiently on unsorted lists by partially sorting the data without
     fully sorting the entire list.
 
-    >>> import random
-    >>> random.seed(0)
-
-    >>> d = [2, 2, 3, 9, 9]
-    >>> random.shuffle(d)
-    >>> d
-    [3, 2, 2, 9, 9]
-    >>> median(d)
+    >>> median([3, 2, 2, 9, 9])
     3
 
-    >>> d = [2, 2, 3, 9, 9, 9]
-    >>> random.shuffle(d)
-    >>> d
-    [2, 2, 3, 9, 9, 9]
-    >>> median(d)
+    >>> median([2, 2, 9, 9, 9, 3])
     6.0
     """
     mid, rem = divmod(len(items), 2)
