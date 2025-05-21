@@ -1,6 +1,7 @@
 # Auteur : Bosolindo Edhiengene Roger
 # email : rogerbosolinndo34@gmail.com
 
+
 def calc(operations: dict) -> float:
     """
     calc(operation: dict) -> float:
