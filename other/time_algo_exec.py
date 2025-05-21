@@ -2,8 +2,9 @@
 # email  : rogerbosolinndo34@gmail.com
 
 # This module contains codes about algorithms complexity as to estimate the time an algorithm
-# will take to be run. Why do we find it usable ? Because, knowing this kind of information tells
-# you if your code or solution is efficient or not ; it helps you not to fall trying to run such a code.
+# will take to be run.
+# Why do we find it usable ? Because, knowing this kind of information tells you if your code
+# or solution is efficient or not ; it helps you not to fall trying to run such a code.
 
 
 def calc(operations: dict) -> float:
