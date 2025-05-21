@@ -5,13 +5,11 @@
 def calc(operations: dict) -> float:
     """
     calc(operation: dict) -> float:
-    Ce programme sert à calculer le temps d'éxecution des algorithmes en fonction
-    des opérations primitives traitées
-    :param operations: dictionnaire des couples (nombre de fois, temps d'exécution)
-                      avec comme clé, l'opération primitive(de préférence)
-    :return: le temps d'exécution de l'algorithme si le format de "operations" est bon,
-             0 sinon
-
+    This function aims to calculate how long an algorithm take, knowing only primary operations
+    :param operations: A dictionary where the values are tuples, consisting of the number of times
+                       an operation is performed and its execution time, and the key should
+                       preferably be the name of the operation for better clarity and usability.
+    :return: the time needed for the execution of this algorithm(if format is okey for "operations") or 0
     #>>> operations1 = {"addition":(2, 0.1), "subtraction":(1, 0.2)}
     #>>> operations2 = {"addition":(2, 0.1), "subtraction":(1, 0.2, 1)}
     #>>> calc(operations1)
