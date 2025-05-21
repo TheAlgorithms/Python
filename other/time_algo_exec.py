@@ -18,12 +18,12 @@ def calc(operations: dict) -> float:
         an operation is performed and its execution time, and the key should,
         preferably, be the name of the operation for better clarity and usability.
     :return: the time needed for the execution of this algorithm
-    #>>> operations1 = {"addition":(2, 0.1), "subtraction":(1, 0.2)}
-    #>>> operations2 = {"addition":(2, 0.1), "subtraction":(1, 0.2, 1)}
-    #>>> calc(operations1)
-    #>>> 0.4
-    #>>> calc(operations2)
-    #>>> 0
+    >>> operations1 = {"addition":(2, 0.1), "subtraction":(1, 0.2)}
+    >>> operations2 = {"addition":(2, 0.1), "subtraction":(1, 0.2, 1)}
+    >>> calc(operations1)
+    >>> 0.4
+    >>> calc(operations2)
+    >>> 0
     """
     temps = 0
     for couple in operations.values():
@@ -40,7 +40,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    operations1 = {"addition": (2, 0.1), "subtraction": (1, 0.2)}
-    operations2 = {"addition": (2, 0.1), "subtraction": (1, 0.2, 1)}
-    print(calc(operations1))
-    print(calc(operations2))
