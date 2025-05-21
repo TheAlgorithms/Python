@@ -21,9 +21,9 @@ def calc(operations: dict) -> float:
     >>> operations1 = {"addition":(2, 0.1), "subtraction":(1, 0.2)}
     >>> operations2 = {"addition":(2, 0.1), "subtraction":(1, 0.2, 1)}
     >>> calc(operations1)
-    >>> 0.4
+    0.4
     >>> calc(operations2)
-    >>> 0
+    0
     """
     temps = 0
     for couple in operations.values():
