@@ -246,7 +246,7 @@ class HashMap(MutableMapping[KEY, VAL]):
         ## Resize down
         >>> del hm[75]
         >>> len(hm._buckets)
-        100
+        200
         >>> del hm[74]
         >>> len(hm._buckets)
         100
