@@ -134,11 +134,15 @@ def bidirectional_search(
         return None
 
     # Construct path from start to intersection
-    forward_path: list[int] = construct_path(current=intersection, parents=forward_parents)
+    forward_path: list[int] = construct_path(
+        current=intersection, parents=forward_parents
+    )
     forward_path.reverse()
 
     # Construct path from intersection to goal
-    backward_path: list[int] = construct_path(current=backward_parents[intersection], parents=backward_parents)
+    backward_path: list[int] = construct_path(
+        current=backward_parents[intersection], parents=backward_parents
+    )
 
     # Return the complete path
     return forward_path + backward_path
