@@ -46,7 +46,8 @@ def create_state_space_tree(
 
     >>> path = []
     >>> result = []
-    >>> create_state_space_tree(nums=[1], max_sum=1, num_index=0, path=path, result=result, remaining_nums_sum=1)
+    >>> create_state_space_tree(
+    ...     nums=[1], max_sum=1, num_index=0, path=path, result=result, remaining_nums_sum=1)
     >>> path
     []
     >>> result
