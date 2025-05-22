@@ -16,7 +16,7 @@ KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(slots=True)
 class _Item(Generic[KEY, VAL]):
     key: KEY
     val: VAL
@@ -72,16 +72,17 @@ class HashMap(MutableMapping[KEY, VAL]):
 
         If bucket is empty or key is the same, does insert and return True.
 
-        If bucket has another key or deleted placeholder,
-        that means that we need to check next bucket.
+        If bucket has another key that means that we need to check next bucket.
         """
         stored = self._buckets[ind]
         if not stored:
+            # A falsy item means that bucket was never used (None)
+            # or was deleted (_deleted).
             self._buckets[ind] = _Item(key, val)
             self._len += 1
             return True
         elif stored.key == key:
-            self._buckets[ind] = _Item(key, val)
+            stored.val = val
             return True
         else:
             return False
@@ -228,6 +229,27 @@ class HashMap(MutableMapping[KEY, VAL]):
         Traceback (most recent call last):
         ...
         KeyError: 4
+
+        # Test resize down when sparse
+        ## Setup: resize up
+        >>> hm = HashMap(initial_block_size=100, capacity_factor=0.75)
+        >>> len(hm._buckets)
+        100
+        >>> for i in range(75):
+        ...     hm[i] = i
+        >>> len(hm._buckets)
+        100
+        >>> hm[75] = 75
+        >>> len(hm._buckets)
+        200
+
+        ## Resize down
+        >>> del hm[75]
+        >>> len(hm._buckets)
+        200
+        >>> del hm[74]
+        >>> len(hm._buckets)
+        100
         """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
