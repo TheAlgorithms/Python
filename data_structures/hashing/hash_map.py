@@ -232,7 +232,7 @@ class HashMap(MutableMapping[KEY, VAL]):
 
         # Test resize down when sparse
         ## Setup: resize up
-        >>> hm = HashMap(100, capacity_factor=0.75)
+        >>> hm = HashMap(initial_block_size=100, capacity_factor=0.75)
         >>> len(hm._buckets)
         100
         >>> for i in range(75):
@@ -245,6 +245,8 @@ class HashMap(MutableMapping[KEY, VAL]):
 
         ## Resize down
         >>> del hm[75]
+        >>> len(hm._buckets)
+        100
         >>> del hm[74]
         >>> len(hm._buckets)
         100
