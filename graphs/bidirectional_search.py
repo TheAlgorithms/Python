@@ -38,6 +38,14 @@ def expand_search(
     return None
 
 
+def construct_path(current: int | None, parents: dict[int, int | None]) -> list[int]:
+    path: list[int] = []
+    while current is not None:
+        path.append(current)
+        current = parents[current]
+    return path
+
+
 def bidirectional_search(
     graph: dict[int, list[int]], start: int, goal: int
 ) -> list[int] | None:
@@ -126,19 +134,11 @@ def bidirectional_search(
         return None
 
     # Construct path from start to intersection
-    forward_path: list[int] = []
-    current_forward: int | None = intersection
-    while current_forward is not None:
-        forward_path.append(current_forward)
-        current_forward = forward_parents[current_forward]
+    forward_path: list[int] = construct_path(current=intersection, parents=forward_parents)
     forward_path.reverse()
 
     # Construct path from intersection to goal
-    backward_path: list[int] = []
-    current_backward: int | None = backward_parents[intersection]
-    while current_backward is not None:
-        backward_path.append(current_backward)
-        current_backward = backward_parents[current_backward]
+    backward_path: list[int] = construct_path(current=backward_parents[intersection], parents=backward_parents)
 
     # Return the complete path
     return forward_path + backward_path
