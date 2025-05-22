@@ -14,6 +14,25 @@ https://en.wikipedia.org/wiki/Bidirectional_search
 from collections import deque
 
 
+def expand_search(graph: dict[int, list[int]], queue: deque[int], parents: dict[int, int | None], opposite_direction_parents: dict[int, int | None]) -> int | None:
+    if not queue:
+        return None
+
+    current = queue.popleft()
+    for neighbor in graph[current]:
+        if neighbor in parents:
+            continue
+
+        parents[neighbor] = current
+        queue.append(neighbor)
+
+        # Check if this creates an intersection
+        if neighbor in opposite_direction_parents:
+            return neighbor
+
+    return None
+
+
 def bidirectional_search(
     graph: dict[int, list[int]], start: int, goal: int
 ) -> list[int] | None:
@@ -79,30 +98,13 @@ def bidirectional_search(
     # Continue until both queues are empty or an intersection is found
     while forward_queue and backward_queue and intersection is None:
         # Expand forward search
-        if forward_queue:
-            current = forward_queue.popleft()
-            for neighbor in graph[current]:
-                if neighbor not in forward_parents:
-                    forward_parents[neighbor] = current
-                    forward_queue.append(neighbor)
-
-                    # Check if this creates an intersection
-                    if neighbor in backward_parents:
-                        intersection = neighbor
-                        break
+        intersection = expand_search(graph=graph, queue=forward_queue, parents=forward_parents, opposite_direction_parents=backward_parents)
 
         # If no intersection found, expand backward search
-        if intersection is None and backward_queue:
-            current = backward_queue.popleft()
-            for neighbor in graph[current]:
-                if neighbor not in backward_parents:
-                    backward_parents[neighbor] = current
-                    backward_queue.append(neighbor)
+        if intersection is not None:
+            break
 
-                    # Check if this creates an intersection
-                    if neighbor in forward_parents:
-                        intersection = neighbor
-                        break
+        intersection = expand_search(graph=graph, queue=backward_queue, parents=backward_parents, opposite_direction_parents=forward_parents)
 
     # If no intersection found, there's no path
     if intersection is None:
