@@ -43,9 +43,9 @@ def bidirectional_search(
         ...     10: [6, 11],
         ...     11: [7, 8, 9, 10],
         ... }
-        >>> bidirectional_search(graph, 0, 11)
+        >>> bidirectional_search(graph=graph, start=0, goal=11)
         [0, 1, 3, 7, 11]
-        >>> bidirectional_search(graph, 5, 5)
+        >>> bidirectional_search(graph=graph, start=5, goal=5)
         [5]
         >>> disconnected_graph = {
         ...     0: [1, 2],
@@ -54,7 +54,7 @@ def bidirectional_search(
         ...     3: [4],
         ...     4: [3],
         ... }
-        >>> bidirectional_search(disconnected_graph, 0, 3) is None
+        >>> bidirectional_search(graph=disconnected_graph, start=0, goal=3) is None
         True
     """
     if start == goal:
@@ -155,12 +155,12 @@ def main() -> None:
 
     # Test case 1: Path exists
     start, goal = 0, 11
-    path = bidirectional_search(example_graph, start, goal)
+    path = bidirectional_search(graph=example_graph, start=start, goal=goal)
     print(f"Path from {start} to {goal}: {path}")
 
     # Test case 2: Start and goal are the same
     start, goal = 5, 5
-    path = bidirectional_search(example_graph, start, goal)
+    path = bidirectional_search(graph=example_graph, start=start, goal=goal)
     print(f"Path from {start} to {goal}: {path}")
 
     # Test case 3: No path exists (disconnected graph)
@@ -172,7 +172,7 @@ def main() -> None:
         4: [3],
     }
     start, goal = 0, 3
-    path = bidirectional_search(disconnected_graph, start, goal)
+    path = bidirectional_search(graph=disconnected_graph, start=start, goal=goal)
     print(f"Path from {start} to {goal}: {path}")
 
 
