@@ -178,40 +178,40 @@ def insort_right(
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
-def binary_search(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of a binary search algorithm in Python
+# Binary Search Algorithm
+# Binary Search is an efficient algorithm for finding an item from a sorted list of items.
+# It works by repeatedly dividing in half the portion of the list that could contain the item,
+# until you've narrowed the possible locations to just one.
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
-
-    Examples:
-    >>> binary_search([0, 5, 7, 10, 15], 0)
-    0
-    >>> binary_search([0, 5, 7, 10, 15], 15)
-    4
-    >>> binary_search([0, 5, 7, 10, 15], 5)
-    1
-    >>> binary_search([0, 5, 7, 10, 15], 6)
-    -1
+def binary_search(arr, x):
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    left = 0
-    right = len(sorted_collection) - 1
+    Perform a binary search to find the element `x` in the sorted list `arr`.
 
-    while left <= right:
-        midpoint = left + (right - left) // 2
-        current_item = sorted_collection[midpoint]
-        if current_item == item:
-            return midpoint
-        elif item < current_item:
-            right = midpoint - 1
+    Parameters:
+    arr (list): A sorted list of elements
+    x (int or float): The element to search for in the list
+
+    Returns:
+    int: The index of the element `x` in the list `arr`. If `x` is not found, returns -1.
+    """
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        # If x is found at the mid index
+        if arr[mid] == x:
+            return mid
+        # If x is smaller than mid, search in the left half
+        elif arr[mid] > x:
+            high = mid - 1
+        # If x is larger than mid, search in the right half
         else:
-            left = midpoint + 1
+            low = mid + 1
+
+    # Return -1 if element is not present in the list
     return -1
 
 
