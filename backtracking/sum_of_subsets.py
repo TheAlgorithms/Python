@@ -12,11 +12,12 @@ def generate_sum_of_subsets_solutions(nums: list[int], max_sum: int) -> list[lis
     """
     The main function. For list of numbers 'nums' find the subsets with sum
     equal to 'max_sum'
-    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 9)
+
+    >>> generate_sum_of_subsets_solutions(nums=[3, 34, 4, 12, 5, 2], max_sum=9)
     [[3, 4, 2], [4, 5]]
-    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 3)
+    >>> generate_sum_of_subsets_solutions(nums=[3, 34, 4, 12, 5, 2], max_sum=3)
     [[3]]
-    >>> generate_sum_of_subsets_solutions([3, 34, 4, 12, 5, 2], 1)
+    >>> generate_sum_of_subsets_solutions(nums=[3, 34, 4, 12, 5, 2], max_sum=1)
     []
     """
 
@@ -43,7 +44,13 @@ def create_state_space_tree(
     This algorithm follows depth-fist-search and backtracks when the node is not
     branchable.
 
-    >>> create_state_space_tree([1], 1, 0, [], [], 1)
+    >>> path = []
+    >>> result = []
+    >>> create_state_space_tree(nums=[1], max_sum=1, num_index=0, path=path, result=result, remaining_nums_sum=1)
+    >>> path
+    []
+    >>> result
+    []
     """
 
     if sum(path) > max_sum or (remaining_nums_sum + sum(path)) < max_sum:
