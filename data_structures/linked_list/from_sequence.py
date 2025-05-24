@@ -1,5 +1,7 @@
-# Recursive Program to create a Linked List from a sequence and
-# print a string representation of it.
+"""
+Recursive Program to create a Linked List from a sequence and
+print a string representation of it.
+"""
 
 
 class Node:
@@ -18,9 +20,11 @@ class Node:
         return string_rep
 
 
-def make_linked_list(elements_list):
-    """Creates a Linked List from the elements of the given sequence
-    (list/tuple) and returns the head of the Linked List."""
+def make_linked_list(elements_list: list) -> Node:
+    """
+    Creates a Linked List from the elements of the given sequence
+    (list/tuple) and returns the head of the Linked List.
+    """
 
     # if elements_list is empty
     if not elements_list:
