@@ -15,6 +15,7 @@ from warnings import simplefilter
 
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
@@ -76,6 +77,29 @@ def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> f
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
     return float(y_pred[0])
+
+
+def random_forest_regressor(x_train: list, x_test: list, train_user: list) -> float:
+    """
+    Fourth method: Random Forest Regressor
+    Random Forest is an ensemble learning method for regression that operates
+    by constructing a multitude of decision trees at training time and outputting
+    the mean prediction of the individual trees.
+
+    It is more robust than a single decision tree and less prone to overfitting.
+    Good for capturing nonlinear relationships in data.
+
+    input : training data (date, total_event) in list of float
+    where x = list of set (date and total event)
+    output : list of total user prediction in float
+
+    >>> random_forest_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
+    1.95
+    """
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(x_train, train_user)
+    prediction = model.predict(x_test)
+    return float(prediction[0])
 
 
 def interquartile_range_checker(train_user: list) -> float:
@@ -155,6 +179,9 @@ if __name__ == "__main__":
         ),
         sarimax_predictor(train_user, train_match, test_match),
         support_vector_regressor(x_train, x_test, train_user),
+        random_forest_regressor(
+            x_train, x_test, train_user
+        ),  # Added Random Forest Regressor
     ]
 
     # check the safety of today's data
