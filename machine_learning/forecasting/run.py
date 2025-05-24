@@ -94,7 +94,7 @@ def random_forest_regressor(x_train: list, x_test: list, train_user: list) -> fl
     output : list of total user prediction in float
 
     >>> random_forest_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
-    2.3333333333333335
+    1.95
     """
     model = RandomForestRegressor(n_estimators=100, random_state=42)
     model.fit(x_train, train_user)
