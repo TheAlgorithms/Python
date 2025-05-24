@@ -179,7 +179,9 @@ if __name__ == "__main__":
         ),
         sarimax_predictor(train_user, train_match, test_match),
         support_vector_regressor(x_train, x_test, train_user),
-        random_forest_regressor(x_train, x_test, train_user),  # Added Random Forest Regressor
+        random_forest_regressor(
+            x_train, x_test, train_user
+        ),  # Added Random Forest Regressor
     ]
 
     # check the safety of today's data
