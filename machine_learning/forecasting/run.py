@@ -10,6 +10,7 @@ missing (the amount of data that u expected are not supposed to be)
          for the next 3 months sales or something,
          u can just adjust it for ur own purpose
 """
+
 from warnings import simplefilter
 
 import numpy as np
@@ -77,6 +78,7 @@ def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> f
     y_pred = regressor.predict(x_test)
     return float(y_pred[0])
 
+
 def random_forest_regressor(x_train: list, x_test: list, train_user: list) -> float:
     """
     Fourth method: Random Forest Regressor
@@ -90,7 +92,7 @@ def random_forest_regressor(x_train: list, x_test: list, train_user: list) -> fl
     input : training data (date, total_event) in list of float
             where x = list of set (date and total event)
     output : list of total user prediction in float
-    
+
     >>> random_forest_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
     2.3333333333333335
     """
