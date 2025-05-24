@@ -20,29 +20,24 @@ class Node:
         return string_rep
 
 
-def make_linked_list(elements_list: list) -> Node:
+def make_linked_list(elements_list: list | tuple) -> Node:
     """
     Creates a Linked List from the elements of the given sequence
     (list/tuple) and returns the head of the Linked List.
+
+    >>> make_linked_list([1, 3, 5, 32, 44, 12, 43])
+    <1> ---> <3> ---> <5> ---> <32> ---> <44> ---> <12> ---> <43> ---> <END>
+    >>> make_linked_list([1])
+    <1> ---> <END>
+    >>> make_linked_list((1,))
+    <1> ---> <END>
     """
 
-    # if elements_list is empty
     if not elements_list:
         raise Exception("The Elements List is empty")
-
-    # Set first element as Head
     head = Node(elements_list[0])
     current = head
-    # Loop through elements from position 1
     for data in elements_list[1:]:
         current.next = Node(data)
         current = current.next
     return head
-
-
-list_data = [1, 3, 5, 32, 44, 12, 43]
-print(f"List: {list_data}")
-print("Creating Linked List from List.")
-linked_list = make_linked_list(list_data)
-print("Linked List:")
-print(linked_list)
