@@ -90,7 +90,7 @@ def random_forest_regressor(x_train: list, x_test: list, train_user: list) -> fl
     Good for capturing nonlinear relationships in data.
 
     input : training data (date, total_event) in list of float
-            where x = list of set (date and total event)
+    where x = list of set (date and total event)
     output : list of total user prediction in float
 
     >>> random_forest_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
