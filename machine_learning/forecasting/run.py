@@ -13,7 +13,6 @@ missing (the amount of data that u expected are not supposed to be)
 
 from warnings import simplefilter
 
-import logging
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -21,9 +20,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
-
-logging.basicConfig(level=logging.Info)
-logger = logging.getLogger(__name__)
 
 
 def linear_regression_prediction(
@@ -205,6 +201,6 @@ if __name__ == "__main__":
 
     # check the safety of today's data
     not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
-    logger.info(f"Today's data is {not_str}safe.")
+    print(f"Today's data is {not_str}safe.")
 
     plot_forecast(train_user, res_vote)
