@@ -11,16 +11,16 @@ missing (the amount of data that u expected are not supposed to be)
          u can just adjust it for ur own purpose
 """
 
-import logging
 from warnings import simplefilter
 
+import logging
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
-import matplotlib.pyplot as plt
 
 logging.basicConfig(level=logging.Info)
 logger = logging.getLogger(__name__)
