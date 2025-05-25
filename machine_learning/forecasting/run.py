@@ -11,6 +11,7 @@ missing (the amount of data that u expected are not supposed to be)
          u can just adjust it for ur own purpose
 """
 
+import logging
 from warnings import simplefilter
 
 import numpy as np
@@ -19,7 +20,10 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+import matplotlib.pyplot as plt
 
+logging.basicConfig(level=logging.Info)
+logger = logging.getLogger(__name__)
 
 def linear_regression_prediction(
     train_dt: list, train_usr: list, train_mtch: list, test_dt: list, test_mtch: list
@@ -143,6 +147,21 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
             not_safe += 1
     return safe > not_safe
 
+def plot_forecast(actual, predictions):
+    plt.figure(figsize=(10, 5))
+    plt.plot(range(len(actual)), actual, label="Actual")
+    plt.plot(len(actual), predictions[0], 'ro', label="Linear Reg")
+    plt.plot(len(actual), predictions[1], 'go', label="SARIMAX")
+    plt.plot(len(actual), predictions[2], 'bo', label="SVR")
+    plt.plot(len(actual), predictions[3], 'yo', label="RF")
+    plt.legend()
+    plt.title("Data Safety Forecast")
+    plt.xlabel("Days")
+    plt.ylabel("Normalized User Count")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
 
 if __name__ == "__main__":
     """
@@ -179,11 +198,11 @@ if __name__ == "__main__":
         ),
         sarimax_predictor(train_user, train_match, test_match),
         support_vector_regressor(x_train, x_test, train_user),
-        random_forest_regressor(
-            x_train, x_test, train_user
-        ),  # Added Random Forest Regressor
+        random_forest_regressor(x_train, x_test, train_user),
     ]
 
     # check the safety of today's data
     not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
-    print(f"Today's data is {not_str}safe.")
+    logger.info(f"Today's data is {not_str}safe.")
+        
+    plot_forecast(train_user, res_vote)
