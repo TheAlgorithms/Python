@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 logging.basicConfig(level=logging.Info)
 logger = logging.getLogger(__name__)
 
+
 def linear_regression_prediction(
     train_dt: list, train_usr: list, train_mtch: list, test_dt: list, test_mtch: list
 ) -> float:
@@ -147,13 +148,14 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
             not_safe += 1
     return safe > not_safe
 
+
 def plot_forecast(actual, predictions):
     plt.figure(figsize=(10, 5))
     plt.plot(range(len(actual)), actual, label="Actual")
-    plt.plot(len(actual), predictions[0], 'ro', label="Linear Reg")
-    plt.plot(len(actual), predictions[1], 'go', label="SARIMAX")
-    plt.plot(len(actual), predictions[2], 'bo', label="SVR")
-    plt.plot(len(actual), predictions[3], 'yo', label="RF")
+    plt.plot(len(actual), predictions[0], "ro", label="Linear Reg")
+    plt.plot(len(actual), predictions[1], "go", label="SARIMAX")
+    plt.plot(len(actual), predictions[2], "bo", label="SVR")
+    plt.plot(len(actual), predictions[3], "yo", label="RF")
     plt.legend()
     plt.title("Data Safety Forecast")
     plt.xlabel("Days")
@@ -204,5 +206,5 @@ if __name__ == "__main__":
     # check the safety of today's data
     not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
     logger.info(f"Today's data is {not_str}safe.")
-        
+
     plot_forecast(train_user, res_vote)
