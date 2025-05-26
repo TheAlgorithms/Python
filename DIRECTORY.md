@@ -480,6 +480,7 @@
   * [Bi Directional Dijkstra](graphs/bi_directional_dijkstra.py)
   * [Bidirectional A Star](graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](graphs/bidirectional_breadth_first_search.py)
+  * [Bidirectional Search](graphs/bidirectional_search.py)
   * [Boruvka](graphs/boruvka.py)
   * [Breadth First Search](graphs/breadth_first_search.py)
   * [Breadth First Search 2](graphs/breadth_first_search_2.py)
