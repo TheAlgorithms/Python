@@ -1,0 +1,23 @@
+### ✅ **Python Code Conventions (PEP 8 Overview)**
+
+1. **Indentation**: Use 4 spaces per indentation level.
+2. **Line Length**: Limit lines to 79 characters.
+3. **Blank Lines**: Use blank lines to separate functions and classes.
+4. **Imports**:
+
+   * Standard libraries first, third-party next, then local.
+   * One import per line.
+5. **Naming Conventions**:
+
+   * `snake_case` for variables and functions.
+   * `CamelCase` for classes.
+   * `UPPER_CASE` for constants.
+6. **Whitespace**:
+
+   * Avoid extra spaces inside parentheses, brackets, or before commas.
+7. **Comments**:
+
+   * Use inline comments sparingly.
+   * Use docstrings (`"""Example"""`) for modules, functions, classes.
+8. **Python version**:
+   * use python 3.5.2
