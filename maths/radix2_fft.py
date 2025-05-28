@@ -147,7 +147,7 @@ class FFT:
             inverce_c = new_inverse_c
             next_ncol *= 2
         # Unpack
-        inverce_c = [round(x[0].real, 8) + round(x[0].imag, 8) * 1j for x in inverce_c]
+        inverce_c = [complex(round(x[0].real, 8), round(x[0].imag, 8)) for x in inverce_c]
 
         # Remove leading 0's
         while inverce_c[-1] == 0:
