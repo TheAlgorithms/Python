@@ -3,7 +3,7 @@
 name: directory_writer
 on: [push]
 jobs:
-  build:
+  directory_writer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
