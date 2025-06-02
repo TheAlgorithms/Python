@@ -4,12 +4,16 @@ Binary Search Tree Implementation
 This implementation provides a binary search tree (BST) with basic operations
 including insertion, search, deletion, and in-order traversal. Each operation
 leverages recursive helper functions.
-"""
 
+Binary Search Tree Implementation with Doctest Examples
+
+To run the doctests:
+    python -m doctest -v binary_search_tree.py
+"""
 
 class BSTNode:
     """
-    A node in a binary search tree.
+    A node in the binary search tree.
 
     Attributes
     ----------
@@ -20,8 +24,7 @@ class BSTNode:
     right : BSTNode or None
         The right child node.
     """
-
-    def __init__(self, key: int):
+    def __init__(self, key: int) -> None:
         self.key = key
         self.left = None
         self.right = None
@@ -29,22 +32,10 @@ class BSTNode:
 
 class BinarySearchTree:
     """
-    Binary Search Tree (BST) class that supports basic operations such as
+    Binary Search Tree (BST) class that supports operations such as
     insertion, search, deletion, and in-order traversal.
-
-    Methods
-    -------
-    insert(key: int) -> None
-        Inserts a new key into the BST.
-    search(key: int) -> BSTNode or None
-        Searches for a key in the BST and returns the node if found.
-    delete(key: int) -> None
-        Deletes a key from the BST if it exists.
-    inorder_traversal() -> list
-        Returns a list of keys representing the in-order traversal of the BST.
     """
-
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes an empty Binary Search Tree.
         """
@@ -58,6 +49,15 @@ class BinarySearchTree:
         ----------
         key : int
             The key to be inserted into the BST.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.insert(10)
+        >>> bst.insert(5)
+        >>> bst.insert(15)
+        >>> bst.inorder_traversal()
+        [5, 10, 15]
         """
         if self.root is None:
             self.root = BSTNode(key)
@@ -66,14 +66,23 @@ class BinarySearchTree:
 
     def _insert_recursive(self, node: BSTNode, key: int) -> None:
         """
-        Recursively inserts the new key into the subtree rooted at the given node.
+        Recursively inserts a new key into the subtree rooted at the given node.
 
         Parameters
         ----------
         node : BSTNode
             The current node in the BST.
         key : int
-            The key to be inserted.
+            The key to insert.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.root = BSTNode(10)
+        >>> bst._insert_recursive(bst.root, 5)
+        >>> bst._insert_recursive(bst.root, 15)
+        >>> bst.inorder_traversal()
+        [5, 10, 15]
         """
         if key < node.key:
             if node.left is None:
@@ -86,9 +95,69 @@ class BinarySearchTree:
             else:
                 self._insert_recursive(node.right, key)
 
-    def search(self, key: int) -> BSTNode:
+    def inorder_traversal(self) -> list:
         """
-        Searches for a key in the BST.
+        Performs an in-order traversal of the BST and returns the keys in sorted order.
+
+        Returns
+        -------
+        list
+            A list of keys in increasing order.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.inorder_traversal()  # For an empty BST.
+        []
+        >>> bst.insert(10)
+        >>> bst.insert(5)
+        >>> bst.insert(15)
+        >>> bst.inorder_traversal()
+        [5, 10, 15]
+        >>> bst.insert(7)
+        >>> bst.inorder_traversal()
+        [5, 7, 10, 15]
+        """
+        result = []
+        self._inorder_recursive(self.root, result)
+        return result
+
+    def _inorder_recursive(self, node: BSTNode, result: list) -> None:
+        """
+        Helper function for recursively performing in-order traversal by accumulating the keys.
+
+        Parameters
+        ----------
+        node : BSTNode or None
+            The current node being visited.
+        result : list
+            The list accumulating the keys.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> # Manually build a simple BST.
+        >>> bst.root = BSTNode(20)
+        >>> bst.root.left = BSTNode(10)
+        >>> bst.root.right = BSTNode(30)
+        >>> result = []
+        >>> bst._inorder_recursive(bst.root, result)
+        >>> result
+        [10, 20, 30]
+        >>> # If the subtree is empty, the result remains unchanged.
+        >>> result = [1, 2, 3]
+        >>> bst._inorder_recursive(None, result)
+        >>> result
+        [1, 2, 3]
+        """
+        if node is not None:
+            self._inorder_recursive(node.left, result)
+            result.append(node.key)
+            self._inorder_recursive(node.right, result)
+
+    def search(self, key: int):
+        """
+        Searches for a given key in the BST using a recursive approach.
 
         Parameters
         ----------
@@ -98,13 +167,25 @@ class BinarySearchTree:
         Returns
         -------
         BSTNode or None
-            The node containing the key if found, or None otherwise.
+            The node containing the key if found; otherwise, None.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.insert(10)
+        >>> bst.insert(5)
+        >>> bst.insert(15)
+        >>> node = bst.search(5)
+        >>> node.key
+        5
+        >>> bst.search(20) is None
+        True
         """
         return self._search_recursive(self.root, key)
 
-    def _search_recursive(self, node: BSTNode, key: int) -> BSTNode:
+    def _search_recursive(self, node: BSTNode, key: int):
         """
-        Recursively searches for a key in the tree.
+        Helper function to recursively search for a key in the BST.
 
         Parameters
         ----------
@@ -116,7 +197,17 @@ class BinarySearchTree:
         Returns
         -------
         BSTNode or None
-            The node containing the key if found, otherwise None.
+            The node containing the key if found; otherwise, None.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.root = BSTNode(10)
+        >>> bst.root.left = BSTNode(5)
+        >>> bst._search_recursive(bst.root, 5).key
+        5
+        >>> bst._search_recursive(bst.root, 20) is None
+        True
         """
         if node is None or node.key == key:
             return node
@@ -127,18 +218,32 @@ class BinarySearchTree:
 
     def delete(self, key: int) -> None:
         """
-        Deletes a key from the BST if it exists.
+        Deletes the node with the specified key from the BST if it exists.
 
         Parameters
         ----------
         key : int
             The key to be deleted.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> for key in [10, 5, 15, 2, 7]:
+        ...     bst.insert(key)
+        >>> bst.inorder_traversal()
+        [2, 5, 7, 10, 15]
+        >>> bst.delete(5)
+        >>> bst.inorder_traversal()
+        [2, 7, 10, 15]
+        >>> bst.delete(20)  # Deleting a non-existent key leaves the tree unchanged.
+        >>> bst.inorder_traversal()
+        [2, 7, 10, 15]
         """
         self.root = self._delete_recursive(self.root, key)
 
-    def _delete_recursive(self, node: BSTNode, key: int) -> BSTNode:
+    def _delete_recursive(self, node: BSTNode, key: int):
         """
-        Recursively deletes a key from the subtree rooted at the given node.
+        Recursively deletes the node with the specified key from the subtree.
 
         Parameters
         ----------
@@ -151,6 +256,15 @@ class BinarySearchTree:
         -------
         BSTNode or None
             The new root of the subtree after deletion.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.root = BSTNode(10)
+        >>> bst.root.left = BSTNode(5)
+        >>> bst.root.right = BSTNode(15)
+        >>> bst._delete_recursive(bst.root, 5).key
+        10
         """
         if node is None:
             return node
@@ -160,13 +274,13 @@ class BinarySearchTree:
         elif key > node.key:
             node.right = self._delete_recursive(node.right, key)
         else:
-            # Node found; handle deletions for nodes with 0 or 1 child.
+            # Node with only one child or no child.
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
 
-            # Node with two children: get the inorder successor (smallest in the right subtree)
+            # Node with two children: Get the in-order successor.
             temp = self._find_min(node.right)
             node.key = temp.key
             node.right = self._delete_recursive(node.right, temp.key)
@@ -184,70 +298,26 @@ class BinarySearchTree:
         Returns
         -------
         BSTNode
-            The node with the smallest key in the subtree.
+            The node with the smallest key.
+
+        Examples
+        --------
+        >>> bst = BinarySearchTree()
+        >>> bst.root = BSTNode(10)
+        >>> bst.root.left = BSTNode(5)
+        >>> bst.root.right = BSTNode(15)
+        >>> bst._find_min(bst.root).key
+        5
+        >>> bst.root.left.left = BSTNode(2)
+        >>> bst._find_min(bst.root).key
+        2
         """
         current = node
         while current.left is not None:
             current = current.left
         return current
 
-    def inorder_traversal(self) -> list:
-        """
-        Performs an in-order traversal of the BST.
-
-        Returns
-        -------
-        list
-            A list of keys in sorted order.
-        """
-        result = []
-        self._inorder_recursive(self.root, result)
-        return result
-
-    def _inorder_recursive(self, node: BSTNode, result: list) -> None:
-        """
-        Recursively performs an in-order traversal of the BST and appends keys to the result list.
-
-        Parameters
-        ----------
-        node : BSTNode or None
-            The current node in the BST.
-        result : list
-            The list that accumulates the keys.
-        """
-        if node is not None:
-            self._inorder_recursive(node.left, result)
-            result.append(node.key)
-            self._inorder_recursive(node.right, result)
-
 
 if __name__ == "__main__":
-    """
-    Testing the Binary Search Tree (BST) implementation.
-
-    Example:
-    --------
-    1. Insert nodes with keys: [50, 30, 70, 20, 40, 60, 80]
-    2. Display the in-order traversal after insertion.
-    3. Search for a key (e.g., 40).
-    4. Delete a key (e.g., 30) and display the new in-order traversal.
-    """
-    bst = BinarySearchTree()
-
-    # Insert nodes into the BST
-    nodes_to_insert = [50, 30, 70, 20, 40, 60, 80]
-    for key in nodes_to_insert:
-        bst.insert(key)
-    print("In-order traversal after insertion:", bst.inorder_traversal())
-
-    # Search for a key in the BST
-    search_key = 40
-    result = bst.search(search_key)
-    if result:
-        print(f"Node with key {search_key} found.")
-    else:
-        print(f"Node with key {search_key} not found.")
-
-    # Delete a node from the BST
-    bst.delete(30)
-    print("In-order traversal after deleting 30:", bst.inorder_traversal())
+    import doctest
+    doctest.testmod()
