@@ -18,14 +18,11 @@ Time Complexity : O(n/m)
     m=length of pattern string
 """
 
-
 class BoyerMooreSearch:
     """
     Example usage:
 
-        text = "ABAABA"
-        pattern = "AB"
-        bms = BoyerMooreSearch(text, pattern)
+        bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         positions = bms.bad_character_heuristic()
 
     where 'positions' contain the locations where the pattern was matched.
