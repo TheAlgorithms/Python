@@ -44,7 +44,7 @@ class BoyerMooreSearch:
             i (int): index of char from last in pattern
             -1 (int): if char is not found in pattern
 
-        >>> bms = BoyerMooreSearch("ABAABA", "AB")
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.match_in_pattern("B")
         1
         """
