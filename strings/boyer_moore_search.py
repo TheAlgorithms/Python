@@ -66,7 +66,7 @@ class BoyerMooreSearch:
             i (int): index of mismatched char from last in text
             -1 (int): if there is no mismatch between pattern and text block
 
-        >>> bms = BoyerMooreSearch("ABAABA", "AB")
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.mismatch_in_text(2)
         3
         """
@@ -80,7 +80,7 @@ class BoyerMooreSearch:
         """
         Finds the positions of the pattern location.
 
-        >>> bms = BoyerMooreSearch("ABAABA", "AB")
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.bad_character_heuristic()
         [0, 3]
         """
