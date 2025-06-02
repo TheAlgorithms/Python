@@ -6,10 +6,13 @@ including insertion, search, deletion, and in-order traversal. Each operation
 leverages recursive helper functions.
 
 Binary Search Tree Implementation with Doctest Examples
+For more information on binary search trees, please see:
+https://en.wikipedia.org/wiki/Binary_search_tree
 
 To run the doctests:
     python -m doctest -v binary_search_tree.py
 """
+
 
 class BSTNode:
     """
@@ -24,7 +27,16 @@ class BSTNode:
     right : BSTNode or None
         The right child node.
     """
+
     def __init__(self, key: int) -> None:
+        """
+        Initializes a new BST node.
+
+        Parameters
+        ----------
+        key : int
+            The key value for the new node.
+        """
         self.key = key
         self.left = None
         self.right = None
@@ -32,9 +44,13 @@ class BSTNode:
 
 class BinarySearchTree:
     """
-    Binary Search Tree (BST) class that supports operations such as
+    Binary Search Tree (BST) class that supports basic operations such as
     insertion, search, deletion, and in-order traversal.
+
+    For details on BSTs, see:
+    https://en.wikipedia.org/wiki/Binary_search_tree
     """
+
     def __init__(self) -> None:
         """
         Initializes an empty Binary Search Tree.
@@ -73,7 +89,7 @@ class BinarySearchTree:
         node : BSTNode
             The current node in the BST.
         key : int
-            The key to insert.
+            The key to be inserted.
 
         Examples
         --------
@@ -124,14 +140,15 @@ class BinarySearchTree:
 
     def _inorder_recursive(self, node: BSTNode, result: list) -> None:
         """
-        Helper function for recursively performing in-order traversal by accumulating the keys.
+        Helper function for recursively performing in-order traversal by
+        accumulating the keys in the provided list.
 
         Parameters
         ----------
         node : BSTNode or None
             The current node being visited.
         result : list
-            The list accumulating the keys.
+            The list to accumulate the keys.
 
         Examples
         --------
@@ -263,6 +280,7 @@ class BinarySearchTree:
         >>> bst.root = BSTNode(10)
         >>> bst.root.left = BSTNode(5)
         >>> bst.root.right = BSTNode(15)
+        >>> # Deleting a node in this simple tree; the new root will be unchanged as 10.
         >>> bst._delete_recursive(bst.root, 5).key
         10
         """
@@ -293,7 +311,7 @@ class BinarySearchTree:
         Parameters
         ----------
         node : BSTNode
-            The root of the subtree.
+            The root of the subtree from which to find the minimum key.
 
         Returns
         -------
