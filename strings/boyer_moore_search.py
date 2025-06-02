@@ -18,6 +18,7 @@ Time Complexity : O(n/m)
     m=length of pattern string
 """
 
+
 class BoyerMooreSearch:
     """
     Example usage:
