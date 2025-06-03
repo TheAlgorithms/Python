@@ -1,4 +1,4 @@
-# Recursive Prorgam to create a Linked List from a sequence and
+# Recursive Program to create a Linked List from a sequence and
 # print a string representation of it.
 
 

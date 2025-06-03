@@ -5,14 +5,14 @@ Problem 47
 
 The first two consecutive numbers to have two distinct prime factors are:
 
-14 = 2 × 7
-15 = 3 × 5
+14 = 2 x 7
+15 = 3 x 5
 
 The first three consecutive numbers to have three distinct prime factors are:
 
-644 = 2² × 7 × 23
-645 = 3 × 5 × 43
-646 = 2 × 17 × 19.
+644 = 2² x 7 x 23
+645 = 3 x 5 x 43
+646 = 2 x 17 x 19.
 
 Find the first four consecutive integers to have four distinct prime factors each.
 What is the first of these numbers?
@@ -24,7 +24,7 @@ from functools import lru_cache
 def unique_prime_factors(n: int) -> set:
     """
     Find unique prime factors of an integer.
-    Tests include sorting because only the set really matters,
+    Tests include sorting because only the set matters,
     not the order in which it is produced.
     >>> sorted(set(unique_prime_factors(14)))
     [2, 7]
@@ -58,7 +58,7 @@ def upf_len(num: int) -> int:
 
 def equality(iterable: list) -> bool:
     """
-    Check equality of ALL elements in an interable.
+    Check the equality of ALL elements in an iterable
     >>> equality([1, 2, 3, 4])
     False
     >>> equality([2, 2, 2, 2])
@@ -69,7 +69,7 @@ def equality(iterable: list) -> bool:
     return len(set(iterable)) in (0, 1)
 
 
-def run(n: int) -> list:
+def run(n: int) -> list[int]:
     """
     Runs core process to find problem solution.
     >>> run(3)
@@ -77,7 +77,7 @@ def run(n: int) -> list:
     """
 
     # Incrementor variable for our group list comprehension.
-    # This serves as the first number in each list of values
+    # This is the first number in each list of values
     # to test.
     base = 2
 
@@ -85,7 +85,7 @@ def run(n: int) -> list:
         # Increment each value of a generated range
         group = [base + i for i in range(n)]
 
-        # Run elements through out unique_prime_factors function
+        # Run elements through the unique_prime_factors function
         # Append our target number to the end.
         checker = [upf_len(x) for x in group]
         checker.append(n)
@@ -98,7 +98,7 @@ def run(n: int) -> list:
         base += 1
 
 
-def solution(n: int = 4) -> int:
+def solution(n: int = 4) -> int | None:
     """Return the first value of the first four consecutive integers to have four
     distinct prime factors each.
     >>> solution()

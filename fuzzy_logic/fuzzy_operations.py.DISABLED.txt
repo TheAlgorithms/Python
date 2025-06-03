@@ -28,7 +28,7 @@ if __name__ == "__main__":
     union = fuzz.fuzzy_or(X, young, X, middle_aged)[1]
     # 2. Intersection = min(µA(x), µB(x))
     intersection = fuzz.fuzzy_and(X, young, X, middle_aged)[1]
-    # 3. Complement (A) = (1- min(µA(x))
+    # 3. Complement (A) = (1 - min(µA(x)))
     complement_a = fuzz.fuzzy_not(young)
     # 4. Difference (A/B) = min(µA(x),(1- µB(x)))
     difference = fuzz.fuzzy_and(X, young, X, fuzz.fuzzy_not(middle_aged)[1])[1]

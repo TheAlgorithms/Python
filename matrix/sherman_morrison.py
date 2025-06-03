@@ -65,7 +65,7 @@ class Matrix:
         >>> a.validate_indices((0, 0))
         True
         """
-        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):
+        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):  # noqa: SIM114
             return False
         elif not (0 <= loc[0] < self.row and 0 <= loc[1] < self.column):
             return False

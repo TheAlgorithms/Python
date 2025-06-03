@@ -1,5 +1,5 @@
 #!/bin/python3
-# ruff: noqa
+# ruff: noqa: PLC3002
 """
 Quine:
 
@@ -8,4 +8,5 @@ own source code as its only output (disregarding this docstring and the shebang)
 
 More info on: https://en.wikipedia.org/wiki/Quine_(computing)
 """
+
 print((lambda quine: quine % quine)("print((lambda quine: quine %% quine)(%r))"))

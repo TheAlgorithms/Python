@@ -7,6 +7,7 @@ python -m unittest binary_search_tree_recursive.py
 To run an example:
 python binary_search_tree_recursive.py
 """
+
 from __future__ import annotations
 
 import unittest
@@ -73,14 +74,13 @@ class BinarySearchTree:
     def _put(self, node: Node | None, label: int, parent: Node | None = None) -> Node:
         if node is None:
             node = Node(label, parent)
+        elif label < node.label:
+            node.left = self._put(node.left, label, node)
+        elif label > node.label:
+            node.right = self._put(node.right, label, node)
         else:
-            if label < node.label:
-                node.left = self._put(node.left, label, node)
-            elif label > node.label:
-                node.right = self._put(node.right, label, node)
-            else:
-                msg = f"Node with label {label} already exists"
-                raise ValueError(msg)
+            msg = f"Node with label {label} already exists"
+            raise ValueError(msg)
 
         return node
 
@@ -105,11 +105,10 @@ class BinarySearchTree:
         if node is None:
             msg = f"Node with label {label} does not exist"
             raise ValueError(msg)
-        else:
-            if label < node.label:
-                node = self._search(node.left, label)
-            elif label > node.label:
-                node = self._search(node.right, label)
+        elif label < node.label:
+            node = self._search(node.left, label)
+        elif label > node.label:
+            node = self._search(node.right, label)
 
         return node
 

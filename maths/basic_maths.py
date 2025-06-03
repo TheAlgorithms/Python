@@ -1,4 +1,5 @@
 """Implementation of Basic Math in Python."""
+
 import math
 
 

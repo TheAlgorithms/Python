@@ -6,6 +6,7 @@ Created on Mon Feb 26 15:40:07 2018
 
 This file contains the test-suite for the linear algebra library.
 """
+
 import unittest
 
 import pytest
@@ -180,7 +181,7 @@ class Test(unittest.TestCase):
         test for Matrix method component()
         """
         a = Matrix([[1, 2, 3], [2, 4, 5], [6, 7, 8]], 3, 3)
-        assert a.component(2, 1) == 7, 0.01
+        assert a.component(2, 1) == 7, "0.01"
 
     def test__add__matrix(self) -> None:
         """

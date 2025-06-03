@@ -1,4 +1,12 @@
 """Get the site emails from URL."""
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
 from __future__ import annotations
 
 __author__ = "Muhammad Umer Farooq"
@@ -12,7 +20,7 @@ import re
 from html.parser import HTMLParser
 from urllib import parse
 
-import requests
+import httpx
 
 
 class Parser(HTMLParser):
@@ -29,12 +37,10 @@ class Parser(HTMLParser):
         if tag == "a":
             # Check the list of defined attributes.
             for name, value in attrs:
-                # If href is defined, and not empty nor # print it.
-                if name == "href" and value != "#" and value != "":
-                    # If not already in urls.
-                    if value not in self.urls:
-                        url = parse.urljoin(self.domain, value)
-                        self.urls.append(url)
+                # If href is defined, not empty nor # print it and not already in urls.
+                if name == "href" and value not in (*self.urls, "", "#"):
+                    url = parse.urljoin(self.domain, value)
+                    self.urls.append(url)
 
 
 # Get main domain name (example.com)
@@ -73,7 +79,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
 
     try:
         # Open URL
-        r = requests.get(url)
+        r = httpx.get(url, timeout=10, follow_redirects=True)
 
         # pass the raw HTML to the parser to get links
         parser.feed(r.text)
@@ -82,9 +88,15 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
         valid_emails = set()
         for link in parser.urls:
             # open URL.
-            # read = requests.get(link)
+            # Check if the link is already absolute
+            if not link.startswith("http://") and not link.startswith("https://"):
+                # Prepend protocol only if link starts with domain, normalize otherwise
+                if link.startswith(domain):
+                    link = f"https://{link}"
+                else:
+                    link = parse.urljoin(f"https://{domain}", link)
             try:
-                read = requests.get(link)
+                read = httpx.get(link, timeout=10, follow_redirects=True)
                 # Get the valid email.
                 emails = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
                 # If not in list then append it.

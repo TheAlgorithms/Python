@@ -15,6 +15,7 @@ Potential Future Ideas:
 - Make edge weights and vertex values customizable to store whatever the client wants
 - Support multigraph functionality if the client wants it
 """
+
 from __future__ import annotations
 
 import random

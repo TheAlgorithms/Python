@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-""" Author: OMKAR PATHAK """
+"""Author: OMKAR PATHAK"""
+
 from __future__ import annotations
 
 from queue import Queue

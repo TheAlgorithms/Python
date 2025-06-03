@@ -58,6 +58,7 @@ Sources :
     https://learn.parallax.com/support/reference/resistor-color-codes
     https://byjus.com/physics/resistor-colour-codes/
 """
+
 valid_colors: list = [
     "Black",
     "Brown",

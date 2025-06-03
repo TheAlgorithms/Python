@@ -21,14 +21,55 @@ class SkewNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> SkewNode(0).value
+        0
+        >>> SkewNode(3.14159).value
+        3.14159
+        >>> SkewNode("hello").value
+        'hello'
+        >>> SkewNode(None).value
+
+        >>> SkewNode(True).value
+        True
+        >>> SkewNode([]).value
+        []
+        >>> SkewNode({}).value
+        {}
+        >>> SkewNode(set()).value
+        set()
+        >>> SkewNode(0.0).value
+        0.0
+        >>> SkewNode(-1e-10).value
+        -1e-10
+        >>> SkewNode(10).value
+        10
+        >>> SkewNode(-10.5).value
+        -10.5
+        >>> SkewNode().value
+        Traceback (most recent call last):
+        ...
+        TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
+        """
         return self._value
 
     @staticmethod
     def merge(
         root1: SkewNode[T] | None, root2: SkewNode[T] | None
     ) -> SkewNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+        >>> SkewNode.merge(SkewNode(10),SkewNode(-10.5)).value
+        -10.5
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10.5)).value
+        10
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10)).value
+        10
+        >>> SkewNode.merge(SkewNode(-100),SkewNode(-10.5)).value
+        -100
+        """
         if not root1:
             return root2
 

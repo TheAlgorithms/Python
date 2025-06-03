@@ -33,7 +33,23 @@ class Stack(Generic[T]):
         return str(self.stack)
 
     def push(self, data: T) -> None:
-        """Push an element to the top of the stack."""
+        """
+        Push an element to the top of the stack.
+
+        >>> S = Stack(2) # stack size = 2
+        >>> S.push(10)
+        >>> S.push(20)
+        >>> print(S)
+        [10, 20]
+
+        >>> S = Stack(1) # stack size = 1
+        >>> S.push(10)
+        >>> S.push(20)
+        Traceback (most recent call last):
+        ...
+        data_structures.stacks.stack.StackOverflowError
+
+        """
         if len(self.stack) >= self.limit:
             raise StackOverflowError
         self.stack.append(data)
@@ -41,6 +57,12 @@ class Stack(Generic[T]):
     def pop(self) -> T:
         """
         Pop an element off of the top of the stack.
+
+        >>> S = Stack()
+        >>> S.push(-5)
+        >>> S.push(10)
+        >>> S.pop()
+        10
 
         >>> Stack().pop()
         Traceback (most recent call last):
@@ -55,7 +77,13 @@ class Stack(Generic[T]):
         """
         Peek at the top-most element of the stack.
 
-        >>> Stack().pop()
+        >>> S = Stack()
+        >>> S.push(-5)
+        >>> S.push(10)
+        >>> S.peek()
+        10
+
+        >>> Stack().peek()
         Traceback (most recent call last):
             ...
         data_structures.stacks.stack.StackUnderflowError
@@ -65,18 +93,68 @@ class Stack(Generic[T]):
         return self.stack[-1]
 
     def is_empty(self) -> bool:
-        """Check if a stack is empty."""
+        """
+        Check if a stack is empty.
+
+        >>> S = Stack()
+        >>> S.is_empty()
+        True
+
+        >>> S = Stack()
+        >>> S.push(10)
+        >>> S.is_empty()
+        False
+        """
         return not bool(self.stack)
 
     def is_full(self) -> bool:
+        """
+        >>> S = Stack()
+        >>> S.is_full()
+        False
+
+        >>> S = Stack(1)
+        >>> S.push(10)
+        >>> S.is_full()
+        True
+        """
         return self.size() == self.limit
 
     def size(self) -> int:
-        """Return the size of the stack."""
+        """
+        Return the size of the stack.
+
+        >>> S = Stack(3)
+        >>> S.size()
+        0
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> S.size()
+        1
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> S.push(20)
+        >>> S.size()
+        2
+        """
         return len(self.stack)
 
     def __contains__(self, item: T) -> bool:
-        """Check if item is in stack"""
+        """
+        Check if item is in stack
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> 10 in S
+        True
+
+        >>> S = Stack(3)
+        >>> S.push(10)
+        >>> 20 in S
+        False
+        """
         return item in self.stack
 
 
@@ -131,3 +209,7 @@ def test_stack() -> None:
 
 if __name__ == "__main__":
     test_stack()
+
+    import doctest
+
+    doctest.testmod()

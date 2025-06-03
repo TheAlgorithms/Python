@@ -18,6 +18,7 @@ Overview:
 - function square_zero_matrix(N)
 - function random_matrix(W, H, a, b)
 """
+
 from __future__ import annotations
 
 import math
@@ -45,7 +46,6 @@ class Vector:
         change_component(pos: int, value: float): changes specified component
         euclidean_length(): returns the euclidean length of the vector
         angle(other: Vector, deg: bool): returns the angle between two vectors
-        TODO: compare-operator
     """
 
     def __init__(self, components: Collection[float] | None = None) -> None:
@@ -95,13 +95,21 @@ class Vector:
         else:  # error case
             raise Exception("must have the same size")
 
-    @overload
-    def __mul__(self, other: float) -> Vector:
-        ...
+    def __eq__(self, other: object) -> bool:
+        """
+        performs the comparison between two vectors
+        """
+        if not isinstance(other, Vector):
+            return NotImplemented
+        if len(self) != len(other):
+            return False
+        return all(self.component(i) == other.component(i) for i in range(len(self)))
 
     @overload
-    def __mul__(self, other: Vector) -> float:
-        ...
+    def __mul__(self, other: float) -> Vector: ...
+
+    @overload
+    def __mul__(self, other: Vector) -> float: ...
 
     def __mul__(self, other: float | Vector) -> float | Vector:
         """
@@ -309,12 +317,10 @@ class Matrix:
             raise Exception("matrices must have the same dimension!")
 
     @overload
-    def __mul__(self, other: float) -> Matrix:
-        ...
+    def __mul__(self, other: float) -> Matrix: ...
 
     @overload
-    def __mul__(self, other: Vector) -> Vector:
-        ...
+    def __mul__(self, other: Vector) -> Vector: ...
 
     def __mul__(self, other: float | Vector) -> Vector | Matrix:
         """

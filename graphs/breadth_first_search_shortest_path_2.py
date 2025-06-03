@@ -1,9 +1,10 @@
 """Breadth-first search shortest path implementations.
-    doctest:
-    python -m doctest -v bfs_shortest_path.py
-    Manual test:
-    python bfs_shortest_path.py
+doctest:
+python -m doctest -v bfs_shortest_path.py
+Manual test:
+python bfs_shortest_path.py
 """
+
 demo_graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],

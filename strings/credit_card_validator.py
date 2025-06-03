@@ -36,7 +36,7 @@ def luhn_validation(credit_card_number: str) -> bool:
         digit = int(cc_number[i])
         digit *= 2
         # If doubling of a number results in a two digit number
-        # i.e greater than 9(e.g., 6 × 2 = 12),
+        # i.e greater than 9(e.g., 6 x 2 = 12),
         # then add the digits of the product (e.g., 12: 1 + 2 = 3, 15: 1 + 5 = 6),
         # to get a single digit number.
         if digit > 9:
