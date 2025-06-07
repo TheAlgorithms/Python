@@ -1,12 +1,3 @@
-"""
-Ford-Fulkerson Algorithm for Maximum Flow Problem
-* https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
-
-Description:
-    (1) Start with initial flow as 0
-    (2) Choose the augmenting path from source to sink and add the path to flow
-"""
-
 graph = [
     [0, 16, 13, 0, 0, 0],
     [0, 0, 10, 12, 0, 0],
@@ -15,7 +6,6 @@ graph = [
     [0, 0, 0, 7, 0, 4],
     [0, 0, 0, 0, 0, 0],
 ]
-
 
 def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
     """
@@ -53,7 +43,6 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
                 visited[ind] = True
                 parents[ind] = u
     return visited[sink]
-
 
 def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     """
@@ -99,15 +88,20 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
 
         while v != source:
             u = parent[v]
+            # Update residual capacities
             graph[u][v] -= path_flow
+            # Ensure reverse edge exists
+            if graph[v][u] == 0:
+                graph[v][u] = 0  # Explicitly initialize if needed (though usually already 0)
             graph[v][u] += path_flow
             v = parent[v]
 
     return max_flow
 
-
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{ford_fulkerson(graph, source=0, sink=5) = }")
+    # Make a copy of the original graph to preserve it
+    graph_copy = [row[:] for row in graph]
+    print(f"{ford_fulkerson(graph_copy, source=0, sink=5) = }")
