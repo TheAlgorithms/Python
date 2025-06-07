@@ -7,6 +7,7 @@ graph = [
     [0, 0, 0, 0, 0, 0],
 ]
 
+
 def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
     """
     This function returns True if there is a node that has not iterated.
@@ -43,6 +44,7 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
                 visited[ind] = True
                 parents[ind] = u
     return visited[sink]
+
 
 def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     """
@@ -92,11 +94,14 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
             graph[u][v] -= path_flow
             # Ensure reverse edge exists
             if graph[v][u] == 0:
-                graph[v][u] = 0  # Explicitly initialize if needed (though usually already 0)
+                graph[v][u] = (
+                    0  # Explicitly initialize if needed (though usually already 0)
+                )
             graph[v][u] += path_flow
             v = parent[v]
 
     return max_flow
+
 
 if __name__ == "__main__":
     from doctest import testmod
