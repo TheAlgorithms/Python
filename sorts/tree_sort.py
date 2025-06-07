@@ -1,72 +1,82 @@
-"""
-Tree_sort algorithm.
-
-Build a Binary Search Tree and then iterate thru it to get a sorted list.
-"""
-
 from __future__ import annotations
-
 from collections.abc import Iterator
 from dataclasses import dataclass
 
-
 @dataclass
 class Node:
+    """Node of a Binary Search Tree (BST) for sorting."""
     val: int
     left: Node | None = None
     right: Node | None = None
 
     def __iter__(self) -> Iterator[int]:
+        """In-order traversal generator for BST."""
+        # Traverse left subtree first (smaller values)
         if self.left:
             yield from self.left
+            
+        # Current node value
         yield self.val
+        
+        # Traverse right subtree last (larger values)
         if self.right:
             yield from self.right
 
-    def __len__(self) -> int:
-        return sum(1 for _ in self)
-
     def insert(self, val: int) -> None:
-        if val < self.val:
+        """Insert value into BST while maintaining sort order."""
+        # Values <= current go to left subtree
+        if val <= self.val:
             if self.left is None:
                 self.left = Node(val)
             else:
                 self.left.insert(val)
-        elif val > self.val:
+        # Values > current go to right subtree
+        else:
             if self.right is None:
                 self.right = Node(val)
             else:
                 self.right.insert(val)
 
 
-def tree_sort(arr: list[int]) -> tuple[int, ...]:
+def tree_sort(arr: list[int] | tuple[int, ...]) -> tuple[int, ...]:
     """
-    >>> tree_sort([])
-    ()
-    >>> tree_sort((1,))
-    (1,)
-    >>> tree_sort((1, 2))
-    (1, 2)
-    >>> tree_sort([5, 2, 7])
-    (2, 5, 7)
-    >>> tree_sort((5, -4, 9, 2, 7))
-    (-4, 2, 5, 7, 9)
-    >>> tree_sort([5, 6, 1, -1, 4, 37, 2, 7])
-    (-1, 1, 2, 4, 5, 6, 7, 37)
-
-    # >>> tree_sort(range(10, -10, -1)) == tuple(sorted(range(10, -10, -1)))
-    # True
+    Sort sequence using Binary Search Tree (BST) traversal.
+    
+    Args:
+        arr: Input sequence (list or tuple of integers)
+    
+    Returns:
+        Tuple of sorted integers
+    
+    Examples:
+        >>> tree_sort([])
+        ()
+        >>> tree_sort((1,))
+        (1,)
+        >>> tree_sort((1, 2))
+        (1, 2)
+        >>> tree_sort([5, 2, 7])
+        (2, 5, 7)
+        >>> tree_sort((5, -4, 9, 2, 7))
+        (-4, 2, 5, 7, 9)
+        >>> tree_sort([5, 6, 1, -1, 4, 37, 2, 7])
+        (-1, 1, 2, 4, 5, 6, 7, 37)
+        >>> tree_sort([5, 2, 7, 5])  # Test duplicate handling
+        (2, 5, 5, 7)
     """
-    if len(arr) == 0:
-        return tuple(arr)
-    root = Node(arr[0])
-    for item in arr[1:]:
+    # Handle empty input immediately
+    if not arr:
+        return ()
+    
+    # Convert to list for uniform processing
+    items = list(arr)
+    
+    # Initialize BST root with first element
+    root = Node(items[0])
+    
+    # Insert remaining items into BST
+    for item in items[1:]:
         root.insert(item)
+    
+    # Convert BST traversal to sorted tuple
     return tuple(root)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print(f"{tree_sort([5, 6, 1, -1, 4, 37, -3, 7]) = }")
