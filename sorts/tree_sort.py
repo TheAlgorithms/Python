@@ -2,9 +2,11 @@ from __future__ import annotations
 from collections.abc import Iterator
 from dataclasses import dataclass
 
+
 @dataclass
 class Node:
     """Node of a Binary Search Tree (BST) for sorting."""
+
     val: int
     left: Node | None = None
     right: Node | None = None
@@ -14,10 +16,10 @@ class Node:
         # Traverse left subtree first (smaller values)
         if self.left:
             yield from self.left
-            
+
         # Current node value
         yield self.val
-        
+
         # Traverse right subtree last (larger values)
         if self.right:
             yield from self.right
@@ -41,13 +43,13 @@ class Node:
 def tree_sort(arr: list[int] | tuple[int, ...]) -> tuple[int, ...]:
     """
     Sort sequence using Binary Search Tree (BST) traversal.
-    
+
     Args:
         arr: Input sequence (list or tuple of integers)
-    
+
     Returns:
         Tuple of sorted integers
-    
+
     Examples:
         >>> tree_sort([])
         ()
@@ -67,16 +69,16 @@ def tree_sort(arr: list[int] | tuple[int, ...]) -> tuple[int, ...]:
     # Handle empty input immediately
     if not arr:
         return ()
-    
+
     # Convert to list for uniform processing
     items = list(arr)
-    
+
     # Initialize BST root with first element
     root = Node(items[0])
-    
+
     # Insert remaining items into BST
     for item in items[1:]:
         root.insert(item)
-    
+
     # Convert BST traversal to sorted tuple
     return tuple(root)
