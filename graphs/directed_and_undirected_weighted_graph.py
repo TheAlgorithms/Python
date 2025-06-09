@@ -355,7 +355,7 @@ class Graph:
                     self.graph[v].remove(_)
 
     # if no destination is meant the default value is -1
-    def dfs(self, s=-2, d=-1) -> None:
+    def dfs(self, s=-2, d=-1) -> list[int]:
         """
         Performs a depth-first search starting from node s.
         If destination d is given, stops when d is found
@@ -459,7 +459,7 @@ class Graph:
         >>> g2.bfs()
         [10, 20, 30]
         """
-        d = deque()
+        d: deque = deque()
         visited = []
         if s == -2:
             s = next(iter(self.graph))
@@ -535,12 +535,15 @@ class Graph:
         Detects whether the undirected graph contains a cycle.
 
         Note:
-        - This function assumes the graph is connected and only traverses from the first node found in the graph.
+        - This function assumes the graph is connected and only traverses from the
+          first node found in the graph.
         - It does not detect cycles that exist in disconnected components.
-        - It also does not detect self-loops (e.g., an edge from a node to itself like 1-1).
+        - It also does not detect self-loops
+        (e.g., an edge from a node to itself like 1-1).
 
         Returns:
-            bool: True if a cycle is detected in the connected component starting from the first node; False otherwise.
+            bool: True if a cycle is detected in the connected component starting
+            from the first node; False otherwise.
 
         >>> g = Graph()
         >>> g.add_pair(1, 2)
@@ -562,7 +565,7 @@ class Graph:
         >>> g4.add_pair(3, 4)
         >>> g4.add_pair(4, 5)
         >>> g4.add_pair(5, 3)  # cycle in disconnected component
-        >>> g4.has_cycle()  # Only checks the component reachable from the first node (1)
+        >>> g4.has_cycle()  # Only checks the component reachable from the first node 1
         False
         """
 
@@ -572,7 +575,7 @@ class Graph:
         stack.append(s)
         visited.append(s)
         parent = -2
-        indirect_parents = []
+        indirect_parents: list[int] = []
         ss = s
         on_the_way_back = False
         anticipating_nodes = set()
