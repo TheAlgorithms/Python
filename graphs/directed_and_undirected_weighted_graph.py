@@ -435,6 +435,9 @@ class Graph:
         Performs breadth-first search starting from node s.
         If s is not given, starts from the first node in the graph
 
+        Returns:
+            list of nodes found after performing breadth-first search
+
         >>> g = Graph()
         >>> g.add_pair(1,2)
         >>> g.add_pair(1,3)
@@ -527,7 +530,42 @@ class Graph:
             if len(stack) == 0:
                 return list(anticipating_nodes)
 
-    def has_cycle(self):
+    def has_cycle(self) -> bool:
+        """
+        Detects whether the undirected graph contains a cycle.
+
+        Note:
+        - This function assumes the graph is connected and only traverses from the first node found in the graph.
+        - It does not detect cycles that exist in disconnected components.
+        - It also does not detect self-loops (e.g., an edge from a node to itself like 1-1).
+
+        Returns:
+            bool: True if a cycle is detected in the connected component starting from the first node; False otherwise.
+
+        >>> g = Graph()
+        >>> g.add_pair(1, 2)
+        >>> g.add_pair(2, 3)
+        >>> g.has_cycle()
+        False
+        >>> g2 = Graph()
+        >>> g2.add_pair(1, 2)
+        >>> g2.add_pair(2, 3)
+        >>> g2.add_pair(3, 1)  # creates a cycle
+        >>> g2.has_cycle()
+        True
+        >>> g3 = Graph()
+        >>> g3.add_pair(1, 1)  # self-loop
+        >>> g3.has_cycle()  # Self-loops are not detected by this method
+        False
+        >>> g4 = Graph()
+        >>> g4.add_pair(1, 2)
+        >>> g4.add_pair(3, 4)
+        >>> g4.add_pair(4, 5)
+        >>> g4.add_pair(5, 3)  # cycle in disconnected component
+        >>> g4.has_cycle()  # Only checks the component reachable from the first node (1)
+        False
+        """
+
         stack = []
         visited = []
         s = next(iter(self.graph))
