@@ -355,7 +355,32 @@ class Graph:
                     self.graph[v].remove(_)
 
     # if no destination is meant the default value is -1
-    def dfs(self, s=-2, d=-1):
+    def dfs(self, s=-2, d=-1) -> None:
+        """
+        Performs a depth-first search starting from node s.
+        If destination d is given, stops when d is found
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.add_pair(2,3)
+        >>> g.dfs(1)
+        [1, 2, 3]
+        >>> g.dfs(1,3)
+        [1, 2, 3]
+        >>> g.dfs(1,4)  # 4 not in graph
+        [1, 2, 3]
+        >>> g.dfs(1,1)  # start equals dest
+        []
+        >>> g2 = Graph()
+        >>> g2.add_pair(10,20)
+        >>> g2.add_pair(20,30)
+        >>> g2.dfs()  # default start
+        [10, 20, 30]
+        >>> g2.add_pair(30,40)
+        >>> g2.add_pair(40, 50)
+        >>> g2.dfs(d=40)  # checking if destination works properly
+        [10, 20, 30, 40]
+        """
         if s == d:
             return []
         stack = []
