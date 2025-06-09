@@ -430,7 +430,32 @@ class Graph:
                 if n != i:
                     self.add_pair(i, n, 1)
 
-    def bfs(self, s=-2):
+    def bfs(self, s=-2) -> list[int]:
+        """
+        Performs breadth-first search starting from node s.
+        If s is not given, starts from the first node in the graph
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.add_pair(1,3)
+        >>> g.add_pair(2,4)
+        >>> g.add_pair(3,5)
+        >>> g.bfs(1)
+        [1, 2, 3, 4, 5]
+        >>> g.bfs(2)
+        [2, 1, 4, 3, 5]
+        >>> g.bfs(4)  # leaf node test
+        [4, 2, 1, 3, 5]
+        >>> g.bfs(10)  # nonexistent node
+        Traceback (most recent call last):
+            ...
+        KeyError: 10
+        >>> g2 = Graph()
+        >>> g2.add_pair(10,20)
+        >>> g2.add_pair(20,30)
+        >>> g2.bfs()
+        [10, 20, 30]
+        """
         d = deque()
         visited = []
         if s == -2:
