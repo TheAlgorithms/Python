@@ -268,7 +268,34 @@ class Graph:
     # adding vertices and edges
     # adding the weight is optional
     # handles repetition
-    def add_pair(self, u, v, w=1):
+    def add_pair(self, u, v, w=1) -> None:
+        """
+        Adds an edge between u and v with an optional weight w to an undirected graph
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.graph[1]
+        [[1, 2]]
+        >>> g.graph[2]
+        [[1, 1]]
+        >>> g.add_pair(1,2) # testing for duplicates
+        >>> g.graph[1]
+        [[1, 2]]
+        >>> g.add_pair(2,1) # reverse order, should not add a duplicate
+        >>> g.graph[2]
+        [[1, 1]]
+        >>> g.add_pair(1,3,5)
+        >>> g.graph[1]
+        [[1, 2], [5, 3]]
+        >>> g.graph[3]
+        [[5, 1]]
+        >>> g.add_pair(4,4) # test for self loop
+        >>> g.graph[4]
+        [[1, 4]]
+        >>> g.add_pair(1,2,3) # previously added nodes, different weight
+        >>> g.graph[1]
+        [[1, 2], [5, 3], [3, 2]]
+        """
         # check if the u exists
         if self.graph.get(u):
             # if there already is a edge
