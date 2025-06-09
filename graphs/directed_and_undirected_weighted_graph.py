@@ -314,10 +314,10 @@ class Graph:
             self.graph[v] = [[w, u]]
 
     # handles if the input does not exist
-    def remove_pair(self, u, v):
+    def remove_pair(self, u, v) -> None:
         """
         Removes the edge between u and v in an unidirected graph, if it exists
-        
+
         >>> g = Graph()
         >>> g.add_pair(1,2)
         >>> g.add_pair(1,3,5)
