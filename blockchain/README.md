@@ -11,7 +11,7 @@ Here are the key blockchain terminologies:
 - Cryptography
 
 ## Distributed Ledger Technology (DLT)
-First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information. 
+First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information.
 However, this approach only serves as a hotbed for inefficiency and over-reliance on a sole entity.
 
 This is where Distributed Ledger Technology comes in. DLT represents a massive shift from centralised data management.
