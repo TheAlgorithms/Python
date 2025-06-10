@@ -71,11 +71,9 @@ def topological_sort(graph: dict[str, list[str]]) -> list[str]:
     result = []
 
     def visit(node: str) -> None:
-
         is_being_visited.add(node)
 
         for neighbor in graph.get(node, []):
-
             if neighbor in visited:
                 continue
 
@@ -103,7 +101,6 @@ def topological_sort(graph: dict[str, list[str]]) -> list[str]:
 
 
 if __name__ == "__main__":
-
     graph: dict[str, list[str]] = {
         "A": ["B", "C"],
         "B": ["D", "E"],
