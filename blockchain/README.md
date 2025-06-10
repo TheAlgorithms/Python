@@ -11,12 +11,12 @@ Here are the key blockchain terminologies:
 - Cryptography
 
 ## Distributed Ledger Technology (DLT)
-First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information. 
+First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information.
 However, this approach only serves as a hotbed for inefficieny and over-reliance on a sole entity.
 
 This is where Distributed Ledger Technology comes in. DLT represents a massive shift from centralised data management.
 
-Instead of one single entity managing data, the ledger, which in this case is **digital**, is shared among multiple **nodes**(computers) in a network. Each node is responsible for maintaining an **identical** copy of the main ledger, and all these nodes must consent before any new information is added to the main ledger. 
+Instead of one single entity managing data, the ledger, which in this case is **digital**, is shared among multiple **nodes**(computers) in a network. Each node is responsible for maintaining an **identical** copy of the main ledger, and all these nodes must consent before any new information is added to the main ledger.
 
 *Key Characteristics of DLT:*
 - Decentralisation: No single point of control, management or failure
@@ -28,7 +28,7 @@ Instead of one single entity managing data, the ledger, which in this case is **
 - Four roommates live in an apartment together.
 - They all contribute towards groceries, utilities, and rent.
 - In the spirit of accountability, they use a **shared Google Sheet** where every expense is tracked.
-- Everyone can **see**, **add**, and **validate** expenses, but **no one can delete past expense entries** — they're only allowed to append new rows with reasons for any corrections. 
+- Everyone can **see**, **add**, and **validate** expenses, but **no one can delete past expense entries** — they're only allowed to append new rows with reasons for any corrections.
 
 This is exactly how a Distributed Ledger works.
 
@@ -45,7 +45,7 @@ This is exactly how a Distributed Ledger works.
 
 **Centralised approach:** Here, an organisation with 4 branches stores all its data in one central database. This database is managed by the Chief Administrator at the headquarters. Each branch needs approval from the Chief Administrator to view and access information. If a bad actor gains access to the central database, they can unduly alter all the data, and if the central database fails, all the branches lose their access to vital data.
 
-**Distributed approach:** In this case, each organisational branch maintains a complete **carbon copy** of the original ledger. For one branch to add information, all branches must reach a consensus. When one branch adds information, it's broadcast to the entire network and systematically synchronised across all other ledgers through a peer-to-peer network after verification. 
+**Distributed approach:** In this case, each organisational branch maintains a complete **carbon copy** of the original ledger. For one branch to add information, all branches must reach a consensus. When one branch adds information, it's broadcast to the entire network and systematically synchronised across all other ledgers through a peer-to-peer network after verification.
 
 In summary, a distributed approach offers:
 - Fault tolerance: If information is altered in one branch, other branches can detect the change through consensus algorithms
@@ -54,7 +54,7 @@ In summary, a distributed approach offers:
 - Verification: Any member of the network can independently verify the integrity of the complete transaction history
 
 ## Blocks
-A **block** is a cluster of transactions grouped together with metadata in a structured manner. 
+A **block** is a cluster of transactions grouped together with metadata in a structured manner.
 Imagine a block as a page in a digital ledger. This page consists of multiple transaction entries, including important information about when and how that page was created.
 
 *Structure of a Block:*
@@ -121,7 +121,7 @@ When person A wants to send **cryptocurrency** to person B:
 Blockchain networks can track and trade virtually any **asset** of value, from tangible assets like real estate, commodities, and vehicles, to intangible assets such as cryptocurrencies, intellectual property, digital art (NFTs), and carbon credits.
 A blockchain network can track and sell almost anything of value, lowering risk and costs for everyone involved.
 
-This is just a brief introduction to blockchain technology. 
+This is just a brief introduction to blockchain technology.
 To find out more about this technology, check out the links below:
 * <https://en.wikipedia.org/wiki/Blockchain> - Comprehensive overview of blockchain technology
 * <https://bitcoin.org/bitcoin.pdf> - The original document by Satoshi Nakamoto
