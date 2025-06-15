@@ -21,6 +21,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
+
 class RBFNN:
     def __init__(self, num_centers, gamma):
         # Initialize with number of RBF centers and spread parameter (gamma)
@@ -31,8 +32,8 @@ class RBFNN:
 
     def _rbf(self, x, centers):
         # Compute Gaussian RBF activations for inputs x given the centers
-        dist = cdist(x, centers, 'euclidean')  # Compute Euclidean distance to centers
-        return np.exp(-self.gamma * (dist ** 2))  # Apply Gaussian function
+        dist = cdist(x, centers, "euclidean")  # Compute Euclidean distance to centers
+        return np.exp(-self.gamma * (dist**2))  # Apply Gaussian function
 
     def train(self, x_data, y_data):
         # Train the RBFNN
@@ -51,6 +52,7 @@ class RBFNN:
         rbf_activations = self._rbf(x, self.centers)
         return rbf_activations.dot(self.weights)
 
+
 if __name__ == "__main__":
     # Load and preprocess Iris dataset
     iris = load_iris()
@@ -66,7 +68,9 @@ if __name__ == "__main__":
     y_encoded = encoder.fit_transform(y)
 
     # Split data into training and testing sets
-    x_train, x_test, y_train, y_test = train_test_split(x_scaled, y_encoded, test_size=0.2, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x_scaled, y_encoded, test_size=0.2, random_state=42
+    )
 
     # Initialize and train the RBF Neural Network
     rbfnn = RBFNN(num_centers=10, gamma=1.0)
