@@ -14,12 +14,12 @@
 # ------------------------------------------------------
 
 import numpy as np
-from sklearn.cluster import KMeans
 from scipy.spatial.distance import cdist
+from sklearn.cluster import KMeans
 from sklearn.datasets import load_iris
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 class RBFNN:
     def __init__(self, num_centers, gamma):
@@ -29,9 +29,9 @@ class RBFNN:
         self.centers = None
         self.weights = None
 
-    def _rbf(self, X, centers):
-        # Compute Gaussian RBF activations for inputs X given the centers
-        dist = cdist(X, centers, 'euclidean')  # Compute Euclidean distance to centers
+    def _rbf(self, x, centers):
+        # Compute Gaussian RBF activations for inputs x given the centers
+        dist = cdist(x, centers, 'euclidean')  # Compute Euclidean distance to centers
         return np.exp(-self.gamma * (dist ** 2))  # Apply Gaussian function
 
     def train(self, x_data, y_data):
@@ -54,26 +54,26 @@ class RBFNN:
 if __name__ == "__main__":
     # Load and preprocess Iris dataset
     iris = load_iris()
-    X = iris.data  # Feature matrix
+    x = iris.data  # Feature matrix
     y = iris.target.reshape(-1, 1)  # Labels
 
     # Standardize features
     scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
+    x_scaled = scaler.fit_transform(x)
 
     # One-hot encode target labels for multi-class classification
     encoder = OneHotEncoder(sparse_output=False)
     y_encoded = encoder.fit_transform(y)
 
     # Split data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_encoded, test_size=0.2, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(x_scaled, y_encoded, test_size=0.2, random_state=42)
 
     # Initialize and train the RBF Neural Network
     rbfnn = RBFNN(num_centers=10, gamma=1.0)
-    rbfnn.train(X_train, y_train)
+    rbfnn.train(x_train, y_train)
 
     # Predict on test set
-    y_pred_probs = rbfnn.predict(X_test)
+    y_pred_probs = rbfnn.predict(x_test)
     y_pred = np.argmax(y_pred_probs, axis=1)
     y_true = np.argmax(y_test, axis=1)
 
