@@ -270,17 +270,17 @@ def area_of_parabola(x,a,b,c):
     """
     Area under the parabola y = 1x² + 0x + 0 from x = 0 to x = 2 is 2.666666666666667
     """
- return a * x**2 + b * x + c 
+ return a * x**2 + b * x + c
 
  def area_under_parabola(a, b, c, x1, x2):
      area, _ = quad(parabola, x1, x2, args=(a, b, c))
      return area
-  #example usage 
+  #example usage
   a = 1
-  b = 0 
+  b = 0
   c = 0
  x1 = 0
- x2 = 2 
+ x2 = 2
 
 area = area_under_parabola(a, b, c, x1, x2)
 print(f"Area under the parabola y = {a}x² + {b}x + {c} from x = {x1} to x = {x2} is {area}")
