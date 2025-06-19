@@ -2,6 +2,8 @@
 Fibonacci
 https://en.wikipedia.org/wiki/Fibonacci_number
 """
+
+
 def factorial(number: int) -> int:
     """
     Compute the factorial of a non-negative integer using recursion.
