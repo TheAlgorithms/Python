@@ -4,9 +4,9 @@ Classical simulation of Shor's Algorithm to factor integers.
 Source: https://en.wikipedia.org/wiki/Shor%27s_algorithm
 """
 
-import random
 import math
-from typing import Tuple, Union
+import random
+from typing import Any
 
 
 def is_prime(n: int) -> bool:
@@ -24,11 +24,8 @@ def is_prime(n: int) -> bool:
         return True
     if n % 2 == 0:
         return False
-    r = int(math.isqrt(n))
-    for i in range(3, r + 1, 2):
-        if n % i == 0:
-            return False
-    return True
+    r = math.isqrt(n)
+    return all(n % i != 0 for i in range(3, r + 1, 2))
 
 
 def modexp(a: int, b: int, m: int) -> int:
@@ -48,7 +45,7 @@ def modexp(a: int, b: int, m: int) -> int:
     return result
 
 
-def shor_classical(N: int, max_attempts: int = 10) -> Union[str, Tuple[int, int]]:
+def shor_classical(n: int, max_attempts: int = 10) -> str | tuple[int, int]:
     """
     Classical approximation of Shor's Algorithm to factor a number.
 
@@ -61,22 +58,22 @@ def shor_classical(N: int, max_attempts: int = 10) -> Union[str, Tuple[int, int]
     >>> shor_classical(13)  # Prime
     'No factors: 13 is prime'
     """
-    if N <= 1:
+    if n <= 1:
         return "Failure: input must be > 1"
-    if N % 2 == 0:
-        return 2, N // 2
-    if is_prime(N):
-        return f"No factors: {N} is prime"
+    if n % 2 == 0:
+        return 2, n // 2
+    if is_prime(n):
+        return f"No factors: {n} is prime"
 
     for _ in range(max_attempts):
-        a = random.randrange(2, N - 1)
-        g = math.gcd(a, N)
+        a = random.randrange(2, n - 1)
+        g = math.gcd(a, n)
         if g > 1:
-            return g, N // g
+            return g, n // g
 
         r = 1
-        while r < N:
-            if modexp(a, r, N) == 1:
+        while r < n:
+            if modexp(a, r, n) == 1:
                 break
             r += 1
         else:
@@ -84,13 +81,13 @@ def shor_classical(N: int, max_attempts: int = 10) -> Union[str, Tuple[int, int]
 
         if r % 2 != 0:
             continue
-        x = modexp(a, r // 2, N)
-        if x == N - 1:
+        x = modexp(a, r // 2, n)
+        if x == n - 1:
             continue
 
-        factor1 = math.gcd(x - 1, N)
-        factor2 = math.gcd(x + 1, N)
-        if factor1 not in (1, N) and factor2 not in (1, N):
+        factor1 = math.gcd(x - 1, n)
+        factor2 = math.gcd(x + 1, n)
+        if factor1 not in (1, n) and factor2 not in (1, n):
             return factor1, factor2
 
     return "Failure: try more attempts"
