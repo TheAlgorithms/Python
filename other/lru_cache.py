@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from collections.abc import Callable, Hashable
 from functools import wraps
-from typing import Any, Generic, ParamSpec, TypeVar, overload, TYPE_CHECKING
+from typing import Any, Generic, ParamSpec, TypeVar, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    type NodeKey = T | None
-    type NodeValue = U | None
+    type NodeKey = Any | None
+    type NodeValue = Any | None
 else:
     NodeKey = TypeVar("NodeKey", bound=Hashable)
     NodeValue = TypeVar("NodeValue")
@@ -34,8 +34,8 @@ class DoubleLinkedList(Generic[T, U]):
     """Double Linked List for LRU Cache"""
 
     def __init__(self) -> None:
-        self.head: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
-        self.rear: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
+        self.head: DoubleLinkedListNode[Any, Any] = DoubleLinkedListNode(None, None)
+        self.rear: DoubleLinkedListNode[Any, Any] = DoubleLinkedListNode(None, None)
         self.head.next, self.rear.prev = self.rear, self.head
 
     def __repr__(self) -> str:
@@ -51,19 +51,17 @@ class DoubleLinkedList(Generic[T, U]):
         prev = self.rear.prev
         if not prev:
             raise ValueError("Invalid list state")
-
+        
         prev.next = node
         node.prev = prev
         self.rear.prev = node
         node.next = self.rear
 
-    def remove(
-        self, node: DoubleLinkedListNode[T, U]
-    ) -> DoubleLinkedListNode[T, U] | None:
+    def remove(self, node: DoubleLinkedListNode[T, U]) -> DoubleLinkedListNode[T, U] | None:
         """Remove node from list"""
         if not node.prev or not node.next:
             return None
-
+            
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
@@ -82,7 +80,10 @@ class LRUCache(Generic[T, U]):
         self.cache: dict[T, DoubleLinkedListNode[T, U]] = {}
 
     def __repr__(self) -> str:
-        return f"Cache(hits={self.hits}, misses={self.misses}, cap={self.capacity}, size={self.size})"
+        return (
+            f"Cache(hits={self.hits}, misses={self.misses}, "
+            f"cap={self.capacity}, size={self.size})"
+        )
 
     def __contains__(self, key: T) -> bool:
         return key in self.cache
@@ -121,9 +122,8 @@ class LRUCache(Generic[T, U]):
     @classmethod
     def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
         """LRU Cache decorator"""
-
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
-            cache = cls[Any, R](size)
+            cache = cls[Any, R](size)  # type: ignore[type-var]
 
             @wraps(func)
             def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
@@ -133,13 +133,13 @@ class LRUCache(Generic[T, U]):
                     cache.put(key, result)
                 return result
 
-            wrapper.cache_info = lambda: cache  # Direct attribute assignment
+            # Add cache_info attribute
+            wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
             return wrapper
-
+        
         return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
