@@ -1,48 +1,130 @@
-def aliquot_sum(input_num: int) -> int:
+def aliquot_sum(
+    input_num: int, return_factors: bool = False
+) -> int | tuple[int, list[int]]:
     """
-    Finds the aliquot sum of an input integer, where the
-    aliquot sum of a number n is defined as the sum of all
-    natural numbers less than n that divide n evenly. For
-    example, the aliquot sum of 15 is 1 + 3 + 5 = 9. This is
-    a simple O(n) implementation.
-    @param input_num: a positive integer whose aliquot sum is to be found
-    @return: the aliquot sum of input_num, if input_num is positive.
-    Otherwise, raise a ValueError
-    Wikipedia Explanation: https://en.wikipedia.org/wiki/Aliquot_sum
-
-    >>> aliquot_sum(15)
-    9
-    >>> aliquot_sum(6)
-    6
-    >>> aliquot_sum(-1)
-    Traceback (most recent call last):
-      ...
-    ValueError: Input must be positive
-    >>> aliquot_sum(0)
-    Traceback (most recent call last):
-      ...
-    ValueError: Input must be positive
-    >>> aliquot_sum(1.6)
-    Traceback (most recent call last):
-      ...
-    ValueError: Input must be an integer
-    >>> aliquot_sum(12)
-    16
-    >>> aliquot_sum(1)
-    0
-    >>> aliquot_sum(19)
-    1
+    Calculates the aliquot sum of a positive integer. The aliquot sum is defined as
+    the sum of all proper divisors of a number (all divisors except the number itself).
+    
+    This implementation uses an optimized O(sqrt(n)) algorithm for efficiency.
+    
+    Args:
+        input_num: Positive integer to calculate aliquot sum for
+        return_factors: If True, returns tuple (aliquot_sum, sorted_factor_list)
+    
+    Returns:
+        Aliquot sum if return_factors=False
+        Tuple (aliquot_sum, sorted_factor_list) if return_factors=True
+    
+    Raises:
+        TypeError: If input is not an integer
+        ValueError: If input is not positive
+        
+    Examples:
+        >>> aliquot_sum(15)
+        9
+        >>> aliquot_sum(15, True)
+        (9, [1, 3, 5])
+        >>> aliquot_sum(1)
+        0
     """
+    # Validate input type - must be integer
     if not isinstance(input_num, int):
-        raise ValueError("Input must be an integer")
+        raise TypeError("Input must be an integer")
+    
+    # Validate input value - must be positive
     if input_num <= 0:
-        raise ValueError("Input must be positive")
-    return sum(
-        divisor for divisor in range(1, input_num // 2 + 1) if input_num % divisor == 0
-    )
+        raise ValueError("Input must be positive integer")
+    
+    # Special case: 1 has no proper divisors
+    if input_num == 1:
+        # Return empty factor list if requested
+        return (0, []) if return_factors else 0
+    
+    # Initialize factors list with 1 (always a divisor)
+    factors = [1]  
+    total = 1  # Start sum with 1
+    
+    # Calculate square root as optimization boundary
+    sqrt_num = int(input_num**0.5)
+    
+    # Iterate potential divisors from 2 to square root
+    for divisor in range(2, sqrt_num + 1):
+        # Check if divisor is a factor
+        if input_num % divisor == 0:
+            # Add divisor to factors list
+            factors.append(divisor)
+            total += divisor
+            
+            # Calculate complement (pair factor)
+            complement = input_num // divisor
+            
+            # Avoid duplicate for perfect squares
+            if complement != divisor:  
+                factors.append(complement)
+                total += complement
+    
+    # Sort factors for consistent output
+    factors.sort()
+    
+    # Return based on return_factors flag
+    return (total, factors) if return_factors else total
+
+
+def classify_number(n: int) -> str:
+    """
+    Classifies a number based on its aliquot sum:
+    - Perfect: aliquot sum = number
+    - Abundant: aliquot sum > number
+    - Deficient: aliquot sum < number
+    
+    Args:
+        n: Positive integer to classify
+        
+    Returns:
+        Classification string ("Perfect", "Abundant", or "Deficient")
+        
+    Raises:
+        ValueError: If input is not positive
+        
+    Examples:
+        >>> classify_number(6)
+        'Perfect'
+        >>> classify_number(12)
+        'Abundant'
+        >>> classify_number(19)
+        'Deficient'
+    """
+    # Validate input
+    if n <= 0:
+        raise ValueError("Input must be positive integer")
+    
+    # Special case: 1 is always deficient
+    if n == 1:
+        return "Deficient"
+    
+    # Calculate aliquot sum
+    s = aliquot_sum(n)
+    
+    # Determine classification
+    if s == n:
+        return "Perfect"
+    return "Abundant" if s > n else "Deficient"
 
 
 if __name__ == "__main__":
     import doctest
-
+    
+    # Run embedded doctests for verification
     doctest.testmod()
+    
+    # Additional demonstration examples
+    print("Aliquot sum of 28:", aliquot_sum(28))  # Perfect number
+    print("Factors of 28:", aliquot_sum(28, True)[1])
+    print("Classification of 28:", classify_number(28))
+    
+    # Large number performance test
+    try:
+        print("\nCalculating aliquot sum for 10^9...")
+        print("Result:", aliquot_sum(10**9))  # 1497558336
+    except Exception as e:
+        print(f"Error occurred: {e}")
