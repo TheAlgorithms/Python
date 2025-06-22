@@ -23,7 +23,7 @@ Example
 >>> tuple(t)[3-1]
 4
 
->>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder))
+>>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
 1 4 7 6 3 13 14 10 8
 >>> t.remove(20)
 Traceback (most recent call last):
@@ -88,6 +88,7 @@ True
 >>> not t
 True
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -174,7 +175,6 @@ class BinarySearchTree:
         for value in values:
             self.__insert(value)
         return self
-
     def search(self, value: int) -> Node | None:
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
@@ -196,7 +196,8 @@ class BinarySearchTree:
         while node.right is not None:
             node = node.right
         return node
- def get_min(self, node: Node | None = None) -> Node | None:
+
+    def get_min(self, node: Node | None = None) -> Node | None:
         if node is None:
             node = self.root
         if node is None:
