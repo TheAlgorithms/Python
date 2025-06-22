@@ -63,6 +63,7 @@ class RedBlackTree:
                 parent.right = right
         right.parent = parent
         return right
+
     def rotate_right(self) -> RedBlackTree:
         """Rotate the subtree rooted at this node to the right and
         returns the new root to this subtree.
@@ -313,6 +314,7 @@ class RedBlackTree:
             return False
         # All properties were met
         return True
+
     def check_coloring(self) -> bool:
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
@@ -328,17 +330,17 @@ class RedBlackTree:
         # 叶子节点（None）被视为黑色，高度为1
         if self is None:
             return 1
-            
+
         # 递归计算左右子树高度
         left_bh = RedBlackTree.black_height(self.left)
         right_bh = RedBlackTree.black_height(self.right)
-        
+
         # 检查高度是否有效且一致
         if left_bh is None or right_bh is None:
             return None
         if left_bh != right_bh:
             return None
-            
+
         # 返回当前节点高度（黑色节点+1）
         return left_bh + (1 - self.color)
 
@@ -367,6 +369,7 @@ class RedBlackTree:
             return None
         else:
             return self.left.search(label)
+
     def floor(self, label: int) -> int | None:
         """Returns the largest element in this tree which is at most label.
         This method is guaranteed to run in O(log(n)) time."""
@@ -439,6 +442,7 @@ class RedBlackTree:
             return self.parent.right
         else:
             return self.parent.left
+
     def is_left(self) -> bool:
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
@@ -486,6 +490,7 @@ class RedBlackTree:
         if self.right:
             yield from self.right.postorder_traverse()
         yield self.label
+
     def __repr__(self) -> str:
         if self.left is None and self.right is None:
             return f"'{self.label} {(self.color and 'red') or 'blk'}'"
@@ -503,13 +508,13 @@ class RedBlackTree:
         """Test if two trees are equal."""
         if not isinstance(other, RedBlackTree):
             return NotImplemented
-        
+
         # 处理空树比较
         if self.label is None and other.label is None:
             return True
         if self.label != other.label:
             return False
-            
+
         # 递归比较子树
         return (self.left == other.left) and (self.right == other.right)
 
@@ -560,6 +565,7 @@ def test_rotations() -> bool:
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
     right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
     return tree == right_rot
+
 
 def test_insertion_speed() -> bool:
     """Test that the tree balances inserts to O(log(n)) by doing a lot
@@ -644,6 +650,8 @@ def test_floor_ceil() -> bool:
         if tree.floor(val) != floor or tree.ceil(val) != ceil:
             return False
     return True
+
+
 def test_min_max() -> bool:
     """Tests the min and max functions in the tree."""
     tree = RedBlackTree(0)
@@ -671,6 +679,7 @@ def test_tree_traversal() -> bool:
         return False
     return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
+
 def test_tree_chaining() -> bool:
     """Tests the three different tree chaining functions."""
     tree = RedBlackTree(0)
@@ -685,34 +694,36 @@ def test_tree_chaining() -> bool:
 def test_empty_tree() -> bool:
     """Tests behavior with empty trees."""
     tree = RedBlackTree(None)
-    
+
     # 测试空树属性
     if tree.label is not None or tree.left or tree.right:
         return False
-    
+
     # 测试空树长度
     if len(tree) != 0:
         return False
-    
+
     # 测试空树布尔值
     if tree:
         return False
-    
+
     # 测试空树搜索
     if 0 in tree or tree.search(0):
         return False
-    
+
     # 测试空树删除
     try:
         tree.remove(0)
     except Exception:
         return False
-    
+
     return True
 
 
 def print_results(msg: str, passes: bool) -> None:
     print(str(msg), "works!" if passes else "doesn't work :(")
+
+
 def pytests() -> None:
     assert test_rotations()
     assert test_insert()
