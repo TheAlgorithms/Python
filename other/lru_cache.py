@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 from pprint import pformat
+from typing import Optional, Tuple
 
 
 class RedBlackTree:
@@ -62,7 +63,6 @@ class RedBlackTree:
                 parent.right = right
         right.parent = parent
         return right
-
     def rotate_right(self) -> RedBlackTree:
         """Rotate the subtree rooted at this node to the right and
         returns the new root to this subtree.
@@ -99,12 +99,14 @@ class RedBlackTree:
             return self
         elif self.label > label:
             if self.left:
-                self.left.insert(label)
+                # 更新：递归插入后更新左子树引用
+                self.left = self.left.insert(label)
             else:
                 self.left = RedBlackTree(label, 1, self)
                 self.left._insert_repair()
         elif self.right:
-            self.right.insert(label)
+            # 更新：递归插入后更新右子树引用
+            self.right = self.right.insert(label)
         else:
             self.right = RedBlackTree(label, 1, self)
             self.right._insert_repair()
@@ -149,7 +151,7 @@ class RedBlackTree:
                     self.grandparent._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
-        """Remove label from this tree."""
+        """Remove label from this tree, returning the new root of the subtree."""
         if self.label == label:
             if self.left and self.right:
                 # It's easier to balance a node with at most one child,
@@ -158,7 +160,8 @@ class RedBlackTree:
                 value = self.left.get_max()
                 if value is not None:
                     self.label = value
-                    self.left.remove(value)
+                    # 更新：递归删除后更新左子树引用
+                    self.left = self.left.remove(value)
             else:
                 # This node has at most one non-None child, so we don't
                 # need to replace
@@ -198,9 +201,11 @@ class RedBlackTree:
                         self.right.parent = self
         elif self.label is not None and self.label > label:
             if self.left:
-                self.left.remove(label)
+                # 更新：递归删除后更新左子树引用
+                self.left = self.left.remove(label)
         elif self.right:
-            self.right.remove(label)
+            # 更新：递归删除后更新右子树引用
+            self.right = self.right.remove(label)
         return self.parent or self
 
     def _remove_repair(self) -> None:
@@ -308,7 +313,6 @@ class RedBlackTree:
             return False
         # All properties were met
         return True
-
     def check_coloring(self) -> bool:
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
@@ -320,24 +324,23 @@ class RedBlackTree:
         return not (self.right and not self.right.check_coloring())
 
     def black_height(self) -> int | None:
-        """Returns the number of black nodes from this node to the
-        leaves of the tree, or None if there isn't one such value (the
-        tree is color incorrectly).
-        """
-        if self is None or self.left is None or self.right is None:
-            # If we're already at a leaf, there is no path
+        """修正的黑色高度计算方法"""
+        # 叶子节点（None）被视为黑色，高度为1
+        if self is None:
             return 1
-        left = RedBlackTree.black_height(self.left)
-        right = RedBlackTree.black_height(self.right)
-        if left is None or right is None:
-            # There are issues with coloring below children nodes
+            
+        # 递归计算左右子树高度
+        left_bh = RedBlackTree.black_height(self.left)
+        right_bh = RedBlackTree.black_height(self.right)
+        
+        # 检查高度是否有效且一致
+        if left_bh is None or right_bh is None:
             return None
-        if left != right:
-            # The two children have unequal depths
+        if left_bh != right_bh:
             return None
-        # Return the black depth of children, plus one if this node is
-        # black
-        return left + (1 - self.color)
+            
+        # 返回当前节点高度（黑色节点+1）
+        return left_bh + (1 - self.color)
 
     # Here are functions which are general to all binary search trees
 
@@ -364,7 +367,6 @@ class RedBlackTree:
             return None
         else:
             return self.left.search(label)
-
     def floor(self, label: int) -> int | None:
         """Returns the largest element in this tree which is at most label.
         This method is guaranteed to run in O(log(n)) time."""
@@ -437,7 +439,6 @@ class RedBlackTree:
             return self.parent.right
         else:
             return self.parent.left
-
     def is_left(self) -> bool:
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
@@ -451,12 +452,13 @@ class RedBlackTree:
         return self.parent.right is self
 
     def __bool__(self) -> bool:
-        return True
+        """空树返回False"""
+        return self.label is not None
 
     def __len__(self) -> int:
-        """
-        Return the number of nodes in this tree.
-        """
+        """正确处理空树情况"""
+        if self.label is None:
+            return 0
         ln = 1
         if self.left:
             ln += len(self.left)
@@ -484,7 +486,6 @@ class RedBlackTree:
         if self.right:
             yield from self.right.postorder_traverse()
         yield self.label
-
     def __repr__(self) -> str:
         if self.left is None and self.right is None:
             return f"'{self.label} {(self.color and 'red') or 'blk'}'"
@@ -502,18 +503,23 @@ class RedBlackTree:
         """Test if two trees are equal."""
         if not isinstance(other, RedBlackTree):
             return NotImplemented
-        if self.label == other.label:
-            return self.left == other.left and self.right == other.right
-        else:
+        
+        # 处理空树比较
+        if self.label is None and other.label is None:
+            return True
+        if self.label != other.label:
             return False
+            
+        # 递归比较子树
+        return (self.left == other.left) and (self.right == other.right)
+
+    # 明确表示该类的实例不可哈希
+    __hash__ = None
 
 
 def color(node: RedBlackTree | None) -> int:
     """Returns the color of a node, allowing for None leaves."""
-    if node is None:
-        return 0
-    else:
-        return node.color
+    return 0 if node is None else node.color
 
 
 """
@@ -554,7 +560,6 @@ def test_rotations() -> bool:
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
     right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
     return tree == right_rot
-
 
 def test_insertion_speed() -> bool:
     """Test that the tree balances inserts to O(log(n)) by doing a lot
@@ -639,8 +644,6 @@ def test_floor_ceil() -> bool:
         if tree.floor(val) != floor or tree.ceil(val) != ceil:
             return False
     return True
-
-
 def test_min_max() -> bool:
     """Tests the min and max functions in the tree."""
     tree = RedBlackTree(0)
@@ -668,7 +671,6 @@ def test_tree_traversal() -> bool:
         return False
     return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
-
 def test_tree_chaining() -> bool:
     """Tests the three different tree chaining functions."""
     tree = RedBlackTree(0)
@@ -680,10 +682,37 @@ def test_tree_chaining() -> bool:
     return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
 
+def test_empty_tree() -> bool:
+    """Tests behavior with empty trees."""
+    tree = RedBlackTree(None)
+    
+    # 测试空树属性
+    if tree.label is not None or tree.left or tree.right:
+        return False
+    
+    # 测试空树长度
+    if len(tree) != 0:
+        return False
+    
+    # 测试空树布尔值
+    if tree:
+        return False
+    
+    # 测试空树搜索
+    if 0 in tree or tree.search(0):
+        return False
+    
+    # 测试空树删除
+    try:
+        tree.remove(0)
+    except Exception:
+        return False
+    
+    return True
+
+
 def print_results(msg: str, passes: bool) -> None:
     print(str(msg), "works!" if passes else "doesn't work :(")
-
-
 def pytests() -> None:
     assert test_rotations()
     assert test_insert()
@@ -692,6 +721,7 @@ def pytests() -> None:
     assert test_floor_ceil()
     assert test_tree_traversal()
     assert test_tree_chaining()
+    assert test_empty_tree()
 
 
 def main() -> None:
@@ -704,7 +734,8 @@ def main() -> None:
     print_results("Deleting", test_insert_delete())
     print_results("Floor and ceil", test_floor_ceil())
     print_results("Tree traversal", test_tree_traversal())
-    print_results("Tree traversal", test_tree_chaining())
+    print_results("Tree chaining", test_tree_chaining())
+    print_results("Empty tree handling", test_empty_tree())
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()
