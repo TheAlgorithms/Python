@@ -4,6 +4,7 @@ from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from typing import Any, Self
 
+
 @dataclass
 class Node:
     value: int
@@ -15,6 +16,7 @@ class Node:
         if self.left is None and self.right is None:
             return str(self.value)
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
+
 
 @dataclass
 class BinarySearchTree:
@@ -75,6 +77,7 @@ class BinarySearchTree:
             self.remove(predecessor.value)
             node.value = predecessor.value
 
+
 # 修复的递归函数
 def inorder(curr_node: Node | None) -> list[Node]:
     """Inorder traversal (left, self, right)"""
@@ -82,12 +85,15 @@ def inorder(curr_node: Node | None) -> list[Node]:
         return []
     return inorder(curr_node.left) + [curr_node] + inorder(curr_node.right)
 
+
 def postorder(curr_node: Node | None) -> list[Node]:
     """Postorder traversal (left, right, self)"""
     if curr_node is None:
         return []
     return postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
