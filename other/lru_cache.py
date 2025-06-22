@@ -40,7 +40,7 @@ def add(self, node: DoubleLinkedListNode) -> None:
     prev = self.rear.prev
     if prev is None:
         return
-    
+
     # Insert node between prev and rear
     prev.next = node
     node.prev = prev
@@ -51,11 +51,11 @@ def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
     """Remove node from list"""
     if node.prev is None or node.next is None:
         return None
-    
+
     # Bypass node
     node.prev.next = node.next
     node.next.prev = node.prev
-    
+
     # Clear node references
     node.prev = None
     node.next = None
@@ -97,7 +97,7 @@ def put(self, key: Any, value: Any) -> None:
             node.val = value
             self.list.add(node)
         return
-    
+
     # Evict LRU item if at capacity
     if self.size >= self.capacity:
         # head.next may be None, so annotate as Optional
@@ -110,7 +110,7 @@ def put(self, key: Any, value: Any) -> None:
         ):
             del self.cache[first_node.key]
             self.size -= 1
-    
+
     # Add new node
     new_node = DoubleLinkedListNode(key, value)
     self.cache[key] = new_node
@@ -132,17 +132,17 @@ def lru_cache(maxsize: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
     def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         # Create normalized cache key
         key = (args, tuple(sorted(kwargs.items())))
-        
+
         # Try to get cached result
         cached = cache.get(key)
         if cached is not None:
             return cast(R, cached)
-        
+
         # Compute and cache result
         result = func(*args, **kwargs)
         cache.put(key, result)
         return result
-    
+
     # Attach cache info method
     wrapper.cache_info = cache.cache_info  # type: ignore[attr-defined]
     return wrapper
@@ -150,4 +150,3 @@ def lru_cache(maxsize: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
 return decorator
 
 if name == "main": import doctest doctest.testmod()
-
