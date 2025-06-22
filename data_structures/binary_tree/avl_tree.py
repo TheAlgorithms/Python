@@ -37,10 +37,10 @@ class MyNode:
     def set_right(self, node: MyNode | None) -> None: self.right = node
     def set_height(self, height: int) -> None: self.height = height
 
-def get_height(node: MyNode | None) -> int: 
+def get_height(node: MyNode | None) -> int:
     return node.height if node else 0
 
-def my_max(a: int, b: int) -> int: 
+def my_max(a: int, b: int) -> int:
     return a if a > b else b
 
 def right_rotation(node: MyNode) -> MyNode:
@@ -70,7 +70,7 @@ def rl_rotation(node: MyNode) -> MyNode:
 
 def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if not node: return MyNode(data)
-    
+
     if data < node.data:
         node.left = insert_node(node.left, data)
         if get_height(node.left) - get_height(node.right) == 2:
@@ -79,7 +79,7 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
         node.right = insert_node(node.right, data)
         if get_height(node.right) - get_height(node.left) == 2:
             node = rl_rotation(node) if data < node.right.data else left_rotation(node)
-    
+
     node.height = my_max(get_height(node.right), get_height(node.left)) + 1
     return node
 
@@ -98,50 +98,50 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
         if not root.left: return root
         root.left = del_node(root.left, data)
     else: root.right = del_node(root.right, data)
-    
+
     if get_height(root.right) - get_height(root.left) == 2:
         root = left_rotation(root) if get_height(root.right.right) > get_height(root.right.left) else rl_rotation(root)
     elif get_height(root.right) - get_height(root.left) == -2:
         root = right_rotation(root) if get_height(root.left.left) > get_height(root.left.right) else lr_rotation(root)
-    
+
     root.height = my_max(get_height(root.right), get_height(root.left)) + 1
     return root
     class AVLtree:
     def __init__(self) -> None: self.root = None
     def get_height(self) -> int: return get_height(self.root)
-    
+
     def insert(self, data: Any) -> None:
         print(f"insert:{data}")
         self.root = insert_node(self.root, data)
-    
+
     def del_node(self, data: Any) -> None:
         print(f"delete:{data}")
         if not self.root: return
         self.root = del_node(self.root, data)
-    
+
     def __str__(self) -> str:
         if not self.root: return ""
         q, output, layer, cnt = MyQueue(), "", self.get_height(), 0
         q.push(self.root)
-        
+
         while not q.is_empty():
             node = q.pop()
             space = " " * int(2**(layer-1))
             output += space + (str(node.data) if node else "*") + space
             cnt += 1
-            
+
             if node:
                 q.push(node.left)
                 q.push(node.right)
             else:
                 q.push(None)
                 q.push(None)
-            
+
             if any(cnt == 2**i - 1 for i in range(10)):
                 layer -= 1
                 output += "\n"
                 if layer == 0: break
-        
+
         return output + "\n" + "*"*36
         def _test() -> None: doctest.testmod()
 
@@ -150,11 +150,11 @@ if __name__ == "__main__":
     t = AVLtree()
     lst = list(range(10))
     random.shuffle(lst)
-    
+
     for i in lst:
         t.insert(i)
         print(t)
-    
+
     random.shuffle(lst)
     for i in lst:
         t.del_node(i)
