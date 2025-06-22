@@ -54,11 +54,12 @@ class DoubleLinkedList(Generic[T, U]):
         previous = self.rear.prev
         if previous is None:
             raise ValueError("Invalid list state: rear.prev is None")
-        
+
         previous.next = node
         node.prev = previous
         self.rear.prev = node
         node.next = self.rear
+
     def remove(
         self, node: DoubleLinkedListNode[T, U]
     ) -> Optional[DoubleLinkedListNode[T, U]]:
@@ -108,6 +109,7 @@ class LRUCache(Generic[T, U]):
             return node.val
         self.miss += 1
         return None
+
     def put(self, key: T, value: U) -> None:
         """Sets the value for the input key"""
         if key in self.cache:
@@ -136,6 +138,7 @@ class LRUCache(Generic[T, U]):
         cls, size: int = 128
     ) -> Callable[[Callable[..., U]], Callable[..., U]]:
         """Decorator version of LRU Cache"""
+
         def decorator_func(func: Callable[..., U]) -> Callable[..., U]:
             cache_instance = cls(size)
 
@@ -147,6 +150,7 @@ class LRUCache(Generic[T, U]):
                     result = func(*args, **kwargs)
                     cache_instance.put(key, result)
                 return result
+
             def cache_info() -> LRUCache:
                 return cache_instance
 
@@ -158,4 +162,5 @@ class LRUCache(Generic[T, U]):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
