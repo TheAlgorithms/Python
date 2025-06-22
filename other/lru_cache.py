@@ -131,12 +131,13 @@ class LRUCache:
             "hits": self.hits,
             "misses": self.misses,
             "capacity": self.capacity,
-            "size": self.size
+            "size": self.size,
         }
 
 
 def lru_cache(maxsize: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
     """LRU Cache decorator"""
+
     def decorator(func: Callable[P, R]) -> Callable[P, R]:
         cache = LRUCache(maxsize)
 
@@ -146,8 +147,7 @@ def lru_cache(maxsize: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
             key = (args, tuple(sorted(kwargs.items())))
 
             # Try to get cached result
-            cached = cache.get(key)
-            if cached is not None:
+            if (cached := cache.get(key)) is not None:
                 return cast(R, cached)
 
             # Compute and cache result
@@ -164,4 +164,5 @@ def lru_cache(maxsize: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
