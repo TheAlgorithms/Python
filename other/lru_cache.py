@@ -51,17 +51,19 @@ class DoubleLinkedList(Generic[T, U]):
         prev = self.rear.prev
         if not prev:
             raise ValueError("Invalid list state")
-        
+
         prev.next = node
         node.prev = prev
         self.rear.prev = node
         node.next = self.rear
 
-    def remove(self, node: DoubleLinkedListNode[T, U]) -> DoubleLinkedListNode[T, U] | None:
+    def remove(
+        self, node: DoubleLinkedListNode[T, U]
+    ) -> DoubleLinkedListNode[T, U] | None:
         """Remove node from list"""
         if not node.prev or not node.next:
             return None
-            
+
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
@@ -122,6 +124,7 @@ class LRUCache(Generic[T, U]):
     @classmethod
     def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
         """LRU Cache decorator"""
+
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
             cache = cls[Any, R](size)  # type: ignore[type-var]
 
@@ -136,10 +139,11 @@ class LRUCache(Generic[T, U]):
             # Add cache_info attribute
             wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
             return wrapper
-        
+
         return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
