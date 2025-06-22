@@ -2,10 +2,8 @@ from __future__ import annotations
 
 from collections.abc import Callable, Hashable
 from functools import wraps
-from typing import Any, Generic, ParamSpec, TypeVar
+from typing import Any, Generic, ParamSpec, TypeVar, cast
 
-T = TypeVar("T", bound=Hashable)
-U = TypeVar("U")
 P = ParamSpec("P")
 R = TypeVar("R")
 
@@ -43,9 +41,9 @@ class DoubleLinkedList:
     def add(self, node: DoubleLinkedListNode) -> None:
         """Add node to list end"""
         prev = self.rear.prev
-        if not prev:
+        if prev is None:
             raise ValueError("Invalid list state")
-
+        
         prev.next = node
         node.prev = prev
         self.rear.prev = node
@@ -53,16 +51,16 @@ class DoubleLinkedList:
 
     def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
         """Remove node from list"""
-        if not node.prev or not node.next:
+        if node.prev is None or node.next is None:
             return None
-
+            
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
         return node
 
 
-class LRUCache(Generic[T, U]):
+class LRUCache:
     """LRU Cache implementation"""
 
     def __init__(self, capacity: int) -> None:
@@ -71,7 +69,7 @@ class LRUCache(Generic[T, U]):
         self.size = 0
         self.hits = 0
         self.misses = 0
-        self.cache: dict[T, DoubleLinkedListNode] = {}
+        self.cache: dict[Any, DoubleLinkedListNode] = {}
 
     def __repr__(self) -> str:
         return (
@@ -79,21 +77,18 @@ class LRUCache(Generic[T, U]):
             f"cap={self.capacity}, size={self.size})"
         )
 
-    def __contains__(self, key: T) -> bool:
-        return key in self.cache
-
-    def get(self, key: T) -> U | None:
+    def get(self, key: Any) -> Any | None:
         """Get value for key"""
         if key in self.cache:
             self.hits += 1
             node = self.cache[key]
             if self.list.remove(node):
                 self.list.add(node)
-            return node.val  # type: ignore[return-value]
+            return node.val
         self.misses += 1
         return None
 
-    def put(self, key: T, value: U) -> None:
+    def put(self, key: Any, value: Any) -> None:
         """Set value for key"""
         if key in self.cache:
             node = self.cache[key]
@@ -105,7 +100,7 @@ class LRUCache(Generic[T, U]):
         if self.size >= self.capacity:
             first = self.list.head.next
             if first and first.key and self.list.remove(first):
-                del self.cache[first.key]  # type: ignore[index]
+                del self.cache[first.key]
                 self.size -= 1
 
         new_node = DoubleLinkedListNode(key, value)
@@ -113,30 +108,30 @@ class LRUCache(Generic[T, U]):
         self.list.add(new_node)
         self.size += 1
 
-    @classmethod
-    def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
-        """LRU Cache decorator"""
 
-        def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
-            # Create non-generic cache instance
-            cache = cls(size)  # type: ignore[assignment]
-
-            @wraps(func)
-            def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
-                key = (args, tuple(sorted(kwargs.items())))
-                if (result := cache.get(key)) is None:
-                    result = func(*args, **kwargs)
-                    cache.put(key, result)
-                return result
-
-            # Add cache_info attribute
-            wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
-            return wrapper
-
-        return decorator_func
+def lru_cache(size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
+    """LRU Cache decorator"""
+    def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
+        cache = LRUCache(size)
+        
+        @wraps(func)
+        def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
+            key = (args, tuple(sorted(kwargs.items())))
+            cached = cache.get(key)
+            if cached is not None:
+                return cached
+            
+            result = func(*args, **kwargs)
+            cache.put(key, result)
+            return result
+        
+        # Add cache_info attribute
+        wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
+        return wrapper
+    
+    return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
