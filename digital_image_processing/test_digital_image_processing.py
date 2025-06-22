@@ -2,10 +2,11 @@
 PyTest's for Digital Image Processing
 """
 
+from os import getenv
+
 import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
-from os import getenv
 from PIL import Image
 
 from digital_image_processing import change_contrast as cc
