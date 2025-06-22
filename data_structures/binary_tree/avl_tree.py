@@ -1,15 +1,8 @@
-"""
-Implementation of an auto-balanced binary tree!
-For doctests run following command:
-python3 -m doctest -v avl_tree.py
-For testing run:
-python avl_tree.py
-"""
-
 from __future__ import annotations
 
 import math
 import random
+import doctest
 from typing import Any
 
 
@@ -82,9 +75,7 @@ def my_max(a: int, b: int) -> int:
     if a > b:
         return a
     return b
-
-
-def right_rotation(node: MyNode) -> MyNode:
+    def right_rotation(node: MyNode) -> MyNode:
     r"""
             A                      B
            / \                    / \
@@ -105,9 +96,7 @@ def right_rotation(node: MyNode) -> MyNode:
     h2 = my_max(get_height(ret.get_right()), get_height(ret.get_left())) + 1
     ret.set_height(h2)
     return ret
-
-
-def left_rotation(node: MyNode) -> MyNode:
+    def left_rotation(node: MyNode) -> MyNode:
     """
     a mirror symmetry rotation of the left_rotation
     """
@@ -145,9 +134,7 @@ def rl_rotation(node: MyNode) -> MyNode:
     assert right_child is not None
     node.set_right(right_rotation(right_child))
     return left_rotation(node)
-
-
-def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
+    def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if node is None:
         return MyNode(data)
     if data < node.get_data():
@@ -175,9 +162,7 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     h1 = my_max(get_height(node.get_right()), get_height(node.get_left())) + 1
     node.set_height(h1)
     return node
-
-
-def get_right_most(root: MyNode) -> Any:
+    def get_right_most(root: MyNode) -> Any:
     while True:
         right_child = root.get_right()
         if right_child is None:
@@ -240,9 +225,7 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
     height = my_max(get_height(root.get_right()), get_height(root.get_left())) + 1
     root.set_height(height)
     return root
-
-
-class AVLtree:
+    class AVLtree:
     """
     An AVL tree doctest
     Examples:
@@ -330,8 +313,6 @@ class AVLtree:
 
 
 def _test() -> None:
-    import doctest
-
     doctest.testmod()
 
 
