@@ -88,9 +88,8 @@ True
 >>> not t
 True
 """
-
 from __future__ import annotations
-
+from pprint import pformat  # Moved to top-level
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from typing import Any, Self
@@ -115,8 +114,6 @@ class Node:
         yield from self.right or []
 
     def __repr__(self) -> str:
-        from pprint import pformat
-
         if self.left is None and self.right is None:
             return str(self.value)
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
@@ -196,12 +193,11 @@ class BinarySearchTree:
         for value in values:
             self.__insert(value)
         return self
-
-    def search(self, value) -> Node | None:
+      def search(self, value) -> Node | None:
         """
         >>> tree = BinarySearchTree().insert(10, 20, 30, 40, 50)
         >>> tree.search(10)
-        {'10': (None, {'20': (None, {'30': (None, {'40': (None, 50)})})})}
+        {'10': (None, {'20': (None, {'30': (None, {'40': (None, 50)})})}
         >>> tree.search(20)
         {'20': (None, {'30': (None, {'40': (None, 50)})})}
         >>> tree.search(30)
@@ -314,8 +310,7 @@ class BinarySearchTree:
             return self.preorder_traverse(self.root)
         else:
             return traversal_function(self.root)
-
-    def inorder(self, arr: list, node: Node | None) -> None:
+def inorder(self, arr: list, node: Node | None) -> None:
         """Perform an inorder traversal and append values of the nodes to
         a list named arr"""
         if node:
