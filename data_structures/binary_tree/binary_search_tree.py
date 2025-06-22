@@ -91,9 +91,9 @@ True
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 from pprint import pformat
-from collections.abc import Iterator  # fix UP035
 
 
 @dataclass
@@ -130,7 +130,8 @@ class BinarySearchTree:
     def __iter__(self) -> Iterator[int]:
         if self.root:
             yield from self.root
-        return iter(())
+        else:
+            yield from ()
 
     def __str__(self) -> str:
         return str(self.root) if self.root else "Empty tree"
@@ -175,14 +176,13 @@ class BinarySearchTree:
         for value in values:
             self.__insert(value)
         return self
-
     def search(self, value: int) -> Node | None:
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
 
         node = self.root
         while node is not None and node.value != value:
-            # 修复 SIM108：使用三元表达式替代 if-else 块
+            # 修复 SIM108: 使用三元表达式替代 if-else 块
             node = node.left if value < node.value else node.right
         return node
 
