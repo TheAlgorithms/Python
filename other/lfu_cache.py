@@ -154,6 +154,8 @@ class DoubleLinkedList[T, U]:
         node.prev = None
         node.next = None
         return node
+
+
 class LFUCache[T, U]:
     """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
