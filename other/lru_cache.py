@@ -508,7 +508,6 @@ class RedBlackTree:
             return False
 
 
-
 def color(node: RedBlackTree | None) -> int:
     """Returns the color of a node, allowing for None leaves."""
     if node is None:
