@@ -5,7 +5,7 @@ from typing import Any
 
 class MyQueue:
     __slots__ = ("data", "head", "tail")
-    
+
     def __init__(self) -> None:
         self.data: list[Any] = []
         self.head = self.tail = 0
@@ -24,24 +24,24 @@ class MyQueue:
 
 class MyNode:
     __slots__ = ("data", "height", "left", "right")  # 按字母顺序排序
-    
+
     def __init__(self, data: Any) -> None:
         self.data = data
         self.height = 1
         self.left: MyNode | None = None
         self.right: MyNode | None = None
 
-def get_height(node: MyNode | None) -> int: 
+def get_height(node: MyNode | None) -> int:
     return node.height if node else 0
 
-def my_max(a: int, b: int) -> int: 
+def my_max(a: int, b: int) -> int:
     return a if a > b else b
 
 def right_rotation(node: MyNode) -> MyNode:
     left_child = node.left
     if left_child is None:
         return node
-    
+
     node.left = left_child.right
     left_child.right = node
     node.height = my_max(get_height(node.right), get_height(node.left)) + 1
@@ -52,7 +52,7 @@ def left_rotation(node: MyNode) -> MyNode:
     right_child = node.right
     if right_child is None:
         return node
-    
+
     node.right = right_child.left
     right_child.left = node
     node.height = my_max(get_height(node.right), get_height(node.left)) + 1
@@ -72,7 +72,7 @@ def rl_rotation(node: MyNode) -> MyNode:
 def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if node is None:
         return MyNode(data)
-    
+
     if data < node.data:
         node.left = insert_node(node.left, data)
         if get_height(node.left) - get_height(node.right) == 2:
@@ -87,7 +87,7 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
                 node = rl_rotation(node)
             else:
                 node = left_rotation(node)
-    
+
     node.height = my_max(get_height(node.right), get_height(node.left)) + 1
     return node
 
@@ -109,14 +109,14 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         root.left = del_node(root.left, data)
     else:
         root.right = del_node(root.right, data)
-    
+
     if root.left is None and root.right is None:
         root.height = 1
         return root
-    
+
     left_height = get_height(root.left)
     right_height = get_height(root.right)
-    
+
     if right_height - left_height == 2:
         right_right = get_height(root.right.right) if root.right else 0
         right_left = get_height(root.right.left) if root.right else 0
@@ -127,37 +127,37 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         left_right = get_height(root.left.right) if root.left else 0
         # 使用三元表达式
         root = right_rotation(root) if left_left > left_right else lr_rotation(root)
-    
+
     root.height = my_max(get_height(root.right), get_height(root.left)) + 1
     return root
 
 class AVLTree:
     __slots__ = ("root",)
-    
-    def __init__(self) -> None: 
+
+    def __init__(self) -> None:
         self.root: MyNode | None = None
-        
-    def get_height(self) -> int: 
+
+    def get_height(self) -> int:
         return get_height(self.root)
-    
+
     def insert(self, data: Any) -> None:
         self.root = insert_node(self.root, data)
-    
+
     def delete(self, data: Any) -> None:
         self.root = del_node(self.root, data)
-    
+
     def __str__(self) -> str:
         if self.root is None:
             return ""
-            
+
         levels = []
         # 明确指定类型为 MyNode | None
         queue: list[MyNode | None] = [self.root]
-        
+
         while queue:
             current = []
             next_level: list[MyNode | None] = []
-            
+
             for node in queue:
                 if node:
                     current.append(str(node.data))
@@ -166,7 +166,7 @@ class AVLTree:
                 else:
                     current.append("*")
                     next_level.extend([None, None])
-            
+
             if any(node is not None for node in next_level):
                 levels.append(" ".join(current))
                 queue = next_level
@@ -174,17 +174,17 @@ class AVLTree:
                 if current:  # 添加最后一行
                     levels.append(" ".join(current))
                 break
-        
+
         return "\n".join(levels) + "\n" + "*"*36
 
 def test_avl_tree() -> None:
     t = AVLTree()
     lst = list(range(10))
     random.shuffle(lst)
-    
+
     for i in lst:
         t.insert(i)
-    
+
     random.shuffle(lst)
     for i in lst:
         t.delete(i)
