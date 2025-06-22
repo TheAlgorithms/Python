@@ -106,6 +106,7 @@ def binary_tree_left_side_view(root: TreeNode) -> list[int]:
     depth_first_search(root, 0, left_view)
     return left_view
 
+
 def binary_tree_top_side_view(root: TreeNode) -> list[int]:
     r"""
     Function returns the top side view of binary tree.
@@ -172,6 +173,7 @@ def binary_tree_bottom_side_view(root: TreeNode) -> list[int]:
     >>> binary_tree_bottom_side_view(None)
     []
     """
+
     def breadth_first_search(root: TreeNode, bottom_view: list[int]) -> None:
         """
         A breadth first search traversal with defaultdict ds to append
