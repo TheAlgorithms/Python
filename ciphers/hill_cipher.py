@@ -1,3 +1,41 @@
+""" 
+  
+ Hill Cipher: 
+ The 'HillCipher' class below implements the Hill Cipher algorithm which uses 
+ modern linear algebra techniques to encode and decode text using an encryption 
+ key matrix. 
+  
+ Algorithm: 
+ Let the order of the encryption key be N (as it is a square matrix). 
+ Your text is divided into batches of length N and converted to numerical vectors 
+ by a simple mapping starting with A=0 and so on. 
+  
+ The key is then multiplied with the newly created batch vector to obtain the 
+ encoded vector. After each multiplication modular 36 calculations are performed 
+ on the vectors so as to bring the numbers between 0 and 36 and then mapped with 
+ their corresponding alphanumerics. 
+  
+ While decrypting, the decrypting key is found which is the inverse of the 
+ encrypting key modular 36. The same process is repeated for decrypting to get 
+ the original message back. 
+  
+ Constraints: 
+ The determinant of the encryption key matrix must be relatively prime w.r.t 36. 
+  
+ Note: 
+ This implementation only considers alphanumerics in the text.  If the length of 
+ the text to be encrypted is not a multiple of the break key(the length of one 
+ batch of letters), the last character of the text is added to the text until the 
+ length of the text reaches a multiple of the break_key. So the text after 
+ decrypting might be a little different than the original text. 
+  
+ References: 
+ https://apprendre-en-ligne.net/crypto/hill/Hillciph.pdf 
+ https://www.youtube.com/watch?v=kfmNeskzs2o 
+ https://www.youtube.com/watch?v=4RhLNDqcjpA 
+  
+ """ 
+
 import string
 
 import numpy as np
