@@ -93,7 +93,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pprint import pformat
-from collections.abc import Iterator # fix UP035 
+from collections.abc import Iterator  # fix UP035
 
 
 @dataclass
@@ -223,6 +223,7 @@ class BinarySearchTree:
             if predecessor is not None:
                 self.remove(predecessor.value)
                 node.value = predecessor.value
+
     def preorder_traverse(self, node: Node | None) -> Iterator[Node]:
         if node is not None:
             yield node
