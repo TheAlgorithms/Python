@@ -1,11 +1,24 @@
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Hashable
 from functools import wraps
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar, Any, cast, overload, TYPE_CHECKING
+from typing_extensions import ParamSpec
 
-T = TypeVar("T")
+if TYPE_CHECKING:
+    from typing_extensions import TypeAlias
+
+T = TypeVar("T", bound=Hashable)
 U = TypeVar("U")
+P = ParamSpec("P")
+R = TypeVar("R")
+
+if TYPE_CHECKING:
+    NodeKey: TypeAlias = T | None
+    NodeValue: TypeAlias = U | None
+else:
+    NodeKey = TypeVar("NodeKey", bound=Hashable)
+    NodeValue = TypeVar("NodeValue")
 
 
 class DoubleLinkedListNode(Generic[T, U]):
@@ -16,11 +29,11 @@ class DoubleLinkedListNode(Generic[T, U]):
     Node: key: 1, val: 1, has next: False, has prev: False
     """
 
-    def __init__(self, key: Optional[T], val: Optional[U]) -> None:
+    def __init__(self, key: NodeKey, val: NodeValue) -> None:
         self.key = key
         self.val = val
-        self.next: Optional[DoubleLinkedListNode[T, U]] = None
-        self.prev: Optional[DoubleLinkedListNode[T, U]] = None
+        self.next: DoubleLinkedListNode[T, U] | None = None
+        self.prev: DoubleLinkedListNode[T, U] | None = None
 
     def __repr__(self) -> str:
         return (
@@ -48,13 +61,12 @@ class DoubleLinkedList(Generic[T, U]):
             node = node.next
         rep.append(str(self.rear))
         return ",\n    ".join(rep)
-
     def add(self, node: DoubleLinkedListNode[T, U]) -> None:
         """Adds the given node to the end of the list (before rear)"""
         previous = self.rear.prev
         if previous is None:
             raise ValueError("Invalid list state: rear.prev is None")
-
+        
         previous.next = node
         node.prev = previous
         self.rear.prev = node
@@ -62,7 +74,7 @@ class DoubleLinkedList(Generic[T, U]):
 
     def remove(
         self, node: DoubleLinkedListNode[T, U]
-    ) -> Optional[DoubleLinkedListNode[T, U]]:
+    ) -> DoubleLinkedListNode[T, U] | None:
         """Removes and returns the given node from the list"""
         if node.prev is None or node.next is None:
             return None
@@ -97,7 +109,7 @@ class LRUCache(Generic[T, U]):
     def __contains__(self, key: T) -> bool:
         return key in self.cache
 
-    def get(self, key: T) -> Optional[U]:
+    def get(self, key: T) -> U | None:
         """Returns the value for the input key"""
         if key in self.cache:
             self.hits += 1
@@ -119,7 +131,6 @@ class LRUCache(Generic[T, U]):
             node.val = value
             self.list.add(node)
             return
-
         if self.num_keys >= self.capacity:
             first_node = self.list.head.next
             if first_node is None or first_node.key is None:
@@ -133,28 +144,46 @@ class LRUCache(Generic[T, U]):
         self.list.add(new_node)
         self.num_keys += 1
 
+    @overload
     @classmethod
     def decorator(
         cls, size: int = 128
-    ) -> Callable[[Callable[..., U]], Callable[..., U]]:
-        """Decorator version of LRU Cache"""
+    ) -> Callable[[Callable[P, R]], Callable[P, R]]:
+        ...
+    
+    @overload
+    @classmethod
+    def decorator(
+        cls, func: Callable[P, R]
+    ) -> Callable[P, R]:
+        ...
 
-        def decorator_func(func: Callable[..., U]) -> Callable[..., U]:
-            cache_instance = cls(size)
+    @classmethod
+    def decorator(
+        cls, size: int | Callable[P, R] = 128
+    ) -> Callable[[Callable[P, R]], Callable[P, R]] | Callable[P, R]:
+        """Decorator version of LRU Cache"""
+        if callable(size):
+            # Called without parentheses (@LRUCache.decorator)
+            return cls.decorator()(size)
+        
+        def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
+            cache_instance = cls[Any, R](size)  # type: ignore[valid-type]
 
             @wraps(func)
-            def wrapper(*args: T, **kwargs: T) -> U:
-                key = (args, tuple(kwargs.items()))
+            def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
+                # Create normalized key
+                sorted_kwargs = tuple(sorted(kwargs.items(), key=lambda x: x[0]))
+                key = (args, sorted_kwargs)
                 result = cache_instance.get(key)
                 if result is None:
                     result = func(*args, **kwargs)
                     cache_instance.put(key, result)
                 return result
-
-            def cache_info() -> LRUCache:
+            def cache_info() -> LRUCache[Any, R]:  # type: ignore[valid-type]
                 return cache_instance
 
-            setattr(wrapper, "cache_info", cache_info)
+            wrapper.cache_info = cache_info  # Direct assignment
             return wrapper
 
         return decorator_func
@@ -162,5 +191,4 @@ class LRUCache(Generic[T, U]):
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
