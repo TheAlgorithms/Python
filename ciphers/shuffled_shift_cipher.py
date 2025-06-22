@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 import string
 
+
 class ShuffledShiftCipher:
     """
     Enhanced Caesar Cipher with shuffled character set for stronger encryption.
@@ -11,7 +12,7 @@ class ShuffledShiftCipher:
 
     def __init__(self, passcode: str | None = None) -> None:
         """
-        Initialize cipher with optional passcode. 
+        Initialize cipher with optional passcode.
         Generates random passcode if none provided.
         """
         self.__passcode = passcode or self.__passcode_creator()
@@ -41,13 +42,13 @@ class ShuffledShiftCipher:
         breakpoints = sorted(set(self.__passcode))
         shuffled: list[str] = []  # Explicit type annotation
         temp: list[str] = []  # Explicit type annotation
-        
+
         for char in key_options:
             temp.append(char)
             if char in breakpoints or char == key_options[-1]:
                 shuffled.extend(reversed(temp))
                 temp.clear()
-                
+
         return shuffled
 
     def __make_shift_key(self) -> int:
@@ -60,25 +61,26 @@ class ShuffledShiftCipher:
         """Encrypt plaintext using shuffled shift cipher."""
         encoded: list[str] = []  # Explicit type annotation
         key_len = len(self.__key_list)
-        
+
         for char in plaintext:
             pos = self.__key_list.index(char)
             new_pos = (pos + self.__shift_key) % key_len
             encoded.append(self.__key_list[new_pos])
-            
+
         return "".join(encoded)
 
     def decrypt(self, encoded_message: str) -> str:
         """Decrypt message using shuffled shift cipher."""
         decoded: list[str] = []  # Explicit type annotation
         key_len = len(self.__key_list)
-        
+
         for char in encoded_message:
             pos = self.__key_list.index(char)
             new_pos = (pos - self.__shift_key) % key_len
             decoded.append(self.__key_list[new_pos])
-            
+
         return "".join(decoded)
+
 
 def test_end_to_end() -> str:
     """Test full encryption-decryption cycle."""
@@ -86,16 +88,18 @@ def test_end_to_end() -> str:
     cipher = ShuffledShiftCipher()
     return cipher.decrypt(cipher.encrypt(msg))
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     # Example usage
     cipher = ShuffledShiftCipher("SecurePass123")
     original = "Encryption test!"
     encrypted = cipher.encrypt(original)
     decrypted = cipher.decrypt(encrypted)
-    
+
     print(f"Original: {original}")
     print(f"Encrypted: {encrypted}")
     print(f"Decrypted: {decrypted}")
