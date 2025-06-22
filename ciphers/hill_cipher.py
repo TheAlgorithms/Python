@@ -131,7 +131,7 @@ class HillCipher:
             # Convert characters to numerical values
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
-            
+
             # Matrix multiplication with encryption key
             batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
                 0
@@ -156,7 +156,7 @@ class HillCipher:
         if det < 0:
             det = det % len(self.key_string)
         det_inv = None
-        
+
         # Find modular inverse of determinant
         for i in range(len(self.key_string)):
             if (det * i) % len(self.key_string) == 1:
@@ -189,7 +189,7 @@ class HillCipher:
             # Convert characters to numerical values
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
-            
+
             # Matrix multiplication with decryption key
             batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
             # Convert numerical results back to characters
