@@ -61,12 +61,13 @@ class DoubleLinkedList(Generic[T, U]):
             node = node.next
         rep.append(str(self.rear))
         return ",\n    ".join(rep)
+
     def add(self, node: DoubleLinkedListNode[T, U]) -> None:
         """Adds the given node to the end of the list (before rear)"""
         previous = self.rear.prev
         if previous is None:
             raise ValueError("Invalid list state: rear.prev is None")
-        
+
         previous.next = node
         node.prev = previous
         self.rear.prev = node
@@ -148,15 +149,11 @@ class LRUCache(Generic[T, U]):
     @classmethod
     def decorator(
         cls, size: int = 128
-    ) -> Callable[[Callable[P, R]], Callable[P, R]]:
-        ...
-    
+    ) -> Callable[[Callable[P, R]], Callable[P, R]]: ...
+
     @overload
     @classmethod
-    def decorator(
-        cls, func: Callable[P, R]
-    ) -> Callable[P, R]:
-        ...
+    def decorator(cls, func: Callable[P, R]) -> Callable[P, R]: ...
 
     @classmethod
     def decorator(
@@ -166,7 +163,7 @@ class LRUCache(Generic[T, U]):
         if callable(size):
             # Called without parentheses (@LRUCache.decorator)
             return cls.decorator()(size)
-        
+
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
             cache_instance = cls[Any, R](size)  # type: ignore[valid-type]
 
@@ -180,6 +177,7 @@ class LRUCache(Generic[T, U]):
                     result = func(*args, **kwargs)
                     cache_instance.put(key, result)
                 return result
+
             def cache_info() -> LRUCache[Any, R]:  # type: ignore[valid-type]
                 return cache_instance
 
@@ -191,4 +189,5 @@ class LRUCache(Generic[T, U]):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
