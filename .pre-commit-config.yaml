@@ -9,17 +9,20 @@ repos:
         types: [python]
       - id: trailing-whitespace
       - id: requirements-txt-fixer
+    language_version: python # Ensures 'python' is used
 
   - repo: https://github.com/MarcoGorelli/auto-walrus
     rev: 0.3.4
     hooks:
       - id: auto-walrus
+    language_version: python
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.11
     hooks:
       - id: ruff
       - id: ruff-format
+    language_version: python
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
@@ -27,24 +30,28 @@ repos:
       - id: codespell
         additional_dependencies:
           - tomli
+    language_version: python
 
   - repo: https://github.com/tox-dev/pyproject-fmt
     rev: "v2.6.0"
     hooks:
       - id: pyproject-fmt
+    language_version: python
 
   - repo: local
     hooks:
       - id: validate-filenames
         name: Validate filenames
-        entry: ./scripts/validate_filenames.py
-        language: script
+        entry: python ./scripts/validate_filenames.py
+        language: python
         pass_filenames: false
+    language_version: python
 
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.24.1
     hooks:
       - id: validate-pyproject
+    language_version: python
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
@@ -53,12 +60,14 @@ repos:
         args:
           - --explicit-package-bases
           - --ignore-missing-imports
-          - --install-types # See mirrors-mypy README.md
+          - --install-types
           - --non-interactive
         additional_dependencies: [types-requests]
+    language_version: python
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v4.0.0-alpha.8"
     hooks:
       - id: prettier
         types_or: [toml, yaml]
+    language_version: python
