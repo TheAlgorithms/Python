@@ -507,7 +507,6 @@ class RedBlackTree:
         else:
             return False
 
-    __hash__ = None  # Mutable objects should not be hashable
 
 
 def color(node: RedBlackTree | None) -> int:
