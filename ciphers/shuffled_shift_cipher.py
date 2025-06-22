@@ -16,7 +16,7 @@ class ShuffledShiftCipher:
 
     Each cipher object can possess an optional argument as passcode, without which a
     new passcode is generated for that object automatically.
-    
+
     Example:
     >>> cip1 = ShuffledShiftCipher('d4usr9TWxw9wMD')
     >>> cip2 = ShuffledShiftCipher()
