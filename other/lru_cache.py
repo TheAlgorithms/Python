@@ -17,26 +17,27 @@ P = ParamSpec("P")
 R = TypeVar("R")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode:
     """Node built for LRU Cache"""
 
     def __init__(self, key: NodeKey, val: NodeValue) -> None:
         self.key = key
         self.val = val
-        self.next: DoubleLinkedListNode[T, U] | None = None
-        self.prev: DoubleLinkedListNode[T, U] | None = None
+        self.next: DoubleLinkedListNode | None = None
+        self.prev: DoubleLinkedListNode | None = None
 
     def __repr__(self) -> str:
         return f"Node(key={self.key}, val={self.val})"
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList:
     """Double Linked List for LRU Cache"""
 
     def __init__(self) -> None:
-        self.head: DoubleLinkedListNode[Any, Any] = DoubleLinkedListNode(None, None)
-        self.rear: DoubleLinkedListNode[Any, Any] = DoubleLinkedListNode(None, None)
-        self.head.next, self.rear.prev = self.rear, self.head
+        self.head = DoubleLinkedListNode(None, None)
+        self.rear = DoubleLinkedListNode(None, None)
+        self.head.next = self.rear
+        self.rear.prev = self.head
 
     def __repr__(self) -> str:
         nodes = []
@@ -46,24 +47,22 @@ class DoubleLinkedList(Generic[T, U]):
             current = current.next
         return f"LinkedList({nodes})"
 
-    def add(self, node: DoubleLinkedListNode[T, U]) -> None:
+    def add(self, node: DoubleLinkedListNode) -> None:
         """Add node to list end"""
         prev = self.rear.prev
         if not prev:
             raise ValueError("Invalid list state")
-
+        
         prev.next = node
         node.prev = prev
         self.rear.prev = node
         node.next = self.rear
 
-    def remove(
-        self, node: DoubleLinkedListNode[T, U]
-    ) -> DoubleLinkedListNode[T, U] | None:
+    def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
         """Remove node from list"""
         if not node.prev or not node.next:
             return None
-
+            
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
@@ -74,12 +73,12 @@ class LRUCache(Generic[T, U]):
     """LRU Cache implementation"""
 
     def __init__(self, capacity: int) -> None:
-        self.list = DoubleLinkedList[T, U]()
+        self.list = DoubleLinkedList()
         self.capacity = capacity
         self.size = 0
         self.hits = 0
         self.misses = 0
-        self.cache: dict[T, DoubleLinkedListNode[T, U]] = {}
+        self.cache: dict[T, DoubleLinkedListNode] = {}
 
     def __repr__(self) -> str:
         return (
@@ -116,7 +115,7 @@ class LRUCache(Generic[T, U]):
                 del self.cache[first.key]
                 self.size -= 1
 
-        new_node: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(key, value)
+        new_node = DoubleLinkedListNode(key, value)
         self.cache[key] = new_node
         self.list.add(new_node)
         self.size += 1
@@ -124,7 +123,6 @@ class LRUCache(Generic[T, U]):
     @classmethod
     def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
         """LRU Cache decorator"""
-
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
             cache = cls[Any, R](size)  # type: ignore[type-var]
 
@@ -139,11 +137,10 @@ class LRUCache(Generic[T, U]):
             # Add cache_info attribute
             wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
             return wrapper
-
+        
         return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
