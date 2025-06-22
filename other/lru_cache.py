@@ -43,7 +43,7 @@ class DoubleLinkedList:
         prev = self.rear.prev
         if prev is None:
             raise ValueError("Invalid list state")
-        
+
         prev.next = node
         node.prev = prev
         self.rear.prev = node
@@ -53,7 +53,7 @@ class DoubleLinkedList:
         """Remove node from list"""
         if node.prev is None or node.next is None:
             return None
-            
+
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
@@ -111,27 +111,28 @@ class LRUCache:
 
 def lru_cache(size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
     """LRU Cache decorator"""
+
     def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
         cache = LRUCache(size)
-        
+
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
             key = (args, tuple(sorted(kwargs.items())))
-            cached = cache.get(key)
-            if cached is not None:
+            if (cached := cache.get(key)) is not None:
                 return cached
-            
+
             result = func(*args, **kwargs)
             cache.put(key, result)
             return result
-        
+
         # Add cache_info attribute
         wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
         return wrapper
-    
+
     return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
