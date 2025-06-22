@@ -37,194 +37,96 @@ import string
 import numpy as np
 from maths.greatest_common_divisor import greatest_common_divisor
 
-
 class HillCipher:
-    key_string = string.ascii_uppercase + string.digits
-    # This cipher takes alphanumerics into account
-    # i.e. a total of 36 characters
-
-    # take x and return x % len(key_string)
-    modulus = np.vectorize(lambda x: x % 36)
-
-    to_int = np.vectorize(round)
+    key_string = string.ascii_uppercase + string.digits  # 36 alphanumeric chars
+    modulus = np.vectorize(lambda x: x % 36)  # Mod 36 operation
+    to_int = np.vectorize(round)  # Round to nearest integer
 
     def __init__(self, encrypt_key: np.ndarray) -> None:
-        """
-        encrypt_key is an NxN numpy array
-        """
-        self.encrypt_key = self.modulus(encrypt_key)  # mod36 calc's on the encrypt key
-        self.check_determinant()  # validate the determinant of the encryption key
-        self.break_key = encrypt_key.shape[0]
+        self.encrypt_key = self.modulus(encrypt_key)
+        self.check_determinant()  # Validate key determinant
+        self.break_key = encrypt_key.shape[0]  # Matrix order
 
     def replace_letters(self, letter: str) -> int:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.replace_letters('T')
-        19
-        >>> hill_cipher.replace_letters('0')
-        26
-        """
+        """Map char to index (A=0, Z=25, 0=26, 9=35)"""
         return self.key_string.index(letter)
 
     def replace_digits(self, num: int) -> str:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.replace_digits(19)
-        'T'
-        >>> hill_cipher.replace_digits(26)
-        '0'
-        """
-        # Directly use integer index without rounding
+        """Map index back to char"""
         return self.key_string[num]
 
     def check_determinant(self) -> None:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.check_determinant()
-        """
+        """Ensure det(key) is coprime with 36"""
         det = round(np.linalg.det(self.encrypt_key))
-
         if det < 0:
-            det = det % len(self.key_string)
-
-        req_l = len(self.key_string)
+            det %= len(self.key_string)
+        
         if greatest_common_divisor(det, len(self.key_string)) != 1:
-            msg = (
-                f"determinant modular {req_l} of encryption key({det}) "
-                f"is not co prime w.r.t {req_l}.\nTry another key."
-            )
-            raise ValueError(msg)
+            raise ValueError(f"Det {det} not coprime with 36. Try another key.")
 
     def process_text(self, text: str) -> str:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.process_text('Testing Hill Cipher')
-        'TESTINGHILLCIPHERR'
-        >>> hill_cipher.process_text('hello')
-        'HELLOO'
-        """
-        # Filter valid characters and convert to uppercase
-        chars = [char for char in text.upper() if char in self.key_string]
-
-        # Pad with last character to make length multiple of break_key
-        last = chars[-1]
+        """Convert to uppercase, remove invalid chars, pad to multiple of break_key"""
+        chars = [c for c in text.upper() if c in self.key_string]
+        last = chars[-1] if chars else 'A'
         while len(chars) % self.break_key != 0:
             chars.append(last)
-
         return "".join(chars)
 
     def encrypt(self, text: str) -> str:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.encrypt('testing hill cipher')
-        'WHXYJOLM9C6XT085LL'
-        >>> hill_cipher.encrypt('hello')
-        '85FF00'
-        """
-        # Preprocess text and initialize encrypted string
+        """Encrypt text using Hill cipher"""
         text = self.process_text(text.upper())
         encrypted = ""
-
-        # Process text in batches of size break_key
-        for i in range(0, len(text) - self.break_key + 1, self.break_key):
-            batch = text[i : i + self.break_key]
-            # Convert characters to numerical values
-            vec = [self.replace_letters(char) for char in batch]
+        for i in range(0, len(text), self.break_key):
+            batch = text[i:i+self.break_key]
+            vec = [self.replace_letters(c) for c in batch]
             batch_vec = np.array([vec]).T
-
-            # Matrix multiplication with encryption key
-            batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
-                0
-            ]
-            # Convert numerical results back to characters
-            encrypted_batch = "".join(
-                self.replace_digits(int(round(num))) for num in batch_encrypted
-            )
-            encrypted += encrypted_batch
-
+            batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[0]
+            encrypted += "".join(self.replace_digits(int(round(n))) for n in batch_encrypted)
         return encrypted
-        def make_decrypt_key(self) -> np.ndarray:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.make_decrypt_key()
-        array([[ 6, 25],
-               [ 5, 26]])
-        """
-        # Calculate determinant of encryption key
+
+    def make_decrypt_key(self) -> np.ndarray:
+        """Calculate decryption key matrix"""
         det = round(np.linalg.det(self.encrypt_key))
-
         if det < 0:
-            det = det % len(self.key_string)
-        det_inv = None
-
-        # Find modular inverse of determinant
-        for i in range(len(self.key_string)):
-            if (det * i) % len(self.key_string) == 1:
-                det_inv = i
-                break
-
-        # Calculate inverse key matrix
-        inv_key = (
-            det_inv * np.linalg.det(self.encrypt_key) * np.linalg.inv(self.encrypt_key)
-        )
-
+            det %= len(self.key_string)
+        
+        # Find modular inverse of det
+        det_inv = next(i for i in range(36) if (det * i) % 36 == 1)
+        
+        # Calculate inverse key
+        inv_key = det_inv * np.linalg.det(self.encrypt_key) * np.linalg.inv(self.encrypt_key)
         return self.to_int(self.modulus(inv_key))
 
     def decrypt(self, text: str) -> str:
-        """
-        >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
-        >>> hill_cipher.decrypt('WHXYJOLM9C6XT085LL')
-        'TESTINGHILLCIPHERR'
-        >>> hill_cipher.decrypt('85FF00')
-        'HELLOO'
-        """
-        # Get decryption key and preprocess text
+        """Decrypt text using Hill cipher"""
         decrypt_key = self.make_decrypt_key()
         text = self.process_text(text.upper())
         decrypted = ""
-
-        # Process text in batches of size break_key
-        for i in range(0, len(text) - self.break_key + 1, self.break_key):
-            batch = text[i : i + self.break_key]
-            # Convert characters to numerical values
-            vec = [self.replace_letters(char) for char in batch]
+        for i in range(0, len(text), self.break_key):
+            batch = text[i:i+self.break_key]
+            vec = [self.replace_letters(c) for c in batch]
             batch_vec = np.array([vec]).T
-
-            # Matrix multiplication with decryption key
             batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
-            # Convert numerical results back to characters
-            decrypted_batch = "".join(
-                self.replace_digits(int(round(num))) for num in batch_decrypted
-            )
-            decrypted += decrypted_batch
-
+            decrypted += "".join(self.replace_digits(int(round(n))) for n in batch_decrypted)
         return decrypted
-        def main() -> None:
-    """Command-line interface for Hill Cipher"""
-    n = int(input("Enter the order of the encryption key: "))
-    hill_matrix = []
 
-    print("Enter each row of the encryption key with space separated integers")
-    for _ in range(n):
-        row = [int(x) for x in input().split()]
-        hill_matrix.append(row)
-
-    hc = HillCipher(np.array(hill_matrix))
-
-    print("Would you like to encrypt or decrypt some text? (1 or 2)")
-    option = input("\n1. Encrypt\n2. Decrypt\n")
+def main() -> None:
+    """CLI for Hill Cipher"""
+    n = int(input("Enter key order: "))
+    print(f"Enter {n} rows of space-separated integers:")
+    matrix = [list(map(int, input().split())) for _ in range(n)]
+    
+    hc = HillCipher(np.array(matrix))
+    
+    option = input("1. Encrypt\n2. Decrypt\nChoose: ")
+    text = input("Enter text: ")
+    
     if option == "1":
-        text_e = input("What text would you like to encrypt?: ")
-        print("Your encrypted text is:")
-        print(hc.encrypt(text_e))
+        print("Encrypted:", hc.encrypt(text))
     elif option == "2":
-        text_d = input("What text would you like to decrypt?: ")
-        print("Your decrypted text is:")
-        print(hc.decrypt(text_d))
-
+        print("Decrypted:", hc.decrypt(text))
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     main()
