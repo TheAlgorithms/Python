@@ -2,14 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Hashable
 from functools import wraps
-from typing import Any, Generic, ParamSpec, TypeVar, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    type NodeKey = Any | None
-    type NodeValue = Any | None
-else:
-    NodeKey = TypeVar("NodeKey", bound=Hashable)
-    NodeValue = TypeVar("NodeValue")
+from typing import Any, Generic, ParamSpec, TypeVar
 
 T = TypeVar("T", bound=Hashable)
 U = TypeVar("U")
@@ -18,9 +11,9 @@ R = TypeVar("R")
 
 
 class DoubleLinkedListNode:
-    """Node built for LRU Cache"""
+    """Node for LRU Cache"""
 
-    def __init__(self, key: NodeKey, val: NodeValue) -> None:
+    def __init__(self, key: Any | None, val: Any | None) -> None:
         self.key = key
         self.val = val
         self.next: DoubleLinkedListNode | None = None
@@ -52,7 +45,7 @@ class DoubleLinkedList:
         prev = self.rear.prev
         if not prev:
             raise ValueError("Invalid list state")
-
+        
         prev.next = node
         node.prev = prev
         self.rear.prev = node
@@ -62,7 +55,7 @@ class DoubleLinkedList:
         """Remove node from list"""
         if not node.prev or not node.next:
             return None
-
+            
         node.prev.next = node.next
         node.next.prev = node.prev
         node.prev = node.next = None
@@ -96,7 +89,7 @@ class LRUCache(Generic[T, U]):
             node = self.cache[key]
             if self.list.remove(node):
                 self.list.add(node)
-            return node.val
+            return node.val  # type: ignore[return-value]
         self.misses += 1
         return None
 
@@ -112,7 +105,7 @@ class LRUCache(Generic[T, U]):
         if self.size >= self.capacity:
             first = self.list.head.next
             if first and first.key and self.list.remove(first):
-                del self.cache[first.key]
+                del self.cache[first.key]  # type: ignore[index]
                 self.size -= 1
 
         new_node = DoubleLinkedListNode(key, value)
@@ -123,10 +116,10 @@ class LRUCache(Generic[T, U]):
     @classmethod
     def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
         """LRU Cache decorator"""
-
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
-            cache = cls[Any, R](size)  # type: ignore[type-var]
-
+            # Create non-generic cache instance
+            cache = cls(size)  # type: ignore[assignment]
+            
             @wraps(func)
             def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
                 key = (args, tuple(sorted(kwargs.items())))
@@ -134,15 +127,14 @@ class LRUCache(Generic[T, U]):
                     result = func(*args, **kwargs)
                     cache.put(key, result)
                 return result
-
+            
             # Add cache_info attribute
             wrapper.cache_info = lambda: cache  # type: ignore[attr-defined]
             return wrapper
-
+        
         return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
