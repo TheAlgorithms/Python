@@ -26,7 +26,7 @@ class HillCipher:
         det = round(np.linalg.det(self.encrypt_key))
         if det < 0:
             det %= len(self.key_string)
-        
+
         error_msg = f"Det {det} not coprime with 36. Try another key."
         if greatest_common_divisor(det, len(self.key_string)) != 1:
             raise ValueError(error_msg)
@@ -56,10 +56,10 @@ class HillCipher:
         det = round(np.linalg.det(self.encrypt_key))
         if det < 0:
             det %= len(self.key_string)
-        
+
         # Find modular inverse of det
         det_inv = next(i for i in range(36) if (det * i) % 36 == 1)
-        
+
         # Calculate inverse key
         inv_key = det_inv * np.linalg.det(self.encrypt_key) * np.linalg.inv(self.encrypt_key)
         return self.to_int(self.modulus(inv_key))
@@ -82,12 +82,12 @@ def main() -> None:
     n = int(input("Enter key order: "))
     print(f"Enter {n} rows of space-separated integers:")
     matrix = [list(map(int, input().split())) for _ in range(n)]
-    
+
     hc = HillCipher(np.array(matrix))
-    
+
     option = input("1. Encrypt\n2. Decrypt\nChoose: ")
     text = input("Enter text: ")
-    
+
     if option == "1":
         print("Encrypted:", hc.encrypt(text))
     elif option == "2":
