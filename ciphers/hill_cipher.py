@@ -1,5 +1,4 @@
 """
-
 Hill Cipher:
 The 'HillCipher' class below implements the Hill Cipher algorithm which uses
 modern linear algebra techniques to encode and decode text using an encryption
@@ -33,13 +32,9 @@ References:
 https://apprendre-en-ligne.net/crypto/hill/Hillciph.pdf
 https://www.youtube.com/watch?v=kfmNeskzs2o
 https://www.youtube.com/watch?v=4RhLNDqcjpA
-
 """
-
 import string
-
 import numpy as np
-
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
@@ -79,7 +74,8 @@ class HillCipher:
         >>> hill_cipher.replace_digits(26)
         '0'
         """
-        return self.key_string[round(num)]
+        # Directly use integer index without rounding
+        return self.key_string[num]
 
     def check_determinant(self) -> None:
         """
@@ -107,8 +103,10 @@ class HillCipher:
         >>> hill_cipher.process_text('hello')
         'HELLOO'
         """
+        # Filter valid characters and convert to uppercase
         chars = [char for char in text.upper() if char in self.key_string]
 
+        # Pad with last character to make length multiple of break_key
         last = chars[-1]
         while len(chars) % self.break_key != 0:
             chars.append(last)
@@ -123,40 +121,49 @@ class HillCipher:
         >>> hill_cipher.encrypt('hello')
         '85FF00'
         """
+        # Preprocess text and initialize encrypted string
         text = self.process_text(text.upper())
         encrypted = ""
 
+        # Process text in batches of size break_key
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
+            # Convert characters to numerical values
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
+            
+            # Matrix multiplication with encryption key
             batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
                 0
             ]
+            # Convert numerical results back to characters
             encrypted_batch = "".join(
-                self.replace_digits(num) for num in batch_encrypted
+                self.replace_digits(int(round(num))) for num in batch_encrypted
             )
             encrypted += encrypted_batch
 
         return encrypted
-
-    def make_decrypt_key(self) -> np.ndarray:
+        def make_decrypt_key(self) -> np.ndarray:
         """
         >>> hill_cipher = HillCipher(np.array([[2, 5], [1, 6]]))
         >>> hill_cipher.make_decrypt_key()
         array([[ 6, 25],
                [ 5, 26]])
         """
+        # Calculate determinant of encryption key
         det = round(np.linalg.det(self.encrypt_key))
 
         if det < 0:
             det = det % len(self.key_string)
         det_inv = None
+        
+        # Find modular inverse of determinant
         for i in range(len(self.key_string)):
             if (det * i) % len(self.key_string) == 1:
                 det_inv = i
                 break
 
+        # Calculate inverse key matrix
         inv_key = (
             det_inv * np.linalg.det(self.encrypt_key) * np.linalg.inv(self.encrypt_key)
         )
@@ -171,24 +178,29 @@ class HillCipher:
         >>> hill_cipher.decrypt('85FF00')
         'HELLOO'
         """
+        # Get decryption key and preprocess text
         decrypt_key = self.make_decrypt_key()
         text = self.process_text(text.upper())
         decrypted = ""
 
+        # Process text in batches of size break_key
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
+            # Convert characters to numerical values
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
+            
+            # Matrix multiplication with decryption key
             batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
+            # Convert numerical results back to characters
             decrypted_batch = "".join(
-                self.replace_digits(num) for num in batch_decrypted
+                self.replace_digits(int(round(num))) for num in batch_decrypted
             )
             decrypted += decrypted_batch
 
         return decrypted
-
-
-def main() -> None:
+        def main() -> None:
+    """Command-line interface for Hill Cipher"""
     n = int(input("Enter the order of the encryption key: "))
     hill_matrix = []
 
@@ -215,5 +227,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
     main()
