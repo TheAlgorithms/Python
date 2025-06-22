@@ -3,6 +3,7 @@ from __future__ import annotations
 import doctest
 from typing import overload
 
+
 @overload
 def aliquot_sum(input_num: int) -> int: ...
 @overload
