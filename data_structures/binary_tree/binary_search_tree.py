@@ -176,6 +176,7 @@ class BinarySearchTree:
         for value in values:
             self.__insert(value)
         return self
+
     def search(self, value: int) -> Node | None:
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
