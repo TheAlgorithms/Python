@@ -2,32 +2,23 @@ from __future__ import annotations
 
 from collections.abc import Callable, Hashable
 from functools import wraps
-from typing import Generic, TypeVar, Any, cast, overload, TYPE_CHECKING
-from typing_extensions import ParamSpec
+from typing import Any, Generic, ParamSpec, TypeVar, overload, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from typing_extensions import TypeAlias
+    type NodeKey = T | None
+    type NodeValue = U | None
+else:
+    NodeKey = TypeVar("NodeKey", bound=Hashable)
+    NodeValue = TypeVar("NodeValue")
 
 T = TypeVar("T", bound=Hashable)
 U = TypeVar("U")
 P = ParamSpec("P")
 R = TypeVar("R")
 
-if TYPE_CHECKING:
-    NodeKey: TypeAlias = T | None
-    NodeValue: TypeAlias = U | None
-else:
-    NodeKey = TypeVar("NodeKey", bound=Hashable)
-    NodeValue = TypeVar("NodeValue")
-
 
 class DoubleLinkedListNode(Generic[T, U]):
-    """
-    Double Linked List Node built specifically for LRU Cache
-
-    >>> DoubleLinkedListNode(1,1)
-    Node: key: 1, val: 1, has next: False, has prev: False
-    """
+    """Node built for LRU Cache"""
 
     def __init__(self, key: NodeKey, val: NodeValue) -> None:
         self.key = key
@@ -36,17 +27,11 @@ class DoubleLinkedListNode(Generic[T, U]):
         self.prev: DoubleLinkedListNode[T, U] | None = None
 
     def __repr__(self) -> str:
-        return (
-            f"Node: key: {self.key}, val: {self.val}, "
-            f"has next: {bool(self.next)}, has prev: {bool(self.prev)}"
-        )
+        return f"Node(key={self.key}, val={self.val})"
 
 
 class DoubleLinkedList(Generic[T, U]):
-    """
-    Double Linked List built specifically for LRU Cache
-    ... [docstring unchanged] ...
-    """
+    """Double Linked List for LRU Cache"""
 
     def __init__(self) -> None:
         self.head: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
@@ -54,140 +39,102 @@ class DoubleLinkedList(Generic[T, U]):
         self.head.next, self.rear.prev = self.rear, self.head
 
     def __repr__(self) -> str:
-        rep = ["DoubleLinkedList"]
-        node = self.head
-        while node.next is not None:
-            rep.append(str(node))
-            node = node.next
-        rep.append(str(self.rear))
-        return ",\n    ".join(rep)
+        nodes = []
+        current = self.head
+        while current:
+            nodes.append(repr(current))
+            current = current.next
+        return f"LinkedList({nodes})"
 
     def add(self, node: DoubleLinkedListNode[T, U]) -> None:
-        """Adds the given node to the end of the list (before rear)"""
-        previous = self.rear.prev
-        if previous is None:
-            raise ValueError("Invalid list state: rear.prev is None")
-
-        previous.next = node
-        node.prev = previous
+        """Add node to list end"""
+        prev = self.rear.prev
+        if not prev:
+            raise ValueError("Invalid list state")
+        
+        prev.next = node
+        node.prev = prev
         self.rear.prev = node
         node.next = self.rear
 
-    def remove(
-        self, node: DoubleLinkedListNode[T, U]
-    ) -> DoubleLinkedListNode[T, U] | None:
-        """Removes and returns the given node from the list"""
-        if node.prev is None or node.next is None:
+    def remove(self, node: DoubleLinkedListNode[T, U]) -> DoubleLinkedListNode[T, U] | None:
+        """Remove node from list"""
+        if not node.prev or not node.next:
             return None
-
+            
         node.prev.next = node.next
         node.next.prev = node.prev
-        node.prev = None
-        node.next = None
+        node.prev = node.next = None
         return node
 
 
 class LRUCache(Generic[T, U]):
-    """
-    LRU Cache to store a given capacity of data
-    ... [docstring unchanged] ...
-    """
+    """LRU Cache implementation"""
 
     def __init__(self, capacity: int) -> None:
-        self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
+        self.list = DoubleLinkedList[T, U]()
         self.capacity = capacity
-        self.num_keys = 0
+        self.size = 0
         self.hits = 0
-        self.miss = 0
+        self.misses = 0
         self.cache: dict[T, DoubleLinkedListNode[T, U]] = {}
 
     def __repr__(self) -> str:
-        return (
-            f"CacheInfo(hits={self.hits}, misses={self.miss}, "
-            f"capacity={self.capacity}, current size={self.num_keys})"
-        )
+        return f"Cache(hits={self.hits}, misses={self.misses}, cap={self.capacity}, size={self.size})"
 
     def __contains__(self, key: T) -> bool:
         return key in self.cache
 
     def get(self, key: T) -> U | None:
-        """Returns the value for the input key"""
+        """Get value for key"""
         if key in self.cache:
             self.hits += 1
-            value_node = self.cache[key]
-            node = self.list.remove(value_node)
-            if node is None:
-                return None
-            self.list.add(node)
+            node = self.cache[key]
+            if self.list.remove(node):
+                self.list.add(node)
             return node.val
-        self.miss += 1
+        self.misses += 1
         return None
-
     def put(self, key: T, value: U) -> None:
-        """Sets the value for the input key"""
+        """Set value for key"""
         if key in self.cache:
-            node = self.list.remove(self.cache[key])
-            if node is None:
-                return
-            node.val = value
-            self.list.add(node)
+            node = self.cache[key]
+            if self.list.remove(node):
+                node.val = value
+                self.list.add(node)
             return
-        if self.num_keys >= self.capacity:
-            first_node = self.list.head.next
-            if first_node is None or first_node.key is None:
-                return
-            if self.list.remove(first_node) is not None:
-                del self.cache[first_node.key]
-                self.num_keys -= 1
 
-        new_node = DoubleLinkedListNode(key, value)
+        if self.size >= self.capacity:
+            first = self.list.head.next
+            if first and first.key and self.list.remove(first):
+                del self.cache[first.key]
+                self.size -= 1
+
+        new_node: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(key, value)
         self.cache[key] = new_node
         self.list.add(new_node)
-        self.num_keys += 1
-
-    @overload
-    @classmethod
-    def decorator(
-        cls, size: int = 128
-    ) -> Callable[[Callable[P, R]], Callable[P, R]]: ...
-
-    @overload
-    @classmethod
-    def decorator(cls, func: Callable[P, R]) -> Callable[P, R]: ...
+        self.size += 1
 
     @classmethod
-    def decorator(
-        cls, size: int | Callable[P, R] = 128
-    ) -> Callable[[Callable[P, R]], Callable[P, R]] | Callable[P, R]:
-        """Decorator version of LRU Cache"""
-        if callable(size):
-            # Called without parentheses (@LRUCache.decorator)
-            return cls.decorator()(size)
-
+    def decorator(cls, size: int = 128) -> Callable[[Callable[P, R]], Callable[P, R]]:
+        """LRU Cache decorator"""
         def decorator_func(func: Callable[P, R]) -> Callable[P, R]:
-            cache_instance = cls[Any, R](size)  # type: ignore[valid-type]
+            cache = cls[Any, R](size)
 
             @wraps(func)
             def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
-                # Create normalized key
-                sorted_kwargs = tuple(sorted(kwargs.items(), key=lambda x: x[0]))
-                key = (args, sorted_kwargs)
-                result = cache_instance.get(key)
-                if result is None:
+                key = (args, tuple(sorted(kwargs.items())))
+                if (result := cache.get(key)) is None:
                     result = func(*args, **kwargs)
-                    cache_instance.put(key, result)
+                    cache.put(key, result)
                 return result
 
-            def cache_info() -> LRUCache[Any, R]:  # type: ignore[valid-type]
-                return cache_instance
-
-            wrapper.cache_info = cache_info  # Direct assignment
+            wrapper.cache_info = lambda: cache  # Direct attribute assignment
             return wrapper
-
+        
         return decorator_func
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
