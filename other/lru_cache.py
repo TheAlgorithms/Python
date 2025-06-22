@@ -84,6 +84,7 @@ class RedBlackTree:
                 parent.left = left
         left.parent = parent
         return left
+
     def insert(self, label: int) -> RedBlackTree:
         """Inserts label into the subtree rooted at self, performs any
         rotations necessary to maintain balance, and then returns the
@@ -317,6 +318,7 @@ class RedBlackTree:
         if self.left and not self.left.check_coloring():
             return False
         return not (self.right and not self.right.check_coloring())
+
     def black_height(self) -> int | None:
         """Returns the number of black nodes from this node to the
         leaves of the tree, or None if there isn't one such value (the
@@ -435,6 +437,7 @@ class RedBlackTree:
             return self.parent.right
         else:
             return self.parent.left
+
     def is_left(self) -> bool:
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
@@ -481,6 +484,7 @@ class RedBlackTree:
         if self.right:
             yield from self.right.postorder_traverse()
         yield self.label
+
     def __repr__(self) -> str:
         if self.left is None and self.right is None:
             return f"'{self.label} {(self.color and 'red') or 'blk'}'"
@@ -512,6 +516,7 @@ def color(node: RedBlackTree | None) -> int:
         return 0
     else:
         return node.color
+
 
 """
 Code for testing the various
@@ -551,6 +556,7 @@ def test_rotations() -> bool:
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
     right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
     return tree == right_rot
+
 
 def test_insertion_speed() -> bool:
     """Test that the tree balances inserts to O(log(n)) by doing a lot
@@ -619,6 +625,8 @@ def test_insert_delete() -> bool:
     if not tree.check_color_properties():
         return False
     return list(tree.inorder_traverse()) == [-8, 0, 4, 8, 10, 11, 12]
+
+
 def test_floor_ceil() -> bool:
     """Tests the floor and ceiling functions in the tree."""
     tree = RedBlackTree(0)
@@ -661,6 +669,8 @@ def test_tree_traversal() -> bool:
     if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
         return False
     return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
+
+
 def test_tree_chaining() -> bool:
     """Tests the three different tree chaining functions."""
     tree = RedBlackTree(0)
