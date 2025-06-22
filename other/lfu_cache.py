@@ -1,13 +1,9 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Generic, TypeVar
-
-T = TypeVar("T")
-U = TypeVar("U")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LFU Cache
 
@@ -30,7 +26,7 @@ class DoubleLinkedListNode(Generic[T, U]):
         )
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList[T, U]:
     """
     Double Linked List built specifically for LFU Cache
 
@@ -75,7 +71,6 @@ class DoubleLinkedList(Generic[T, U]):
         Node: key: None, val: None, freq: 0, has next: True, has prev: False,
         Node: key: 2, val: 20, freq: 1, has next: True, has prev: True,
         Node: key: None, val: None, freq: 0, has next: False, has prev: True
-
 
     >>> # Attempt to remove node not on list
     >>> removed_node = dll.remove(first_node)
@@ -159,9 +154,7 @@ class DoubleLinkedList(Generic[T, U]):
         node.prev = None
         node.next = None
         return node
-
-
-class LFUCache(Generic[T, U]):
+class LFUCache[T, U]:
     """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
