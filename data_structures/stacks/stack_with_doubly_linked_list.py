@@ -1,17 +1,20 @@
 # Complete Python program demonstrating stack operations using a doubly linked list
 from __future__ import annotations
 
+
 class Node[T]:
     """Node class for doubly linked list"""
+
     def __init__(self, data: T):
         self.data = data  # Node data
         self.next: Node[T] | None = None  # Reference to next node
         self.prev: Node[T] | None = None  # Reference to previous node
 
+
 class Stack[T]:
     """
     Stack implementation using doubly linked list
-    
+
     >>> stack = Stack()
     >>> stack.is_empty()
     True
@@ -54,7 +57,7 @@ class Stack[T]:
         """Pop element from top of stack"""
         if self.head is None:
             return None
-            
+
         # Remove and return head node data
         temp = self.head.data
         self.head = self.head.next
@@ -86,6 +89,7 @@ class Stack[T]:
         while current:
             print(current.data, end="->")
             current = current.next
+
 
 # Program entry point
 if __name__ == "__main__":
