@@ -93,7 +93,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pprint import pformat
-from typing import Iterator
+from collections.abc import Iterator # fix UP035 
 
 
 @dataclass
@@ -182,10 +182,8 @@ class BinarySearchTree:
 
         node = self.root
         while node is not None and node.value != value:
-            if value < node.value:
-                node = node.left
-            else:
-                node = node.right
+            # 修复 SIM108：使用三元表达式替代 if-else 块
+            node = node.left if value < node.value else node.right
         return node
 
     def get_max(self, node: Node | None = None) -> Node | None:
@@ -225,7 +223,6 @@ class BinarySearchTree:
             if predecessor is not None:
                 self.remove(predecessor.value)
                 node.value = predecessor.value
-
     def preorder_traverse(self, node: Node | None) -> Iterator[Node]:
         if node is not None:
             yield node
