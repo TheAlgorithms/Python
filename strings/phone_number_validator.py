@@ -1,4 +1,6 @@
 import re
+
+
 def validate_phone_number(phone: str) -> bool:
     """
     Validates a 10-digit Indian phone number.
@@ -11,5 +13,5 @@ def validate_phone_number(phone: str) -> bool:
     >>> validate_phone_number("abcdedad")
     False
     """
-    pattern = r'^[6-9]\d{9}$'
+    pattern = r"^[6-9]\d{9}$"
     return re.fullmatch(pattern, phone) is not None
