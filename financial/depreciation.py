@@ -35,7 +35,7 @@ def straight_line_depreciation(
     residual_value: float = 0.0,
 ) -> list[float]:
     """
-    Calculate the depreciation expenses over the given period
+    Calculate the depreciation expenses over the given period using the straight-line method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
@@ -89,15 +89,92 @@ def straight_line_depreciation(
 
     return list_of_depreciation_expenses
 
+def declining_balance_depreciation(useful_years: int,
+    purchase_value: float,
+    residual_value: float = 0.0,):
+    """
+     Calculate the depreciation expenses over the given period using the declining balance method
+    :param useful_years: Number of years the asset will be used
+    :param purchase_value: Purchase expenditure for the asset
+    :param residual_value: Residual value of the asset at the end of its useful life
+    :return: A list of annual depreciation expenses over the asset's useful life
+    """
+
+    if not isinstance(useful_years, int):
+        raise TypeError("Useful years must be an integer")
+
+    if useful_years < 1:
+        raise ValueError("Useful years cannot be less than 1")
+
+    if not isinstance(purchase_value, (float, int)):
+        raise TypeError("Purchase value must be numeric")
+
+    if not isinstance(residual_value, (float, int)):
+        raise TypeError("Residual value must be numeric")
+
+    if purchase_value < 0.0:
+        raise ValueError("Purchase value cannot be less than zero")
+
+    if purchase_value < residual_value:
+        raise ValueError("Purchase value cannot be less than residual value")
+
+    depreciation_rate = 1 - (residual_value / purchase_value) ** (1 / useful_years)
+    book_value = purchase_value
+
+    list_of_depreciation_expenses = []
+
+    for i in range(1, useful_years+1):
+        new_book_value = purchase_value * ((1 - depreciation_rate) ** i)
+        list_of_depreciation_expenses.append(book_value - new_book_value)
+        book_value = new_book_value
+    
+    return list_of_depreciation_expenses
+
+def sum_of_years_digits_depreciation(useful_years: int,
+    purchase_value: float,
+    residual_value: float = 0.0,):
+    """
+     Calculate the depreciation expenses over the given period using the sum of years' digits method
+    :param useful_years: Number of years the asset will be used
+    :param purchase_value: Purchase expenditure for the asset
+    :param residual_value: Residual value of the asset at the end of its useful life
+    :return: A list of annual depreciation expenses over the asset's useful life
+    """
+
+    if not isinstance(useful_years, int):
+        raise TypeError("Useful years must be an integer")
+
+    if useful_years < 1:
+        raise ValueError("Useful years cannot be less than 1")
+
+    if not isinstance(purchase_value, (float, int)):
+        raise TypeError("Purchase value must be numeric")
+
+    if not isinstance(residual_value, (float, int)):
+        raise TypeError("Residual value must be numeric")
+
+    if purchase_value < 0.0:
+        raise ValueError("Purchase value cannot be less than zero")
+
+    if purchase_value < residual_value:
+        raise ValueError("Purchase value cannot be less than residual value")
+
+    digits_sum = useful_years * (useful_years + 1) // 2
+
+    list_of_depreciation_expenses = []
+
+    for i in range(1, useful_years+1):
+        depreciation_value = (useful_years - (i - 1)) / digits_sum * (purchase_value - residual_value)
+        list_of_depreciation_expenses.append(depreciation_value)
+
+    
+    return list_of_depreciation_expenses
+
+
+
+
 
 if __name__ == "__main__":
-    user_input_useful_years = int(input("Please Enter Useful Years:\n > "))
-    user_input_purchase_value = float(input("Please Enter Purchase Value:\n > "))
-    user_input_residual_value = float(input("Please Enter Residual Value:\n > "))
-    print(
-        straight_line_depreciation(
-            user_input_useful_years,
-            user_input_purchase_value,
-            user_input_residual_value,
-        )
-    )
+    import doctest
+
+    doctest.testmod()
