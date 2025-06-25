@@ -89,9 +89,12 @@ def straight_line_depreciation(
 
     return list_of_depreciation_expenses
 
-def declining_balance_depreciation(useful_years: int,
+
+def declining_balance_depreciation(
+    useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,):
+    residual_value: float = 0.0,
+):
     """
      Calculate the depreciation expenses over the given period using the declining balance method
     :param useful_years: Number of years the asset will be used
@@ -134,16 +137,19 @@ def declining_balance_depreciation(useful_years: int,
 
     list_of_depreciation_expenses = []
 
-    for i in range(1, useful_years+1):
+    for i in range(1, useful_years + 1):
         new_book_value = purchase_value * ((1 - depreciation_rate) ** i)
         list_of_depreciation_expenses.append(book_value - new_book_value)
         book_value = new_book_value
-    
+
     return list_of_depreciation_expenses
 
-def sum_of_years_digits_depreciation(useful_years: int,
+
+def sum_of_years_digits_depreciation(
+    useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,):
+    residual_value: float = 0.0,
+):
     """
      Calculate the depreciation expenses over the given period using the sum of years' digits method
     :param useful_years: Number of years the asset will be used
@@ -185,11 +191,12 @@ def sum_of_years_digits_depreciation(useful_years: int,
 
     list_of_depreciation_expenses = []
 
-    for i in range(1, useful_years+1):
-        depreciation_value = (useful_years - (i - 1)) / digits_sum * (purchase_value - residual_value)
+    for i in range(1, useful_years + 1):
+        depreciation_value = (
+            (useful_years - (i - 1)) / digits_sum * (purchase_value - residual_value)
+        )
         list_of_depreciation_expenses.append(depreciation_value)
 
-    
     return list_of_depreciation_expenses
 
 
