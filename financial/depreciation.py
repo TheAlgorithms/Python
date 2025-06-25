@@ -98,6 +98,17 @@ def declining_balance_depreciation(useful_years: int,
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
     :return: A list of annual depreciation expenses over the asset's useful life
+
+    >>> declining_balance_depreciation(10,1100.0,100.0)
+    [234.52721358355052, 184.52447366421927, 145.1826458038188, 114.22875363922134, 89.87443427365002, 70.71261550765269, 55.636222162002895, 43.774214745666626, 34.44126509920373, 27.098161521014077]
+    >>> declining_balance_depreciation(6,1250.0,50.0)
+    [518.9955654467834, 303.51044788404226, 177.49398666917426, 103.79911308935672, 60.70208957680846, 35.49879733383485]
+    >>> declining_balance_depreciation(4,1001.0)
+    [1001.0, 0.0, 0.0, 0.0]
+    >>> declining_balance_depreciation(11,380.0,50.0)
+    [63.98359103909348, 53.21017019104619, 44.25075501045555, 36.799907084771036, 30.60361707111676, 25.45064517902371, 21.165319724245478, 17.601548246751307, 14.637837023922344, 12.173149187513005, 10.123460242061142]
+    >>> declining_balance_depreciation(1,4985,100)
+    [4885.0]
     """
 
     if not isinstance(useful_years, int):
@@ -139,6 +150,17 @@ def sum_of_years_digits_depreciation(useful_years: int,
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
     :return: A list of annual depreciation expenses over the asset's useful life
+
+    >>> declining_balance_depreciation(10,1100.0,100.0)
+    [234.52721358355052, 184.52447366421927, 145.1826458038188, 114.22875363922134, 89.87443427365002, 70.71261550765269, 55.636222162002895, 43.774214745666626, 34.44126509920373, 27.098161521014077]
+    >>> declining_balance_depreciation(6,1250.0,50.0)
+    [518.9955654467834, 303.51044788404226, 177.49398666917426, 103.79911308935672, 60.70208957680846, 35.49879733383485]
+    >>> declining_balance_depreciation(4,1001.0)
+    [1001.0, 0.0, 0.0, 0.0]
+    >>> declining_balance_depreciation(11,380.0,50.0)
+    [63.98359103909348, 53.21017019104619, 44.25075501045555, 36.799907084771036, 30.60361707111676, 25.45064517902371, 21.165319724245478, 17.601548246751307, 14.637837023922344, 12.173149187513005, 10.123460242061142]
+    >>> declining_balance_depreciation(1,4985,100)
+    [4885.0]
     """
 
     if not isinstance(useful_years, int):
@@ -171,10 +193,6 @@ def sum_of_years_digits_depreciation(useful_years: int,
     return list_of_depreciation_expenses
 
 
-
-
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
