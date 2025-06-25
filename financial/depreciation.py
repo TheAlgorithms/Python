@@ -202,4 +202,5 @@ def sum_of_years_digits_depreciation(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
