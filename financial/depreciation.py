@@ -89,27 +89,24 @@ def straight_line_depreciation(
 
     return list_of_depreciation_expenses
 
-
-def declining_balance_depreciation(
-    useful_years: int,
+def declining_balance_depreciation(useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,
-):
+    residual_value: float = 0.0,):
     """
      Calculate the depreciation expenses over the given period using the declining balance method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
-    :return: A list of annual depreciation expenses over the asset's useful life
+    :return: A list of annual depreciation expenses over the asset's useful life, rounded to the nearest cent
 
     >>> declining_balance_depreciation(10,1100.0,100.0)
-    [234.52721358355052, 184.52447366421927, 145.1826458038188, 114.22875363922134, 89.87443427365002, 70.71261550765269, 55.636222162002895, 43.774214745666626, 34.44126509920373, 27.098161521014077]
+    [234.53, 184.52, 145.18, 114.23, 89.87, 70.71, 55.64, 43.77, 34.44, 27.1]
     >>> declining_balance_depreciation(6,1250.0,50.0)
-    [518.9955654467834, 303.51044788404226, 177.49398666917426, 103.79911308935672, 60.70208957680846, 35.49879733383485]
+    [519.0, 303.51, 177.49, 103.8, 60.7, 35.5]
     >>> declining_balance_depreciation(4,1001.0)
     [1001.0, 0.0, 0.0, 0.0]
     >>> declining_balance_depreciation(11,380.0,50.0)
-    [63.98359103909348, 53.21017019104619, 44.25075501045555, 36.799907084771036, 30.60361707111676, 25.45064517902371, 21.165319724245478, 17.601548246751307, 14.637837023922344, 12.173149187513005, 10.123460242061142]
+    [63.98, 53.21, 44.25, 36.8, 30.6, 25.45, 21.17, 17.6, 14.64, 12.17, 10.12]
     >>> declining_balance_depreciation(1,4985,100)
     [4885.0]
     """
@@ -132,40 +129,37 @@ def declining_balance_depreciation(
     if purchase_value < residual_value:
         raise ValueError("Purchase value cannot be less than residual value")
 
-    depreciation_rate = 1 - (residual_value / purchase_value) ** (1 / useful_years)
+    depreciation_rate = 1 - ((residual_value / purchase_value) ** (1 / useful_years))
     book_value = purchase_value
 
     list_of_depreciation_expenses = []
 
-    for i in range(1, useful_years + 1):
-        new_book_value = purchase_value * ((1 - depreciation_rate) ** i)
-        list_of_depreciation_expenses.append(book_value - new_book_value)
+    for i in range(1, useful_years+1):
+        new_book_value = book_value * (1 - depreciation_rate)
+        list_of_depreciation_expenses.append(round(book_value - new_book_value, 2))
         book_value = new_book_value
-
+    
     return list_of_depreciation_expenses
 
-
-def sum_of_years_digits_depreciation(
-    useful_years: int,
+def sum_of_years_digits_depreciation(useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,
-):
+    residual_value: float = 0.0,):
     """
      Calculate the depreciation expenses over the given period using the sum of years' digits method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
-    :return: A list of annual depreciation expenses over the asset's useful life
+    :return: A list of annual depreciation expenses over the asset's useful life, rounded to the nearest cent
 
-    >>> declining_balance_depreciation(10,1100.0,100.0)
-    [234.52721358355052, 184.52447366421927, 145.1826458038188, 114.22875363922134, 89.87443427365002, 70.71261550765269, 55.636222162002895, 43.774214745666626, 34.44126509920373, 27.098161521014077]
-    >>> declining_balance_depreciation(6,1250.0,50.0)
-    [518.9955654467834, 303.51044788404226, 177.49398666917426, 103.79911308935672, 60.70208957680846, 35.49879733383485]
-    >>> declining_balance_depreciation(4,1001.0)
-    [1001.0, 0.0, 0.0, 0.0]
-    >>> declining_balance_depreciation(11,380.0,50.0)
-    [63.98359103909348, 53.21017019104619, 44.25075501045555, 36.799907084771036, 30.60361707111676, 25.45064517902371, 21.165319724245478, 17.601548246751307, 14.637837023922344, 12.173149187513005, 10.123460242061142]
-    >>> declining_balance_depreciation(1,4985,100)
+    >>> sum_of_years_digits_depreciation(10,1100.0,100.0)
+    [181.82, 163.64, 145.45, 127.27, 109.09, 90.91, 72.73, 54.55, 36.36, 18.18]
+    >>> sum_of_years_digits_depreciation(6,1250.0,50.0)
+    [342.86, 285.71, 228.57, 171.43, 114.29, 57.14]
+    >>> sum_of_years_digits_depreciation(4,1001.0)
+    [400.4, 300.3, 200.2, 100.1]
+    >>> sum_of_years_digits_depreciation(11,380.0,50.0)
+    [55.0, 50.0, 45.0, 40.0, 35.0, 30.0, 25.0, 20.0, 15.0, 10.0, 5.0]
+    >>> sum_of_years_digits_depreciation(1,4985,100)
     [4885.0]
     """
 
@@ -191,13 +185,18 @@ def sum_of_years_digits_depreciation(
 
     list_of_depreciation_expenses = []
 
-    for i in range(1, useful_years + 1):
-        depreciation_value = (
-            (useful_years - (i - 1)) / digits_sum * (purchase_value - residual_value)
-        )
-        list_of_depreciation_expenses.append(depreciation_value)
+    for i in range(1, useful_years+1):
+        depreciation_value = (useful_years - (i - 1)) / digits_sum * (purchase_value - residual_value)
+        list_of_depreciation_expenses.append(round(depreciation_value, 2))
 
+    
     return list_of_depreciation_expenses
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
