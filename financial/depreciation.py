@@ -35,7 +35,8 @@ def straight_line_depreciation(
     residual_value: float = 0.0,
 ) -> list[float]:
     """
-    Calculate the depreciation expenses over the given period using the straight-line method
+    Calculate the depreciation expenses over the given period,
+     using the straight-line method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
@@ -91,13 +92,15 @@ def straight_line_depreciation(
 
 def declining_balance_depreciation(useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,):
+    residual_value: float = 0.0,) -> list[float]:
     """
-     Calculate the depreciation expenses over the given period using the declining balance method
+     Calculate the depreciation expenses over the given period,
+      using the declining balance method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
-    :return: A list of annual depreciation expenses over the asset's useful life, rounded to the nearest cent
+    :return: A list of annual depreciation expenses over the asset's useful life, 
+    rounded to the nearest cent
 
     >>> declining_balance_depreciation(10,1100.0,100.0)
     [234.53, 184.52, 145.18, 114.23, 89.87, 70.71, 55.64, 43.77, 34.44, 27.1]
@@ -134,7 +137,7 @@ def declining_balance_depreciation(useful_years: int,
 
     list_of_depreciation_expenses = []
 
-    for i in range(1, useful_years+1):
+    for _ in range(1, useful_years+1):
         new_book_value = book_value * (1 - depreciation_rate)
         list_of_depreciation_expenses.append(round(book_value - new_book_value, 2))
         book_value = new_book_value
@@ -143,13 +146,15 @@ def declining_balance_depreciation(useful_years: int,
 
 def sum_of_years_digits_depreciation(useful_years: int,
     purchase_value: float,
-    residual_value: float = 0.0,):
+    residual_value: float = 0.0,) -> list[float]:
     """
-     Calculate the depreciation expenses over the given period using the sum of years' digits method
+     Calculate the depreciation expenses over the given period,
+      using the sum of years' digits method
     :param useful_years: Number of years the asset will be used
     :param purchase_value: Purchase expenditure for the asset
     :param residual_value: Residual value of the asset at the end of its useful life
-    :return: A list of annual depreciation expenses over the asset's useful life, rounded to the nearest cent
+    :return: A list of annual depreciation expenses over the asset's useful life, 
+    rounded to the nearest cent
 
     >>> sum_of_years_digits_depreciation(10,1100.0,100.0)
     [181.82, 163.64, 145.45, 127.27, 109.09, 90.91, 72.73, 54.55, 36.36, 18.18]
