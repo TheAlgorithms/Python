@@ -40,7 +40,7 @@ def merge_sort(collection: list) -> list:
         left_length = len(left)
         right_length = len(right)
         left_index = right_index = 0
-        
+
         while (left_index < left_length) and (right_index < right_length):
             if left[left_index] < right[right_index]:
                 result.append(left[left_index])
@@ -48,9 +48,9 @@ def merge_sort(collection: list) -> list:
             else:
                 result.append(right[right_index])
                 right_index += 1
-                
-        result.extend(left[left_index : ])
-        result.extend(right[right_index : ])
+
+        result.extend(left[left_index:])
+        result.extend(right[right_index:])
         return result
 
     if len(collection) <= 1:
