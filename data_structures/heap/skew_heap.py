@@ -5,9 +5,11 @@ from __future__ import annotations
 from collections.abc import Iterable, Iterator
 from typing import Any, Generic, TypeVar, Protocol
 
+
 class Comparable(Protocol):
     def __lt__(self, other: Any) -> bool: ...
     def __gt__(self, other: Any) -> bool: ...
+
 
 T = TypeVar("T", bound=Comparable)
 
@@ -89,6 +91,7 @@ class SkewNode(Generic[T]):
         result.left = SkewNode.merge(temp, root2)
 
         return result
+
 
 class SkewHeap(Generic[T]):
     """
