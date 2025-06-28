@@ -5,9 +5,11 @@ from __future__ import annotations
 from collections.abc import Iterable, Iterator
 from typing import Any, Protocol, TypeVar, runtime_checkable
 
+
 @runtime_checkable
 class SupportsLessThan(Protocol):
     def __lt__(self, other: Any) -> bool: ...
+
 
 T = TypeVar("T", bound=SupportsLessThan)
 
@@ -198,6 +200,7 @@ class SkewHeap(Generic[T]):
         )
 
         return result
+
     def top(self) -> T:
         """
         Return the smallest value from the heap.
