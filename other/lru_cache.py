@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+
 class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LRU Cache
@@ -235,6 +236,7 @@ class LRUCache[T, U]:
         True
         """
         return key in self.cache
+
     def get(self, key: T) -> U | None:
         """
         Returns the value for the input key and updates the Double Linked List.
@@ -309,6 +311,7 @@ class LRUCache[T, U]:
                     result = func(*args)
                     decorator_function_to_instance_map[func].put(args[0], result)
                 return result
+
             def cache_info() -> LRUCache[T, U]:
                 return decorator_function_to_instance_map[func]
 
