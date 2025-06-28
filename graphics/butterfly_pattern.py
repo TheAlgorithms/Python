@@ -47,5 +47,6 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     import doctest
+
     # Run the doctests
     doctest.testmod()
