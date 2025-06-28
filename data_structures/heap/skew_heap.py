@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
@@ -84,6 +83,7 @@ class SkewNode[T]:
         result.left = SkewNode.merge(temp, root2)
 
         return result
+
 
 class SkewHeap[T]:
     """
