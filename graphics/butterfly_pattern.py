@@ -44,3 +44,8 @@ def butterfly_pattern(n: int) -> str:
 if __name__ == "__main__":
     n = int(input("Enter the size of the butterfly pattern: "))
     print(butterfly_pattern(n))
+
+if __name__ == "__main__":
+    import doctest
+    # Run the doctests
+    doctest.testmod()
