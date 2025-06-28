@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class DisjointSetTreeNode[T]:
     # Disjoint Set Node to store the parent and rank
     def __init__(self, data: T) -> None:
