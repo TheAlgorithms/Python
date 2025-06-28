@@ -96,6 +96,7 @@ class DoubleLinkedList[T, U]:
 
 
     """
+
     def __init__(self) -> None:
         self.head: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
         self.rear: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
@@ -158,6 +159,8 @@ class DoubleLinkedList[T, U]:
         node.prev = None
         node.next = None
         return node
+
+
 class LFUCache[T, U]:
     """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
@@ -273,6 +276,7 @@ class LFUCache[T, U]:
             assert node is not None  # node guaranteed to be in list
             node.val = value
             self.list.add(node)
+
     @classmethod
     def decorator(
         cls: type[LFUCache[T, U]], size: int = 128
