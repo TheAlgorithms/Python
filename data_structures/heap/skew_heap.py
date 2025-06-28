@@ -3,18 +3,16 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Any, Protocol, TypeVar, runtime_checkable
+from typing import Any, Generic, TypeVar, Protocol
 
-
-@runtime_checkable
-class SupportsLessThan(Protocol):
+class Comparable(Protocol):
     def __lt__(self, other: Any) -> bool: ...
+    def __gt__(self, other: Any) -> bool: ...
+
+T = TypeVar("T", bound=Comparable)
 
 
-T = TypeVar("T", bound=SupportsLessThan)
-
-
-class SkewNode([T]):
+class SkewNode(Generic[T]):
     """
     One node of the skew heap. Contains the value and references to
     two children.
@@ -92,8 +90,7 @@ class SkewNode([T]):
 
         return result
 
-
-class SkewHeap([T]):
+class SkewHeap(Generic[T]):
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the
@@ -152,7 +149,7 @@ class SkewHeap([T]):
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        result: list[Any] = []
+        result: list[T] = []
         while self:
             result.append(self.pop())
 
@@ -176,7 +173,7 @@ class SkewHeap([T]):
         """
         self._root = SkewNode.merge(self._root, SkewNode(value))
 
-    def pop(self) -> T | None:
+    def pop(self) -> T:
         """
         Pop the smallest value from the heap and return it.
 
