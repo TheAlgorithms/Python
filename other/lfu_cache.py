@@ -7,7 +7,7 @@ T = TypeVar("T")
 U = TypeVar("U")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LFU Cache
 
@@ -30,7 +30,7 @@ class DoubleLinkedListNode(Generic[T, U]):
         )
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList[T, U]:
     """
     Double Linked List built specifically for LFU Cache
 
@@ -96,7 +96,6 @@ class DoubleLinkedList(Generic[T, U]):
 
 
     """
-
     def __init__(self) -> None:
         self.head: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
         self.rear: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
@@ -159,9 +158,7 @@ class DoubleLinkedList(Generic[T, U]):
         node.prev = None
         node.next = None
         return node
-
-
-class LFUCache(Generic[T, U]):
+class LFUCache[T, U]:
     """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
@@ -276,7 +273,6 @@ class LFUCache(Generic[T, U]):
             assert node is not None  # node guaranteed to be in list
             node.val = value
             self.list.add(node)
-
     @classmethod
     def decorator(
         cls: type[LFUCache[T, U]], size: int = 128
