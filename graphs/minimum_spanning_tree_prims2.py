@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from sys import maxsize
 
+
 def get_parent_position(position: int) -> int:
     """
     heap helper function get the position of the parent of the current node
