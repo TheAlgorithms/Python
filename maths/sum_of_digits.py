@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from timeit import timeit
 
+
 def sum_of_digits(n: int) -> int:
     """
     Find the sum of digits of a number.
@@ -56,6 +57,7 @@ def benchmark() -> None:
     """
     Benchmark multiple functions, with three different length int values.
     """
+
     def benchmark_a_function(func: Callable, value: int) -> None:
         call = f"{func.__name__}({value})"
         timing = timeit(f"__main__.{call}", setup="import __main__")
