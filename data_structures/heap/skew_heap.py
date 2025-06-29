@@ -37,9 +37,7 @@ class SkewNode:
 
     @staticmethod
     def merge(
-        root1: SkewNode | None,
-        root2: SkewNode | None,
-        comp: Callable[[Any, Any], bool]
+        root1: SkewNode | None, root2: SkewNode | None, comp: Callable[[Any, Any], bool]
     ) -> SkewNode | None:
         """
         Merge two nodes together.
@@ -75,6 +73,7 @@ class SkewNode:
             result.left = SkewNode.merge(root1, temp, comp)
             return result
 
+
 class SkewHeap:
     """
     A data structure that allows inserting a new value and popping the smallest
@@ -101,15 +100,15 @@ class SkewHeap:
     def __init__(
         self,
         data: Iterable[Any] | None = None,
-        comp: Callable[[Any, Any], bool] = lambda a, b: a < b
+        comp: Callable[[Any, Any], bool] = lambda a, b: a < b,
     ) -> None:
         """
         Initialize the skew heap with optional data and comparison function
-        
+
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
-        
+
         # Max-heap example
         >>> max_heap = SkewHeap([3, 1, 3, 7], comp=lambda a, b: a > b)
         >>> list(max_heap)
@@ -158,6 +157,7 @@ class SkewHeap:
         # Restore the heap state
         self._root = temp_heap._root
         return iter(result)
+
     def insert(self, value: Any) -> None:
         """
         Insert a new value into the heap
@@ -170,11 +170,7 @@ class SkewHeap:
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        self._root = SkewNode.merge(
-            self._root, 
-            SkewNode(value),
-            self._comp
-        )
+        self._root = SkewNode.merge(self._root, SkewNode(value), self._comp)
 
     def pop(self) -> Any:
         """
@@ -196,11 +192,7 @@ class SkewHeap:
         """
         result = self.top()
         if self._root:
-            self._root = SkewNode.merge(
-                self._root.left, 
-                self._root.right,
-                self._comp
-            )
+            self._root = SkewNode.merge(self._root.left, self._root.right, self._comp)
         return result
 
     def top(self) -> Any:
