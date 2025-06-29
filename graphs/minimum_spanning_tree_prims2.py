@@ -10,7 +10,7 @@ connection from the tree to another vertex.
 from __future__ import annotations
 
 from sys import maxsize
-from typing import TypeVar  # Keep only TypeVar import, remove Generic
+from typing import Generic, TypeVar, Optional
 
 T = TypeVar("T")
 
@@ -47,7 +47,7 @@ def get_child_right_position(position: int) -> int:
     return (2 * position) + 2
 
 
-class MinPriorityQueue[T]:  # Updated: use square brackets for generic class
+class MinPriorityQueue(Generic[T]):
     """
     Minimum Priority Queue Class
 
@@ -90,6 +90,7 @@ class MinPriorityQueue[T]:  # Updated: use square brackets for generic class
 
     def __len__(self) -> int:
         return self.elements
+
     def __repr__(self) -> str:
         return str(self.heap)
 
@@ -116,7 +117,7 @@ class MinPriorityQueue[T]:  # Updated: use square brackets for generic class
             self._bubble_down(bubble_down_elem)
         return elem
 
-    def update_key(self, elem: T, weight: int) -> None:
+    def update_key(self, elem: T, weight: int) -> None:  # 修复了这里的类型提示
         # Update the weight of the given key
         position = self.position_map[elem]
         self.heap[position] = (elem, weight)
@@ -155,8 +156,34 @@ class MinPriorityQueue[T]:  # Updated: use square brackets for generic class
             _, child_left_weight = self.heap[child_left_position]
             _, child_right_weight = self.heap[child_right_position]
             if child_right_weight < child_left_weight and child_right_weight < weight:
+                self._swap_nodes(child_right_position, curr_pos)
+                return self._bubble_down(elem)
+        if child_left_position < self.elements:
+            _, child_left_weight = self.heap[child_left_position]
+            if child_left_weight < weight:
+                self._swap_nodes(child_left_position, curr_pos)
+                return self._bubble_down(elem)
+        else:
+            return None
+        if child_right_position < self.elements:
+            _, child_right_weight = self.heap[child_right_position]
+            if child_right_weight < weight:
+                self._swap_nodes(child_right_position, curr_pos)
+                return self._bubble_down(elem)
+        return None
+    def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
+        # Swap the nodes at the given positions
+        node1_elem = self.heap[node1_pos][0]
+        node2_elem = self.heap[node2_pos][0]
+        self.heap[node1_pos], self.heap[node2_pos] = (
+            self.heap[node2_pos],
+            self.heap[node1_pos],
+        )
+        self.position_map[node1_elem] = node2_pos
+        self.position_map[node2_elem] = node1_pos
 
-class GraphUndirectedWeighted[T]:  # Updated: use square brackets for generic class
+
+class GraphUndirectedWeighted(Generic[T]):
     """
     Graph Undirected Weighted Class
 
@@ -189,9 +216,9 @@ class GraphUndirectedWeighted[T]:  # Updated: use square brackets for generic cl
         self.connections[node2][node1] = weight
 
 
-def prims_algo[T](  # Updated: add type parameter for generic function
+def prims_algo(
     graph: GraphUndirectedWeighted[T],
-) -> tuple[dict[T, int], dict[T, T | None]]:
+) -> tuple[dict[T, int], dict[T, Optional[T]]]:  # 使用 Optional[T] 替代 T | None
     """
     >>> graph = GraphUndirectedWeighted()
 
@@ -212,11 +239,11 @@ def prims_algo[T](  # Updated: add type parameter for generic function
     """
     # prim's algorithm for minimum spanning tree
     dist: dict[T, int] = dict.fromkeys(graph.connections, maxsize)
-    parent: dict[T, T | None] = dict.fromkeys(graph.connections)
+    parent: dict[T, Optional[T]] = dict.fromkeys(graph.connections, None)
 
     priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
-    for node, weight in dist.items():
-        priority_queue.push(node, weight)
+    for node in graph.connections:
+        priority_queue.push(node, dist[node])
 
     if priority_queue.is_empty():
         return dist, parent
@@ -225,17 +252,17 @@ def prims_algo[T](  # Updated: add type parameter for generic function
     node = priority_queue.extract_min()
     dist[node] = 0
     for neighbour in graph.connections[node]:
-        if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
-            dist[neighbour] = dist[node] + graph.connections[node][neighbour]
+        if dist[neighbour] > graph.connections[node][neighbour]:
+            dist[neighbour] = graph.connections[node][neighbour]
             priority_queue.update_key(neighbour, dist[neighbour])
             parent[neighbour] = node
 
     # running prim's algorithm
     while not priority_queue.is_empty():
         node = priority_queue.extract_min()
-        for neighbour in graph.connections[node]:
-            if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
-                dist[neighbour] = dist[node] + graph.connections[node][neighbour]
+        for neighbour in graph.connections[node]
+            if dist[neighbour] > graph.connections[node][neighbour]:
+                dist[neighbour] = graph.connections[node][neighbour]
                 priority_queue.update_key(neighbour, dist[neighbour])
                 parent[neighbour] = node
     return dist, parent
