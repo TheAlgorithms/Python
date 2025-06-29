@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import ClassVar
 
 class Matrix:
     """
@@ -9,7 +10,7 @@ class Matrix:
     a row. Supports both integer and float values.
     """
 
-    __hash__: None = None  # Fix PLW1641: Mark class as unhashable with type annotation
+   __hash__: ClassVar[None] = None # Fix PLW1641: Mark class as unhashable with type annotation
 
     def __init__(self, rows: list[list[float]]) -> None:
         """
