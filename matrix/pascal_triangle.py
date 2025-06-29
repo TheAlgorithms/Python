@@ -90,6 +90,7 @@ def populate_current_row(triangle: List[List[int]], current_row_idx: int) -> Lis
         )
     return current_row
 
+
 def calculate_current_element(
     triangle: List[List[int]],
     current_row: List[int],
@@ -112,10 +113,10 @@ def generate_pascal_triangle_optimized(num_rows: int) -> List[List[int]]:
     """
     Returns a matrix representing Pascal's triangle.
     Reduces operations by half by eliminating redundant calculations.
-    
+
     :param num_rows: Number of rows in the Pascal's triangle
     :return: 2D list representing the Pascal's triangle
-    
+
     >>> generate_pascal_triangle_optimized(3)
     [[1], [1, 1], [1, 2, 1]]
     >>> generate_pascal_triangle_optimized(1)
@@ -157,10 +158,12 @@ def generate_pascal_triangle_optimized(num_rows: int) -> List[List[int]]:
 
     return result
 
+
 def benchmark() -> None:
     """
     Benchmark functions with different input sizes
     """
+
     def benchmark_a_function(func: Callable, value: int) -> None:
         call = f"{func.__name__}({value})"
         timing = timeit(f"__main__.{call}", setup="import __main__")
