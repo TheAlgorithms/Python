@@ -10,7 +10,7 @@ connection from the tree to another vertex.
 from __future__ import annotations
 
 from sys import maxsize
-from typing import Generic, TypeVar, Optional
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -146,7 +146,7 @@ class MinPriorityQueue(Generic[T]):
         _, weight = self.heap[curr_pos]
         child_left_position = get_child_left_position(curr_pos)
         child_right_position = get_child_right_position(curr_pos)
-
+        
         # Check if both children exist
         if child_left_position < self.elements and child_right_position < self.elements:
             _, child_left_weight = self.heap[child_left_position]
@@ -155,7 +155,7 @@ class MinPriorityQueue(Generic[T]):
                 self._swap_nodes(child_right_position, curr_pos)
                 self._bubble_down(elem)
                 return
-
+                
         # Check left child
         if child_left_position < self.elements:
             _, child_left_weight = self.heap[child_left_position]
@@ -163,7 +163,7 @@ class MinPriorityQueue(Generic[T]):
                 self._swap_nodes(child_left_position, curr_pos)
                 self._bubble_down(elem)
                 return
-
+                
         # Check right child
         if child_right_position < self.elements:
             _, child_right_weight = self.heap[child_right_position]
@@ -218,7 +218,7 @@ class GraphUndirectedWeighted(Generic[T]):
 
 def prims_algo(
     graph: GraphUndirectedWeighted[T],
-) -> tuple[dict[T, int], dict[T, Optional[T]]]:
+) -> tuple[dict[T, int], dict[T, T | None]]:
     """
     Prim's algorithm for minimum spanning tree
 
@@ -244,9 +244,9 @@ def prims_algo(
     >>> parent["d"]
     'c'
     """
-    # Initialize distance and parent dictionaries
-    dist: dict[T, int] = {node: maxsize for node in graph.connections}
-    parent: dict[T, Optional[T]] = {node: None for node in graph.connections}
+    # Initialize distance and parent dictionaries using dict.fromkeys
+    dist: dict[T, int] = dict.fromkeys(graph.connections, maxsize)
+    parent: dict[T, T | None] = dict.fromkeys(graph.connections, None)
 
     # Create priority queue and add all nodes
     priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
@@ -256,6 +256,7 @@ def prims_algo(
     # Return if graph is empty
     if priority_queue.is_empty():
         return dist, parent
+
     # Start with first node
     start_node = priority_queue.extract_min()
     dist[start_node] = 0
@@ -270,7 +271,7 @@ def prims_algo(
     # Main algorithm loop
     while not priority_queue.is_empty():
         node = priority_queue.extract_min()
-
+        
         # Explore neighbors of current node
         for neighbor, weight in graph.connections[node].items():
             # Update if found better connection to tree
