@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Iterator
-from typing import Any, Callable, Optional
+from collections.abc import Iterable, Iterator, Callable
+from typing import Any
 
 
 class SkewNode:
@@ -14,8 +14,8 @@ class SkewNode:
 
     def __init__(self, value: Any) -> None:
         self._value: Any = value
-        self.left: Optional[SkewNode] = None
-        self.right: Optional[SkewNode] = None
+        self.left: SkewNode | None = None
+        self.right: SkewNode | None = None
 
     @property
     def value(self) -> Any:
@@ -37,10 +37,10 @@ class SkewNode:
 
     @staticmethod
     def merge(
-        root1: Optional[SkewNode],
-        root2: Optional[SkewNode],
-        comp: Callable[[Any, Any], bool],
-    ) -> Optional[SkewNode]:
+        root1: SkewNode | None,
+        root2: SkewNode | None,
+        comp: Callable[[Any, Any], bool]
+    ) -> SkewNode | None:
         """
         Merge two nodes together.
         >>> def comp(a, b): return a < b
@@ -75,7 +75,6 @@ class SkewNode:
             result.left = SkewNode.merge(root1, temp, comp)
             return result
 
-
 class SkewHeap:
     """
     A data structure that allows inserting a new value and popping the smallest
@@ -102,21 +101,21 @@ class SkewHeap:
     def __init__(
         self,
         data: Iterable[Any] | None = None,
-        comp: Callable[[Any, Any], bool] = lambda a, b: a < b,
+        comp: Callable[[Any, Any], bool] = lambda a, b: a < b
     ) -> None:
         """
         Initialize the skew heap with optional data and comparison function
-
+        
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
-
+        
         # Max-heap example
         >>> max_heap = SkewHeap([3, 1, 3, 7], comp=lambda a, b: a > b)
         >>> list(max_heap)
         [7, 3, 3, 1]
         """
-        self._root: Optional[SkewNode] = None
+        self._root: SkewNode | None = None
         self._comp = comp
         if data:
             for item in data:
@@ -159,7 +158,6 @@ class SkewHeap:
         # Restore the heap state
         self._root = temp_heap._root
         return iter(result)
-
     def insert(self, value: Any) -> None:
         """
         Insert a new value into the heap
@@ -172,7 +170,11 @@ class SkewHeap:
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        self._root = SkewNode.merge(self._root, SkewNode(value), self._comp)
+        self._root = SkewNode.merge(
+            self._root, 
+            SkewNode(value),
+            self._comp
+        )
 
     def pop(self) -> Any:
         """
@@ -194,7 +196,11 @@ class SkewHeap:
         """
         result = self.top()
         if self._root:
-            self._root = SkewNode.merge(self._root.left, self._root.right, self._comp)
+            self._root = SkewNode.merge(
+                self._root.left, 
+                self._root.right,
+                self._comp
+            )
         return result
 
     def top(self) -> Any:
