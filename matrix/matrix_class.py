@@ -4,13 +4,15 @@ from __future__ import annotations
 
 from typing import ClassVar
 
+
 class Matrix:
     """
     Matrix object generated from a 2D array where each element is an array representing
     a row. Supports both integer and float values.
     """
 
-   __hash__: ClassVar[None] = None # Fix PLW1641: Mark class as unhashable with type annotation
+    # Fix PLW1641: Mark class as unhashable with type annotation
+    __hash__: ClassVar[None] = None
 
     def __init__(self, rows: list[list[float]]) -> None:
         """
