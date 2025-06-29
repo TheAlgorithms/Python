@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Protocol, TypeVar, Any
+from typing import Protocol, TypeVar
 
 
 class Comparable(Protocol):
