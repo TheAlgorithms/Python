@@ -4,7 +4,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Any, Generic, Protocol, TypeVar
+from typing import Any, Protocol, TypeVar
 
 
 class Comparable(Protocol):
@@ -83,7 +83,7 @@ class SkewNode[T]:
         if not root2:
             return root1
 
-        if root1.value > root2.value:
+        if root2.value < root1.value:
             root1, root2 = root2, root1
 
         result = root1
