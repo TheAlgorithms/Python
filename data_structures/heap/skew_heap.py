@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Any, Protocol, TypeVar
+from typing import Protocol, TypeVar
 
 
 class Comparable(Protocol):
-    def __lt__(self: T, other: T) -> bool: ...
+    def __lt__(self, other: Any) -> bool: ...
 
 
 T = TypeVar("T", bound=Comparable)
@@ -59,11 +59,8 @@ class SkewNode[T]:
         TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
         """
         return self._value
-
     @staticmethod
-    def merge(
-        root1: SkewNode[T] | None, root2: SkewNode[T] | None
-    ) -> SkewNode[T] | None:
+    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
         """
         Merge 2 nodes together.
         >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5)).value
@@ -80,22 +77,23 @@ class SkewNode[T]:
 
         if not root2:
             return root1
+        try:
+            if root1.value < root2.value:
+                result = root1
+                temp = root1.right
+                result.right = root1.left
+                result.left = SkewNode.merge(temp, root2)
+                return result
+        except TypeError:
+            # 回退到值比较
+            pass
 
-        # 使用类型安全的比较方式
-        if root1.value < root2.value:
-            # root1 更小，不需要交换
-            result = root1
-            temp = root1.right
-            result.right = root1.left
-            result.left = SkewNode.merge(temp, root2)
-            return result
-        else:
-            # root2 更小或相等，需要交换
-            result = root2
-            temp = root2.right
-            result.right = root2.left
-            result.left = SkewNode.merge(root1, temp)
-            return result
+        # 如果比较失败或 root2 更小
+        result = root2
+        temp = root2.right
+        result.right = root2.left
+        result.left = SkewNode.merge(root1, temp)
+        return result
 
 
 class SkewHeap[T]:
@@ -206,7 +204,6 @@ class SkewHeap[T]:
             self._root = None
 
         return result
-
     def top(self) -> T:
         """
         Return the smallest value from the heap.
