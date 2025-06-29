@@ -55,6 +55,7 @@ class ShuffledShiftCipher:
         for i in range(1, len(iterlist), 2):
             iterlist[i] *= -1
         return iterlist
+
     def __passcode_creator(self) -> str:
         """
         Creates a random password from the selection buffer of
@@ -67,7 +68,7 @@ class ShuffledShiftCipher:
         """
         choices = string.ascii_letters + string.digits
         password = [random.choice(choices) for _ in range(random.randint(10, 20))]
-        return ''.join(password)
+        return "".join(password)
 
     def __make_key_list(self) -> list[str]:
         """
@@ -139,9 +140,7 @@ class ShuffledShiftCipher:
         # reverse shift or left shift
         for char in encoded_message:
             position = self.__key_list.index(char)
-            decoded_message += self.__key_list[
-                (position - self.__shift_key) % key_len
-            ]
+            decoded_message += self.__key_list[(position - self.__shift_key) % key_len]
 
         return decoded_message
 
@@ -162,9 +161,7 @@ class ShuffledShiftCipher:
         # forward shift or right shift
         for char in plaintext:
             position = self.__key_list.index(char)
-            encoded_message += self.__key_list[
-                (position + self.__shift_key) % key_len
-            ]
+            encoded_message += self.__key_list[(position + self.__shift_key) % key_len]
 
         return encoded_message
 
