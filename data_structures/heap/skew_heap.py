@@ -59,8 +59,11 @@ class SkewNode[T]:
         TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
         """
         return self._value
+
     @staticmethod
-    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
+    def merge(
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         """
         Merge 2 nodes together.
         >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5)).value
@@ -204,6 +207,7 @@ class SkewHeap[T]:
             self._root = None
 
         return result
+
     def top(self) -> T:
         """
         Return the smallest value from the heap.
