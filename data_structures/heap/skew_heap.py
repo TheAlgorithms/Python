@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
+
 from __future__ import annotations
 
-from collections.abc import Iterable, Iterator, Callable
+from collections.abc import Callable, Iterable, Iterator
 from typing import Any
 
 
