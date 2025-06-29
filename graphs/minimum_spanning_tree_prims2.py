@@ -10,7 +10,7 @@ connection from the tree to another vertex.
 from __future__ import annotations
 
 from sys import maxsize
-from typing import Generic, TypeVar
+from typing import TypeVar  # Keep only TypeVar import, remove Generic
 
 T = TypeVar("T")
 
@@ -47,7 +47,7 @@ def get_child_right_position(position: int) -> int:
     return (2 * position) + 2
 
 
-class MinPriorityQueue(Generic[T]):
+class MinPriorityQueue[T]:  # Updated: use square brackets for generic class
     """
     Minimum Priority Queue Class
 
@@ -90,7 +90,6 @@ class MinPriorityQueue(Generic[T]):
 
     def __len__(self) -> int:
         return self.elements
-
     def __repr__(self) -> str:
         return str(self.heap)
 
@@ -156,35 +155,8 @@ class MinPriorityQueue(Generic[T]):
             _, child_left_weight = self.heap[child_left_position]
             _, child_right_weight = self.heap[child_right_position]
             if child_right_weight < child_left_weight and child_right_weight < weight:
-                self._swap_nodes(child_right_position, curr_pos)
-                return self._bubble_down(elem)
-        if child_left_position < self.elements:
-            _, child_left_weight = self.heap[child_left_position]
-            if child_left_weight < weight:
-                self._swap_nodes(child_left_position, curr_pos)
-                return self._bubble_down(elem)
-        else:
-            return None
-        if child_right_position < self.elements:
-            _, child_right_weight = self.heap[child_right_position]
-            if child_right_weight < weight:
-                self._swap_nodes(child_right_position, curr_pos)
-                return self._bubble_down(elem)
-        return None
 
-    def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
-        # Swap the nodes at the given positions
-        node1_elem = self.heap[node1_pos][0]
-        node2_elem = self.heap[node2_pos][0]
-        self.heap[node1_pos], self.heap[node2_pos] = (
-            self.heap[node2_pos],
-            self.heap[node1_pos],
-        )
-        self.position_map[node1_elem] = node2_pos
-        self.position_map[node2_elem] = node1_pos
-
-
-class GraphUndirectedWeighted(Generic[T]):
+class GraphUndirectedWeighted[T]:  # Updated: use square brackets for generic class
     """
     Graph Undirected Weighted Class
 
@@ -217,7 +189,7 @@ class GraphUndirectedWeighted(Generic[T]):
         self.connections[node2][node1] = weight
 
 
-def prims_algo(
+def prims_algo[T](  # Updated: add type parameter for generic function
     graph: GraphUndirectedWeighted[T],
 ) -> tuple[dict[T, int], dict[T, T | None]]:
     """
