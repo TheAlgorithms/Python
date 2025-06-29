@@ -2,6 +2,7 @@
 PyTest's for Digital Image Processing
 """
 
+import os
 import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
@@ -23,112 +24,98 @@ img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)
 
 
-# Test: convert_to_negative()
 def test_convert_to_negative():
+    """Test negative image conversion."""
     negative_img = cn.convert_to_negative(img)
-    # assert negative_img array for at least one True
+    # Verify output contains at least one non-zero value
     assert negative_img.any()
 
 
-# Test: change_contrast()
 def test_change_contrast():
-    with Image.open("digital_image_processing/image_data/lena_small.jpg") as img:
-        # Work around assertion for response
-        assert str(cc.change_contrast(img, 110)).startswith(
+    """Test contrast adjustment functionality."""
+    with Image.open("digital_image_processing/image_data/lena_small.jpg") as img_pil:
+        # Verify returns a PIL Image object
+        assert str(cc.change_contrast(img_pil, 110)).startswith(
             "<PIL.Image.Image image mode=RGB size=100x100 at"
         )
 
 
-# canny.gen_gaussian_kernel()
 def test_gen_gaussian_kernel():
-    resp = canny.gen_gaussian_kernel(9, sigma=1.4)
-    # Assert ambiguous array
-    assert resp.all()
+    """Test Gaussian kernel generation."""
+    kernel = canny.gen_gaussian_kernel(9, sigma=1.4)
+    # Verify kernel contains valid values
+    assert kernel.all()
 
 
-# canny.py
 def test_canny():
+    """Test Canny edge detection."""
     canny_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
-    # assert ambiguous array for all == True
-    assert canny_img.all()
-    canny_array = canny.canny(canny_img)
-    # assert canny array for at least one True
-    assert canny_array.any()
+    assert canny_img.all()  # Verify input image loaded correctly
+    edges = canny.canny(canny_img)
+    assert edges.any()  # Verify edge detection produced output
 
 
-# filters/gaussian_filter.py
 def test_gen_gaussian_kernel_filter():
+    """Test Gaussian filter application."""
     assert gg.gaussian_filter(gray, 5, sigma=0.9).all()
 
-
 def test_convolve_filter():
-    # laplace diagonals
+    """Test image convolution operation."""
+    # Laplace kernel for edge detection
     laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
-    res = conv.img_convolve(gray, laplace).astype(uint8)
-    assert res.any()
+    result = conv.img_convolve(gray, laplace).astype(uint8)
+    assert result.any()  # Verify convolution output
 
 
 def test_median_filter():
+    """Test median noise reduction filter."""
     assert med.median_filter(gray, 3).any()
 
 
 def test_sobel_filter():
-    grad, theta = sob.sobel_filter(gray)
-    assert grad.any()
-    assert theta.any()
+    """Test Sobel edge detection."""
+    gradient, direction = sob.sobel_filter(gray)
+    assert gradient.any()  # Verify gradient magnitude
+    assert direction.any()  # Verify gradient direction
 
 
 def test_sepia():
-    sepia = sp.make_sepia(img, 20)
-    assert sepia.all()
+    """Test sepia tone filter."""
+    sepia_img = sp.make_sepia(img, 20)
+    assert sepia_img.all()
 
 
-def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small.jpg"):
-    burkes = bs.Burkes(imread(file_path, 1), 120)
+def test_burkes():
+    """Test Burkes dithering algorithm."""
+    burkes = bs.Burkes(imread("digital_image_processing/image_data/lena_small.jpg", 1), 120)
     burkes.process()
     assert burkes.output_img.any()
 
 
-def test_nearest_neighbour(
-    file_path: str = "digital_image_processing/image_data/lena_small.jpg",
-):
-    nn = rs.NearestNeighbour(imread(file_path, 1), 400, 200)
+def test_nearest_neighbour():
+    """Test nearest-neighbor resizing."""
+    nn = rs.NearestNeighbour(imread("digital_image_processing/image_data/lena_small.jpg", 1), 400, 200)
     nn.process()
     assert nn.output.any()
 
 
 def test_local_binary_pattern():
-    # pull request 10161 before:
-    # "digital_image_processing/image_data/lena.jpg"
-    # after: "digital_image_processing/image_data/lena_small.jpg"
-
-    from os import getenv  # Speed up our Continuous Integration tests
-
-    file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
+    """Test Local Binary Pattern feature extraction."""
+    # Use smaller image in CI environments for faster tests
+    file_name = "lena_small.jpg" if os.getenv("CI") else "lena.jpg"
     file_path = f"digital_image_processing/image_data/{file_name}"
 
-    # Reading the image and converting it to grayscale
+    # Load image in grayscale
     image = imread(file_path, 0)
 
-    # Test for get_neighbors_pixel function() return not None
-    x_coordinate = 0
-    y_coordinate = 0
-    center = image[x_coordinate][y_coordinate]
+    # Test neighbor pixel collection
+    center = image[0][0]
+    neighbors = lbp.get_neighbors_pixel(image, 0, 0, center)
+    assert neighbors is not None
 
-    neighbors_pixels = lbp.get_neighbors_pixel(
-        image, x_coordinate, y_coordinate, center
-    )
-
-    assert neighbors_pixels is not None
-
-    # Test for local_binary_pattern function()
-    # Create a numpy array as the same height and width of read image
-    lbp_image = np.zeros((image.shape[0], image.shape[1]))
-
-    # Iterating through the image and calculating the local binary pattern value
-    # for each pixel.
+    # Test LBP feature map generation
+    lbp_image = np.zeros_like(image, dtype=np.float32)
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
             lbp_image[i][j] = lbp.local_binary_value(image, i, j)
-
     assert lbp_image.any()
