@@ -3,29 +3,22 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Generic, Protocol, TypeVar
+from typing import Any, Callable, Optional
 
 
-class Comparable(Protocol):
-    def __lt__(self, other: object) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
-
-
-class SkewNode[T]:
+class SkewNode:
     """
     One node of the skew heap. Contains the value and references to
     two children.
     """
 
-    def __init__(self, value: T) -> None:
-        self._value: T = value
-        self.left: SkewNode[T] | None = None
-        self.right: SkewNode[T] | None = None
+    def __init__(self, value: Any) -> None:
+        self._value: Any = value
+        self.left: Optional[SkewNode] = None
+        self.right: Optional[SkewNode] = None
 
     @property
-    def value(self) -> T:
+    def value(self) -> Any:
         """
         Return the value of the node.
 
@@ -44,17 +37,20 @@ class SkewNode[T]:
 
     @staticmethod
     def merge(
-        root1: SkewNode[T] | None, root2: SkewNode[T] | None
-    ) -> SkewNode[T] | None:
+        root1: Optional[SkewNode],
+        root2: Optional[SkewNode],
+        comp: Callable[[Any, Any], bool]
+    ) -> Optional[SkewNode]:
         """
         Merge two nodes together.
-        >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5)).value
+        >>> def comp(a, b): return a < b
+        >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5), comp).value
         -10.5
-        >>> SkewNode.merge(SkewNode(10), SkewNode(10.5)).value
+        >>> SkewNode.merge(SkewNode(10), SkewNode(10.5), comp).value
         10
-        >>> SkewNode.merge(SkewNode(10), SkewNode(10)).value
+        >>> SkewNode.merge(SkewNode(10), SkewNode(10), comp).value
         10
-        >>> SkewNode.merge(SkewNode(-100), SkewNode(-10.5)).value
+        >>> SkewNode.merge(SkewNode(-100), SkewNode(-10.5), comp).value
         -100
         """
         # Handle empty nodes
@@ -63,34 +59,23 @@ class SkewNode[T]:
         if not root2:
             return root1
 
-        # Compare values using explicit comparison function
-        if SkewNode._is_less_than(root1.value, root2.value):
+        # Compare values using provided comparison function
+        if comp(root1.value, root2.value):
             # root1 is smaller, make it the new root
             result = root1
             temp = root1.right
             result.right = root1.left
-            result.left = SkewNode.merge(temp, root2)
+            result.left = SkewNode.merge(temp, root2, comp)
             return result
         else:
             # root2 is smaller or equal, use it as new root
             result = root2
             temp = root2.right
             result.right = root2.left
-            result.left = SkewNode.merge(root1, temp)
+            result.left = SkewNode.merge(root1, temp, comp)
             return result
 
-    @staticmethod
-    def _is_less_than(a: T, b: T) -> bool:
-        """Safe comparison function that avoids type checker issues"""
-        try:
-            return a < b
-        except TypeError:
-            # Fallback comparison for non-comparable types
-            # Uses string representation as last resort
-            return str(a) < str(b)
-
-
-class SkewHeap[T]:
+class SkewHeap:
     """
     A data structure that allows inserting a new value and popping the smallest
     values. Both operations take O(logN) time where N is the size of the heap.
@@ -113,15 +98,25 @@ class SkewHeap[T]:
     [-1, 0, 1]
     """
 
-    def __init__(self, data: Iterable[T] | None = ()) -> None:
+    def __init__(
+        self,
+        data: Iterable[Any] | None = None,
+        comp: Callable[[Any, Any], bool] = lambda a, b: a < b
+    ) -> None:
         """
-        Initialize the skew heap with optional data
-
+        Initialize the skew heap with optional data and comparison function
+        
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
+        
+        # Max-heap example
+        >>> max_heap = SkewHeap([3, 1, 3, 7], comp=lambda a, b: a > b)
+        >>> list(max_heap)
+        [7, 3, 3, 1]
         """
-        self._root: SkewNode[T] | None = None
+        self._root: Optional[SkewNode] = None
+        self._comp = comp
         if data:
             for item in data:
                 self.insert(item)
@@ -142,7 +137,7 @@ class SkewHeap[T]:
         """
         return self._root is not None
 
-    def __iter__(self) -> Iterator[T]:
+    def __iter__(self) -> Iterator[Any]:
         """
         Iterate through all values in sorted order
 
@@ -151,8 +146,8 @@ class SkewHeap[T]:
         [1, 3, 3, 7]
         """
         # Create a temporary heap for iteration
-        temp_heap: SkewHeap[T] = SkewHeap()
-        result: list[T] = []
+        temp_heap = SkewHeap(comp=self._comp)
+        result: list[Any] = []
 
         # Pop all elements from the heap
         while self:
@@ -164,7 +159,7 @@ class SkewHeap[T]:
         self._root = temp_heap._root
         return iter(result)
 
-    def insert(self, value: T) -> None:
+    def insert(self, value: Any) -> None:
         """
         Insert a new value into the heap
 
@@ -176,9 +171,13 @@ class SkewHeap[T]:
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        self._root = SkewNode.merge(self._root, SkewNode(value))
+        self._root = SkewNode.merge(
+            self._root, 
+            SkewNode(value),
+            self._comp
+        )
 
-    def pop(self) -> T:
+    def pop(self) -> Any:
         """
         Remove and return the smallest value from the heap
 
@@ -198,10 +197,14 @@ class SkewHeap[T]:
         """
         result = self.top()
         if self._root:
-            self._root = SkewNode.merge(self._root.left, self._root.right)
+            self._root = SkewNode.merge(
+                self._root.left, 
+                self._root.right,
+                self._comp
+            )
         return result
 
-    def top(self) -> T:
+    def top(self) -> Any:
         """
         Return the smallest value without removing it
 
