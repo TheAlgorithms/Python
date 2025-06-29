@@ -15,7 +15,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-class SkewNode(Generic[T]):
+class SkewNode[T]:
     """
     One node of the skew heap. Contains the value and references to
     two children.
@@ -94,7 +94,7 @@ class SkewNode(Generic[T]):
         return result
 
 
-class SkewHeap(Generic[T]):
+class SkewHeap[T]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the
