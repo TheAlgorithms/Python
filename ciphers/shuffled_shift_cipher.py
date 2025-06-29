@@ -42,7 +42,7 @@ class ShuffledShiftCipher:
         """
         :return: passcode of the cipher object
         """
-        return "".join(self.__passcode)
+        return self.__passcode
 
     def __neg_pos(self, iterlist: list[int]) -> list[int]:
         """
@@ -55,20 +55,19 @@ class ShuffledShiftCipher:
         for i in range(1, len(iterlist), 2):
             iterlist[i] *= -1
         return iterlist
-
-    def __passcode_creator(self) -> list[str]:
+    def __passcode_creator(self) -> str:
         """
         Creates a random password from the selection buffer of
         1. uppercase letters of the English alphabet
         2. lowercase letters of the English alphabet
         3. digits from 0 to 9
 
-        :rtype: list
+        :rtype: str
         :return: a password of a random length between 10 to 20
         """
         choices = string.ascii_letters + string.digits
         password = [random.choice(choices) for _ in range(random.randint(10, 20))]
-        return password
+        return ''.join(password)
 
     def __make_key_list(self) -> list[str]:
         """
@@ -104,15 +103,14 @@ class ShuffledShiftCipher:
         temp_list: list[str] = []
 
         # algorithm for creating a new shuffled list, keys_l, out of key_list_options
-        for i in key_list_options:
-            temp_list.extend(i)
+        for char in key_list_options:
+            temp_list.append(char)
 
             # checking breakpoints at which to pivot temporary sublist and add it into
             # keys_l
-            if i in breakpoints or i == key_list_options[-1]:
+            if char in breakpoints or char == key_list_options[-1]:
                 keys_l.extend(temp_list[::-1])
                 temp_list.clear()
-
         # returning a shuffled keys_l to prevent brute force guessing of shift key
         return keys_l
 
@@ -135,13 +133,14 @@ class ShuffledShiftCipher:
 
         """
         decoded_message = ""
+        key_len = len(self.__key_list)
 
         # decoding shift like Caesar cipher algorithm implementing negative shift or
         # reverse shift or left shift
-        for i in encoded_message:
-            position = self.__key_list.index(i)
+        for char in encoded_message:
+            position = self.__key_list.index(char)
             decoded_message += self.__key_list[
-                (position - self.__shift_key) % -len(self.__key_list)
+                (position - self.__shift_key) % key_len
             ]
 
         return decoded_message
@@ -157,13 +156,14 @@ class ShuffledShiftCipher:
 
         """
         encoded_message = ""
+        key_len = len(self.__key_list)
 
         # encoding shift like Caesar cipher algorithm implementing positive shift or
         # forward shift or right shift
-        for i in plaintext:
-            position = self.__key_list.index(i)
+        for char in plaintext:
+            position = self.__key_list.index(char)
             encoded_message += self.__key_list[
-                (position + self.__shift_key) % len(self.__key_list)
+                (position + self.__shift_key) % key_len
             ]
 
         return encoded_message
