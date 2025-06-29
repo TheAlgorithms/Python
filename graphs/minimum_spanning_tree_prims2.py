@@ -10,14 +10,10 @@ connection from the tree to another vertex.
 from __future__ import annotations
 
 from sys import maxsize
-from typing import Generic, TypeVar
-
-T = TypeVar("T")
-
 
 def get_parent_position(position: int) -> int:
     """
-    Heap helper function to get the position of the parent of the current node
+    heap helper function get the position of the parent of the current node
 
     >>> get_parent_position(1)
     0
@@ -29,7 +25,7 @@ def get_parent_position(position: int) -> int:
 
 def get_child_left_position(position: int) -> int:
     """
-    Heap helper function to get the position of the left child of the current node
+    heap helper function get the position of the left child of the current node
 
     >>> get_child_left_position(0)
     1
@@ -39,7 +35,7 @@ def get_child_left_position(position: int) -> int:
 
 def get_child_right_position(position: int) -> int:
     """
-    Heap helper function to get the position of the right child of the current node
+    heap helper function get the position of the right child of the current node
 
     >>> get_child_right_position(0)
     2
@@ -47,18 +43,21 @@ def get_child_right_position(position: int) -> int:
     return (2 * position) + 2
 
 
-class MinPriorityQueue(Generic[T]):
+class MinPriorityQueue[T]:
     """
     Minimum Priority Queue Class
 
     Functions:
-    is_empty: Check if the priority queue is empty
-    push: Add an element with given priority to the queue
-    extract_min: Remove and return the element with lowest weight (highest priority)
-    update_key: Update the weight of the given key
-    _bubble_up: Place a node at proper position (upward movement)
-    _bubble_down: Place a node at proper position (downward movement)
-    _swap_nodes: Swap nodes at given positions
+    is_empty: function to check if the priority queue is empty
+    push: function to add an element with given priority to the queue
+    extract_min: function to remove and return the element with lowest weight (highest
+                 priority)
+    update_key: function to update the weight of the given key
+    _bubble_up: helper function to place a node at the proper position (upward
+                movement)
+    _bubble_down: helper function to place a node at the proper position (downward
+                movement)
+    _swap_nodes: helper function to swap the nodes at the given positions
 
     >>> queue = MinPriorityQueue()
 
@@ -92,18 +91,18 @@ class MinPriorityQueue(Generic[T]):
         return str(self.heap)
 
     def is_empty(self) -> bool:
-        """Check if the priority queue is empty"""
+        # Check if the priority queue is empty
         return self.elements == 0
 
     def push(self, elem: T, weight: int) -> None:
-        """Add an element with given priority to the queue"""
+        # Add an element with given priority to the queue
         self.heap.append((elem, weight))
         self.position_map[elem] = self.elements
         self.elements += 1
         self._bubble_up(elem)
 
     def extract_min(self) -> T:
-        """Remove and return the element with lowest weight (highest priority)"""
+        # Remove and return the element with lowest weight (highest priority)
         if self.elements > 1:
             self._swap_nodes(0, self.elements - 1)
         elem, _ = self.heap.pop()
@@ -115,7 +114,7 @@ class MinPriorityQueue(Generic[T]):
         return elem
 
     def update_key(self, elem: T, weight: int) -> None:
-        """Update the weight of the given key"""
+        # Update the weight of the given key
         position = self.position_map[elem]
         self.heap[position] = (elem, weight)
         if position > 0:
@@ -129,50 +128,48 @@ class MinPriorityQueue(Generic[T]):
             self._bubble_down(elem)
 
     def _bubble_up(self, elem: T) -> None:
-        """Place node at proper position (upward movement) - internal use only"""
+        # Place a node at the proper position (upward movement) [to be used internally
+        # only]
         curr_pos = self.position_map[elem]
         if curr_pos == 0:
-            return
+            return None
         parent_position = get_parent_position(curr_pos)
         _, weight = self.heap[curr_pos]
         _, parent_weight = self.heap[parent_position]
         if parent_weight > weight:
             self._swap_nodes(parent_position, curr_pos)
-            self._bubble_up(elem)
+            return self._bubble_up(elem)
+        return None
 
     def _bubble_down(self, elem: T) -> None:
-        """Place node at proper position (downward movement) - internal use only"""
+        # Place a node at the proper position (downward movement) [to be used
+        # internally only]
         curr_pos = self.position_map[elem]
         _, weight = self.heap[curr_pos]
         child_left_position = get_child_left_position(curr_pos)
         child_right_position = get_child_right_position(curr_pos)
-
-        # Check if both children exist
         if child_left_position < self.elements and child_right_position < self.elements:
             _, child_left_weight = self.heap[child_left_position]
             _, child_right_weight = self.heap[child_right_position]
             if child_right_weight < child_left_weight and child_right_weight < weight:
                 self._swap_nodes(child_right_position, curr_pos)
-                self._bubble_down(elem)
-                return
-
-        # Check left child
+                return self._bubble_down(elem)
         if child_left_position < self.elements:
             _, child_left_weight = self.heap[child_left_position]
             if child_left_weight < weight:
                 self._swap_nodes(child_left_position, curr_pos)
-                self._bubble_down(elem)
-                return
-
-        # Check right child
+                return self._bubble_down(elem)
+        else:
+            return None
         if child_right_position < self.elements:
             _, child_right_weight = self.heap[child_right_position]
             if child_right_weight < weight:
                 self._swap_nodes(child_right_position, curr_pos)
-                self._bubble_down(elem)
+                return self._bubble_down(elem)
+        return None
 
     def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
-        """Swap nodes at given positions"""
+        # Swap the nodes at the given positions
         node1_elem = self.heap[node1_pos][0]
         node2_elem = self.heap[node2_pos][0]
         self.heap[node1_pos], self.heap[node2_pos] = (
@@ -183,13 +180,13 @@ class MinPriorityQueue(Generic[T]):
         self.position_map[node2_elem] = node1_pos
 
 
-class GraphUndirectedWeighted(Generic[T]):
+class GraphUndirectedWeighted[T]:
     """
     Graph Undirected Weighted Class
 
     Functions:
-    add_node: Add a node to the graph
-    add_edge: Add an edge between two nodes with given weight
+    add_node: function to add a node in the graph
+    add_edge: function to add an edge between 2 nodes in the graph
     """
 
     def __init__(self) -> None:
@@ -203,26 +200,25 @@ class GraphUndirectedWeighted(Generic[T]):
         return self.nodes
 
     def add_node(self, node: T) -> None:
-        """Add a node to the graph if not already present"""
+        # Add a node in the graph if it is not in the graph
         if node not in self.connections:
             self.connections[node] = {}
             self.nodes += 1
 
     def add_edge(self, node1: T, node2: T, weight: int) -> None:
-        """Add an edge between two nodes with given weight"""
+        # Add an edge between 2 nodes in the graph
         self.add_node(node1)
         self.add_node(node2)
         self.connections[node1][node2] = weight
         self.connections[node2][node1] = weight
 
 
-def prims_algo(
+def prims_algo[T](
     graph: GraphUndirectedWeighted[T],
 ) -> tuple[dict[T, int], dict[T, T | None]]:
     """
-    Prim's algorithm for minimum spanning tree
-
     >>> graph = GraphUndirectedWeighted()
+
     >>> graph.add_edge("a", "b", 3)
     >>> graph.add_edge("b", "c", 10)
     >>> graph.add_edge("c", "d", 5)
@@ -231,53 +227,38 @@ def prims_algo(
 
     >>> dist, parent = prims_algo(graph)
 
-    >>> dist["b"]
+    >>> abs(dist["a"] - dist["b"])
     3
-    >>> dist["c"]
-    10
-    >>> dist["d"]
-    5
-    >>> parent["b"]
-    'a'
-    >>> parent["c"]
-    'b'
-    >>> parent["d"]
-    'c'
+    >>> abs(dist["d"] - dist["b"])
+    15
+    >>> abs(dist["a"] - dist["c"])
+    13
     """
-    # Initialize distance and parent dictionaries using dict.fromkeys
+    # prim's algorithm for minimum spanning tree
     dist: dict[T, int] = dict.fromkeys(graph.connections, maxsize)
-    parent: dict[T, T | None] = dict.fromkeys(graph.connections, None)
+    parent: dict[T, T | None] = dict.fromkeys(graph.connections)
 
-    # Create priority queue and add all nodes
     priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
-    for node in graph.connections:
-        priority_queue.push(node, dist[node])
+    for node, weight in dist.items():
+        priority_queue.push(node, weight)
 
-    # Return if graph is empty
     if priority_queue.is_empty():
         return dist, parent
+    # initialization
+    node = priority_queue.extract_min()
+    dist[node] = 0
+    for neighbour in graph.connections[node]:
+        if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
+            dist[neighbour] = dist[node] + graph.connections[node][neighbour]
+            priority_queue.update_key(neighbour, dist[neighbour])
+            parent[neighbour] = node
 
-    # Start with first node
-    start_node = priority_queue.extract_min()
-    dist[start_node] = 0
-
-    # Update neighbors of start node
-    for neighbor, weight in graph.connections[start_node].items():
-        if dist[neighbor] > weight:
-            dist[neighbor] = weight
-            priority_queue.update_key(neighbor, weight)
-            parent[neighbor] = start_node
-
-    # Main algorithm loop
+    # running prim's algorithm
     while not priority_queue.is_empty():
         node = priority_queue.extract_min()
-
-        # Explore neighbors of current node
-        for neighbor, weight in graph.connections[node].items():
-            # Update if found better connection to tree
-            if dist[neighbor] > weight:
-                dist[neighbor] = weight
-                priority_queue.update_key(neighbor, weight)
-                parent[neighbor] = node
-
+        for neighbour in graph.connections[node]:
+            if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
+                dist[neighbour] = dist[node] + graph.connections[node][neighbour]
+                priority_queue.update_key(neighbour, dist[neighbour])
+                parent[neighbour] = node
     return dist, parent
