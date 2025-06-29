@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-
 
 class Matrix:
     """
@@ -11,7 +9,7 @@ class Matrix:
     a row. Supports both integer and float values.
     """
 
-    __hash__ = None  # Fix PLW1641: Mark class as unhashable
+    __hash__: None = None  # Fix PLW1641: Mark class as unhashable with type annotation
 
     def __init__(self, rows: list[list[float]]) -> None:
         """
@@ -23,7 +21,7 @@ class Matrix:
             "least one and the same number of values, each of which must be of type "
             "int or float."
         )
-
+        
         # Validate matrix structure and content
         if rows:
             cols = len(rows[0])
@@ -67,11 +65,10 @@ class Matrix:
     def identity(self) -> Matrix:
         """Generate identity matrix of same dimensions"""
         values = [
-            [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
+            [0.0 if column_num != row_num else 1.0 for column_num in range(self.num_rows)]
             for row_num in range(self.num_rows)
         ]
         return Matrix(values)
-
     def determinant(self) -> float:
         """Calculate matrix determinant. Returns 0 for non-square matrices."""
         if not self.is_square:
@@ -133,10 +130,7 @@ class Matrix:
         """Generate adjugate matrix (transpose of cofactor matrix)"""
         return Matrix(
             [
-                [
-                    self.cofactors().rows[column][row]
-                    for column in range(self.num_columns)
-                ]
+                [self.cofactors().rows[column][row] for column in range(self.num_columns)]
                 for row in range(self.num_rows)
             ]
         )
@@ -161,7 +155,8 @@ class Matrix:
         return (
             "["
             + "\n ".join(
-                "[" + ". ".join(str(val) for val in row) + ".]" for row in self.rows
+                "[" + ". ".join(str(val) for val in row) + ".]"
+                for row in self.rows
             )
             + "]"
         )
@@ -176,13 +171,12 @@ class Matrix:
                 raise TypeError("Row elements must be int or float")
         if len(row) != self.num_columns:
             raise ValueError("Row length must match matrix columns")
-
+        
         if position is None:
             self.rows.append(row)
         else:
             # Fix RUF005: Use iterable unpacking instead of concatenation
             self.rows = [*self.rows[:position], row, *self.rows[position:]]
-
     def add_column(self, column: list[float], position: int | None = None) -> None:
         """Add column to matrix. Validates type and length."""
         if not isinstance(column, list):
@@ -192,17 +186,14 @@ class Matrix:
                 raise TypeError("Column elements must be int or float")
         if len(column) != self.num_rows:
             raise ValueError("Column length must match matrix rows")
+        
         if position is None:
             for i, value in enumerate(column):
                 self.rows[i].append(value)
         else:
             # Fix RUF005: Use iterable unpacking instead of concatenation
             for i, value in enumerate(column):
-                self.rows[i] = [
-                    *self.rows[i][:position],
-                    value,
-                    *self.rows[i][position:],
-                ]
+                self.rows[i] = [*self.rows[i][:position], value, *self.rows[i][position:]]
 
     # MATRIX OPERATIONS
     def __eq__(self, other: object) -> bool:
@@ -240,8 +231,7 @@ class Matrix:
                 for i in range(self.num_rows)
             ]
         )
-
-    def __mul__(self, other: Union[Matrix, float]) -> Matrix:
+    def __mul__(self, other: Matrix | float) -> Matrix:
         """Matrix multiplication (scalar or matrix)"""
         if isinstance(other, (int, float)):
             # Preserve float precision by removing int conversion
@@ -258,7 +248,9 @@ class Matrix:
                     for row in self.rows
                 ]
             )
-        raise TypeError("Matrix can only be multiplied by scalar or another matrix")
+        raise TypeError(
+            "Matrix can only be multiplied by scalar or another matrix"
+        )
 
     def __pow__(self, exponent: int) -> Matrix:
         """Matrix exponentiation. Requires square matrix."""
