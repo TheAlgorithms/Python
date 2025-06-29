@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Union
 
 
-
 class Matrix:
     """
     Matrix object generated from a 2D array where each element is an array representing
@@ -24,7 +23,7 @@ class Matrix:
             "least one and the same number of values, each of which must be of type "
             "int or float."
         )
-        
+
         # Validate matrix structure and content
         if rows:
             cols = len(rows[0])
@@ -134,7 +133,10 @@ class Matrix:
         """Generate adjugate matrix (transpose of cofactor matrix)"""
         return Matrix(
             [
-                [self.cofactors().rows[column][row] for column in range(self.num_columns)]
+                [
+                    self.cofactors().rows[column][row]
+                    for column in range(self.num_columns)
+                ]
                 for row in range(self.num_rows)
             ]
         )
@@ -159,8 +161,7 @@ class Matrix:
         return (
             "["
             + "\n ".join(
-                "[" + ". ".join(str(val) for val in row) + ".]"
-                for row in self.rows
+                "[" + ". ".join(str(val) for val in row) + ".]" for row in self.rows
             )
             + "]"
         )
@@ -175,7 +176,7 @@ class Matrix:
                 raise TypeError("Row elements must be int or float")
         if len(row) != self.num_columns:
             raise ValueError("Row length must match matrix columns")
-        
+
         if position is None:
             self.rows.append(row)
         else:
@@ -190,14 +191,18 @@ class Matrix:
             if not isinstance(value, (int, float)):
                 raise TypeError("Column elements must be int or float")
         if len(column) != self.num_rows:
-            raise ValueError("Column length must match matrix rows")        
+            raise ValueError("Column length must match matrix rows")
         if position is None:
             for i, value in enumerate(column):
                 self.rows[i].append(value)
         else:
             # Fix RUF005: Use iterable unpacking instead of concatenation
             for i, value in enumerate(column):
-                self.rows[i] = [*self.rows[i][:position], value, *self.rows[i][position:]]
+                self.rows[i] = [
+                    *self.rows[i][:position],
+                    value,
+                    *self.rows[i][position:],
+                ]
 
     # MATRIX OPERATIONS
     def __eq__(self, other: object) -> bool:
@@ -253,9 +258,7 @@ class Matrix:
                     for row in self.rows
                 ]
             )
-        raise TypeError(
-            "Matrix can only be multiplied by scalar or another matrix"
-        )
+        raise TypeError("Matrix can only be multiplied by scalar or another matrix")
 
     def __pow__(self, exponent: int) -> Matrix:
         """Matrix exponentiation. Requires square matrix."""
@@ -275,6 +278,7 @@ class Matrix:
         for _ in range(exponent - 1):
             result *= self
         return result
+
     @classmethod
     def dot_product(cls, row: list[float], column: list[float]) -> float:
         """Calculate dot product of two vectors"""
