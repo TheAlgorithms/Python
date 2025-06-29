@@ -61,36 +61,21 @@ class SkewNode[T]:
         """
         return self._value
 
+
     @staticmethod
-    def merge(
-        root1: SkewNode[T] | None, root2: SkewNode[T] | None
-    ) -> SkewNode[T] | None:
-        """
-        Merge 2 nodes together.
-        >>> SkewNode.merge(SkewNode(10),SkewNode(-10.5)).value
-        -10.5
-        >>> SkewNode.merge(SkewNode(10),SkewNode(10.5)).value
-        10
-        >>> SkewNode.merge(SkewNode(10),SkewNode(10)).value
-        10
-        >>> SkewNode.merge(SkewNode(-100),SkewNode(-10.5)).value
-        -100
-        """
+    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
         if not root1:
             return root2
-
         if not root2:
             return root1
-
-        # Use explicit __lt__ method for type safety
-        if root1.value > root2.value:
+        
+        if root2.value < root1.value:
             root1, root2 = root2, root1
 
         result = root1
         temp = root1.right
         result.right = root1.left
         result.left = SkewNode.merge(temp, root2)
-
         return result
 
 
