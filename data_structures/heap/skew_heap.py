@@ -151,7 +151,7 @@ class SkewHeap(Generic[T]):
         [1, 3, 3, 7]
         """
         # Create a temporary heap for iteration
-        temp_heap = SkewHeap()
+        temp_heap: SkewHeap[T] = SkewHeap()
         result: list[T] = []
 
         # Pop all elements from the heap
