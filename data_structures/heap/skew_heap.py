@@ -61,14 +61,15 @@ class SkewNode[T]:
         """
         return self._value
 
-
     @staticmethod
-    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
+    def merge(
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         if not root1:
             return root2
         if not root2:
             return root1
-        
+
         if root2.value < root1.value:
             root1, root2 = root2, root1
 
