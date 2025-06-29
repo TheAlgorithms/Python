@@ -7,8 +7,7 @@ from typing import Any, Protocol, TypeVar
 
 
 class Comparable(Protocol):
-    def __lt__(self, other: Any) -> bool: ...
-    def __gt__(self, other: Any) -> bool: ...
+    def __lt__(self: T, other: T) -> bool: ...
 
 
 T = TypeVar("T", bound=Comparable)
@@ -60,24 +59,40 @@ class SkewNode[T]:
         TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
         """
         return self._value
-
     @staticmethod
-    def merge(
-        root1: SkewNode[T] | None, root2: SkewNode[T] | None
-    ) -> SkewNode[T] | None:
+    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
+        """
+        Merge 2 nodes together.
+        >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5)).value
+        -10.5
+        >>> SkewNode.merge(SkewNode(10), SkewNode(10.5)).value
+        10
+        >>> SkewNode.merge(SkewNode(10), SkewNode(10)).value
+        10
+        >>> SkewNode.merge(SkewNode(-100), SkewNode(-10.5)).value
+        -100
+        """
         if not root1:
             return root2
+
         if not root2:
             return root1
 
-        if root2.value < root1.value:
-            root1, root2 = root2, root1
-
-        result = root1
-        temp = root1.right
-        result.right = root1.left
-        result.left = SkewNode.merge(temp, root2)
-        return result
+        # 使用类型安全的比较方式
+        if root1.value < root2.value:
+            # root1 更小，不需要交换
+            result = root1
+            temp = root1.right
+            result.right = root1.left
+            result.left = SkewNode.merge(temp, root2)
+            return result
+        else:
+            # root2 更小或相等，需要交换
+            result = root2
+            temp = root2.right
+            result.right = root2.left
+            result.left = SkewNode.merge(root1, temp)
+            return result
 
 
 class SkewHeap[T]:
@@ -182,9 +197,10 @@ class SkewHeap[T]:
         IndexError: Can't get top element for the empty heap.
         """
         result = self.top()
-        self._root = (
-            SkewNode.merge(self._root.left, self._root.right) if self._root else None
-        )
+        if self._root:
+            self._root = SkewNode.merge(self._root.left, self._root.right)
+        else:
+            self._root = None
 
         return result
 
