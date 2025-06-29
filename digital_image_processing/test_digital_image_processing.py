@@ -88,14 +88,18 @@ def test_sepia():
 
 def test_burkes():
     """Test Burkes dithering algorithm."""
-    burkes = bs.Burkes(imread("digital_image_processing/image_data/lena_small.jpg", 1), 120)
+    burkes = bs.Burkes(
+        imread("digital_image_processing/image_data/lena_small.jpg", 1), 120
+    )
     burkes.process()
     assert burkes.output_img.any()
 
 
 def test_nearest_neighbour():
     """Test nearest-neighbor resizing."""
-    nn = rs.NearestNeighbour(imread("digital_image_processing/image_data/lena_small.jpg", 1), 400, 200)
+    nn = rs.NearestNeighbour(
+        imread("digital_image_processing/image_data/lena_small.jpg", 1), 400, 200
+    )
     nn.process()
     assert nn.output.any()
 
