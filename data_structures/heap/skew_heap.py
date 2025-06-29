@@ -61,7 +61,9 @@ class SkewNode[T]:
         return self._value
 
     @staticmethod
-    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
+    def merge(
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         """
         Merge two nodes together.
         >>> SkewNode.merge(SkewNode(10), SkewNode(-10.5)).value
@@ -78,7 +80,7 @@ class SkewNode[T]:
             return root2
         if not root2:
             return root1
-        
+
         # Compare values using explicit __lt__ method
         try:
             # Check if root1 is smaller than root2
@@ -92,14 +94,13 @@ class SkewNode[T]:
         except (TypeError, AttributeError):
             # Fallback if __lt__ comparison fails
             pass
-        
+
         # If root2 is smaller or comparison failed, use root2 as new root
         result = root2
         temp = root2.right
         result.right = root2.left
         result.left = SkewNode.merge(root1, temp)
         return result
-
 
 
 class SkewHeap[T]:
@@ -128,7 +129,7 @@ class SkewHeap[T]:
     def __init__(self, data: Iterable[T] | None = ()) -> None:
         """
         Initialize the skew heap with optional data
-        
+
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
@@ -141,7 +142,7 @@ class SkewHeap[T]:
     def __bool__(self) -> bool:
         """
         Check if the heap is not empty
-        
+
         >>> sh = SkewHeap()
         >>> bool(sh)
         False
@@ -157,7 +158,7 @@ class SkewHeap[T]:
     def __iter__(self) -> Iterator[T]:
         """
         Iterate through all values in sorted order
-        
+
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
@@ -165,17 +166,17 @@ class SkewHeap[T]:
         result: list[T] = []
         while self:
             result.append(self.pop())
-        
+
         # Restore the heap state
         for item in result:
             self.insert(item)
-        
+
         return iter(result)
 
     def insert(self, value: T) -> None:
         """
         Insert a new value into the heap
-        
+
         >>> sh = SkewHeap()
         >>> sh.insert(3)
         >>> sh.insert(1)
@@ -189,7 +190,7 @@ class SkewHeap[T]:
     def pop(self) -> T:
         """
         Remove and return the smallest value from the heap
-        
+
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> sh.pop()
         1
@@ -212,7 +213,7 @@ class SkewHeap[T]:
     def top(self) -> T:
         """
         Return the smallest value without removing it
-        
+
         >>> sh = SkewHeap()
         >>> sh.insert(3)
         >>> sh.top()
@@ -234,7 +235,7 @@ class SkewHeap[T]:
     def clear(self) -> None:
         """
         Clear all elements from the heap
-        
+
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> sh.clear()
         >>> sh.pop()
