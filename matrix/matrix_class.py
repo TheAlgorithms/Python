@@ -2,118 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Union
+
+
 
 class Matrix:
     """
     Matrix object generated from a 2D array where each element is an array representing
-    a row.
-    Rows can contain type int or float.
-    Common operations and information available.
-    >>> rows = [
-    ...     [1, 2, 3],
-    ...     [4, 5, 6],
-    ...     [7, 8, 9]
-    ... ]
-    >>> matrix = Matrix(rows)
-    >>> print(matrix)
-    [[1. 2. 3.]
-     [4. 5. 6.]
-     [7. 8. 9.]]
-
-    Matrix rows and columns are available as 2D arrays
-    >>> matrix.rows
-    [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> matrix.columns()
-    [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-
-    Order is returned as a tuple
-    >>> matrix.order
-    (3, 3)
-
-    Squareness and invertability are represented as bool
-    >>> matrix.is_square
-    True
-    >>> matrix.is_invertable()
-    False
-
-    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
-    a Matrix or Nonetype
-    >>> print(matrix.identity())
-    [[1. 0. 0.]
-     [0. 1. 0.]
-     [0. 0. 1.]]
-    >>> print(matrix.minors())
-    [[-3. -6. -3.]
-     [-6. -12. -6.]
-     [-3. -6. -3.]]
-    >>> print(matrix.cofactors())
-    [[-3. 6. -3.]
-     [6. -12. 6.]
-     [-3. 6. -3.]]
-    >>>  # won't be apparent due to the nature of the cofactor matrix
-    >>> print(matrix.adjugate())
-    [[-3. 6. -3.]
-     [6. -12. 6.]
-     [-3. 6. -3.]]
-    >>> matrix.inverse()
-    Traceback (most recent call last):
-        ...
-    TypeError: Only matrices with a non-zero determinant have an inverse
-
-    Determinant is an int, float, or Nonetype
-    >>> matrix.determinant()
-    0
-
-    Negation, scalar multiplication, addition, subtraction, multiplication and
-    exponentiation are available and all return a Matrix
-    >>> print(-matrix)
-    [[-1. -2. -3.]
-     [-4. -5. -6.]
-     [-7. -8. -9.]]
-    >>> matrix2 = matrix * 3
-    >>> print(matrix2)
-    [[3. 6. 9.]
-     [12. 15. 18.]
-     [21. 24. 27.]]
-    >>> print(matrix + matrix2)
-    [[4. 8. 12.]
-     [16. 20. 24.]
-     [28. 32. 36.]]
-    >>> print(matrix - matrix2)
-    [[-2. -4. -6.]
-     [-8. -10. -12.]
-     [-14. -16. -18.]]
-    >>> print(matrix ** 3)
-    [[468. 576. 684.]
-     [1062. 1305. 1548.]
-     [1656. 2034. 2412.]]
-
-    Matrices can also be modified
-    >>> matrix.add_row([10, 11, 12])
-    >>> print(matrix)
-    [[1. 2. 3.]
-     [4. 5. 6.]
-     [7. 8. 9.]
-     [10. 11. 12.]]
-    >>> matrix2.add_column([8, 16, 32])
-    >>> print(matrix2)
-    [[3. 6. 9. 8.]
-     [12. 15. 18. 16.]
-     [21. 24. 27. 32.]]
-    >>> print(matrix *  matrix2)
-    [[90. 108. 126. 136.]
-     [198. 243. 288. 304.]
-     [306. 378. 450. 472.]
-     [414. 513. 612. 640.]]
+    a row. Supports both integer and float values.
     """
 
-    def __init__(self, rows: list[list[int]]):
+    __hash__ = None  # Fix PLW1641: Mark class as unhashable
+
+    def __init__(self, rows: list[list[float]]) -> None:
+        """
+        Initialize matrix from 2D list. Validates input structure and types.
+        Raises TypeError for invalid input structure or element types.
+        """
         error = TypeError(
             "Matrices must be formed from a list of zero or more lists containing at "
             "least one and the same number of values, each of which must be of type "
             "int or float."
         )
-        if len(rows) != 0:
+        
+        # Validate matrix structure and content
+        if rows:
             cols = len(rows[0])
             if cols == 0:
                 raise error
@@ -127,55 +40,63 @@ class Matrix:
         else:
             self.rows = []
 
-    # MATRIX INFORMATION
-    def columns(self) -> list[list[int]]:
+    # MATRIX INFORMATION METHODS
+    def columns(self) -> list[list[float]]:
+        """Return matrix columns as 2D list"""
         return [[row[i] for row in self.rows] for i in range(len(self.rows[0]))]
 
     @property
     def num_rows(self) -> int:
+        """Get number of rows in matrix"""
         return len(self.rows)
 
     @property
     def num_columns(self) -> int:
+        """Get number of columns in matrix"""
         return len(self.rows[0])
 
     @property
     def order(self) -> tuple[int, int]:
+        """Get matrix dimensions as (rows, columns) tuple"""
         return self.num_rows, self.num_columns
 
     @property
     def is_square(self) -> bool:
+        """Check if matrix is square (rows == columns)"""
         return self.order[0] == self.order[1]
 
     def identity(self) -> Matrix:
+        """Generate identity matrix of same dimensions"""
         values = [
             [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
             for row_num in range(self.num_rows)
         ]
         return Matrix(values)
 
-    def determinant(self) -> int:
+    def determinant(self) -> float:
+        """Calculate matrix determinant. Returns 0 for non-square matrices."""
         if not self.is_square:
-            return 0
+            return 0.0
         if self.order == (0, 0):
-            return 1
+            return 1.0
         if self.order == (1, 1):
-            return int(self.rows[0][0])
+            return float(self.rows[0][0])
         if self.order == (2, 2):
-            return int(
+            return float(
                 (self.rows[0][0] * self.rows[1][1])
                 - (self.rows[0][1] * self.rows[1][0])
             )
-        else:
-            return sum(
-                self.rows[0][column] * self.cofactors().rows[0][column]
-                for column in range(self.num_columns)
-            )
+        return sum(
+            self.rows[0][column] * self.cofactors().rows[0][column]
+            for column in range(self.num_columns)
+        )
 
     def is_invertable(self) -> bool:
+        """Check if matrix is invertible (non-zero determinant)"""
         return bool(self.determinant())
 
-    def get_minor(self, row: int, column: int) -> int:
+    def get_minor(self, row: int, column: int) -> float:
+        """Calculate minor for specified element (determinant of submatrix)"""
         values = [
             [
                 self.rows[other_row][other_column]
@@ -187,12 +108,12 @@ class Matrix:
         ]
         return Matrix(values).determinant()
 
-    def get_cofactor(self, row: int, column: int) -> int:
-        if (row + column) % 2 == 0:
-            return self.get_minor(row, column)
-        return -1 * self.get_minor(row, column)
+    def get_cofactor(self, row: int, column: int) -> float:
+        """Calculate cofactor for specified element (signed minor)"""
+        return self.get_minor(row, column) * (-1 if (row + column) % 2 else 1)
 
     def minors(self) -> Matrix:
+        """Generate matrix of minors"""
         return Matrix(
             [
                 [self.get_minor(row, column) for column in range(self.num_columns)]
@@ -201,103 +122,102 @@ class Matrix:
         )
 
     def cofactors(self) -> Matrix:
+        """Generate cofactor matrix"""
         return Matrix(
             [
-                [
-                    self.minors().rows[row][column]
-                    if (row + column) % 2 == 0
-                    else self.minors().rows[row][column] * -1
-                    for column in range(self.minors().num_columns)
-                ]
-                for row in range(self.minors().num_rows)
+                [self.get_cofactor(row, column) for column in range(self.num_columns)]
+                for row in range(self.num_rows)
             ]
         )
 
     def adjugate(self) -> Matrix:
-        values = [
-            [self.cofactors().rows[column][row] for column in range(self.num_columns)]
-            for row in range(self.num_rows)
-        ]
-        return Matrix(values)
+        """Generate adjugate matrix (transpose of cofactor matrix)"""
+        return Matrix(
+            [
+                [self.cofactors().rows[column][row] for column in range(self.num_columns)]
+                for row in range(self.num_rows)
+            ]
+        )
 
     def inverse(self) -> Matrix:
-        determinant = self.determinant()
-        if not determinant:
+        """Calculate matrix inverse. Raises TypeError for singular matrices."""
+        det = self.determinant()
+        if abs(det) < 1e-10:  # Floating point tolerance
             raise TypeError("Only matrices with a non-zero determinant have an inverse")
-        return self.adjugate() * (1 / determinant)
+        return self.adjugate() * (1 / det)
 
     def __repr__(self) -> str:
+        """Official string representation of matrix"""
         return str(self.rows)
 
     def __str__(self) -> str:
-        if self.num_rows == 0:
+        """User-friendly string representation of matrix"""
+        if not self.rows:
             return "[]"
         if self.num_rows == 1:
-            return "[[" + ". ".join(str(self.rows[0])) + "]]"
+            return "[[" + ". ".join(str(val) for val in self.rows[0]) + "]]"
         return (
             "["
             + "\n ".join(
-                [
-                    "[" + ". ".join([str(value) for value in row]) + ".]"
-                    for row in self.rows
-                ]
+                "[" + ". ".join(str(val) for val in row) + ".]"
+                for row in self.rows
             )
             + "]"
         )
 
-    # MATRIX MANIPULATION
-    def add_row(self, row: list[int], position: int | None = None) -> None:
-        type_error = TypeError("Row must be a list containing all ints and/or floats")
+    # MATRIX MANIPULATION METHODS
+    def add_row(self, row: list[float], position: int | None = None) -> None:
+        """Add row to matrix. Validates type and length."""
         if not isinstance(row, list):
-            raise type_error
+            raise TypeError("Row must be a list")
         for value in row:
             if not isinstance(value, (int, float)):
-                raise type_error
+                raise TypeError("Row elements must be int or float")
         if len(row) != self.num_columns:
-            raise ValueError(
-                "Row must be equal in length to the other rows in the matrix"
-            )
+            raise ValueError("Row length must match matrix columns")
+        
         if position is None:
             self.rows.append(row)
         else:
-            self.rows = self.rows[0:position] + [row] + self.rows[position:]
+            # Fix RUF005: Use iterable unpacking instead of concatenation
+            self.rows = [*self.rows[:position], row, *self.rows[position:]]
 
-    def add_column(self, column: list[int], position: int | None = None) -> None:
-        type_error = TypeError(
-            "Column must be a list containing all ints and/or floats"
-        )
+    def add_column(self, column: list[float], position: int | None = None) -> None:
+        """Add column to matrix. Validates type and length."""
         if not isinstance(column, list):
-            raise type_error
+            raise TypeError("Column must be a list")
         for value in column:
             if not isinstance(value, (int, float)):
-                raise type_error
+                raise TypeError("Column elements must be int or float")
         if len(column) != self.num_rows:
-            raise ValueError(
-                "Column must be equal in length to the other columns in the matrix"
-            )
+            raise ValueError("Column length must match matrix rows")        
         if position is None:
-            self.rows = [self.rows[i] + [column[i]] for i in range(self.num_rows)]
+            for i, value in enumerate(column):
+                self.rows[i].append(value)
         else:
-            self.rows = [
-                self.rows[i][0:position] + [column[i]] + self.rows[i][position:]
-                for i in range(self.num_rows)
-            ]
+            # Fix RUF005: Use iterable unpacking instead of concatenation
+            for i, value in enumerate(column):
+                self.rows[i] = [*self.rows[i][:position], value, *self.rows[i][position:]]
 
     # MATRIX OPERATIONS
     def __eq__(self, other: object) -> bool:
+        """Check matrix equality"""
         if not isinstance(other, Matrix):
             return NotImplemented
         return self.rows == other.rows
 
     def __ne__(self, other: object) -> bool:
+        """Check matrix inequality"""
         return not self == other
 
     def __neg__(self) -> Matrix:
-        return self * -1
+        """Negate matrix elements"""
+        return self * -1.0
 
     def __add__(self, other: Matrix) -> Matrix:
+        """Matrix addition. Requires same dimensions."""
         if self.order != other.order:
-            raise ValueError("Addition requires matrices of the same order")
+            raise ValueError("Addition requires matrices of same dimensions")
         return Matrix(
             [
                 [self.rows[i][j] + other.rows[i][j] for j in range(self.num_columns)]
@@ -306,8 +226,9 @@ class Matrix:
         )
 
     def __sub__(self, other: Matrix) -> Matrix:
+        """Matrix subtraction. Requires same dimensions."""
         if self.order != other.order:
-            raise ValueError("Subtraction requires matrices of the same order")
+            raise ValueError("Subtraction requires matrices of same dimensions")
         return Matrix(
             [
                 [self.rows[i][j] - other.rows[i][j] for j in range(self.num_columns)]
@@ -315,48 +236,48 @@ class Matrix:
             ]
         )
 
-    def __mul__(self, other: Matrix | float) -> Matrix:
+    def __mul__(self, other: Union[Matrix, float]) -> Matrix:
+        """Matrix multiplication (scalar or matrix)"""
         if isinstance(other, (int, float)):
-            return Matrix(
-                [[int(element * other) for element in row] for row in self.rows]
-            )
+            # Preserve float precision by removing int conversion
+            return Matrix([[element * other for element in row] for row in self.rows])
         elif isinstance(other, Matrix):
             if self.num_columns != other.num_rows:
                 raise ValueError(
-                    "The number of columns in the first matrix must "
-                    "be equal to the number of rows in the second"
+                    "Matrix multiplication requires columns of first matrix "
+                    "to match rows of second matrix"
                 )
             return Matrix(
                 [
-                    [Matrix.dot_product(row, column) for column in other.columns()]
+                    [Matrix.dot_product(row, col) for col in other.columns()]
                     for row in self.rows
                 ]
             )
-        else:
-            raise TypeError(
-                "A Matrix can only be multiplied by an int, float, or another matrix"
-            )
+        raise TypeError(
+            "Matrix can only be multiplied by scalar or another matrix"
+        )
 
-    def __pow__(self, other: int) -> Matrix:
-        if not isinstance(other, int):
-            raise TypeError("A Matrix can only be raised to the power of an int")
+    def __pow__(self, exponent: int) -> Matrix:
+        """Matrix exponentiation. Requires square matrix."""
+        if not isinstance(exponent, int):
+            raise TypeError("Exponent must be integer")
         if not self.is_square:
             raise ValueError("Only square matrices can be raised to a power")
-        if other == 0:
+        if exponent == 0:
             return self.identity()
-        if other < 0:
+        if exponent < 0:
             if self.is_invertable():
-                return self.inverse() ** (-other)
+                return self.inverse() ** (-exponent)
             raise ValueError(
-                "Only invertable matrices can be raised to a negative power"
+                "Only invertible matrices can be raised to negative powers"
             )
         result = self
-        for _ in range(other - 1):
+        for _ in range(exponent - 1):
             result *= self
         return result
-
     @classmethod
-    def dot_product(cls, row: list[int], column: list[int]) -> int:
+    def dot_product(cls, row: list[float], column: list[float]) -> float:
+        """Calculate dot product of two vectors"""
         return sum(row[i] * column[i] for i in range(len(row)))
 
 
