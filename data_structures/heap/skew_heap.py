@@ -62,7 +62,9 @@ class SkewNode[T]:
         return self._value
 
     @staticmethod
-    def merge(root1: SkewNode[T] | None, root2: SkewNode[T] | None) -> SkewNode[T] | None:
+    def merge(
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         """
         Merge 2 nodes together.
         >>> SkewNode.merge(SkewNode(10),SkewNode(-10.5)).value
@@ -90,6 +92,7 @@ class SkewNode[T]:
         result.left = SkewNode.merge(temp, root2)
 
         return result
+
 
 class SkewHeap[T]:
     """
