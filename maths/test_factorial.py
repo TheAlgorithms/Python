@@ -1,8 +1,8 @@
 import unittest
 from factorial import factorial
 
-class TestFactorial(unittest.TestCase):
 
+class TestFactorial(unittest.TestCase):
     def test_zero(self):
         self.assertEqual(factorial(0), 1)
 
@@ -18,5 +18,6 @@ class TestFactorial(unittest.TestCase):
         with self.assertRaises(ValueError):
             factorial(-3)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
