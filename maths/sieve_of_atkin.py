@@ -2,6 +2,37 @@ from typing import List
 
 
 def sieve_of_atkin(limit: int) -> List[int]:
+    """
+    Compute all prime numbers up to the given limit using the Sieve of Atkin.
+
+    Parameters
+    ----------
+    limit : int
+        Upper bound of primes to generate (inclusive).
+
+    Returns
+    -------
+    List[int]
+        A list of prime numbers <= limit.
+
+    Raises
+    ------
+    ValueError
+        If limit is not an integer or is less than 2.
+
+    References
+    ----------
+    https://en.wikipedia.org/wiki/Sieve_of_Atkin
+
+    Examples
+    --------
+    >>> sieve_of_atkin(10)
+    [2, 3, 5, 7]
+    >>> sieve_of_atkin(1)
+    Traceback (most recent call last):
+    ...
+    ValueError: limit must be an integer >= 2
+    """
     if not isinstance(limit, int) or limit < 2:
         raise ValueError("limit must be an integer >= 2")
 
