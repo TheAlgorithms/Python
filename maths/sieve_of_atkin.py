@@ -41,5 +41,6 @@ def sieve_of_atkin(limit: int) -> List[int]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print("All doctests passed!")
