@@ -1,4 +1,4 @@
-# tests/test_sieve_of_atkin.py
+# maths/test_sieve_of_atkin.py
 import pytest
 from maths.sieve_of_atkin import sieve_of_atkin
 

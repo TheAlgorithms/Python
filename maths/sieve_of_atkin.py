@@ -5,7 +5,7 @@ def sieve_of_atkin(limit: int) -> List[int]:
     """
     Compute all prime numbers up to the given limit using the Sieve of Atkin.
 
-    Parameters
+    Parameterss
     ----------
     limit : int
         Upper bound of primes to generate (inclusive).
