@@ -21,7 +21,9 @@ def quick_sort(arr: List[int]) -> List[int]:
         return quick_sort(left) + middle + quick_sort(right)
 
 
-def quick_sort_3way(arr: List[int], low: int = 0, high: Optional[int] = None) -> List[int]:
+def quick_sort_3way(
+    arr: List[int], low: int = 0, high: Optional[int] = None
+) -> List[int]:
     """
     In-place 3-way partitioning quick sort.
 
@@ -71,8 +73,12 @@ def test_quick_sorts():
     ]
 
     for i, (input_arr, expected) in enumerate(test_cases):
-        assert quick_sort(input_arr) == expected, f"quick_sort failed on test case {i + 1}"
-        assert quick_sort_3way(input_arr.copy()) == expected, f"quick_sort_3way failed on test case {i + 1}"
+        assert quick_sort(input_arr) == expected, (
+            f"quick_sort failed on test case {i + 1}"
+        )
+        assert quick_sort_3way(input_arr.copy()) == expected, (
+            f"quick_sort_3way failed on test case {i + 1}"
+        )
 
     print("All tests passed!")
 
