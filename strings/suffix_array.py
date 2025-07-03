@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 suffix_array.py
 
@@ -14,19 +15,9 @@ License: MIT
 """
 
 
+=======
+>>>>>>> c176d091 (feat(strings): add professional suffix array and LCP implementation)
 def build_suffix_array(s: str) -> list[int]:
-    """
-    Builds the suffix array of the given string using the doubling algorithm.
-
-    Parameters:
-    s (str): Input string
-
-    Returns:
-    list[int]: List of starting indices of suffixes in sorted order
-
-    Complexity:
-    O(n log n) time and O(n) space.
-    """
     # Append a sentinel that is lexicographically smaller than all other characters
     s += "\0"
     n = len(s)
@@ -56,19 +47,6 @@ def build_suffix_array(s: str) -> list[int]:
 
 
 def build_lcp_array(s: str, sa: list[int]) -> list[int]:
-    """
-    Builds the LCP (Longest Common Prefix) array using Kasai's algorithm.
-
-    Parameters:
-    s (str): Original string
-    sa (list[int]): Suffix array of s
-
-    Returns:
-    list[int]: LCP array where lcp[i] = LCP(sa[i], sa[i-1])
-
-    Complexity:
-    O(n) time and O(n) space.
-    """
     n = len(sa)
     # Inverse of suffix array: pos[i] gives rank of suffix at i
     pos = [0] * n
