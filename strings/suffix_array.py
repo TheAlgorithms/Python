@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-"""
-suffix_array.py
-
-Professional implementation of Suffix Array and LCP (Longest Common Prefix) array in Python.
-
-Features:
-- Efficient O(n log n) construction using doubling method
-- Kasai's algorithm for LCP array in O(n)
-- Detailed docstrings and complexity analysis
-- Standalone usage example and simple unit tests
-
-Author: Idris Ibrahim Erten
-License: MIT
-"""
-
-
-=======
->>>>>>> c176d091 (feat(strings): add professional suffix array and LCP implementation)
 def build_suffix_array(s: str) -> list[int]:
     # Append a sentinel that is lexicographically smaller than all other characters
     s += "\0"
