@@ -68,8 +68,12 @@ def test_quick_sorts():
     ]
 
     for i, (input_arr, expected) in enumerate(test_cases):
-        assert quick_sort(input_arr) == expected, f"quick_sort failed on test case {i + 1}"
-        assert quick_sort_3way(input_arr.copy()) == expected, f"quick_sort_3way failed on test case {i + 1}"
+        assert quick_sort(input_arr) == expected, (
+            f"quick_sort failed on test case {i + 1}"
+        )
+        assert quick_sort_3way(input_arr.copy()) == expected, (
+            f"quick_sort_3way failed on test case {i + 1}"
+        )
 
     print("All tests passed!")
 
