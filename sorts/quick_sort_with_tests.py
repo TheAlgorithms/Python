@@ -1,15 +1,12 @@
-from typing import List, Optional
-
-
-def quick_sort(arr: List[int]) -> List[int]:
+def quick_sort(arr: list[int]) -> list[int]:
     """
     Classic quick sort implementation using list comprehensions.
 
     Args:
-        arr (List[int]): List of integers to sort.
+        arr (list[int]): List of integers to sort.
 
     Returns:
-        List[int]: New sorted list.
+        list[int]: New sorted list.
     """
     if len(arr) <= 1:
         return arr
@@ -21,19 +18,17 @@ def quick_sort(arr: List[int]) -> List[int]:
         return quick_sort(left) + middle + quick_sort(right)
 
 
-def quick_sort_3way(
-    arr: List[int], low: int = 0, high: Optional[int] = None
-) -> List[int]:
+def quick_sort_3way(arr: list[int], low: int = 0, high: int | None = None) -> list[int]:
     """
     In-place 3-way partitioning quick sort.
 
     Args:
-        arr (List[int]): List of integers to sort.
+        arr (list[int]): List of integers to sort.
         low (int): Starting index of the sublist to sort.
-        high (Optional[int]): Ending index of the sublist to sort.
+        high (int | None): Ending index of the sublist to sort.
 
     Returns:
-        List[int]: The same list sorted in-place.
+        list[int]: The same list sorted in-place.
     """
     if high is None:
         high = len(arr) - 1
@@ -73,12 +68,8 @@ def test_quick_sorts():
     ]
 
     for i, (input_arr, expected) in enumerate(test_cases):
-        assert quick_sort(input_arr) == expected, (
-            f"quick_sort failed on test case {i + 1}"
-        )
-        assert quick_sort_3way(input_arr.copy()) == expected, (
-            f"quick_sort_3way failed on test case {i + 1}"
-        )
+        assert quick_sort(input_arr) == expected, f"quick_sort failed on test case {i + 1}"
+        assert quick_sort_3way(input_arr.copy()) == expected, f"quick_sort_3way failed on test case {i + 1}"
 
     print("All tests passed!")
 
