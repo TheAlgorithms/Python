@@ -1,4 +1,4 @@
-'''
+"""
 suffix_array.py
 
 Professional implementation of Suffix Array and LCP (Longest Common Prefix) array in Python.
@@ -11,7 +11,8 @@ Features:
 
 Author: Idris Ibrahim Erten
 License: MIT
-'''  
+"""
+
 
 def build_suffix_array(s: str) -> list[int]:
     """
@@ -27,7 +28,7 @@ def build_suffix_array(s: str) -> list[int]:
     O(n log n) time and O(n) space.
     """
     # Append a sentinel that is lexicographically smaller than all other characters
-    s += '\0'
+    s += "\0"
     n = len(s)
     # Initial ranking by character code
     ranks = [ord(c) for c in s]
@@ -89,9 +90,9 @@ def build_lcp_array(s: str, sa: list[int]) -> list[int]:
     return lcp[1:]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Example usage and simple tests
-    test_strings = ['banana', 'abracadabra', 'mississippi']
+    test_strings = ["banana", "abracadabra", "mississippi"]
     for s in test_strings:
         sa = build_suffix_array(s)
         lcp = build_lcp_array(s, sa)
@@ -100,7 +101,7 @@ if __name__ == '__main__':
         print(f"LCP Array   : {lcp}\n")
 
     # Assertions for correctness
-    s = 'banana'
+    s = "banana"
     expected_sa = [5, 3, 1, 0, 4, 2]  # indices of sorted suffixes
-    assert build_suffix_array(s) == expected_sa, 'SA test failed'
-    print('All tests passed!')
+    assert build_suffix_array(s) == expected_sa, "SA test failed"
+    print("All tests passed!")
