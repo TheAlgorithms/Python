@@ -11,7 +11,6 @@ from __future__ import annotations
 import doctest
 import math
 import random
-
 from typing import Any
 
 
