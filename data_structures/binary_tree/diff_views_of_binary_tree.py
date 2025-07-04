@@ -173,8 +173,7 @@ def binary_tree_bottom_side_view(root: TreeNode) -> list[int]:
     >>> binary_tree_bottom_side_view(None)
     []
     """
-    from collections import defaultdict
-
+    
     def breadth_first_search(root: TreeNode, bottom_view: list[int]) -> None:
         """
         A breadth first search traversal with defaultdict ds to append
