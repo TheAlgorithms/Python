@@ -116,8 +116,6 @@ class Node:
         yield from self.right or []
 
     def __repr__(self) -> str:
-
-
         if self.left is None and self.right is None:
             return str(self.value)
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
