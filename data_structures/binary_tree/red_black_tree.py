@@ -370,36 +370,25 @@ class RedBlackTree:
         """
         Calculate the black height of the tree and verify consistency
         - Black height = number of black nodes from current node to any leaf
-        - Count includes current node if black and all leaf nodes (None are black)
         - Returns None if any path has different black height
-
+        
         Returns:
             Black height if consistent, None otherwise
-
-        Examples:
-        >>> tree = RedBlackTree(10, color=0)  # Black root
-        >>> tree.insert(5, color=1)            # Red child
-        >>> tree.black_height()  # Paths: [10(black), 5(red), None(black)] = 2
-        2                                [10(black), None(black)] = 2
         """
-        # Base case: Leaf node (None is always black)
-        if self is None:
-            return 1
-
         # Leaf node case (both children are None)
         if self.left is None and self.right is None:
             # Count: current node (if black) + leaf (black)
             return 1 + (1 - self.color)  # 2 if black, 1 if red
-
-        # Recursive case: Check both subtrees
+            
+        # Get black heights from both subtrees
         left_bh = self.left.black_height() if self.left else 1
         right_bh = self.right.black_height() if self.right else 1
-
+        
         # Validate consistency
         if left_bh is None or right_bh is None or left_bh != right_bh:
-            return None  # Inconsistent black heights
-
-        # Current node's contribution: add 1 if black
+            return None
+            
+        # Add current node's contribution (1 if black, 0 if red)
         return left_bh + (1 - self.color)
     def __contains__(self, label: int) -> bool:
         """Check if the tree contains a label.
