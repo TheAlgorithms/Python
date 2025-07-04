@@ -22,13 +22,13 @@ dependencies = [
   "pillow>=11",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
+  "seaborn>=0.13.2",
   "sphinx-pyproject>=0.3",
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
   "tweepy>=4.14",
   "typing-extensions>=4.12.2",
   "xgboost>=2.1.3",
-  "seaborn>=0.13.2",
 ]
 
 [dependency-groups]
