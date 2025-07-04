@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterator
 from pprint import pformat
 
+
 class RedBlackTree:
     """
     A Red-Black tree, which is a self-balancing BST (binary search
@@ -839,12 +840,13 @@ def main() -> None:
     >>> pytests()
     """
     import doctest
+
     failures, _ = doctest.testmod()
     if failures == 0:
         print("All doctests passed!")
     else:
         print(f"{failures} doctests failed!")
-    
+
     print_results("Rotating right and left", test_rotations())
     print_results("Inserting", test_insert())
     print_results("Searching", test_insert_and_search())
