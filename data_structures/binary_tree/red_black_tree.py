@@ -357,11 +357,11 @@ class RedBlackTree:
         # Property 1: Root must be black
         if self.parent is None and self.color != 0:
             return False
-            
+
         # Property 2: No two consecutive red nodes
         if not self.check_coloring():
             return False
-            
+
         # Property 3: All paths have same black height
         return self.black_height() is not None
 
@@ -392,7 +392,7 @@ class RedBlackTree:
         # Base case: Leaf node (None is always black)
         if self is None:
             return 1
-            
+
         # Leaf node case (both children are None)
         if self.left is None and self.right is None:
             # Count: current node (if black) + leaf (black)
@@ -405,7 +405,7 @@ class RedBlackTree:
         # Validate consistency
         if left_bh is None or right_bh is None or left_bh != right_bh:
             return None  # Inconsistent black heights
-            
+
         # Current node's contribution: add 1 if black
         return left_bh + (1 - self.color)
     def __contains__(self, label: int) -> bool:
