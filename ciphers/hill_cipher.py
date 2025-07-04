@@ -18,15 +18,10 @@ References:
     https://www.youtube.com/watch?v=4RhLNDqcjpA
 """
 
-# Standard library imports
 import string
 
-# Third-party imports
 import numpy as np
-
-# Local application imports
 from maths.greatest_common_divisor import greatest_common_divisor
-
 
 class HillCipher:
     """
@@ -148,19 +143,19 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        det_value = np.linalg.det(self.encrypt_key)
-        det = int(round(det_value))
+        # 修复冗余的整数转换
+        det = int(round(np.linalg.det(self.encrypt_key)))
+        
+        if det < 0:
+            det = det % len(self.key_string)
 
-    if det < 0:
-        det = det % len(self.key_string)
-
-    req_l = len(self.key_string)
-    if greatest_common_divisor(det, req_l) != 1:
-        msg = (
-            f"determinant modular {req_l} of encryption key({det}) is not co prime "
-            f"w.r.t {req_l}.\nTry another key."
-        )
-        raise ValueError(msg)
+        req_l = len(self.key_string)
+        if greatest_common_divisor(det, req_l) != 1:
+            msg = (
+                f"determinant modular {req_l} of encryption key({det}) is not co prime "
+                f"w.r.t {req_l}.\nTry another key."
+            )
+            raise ValueError(msg)
 
     def process_text(self, text: str) -> str:
         """
@@ -188,15 +183,15 @@ class HillCipher:
             'ABCC'
         """
         chars = [char for char in text.upper() if char in self.key_string]
-
+        
         # Handle empty input case
         if not chars:
             return ""
-
+            
         last = chars[-1]
         while len(chars) % self.break_key != 0:
             chars.append(last)
-
+            
         return "".join(chars)
 
     def encrypt(self, text: str) -> str:
@@ -226,21 +221,21 @@ class HillCipher:
         text = self.process_text(text.upper())
         if not text:
             return ""
-
+            
         encrypted = ""
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             # Extract batch of characters
             batch = text[i : i + self.break_key]
-
+            
             # Convert to numerical vector
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
-
+            
             # Matrix multiplication and mod 36
             product = self.encrypt_key.dot(batch_vec)
             batch_encrypted = self.modulus(product).T.tolist()[0]
-
+            
             # Convert back to characters
             encrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_encrypted
@@ -265,7 +260,7 @@ class HillCipher:
             >>> cipher.make_decrypt_key()
             array([[ 6, 25],
                    [ 5, 26]])
-
+            
             >>> key3x3 = np.array([[1,2,3],[4,5,6],[7,8,9]])
             >>> cipher3 = HillCipher(key3x3)
             >>> cipher3.make_decrypt_key()  # Determinant 0 should be invalid
@@ -274,26 +269,24 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        det_value = np.linalg.det(self.encrypt_key)
+        # 修复冗余的整数转换
+        det = int(round(np.linalg.det(self.encrypt_key)))
+        
+        if det < 0:
+            det = det % len(self.key_string)
+        
+        det_inv: int | None = None
+        for i in range(len(self.key_string)):
+            if (det * i) % len(self.key_string) == 1:
+                det_inv = i
+                break
 
-    # 直接取整并转换为整数
-    det = int(round(det_value))
+        if det_inv is None:
+            raise ValueError("Modular inverse does not exist for decryption key")
 
-    if det < 0:
-        det = det % len(self.key_string)
-
-    det_inv: int | None = None
-    for i in range(len(self.key_string)):
-        if (det * i) % len(self.key_string) == 1:
-            det_inv = i
-            break
-
-    if det_inv is None:
-        raise ValueError("Modular inverse does not exist for decryption key")
-
-    det_float = np.linalg.det(self.encrypt_key)
-    inv_key = det_inv * det_float * np.linalg.inv(self.encrypt_key)
-    return self.to_int(self.modulus(inv_key))
+        det_float = np.linalg.det(self.encrypt_key)
+        inv_key = det_inv * det_float * np.linalg.inv(self.encrypt_key)
+        return self.to_int(self.modulus(inv_key))
 
     def decrypt(self, text: str) -> str:
         """
@@ -324,22 +317,22 @@ class HillCipher:
         text = self.process_text(text.upper())
         if not text:
             return ""
-
+            
         decrypt_key = self.make_decrypt_key()
         decrypted = ""
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             # Extract batch of characters
             batch = text[i : i + self.break_key]
-
+            
             # Convert to numerical vector
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
-
+            
             # Matrix multiplication and mod 36
             product = decrypt_key.dot(batch_vec)
             batch_decrypted = self.modulus(product).T.tolist()[0]
-
+            
             # Convert back to characters
             decrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_decrypted
@@ -352,7 +345,7 @@ class HillCipher:
 def main() -> None:
     """
     Command-line interface for Hill Cipher operations.
-
+    
     Steps:
     1. User inputs encryption key size
     2. User inputs encryption key matrix rows
@@ -365,14 +358,14 @@ def main() -> None:
 
     print("Enter each row of the encryption key with space separated integers")
     for i in range(n):
-        row = [int(x) for x in input(f"Row {i + 1}: ").split()]
+        row = [int(x) for x in input(f"Row {i+1}: ").split()]
         hill_matrix.append(row)
 
     hc = HillCipher(np.array(hill_matrix))
 
     print("\nWould you like to encrypt or decrypt some text?")
     option = input("1. Encrypt\n2. Decrypt\nEnter choice (1/2): ")
-
+    
     if option == "1":
         text = input("\nEnter text to encrypt: ")
         print("\nEncrypted text:")
@@ -387,21 +380,20 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
-
+    
     print("\nRunning sample tests...")
     key = np.array([[2, 5], [1, 6]])
     cipher = HillCipher(key)
-
+    
     # Test encryption/decryption round trip
     plaintext = "HELLO123"
     encrypted = cipher.encrypt(plaintext)
     decrypted = cipher.decrypt(encrypted)
-
+    
     print(f"\nOriginal text: {plaintext}")
     print(f"Encrypted text: {encrypted}")
     print(f"Decrypted text: {decrypted}")
-
+    
     # Run CLI interface
     main()
