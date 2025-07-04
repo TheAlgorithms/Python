@@ -4,6 +4,7 @@ import doctest
 from collections.abc import Iterator
 from pprint import pformat
 
+
 class RedBlackTree:
     """
     A Red-Black tree, which is a self-balancing BST (binary search
