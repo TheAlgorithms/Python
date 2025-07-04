@@ -149,19 +149,18 @@ class HillCipher:
             w.r.t 36. Try another key.
         """
         det_value = np.linalg.det(self.encrypt_key)
-        # Only round if necessary
-        det = int(det_value) if det_value.is_integer() else int(round(det_value))
+        det = int(round(det_value))
+    
+    if det < 0:
+        det = det % len(self.key_string)
 
-        if det < 0:
-            det = det % len(self.key_string)
-
-        req_l = len(self.key_string)
-        if greatest_common_divisor(det, req_l) != 1:
-            msg = (
-                f"determinant modular {req_l} of encryption key({det}) is not co prime "
-                f"w.r.t {req_l}.\nTry another key."
-            )
-            raise ValueError(msg)
+    req_l = len(self.key_string)
+    if greatest_common_divisor(det, req_l) != 1:
+        msg = (
+            f"determinant modular {req_l} of encryption key({det}) is not co prime "
+            f"w.r.t {req_l}.\nTry another key."
+        )
+        raise ValueError(msg)
 
     def process_text(self, text: str) -> str:
         """
@@ -276,24 +275,25 @@ class HillCipher:
             w.r.t 36. Try another key.
         """
         det_value = np.linalg.det(self.encrypt_key)
-        # Only round if necessary
-        det = int(det_value) if det_value.is_integer() else int(round(det_value))
+    # 直接取整并转换为整数
+    det = int(round(det_value))
+    
+    if det < 0:
+        det = det % len(self.key_string)
+    
+    det_inv: int | None = None
+    for i in range(len(self.key_string)):
+        if (det * i) % len(self.key_string) == 1:
+            det_inv = i
+            break
 
-        if det < 0:
-            det = det % len(self.key_string)
+    if det_inv is None:
+        raise ValueError("Modular inverse does not exist for decryption key")
 
-        det_inv: int | None = None
-        for i in range(len(self.key_string)):
-            if (det * i) % len(self.key_string) == 1:
-                det_inv = i
-                break
-
-        if det_inv is None:
-            raise ValueError("Modular inverse does not exist for decryption key")
-
-        det_float = np.linalg.det(self.encrypt_key)
-        inv_key = det_inv * det_float * np.linalg.inv(self.encrypt_key)
-        return self.to_int(self.modulus(inv_key))
+    det_float = np.linalg.det(self.encrypt_key)
+    inv_key = det_inv * det_float * np.linalg.inv(self.encrypt_key)
+    return self.to_int(self.modulus(inv_key))
+    
 
     def decrypt(self, text: str) -> str:
         """
