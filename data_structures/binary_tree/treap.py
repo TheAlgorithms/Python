@@ -4,6 +4,7 @@ import doctest
 from pprint import pformat
 from random import random
 
+
 class Node:
     """
     Treap's node
@@ -17,8 +18,6 @@ class Node:
         self.right: Node | None = None
 
     def __repr__(self) -> str:
-
-
         if self.left is None and self.right is None:
             return f"'{self.value}: {self.prior:.5}'"
         else:
@@ -174,6 +173,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-
     doctest.testmod()
     main()
