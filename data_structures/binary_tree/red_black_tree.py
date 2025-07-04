@@ -335,28 +335,26 @@ class RedBlackTree:
             self.parent.color = 0
             self.parent.sibling.color = 0
 
-
     def check_color_properties(self) -> bool:
         """
         Verify that all Red-Black Tree properties are satisfied:
         1. Root node is black
         2. No two consecutive red nodes
         3. All paths have same black height
-        
+
         Returns:
             True if all properties are satisfied, False otherwise
         """
         # Property 1: Root must be black
         if self.parent is None and self.color != 0:
             return False
-            
+
         # Property 2: No two consecutive red nodes
         if not self.check_coloring():
             return False
-            
+
         # Property 3: All paths have same black height
         return self.black_height() is not None
-
 
     def check_coloring(self) -> bool:
         """Check if the tree satisfies Red-Black property 4."""
@@ -371,7 +369,7 @@ class RedBlackTree:
         Calculate the black height of the tree and verify consistency
         - Black height = number of black nodes from current node to any leaf
         - Returns None if any path has different black height
-        
+
         Returns:
             Black height if consistent, None otherwise
         """
@@ -379,17 +377,18 @@ class RedBlackTree:
         if self.left is None and self.right is None:
             # Count: current node (if black) + leaf (black)
             return 1 + (1 - self.color)  # 2 if black, 1 if red
-            
+
         # Get black heights from both subtrees
         left_bh = self.left.black_height() if self.left else 1
         right_bh = self.right.black_height() if self.right else 1
-        
+
         # Validate consistency
         if left_bh is None or right_bh is None or left_bh != right_bh:
             return None
-            
+
         # Add current node's contribution (1 if black, 0 if red)
         return left_bh + (1 - self.color)
+
     def __contains__(self, label: int) -> bool:
         """Check if the tree contains a label.
 
