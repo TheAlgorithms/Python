@@ -1,24 +1,24 @@
-from typing import List
+import math
 
 
-def sieve_of_atkin(limit: int) -> List[int]:
+def sieve_of_atkin(limit: int) -> list[int]:
     """
     Compute all prime numbers up to the given limit using the Sieve of Atkin.
 
-    Parameterss
+    Parameters
     ----------
     limit : int
         Upper bound of primes to generate (inclusive).
 
     Returns
     -------
-    List[int]
+    list[int]
         A list of prime numbers <= limit.
 
     Raises
     ------
     ValueError
-        If limit is not an integer or is less than 2.
+        If limit is not an integer >= 2.
 
     References
     ----------
@@ -30,7 +30,7 @@ def sieve_of_atkin(limit: int) -> List[int]:
     [2, 3, 5, 7]
     >>> sieve_of_atkin(1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: limit must be an integer >= 2
     """
     if not isinstance(limit, int) or limit < 2:
@@ -38,12 +38,10 @@ def sieve_of_atkin(limit: int) -> List[int]:
 
     # Initialize the sieve array
     sieve = [False] * (limit + 1)
-    results: List[int] = []
+    results: list[int] = []
 
     # Preliminary marking based on quadratic forms
-    from math import sqrt
-
-    sqrt_limit = int(sqrt(limit)) + 1
+    sqrt_limit = int(math.sqrt(limit)) + 1
     for x in range(1, sqrt_limit):
         for y in range(1, sqrt_limit):
             n = 4 * x * x + y * y
