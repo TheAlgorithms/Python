@@ -353,7 +353,7 @@ class RedBlackTree:
         if not self.check_coloring():
             return False
         # Property 5
-        if self.black_height() is not None
+        if self.black_height() is not None:
 
     def check_coloring(self) -> bool:
         """Check if the tree satisfies Red-Black property 4."""
