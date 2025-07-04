@@ -21,6 +21,7 @@ References:
 import string
 
 import numpy as np
+
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
@@ -144,8 +145,8 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        # 修复冗余的整数转换
-        det = int(round(np.linalg.det(self.encrypt_key)))
+        
+        det = round(np.linalg.det(self.encrypt_key))
 
         if det < 0:
             det = det % len(self.key_string)
@@ -270,8 +271,8 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        # 修复冗余的整数转换
-        det = int(round(np.linalg.det(self.encrypt_key)))
+        
+        det = round(np.linalg.det(self.encrypt_key))
 
         if det < 0:
             det = det % len(self.key_string)
