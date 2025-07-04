@@ -35,6 +35,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
+
 def weight_matrix(point: np.ndarray, x_train: np.ndarray, tau: float) -> np.ndarray:
     """
     Calculate the weight of every point in the training data around a given
@@ -134,7 +135,6 @@ def load_data(
     Load data from seaborn and split it into x and y points
     >>> pass    # No doctests, function is for demo purposes only
     """
-
 
     data = sns.load_dataset(dataset_name)
     x_data = np.array(data[x_name])
