@@ -56,11 +56,11 @@ References:
 
 Author: Amir Lavasani
 """
-
 import logging
 
 import numpy as np
 import scipy.fftpack as fft
+from scipy.io import wavfile
 from scipy.signal import get_window
 
 logging.basicConfig(filename=f"{__file__}.log", level=logging.INFO)
@@ -464,7 +464,7 @@ def example(wav_file_path: str = "./path-to-file/sample.wav") -> np.ndarray:
     Returns:
         np.ndarray: The computed MFCCs for the audio.
     """
-    from scipy.io import wavfile
+
 
     # Load the audio from the WAV file
     sample_rate, audio = wavfile.read(wav_file_path)
