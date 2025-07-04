@@ -335,13 +335,13 @@ class RedBlackTree:
             self.parent.color = 0
             self.parent.sibling.color = 0
 
-    
+
         def check_color_properties(self) -> bool:
         """
         Verify that all Red-Black Tree properties are satisfied:
         # Root node is black
         # No two consecutive red nodes (red node cannot have red children)
-        # All paths from any node to its leaf descendants have 
+        # All paths from any node to its leaf descendants have
         # the same number of black nodes
 
         Returns:
