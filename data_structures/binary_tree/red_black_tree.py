@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from collections.abc import Iterator
 import doctest
+from collections.abc import Iterator
 from pprint import pformat
-
 
 class RedBlackTree:
     """
