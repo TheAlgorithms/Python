@@ -11,10 +11,10 @@ pandas
 pillow
 rich
 scikit-learn
+seaborn
 sphinx-pyproject
 statsmodels
 sympy
 tweepy
 typing_extensions
 xgboost
-seaborn
