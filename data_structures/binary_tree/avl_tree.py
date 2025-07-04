@@ -8,8 +8,10 @@ python avl_tree.py
 
 from __future__ import annotations
 
+import doctest
 import math
 import random
+
 from typing import Any
 
 
@@ -330,7 +332,6 @@ class AVLtree:
 
 
 def _test() -> None:
-    import doctest
 
     doctest.testmod()
 
