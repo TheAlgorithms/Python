@@ -202,8 +202,6 @@ class SHA256HashTest(unittest.TestCase):
     """
 
     def test_match_hashes(self) -> None:
-
-
         msg = bytes("Test String", "utf-8")
         assert SHA256(msg).hash == hashlib.sha256(msg).hexdigest()
 
@@ -215,8 +213,6 @@ def main() -> None:
     """
 
     # unittest.main()
-
-    
 
     doctest.testmod()
 
