@@ -145,7 +145,7 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        
+
         det = round(np.linalg.det(self.encrypt_key))
 
         if det < 0:
@@ -271,7 +271,7 @@ class HillCipher:
             ValueError: determinant modular 36 of encryption key(0) is not co prime
             w.r.t 36. Try another key.
         """
-        
+
         det = round(np.linalg.det(self.encrypt_key))
 
         if det < 0:
