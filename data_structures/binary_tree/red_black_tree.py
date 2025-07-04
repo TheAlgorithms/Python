@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
+import doctest
 from pprint import pformat
 
 
@@ -837,7 +838,7 @@ def main() -> None:
     """
     >>> pytests()
     """
-    import doctest
+    
 
     failures, _ = doctest.testmod()
     if failures == 0:
