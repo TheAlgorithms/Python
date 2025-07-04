@@ -33,7 +33,7 @@ References:
 
 import matplotlib.pyplot as plt
 import numpy as np
-
+import seaborn as sns
 
 def weight_matrix(point: np.ndarray, x_train: np.ndarray, tau: float) -> np.ndarray:
     """
@@ -134,7 +134,7 @@ def load_data(
     Load data from seaborn and split it into x and y points
     >>> pass    # No doctests, function is for demo purposes only
     """
-    import seaborn as sns
+
 
     data = sns.load_dataset(dataset_name)
     x_data = np.array(data[x_name])
