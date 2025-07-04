@@ -28,6 +28,7 @@ dependencies = [
   "tweepy>=4.14",
   "typing-extensions>=4.12.2",
   "xgboost>=2.1.3",
+  "seaborn>=0.13.2",
 ]
 
 [dependency-groups]
