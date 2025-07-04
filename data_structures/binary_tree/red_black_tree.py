@@ -335,13 +335,14 @@ class RedBlackTree:
             self.parent.color = 0
             self.parent.sibling.color = 0
 
-    def check_color_properties(self) -> bool:
+    
         def check_color_properties(self) -> bool:
         """
         Verify that all Red-Black Tree properties are satisfied:
-        1. Root node is black
-        2. No two consecutive red nodes (red node cannot have red children)
-        3. All paths from any node to its leaf descendants have the same number of black nodes
+        # Root node is black
+        # No two consecutive red nodes (red node cannot have red children)
+        # All paths from any node to its leaf descendants have 
+        # the same number of black nodes
 
         Returns:
             True if all properties are satisfied, False otherwise
@@ -373,7 +374,7 @@ class RedBlackTree:
             return False
         return not (self.right and not self.right.check_coloring())
 
-       def black_height(self) -> int | None:
+    def black_height(self) -> int | None:
         """
         Calculate the black height of the tree and verify consistency
         - Black height = number of black nodes from current node to any leaf
