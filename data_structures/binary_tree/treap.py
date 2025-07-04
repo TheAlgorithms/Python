@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import doctest
+from pprint import pformat
 from random import random
-
 
 class Node:
     """
@@ -16,7 +17,7 @@ class Node:
         self.right: Node | None = None
 
     def __repr__(self) -> str:
-        from pprint import pformat
+
 
         if self.left is None and self.right is None:
             return f"'{self.value}: {self.prior:.5}'"
@@ -173,7 +174,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    import doctest
 
     doctest.testmod()
     main()
