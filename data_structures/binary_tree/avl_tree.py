@@ -332,7 +332,6 @@ class AVLtree:
 
 
 def _test() -> None:
-
     doctest.testmod()
 
 
