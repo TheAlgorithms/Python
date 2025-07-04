@@ -150,7 +150,7 @@ class HillCipher:
         """
         det_value = np.linalg.det(self.encrypt_key)
         det = int(round(det_value))
-    
+
     if det < 0:
         det = det % len(self.key_string)
 
@@ -275,12 +275,13 @@ class HillCipher:
             w.r.t 36. Try another key.
         """
         det_value = np.linalg.det(self.encrypt_key)
+
     # 直接取整并转换为整数
     det = int(round(det_value))
-    
+
     if det < 0:
         det = det % len(self.key_string)
-    
+
     det_inv: int | None = None
     for i in range(len(self.key_string)):
         if (det * i) % len(self.key_string) == 1:
@@ -293,7 +294,6 @@ class HillCipher:
     det_float = np.linalg.det(self.encrypt_key)
     inv_key = det_inv * det_float * np.linalg.inv(self.encrypt_key)
     return self.to_int(self.modulus(inv_key))
-    
 
     def decrypt(self, text: str) -> str:
         """
