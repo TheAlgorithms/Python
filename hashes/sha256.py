@@ -16,6 +16,8 @@ https://en.wikipedia.org/wiki/SHA-2
 """
 
 import argparse
+import doctest
+import hashlib
 import struct
 import unittest
 
@@ -200,7 +202,7 @@ class SHA256HashTest(unittest.TestCase):
     """
 
     def test_match_hashes(self) -> None:
-        import hashlib
+
 
         msg = bytes("Test String", "utf-8")
         assert SHA256(msg).hash == hashlib.sha256(msg).hexdigest()
@@ -214,7 +216,7 @@ def main() -> None:
 
     # unittest.main()
 
-    import doctest
+    
 
     doctest.testmod()
 
