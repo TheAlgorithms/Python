@@ -166,6 +166,7 @@ class BinarySearchTree:
         False
         """
         return not self.root
+
     def __insert(self, value) -> None:
         """
         Insert a new node in Binary Search Tree with value label
