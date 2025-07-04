@@ -838,7 +838,6 @@ def main() -> None:
     """
     >>> pytests()
     """
-    
 
     failures, _ = doctest.testmod()
     if failures == 0:
