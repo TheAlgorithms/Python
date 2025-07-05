@@ -21,14 +21,14 @@ from __future__ import annotations
 import random
 import unittest
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 import pytest
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class GraphAdjacencyList[T]:
     def __init__(
         self, vertices: list[T], edges: list[list[T]], directed: bool = True
     ) -> None:

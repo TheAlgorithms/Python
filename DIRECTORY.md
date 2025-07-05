@@ -443,6 +443,7 @@
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
+  * [Straight Line Depreciation](financial/straight_line_depreciation.py)
   * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
@@ -790,6 +791,7 @@
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
+  * [Test Factorial](maths/test_factorial.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Three Sum](maths/three_sum.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
