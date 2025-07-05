@@ -1,13 +1,7 @@
-# /// script
-# requires-python = ">=3.13"
-# dependencies = [
-#     "beautifulsoup4",
-#     "httpx",
-# ]
-# ///
+import requests
 
-import httpx
 from bs4 import BeautifulSoup
+from doctest import testmod
 
 """
 Get the HTML code of finance yahoo and select the current qsp-price
@@ -28,20 +22,22 @@ def stock_price(symbol: str = "AAPL") -> str:
     True
     """
     url = f"https://finance.yahoo.com/quote/{symbol}?p={symbol}"
-    yahoo_finance_source = httpx.get(
-        url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10, follow_redirects=True
-    ).text
+    try:
+        yahoo_finance_source = requests.get(
+            url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10
+        ).text
+    except requests.exceptions.RequestException:
+        return '- '
+
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
 
     if specific_fin_streamer_tag := soup.find("span", {"data-testid": "qsp-price"}):
         return specific_fin_streamer_tag.get_text()
-    return "No <fin-streamer> tag with the specified data-testid attribute found."
+    return '- '
 
 
 # Search for the symbol at https://finance.yahoo.com/lookup
 if __name__ == "__main__":
-    from doctest import testmod
-
     testmod()
 
     for symbol in "AAPL AMZN IBM GOOG MSFT ORCL".split():
