@@ -9,13 +9,13 @@ class RedBlackTree:
     """
     A Red-Black tree, which is a self-balancing BST (binary search
     tree).
-     This tree has similar performance to AVL trees, but the balancing is 
-     less strict, so it will perform faster for writing/deleting nodes 
-     and slower for reading in the average case, though, because they're 
-     both balanced binary search trees, both will get the same asymptotic 
-     performance. 
-     To read more about them, https://en.wikipedia.org/wiki/Red-black_tree 
-     Unless otherwise specified, all asymptotic runtimes are specified in 
+     This tree has similar performance to AVL trees, but the balancing is
+     less strict, so it will perform faster for writing/deleting nodes
+     and slower for reading in the average case, though, because they're
+     both balanced binary search trees, both will get the same asymptotic
+     performance.
+     To read more about them, https://en.wikipedia.org/wiki/Red-black_tree
+     Unless otherwise specified, all asymptotic runtimes are specified in
      terms of the size of the tree.
     Examples:
     >>> tree = RedBlackTree(0)
