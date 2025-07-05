@@ -1,8 +1,7 @@
 import socket
 
+
 def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
-
-
     port = 12312  # Reserve a port for your service.
     sock = socket.socket()  # Create a socket object
     host = socket.gethostname()  # Get local machine name
