@@ -493,8 +493,6 @@ def test_singly_linked_list_2() -> None:
 
 
 def main():
-
-
     testmod()
 
     linked_list = LinkedList()
