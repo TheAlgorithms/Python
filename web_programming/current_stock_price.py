@@ -27,13 +27,13 @@ def stock_price(symbol: str = "AAPL") -> str:
             url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10
         ).text
     except requests.exceptions.RequestException:
-        return '- '
+        return "- "
 
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
 
     if specific_fin_streamer_tag := soup.find("span", {"data-testid": "qsp-price"}):
         return specific_fin_streamer_tag.get_text()
-    return '- '
+    return "- "
 
 
 # Search for the symbol at https://finance.yahoo.com/lookup
