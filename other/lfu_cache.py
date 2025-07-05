@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LFU Cache
 
@@ -30,7 +30,7 @@ class DoubleLinkedListNode(Generic[T, U]):
         )
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList[T, U]:
     """
     Double Linked List built specifically for LFU Cache
 
@@ -161,7 +161,7 @@ class DoubleLinkedList(Generic[T, U]):
         return node
 
 
-class LFUCache(Generic[T, U]):
+class LFUCache[T, U]:
     """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.

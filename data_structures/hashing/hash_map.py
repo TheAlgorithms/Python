@@ -10,14 +10,14 @@ https://www.youtube.com/watch?v=p33CVV29OG8
 
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
 @dataclass(slots=True)
-class _Item(Generic[KEY, VAL]):
+class _Item[KEY, VAL]:
     key: KEY
     val: VAL
 
