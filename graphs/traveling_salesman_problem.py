@@ -110,10 +110,13 @@ def tsp_greedy(graph: list[list[int]]) -> int:
     for _ in range(n - 1):
         # Find the nearest city to the current location that has not been visited.
         next_city = min(
-            ((city, cost) for city, cost in enumerate(graph[current])
-             if not visited[city] and city != current),
-             key=lambda cost: cost[1],
-            default=(None, float('inf'))
+            (
+                (city, cost)
+                for city, cost in enumerate(graph[current])
+                if not visited[city] and city != current
+            ),
+            key=lambda cost: cost[1],
+            default=(None, float("inf")),
         )[0]
 
         # If no such city exists, break the loop.
