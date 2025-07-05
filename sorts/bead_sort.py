@@ -2,7 +2,9 @@
 Bead sort only works for sequences of non-negative integers.
 https://en.wikipedia.org/wiki/Bead_sort
 """
+
 from itertools import pairwise
+
 
 def bead_sort(sequence: list) -> list:
     """
