@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 from dataclasses import dataclass
+from doctest import testmod
 from typing import Any
 
 
@@ -492,7 +493,7 @@ def test_singly_linked_list_2() -> None:
 
 
 def main():
-    from doctest import testmod
+
 
     testmod()
 
