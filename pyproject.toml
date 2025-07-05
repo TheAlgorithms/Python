@@ -38,9 +38,9 @@ test = [
 ]
 
 docs = [
-    "myst-parser>=4",
-     "sphinx-autoapi>=3.4",
-     "sphinx-pyproject>=0.3"
+  "myst-parser>=4",
+  "sphinx-autoapi>=3.4",
+  "sphinx-pyproject>=0.3",
 ]
 euler-validate = [
   "httpx>=0.28.1",
