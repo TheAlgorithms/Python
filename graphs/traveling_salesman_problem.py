@@ -9,7 +9,8 @@ def tsp_brute_force(graph: list[list[int]]) -> int:
         graph: 2D list representing distances between cities.
 
     Returns:
-        The minimal total travel distance visiting all cities exactly once and returning to the start.
+        The minimal total travel distance visiting all cities exactly once,
+        and then returning to the start.
 
     Example:
         >>> tsp_brute_force([[0, 29, 20], [29, 0, 15], [20, 15, 0]])
@@ -23,8 +24,9 @@ def tsp_brute_force(graph: list[list[int]]) -> int:
     # Enumerate all the permutations from city 1 to city n-1.
     for perm in permutations(nodes):
         # Construct a complete path:
-        # starting from point 0, visit in the order of arrangement, and then return to point 0.
-        path = [0] + list(perm) + [0]
+        # Starting from point 0, visit in the order of arrangement,
+        # and then return to point 0.
+        path = [0, *perm, 0]
 
         # Calculate the total distance of the path.
         # Update the shortest path.
@@ -51,7 +53,8 @@ def tsp_dp(graph: list[list[int]]) -> int:
     n = len(graph)
     # Create a dynamic programming table of size (2^n) x n.
     # Noting: 1 << n  = 2^n
-    # dp[mask][i] represents the shortest path starting from city 0, passing through the cities in the mask, and ultimately ending at city i.
+    # dp[mask][i] represents the shortest path starting from city 0,
+    # passing through the cities in the mask, and ultimately ending at city i.
     dp = [[float("inf")] * n for _ in range(1 << n)]
     # Initial state: only city 0 is visited, and the path length is 0.
     dp[1][0] = 0
@@ -73,14 +76,16 @@ def tsp_dp(graph: list[list[int]]) -> int:
                 next_mask = mask | (1 << v)
                 dp[next_mask][v] = min(dp[next_mask][v], dp[mask][u] + graph[u][v])
 
-    # After completing visits to all cities, return to city 0 and obtain the minimum value.
+    # After completing visits to all cities,
+    # return to city 0 and obtain the minimum value.
     return min(dp[(1 << n) - 1][i] + graph[i][0] for i in range(1, n))
 
 
 def tsp_greedy(graph: list[list[int]]) -> int:
     """
     Solves TSP approximately using the nearest neighbor heuristic.
-    Warming: This algorithm is not guaranteed to find the optimal solution! But it is fast and applicable to any input size.
+    Warming: This algorithm is not guaranteed to find the optimal solution!
+             But it is fast and applicable to any input size.
 
     Args:
         graph: 2D list representing distances between cities.
@@ -91,7 +96,8 @@ def tsp_greedy(graph: list[list[int]]) -> int:
     Example:
         >>> tsp_greedy([[0, 29, 20], [29, 0, 15], [20, 15, 0]])
         64
-        >>> tsp_greedy([[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]])
+        >>> tsp_greedy([[0, 10, 15, 20], [10, 0, 35, 25],
+                        [15, 35, 0, 30], [20, 25, 30, 0]])
         80
     """
     n = len(graph)
@@ -104,8 +110,9 @@ def tsp_greedy(graph: list[list[int]]) -> int:
     for _ in range(n - 1):
         # Find the nearest city to the current location that has not been visited.
         next_city = min(
-            ((city, cost) for city, cost in enumerate(graph[current]) if not visited[city] and city != current),
-            key=lambda cost: cost[1],
+            ((city, cost) for city, cost in enumerate(graph[current])
+             if not visited[city] and city != current),
+             key=lambda cost: cost[1],
             default=(None, float('inf'))
         )[0]
 
