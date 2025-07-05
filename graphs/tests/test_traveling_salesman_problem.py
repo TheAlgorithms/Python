@@ -17,13 +17,16 @@ def sample_graph_2() -> list[list[int]]:
         [20, 25, 30, 0],
     ]
 
+
 def test_brute_force() -> None:
     graph = sample_graph_1()
     assert tsp_brute_force(graph) == 64
 
+
 def test_dp() -> None:
     graph = sample_graph_1()
     assert tsp_dp(graph) == 64
+
 
 def test_greedy() -> None:
     graph = sample_graph_1()
@@ -35,6 +38,7 @@ def test_greedy() -> None:
     assert isinstance(result, int)
     assert result >= 64
 
+
 def test_dp_larger_graph() -> None:
     graph = sample_graph_2()
     assert tsp_dp(graph) == 80
@@ -43,6 +47,7 @@ def test_dp_larger_graph() -> None:
 def test_brute_force_larger_graph() -> None:
     graph = sample_graph_2()
     assert tsp_brute_force(graph) == 80
+
 
 def test_greedy_larger_graph() -> None:
     graph = sample_graph_2()
