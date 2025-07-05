@@ -1,5 +1,6 @@
 from itertools import permutations
 
+
 def tsp_brute_force(graph: list[list[int]]) -> int:
     """
     Solves TSP using brute-force permutations.
@@ -16,21 +17,22 @@ def tsp_brute_force(graph: list[list[int]]) -> int:
     """
     n = len(graph)
     # Apart from other cities aside from City 0, City 0 serves as the starting point.
-    nodes = list(range(1, n)) 
-    min_path = float('inf')
-    
+    nodes = list(range(1, n))
+    min_path = float("inf")
+
     # Enumerate all the permutations from city 1 to city n-1.
     for perm in permutations(nodes):
-        # Construct a complete path: 
+        # Construct a complete path:
         # starting from point 0, visit in the order of arrangement, and then return to point 0.
         path = [0] + list(perm) + [0]
 
-        # Calculate the total distance of the path. 
+        # Calculate the total distance of the path.
         # Update the shortest path.
         total_cost = sum(graph[path[i]][path[i + 1]] for i in range(n))
         min_path = min(min_path, total_cost)
 
     return min_path
+
 
 def tsp_dp(graph: list[list[int]]) -> int:
     """
@@ -50,9 +52,9 @@ def tsp_dp(graph: list[list[int]]) -> int:
     # Create a dynamic programming table of size (2^n) x n.
     # Noting: 1 << n  = 2^n
     # dp[mask][i] represents the shortest path starting from city 0, passing through the cities in the mask, and ultimately ending at city i.
-    dp = [[float('inf')] * n for _ in range(1 << n)]
+    dp = [[float("inf")] * n for _ in range(1 << n)]
     # Initial state: only city 0 is visited, and the path length is 0.
-    dp[1][0] = 0  
+    dp[1][0] = 0
 
     for mask in range(1 << n):
         # The mask indicates which cities have been visited.
@@ -70,9 +72,10 @@ def tsp_dp(graph: list[list[int]]) -> int:
                 # State Transition: From city u to city v, updating the shortest path.
                 next_mask = mask | (1 << v)
                 dp[next_mask][v] = min(dp[next_mask][v], dp[mask][u] + graph[u][v])
-    
+
     # After completing visits to all cities, return to city 0 and obtain the minimum value.
     return min(dp[(1 << n) - 1][i] + graph[i][0] for i in range(1, n))
+
 
 def tsp_greedy(graph: list[list[int]]) -> int:
     """
@@ -135,24 +138,25 @@ def test_tsp_example() -> None:
 
     result = tsp_brute_force(graph)
     if result != 80:
-        raise Exception('tsp_brute_force Incorrect result')
-    else:
-        print('Test passed')
-    
-    result = tsp_dp(graph)
-    if result != 80:
-        raise Exception('tsp_dp Incorrect result')
+        raise Exception("tsp_brute_force Incorrect result")
     else:
         print("Test passed")
-    
+
+    result = tsp_dp(graph)
+    if result != 80:
+        raise Exception("tsp_dp Incorrect result")
+    else:
+        print("Test passed")
+
     result = tsp_greedy(graph)
     if result != 80:
         if result < 0:
-            raise Exception('tsp_greedy Incorrect result')
+            raise Exception("tsp_greedy Incorrect result")
         else:
             print("tsp_greedy gets an approximate result.")
     else:
-        print('Test passed')
+        print("Test passed")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     test_tsp_example()
