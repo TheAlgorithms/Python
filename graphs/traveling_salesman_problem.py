@@ -88,6 +88,8 @@ def tsp_greedy(graph: list[list[int]]) -> int:
     Example:
         >>> tsp_greedy([[0, 29, 20], [29, 0, 15], [20, 15, 0]])
         64
+        >>> tsp_greedy([[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]])
+        80
     """
     n = len(graph)
     visited = [False] * n  # Mark whether each city has been visited.
@@ -124,22 +126,27 @@ def tsp_greedy(graph: list[list[int]]) -> int:
 
 
 def test_tsp_example():
-    graph = [[0, 29, 20], [29, 0, 15], [20, 15, 0]]
+    graph = [
+        [0, 10, 15, 20],
+        [10, 0, 35, 25],
+        [15, 35, 0, 30],
+        [20, 25, 30, 0],
+    ]
 
     result = tsp_brute_force(graph)
-    if result != 64:
+    if result != 80:
         raise Exception('tsp_brute_force Incorrect result')
     else:
         print('Test passed')
     
     result = tsp_dp(graph)
-    if result != 64:
+    if result != 80:
         raise Exception('tsp_dp Incorrect result')
     else:
         print("Test passed")
     
     result = tsp_greedy(graph)
-    if result != 64:
+    if result != 80:
         if result < 0:
             raise Exception('tsp_greedy Incorrect result')
         else:
