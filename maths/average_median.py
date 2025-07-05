@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import doctest
 
+
 def median(nums: list) -> int | float:
     """
     Find median of a list of numbers.
@@ -33,7 +34,6 @@ def median(nums: list) -> int | float:
 
 
 def main():
-
     doctest.testmod()
 
 
