@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from doctest import testmod
+
 """
 Get the HTML code of finance yahoo and select the current qsp-price
 Current AAPL stock price is   228.43
