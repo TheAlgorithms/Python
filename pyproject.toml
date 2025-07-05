@@ -38,12 +38,9 @@ test = [
 ]
 
 docs = [
-  "furo==2024.1.29",
-  "myst-parser>=4",
-  "sphinx-autoapi>=3.4",
-  "sphinx-copybutton>=0.5",
-  "sphinx-design>=0.5",
-  "sphinx-pyproject>=0.3",
+    "myst-parser>=4",
+     "sphinx-autoapi>=3.4",
+     "sphinx-pyproject>=0.3"
 ]
 euler-validate = [
   "httpx>=0.28.1",
@@ -239,7 +236,7 @@ extensions = [
   "myst_parser",
 ]
 html_static_path = [ "_static" ]
-html_theme = "furo"
+html_theme = "alabaster"
 myst_enable_extensions = [
   "amsmath",
   "attrs_inline",
