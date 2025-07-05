@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import doctest
 
 def median(nums: list) -> int | float:
     """
@@ -32,7 +33,6 @@ def median(nums: list) -> int | float:
 
 
 def main():
-    import doctest
 
     doctest.testmod()
 
