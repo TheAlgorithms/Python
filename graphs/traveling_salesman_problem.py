@@ -33,7 +33,7 @@ def tsp_brute_force(graph: list[list[int]]) -> int:
         total_cost = sum(graph[path[i]][path[i + 1]] for i in range(n))
         min_path = min(min_path, total_cost)
 
-    return min_path
+    return int(min_path)
 
 
 def tsp_dp(graph: list[list[int]]) -> int:
@@ -78,7 +78,7 @@ def tsp_dp(graph: list[list[int]]) -> int:
 
     # After completing visits to all cities,
     # return to city 0 and obtain the minimum value.
-    return min(dp[(1 << n) - 1][i] + graph[i][0] for i in range(1, n))
+    return int(min(dp[(1 << n) - 1][i] + graph[i][0] for i in range(1, n)))
 
 
 def tsp_greedy(graph: list[list[int]]) -> int:
@@ -132,7 +132,7 @@ def tsp_greedy(graph: list[list[int]]) -> int:
     total_cost += graph[current][0]
     path.append(0)
 
-    return total_cost
+    return int(total_cost)
 
 
 def test_tsp_example() -> None:
