@@ -9,6 +9,7 @@ exact integer arithmetic.
 import string
 
 import numpy as np
+
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
