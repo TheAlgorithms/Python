@@ -8,16 +8,16 @@ gcd(a, b) = gcd(a, -b) = gcd(-a, b) = gcd(-a, -b) by definition of divisibility
 def greatest_common_divisor(a: int, b: int) -> int:
     """
     Calculate Greatest Common Divisor (GCD) using Euclidean algorithm recursively.
-    
+
     The GCD of two integers is the largest positive integer that divides both numbers.
-    
+
     Args:
         a: First integer
         b: Second integer
-    
+
     Returns:
         The greatest common divisor of a and b
-    
+
     Examples:
         Basic cases:
         >>> greatest_common_divisor(24, 40)
@@ -28,7 +28,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
         25
         >>> greatest_common_divisor(17, 19)
         1
-        
+
         Edge cases with small numbers:
         >>> greatest_common_divisor(1, 1)
         1
@@ -40,7 +40,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
         1
         >>> greatest_common_divisor(16, 4)
         4
-        
+
         Cases with zero:
         >>> greatest_common_divisor(0, 5)
         5
@@ -48,7 +48,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
         5
         >>> greatest_common_divisor(0, 0)
         0
-        
+
         Negative numbers:
         >>> greatest_common_divisor(-3, 9)
         3
@@ -62,19 +62,19 @@ def greatest_common_divisor(a: int, b: int) -> int:
         8
         >>> greatest_common_divisor(-48, 18)
         6
-        
+
         Large numbers:
         >>> greatest_common_divisor(1071, 462)
         21
         >>> greatest_common_divisor(12345, 54321)
         3
-        
+
         Same numbers:
         >>> greatest_common_divisor(42, 42)
         42
         >>> greatest_common_divisor(-15, -15)
         15
-        
+
         One divides the other:
         >>> greatest_common_divisor(15, 45)
         15
@@ -87,17 +87,17 @@ def greatest_common_divisor(a: int, b: int) -> int:
 def gcd_by_iterative(x: int, y: int) -> int:
     """
     Calculate Greatest Common Divisor (GCD) using iterative Euclidean algorithm.
-    
+
     This method is more memory efficient because it does not create additional
     stack frames for recursive function calls.
-    
+
     Args:
         x: First integer
         y: Second integer
-    
+
     Returns:
         The greatest common divisor of x and y
-    
+
     Examples:
         Basic cases:
         >>> gcd_by_iterative(24, 40)
@@ -108,7 +108,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
         25
         >>> gcd_by_iterative(17, 19)
         1
-        
+
         Verify equivalence with recursive version:
         >>> greatest_common_divisor(24, 40) == gcd_by_iterative(24, 40)
         True
@@ -116,7 +116,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
         True
         >>> greatest_common_divisor(100, 25) == gcd_by_iterative(100, 25)
         True
-        
+
         Edge cases with small numbers:
         >>> gcd_by_iterative(1, 1)
         1
@@ -126,7 +126,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
         1
         >>> gcd_by_iterative(16, 4)
         4
-        
+
         Cases with zero:
         >>> gcd_by_iterative(0, 5)
         5
@@ -134,7 +134,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
         5
         >>> gcd_by_iterative(0, 0)
         0
-        
+
         Negative numbers:
         >>> gcd_by_iterative(-3, -9)
         3
@@ -148,19 +148,19 @@ def gcd_by_iterative(x: int, y: int) -> int:
         8
         >>> gcd_by_iterative(-48, 18)
         6
-        
+
         Large numbers:
         >>> gcd_by_iterative(1071, 462)
         21
         >>> gcd_by_iterative(12345, 54321)
         3
-        
+
         Same numbers:
         >>> gcd_by_iterative(42, 42)
         42
         >>> gcd_by_iterative(-15, -15)
         15
-        
+
         One divides the other:
         >>> gcd_by_iterative(15, 45)
         15
@@ -175,10 +175,10 @@ def gcd_by_iterative(x: int, y: int) -> int:
 def main():
     """
     Call Greatest Common Divisor function with user input.
-    
+
     Prompts user for two integers separated by comma and calculates their GCD
     using both recursive and iterative methods.
-    
+
     Examples:
         This function handles user input, so direct doctests aren't practical.
         However, it should handle valid input like "24,40" and invalid input gracefully.
