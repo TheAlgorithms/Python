@@ -268,7 +268,9 @@ class RedBlackTree:
         elif self.right:
             self.right.remove(label)
         return self.parent or self
-
+                # It's easier to balance a node with at most one child, 
+                 # so we replace this node with the greatest one less than 
+                 # it and remove that.
     def _remove_repair(self) -> None:
         """Repair the coloring after removal."""
         if (
