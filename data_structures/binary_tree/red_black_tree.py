@@ -232,6 +232,10 @@ class RedBlackTree:
         """
         if self.label == label:
             if self.left and self.right:
+# It's easier to balance a node with at most one child,
+        # so we replace this node with the greatest one less than
+        # it and remove that.
+
                 value = self.left.get_max()
                 if value is not None:
                     self.label = value
@@ -268,10 +272,7 @@ class RedBlackTree:
         elif self.right:
             self.right.remove(label)
         return self.parent or self
-        # It's easier to balance a node with at most one child,
-        # so we replace this node with the greatest one less than
-        # it and remove that.
-
+ 
     def _remove_repair(self) -> None:
         """Repair the coloring after removal."""
         if (
