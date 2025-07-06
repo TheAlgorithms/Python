@@ -79,7 +79,7 @@ class HillCipher:
         >>> hill_cipher.replace_digits(26)
         '0'
         """
-        return self.key_string[round(num)]
+        return self.key_string[(num)]
 
     def check_determinant(self) -> None:
         """
