@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from pprint import pformat
 
 
 class RedBlackTree:
@@ -652,6 +651,7 @@ class RedBlackTree:
 
     def __repr__(self) -> str:
         """Return a string representation of the tree."""
+        from pprint import pformat 
         if self.left is None and self.right is None:
             return f"'{self.label} {(self.color and 'red') or 'blk'}'"
         return pformat(
