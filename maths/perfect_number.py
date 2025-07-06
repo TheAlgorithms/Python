@@ -126,38 +126,38 @@ def perfect(number: int) -> bool:
     """
     if not isinstance(number, int):
         raise ValueError("number must be an integer")
-    
+
     if number <= 0:
         return False
-    
+
     # Special case: 1 has no proper divisors
     if number == 1:
         return False
-    
+
     # Find sum of all proper divisors
     # We only need to check up to number//2 since no proper divisor
     # can be greater than half the number
     divisor_sum = sum(i for i in range(1, number // 2 + 1) if number % i == 0)
-    
+
     return divisor_sum == number
 
 
 def perfect_optimized(number: int) -> bool:
     """
     Optimized version of perfect number checker using mathematical properties.
-    
+
     This version uses the fact that divisors come in pairs (d, n/d) to reduce
     the search space to sqrt(n).
-    
+
     Time Complexity: O(sqrt(n))
     Space Complexity: O(1)
-    
+
     Args:
         number: The positive integer to be checked.
-    
+
     Returns:
         True if the number is a perfect number, False otherwise.
-    
+
     Examples:
         >>> perfect_optimized(6)
         True
@@ -176,12 +176,12 @@ def perfect_optimized(number: int) -> bool:
     """
     if not isinstance(number, int):
         raise ValueError("number must be an integer")
-    
+
     if number <= 1:
         return False
-    
+
     divisor_sum = 1  # 1 is always a proper divisor for n > 1
-    
+
     # Check divisors up to sqrt(number)
     i = 2
     while i * i <= number:
@@ -191,20 +191,20 @@ def perfect_optimized(number: int) -> bool:
             if i != number // i:
                 divisor_sum += number // i
         i += 1
-    
+
     return divisor_sum == number
 
 
 def find_perfect_numbers(limit: int) -> list[int]:
     """
     Find all perfect numbers up to a given limit.
-    
+
     Args:
         limit: The upper bound to search for perfect numbers.
-    
+
     Returns:
         List of perfect numbers up to the limit.
-    
+
     Examples:
         >>> find_perfect_numbers(10)
         [6]
@@ -219,20 +219,20 @@ def find_perfect_numbers(limit: int) -> list[int]:
     """
     if not isinstance(limit, int) or limit < 0:
         raise ValueError("limit must be a non-negative integer")
-    
+
     return [n for n in range(1, limit + 1) if perfect(n)]
 
 
 def get_divisors(number: int) -> list[int]:
     """
     Get all proper divisors of a number (excluding the number itself).
-    
+
     Args:
         number: The positive integer to find divisors for.
-    
+
     Returns:
         List of proper divisors in ascending order.
-    
+
     Examples:
         >>> get_divisors(6)
         [1, 2, 3]
@@ -247,10 +247,10 @@ def get_divisors(number: int) -> list[int]:
     """
     if not isinstance(number, int) or number <= 0:
         raise ValueError("number must be a positive integer")
-    
+
     if number == 1:
         return []
-    
+
     return [i for i in range(1, number // 2 + 1) if number % i == 0]
 
 
@@ -259,41 +259,41 @@ if __name__ == "__main__":
 
     print("Running doctests...")
     testmod(verbose=True)
-    
+
     print("\nPerfect Number Checker")
     print("=" * 40)
     print("A perfect number equals the sum of its proper divisors.")
     print("Examples: 6 (1+2+3), 28 (1+2+4+7+14), 496, 8128, ...")
     print()
-    
+
     while True:
         try:
             user_input = input("Enter a positive integer (or 'q' to quit): ").strip()
-            if user_input.lower() == 'q':
+            if user_input.lower() == "q":
                 break
-            
+
             number = int(user_input)
-            
+
             if number <= 0:
                 print("Please enter a positive integer.")
                 continue
-            
+
             is_perfect = perfect(number)
             divisors = get_divisors(number)
             divisor_sum = sum(divisors)
-            
+
             print(f"\nNumber: {number}")
             print(f"Proper divisors: {divisors}")
             print(f"Sum of divisors: {divisor_sum}")
             print(f"Is perfect: {'Yes' if is_perfect else 'No'}")
-            
+
             if is_perfect:
                 print(f"✓ {number} is a Perfect Number!")
             else:
                 print(f"✗ {number} is not a Perfect Number.")
-            
+
             print("-" * 40)
-            
+
         except ValueError as e:
             if "invalid literal" in str(e):
                 print("Please enter a valid integer.")
