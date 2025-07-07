@@ -11,6 +11,7 @@ Functions:
 Each function has doctests to verify correct behavior.
 """
 
+
 def factorial(n: int) -> int:
     """
     Calculate the factorial of a non-negative integer n using recursion.
@@ -97,4 +98,5 @@ def sum_of_digits(n: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
