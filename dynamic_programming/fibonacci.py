@@ -96,7 +96,8 @@ class Fibonacci:
             True
         """
         if index < 0:
-            raise ValueError(f"Index must be non-negative, got {index}")
+            error_msg = f"Index must be non-negative, got {index}"
+            raise ValueError(error_msg)
 
         if index == 0:
             return []
