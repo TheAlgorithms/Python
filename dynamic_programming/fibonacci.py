@@ -140,7 +140,8 @@ class Fibonacci:
             ValueError: Index must be non-negative, got -1
         """
         if n < 0:
-            raise ValueError(f"Index must be non-negative, got {n}")
+            error_msg = f"Index must be non-negative, got {n}"
+            raise ValueError(error_msg)
 
         # Extend sequence if needed
         if n >= len(self.sequence):
