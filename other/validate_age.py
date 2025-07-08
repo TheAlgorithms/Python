@@ -3,6 +3,7 @@ This script prompts the user to input their age
 and validates that it is a non-negative integer.
 """
 
+
 def get_valid_age() -> int:
     """
     Continuously prompts user for a valid age input until a non-negative integer is provided.
