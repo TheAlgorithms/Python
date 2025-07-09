@@ -13,4 +13,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: devcontainers/ci@v0.3
         with:
+          push: never
           runCmd: "true"
