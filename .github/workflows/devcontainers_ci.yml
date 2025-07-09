@@ -2,9 +2,11 @@ name: Test DevContainer Build
 
 on:
   push:
-    branches: [main, test-gh-action-for-devcontainer]
+    paths:
+      - '.devcontainer/**'
   pull_request:
-    branches: [main]
+    paths:
+      - '.devcontainer/**'
 
 jobs:
   build:
