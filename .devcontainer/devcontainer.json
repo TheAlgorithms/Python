@@ -11,7 +11,7 @@
 		}
 	},
 
-	"postCreateCommand": "zsh .devcontainer/post_install.sh",
+	"postCreateCommand": "zsh .devcontainer/post_install",
 
 	// Configure tool-specific properties.
 	"customizations": {
