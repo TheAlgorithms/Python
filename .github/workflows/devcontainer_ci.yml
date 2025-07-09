@@ -3,10 +3,10 @@ name: Test DevContainer Build
 on:
   push:
     paths:
-      - '.devcontainer/**'
+      - ".devcontainer/**"
   pull_request:
     paths:
-      - '.devcontainer/**'
+      - ".devcontainer/**"
 
 jobs:
   build:
