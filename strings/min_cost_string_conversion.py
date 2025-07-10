@@ -96,6 +96,7 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> assemble_transformation(ops2, 2, 3)
     ['C1', 'I2', 'R23']
     """
+
     if i == 0 and j == 0:
         return []
     elif ops[i][j][0] in {"C", "R"}:
