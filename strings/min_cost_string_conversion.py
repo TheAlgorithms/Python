@@ -34,7 +34,7 @@ def compute_transform_tables(
     >>> operations[3][:4]
     ['Dt', 'Dt', 'Rtu', 'Ct']
     """
-     
+
     source_seq = list(source_string)
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
