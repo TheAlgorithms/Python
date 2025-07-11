@@ -21,6 +21,33 @@ def index_of_coincidence(frequencies: dict, length: int) -> float:
     return index
 
 
+def calculate_indexes_of_coincidence(ciphertext: str, step: int) -> list:
+    """
+    For each number j in the range [0, step) the function checks the letters of the ciphertext whose position has the
+    form j+n*step, where n is an integer and for these letters it calculates the index of coincidence. It returns a list
+    with step elements, which represent the indexes of coincidence.
+    :param ciphertext: s string (text)
+    :param step: the step when traversing through the cipher
+    :return: a list with the indexes of coincidence
+    """
+    indexes_of_coincidence = list()
+    length = len(ciphertext)
+
+    # for every starting point in [0, step)
+    for j in range(step):
+        frequencies = dict()
+        c = 0
+        for i in range(0+j, length, step):
+            c += 1
+            try:  # in case the frequencies dictionary does not already have this key
+                frequencies[ciphertext[i]] += 1
+            except KeyError:
+                frequencies[ciphertext[i]] = 1
+        indexes_of_coincidence.append(index_of_coincidence(frequencies, c))
+
+    return indexes_of_coincidence
+
+
 def find_key_from_vigenere_cipher(ciphertext: str) -> str:
     clean_ciphertext = list()
     for symbol in ciphertext:
@@ -31,3 +58,7 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
 
     key = ""  # todo replace with function
     return key
+
+
+if __name__ == '__main__':
+    print(index_of_coincidence(LETTER_FREQUENCIES_DICT, 1000))
