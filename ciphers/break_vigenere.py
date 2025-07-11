@@ -8,6 +8,19 @@ LETTER_FREQUENCIES_DICT = {
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
+def index_of_coincidence(frequencies: dict, length: int) -> float:
+    """
+    Calculates the index of coincidence for a text.
+    :param frequencies: dictionary of the form {letter_of_the_alphabet: amount of times it appears in the text as a percentage}
+    :param length: the length of the text
+    :return the index of coincidence:
+    """
+    index = 0.0
+    for value in frequencies.values():
+        index += (value/length)**2
+    return index
+
+
 def find_key_from_vigenere_cipher(ciphertext: str) -> str:
     clean_ciphertext = list()
     for symbol in ciphertext:
