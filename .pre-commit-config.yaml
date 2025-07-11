@@ -18,8 +18,8 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.11
     hooks:
-      - id: ruff         # Linting
-      - id: ruff-format  # Auto-formatting
+      - id: ruff # Linting
+      - id: ruff-format # Auto-formatting
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
