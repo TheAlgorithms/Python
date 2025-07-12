@@ -6,6 +6,7 @@ LETTER_FREQUENCIES_DICT = {
 }
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 PARAMETER = 0.0665  # index of confidence of the entire language (for english 0.0665)
+MAX_KEYLENGTH = 10  # None is the default
 
 
 def index_of_coincidence(frequencies: dict, length: int) -> float:
@@ -82,17 +83,77 @@ def friedman_method(ciphertext: str, max_keylength: int=None) -> int:
     return li[1]
 
 
+def get_frequencies() -> tuple:
+    """Return the values of the global variable @letter_frequencies_dict as a tuple ex. (0.25, 1.42, ...)."""
+    t = tuple(LETTER_FREQUENCIES_DICT[chr(i)] for i in range(ord('A'), ord('A') + 26))
+    return tuple(num / 100 for num in t)
+
+
+def find_key(ciphertext: str, key_length: int) -> str:
+    """
+    Finds the key of a text which has been encrypted with the Vigenere algorithm, using statistical analysis.
+    The function needs an estimation of the length of the key. Firstly it finds the frequencies of the letters in the
+    text. Then it compares these frequencies with those of an average text in the english language. For each letter it
+    multiplies its frequency with the average one and adds them all together, then it shifts the frequencies of the text
+    cyclically by one position and repeats the process. The shift that produces the largest sum corresponds to a letter
+    of the key. The whole procedure takes place for every letter of the key (essentially as many times as the length
+    of the key).
+    :param ciphertext: a string (text)
+    :param key_length: a supposed length of the key
+    :return: the key as a string
+    """
+    a = ord('A')
+    cipher_length = len(ciphertext)
+    alphabet_length = 26  # the length of the english alphabet
+
+    key = []
+
+    # for every letter of the key
+    for k in range(key_length):
+        # find the frequencies of the letters in the message:
+        # the frequency of 'A' is in the first position of the freq list and so on
+        freq = [0]*alphabet_length
+        c = 0
+        for i in range(k, cipher_length, key_length):
+            freq[ord(ciphertext[i]) - a] += 1
+            c += 1
+        freq = [num / c for num in freq]
+
+        # find the max sum -> part of the key
+        real_freq = get_frequencies()
+        max1 = [-1, None]  # value, position
+        for i in range(alphabet_length):
+            new_val = sum((freq[j] * real_freq[j]) for j in range(alphabet_length))
+            if max1[0] < new_val:
+                max1 = [new_val, i]
+            freq.append(freq.pop(0))  # shift the list cyclically one position to the left
+        key.append(max1[1])
+
+    return "".join(chr(num + a) for num in key)  # return the key as a string
+
+
 def find_key_from_vigenere_cipher(ciphertext: str) -> str:
     clean_ciphertext = list()
-    for symbol in ciphertext:
+    for symbol in ciphertext.upper():
         if symbol in LETTERS:
-            clean_ciphertext.append(symbol.upper())
+            clean_ciphertext.append(symbol)
 
     clean_ciphertext = "".join(clean_ciphertext)
+    print(clean_ciphertext)
 
-    key = ""  # todo replace with function
+    key_length = friedman_method(clean_ciphertext, max_keylength=MAX_KEYLENGTH)
+    print(f"The length of the key is {key_length}")
+    if key_length <= 0:
+        print("Something went wrong while calculating the length of the key.")
+        return ""
+
+    key = find_key(clean_ciphertext, key_length)
     return key
 
 
 if __name__ == '__main__':
-    print(index_of_coincidence(LETTER_FREQUENCIES_DICT, 1000))
+    # print(index_of_coincidence(LETTER_FREQUENCIES_DICT, 1000))
+    with open("out.txt") as file:
+        c = file.read()
+    k = find_key_from_vigenere_cipher(c)
+    print(k)
