@@ -120,8 +120,8 @@ def main():
         print(f"θ{i}: {value:.5f}")
 
 
-
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
