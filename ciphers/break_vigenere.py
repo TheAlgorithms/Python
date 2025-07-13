@@ -6,7 +6,7 @@ LETTER_FREQUENCIES_DICT = {
 }
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 PARAMETER = 0.0665  # index of confidence of the entire language (for english 0.0665)
-MAX_KEYLENGTH = 10  # None is the default
+MAX_KEYLENGTH = None  # None is the default, you can also try a positive integer (example: 10)
 
 
 def index_of_coincidence(frequencies: dict, length: int) -> float:
@@ -14,12 +14,14 @@ def index_of_coincidence(frequencies: dict, length: int) -> float:
     Calculates the index of coincidence for a text.
     :param frequencies: dictionary of the form {letter_of_the_alphabet: amount of times it appears in the text as a percentage}
     :param length: the length of the text
-    :return the index of coincidence:
+    :return: the index of coincidence
+    >>> index_of_coincidence({'A':1,'D':2,'E':3,'F':1,'H':1,'L': 2,'N':1,'T':1,'W':1}, 13)
+    0.0641025641025641
     """
     index = 0.0
     for value in frequencies.values():
-        index += (value / length) ** 2
-    return index
+        index += value * (value-1)
+    return index / (length * (length-1))
 
 
 def calculate_indexes_of_coincidence(ciphertext: str, step: int) -> list:
@@ -44,7 +46,8 @@ def calculate_indexes_of_coincidence(ciphertext: str, step: int) -> list:
                 frequencies[ciphertext[i]] += 1
             except KeyError:
                 frequencies[ciphertext[i]] = 1
-        indexes_of_coincidence.append(index_of_coincidence(frequencies, c))
+        if c > 1:  # to avoid division by zero in the index_of_coincidence function
+            indexes_of_coincidence.append(index_of_coincidence(frequencies, c))
 
     return indexes_of_coincidence
 
@@ -52,7 +55,9 @@ def calculate_indexes_of_coincidence(ciphertext: str, step: int) -> list:
 def friedman_method(ciphertext: str, max_keylength: int=None) -> int:
     """
     Implements Friedman's method for finding the length of the key of a Vigenere cipher. It finds the length with an
-    index of confidence closer to that of an average text in the english language.
+    index of confidence closer to that of an average text in the english language. Check the wikipedia page:
+    https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher
+    The algorithm is in the book "Introduction to Cryptography", K. Draziotis https://repository.kallipos.gr/handle/11419/8183
     :param ciphertext: a string (text)
     :param max_keylength: the maximum length of key that Friedman's method should check, if None then it defaults to the
     length of the cipher
@@ -84,7 +89,7 @@ def friedman_method(ciphertext: str, max_keylength: int=None) -> int:
 
 
 def get_frequencies() -> tuple:
-    """Return the values of the global variable @letter_frequencies_dict as a tuple ex. (0.25, 1.42, ...)."""
+    """Return the values of the global variable @LETTER_FREQUENCIES_DICT as a tuple ex. (0.25, 1.42, ...)."""
     t = tuple(LETTER_FREQUENCIES_DICT[chr(i)] for i in range(ord('A'), ord('A') + 26))
     return tuple(num / 100 for num in t)
 
@@ -97,7 +102,7 @@ def find_key(ciphertext: str, key_length: int) -> str:
     multiplies its frequency with the average one and adds them all together, then it shifts the frequencies of the text
     cyclically by one position and repeats the process. The shift that produces the largest sum corresponds to a letter
     of the key. The whole procedure takes place for every letter of the key (essentially as many times as the length
-    of the key).
+    of the key). See here: https://www.youtube.com/watch?v=LaWp_Kq0cKs
     :param ciphertext: a string (text)
     :param key_length: a supposed length of the key
     :return: the key as a string
@@ -133,27 +138,27 @@ def find_key(ciphertext: str, key_length: int) -> str:
 
 
 def find_key_from_vigenere_cipher(ciphertext: str) -> str:
+    """
+    Tries to find the key length and then the actual key of a Vigenere ciphertext. It uses Friedman's method and
+    statistical analysis. It works best for large pieces of text written in the english language.
+    """
     clean_ciphertext = list()
     for symbol in ciphertext.upper():
         if symbol in LETTERS:
             clean_ciphertext.append(symbol)
 
     clean_ciphertext = "".join(clean_ciphertext)
-    print(clean_ciphertext)
 
     key_length = friedman_method(clean_ciphertext, max_keylength=MAX_KEYLENGTH)
     print(f"The length of the key is {key_length}")
     if key_length <= 0:
-        print("Something went wrong while calculating the length of the key.")
-        return ""
+        raise ValueError("The length of the key should be strictly positive")
 
     key = find_key(clean_ciphertext, key_length)
     return key
 
 
 if __name__ == '__main__':
-    # print(index_of_coincidence(LETTER_FREQUENCIES_DICT, 1000))
-    with open("out.txt") as file:
-        c = file.read()
+    c = ""
     k = find_key_from_vigenere_cipher(c)
     print(k)
