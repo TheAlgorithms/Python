@@ -218,7 +218,9 @@ def main() -> None:
                 else:
                     print(f"First {index} Fibonacci numbers: {result}")
                     if index > 0:
-                        print(f"The {index}th Fibonacci number is: {fibonacci.get_nth(index)}")
+                        print(
+                            f"The {index}th Fibonacci number is: {fibonacci.get_nth(index)}"
+                        )
 
             except ValueError:
                 print("Invalid input. Enter a number or use 'help' for commands.")
