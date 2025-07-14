@@ -16,9 +16,9 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.11
+    rev: v0.12.3
     hooks:
-      - id: ruff
+      - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
@@ -29,7 +29,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "v2.6.0"
+    rev: v2.6.0
     hooks:
       - id: pyproject-fmt
 
@@ -53,12 +53,11 @@ repos:
         args:
           - --explicit-package-bases
           - --ignore-missing-imports
-          - --install-types # See mirrors-mypy README.md
+          - --install-types
           - --non-interactive
-        additional_dependencies: [types-requests]
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v4.0.0-alpha.8"
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         types_or: [toml, yaml]
