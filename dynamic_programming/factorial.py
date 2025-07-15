@@ -37,6 +37,8 @@ def factorial(num, _memo=None):
 
     return _memo[num]
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
