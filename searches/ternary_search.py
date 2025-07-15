@@ -103,7 +103,9 @@ def ternary_search_recursive(
     elif target > array[two_third]:
         return ternary_search_recursive(array, target, two_third + 1, right, threshold)
     else:
-        return ternary_search_recursive(array, target, one_third + 1, two_third - 1, threshold)
+        return ternary_search_recursive(
+            array, target, one_third + 1, two_third - 1, threshold
+        )
 
 
 if __name__ == "__main__":
@@ -114,7 +116,9 @@ if __name__ == "__main__":
     try:
         raw_input = input("\nEnter sorted numbers separated by commas: ").strip()
         collection = [int(x) for x in raw_input.split(",")]
-        assert collection == sorted(collection), "Input must be sorted in ascending order."
+        assert collection == sorted(collection), (
+            "Input must be sorted in ascending order."
+        )
         target = int(input("Enter the number to search: "))
 
         result_iter = ternary_search_iterative(collection, target)
