@@ -1,4 +1,4 @@
-def last_digit(n: int) -> int:
+def last_digit(number: int) -> int:
     """
     Return the last digit of a given integer.
 
@@ -9,4 +9,4 @@ def last_digit(n: int) -> int:
     >>> last_digit(0)
     0
     """
-    return abs(n) % 10
+    return abs(number) % 10
