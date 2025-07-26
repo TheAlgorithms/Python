@@ -38,7 +38,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     # keep track of explored nodes
     explored = set()
     # keep track of all the paths to be checked
-    queue = deque([start])
+    queue = deque([[start]])
 
     # return path if start is goal
     if start == goal:
