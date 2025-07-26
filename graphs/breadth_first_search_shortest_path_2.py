@@ -90,7 +90,7 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
         return -1
     if start == target:
         return 0
-    queue = deque(start)
+    queue = deque([start])
     visited = set(start)
     # Keep tab on distances from `start` node.
     dist = {start: 0, target: -1}
