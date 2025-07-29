@@ -6,32 +6,6 @@ import numpy as np
 def tf_k_means_clustering(vectors, noofclusters,max_iterations = 100,tolerance = 1e-4):
     """
     Performs K-means clustering using a fixed and efficient vectorized approach, using Tensorflow 2.x
-
-    Parameters:
-    vectors (list): A list of vectors.
-    noofclusters (int): The number of clusters (k).
-    max_iterations(int): maximum number of iterations or how many times the algorithm will refine its cluster assignments and centroid positions, until convergence.
-    tolerance(int): defines a convergence criterion. The K-means algorithm stops when the centroids move less than this tolerance value between consecutive iterations.
-
-    (set same random seed in all examples for reproducibility)
-    >>>tf.random.set_seed(42)
-
-    Example 1:
-    >>>data2 = np.array([[0.0, 0.0], [0.1, 0.1], [10.0, 10.0]], dtype=np.float32)
-    >>>centroids2, assignments2 = tf_k_means_clustering(data2, 2)
-    >>>print(centroids2,assignments2)
-    [[ 0.05  0.05]
-    [10.   10.  ]] [0 0 1]
-
-    Example 2 (Idential data points):
-    >>>data_identical = np.array([[1.0, 1.0], [1.0, 1.0], [1.0, 1.0], [1.0, 1.0]], dtype=np.float32)
-    >>>centroids, assignments = tf_k_means_clustering(data_identical, 1)
-    >>>print(centroids,assignments)
-
-    Example 3 (k>N):
-    >>>data = np.array([[0.0, 0.0], [0.9, 0.9], [13.0, 15.0]], dtype=np.float32)
-    >>>centroids, assignments = tf_k_means_clustering(data, 5)
-    >>>print(centroids,assignments)
     """
 
 
