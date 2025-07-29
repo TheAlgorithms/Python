@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 
-def tf_k_means_cluster_fixed(vectors, noofclusters,max_iterations = 100,tolerance = 1e-4):
+def tf_k_means_clustering(vectors, noofclusters,max_iterations = 100,tolerance = 1e-4):
     """
     Performs K-means clustering using a fixed and efficient vectorized approach, using Tensorflow 2.x
 
@@ -18,19 +18,19 @@ def tf_k_means_cluster_fixed(vectors, noofclusters,max_iterations = 100,toleranc
 
     Example 1:
     >>>data2 = np.array([[0.0, 0.0], [0.1, 0.1], [10.0, 10.0]], dtype=np.float32)
-    >>>centroids2, assignments2 = tf_k_means_cluster_fixed(data2, 2)
+    >>>centroids2, assignments2 = tf_k_means_clustering(data2, 2)
     >>>print(centroids2,assignments2)
     [[ 0.05  0.05]
     [10.   10.  ]] [0 0 1]
 
     Example 2 (Idential data points):
     >>>data_identical = np.array([[1.0, 1.0], [1.0, 1.0], [1.0, 1.0], [1.0, 1.0]], dtype=np.float32)
-    >>>centroids, assignments = tf_k_means_cluster_fixed(data_identical, 1)
+    >>>centroids, assignments = tf_k_means_clustering(data_identical, 1)
     >>>print(centroids,assignments)
 
     Example 3 (k>N):
     >>>data = np.array([[0.0, 0.0], [0.9, 0.9], [13.0, 15.0]], dtype=np.float32)
-    >>>centroids, assignments = tf_k_means_cluster_fixed(data, 5)
+    >>>centroids, assignments = tf_k_means_clustering(data, 5)
     >>>print(centroids,assignments)
     """
 
