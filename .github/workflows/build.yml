@@ -32,7 +32,6 @@ jobs:
           --ignore=scripts/validate_solutions.py
           --ignore=web_programming/current_stock_price.py
           --ignore=web_programming/fetch_anime_and_play.py
-          --ignore=web_programming/current_stock_price.py
           --cov-report=term-missing:skip-covered
           --cov=. .
       - if: ${{ success() }}
