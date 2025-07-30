@@ -6,15 +6,38 @@ from numpy import array
 
 def tf_k_means_cluster(vectors, noofclusters):
     """
-    K-Means Clustering using TensorFlow.
-    'vectors' should be a n*k 2-D NumPy array, where n is the number
-    of vectors of dimensionality k.
-    'noofclusters' should be an integer.
+    K-Means Clustering using TensorFlow 1.x.
+
+    Parameters:
+    vectors (numpy.ndarray): A n*k 2-D NumPy array of dtype float32, 
+                            where n is the number of vectors and k is their dimensionality.
+    noofclusters (int): An integer representing the number of clusters (k).
+
+    (For reproducibility, set both Python's random seed and TensorFlow's random seed)
+    >>> import random
+    >>> random.seed(42)
+    >>> tf.random.set_seed(42)
+
+    Example 1
+    >>> data1 = numpy.array([[0.0, 0.0], [0.1, 0.1], [10.0, 10.0]], dtype=numpy.float32)
+    >>> centroids1, assignments1 = tf_k_means_cluster(data1, 2)
+    >>> print(centroids1)
+    [[ 0.05  0.05]
+     [10.   10.  ]]
+    >>> print(assignments1)
+    [0 0 1]
+
+    Example 2:
+    >>> data3 = numpy.array([[0.0, 0.0], [0.9, 0.9], [13.0, 15.0]], dtype=numpy.float32)
+    >>> tf_k_means_cluster(data3, 5)
+    Traceback (most recent call last):
+        ...
+    AssertionError
     """
 
     noofclusters = int(noofclusters)
     assert noofclusters < len(vectors)
-
+    
     # Find out the dimensionality
     dim = len(vectors[0])
 
