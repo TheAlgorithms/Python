@@ -3,18 +3,19 @@ import tensorflow as tf
 import numpy as np
 
 
-def tf_k_means_clustering(vectors, noofclusters,max_iterations = 100,tolerance = 1e-4):
+def tf_k_means_clustering(vectors, noofclusters, max_iterations=100, tolerance=1e-4):
     """
     Performs K-means clustering using a fixed and efficient vectorized approach, using Tensorflow 2.x
     """
-
 
     vectors = tf.constant(vectors, dtype=tf.float32)
     noofclusters = int(noofclusters)
     num_data_points = tf.shape(vectors)[0]
 
     if noofclusters > num_data_points:
-      raise ValueError("Number of clusters (k) cannot be greater than the number of data points.")
+        raise ValueError(
+            "Number of clusters (k) cannot be greater than the number of data points."
+        )
 
     # Initialize centroids randomly from first k(no: of clusters) elements from the shuffled data points
     initial_indices = tf.random.shuffle(tf.range(tf.shape(vectors)[0]))[:noofclusters]
@@ -28,9 +29,13 @@ def tf_k_means_clustering(vectors, noofclusters,max_iterations = 100,tolerance =
         )
         assignments = tf.argmin(distances_sq, axis=1)
 
-        #Recalculate centroids efficiently
-        sums = tf.math.unsorted_segment_sum(vectors, assignments, num_segments=noofclusters)
-        counts = tf.math.unsorted_segment_sum(tf.ones_like(vectors), assignments, num_segments=noofclusters)
+        # Recalculate centroids efficiently
+        sums = tf.math.unsorted_segment_sum(
+            vectors, assignments, num_segments=noofclusters
+        )
+        counts = tf.math.unsorted_segment_sum(
+            tf.ones_like(vectors), assignments, num_segments=noofclusters
+        )
 
         # Avoid division by zero for empty clusters
         new_centroids = sums / tf.maximum(counts, 1e-9)
