@@ -9,7 +9,7 @@ def tf_k_means_cluster(vectors, noofclusters):
     K-Means Clustering using TensorFlow 1.x.
 
     Parameters:
-    vectors (numpy.ndarray): A n*k 2-D NumPy array of dtype float32, 
+    vectors (numpy.ndarray): A n*k 2-D NumPy array of dtype float32,
                             where n is the number of vectors and k is their dimensionality.
     noofclusters (int): An integer representing the number of clusters (k).
 
@@ -37,7 +37,7 @@ def tf_k_means_cluster(vectors, noofclusters):
 
     noofclusters = int(noofclusters)
     assert noofclusters < len(vectors)
-    
+
     # Find out the dimensionality
     dim = len(vectors[0])
 
