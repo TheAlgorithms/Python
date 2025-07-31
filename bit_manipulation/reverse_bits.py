@@ -1,6 +1,7 @@
 def get_reverse_bit_string(number: int) -> str:
     """
-    return the bit string of an integer
+    Take in an 32 bit integer, reverse its bits,
+    return a string of reversed bits
 
     >>> get_reverse_bit_string(9)
     '10010000000000000000000000000000'
@@ -26,36 +27,36 @@ def get_reverse_bit_string(number: int) -> str:
     return bit_string
 
 
-def reverse_bit(number: int) -> str:
+def get_reverse_bit_int(number: int) -> int:
     """
     Take in an 32 bit integer, reverse its bits,
-    return a string of reverse bits
+    return a 32 bit integer of reversed bits
 
-    result of a reverse_bit and operation on the integer provided.
+    result of a get_reverse_bit and operation on the integer provided.
 
-    >>> reverse_bit(25)
-    '00000000000000000000000000011001'
-    >>> reverse_bit(37)
-    '00000000000000000000000000100101'
-    >>> reverse_bit(21)
-    '00000000000000000000000000010101'
-    >>> reverse_bit(58)
-    '00000000000000000000000000111010'
-    >>> reverse_bit(0)
-    '00000000000000000000000000000000'
-    >>> reverse_bit(256)
-    '00000000000000000000000100000000'
-    >>> reverse_bit(-1)
+    >>> get_reverse_bit_int(25)
+    2550136832
+    >>> get_reverse_bit_int(37)
+    2751463424
+    >>> get_reverse_bit_int(21)
+    2818572288
+    >>> get_reverse_bit_int(58)
+    1543503872
+    >>> get_reverse_bit_int(0)
+    0
+    >>> get_reverse_bit_int(256)
+    8388608
+    >>> get_reverse_bit_int(-1)
     Traceback (most recent call last):
         ...
     ValueError: the value of input must be positive
 
-    >>> reverse_bit(1.1)
+    >>> get_reverse_bit_int(1.1)
     Traceback (most recent call last):
         ...
     TypeError: Input value must be a 'int' type
 
-    >>> reverse_bit("0")
+    >>> get_reverse_bit_int("0")
     Traceback (most recent call last):
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
@@ -77,7 +78,7 @@ def reverse_bit(number: int) -> str:
         number = number >> 1
         # add that bit to our ans
         result = result | end_bit
-    return get_reverse_bit_string(result)
+    return result
 
 
 if __name__ == "__main__":
