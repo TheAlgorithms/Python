@@ -20,6 +20,9 @@ def gauss_jordan(
     Raises:
         ValueError: If shapes of A and b are incompatible.
 
+    See Also:
+        https://en.wikibooks.org/wiki/Linear_Algebra/Gauss-Jordan_Reduction
+
     Examples:
         >>> import numpy as np
         >>> A = np.array([[1, 2, -1], [2, 4, -2], [3, 6, -3]])
