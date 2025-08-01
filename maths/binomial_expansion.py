@@ -19,6 +19,9 @@ def binomial_expansion(a: float, b: float, n: int) -> int | float:
     Raises:
         ZeroDivisionError: If a + b == 0 and n < 0.
 
+    See Also:
+        https://en.wikipedia.org/wiki/Binomial_theorem
+
     Examples:
         >>> binomial_expansion(2, 3, 2)
         25
