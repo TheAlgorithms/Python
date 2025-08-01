@@ -19,6 +19,21 @@ def good_file_paths(top_dir: str = ".") -> Iterator[str]:
 
 
 def md_prefix(i):
+    """
+    Markdown prefix based on level for bullet points
+
+    >>> md_prefix(0)
+    '\\n##'
+
+    >>> md_prefix(1)
+    '  *'
+
+    >>> md_prefix(2)
+    '    *'
+
+    >>> md_prefix(3)
+    '      *'
+    """
     return f"{i * '  '}*" if i else "\n##"
 
 
