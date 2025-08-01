@@ -36,10 +36,10 @@ def is_k_power_of_n(n: int, k: int) -> bool:
 
     if n <= 0 or k <= 0:
         raise ValueError("Both n and k must be positive integers")
-        
+
     if n == 1:
         return k == 1
-    
+
     while k % n == 0:
         k //= n
     return k == 1
