@@ -3,6 +3,18 @@
 def is_k_power_of_n(n, k):
     """
     Checks if k can be reduced to 1 by repeatedly dividing it by n.
+
+    >>> 2
+    >>> 8
+    True
+
+    >>> 1092
+    >>> 20,21,99,97,93,72,24,99,35,25,59,616
+    True
+
+    >>>12
+    >>>100
+    False
     """
     if n == 1:
         return k == 1
