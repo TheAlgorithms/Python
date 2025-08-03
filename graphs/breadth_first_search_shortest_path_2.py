@@ -15,6 +15,8 @@ demo_graph = {
     "G": ["C"],
 }
 
+from collections import deque
+
 
 def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     """Find shortest path between `start` and `goal` nodes.
@@ -36,7 +38,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     # keep track of explored nodes
     explored = set()
     # keep track of all the paths to be checked
-    queue = [[start]]
+    queue = deque([[start]])
 
     # return path if start is goal
     if start == goal:
@@ -45,7 +47,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     # keeps looping until all possible paths have been checked
     while queue:
         # pop the first path from the queue
-        path = queue.pop(0)
+        path = queue.popleft()
         # get the last node from the path
         node = path[-1]
         if node not in explored:
@@ -88,12 +90,12 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
         return -1
     if start == target:
         return 0
-    queue = [start]
+    queue = deque([start])
     visited = set(start)
     # Keep tab on distances from `start` node.
     dist = {start: 0, target: -1}
     while queue:
-        node = queue.pop(0)
+        node = queue.popleft()
         if node == target:
             dist[target] = (
                 dist[node] if dist[target] == -1 else min(dist[target], dist[node])
