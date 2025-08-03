@@ -16,11 +16,8 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
 
     Examples:
 
-    >>> # FIXME: This test should pass.
     >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
-    Traceback (most recent call last):
-        ...
-    RuntimeError: dictionary changed size during iteration
+    True
     >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 1]}))
     False
     >>> is_bipartite_dfs({})
@@ -86,7 +83,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         return visited[node] == color
 
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
-    for node in graph:
+    for node in list(graph):
         if visited[node] == -1 and not depth_first_search(node, 0):
             return False
     return True
@@ -107,11 +104,8 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
 
     Examples:
 
-    >>> # FIXME: This test should pass.
     >>> is_bipartite_bfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
-    Traceback (most recent call last):
-        ...
-    RuntimeError: dictionary changed size during iteration
+    True
     >>> is_bipartite_bfs(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
     False
     >>> is_bipartite_bfs({})
@@ -157,7 +151,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     KeyError: 'b'
     """
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
-    for node in graph:
+    for node in list(graph):
         if visited[node] == -1:
             queue: deque[int] = deque()
             queue.append(node)
@@ -173,7 +167,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     return True
 
 
-if __name__ == "__main":
+if __name__ == "__main__":
     import doctest
 
     result = doctest.testmod()
