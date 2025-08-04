@@ -5,6 +5,8 @@ Manual test:
 python bfs_shortest_path.py
 """
 
+from collections import deque
+
 demo_graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
@@ -14,8 +16,6 @@ demo_graph = {
     "F": ["C"],
     "G": ["C"],
 }
-
-from collections import deque
 
 
 def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
