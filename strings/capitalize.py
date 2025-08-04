@@ -1,9 +1,6 @@
-from string import ascii_lowercase, ascii_uppercase
-
-
 def capitalize(sentence: str) -> str:
     """
-    Capitalizes the first letter of a sentence or word.
+    Capitalizes the first character of the string if it is a lowercase letter.
 
     >>> capitalize("hello world")
     'Hello world'
@@ -19,11 +16,14 @@ def capitalize(sentence: str) -> str:
     if not sentence:
         return ""
 
-    # Create a dictionary that maps lowercase letters to uppercase letters
-    # Capitalize the first character if it's a lowercase letter
-    # Concatenate the capitalized character with the rest of the string
-    lower_to_upper = dict(zip(ascii_lowercase, ascii_uppercase))
-    return lower_to_upper.get(sentence[0], sentence[0]) + sentence[1:]
+    # Get the first character of the sentence
+    first_char = sentence[0]
+    # Check if the first character is a lowercase letter
+    if 'a' <= first_char <= 'z':
+        # Convert the lowercase letter to uppercase using ASCII value
+        first_char = chr(ord(first_char) - 32)
+    # Return the capitalized first character concatenated with the rest of the sentence
+    return first_char + sentence[1:]
 
 
 if __name__ == "__main__":
