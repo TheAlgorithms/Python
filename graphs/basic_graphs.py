@@ -286,16 +286,16 @@ def floyd_warshall(a_and_n):
     """
 
     (a, n) = a_and_n
-    dist = [row[:] for row in a] # create a deep copy of matrix a
+    dist = [row[:] for row in a]  # create a deep copy of matrix a
     path = [[0] * n for i in range(n)]
-    
+
     for k in range(n):
         for i in range(n):
             for j in range(n):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
-                    path[i][k] = k # possible error
-    
+                    path[i][k] = k  # possible error
+
     print(dist)
 
 
