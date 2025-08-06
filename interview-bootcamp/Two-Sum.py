@@ -8,13 +8,16 @@ def two_sum(nums: list[int], target: int) -> tuple[int, int] | None:
     """
     num_set = set()
 
+
     for num in nums:
         complement = target - num
         if complement in num_set:
             return (complement, num)
         num_set.add(num)
 
+
     return None
+
 
 
 if __name__ == "__main__":
