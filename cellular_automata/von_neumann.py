@@ -313,4 +313,5 @@ def simulate_von_neumann_cellular_automaton(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
