@@ -59,9 +59,7 @@ def create_random_grid(
         raise ValueError("alive_probability must be between 0.0 and 1.0")
 
     rng = np.random.default_rng(seed)
-    alive_cells = (rng.random((rows, columns)) < alive_probability).astype(
-        np.uint8
-    )
+    alive_cells = (rng.random((rows, columns)) < alive_probability).astype(np.uint8)
     return alive_cells
 
 
