@@ -15,18 +15,17 @@ Requirements: numpy
 """
 
 import numpy as np
-from typing import Set, Tuple, Dict, Optional
 
 
 def create_random_grid(
-    rows: int, columns: int, alive_probability: float, seed: Optional[int] = None
+    rows: int, columns: int, alive_probability: float, seed: int | None = None
 ) -> np.ndarray:
     """
     Create initial grid with randomly distributed alive cells.
 
     Args:
         rows: Number of grid rows
-        columns: Number of grid columns  
+        columns: Number of grid columns
         alive_probability: Probability (0.0-1.0) of each cell being initially alive
         seed: Random seed for reproducibility
 
@@ -60,7 +59,9 @@ def create_random_grid(
         raise ValueError("alive_probability must be between 0.0 and 1.0")
 
     rng = np.random.default_rng(seed)
-    alive_cells = (rng.random((rows, columns)) < alive_probability).astype(np.uint8)
+    alive_cells = (rng.random((rows, columns)) < alive_probability).astype(
+        np.uint8
+    )
     return alive_cells
 
 
@@ -88,11 +89,13 @@ def count_von_neumann_neighbors(
         >>> counts = count_von_neumann_neighbors(mask, use_wraparound=False)
         >>> int(counts[1, 1])  # center cell has 0 neighbors (all adjacent are 0)
         0
-        >>> int(counts[0, 1])  # top middle has 3 neighbors (down, left, right are 1)
+        >>> int(counts[0, 1])  # top middle has 3 neighbors (down, left, right)
         3
 
         >>> mask_simple = np.array([[1, 1], [1, 0]], dtype=np.uint8)
-        >>> counts_simple = count_von_neumann_neighbors(mask_simple, use_wraparound=False)
+        >>> counts_simple = count_von_neumann_neighbors(
+        ...     mask_simple, use_wraparound=False
+        ... )
         >>> int(counts_simple[0, 0])  # top-left has 2 neighbors (right and down)
         2
 
@@ -115,23 +118,25 @@ def count_von_neumann_neighbors(
         down_neighbors = np.roll(alive_mask, 1, axis=0)
         left_neighbors = np.roll(alive_mask, -1, axis=1)
         right_neighbors = np.roll(alive_mask, 1, axis=1)
-        neighbor_counts = up_neighbors + down_neighbors + left_neighbors + right_neighbors
+        neighbor_counts = (
+            up_neighbors + down_neighbors + left_neighbors + right_neighbors
+        )
     else:
         # Manually count neighbors without wraparound
         for r in range(rows):
             for c in range(cols):
                 count = 0
                 # Check up
-                if r > 0 and alive_mask[r-1, c]:
+                if r > 0 and alive_mask[r - 1, c]:
                     count += 1
                 # Check down
-                if r < rows-1 and alive_mask[r+1, c]:
+                if r < rows - 1 and alive_mask[r + 1, c]:
                     count += 1
                 # Check left
-                if c > 0 and alive_mask[r, c-1]:
+                if c > 0 and alive_mask[r, c - 1]:
                     count += 1
                 # Check right
-                if c < cols-1 and alive_mask[r, c+1]:
+                if c < cols - 1 and alive_mask[r, c + 1]:
                     count += 1
                 neighbor_counts[r, c] = count
 
@@ -140,8 +145,8 @@ def count_von_neumann_neighbors(
 
 def apply_cellular_automaton_rules(
     current_ages: np.ndarray,
-    birth_neighbor_counts: Set[int],
-    survival_neighbor_counts: Set[int],
+    birth_neighbor_counts: set[int],
+    survival_neighbor_counts: set[int],
     maximum_age: int = 5,
     use_wraparound: bool = True,
 ) -> np.ndarray:
@@ -168,22 +173,25 @@ def apply_cellular_automaton_rules(
     Examples:
         >>> ages = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], dtype=np.uint8)
         >>> new_ages = apply_cellular_automaton_rules(
-        ...     ages, birth_neighbor_counts={2}, 
+        ...     ages, birth_neighbor_counts={2},
         ...     survival_neighbor_counts={2, 3}, use_wraparound=False
         ... )
-        >>> bool(new_ages[0, 0] > 0)  # corner should be born (2 neighbors: right and down)
+        >>> # corner should be born (2 neighbors: right and down)
+        >>> bool(new_ages[0, 0] > 0)
         True
 
         >>> # Test aging of dead cells
         >>> dead_aging = np.array([[2, 0, 0]], dtype=np.uint8)  # age 2, no survival
         >>> result = apply_cellular_automaton_rules(
-        ...     dead_aging, birth_neighbor_counts=set(), 
+        ...     dead_aging, birth_neighbor_counts=set(),
         ...     survival_neighbor_counts=set(), maximum_age=3
         ... )
         >>> bool(result[0, 0] == 3)  # should age from 2 to 3
         True
 
-        >>> apply_cellular_automaton_rules(np.array([1, 2]), {1}, {1})  # doctest: +IGNORE_EXCEPTION_DETAIL
+        >>> apply_cellular_automaton_rules(
+        ...     np.array([1, 2]), {1}, {1}
+        ... )  # doctest: +IGNORE_EXCEPTION_DETAIL
         Traceback (most recent call last):
         ValueError: current_ages must be a 2D array
     """
@@ -198,8 +206,12 @@ def apply_cellular_automaton_rules(
     )
 
     # Determine which cells are born or survive
-    birth_mask = (~alive_cells_mask) & np.isin(neighbor_counts, list(birth_neighbor_counts))
-    survival_mask = alive_cells_mask & np.isin(neighbor_counts, list(survival_neighbor_counts))
+    birth_mask = (~alive_cells_mask) & np.isin(
+        neighbor_counts, list(birth_neighbor_counts)
+    )
+    survival_mask = alive_cells_mask & np.isin(
+        neighbor_counts, list(survival_neighbor_counts)
+    )
 
     new_ages = current_ages.copy()
 
@@ -223,11 +235,11 @@ def simulate_von_neumann_cellular_automaton(
     grid_rows: int = 20,
     grid_columns: int = 40,
     initial_alive_probability: float = 0.25,
-    birth_rules: Set[int] = None,
-    survival_rules: Set[int] = None,
+    birth_rules: set[int] | None = None,
+    survival_rules: set[int] | None = None,
     maximum_cell_age: int = 5,
     generations: int = 100,
-    random_seed: Optional[int] = None,
+    random_seed: int | None = None,
     use_wraparound_edges: bool = True,
 ) -> list[np.ndarray]:
     """
@@ -262,7 +274,9 @@ def simulate_von_neumann_cellular_automaton(
         >>> all(grid.shape == (5, 5) for grid in result)
         True
 
-        >>> simulate_von_neumann_cellular_automaton(generations=0)  # doctest: +IGNORE_EXCEPTION_DETAIL
+        >>> simulate_von_neumann_cellular_automaton(
+        ...     generations=0
+        ... )  # doctest: +IGNORE_EXCEPTION_DETAIL
         Traceback (most recent call last):
         ValueError: generations must be positive
     """
