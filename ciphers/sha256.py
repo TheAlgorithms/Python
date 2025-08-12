@@ -19,6 +19,7 @@ in the NIST standard.
 """
 
 import math
+from collections.abc import Iterator
 from itertools import count, islice
 
 # =============================================================================
@@ -232,7 +233,7 @@ def is_prime(num_to_test: int) -> bool:
     return all(num_to_test % f != 0 for f in range(2, math.isqrt(num_to_test) + 1))
 
 
-def first_n_primes(count_primes: int) -> list[int]:
+def first_n_primes(count_primes: int) -> Iterator[int]:
     """
     Generates the first n prime numbers using itertools.count and a primality test.
         Examples:
