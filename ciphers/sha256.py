@@ -32,7 +32,7 @@ from itertools import count, islice
 MASK32 = 0xFFFFFFFF
 
 
-def rotr(x: int, n: int, size: int = 32) -> int:
+def rotr(value: int, shift: int, bit_width: int = 32) -> int:
     """
     Circular right rotation (ROTR) of a `size`-bit word.
     Equivalent to shifting bits right by n positions and wrapping the overflow.
@@ -50,14 +50,14 @@ def rotr(x: int, n: int, size: int = 32) -> int:
     '0x1e1e1e1e'
     """
 
-    size = int(size)
-    mask = (1 << size) - 1
-    x &= mask
-    n %= size
-    return ((x >> n) | ((x << (size - n)) & mask)) & mask
+    bit_width = int(bit_width)
+    mask = (1 << bit_width) - 1
+    value &= mask
+    shift %= bit_width
+    return ((value >> shift) | ((value << (bit_width - shift)) & mask)) & mask
 
 
-def shr(x: int, n: int) -> int:
+def shr(value: int, shift: int) -> int:
     """
     Logical right shift (SHR).
     Bits shifted in from the left are zero-filled.
@@ -74,12 +74,12 @@ def shr(x: int, n: int) -> int:
     >>> shr(15, 0)
     15
     """
-    if n == 0:
-        return x & MASK32
-    return (x & MASK32) >> n
+    if shift == 0:
+        return value & MASK32
+    return (value & MASK32) >> shift
 
 
-def sig0(x: int) -> int:
+def sig0(value: int) -> int:
     """
     σ₀ (lowercase sigma 0) function:
     σ₀(x) = ROTR⁷(x) ⊕ ROTR¹⁸(x) ⊕ SHR³(x)
@@ -90,10 +90,10 @@ def sig0(x: int) -> int:
     >>> hex(sig0(0))
     '0x0'
     """
-    return (rotr(x, 7) ^ rotr(x, 18) ^ shr(x, 3)) & MASK32
+    return (rotr(value, 7) ^ rotr(value, 18) ^ shr(value, 3)) & MASK32
 
 
-def sig1(x: int) -> int:
+def sig1(value: int) -> int:
     """
     σ₁ (lowercase sigma 1) function:
     σ₁(x) = ROTR¹⁷(x) ⊕ ROTR¹⁹(x) ⊕ SHR¹⁰(x)
@@ -104,10 +104,10 @@ def sig1(x: int) -> int:
     >>> hex(sig1(0))
     '0x0'
     """
-    return (rotr(x, 17) ^ rotr(x, 19) ^ shr(x, 10)) & MASK32
+    return (rotr(value, 17) ^ rotr(value, 19) ^ shr(value, 10)) & MASK32
 
 
-def capsig0(x: int) -> int:
+def capsig0(value: int) -> int:
     """
     Σ₀ (uppercase sigma 0) function:
     Σ₀(x) = ROTR²(x) ⊕ ROTR¹³(x) ⊕ ROTR²²(x)
@@ -118,10 +118,10 @@ def capsig0(x: int) -> int:
     >>> hex(capsig0(0))
     '0x0'
     """
-    return (rotr(x, 2) ^ rotr(x, 13) ^ rotr(x, 22)) & MASK32
+    return (rotr(value, 2) ^ rotr(value, 13) ^ rotr(value, 22)) & MASK32
 
 
-def capsig1(x: int) -> int:
+def capsig1(value: int) -> int:
     """
     Σ₁ (uppercase sigma 1) function:
     Σ₁(x) = ROTR⁶(x) ⊕ ROTR¹¹(x) ⊕ ROTR²⁵(x)
@@ -132,10 +132,10 @@ def capsig1(x: int) -> int:
     >>> hex(capsig1(0))
     '0x0'
     """
-    return (rotr(x, 6) ^ rotr(x, 11) ^ rotr(x, 25)) & MASK32
+    return (rotr(value, 6) ^ rotr(value, 11) ^ rotr(value, 25)) & MASK32
 
 
-def ch(x: int, y: int, z: int) -> int:
+def ch(choice_mask: int, true_value: int, false_value: int) -> int:
     """
     Choice function:
     Ch(x, y, z) = (x ∧ y) ⊕ (¬x ∧ z)
@@ -148,10 +148,12 @@ def ch(x: int, y: int, z: int) -> int:
     >>> bin(ch(0b1, 0b1010, 0b1111))
     '0b1110'
     """
-    return ((x & y) ^ ((~x & MASK32) & z)) & MASK32
+    return (
+        (choice_mask & true_value) ^ ((~choice_mask & MASK32) & false_value)
+    ) & MASK32
 
 
-def maj(x: int, y: int, z: int) -> int:
+def maj(bit_a: int, bit_b: int, bit_c: int) -> int:
     """
     Majority function:
     Maj(x, y, z) = (x ∧ y) ⊕ (x ∧ z) ⊕ (y ∧ z)
@@ -164,10 +166,10 @@ def maj(x: int, y: int, z: int) -> int:
     >>> bin(maj(0b1, 0b1010, 0b1111))
     '0b1011'
     """
-    return ((x & y) ^ (x & z) ^ (y & z)) & MASK32
+    return ((bit_a & bit_b) ^ (bit_a & bit_c) ^ (bit_b & bit_c)) & MASK32
 
 
-def b2i(b: bytes) -> int:
+def b2i(bigi: bytes) -> int:
     """
     Converts a big-endian byte sequence to an integer.
 
@@ -179,22 +181,22 @@ def b2i(b: bytes) -> int:
     >>> b2i(b'')
     0
     """
-    return int.from_bytes(b, byteorder="big")
+    return int.from_bytes(bigi, byteorder="big")
 
 
-def i2b(i: int) -> bytes:
+def int_to_big_endian_bytes(value: int) -> bytes:
     """
     Converts a 32-bit integer to a 4-byte big-endian representation.
 
     Examples:
-    >>> i2b(1)
+    >>> int_to_big_endian_bytes(1)
     b'\\x00\\x00\\x00\\x01'
-    >>> i2b(305419896)
+    >>> int_to_big_endian_bytes(305419896)
     b'\\x124Vx'
-    >>> i2b(0)
+    >>> int_to_big_endian_bytes(0)
     b'\\x00\\x00\\x00\\x00'
     """
-    return i.to_bytes(4, byteorder="big")
+    return value.to_bytes(4, byteorder="big")
 
 
 # =============================================================================
@@ -230,7 +232,7 @@ def is_prime(n: int) -> bool:
     return all(n % f != 0 for f in range(2, math.isqrt(n) + 1))
 
 
-def first_n_primes(n: int):
+def first_n_primes(count_primes: int):
     """
     Generates the first n prime numbers using itertools.count and a primality test.
         Examples:
@@ -243,10 +245,10 @@ def first_n_primes(n: int):
     >>> list(first_n_primes(3))
     [2, 3, 5]
     """
-    return islice(filter(is_prime, count(start=2)), n)
+    return islice(filter(is_prime, count(start=2)), count_primes)
 
 
-def frac_bin(f: float, n: int = 32) -> int:
+def frac_bin(fraction_value: float, bit_count: int = 32) -> int:
     """
     Returns the first n bits of the fractional part of a floating-point number.
 
@@ -265,8 +267,8 @@ def frac_bin(f: float, n: int = 32) -> int:
     >>> frac_bin(math.sqrt(3) - 1, 8)
     187
     """
-    frac_part = f - math.floor(f)  # Keep only fractional part
-    shifted = frac_part * (1 << n)  # Shift left to extract n bits
+    frac_part = fraction_value - math.floor(fraction_value)  # Keep only fractional part
+    shifted = frac_part * (1 << bit_count)  # Shift left to extract bits
     return int(shifted)  # Truncate to integer (n-bit precision)
 
 
@@ -461,7 +463,7 @@ def sha256(message: bytes) -> bytes:
         h = [(x + y) & 0xFFFFFFFF for x, y in zip(h, [a, b_, c, d, e, f, g, h_temp])]
 
     # Produce the final digest by concatenating H[0..7] in big-endian byte order
-    return b"".join(i2b(h_i) for h_i in h)
+    return b"".join(int_to_big_endian_bytes(h_i) for h_i in h)
 
 
 if __name__ == "__main__":
