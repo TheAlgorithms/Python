@@ -210,7 +210,7 @@ def int_to_big_endian_bytes(value: int) -> bytes:
 # =============================================================================
 
 
-def is_prime(n: int) -> bool:
+def is_prime(num_to_test: int) -> bool:
     """
     Returns True if n is a prime number.
     Uses trial division up to floor(sqrt(n)).
@@ -227,9 +227,9 @@ def is_prime(n: int) -> bool:
     >>> is_prime(0)
     False
     """
-    if n < 2:
+    if num_to_test < 2:
         return False
-    return all(n % f != 0 for f in range(2, math.isqrt(n) + 1))
+    return all(num_to_test % f != 0 for f in range(2, math.isqrt(num_to_test) + 1))
 
 
 def first_n_primes(count_primes: int):
