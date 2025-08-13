@@ -31,7 +31,7 @@ If you are interested in resolving an [open issue](https://github.com/TheAlgorit
 
 __Do not__ create an issue to contribute an algorithm. Please submit a pull request instead.
 
-Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.  
+Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
 For example, if your pull request fixes issue #10, then please add the following to its description:
 ```
 Fixes #10
