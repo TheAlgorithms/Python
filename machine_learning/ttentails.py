@@ -20,8 +20,8 @@ def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
 
     Returns:
         bool: True if KB entails query, False otherwise
-    
-    Example: 
+
+    Example:
         tt_entails(["P or Q"], "Q", ["P","Q"])
 
     """
@@ -33,19 +33,17 @@ def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
             return False
     return True
 
+
 # Example usage
 if __name__ == "__main__":
     # Example 1: KB entails query → should return True
     symbols = ["P", "Q"]
-    kb = ["P or Q", "not P or Q"] # KB says P or Q is True, and not P or Q is True
-    query = "Q" # Query: Is Q True?
+    kb = ["P or Q", "not P or Q"]  # KB says P or Q is True, and not P or Q is True
+    query = "Q"  # Query: Is Q True?
     print("Does KB entail query? : ", tt_entails(kb, query, symbols))
-    
+
     # Example 2: KB does NOT entail query → should return False
     symbols2 = ["P", "Q"]
-    kb2 = ["P"]        # KB says only P is True
-    query2 = "Q"       # Query asks if Q is True
+    kb2 = ["P"]  # KB says only P is True
+    query2 = "Q"  # Query asks if Q is True
     print("Does KB2 entail query2? : ", tt_entails(kb2, query2, symbols2))
-    
-
-
