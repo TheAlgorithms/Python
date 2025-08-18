@@ -1,6 +1,7 @@
 """
 TT-ENTAILS Algorithm (Propositional Logic)
-Reference: Russell & Norvig, Artificial Intelligence: A Modern Approach
+Reference: [Russell & Norvig, Artificial Intelligence: A Modern Approach, Ch. 7](https://aima.cs.berkeley.edu/)
+Wikipedia: [Entailment](https://en.wikipedia.org/wiki/Entailment)
 
 This algorithm checks if a knowledge base (KB) entails a query sentence (α)
 using truth tables. Returns True if KB entails α, False otherwise.
