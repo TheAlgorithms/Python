@@ -8,20 +8,36 @@ using truth tables. Returns True if KB entails a, False otherwise.
 """
 
 import itertools
-import re
+import ast
+import operator
 
+OPS = {
+    ast.And: operator.and_,
+    ast.Or: operator.or_,
+    ast.Not: operator.not_
+}
 
 def safe_eval(expr: str, model: dict[str, bool]) -> bool:
-    """Safely evaluate propositional logic expression with given model."""
-    # Replace symbols (like P, Q) with their boolean values
-    for sym, val in model.items():
-        expr = re.sub(rf'\b{sym}\b', str(val), expr)
-    # Allow only True/False, and/or/not operators
-    allowed = {"True", "False", "and", "or", "not", "(", ")", " "}
-    if not all(token in allowed or token.isidentifier() or token in "()" for token in re.split(r'(\W+)', expr)):
-        raise ValueError("Unsafe expression detected")
-    return eval(expr, {"__builtins__": {}}, {})
+    """Safely evaluate propositional logic expression using ast."""
+    tree = ast.parse(expr, mode="eval")
 
+    def _eval(node):
+        if isinstance(node, ast.Expression):
+            return _eval(node.body)
+        if isinstance(node, ast.Name):
+            return model[node.id]
+        if isinstance(node, ast.Constant):  # True / False
+            return node.value
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+            return OPS[ast.Not](_eval(node.operand))
+        if isinstance(node, ast.BoolOp):
+            if isinstance(node.op, ast.And):
+                return all(_eval(v) for v in node.values)
+            if isinstance(node.op, ast.Or):
+                return any(_eval(v) for v in node.values)
+        raise ValueError(f"Unsupported expression: {expr}")
+
+    return _eval(tree)
 
 def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
     """
