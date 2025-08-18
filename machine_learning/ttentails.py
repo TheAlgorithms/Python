@@ -9,6 +9,7 @@ using truth tables. Returns True if KB entails a, False otherwise.
 
 import itertools
 
+
 def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
     """
     Check if the knowledge base entails the query using truth tables.
@@ -29,7 +30,9 @@ def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
         model: dict[str, bool] = dict(zip(symbols, values))
         # Check if KB is true under this model
         # # If query is false in this model, KB does not entail query
-        if all(eval(sentence, {}, model) for sentence in kb) and not eval(query, {}, model):
+        if all(eval(sentence, {}, model) for sentence in kb) and not eval(
+            query, {}, model
+        ):
             return False
     return True
 
