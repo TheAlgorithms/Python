@@ -15,10 +15,13 @@ def safe_eval(expr: str, model: dict[str, bool]) -> bool:
     """Safely evaluate propositional logic expression with given model."""
     # Replace symbols (like P, Q) with their boolean values
     for sym, val in model.items():
-        expr = re.sub(rf'\b{sym}\b', str(val), expr)
+        expr = re.sub(rf"\b{sym}\b", str(val), expr)
     # Allow only True/False, and/or/not operators
     allowed = {"True", "False", "and", "or", "not", "(", ")", " "}
-    if not all(token in allowed or token.isidentifier() or token in "()" for token in re.split(r'(\W+)', expr)):
+    if not all(
+        token in allowed or token.isidentifier() or token in "()"
+        for token in re.split(r"(\W+)", expr)
+    ):
         raise ValueError("Unsafe expression detected")
     return eval(expr, {"__builtins__": {}}, {})
 
@@ -43,7 +46,9 @@ def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
         model: dict[str, bool] = dict(zip(symbols, values))
         # Check if KB is true under this model
         # # If query is false in this model, KB does not entail query
-        if all(safe_eval(sentence, model) for sentence in kb) and not safe_eval(query, model):
+        if all(safe_eval(sentence, model) for sentence in kb) and not safe_eval(
+            query, model
+        ):
             return False
     return True
 
