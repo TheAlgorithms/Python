@@ -3,14 +3,13 @@ TT-ENTAILS Algorithm (Propositional Logic)
 Reference: [Russell & Norvig, Artificial Intelligence: A Modern Approach, Ch. 7](https://aima.cs.berkeley.edu/)
 Wikipedia: [Entailment](https://en.wikipedia.org/wiki/Entailment)
 
-This algorithm checks if a knowledge base (KB) entails a query sentence (α)
-using truth tables. Returns True if KB entails α, False otherwise.
+This algorithm checks if a knowledge base (KB) entails a query sentence (a)
+using truth tables. Returns True if KB entails a, False otherwise.
 """
 
 import itertools
-from typing import List, Dict
 
-def tt_entails(kb: List[str], query: str, symbols: List[str]) -> bool:
+def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
     """
     Check if the knowledge base entails the query using truth tables.
 
@@ -27,12 +26,11 @@ def tt_entails(kb: List[str], query: str, symbols: List[str]) -> bool:
 
     """
     for values in itertools.product([True, False], repeat=len(symbols)):
-        model: Dict[str, bool] = dict(zip(symbols, values))
+        model: dict[str, bool] = dict(zip(symbols, values))
         # Check if KB is true under this model
-        if all(eval(sentence, {}, model) for sentence in kb):
-            # If query is false in this model, KB does not entail query
-            if not eval(query, {}, model):
-                return False
+        # # If query is false in this model, KB does not entail query
+        if all(eval(sentence, {}, model) for sentence in kb) and not eval(query, {}, model):
+            return False
     return True
 
 # Example usage
