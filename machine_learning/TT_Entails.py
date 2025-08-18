@@ -1,0 +1,52 @@
+"""
+TT-ENTAILS Algorithm (Propositional Logic)
+Reference: Russell & Norvig, Artificial Intelligence: A Modern Approach
+
+This algorithm checks if a knowledge base (KB) entails a query sentence (α)
+using truth tables. Returns True if KB entails α, False otherwise.
+"""
+
+import itertools
+from typing import List, Dict
+
+def tt_entails(kb: List[str], query: str, symbols: List[str]) -> bool:
+    """
+    Check if the knowledge base entails the query using truth tables.
+
+    Args:
+        kb (List[str]): List of propositional sentences in KB as strings
+        query (str): Query sentence to test entailment
+        symbols (List[str]): List of all propositional symbols used
+
+    Returns:
+        bool: True if KB entails query, False otherwise
+    
+    Example: 
+        tt_entails(["P or Q"], "Q", ["P","Q"])
+
+    """
+    for values in itertools.product([True, False], repeat=len(symbols)):
+        model: Dict[str, bool] = dict(zip(symbols, values))
+        # Check if KB is true under this model
+        if all(eval(sentence, {}, model) for sentence in kb):
+            # If query is false in this model, KB does not entail query
+            if not eval(query, {}, model):
+                return False
+    return True
+
+# Example usage
+if __name__ == "__main__":
+    # Example 1: KB entails query → should return True
+    symbols = ["P", "Q"]
+    kb = ["P or Q", "not P or Q"] # KB says P or Q is True, and not P or Q is True
+    query = "Q" # Query: Is Q True?
+    print("Does KB entail query? : ", tt_entails(kb, query, symbols))
+    
+    # Example 2: KB does NOT entail query → should return False
+    symbols2 = ["P", "Q"]
+    kb2 = ["P"]        # KB says only P is True
+    query2 = "Q"       # Query asks if Q is True
+    print("Does KB2 entail query2? : ", tt_entails(kb2, query2, symbols2))
+    
+
+
