@@ -11,11 +11,8 @@ import itertools
 import ast
 import operator
 
-OPS = {
-    ast.And: operator.and_,
-    ast.Or: operator.or_,
-    ast.Not: operator.not_
-}
+OPS = {ast.And: operator.and_, ast.Or: operator.or_, ast.Not: operator.not_}
+
 
 def safe_eval(expr: str, model: dict[str, bool]) -> bool:
     """Safely evaluate propositional logic expression using ast."""
@@ -39,6 +36,7 @@ def safe_eval(expr: str, model: dict[str, bool]) -> bool:
 
     return _eval(tree)
 
+
 def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
     """
     Check if the knowledge base entails the query using truth tables.
@@ -59,7 +57,9 @@ def tt_entails(kb: list[str], query: str, symbols: list[str]) -> bool:
         model: dict[str, bool] = dict(zip(symbols, values))
         # Check if KB is true under this model
         # # If query is false in this model, KB does not entail query
-        if all(safe_eval(sentence, model) for sentence in kb) and not safe_eval(query, model):
+        if all(safe_eval(sentence, model) for sentence in kb) and not safe_eval(
+            query, model
+        ):
             return False
     return True
 
