@@ -1,5 +1,6 @@
 from collections import deque
 
+
 # ---------------- FCFS ----------------
 def fcfs(processes, burst_time):
     n = len(processes)
@@ -8,7 +9,7 @@ def fcfs(processes, burst_time):
 
     # Calculate waiting time
     for i in range(1, n):
-        waiting_time[i] = waiting_time[i-1] + burst_time[i-1]
+        waiting_time[i] = waiting_time[i - 1] + burst_time[i - 1]
 
     # Turnaround time = waiting + burst
     for i in range(n):
@@ -17,6 +18,8 @@ def fcfs(processes, burst_time):
     avg_wt = sum(waiting_time) / n
     avg_tat = sum(turnaround_time) / n
     return waiting_time, turnaround_time, avg_wt, avg_tat
+
+
 if __name__ == "__main__":
     processes = [1, 2, 3]
     burst_time = [5, 9, 6]
