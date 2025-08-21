@@ -1,20 +1,20 @@
-def is_power(n: int, k: int) -> bool:
+def is_power(base: int, number: int) -> bool:
     """
-    Checks if a given integer k is a power of another integer n.
+    Checks if a given integer `number` is a power of another integer `base`.
 
-    This function determines if there exists an integer x such that n^x = k.
+    This function determines if there exists an integer x such that base^x = number.
     It handles positive integers only and raises an error for non-positive inputs.
     For more information, see: https://en.wikipedia.org/wiki/Power_of_two
 
     Args:
-        n: The base integer (must be a positive integer).
-        k: The number to check if it's a power of n (must be a positive integer).
+        base: The base integer (must be a positive integer).
+        number: The number to check if it's a power of base (must be a positive integer).
 
     Returns:
-        True if k is a power of n, False otherwise.
+        True if number is a power of base, False otherwise.
 
     Raises:
-        ValueError: If n or k are not positive integers.
+        ValueError: If base or number are not positive integers.
 
     Examples:
     >>> is_power(2, 8)
@@ -32,24 +32,24 @@ def is_power(n: int, k: int) -> bool:
     >>> is_power(0, 5)
     Traceback (most recent call last):
         ...
-    ValueError: Both n and k must be positive integers
+    ValueError: Both base and number must be positive integers
     >>> is_power(4, -16)
     Traceback (most recent call last):
         ...
-    ValueError: Both n and k must be positive integers
+    ValueError: Both base and number must be positive integers
     """
-    if n <= 0 or k <= 0:
-        raise ValueError("Both n and k must be positive integers")
+    if base <= 0 or number <= 0:
+        raise ValueError("Both base and number must be positive integers")
 
-    if n == 1:
-        return k == 1
+    if base == 1:
+        return number == 1
 
-    # Repeatedly divide k by n until it's no longer divisible.
-    while k % n == 0:
-        k //= n
+    # Repeatedly divide number by base until it's no longer divisible.
+    while number % base == 0:
+        number //= base
 
-    # If k has been reduced to 1, it was a power of n.
-    return k == 1
+    # If number has been reduced to 1, it was a power of base.
+    return number == 1
 
 
 if __name__ == "__main__":
