@@ -14,7 +14,7 @@ X = scaler.fit_transform(X)
 
 X_b = np.c_[np.ones((X.shape[0], 1)), X]  # shape (n_samples, 2)
 
-theta = np.random.randn(2)  
+theta = np.random.randn(2)
 learning_rate = 0.1
 iterations = 100
 m = len(y)
@@ -28,7 +28,7 @@ for i in range(iterations):
     errors = predictions - y
     gradient = (2/m) * X_b.T.dot(errors)
     theta = theta - learning_rate * gradient
-    
+
     loss = (1/m) * np.sum(errors**2)  # MSE
     loss_history.append(loss)
 
