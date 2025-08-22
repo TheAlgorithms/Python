@@ -9,9 +9,18 @@ X, y = make_moons(n_samples=200, noise=0.2, random_state=42)
 
 # Define classifiers with different activation functions
 classifiers = {
-    "relu": MLPClassifier(hidden_layer_sizes=(10, 10), activation="relu", max_iter=2000, random_state=42),
-    "tanh": MLPClassifier(hidden_layer_sizes=(10, 10), activation="tanh", max_iter=2000, random_state=42),
-    "logistic": MLPClassifier(hidden_layer_sizes=(10, 10), activation="logistic", max_iter=2000, random_state=42),
+    "relu": MLPClassifier(
+        hidden_layer_sizes=(10, 10), activation="relu", max_iter=2000, random_state=42
+    ),
+    "tanh": MLPClassifier(
+        hidden_layer_sizes=(10, 10), activation="tanh", max_iter=2000, random_state=42
+    ),
+    "logistic": MLPClassifier(
+        hidden_layer_sizes=(10, 10),
+        activation="logistic",
+        max_iter=2000,
+        random_state=42,
+    ),
 }
 
 # Plot decision boundaries
