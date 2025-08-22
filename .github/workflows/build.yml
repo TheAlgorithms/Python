@@ -1,8 +1,26 @@
-name: "build"
+name: "Build CI/CD PipeLine"
+
 on:
-  pull_request:
-  schedule:
-    - cron: "0 0 * * *" # Run everyday
+ push:
+   branches: [main, develop]
+   paths-ignore:
+   - "*.md"
+   - "docs/**"
+
+
+ pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - "*.md"
+      - "docs/**"
+ schedule:
+    - cron: "0 0 * * *"
+  
+ workflow_dispatch: 
+
+
+    
 jobs:
   build:
     name: Build and Test
