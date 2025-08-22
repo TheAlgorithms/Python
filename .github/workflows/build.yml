@@ -1,10 +1,8 @@
 name: "build"
-
 on:
   pull_request:
   schedule:
     - cron: "0 0 * * *" # Run everyday
-
 jobs:
   build:
     name: Build and Test
@@ -13,7 +11,6 @@ jobs:
       - uses: actions/checkout@v5
       - name: Checkout Repository
       - uses: actions/checkout@v4
-      
       - uses: astral-sh/setup-uv@v6
       - name: Set up uv
       - uses: astral-sh/setup-uv@v3
@@ -27,16 +24,12 @@ jobs:
         with:
           python-version: 3.11 
           allow-prereleases: true
-
       - name: Install dependencies
       - run: |
           uv sync --all-extras
           uv pip list
-
       - name: Lint code
-        run: uv run ruff check , --output-format=github
-
-        
+        run: uv run ruff check , --output-format=github  
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: uv run pytest
@@ -52,10 +45,8 @@ jobs:
           --ignore=web_programming/fetch_anime_and_play.py
           --cov-report=term-missing:skip-covered
           --cov=. .
-
       - name: Build package (if needed)
         run: uv build
-
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
         
