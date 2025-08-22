@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_wine
+from sklearn.preprocessing import StandardScaler
+
+
+data = load_wine()
+X = data.data[:, :1]  # Use the first feature for simplicity
+y = data.target.astype(float)
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+
+X_b = np.c_[np.ones((X.shape[0], 1)), X]  # shape (n_samples, 2)
+
+theta = np.random.randn(2)  
+learning_rate = 0.1
+iterations = 100
+m = len(y)
+
+
+loss_history = []
+
+
+for i in range(iterations):
+    predictions = X_b.dot(theta)
+    errors = predictions - y
+    gradient = (2/m) * X_b.T.dot(errors)
+    theta = theta - learning_rate * gradient
+    
+    loss = (1/m) * np.sum(errors**2)  # MSE
+    loss_history.append(loss)
+
+plt.plot(range(iterations), loss_history, color='blue')
+plt.xlabel("Iterations")
+plt.ylabel("Mean Squared Error")
+plt.title("Gradient Descent on Wine Data")
+plt.show()
+
+print("Final parameters:", theta)
