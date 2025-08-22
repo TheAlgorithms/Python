@@ -7,18 +7,36 @@ on:
 
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Checkout Repository
+      - uses: actions/checkout@v4
+      
       - uses: astral-sh/setup-uv@v6
+      - name: Set up uv
+      - uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
-          cache-dependency-glob: uv.lock
+          cache-dependency-glob: |
+           **/uv.lock
+           **/pyproject.toml
+      - name: Set up Python
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
+          python-version: 3.11 
           allow-prereleases: true
-      - run: uv sync --group=test
+
+      - name: Install dependencies
+      - run: |
+          uv sync --all-extras
+          uv pip list
+
+      - name: Lint code
+        run: uv run ruff check , --output-format=github
+
+        
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: uv run pytest
@@ -34,5 +52,10 @@ jobs:
           --ignore=web_programming/fetch_anime_and_play.py
           --cov-report=term-missing:skip-covered
           --cov=. .
+
+      - name: Build package (if needed)
+        run: uv build
+
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
+        
