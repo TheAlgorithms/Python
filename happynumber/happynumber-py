@@ -1,0 +1,18 @@
+def get_digit_square_sum(num: int) -> int:
+    return sum(int(d) ** 2 for d in str(num))
+
+def is_happy_number(num: int) -> bool:
+    slow, fast = num, num
+    while True:
+        slow = get_digit_square_sum(slow)               # 1 step
+        fast = get_digit_square_sum(get_digit_square_sum(fast))  # 2 steps
+        if slow == fast:
+            break
+    return slow == 1
+
+if __name__ == "__main__":
+    n = int(input("Enter a number: "))
+    if is_happy_number(n):
+        print(f"{n} is a Happy Number ")
+    else:
+        print(f"{n} is NOT a Happy Number ")
