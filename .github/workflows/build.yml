@@ -26,10 +26,9 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
       - name: Checkout Repository
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v5
+     
       - name: Set up uv
       - uses: astral-sh/setup-uv@v3
         with:
@@ -47,7 +46,7 @@ jobs:
           uv sync --all-extras
           uv pip list
       - name: Lint code
-        run: uv run ruff check , --output-format=github  
+        run: uv run ruff check . --output-format=github  
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: uv run pytest
