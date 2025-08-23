@@ -1,11 +1,11 @@
-name: "Build CI/CD PipeLine"
+name: "Build CI/CD Pipeline"
 
 on:
  push:
    branches: [main, develop]
    paths-ignore:
-   - "*.md"
-   - "docs/**"
+      - "*.md"           
+      - "docs/**"  
    
  pull_request:
     branches: [main]
@@ -14,7 +14,7 @@ on:
       - "*.md"
       - "docs/**"
  schedule:
-    - cron: "0 0 * * *"
+   - cron: "0 0 * * *" 
   
  workflow_dispatch: 
 
@@ -24,22 +24,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-      - uses: actions/checkout@v5
+        uses: actions/checkout@v5
      
       - name: Set up uv
-      - uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
           cache-dependency-glob: |
-           **/uv.lock
-           **/pyproject.toml
+            **/uv.lock           
+            **/pyproject.toml    
       - name: Set up Python
-      - uses: actions/setup-python@v5
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11 
+          python-version: "3.11" 
           allow-prereleases: true
       - name: Install dependencies
-      - run: |
+        run: |
           uv sync --all-extras
           uv pip list
       - name: Lint code
@@ -60,11 +60,12 @@ jobs:
             --ignore=web_programming/fetch_anime_and_play.py \
             --cov-report=term-missing:skip-covered \
             --cov=. .
-            
-      - name: Build package (if needed)
-        run: uv build
-        if: ${{ success() }}
 
-      - name: Generate Directory Markdoun
+      - name: Build package (if needed)
+        run: uv build                 
+        if: ${{ success() }} 
+
+      - name: Generate Directory Markdown
         run: python scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
+        if: ${{ success() }}
         
