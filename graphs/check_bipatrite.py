@@ -1,7 +1,7 @@
 from collections import defaultdict, deque
 
 
-def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
+def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
     """
     Check if a graph is bipartite using depth-first search (DFS).
 
@@ -16,9 +16,9 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
 
     Examples:
 
-    >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
+    >>> is_bipartite_dfs({0: [1, 2], 1: [0, 3], 2: [0, 4]})
     True
-    >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 1]}))
+    >>> is_bipartite_dfs({0: [1, 2], 1: [0, 3], 2: [0, 1]})
     False
     >>> is_bipartite_dfs({})
     True
@@ -81,7 +81,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     return True
 
 
-def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
+def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
     """
     Check if a graph is bipartite using a breadth-first search (BFS).
 
@@ -96,9 +96,9 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
 
     Examples:
 
-    >>> is_bipartite_bfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4]}))
+    >>> is_bipartite_bfs({0: [1, 2], 1: [0, 3], 2: [0, 4]})
     True
-    >>> is_bipartite_bfs(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
+    >>> is_bipartite_bfs({0: [1, 2], 1: [0, 2], 2: [0, 1]})
     False
     >>> is_bipartite_bfs({})
     True
