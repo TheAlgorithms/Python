@@ -17,7 +17,7 @@ def signature(word: str) -> str:
     'a1e1f1i1l1n1s1t2'
     """
     frequencies = collections.Counter(word)
-    return "".join(f"{char}{frequencies[char]}" for char in sorted(frequencies))
+    return "".join(f"{char}{frequency}" for char, frequency in sorted(frequencies.items()))
 
 
 def anagram(my_word: str) -> list[str]:
