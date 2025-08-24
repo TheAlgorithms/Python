@@ -16,14 +16,9 @@ def capitalize(sentence: str) -> str:
     if not sentence:
         return ""
 
-    # Get the first character of the sentence
-    first_char = sentence[0]
-    # Check if the first character is a lowercase letter
-    if "a" <= first_char <= "z":
-        # Convert the lowercase letter to uppercase using ASCII value
-        first_char = chr(ord(first_char) - 32)
-    # Return the capitalized first character concatenated with the rest of the sentence
-    return first_char + sentence[1:]
+    # Capitalize the first character if it's a lowercase letter
+    # Concatenate the capitalized character with the rest of the string
+    return sentence[0].upper() + sentence[1:]
 
 
 if __name__ == "__main__":
