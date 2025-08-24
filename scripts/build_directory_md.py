@@ -31,7 +31,7 @@ def md_prefix(indent: int) -> str:
     >>> md_prefix(3)
     '      *'
     """
-    return f"{i * '  '}*" if i else "\n##"
+    return f"{indent * '  '}*" if i else "\n##"
 
 
 def print_path(old_path: str, new_path: str) -> str:
