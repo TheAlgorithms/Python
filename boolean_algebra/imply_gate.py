@@ -36,7 +36,7 @@ def imply_gate(input_1: int, input_2: int) -> int:
 def recursive_imply_list(input_list: list[int]) -> int:
     """
     Recursively calculates the implication of a list.
-    Strictly The Implication is Applied Consecuteivly left to right:
+    Strictly the implication is applied consecutively left to right:
     ( (a -> b) -> c ) -> d ...
 
     >>> recursive_imply_list([])
