@@ -40,21 +40,47 @@ def recursive_imply_list(input_list: list[int]) -> int:
     ( (a -> b) -> c ) -> d ...
 
     >>> recursive_imply_list([])
-    1
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
     >>> recursive_imply_list([0])
-    0
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
     >>> recursive_imply_list([1])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
+    >>> recursive_imply_list([0, 0])
+    1
+    >>> recursive_imply_list([0, 1])
+    1
+    >>> recursive_imply_list([1, 0])
+    0
+    >>> recursive_imply_list([1, 1])
+    1
+    >>> recursive_imply_list([0, 0, 0])
+    0
+    >>> recursive_imply_list([0, 0, 1])
+    1
+    >>> recursive_imply_list([0, 1, 0])
+    0
+    >>> recursive_imply_list([0, 1, 1])
+    1
+    >>> recursive_imply_list([1, 0, 0])
     1
     >>> recursive_imply_list([1, 0, 1])
     1
     >>> recursive_imply_list([1, 1, 0])
     0
+    >>> recursive_imply_list([1, 1, 1])
+    1
     """
-    if not input_list:
-        return 1
-    if len(input_list) == 1:
-        return input_list[0]
+    if len(input_list) < 2:
+        raise ValueError('Input list must contain at least two elements')
     first_implication = imply_gate(input_list[0], input_list[1])
+    if len(input_list) == 2:
+        return first_implication
     new_list = [first_implication, *input_list[2:]]
     return recursive_imply_list(new_list)
 
