@@ -23,7 +23,7 @@ Current ORCL stock price is   188.87
 def stock_price(symbol: str = "AAPL") -> str:
     """
     >>> stock_price("EEEE")
-    '- '
+    'No <fin-streamer> tag with the specified data-testid attribute found.'
     >>> isinstance(float(stock_price("GOOG")),float)
     True
     """
