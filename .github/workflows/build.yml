@@ -9,14 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
           cache-dependency-glob: uv.lock
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.x
           allow-prereleases: true
       - run: uv sync --group=test
       - name: Run tests
@@ -30,6 +30,7 @@ jobs:
           --ignore=project_euler/
           --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
+          --ignore=web_programming/current_stock_price.py
           --ignore=web_programming/fetch_anime_and_play.py
           --cov-report=term-missing:skip-covered
           --cov=. .

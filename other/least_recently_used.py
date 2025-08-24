@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import sys
 from collections import deque
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class LRUCache(Generic[T]):
+class LRUCache[T]:
     """
     Page Replacement Algorithm, Least Recently Used (LRU) Caching.
 
