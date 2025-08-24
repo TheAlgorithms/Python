@@ -54,29 +54,29 @@ def reverse_bit(number: int) -> int:
     >>> reverse_bit(1.1)
     Traceback (most recent call last):
         ...
-    TypeError: input value must be an 'int' type
+    TypeError: Input value must be an 'int' type
 
     >>> reverse_bit("0")
     Traceback (most recent call last):
         ...
-    TypeError: input value must be an 'int' type
+    TypeError: Input value must be an 'int' type
     """
     if not isinstance(number, int):
-        raise TypeError("input value must be an 'int' type")
-    elif number < 0:
-        raise ValueError("the value of input must be non-negative")
+        raise TypeError("Input value must be an 'int' type")
+    if number < 0:
+        raise ValueError("The value of input must be non-negative")
 
     result = 0
-    # iterator over [1 to 32], since we are dealing with a 32-bit integer
+    # iterator over [1 to 32], since we are dealing with a 32 bit integer
     for _ in range(32):
         # left shift the bits by unity
-        result = result << 1
+        result <<= 1
         # get the end bit
         end_bit = number & 1
         # right shift the bits by unity
-        number = number >> 1
+        number >>= 1
         # add that bit to our ans
-        result = result | end_bit
+        result |= end_bit
     return result
 
 
