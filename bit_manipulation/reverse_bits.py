@@ -28,8 +28,7 @@ def get_reverse_bit_string(number: int) -> str:
 
 def reverse_bit(number: int) -> int:
     """
-    Take in an 32-bit integer, reverse its bits,
-    return a 32-bit integer result
+    Take in a 32 bit integer, reverse its bits, return a 32 bit integer result
 
     >>> reverse_bit(25)
     2550136832
