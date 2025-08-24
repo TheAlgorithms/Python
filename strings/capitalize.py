@@ -1,6 +1,6 @@
 def capitalize(sentence: str) -> str:
     """
-    Capitalizes the first character of the string if it is a lowercase letter.
+    Capitalizes the first letter of a sentence or word.
 
     >>> capitalize("hello world")
     'Hello world'
