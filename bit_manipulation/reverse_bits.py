@@ -49,7 +49,7 @@ def reverse_bit(number: int) -> int:
     >>> reverse_bit(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be non-negative
+    ValueError: The value of input must be non-negative
 
     >>> reverse_bit(1.1)
     Traceback (most recent call last):
@@ -67,7 +67,7 @@ def reverse_bit(number: int) -> int:
         raise ValueError("The value of input must be non-negative")
 
     result = 0
-    # iterator over [1 to 32], since we are dealing with a 32 bit integer
+    # iterator over [0 to 31], since we are dealing with a 32 bit integer
     for _ in range(32):
         # left shift the bits by unity
         result <<= 1
@@ -75,7 +75,7 @@ def reverse_bit(number: int) -> int:
         end_bit = number & 1
         # right shift the bits by unity
         number >>= 1
-        # add that bit to our ans
+        # add that bit to our answer
         result |= end_bit
     return result
 
