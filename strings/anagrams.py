@@ -3,12 +3,11 @@ from __future__ import annotations
 import collections
 import pprint
 from pathlib import Path
-from typing import List
 
 
 def signature(word: str) -> str:
     """
-    Return a frequency-based signature for a word.
+    Return a word's frequency-based signature.
 
     >>> signature("test")
     'e1s1t2'
@@ -21,7 +20,7 @@ def signature(word: str) -> str:
     return "".join(f"{ch}{freq[ch]}" for ch in sorted(freq))
 
 
-def anagram(my_word: str) -> List[str]:
+def anagram(my_word: str) -> list[str]:
     """
     Return every anagram of the given word from the dictionary.
 
@@ -35,11 +34,9 @@ def anagram(my_word: str) -> List[str]:
     return word_by_signature.get(signature(my_word), [])
 
 
-# Load word list
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
 word_list = sorted({word.strip().lower() for word in data.splitlines()})
 
-# Map signatures to word list
 word_by_signature = collections.defaultdict(list)
 for word in word_list:
     word_by_signature[signature(word)].append(word)
