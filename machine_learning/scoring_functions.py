@@ -20,11 +20,11 @@ def mae(predict, actual):
     """
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
-    >>> np.around(mae(predict,actual),decimals = 2)
+    >>> float(np.around(mae(predict,actual),decimals = 2))
     0.67
 
     >>> actual = [1,1,1];predict = [1,1,1]
-    >>> mae(predict,actual)
+    >>> float(mae(predict,actual))
     0.0
     """
     predict = np.array(predict)
@@ -41,11 +41,11 @@ def mse(predict, actual):
     """
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
-    >>> np.around(mse(predict,actual),decimals = 2)
+    >>> float(np.around(mse(predict,actual),decimals = 2))
     1.33
 
     >>> actual = [1,1,1];predict = [1,1,1]
-    >>> mse(predict,actual)
+    >>> float(mse(predict,actual))
     0.0
     """
     predict = np.array(predict)
@@ -63,11 +63,11 @@ def rmse(predict, actual):
     """
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
-    >>> np.around(rmse(predict,actual),decimals = 2)
+    >>> float(np.around(rmse(predict,actual),decimals = 2))
     1.15
 
     >>> actual = [1,1,1];predict = [1,1,1]
-    >>> rmse(predict,actual)
+    >>> float(rmse(predict,actual))
     0.0
     """
     predict = np.array(predict)
@@ -84,12 +84,10 @@ def rmse(predict, actual):
 def rmsle(predict, actual):
     """
     Examples(rounded for precision):
-    >>> actual = [10,10,30];predict = [10,2,30]
-    >>> np.around(rmsle(predict,actual),decimals = 2)
+    >>> float(np.around(rmsle(predict=[10, 2, 30], actual=[10, 10, 30]), decimals=2))
     0.75
 
-    >>> actual = [1,1,1];predict = [1,1,1]
-    >>> rmsle(predict,actual)
+    >>> float(rmsle(predict=[1, 1, 1], actual=[1, 1, 1]))
     0.0
     """
     predict = np.array(predict)
@@ -117,12 +115,12 @@ def mbd(predict, actual):
 
     Here the model overpredicts
     >>> actual = [1,2,3];predict = [2,3,4]
-    >>> np.around(mbd(predict,actual),decimals = 2)
+    >>> float(np.around(mbd(predict,actual),decimals = 2))
     50.0
 
     Here the model underpredicts
     >>> actual = [1,2,3];predict = [0,1,1]
-    >>> np.around(mbd(predict,actual),decimals = 2)
+    >>> float(np.around(mbd(predict,actual),decimals = 2))
     -66.67
     """
     predict = np.array(predict)

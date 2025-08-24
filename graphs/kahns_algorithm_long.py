@@ -17,8 +17,7 @@ def longest_distance(graph):
         for x in graph[vertex]:
             indegree[x] -= 1
 
-            if long_dist[vertex] + 1 > long_dist[x]:
-                long_dist[x] = long_dist[vertex] + 1
+            long_dist[x] = max(long_dist[x], long_dist[vertex] + 1)
 
             if indegree[x] == 0:
                 queue.append(x)

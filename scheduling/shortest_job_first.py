@@ -66,8 +66,7 @@ def calculate_waitingtime(
             finar = finish_time - arrival_time[short]
             waiting_time[short] = finar - burst_time[short]
 
-            if waiting_time[short] < 0:
-                waiting_time[short] = 0
+            waiting_time[short] = max(waiting_time[short], 0)
 
         # Increment time
         increment_time += 1

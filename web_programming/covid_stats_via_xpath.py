@@ -4,9 +4,17 @@ This is to show simple COVID19 info fetching from worldometers site using lxml
 more convenient to use in Python web projects (e.g. Django or Flask-based)
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+#     "lxml",
+# ]
+# ///
+
 from typing import NamedTuple
 
-import requests
+import httpx
 from lxml import html
 
 
@@ -19,7 +27,7 @@ class CovidData(NamedTuple):
 def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
     return CovidData(
-        *html.fromstring(requests.get(url, timeout=10).content).xpath(xpath_str)
+        *html.fromstring(httpx.get(url, timeout=10).content).xpath(xpath_str)
     )
 
 

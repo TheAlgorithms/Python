@@ -36,7 +36,7 @@ def build_tree() -> TreeNode:
         right_node = TreeNode(int(check))
         node_found.right = right_node
         q.put(right_node)
-    raise
+    raise ValueError("Something went wrong")
 
 
 def pre_order(node: TreeNode) -> None:
@@ -164,8 +164,8 @@ def level_order_actual(node: TreeNode) -> None:
             if node_dequeued.right:
                 list_.append(node_dequeued.right)
         print()
-        for node in list_:
-            q.put(node)
+        for inner_node in list_:
+            q.put(inner_node)
 
 
 # iteration version

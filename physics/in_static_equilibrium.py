@@ -53,7 +53,7 @@ def in_static_equilibrium(
     # summation of moments is zero
     moments: NDArray[float64] = cross(location, forces)
     sum_moments: float = sum(moments)
-    return abs(sum_moments) < eps
+    return bool(abs(sum_moments) < eps)
 
 
 if __name__ == "__main__":

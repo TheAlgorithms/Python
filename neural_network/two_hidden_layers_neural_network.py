@@ -64,7 +64,7 @@ class TwoHiddenLayerNeuralNetwork:
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> res = nn.feedforward()
         >>> array_sum = np.sum(res)
-        >>> np.isnan(array_sum)
+        >>> bool(np.isnan(array_sum))
         False
         """
         # Layer_between_input_and_first_hidden_layer is the layer connecting the
@@ -105,7 +105,7 @@ class TwoHiddenLayerNeuralNetwork:
         >>> res = nn.feedforward()
         >>> nn.back_propagation()
         >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
-        >>> (res == updated_weights).all()
+        >>> bool((res == updated_weights).all())
         False
         """
 
@@ -171,7 +171,7 @@ class TwoHiddenLayerNeuralNetwork:
         >>> first_iteration_weights = nn.feedforward()
         >>> nn.back_propagation()
         >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
-        >>> (first_iteration_weights == updated_weights).all()
+        >>> bool((first_iteration_weights == updated_weights).all())
         False
         """
         for iteration in range(1, iterations + 1):
