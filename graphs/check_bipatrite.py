@@ -160,6 +160,8 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
             visited[node] = 0
             while queue:
                 curr_node = queue.popleft()
+                if curr_node not in graph:
+                    continue
                 for neighbor in graph[curr_node]:
                     if visited[neighbor] == -1:
                         visited[neighbor] = 1 - visited[curr_node]
