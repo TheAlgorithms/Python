@@ -39,14 +39,14 @@ class FFT:
     >>> x = FFT(A, B)
 
     Print product
-    >>> x.product  # 2x + 3x^2 + 8x^3 + 4x^4 + 6x^5
+    >>> x.product  # 2x + 3x^2 + 8x^3 + 6x^4 + 8x^5
     [(-0-0j), (2+0j), (3-0j), (8-0j), (6+0j), (8+0j)]
 
     __str__ test
     >>> print(x)
-    A = 0*x^0 + 1*x^1 + 2*x^0 + 3*x^2
-    B = 0*x^2 + 1*x^3 + 2*x^4
-    A*B = 0*x^(-0-0j) + 1*x^(2+0j) + 2*x^(3-0j) + 3*x^(8-0j) + 4*x^(6+0j) + 5*x^(8+0j)
+    A = 0*x^0 + 1*x^1 + 0*x^2 + 2*x^3
+    B = 2*x^0 + 3*x^1 + 4*x^2
+    A*B = (-0-0j)*x^0 + (2+0j)*x^1 + (3-0j)*x^2 + (8-0j)*x^3 + (6+0j)*x^4 + (8+0j)*x^5
     """
 
     def __init__(self, poly_a=None, poly_b=None):
@@ -176,3 +176,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
