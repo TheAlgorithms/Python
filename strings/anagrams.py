@@ -31,7 +31,7 @@ def anagram(my_word: str) -> list[str]:
     >>> anagram('final')
     ['final']
     """
-    return word_by_signature.get(signature(my_word), [])
+    return word_by_signature[signature(my_word)]
 
 
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
