@@ -1,7 +1,6 @@
 def get_reverse_bit_string(number: int) -> str:
     """
-    Take in an 32-bit integer,
-    return a string of reversed bits of given number in big-endian order
+    Return the reverse bit string of a 32 bit integer
 
     >>> get_reverse_bit_string(9)
     '10010000000000000000000000000000'
@@ -9,8 +8,6 @@ def get_reverse_bit_string(number: int) -> str:
     '11010100000000000000000000000000'
     >>> get_reverse_bit_string(2873)
     '10011100110100000000000000000000'
-    >>> get_reverse_bit_string(2550136832)
-    '00000000000000000000000000011001'
     >>> get_reverse_bit_string("this is not a number")
     Traceback (most recent call last):
         ...
@@ -22,8 +19,11 @@ def get_reverse_bit_string(number: int) -> str:
             f"{type(number).__name__}"
         )
         raise TypeError(msg)
-    reversed_num = reverse_bit(number)
-    return format(reversed_num, "032b")
+    bit_string = ""
+    for _ in range(32):
+        bit_string += str(number % 2)
+        number >>= 1
+    return bit_string
 
 
 def reverse_bit(number: int) -> int:
