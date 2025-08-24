@@ -25,6 +25,7 @@ def anagram(my_word: str) -> list[str]:
     """Return every anagram of the given word"""
     return word_by_signature[signature(my_word)]
 
+
 # --- Load words from file ---
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
 word_list = sorted({word.strip().lower() for word in data.splitlines()})
