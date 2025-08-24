@@ -8,6 +8,8 @@ def get_reverse_bit_string(number: int) -> str:
     '11010100000000000000000000000000'
     >>> get_reverse_bit_string(2873)
     '10011100110100000000000000000000'
+    >>> get_reverse_bit_string(2550136832)
+    '00000000000000000000000000011001'
     >>> get_reverse_bit_string("this is not a number")
     Traceback (most recent call last):
         ...
