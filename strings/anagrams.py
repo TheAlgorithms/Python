@@ -8,21 +8,22 @@ from typing import List
 
 def signature(word: str) -> str:
     """
-    Return a word sorted by its letters.
+    Return a frequency-based signature for a word.
 
     >>> signature("test")
-    'estt'
+    'e1s1t2'
     >>> signature("this is a test")
-    '   aehiisssttt'
+    ' 3a1e1h1i2s3t3'
     >>> signature("finaltest")
-    'aefilnstt'
+    'a1e1f1i1l1n1s1t2'
     """
-    return "".join(sorted(word))
+    freq = collections.Counter(word)
+    return "".join(f"{ch}{freq[ch]}" for ch in sorted(freq))
 
 
 def anagram(my_word: str) -> List[str]:
     """
-    Return every anagram of the given word.
+    Return every anagram of the given word from the dictionary.
 
     >>> anagram('test')
     ['sett', 'stet', 'test']
@@ -34,9 +35,11 @@ def anagram(my_word: str) -> List[str]:
     return word_by_signature.get(signature(my_word), [])
 
 
+# Load word list
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
 word_list = sorted({word.strip().lower() for word in data.splitlines()})
 
+# Map signatures to word list
 word_by_signature = collections.defaultdict(list)
 for word in word_list:
     word_by_signature[signature(word)].append(word)
