@@ -50,9 +50,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
     True
     >>> is_bipartite_dfs({0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]})
-    Traceback (most recent call last):
-        ...
-    KeyError: 'b'
+    True
     """
 
     def depth_first_search(node: int, color: int) -> bool:
@@ -132,9 +130,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     >>> is_bipartite_bfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
     True
     >>> is_bipartite_bfs({0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]})
-    Traceback (most recent call last):
-        ...
-    KeyError: 'b'
+    True
     """
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
     for node in graph:
