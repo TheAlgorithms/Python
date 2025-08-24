@@ -18,19 +18,16 @@ def good_file_paths(top_dir: str = ".") -> Iterator[str]:
                 yield os.path.join(dir_path, filename).lstrip("./")
 
 
-def md_prefix(i):
+def md_prefix(indent: int) -> str:
     """
-    Markdown prefix based on level for bullet points
+    Markdown prefix based on indent for bullet points
 
     >>> md_prefix(0)
     '\\n##'
-
     >>> md_prefix(1)
     '  *'
-
     >>> md_prefix(2)
     '    *'
-
     >>> md_prefix(3)
     '      *'
     """
