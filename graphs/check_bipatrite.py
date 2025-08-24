@@ -153,7 +153,7 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     KeyError: 'b'
     """
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
-    for node in list(graph):
+    for node in graph:
         if visited[node] == -1:
             queue: deque[int] = deque()
             queue.append(node)
