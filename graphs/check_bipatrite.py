@@ -77,13 +77,15 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         """
         if visited[node] == -1:
             visited[node] = color
+            if node not in graph:
+                return True
             for neighbor in graph[node]:
                 if not depth_first_search(neighbor, 1 - color):
                     return False
         return visited[node] == color
 
     visited: defaultdict[int, int] = defaultdict(lambda: -1)
-    for node in list(graph):
+    for node in graph:
         if visited[node] == -1 and not depth_first_search(node, 0):
             return False
     return True
