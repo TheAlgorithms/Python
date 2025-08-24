@@ -77,7 +77,7 @@ def recursive_imply_list(input_list: list[int]) -> int:
     1
     """
     if len(input_list) < 2:
-        raise ValueError('Input list must contain at least two elements')
+        raise ValueError("Input list must contain at least two elements")
     first_implication = imply_gate(input_list[0], input_list[1])
     if len(input_list) == 2:
         return first_implication
