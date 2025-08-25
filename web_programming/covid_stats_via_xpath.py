@@ -38,7 +38,6 @@ def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> Covi
     )
 
 
-
 fmt = """Total COVID-19 cases in the world: {}
 Total deaths due to COVID-19 in the world: {}
 Total COVID-19 patients recovered in the world: {}"""
