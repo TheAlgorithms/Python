@@ -9,6 +9,7 @@ more convenient to use in Python web projects (e.g. Django or Flask-based)
 # dependencies = [
 #     "httpx",
 #     "lxml",
+#     "requests_html",
 # ]
 # ///
 
@@ -16,6 +17,7 @@ from typing import NamedTuple
 
 import httpx
 from lxml import html
+from requests_html import HTMLSession
 
 
 class CovidData(NamedTuple):
@@ -26,9 +28,15 @@ class CovidData(NamedTuple):
 
 def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
+    session = HTMLSession()
+    r = session.get(url)
+    print(r.html.html)
+    r.html.render()
+    print(r.html.html)
     return CovidData(
         *html.fromstring(httpx.get(url, timeout=10).content).xpath(xpath_str)
     )
+
 
 
 fmt = """Total COVID-19 cases in the world: {}
