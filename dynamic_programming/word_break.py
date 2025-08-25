@@ -90,7 +90,7 @@ def word_break(string: str, words: list[str]) -> bool:
         if index == len_string:
             return True
 
-        trie_node = trie
+        trie_node: Any | None = trie
         for i in range(index, len_string):
             trie_node = trie_node.get(string[i], None)
 
