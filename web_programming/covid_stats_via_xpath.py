@@ -24,7 +24,9 @@ class CovidData(NamedTuple):
     recovered: str
 
 
-def covid_stats(url: str = "https://web.archive.org/web/20250825095350/https://www.worldometers.info/coronavirus/") -> CovidData:
+def covid_stats(
+    url: str = "https://web.archive.org/web/20250825095350/https://www.worldometers.info/coronavirus/",
+) -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
     return CovidData(
         *html.fromstring(httpx.get(url, timeout=10).content).xpath(xpath_str)
