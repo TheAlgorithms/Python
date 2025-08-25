@@ -64,7 +64,7 @@ def word_break(string: str, words: list[str]) -> bool:
         raise ValueError("the words should be a list of non-empty strings")
 
     # Build trie
-    trie: dict[str, Any] = {}
+    trie: dict[str, dict[str, dict[str, Any] | bool]] = {}
     word_keeper_key = "WORD_KEEPER"
 
     for word in words:
@@ -90,7 +90,7 @@ def word_break(string: str, words: list[str]) -> bool:
         if index == len_string:
             return True
 
-        trie_node: Any = trie
+        trie_node = trie
         for i in range(index, len_string):
             trie_node = trie_node.get(string[i], None)
 
