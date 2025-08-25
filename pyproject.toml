@@ -20,6 +20,7 @@ dependencies = [
   "opencv-python>=4.10.0.84",
   "pandas>=2.2.3",
   "pillow>=11",
+  "requests_html>=0.10.0",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
   "sphinx-pyproject>=0.3",
