@@ -23,7 +23,7 @@ def knapsack(
     >>> val = [60, 100, 120]
     >>> w = [10, 20, 30]
     >>> c = len(val)
-    >>> knapsack(cap, w, val, c, False)
+    >>> knapsack(cap, w, val, c)
     220
 
     Given the repetition is NOT allowed,
@@ -46,8 +46,8 @@ def knapsack(
         # If weight of the nth item is more than Knapsack of capacity,
         #   then this item cannot be included in the optimal solution,
         # else return the maximum of two cases:
-        #   (1) nth item included one or more times (0-N), if allow_repetition is True
-        #       nth item included only once (0-1), if allow_repetition is False
+        #   (1) nth item included only once (0-1), if allow_repetition is False
+        #       nth item included one or more times (0-N), if allow_repetition is True
         #   (2) not included
         if weights[counter - 1] > capacity:
             return knapsack_recur(capacity, counter - 1)
