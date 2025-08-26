@@ -47,8 +47,8 @@ def knapsack(
         #   then this item cannot be included in the optimal solution,
         # else return the maximum of two cases:
         #   (1) not included
-        #   (2) nth item included one or more times (0-N), if allow_repetition is true
-        #       nth item included only once (0-1), if allow_repetition is false
+        #   (2) nth item included one or more times (0-N), if allow_repetition is True
+        #       nth item included only once (0-1), if allow_repetition is False
         if weights[counter - 1] > capacity:
             return knapsack_recur(capacity, counter - 1)
         else:
