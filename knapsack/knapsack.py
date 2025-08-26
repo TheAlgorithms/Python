@@ -1,5 +1,5 @@
-""" A recursive implementation of 0-N Knapsack Problem
-    https://en.wikipedia.org/wiki/Knapsack_problem
+"""A recursive implementation of 0-N Knapsack Problem
+https://en.wikipedia.org/wiki/Knapsack_problem
 """
 
 from __future__ import annotations
