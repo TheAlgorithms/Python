@@ -46,21 +46,17 @@ def knapsack(
         # If weight of the nth item is more than Knapsack of capacity,
         #   then this item cannot be included in the optimal solution,
         # else return the maximum of two cases:
-        #   (1) not included
-        #   (2) nth item included one or more times (0-N), if allow_repetition is True
+        #   (1) nth item included one or more times (0-N), if allow_repetition is True
         #       nth item included only once (0-1), if allow_repetition is False
+        #   (2) not included
         if weights[counter - 1] > capacity:
             return knapsack_recur(capacity, counter - 1)
         else:
+            left_capacity = capacity - weights[counter - 1]
+            new_value_included = values[counter - 1] + knapsack_recur(
+                left_capacity, not allow_repetition ? counter - 1 : counter
+            )
             without_new_value = knapsack_recur(capacity, counter - 1)
-            if allow_repetition:
-                new_value_included = values[counter - 1] + knapsack_recur(
-                    capacity - weights[counter - 1], counter
-                )
-            else:
-                new_value_included = values[counter - 1] + knapsack_recur(
-                    capacity - weights[counter - 1], counter - 1
-                )
             return max(new_value_included, without_new_value)
 
     return knapsack_recur(capacity, counter)
