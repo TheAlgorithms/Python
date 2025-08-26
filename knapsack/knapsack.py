@@ -34,7 +34,7 @@ def knapsack(
 
     Given the repetition is allowed,
     the result is 300 cause the values of 60*5 (pick 5 times)
-    which is the limit of the capacity.
+    got the weight of 10*5 which is the limit of the capacity.
     """
 
     @lru_cache
