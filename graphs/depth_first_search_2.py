@@ -108,6 +108,25 @@ class Graph:
                 print(" ", end="")
                 self.dfs_recursive(i, visited)
 
+    def topological_sort(self):
+        visited = set()
+        stack = []
+
+        for vertex in self.vertex:
+            if vertex not in visited:
+                self.topological_sort_util(vertex, visited, stack)
+
+        return stack[::-1]  # Reverse the stack to get the correct order
+
+    def topological_sort_util(self, v, visited, stack):
+        visited.add(v)
+
+        for neighbor in self.vertex.get(v, []):
+            if neighbor not in visited:
+                self.topological_sort_util(neighbor, visited, stack)
+
+        stack.append(v)  # Push the vertex to stack
+
 
 if __name__ == "__main__":
     import doctest
@@ -123,5 +142,5 @@ if __name__ == "__main__":
     g.add_edge(3, 3)
 
     g.print_graph()
-    print("DFS:")
+    print("Topological Sort:", g.topological_sort())
     g.dfs()
