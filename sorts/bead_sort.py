@@ -3,6 +3,8 @@ Bead sort only works for sequences of non-negative integers.
 https://en.wikipedia.org/wiki/Bead_sort
 """
 
+from itertools import pairwise
+
 
 def bead_sort(sequence: list) -> list:
     """
@@ -31,7 +33,7 @@ def bead_sort(sequence: list) -> list:
     if any(not isinstance(x, int) or x < 0 for x in sequence):
         raise TypeError("Sequence must be list of non-negative integers")
     for _ in range(len(sequence)):
-        for i, (rod_upper, rod_lower) in enumerate(zip(sequence, sequence[1:])):  # noqa: RUF007
+        for i, (rod_upper, rod_lower) in enumerate(pairwise(sequence)):
             if rod_upper > rod_lower:
                 sequence[i] -= rod_upper - rod_lower
                 sequence[i + 1] += rod_upper - rod_lower
