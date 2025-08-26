@@ -113,6 +113,7 @@
   * [Porta Cipher](ciphers/porta_cipher.py)
   * [Rabin Miller](ciphers/rabin_miller.py)
   * [Rail Fence Cipher](ciphers/rail_fence_cipher.py)
+  * [Rc4](ciphers/rc4.py)
   * [Rot13](ciphers/rot13.py)
   * [Rsa Cipher](ciphers/rsa_cipher.py)
   * [Rsa Factorization](ciphers/rsa_factorization.py)
