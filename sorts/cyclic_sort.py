@@ -29,13 +29,18 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     """
 
     # Perform cyclic sort
-    for index in range(len(nums)):
+    index = 0
+    while index < len(nums):
         # Calculate the correct index for the current element
         correct_index = nums[index] - 1
         # If the current element is not at its correct position,
         # swap it with the element at its correct index
         if index != correct_index:
             nums[index], nums[correct_index] = nums[correct_index], nums[index]
+        else:
+            # If the current element is already in its correct position,
+            # move to the next element
+            index += 1
 
     return nums
 
