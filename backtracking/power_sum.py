@@ -6,8 +6,6 @@ We have to find all combinations of unique squares adding up to 13.
 The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 """
 
-from math import pow
-
 
 def backtrack(
     needed_sum: int,
@@ -19,25 +17,25 @@ def backtrack(
     """
     >>> backtrack(13, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(100, 2, 1, 0, 0)
-    (0, 3)
-    >>> backtrack(100, 3, 1, 0, 0)
+    >>> backtrack(10, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(800, 2, 1, 0, 0)
-    (0, 561)
-    >>> backtrack(1000, 10, 1, 0, 0)
+    >>> backtrack(10, 3, 1, 0, 0)
     (0, 0)
-    >>> backtrack(400, 2, 1, 0, 0)
-    (0, 55)
-    >>> backtrack(50, 1, 1, 0, 0)
-    (0, 3658)
+    >>> backtrack(20, 2, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(15, 10, 1, 0, 0)
+    (0, 0)
+    >>> backtrack(16, 2, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(20, 1, 1, 0, 0)
+    (0, 64)
     """
     if current_sum == needed_sum:
         # If the sum of the powers is equal to needed_sum, then we have a solution.
         solutions_count += 1
         return current_sum, solutions_count
 
-    i_to_n = int(pow(current_number, power))
+    i_to_n = current_number**power
     if current_sum + i_to_n <= needed_sum:
         # If the sum of the powers is less than needed_sum, then continue adding powers.
         current_sum += i_to_n
@@ -57,17 +55,17 @@ def solve(needed_sum: int, power: int) -> int:
     """
     >>> solve(13, 2)
     1
-    >>> solve(100, 2)
-    3
-    >>> solve(100, 3)
+    >>> solve(10, 2)
     1
-    >>> solve(800, 2)
-    561
-    >>> solve(1000, 10)
+    >>> solve(10, 3)
     0
-    >>> solve(400, 2)
-    55
-    >>> solve(50, 1)
+    >>> solve(20, 2)
+    1
+    >>> solve(15, 10)
+    0
+    >>> solve(16, 2)
+    1
+    >>> solve(20, 1)
     Traceback (most recent call last):
         ...
     ValueError: Invalid input

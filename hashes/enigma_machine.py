@@ -15,12 +15,12 @@ def rotator():
     gear_one.append(i)
     del gear_one[0]
     gear_one_pos += 1
-    if gear_one_pos % int(len(alphabets)) == 0:
+    if gear_one_pos % len(alphabets) == 0:
         i = gear_two[0]
         gear_two.append(i)
         del gear_two[0]
         gear_two_pos += 1
-        if gear_two_pos % int(len(alphabets)) == 0:
+        if gear_two_pos % len(alphabets) == 0:
             i = gear_three[0]
             gear_three.append(i)
             del gear_three[0]

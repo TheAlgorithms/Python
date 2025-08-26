@@ -1,14 +1,15 @@
 """
-    Create a Long Short Term Memory (LSTM) network model
-    An LSTM is a type of Recurrent Neural Network (RNN) as discussed at:
-    * https://colah.github.io/posts/2015-08-Understanding-LSTMs
-    * https://en.wikipedia.org/wiki/Long_short-term_memory
+Create a Long Short Term Memory (LSTM) network model
+An LSTM is a type of Recurrent Neural Network (RNN) as discussed at:
+* https://colah.github.io/posts/2015-08-Understanding-LSTMs
+* https://en.wikipedia.org/wiki/Long_short-term_memory
 """
+
 import numpy as np
 import pandas as pd
+from keras.layers import LSTM, Dense
+from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.layers import LSTM, Dense
-from tensorflow.keras.models import Sequential
 
 if __name__ == "__main__":
     """
@@ -17,11 +18,11 @@ if __name__ == "__main__":
     make sure you set the price column on line number 21.  Here we
     use a dataset which have the price on 3rd column.
     """
-    df = pd.read_csv("sample_data.csv", header=None)
-    len_data = df.shape[:1][0]
+    sample_data = pd.read_csv("sample_data.csv", header=None)
+    len_data = sample_data.shape[:1][0]
     # If you're using some other dataset input the target column
-    actual_data = df.iloc[:, 1:2]
-    actual_data = actual_data.values.reshape(len_data, 1)
+    actual_data = sample_data.iloc[:, 1:2]
+    actual_data = actual_data.to_numpy().reshape(len_data, 1)
     actual_data = MinMaxScaler().fit_transform(actual_data)
     look_back = 10
     forward_days = 5
