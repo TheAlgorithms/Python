@@ -38,9 +38,9 @@ def knapsack(
     """
 
     @lru_cache
-    def knapsack_recur(cap: int, c: int) -> int:
+    def knapsack_recur(capacity: int, counter: int) -> int:
         # Base Case
-        if c == 0 or cap == 0:
+        if counter == 0 or capacity == 0:
             return 0
 
         # If weight of the nth item is more than Knapsack of capacity,
@@ -49,17 +49,17 @@ def knapsack(
         #   (1) not included
         #   (2) nth item included one or more times (0-N), if allow_repetition is true
         #       nth item included only once (0-1), if allow_repetition is false
-        if weights[c - 1] > cap:
-            return knapsack_recur(cap, c - 1)
+        if weights[counter - 1] > capacity:
+            return knapsack_recur(capacity, counter - 1)
         else:
-            without_new_value = knapsack_recur(cap, c - 1)
+            without_new_value = knapsack_recur(capacity, counter - 1)
             if allow_repetition:
-                new_value_included = values[c - 1] + knapsack_recur(
-                    cap - weights[c - 1], c
+                new_value_included = values[counter - 1] + knapsack_recur(
+                    capacity - weights[counter - 1], counter
                 )
             else:
-                new_value_included = values[c - 1] + knapsack_recur(
-                    cap - weights[c - 1], c - 1
+                new_value_included = values[counter - 1] + knapsack_recur(
+                    capacity - weights[counter - 1], counter - 1
                 )
             return max(new_value_included, without_new_value)
 
