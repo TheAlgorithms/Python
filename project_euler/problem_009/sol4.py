@@ -45,8 +45,8 @@ def solution(n: int = 1000) -> int:
 
     squares = get_squares(n)
     squares_set = set(squares)
-    for a in range(1, n // 3):
-        for b in range(a + 1, (n - a) // 2):
+    for a in range(1, n // 3 + 1):
+        for b in range(a + 1, (n - a) // 2 + 1):
             if (
                 squares[a] + squares[b] in squares_set
                 and squares[n - a - b] == squares[a] + squares[b]
