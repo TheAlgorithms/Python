@@ -7,10 +7,12 @@ or
 python3 -m doctest -v cyclic_sort.py
 For manual testing run:
 python cyclic_sort.py
+or
+python3 cyclic_sort.py
 """
 
 
-def cyclic_sort(nums: list) -> list:
+def cyclic_sort(nums: list[int]) -> list[int]:
     """
     Sorts the input list in-place using the Cyclic Sort algorithm.
 
@@ -20,25 +22,25 @@ def cyclic_sort(nums: list) -> list:
     Time complexity: O(n), where n is the number of elements in the list.
 
     Examples:
-    >>> cyclic_sort([3, 5, 2, 1, 4])
-    [1, 2, 3, 4, 5]
     >>> cyclic_sort([])
     []
+    >>> cyclic_sort([3, 5, 2, 1, 4])
+    [1, 2, 3, 4, 5]
     """
 
     # Perform cyclic sort
-    i = 0
-    while i < len(nums):
+    index = 0
+    while index < len(nums):
         # Calculate the correct index for the current element
-        correct_index = nums[i] - 1
+        correct_index = nums[index] - 1
         # If the current element is not at its correct position,
         # swap it with the element at its correct index
-        if nums[i] != nums[correct_index]:
-            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        if index != correct_index:
+            nums[index], nums[correct_index] = nums[correct_index], nums[index]
         else:
             # If the current element is already in its correct position,
             # move to the next element
-            i += 1
+            index += 1
 
     return nums
 
