@@ -35,7 +35,7 @@ def get_squares(n: int) -> list[int]:
 
 def solution(n: int = 1000) -> int:
     """
-    Precomputing squares and checking if a*a + b*b is the square by set look-up.
+    Precomputing squares and checking if a^2 + b^2 is the square by set look-up.
 
     >>> solution(12)
     60
@@ -45,13 +45,13 @@ def solution(n: int = 1000) -> int:
 
     squares = get_squares(n)
     squares_set = set(squares)
-    for i in range(1, n):
-        for j in range(i, n):
+    for a in range(1, n // 3):
+        for b in range(a + 1, (n - a) // 2):
             if (
-                squares[i] + squares[j] in squares_set
-                and squares[n - i - j] == squares[i] + squares[j]
+                squares[a] + squares[b] in squares_set
+                and squares[n - a - b] == squares[a] + squares[b]
             ):
-                return i * j * (n - i - j)
+                return a * b * (n - a - b)
 
     return -1
 
