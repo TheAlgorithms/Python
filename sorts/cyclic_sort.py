@@ -14,7 +14,8 @@ python3 cyclic_sort.py
 
 def cyclic_sort(nums: list[int]) -> list[int]:
     """
-    Sorts the input list of n integers from 1 to n in-place using the Cyclic Sort algorithm.
+    Sorts the input list of n integers from 1 to n in-place
+    using the Cyclic Sort algorithm.
 
     :param nums: List of n integers from 1 to n to be sorted.
     :return: The same list sorted in ascending order.
