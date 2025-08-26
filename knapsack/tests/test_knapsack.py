@@ -30,7 +30,7 @@ class Test(unittest.TestCase):
 
     def test_easy_case(self):
         """
-        test for the base case
+        test for the easy case
         """
         cap = 3
         val = [1, 2, 3]
@@ -50,7 +50,7 @@ class Test(unittest.TestCase):
 
     def test_knapsack_repetition(self):
         """
-        test for the knapsack
+        test for the knapsack repetition
         """
         cap = 50
         val = [60, 100, 120]
