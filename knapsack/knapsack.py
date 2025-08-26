@@ -54,7 +54,7 @@ def knapsack(
         else:
             left_capacity = capacity - weights[counter - 1]
             new_value_included = values[counter - 1] + knapsack_recur(
-                left_capacity, not allow_repetition ? counter - 1 : counter
+                left_capacity, counter - 1 if not allow_repetition else counter
             )
             without_new_value = knapsack_recur(capacity, counter - 1)
             return max(new_value_included, without_new_value)
