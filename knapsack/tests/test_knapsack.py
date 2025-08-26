@@ -46,7 +46,7 @@ class Test(unittest.TestCase):
         val = [60, 100, 120]
         w = [10, 20, 30]
         c = len(val)
-        assert k.knapsack(cap, w, val, c, False) == 220
+        assert k.knapsack(cap, w, val, c) == 220
 
     def test_knapsack_repetition(self):
         """
