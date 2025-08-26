@@ -8,7 +8,7 @@ from string import ascii_lowercase, digits
 import cv2
 import numpy as np
 
-# Parrameters
+# Parameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width
 SCALE_RANGE = (0.4, 0.6)  # if height or width lower than this scale, drop it.
 FILTER_TINY_SCALE = 1 / 100
@@ -41,7 +41,7 @@ def main() -> None:
         file_name = path.split(os.sep)[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_MOSAIC_{letter_code}"
         cv2.imwrite(f"{file_root}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print(f"Succeeded {index+1}/{NUMBER_IMAGES} with {file_name}")
+        print(f"Succeeded {index + 1}/{NUMBER_IMAGES} with {file_name}")
         annos_list = []
         for anno in new_annos:
             width = anno[3] - anno[1]

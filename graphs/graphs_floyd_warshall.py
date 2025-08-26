@@ -1,7 +1,7 @@
 # floyd_warshall.py
 """
-    The problem is to find the shortest distance between all pairs of vertices in a
-    weighted directed graph that can have negative edge weights.
+The problem is to find the shortest distance between all pairs of vertices in a
+weighted directed graph that can have negative edge weights.
 """
 
 
