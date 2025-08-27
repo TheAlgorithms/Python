@@ -48,16 +48,13 @@ class CoordinateCompressor:
         1
         >>> cc.decompress(1)
         52
-
         """
 
-        self.coordinate_map: dict[
-            int | float | str, int
-        ] = {}  # A dictionary to store compressed coordinates
+        # A dictionary to store compressed coordinates
+        self.coordinate_map: dict[int | float | str, int] = {}  
 
-        self.reverse_map: list[int | float | str] = [-1] * (
-            len(arr)
-        )  # A list to store reverse mapping
+        # A list to store reverse mapping
+        self.reverse_map: list[int | float | str] = [-1] * len(arr)
 
         self.arr = sorted(arr)  # The input list
         self.n = len(arr)  # The length of the input list
