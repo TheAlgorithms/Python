@@ -20,8 +20,7 @@ class CoordinateCompressor:
     - `reverse_map`: A list used for reverse mapping, where each index corresponds
       to a compressed coordinate, and the value at that index is the original value.
 
-    Example mapping:
-
+    Example of mapping:
     Original: 10, Compressed: 0
     Original: 52, Compressed: 1
     Original: 83, Compressed: 2
