@@ -63,7 +63,7 @@ class PriorityQueue:
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
         >>> priority_queue_test.array
-        [(5, 'C'), (10, 'A'), (15, 'B')]
+        [(5, 'C'), (15, 'B'), (10, 'A')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
         >>> priority_queue_test.cur_size = len(priority_queue_test.array)
