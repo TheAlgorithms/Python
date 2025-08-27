@@ -88,7 +88,7 @@ class CoordinateCompressor:
         original: The value to compress.
 
         Returns:
-        int: The compressed integer, or -1 if not found in the original list.
+        The compressed integer, or -1 if not found in the original list.
 
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
