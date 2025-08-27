@@ -104,7 +104,7 @@ class CoordinateCompressor:
         Decompress a single integer.
 
         Args:
-        num (int): The compressed integer to decompress.
+        num: The compressed integer to decompress.
 
         Returns:
         original value (int | float | str) : The original value.
