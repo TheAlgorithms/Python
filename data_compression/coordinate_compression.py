@@ -66,7 +66,9 @@ class CoordinateCompressor:
         >>> cc.coordinate_map[83]
         2
         >>> cc.coordinate_map[80]  # Value not in the original list
-        -1
+        Traceback (most recent call last):
+            ...
+        KeyError: 80
         >>> cc.reverse_map[2]
         83
         """
