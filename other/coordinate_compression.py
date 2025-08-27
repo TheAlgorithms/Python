@@ -72,7 +72,6 @@ class CoordinateCompressor:
         -1
         >>> cc.reverse_map[2]  # Value not in the original list
         83
-
         """
         key = 0
         for val in self.arr:
