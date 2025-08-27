@@ -1,7 +1,7 @@
 """
 Assumption:
     - The values to compress are assumed to be comparable,
-    - values can be sorted and compared with '<' and '>' operators.
+      values can be sorted and compared with '<' and '>' operators.
 """
 
 
