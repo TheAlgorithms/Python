@@ -78,6 +78,8 @@ def unique_prime_factors(n: int) -> list[int]:
     factors = []
     while i * i <= n:
         if not n % i:
+            while not n % i:
+                n //= i
             factors.append(i)
         i += 1
     if n > 1:
