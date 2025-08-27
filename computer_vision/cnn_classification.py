@@ -11,10 +11,10 @@ Download dataset from :
 https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html
 
 1. Download the dataset folder and create two folder training set and test set
-in the parent dataste folder
+in the parent dataset folder
 2. Move 30-40 image from both TB positive and TB Negative folder
 in the test set folder
-3. The labels of the iamges will be extracted from the folder name
+3. The labels of the images will be extracted from the folder name
 the image is present in.
 
 """
@@ -25,7 +25,7 @@ import numpy as np
 
 # Importing the Keras libraries and packages
 import tensorflow as tf
-from tensorflow.keras import layers, models
+from keras import layers, models
 
 if __name__ == "__main__":
     # Initialising the CNN

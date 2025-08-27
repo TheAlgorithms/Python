@@ -8,6 +8,7 @@ frequent subgraphs and maximum common subgraphs.
 
 URL: https://www.researchgate.net/publication/235255851
 """
+
 # fmt: off
 edge_array = [
     ['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'bh-e12', 'cd-e2', 'ce-e4',

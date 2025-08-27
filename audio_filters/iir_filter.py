@@ -10,13 +10,17 @@ class IIRFilter:
 
     Implementation details:
     Based on the 2nd-order function from
-     https://en.wikipedia.org/wiki/Digital_biquad_filter,
+    https://en.wikipedia.org/wiki/Digital_biquad_filter,
     this generalized N-order function was made.
 
     Using the following transfer function
-    H(z)=\frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+...+b_{k}z^{-k}}{a_{0}+a_{1}z^{-1}+a_{2}z^{-2}+...+a_{k}z^{-k}}
+        .. math:: H(z)=\frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+...+b_{k}z^{-k}}
+                  {a_{0}+a_{1}z^{-1}+a_{2}z^{-2}+...+a_{k}z^{-k}}
+
     we can rewrite this to
-    y[n]={\frac{1}{a_{0}}}\left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-\left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
+        .. math:: y[n]={\frac{1}{a_{0}}}
+                  \left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-
+                  \left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
     """
 
     def __init__(self, order: int) -> None:
@@ -34,17 +38,19 @@ class IIRFilter:
 
     def set_coefficients(self, a_coeffs: list[float], b_coeffs: list[float]) -> None:
         """
-        Set the coefficients for the IIR filter. These should both be of size order + 1.
-        a_0 may be left out, and it will use 1.0 as default value.
+        Set the coefficients for the IIR filter.
+        These should both be of size `order` + 1.
+        :math:`a_0` may be left out, and it will use 1.0 as default value.
 
         This method works well with scipy's filter design functions
-            >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
-            >>> import scipy.signal
-            >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
-            ...                                          btype='lowpass',
-            ...                                          fs=48000)
-            >>> filt = IIRFilter(2)
-            >>> filt.set_coefficients(a_coeffs, b_coeffs)
+
+        >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
+        >>> import scipy.signal
+        >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
+        ...                                          btype='lowpass',
+        ...                                          fs=48000)
+        >>> filt = IIRFilter(2)
+        >>> filt.set_coefficients(a_coeffs, b_coeffs)
         """
         if len(a_coeffs) < self.order:
             a_coeffs = [1.0, *a_coeffs]
@@ -68,7 +74,7 @@ class IIRFilter:
 
     def process(self, sample: float) -> float:
         """
-        Calculate y[n]
+        Calculate :math:`y[n]`
 
         >>> filt = IIRFilter(2)
         >>> filt.process(0)
