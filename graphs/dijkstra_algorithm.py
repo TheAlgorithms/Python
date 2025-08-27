@@ -118,7 +118,7 @@ class PriorityQueue:
         >>> priority_queue_test.extract_min()
         'C'
         >>> priority_queue_test.array[0]
-        (15, 'B')
+        (10, 'A')
         """
         min_node = self.array[0][1]
         self.array[0] = self.array[self.cur_size - 1]
