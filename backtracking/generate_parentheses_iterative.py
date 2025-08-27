@@ -1,10 +1,4 @@
 """
-    >>> generate_parentheses_iterative(1)
-    ['()']
-
-    >>> generate_parentheses_iterative(0)
-    ['']
-
 Generate all valid combinations of parentheses (Iterative Approach).
 
 The algorithm works as follows:
@@ -37,13 +31,12 @@ def generate_parentheses_iterative(length: int = 0) -> list:
     """
     >>> generate_parentheses_iterative(3)
     ['()()()', '()(())', '(())()', '(()())', '((()))']
-
     >>> generate_parentheses_iterative(2)
     ['()()', '(())']
-
+    >>> generate_parentheses_iterative(1)
+    ['()']
     >>> generate_parentheses_iterative()
     ['']
-
     """
     result = []
     stack = []
