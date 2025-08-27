@@ -58,22 +58,19 @@ class PriorityQueue:
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B'), (15, 'C')]
+        [(5, 'B'), (10, 'A'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
         >>> priority_queue_test.array
-        [(10, 'A'), (15, 'B'), (5, 'C')]
+        [(5, 'C'), (10, 'A'), (15, 'B')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
         >>> priority_queue_test.cur_size = len(priority_queue_test.array)
         >>> priority_queue_test.pos = {'A': 0, 'B': 1}
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B')]
+        [(5, 'B'), (10, 'A')]
         """
         lc = self.left(idx)
         rc = self.right(idx)
