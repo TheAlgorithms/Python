@@ -79,7 +79,7 @@ class CoordinateCompressor:
                 self.reverse_map[key] = val
                 key += 1
 
-    def compress(self, original: float | str) -> int:
+    def compress(self, original: int | float | str) -> int:
         """
         Compress a single value.
 
