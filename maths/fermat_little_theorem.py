@@ -5,7 +5,7 @@
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_little_theorem
 
 
-def binary_exponentiation(a, n, mod):
+def binary_exponentiation(a: int, n: float, mod: int) -> int:
     if n == 0:
         return 1
 

@@ -26,7 +26,7 @@ def binary_and(a: int, b: int) -> str:
     >>> binary_and(0, 1.1)
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
+    ValueError: Unknown format code 'b' for object of type 'float'
     >>> binary_and("0", "1")
     Traceback (most recent call last):
         ...
@@ -35,8 +35,8 @@ def binary_and(a: int, b: int) -> str:
     if a < 0 or b < 0:
         raise ValueError("the value of both inputs must be positive")
 
-    a_binary = str(bin(a))[2:]  # remove the leading "0b"
-    b_binary = str(bin(b))[2:]  # remove the leading "0b"
+    a_binary = format(a, "b")
+    b_binary = format(b, "b")
 
     max_len = max(len(a_binary), len(b_binary))
 

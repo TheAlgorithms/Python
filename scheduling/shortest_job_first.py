@@ -3,6 +3,7 @@ Shortest job remaining first
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
+
 from __future__ import annotations
 
 import pandas as pd
@@ -36,11 +37,14 @@ def calculate_waitingtime(
     # Process until all processes are completed
     while complete != no_of_processes:
         for j in range(no_of_processes):
-            if arrival_time[j] <= increment_time and remaining_time[j] > 0:
-                if remaining_time[j] < minm:
-                    minm = remaining_time[j]
-                    short = j
-                    check = True
+            if (
+                arrival_time[j] <= increment_time
+                and remaining_time[j] > 0
+                and remaining_time[j] < minm
+            ):
+                minm = remaining_time[j]
+                short = j
+                check = True
 
         if not check:
             increment_time += 1
@@ -62,8 +66,7 @@ def calculate_waitingtime(
             finar = finish_time - arrival_time[short]
             waiting_time[short] = finar - burst_time[short]
 
-            if waiting_time[short] < 0:
-                waiting_time[short] = 0
+            waiting_time[short] = max(waiting_time[short], 0)
 
         # Increment time
         increment_time += 1

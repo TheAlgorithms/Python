@@ -182,7 +182,7 @@ class IndexCalculation:
         Atmospherically Resistant Vegetation Index 2
         https://www.indexdatabase.de/db/i-single.php?id=396
         :return: index
-            −0.18+1.17*(self.nir−self.red)/(self.nir+self.red)
+            -0.18+1.17*(self.nir-self.red)/(self.nir+self.red)
         """
         return -0.18 + (1.17 * ((self.nir - self.red) / (self.nir + self.red)))
 

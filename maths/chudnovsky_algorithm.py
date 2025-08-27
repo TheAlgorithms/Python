@@ -5,7 +5,7 @@ from math import ceil, factorial
 def pi(precision: int) -> str:
     """
     The Chudnovsky algorithm is a fast method for calculating the digits of PI,
-    based on Ramanujan’s PI formulae.
+    based on Ramanujan's PI formulae.
 
     https://en.wikipedia.org/wiki/Chudnovsky_algorithm
 

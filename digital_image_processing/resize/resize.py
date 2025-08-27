@@ -1,4 +1,5 @@
-""" Multiple image resizing techniques """
+"""Multiple image resizing techniques"""
+
 import numpy as np
 from cv2 import destroyAllWindows, imread, imshow, waitKey
 

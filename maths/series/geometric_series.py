@@ -9,7 +9,6 @@ For manual testing run:
 python3 geometric_series.py
 """
 
-
 from __future__ import annotations
 
 

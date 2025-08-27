@@ -40,6 +40,7 @@ Similar problem on codewars:
 https://www.codewars.com/kata/ranking-poker-hands
 https://www.codewars.com/kata/sortable-poker-hands
 """
+
 from __future__ import annotations
 
 import os
