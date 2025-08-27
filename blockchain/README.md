@@ -16,7 +16,7 @@ Let's break down the terminologies in the above definition. We find below termin
 
 Digital Ledger Technology is just a ledger that is shared among multiple nodes. This way there exists no need for a central authority to hold the info. Okay, how is it differentiated from a central database and what are their benefits?
 
-There is an organization that has 4 branches whose data are stored in a centralized database. So even if one branch needs any data from the ledger it needs approval from the database in charge. And if one hacks the central database he gets to tamper and control all the data.
+Suppose that there is an organization that has 4 branches whose data are stored in a centralized database. So even if one branch needs any data from the ledger it needs approval from the database in charge. And if one hacks the central database he gets to tamper and control all the data.
 
 Now let's assume every branch has a copy of the ledger and then once anything is added to the ledger by any branch it is gonna automatically reflect in all other ledgers available in other branches. This is done using a peer-to-peer network.
 
