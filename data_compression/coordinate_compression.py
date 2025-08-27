@@ -115,7 +115,7 @@ class CoordinateCompressor:
         >>> cc.decompress(5)  # Compressed coordinate out of range
         -1
         """
-        return self.reverse_map[num] if num < len(self.reverse_map) else -1
+        return self.reverse_map[num] if 0 <= num < len(self.reverse_map) else -1
 
 
 if __name__ == "__main__":
