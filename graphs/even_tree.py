@@ -12,6 +12,7 @@ Constraints
 Note: The tree input will be such that it can always be decomposed into
 components containing an even number of nodes.
 """
+
 # pylint: disable=invalid-name
 from collections import defaultdict
 

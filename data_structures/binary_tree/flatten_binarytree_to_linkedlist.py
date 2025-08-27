@@ -10,6 +10,7 @@ https://www.geeksforgeeks.org/flatten-a-binary-tree-into-linked-list
 Author: Arunkumar A
 Date: 04/09/2023
 """
+
 from __future__ import annotations
 
 

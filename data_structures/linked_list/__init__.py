@@ -5,6 +5,7 @@ Nodes contain data and also may link to other nodes:
                  head node gives us access of the complete list
     - Last node: points to null
 """
+
 from __future__ import annotations
 
 from typing import Any

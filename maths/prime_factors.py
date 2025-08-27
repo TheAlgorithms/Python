@@ -1,6 +1,7 @@
 """
 python/black : True
 """
+
 from __future__ import annotations
 
 
