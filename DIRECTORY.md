@@ -174,6 +174,7 @@
 
 ## Data Compression
   * [Burrows Wheeler](data_compression/burrows_wheeler.py)
+  * [Coordinate Compression](data_compression/coordinate_compression.py)
   * [Huffman](data_compression/huffman.py)
   * [Lempel Ziv](data_compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](data_compression/lempel_ziv_decompress.py)
