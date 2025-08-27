@@ -10,7 +10,7 @@ Let's break down the terminologies in the above definition. We find below termin
 
 ## Digital Ledger Technology
 
- It is otherwise called distributed ledger technology. It is simply the opposite of a centralized database. Firstly, what is a **ledger**? A ledger is a book or collection of accounts that records account transactions.
+Digital ledger technology is also called distributed ledger technology. It is simply the opposite of a centralized database. Firstly, what is a **ledger**? A ledger is a book or collection of accounts that records account transactions.
 
  *Why is Blockchain addressed as a digital ledger if it can record more than account transactions? What other transaction details and information can it hold?*
 
