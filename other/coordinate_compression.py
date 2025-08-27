@@ -51,7 +51,7 @@ class CoordinateCompressor:
         """
 
         # A dictionary to store compressed coordinates
-        self.coordinate_map: dict[int | float | str, int] = {}  
+        self.coordinate_map: dict[int | float | str, int] = {}
 
         # A list to store reverse mapping
         self.reverse_map: list[int | float | str] = [-1] * len(arr)
