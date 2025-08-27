@@ -855,7 +855,6 @@
   * [Activity Selection](other/activity_selection.py)
   * [Alternative List Arrange](other/alternative_list_arrange.py)
   * [Bankers Algorithm](other/bankers_algorithm.py)
-  * [Coordinate Compression](other/coordinate_compression.py)
   * [Davis Putnam Logemann Loveland](other/davis_putnam_logemann_loveland.py)
   * [Doomsday](other/doomsday.py)
   * [Fischer Yates Shuffle](other/fischer_yates_shuffle.py)
