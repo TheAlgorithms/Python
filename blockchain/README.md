@@ -30,7 +30,7 @@ In short, a block is nothing but a collection of records with a labelled header.
 
 ## Cryptography
 
-It is the practice and study of secure communication techniques amid adversarial behavior. More broadly, cryptography is the creation and analysis of protocols that prevent third parties or the general public from accessing private messages.
+Cryptography is the practice and study of secure communication techniques amid adversarial behavior. More broadly, cryptography is the creation and analysis of protocols that prevent third parties or the general public from accessing private messages.
 
 *Which cryptography technology is most widely used in blockchain and why?*
 
