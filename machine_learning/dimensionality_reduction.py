@@ -169,7 +169,7 @@ def test_linear_discriminant_analysis() -> None:
     dimensions = 2
 
     # Assert that the function raises an AssertionError if dimensions > classes
-    with pytest.raises(AssertionError) as error_info:
+    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
         projected_data = linear_discriminant_analysis(
             features, labels, classes, dimensions
         )
@@ -185,7 +185,7 @@ def test_principal_component_analysis() -> None:
     dimensions = 2
     expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
-    with pytest.raises(AssertionError) as error_info:
+    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
         output = principal_component_analysis(features, dimensions)
         if not np.allclose(expected_output, output):
             raise AssertionError

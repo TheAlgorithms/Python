@@ -1,6 +1,7 @@
 """Breath First Search (BFS) can be used when finding the shortest path
 from a given source node to a target node in an unweighted graph.
 """
+
 from __future__ import annotations
 
 graph = {

@@ -1,7 +1,7 @@
 def is_even(number: int) -> bool:
     """
     return true if the input integer is even
-    Explanation: Lets take a look at the following deicmal to binary conversions
+    Explanation: Lets take a look at the following decimal to binary conversions
     2 => 10
     14 => 1110
     100 => 1100100

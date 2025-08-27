@@ -11,7 +11,6 @@ possible to form forty-one different square laminae.
 Using up to one million tiles how many different square laminae can be formed?
 """
 
-
 from math import ceil, sqrt
 
 
