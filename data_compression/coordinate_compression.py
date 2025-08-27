@@ -125,10 +125,8 @@ if __name__ == "__main__":
 
     arr: list[int | float | str] = [100, 10, 52, 83]
     cc = CoordinateCompressor(arr)
-    compressed: list[int] = [0] * len(arr)
-    decompressed: list[int | float | str] = [0] * len(arr)
 
-    for i, original in enumerate(arr):
-        compressed[i] = cc.compress(original)
-        decompressed[i] = cc.decompress(compressed[i])
-        print(f"Original: {original}, Compressed: {compressed[i]}")
+    for original in arr:
+        compressed = cc.compress(original)
+        decompressed = cc.decompress(compressed)
+        print(f"Original: {decompressed}, Compressed: {compressed}")
