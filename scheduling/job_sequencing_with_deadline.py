@@ -1,9 +1,8 @@
-def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
+def job_sequencing_with_deadlines(jobs: list) -> list:
     """
     Function to find the maximum profit by doing jobs in a given time frame
 
     Args:
-        num_jobs [int]: Number of jobs
         jobs [list]: A list of tuples of (job_id, deadline, profit)
 
     Returns:
@@ -11,10 +10,10 @@ def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
         in a given time frame
 
     Examples:
-    >>> job_sequencing_with_deadlines(4,
+    >>> job_sequencing_with_deadlines(
     ... [(1, 4, 20), (2, 1, 10), (3, 1, 40), (4, 1, 30)])
     [2, 60]
-    >>> job_sequencing_with_deadlines(5,
+    >>> job_sequencing_with_deadlines(
     ... [(1, 2, 100), (2, 1, 19), (3, 2, 27), (4, 1, 25), (5, 1, 15)])
     [2, 127]
     """

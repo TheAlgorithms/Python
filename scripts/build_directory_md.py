@@ -6,7 +6,11 @@ from collections.abc import Iterator
 
 def good_file_paths(top_dir: str = ".") -> Iterator[str]:
     for dir_path, dir_names, filenames in os.walk(top_dir):
-        dir_names[:] = [d for d in dir_names if d != "scripts" and d[0] not in "._"]
+        dir_names[:] = [
+            d
+            for d in dir_names
+            if d != "scripts" and d[0] not in "._" and "venv" not in d
+        ]
         for filename in filenames:
             if filename == "__init__.py":
                 continue
@@ -14,8 +18,20 @@ def good_file_paths(top_dir: str = ".") -> Iterator[str]:
                 yield os.path.join(dir_path, filename).lstrip("./")
 
 
-def md_prefix(i):
-    return f"{i * '  '}*" if i else "\n##"
+def md_prefix(indent: int) -> str:
+    """
+    Markdown prefix based on indent for bullet points
+
+    >>> md_prefix(0)
+    '\\n##'
+    >>> md_prefix(1)
+    '  *'
+    >>> md_prefix(2)
+    '    *'
+    >>> md_prefix(3)
+    '      *'
+    """
+    return f"{indent * '  '}*" if indent else "\n##"
 
 
 def print_path(old_path: str, new_path: str) -> str:

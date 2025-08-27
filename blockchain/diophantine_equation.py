@@ -83,7 +83,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     (1, -2, 3)
 
     """
-    assert a >= 0 and b >= 0
+    assert a >= 0
+    assert b >= 0
 
     if b == 0:
         d, x, y = a, 1, 0
@@ -92,7 +93,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
         x = q
         y = p - q * (a // b)
 
-    assert a % d == 0 and b % d == 0
+    assert a % d == 0
+    assert b % d == 0
     assert d == a * x + b * y
 
     return (d, x, y)
