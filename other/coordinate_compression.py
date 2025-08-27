@@ -96,7 +96,6 @@ class CoordinateCompressor:
         3
         >>> cc.compress(7)  # Value not in the original list
         -1
-
         """
         return self.coordinate_map.get(original, -1)
 
