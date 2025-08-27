@@ -85,7 +85,7 @@ class CoordinateCompressor:
         Compress a single value.
 
         Args:
-        original (int | float | str) : The value to compress.
+        original: The value to compress.
 
         Returns:
         int: The compressed integer, or -1 if not found in the original list.
