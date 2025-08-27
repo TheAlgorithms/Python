@@ -65,9 +65,9 @@ class CoordinateCompressor:
         >>> cc = CoordinateCompressor(arr)
         >>> cc.coordinate_map[83]
         2
-        >>> cc.coordinate_map.get(80,-1)  # Value not in the original list
+        >>> cc.coordinate_map[80]  # Value not in the original list
         -1
-        >>> cc.reverse_map[2]  # Value not in the original list
+        >>> cc.reverse_map[2]
         83
         """
         key = 0
