@@ -1,6 +1,6 @@
 """
-    Disjoint set.
-    Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+Disjoint set.
+Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
 
 

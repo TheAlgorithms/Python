@@ -16,7 +16,15 @@ def num_digits(n: int) -> int:
     1
     >>> num_digits(-123456)
     6
+    >>> num_digits('123')  # Raises a TypeError for non-integer input
+    Traceback (most recent call last):
+        ...
+    TypeError: Input must be an integer
     """
+
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+
     digits = 0
     n = abs(n)
     while True:
@@ -42,7 +50,15 @@ def num_digits_fast(n: int) -> int:
     1
     >>> num_digits_fast(-123456)
     6
+    >>> num_digits('123')  # Raises a TypeError for non-integer input
+    Traceback (most recent call last):
+        ...
+    TypeError: Input must be an integer
     """
+
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+
     return 1 if n == 0 else math.floor(math.log(abs(n), 10) + 1)
 
 
@@ -61,7 +77,15 @@ def num_digits_faster(n: int) -> int:
     1
     >>> num_digits_faster(-123456)
     6
+    >>> num_digits('123')  # Raises a TypeError for non-integer input
+    Traceback (most recent call last):
+        ...
+    TypeError: Input must be an integer
     """
+
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer")
+
     return len(str(abs(n)))
 
 

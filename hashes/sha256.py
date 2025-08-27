@@ -203,7 +203,7 @@ class SHA256HashTest(unittest.TestCase):
         import hashlib
 
         msg = bytes("Test String", "utf-8")
-        self.assertEqual(SHA256(msg).hash, hashlib.sha256(msg).hexdigest())
+        assert SHA256(msg).hash == hashlib.sha256(msg).hexdigest()
 
 
 def main() -> None:

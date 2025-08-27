@@ -15,17 +15,20 @@ Potential Future Ideas:
 - Make edge weights and vertex values customizable to store whatever the client wants
 - Support multigraph functionality if the client wants it
 """
+
 from __future__ import annotations
 
 import random
 import unittest
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
+
+import pytest
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyMatrix(Generic[T]):
+class GraphAdjacencyMatrix[T]:
     def __init__(
         self, vertices: list[T], edges: list[list[T]], directed: bool = True
     ) -> None:
@@ -153,9 +156,11 @@ class GraphAdjacencyMatrix(Generic[T]):
         self.vertex_to_index.pop(vertex)
 
         # decrement indices for vertices shifted by the deleted vertex in the adj matrix
-        for vertex in self.vertex_to_index:
-            if self.vertex_to_index[vertex] >= start_index:
-                self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
+        for inner_vertex in self.vertex_to_index:
+            if self.vertex_to_index[inner_vertex] >= start_index:
+                self.vertex_to_index[inner_vertex] = (
+                    self.vertex_to_index[inner_vertex] - 1
+                )
 
     def contains_vertex(self, vertex: T) -> bool:
         """
@@ -203,9 +208,9 @@ class TestGraphMatrix(unittest.TestCase):
         directed_graph: GraphAdjacencyMatrix,
         edge: list[int],
     ) -> None:
-        self.assertTrue(undirected_graph.contains_edge(edge[0], edge[1]))
-        self.assertTrue(undirected_graph.contains_edge(edge[1], edge[0]))
-        self.assertTrue(directed_graph.contains_edge(edge[0], edge[1]))
+        assert undirected_graph.contains_edge(edge[0], edge[1])
+        assert undirected_graph.contains_edge(edge[1], edge[0])
+        assert directed_graph.contains_edge(edge[0], edge[1])
 
     def __assert_graph_edge_does_not_exist_check(
         self,
@@ -213,9 +218,9 @@ class TestGraphMatrix(unittest.TestCase):
         directed_graph: GraphAdjacencyMatrix,
         edge: list[int],
     ) -> None:
-        self.assertFalse(undirected_graph.contains_edge(edge[0], edge[1]))
-        self.assertFalse(undirected_graph.contains_edge(edge[1], edge[0]))
-        self.assertFalse(directed_graph.contains_edge(edge[0], edge[1]))
+        assert not undirected_graph.contains_edge(edge[0], edge[1])
+        assert not undirected_graph.contains_edge(edge[1], edge[0])
+        assert not directed_graph.contains_edge(edge[0], edge[1])
 
     def __assert_graph_vertex_exists_check(
         self,
@@ -223,8 +228,8 @@ class TestGraphMatrix(unittest.TestCase):
         directed_graph: GraphAdjacencyMatrix,
         vertex: int,
     ) -> None:
-        self.assertTrue(undirected_graph.contains_vertex(vertex))
-        self.assertTrue(directed_graph.contains_vertex(vertex))
+        assert undirected_graph.contains_vertex(vertex)
+        assert directed_graph.contains_vertex(vertex)
 
     def __assert_graph_vertex_does_not_exist_check(
         self,
@@ -232,13 +237,13 @@ class TestGraphMatrix(unittest.TestCase):
         directed_graph: GraphAdjacencyMatrix,
         vertex: int,
     ) -> None:
-        self.assertFalse(undirected_graph.contains_vertex(vertex))
-        self.assertFalse(directed_graph.contains_vertex(vertex))
+        assert not undirected_graph.contains_vertex(vertex)
+        assert not directed_graph.contains_vertex(vertex)
 
     def __generate_random_edges(
         self, vertices: list[int], edge_pick_count: int
     ) -> list[list[int]]:
-        self.assertTrue(edge_pick_count <= len(vertices))
+        assert edge_pick_count <= len(vertices)
 
         random_source_vertices: list[int] = random.sample(
             vertices[0 : int(len(vertices) / 2)], edge_pick_count
@@ -300,8 +305,8 @@ class TestGraphMatrix(unittest.TestCase):
                 undirected_graph, directed_graph, edge
             )
 
-        self.assertFalse(undirected_graph.directed)
-        self.assertTrue(directed_graph.directed)
+        assert not undirected_graph.directed
+        assert directed_graph.directed
 
     def test_contains_vertex(self) -> None:
         random_vertices: list[int] = random.sample(range(101), 20)
@@ -316,12 +321,8 @@ class TestGraphMatrix(unittest.TestCase):
 
         # Test contains_vertex
         for num in range(101):
-            self.assertEqual(
-                num in random_vertices, undirected_graph.contains_vertex(num)
-            )
-            self.assertEqual(
-                num in random_vertices, directed_graph.contains_vertex(num)
-            )
+            assert (num in random_vertices) == undirected_graph.contains_vertex(num)
+            assert (num in random_vertices) == directed_graph.contains_vertex(num)
 
     def test_add_vertices(self) -> None:
         random_vertices: list[int] = random.sample(range(101), 20)
@@ -526,9 +527,9 @@ class TestGraphMatrix(unittest.TestCase):
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 undirected_graph.add_vertex(vertex)
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 directed_graph.add_vertex(vertex)
 
     def test_remove_vertex_exception_check(self) -> None:
@@ -541,9 +542,9 @@ class TestGraphMatrix(unittest.TestCase):
 
         for i in range(101):
             if i not in random_vertices:
-                with self.assertRaises(ValueError):
+                with pytest.raises(ValueError):
                     undirected_graph.remove_vertex(i)
-                with self.assertRaises(ValueError):
+                with pytest.raises(ValueError):
                     directed_graph.remove_vertex(i)
 
     def test_add_edge_exception_check(self) -> None:
@@ -555,9 +556,9 @@ class TestGraphMatrix(unittest.TestCase):
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for edge in random_edges:
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 undirected_graph.add_edge(edge[0], edge[1])
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 directed_graph.add_edge(edge[0], edge[1])
 
     def test_remove_edge_exception_check(self) -> None:
@@ -579,9 +580,9 @@ class TestGraphMatrix(unittest.TestCase):
                     more_random_edges.append(edge)
 
         for edge in more_random_edges:
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 undirected_graph.remove_edge(edge[0], edge[1])
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 directed_graph.remove_edge(edge[0], edge[1])
 
     def test_contains_edge_exception_check(self) -> None:
@@ -593,14 +594,14 @@ class TestGraphMatrix(unittest.TestCase):
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 undirected_graph.contains_edge(vertex, 102)
-            with self.assertRaises(ValueError):
+            with pytest.raises(ValueError):
                 directed_graph.contains_edge(vertex, 102)
 
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             undirected_graph.contains_edge(103, 102)
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             directed_graph.contains_edge(103, 102)
 
 
