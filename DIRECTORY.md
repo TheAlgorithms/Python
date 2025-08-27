@@ -12,6 +12,7 @@
   * [Combination Sum](backtracking/combination_sum.py)
   * [Crossword Puzzle Solver](backtracking/crossword_puzzle_solver.py)
   * [Generate Parentheses](backtracking/generate_parentheses.py)
+  * [Generate Parentheses Iterative](backtracking/generate_parentheses_iterative.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
