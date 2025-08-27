@@ -61,9 +61,8 @@ def unique_prime_factors(n: int) -> list[int]:
     []
     >>> unique_prime_factors(0.02)
     []
-    >>> x = unique_prime_factors(10**241) # doctest: +NORMALIZE_WHITESPACE
-    >>> x == [2, 5]
-    True
+    >>> unique_prime_factors(10**241)
+    [2, 5]
     >>> unique_prime_factors(10**-354)
     []
     >>> unique_prime_factors('hello')
@@ -74,7 +73,6 @@ def unique_prime_factors(n: int) -> list[int]:
     Traceback (most recent call last):
         ...
     TypeError: '<=' not supported between instances of 'int' and 'list'
-
     """
     i = 2
     factors = []
