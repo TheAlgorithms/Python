@@ -38,7 +38,7 @@ class CoordinateCompressor:
         Initialize the CoordinateCompressor with a list.
 
         Args:
-        arr (list): The list of values to be compressed.
+        arr: The list of values to be compressed.
 
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
