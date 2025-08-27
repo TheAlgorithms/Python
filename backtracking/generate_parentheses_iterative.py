@@ -1,7 +1,7 @@
 def generate_parentheses_iterative(length: int) -> list:
     """
     Generate all valid combinations of parentheses (Iterative Approach).
-    
+
     The algorithm works as follows:
     1. Initialize an empty list to store the combinations.
     2. Initialize a stack to keep track of partial combinations.
@@ -12,16 +12,16 @@ def generate_parentheses_iterative(length: int) -> list:
         c. If open count is < length, push new combination with added '(' onto the stack.
         d. If close count < open count, push new combination with added ')' on stack.
     5. Return the result containing all valid combinations.
-    
+
     Args:
         length: The desired length of the parentheses combinations
-    
+
     Returns:
         A list of strings representing valid combinations of parentheses
-    
+
     Time Complexity:
         O(2^(2n))
-    
+
     Space Complexity:
         O(2^(2n))
 
