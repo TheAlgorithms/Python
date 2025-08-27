@@ -26,7 +26,7 @@ This means that even if information is tampered with in one branch we can find o
 
 ## Blocks
 
-In short, a block is nothing but a collection of records with a labelled header. These are connected cryptographically. Once a new block is added to a chain, the previous block is connected, more precisely said as locked, and hence, will remain unaltered. We can understand this concept once we get a clear understanding of the working mechanism of blockchain.
+In short, a block is nothing but a collection of records with a labelled header. These are connected cryptographically. Once a new block is added to a chain, the previous block is connected, more precisely said as locked, and hence will remain unaltered. We can understand this concept once we get a clear understanding of the working mechanism of blockchain.
 
 ## Cryptography
 
