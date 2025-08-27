@@ -52,25 +52,16 @@ class PriorityQueue:
 
         >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(5, 'A'), (10, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(10, 'A'), (5, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(10, 'A'), (15, 'B'), (5, 'C')]
 
