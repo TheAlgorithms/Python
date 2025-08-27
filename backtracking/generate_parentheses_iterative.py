@@ -9,7 +9,7 @@ def generate_parentheses_iterative(length: int) -> list:
     4. While the stack is not empty:
         a. Pop a partial combination and its open and close counts from the stack.
         b. If the combination length is equal to 2*length, add it to the result.
-        c. If open count is < length, push new combination with added '(' onto the stack.
+        c. If open count < length, push new combination with added '(' on stack.
         d. If close count < open count, push new combination with added ')' on stack.
     5. Return the result containing all valid combinations.
 
