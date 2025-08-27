@@ -20,10 +20,10 @@ def generate_parentheses_iterative(length: int) -> list:
         A list of strings representing valid combinations of parentheses
 
     Time Complexity:
-        O(2^(2n))
+        O(2^(2*length))
 
     Space Complexity:
-        O(2^(2n))
+        O(2^(2*length))
 
     >>> generate_parentheses_iterative(3)
     ['()()()', '()(())', '(())()', '(()())', '((()))']
