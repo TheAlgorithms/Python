@@ -14,11 +14,9 @@ class CoordinateCompressor:
     Mapping:
     In addition to compression and decompression, this class maintains a mapping
     between original values and their compressed counterparts using two data
-    structures: a dictionary `coordinate_map` and a list `reverse_map`.
-
+    structures: a dictionary `coordinate_map` and a list `reverse_map`:
     - `coordinate_map`: A dictionary that maps original values to their compressed
       coordinates. Keys are original values, and values are compressed coordinates.
-
     - `reverse_map`: A list used for reverse mapping, where each index corresponds
       to a compressed coordinate, and the value at that index is the original value.
 
