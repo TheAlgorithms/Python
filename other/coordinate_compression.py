@@ -107,7 +107,7 @@ class CoordinateCompressor:
         num: The compressed integer to decompress.
 
         Returns:
-        original value (int | float | str) : The original value.
+        The original value.
 
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
