@@ -15,12 +15,12 @@ Requirements: numpy, matplotlib
 """
 
 import doctest
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from matplotlib.colors import ListedColormap
+from matplotlib.image import AxesImage
 
 
 def create_random_grid(
@@ -407,7 +407,7 @@ def visualize_cellular_automaton(
     cbar.set_ticklabels(["Dead"] + [f"Age {i}" for i in range(1, max_age + 1)])
 
     # Animation function
-    def animate(frame: int) -> None:
+    def animate(frame: int) -> list[AxesImage]:
         """
         Animation update function for matplotlib FuncAnimation.
 
@@ -586,192 +586,7 @@ def run_interactive_simulation(
     return anim
 
 
-# -------------------------------------------------------------------------
-# Helper demo functions
-# -------------------------------------------------------------------------
-
-
-def demo_game_of_life(size: int = 50, steps: int = 100):
-    """Demo using Game of Life rules on a Von Neumann grid."""
-    initial_state = np.random.Generator(0, 2, size=(size, size))
-    history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules={3}, survival_rules={2, 3}
-    )
-    visualize_cellular_automaton(history)
-
-
-def demo_highlife(size: int = 50, steps: int = 100):
-    """Demo using HighLife rules (B36/S23)."""
-    initial_state = np.random.Generator(0, 2, size=(size, size))
-    history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules={3, 6}, survival_rules={2, 3}
-    )
-    visualize_cellular_automaton(history)
-
-
-def demo_oscillator(steps: int = 20):
-    """Demo with a simple 3-cell Von Neumann oscillator pattern."""
-    size = 10
-    initial_state = np.zeros((size, size), dtype=int)
-
-    # A vertical 3-cell oscillator in the center
-    center = size // 2
-    initial_state[center - 1, center] = 1
-    initial_state[center, center] = 1
-    initial_state[center + 1, center] = 1
-
-    history = simulate_von_neumann_cellular_automaton(
-        initial_state,
-        generations=steps,
-        birth_rules={3},       # Standard Game of Life birth rule
-        survival_rules={2, 3}  # Standard Game of Life survival rule
-    )
-    visualize_cellular_automaton(history)
-
-
-def demo_random_rules(size: int = 50, steps: int = 100):
-    """Demo with random birth/survival rules."""
-    birth_rules = set(
-        np.random.Generator(range(5),
-        size=np.random.Generator(1, 5),
-        replace=False)
-    )
-    survival_rules = set(
-        np.random.Generator(range(5),
-        size=np.random.Generator(1, 5),
-        replace=False)
-    )
-    initial_state = np.random.Generator(0, 2, size=(size, size))
-    history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules=birth_rules, survival_rules=survival_rules
-    )
-    visualize_cellular_automaton(history)
-
-
-def demo_statistics(size: int = 50, steps: int = 100):
-    """Demo that plots live cell counts over time."""
-    initial_state = np.random.Generator(0, 2, size=(size, size))
-    history = simulate_von_neumann_cellular_automaton(initial_state, generations=steps)
-
-    # collect statistics
-    live_counts = [np.sum(state > 0) for state in history]
-    plt.figure(figsize=(6, 4))
-    plt.plot(range(steps + 1), live_counts, label='Live Cells')
-    plt.xlabel("Generation")
-    plt.ylabel("Number of live cells")
-    plt.title("Cell Count Over Time")
-    plt.legend()
-    plt.show()
-
-
-# -------------------------------------------------------------------------
-# Main demo orchestrator
-# -------------------------------------------------------------------------
-
-
-def demonstrate_cellular_automaton_features() -> None:
-    """
-    Run all demonstration functions sequentially.
-
-    This will open multiple matplotlib animation windows and print statistics.
-
-    Examples
-    --------
-    >>> demonstrate_cellular_automaton_features()  # doctest: +SKIP
-    """
-    print("=" * 80)
-    print("VON NEUMANN CELLULAR AUTOMATON - FEATURE DEMONSTRATION")
-    print("=" * 80)
-
-    demo_game_of_life()
-    demo_highlife()
-    demo_oscillator()
-    demo_random_rules()
-    demo_statistics()
-
-    print("=" * 80)
-    print("Demonstration complete.")
-    print("=" * 80)
-
-
-def quick_demo(rule_name: str = "conway") -> None:
-    """
-    Quick demonstration function for specific rule sets.
-
-    Args:
-        rule_name: One of 'conway', 'highlife', 'seeds', 'stable'
-
-    Examples:
-        >>> quick_demo("conway")  # doctest: +SKIP
-        >>> quick_demo("seeds")   # doctest: +SKIP
-    """
-    rule_configs = {
-        "conway": {
-            "birth_rules": {3},
-            "survival_rules": {2, 3},
-            "title": "Conway-like Rules (B3/S23)",
-            "generations": 50,
-        },
-        "highlife": {
-            "birth_rules": {3, 6},
-            "survival_rules": {2, 3},
-            "title": "High-Life Rules (B36/S23)",
-            "generations": 60,
-        },
-        "seeds": {
-            "birth_rules": {2},
-            "survival_rules": set(),
-            "title": "Seeds Rules (B2/S)",
-            "generations": 25,
-        },
-        "stable": {
-            "birth_rules": {2, 4},
-            "survival_rules": {1, 2, 3, 4},
-            "title": "Stable Rules (B24/S1234)",
-            "generations": 40,
-        },
-    }
-
-    if rule_name not in rule_configs:
-        print(f"Unknown rule set: {rule_name}")
-        print(f"Available: {', '.join(rule_configs.keys())}")
-        return
-
-    config = rule_configs[rule_name]
-    print(f"Running quick demo: {config['title']}")
-
-    try:
-        run_interactive_simulation(
-            grid_rows=25,
-            grid_columns=35,
-            generations=config["generations"],
-            birth_rules=config["birth_rules"],
-            survival_rules=config["survival_rules"],
-            max_age=5,
-            animation_speed=150,
-            show_static=True,
-        )
-    except (ValueError, RuntimeError) as e:
-        print(f"Error running demo: {e}")
-
-
 if __name__ == "__main__":
     # Run doctests
     print("Running doctests...")
     doctest.testmod(verbose=True)
-
-    # Check if this is being run interactively or with specific demo request
-    if len(sys.argv) > 1:
-        # Command line usage: python von_neumann.py demo
-        if sys.argv[1] == "demo":
-            demonstrate_cellular_automaton_features()
-        elif sys.argv[1] in ["conway", "highlife", "seeds", "stable"]:
-            quick_demo(sys.argv[1])
-        else:
-            print("Usage: python von_neumann.py [demo|conway|highlife|seeds|stable]")
-    else:
-        # Default interactive demonstration
-        demonstrate_cellular_automaton_features()
