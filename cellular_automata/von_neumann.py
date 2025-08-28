@@ -18,9 +18,9 @@ import doctest
 import sys
 
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib import animation
 from matplotlib.colors import ListedColormap
-import numpy as np
 
 
 def create_random_grid(
