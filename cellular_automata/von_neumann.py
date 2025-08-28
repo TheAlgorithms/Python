@@ -571,6 +571,7 @@ def run_interactive_simulation(
 # Helper demo functions
 # -------------------------------------------------------------------------
 
+
 def demo_game_of_life():
     """Example 1: Conway's Game of Life (B3/S23)."""
     try:
@@ -654,6 +655,7 @@ def demo_statistics():
 # -------------------------------------------------------------------------
 # Main demo orchestrator
 # -------------------------------------------------------------------------
+
 
 def demonstrate_cellular_automaton_features():
     """Runs a set of cellular automaton demonstrations."""
