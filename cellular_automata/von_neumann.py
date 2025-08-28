@@ -14,8 +14,8 @@ https://en.wikipedia.org/wiki/Von_Neumann_neighborhood
 Requirements: numpy, matplotlib
 """
 
-import sys
 import doctest
+import sys
 
 import matplotlib.pyplot as plt
 from matplotlib import animation
@@ -407,7 +407,23 @@ def visualize_cellular_automaton(
     cbar.set_ticklabels(["Dead"] + [f"Age {i}" for i in range(1, max_age + 1)])
 
     # Animation function
-    def animate(frame):
+    def animate(frame: int) -> None:
+        """
+        Animation update function for matplotlib FuncAnimation.
+
+        Parameters
+        ----------
+        frame : int
+            The current frame index.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        >>> animate(0)   # doctest: +SKIP
+        """
         im.set_array(generation_history[frame])
         ax.set_title(f"{title} - Generation {frame}", fontsize=16, pad=20)
         return [im]
@@ -576,7 +592,15 @@ def run_interactive_simulation(
 
 
 def demo_game_of_life() -> None:
-    """Example 1: Conway's Game of Life (B3/S23)."""
+    """
+    Demonstrate Conway's Game of Life cellular automaton.
+
+    This will open a matplotlib animation window.
+
+    Examples
+    --------
+    >>> demo_game_of_life()  # doctest: +SKIP
+    """
     try:
         visualize_cellular_automaton(
             rule_b=[3],
@@ -590,7 +614,15 @@ def demo_game_of_life() -> None:
 
 
 def demo_highlife() -> None:
-    """Example 2: HighLife (B36/S23)."""
+    """
+    Demonstrate the HighLife cellular automaton (B36/S23).
+
+    This will open a matplotlib animation window.
+
+    Examples
+    --------
+    >>> demo_highlife()  # doctest: +SKIP
+    """
     try:
         visualize_cellular_automaton(
             rule_b=[3, 6],
@@ -604,7 +636,15 @@ def demo_highlife() -> None:
 
 
 def demo_oscillator() -> None:
-    """Example 3: Oscillator (blinker)."""
+    """
+    Demonstrate a simple oscillator pattern.
+
+    This will open a matplotlib animation window.
+
+    Examples
+    --------
+    >>> demo_oscillator()  # doctest: +SKIP
+    """
     try:
         initial_state = np.zeros((10, 10), dtype=int)
         initial_state[4:7, 5] = 1  # vertical line
@@ -620,7 +660,15 @@ def demo_oscillator() -> None:
 
 
 def demo_randomized() -> None:
-    """Example 4: Randomized automaton (B2/S23)."""
+    """
+    Demonstrate a cellular automaton with randomized initial state.
+
+    This will open a matplotlib animation window.
+
+    Examples
+    --------
+    >>> demo_randomized()  # doctest: +SKIP
+    """
     try:
         visualize_cellular_automaton(
             rule_b=[2],
@@ -634,7 +682,15 @@ def demo_randomized() -> None:
 
 
 def demo_statistics() -> None:
-    """Example 5: Print statistics about automaton evolution."""
+    """
+    Demonstrate cellular automaton population statistics.
+
+    Prints population and density statistics to the console.
+
+    Examples
+    --------
+    >>> demo_statistics()  # doctest: +SKIP
+    """
     try:
         final_state = visualize_cellular_automaton(
             rule_b=[3],
@@ -662,7 +718,15 @@ def demo_statistics() -> None:
 
 
 def demonstrate_cellular_automaton_features() -> None:
-    """Runs a set of cellular automaton demonstrations."""
+    """
+    Run all demonstration functions sequentially.
+
+    This will open multiple matplotlib animation windows and print statistics.
+
+    Examples
+    --------
+    >>> demonstrate_cellular_automaton_features()  # doctest: +SKIP
+    """
     print("=" * 80)
     print("VON NEUMANN CELLULAR AUTOMATON - FEATURE DEMONSTRATION")
     print("=" * 80)
