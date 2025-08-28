@@ -15,8 +15,8 @@ Requirements: numpy, matplotlib
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 from matplotlib import animation
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 
@@ -571,7 +571,7 @@ def run_interactive_simulation(
 # Helper demo functions
 # -------------------------------------------------------------------------
 
-def demo_game_of_life():
+def demo_game_of_life() -> None:
     """Example 1: Conway's Game of Life (B3/S23)."""
     try:
         visualize_cellular_automaton(
@@ -585,7 +585,7 @@ def demo_game_of_life():
         print(f"Error in Game of Life demo: {e}")
 
 
-def demo_highlife():
+def demo_highlife() -> None:
     """Example 2: HighLife (B36/S23)."""
     try:
         visualize_cellular_automaton(
@@ -599,7 +599,7 @@ def demo_highlife():
         print(f"Error in HighLife demo: {e}")
 
 
-def demo_oscillator():
+def demo_oscillator() -> None:
     """Example 3: Oscillator (blinker)."""
     try:
         initial_state = np.zeros((10, 10), dtype=int)
@@ -615,7 +615,7 @@ def demo_oscillator():
         print(f"Error in Oscillator demo: {e}")
 
 
-def demo_randomized():
+def demo_randomized() -> None:
     """Example 4: Randomized automaton (B2/S23)."""
     try:
         visualize_cellular_automaton(
@@ -629,10 +629,10 @@ def demo_randomized():
         print(f"Error in Randomized demo: {e}")
 
 
-def demo_statistics():
+def demo_statistics() -> None:
     """Example 5: Print statistics about automaton evolution."""
     try:
-        final_state = run_cellular_automaton(
+        final_state = simulate_cellular_automaton(
             rule_b=[3],
             rule_s=[2, 3],
             size=50,
@@ -641,9 +641,10 @@ def demo_statistics():
         )
         alive_counts = [np.sum(state) for state in final_state]
         density = [count / (50 * 50) * 100 for count in alive_counts]
+        average_population = f"{np.mean(alive_counts):.1f} cells"
 
         print("Statistics Example:")
-        print(f"-Average population: {np.mean(alive_counts):.1f} cells")
+        print(f"-Average population: {average_population}")
         print(f"-Average density: {np.mean(density):.1f}%")
         print(f"-Max population: {np.max(alive_counts)}")
         print(f"-Min population: {np.min(alive_counts)}")
@@ -655,7 +656,7 @@ def demo_statistics():
 # Main demo orchestrator
 # -------------------------------------------------------------------------
 
-def demonstrate_cellular_automaton_features():
+def demonstrate_cellular_automaton_features() -> None:
     """Runs a set of cellular automaton demonstrations."""
     print("=" * 80)
     print("VON NEUMANN CELLULAR AUTOMATON - FEATURE DEMONSTRATION")
@@ -672,7 +673,7 @@ def demonstrate_cellular_automaton_features():
     print("=" * 80)
 
 
-def quick_demo(rule_name: str = "conway"):
+def quick_demo(rule_name: str = "conway") -> None:
     """
     Quick demonstration function for specific rule sets.
 
