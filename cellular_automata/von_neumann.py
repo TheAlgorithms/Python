@@ -177,7 +177,7 @@ def apply_cellular_automaton_rules(
         ...     ages, birth_neighbor_counts={2},
         ...     survival_neighbor_counts={2, 3}, use_wraparound=False
         ... )
-        >>> bool(new_ages[0, 0] > 0)  # corner should be born (2 neighbors: right and down)
+        >>> bool(new_ages[0, 0] > 0)  # corner should be born
         True
 
         >>> # Test aging of dead cells
@@ -189,7 +189,7 @@ def apply_cellular_automaton_rules(
         >>> bool(result[0, 0] == 3)  # should age from 2 to 3
         True
 
-        >>> apply_cellular_automaton_rules(np.array([1, 2]), {1}, {1})  # doctest: +IGNORE_EXCEPTION_DETAIL
+        >>> apply_cellular_automaton_rules(np.array([1, 2]), {1}, {1})
         Traceback (most recent call last):
         ValueError: current_ages must be a 2D array
     """
@@ -272,7 +272,7 @@ def simulate_von_neumann_cellular_automaton(
         >>> all(grid.shape == (5, 5) for grid in result)
         True
 
-        >>> simulate_von_neumann_cellular_automaton(generations=0)  # doctest: +IGNORE_EXCEPTION_DETAIL
+        >>> simulate_von_neumann_cellular_automaton(generations=0)
         Traceback (most recent call last):
         ValueError: generations must be positive
     """
@@ -632,7 +632,7 @@ def demo_randomized() -> None:
 def demo_statistics() -> None:
     """Example 5: Print statistics about automaton evolution."""
     try:
-        final_state = simulate_cellular_automaton(
+        final_state = visualize_cellular_automaton(
             rule_b=[3],
             rule_s=[2, 3],
             size=50,
