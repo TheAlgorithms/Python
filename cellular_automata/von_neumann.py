@@ -326,7 +326,7 @@ def create_heatmap_colormap(max_age: int = 5) -> ListedColormap:
         True
     """
     # Create colors from dark (dead) to bright (alive)
-    colors = ["#000000"]  # Black for dead cells (age 0)
+    colors = [(0.0, 0.0, 0.0)]  # Black for dead cells (age 0)
 
     # Generate gradient from dark red through orange to bright yellow
     for i in range(1, max_age + 1):
@@ -335,7 +335,7 @@ def create_heatmap_colormap(max_age: int = 5) -> ListedColormap:
             # Dark red to orange
             r = 0.5 + intensity
             g = intensity * 0.5
-            b = 0
+            b = 0.0
         else:
             # Orange to bright yellow/white
             r = 1.0
