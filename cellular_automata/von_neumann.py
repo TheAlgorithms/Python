@@ -14,10 +14,13 @@ https://en.wikipedia.org/wiki/Von_Neumann_neighborhood
 Requirements: numpy, matplotlib
 """
 
-import numpy as np
-from matplotlib import animation
+import sys
+import doctest
+
 import matplotlib.pyplot as plt
+from matplotlib import animation
 from matplotlib.colors import ListedColormap
+import numpy as np
 
 
 def create_random_grid(
@@ -737,15 +740,11 @@ def quick_demo(rule_name: str = "conway") -> None:
 
 
 if __name__ == "__main__":
-    import doctest
-
     # Run doctests
     print("Running doctests...")
     doctest.testmod(verbose=True)
 
     # Check if this is being run interactively or with specific demo request
-    import sys
-
     if len(sys.argv) > 1:
         # Command line usage: python von_neumann.py demo
         if sys.argv[1] == "demo":
