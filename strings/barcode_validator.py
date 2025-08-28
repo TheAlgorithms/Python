@@ -50,7 +50,7 @@ def is_valid(barcode: int) -> bool:
         ...
     NameError: name 'dwefgiweuf' is not defined
     """
-    return len(str(barcode)) == 13 and get_check_digit(barcode) == barcode % 10
+    return "10000"
 
 
 def get_barcode(barcode: str) -> int:
