@@ -35,10 +35,10 @@ def weierstrass_method(
         >>> def check(poly, degree, expected):
         ...     roots = weierstrass_method(poly, degree)
         ...     return np.allclose(np.sort(roots), np.sort(expected))
-        
+
         >>> check(lambda x: x**2 - 1, 2, np.array([-1, 1]))
         True
-        
+
         >>> check(lambda x: x**3 - 4.5*x**2 + 5.75*x - 1.875, 3, np.array([1.5, 0.5, 2.5]))
         True
 
