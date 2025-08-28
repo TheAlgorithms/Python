@@ -595,8 +595,7 @@ def demo_game_of_life(size: int = 50, steps: int = 100):
     """Demo using Game of Life rules on a Von Neumann grid."""
     initial_state = np.random.Generator(0, 2, size=(size, size))
     history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules={3}, survival_rules={2, 3}
+        initial_state, generations=steps, birth_rules={3}, survival_rules={2, 3}
     )
     visualize_cellular_automaton(history)
 
@@ -605,8 +604,7 @@ def demo_highlife(size: int = 50, steps: int = 100):
     """Demo using HighLife rules (B36/S23)."""
     initial_state = np.random.Generator(0, 2, size=(size, size))
     history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules={3, 6}, survival_rules={2, 3}
+        initial_state, generations=steps, birth_rules={3, 6}, survival_rules={2, 3}
     )
     visualize_cellular_automaton(history)
 
@@ -625,8 +623,8 @@ def demo_oscillator(steps: int = 20):
     history = simulate_von_neumann_cellular_automaton(
         initial_state,
         generations=steps,
-        birth_rules={3},       # Standard Game of Life birth rule
-        survival_rules={2, 3}  # Standard Game of Life survival rule
+        birth_rules={3},  # Standard Game of Life birth rule
+        survival_rules={2, 3},  # Standard Game of Life survival rule
     )
     visualize_cellular_automaton(history)
 
@@ -634,19 +632,17 @@ def demo_oscillator(steps: int = 20):
 def demo_random_rules(size: int = 50, steps: int = 100):
     """Demo with random birth/survival rules."""
     birth_rules = set(
-        np.random.Generator(range(5),
-        size=np.random.Generator(1, 5),
-        replace=False)
+        np.random.Generator(range(5), size=np.random.Generator(1, 5), replace=False)
     )
     survival_rules = set(
-        np.random.Generator(range(5),
-        size=np.random.Generator(1, 5),
-        replace=False)
+        np.random.Generator(range(5), size=np.random.Generator(1, 5), replace=False)
     )
     initial_state = np.random.Generator(0, 2, size=(size, size))
     history = simulate_von_neumann_cellular_automaton(
-        initial_state, generations=steps,
-        birth_rules=birth_rules, survival_rules=survival_rules
+        initial_state,
+        generations=steps,
+        birth_rules=birth_rules,
+        survival_rules=survival_rules,
     )
     visualize_cellular_automaton(history)
 
@@ -659,7 +655,7 @@ def demo_statistics(size: int = 50, steps: int = 100):
     # collect statistics
     live_counts = [np.sum(state > 0) for state in history]
     plt.figure(figsize=(6, 4))
-    plt.plot(range(steps + 1), live_counts, label='Live Cells')
+    plt.plot(range(steps + 1), live_counts, label="Live Cells")
     plt.xlabel("Generation")
     plt.ylabel("Number of live cells")
     plt.title("Cell Count Over Time")
