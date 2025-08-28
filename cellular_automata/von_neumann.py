@@ -16,7 +16,7 @@ Requirements: numpy, matplotlib
 
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+from matplotlib import animation
 from matplotlib.colors import ListedColormap
 
 
@@ -567,276 +567,108 @@ def run_interactive_simulation(
     return anim
 
 
-def demonstrate_cellular_automaton_features():
-    """
-    Comprehensive demonstration of Von Neumann cellular automaton capabilities.
+# -------------------------------------------------------------------------
+# Helper demo functions
+# -------------------------------------------------------------------------
 
-    This function showcases different rule sets, visualization options, and
-    analysis techniques. Perfect for learning how the system works and
-    exploring different configurations.
-    """
+def demo_game_of_life():
+    """Example 1: Conway's Game of Life (B3/S23)."""
+    try:
+        visualize_cellular_automaton(
+            rule_b=[3],
+            rule_s=[2, 3],
+            size=50,
+            steps=100,
+            title="Game of Life (B3/S23)",
+        )
+    except (ValueError, RuntimeError) as e:
+        print(f"Error in Game of Life demo: {e}")
+
+
+def demo_highlife():
+    """Example 2: HighLife (B36/S23)."""
+    try:
+        visualize_cellular_automaton(
+            rule_b=[3, 6],
+            rule_s=[2, 3],
+            size=50,
+            steps=100,
+            title="HighLife (B36/S23)",
+        )
+    except (ValueError, RuntimeError) as e:
+        print(f"Error in HighLife demo: {e}")
+
+
+def demo_oscillator():
+    """Example 3: Oscillator (blinker)."""
+    try:
+        initial_state = np.zeros((10, 10), dtype=int)
+        initial_state[4:7, 5] = 1  # vertical line
+        visualize_cellular_automaton(
+            rule_b=[3],
+            rule_s=[2, 3],
+            initial_state=initial_state,
+            steps=10,
+            title="Oscillator: Blinker",
+        )
+    except (ValueError, RuntimeError) as e:
+        print(f"Error in Oscillator demo: {e}")
+
+
+def demo_randomized():
+    """Example 4: Randomized automaton (B2/S23)."""
+    try:
+        visualize_cellular_automaton(
+            rule_b=[2],
+            rule_s=[2, 3],
+            size=50,
+            steps=50,
+            title="Randomized Automaton (B2/S23)",
+        )
+    except (ValueError, RuntimeError) as e:
+        print(f"Error in Randomized demo: {e}")
+
+
+def demo_statistics():
+    """Example 5: Print statistics about automaton evolution."""
+    try:
+        final_state = run_cellular_automaton(
+            rule_b=[3],
+            rule_s=[2, 3],
+            size=50,
+            steps=50,
+            return_states=True,
+        )
+        alive_counts = [np.sum(state) for state in final_state]
+        density = [count / (50 * 50) * 100 for count in alive_counts]
+
+        print("Statistics Example:")
+        print(f"-Average population: {np.mean(alive_counts):.1f} cells")
+        print(f"-Average density: {np.mean(density):.1f}%")
+        print(f"-Max population: {np.max(alive_counts)}")
+        print(f"-Min population: {np.min(alive_counts)}")
+    except (ValueError, RuntimeError) as e:
+        print(f"Error in Statistics demo: {e}")
+
+
+# -------------------------------------------------------------------------
+# Main demo orchestrator
+# -------------------------------------------------------------------------
+
+def demonstrate_cellular_automaton_features():
+    """Runs a set of cellular automaton demonstrations."""
     print("=" * 80)
     print("VON NEUMANN CELLULAR AUTOMATON - FEATURE DEMONSTRATION")
     print("=" * 80)
 
-    # Example 1: Game of Life-like Rules
-    print("\n🎮 EXAMPLE 1: Game of Life-like Rules")
-    print("-" * 50)
-    print("Rules: Birth on 3 neighbors, Survival on 2-3 neighbors")
-    print("Effect: Creates stable patterns and oscillators")
+    demo_game_of_life()
+    demo_highlife()
+    demo_oscillator()
+    demo_randomized()
+    demo_statistics()
 
-    try:
-        history_gol = simulate_von_neumann_cellular_automaton(
-            grid_rows=20,
-            grid_columns=30,
-            generations=50,
-            birth_rules={3},
-            survival_rules={2, 3},
-            maximum_cell_age=5,
-            initial_alive_probability=0.25,
-            random_seed=42,
-        )
-
-        print(f"✓ Simulated {len(history_gol)} generations")
-        print("📊 Showing static comparison...")
-        plot_static_generations(
-            history_gol, generations_to_show=[0, 10, 20, 30, 49], figsize=(18, 4)
-        )
-
-        print("🎬 Creating animation...")
-        anim1 = visualize_cellular_automaton(
-            history_gol,
-            max_age=5,
-            interval=200,
-            title="Game of Life-like Rules (B3/S23)",
-            show_grid=True,
-        )
-        plt.show()
-
-    except Exception as e:
-        print(f"❌ Error in Example 1: {e}")
-
-    # Example 2: High-Life Rules
-    print("\n🌟 EXAMPLE 2: High-Life Rules")
-    print("-" * 50)
-    print("Rules: Birth on 3,6 neighbors, Survival on 2-3 neighbors")
-    print("Effect: More dynamic with replicator patterns")
-
-    try:
-        history_highlife = simulate_von_neumann_cellular_automaton(
-            grid_rows=25,
-            grid_columns=35,
-            generations=60,
-            birth_rules={3, 6},
-            survival_rules={2, 3},
-            maximum_cell_age=4,
-            initial_alive_probability=0.2,
-            random_seed=123,
-        )
-
-        print(f"✓ Simulated {len(history_highlife)} generations")
-        print("🎬 Showing animated evolution...")
-        anim2 = visualize_cellular_automaton(
-            history_highlife,
-            max_age=4,
-            interval=150,
-            title="High-Life Rules (B36/S23)",
-            show_grid=False,
-        )
-        plt.show()
-
-    except Exception as e:
-        print(f"❌ Error in Example 2: {e}")
-
-    # Example 3: Seeds Rules (Explosive Growth)
-    print("\n💥 EXAMPLE 3: Seeds Rules")
-    print("-" * 50)
-    print("Rules: Birth on 2 neighbors, No survival")
-    print("Effect: Explosive growth patterns, very dynamic")
-
-    try:
-        history_seeds = simulate_von_neumann_cellular_automaton(
-            grid_rows=30,
-            grid_columns=40,
-            generations=25,  # Shorter due to explosive nature
-            birth_rules={2},
-            survival_rules=set(),  # No survival
-            maximum_cell_age=6,
-            initial_alive_probability=0.1,  # Lower initial density
-            random_seed=456,
-        )
-
-        print(f"✓ Simulated {len(history_seeds)} generations")
-        print("📊 Static snapshots of explosive growth...")
-        plot_static_generations(
-            history_seeds, generations_to_show=[0, 5, 10, 15, 24], figsize=(20, 4)
-        )
-
-    except Exception as e:
-        print(f"❌ Error in Example 3: {e}")
-
-    # Example 4: Custom Stable Rules
-    print("\n🏛️  EXAMPLE 4: Custom Stable Rules")
-    print("-" * 50)
-    print("Rules: Birth on 2,4 neighbors, Survival on 1-4 neighbors")
-    print("Effect: Creates stable, maze-like structures")
-
-    try:
-        history_stable = simulate_von_neumann_cellular_automaton(
-            grid_rows=25,
-            grid_columns=35,
-            generations=40,
-            birth_rules={2, 4},
-            survival_rules={1, 2, 3, 4},
-            maximum_cell_age=7,
-            initial_alive_probability=0.3,
-            random_seed=789,
-            use_wraparound_edges=False,  # No wraparound for cleaner boundaries
-        )
-
-        print(f"✓ Simulated {len(history_stable)} generations")
-        anim4 = visualize_cellular_automaton(
-            history_stable,
-            max_age=7,
-            interval=250,
-            title="Custom Stable Rules (B24/S1234)",
-            show_grid=True,
-        )
-        plt.show()
-
-    except Exception as e:
-        print(f"❌ Error in Example 4: {e}")
-
-    # Example 5: Analysis and Statistics
-    print("\n📈 EXAMPLE 5: Population Analysis")
-    print("-" * 50)
-    print("Analyzing population dynamics over time...")
-
-    try:
-        # Use the Game of Life-like rules for analysis
-        analysis_history = simulate_von_neumann_cellular_automaton(
-            grid_rows=30,
-            grid_columns=40,
-            generations=100,
-            birth_rules={3},
-            survival_rules={2, 3},
-            maximum_cell_age=5,
-            initial_alive_probability=0.25,
-            random_seed=42,
-        )
-
-        # Calculate population statistics
-        alive_counts = [np.sum(gen > 0) for gen in analysis_history]
-        total_cells = analysis_history[0].shape[0] * analysis_history[0].shape[1]
-
-        # Plot population over time
-        plt.figure(figsize=(12, 6))
-
-        plt.subplot(1, 2, 1)
-        plt.plot(alive_counts, "b-", linewidth=2, label="Living Cells")
-        plt.axhline(
-            y=np.mean(alive_counts),
-            color="r",
-            linestyle="--",
-            alpha=0.7,
-            label=f"Average: {np.mean(alive_counts):.1f}",
-        )
-        plt.xlabel("Generation")
-        plt.ylabel("Number of Living Cells")
-        plt.title("Population Over Time")
-        plt.legend()
-        plt.grid(True, alpha=0.3)
-
-        plt.subplot(1, 2, 2)
-        density = [count / total_cells * 100 for count in alive_counts]
-        plt.plot(density, "g-", linewidth=2, label="Density %")
-        plt.axhline(
-            y=np.mean(density),
-            color="r",
-            linestyle="--",
-            alpha=0.7,
-            label=f"Average: {np.mean(density):.1f}%",
-        )
-        plt.xlabel("Generation")
-        plt.ylabel("Population Density (%)")
-        plt.title("Population Density Over Time")
-        plt.legend()
-        plt.grid(True, alpha=0.3)
-
-        plt.tight_layout()
-        plt.show()
-
-        print(f"📊 Population Statistics:")
-        print(f"   • Initial population: {alive_counts[0]} cells ({density[0]:.1f}%)")
-        print(f"   • Final population: {alive_counts[-1]} cells ({density[-1]:.1f}%)")
-        print(
-            f"   • Average population: {np.mean(alive_counts):.1f} cells ({np.mean(density):.1f}%)"
-        )
-        print(
-            f"   • Maximum population: {max(alive_counts)} cells ({max(density):.1f}%)"
-        )
-        print(
-            f"   • Minimum population: {min(alive_counts)} cells ({min(density):.1f}%)"
-        )
-
-    except Exception as e:
-        print(f"❌ Error in Example 5: {e}")
-
-    # Example 6: Comparative Rule Analysis
-    print("\n🔬 EXAMPLE 6: Rule Comparison")
-    print("-" * 50)
-    print("Comparing different rule sets side by side...")
-
-    try:
-        rule_sets = [
-            ({"birth": {3}, "survival": {2, 3}, "name": "Conway B3/S23"}),
-            ({"birth": {2, 3}, "survival": {1, 2}, "name": "Dynamic B23/S12"}),
-            ({"birth": {1}, "survival": {1, 2}, "name": "Minimal B1/S12"}),
-        ]
-
-        fig, axes = plt.subplots(len(rule_sets), 4, figsize=(16, 3 * len(rule_sets)))
-        if len(rule_sets) == 1:
-            axes = axes.reshape(1, -1)
-
-        for i, rule_set in enumerate(rule_sets):
-            print(f"  Analyzing: {rule_set['name']}")
-
-            history = simulate_von_neumann_cellular_automaton(
-                grid_rows=20,
-                grid_columns=25,
-                generations=30,
-                birth_rules=rule_set["birth"],
-                survival_rules=rule_set["survival"],
-                maximum_cell_age=4,
-                initial_alive_probability=0.25,
-                random_seed=42,
-            )
-
-            # Show generations 0, 10, 20, 29
-            for j, gen_idx in enumerate([0, 10, 20, 29]):
-                if gen_idx < len(history):
-                    im = axes[i, j].imshow(
-                        history[gen_idx],
-                        cmap=create_heatmap_colormap(4),
-                        vmin=0,
-                        vmax=4,
-                    )
-                    axes[i, j].set_title(f"Gen {gen_idx}")
-                    axes[i, j].set_xticks([])
-                    axes[i, j].set_yticks([])
-
-            # Label the row
-            axes[i, 0].set_ylabel(rule_set["name"], rotation=90, va="center")
-
-        plt.suptitle("Rule Set Comparison", fontsize=16)
-        plt.tight_layout()
-        plt.show()
-
-    except Exception as e:
-        print(f"❌ Error in Example 6: {e}")
-
-    print("\n" + "=" * 80)
-    print("🎉 DEMONSTRATION COMPLETE!")
+    print("=" * 80)
+    print("Demonstration complete.")
     print("=" * 80)
 
 
@@ -879,12 +711,12 @@ def quick_demo(rule_name: str = "conway"):
     }
 
     if rule_name not in rule_configs:
-        print(f"❌ Unknown rule set: {rule_name}")
+        print(f"Unknown rule set: {rule_name}")
         print(f"Available: {', '.join(rule_configs.keys())}")
         return
 
     config = rule_configs[rule_name]
-    print(f"🎮 Running quick demo: {config['title']}")
+    print(f"Running quick demo: {config['title']}")
 
     try:
         run_interactive_simulation(
@@ -897,8 +729,8 @@ def quick_demo(rule_name: str = "conway"):
             animation_speed=150,
             show_static=True,
         )
-    except Exception as e:
-        print(f"❌ Error running demo: {e}")
+    except (ValueError, RuntimeError) as e:
+        print(f"Error running demo: {e}")
 
 
 if __name__ == "__main__":
