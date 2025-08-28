@@ -32,9 +32,14 @@ def weierstrass_method(
 
     Example:
         >>> import numpy as np
-        >>> def f(x): return x**2 - 1
-        >>> roots = weierstrass_method(f, 2)
-        >>> np.allclose(np.sort(roots), np.sort(np.array([1, -1])))
+        >>> def check(poly, degree, expected):
+        ...     roots = weierstrass_method(poly, degree)
+        ...     return np.allclose(np.sort(roots), np.sort(expected))
+        
+        >>> check(lambda x: x**2 - 1, 2, np.array([-1, 1]))
+        True
+        
+        >>> check(lambda x: x**3 - 4.5*x**2 + 5.75*x - 1.875, 3, np.array([1.5, 0.5, 2.5]))
         True
 
     See Also:
