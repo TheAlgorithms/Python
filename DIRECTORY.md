@@ -12,6 +12,7 @@
   * [Combination Sum](backtracking/combination_sum.py)
   * [Crossword Puzzle Solver](backtracking/crossword_puzzle_solver.py)
   * [Generate Parentheses](backtracking/generate_parentheses.py)
+  * [Generate Parentheses Iterative](backtracking/generate_parentheses_iterative.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
@@ -174,6 +175,7 @@
 
 ## Data Compression
   * [Burrows Wheeler](data_compression/burrows_wheeler.py)
+  * [Coordinate Compression](data_compression/coordinate_compression.py)
   * [Huffman](data_compression/huffman.py)
   * [Lempel Ziv](data_compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](data_compression/lempel_ziv_decompress.py)
@@ -956,6 +958,7 @@
     * [Sol1](project_euler/problem_009/sol1.py)
     * [Sol2](project_euler/problem_009/sol2.py)
     * [Sol3](project_euler/problem_009/sol3.py)
+    * [Sol4](project_euler/problem_009/sol4.py)
   * Problem 010
     * [Sol1](project_euler/problem_010/sol1.py)
     * [Sol2](project_euler/problem_010/sol2.py)
@@ -1266,6 +1269,7 @@
   * [Comb Sort](sorts/comb_sort.py)
   * [Counting Sort](sorts/counting_sort.py)
   * [Cycle Sort](sorts/cycle_sort.py)
+  * [Cyclic Sort](sorts/cyclic_sort.py)
   * [Double Sort](sorts/double_sort.py)
   * [Dutch National Flag Sort](sorts/dutch_national_flag_sort.py)
   * [Exchange Sort](sorts/exchange_sort.py)
