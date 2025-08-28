@@ -591,125 +591,80 @@ def run_interactive_simulation(
 # -------------------------------------------------------------------------
 
 
-def demo_game_of_life() -> None:
-    """
-    Demonstrate Conway's Game of Life cellular automaton.
-
-    This will open a matplotlib animation window.
-
-    Examples
-    --------
-    >>> demo_game_of_life()  # doctest: +SKIP
-    """
-    try:
-        visualize_cellular_automaton(
-            rule_b=[3],
-            rule_s=[2, 3],
-            size=50,
-            steps=100,
-            title="Game of Life (B3/S23)",
-        )
-    except (ValueError, RuntimeError) as e:
-        print(f"Error in Game of Life demo: {e}")
+def demo_game_of_life(size: int = 50, steps: int = 100):
+    """Demo using Game of Life rules on a Von Neumann grid."""
+    initial_state = np.random.Generator(0, 2, size=(size, size))
+    history = simulate_von_neumann_cellular_automaton(
+        initial_state, generations=steps,
+        birth_rules={3}, survival_rules={2, 3}
+    )
+    visualize_cellular_automaton(history)
 
 
-def demo_highlife() -> None:
-    """
-    Demonstrate the HighLife cellular automaton (B36/S23).
-
-    This will open a matplotlib animation window.
-
-    Examples
-    --------
-    >>> demo_highlife()  # doctest: +SKIP
-    """
-    try:
-        visualize_cellular_automaton(
-            rule_b=[3, 6],
-            rule_s=[2, 3],
-            size=50,
-            steps=100,
-            title="HighLife (B36/S23)",
-        )
-    except (ValueError, RuntimeError) as e:
-        print(f"Error in HighLife demo: {e}")
+def demo_highlife(size: int = 50, steps: int = 100):
+    """Demo using HighLife rules (B36/S23)."""
+    initial_state = np.random.Generator(0, 2, size=(size, size))
+    history = simulate_von_neumann_cellular_automaton(
+        initial_state, generations=steps,
+        birth_rules={3, 6}, survival_rules={2, 3}
+    )
+    visualize_cellular_automaton(history)
 
 
-def demo_oscillator() -> None:
-    """
-    Demonstrate a simple oscillator pattern.
+def demo_oscillator(steps: int = 20):
+    """Demo with a simple 3-cell Von Neumann oscillator pattern."""
+    size = 10
+    initial_state = np.zeros((size, size), dtype=int)
 
-    This will open a matplotlib animation window.
+    # A vertical 3-cell oscillator in the center
+    center = size // 2
+    initial_state[center - 1, center] = 1
+    initial_state[center, center] = 1
+    initial_state[center + 1, center] = 1
 
-    Examples
-    --------
-    >>> demo_oscillator()  # doctest: +SKIP
-    """
-    try:
-        initial_state = np.zeros((10, 10), dtype=int)
-        initial_state[4:7, 5] = 1  # vertical line
-        visualize_cellular_automaton(
-            rule_b=[3],
-            rule_s=[2, 3],
-            initial_state=initial_state,
-            steps=10,
-            title="Oscillator: Blinker",
-        )
-    except (ValueError, RuntimeError) as e:
-        print(f"Error in Oscillator demo: {e}")
+    history = simulate_von_neumann_cellular_automaton(
+        initial_state,
+        generations=steps,
+        birth_rules={3},       # Standard Game of Life birth rule
+        survival_rules={2, 3}  # Standard Game of Life survival rule
+    )
+    visualize_cellular_automaton(history)
 
 
-def demo_randomized() -> None:
-    """
-    Demonstrate a cellular automaton with randomized initial state.
-
-    This will open a matplotlib animation window.
-
-    Examples
-    --------
-    >>> demo_randomized()  # doctest: +SKIP
-    """
-    try:
-        visualize_cellular_automaton(
-            rule_b=[2],
-            rule_s=[2, 3],
-            size=50,
-            steps=50,
-            title="Randomized Automaton (B2/S23)",
-        )
-    except (ValueError, RuntimeError) as e:
-        print(f"Error in Randomized demo: {e}")
+def demo_random_rules(size: int = 50, steps: int = 100):
+    """Demo with random birth/survival rules."""
+    birth_rules = set(
+        np.random.Generator(range(5),
+        size=np.random.Generator(1, 5),
+        replace=False)
+    )
+    survival_rules = set(
+        np.random.Generator(range(5),
+        size=np.random.Generator(1, 5),
+        replace=False)
+    )
+    initial_state = np.random.Generator(0, 2, size=(size, size))
+    history = simulate_von_neumann_cellular_automaton(
+        initial_state, generations=steps,
+        birth_rules=birth_rules, survival_rules=survival_rules
+    )
+    visualize_cellular_automaton(history)
 
 
-def demo_statistics() -> None:
-    """
-    Demonstrate cellular automaton population statistics.
+def demo_statistics(size: int = 50, steps: int = 100):
+    """Demo that plots live cell counts over time."""
+    initial_state = np.random.Generator(0, 2, size=(size, size))
+    history = simulate_von_neumann_cellular_automaton(initial_state, generations=steps)
 
-    Prints population and density statistics to the console.
-
-    Examples
-    --------
-    >>> demo_statistics()  # doctest: +SKIP
-    """
-    try:
-        final_state = visualize_cellular_automaton(
-            rule_b=[3],
-            rule_s=[2, 3],
-            size=50,
-            steps=50,
-            return_states=True,
-        )
-        alive_counts = [np.sum(state) for state in final_state]
-        density = [count / (50 * 50) * 100 for count in alive_counts]
-        average_population = f"{np.mean(alive_counts):.1f} cells"
-
-        print("Statistics Example:")
-        print(f"-Average population: {average_population}")
-        print(f"-Average density: {np.mean(density):.1f}%")
-        print(f"-Max population: {np.max(alive_counts)}")
-        print(f"-Min population: {np.min(alive_counts)}")
-    except (ValueError, RuntimeError) as e:
-        print(f"Error in Statistics demo: {e}")
+    # collect statistics
+    live_counts = [np.sum(state > 0) for state in history]
+    plt.figure(figsize=(6, 4))
+    plt.plot(range(steps + 1), live_counts, label='Live Cells')
+    plt.xlabel("Generation")
+    plt.ylabel("Number of live cells")
+    plt.title("Cell Count Over Time")
+    plt.legend()
+    plt.show()
 
 
 # -------------------------------------------------------------------------
@@ -734,7 +689,7 @@ def demonstrate_cellular_automaton_features() -> None:
     demo_game_of_life()
     demo_highlife()
     demo_oscillator()
-    demo_randomized()
+    demo_random_rules()
     demo_statistics()
 
     print("=" * 80)
