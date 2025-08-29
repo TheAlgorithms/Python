@@ -42,14 +42,14 @@ def calculate_span(price: list[int]) -> list[int]:
     for i in range(1, n):
         # Pop elements from stack while stack is not
         # empty and top of stack is smaller than price[i]
-        while len(st) > 0 and price[st[0]] <= price[i]:
+        while len(st) > 0 and price[st[-1]] <= price[i]:
             st.pop()
 
         # If stack becomes empty, then price[i] is greater
         # than all elements on left of it, i.e. price[0],
         # price[1], ..price[i-1]. Else the price[i]  is
         # greater than elements after top of stack
-        s[i] = i + 1 if len(st) <= 0 else (i - st[0])
+        s[i] = i + 1 if len(st) <= 0 else (i - st[-1])
 
         # Push this element to stack
         st.append(i)
