@@ -5,7 +5,6 @@ that are best described as compass locations.
 @ https://en.wikipedia.org/wiki/Word_search
 """
 
-
 from random import choice, randint, shuffle
 
 # The words to display on the word search -

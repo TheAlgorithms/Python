@@ -1,18 +1,19 @@
 """
-     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-    Name - - CNN - Convolution Neural Network For Photo Recognizing
-    Goal - - Recognize Handing Writing Word Photo
-    Detail：Total 5 layers neural network
-            * Convolution layer
-            * Pooling layer
-            * Input layer layer of BP
-            * Hidden layer of BP
-            * Output layer of BP
-    Author: Stephen Lee
-    Github: 245885195@qq.com
-    Date: 2017.9.20
-    - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+ - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+Name - - CNN - Convolution Neural Network For Photo Recognizing
+Goal - - Recognize Handwriting Word Photo
+Detail: Total 5 layers neural network
+        * Convolution layer
+        * Pooling layer
+        * Input layer layer of BP
+        * Hidden layer of BP
+        * Output layer of BP
+Author: Stephen Lee
+Github: 245885195@qq.com
+Date: 2017.9.20
+- - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
+
 import pickle
 
 import numpy as np
@@ -24,7 +25,7 @@ class CNN:
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
     ):
         """
-        :param conv1_get: [a,c,d]，size, number, step of convolution kernel
+        :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size
         :param bp_num1: units number of flatten layer
         :param bp_num2: units number of hidden layer
@@ -40,15 +41,16 @@ class CNN:
         self.size_pooling1 = size_p1
         self.rate_weight = rate_w
         self.rate_thre = rate_t
+        rng = np.random.default_rng()
         self.w_conv1 = [
-            np.mat(-1 * np.random.rand(self.conv1[0], self.conv1[0]) + 0.5)
+            np.asmatrix(-1 * rng.random((self.conv1[0], self.conv1[0])) + 0.5)
             for i in range(self.conv1[1])
         ]
-        self.wkj = np.mat(-1 * np.random.rand(self.num_bp3, self.num_bp2) + 0.5)
-        self.vji = np.mat(-1 * np.random.rand(self.num_bp2, self.num_bp1) + 0.5)
-        self.thre_conv1 = -2 * np.random.rand(self.conv1[1]) + 1
-        self.thre_bp2 = -2 * np.random.rand(self.num_bp2) + 1
-        self.thre_bp3 = -2 * np.random.rand(self.num_bp3) + 1
+        self.wkj = np.asmatrix(-1 * rng.random((self.num_bp3, self.num_bp2)) + 0.5)
+        self.vji = np.asmatrix(-1 * rng.random((self.num_bp2, self.num_bp1)) + 0.5)
+        self.thre_conv1 = -2 * rng.random(self.conv1[1]) + 1
+        self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
+        self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
     def save_model(self, save_path):
         # save model dict with pickle
@@ -71,7 +73,7 @@ class CNN:
         with open(save_path, "wb") as f:
             pickle.dump(model_dic, f)
 
-        print(f"Model saved： {save_path}")
+        print(f"Model saved: {save_path}")
 
     @classmethod
     def read_model(cls, model_path):
@@ -133,7 +135,7 @@ class CNN:
             )
             data_featuremap.append(featuremap)
 
-        # expanding the data slice to One dimenssion
+        # expanding the data slice to one dimension
         focus1_list = []
         for each_focus in data_focus:
             focus1_list.extend(self.Expand_Mat(each_focus))
@@ -210,7 +212,7 @@ class CNN:
     def train(
         self, patterns, datas_train, datas_teach, n_repeat, error_accuracy, draw_e=bool
     ):
-        # model traning
+        # model training
         print("----------------------Start Training-------------------------")
         print((" - - Shape: Train_Data  ", np.shape(datas_train)))
         print((" - - Shape: Teach_Data  ", np.shape(datas_teach)))
@@ -302,7 +304,7 @@ class CNN:
             plt.grid(True, alpha=0.5)
             plt.show()
 
-        print("------------------Training Complished---------------------")
+        print("------------------Training Complete---------------------")
         print((" - - Training epoch: ", rp, f"     - - Mse: {mse:.6f}"))
         if draw_e:
             draw_error()
@@ -351,5 +353,5 @@ class CNN:
 
 if __name__ == "__main__":
     """
-    I will put the example on other file
+    I will put the example in another file
     """
