@@ -16,23 +16,18 @@ def calculate_span(price: list[int]) -> list[int]:
     Returns:
         List of span values.
 
-    >>> price = [10, 4, 5, 90, 120, 80]
-    >>> calculate_span(price)
-    [1.0, 1.0, 2.0, 4.0, 5.0, 1.0]
-    >>> price = [100, 50, 60, 70, 80, 90]
-    >>> calculate_span(price)
-    [1.0, 1.0, 2.0, 3.0, 4.0, 5.0]
-    >>> price = [5, 4, 3, 2, 1]
-    >>> calculate_span(price)
-    [1.0, 1.0, 1.0, 1.0, 1.0]
-    >>> price = [1, 2, 3, 4, 5]
-    >>> calculate_span(price)
-    [1.0, 2.0, 3.0, 4.0, 5.0]
-    >>> price = [10, 20, 30, 40, 50]
-    >>> calculate_span(price)
-    [1.0, 2.0, 3.0, 4.0, 5.0]
-    >>> calculation_span(price=[100, 80, 60, 70, 60, 75, 85])
-    [1.0, 1.0, 1.0, 2.0, 1.0, 4.0, 6.0]
+    >>> calculate_span([10, 4, 5, 90, 120, 80])
+    [1, 1, 2, 4, 5, 1]
+    >>> calculate_span([100, 50, 60, 70, 80, 90])
+    [1, 1, 2, 3, 4, 5]
+    >>> calculate_span([5, 4, 3, 2, 1])
+    [1, 1, 1, 1, 1]
+    >>> calculate_span([1, 2, 3, 4, 5])
+    [1, 2, 3, 4, 5]
+    >>> calculate_span([10, 20, 30, 40, 50])
+    [1, 2, 3, 4, 5]
+    >>> calculation_span([100, 80, 60, 70, 60, 75, 85])
+    [1, 1, 1, 2, 1, 4, 6]
     """
     n = len(price)
     s = [0] * n
