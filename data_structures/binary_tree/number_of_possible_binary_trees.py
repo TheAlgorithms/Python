@@ -6,6 +6,7 @@ We will use the formula: t(n) = SUMMATION(i = 1 to n)t(i-1)t(n-i)
 
 Further details at Wikipedia: https://en.wikipedia.org/wiki/Catalan_number
 """
+
 """
 Our Contribution:
 Basically we Create the 2 function:
@@ -30,8 +31,7 @@ def binomial_coefficient(n: int, k: int) -> int:
     """
     result = 1  # To kept the Calculated Value
     # Since C(n, k) = C(n, n-k)
-    if k > (n - k):
-        k = n - k
+    k = min(k, n - k)
     # Calculate C(n,k)
     for i in range(k):
         result *= n - i

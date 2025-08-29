@@ -12,9 +12,13 @@ python merge_sort.py
 
 def merge_sort(collection: list) -> list:
     """
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    Sorts a list using the merge sort algorithm.
+
+    :param collection: A mutable ordered collection with comparable items.
+    :return: The same collection ordered in ascending order.
+
+    Time Complexity: O(n log n)
+
     Examples:
     >>> merge_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -26,31 +30,34 @@ def merge_sort(collection: list) -> list:
 
     def merge(left: list, right: list) -> list:
         """
-        Merge left and right.
+        Merge two sorted lists into a single sorted list.
 
-        :param left: left collection
-        :param right: right collection
-        :return: merge result
+        :param left: Left collection
+        :param right: Right collection
+        :return: Merged result
         """
-
-        def _merge():
-            while left and right:
-                yield (left if left[0] <= right[0] else right).pop(0)
-            yield from left
-            yield from right
-
-        return list(_merge())
+        result = []
+        while left and right:
+            result.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
+        result.extend(left)
+        result.extend(right)
+        return result
 
     if len(collection) <= 1:
         return collection
-    mid = len(collection) // 2
-    return merge(merge_sort(collection[:mid]), merge_sort(collection[mid:]))
+    mid_index = len(collection) // 2
+    return merge(merge_sort(collection[:mid_index]), merge_sort(collection[mid_index:]))
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(*merge_sort(unsorted), sep=",")
+
+    try:
+        user_input = input("Enter numbers separated by a comma:\n").strip()
+        unsorted = [int(item) for item in user_input.split(",")]
+        sorted_list = merge_sort(unsorted)
+        print(*sorted_list, sep=",")
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas.")

@@ -17,6 +17,7 @@ return [0, 1].
 
 [1]: https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py
 """
+
 from __future__ import annotations
 
 

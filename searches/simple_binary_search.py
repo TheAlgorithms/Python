@@ -7,6 +7,7 @@ python3 -m doctest -v simple_binary_search.py
 For manual testing run:
 python3 simple_binary_search.py
 """
+
 from __future__ import annotations
 
 

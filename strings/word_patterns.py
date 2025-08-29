@@ -1,11 +1,32 @@
 def get_word_pattern(word: str) -> str:
     """
+    Returns numerical pattern of character appearances in given word
+    >>> get_word_pattern("")
+    ''
+    >>> get_word_pattern(" ")
+    '0'
     >>> get_word_pattern("pattern")
     '0.1.2.2.3.4.5'
     >>> get_word_pattern("word pattern")
     '0.1.2.3.4.5.6.7.7.8.2.9'
     >>> get_word_pattern("get word pattern")
     '0.1.2.3.4.5.6.7.3.8.9.2.2.1.6.10'
+    >>> get_word_pattern()
+    Traceback (most recent call last):
+    ...
+    TypeError: get_word_pattern() missing 1 required positional argument: 'word'
+    >>> get_word_pattern(1)
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'int' object has no attribute 'upper'
+    >>> get_word_pattern(1.1)
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'float' object has no attribute 'upper'
+    >>> get_word_pattern([])
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'list' object has no attribute 'upper'
     """
     word = word.upper()
     next_num = 0

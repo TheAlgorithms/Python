@@ -38,7 +38,7 @@ def find_components(
     reversed_graph: dict[int, list[int]], vert: int, visited: list[bool]
 ) -> list[int]:
     """
-    Use depth first search to find strongliy connected
+    Use depth first search to find strongly connected
     vertices. Now graph is reversed
     >>> find_components({0: [1], 1: [2], 2: [0]}, 0, 5 * [False])
     [0, 1, 2]

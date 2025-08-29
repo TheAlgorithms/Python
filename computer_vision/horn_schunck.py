@@ -1,12 +1,12 @@
 """
-    The Horn-Schunck method estimates the optical flow for every single pixel of
-    a sequence of images.
-    It works by assuming brightness constancy between two consecutive frames
-    and smoothness in the optical flow.
+The Horn-Schunck method estimates the optical flow for every single pixel of
+a sequence of images.
+It works by assuming brightness constancy between two consecutive frames
+and smoothness in the optical flow.
 
-    Useful resources:
-    Wikipedia: https://en.wikipedia.org/wiki/Horn%E2%80%93Schunck_method
-    Paper: http://image.diku.dk/imagecanon/material/HornSchunckOptical_Flow.pdf
+Useful resources:
+Wikipedia: https://en.wikipedia.org/wiki/Horn%E2%80%93Schunck_method
+Paper: http://image.diku.dk/imagecanon/material/HornSchunckOptical_Flow.pdf
 """
 
 from typing import SupportsIndex
