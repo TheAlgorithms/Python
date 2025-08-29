@@ -725,6 +725,7 @@
     * [Secant Method](maths/numerical_analysis/secant_method.py)
     * [Simpson Rule](maths/numerical_analysis/simpson_rule.py)
     * [Square Root](maths/numerical_analysis/square_root.py)
+    * [Weierstrass Method](maths/numerical_analysis/weierstrass_method.py)
   * [Odd Sieve](maths/odd_sieve.py)
   * [Perfect Cube](maths/perfect_cube.py)
   * [Perfect Number](maths/perfect_number.py)
