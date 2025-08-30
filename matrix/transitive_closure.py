@@ -1,6 +1,7 @@
 def transitive_closure(graph: list[list[int]]) -> list[list[int]]:
     """
-    Computes the transitive closure of a directed graph using the Floyd-Warshall algorithm.
+    Computes the transitive closure of a directed graph using the 
+    Floyd-Warshall algorithm.
 
     Args:
         graph (list[list[int]]): Adjacency matrix representation of the graph.
