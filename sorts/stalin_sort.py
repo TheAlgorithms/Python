@@ -33,9 +33,6 @@ def stalin_sort(sequence: list[int]) -> list[int]:
     >>> stalin_sort([1, 2, 8, 7, 6])
     [1, 2, 8]
     """
-    if any(x < 0 for x in sequence):
-        raise ValueError("Sequence must only contain non-negative integers")
-
     result = [sequence[0]]
     for i in range(1, len(sequence)):
         if sequence[i] >= result[-1]:
