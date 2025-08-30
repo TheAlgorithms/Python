@@ -65,7 +65,7 @@ class BinaryTreePathSum:
     >>> tree2.right = Node(5)
 
     >>> BinaryTreePathSum().path_sum(tree2, 5)
-    3
+    4
     >>> BinaryTreePathSum().path_sum(tree2, -1)
     0
     >>> BinaryTreePathSum().path_sum(tree2, 0)
