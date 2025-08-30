@@ -14,6 +14,9 @@ def split(string: str, separator: str = " ") -> list:
 
     >>> split("12:43:39",separator = ":")
     ['12', '43', '39']
+
+    >>> split(";abbb;;c;", separator=';')
+    ['', 'abbb', '', 'c', '']
     """
 
     split_words = []
@@ -23,7 +26,7 @@ def split(string: str, separator: str = " ") -> list:
         if char == separator:
             split_words.append(string[last_index:index])
             last_index = index + 1
-        elif index + 1 == len(string):
+        if index + 1 == len(string):
             split_words.append(string[last_index : index + 1])
     return split_words
 
