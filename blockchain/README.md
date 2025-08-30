@@ -43,3 +43,8 @@ So this is all about introduction to blockchain technology. To learn more about 
 * <https://en.wikipedia.org/wiki/Chinese_remainder_theorem>
 * <https://en.wikipedia.org/wiki/Diophantine_equation>
 * <https://www.geeksforgeeks.org/modular-division/>
+
+## Алгоритмы
+
+### `diophantine_equation.py`
+Этот скрипт предоставляет функции для решения линейных диофантовых уравнений вида `ax + by = c`. Он может находить одно или несколько решений. Для нахождения наибольшего общего делителя и начальных решений используется расширенный алгоритм Евклида.
