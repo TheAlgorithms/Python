@@ -1,4 +1,4 @@
-def transitiveClosure(graph):
+def transitive_closure(graph):
     """
     Computes the transitive closure of a directed graph using the Floyd-Warshall algorithm.
 
