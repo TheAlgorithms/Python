@@ -1,8 +1,8 @@
-# Contributing guidelines
+# Contributing Guidelines
 
-## Before contributing
+## Before Contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before submitting your pull requests, please ensure that you __read the whole guidelines__. If you have any doubts about the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community on [Gitter](https://gitter.im/TheAlgorithms/community).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before submitting your pull requests, please ensure that you __read the entire guidelines__. If you have any doubts about the contributing guide, please feel free to [state them clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community on [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -10,24 +10,24 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 
 We are delighted that you are considering implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. By being one of our contributors, you agree and confirm that:
 
-- You did your work - no plagiarism allowed.
+- You did your work — no plagiarism allowed.
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged.
+- Your work will be distributed under the [MIT License](LICENSE.md) once your pull request is merged.
 - Your submitted work fulfills or mostly fulfills our styles and standards.
 
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity, but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementations__ are welcome! For example, new solutions for a problem, different representations for a graph data structure, or algorithm designs with different complexities. However, __identical implementations__ of an existing one are not allowed. Please check whether the solution is already implemented before submitting your pull request.
 
 __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 ### Contribution
 
-We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
+We appreciate any contribution — from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, then click on the ___details___ button to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy. After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, click on the ___details___ button to read through the GitHub Actions output to understand the failure. If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
 #### Issues
 
-If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__ so please do not ask for permission to work on an issue.
+If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__, so please do not ask for permission to work on an issue.
 
 __Do not__ create an issue to contribute an algorithm. Please submit a pull request instead.
 
@@ -40,27 +40,27 @@ GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/is
 
 #### What is an Algorithm?
 
-An Algorithm is one or more functions (or classes) that:
+An algorithm is one or more functions (or classes) that:
 * take one or more inputs,
 * perform some internal calculations or data manipulations,
 * return one or more outputs,
-* have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
+* have minimal side effects (e.g., `print()`, `plot()`, `read()`, `write()`).
 
-Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
+Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
 Algorithms should:
-* have intuitive class and function names that make their purpose clear to readers
-* use Python naming conventions and intuitive variable names to ease comprehension
-* be flexible to take different input values
-* have Python type hints for their input parameters and return values
-* raise Python exceptions (`ValueError`, etc.) on erroneous input values
-* have docstrings with clear explanations and/or URLs to source materials
-* contain doctests that test both valid and erroneous input values
-* return all calculation results instead of printing or plotting them
+* have intuitive class and function names that make their purpose clear to readers,
+* use Python naming conventions and intuitive variable names to ease comprehension,
+* be flexible to take different input values,
+* have Python type hints for their input parameters and return values,
+* raise Python exceptions (`ValueError`, etc.) on erroneous input values,
+* have docstrings with clear explanations and/or URLs to source materials,
+* contain doctests that test both valid and erroneous input values,
+* return all calculation results instead of printing or plotting them.
 
-Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be simple how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. These calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
-#### Pre-commit plugin
+#### Pre-Commit Plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
 ```bash
@@ -68,11 +68,9 @@ python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
-
 ```bash
 pre-commit run --all-files --show-diff-on-failure
 ```
-
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
@@ -85,20 +83,17 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
 
-- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
-
+- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation.
+  - To use it:
   ```bash
   python3 -m pip install black  # only required the first time
   black .
   ```
-
-- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
-
+  - All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
   ```bash
   python3 -m pip install ruff  # only required the first time
   ruff check
   ```
-
 - Original code submission require docstrings or comments to describe your work.
 
 - More on docstrings and comments:
