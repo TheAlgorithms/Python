@@ -59,12 +59,12 @@ class FixedPriorityQueue:
     >>> fpq.dequeue()
     Traceback (most recent call last):
         ...
-    data_structures.queue.priority_queue_using_list.UnderFlowError: All queues are empty
+    data_structures.queues.priority_queue_using_list.UnderFlowError: All queues are empty
     >>> print(fpq)
     Priority 0: []
     Priority 1: []
     Priority 2: []
-    """
+    """  # noqa: E501
 
     def __init__(self):
         self.queues = [
@@ -141,7 +141,7 @@ class ElementPriorityQueue:
     >>> epq.dequeue()
     Traceback (most recent call last):
         ...
-    data_structures.queue.priority_queue_using_list.UnderFlowError: The queue is empty
+    data_structures.queues.priority_queue_using_list.UnderFlowError: The queue is empty
     >>> print(epq)
     []
     """

@@ -10,9 +10,10 @@ developed by Edsger Dijkstra that tests for safety by simulating the allocation 
 predetermined maximum possible amounts of all resources, and then makes a "s-state"
 check to test for possible deadlock conditions for all other pending activities,
 before deciding whether allocation should be allowed to continue.
-[Source] Wikipedia
-[Credit] Rosetta Code C implementation helped very much.
- (https://rosettacode.org/wiki/Banker%27s_algorithm)
+
+| [Source] Wikipedia
+| [Credit] Rosetta Code C implementation helped very much.
+| (https://rosettacode.org/wiki/Banker%27s_algorithm)
 """
 
 from __future__ import annotations
@@ -75,7 +76,7 @@ class BankersAlgorithm:
     def __need(self) -> list[list[int]]:
         """
         Implement safety checker that calculates the needs by ensuring that
-        max_claim[i][j] - alloc_table[i][j] <= avail[j]
+        ``max_claim[i][j] - alloc_table[i][j] <= avail[j]``
         """
         return [
             list(np.array(self.__maximum_claim_table[i]) - np.array(allocated_resource))
@@ -86,7 +87,9 @@ class BankersAlgorithm:
         """
         This function builds an index control dictionary to track original ids/indices
         of processes when altered during execution of method "main"
-            Return: {0: [a: int, b: int], 1: [c: int, d: int]}
+
+            :Return: {0: [a: int, b: int], 1: [c: int, d: int]}
+
         >>> index_control = BankersAlgorithm(
         ...     test_claim_vector, test_allocated_res_table, test_maximum_claim_table
         ... )._BankersAlgorithm__need_index_manager()
@@ -100,7 +103,8 @@ class BankersAlgorithm:
     def main(self, **kwargs) -> None:
         """
         Utilize various methods in this class to simulate the Banker's algorithm
-        Return: None
+            :Return: None
+
         >>> BankersAlgorithm(test_claim_vector, test_allocated_res_table,
         ...    test_maximum_claim_table).main(describe=True)
                  Allocated Resource Table
