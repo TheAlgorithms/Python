@@ -23,10 +23,7 @@ def transitive_closure(graph: list[list[int]]) -> list[list[int]]:
     [0, 0, 0, 1]
     """
     n = len(graph)
-    ans = [
-        [graph[i][j] for j in range(n)]
-        for i in range(n)
-    ]
+    ans = [[graph[i][j] for j in range(n)] for i in range(n)]
 
     # Transtive closure of (i, i) will always be 1
     for i in range(n):
