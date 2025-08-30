@@ -1,4 +1,4 @@
-def transitive_closure(graph):
+def transitive_closure(graph) -> list[list[int]]:
     """
     Computes the transitive closure of a directed graph using the Floyd-Warshall algorithm.
 
