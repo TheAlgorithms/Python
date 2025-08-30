@@ -37,7 +37,7 @@ Usage:
             heterogeneity,
             k
         )
-  5. Plot of the labeled 3D data points with centroids.
+  5. Plot the labeled 3D data points with centroids.
         plot_kmeans(
             X,
             centroids,
