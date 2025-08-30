@@ -204,11 +204,9 @@ class Matrix:
         return Matrix(
             [
                 [
-                    (
-                        self.minors().rows[row][column]
-                        if (row + column) % 2 == 0
-                        else self.minors().rows[row][column] * -1
-                    )
+                    self.minors().rows[row][column]
+                    if (row + column) % 2 == 0
+                    else self.minors().rows[row][column] * -1
                     for column in range(self.minors().num_columns)
                 ]
                 for row in range(self.minors().num_rows)
