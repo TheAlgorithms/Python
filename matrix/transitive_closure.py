@@ -14,7 +14,7 @@ def transitive_closure(graph):
     ...     [1, 0, 0, 1],
     ...     [0, 0, 0, 0]
     ... ]
-    >>> result = transitiveClosure(graph)
+    >>> result = transitive_closure(graph)
     >>> for row in result:
     ...     print(row)
     [1, 1, 1, 1]
