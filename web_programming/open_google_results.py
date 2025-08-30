@@ -1,8 +1,17 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "fake-useragent",
+#     "httpx",
+# ]
+# ///
+
 import webbrowser
 from sys import argv
 from urllib.parse import parse_qs, quote
 
-import requests
+import httpx
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
@@ -13,26 +22,18 @@ if __name__ == "__main__":
 
     url = f"https://www.google.com/search?q={query}&num=100"
 
-    res = requests.get(
+    res = httpx.get(
         url,
         headers={"User-Agent": str(UserAgent().random)},
         timeout=10,
     )
 
     try:
-        link = (
-            BeautifulSoup(res.text, "html.parser")
-            .find("div", attrs={"class": "yuRUbf"})
-            .find("a")
-            .get("href")
-        )
+        link = BeautifulSoup(res.text, "html.parser").find("div").find("a").get("href")
 
     except AttributeError:
         link = parse_qs(
-            BeautifulSoup(res.text, "html.parser")
-            .find("div", attrs={"class": "kCrYT"})
-            .find("a")
-            .get("href")
+            BeautifulSoup(res.text, "html.parser").find("div").find("a").get("href")
         )["url"][0]
 
     webbrowser.open(link)

@@ -14,7 +14,7 @@ m2 = Molar mass of the second gas.
 (Description adapted from https://en.wikipedia.org/wiki/Graham%27s_law)
 """
 
-from math import pow, sqrt
+from math import pow, sqrt  # noqa: A004
 
 
 def validate(*values: float) -> bool:
