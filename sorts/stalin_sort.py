@@ -34,9 +34,9 @@ def stalin_sort(sequence: list[int]) -> list[int]:
     [1, 2, 8]
     """
     result = [sequence[0]]
-    for i in range(1, len(sequence)):
-        if sequence[i] >= result[-1]:
-            result.append(sequence[i])
+    for element in sequence[1:]:
+        if element >= result[-1]:
+            result.append(element)
 
     return result
 
