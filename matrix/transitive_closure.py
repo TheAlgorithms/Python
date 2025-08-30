@@ -25,7 +25,7 @@ def transitiveClosure(graph):
     n = len(graph)
     ans = [[graph[i][j] for j in range(n)] for i in range(n)]
 
-    # Transtive closure of (i, i) will always be 1 
+    # Transtive closure of (i, i) will always be 1
     for i in range(n):
         ans[i][i] = 1
 
@@ -34,13 +34,13 @@ def transitiveClosure(graph):
     for k in range(n):
         for i in range(n):
             for j in range(n):
-
-                # Check if a path exists between i to k and 
+                # Check if a path exists between i to k and
                 # between k to j.
                 if ans[i][k] == 1 and ans[k][j] == 1:
                     ans[i][j] = 1
 
     return ans
+
 
 if __name__ == "__main__":
     import doctest
