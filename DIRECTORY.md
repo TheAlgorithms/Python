@@ -1302,6 +1302,7 @@
   * [Shell Sort](sorts/shell_sort.py)
   * [Shrink Shell Sort](sorts/shrink_shell_sort.py)
   * [Slowsort](sorts/slowsort.py)
+  * [Stalin Sort](sorts/stalin_sort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
   * [Strand Sort](sorts/strand_sort.py)
   * [Tim Sort](sorts/tim_sort.py)
