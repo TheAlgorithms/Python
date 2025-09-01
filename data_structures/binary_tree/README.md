@@ -1,111 +1,111 @@
-# Binary Tree Traversal
+# Двоичное дерево (Binary Tree)
 
-## Overview
+## Обход двоичного дерева (Binary Tree Traversal)
 
-The combination of binary trees being data structures and traversal being an algorithm relates to classic problems, either directly or indirectly.
+Сочетание двоичных деревьев как структур данных и обхода как алгоритма относится к классическим задачам, прямо или косвенно.
 
-> If you can grasp the traversal of binary trees, the traversal of other complicated trees will be easy for you.
+> Если вы сможете понять обход двоичных деревьев, обход других сложных деревьев станет для вас простым.
 
-The following are some common ways to traverse trees.
+Ниже приведены некоторые распространенные способы обхода деревьев.
 
-- Depth First Traversals (DFS): In-order, Pre-order, Post-order
+- **Обходы в глубину (DFS):** симметричный (in-order), прямой (pre-order), обратный (post-order)
+- **Обход в ширину (BFS) или поуровневый обход**
 
-- Level Order Traversal or Breadth First or Traversal (BFS)
+И для DFS, и для BFS есть свои применения.
 
-There are applications for both DFS and BFS.
+Стек можно использовать для упрощения процесса обхода DFS. Кроме того, поскольку дерево является рекурсивной структурой данных, рекурсия и стек — два ключевых момента для DFS.
 
-Stack can be used to simplify the process of DFS traversal. Besides, since tree is a recursive data structure, recursion and stack are two key points for DFS.
+## Алгоритмы и Структуры Данных
 
-Graph for DFS:
+### `avl_tree.py`
+Этот скрипт предоставляет реализацию АВЛ-дерева, которое является самобалансирующимся двоичным деревом поиска. В АВЛ-дереве высоты двух дочерних поддеревьев любого узла различаются не более чем на единицу. Это гарантирует, что дерево остается сбалансированным, и операции, такие как вставка, удаление и поиск, имеют временную сложность в худшем случае O(log n).
 
-![binary-tree-traversal-dfs](https://tva1.sinaimg.cn/large/007S8ZIlly1ghluhzhynsg30dw0dw3yl.gif)
+### `basic_binary_tree.py`
+Этот скрипт предоставляет базовую реализацию двоичного дерева. Он включает класс `Node` и класс `BinaryTree` с методами для итерации по дереву (внутренний обход), получения его длины и глубины, а также проверки, является ли оно полным двоичным деревом.
 
-The key point of BFS is how to determine whether the traversal of each level has been completed. The answer is to use a variable as a flag to represent the end of the traversal of current level.
+### `binary_search_tree.py`
+Этот скрипт предоставляет комплексную реализацию двоичного дерева поиска (BST). BST — это узловая структура данных, в которой левое поддерево узла содержит только узлы со значениями, меньшими значения узла, а правое — только со значениями большими. Эта реализация включает методы для вставки, поиска, удаления, нахождения минимума/максимума и различных обходов дерева.
 
-## Pre-order Traversal
+### `binary_search_tree_recursive.py`
+Этот скрипт предоставляет еще одну реализацию двоичного дерева поиска (BST), но эта использует рекурсию для своих основных операций, таких как вставка и поиск.
 
-The traversal order of pre-order traversal is `root-left-right`.
+### `binary_tree_mirror.py`
+Этот скрипт предоставляет функцию для создания зеркального отображения двоичного дерева. Он обходит дерево и меняет местами левого и правого потомков у каждого узла.
 
-Algorithm Pre-order
+### `binary_tree_node_sum.py`
+Этот скрипт вычисляет сумму значений всех узлов в двоичном дереве. Он делает это, выполняя обход дерева в глубину (DFS) и накапливая значения.
 
-1. Visit the root node and push it into a stack.
+### `binary_tree_path_sum.py`
+Этот скрипт находит количество путей в двоичном дереве, где сумма значений узлов вдоль пути равна заданному целевому значению. Пути не обязательно должны начинаться с корня или заканчиваться листом, но они должны идти вниз.
 
-2. Pop a node from the stack, and push its right and left child node into the stack respectively.
+### `binary_tree_traversals.py`
+Этот скрипт предоставляет реализации различных алгоритмов обхода двоичного дерева. Сюда входят стандартные обходы в глубину (прямой, внутренний, обратный), обход в ширину (поуровневый) и более специализированные обходы, такие как обратный внутренний и зигзагообразный.
 
-3. Repeat step 2.
+### `diameter_of_binary_tree.py`
+Этот скрипт вычисляет диаметр (или ширину) двоичного дерева. Диаметр определяется как количество узлов на самом длинном пути между любыми двумя узлами в дереве.
 
-Conclusion: This problem involves the classic recursive data structure (i.e. a binary tree), and the algorithm above demonstrates how a simplified solution can be reached by using a stack.
+### `diff_views_of_binary_tree.py`
+Этот скрипт предоставляет функции для получения различных "видов" двоичного дерева: вид слева, вид справа, вид сверху и вид снизу. Каждый вид показывает узлы, которые видны с этой конкретной перспективы.
 
-If you look at the bigger picture, you'll find that the process of traversal is as followed. `Visit the left subtrees respectively from top to bottom, and visit the right subtrees respectively from bottom to top`. If we are to implement it from this perspective, things will be somewhat different. For the `top to bottom` part we can simply use recursion, and for the `bottom to top` part we can turn to stack.
+### `distribute_coins.py`
+Этот скрипт решает задачу "Распределение монет в двоичном дереве". Цель состоит в том, чтобы найти минимальное количество ходов, необходимое для того, чтобы в каждом узле была ровно одна монета.
 
-## In-order Traversal
+### `fenwick_tree.py`
+Этот скрипт предоставляет реализацию дерева Фенвика, также известного как двоичное индексированное дерево (BIT). Дерево Фенвика — это структура данных, которая может эффективно обновлять элементы и вычислять префиксные суммы за время O(log n).
 
-The traversal order of in-order traversal is `left-root-right`.
+### `flatten_binarytree_to_linkedlist.py`
+Этот скрипт предоставляет функцию для "сглаживания" двоичного дерева в структуру, напоминающую связанный список, используя правые указатели узлов и устанавливая левые в `None`.
 
-So the root node is not printed first. Things are getting a bit complicated here.
+### `floor_and_ceiling.py`
+Этот скрипт предоставляет функцию для нахождения "пола" (наибольшего элемента, меньшего или равного ключу) и "потолка" (наименьшего элемента, большего или равного ключу) для заданного ключа в двоичном дереве поиска.
 
-Algorithm In-order
+### `inorder_tree_traversal_2022.py`
+Этот скрипт предоставляет реализацию внутреннего обхода (in-order) для двоичного дерева поиска, при котором узлы посещаются в порядке возрастания их значений.
 
-1. Visit the root and push it into a stack.
+### `is_sorted.py`
+Этот скрипт предоставляет функцию для проверки, является ли двоичное дерево действительным двоичным деревом поиска (BST).
 
-2. If there is a left child node, push it into the stack. Repeat this process until a leaf node reached.
+### `is_sum_tree.py`
+Этот скрипт предоставляет функцию для проверки, является ли двоичное дерево "деревом сумм", где значение каждого узла, не являющегося листом, равно сумме значений в его поддеревьях.
 
-    > At this point the root node and all the left nodes are in the stack.
+### `lazy_segment_tree.py`
+Этот скрипт реализует дерево отрезков с отложенным распространением (Lazy Propagation) для эффективного выполнения запросов и обновлений на диапазоне.
 
-3. Start popping nodes from the stack. If a node has a right child node, push the child node into the stack. Repeat step 2.
+### `lowest_common_ancestor.py`
+Этот скрипт находит наименьшего общего предка (LCA) двух узлов в дереве, используя поиск в ширину и технику разреженной таблицы.
 
-It's worth pointing out that the in-order traversal of a binary search tree (BST) is a sorted array, which is helpful for coming up simplified solutions for some problems.
+### `maximum_fenwick_tree.py`
+Этот скрипт предоставляет реализацию дерева Фенвика, специально разработанного для запросов о максимуме на диапазоне.
 
-## Post-order Traversal
+### `merge_two_binary_trees.py`
+Этот скрипт предоставляет функцию для слияния двух двоичных деревьев путем суммирования значений пересекающихся узлов.
 
-The traversal order of post-order traversal is `left-right-root`.
+### `mirror_binary_tree.py`
+Этот скрипт предоставляет функцию для зеркального отображения двоичного дерева путем рекурсивной замены левых и правых потомков.
 
-This one is a bit of a challenge. It deserves the `hard` tag of LeetCode.
+### `non_recursive_segment_tree.py`
+Этот скрипт предоставляет нерекурсивную реализацию дерева отрезков, которая часто более эффективна на практике.
 
-In this case, the root node is printed not as the first but the last one. A cunning way to do it is to:
+### `number_of_possible_binary_trees.py`
+Этот скрипт вычисляет количество возможных двоичных деревьев и двоичных деревьев поиска, которые можно сформировать из заданного количества узлов, используя числа Каталана.
 
-Record whether the current node has been visited. If 1) it's a leaf node or 2) both its left and right subtrees have been traversed, then it can be popped from the stack.
+### `red_black_tree.py`
+Этот скрипт предоставляет реализацию красно-черного дерева, еще одного типа самобалансирующегося двоичного дерева поиска, которое гарантирует логарифмическую сложность операций.
 
-As for `1) it's a leaf node`, you can easily tell whether a node is a leaf if both its left and right are `null`.
+### `segment_tree.py`
+Этот скрипт предоставляет рекурсивную реализацию дерева отрезков для эффективных запросов по диапазону.
 
-As for `2) both its left and right subtrees have been traversed`, we only need a variable to record whether a node has been visited or not. In the worst case, we need to record the status for every single node and the space complexity is `O(n)`. But if you come to think about it, as we are using a stack and start printing the result from the leaf nodes, it makes sense that we only record the status for the current node popping from the stack, reducing the space complexity to `O(1)`.
+### `segment_tree_other.py`
+Этот скрипт предоставляет еще одну, более объектно-ориентированную реализацию дерева отрезков.
 
-## Level Order Traversal
+### `serialize_deserialize_binary_tree.py`
+Этот скрипт предоставляет функции для сериализации двоичного дерева в строку и десериализации строки обратно в двоичное дерево.
 
-The key point of level order traversal is how do we know whether the traversal of each level is done. The answer is that we use a variable as a flag representing the end of the traversal of the current level.
+### `symmetric_tree.py`
+Этот скрипт предоставляет функцию для проверки, является ли двоичное дерево зеркальным отражением самого себя.
 
-![binary-tree-traversal-bfs](https://tva1.sinaimg.cn/large/007S8ZIlly1ghlui1tpoug30dw0dw3yl.gif)
+### `treap.py`
+Этот скрипт предоставляет реализацию декартова дерева (Treap), рандомизированного двоичного дерева поиска, которое использует приоритеты для поддержания баланса.
 
-Algorithm Level-order
-
-1. Visit the root node, put it in a FIFO queue, put in the queue a special flag (we are using `null` here).
-
-2. Dequeue a node.
-
-3. If the node equals `null`, it means that all nodes of the current level have been visited. If the queue is empty, we do nothing. Or else we put in another `null`.
-
-4. If the node is not `null`, meaning the traversal of current level has not finished yet, we enqueue its left subtree and right subtree respectively.
-
-## Bi-color marking
-
-We know that there is a tri-color marking in garbage collection algorithm, which works as described below.
-
-- The white color represents "not visited".
-
-- The gray color represents "not all child nodes visited".
-
-- The black color represents "all child nodes visited".
-
-Enlightened by tri-color marking, a bi-color marking method can be invented to solve all three traversal problems with one solution.
-
-The core idea is as follow.
-
-- Use a color to mark whether a node has been visited or not. Nodes yet to be visited are marked as white and visited nodes are marked as gray.
-
-- If we are visiting a white node, turn it into gray, and push its right child node, itself, and it's left child node into the stack respectively.
-
-- If we are visiting a gray node, print it.
-
-Implementation of pre-order and post-order traversal algorithms can be easily done by changing the order of pushing the child nodes into the stack.
-
-Reference: [LeetCode](https://github.com/azl397985856/leetcode/blob/master/thinkings/binary-tree-traversal.en.md)
+### `wavelet_tree.py`
+Этот скрипт предоставляет реализацию вейвлет-дерева, компактной структуры данных для эффективных запросов по диапазону, таких как запрос квантиля и ранга.

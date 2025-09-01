@@ -1,32 +1,21 @@
-# A naive recursive implementation of 0-1 Knapsack Problem
+# Задача о рюкзаке
 
-This overview is taken from:
+Задача о рюкзаке — это классическая задача комбинаторной оптимизации. Учитывая набор предметов, каждый из которых имеет вес и ценность, нужно определить, какие предметы следует включить в коллекцию, чтобы их общий вес не превышал заданного предела, а общая ценность была как можно больше.
 
-    https://en.wikipedia.org/wiki/Knapsack_problem
+## Алгоритмы
 
----
+В этом каталоге представлены реализации двух основных вариантов задачи о рюкзаке:
 
-## Overview
+### 1. Задача о 0-1 рюкзаке (0-1 Knapsack Problem)
 
-The knapsack problem is a problem in combinatorial optimization: Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items. The problem often arises in resource allocation where the decision makers have to choose from a set of non-divisible projects or tasks under a fixed budget or time constraint, respectively.
+В этой версии каждый предмет можно либо взять целиком, либо не брать совсем. Делить предметы нельзя.
 
-The knapsack problem has been studied for more than a century, with early works dating as far back as 1897 The name "knapsack problem" dates back to the early works of mathematician Tobias Dantzig (1884–1956), and refers to the commonplace problem of packing the most valuable or useful items without overloading the luggage.
+*   **Рекурсивный подход (`knapsack.py`, `recursive_approach_knapsack.py`)**
+    *   Это простые рекурсивные реализации, которые для каждого предмета рассматривают два варианта: включить его в рюкзак или нет. Затем рекурсивно решается подзадача для оставшихся предметов и оставшейся вместимости. Этот подход имеет экспоненциальную временную сложность и неэффективен для больших наборов данных, но хорошо иллюстрирует логику задачи.
 
----
+### 2. Задача о дробном рюкзаке (Fractional Knapsack Problem)
 
-## Documentation
+В этой версии разрешается брать части предметов.
 
-This module uses docstrings to enable the use of Python's in-built `help(...)` function.
-For instance, try `help(Vector)`, `help(unit_basis_vector)`, and `help(CLASSNAME.METHODNAME)`.
-
----
-
-## Usage
-
-Import the module `knapsack.py` from the **.** directory into your project.
-
----
-
-## Tests
-
-`.` contains Python unit tests which can be run with `python3 -m unittest -v`.
+*   **Жадный подход (`greedy_knapsack.py`)**
+    *   Этот алгоритм решает задачу о дробном рюкзаке. Он вычисляет соотношение ценности к весу для каждого предмета и заполняет рюкзак, начиная с предметов с самым высоким соотношением. Если предмет не помещается целиком, берётся его максимально возможная часть. Этот жадный подход является оптимальным для дробной версии задачи.

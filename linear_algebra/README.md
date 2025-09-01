@@ -1,75 +1,41 @@
-# Linear algebra library for Python
+# Линейная алгебра
 
-This module contains classes and functions for doing linear algebra.
+Линейная алгебра — это раздел математики, изучающий векторы, векторные пространства, линейные преобразования и системы линейных уравнений.
 
----
+## Алгоритмы и модули
 
-## Overview
+*   **lib.py**:
+    *   Базовая библиотека, реализующая классы `Vector` и `Matrix` и основные операции над ними (сложение, вычитание, умножение, скалярное произведение, определитель и т.д.) с нуля.
 
-### class Vector
--
-    - This class represents a vector of arbitrary size and related operations.
+*   **gaussian\_elimination.py**:
+    *   Реализует метод Гаусса для решения систем линейных уравнений путём приведения расширенной матрицы к треугольному виду и последующей обратной подстановки.
 
-    **Overview of the methods:**
+*   **gaussian\_elimination\_pivoting.py**:
+    *   Реализует метод Гаусса с частичным выбором ведущего элемента (пивотингом). Этот метод повышает численную устойчивость алгоритма, меняя строки местами для использования наибольшего возможного диагонального элемента.
 
-    - constructor(components) : init the vector
-    - set(components) : changes the vector components.
-    - \_\_str\_\_() : toString method
-    - component(i): gets the i-th component (0-indexed)
-    - \_\_len\_\_() : gets the size / length of the vector (number of components)
-    - euclidean_length() : returns the eulidean length of the vector
-    - operator + : vector addition
-    - operator - : vector subtraction
-    - operator * : scalar multiplication and dot product
-    - copy() : copies this vector and returns it
-    - change_component(pos,value) : changes the specified component
+*   **jacobi\_iteration\_method.py**:
+    *   Реализу_eт итерационный метод Якоби для численного решения систем линейных уравнений. Метод эффективен для матриц с доминирующей диагональю.
 
-- function zero_vector(dimension)
-    - returns a zero vector of 'dimension'
-- function unit_basis_vector(dimension, pos)
-    - returns a unit basis vector with a one at index 'pos' (0-indexed)
-- function axpy(scalar, vector1, vector2)
-    - computes the axpy operation
-- function random_vector(N, a, b)
-    - returns a random vector of size N, with random integer components between 'a' and 'b' inclusive
+*   **lu\_decomposition.py**:
+    *   Осуществляет LU-разложение матрицы, представляя её в виде произведения нижней (L) и верхней (U) треугольных матриц. Это разложение широко используется для решения систем линейных уравнений.
 
-### class Matrix
--
-    - This class represents a matrix of arbitrary size and operations on it.
+*   **conjugate\_gradient.py**:
+    *   Реализует метод сопряжённых градиентов — итерационный алгоритм для решения систем линейных уравнений с симметричной положительно-определённой матрицей.
 
-    **Overview of the methods:**
+*   **polynom\_for\_points.py**:
+    *   Находит коэффициенты полинома, который проходит через заданный набор точек, решая соответствующую систему линейных уравнений.
 
-    -  \_\_str\_\_() : returns a string representation
-    - operator * : implements the matrix vector multiplication
-                   implements the matrix-scalar multiplication.
-    - change_component(x, y, value) : changes the specified component.
-    - component(x, y) : returns the specified component.
-    - width() : returns the width of the matrix
-    - height() : returns the height of the matrix
-    - determinant() : returns the determinant of the matrix if it is square
-    - operator + : implements the matrix-addition.
-    - operator - : implements the matrix-subtraction
+*   **power\_iteration.py**:
+    *   Реализует степенной метод — итерационный алгоритм для нахождения собственного значения с наибольшей абсолютной величиной (доминантного собственного значения) и соответствующего ему собственного вектора.
 
-- function square_zero_matrix(N)
-    - returns a square zero-matrix of dimension NxN
-- function random_matrix(W, H, a, b)
-    - returns a random matrix WxH with integer components between 'a' and 'b' inclusive
----
+*   **rank\_of\_matrix.py**:
+    *   Вычисляет ранг матрицы (максимальное число линейно независимых строк или столбцов) путём приведения её к ступенчатому виду методом Гаусса.
 
-## Documentation
+*   **rayleigh\_quotient.py**:
+    *   Вычисляет отношение Рэлея для эрмитовой матрицы и вектора. Это значение часто используется в алгоритмах нахождения собственных значений.
 
-This module uses docstrings to enable the use of Python's in-built `help(...)` function.
-For instance, try `help(Vector)`, `help(unit_basis_vector)`, and `help(CLASSNAME.METHODNAME)`.
+*   **schur\_complement.py**:
+    *   Вычисляет дополнение Шура для блочной матрицы. Дополнение Шура имеет множество применений в теории матриц и численном анализе.
 
----
-
-## Usage
-
-Import the module `lib.py` from the **src** directory into your project.
-Alternatively, you can directly use the Python bytecode file `lib.pyc`.
-
----
-
-## Tests
-
-`src/tests.py` contains Python unit tests which can be run with `python3 -m unittest -v`.
+*   **transformations\_2d.py**:
+    *   Содержит функции для генерации матриц 2D-преобразований: масштабирования, вращения, проекции и отражения.
