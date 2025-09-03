@@ -66,7 +66,7 @@ def main(
     ...      pheromone_evaporation=0, alpha=1.0, beta=5.0, q=10)
     ([0, 1, 0], 5.656854249492381)
     """
-    # Initialize the pheromone matrix
+    # Initialize the pheromone matrix.
     cities_num = len(cities)
     pheromone = [[1.0] * cities_num] * cities_num
 
