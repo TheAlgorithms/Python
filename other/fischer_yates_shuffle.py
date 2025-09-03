@@ -11,6 +11,19 @@ from typing import Any
 
 
 def fisher_yates_shuffle(data: list) -> list[Any]:
+    """
+    In-place random shuffle of a list using the Fisher–Yates algorithm.
+
+    The output is a permutation of the input. Since the operation is random,
+    we assert permutation properties rather than exact order in doctests.
+
+    >>> data = [1, 2, 3, 4]
+    >>> shuffled = fisher_yates_shuffle(data.copy())
+    >>> sorted(shuffled) == [1, 2, 3, 4]
+    True
+    >>> len(shuffled) == len(set(shuffled))
+    True
+    """
     for _ in range(len(data)):
         a = random.randint(0, len(data) - 1)
         b = random.randint(0, len(data) - 1)
