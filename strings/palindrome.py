@@ -12,6 +12,7 @@ test_data = {
     "ABC": False,
     "amanaplanacanalpanama": True,  # "a man a plan a canal panama"
     "abcdba": False,
+    "AB": False,
 }
 # Ensure our test data is valid
 assert all((key == key[::-1]) is value for key, value in test_data.items())
