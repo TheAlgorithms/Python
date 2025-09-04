@@ -11,6 +11,7 @@ test_data = {
     "BB": True,
     "ABC": False,
     "amanaplanacanalpanama": True,  # "a man a plan a canal panama"
+    "abcdba": False,
 }
 # Ensure our test data is valid
 assert all((key == key[::-1]) is value for key, value in test_data.items())
@@ -61,7 +62,7 @@ def is_palindrome_recursive(s: str) -> bool:
     >>> all(is_palindrome_recursive(key) is value for key, value in test_data.items())
     True
     """
-    if len(s) <= 1:
+    if len(s) <= 2:
         return True
     if s[0] == s[len(s) - 1]:
         return is_palindrome_recursive(s[1:-1])
