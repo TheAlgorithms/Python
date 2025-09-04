@@ -62,7 +62,7 @@ def is_palindrome_recursive(s: str) -> bool:
     >>> all(is_palindrome_recursive(key) is value for key, value in test_data.items())
     True
     """
-    if len(s) <= 2:
+    if len(s) <= 1:
         return True
     if s[0] == s[len(s) - 1]:
         return is_palindrome_recursive(s[1:-1])
