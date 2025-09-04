@@ -10,6 +10,23 @@ Alternatively you can use scipy.signal.butter, which should yield the same resul
 """
 
 
+# All calls to filter creators must have keyword arguments
+def safe_checks(filter_creator):
+    def safe_filter_creator(**kwargs):
+        if not isinstance(kwargs["frequency"], int) or kwargs["frequency"] <= 0:
+            raise ValueError("Frequency must be a positive integer.")
+        if not isinstance(kwargs["samplerate"], int) or kwargs["samplerate"] <= 0:
+            raise ValueError("Samplerate must be a positive integer.")
+        if not (0 < kwargs["frequency"] < kwargs["samplerate"] / 2):
+            raise ValueError("Frequency must be less than half of the samplerate.")
+        if kwargs["q_factor"] <= 0:
+            raise ValueError("Q factor must be positive.")
+        return filter_creator(**kwargs)
+
+    return safe_filter_creator
+
+
+@safe_checks
 def make_lowpass(
     frequency: int,
     samplerate: int,
@@ -40,6 +57,7 @@ def make_lowpass(
     return filt
 
 
+@safe_checks
 def make_highpass(
     frequency: int,
     samplerate: int,
@@ -70,6 +88,7 @@ def make_highpass(
     return filt
 
 
+@safe_checks
 def make_bandpass(
     frequency: int,
     samplerate: int,
@@ -101,6 +120,7 @@ def make_bandpass(
     return filt
 
 
+@safe_checks
 def make_allpass(
     frequency: int,
     samplerate: int,
@@ -128,6 +148,7 @@ def make_allpass(
     return filt
 
 
+@safe_checks
 def make_peak(
     frequency: int,
     samplerate: int,
@@ -160,6 +181,7 @@ def make_peak(
     return filt
 
 
+@safe_checks
 def make_lowshelf(
     frequency: int,
     samplerate: int,
@@ -197,6 +219,7 @@ def make_lowshelf(
     return filt
 
 
+@safe_checks
 def make_highshelf(
     frequency: int,
     samplerate: int,
