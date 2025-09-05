@@ -1331,6 +1331,9 @@
   * [Word Patterns](strings/word_patterns.py)
   * [Z Function](strings/z_function.py)
 
+## Sustainability
+  * [Ctrl Compliance Dashboard](sustainability/ctrl_compliance_dashboard.py)
+
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
   * [Covid Stats Via Xpath](web_programming/covid_stats_via_xpath.py)
