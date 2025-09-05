@@ -1,12 +1,14 @@
 beautifulsoup4
 fake_useragent
 imageio
+jinja2
 keras
 lxml
 matplotlib
 numpy
 opencv-python
 pandas
+pdfkit
 pillow
 requests
 rich
