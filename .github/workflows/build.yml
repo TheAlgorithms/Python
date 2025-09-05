@@ -14,7 +14,7 @@ jobs:
         with:
           enable-cache: true
           cache-dependency-glob: uv.lock
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.x
           allow-prereleases: true
