@@ -25,7 +25,9 @@ def load_data() -> list[list[str]]:
 class Apriori:
     """Apriori algorithm class with support, confidence, and lift filtering."""
 
-    def __init__(self, transactions, min_support=0.25, min_confidence=0.5, min_lift=1.0):
+    def __init__(
+        self, transactions, min_support=0.25, min_confidence=0.5, min_lift=1.0
+    ):
         self.transactions = [set(t) for t in transactions]
         self.min_support = min_support
         self.min_confidence = min_confidence
@@ -38,7 +40,9 @@ class Apriori:
 
     def _get_support(self, itemset: frozenset) -> float:
         """Return support of an itemset."""
-        return sum(1 for t in self.transactions if itemset.issubset(t)) / len(self.transactions)
+        return sum(1 for t in self.transactions if itemset.issubset(t)) / len(
+            self.transactions
+        )
 
     def confidence(self, antecedent: frozenset, consequent: frozenset) -> float:
         """Calculate confidence of a rule A -> B."""
@@ -60,7 +64,11 @@ class Apriori:
                 item_counts[frozenset([item])] += 1
 
         total = len(self.transactions)
-        current_itemsets = {k: v / total for k, v in item_counts.items() if v / total >= self.min_support}
+        current_itemsets = {
+            k: v / total
+            for k, v in item_counts.items()
+            if v / total >= self.min_support
+        }
         self.itemsets.append(current_itemsets)
 
         k = 2
@@ -71,10 +79,17 @@ class Apriori:
                 for j in range(i + 1, len(keys)):
                     union = keys[i] | keys[j]
                     if len(union) == k:
-                        if all(frozenset(sub) in current_itemsets for sub in combinations(union, k - 1)):
+                        if all(
+                            frozenset(sub) in current_itemsets
+                            for sub in combinations(union, k - 1)
+                        ):
                             candidates.add(union)
 
-            freq_candidates = {c: self._get_support(c) for c in candidates if self._get_support(c) >= self.min_support}
+            freq_candidates = {
+                c: self._get_support(c)
+                for c in candidates
+                if self._get_support(c) >= self.min_support
+            }
             if not freq_candidates:
                 break
 
@@ -117,4 +132,6 @@ if __name__ == "__main__":
     print("\nAssociation Rules:")
     for rule in model.rules:
         antecedent, consequent, conf, lift = rule
-        print(f"{set(antecedent)} -> {set(consequent)}, conf={conf:.2f}, lift={lift:.2f}")
+        print(
+            f"{set(antecedent)} -> {set(consequent)}, conf={conf:.2f}, lift={lift:.2f}"
+        )
