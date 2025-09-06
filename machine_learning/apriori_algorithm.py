@@ -8,9 +8,8 @@ This implementation finds:
 WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 """
 
-from itertools import combinations
 from collections import defaultdict
-
+from itertools import combinations
 
 def load_data() -> list[list[str]]:
     """
@@ -70,8 +69,7 @@ class Apriori:
             for i in range(len(keys)):
                 for j in range(i + 1, len(keys)):
                     union = keys[i] | keys[j]
-                    if len(union) == k:
-                        if all(frozenset(sub) in current_itemsets for sub in combinations(union, k - 1)):
+                    if len(union) == k and all(frozenset(sub) in current_itemsets for sub in combinations(union, k - 1)):
                             candidates.add(union)
 
             freq_candidates = {c: self._get_support(c) for c in candidates if self._get_support(c) >= self.min_support}
