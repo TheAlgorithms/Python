@@ -5,7 +5,7 @@ This implementation finds:
 - Frequent itemsets
 - Association rules with minimum confidence and lift
 
-WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
+WIKI:https://en.wikipedia.org/wiki/Apriori_algorithm
 """
 
 from collections import defaultdict
@@ -116,3 +116,5 @@ if __name__ == "__main__":
     for rule in model.rules:
         antecedent, consequent, conf, lift = rule
         print(f"{set(antecedent)} -> {set(consequent)}, conf={conf:.2f}, lift={lift:.2f}")
+
+
