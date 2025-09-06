@@ -15,7 +15,7 @@ We are delighted that you are considering implementing algorithms and data struc
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged.
 - Your submitted work fulfills or mostly fulfills our styles and standards.
 
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity, but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementation__ is welcome! For example, we welcome new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity. However, __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
 __Improving comments__ and __writing proper tests__ are also highly welcome.
 
