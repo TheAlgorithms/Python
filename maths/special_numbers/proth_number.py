@@ -69,6 +69,8 @@ def is_proth_number(number: int) -> bool:
     False
     >>> is_proth_number(3)
     True
+    >>> is_proth_number(4)
+    False
     >>> is_proth_number(5)
     True
     >>> is_proth_number(34)
