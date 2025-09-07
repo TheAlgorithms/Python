@@ -29,11 +29,11 @@ def proth(number: int) -> int:
     """
 
     if not isinstance(number, int):
-        msg = f"Input value of [{number=}] must be an integer"
+        msg = f"Input value of [number={number}] must be an integer"
         raise TypeError(msg)
 
     if number < 1:
-        msg = f"Input value of [{number=}] must be > 0"
+        msg = f"Input value of [number={number}] must be > 0"
         raise ValueError(msg)
     elif number == 1:
         return 3
@@ -77,11 +77,11 @@ def is_proth_number(number: int) -> bool:
     TypeError: Input value of [number=6.0] must be an integer
     """
     if not isinstance(number, int):
-        message = f"Input value of [number={number}] must be an integer"
+        message = f"Input value of [{number=}] must be an integer"
         raise TypeError(message)
 
     if number <= 0:
-        message = f"Input value of [number={number}] must be > 0"
+        message = f"Input value of [{number=}] must be > 0"
         raise ValueError(message)
 
     number -= 1
