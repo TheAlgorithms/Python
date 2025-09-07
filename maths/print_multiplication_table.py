@@ -1,6 +1,7 @@
 def multiplication_table(number: int, number_of_terms: int) -> str:
     """
-    Prints the multiplication table of a given number till the given number of terms
+    Prints the multiplication table of a given number
+      till the given number of terms
 
     >>> print(multiplication_table(3, 5))
     3 * 1 = 3
