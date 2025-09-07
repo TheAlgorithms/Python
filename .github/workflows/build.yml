@@ -9,22 +9,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
         with:
-          python-version: 3.13
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.x
           allow-prereleases: true
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install pytest-cov -r requirements.txt
+      - run: uv sync --group=test
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
-        run: pytest
+        run: uv run pytest
           --ignore=computer_vision/cnn_classification.py
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
@@ -33,6 +30,8 @@ jobs:
           --ignore=project_euler/
           --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
+          --ignore=web_programming/current_stock_price.py
+          --ignore=web_programming/fetch_anime_and_play.py
           --cov-report=term-missing:skip-covered
           --cov=. .
       - if: ${{ success() }}
