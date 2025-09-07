@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
         print(f"The {number}th Proth number: {value}")
 
-    for number in [1, 2, 3, 5, 9, 13, 49, 57, 193, 241, 163, 201]:
+    for number in [1, 2, 3, 4, 5, 9, 13, 49, 57, 193, 241, 163, 201]:
         if is_proth_number(number):
             print(f"{number} is a Proth number")
         else:
