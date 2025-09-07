@@ -87,8 +87,8 @@ def is_proth_number(number: int) -> bool:
     number -= 1
     n = 0
     while number % 2 == 0:
-        number //= 2
         n += 1
+        number //= 2
     return number < 2**n
 
 
