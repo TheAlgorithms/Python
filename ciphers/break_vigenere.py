@@ -42,7 +42,6 @@ def index_of_coincidence(frequencies: dict, length: int) -> float:
     of times it appears in the text as a percentage}
     :param length: the length of the text
     :return: the index of coincidence
-    >>> index_of_coincidence({'A':1,'D':2,'E':3,'F':1,'H':1,'L': 2,'N':1,'T':1,'W':1}, 13) 0.0641025641025641
     """
     index = 0.0
     for value in frequencies.values():
@@ -60,18 +59,20 @@ def calculate_indexes_of_coincidence(ciphertext: str, step: int) -> list:
     :param step: the step when traversing through the cipher
     :return: a list with the indexes of coincidence
     """
-    indexes_of_coincidence = list()
+    indexes_of_coincidence = []
     length = len(ciphertext)
 
     # for every starting point in [0, step)
     for j in range(step):
-        frequencies = dict[str, int]
+        frequencies: dict[str, int] = {}
         c = 0
         for i in range(0 + j, length, step):
             c += 1
             try:  # in case the frequencies dictionary does not already have
                 # this key
-                frequencies[ciphertext[i]] += 1
+                letter = ciphertext[i]
+                temp = frequencies[letter]
+                frequencies[ciphertext[i]] = temp + 1
             except KeyError:
                 frequencies[ciphertext[i]] = 1
         if c > 1:  # to avoid division by zero in the index_of_coincidence
@@ -94,7 +95,7 @@ def friedman_method(ciphertext: str, max_keylength: int | None = None) -> int:
     should check, if None then it defaults to the length of the cipher
     :return: the length of the key
     """
-    # sets the default value of MAX_KEYLENGTH
+    # sets the default value of max_keylength
     if max_keylength is None:
         max_keylength = len(ciphertext)
 
@@ -176,7 +177,12 @@ def find_key(ciphertext: str, key_length: int) -> str:
             )  # shift the list cyclically one position to the left
         key.append(max1[1])
 
-    return "".join(chr(num + a) for num in key)  # return the key as a string
+    key_as_list_of_letters = []
+    for num in key:
+        if num is not None:
+            key_as_list_of_letters.append(chr(num + a))
+
+    return "".join(key_as_list_of_letters)  # return the key as a string
 
 
 def find_key_from_vigenere_cipher(ciphertext: str) -> str:
@@ -185,7 +191,7 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
     ciphertext. It uses Friedman's method and statistical analysis. It works
     best for large pieces of text written in the english language.
     """
-    clean_ciphertext_list = list()
+    clean_ciphertext_list = []
     for symbol in ciphertext.upper():
         if symbol in LETTERS:
             clean_ciphertext_list.append(symbol)
