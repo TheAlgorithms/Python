@@ -77,10 +77,12 @@ def is_proth_number(number: int) -> bool:
     TypeError: Input value of [number=6.0] must be an integer
     """
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] must be an integer")
+        message = f"Input value of [number={number}] must be an integer"
+        raise TypeError(message)
 
     if number <= 0:
-        raise ValueError(f"Input value of [number={number}] must be > 0")
+        message = f"Input value of [number={number}] must be > 0"
+        raise ValueError(message)
 
     number -= 1
     n = 0
