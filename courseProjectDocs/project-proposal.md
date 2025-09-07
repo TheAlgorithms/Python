@@ -3,11 +3,11 @@
 
 ## Project Overview
 
-This repository is a curated collection of algorithmic implementations in Python, designed to serve as a reference, learning resource, and toolkit for developers and students alike. It spans a wide range of domains, including blockchain, ciphers, data compressions, data structures, linear algebra, etc.
-
+[TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) is an open-source repository for learning, practicing, and understanding algorithms in Python. It offers a curated collection of algorithm implementations that serve as a reference, educational resource, and practical toolkit for both students and developers. It covers a wide range of domains, including blockchain, cryptography, data compression, data structures, linear algebra, and more.
 
 ## Key Quality Metrics
 
+For the purpose of this assignment, we will be diving into the **[Data Dtructures](https://github.com/SWEN-777/TheAlgorithms-Python/tree/master/data_structures)** directory to evaluate its key quality metrics.
 
 ### Code Structure
 
@@ -15,22 +15,27 @@ This repository is a curated collection of algorithmic implementations in Python
 
 Data Structures Directory:
 
-1. arrays: 871
-2. binary tree: 4992
-3. disjoint set: 129
-4. hashing: 881
-5. heap: 1310
-6. kd tree: 275
-7. linked list: 2611
-8. queues: 1246
-9. stacks: 1321
-10. suffix tree: 165
-11. trie: 289
-- #### total: 14090
+| Section       | Count |
+|---------------|-------|
+| Arrays        | 871   |
+| Binary Tree   | 4992  |
+| Disjoint Set  | 129   |
+| Hashing       | 881   |
+| Heap          | 0     |
+| KD Tree       | 275   |
+| Linked List   | 2611  |
+| Queues        | 1246  |
+| Stacks        | 1321  |
+| Suffix Tree   | 165   |
+| Trie          | 289   |
+| **Total**     | **14090** |
 
 #### Comment Density
 
-< include metrics here >
+Comment lines: 7160
+Comment density: 50.82%
+
+> Note: Refer to comment density code [here](https://github.com/SWEN-777/TheAlgorithms-Python/blob/master/courseProjectCode/metrics/comment_density.py)
 
 #### Cyclomatic Complexity
 
@@ -40,7 +45,22 @@ Data Structures Directory:
 
 #### Number of Unit Test Cases
 
-< include metrics here >
+While many examples are provided for the data structure algorithms, the following reflects the number of proper unit tests available in each section:
+
+| Section       | Unit Tests |
+|---------------|------------|
+| Arrays        | 1          |
+| Binary Tree   | 21         |
+| Disjoint Set  | 1          |
+| Hashing       | 2          |
+| Heap          | 0          |
+| KD Tree       | 3          |
+| Linked List   | 13         |
+| Queues        | 0          |
+| Stacks        | 1          |
+| Suffix Tree   | 5          |
+| Trie          | 2          |
+| **Total**     | **49**     |
 
 #### Test Coverage
 
