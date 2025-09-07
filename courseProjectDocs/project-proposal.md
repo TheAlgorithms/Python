@@ -21,7 +21,7 @@ Data Structures Directory:
 | Binary Tree   | 4992  |
 | Disjoint Set  | 129   |
 | Hashing       | 881   |
-| Heap          | 0     |
+| Heap          | 1310  |
 | KD Tree       | 275   |
 | Linked List   | 2611  |
 | Queues        | 1246  |
@@ -33,6 +33,7 @@ Data Structures Directory:
 #### Comment Density
 
 Comment lines: 7160
+
 Comment density: 50.82%
 
 > Note: Refer to comment density code [here](https://github.com/SWEN-777/TheAlgorithms-Python/blob/master/courseProjectCode/Metrics/comment_density.py)
