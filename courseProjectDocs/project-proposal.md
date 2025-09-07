@@ -7,7 +7,7 @@
 
 ## Key Quality Metrics
 
-For the purpose of this assignment, we will be diving into the **[Data Dtructures](https://github.com/SWEN-777/TheAlgorithms-Python/tree/master/data_structures)** directory to evaluate its key quality metrics.
+For the purpose of this assignment, we will be diving into the **[Data Structures](https://github.com/SWEN-777/TheAlgorithms-Python/tree/master/data_structures)** directory to evaluate its key quality metrics.
 
 ### Code Structure
 
@@ -35,11 +35,7 @@ Data Structures Directory:
 Comment lines: 7160
 Comment density: 50.82%
 
-> Note: Refer to comment density code [here](https://github.com/SWEN-777/TheAlgorithms-Python/blob/master/courseProjectCode/metrics/comment_density.py)
-
-#### Cyclomatic Complexity
-
-< include metrics here >
+> Note: Refer to comment density code [here](https://github.com/SWEN-777/TheAlgorithms-Python/blob/master/courseProjectCode/Metrics/comment_density.py)
 
 ### Testability
 
@@ -64,4 +60,4 @@ While many examples are provided for the data structure algorithms, the followin
 
 #### Test Coverage
 
-< include metrics here >
+The repository does not include dedicated test coverage scripts, so an accurate coverage percentage could not be determined.
