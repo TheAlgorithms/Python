@@ -216,7 +216,5 @@ if __name__ == "__main__":
     #     print(key)
 
 
-
 # ---------- TESTS ----------
 # def test_index_of_coincidence(f)
-
