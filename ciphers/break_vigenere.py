@@ -208,9 +208,15 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
 
 
 if __name__ == "__main__":
-    pass
+    print("")
     # # how to execute
-    # with open("ciphertext.txt") as file:
+    # with open("out.txt") as file:
     #     ciphertext = file.read()
     #     key = find_key_from_vigenere_cipher(ciphertext)
     #     print(key)
+
+
+
+# ---------- TESTS ----------
+# def test_index_of_coincidence(f)
+
