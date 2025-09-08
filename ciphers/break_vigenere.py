@@ -208,7 +208,9 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
 
 
 if __name__ == "__main__":
-    with open("ciphertext.txt", "r") as file:  # insert the name of your file
-        ciphertext = file.read()
-        key = find_key_from_vigenere_cipher(ciphertext)
-        print(key)
+    pass
+    # # how to execute
+    # with open("ciphertext.txt") as file:
+    #     ciphertext = file.read()
+    #     key = find_key_from_vigenere_cipher(ciphertext)
+    #     print(key)
