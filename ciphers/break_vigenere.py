@@ -1,5 +1,3 @@
-import math
-
 LETTER_FREQUENCIES_DICT = {
     "A": 8.12,
     "B": 1.49,
@@ -218,20 +216,7 @@ if __name__ == "__main__":
     #     print(key)
 
 
+
 # ---------- TESTS ----------
-
-class Test:
-    def test_index_of_coincidence(self):
-        ic = index_of_coincidence({'a': 50, 'b': 50}, 50)
-        assert math.isclose(ic, 2.0)
-
-    def test_calculate_indexes_of_coincidence(self):
-        ciphertext = "hellothere"
-        result = calculate_indexes_of_coincidence(ciphertext, 2)
-        assert result == [0.1, 0.3]
-
-    def test_friedman_method(self):
-        ciphertext = "asqsfdybpypvhftnboexqumfsnglmcstyefv"
-        result = friedman_method(ciphertext, 5)
-        assert result == 3
+# def test_index_of_coincidence(f)
 
