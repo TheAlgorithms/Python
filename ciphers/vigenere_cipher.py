@@ -2,8 +2,6 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def main() -> None:
-    # with open("file.txt", "r") as file:
-    #     message = file.read()
     message = input("Enter message: ")
     key = input("Enter key [alphanumeric]: ")
     mode = input("Encrypt/Decrypt [e/d]: ")
@@ -17,8 +15,6 @@ def main() -> None:
 
     print(f"\n{mode.title()}ed message:")
     print(translated)
-    # with open("out.txt", "w") as file:
-    #     file.write(translated)
 
 
 def encrypt_message(key: str, message: str) -> str:
