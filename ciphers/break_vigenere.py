@@ -90,7 +90,7 @@ def friedman_method(ciphertext: str, max_keylength: int | None = None) -> int:
     page: https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher The algorithm
     is in the book "Introduction to Cryptography", K. Draziotis
     https://repository.kallipos.gr/handle/11419/8183
-    :param ciphertext: a string (uppercase text)
+    :param ciphertext: a string (text)
     :param max_keylength: the maximum length of key that Friedman's method
     should check, if None then it defaults to the length of the cipher
     :return: the length of the key
@@ -144,7 +144,7 @@ def find_key(ciphertext: str, key_length: int) -> str:
     to a letter of the key. The whole procedure takes place for every letter
     of the key (essentially as many times as the length of the key). See
     here: https://www.youtube.com/watch?v=LaWp_Kq0cKs
-    :param ciphertext: a string (uppercase text)
+    :param ciphertext: a string (text)
     :param key_length: a supposed length of the key
     :return: the key as a string
     """
@@ -190,12 +190,7 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
     Tries to find the key length and then the actual key of a Vigenere
     ciphertext. It uses Friedman's method and statistical analysis. It works
     best for large pieces of text written in the english language.
-    IMPORTANT: Some trial and error might be needed to find the actual key
-    especially by changing the value of MAX_KEYLENGTH.
-
     """
-    # clean the ciphertext so that it only contains uppercase letters with no
-    # punctuation, spaces etc.
     clean_ciphertext_list = []
     for symbol in ciphertext.upper():
         if symbol in LETTERS:
@@ -213,9 +208,13 @@ def find_key_from_vigenere_cipher(ciphertext: str) -> str:
 
 
 if __name__ == "__main__":
-    print()
+    print("")
     # # how to execute
     # with open("out.txt") as file:
     #     ciphertext = file.read()
     #     key = find_key_from_vigenere_cipher(ciphertext)
     #     print(key)
+
+
+# ---------- TESTS ----------
+# def test_index_of_coincidence(f)
