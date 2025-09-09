@@ -215,6 +215,3 @@ if __name__ == "__main__":
     #     key = find_key_from_vigenere_cipher(ciphertext)
     #     print(key)
 
-
-# ---------- TESTS ----------
-# def test_index_of_coincidence(f)
