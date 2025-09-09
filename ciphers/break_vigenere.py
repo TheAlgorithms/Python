@@ -214,4 +214,3 @@ if __name__ == "__main__":
     #     ciphertext = file.read()
     #     key = find_key_from_vigenere_cipher(ciphertext)
     #     print(key)
-
