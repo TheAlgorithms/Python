@@ -469,7 +469,7 @@ class TestGraphMatrix(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -523,7 +523,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
@@ -537,7 +537,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for i in range(101):
@@ -551,7 +551,7 @@ class TestGraphMatrix(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -590,7 +590,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
