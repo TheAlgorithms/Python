@@ -31,7 +31,7 @@ def modular_division(a: int, b: int, n: int) -> int:
     assert n > 1
     assert a > 0
     assert greatest_common_divisor(a, n) == 1
-    (d, t, s) = extended_gcd(n, a)  # Implemented below
+    (_d, _t, s) = extended_gcd(n, a)  # Implemented below
     x = (b * s) % n
     return x
 
@@ -47,7 +47,7 @@ def invert_modulo(a: int, n: int) -> int:
     1
 
     """
-    (b, x) = extended_euclid(a, n)  # Implemented below
+    (b, _x) = extended_euclid(a, n)  # Implemented below
     if b < 0:
         b = (b % n + n) % n
     return b
