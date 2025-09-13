@@ -1,7 +1,8 @@
-from typing import Any
+from typing import Sequence, TypeVar
 
 
-def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
+T = TypeVar("T", int, float, str)  # comparable types
+def bubble_sort_iterative(collection: list[T]) -> list[T]:
     """Pure implementation of bubble sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -54,7 +55,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     return collection
 
 
-def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
+def bubble_sort_recursive(collection: list[T]) -> list[T]:
     """It is similar iterative bubble sort but recursive.
 
     :param collection: mutable ordered sequence of elements
@@ -63,7 +64,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
-    >>> bubble_sort_iterative([])
+    >>> bubble_sort_recursive([])
     []
     >>> bubble_sort_recursive([-2, -45, -5])
     [-45, -5, -2]
