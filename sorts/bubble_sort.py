@@ -2,6 +2,8 @@ from typing import Sequence, TypeVar
 
 
 T = TypeVar("T", int, float, str)  # comparable types
+
+
 def bubble_sort_iterative(collection: list[T]) -> list[T]:
     """Pure implementation of bubble sort algorithm in Python
 
