@@ -73,7 +73,6 @@ def bubble_sort_recursive(collection: list[T]) -> list[T]:
     return bubble_sort_recursive(collection)
 
 
-
 if __name__ == "__main__":
     import doctest
     from random import sample
