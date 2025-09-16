@@ -1,3 +1,4 @@
+HEAD
 <div align="center">
 <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
@@ -50,3 +51,6 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+# analisis-dasar
+>1577045e (Initial commit)
