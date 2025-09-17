@@ -244,7 +244,7 @@ def kmeans(
 
 
 # Mock test below
-if True:  # change to true to run this test case.
+if False:  # change to true to run this test case.
     from sklearn import datasets as ds
 
     dataset = ds.load_iris()
