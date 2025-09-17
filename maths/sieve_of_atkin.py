@@ -107,4 +107,3 @@ if __name__ == "__main__":
     # Example usage
     print("Prime numbers up to 30 using Sieve of Atkin:")
     print(sieve_of_atkin(30))
-
