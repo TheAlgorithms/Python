@@ -1,7 +1,8 @@
 """
-This script demonstrates fetching simple COVID-19 statistics from the Worldometers archive site
-using lxml. lxml is chosen over BeautifulSoup for its speed and convenience in Python web projects
-(such as Django or Flask).
+This script demonstrates fetching simple COVID-19 statistics from the
+Worldometers archive site using lxml. lxml is chosen over BeautifulSoup
+for its speed and convenience in Python web projects (such as Django or
+Flask).
 """
 
 # /// script
@@ -36,7 +37,8 @@ def covid_stats(
         response.raise_for_status()
     except httpx.TimeoutException:
         print(
-            "Request timed out. Please check your network connection or try again later."
+            "Request timed out. Please check your network connection "
+            "or try again later."
         )
         return CovidData("N/A", "N/A", "N/A")
     except httpx.HTTPStatusError as e:
@@ -44,7 +46,10 @@ def covid_stats(
         return CovidData("N/A", "N/A", "N/A")
     data = html.fromstring(response.content).xpath(xpath_str)
     if len(data) != 3:
-        print("Unexpected data format. The page structure may have changed.")
+        print(
+            "Unexpected data format. The page structure may have "
+            "changed."
+        )
         return CovidData("N/A", "N/A", "N/A")
     return CovidData(*data)
 
