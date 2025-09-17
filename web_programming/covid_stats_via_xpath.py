@@ -11,15 +11,16 @@ lxml is chosen over BeautifulSoup for its speed and convenience in Python web pr
 # ]
 # ///
 
-
 from typing import NamedTuple
 import httpx
 from lxml import html
+
 
 class CovidData(NamedTuple):
     cases: str
     deaths: str
     recovered: str
+
 
 def covid_stats(
     url: str = "https://web.archive.org/web/20250825095350/https://www.worldometers.info/coronavirus/",
@@ -29,7 +30,9 @@ def covid_stats(
         response = httpx.get(url, timeout=10)
         response.raise_for_status()
     except httpx.TimeoutException:
-        print("Request timed out. Please check your network connection or try again later.")
+        print(
+            "Request timed out. Please check your network connection or try again later."
+        )
         return CovidData("N/A", "N/A", "N/A")
     except httpx.HTTPStatusError as e:
         print(f"HTTP error occurred: {e}")
@@ -42,6 +45,7 @@ def covid_stats(
         print("Unexpected data format. The page structure may have changed.")
         return CovidData("N/A", "N/A", "N/A")
     return CovidData(*data)
+
 
 if __name__ == "__main__":
     fmt = """Total COVID-19 cases in the world: {}
