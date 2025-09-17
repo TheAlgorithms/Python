@@ -46,10 +46,7 @@ def covid_stats(
         return CovidData("N/A", "N/A", "N/A")
     data = html.fromstring(response.content).xpath(xpath_str)
     if len(data) != 3:
-        print(
-            "Unexpected data format. The page structure may have "
-            "changed."
-        )
+        print("Unexpected data format. The page structure may have changed.")
         return CovidData("N/A", "N/A", "N/A")
     return CovidData(*data)
 
