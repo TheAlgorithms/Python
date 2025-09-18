@@ -30,11 +30,29 @@ class PrefixSum:
         5
         >>> PrefixSum([1,2,3]).get_sum(2, 2)
         3
+        >>> PrefixSum([]).get_sum(0, 0)
+        Traceback (most recent call last):
+        ...
+        ValueError: The array is empty.
+        >>> PrefixSum([1,2,3]).get_sum(-1, 2)
+        Traceback (most recent call last):
+        ...
+        ValueError: Invalid range specified.
         >>> PrefixSum([1,2,3]).get_sum(2, 3)
         Traceback (most recent call last):
         ...
-        IndexError: list index out of range
+        ValueError: Invalid range specified.
+        >>> PrefixSum([1,2,3]).get_sum(2, 1)
+        Traceback (most recent call last):
+        ...
+        ValueError: Invalid range specified.
         """
+        if not self.prefix_sum:
+            raise ValueError("The array is empty.")
+
+        if start < 0 or end >= len(self.prefix_sum) or start > end:
+            raise ValueError("Invalid range specified.")
+
         if start == 0:
             return self.prefix_sum[end]
 

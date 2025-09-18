@@ -1,5 +1,6 @@
 beautifulsoup4
-fake_useragent
+fake-useragent
+httpx
 imageio
 jinja2
 keras
@@ -10,10 +11,9 @@ opencv-python
 pandas
 pdfkit
 pillow
-requests
 rich
 scikit-learn
-sphinx_pyproject
+sphinx-pyproject
 statsmodels
 sympy
 tweepy
