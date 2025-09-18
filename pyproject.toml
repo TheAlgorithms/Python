@@ -7,12 +7,43 @@ requires-python = ">=3.13"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.13",
-
 ]
-optional-dependencies.docs = [
-  "myst-parser",
-  "sphinx-autoapi",
-  "sphinx-pyproject",
+dependencies = [
+  "beautifulsoup4>=4.12.3",
+  "fake-useragent>=1.5.1",
+  "httpx>=0.28.1",
+  "imageio>=2.36.1",
+  "keras>=3.7",
+  "lxml>=5.3",
+  "matplotlib>=3.9.3",
+  "numpy>=2.1.3",
+  "opencv-python>=4.10.0.84",
+  "pandas>=2.2.3",
+  "pillow>=11",
+  "rich>=13.9.4",
+  "scikit-learn>=1.5.2",
+  "sphinx-pyproject>=0.3",
+  "statsmodels>=0.14.4",
+  "sympy>=1.13.3",
+  "tweepy>=4.14",
+  "typing-extensions>=4.12.2",
+  "xgboost>=2.1.3",
+]
+
+[dependency-groups]
+test = [
+  "pytest>=8.3.4",
+  "pytest-cov>=6",
+]
+
+docs = [
+  "myst-parser>=4",
+  "sphinx-autoapi>=3.4",
+  "sphinx-pyproject>=0.3",
+]
+euler-validate = [
+  "httpx>=0.28.1",
+  "numpy>=2.1.3",
 ]
 
 [tool.ruff]
@@ -61,8 +92,8 @@ lint.select = [
   "UP",    # pyupgrade
   "W",     # pycodestyle
   "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations  # FIX ME?
-  # "COM",  # flake8-commas
+  # "ANN",  # flake8-annotations -- FIX ME?
+  # "COM",  # flake8-commas -- DO NOT FIX
   # "D",    # pydocstyle -- FIX ME?
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
@@ -80,15 +111,19 @@ lint.ignore = [
   "EM101",   # Exception must not use a string literal, assign to variable first
   "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
   "G004",    # Logging statement uses f-string
+  "ISC001",  # Conflicts with ruff format -- DO NOT FIX
+  "PLC0415", # import-outside-top-level -- DO NOT FIX
   "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
   "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
+  "PLW1641", # eq-without-hash
   "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
   "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",   # Assertion should be broken down into multiple parts
+  "PT028",   # pytest-parameter-with-default-argument
   "S101",    # Use of `assert` detected -- DO NOT FIX
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
+  "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
   "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
-  "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
@@ -102,9 +137,6 @@ lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
 ]
 lint.per-file-ignores."matrix/sherman_morrison.py" = [
   "SIM103",
-]
-lint.per-file-ignores."other/l*u_cache.py" = [
-  "RUF012",
 ]
 lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
   "BLE001",
@@ -127,11 +159,8 @@ lint.pylint.max-returns = 8 # default: 6
 lint.pylint.max-statements = 88 # default: 50
 
 [tool.codespell]
-ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
-skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
-
-[tool.pyproject-fmt]
-max_supported_python = "3.13"
+ignore-words-list = "3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
+skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
 
 [tool.pytest.ini_options]
 markers = [
@@ -160,9 +189,9 @@ autoapi_dirs = [
   "boolean_algebra",
   "cellular_automata",
   "ciphers",
-  "compression",
   "computer_vision",
   "conversions",
+  "data_compression",
   "data_structures",
   "digital_image_processing",
   "divide_and_conquer",

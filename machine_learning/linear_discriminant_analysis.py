@@ -322,7 +322,7 @@ def main():
             user_count = valid_input(
                 input_type=int,
                 condition=lambda x: x > 0,
-                input_msg=(f"Enter The number of instances for class_{i+1}: "),
+                input_msg=(f"Enter The number of instances for class_{i + 1}: "),
                 err_msg="Number of instances should be positive!",
             )
             counts.append(user_count)
@@ -333,7 +333,7 @@ def main():
         for a in range(n_classes):
             user_mean = valid_input(
                 input_type=float,
-                input_msg=(f"Enter the value of mean for class_{a+1}: "),
+                input_msg=(f"Enter the value of mean for class_{a + 1}: "),
                 err_msg="This is an invalid value.",
             )
             user_means.append(user_mean)
