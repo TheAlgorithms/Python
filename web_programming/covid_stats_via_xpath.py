@@ -33,7 +33,7 @@ def covid_stats(
 ) -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
     try:
-         response = httpx.get(url, timeout=10).raise_for_status()
+        response = httpx.get(url, timeout=10).raise_for_status()
     except httpx.TimeoutException:
         print(
             "Request timed out. Please check your network connection "
