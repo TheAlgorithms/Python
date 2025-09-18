@@ -303,7 +303,9 @@ class Triangle(Polygon):
     ValueError: side lengths do not form a valid triangle.
     """
 
-    def __init__(self, side_a_length: float, side_b_length: float, side_c_length: float) -> None:
+    def __init__(
+        self, side_a_length: float, side_b_length: float, side_c_length: float
+    ) -> None:
         super().__init__()
         self.side_a_length = side_a_length
         self.side_b_length = side_b_length
@@ -315,7 +317,9 @@ class Triangle(Polygon):
         self.side_b = Side(self.side_b_length)
         self.side_c = Side(self.side_c_length)
 
-        if not self._is_valid_triangle(self.side_a.length, self.side_b.length, self.side_c.length):
+        if not self._is_valid_triangle(
+            self.side_a.length, self.side_b.length, self.side_c.length
+        ):
             raise ValueError("side lengths do not form a valid triangle.")
 
         super().add_side(self.side_a)
@@ -331,7 +335,12 @@ class Triangle(Polygon):
 
     def area(self) -> float:
         s = self.perimeter() * 0.5
-        return math.sqrt(s * (s - self.side_a.length) * (s - self.side_b.length) * (s - self.side_c.length))
+        return math.sqrt(
+            s
+            * (s - self.side_a.length)
+            * (s - self.side_b.length)
+            * (s - self.side_c.length)
+        )
 
 
 if __name__ == "__main__":
