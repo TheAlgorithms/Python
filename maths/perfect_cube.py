@@ -25,12 +25,8 @@ def perfect_cube(n: int) -> bool:
     False
     """
     # Handle negative numbers
-    if n < 0:
+    if is_negative := n < 0:
         n = -n
-        is_negative = True
-    else:
-        is_negative = False
-
     val = n ** (1 / 3)
     # Round to avoid floating point precision issues
     rounded_val = round(val)
