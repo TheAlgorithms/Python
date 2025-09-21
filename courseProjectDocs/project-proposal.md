@@ -61,4 +61,4 @@ While many examples are provided for the data structure algorithms, the followin
 
 #### Test Coverage
 
-The repository does not include dedicated test coverage scripts, so an accurate coverage percentage could not be determined.
+For test summary and coverage reports check [[here](https://github.com/SWEN-777/TheAlgorithms-Python/blob/master/courseProjectDocs/setup/report.md)].
