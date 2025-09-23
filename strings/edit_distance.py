@@ -16,17 +16,17 @@ def edit_distance(source: str, target: str) -> int:
     1
     >>> edit_distance("NUM3", "HUM2")
     2
-    >>> edit_distance("cap","CAP")
+    >>> edit_distance("cap", "CAP")
     3
-    >>> edit_distance("Cat","")
+    >>> edit_distance("Cat", "")
     3
-    >>> edit_distance("cat","cat")
+    >>> edit_distance("cat", "cat")
     0
-    >>> edit_distance("","123456789")
+    >>> edit_distance("", "123456789")
     9
-    >>> edit_distance("Be@uty","Beautyyyy!")
+    >>> edit_distance("Be@uty", "Beautyyyy!")
     5
-    >>> edit_distance("lstring","lsstring")
+    >>> edit_distance("lstring", "lsstring")
     1
     """
     if len(source) == 0:
