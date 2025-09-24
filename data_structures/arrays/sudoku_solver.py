@@ -11,6 +11,7 @@ import time
 def cross(items_a, items_b):
     """
     Cross product of elements in A and elements in B.
+
     >>> cross('AB', '12')
     ['A1', 'A2', 'B1', 'B2']
     >>> cross('ABC', '123')
@@ -23,7 +24,6 @@ def cross(items_a, items_b):
     []
     >>> cross('', '')
     []
-
     """
     return [a + b for a in items_a for b in items_b]
 
