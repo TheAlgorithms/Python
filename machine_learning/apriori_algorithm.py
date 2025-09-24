@@ -14,6 +14,7 @@ Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 from itertools import combinations
 from collections import Counter
 
+
 def load_data() -> list[list[str]]:
     """
     Returns a sample transaction dataset.
@@ -46,7 +47,7 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     """
     itemset_counter = Counter(itemset)
     pruned = []
-    
+
     for candidate in candidates:
         is_subsequence = True
         for item in candidate:
