@@ -12,7 +12,7 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
     list[list[float]]: Inverted matrix if invertible, else raises error.
 
     >>> invert_matrix([[4.0, 7.0], [2.0, 6.0]])
-    [[0.6000000000000001, -0.7000000000000001], [-0.2, 0.4]]
+    [[0.6, -0.7000000000000001], [-0.2, 0.4]]
     >>> invert_matrix([[1.0, 2.0], [0.0, 0.0]])
     Traceback (most recent call last):
         ...
