@@ -20,7 +20,7 @@ from audio_filters.butterworth_filter import make_highpass, make_lowpass
 
 __all__ = [
     "EqualLoudnessFilter",
-    "IIRFilter", 
+    "IIRFilter",
     "make_highpass",
     "make_lowpass",
 ]
