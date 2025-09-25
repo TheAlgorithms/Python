@@ -1,5 +1,5 @@
 """
-Scraping jobs given job title and location from indeed website
+Scraping jobs given job title and location from Indeed website
 """
 
 # /// script
@@ -11,24 +11,46 @@ Scraping jobs given job title and location from indeed website
 # ///
 
 from __future__ import annotations
-
 from collections.abc import Generator
-
 import httpx
 from bs4 import BeautifulSoup
 
-url = "https://www.indeed.co.in/jobs?q=mobile+app+development&l="
+BASE_URL = "https://www.indeed.co.in/jobs"
 
 
-def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str]]:
-    soup = BeautifulSoup(httpx.get(url + location, timeout=10).content, "html.parser")
-    # This attribute finds out all the specifics listed in a job
+def fetch_jobs(
+    job_title: str = "mobile app development", location: str = "mumbai"
+) -> Generator[tuple[str, str], None, None]:
+    """
+    Scrape job postings from Indeed for a given job title and location.
+
+    Args:
+        job_title: Keywords to search for (default: "mobile app development").
+        location: City or region to search jobs in (default: "mumbai").
+
+    Yields:
+        Tuples of (job title, company name).
+
+    Example:
+        >>> jobs = list(fetch_jobs("python developer", "Bangalore"))
+        >>> isinstance(jobs[0], tuple)
+        True
+    """
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; JobScraper/1.0)"}
+    params = {"q": job_title, "l": location}
+
+    response = httpx.get(BASE_URL, params=params, headers=headers, timeout=10)
+    response.raise_for_status()
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
     for job in soup.find_all("div", attrs={"data-tn-component": "organicJob"}):
-        job_title = job.find("a", attrs={"data-tn-element": "jobTitle"}).text.strip()
-        company_name = job.find("span", {"class": "company"}).text.strip()
-        yield job_title, company_name
+        title_tag = job.find("a", attrs={"data-tn-element": "jobTitle"})
+        company_tag = job.find("span", {"class": "company"})
+        if title_tag and company_tag:
+            yield title_tag.text.strip(), company_tag.text.strip()
 
 
 if __name__ == "__main__":
-    for i, job in enumerate(fetch_jobs("Bangalore"), 1):
-        print(f"Job {i:>2} is {job[0]} at {job[1]}")
+    for i, (title, company) in enumerate(fetch_jobs("python developer", "Bangalore"), 1):
+        print(f"Job {i:>2} is {title} at {company}")
