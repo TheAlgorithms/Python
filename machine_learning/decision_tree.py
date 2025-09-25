@@ -92,7 +92,7 @@ class DecisionTree:
         if len(x) < 2 * self.min_leaf_size or self.depth == 1:
             self.prediction = mean_y
             return
-        
+
         best_split = 0
         min_error = self.mean_squared_error(x, mean_y) * 2
 
@@ -105,16 +105,16 @@ class DecisionTree:
         for i in range(len(x)):
             if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
-        
+
             left_y = y[:i]
             right_y = y[i:]
             mean_left = np.mean(left_y)
             mean_right = np.mean(right_y)
-        
+
             error_left = self.mean_squared_error(left_y, mean_left)
             error_right = self.mean_squared_error(right_y, mean_right)
             error = error_left + error_right
-        
+
             if error < min_error:
                 best_split = i
                 min_error = error
