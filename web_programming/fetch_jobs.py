@@ -52,5 +52,7 @@ def fetch_jobs(
 
 
 if __name__ == "__main__":
-    for i, (title, company) in enumerate(fetch_jobs("python developer", "Bangalore"), 1):
+    for i, (title, company) in enumerate(
+        fetch_jobs("python developer", "Bangalore"), 1
+    ):
         print(f"Job {i:>2} is {title} at {company}")
