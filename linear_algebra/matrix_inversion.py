@@ -11,8 +11,12 @@ def invert_matrix(matrix: list[list[float]]) -> list[list[float]]:
     Returns:
     list[list[float]]: Inverted matrix if invertible, else raises error.
 
-    >>> invert_matrix([[4.0, 7.0], [2.0, 6.0]])
-    [[0.6000000000000001, -0.7000000000000001], [-0.2, 0.4]]
+    >>> from pytest import approx
+    >>> result = invert_matrix([[4.0, 7.0], [2.0, 6.0]])
+    >>> expected = [[0.6000000000000001, -0.7000000000000001], [-0.2, 0.4]]
+    >>> all (all(approx(x) == y for x, y in zip(row_res, row_exp))
+    ... for row_res, row_exp in zip(result, expected))
+    True
     >>> invert_matrix([[1.0, 2.0], [0.0, 0.0]])
     Traceback (most recent call last):
         ...
