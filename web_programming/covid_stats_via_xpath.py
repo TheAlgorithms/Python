@@ -47,12 +47,13 @@ def covid_stats(
     except httpx.HTTPStatusError as e:
         logging.error(f"HTTP error occurred: {e}")
         return CovidData("N/A", "N/A", "N/A")
-    data : list[str] = html.fromstring(response.content).xpath(xpath_str)
+    data: list[str] = html.fromstring(response.content).xpath(xpath_str)
     if len(data) != 3:
         logging.warning("Unexpected data format. The page structure may have changed.")
         return CovidData("N/A", "N/A", "N/A")
 
     return CovidData(*data)
+
 
 def main() -> None:
     """CLI entry point."""
