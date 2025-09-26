@@ -100,27 +100,29 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     return (d, x, y)
 
 
-if __name__ == "__main__":
-    from doctest import testmod
-
-    testmod(name="diophantine", verbose=True)
-    testmod(name="diophantine_all_soln", verbose=True)
-    testmod(name="extended_gcd", verbose=True)
-    testmod(name="greatest_common_divisor", verbose=True)
-
-from __future__ import annotations
-
-def all_diophantine_solutions(a: int, b: int, c: int, n: int = 2) -> list[tuple[int, int]]:
+def all_diophantine_solutions(
+    a: int,
+    b: int,
+    c: int,
+    n: int = 2,
+) -> list[tuple[int, int]]:
     """
     Return up to `n` integer solutions (x, y) to the linear Diophantine equation
     a*x + b*y = c using the extended Euclidean algorithm.
 
-    Raises:
-        ValueError: If no integer solutions exist.
+    Raises
+    ------
+    ValueError
+        If no integer solutions exist.
 
-    Time complexity: O(log(max(|a|, |b|))) to compute one base solution via extended_gcd,
+    Time complexity
+    ---------------
+    O(log(max(|a|, |b|))) to compute a base solution using extended_gcd;
     plus O(n) to enumerate `n` solutions.
-    Space complexity: O(1) beyond the returned list.
+
+    Space complexity
+    ----------------
+    O(1) beyond the returned list.
 
     Examples
     --------
@@ -135,12 +137,14 @@ def all_diophantine_solutions(a: int, b: int, c: int, n: int = 2) -> list[tuple[
     """
     if a == 0 and b == 0:
         if c == 0:
+            # Infinite solutions; return one canonical solution.
             return [(0, 0)][: min(1, n)]
         raise ValueError("No integer solutions exist for a=0, b=0, c!=0")
 
     g, xg, yg = extended_gcd(abs(a), abs(b))
     if c % g != 0:
-        raise ValueError(f"No integer solutions exist for a={a}, b={b}, c={c}")
+        msg = f"No integer solutions exist for a={a}, b={b}, c={c}"
+        raise ValueError(msg)
 
     # Scale a particular solution to ax + by = c
     x0, y0 = xg * (c // g), yg * (c // g)
@@ -152,3 +156,12 @@ def all_diophantine_solutions(a: int, b: int, c: int, n: int = 2) -> list[tuple[
     # General solution: x = x0 + t*(b/g), y = y0 - t*(a/g)
     dx, dy = b // g, a // g
     return [(x0 + t * dx, y0 - t * dy) for t in range(n)]
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod(name="diophantine", verbose=True)
+    testmod(name="diophantine_all_soln", verbose=True)
+    testmod(name="extended_gcd", verbose=True)
+    testmod(name="greatest_common_divisor", verbose=True)
