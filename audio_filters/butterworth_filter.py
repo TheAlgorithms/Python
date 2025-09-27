@@ -8,6 +8,7 @@ Code based on https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.htm
 Alternatively you can use scipy.signal.butter, which should yield the same results.
 """
 
+
 def _precompute(frequency: int, samplerate: int, q_factor: float):
     """Helper to compute common values for filter design."""
     w0 = tau * frequency / samplerate
@@ -17,7 +18,9 @@ def _precompute(frequency: int, samplerate: int, q_factor: float):
     return _sin, _cos, alpha
 
 
-def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_lowpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a low-pass filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
 
@@ -32,7 +35,9 @@ def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2))
     return filt
 
 
-def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_highpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a high-pass filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
 
@@ -47,7 +52,9 @@ def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
     return filt
 
 
-def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_bandpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a band-pass filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
 
@@ -63,7 +70,9 @@ def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
     return filt
 
 
-def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_allpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates an all-pass filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
 
@@ -76,7 +85,9 @@ def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2))
     return filt
 
 
-def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_peak(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a peak filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
     big_a = 10 ** (gain_db / 40)
@@ -93,7 +104,9 @@ def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float =
     return filt
 
 
-def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_lowshelf(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a low-shelf filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
     big_a = 10 ** (gain_db / 40)
@@ -116,7 +129,9 @@ def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: flo
     return filt
 
 
-def make_highshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_highshelf(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """Creates a high-shelf filter."""
     _sin, _cos, alpha = _precompute(frequency, samplerate, q_factor)
     big_a = 10 ** (gain_db / 40)
