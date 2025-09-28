@@ -2,7 +2,7 @@ def is_palindrome(text: str) -> bool:
     """
     Check if a string is a palindrome.
 
-    A palindrome is a word, number, phrase, or other sequence of 
+    A palindrome is a word, number, phrase, or other sequence of
     characters which reads the same backward as forward.
 
     Reference: https://en.wikipedia.org/wiki/Palindrome
@@ -20,4 +20,5 @@ def is_palindrome(text: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
