@@ -23,13 +23,13 @@ Current ORCL stock price is   188.87
 def stock_price(symbol: str = "AAPL") -> str:
     """
     Get current stock price from Yahoo Finance.
-    
+
     Args:
         symbol: Stock ticker symbol (e.g., 'AAPL', 'GOOG')
-        
+
     Returns:
         Current stock price as string, or error message if not found
-        
+
     Examples:
         >>> stock_price("EEEE")  # Invalid symbol
         'No <fin-streamer> tag with the specified data-testid attribute found.'
