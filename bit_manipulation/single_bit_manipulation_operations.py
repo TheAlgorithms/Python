@@ -97,14 +97,19 @@ def clear_least_significant_set_bit(number: int) -> int:
     """
     Clear the least significant set bit.
 
-    Details: perform bitwise and for given number and X.
-    Where X is a number with all the bits - ones and bit on given
-    position - zero.
+    Details: perform bitwise operation for the given number X.
+    Where X is in bits, and the least significant set, i.e., the rightmost 1, is cleared.
 
     >>> clear_least_significant_set_bit(0b1101) # 0b1100
     12
     >>> clear_least_significant_set_bit(0b1111) # 0b1110
     14
+    >>> clear_least_significant_set_bit(0b1100) # 0b1000
+    8
+    >>> clear_least_significant_set_bit(0b0) # 0b0
+    0
+    >>> clear_least_significant_set_bit(0b1) # 0b0
+    0
     """
     return number & (number - 1)
 
