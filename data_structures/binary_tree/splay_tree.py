@@ -8,6 +8,8 @@ O(log n) time complexity for search, insert, and delete operations.
 The splaying operation moves a node to the root by performing a series of
 rotations, making frequently accessed elements faster to access in the future.
 
+For more information, see: https://en.wikipedia.org/wiki/Splay_tree
+
 Time Complexity (amortized):
 - Search: O(log n)
 - Insert: O(log n)
