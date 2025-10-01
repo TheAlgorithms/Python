@@ -39,7 +39,7 @@ def brent_method(
     for _ in range(max_iter):
         if fb == 0:
             return b
-        if fa != fc and fb != fc:
+        if fc not in {fa, fb}:
             # Inverse quadratic interpolation
             s = (
                 a * fb * fc / ((fa - fb) * (fa - fc)) +
