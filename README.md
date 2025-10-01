@@ -50,3 +50,15 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+## 🤝 Contribution
+
+We welcome contributions of all kinds. Before getting started, please review our guidelines for setting up your environment, running checks, and submitting pull requests.
+
+- Contribution guide: [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## 📝 License
+
+This project is open source. The full license text is available here:
+
+- License: [LICENSE.md](LICENSE.md)
