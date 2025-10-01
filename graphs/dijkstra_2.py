@@ -68,10 +68,8 @@ def dijkstra(graph, v, src):
 	0    0
 	1    INF
 	>>> dijkstra([[0.0]], 1, 0)
-	Exception raised:
-	Traceback (most recent call last):
-	...
-	UnboundLocalError: cannot access local variable 'i' where it is not associated with a value
+	Vertex Distance
+	0    0
 	"""
 	mdist = [float("inf") for _ in range(v)]
 	vset = [False for _ in range(v)]
