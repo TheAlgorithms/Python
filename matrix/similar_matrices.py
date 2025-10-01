@@ -38,10 +38,10 @@ from sympy.matrices.common import MatrixError
 __all__ = ["are_similar_matrices"]
 
 
-MatrixLike = Sequence[Sequence[Any]] | Matrix
+matrix_like = Sequence[Sequence[Any]] | Matrix
 
 
-def _as_square_matrix(matrix: MatrixLike, *, simplify_entries: bool) -> Matrix:
+def _as_square_matrix(matrix: matrix_like, *, simplify_entries: bool) -> Matrix:
     """Return a SymPy matrix after validating that ``matrix`` is square.
 
     Parameters
@@ -95,8 +95,8 @@ def _jordan_signature(matrix: Matrix) -> tuple[tuple[Any, tuple[int, ...]], ...]
 
 
 def are_similar_matrices(
-    matrix_a: MatrixLike,
-    matrix_b: MatrixLike,
+    matrix_a: matrix_like,
+    matrix_b: matrix_like,
     *,
     simplify_entries: bool = True,
 ) -> bool:
