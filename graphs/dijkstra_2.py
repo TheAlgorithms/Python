@@ -9,6 +9,17 @@ def print_dist(dist, v):
 
 
 def min_dist(mdist, vset, v):
+     """
+    Finds the vertex with minimum distance that hasn't been visited yet.
+    >>> min_dist([0, 4, 2, float('inf')], [True, False, False, False], 4)
+    2
+    >>> min_dist([0, 4, 2, 1], [True, False, True, False], 4)
+    3
+    >>> min_dist([0, 4, 2, 1], [True, True, True, True], 4)
+    -1
+    >>> min_dist([float('inf'), float('inf')], [False, False], 2)
+    -1
+    """
     min_val = float("inf")
     min_ind = -1
     for i in range(v):
