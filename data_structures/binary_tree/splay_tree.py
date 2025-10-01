@@ -50,6 +50,7 @@ from typing import Any, Self
 @dataclass
 class SplayNode:
     """A node in the Splay Tree."""
+
     value: Any
     left: SplayNode | None = None
     right: SplayNode | None = None
@@ -166,8 +167,9 @@ class SplayTree:
                     self._rotate_right(parent)
                 else:
                     self._rotate_left(parent)
-            elif (node is parent.left and parent is grandparent.left) or \
-                 (node is parent.right and parent is grandparent.right):
+            elif (node is parent.left and parent is grandparent.left) or (
+                node is parent.right and parent is grandparent.right
+            ):
                 # Zig-zig case: same direction
                 if parent is grandparent.left:
                     self._rotate_right(grandparent)
@@ -282,20 +284,24 @@ class SplayTree:
 
     def preorder(self) -> Iterator[Any]:
         """Return a preorder iterator."""
+
         def _preorder(node: SplayNode | None) -> Iterator[Any]:
             if node:
                 yield node.value
                 yield from _preorder(node.left)
                 yield from _preorder(node.right)
+
         yield from _preorder(self.root)
 
     def postorder(self) -> Iterator[Any]:
         """Return a postorder iterator."""
+
         def _postorder(node: SplayNode | None) -> Iterator[Any]:
             if node:
                 yield from _postorder(node.left)
                 yield from _postorder(node.right)
                 yield node.value
+
         yield from _postorder(self.root)
 
     def get_min(self) -> Any:
