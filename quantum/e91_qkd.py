@@ -127,7 +127,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
     # Sift for generating the secret key.
     # The key is formed when Alice and Bob choose compatible bases.
     # Here, compatible means A2/B1 or A3/B2, where angles are identical.
-    alice_key, bob_key = [], []
+    alice_key, bob_key = [], []    
     for i in range(n_bits):
         is_a2b1 = alice_chosen_bases[i] == "A2" and bob_chosen_bases[i] == "B1"
         is_a3b2 = alice_chosen_bases[i] == "A3" and bob_chosen_bases[i] == "B2"
@@ -138,7 +138,12 @@ def e91_protocol(n_bits: int = 2000) -> dict:
     # Sift for the CHSH inequality test (Eve detection).
     # We use four specific combinations of bases for the test:
     # a = A1, a' = A3  |  b = B1, b' = B3
-    chsh_correlations = {"ab": [], "ab_": [], "a_b": [], "a_b_": []}
+    chsh_correlations: dict[str, list[int]] = {
+        "ab": [],
+        "ab_": [],
+        "a_b": [],
+        "a_b_": [],
+    }
 
     for i in range(n_bits):
         # Convert results {0, 1} to {-1, 1} for calculating correlation.
@@ -159,9 +164,9 @@ def e91_protocol(n_bits: int = 2000) -> dict:
             chsh_correlations["a_b_"].append(product)
 
     # Calculate the expectation value (average correlation) for each combination.
-    e = {}
+    e: dict[str, float] = {}
     for key, values in chsh_correlations.items():
-        e[key] = np.mean(values) if values else 0
+        e[key] = np.mean(values) if values else 0.0
 
     # Calculate the S-value: S = e(a,b) - e(a,b') + e(a',b) + e(a',b')
     s_value = e["ab"] - e["ab_"] + e["a_b"] + e["a_b_"]
