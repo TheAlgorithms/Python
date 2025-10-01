@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+
 def find_max_iterative(nums: list[int | float]) -> int | float:
     """
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
@@ -22,11 +24,11 @@ def find_max_iterative(nums: list[int | float]) -> int | float:
             max_num = x
     return max_num
 
-    
+
 # Divide and Conquer algorithm
 # Using Divide and Conquer approach:
 # 1. Divide the array into two halves
-# 2. Recursively find the maximum in each half  
+# 2. Recursively find the maximum in each half
 # 3. Combine the results by comparing the two maximums
 def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | float:
     """
