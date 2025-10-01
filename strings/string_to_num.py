@@ -1,4 +1,4 @@
-'''Converts a given string to integer and float
+"""Converts a given string to integer and float
 This works with only Indian system of wording
 
  * Indian system uses crore, lakh, thousand and not million and billions
@@ -22,11 +22,10 @@ For the part after the decimal example ( .159 ):
 990372006.159
 
 wikipedia explanation - https://en.wikipedia.org/wiki/Numeral_(linguistics)
-'''
+"""
 
 
-def to_int(word : str) -> int:
-
+def to_int(word: str) -> int:
     if len(word.strip()) > 0:
         units = {
             "zero": 0,
@@ -120,7 +119,7 @@ def to_int(word : str) -> int:
         raise ValueError("Empty input is not a valid number in words")
 
 
-def to_float(word : str)-> float:
+def to_float(word: str) -> float:
     units = {
         "zero": 0,
         "one": 1,
@@ -172,6 +171,7 @@ def to_float(word : str)-> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     # while True:
     #     word = input("Enter a number in words (q to quit) :- ").lower().strip()
