@@ -464,6 +464,12 @@ maze: list[list[str]] = [
     ],
 ]
 
+<<<<<<< HEAD:searches/breadth_first-search_maze.py
+=======
+<<<<<<< HEAD
+def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None:
+=======
+>>>>>>> dd77adaa8cd0a1b8154a7b28518b0db6c004b0c7:searches/breadth_first_search_maze.py
 
 def print_maze(
     maze: list[list[str]],
