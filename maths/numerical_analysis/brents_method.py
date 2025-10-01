@@ -1,11 +1,12 @@
 from collections.abc import Callable
 
+
 def brent_method(
     f: Callable[[float], float],
     a: float,
     b: float,
     tol: float = 1e-14,
-    max_iter: int = 100
+    max_iter: int = 100,
 ) -> float:
     """
     Root finding using Brent's method.
@@ -42,9 +43,9 @@ def brent_method(
         if fa != fc and fb != fc:
             # Inverse quadratic interpolation
             s = (
-                a * fb * fc / ((fa - fb) * (fa - fc)) +
-                b * fa * fc / ((fb - fa) * (fb - fc)) +
-                c * fa * fb / ((fc - fa) * (fc - fb))
+                a * fb * fc / ((fa - fb) * (fa - fc))
+                + b * fa * fc / ((fb - fa) * (fb - fc))
+                + c * fa * fb / ((fc - fa) * (fc - fb))
             )
         else:
             # Secant method
@@ -83,6 +84,8 @@ def brent_method(
 
     return b
 
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
