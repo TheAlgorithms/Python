@@ -2,114 +2,115 @@ from typing import Callable
 
 
 def brent_method(
-    f: Callable[[float], float],
-    a: float,
-    b: float,
+    func: Callable[[float], float],
+    left: float,
+    right: float,
     tol: float = 1e-8,
     max_iter: int = 100,
 ) -> float:
     """
-    Find the root of function f in the interval [a, b] using Brent's Method.
+    Find the root of function func in the interval [left, right] using Brent's Method.
 
     Brent's Method combines bisection, secant, and inverse quadratic interpolation.
 
+
     Parameters
     ----------
-    f : Callable[[float], float]
+    func : Callable[[float], float]
         Function for which to find the root.
-    a : float
+    left : float
         Left endpoint of interval.
-    b : float
+    right : float
         Right endpoint of interval.
     tol : float
         Tolerance for convergence (default 1e-8).
     max_iter : int
         Maximum number of iterations (default 100).
 
+
     Returns
     -------
     float
-        Approximate root of f in [a, b].
+        Approximate root of func in [left, right].
 
     Raises
     ------
     ValueError
-        If f(a) and f(b) do not have opposite signs.
+        If func(left) and func(right) do not have opposite signs.
 
     Examples
     --------
-    >>> def func(x): return x**3 - x - 2
-    >>> round(brent_method(func, 1, 2), 5)
+    >>> def f(x): return x**3 - x - 2
+    >>> round(brent_method(f, 1, 2), 5)
     1.52138
 
-    >>> def func2(x): return x**2 + 1
-    >>> brent_method(func2, 0, 1)
+    >>> def f2(x): return x**2 + 1
+    >>> brent_method(f2, 0, 1)
     Traceback (most recent call last):
     ...
-    ValueError: f(a) and f(b) must have opposite signs
+    ValueError: func(left) and func(right) must have opposite signs
     """
-    fa = f(a)
-    fb = f(b)
+    fl = func(left)
+    fr = func(right)
 
-    if fa * fb >= 0:
-        raise ValueError("f(a) and f(b) must have opposite signs")
+    if fl * fr >= 0:
+        raise ValueError("func(left) and func(right) must have opposite signs")
 
-    if abs(fa) < abs(fb):
-        a, b = b, a
-        fa, fb = fb, fa
+    if abs(fl) < abs(fr):
+        left, right = right, left
+        fl, fr = fr, fl
 
-    c = a
-    fc = fa
-    d = e = b - a
+    c = left
+    fc = fl
+    d = right - left
 
     for iteration in range(max_iter):
-        if fb == 0:
-            return b
+        if fr == 0:
+            return right
 
-        if fa != fc and fb != fc:
+        if fc not in (fl, fr):
             # Inverse quadratic interpolation
             s = (
-                a * fb * fc / ((fa - fb) * (fa - fc))
-                + b * fa * fc / ((fb - fa) * (fb - fc))
-                + c * fa * fb / ((fc - fa) * (fc - fb))
+                left * fr * fc / ((fl - fr) * (fl - fc))
+                + right * fl * fc / ((fr - fl) * (fr - fc))
+                + c * fl * fr / ((fc - fl) * (fc - fr))
             )
         else:
             # Secant method
-            s = b - fb * (b - a) / (fb - fa)
+            s = right - fr * (right - left) / (fr - fl)
 
         conditions = [
-            not ((3 * a + b) / 4 < s < b) if b > a else not (b < s < (3 * a + b) / 4),
-            iteration > 1 and abs(s - b) >= abs(b - c) / 2,
-            iteration <= 1 and abs(s - b) >= abs(c - d) / 2,
-            iteration > 1 and abs(b - c) < tol,
+            not ((3 * left + right) / 4 < s < right) if right > left else not (right < s < (3 * left + right) / 4),
+            iteration > 1 and abs(s - right) >= abs(right - c) / 2,
+            iteration <= 1 and abs(s - right) >= abs(c - d) / 2,
+            iteration > 1 and abs(right - c) < tol,
             iteration <= 1 and abs(c - d) < tol,
         ]
 
         if any(conditions):
             # Bisection fallback
-            s = (a + b) / 2
-            d = e = b - a
+            s = (left + right) / 2
+            d = right - left
 
-        fs = f(s)
-        d, c = c, b
-        fc = fb
+        fs = func(s)
+        d, c = c, right
+        fc = fr
 
-        if fa * fs < 0:
-            b = s
-            fb = fs
+        if fl * fs < 0:
+            right = s
+            fr = fs
         else:
-            a = s
-            fa = fs
+            left = s
+            fl = fs
 
-        if abs(fa) < abs(fb):
-            a, b = b, a
-            fa, fb = fb, fa
+        if abs(fl) < abs(fr):
+            left, right = right, left
+            fl, fr = fr, fl
 
-        if abs(b - a) < tol:
-            return b
+        if abs(right - left) < tol:
+            return right
 
-    # If we reach max iterations
-    return b
+    return right
 
 
 if __name__ == "__main__":
