@@ -1,50 +1,65 @@
 class MinStack:
-    def __init__(self):
-        self.st = []
-        # main stack for storing elements
-        self.minSt = []
-        # auxiliary stack for finding minimum in O(1) time space O(N) because of this auxiliary stack using
+    """
+    A Stack data structure that supports retrieving the minimum element in O(1) time using an auxiliary stack .
 
-    # pushing new element
-    def push(self, x):
-        self.st.append(x)
+    >>> st = MinStack()
+    >>> st.push(18)
+    >>> st.push(19)
+    >>> st.push(29)
+    >>> st.push(15)
+    >>> st.push(16)
+    >>> st.get_min()
+    15
+    >>> st.pop()
+    16
+    >>> st.get_min()
+    15
+    >>> st.pop()
+    15
+    >>> st.get_min()
+    18
+    >>> st.peek()
+    29
+    """
 
-        # If minSt is empty or new element is smaller than
-        # the top of minSt, push it because if it is empty then coming element will be minimum and if coming element is smaller than previous
-        if not self.minSt or x <= self.minSt[-1]:
-            self.minSt.append(x)
+    def __init__(self) -> None:
+        """Initialize the stack and auxiliary min stack."""
+        self.st: list[int] = []
+        self.min_st: list[int] = []
 
-    # Pop the top element
-    def pop(self):
+    def push(self, value: int) -> None:
+        """Push a value onto the stack."""
+        self.st.append(value)
+        if not self.min_st or value <= self.min_st[-1]:
+            self.min_st.append(value)
+
+    def pop(self) -> int | None:
+        """Pop the top element from the stack. Return None if empty."""
         if not self.st:
             return None
         value = self.st.pop()
-        if value == self.minSt[-1]:
-            self.minSt.pop()
+        if value == self.min_st[-1]:
+            self.min_st.pop()
         return value
 
-    # Return top element
-    def peek(self):
+    def peek(self) -> int | None:
+        """Return the top element without removing it. Return None if empty."""
         if not self.st:
             return None
         return self.st[-1]
 
-    # Get the minimum element
-    def getMin(self):
-        if not self.minSt:
+    def get_min(self) -> int | None:
+        """Return the minimum element in the stack. Return None if empty."""
+        if not self.min_st:
             return None
-        return self.minSt[-1]
+        return self.min_st[-1]
 
 
 if __name__ == "__main__":
     st = MinStack()
-    # making new minstack object
-    # adding new elements
     st.push(18)
     st.push(19)
     st.push(29)
     st.push(15)
     st.push(16)
-
-    print(st.getMin())
-    # should return 15
+    print(st.get_min())  # should print 15
