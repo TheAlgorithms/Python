@@ -30,7 +30,7 @@ ValueError: both matrices must be square with the same dimensions
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import Any
+from typing import Any, TypeAlias
 
 from sympy import Matrix, nsimplify
 from sympy.matrices.common import MatrixError
@@ -38,10 +38,10 @@ from sympy.matrices.common import MatrixError
 __all__ = ["are_similar_matrices"]
 
 
-matrix_like = Sequence[Sequence[Any]] | Matrix
+MatrixLike: TypeAlias = Sequence[Sequence[Any]] | Matrix
 
 
-def _as_square_matrix(matrix: matrix_like, *, simplify_entries: bool) -> Matrix:
+def _as_square_matrix(matrix: MatrixLike, *, simplify_entries: bool) -> Matrix:
     """Return a SymPy matrix after validating that ``matrix`` is square.
 
     Parameters
@@ -95,8 +95,8 @@ def _jordan_signature(matrix: Matrix) -> tuple[tuple[Any, tuple[int, ...]], ...]
 
 
 def are_similar_matrices(
-    matrix_a: matrix_like,
-    matrix_b: matrix_like,
+    matrix_a: MatrixLike,
+    matrix_b: MatrixLike,
     *,
     simplify_entries: bool = True,
 ) -> bool:
