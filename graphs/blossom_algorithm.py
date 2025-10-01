@@ -18,8 +18,6 @@ https://en.wikipedia.org/wiki/Matching_(graph_theory)
 
 from __future__ import annotations
 
-from typing import List
-
 
 class BlossomAlgorithm:
     """
@@ -51,7 +49,7 @@ class BlossomAlgorithm:
     1
     """
 
-    def __init__(self, graph: List[List[int]]) -> None:
+    def __init__(self, graph: list[list[int]]) -> None:
         """
         Initialize the Blossom algorithm with a graph.
 
@@ -69,7 +67,7 @@ class BlossomAlgorithm:
         self.n = len(graph)
         self.mate = [-1] * self.n  # mate[i] = j if edge (i,j) is in matching
 
-    def maximum_matching(self) -> List[int]:
+    def maximum_matching(self) -> list[int]:
         """
         Find maximum cardinality matching using greedy approach.
 
@@ -110,7 +108,7 @@ class BlossomAlgorithm:
         """
         return sum(1 for mate in self.mate if mate != -1) // 2
 
-    def get_matching_edges(self) -> List[tuple[int, int]]:
+    def get_matching_edges(self) -> list[tuple[int, int]]:
         """
         Get the list of matched edges.
 
@@ -124,7 +122,7 @@ class BlossomAlgorithm:
         return edges
 
 
-def maximum_matching_blossom(graph: List[List[int]]) -> List[tuple[int, int]]:
+def maximum_matching_blossom(graph: list[list[int]]) -> list[tuple[int, int]]:
     """
     Convenience function to find maximum matching using Blossom algorithm.
 
