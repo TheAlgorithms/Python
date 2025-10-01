@@ -65,8 +65,8 @@ def solve(
     col: list[int],
     box: list[int],
     board: list[list[str]],
-    i: int,
-    n: int,
+    index: int,
+    total: int,
 ) -> bool:
     """
     Recursive backtracking function to solve the sudoku
@@ -92,11 +92,11 @@ def solve(
     ... 1)
     True
     """
-    if i == n:
+    if index == total:
         return True
 
     # Get the row and column numbers for the current unfilled cell
-    r, c = unfilled[i]
+    r, c = unfilled[index]
 
     for val in range(9):
         # Check if value (val+1) can be placed at position (r, c)
@@ -112,7 +112,7 @@ def solve(
             board[r][c] = str(val + 1)
 
             # Recursively solve
-            if solve(unfilled, row, col, box, board, i + 1, n):
+            if solve(unfilled, row, col, box, board, index + 1, total):
                 return True
 
             # Backtrack
