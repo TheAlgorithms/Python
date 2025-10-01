@@ -84,6 +84,8 @@ class FibonacciHeap:
             node.right = node
         else:
             # Insert into root list
+            assert self.min_node.right is not None
+            assert self.min_node.left is not None
             node.left = self.min_node
             node.right = self.min_node.right
             self.min_node.right.left = node
