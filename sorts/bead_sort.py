@@ -39,6 +39,7 @@ def bead_sort(sequence: list) -> list:
                 sequence[i + 1] += rod_upper - rod_lower
     return sequence
 
+
 if __name__ == "__main__":
     assert bead_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
     assert bead_sort([7, 9, 4, 3, 5]) == [3, 4, 5, 7, 9]
