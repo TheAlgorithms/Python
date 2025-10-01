@@ -11,7 +11,6 @@ https://en.wikipedia.org/wiki/3D_projection
 
 import tkinter as tk
 import math
-from typing import List, Tuple
 
 
 class Vector3D:
@@ -126,9 +125,9 @@ class Mesh:
     """
 
     def __init__(self):
-        self.vertices: List[Vector3D] = []
-        self.triangles: List[Tuple[int, int, int]] = []
-        self.normals: List[Vector3D] = []
+        self.vertices: list[Vector3D] = []
+        self.triangles: list[tuple[int, int, int]] = []
+        self.normals: list[Vector3D] = []
         self.position: Vector3D = Vector3D(0, 0, 0)
         self.rotation: Vector3D = Vector3D(0, 0, 0)
 
@@ -216,7 +215,7 @@ class Camera:
         Vector3D(1, 2, 13)
     """
 
-    def __init__(self, position: Vector3D = Vector3D(0, 0, 0), fov: float = 90):
+    def __init__(self, position: Vector3D, fov: float = 90):
         self.position = position
         self.fov = fov
         self.yaw = 0.0
@@ -302,7 +301,7 @@ class GraphicsWindow:
         self.canvas.pack(fill=tk.BOTH, expand=True)
         self.running = True
         self.root.protocol("WM_DELETE_WINDOW", self.close)
-        self.meshes: List[Mesh] = []
+        self.meshes: list[Mesh] = []
         self.root.minsize(width, height)
         self.root.bind("<Configure>", self.on_resize)
         self.root.bind("<KeyPress>", self.on_key)
