@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 """
 Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It begins at a root node (or an arbitrary node in a graph) and explores all of the neighbor nodes at the present depth before moving on to the nodes at the next depth level.
 This implementation of BFS is used to traverse a maze represented as a 2D grid. The maze contains walls (#), open paths ( ), a starting point (O), and a target point (X). The algorithm finds the shortest path from the starting point to the target point while avoiding walls.
 """
+=======
+# MAZE TRAVERSAL
+"""
+Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It begins at a root node (or an arbitrary node in a graph) and explores all of the neighbor nodes at the present depth before moving on to the nodes at the next depth level.
+This implementation of BFS is used to traverse a maze represented as a 2D grid. The maze contains walls (#), open paths ( ), a starting point (O), and a target point (X). The algorithm finds the shortest path from the starting point to the target point while avoiding walls."""
+>>>>>>> ed7e4f364a8b058986b1e3a9329d2d30ab10980a
 
 import curses
 from curses import wrapper
@@ -21,6 +28,7 @@ import sys
 #     ["#", "#", "#", "#", "#", "#", "#", "X", "#"]
 # ]
 
+<<<<<<< HEAD
 maze: list[list[str]] = [
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"],
     ["#", "O", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "#"],
@@ -45,6 +53,453 @@ maze: list[list[str]] = [
 ]
 
 def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None:
+=======
+maze = [
+    [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+    ],
+    [
+        "#",
+        "O",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        "#",
+    ],
+    [
+        "#",
+        " ",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "X",
+        "#",
+    ],
+    [
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+        "#",
+    ],
+]
+
+
+def print_maze(maze, stdscr, visited, path=[]):
+>>>>>>> ed7e4f364a8b058986b1e3a9329d2d30ab10980a
     blue = curses.color_pair(1)
     red = curses.color_pair(2)
     green = curses.color_pair(3)
@@ -52,35 +507,53 @@ def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[
     for row, i in enumerate(maze):
         for column, j in enumerate(i):
             if (row, column) in path:
-                stdscr.addstr(row, column*2, "X", green)
+                stdscr.addstr(row, column * 2, "X", green)
             elif (row, column) in visited:
-                stdscr.addstr(row, column*2, "X", red)
+                stdscr.addstr(row, column * 2, "X", red)
             else:
-                stdscr.addstr(row, column*2, j, blue)
+                stdscr.addstr(row, column * 2, j, blue)
 
 
+<<<<<<< HEAD
 def find(maze: list[list[str]], start: str) -> tuple[int, int] | None: #to check and return starting position in maze
+=======
+def find(maze, start):  # to check and return starting position in maze
+>>>>>>> ed7e4f364a8b058986b1e3a9329d2d30ab10980a
     for row, i in enumerate(maze):
         for column, j in enumerate(i):
             if j == start:
-                return (row,column) # return tuple of row, column location of element in the maze
+                return (
+                    row,
+                    column,
+                )  # return tuple of row, column location of element in the maze
     return None
 
+<<<<<<< HEAD
 def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int, int]]:
+=======
+
+def find_neighbours(
+    maze, row, col
+):  # search and return each neighbour of a particular cell, without checking if its a wall or not
+>>>>>>> ed7e4f364a8b058986b1e3a9329d2d30ab10980a
     neighbours = []
 
-    if row > 0: # for UP
-        neighbours.append((row-1, col))
-    if row + 1< len(maze): # for DOWN
-        neighbours.append((row+1, col))
-    if col + 1 < len(maze[0]): # for RIGHT
+    if row > 0:  # for UP
+        neighbours.append((row - 1, col))
+    if row + 1 < len(maze):  # for DOWN
+        neighbours.append((row + 1, col))
+    if col + 1 < len(maze[0]):  # for RIGHT
         neighbours.append((row, col + 1))
-    if col > 0:          # for LEFT
+    if col > 0:  # for LEFT
         neighbours.append((row, col - 1))
     return neighbours
 
 
+<<<<<<< HEAD
 def traverse(maze: list[list[str]], stdscr: curses.window) -> list[tuple[int, int]] | None: #implementing bfs traversal
+=======
+def traverse(maze, stdscr):  # implementing bfs traversal
+>>>>>>> ed7e4f364a8b058986b1e3a9329d2d30ab10980a
     start = "O"
     target = "X"
     start_pos = find(maze, start)
@@ -88,8 +561,8 @@ def traverse(maze: list[list[str]], stdscr: curses.window) -> list[tuple[int, in
     if start_pos == None:
         sys.exit("Starting position not found!")
 
-    q = queue.Queue() #initialise queue
-    q.put((start_pos, [start_pos])) #put each position as well as path as a tuple
+    q = queue.Queue()  # initialise queue
+    q.put((start_pos, [start_pos]))  # put each position as well as path as a tuple
 
     visited = set()
 
@@ -128,8 +601,9 @@ def main(stdscr: curses.window) -> None:
 
     stdscr.getch()
 
+
 # wrapper(main)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     wrapper(main)
