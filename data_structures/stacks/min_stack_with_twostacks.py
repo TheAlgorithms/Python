@@ -1,6 +1,7 @@
 class MinStack:
     """
-    A Stack data structure that supports retrieving the minimum element in O(1) time using an auxiliary stack .
+    A Stack data structure that supports retrieving the minimum element 
+    in O(1) time using an auxiliary stack .
 
     >>> st = MinStack()
     >>> st.push(18)
