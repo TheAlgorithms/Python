@@ -1,4 +1,6 @@
 """
+Project Euler Problem 96: https://projecteuler.net/problem=96
+
 Problem Statement:
 Su Doku (Japanese meaning number place) is the name given to a popular puzzle
 concept. Its origin is unclear, but credit must be attributed to Leonhard
@@ -41,7 +43,18 @@ with unique solutions (the first puzzle in the file is the example above).
 
 By solving all fifty puzzles find the sum of the 3-digit numbers found in
 the top left corner of each solution grid; for example, 483 is the 3-digit
-number found in the top left corner of the solution grid above."""
+number found in the top left corner of the solution grid above.
+
+Solution:
+We keep a track of the digits that are already present in each row,
+column and box, and use that to check which digits can be used to fill an unfilled
+cell. This process is then repeated recursively until the puzzle is solved, after
+which the 3 digit numbers formed by the top left corner of each puzzle are added.
+
+References:
+https://en.wikipedia.org/wiki/Sudoku
+https://en.wikipedia.org/wiki/Backtracking
+"""
 
 import os
 
@@ -57,6 +70,27 @@ def solve(
 ) -> bool:
     """
     Recursive backtracking function to solve the sudoku
+
+    >>> solve(
+    ... [(0, 0)],
+    ... [0b111110111, 0b111111111, 0b111111111, 0b111111111,
+    ... 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111],
+    ... [0b111110111, 0b111111111, 0b111111111, 0b111111111,
+    ... 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111],
+    ... [0b111110111, 0b111111111, 0b111111111, 0b111111111,
+    ... 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111],
+    ... [["0","8","3","9","2","1","6","5","7"],
+    ... ["9","6","7","3","4","5","8","2","1"],
+    ... ["2","5","1","8","7","6","4","9","3"],
+    ... ["5","4","8","1","3","2","9","7","6"],
+    ... ["7","2","9","5","6","4","1","3","8"],
+    ... ["1","3","6","7","9","8","2","4","5"],
+    ... ["3","7","2","6","8","9","5","1","4"],
+    ... ["8","1","4","2","5","3","7","6","9"],
+    ... ["6","9","5","4","1","7","3","8","2"]],
+    ... 0,
+    ... 1)
+    True
     """
     if i == n:
         return True
@@ -93,6 +127,18 @@ def solve(
 def solve_sudoku(board: list[list[str]]) -> int:
     """
     Solve a single sudoku puzzle and return the first 3 digits
+
+    >>> solve_sudoku(
+    ... [["0","0","3","0","2","0","6","0","0"],
+    ... ["9","0","0","3","0","5","0","0","1"],
+    ... ["0","0","1","8","0","6","4","0","0"],
+    ... ["0","0","8","1","0","2","9","0","0"],
+    ... ["7","0","0","0","0","0","0","0","8"],
+    ... ["0","0","6","7","0","8","2","0","0"],
+    ... ["0","0","2","6","0","9","5","0","0"],
+    ... ["8","0","0","2","0","3","0","0","9"],
+    ... ["0","0","5","0","1","0","3","0","0"]])
+    483
     """
     unfilled = []
     row = [0] * 9
