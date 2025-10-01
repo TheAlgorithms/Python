@@ -26,7 +26,6 @@ How it works:
 
 Reference: https://en.wikipedia.org/wiki/Quantum_key_distribution#E91_protocol:_Artur_Ekert_.281991.29
 """
-
 import random
 
 import numpy as np
@@ -51,8 +50,8 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         - "key_match": A boolean indicating if Alice's and Bob's keys match.
         - "key_length": The final length of the sifted keys.
 
-    >>> e91_protocol(100) # doctest: +SKIP
-    {'alice_key': '1011110', 'bob_key': '1011110', 's_value': 2.73, ...}
+    >>> e91_protocol(10) # doctest: +SKIP
+    {'alice_key': '10', 'bob_key': '10', 's_value': 2.0, ...}
 
     >>> e91_protocol(-10)
     Traceback (most recent call last):
@@ -169,7 +168,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         e[key] = np.mean(values) if values else 0.0
 
     # Calculate the S-value: S = e(a,b) - e(a,b') + e(a',b) + e(a',b')
-    s_value = e["ab"] - e["ab_"] + e["a_b"] + e["a_b_"]
+    s_value = e.get("ab", 0.0) - e.get("ab_", 0.0) + e.get("a_b", 0.0) + e.get("a_b_", 0.0)
 
     # Check for eavesdropper: |S| > 2 indicates security.
     eavesdropper_detected = abs(s_value) <= 2
