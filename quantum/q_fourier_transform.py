@@ -15,8 +15,7 @@ import math
 
 import numpy as np
 import qiskit
-from qiskit import (Aer, ClassicalRegister, QuantumCircuit, QuantumRegister,
-                    execute)
+from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
 def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:

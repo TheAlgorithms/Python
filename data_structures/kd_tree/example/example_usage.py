@@ -10,8 +10,7 @@ import numpy as np
 
 from data_structures.kd_tree.build_kdtree import build_kdtree
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
-from data_structures.kd_tree.nearest_neighbour_search import \
-    nearest_neighbour_search
+from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_search
 
 
 def main() -> None:

@@ -12,8 +12,7 @@ import pytest
 from data_structures.kd_tree.build_kdtree import build_kdtree
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
 from data_structures.kd_tree.kd_node import KDNode
-from data_structures.kd_tree.nearest_neighbour_search import \
-    nearest_neighbour_search
+from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_search
 
 
 @pytest.mark.parametrize(
@@ -49,14 +48,14 @@ def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_res
         assert kdtree is not None, "Expected a KDNode, got None"
 
         # Check if root has correct dimensions
-        assert (
-            len(kdtree.point) == num_dimensions
-        ), f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
+        assert len(kdtree.point) == num_dimensions, (
+            f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
+        )
 
         # Check that the tree is balanced to some extent (simplistic check)
-        assert isinstance(
-            kdtree, KDNode
-        ), f"Expected KDNode instance, got {type(kdtree)}"
+        assert isinstance(kdtree, KDNode), (
+            f"Expected KDNode instance, got {type(kdtree)}"
+        )
 
 
 def test_nearest_neighbour_search():

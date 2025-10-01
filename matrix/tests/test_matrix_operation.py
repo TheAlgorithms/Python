@@ -7,6 +7,7 @@ the pytest run configuration
 """
 
 import logging
+
 # standard libraries
 import sys
 
