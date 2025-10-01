@@ -1,4 +1,3 @@
-import math
 from collections.abc import Callable
 
 def brent_method(
@@ -34,7 +33,7 @@ def brent_method(
 
     c = a
     fc = fa
-    d = e = b - a
+    d = b - a  # Only d is used, e removed
     mflag = True
 
     for _ in range(max_iter):
