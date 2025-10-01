@@ -80,7 +80,9 @@ def brent_method(
             s = right - fr * (right - left) / (fr - fl)
 
         conditions = [
-            not ((3 * left + right) / 4 < s < right) if right > left else not (right < s < (3 * left + right) / 4),
+            not ((3 * left + right) / 4 < s < right)
+            if right > left
+            else not (right < s < (3 * left + right) / 4),
             iteration > 1 and abs(s - right) >= abs(right - c) / 2,
             iteration <= 1 and abs(s - right) >= abs(c - d) / 2,
             iteration > 1 and abs(right - c) < tol,
