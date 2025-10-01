@@ -464,9 +464,6 @@ maze: list[list[str]] = [
     ],
 ]
 
-<<<<<<< HEAD
-def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None: 
-=======
 
 def print_maze(
     maze: list[list[str]],
@@ -474,7 +471,6 @@ def print_maze(
     visited: set[tuple[int, int]],
     path: list[tuple[int, int]] = [],
 ):
->>>>>>> 53c60ed56655b224ef80b893f97852533b47d130
     blue = curses.color_pair(1)
     red = curses.color_pair(2)
     green = curses.color_pair(3)
@@ -489,7 +485,6 @@ def print_maze(
                 stdscr.addstr(row, column * 2, j, blue)
 
 
-<<<<<<< HEAD
 def find(maze: list[list[str]], start: str) -> tuple[int, int] | None:
     """
     Find the first occurrence of a given element (like 'O' for start or 'X' for target) in the maze.
@@ -503,23 +498,12 @@ def find(maze: list[list[str]], start: str) -> tuple[int, int] | None:
         >>> find(maze, "Z") is None
         True
     """
-=======
-def find(
-    maze: list[list[str]], start: str
-) -> tuple[int, int] | None:  # to check and return starting position in maze
->>>>>>> 53c60ed56655b224ef80b893f97852533b47d130
     for row, i in enumerate(maze):
         for column, j in enumerate(i):
             if j == start:
                 return (row, column)
     return None
 
-<<<<<<< HEAD
-=======
-
-def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int, int]]:
-    neighbours = []
->>>>>>> 53c60ed56655b224ef80b893f97852533b47d130
 
 def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int, int]]:
     """
@@ -546,7 +530,6 @@ def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int
     return neighbours
 
 
-<<<<<<< HEAD
 def traverse(maze: list[list[str]], stdscr) -> list[tuple[int, int]] | None:
     """
     Run a breadth-first search on the maze and return the path from start 'O' to target 'X'.
@@ -565,11 +548,6 @@ def traverse(maze: list[list[str]], stdscr) -> list[tuple[int, int]] | None:
         >>> path == expected_path
         True
     """
-=======
-def traverse(
-    maze: list[list[str]], stdscr: curses.window
-) -> list[tuple[int, int]] | None:  # implementing bfs traversal
->>>>>>> 53c60ed56655b224ef80b893f97852533b47d130
     start = "O"
     target = "X"
     start_pos = find(maze, start)
