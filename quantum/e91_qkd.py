@@ -76,12 +76,14 @@ def e91_protocol(n_bits: int = 2000) -> dict:
     if n_bits <= 0:
         raise ValueError("Number of bits must be > 0.")
     if n_bits > 10000:
-        raise ValueError("Number of bits is too large to simulate efficiently (>10000).")
+        raise ValueError(
+            "Number of bits is too large to simulate efficiently (>10000)."
+        )
 
     # Define the measurement angles for Alice and Bob's bases as constants.
     # The keys correspond to the basis name, and values are angles in radians.
-    ALICE_BASES = {'A1': 0, 'A2': np.pi / 8, 'A3': np.pi / 4}
-    BOB_BASES = {'B1': np.pi / 8, 'B2': np.pi / 4, 'B3': 3 * np.pi / 8}
+    ALICE_BASES = {"A1": 0, "A2": np.pi / 8, "A3": np.pi / 4}
+    BOB_BASES = {"B1": np.pi / 8, "B2": np.pi / 4, "B3": 3 * np.pi / 8}
 
     # Lists to store the choices and results for each bit.
     alice_chosen_bases, bob_chosen_bases = [], []
@@ -98,8 +100,8 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         bob_angle = BOB_BASES[bob_basis_name]
 
         # Create a quantum circuit for one entangled pair.
-        qr = QuantumRegister(2, 'q')
-        cr = ClassicalRegister(2, 'c')
+        qr = QuantumRegister(2, "q")
+        cr = ClassicalRegister(2, "c")
         circuit = QuantumCircuit(qr, cr)
 
         # Create a Bell state |Φ+⟩ = (|00⟩ + |11⟩)/sqrt(2)
@@ -123,21 +125,20 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         alice_results.append(int(result[1]))
         bob_results.append(int(result[0]))
 
-
     # Sift for generating the secret key.
     # The key is formed when Alice and Bob choose compatible bases.
     # Here, compatible means A2/B1 or A3/B2, where angles are identical.
     alice_key, bob_key = [], []
     for i in range(n_bits):
-        is_a2b1 = alice_chosen_bases[i] == 'A2' and bob_chosen_bases[i] == 'B1'
-        is_a3b2 = alice_chosen_bases[i] == 'A3' and bob_chosen_bases[i] == 'B2'
+        is_a2b1 = alice_chosen_bases[i] == "A2" and bob_chosen_bases[i] == "B1"
+        is_a3b2 = alice_chosen_bases[i] == "A3" and bob_chosen_bases[i] == "B2"
         if is_a2b1 or is_a3b2:
             alice_key.append(alice_results[i])
             bob_key.append(bob_results[i])
 
     # Sift for the CHSH inequality test (Eve detection).
     # We use four specific combinations of bases for the test: a = A1, a' = A3  |  b = B1, b' = B3
-    chsh_correlations = {'ab': [], 'ab_': [], 'a_b': [], 'a_b_': []}
+    chsh_correlations = {"ab": [], "ab_": [], "a_b": [], "a_b_": []}
 
     for i in range(n_bits):
         # Convert results {0, 1} to {-1, 1} for calculating correlation.
@@ -148,14 +149,14 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         alice_basis = alice_chosen_bases[i]
         bob_basis = bob_chosen_bases[i]
 
-        if alice_basis == 'A1' and bob_basis == 'B1':
-            chsh_correlations['ab'].append(product)
-        elif alice_basis == 'A1' and bob_basis == 'B3':
-            chsh_correlations['ab_'].append(product)
-        elif alice_basis == 'A3' and bob_basis == 'B1':
-            chsh_correlations['a_b'].append(product)
-        elif alice_basis == 'A3' and bob_basis == 'B3':
-            chsh_correlations['a_b_'].append(product)
+        if alice_basis == "A1" and bob_basis == "B1":
+            chsh_correlations["ab"].append(product)
+        elif alice_basis == "A1" and bob_basis == "B3":
+            chsh_correlations["ab_"].append(product)
+        elif alice_basis == "A3" and bob_basis == "B1":
+            chsh_correlations["a_b"].append(product)
+        elif alice_basis == "A3" and bob_basis == "B3":
+            chsh_correlations["a_b_"].append(product)
 
     # Calculate the expectation value (average correlation) for each combination.
     E = {}
@@ -163,7 +164,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         E[key] = np.mean(values) if values else 0
 
     # Calculate the S-value: S = E(a,b) - E(a,b') + E(a',b) + E(a',b')
-    s_value = E['ab'] - E['ab_'] + E['a_b'] + E['a_b_']
+    s_value = E["ab"] - E["ab_"] + E["a_b"] + E["a_b_"]
 
     # Check for eavesdropper: |S| > 2 indicates security.
     eavesdropper_detected = abs(s_value) <= 2
@@ -174,7 +175,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         "s_value": s_value,
         "eavesdropper_detected": eavesdropper_detected,
         "key_match": alice_key == bob_key,
-        "key_length": len(alice_key)
+        "key_length": len(alice_key),
     }
 
 
@@ -188,7 +189,11 @@ if __name__ == "__main__":
     print(f"Final key length: {results['key_length']}")
     print(f"Keys match: {results['key_match']}")
 
-    if not results['eavesdropper_detected'] and results['key_match'] and results['key_length'] > 0:
+    if (
+        not results["eavesdropper_detected"]
+        and results["key_match"]
+        and results["key_length"] > 0
+    ):
         print("\nProtocol successful! Secret key generated securely.")
         print(f"  Alice's key: {results['alice_key']}")
         print(f"  Bob's key:   {results['bob_key']}")
