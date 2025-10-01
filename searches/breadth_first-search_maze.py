@@ -18,7 +18,7 @@ maze: list[list[str]] = [
     ["#", " ", "#", " ", "#", " ", "#", " ", "#"],
     ["#", " ", "#", " ", "#", " ", "#", "#", "#"],
     ["#", " ", " ", " ", " ", " ", " ", " ", "#"],
-    ["#", "#", "#", "#", "#", "#", "#", "X", "#"]
+    ["#", "#", "#", "#", "#", "#", "#", "X", "#"],
 ]
 
 # maze: list[list[str]] = [
@@ -44,7 +44,13 @@ maze: list[list[str]] = [
 #     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"]
 # ]
 
-def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None:
+
+def print_maze(
+    maze: list[list[str]],
+    stdscr: curses.window,
+    visited: set[tuple[int, int]],
+    path: list[tuple[int, int]] = [],
+) -> None:
     """
     Print the maze with the current path and visited nodes.
     """
