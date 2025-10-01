@@ -44,7 +44,7 @@ maze: list[list[str]] = [
     ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"]
 ]
 
-def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []):
+def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None: 
     blue = curses.color_pair(1)
     red = curses.color_pair(2)
     green = curses.color_pair(3)
@@ -59,31 +59,69 @@ def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[
                 stdscr.addstr(row, column * 2, j, blue)
 
 
-def find(maze: list[list[str]], start: str) -> tuple[int, int] | None: #to check and return starting position in maze
+def find(maze: list[list[str]], start: str) -> tuple[int, int] | None:
+    """
+    Find the first occurrence of a given element (like 'O' for start or 'X' for target) in the maze.
+
+    Examples:
+        >>> from project import find, maze
+        >>> find(maze, "O")
+        (0, 1)
+        >>> find(maze, "X")
+        (18, 18)
+        >>> find(maze, "Z") is None
+        True
+    """
     for row, i in enumerate(maze):
         for column, j in enumerate(i):
             if j == start:
-                return (
-                    row,
-                    column,
-                )  # return tuple of row, column location of element in the maze
+                return (row, column)
     return None
 
-def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int, int]]:
-    neighbours = []
 
-    if row > 0:  # for UP
+def find_neighbours(maze: list[list[str]], row: int, col: int) -> list[tuple[int, int]]:
+    """
+    Find all valid (up, down, left, right) neighbour positions for a given cell.
+
+    Examples:
+        >>> from project import find_neighbours, maze
+        >>> set(find_neighbours(maze, 4, 4)) == {(3, 4), (5, 4), (4, 3), (4, 5)}
+        True
+        >>> set(find_neighbours(maze, 0, 0)) == {(0, 1), (1, 0)}
+        True
+        >>> set(find_neighbours(maze, 0, 8)) == {(0, 7), (1, 8)}
+        True
+    """
+    neighbours = []
+    if row > 0:
         neighbours.append((row - 1, col))
-    if row + 1 < len(maze):  # for DOWN
+    if row + 1 < len(maze):
         neighbours.append((row + 1, col))
-    if col + 1 < len(maze[0]):  # for RIGHT
+    if col + 1 < len(maze[0]):
         neighbours.append((row, col + 1))
-    if col > 0:  # for LEFT
+    if col > 0:
         neighbours.append((row, col - 1))
     return neighbours
 
 
-def traverse(maze: list[list[str]], stdscr: curses.window) -> list[tuple[int, int]] | None: #implementing bfs traversal
+def traverse(maze: list[list[str]], stdscr) -> list[tuple[int, int]] | None:
+    """
+    Run a breadth-first search on the maze and return the path from start 'O' to target 'X'.
+
+    Examples:
+        >>> from project import traverse, maze
+        >>> from unittest import mock
+        >>> import curses
+        >>> stdscr = mock.Mock()
+        >>> curses.color_pair = mock.Mock(side_effect=lambda x: x)
+        >>> path = traverse(maze, stdscr)
+        >>> expected_path = [
+        ...     (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1),
+        ...     (7, 2), (7, 3), (7, 4), (7, 5), (7, 6), (7, 7), (8, 7)
+        ... ]
+        >>> path == expected_path
+        True
+    """
     start = "O"
     target = "X"
     start_pos = find(maze, start)
