@@ -17,7 +17,7 @@ def minimum_total(triangle: list[list[int]]) -> int:
     >>> minimum_total([])  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ValueError: triangle must be non-empty and well-formed
-    >>> minimum_total([[1],[2]])  # malformed (second row length not 2)  # doctest: +IGNORE_EXCEPTION_DETAIL
+    >>> minimum_total([[1],[2]])  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ValueError: triangle must be non-empty and well-formed
     """
@@ -25,8 +25,8 @@ def minimum_total(triangle: list[list[int]]) -> int:
     if not triangle or any(len(row) != i + 1 for i, row in enumerate(triangle)):
         raise ValueError("triangle must be non-empty and well-formed")
 
-    # Start from the last row and fold upwards.
-    # dp[j] will store the minimum path sum from row r to the bottom starting at column j.
+    # Start from the last row and fold upwards. dp[j] stores the minimum path
+    # sum from row r to the bottom starting at column j.
     dp = triangle[-1][:]  # copy so we don't mutate the input
 
     for r in range(len(triangle) - 2, -1, -1):
