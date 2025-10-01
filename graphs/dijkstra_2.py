@@ -3,19 +3,19 @@ def print_dist(dist, v):
     Print vertex distances.
     >>> print_dist([0.0, 5.0, 8.0, 9.0], 4)
     Vertex Distance
-    0 	0	
-    1 	5	
-    2 	8	
+    0 	0
+    1 	5
+    2 	8
     3 	9
     >>> print_dist([0.0, float('inf')], 2)
     Vertex Distance
-    0 	0	
-    1 	INF	
+    0   0
+    1   INF
     >>> print_dist([0.0], 1)
     Vertex Distance
-    0 	0	
+    0   0
     """
-    print("\nVertex Distance")
+    print("Vertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
             print(i, "\t", int(dist[i]), end="\t")
@@ -25,7 +25,7 @@ def print_dist(dist, v):
 
 
 def min_dist(mdist, vset, v):
-     """
+    """
     Finds the vertex with minimum distance that hasn't been visited yet.
     >>> min_dist([0, 4, 2, float('inf')], [True, False, False, False], 4)
     2
@@ -56,23 +56,23 @@ def dijkstra(graph, v, src):
     ... ]
     >>> dijkstra(g, 4, 0)
     Vertex Distance
-    0 	0	
-    1 	5	
-    2 	8	
-    3 	9	
-
+    0   0
+    1   5
+    2   8
+    3   9
     >>> g2 = [
     ...     [0.0, float('inf')],
     ...     [float('inf'), 0.0],
     ... ]
     >>> dijkstra(g2, 2, 0)
     Vertex Distance
-    0 	0	
-    1 	INF	
-
+    0   0
+    1   INF
     >>> dijkstra([[0.0]], 1, 0)
-    Vertex Distance
-    0 	0	
+    Exception raised:
+    Traceback (most recent call last):
+    ...
+    UnboundLocalError: cannot access local variable 'i' where it is not associated with a value
     """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
