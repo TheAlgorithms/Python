@@ -29,6 +29,7 @@ def bead_sort(sequence: list) -> list:
     TypeError: Sequence must be list of non-negative integers
     """
     from itertools import pairwise
+
     if any(not isinstance(x, int) or x < 0 for x in sequence):
         raise TypeError("Sequence must be list of non-negative integers")
     for i, (rod_upper, rod_lower) in enumerate(pairwise(sequence)):
