@@ -4,7 +4,8 @@ This works with only Indian system of wording
  * Indian system uses crore, lakh, thousand and not million and billions
 
 For the part after the decimal example ( .159 ):
-     * 	Digit by digit ( .159 ) -> point one five nine is allowed anything else will throw an error
+     * Digit by digit ( .159 ) -> point one five nine is allowed
+     * Anything else will throw an error
 
 >>> to_int("Five")
 5
@@ -16,9 +17,14 @@ For the part after the decimal example ( .159 ):
 >>> to_float("One thousand five hundred and two")
 1502.0
 
->>> to_int("Ninety nine crore three lakh seventy two thousand and six point one five nine")
+>>> to_int(
+...     "Ninety nine crore three lakh seventy two thousand and six point one five nine"
+... )
 990372006
->>> to_float("Ninety nine crore three lakh seventy two thousand and six point one five nine")
+
+>>> to_float(
+...     "Ninety nine crore three lakh seventy two thousand and six point one five nine"
+... )
 990372006.159
 
 wikipedia explanation - https://en.wikipedia.org/wiki/Numeral_(linguistics)
