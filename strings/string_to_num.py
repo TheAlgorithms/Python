@@ -67,7 +67,7 @@ def to_int(word: str) -> int:
             "ninety": 90,
         }
 
-        multiplyers = {
+        multipliers = {
             "hundred": 100,
             "thousand": 1_000,
             "lakh": 1_00_000,
@@ -97,7 +97,7 @@ def to_int(word: str) -> int:
                 elif word in tens:
                     temp += tens[word]
                 else:
-                    temp += multiplyers[word]
+                    temp += multipliers[word]
             elif index == (len(words) - 1):
                 if word in units:
                     temp += units[word]
@@ -106,14 +106,14 @@ def to_int(word: str) -> int:
                     temp += tens[word]
                     number += temp
                 else:
-                    temp *= multiplyers[word]
+                    temp *= multipliers[word]
                     number += temp
             elif word in units:
                 temp += units[word]
             elif word in tens:
                 temp += tens[word]
-            elif word in multiplyers:
-                temp *= multiplyers[word]
+            elif word in multipliers:
+                temp *= multipliers[word]
                 number += temp
                 temp = 0
 

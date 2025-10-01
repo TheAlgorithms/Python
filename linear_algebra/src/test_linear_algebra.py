@@ -11,14 +11,8 @@ import unittest
 
 import pytest
 
-from .lib import (
-    Matrix,
-    Vector,
-    axpy,
-    square_zero_matrix,
-    unit_basis_vector,
-    zero_vector,
-)
+from .lib import (Matrix, Vector, axpy, square_zero_matrix, unit_basis_vector,
+                  zero_vector)
 
 
 class Test(unittest.TestCase):

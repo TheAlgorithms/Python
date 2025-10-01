@@ -22,7 +22,6 @@ the image is present in.
 # Part 1 - Building the CNN
 
 import numpy as np
-
 # Importing the Keras libraries and packages
 import tensorflow as tf
 from keras import layers, models

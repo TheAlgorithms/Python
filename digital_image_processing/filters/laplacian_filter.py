@@ -3,16 +3,8 @@
 # @Date    : 10/04/2023
 
 import numpy as np
-from cv2 import (
-    BORDER_DEFAULT,
-    COLOR_BGR2GRAY,
-    CV_64F,
-    cvtColor,
-    filter2D,
-    imread,
-    imshow,
-    waitKey,
-)
+from cv2 import (BORDER_DEFAULT, COLOR_BGR2GRAY, CV_64F, cvtColor, filter2D,
+                 imread, imshow, waitKey)
 
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
 
