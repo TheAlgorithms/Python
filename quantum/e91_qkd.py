@@ -127,7 +127,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
     # Sift for generating the secret key.
     # The key is formed when Alice and Bob choose compatible bases.
     # Here, compatible means A2/B1 or A3/B2, where angles are identical.
-    alice_key, bob_key = [], []    
+    alice_key, bob_key = [], []
     for i in range(n_bits):
         is_a2b1 = alice_chosen_bases[i] == "A2" and bob_chosen_bases[i] == "B1"
         is_a3b2 = alice_chosen_bases[i] == "A3" and bob_chosen_bases[i] == "B2"
