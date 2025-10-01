@@ -32,12 +32,12 @@ def bead_sort(sequence: list) -> list:
 
     if any(not isinstance(x, int) or x < 0 for x in sequence):
         raise TypeError("Sequence must be list of non-negative integers")
-    for i, (rod_upper, rod_lower) in enumerate(pairwise(sequence)):
-        if rod_upper > rod_lower:
-            sequence[i] -= rod_upper - rod_lower
-            sequence[i + 1] += rod_upper - rod_lower
+    for _ in range(len(sequence)):
+        for i, (rod_upper, rod_lower) in enumerate(pairwise(sequence)):
+            if rod_upper > rod_lower:
+                sequence[i] -= rod_upper - rod_lower
+                sequence[i + 1] += rod_upper - rod_lower
     return sequence
-
 
 if __name__ == "__main__":
     assert bead_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
