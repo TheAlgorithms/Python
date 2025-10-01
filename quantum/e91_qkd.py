@@ -26,6 +26,7 @@ How it works:
 
 Reference: https://en.wikipedia.org/wiki/Quantum_key_distribution#E91_protocol:_Artur_Ekert_.281991.29
 """
+
 import random
 
 import numpy as np
@@ -168,7 +169,9 @@ def e91_protocol(n_bits: int = 2000) -> dict:
         e[key] = np.mean(values) if values else 0.0
 
     # Calculate the S-value: S = e(a,b) - e(a,b') + e(a',b) + e(a',b')
-    s_value = e.get("ab", 0.0) - e.get("ab_", 0.0) + e.get("a_b", 0.0) + e.get("a_b_", 0.0)
+    s_value = (
+        e.get("ab", 0.0) - e.get("ab_", 0.0) + e.get("a_b", 0.0) + e.get("a_b_", 0.0)
+    )
 
     # Check for eavesdropper: |S| > 2 indicates security.
     eavesdropper_detected = abs(s_value) <= 2
