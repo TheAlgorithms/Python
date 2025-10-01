@@ -1,4 +1,20 @@
 def print_dist(dist, v):
+    """
+    Print vertex distances.
+    >>> print_dist([0.0, 5.0, 8.0, 9.0], 4)
+    Vertex Distance
+    0 	0	
+    1 	5	
+    2 	8	
+    3 	9
+    >>> print_dist([0.0, float('inf')], 2)
+    Vertex Distance
+    0 	0	
+    1 	INF	
+    >>> print_dist([0.0], 1)
+    Vertex Distance
+    0 	0	
+    """
     print("\nVertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
@@ -30,6 +46,34 @@ def min_dist(mdist, vset, v):
 
 
 def dijkstra(graph, v, src):
+    """
+    Runs Dijkstra's algorithm and prints distances.
+    >>> g = [
+    ...     [0.0, 5.0, float('inf'), 10.0],
+    ...     [float('inf'), 0.0, 3.0, float('inf')],
+    ...     [float('inf'), float('inf'), 0.0, 1.0],
+    ...     [float('inf'), float('inf'), float('inf'), 0.0],
+    ... ]
+    >>> dijkstra(g, 4, 0)
+    Vertex Distance
+    0 	0	
+    1 	5	
+    2 	8	
+    3 	9	
+
+    >>> g2 = [
+    ...     [0.0, float('inf')],
+    ...     [float('inf'), 0.0],
+    ... ]
+    >>> dijkstra(g2, 2, 0)
+    Vertex Distance
+    0 	0	
+    1 	INF	
+
+    >>> dijkstra([[0.0]], 1, 0)
+    Vertex Distance
+    0 	0	
+    """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
