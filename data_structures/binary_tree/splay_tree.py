@@ -177,14 +177,14 @@ class SplayTree:
                 else:
                     self._rotate_left(grandparent)
                     self._rotate_left(parent)
+            elif node is parent.left:
+                # Zig-zag case: opposite directions (left child)
+                self._rotate_right(parent)
+                self._rotate_left(grandparent)
             else:
-                # Zig-zag case: opposite directions
-                if node is parent.left:
-                    self._rotate_right(parent)
-                    self._rotate_left(grandparent)
-                else:
-                    self._rotate_left(parent)
-                    self._rotate_right(grandparent)
+                # Zig-zag case: opposite directions (right child)
+                self._rotate_left(parent)
+                self._rotate_right(grandparent)
 
     def _find_node(self, value: Any) -> SplayNode | None:
         """Find a node with the given value, splaying it to root if found."""
