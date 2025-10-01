@@ -1,5 +1,7 @@
 # MAZE TRAVERSAL 
-
+"""
+Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It begins at a root node (or an arbitrary node in a graph) and explores all of the neighbor nodes at the present depth before moving on to the nodes at the next depth level.
+This implementation of BFS is used to traverse a maze represented as a 2D grid. The maze contains walls (#), open paths ( ), a starting point (O), and a target point (X). The algorithm finds the shortest path from the starting point to the target point while avoiding walls."""
 import curses
 from curses import wrapper
 import queue
