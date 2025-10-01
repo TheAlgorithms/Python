@@ -1,17 +1,18 @@
 from typing import Callable
 
+
 def brent_method(
     f: Callable[[float], float],
     a: float,
     b: float,
     tol: float = 1e-8,
-    max_iter: int = 100
+    max_iter: int = 100,
 ) -> float:
     """
     Find the root of function f in the interval [a, b] using Brent's Method.
-    
+
     Brent's Method combines bisection, secant, and inverse quadratic interpolation.
-    
+
     Parameters
     ----------
     f : Callable[[float], float]
@@ -24,17 +25,17 @@ def brent_method(
         Tolerance for convergence (default 1e-8).
     max_iter : int
         Maximum number of iterations (default 100).
-    
+
     Returns
     -------
     float
         Approximate root of f in [a, b].
-    
+
     Raises
     ------
     ValueError
         If f(a) and f(b) do not have opposite signs.
-    
+
     Examples
     --------
     >>> def func(x): return x**3 - x - 2
@@ -109,7 +110,9 @@ def brent_method(
 
     # If we reach max iterations
     return b
+
+
 if __name__ == "__main__":
     import doctest
-    doctest.testmod(verbose=True)
 
+    doctest.testmod(verbose=True)
