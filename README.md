@@ -59,9 +59,9 @@ Before contributing, please make sure to:
 
 1. Read our full [Contributing Guidelines](./CONTRIBUTING.md).
 2. Ensure your code follows our style guide:
-   - Python 3.13+ compatible  
-   - Uses descriptive variable and function names  
-   - Includes type hints and docstrings with doctests  
+   - Python 3.13+ compatible
+   - Uses descriptive variable and function names
+   - Includes type hints and docstrings with doctests
 3. Run the following tools locally before submitting a pull request:
    ```bash
    # Format your code
@@ -85,4 +85,4 @@ For more details, check the full [Contributing Guide](./CONTRIBUTING.md).
 
 ## 🧾 License
 
-This project is licensed under the [MIT License](./LICENSE).  
+This project is licensed under the [MIT License](./LICENSE).
