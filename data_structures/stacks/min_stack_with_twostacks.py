@@ -4,19 +4,20 @@ class MinStack:
         # main stack for storing elements
         self.minSt = []
         # auxiliary stack for finding minimum in O(1) time space O(N) because of this auxiliary stack using
-  # pushing new element
+
+    # pushing new element
     def push(self, x):
         self.st.append(x)
-        
-        # If minSt is empty or new element is smaller than 
+
+        # If minSt is empty or new element is smaller than
         # the top of minSt, push it because if it is empty then coming element will be minimum and if coming element is smaller than previous
         if not self.minSt or x <= self.minSt[-1]:
             self.minSt.append(x)
-        
+
     # Pop the top element
     def pop(self):
         if not self.st:
-          return None
+            return None
         value = self.st.pop()
         if value == self.minSt[-1]:
             self.minSt.pop()
@@ -35,15 +36,15 @@ class MinStack:
         return self.minSt[-1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     st = MinStack()
     # making new minstack object
-    #adding new elements
+    # adding new elements
     st.push(18)
     st.push(19)
     st.push(29)
     st.push(15)
     st.push(16)
-    
+
     print(st.getMin())
     # should return 15
