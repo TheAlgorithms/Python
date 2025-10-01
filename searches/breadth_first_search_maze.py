@@ -465,7 +465,7 @@ maze: list[list[str]] = [
 ]
 
 <<<<<<< HEAD
-def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None: 
+def print_maze(maze: list[list[str]], stdscr: curses.window, visited: set[tuple[int, int]], path: list[tuple[int, int]] = []) -> None:
 =======
 
 def print_maze(
