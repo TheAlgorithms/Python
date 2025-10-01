@@ -1,3 +1,32 @@
+"""
+Implements the E91 quantum key distribution (QKD) protocol.
+This protocol uses the principles of quantum entanglement and the violation of
+Bell's inequality to securely distribute a secret key
+between two parties (Alice and Bob) and to detect
+the presence of an eavesdropper (Eve).
+
+How it works:
+1.  A source (Charlie) generates pairs of entangled qubits in a Bell
+    state and sends one qubit of each pair to Alice and the other to Bob.
+2.  Alice and Bob each independently and randomly choose to measure their
+    incoming qubits in one of three predefined measurement bases.
+3.  After all measurements are complete, they communicate over a public
+    channel to compare the bases they chose for each qubit.
+4.  They divide their measurement results into two sets:
+    a) Cases where their chosen bases were "compatible" are used to
+       generate a secret key. Due to entanglement, their results in these
+       cases should be perfectly correlated.
+    b) Cases where their bases were "incompatible" are used to test for
+       eavesdropping by calculating the CHSH inequality parameter 'S'.
+5.  Quantum mechanics predicts that for an entangled system, |S| can reach
+    2*sqrt(2) (~2.828), whereas any classical (or eavesdropped) system is
+    bound by |S| <= 2. If their calculated S-value significantly violates
+    the classical bound, they can be confident that no eavesdropping
+    occurred and their generated key is secure.
+
+Reference: https://en.wikipedia.org/wiki/Quantum_key_distribution#E91_protocol:_Artur_Ekert_.281991.29
+"""
+
 import math
 import random
 import numpy as np
