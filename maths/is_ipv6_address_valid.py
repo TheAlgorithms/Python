@@ -1,6 +1,10 @@
 """
 Validate IPv6 addresses (full and compressed forms).
 
+References:
+- Wikipedia: https://en.wikipedia.org/wiki/IPv6_address
+- RFC 4291: https://tools.ietf.org/html/rfc4291
+
 Rules implemented (subset of RFC 4291):
 - Hex groups are 1-4 hex digits (0-9, a-f, A-F).
 - Exactly 8 groups in total. A single '::' may compress one or more groups of
