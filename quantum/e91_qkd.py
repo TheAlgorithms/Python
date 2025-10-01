@@ -27,10 +27,9 @@ How it works:
 Reference: https://en.wikipedia.org/wiki/Quantum_key_distribution#E91_protocol:_Artur_Ekert_.281991.29
 """
 
-import math
 import random
+
 import numpy as np
-import qiskit
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit_aer import AerSimulator
 
@@ -82,8 +81,8 @@ def e91_protocol(n_bits: int = 2000) -> dict:
 
     # Define the measurement angles for Alice and Bob's bases as constants.
     # The keys correspond to the basis name, and values are angles in radians.
-    ALICE_BASES = {"A1": 0, "A2": np.pi / 8, "A3": np.pi / 4}
-    BOB_BASES = {"B1": np.pi / 8, "B2": np.pi / 4, "B3": 3 * np.pi / 8}
+    alice_bases = {"A1": 0, "A2": np.pi / 8, "A3": np.pi / 4}
+    bob_bases = {"B1": np.pi / 8, "B2": np.pi / 4, "B3": 3 * np.pi / 8}
 
     # Lists to store the choices and results for each bit.
     alice_chosen_bases, bob_chosen_bases = [], []
@@ -94,10 +93,10 @@ def e91_protocol(n_bits: int = 2000) -> dict:
 
     for _ in range(n_bits):
         # Alice and Bob randomly choose their measurement bases.
-        alice_basis_name = random.choice(list(ALICE_BASES.keys()))
-        bob_basis_name = random.choice(list(BOB_BASES.keys()))
-        alice_angle = ALICE_BASES[alice_basis_name]
-        bob_angle = BOB_BASES[bob_basis_name]
+        alice_basis_name = random.choice(list(alice_bases.keys()))
+        bob_basis_name = random.choice(list(bob_bases.keys()))
+        alice_angle = alice_bases[alice_basis_name]
+        bob_angle = bob_bases[bob_basis_name]
 
         # Create a quantum circuit for one entangled pair.
         qr = QuantumRegister(2, "q")
@@ -117,7 +116,7 @@ def e91_protocol(n_bits: int = 2000) -> dict:
 
         # Execute the circuit and get the result.
         job = backend.run(circuit, shots=1)
-        result = list(job.result().get_counts().keys())[0]
+        result = next(iter(job.result().get_counts().keys()))
 
         # Store choices and results. Qiskit's bit order is reversed.
         alice_chosen_bases.append(alice_basis_name)
@@ -137,7 +136,8 @@ def e91_protocol(n_bits: int = 2000) -> dict:
             bob_key.append(bob_results[i])
 
     # Sift for the CHSH inequality test (Eve detection).
-    # We use four specific combinations of bases for the test: a = A1, a' = A3  |  b = B1, b' = B3
+    # We use four specific combinations of bases for the test:
+    # a = A1, a' = A3  |  b = B1, b' = B3
     chsh_correlations = {"ab": [], "ab_": [], "a_b": [], "a_b_": []}
 
     for i in range(n_bits):
@@ -159,12 +159,12 @@ def e91_protocol(n_bits: int = 2000) -> dict:
             chsh_correlations["a_b_"].append(product)
 
     # Calculate the expectation value (average correlation) for each combination.
-    E = {}
+    e = {}
     for key, values in chsh_correlations.items():
-        E[key] = np.mean(values) if values else 0
+        e[key] = np.mean(values) if values else 0
 
-    # Calculate the S-value: S = E(a,b) - E(a,b') + E(a',b) + E(a',b')
-    s_value = E["ab"] - E["ab_"] + E["a_b"] + E["a_b_"]
+    # Calculate the S-value: S = e(a,b) - e(a,b') + e(a',b) + e(a',b')
+    s_value = e["ab"] - e["ab_"] + e["a_b"] + e["a_b_"]
 
     # Check for eavesdropper: |S| > 2 indicates security.
     eavesdropper_detected = abs(s_value) <= 2
