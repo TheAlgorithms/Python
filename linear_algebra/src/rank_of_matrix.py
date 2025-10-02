@@ -54,35 +54,40 @@ def rank_of_matrix(matrix: list[list[int | float]]) -> int:
     1
     >>> rank_of_matrix([[]])
     0
+    >>> rank_of_matrix([])   # ✅ new: completely empty matrix
+    0
+    >>> m = [[1, 2], [3, 4]]
+    >>> rank_of_matrix(m)    # ✅ new: original matrix should not be modified
+    2
+    >>> m                    # should remain unchanged
+    [[1, 2], [3, 4]]
     """
 
-    rows = len(matrix)
-    columns = len(matrix[0])
+    import copy
+    if not matrix or not matrix[0]:
+        return 0
+
+    A = copy.deepcopy(matrix)
+    rows, columns = len(A), len(A[0])
     rank = min(rows, columns)
 
     for row in range(rank):
-        # Check if diagonal element is not zero
-        if matrix[row][row] != 0:
-            # Eliminate all the elements below the diagonal
+        if A[row][row] != 0:
             for col in range(row + 1, rows):
-                multiplier = matrix[col][row] / matrix[row][row]
+                multiplier = A[col][row] / A[row][row]
                 for i in range(row, columns):
-                    matrix[col][i] -= multiplier * matrix[row][i]
+                    A[col][i] -= multiplier * A[row][i]
         else:
-            # Find a non-zero diagonal element to swap rows
             reduce = True
             for i in range(row + 1, rows):
-                if matrix[i][row] != 0:
-                    matrix[row], matrix[i] = matrix[i], matrix[row]
+                if A[i][row] != 0:
+                    A[row], A[i] = A[i], A[row]
                     reduce = False
                     break
             if reduce:
                 rank -= 1
                 for i in range(rows):
-                    matrix[i][row] = matrix[i][rank]
-
-            # Reduce the row pointer by one to stay on the same row
-            row -= 1
+                    A[i][row] = A[i][rank]
 
     return rank
 
