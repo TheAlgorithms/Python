@@ -183,14 +183,17 @@ def linear_discriminant_analysis(
         sb = covariance_between_classes(features, labels, classes)
         sw = covariance_within_classes(features, labels, classes)
 
+        # Add regularization to Sw to avoid singular matrix
+        sw_reg = sw + 1e-6 * np.eye(sw.shape[0])
+        
         # Solve the generalized eigenvalue problem: Sb v = λ Sw v
-        eigenvalues, eigenvectors = eigh(sb, sw)
+        eigenvalues, eigenvectors = eigh(sb, sw_reg)
 
         # Sort eigenvectors by eigenvalues (descending)
         idx = np.argsort(eigenvalues)[::-1]
         eigenvectors = eigenvectors[:, idx]
 
-        # Take top "dimensions"
+        # Take top "dimensions" eigenvectors
         filtered_eigenvectors = eigenvectors[:, :dimensions]
 
         projected_data = np.dot(filtered_eigenvectors.T, features)
@@ -199,7 +202,6 @@ def linear_discriminant_analysis(
     else:
         logging.error("Dataset empty")
         raise AssertionError
-
 
 def locally_linear_embedding(
     features: np.ndarray, dimensions: int, n_neighbors: int = 12, reg: float = 1e-3
