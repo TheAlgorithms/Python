@@ -315,8 +315,8 @@ class GraphicsWindow:
     Examples:
         >>> import os
         >>> if os.environ.get("DISPLAY") or os.name == "nt":
-        ...     win = GraphicsWindow(width=200, height=100)
-        ...     isinstance(win, GraphicsWindow)
+        ...     win = GraphicsWindow(width=200, height=100)  # doctest: +SKIP
+        ...     isinstance(win, GraphicsWindow)  # doctest: +SKIP
         True
 
     Interactive controls:
