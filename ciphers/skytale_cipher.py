@@ -35,7 +35,6 @@ ValueError: Key must be a positive integer
 
 from __future__ import annotations
 
-from typing import List
 
 
 def encrypt(plaintext: str, key: int) -> str:
@@ -77,10 +76,10 @@ def decrypt(ciphertext: str, key: int) -> str:
     extra = length % key
 
     # Determine each row length
-    row_lengths: List[int] = [base + (1 if r < extra else 0) for r in range(key)]
+    row_lengths: list[int] = [base + (1 if r < extra else 0) for r in range(key)]
 
     # Slice ciphertext into rows
-    rows: List[str] = []
+    rows: list[str] = []
     idx = 0
     for r_len in row_lengths:
         rows.append(ciphertext[idx : idx + r_len])
@@ -90,7 +89,7 @@ def decrypt(ciphertext: str, key: int) -> str:
     pointers = [0] * key
 
     # Reconstruct by taking characters column-wise across rows
-    result_chars: List[str] = []
+    result_chars: list[str] = []
     for i in range(length):
         r = i % key
         if pointers[r] < len(rows[r]):
