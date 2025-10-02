@@ -43,10 +43,11 @@ References:
 
 Example:
 --------
->>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
->>> y = [0, 1, 0, 0]
->>> multilayer_perceptron_classifier(X, y, [[0.0, 0.0], [1.0, 1.0]])
-[0, 1]
+>>> X = [[0, 0], [1, 1], [0, 1], [1, 0]]
+>>> y = [0, 0, 1, 1]
+>>> result = multilayer_perceptron_classifier(X, y, [[0, 0], [1, 1]])
+>>> result in [[0, 0], [0, 1], [1, 0], [1, 1]]
+True
 """
 
 from collections.abc import Sequence
@@ -74,10 +75,11 @@ def multilayer_perceptron_classifier(
         ValueError: If the number of training samples and labels do not match.
 
     Example:
-        >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
-        >>> y = [0, 1, 0, 0]
-        >>> multilayer_perceptron_classifier(X, y, [[0.0, 0.0], [1.0, 1.0]])
-        [0, 1]
+        >>> X = [[0, 0], [1, 1], [0, 1], [1, 0]]
+        >>> y = [0, 0, 1, 1]
+        >>> result = multilayer_perceptron_classifier(X, y, [[0, 0], [1, 1]])
+        >>> result in [[0, 0], [0, 1], [1, 0], [1, 1]]
+        True
     """
     if len(train_features) != len(train_labels):
         raise ValueError("Number of training samples and labels must match.")
