@@ -90,7 +90,7 @@ class Blockchain:
         chain (List[Block]): List of blocks forming the chain.
     """
 
-    def __init__(self, difficulty: int = 2):
+    def __init__(self, difficulty: int = 2) -> None:
         self.difficulty = difficulty
         self.chain: List[Block] = [self.create_genesis_block()]
 
