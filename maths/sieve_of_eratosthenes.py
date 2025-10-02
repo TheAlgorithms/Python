@@ -14,6 +14,7 @@ optimized by : Sumit Nayak (https://github.com/Sumit210106/)
 
 from __future__ import annotations
 
+
 def prime_sieve(num: int) -> list[int]:
     """
     Returns a list with all prime numbers up to n.
@@ -43,9 +44,9 @@ def prime_sieve(num: int) -> list[int]:
     prime = [2]
 
     # marked all even numbers as non-prime
-    for i in range(3, int(pow(num,0.5)) + 1, 2):
+    for i in range(3, int(pow(num, 0.5)) + 1, 2):
         if sieve[i]:
-            for j in range(pow(i,2), num + 1, 2 * i):
+            for j in range(pow(i, 2), num + 1, 2 * i):
                 sieve[j] = False
 
     # collect odd primes
