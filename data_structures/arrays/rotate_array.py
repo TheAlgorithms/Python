@@ -1,13 +1,21 @@
-def rotate_array(arr, k):
+def rotate_array(arr: list[int], k: int) -> list[int]:
     """
     Rotates the array to the right by k steps
 
     Args:
-        arr(list): The input array
-        k(int): Number of steps to rotate
+        arr (list[int]): The input array.
+        k (int): Number of steps to rotate.
 
     Returns:
-        list: Rotated array
+        list[int]: Rotated array.
+
+    Examples:
+        >>> rotate_array([1, 2, 3, 4, 5], 2)
+        [4, 5, 1, 2, 3]
+        >>> rotate_array([1, 2, 3], 0)
+        [1, 2, 3]
+        >>> rotate_array([], 3)
+        []
     """
     n = len(arr)
     k = k % n if n else 0
@@ -21,5 +29,5 @@ def rotate_array(arr, k):
 
 if __name__ == "__main__":
     arr = [1, 2, 3, 4, 5, 6, 7, 8]
-    k = 3
-    print("Rotated array: ", rotate_array(arr, k))
+    steps = 3
+    print("Rotated array: ", rotate_array(arr, steps))
