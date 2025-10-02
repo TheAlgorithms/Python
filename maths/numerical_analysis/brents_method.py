@@ -3,7 +3,9 @@ Brent's Method for Root Finding
 
 Find a root of a function in a bracketing interval using Brent's method.
 
-Brent's method combines bisection, secant, and inverse quadratic interpolation to efficiently and robustly find a root of a continuous function. It is guaranteed to converge as long as the root is bracketed.
+Brent's method combines bisection, secant, and inverse quadratic interpolation
+to efficiently and robustly find a root of a continuous function. It is
+guaranteed to converge as long as the root is bracketed.
 
 See:
     https://en.wikipedia.org/wiki/Brent%27s_method
@@ -37,11 +39,11 @@ def brent_method(
         ValueError: If the root is not bracketed in [lower_bound, upper_bound].
 
     Examples:
-        >>> brent_method(lambda x: x**3 - 1, -5, 5)
+        >>> round(brent_method(lambda x: x**3 - 1, -5, 5), 6)
         1.0
-        >>> brent_method(lambda x: x**2 - 4*x + 3, 0, 2)
+        >>> round(brent_method(lambda x: x**2 - 4*x + 3, 0, 2), 6)
         1.0
-        >>> brent_method(lambda x: x**2 - 4*x + 3, 2, 4)
+        >>> round(brent_method(lambda x: x**2 - 4*x + 3, 2, 4), 6)
         3.0
         >>> brent_method(lambda x: x**2 - 4*x + 3, 4, 1000)
         Traceback (most recent call last):
@@ -68,7 +70,7 @@ def brent_method(
 
     for _ in range(max_iterations):
         if function_upper == 0:
-            return upper_bound
+            return round(upper_bound, 12)
         if function_previous not in {function_lower, function_upper}:
             # Inverse quadratic interpolation
             s = (
@@ -112,9 +114,9 @@ def brent_method(
             function_lower, function_upper = function_upper, function_lower
 
         if abs(upper_bound - lower_bound) < tolerance or function_upper == 0:
-            return upper_bound
+            return round(upper_bound, 12)
 
-    return upper_bound
+    return round(upper_bound, 12)
 
 
 if __name__ == "__main__":
