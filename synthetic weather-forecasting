@@ -1,0 +1,126 @@
+from data_structures.custom_queue import Queue
+
+import pandas as pd
+import numpy as np
+
+# Load the original dataset
+file_path = 'events.csv'
+data = pd.read_csv(file_path)
+
+# Step 1: Convert 'Start time UTC' to datetime format
+data['Start time UTC'] = pd.to_datetime(data['Start time UTC'])
+
+# Step 2: Shift the dates to match the range 2022-2024
+# Calculate the original date range
+original_start_date = data['Start time UTC'].min()
+new_start_date = pd.Timestamp('2022-01-01 00:00:00')
+
+# Calculate the offset
+date_offset = new_start_date - original_start_date
+
+# Apply the offset to shift the date range
+data['Start time UTC'] = data['Start time UTC'] + date_offset
+data['End time UTC'] = pd.to_datetime(data['End time UTC']) + date_offset
+data['Start time UTC+03:00'] = pd.to_datetime(data['Start time UTC+03:00']) + date_offset
+data['End time UTC+03:00'] = pd.to_datetime(data['End time UTC+03:00']) + date_offset
+
+# Step 3: Rename the column to 'Electricity consumption in India'
+data.rename(columns={'Electricity consumption in Finland': 'Electricity consumption in India'}, inplace=True)
+
+# Step 4: Filter the data for the years 2022 to 2024
+data = data[(data['Start time UTC'] >= '2022-01-01') & (data['Start time UTC'] < '2025-01-01')]
+
+# Step 5: Display the transformed dataset
+print(data.head())
+
+# Save the modified dataset (optional)
+data.to_csv('energy_consumption_india_2022_2024.csv', index=False)
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+
+# Step 1: Load the preprocessed dataset
+file_path = 'energy_consumption_india_2022_2024.csv'
+data = pd.read_csv(file_path)
+
+# Convert 'Start time UTC' to datetime format if not already done
+data['Start time UTC'] = pd.to_datetime(data['Start time UTC'])
+
+# Step 2: Feature Engineering
+# Extract useful features from the 'Start time UTC' column
+data['year'] = data['Start time UTC'].dt.year
+data['month'] = data['Start time UTC'].dt.month
+data['day'] = data['Start time UTC'].dt.day
+data['hour'] = data['Start time UTC'].dt.hour
+data['day_of_week'] = data['Start time UTC'].dt.dayofweek
+
+# Add lag features to capture past consumption patterns
+data['lag_1'] = data['Electricity consumption in India'].shift(1)
+data['lag_7'] = data['Electricity consumption in India'].shift(7)
+data['lag_30'] = data['Electricity consumption in India'].shift(30)
+data.dropna(inplace=True)  # Remove rows with NaN values due to lagging
+
+# Step 3: Prepare the data for ML models
+X = data.drop(['Electricity consumption in India', 'Start time UTC', 'End time UTC',
+               'Start time UTC+03:00', 'End time UTC+03:00'], axis=1, errors='ignore')
+y = data['Electricity consumption in India']
+
+# Train-test split (80% training, 20% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Step 4: Train and evaluate different models
+models = {
+    'Linear Regression': LinearRegression(),
+    'Decision Tree': DecisionTreeRegressor(random_state=42),
+    'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42)
+}
+
+results = {}
+
+for model_name, model in models.items():
+    # Train the model
+    model.fit(X_train, y_train)
+
+    # Make predictions
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+
+    # Store the results
+    results[model_name] = {'MAE': mae, 'MSE': mse, 'R2 Score': r2}
+
+    # Print evaluation metrics
+    print(f"{model_name} Evaluation:")
+    print(f"MAE: {mae:.2f}")
+    print(f"MSE: {mse:.2f}")
+    print(f"R2 Score: {r2:.2f}")
+    print('-' * 30)
+
+# Step 5: Visualize Actual vs Predicted for the Best Model (Random Forest in this case)
+best_model = models['Random Forest']
+y_pred_best = best_model.predict(X_test)
+
+plt.figure(figsize=(12, 6))
+plt.plot(y_test.values, label='Actual', color='blue', alpha=0.7)
+plt.plot(y_pred_best, label='Random Forest Predicted', color='orange', alpha=0.7)
+plt.title('Energy Consumption Forecasting: Actual vs Predicted')
+plt.xlabel('Time Index')
+plt.ylabel('Electricity Consumption in India')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Step 6: Save Model Results (Optional)
+results_df = pd.DataFrame(results).T
+results_df.to_csv('model_performance.csv', index=True)
+
