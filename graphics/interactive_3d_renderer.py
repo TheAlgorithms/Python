@@ -9,8 +9,9 @@ References:
 https://en.wikipedia.org/wiki/3D_projection
 """
 
-import tkinter as tk
 import math
+import os
+import tkinter as tk
 
 
 class Vector3D:
@@ -38,46 +39,76 @@ class Vector3D:
         Vector3D(3.0, 2.0, -1.0)
     """
 
-    def __init__(self, x: float = 0.0, y: float = 0.0, z: float = 0.0):
+    def __init__(
+        self,
+        x_coordinate: float = 0.0,
+        y_coordinate: float = 0.0,
+        z_coordinate: float = 0.0,
+    ) -> None:
         """Initialize a 3D vector."""
-        self.x: float = x
-        self.y: float = y
-        self.z: float = z
+        self.x_coordinate: float = x_coordinate
+        self.y_coordinate: float = y_coordinate
+        self.z_coordinate: float = z_coordinate
 
     def __add__(self, other: "Vector3D") -> "Vector3D":
         """Vector addition."""
-        return Vector3D(self.x + other.x, self.y + other.y, self.z + other.z)
+        return Vector3D(
+            self.x_coordinate + other.x_coordinate,
+            self.y_coordinate + other.y_coordinate,
+            self.z_coordinate + other.z_coordinate,
+        )
 
     def __sub__(self, other: "Vector3D") -> "Vector3D":
         """Vector subtraction."""
-        return Vector3D(self.x - other.x, self.y - other.y, self.z - other.z)
+        return Vector3D(
+            self.x_coordinate - other.x_coordinate,
+            self.y_coordinate - other.y_coordinate,
+            self.z_coordinate - other.z_coordinate,
+        )
 
     def __mul__(self, scalar: float) -> "Vector3D":
         """Scalar multiplication."""
-        return Vector3D(self.x * scalar, self.y * scalar, self.z * scalar)
+        return Vector3D(
+            self.x_coordinate * scalar,
+            self.y_coordinate * scalar,
+            self.z_coordinate * scalar,
+        )
 
     def dot(self, other: "Vector3D") -> float:
         """Dot product of two vectors."""
-        return self.x * other.x + self.y * other.y + self.z * other.z
+        return (
+            self.x_coordinate * other.x_coordinate
+            + self.y_coordinate * other.y_coordinate
+            + self.z_coordinate * other.z_coordinate
+        )
 
     def cross(self, other: "Vector3D") -> "Vector3D":
         """Cross product of two vectors."""
         return Vector3D(
-            self.y * other.z - self.z * other.y,
-            self.z * other.x - self.x * other.z,
-            self.x * other.y - self.y * other.x,
+            self.y_coordinate * other.z_coordinate
+            - self.z_coordinate * other.y_coordinate,
+            self.z_coordinate * other.x_coordinate
+            - self.x_coordinate * other.z_coordinate,
+            self.x_coordinate * other.y_coordinate
+            - self.y_coordinate * other.x_coordinate,
         )
 
     def magnitude(self) -> float:
         """Return the magnitude (length) of the vector."""
-        return math.sqrt(self.x**2 + self.y**2 + self.z**2)
+        return math.sqrt(
+            self.x_coordinate**2 + self.y_coordinate**2 + self.z_coordinate**2
+        )
 
     def normalize(self) -> "Vector3D":
         """Return a normalized (unit length) vector."""
         magnitude = self.magnitude()
         if magnitude == 0:
             return Vector3D(0, 0, 0)
-        return Vector3D(self.x / magnitude, self.y / magnitude, self.z / magnitude)
+        return Vector3D(
+            self.x_coordinate / magnitude,
+            self.y_coordinate / magnitude,
+            self.z_coordinate / magnitude,
+        )
 
     def rotate(
         self, angle_x: float = 0.0, angle_y: float = 0.0, angle_z: float = 0.0
@@ -93,9 +124,9 @@ class Vector3D:
         ay = math.radians(angle_y)
         az = math.radians(angle_z)
         # Yaw (Y)
-        x = self.x * math.cos(ay) + self.z * math.sin(ay)
-        z = -self.x * math.sin(ay) + self.z * math.cos(ay)
-        y = self.y
+        x = self.x_coordinate * math.cos(ay) + self.z_coordinate * math.sin(ay)
+        z = -self.x_coordinate * math.sin(ay) + self.z_coordinate * math.cos(ay)
+        y = self.y_coordinate
         # Pitch (X)
         y2 = y * math.cos(ax) - z * math.sin(ax)
         z2 = y * math.sin(ax) + z * math.cos(ax)
@@ -108,7 +139,9 @@ class Vector3D:
 
     def __repr__(self) -> str:
         """String representation of the vector."""
-        return f"Vector3D({self.x}, {self.y}, {self.z})"
+        return (
+            f"Vector3D({self.x_coordinate}, {self.y_coordinate}, {self.z_coordinate})"
+        )
 
 
 class Mesh:
@@ -124,14 +157,14 @@ class Mesh:
         Vector3D(0.0, 0.0, 1.0)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.vertices: list[Vector3D] = []
         self.triangles: list[tuple[int, int, int]] = []
         self.normals: list[Vector3D] = []
         self.position: Vector3D = Vector3D(0, 0, 0)
         self.rotation: Vector3D = Vector3D(0, 0, 0)
 
-    def calculate_normals(self):
+    def calculate_normals(self) -> None:
         """
         Recalculate the normals for every triangle (call after modifying geometry).
 
@@ -163,7 +196,7 @@ class Cube(Mesh):
         Vector3D(0.0, 0.0, 1.0)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.vertices = [
             Vector3D(0, 0, 0),
@@ -215,19 +248,19 @@ class Camera:
         Vector3D(1, 2, 13)
     """
 
-    def __init__(self, position: Vector3D, fov: float = 90):
+    def __init__(self, position: Vector3D, fov: float = 90) -> None:
         self.position = position
         self.fov = fov
         self.yaw = 0.0
         self.pitch = 0.0
 
-    def move(self, dx: float = 0.0, dy: float = 0.0, dz: float = 0.0):
+    def move(self, dx: float, dy: float, dz: float) -> None:
         """Move the camera in 3D."""
-        self.position.x += dx
-        self.position.y += dy
-        self.position.z += dz
+        self.position.x_coordinate += dx
+        self.position.y_coordinate += dy
+        self.position.z_coordinate += dz
 
-    def rotate(self, dyaw=0.0, dpitch=0.0):
+    def rotate(self, dyaw: float = 0.0, dpitch: float = 0.0) -> None:
         """Rotate camera view direction by given yaw/pitch degrees."""
         self.yaw += dyaw
         self.pitch += dpitch
@@ -250,7 +283,7 @@ class Camera:
 
 def project_point(
     point: Vector3D, camera: Camera, canvas_width: int, canvas_height: int
-):
+) -> tuple[float, float]:
     """
     Projects a 3D point to 2D screen coordinates using the camera's perspective.
 
@@ -292,7 +325,12 @@ class GraphicsWindow:
         - Shift/Space: Move camera up/down
     """
 
-    def __init__(self, width=400, height=300, title="Tkinter Graphics Window"):
+    def __init__(
+        self,
+        width: int = 400,
+        height: int = 300,
+        title: int = "Tkinter Graphics Window",
+    ) -> None:
         self.root = tk.Tk()
         self.root.title(title)
         self.width = width
@@ -312,7 +350,7 @@ class GraphicsWindow:
         cube.position = Vector3D(-0.5, -0.5, 3)
         self.meshes.append(cube)
 
-    def on_key(self, event):
+    def on_key(self, event: tk.Event) -> None:
         """
         Handle keyboard controls for interactive camera movement and rotation.
         """
@@ -320,18 +358,26 @@ class GraphicsWindow:
         angle_step = 3
         if event.keysym == "w":
             move = self.camera.get_view_direction() * step
-            self.camera.move(move.x, move.y, move.z)
+            self.camera.move(move.x_coordinate, move.y_coordinate, move.z_coordinate)
         elif event.keysym == "s":
             move = self.camera.get_view_direction() * -step
-            self.camera.move(move.x, move.y, move.z)
+            self.camera.move(move.x_coordinate, move.y_coordinate, move.z_coordinate)
         elif event.keysym == "a":
             view_dir = self.camera.get_view_direction()
             right = view_dir.cross(Vector3D(0, 1, 0)).normalize()
-            self.camera.move(-right.x * step, -right.y * step, -right.z * step)
+            self.camera.move(
+                -right.x_coordinate * step,
+                -right.y_coordinate * step,
+                -right.z_coordinate * step,
+            )
         elif event.keysym == "d":
             view_dir = self.camera.get_view_direction()
             right = view_dir.cross(Vector3D(0, 1, 0)).normalize()
-            self.camera.move(right.x * step, right.y * step, right.z * step)
+            self.camera.move(
+                right.x_coordinate * step,
+                right.y_coordinate * step,
+                right.z_coordinate * step,
+            )
         elif event.keysym == "space":
             self.camera.move(0, -step, 0)
         elif event.keysym == "Shift_L":
@@ -345,28 +391,28 @@ class GraphicsWindow:
         elif event.keysym == "Right":
             self.camera.rotate(dyaw=angle_step)
 
-    def on_resize(self, event):
+    def on_resize(self, event: tk.Event) -> None:
         """Resize canvas and update projection parameters on window resize."""
         if event.widget == self.root:
             self.width = event.width
             self.height = event.height
             self.canvas.config(width=self.width, height=self.height)
 
-    def update(self):
+    def update(self) -> None:
         """
         Animate mesh rotation or handle other per-frame updates.
 
         Example:
             for mesh in self.meshes:
-                mesh.rotation.y += 2
+                mesh.rotation.y_coordinate += 2
         """
         for mesh in self.meshes:
-            mesh.rotation.y += 2
+            mesh.rotation.y_coordinate += 2
 
-    def mainloop(self):
+    def mainloop(self) -> None:
         """Start the animation and rendering loop."""
 
-        def loop():
+        def loop() -> None:
             if self.running:
                 self.update()
                 self.canvas.delete("all")
@@ -376,12 +422,12 @@ class GraphicsWindow:
         loop()
         self.root.mainloop()
 
-    def close(self):
+    def close(self) -> None:
         """Close the Tkinter window and stop the rendering loop."""
         self.running = False
         self.root.destroy()
 
-    def render(self):
+    def render(self) -> None:
         """
         Render all meshes with current camera and lighting.
 
@@ -393,7 +439,9 @@ class GraphicsWindow:
             for i, tri in enumerate(mesh.triangles):
                 # Rotate normal for lighting/culling
                 normal = mesh.normals[i].rotate(
-                    mesh.rotation.x, mesh.rotation.y, mesh.rotation.z
+                    mesh.rotation.x_coordinate,
+                    mesh.rotation.y_coordinate,
+                    mesh.rotation.z_coordinate,
                 )
                 # Camera looks along -Z
                 view_dir = self.camera.get_view_direction()
@@ -407,19 +455,25 @@ class GraphicsWindow:
 
                 v1 = (
                     mesh.vertices[tri[0]].rotate(
-                        mesh.rotation.x, mesh.rotation.y, mesh.rotation.z
+                        mesh.rotation.x_coordinate,
+                        mesh.rotation.y_coordinate,
+                        mesh.rotation.z_coordinate,
                     )
                     + mesh.position
                 )
                 v2 = (
                     mesh.vertices[tri[1]].rotate(
-                        mesh.rotation.x, mesh.rotation.y, mesh.rotation.z
+                        mesh.rotation.x_coordinate,
+                        mesh.rotation.y_coordinate,
+                        mesh.rotation.z_coordinate,
                     )
                     + mesh.position
                 )
                 v3 = (
                     mesh.vertices[tri[2]].rotate(
-                        mesh.rotation.x, mesh.rotation.y, mesh.rotation.z
+                        mesh.rotation.x_coordinate,
+                        mesh.rotation.y_coordinate,
+                        mesh.rotation.z_coordinate,
                     )
                     + mesh.position
                 )
@@ -437,7 +491,7 @@ class GraphicsWindow:
                 avg_z = (z1 + z2 + z3) / 3.0
                 to_draw.append((avg_z, (x1, y1, x2, y2, x3, y3), hex_color))
 
-        to_draw.sort(key=lambda t: t[0], reverse=True)
+        to_draw.sort(key=lambda triangle: triangle[0], reverse=True)
         for _, verts, color in to_draw:
             self.canvas.create_polygon(*verts, outline="", fill=color, width=1)
 
@@ -447,5 +501,9 @@ if __name__ == "__main__":
     Launch the interactive 3D cube renderer.
     A window will appear; use keyboard controls to move and rotate camera.
     """
-    win = GraphicsWindow()
-    win.mainloop()
+    # Only run GUI if display is available
+    if os.environ.get("DISPLAY") or os.name == "nt":
+        win = GraphicsWindow()
+        win.mainloop()
+    else:
+        print("No display detected. Skipping GUI launch.")
