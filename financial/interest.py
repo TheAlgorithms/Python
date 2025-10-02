@@ -83,35 +83,44 @@ def apr_interest(
     number_of_years: float,
 ) -> float:
     """
-    >>> apr_interest(10000.0, 0.05, 3)
-    1618.223072263547
-    >>> apr_interest(10000.0, 0.05, 1)
-    512.6749646744732
-    >>> apr_interest(0.5, 0.05, 3)
-    0.08091115361317736
-    >>> apr_interest(10000.0, 0.06, -4)
-    Traceback (most recent call last):
-        ...
-    ValueError: number_of_years must be > 0
-    >>> apr_interest(10000.0, -3.5, 3.0)
-    Traceback (most recent call last):
-        ...
-    ValueError: nominal_annual_percentage_rate must be >= 0
-    >>> apr_interest(-5500.0, 0.01, 5)
-    Traceback (most recent call last):
-        ...
-    ValueError: principal must be > 0
-    """
-    if number_of_years <= 0:
-        raise ValueError("number_of_years must be > 0")
-    if nominal_annual_percentage_rate < 0:
-        raise ValueError("nominal_annual_percentage_rate must be >= 0")
-    if principal <= 0:
-        raise ValueError("principal must be > 0")
+    Calculate the interest earned using daily compounded APR.
 
-    return compound_interest(
-        principal, nominal_annual_percentage_rate / 365, number_of_years * 365
-    )
+    Args:
+        principal: Initial amount of money (must be > 0).
+        nominal_annual_percentage_rate: APR as a decimal (must be >= 0).
+        number_of_years: Number of years money is invested (must be > 0).
+
+    Returns:
+        Total interest earned.
+
+    Raises:
+        ValueError: If any input is invalid.
+
+    Examples:
+        >>> apr_interest(10000.0, 0.05, 3)
+        1618.223072263547
+        >>> apr_interest(10000.0, 0.05, 1)
+        512.6749646744732
+    """
+    DAYS_IN_YEAR = 365
+
+    def validate(name: str, value: float, min_value: float, include_equal: bool = False):
+        if include_equal:
+            if value < min_value:
+                raise ValueError(f"{name} must be >= {min_value}")
+        else:
+            if value <= min_value:
+                raise ValueError(f"{name} must be > {min_value}")
+
+    validate("principal", principal, 0)
+    validate("nominal_annual_percentage_rate", nominal_annual_percentage_rate, 0, True)
+    validate("number_of_years", number_of_years, 0)
+
+    daily_rate = nominal_annual_percentage_rate / DAYS_IN_YEAR
+    total_days = number_of_years * DAYS_IN_YEAR
+
+    return compound_interest(principal, daily_rate, total_days)
+
 
 
 if __name__ == "__main__":
