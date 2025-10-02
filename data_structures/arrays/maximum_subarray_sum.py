@@ -1,4 +1,4 @@
-def maxSubarraySum(arr: list[int) -> int:
+def maxSubarraySum(arr: list[int]) -> int:
     """
     Find the maximum sum of a subarray.
 
