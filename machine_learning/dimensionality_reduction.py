@@ -180,25 +180,25 @@ def linear_discriminant_analysis(
     assert classes > dimensions
 
     if features.any():
-      sb = covariance_between_classes(features, labels, classes)
-      sw = covariance_within_classes(features, labels, classes)
+        sb = covariance_between_classes(features, labels, classes)
+        sw = covariance_within_classes(features, labels, classes)
 
-      # Solve the generalized eigenvalue problem: Sb v = λ Sw v
-      eigenvalues, eigenvectors = eigh(sb, sw)
+        # Solve the generalized eigenvalue problem: Sb v = λ Sw v
+        eigenvalues, eigenvectors = eigh(sb, sw)
 
-      # Sort eigenvectors by eigenvalues (descending)
-      idx = np.argsort(eigenvalues)[::-1]
-      eigenvectors = eigenvectors[:, idx]
+        # Sort eigenvectors by eigenvalues (descending)
+        idx = np.argsort(eigenvalues)[::-1]
+        eigenvectors = eigenvectors[:, idx]
 
-      # Take top "dimensions"
-      filtered_eigenvectors = eigenvectors[:, :dimensions]
+        # Take top "dimensions"
+        filtered_eigenvectors = eigenvectors[:, :dimensions]
 
-      projected_data = np.dot(filtered_eigenvectors.T, features)
-      logging.info("Linear Discriminant Analysis computed")
-      return projected_data
+        projected_data = np.dot(filtered_eigenvectors.T, features)
+        logging.info("Linear Discriminant Analysis computed")
+        return projected_data
     else:
-      logging.error("Dataset empty")
-      raise AssertionError
+        logging.error("Dataset empty")
+        raise AssertionError
 
 
 def locally_linear_embedding(
