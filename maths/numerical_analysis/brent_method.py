@@ -23,9 +23,9 @@ from collections.abc import Callable
 
 
 def brent_method(
-    f: Callable[[float], float],
-    a: float,
-    b: float,
+    func: Callable[[float], float],
+    left_bound: float,
+    right_bound: float,
     tol: float = 1e-7,
     max_iter: int = 100,
 ) -> float:
@@ -33,9 +33,9 @@ def brent_method(
     Find a root of the function f in the interval [a, b] using Brent's method.
 
     Args:
-        f: The function for which we are trying to find a root.
-        a: The start of the interval.
-        b: The end of the interval.
+        func: The function for which we are trying to find a root.
+        left_bound: The start of the interval.
+        right_bound: The end of the interval.
         tol: The allowed error of the result.
         max_iter: Maximum number of iterations.
 
@@ -46,55 +46,57 @@ def brent_method(
         ValueError: If f(a) and f(b) do not have opposite signs.
         RuntimeError: If the root is not found within max_iter iterations.
     """
-    fa = f(a)
-    fb = f(b)
+    fa = func(left_bound)
+    fb = func(right_bound)
     if fa * fb >= 0:
         raise ValueError("f(a) and f(b) must have different signs")
 
     if abs(fa) < abs(fb):
-        a, b = b, a
+        left_bound, right_bound = right_bound, left_bound
         fa, fb = fb, fa
 
-    c, fc = a, fa
-    d = e = b - a
+    c, fc = left_bound, fa
+    d = e = right_bound - left_bound
 
     for _ in range(max_iter):
         if fb == 0:
-            return b
+            return right_bound
         if fc not in (fa, fb):
             # Inverse quadratic interpolation
             s = (
-                a * fb * fc / ((fa - fb) * (fa - fc))
-                + b * fa * fc / ((fb - fa) * (fb - fc))
+                left_bound * fb * fc / ((fa - fb) * (fa - fc))
+                + right_bound * fa * fc / ((fb - fa) * (fb - fc))
                 + c * fa * fb / ((fc - fa) * (fc - fb))
             )
         else:
             # Secant Method
-            s = b - fb * (b - a) / (fb - fa)
+            s = right_bound - fb * (right_bound - left_bound) / (fb - fa)
 
         conditions = [
-            not ((3 * a + b) / 4 < s < b) if b > a else not (b < s < (3 * a + b) / 4),
-            (e is not None and abs(s - b) >= abs(e / 2)),
+            not ((3 * left_bound + right_bound) / 4 < s < right_bound)
+            if right_bound > left_bound
+            else not (right_bound < s < (3 * left_bound + right_bound) / 4),
+            (e is not None and abs(s - right_bound) >= abs(e / 2)),
             (d is not None and abs(d) >= abs(e / 2)),
-            abs(b - a) < tol,
+            abs(right_bound - left_bound) < tol,
         ]
         if any(conditions):
-            s = (a + b) / 2  # Bisection method
-            e = d = b - a
+            s = (left_bound + right_bound) / 2  # Bisection method
+            e = d = right_bound - left_bound
         else:
             d = e
-            e = b - s
+            e = right_bound - s
 
-        fs = f(s)
-        c, fc = b, fb
+        fs = func(s)
+        c, fc = right_bound, fb
         if fa * fs < 0:
-            b, fb = s, fs
+            right_bound, fb = s, fs
         else:
-            a, fa = s, fs
+            left_bound, fa = s, fs
         if abs(fa) < abs(fb):
-            a, b = b, a
+            left_bound, right_bound = right_bound, left_bound
             fa, fb = fb, fa
-        if abs(b - a) < tol:
-            return b
+        if abs(right_bound - left_bound) < tol:
+            return right_bound
 
     raise RuntimeError("Maximum number of iterations reached without convergence")
