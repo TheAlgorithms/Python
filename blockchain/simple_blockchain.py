@@ -27,7 +27,9 @@ class Block:
         hash (str): SHA256 hash of the block's content.
     """
 
-    def __init__(self, index: int, data: str, previous_hash: str, difficulty: int = 2) -> None:
+    def __init__(
+        self, index: int, data: str, previous_hash: str, difficulty: int = 2
+    ) -> None:
         self.index = index
         self.timestamp = time()
         self.data = data
@@ -44,7 +46,9 @@ class Block:
         Returns:
             str: Hexadecimal hash string.
         """
-        block_string = f"{self.index}{self.timestamp}{self.data}{self.previous_hash}{nonce}"
+        block_string = (
+            f"{self.index}{self.timestamp}{self.data}{self.previous_hash}{nonce}"
+        )
         return hashlib.sha256(block_string.encode()).hexdigest()
 
     def mine_block(self, difficulty: int) -> Tuple[int, str]:
@@ -64,7 +68,7 @@ class Block:
         if difficulty < 1:
             raise ValueError("Difficulty must be at least 1")
         nonce = 0
-        target = '0' * difficulty
+        target = "0" * difficulty
         while True:
             hash_result = self.compute_hash(nonce)
             if hash_result.startswith(target):
@@ -152,7 +156,7 @@ class Blockchain:
             prev = self.chain[i - 1]
             if current.previous_hash != prev.hash:
                 return False
-            if not current.hash.startswith('0' * self.difficulty):
+            if not current.hash.startswith("0" * self.difficulty):
                 return False
             if current.hash != current.compute_hash(current.nonce):
                 return False
