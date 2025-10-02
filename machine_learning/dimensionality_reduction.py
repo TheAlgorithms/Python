@@ -19,6 +19,7 @@ Includes:
 """
 import doctest
 import logging
+
 import numpy as np
 from scipy.linalg import eigh
 from scipy.spatial.distance import cdist
