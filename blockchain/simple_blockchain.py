@@ -57,7 +57,6 @@ class Block:
         )
         return hashlib.sha256(block_string.encode()).hexdigest()
 
-
     def mine_block(self, difficulty: int) -> Tuple[int, str]:
         """
         Simple Proof-of-Work mining algorithm.
