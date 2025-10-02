@@ -7,6 +7,13 @@ def max_subarray_sum(arr: list[int]) -> int:
 
     Returns:
         Maximum sum possible in a subarray
+
+    Examples:
+        >>> max_subarray_sum([1, 3, 2])
+        6
+
+        >>> max_subarray_sum([1, 2, 3, -1, 0])
+        6
     """
     ans = arr[0]
 
@@ -21,8 +28,7 @@ def max_subarray_sum(arr: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    arr = list(map(int, input().split(" ")))
-    print(max_subarray_sum(arr))
+    print(max_subarray_sum([1,2,3,4,5]))
     import doctest
 
     doctest.testmod()
