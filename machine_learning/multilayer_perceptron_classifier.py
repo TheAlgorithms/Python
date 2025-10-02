@@ -87,7 +87,7 @@ def multilayer_perceptron_classifier(
         alpha=1e-5,
         hidden_layer_sizes=(5, 2),
         random_state=42,  # Fixed for deterministic results
-        max_iter=1000,    # Ensure convergence
+        max_iter=1000,  # Ensure convergence
     )
     clf.fit(train_features, train_labels)
     predictions = clf.predict(test_features)
