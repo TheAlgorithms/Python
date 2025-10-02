@@ -35,6 +35,7 @@ Example:
 from typing import List, Sequence
 from sklearn.neural_network import MLPClassifier
 
+
 def multilayer_perceptron_classifier(
     train_features: Sequence[Sequence[float]],
     train_labels: Sequence[int],
@@ -70,6 +71,8 @@ def multilayer_perceptron_classifier(
     predictions = clf.predict(test_features)
     return list(predictions)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
