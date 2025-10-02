@@ -90,6 +90,9 @@ Join our community to ask questions, get help, or contribute:
 - Code comments provide insights into how algorithms work
 - Explore the implementations to deepen your understanding of algorithms
 
+## 📜 List of Algorithms 
+See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
 ## 📝 License
 
 This project is licensed under the terms specified in [LICENSE.md](LICENSE.md).
