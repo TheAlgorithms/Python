@@ -36,7 +36,6 @@ ValueError: Key must be a positive integer
 from __future__ import annotations
 
 
-
 def encrypt(plaintext: str, key: int) -> str:
     """Encrypt plaintext using Scytale transposition.
 
