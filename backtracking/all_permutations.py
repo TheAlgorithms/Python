@@ -64,7 +64,9 @@ def create_state_space_tree(
         if not index_used[i]:
             current_sequence.append(sequence[i])
             index_used[i] = True
-            create_state_space_tree(sequence, current_sequence, index + 1, index_used, result)
+            create_state_space_tree(
+                sequence, current_sequence, index + 1, index_used, result
+            )
             current_sequence.pop()
             index_used[i] = False
 
@@ -73,4 +75,3 @@ if __name__ == "__main__":
     # example usage; kept under __main__ so it doesn't run on import/tests
     print(generate_all_permutations([3, 1, 2, 4]))
     print(generate_all_permutations(["A", "B", "C"]))
-
