@@ -1,12 +1,21 @@
-def maxSubarraySum(arr):
+def maxSubarraySum(arr: list[int) -> int:
+    """
+    Find the maximum sum of a subarray.
+
+    Args:
+        arr: array of numbers.
+
+    Returns:
+        Maximum sum possible in a subarray
+    """
     ans = arr[0]
 
     for i in range(len(arr)):
-        currentSum = 0
+        current_sum = 0
 
         for j in range(i, len(arr)):
-            currentSum = currentSum + arr[j]
-            ans = max(ans, currentSum)
+            current_sum = current_sum + arr[j]
+            ans = max(ans, current_sum)
 
     return ans
 
@@ -14,3 +23,5 @@ def maxSubarraySum(arr):
 if __name__ == "__main__":
     arr = list(map(int, input().split(" ")))
     print(maxSubarraySum(arr))
+    import doctest
+    doctest.testmod()
