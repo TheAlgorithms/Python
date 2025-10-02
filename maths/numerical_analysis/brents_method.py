@@ -15,6 +15,7 @@ Author: Aryan Singh (2nd year LNMIIT)
 
 from collections.abc import Callable
 
+
 def brent_method(
     function: Callable[[float], float],
     lower_bound: float,
@@ -54,8 +55,7 @@ def brent_method(
     function_upper = function(upper_bound)
     if function_lower * function_upper >= 0:
         error_message = (
-            "Root is not bracketed in the interval "
-            f"[{lower_bound}, {upper_bound}]."
+            f"Root is not bracketed in the interval [{lower_bound}, {upper_bound}]."
         )
         raise ValueError(error_message)
 
@@ -74,21 +74,44 @@ def brent_method(
         if function_previous not in {function_lower, function_upper}:
             # Inverse quadratic interpolation
             s = (
-                lower_bound * function_upper * function_previous
-                / ((function_lower - function_upper) * (function_lower - function_previous))
-                + upper_bound * function_lower * function_previous
-                / ((function_upper - function_lower) * (function_upper - function_previous))
-                + previous_bound * function_lower * function_upper
-                / ((function_previous - function_lower) * (function_previous - function_upper))
+                lower_bound
+                * function_upper
+                * function_previous
+                / (
+                    (function_lower - function_upper)
+                    * (function_lower - function_previous)
+                )
+                + upper_bound
+                * function_lower
+                * function_previous
+                / (
+                    (function_upper - function_lower)
+                    * (function_upper - function_previous)
+                )
+                + previous_bound
+                * function_lower
+                * function_upper
+                / (
+                    (function_previous - function_lower)
+                    * (function_previous - function_upper)
+                )
             )
         else:
             # Secant method
-            s = upper_bound - function_upper * (upper_bound - lower_bound) / (function_upper - function_lower)
+            s = upper_bound - function_upper * (upper_bound - lower_bound) / (
+                function_upper - function_lower
+            )
 
         conditions = [
-            not ((3 * lower_bound + upper_bound) / 4 < s < upper_bound if upper_bound > lower_bound else upper_bound < s < (3 * lower_bound + upper_bound) / 4),
-            bisect_flag and abs(s - upper_bound) >= abs(upper_bound - previous_bound) / 2,
-            not bisect_flag and abs(s - upper_bound) >= abs(previous_bound - previous_step) / 2,
+            not (
+                (3 * lower_bound + upper_bound) / 4 < s < upper_bound
+                if upper_bound > lower_bound
+                else upper_bound < s < (3 * lower_bound + upper_bound) / 4
+            ),
+            bisect_flag
+            and abs(s - upper_bound) >= abs(upper_bound - previous_bound) / 2,
+            not bisect_flag
+            and abs(s - upper_bound) >= abs(previous_bound - previous_step) / 2,
             bisect_flag and abs(upper_bound - previous_bound) < tolerance,
             not bisect_flag and abs(previous_bound - previous_step) < tolerance,
         ]
@@ -121,4 +144,5 @@ def brent_method(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
