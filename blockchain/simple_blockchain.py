@@ -27,7 +27,7 @@ class Block:
         hash (str): SHA256 hash of the block's content.
     """
 
-    def __init__(self, index: int, data: str, previous_hash: str, difficulty: int = 2):
+    def __init__(self, index: int, data: str, previous_hash: str, difficulty: int = 2) -> None:
         self.index = index
         self.timestamp = time()
         self.data = data
