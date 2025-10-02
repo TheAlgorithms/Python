@@ -1,12 +1,12 @@
-def dutch_national_flag(arr):
+def dutch_national_flag(arr: list[int]) -> list[int]:
     """
     Sorts an array containing only 0s, 1s and 2s
 
     Args:
-        arr(list): The input array (containing only 0s, 1s and 2s)
+        arr(list[int]): The input array (containing only 0s, 1s and 2s)
 
     Returns:
-        list: Sorted array
+        list[int]: Sorted array
     """
 
     low, mid, high = 0, 0, len(arr) - 1
