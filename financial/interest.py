@@ -104,7 +104,9 @@ def apr_interest(
     """
     DAYS_IN_YEAR = 365
 
-    def validate(name: str, value: float, min_value: float, include_equal: bool = False):
+    def validate(
+        name: str, value: float, min_value: float, include_equal: bool = False
+    ):
         if include_equal:
             if value < min_value:
                 raise ValueError(f"{name} must be >= {min_value}")
@@ -120,7 +122,6 @@ def apr_interest(
     total_days = number_of_years * DAYS_IN_YEAR
 
     return compound_interest(principal, daily_rate, total_days)
-
 
 
 if __name__ == "__main__":
