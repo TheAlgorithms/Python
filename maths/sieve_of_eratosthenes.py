@@ -13,8 +13,6 @@ optimized by : Sumit Nayak (https://github.com/Sumit210106/)
 """
 
 from __future__ import annotations
-import math
-
 
 def prime_sieve(num: int) -> list[int]:
     """
@@ -45,9 +43,9 @@ def prime_sieve(num: int) -> list[int]:
     prime = [2]
 
     # marked all even numbers as non-prime
-    for i in range(3, int(math.sqrt(num)) + 1, 2):
+    for i in range(3, int(pow(num,0.5)) + 1, 2):
         if sieve[i]:
-            for j in range(i * i, num + 1, 2 * i):
+            for j in range(pow(i,2), num + 1, 2 * i):
                 sieve[j] = False
 
     # collect odd primes
