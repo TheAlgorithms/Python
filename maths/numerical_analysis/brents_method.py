@@ -12,6 +12,7 @@ Author: [Aryan Singh (2nd year LNMIIT)]
 
 from collections.abc import Callable
 
+
 def brent_method(
     function: Callable[[float], float],
     lower: float,
@@ -76,7 +77,11 @@ def brent_method(
             s = upper - fb * (upper - lower) / (fb - fa)
 
         conditions = [
-            not ((3 * lower + upper) / 4 < s < upper if upper > lower else upper < s < (3 * lower + upper) / 4),
+            not (
+                (3 * lower + upper) / 4 < s < upper
+                if upper > lower
+                else upper < s < (3 * lower + upper) / 4
+            ),
             mflag and abs(s - upper) >= abs(upper - c) / 2,
             not mflag and abs(s - upper) >= abs(c - d) / 2,
             mflag and abs(upper - c) < tolerance,
@@ -111,4 +116,5 @@ def brent_method(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
