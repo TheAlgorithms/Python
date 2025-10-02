@@ -40,10 +40,13 @@ def time_func(func, *args, **kwargs):
 def fib_iterative_yield(n: int) -> Iterator[int]:
     """
     Calculates the first n (1-indexed) Fibonacci numbers using iteration with yield
+
     >>> list(fib_iterative_yield(0))
     [0]
     >>> tuple(fib_iterative_yield(1))
     (0, 1)
+    >>> tuple(fib_iterative_yield(2))
+    (0, 1, 1)
     >>> tuple(fib_iterative_yield(5))
     (0, 1, 1, 2, 3, 5)
     >>> tuple(fib_iterative_yield(10))
