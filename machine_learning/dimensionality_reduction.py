@@ -1,13 +1,4 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
-"""
-Implementation of dimensionality reduction algorithms.
-
-Includes:
-- Principal Component Analysis (PCA)
-- Linear Discriminant Analysis (LDA)
-- Locally Linear Embedding (LLE)
-- Multidimensional Scaling (MDS)
-"""
 
 """
 Requirements:
@@ -17,8 +8,8 @@ Notes:
   - Each column of the features matrix corresponds to a class item
 """
 
+import doctest
 import logging
-
 import numpy as np
 import pytest
 from scipy.linalg import eigh
@@ -419,20 +410,16 @@ def test_linear_discriminant_analysis() -> None:
 
     # Assert that the function raises an AssertionError if dimensions > classes
     with pytest.raises(AssertionError):
-        projected_data = linear_discriminant_analysis(
-            features, labels, classes, dimensions
-        )
-        if isinstance(projected_data, np.ndarray):
-            raise AssertionError(
-                "Did not raise AssertionError for dimensions > classes"
-            )
+        linear_discriminant_analysis(features, labels, classes, dimensions)
 
 
 def test_principal_component_analysis() -> None:
     """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
+    expected_output = np.array(
+        [[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]]
+    )
 
     output = principal_component_analysis(features, dimensions)
     if not np.allclose(expected_output, output):
@@ -443,9 +430,10 @@ def test_dimensionality_reduction() -> None:
     """Test all dimensionality reduction algorithms."""
     print("Testing all dimensionality reduction algorithms...")
 
-    # Create sample data
-    features = np.random.rand(5, 50)
-    labels = np.random.randint(0, 3, 50)
+    # Create sample data using numpy Generator
+    rng = np.random.default_rng(42)
+    features = rng.random((5, 50))
+    labels = rng.integers(0, 3, 50)
     dimensions = 2
 
     try:
@@ -477,7 +465,5 @@ def test_dimensionality_reduction() -> None:
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
     test_dimensionality_reduction()
