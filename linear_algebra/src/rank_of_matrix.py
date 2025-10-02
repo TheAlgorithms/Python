@@ -64,6 +64,7 @@ def rank_of_matrix(matrix: list[list[int | float]]) -> int:
     """
 
     import copy
+
     if not matrix or not matrix[0]:
         return 0
 
