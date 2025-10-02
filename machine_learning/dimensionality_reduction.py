@@ -423,9 +423,7 @@ def test_principal_component_analysis() -> None:
     """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array(
-        [[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]]
-    )
+    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
     output = principal_component_analysis(features, dimensions)
     if not np.allclose(expected_output, output):
