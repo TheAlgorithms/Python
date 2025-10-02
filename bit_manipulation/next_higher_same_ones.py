@@ -24,33 +24,32 @@ Reference: https://graphics.stanford.edu/~seander/bithacks.html#NextBitPermutati
 >>> next_higher_same_ones(-5)  # negative not allowed
 Traceback (most recent call last):
     ...
-ValueError: n must be a non-negative integer
+ValueError: input_value must be a non-negative integer
 """
-
 from __future__ import annotations
 
 
-def next_higher_same_ones(n: int) -> int:
-    """Return the next higher integer with the same number of set bits as n.
+def next_higher_same_ones(input_value: int) -> int:
+    """Return the next higher integer with the same number of set bits as the input.
 
-    :param n: Non-negative integer
+    :param input_value: Non-negative integer
     :return: Next higher integer with same popcount or -1 if none
-    :raises ValueError: if n < 0
+    :raises ValueError: if input_value < 0
     """
-    if n < 0:
-        raise ValueError("n must be a non-negative integer")
-    if n == 0:
+    if input_value < 0:
+        raise ValueError("input_value must be a non-negative integer")
+    if input_value == 0:
         return -1
 
     # snoob algorithm
     # c = rightmost set bit
-    c = n & -n
-    # r = ripple carry: add c to n
-    r = n + c
+    c = input_value & -input_value
+    # r = ripple carry: add c to input_value
+    r = input_value + c
     if r == 0:
         return -1
     # ones = pattern of ones that moved from lower part
-    ones = ((r ^ n) >> 2) // c
+    ones = ((r ^ input_value) >> 2) // c
     return r | ones
 
 
