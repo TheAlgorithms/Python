@@ -329,8 +329,10 @@ class GraphicsWindow:
         self,
         width: int = 400,
         height: int = 300,
-        title: int = "Tkinter Graphics Window",
+        title: str = "Tkinter Graphics Window",
     ) -> None:
+        if not (os.environ.get("DISPLAY") or os.name == "nt"):
+            raise RuntimeError("No display detected. GUI cannot be initialized")
         self.root = tk.Tk()
         self.root.title(title)
         self.width = width
@@ -501,9 +503,6 @@ if __name__ == "__main__":
     Launch the interactive 3D cube renderer.
     A window will appear; use keyboard controls to move and rotate camera.
     """
-    # Only run GUI if display is available
-    if os.environ.get("DISPLAY") or os.name == "nt":
-        win = GraphicsWindow()
-        win.mainloop()
-    else:
-        print("No display detected. Skipping GUI launch.")
+
+    win = GraphicsWindow()
+    win.mainloop()
