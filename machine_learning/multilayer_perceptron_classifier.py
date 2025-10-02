@@ -2,21 +2,23 @@
 Multilayer Perceptron (MLP) Classifier Example
 
 A Multilayer Perceptron (MLP) is a type of feedforward artificial neural network
-that consists of at least three layers of nodes: an input layer, one or more hidden layers,
-and an output layer. Each node (except for the input nodes) is a neuron that uses a nonlinear
-activation function.
+that consists of at least three layers of nodes: an input layer, one or more hidden
+layers, and an output layer. Each node (except for the input nodes) is a neuron
+that uses a nonlinear activation function.
 
 Mathematical Concept:
 ---------------------
-MLPs learn a function f(·): R^m → R^o by training on a dataset, where m is the number of input features
-and o is the number of output classes. The network adjusts its weights using backpropagation to minimize
-the difference between predicted and actual outputs.
+MLPs learn a function f(·): R^m → R^o by training on a dataset, where m is the
+number of input features and o is the number of output classes. The network
+adjusts its weights using backpropagation to minimize the difference between
+predicted and actual outputs.
 
 Practical Use Cases:
 --------------------
 - Handwritten digit recognition (e.g., MNIST dataset)
 - Binary and multiclass classification tasks
-- Predicting outcomes based on multiple features (e.g., medical diagnosis, spam detection)
+- Predicting outcomes based on multiple features
+  (e.g., medical diagnosis, spam detection)
 
 References:
 -----------
@@ -32,14 +34,16 @@ Example:
 [0, 1]
 """
 
-from typing import List, Sequence
+from collections.abc import Sequence
+
 from sklearn.neural_network import MLPClassifier
+
 
 def multilayer_perceptron_classifier(
     train_features: Sequence[Sequence[float]],
     train_labels: Sequence[int],
     test_features: Sequence[Sequence[float]],
-) -> List[int]:
+) -> list[int]:
     """
     Train a Multilayer Perceptron classifier and predict labels for test data.
 
@@ -70,6 +74,8 @@ def multilayer_perceptron_classifier(
     predictions = clf.predict(test_features)
     return list(predictions)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
