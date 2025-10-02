@@ -45,11 +45,18 @@ class Block:
 
         Returns:
             str: Hexadecimal hash string.
+
+        >>> block = Block(0, "Genesis", "0", difficulty=2)
+        >>> len(block.compute_hash(0)) == 64
+        True
+        >>> isinstance(block.compute_hash(0), str)
+        True
         """
         block_string = (
             f"{self.index}{self.timestamp}{self.data}{self.previous_hash}{nonce}"
         )
         return hashlib.sha256(block_string.encode()).hexdigest()
+
 
     def mine_block(self, difficulty: int) -> Tuple[int, str]:
         """
