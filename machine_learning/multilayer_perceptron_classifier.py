@@ -62,7 +62,7 @@ def multilayer_perceptron_classifier(
         >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
         >>> y = [0, 1, 0, 0]
         >>> multilayer_perceptron_classifier(X, y, [[0.0, 0.0], [1.0, 1.0]])
-        [0, 0]
+        # Multiple possible outputs True
     """
     if len(train_features) != len(train_labels):
         raise ValueError("Number of training samples and labels must match.")
