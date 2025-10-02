@@ -1,30 +1,38 @@
 """
 Gnome Sort Algorithm (A.K.A. Stupid Sort)
 
-This algorithm iterates over a list comparing an element with the previous one.
-If order is not respected, it swaps element backward until order is respected with
-previous element.  It resumes the initial iteration from element new position.
+This algorithm iterates over a list, comparing each element with the previous one.
+If the order is not respected, it swaps the element backward until the order is correct.
+Then it resumes the iteration from the element's new position.
 
-For doctests run following command:
-python3 -m doctest -v gnome_sort.py
+For doctests, run:
+    python3 -m doctest -v gnome_sort.py
 
-For manual testing run:
-python3 gnome_sort.py
+For manual testing, run:
+    python3 gnome_sort.py
 """
 
+from typing import List, TypeVar
 
-def gnome_sort(lst: list) -> list:
+T = TypeVar("T")  # Generic type for sorting any comparable data type
+
+
+def gnome_sort(lst: List[T], reverse: bool = False) -> List[T]:
     """
-    Pure implementation of the gnome sort algorithm in Python
+    Pure implementation of the gnome sort algorithm in Python.
 
-    Take some mutable ordered collection with heterogeneous comparable items inside as
-    arguments, return the same collection ordered by ascending.
+    Args:
+        lst: A list of comparable items to be sorted.
+        reverse: If True, sorts in descending order. Defaults to False.
+
+    Returns:
+        A sorted list.
 
     Examples:
     >>> gnome_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    >>> gnome_sort([])
+    >>> gnome_sort([], reverse=True)
     []
 
     >>> gnome_sort([-2, -5, -45])
@@ -33,24 +41,27 @@ def gnome_sort(lst: list) -> list:
     >>> "".join(gnome_sort(list(set("Gnomes are stupid!"))))
     ' !Gadeimnoprstu'
     """
-    if len(lst) <= 1:
+    n = len(lst)
+    if n <= 1:
         return lst
 
     i = 1
-
-    while i < len(lst):
-        if lst[i - 1] <= lst[i]:
+    while i < n:
+        if (not reverse and lst[i - 1] <= lst[i]) or (reverse and lst[i - 1] >= lst[i]):
             i += 1
         else:
             lst[i - 1], lst[i] = lst[i], lst[i - 1]
-            i -= 1
-            if i == 0:
-                i = 1
+            i = max(1, i - 1)
 
     return lst
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(gnome_sort(unsorted))
+    try:
+        user_input = input("Enter numbers separated by commas:\n").strip()
+        unsorted = [float(x) for x in user_input.split(",") if x.strip()]
+        order = input("Sort in descending order? (y/n): ").strip().lower() == "y"
+
+        print("\nSorted result:", gnome_sort(unsorted, reverse=order))
+    except ValueError:
+        print("❌ Invalid input! Please enter numeric values separated by commas.")
