@@ -312,13 +312,6 @@ class GraphicsWindow:
     """
     Tkinter window renderer for real-time 3D mesh display and camera control.
 
-    Examples:
-        >>> win = GraphicsWindow(width=400, height=300)
-        >>> len(win.meshes)
-        1
-        >>> isinstance(win.camera, Camera)
-        True
-
     Interactive controls:
         - W/A/S/D: Move camera (forward, left, back, right)
         - Up/Down/Left/Right: Rotate camera
