@@ -6,6 +6,7 @@ Requirements:
 Notes:
   - Each column of the features matrix corresponds to a class item
 """
+
 """
 Implementation of dimensionality reduction algorithms.
 
@@ -123,7 +124,7 @@ def covariance_between_classes(
 def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.ndarray:
     """Principal Component Analysis (PCA).
 
-    For more details: https://en.wikipedia.org/wiki/Principal_component_analysis 
+    For more details: https://en.wikipedia.org/wiki/Principal_component_analysis
 
     Args:
         features: Input features matrix (n_features x n_samples).
@@ -157,7 +158,7 @@ def linear_discriminant_analysis(
 ) -> np.ndarray:
     """Linear Discriminant Analysis (LDA).
 
-    For more details: https://en.wikipedia.org/wiki/Linear_discriminant_analysis 
+    For more details: https://en.wikipedia.org/wiki/Linear_discriminant_analysis
 
     Args:
         features: Input features matrix (n_features x n_samples).
@@ -198,7 +199,7 @@ def locally_linear_embedding(
 ) -> np.ndarray:
     """Locally Linear Embedding (LLE).
 
-    For more details: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction 
+    For more details: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction
 
     Args:
         features: Input features matrix (shape: [n_features, n_samples]).
@@ -283,7 +284,7 @@ def multidimensional_scaling(
 ) -> np.ndarray:
     """Multidimensional Scaling (MDS).
 
-    For more details: https://en.wikipedia.org/wiki/Multidimensional_scaling 
+    For more details: https://en.wikipedia.org/wiki/Multidimensional_scaling
 
     Args:
         features: Input features matrix (shape: [n_features, n_samples]).
@@ -429,9 +430,7 @@ def test_principal_component_analysis() -> None:
     """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array(
-        [[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]]
-    )
+    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
     output = principal_component_analysis(features, dimensions)
     if not np.allclose(expected_output, output):
