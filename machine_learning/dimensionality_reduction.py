@@ -185,7 +185,7 @@ def linear_discriminant_analysis(
 
         # Add regularization to Sw to avoid singular matrix
         sw_reg = sw + 1e-6 * np.eye(sw.shape[0])
-        
+
         # Solve the generalized eigenvalue problem: Sb v = λ Sw v
         eigenvalues, eigenvectors = eigh(sb, sw_reg)
 
@@ -202,6 +202,7 @@ def linear_discriminant_analysis(
     else:
         logging.error("Dataset empty")
         raise AssertionError
+
 
 def locally_linear_embedding(
     features: np.ndarray, dimensions: int, n_neighbors: int = 12, reg: float = 1e-3
