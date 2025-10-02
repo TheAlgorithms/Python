@@ -24,9 +24,10 @@ Dependencies:
 Notes:
 - This implementation is for educational purposes and demonstrates logistic regression
   without using high-level libraries.
-- The training is done with gradient descent; for large datasets, optimization techniques
-  like stochastic gradient descent may be preferable.
-- Visualization is based on the Iris dataset, focusing only on two features for simplicity.
+- The training is done with gradient descent; for large datasets, optimization
+  techniques like stochastic gradient descent may be preferable.
+- Visualization is based on the Iris dataset, focusing only on two features
+  for simplicity.
 
 Helpful resources:
 - Coursera Machine Learning course

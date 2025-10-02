@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 Decision Tree Regression Implementation
 
@@ -44,8 +46,6 @@ Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
-
-import numpy as np
 
 
 class DecisionTree:

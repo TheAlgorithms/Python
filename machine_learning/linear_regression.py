@@ -1,3 +1,6 @@
+import httpx
+import numpy as np
+
 """
 Linear Regression Algorithm - Predictive Analysis (Enhanced Documentation)
 
@@ -42,8 +45,7 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 #     "numpy",
 # ]
 # ///
-import httpx
-import numpy as np
+
 
 
 def collect_dataset():
