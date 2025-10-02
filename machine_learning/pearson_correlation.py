@@ -45,7 +45,9 @@ def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
     y_mean = np.mean(data_y)
 
     numerator = np.sum((data_x - x_mean) * (data_y - y_mean))
-    denominator = np.sqrt(np.sum((data_x - x_mean) ** 2) * np.sum((data_y - y_mean) ** 2))
+    denominator = np.sqrt(
+        np.sum((data_x - x_mean) ** 2) * np.sum((data_y - y_mean) ** 2)
+    )
 
     if denominator == 0:
         raise ValueError("Standard deviation of input arrays must not be zero.")
