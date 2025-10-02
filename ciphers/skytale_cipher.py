@@ -32,6 +32,7 @@ Traceback (most recent call last):
     ...
 ValueError: Key must be a positive integer
 """
+
 from __future__ import annotations
 
 
