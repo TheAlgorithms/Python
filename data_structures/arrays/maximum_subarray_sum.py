@@ -28,7 +28,7 @@ def max_subarray_sum(arr: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    print(max_subarray_sum([1,2,3,4,5]))
+    print(max_subarray_sum([1, 2, 3, 4, 5]))
     import doctest
 
     doctest.testmod()
