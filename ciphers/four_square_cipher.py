@@ -7,6 +7,7 @@ Usage examples:
 
 This is a digraph substitution cipher using four 5x5 squares with I/J merged.
 """
+
 from __future__ import annotations
 
 import argparse

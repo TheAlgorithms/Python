@@ -1,6 +1,7 @@
 beautifulsoup4
 fake-useragent
 httpx
+idna
 imageio
 keras
 lxml
@@ -17,4 +18,3 @@ sympy
 tweepy
 typing_extensions
 xgboost
-idna

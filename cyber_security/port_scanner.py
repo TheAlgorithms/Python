@@ -4,6 +4,7 @@
 Usage:
   python -m cyber_security.port_scanner 192.168.1.10 --ports 1-1024 --threads 200 --timeout 0.5 --banner
 """
+
 from __future__ import annotations
 
 import argparse
@@ -68,12 +69,25 @@ def try_connect(host: str, port: int, timeout: float, banner: bool) -> ScanResul
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="TCP port scanner with multi-threading and banner grab.")
+    parser = argparse.ArgumentParser(
+        description="TCP port scanner with multi-threading and banner grab."
+    )
     parser.add_argument("host", help="Target IPv4/hostname")
-    parser.add_argument("--ports", default="1-1024", help="Port spec, e.g., 1-1024,22,80,443")
-    parser.add_argument("--threads", type=int, default=DEFAULT_THREADS, help="Max worker threads")
-    parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT, help="Socket timeout in seconds")
-    parser.add_argument("--banner", action="store_true", help="Attempt to grab service banner")
+    parser.add_argument(
+        "--ports", default="1-1024", help="Port spec, e.g., 1-1024,22,80,443"
+    )
+    parser.add_argument(
+        "--threads", type=int, default=DEFAULT_THREADS, help="Max worker threads"
+    )
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=DEFAULT_TIMEOUT,
+        help="Socket timeout in seconds",
+    )
+    parser.add_argument(
+        "--banner", action="store_true", help="Attempt to grab service banner"
+    )
     return parser.parse_args(argv)
 
 
@@ -94,9 +108,12 @@ def main(argv: list[str] | None = None) -> int:
 
     tasks: list[Tuple[str, int]] = [(host, p) for p in ports]
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.threads)) as executor:
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=max(1, args.threads)
+    ) as executor:
         future_to_port = {
-            executor.submit(try_connect, host, port, args.timeout, args.banner): port for _, port in tasks
+            executor.submit(try_connect, host, port, args.timeout, args.banner): port
+            for _, port in tasks
         }
         for future in concurrent.futures.as_completed(future_to_port):
             res = future.result()

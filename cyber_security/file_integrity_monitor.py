@@ -9,6 +9,7 @@ Usage:
   python -m cyber_security.file_integrity_monitor init --root /path --output baseline.json --glob "**/*.py"
   python -m cyber_security.file_integrity_monitor verify --root /path --baseline baseline.json
 """
+
 from __future__ import annotations
 
 import argparse
@@ -106,7 +107,9 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     p_init = sub.add_parser("init", help="Create baseline JSON of file hashes")
     p_init.add_argument("--root", required=True, help="Root directory to scan")
     p_init.add_argument("--output", required=True, help="Path to baseline JSON output")
-    p_init.add_argument("--glob", help="Glob-like pattern relative to root (e.g., **/*.py)")
+    p_init.add_argument(
+        "--glob", help="Glob-like pattern relative to root (e.g., **/*.py)"
+    )
     p_init.set_defaults(func=cmd_init)
 
     p_ver = sub.add_parser("verify", help="Verify current state against baseline JSON")

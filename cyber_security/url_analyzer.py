@@ -4,6 +4,7 @@
 Usage:
   python -m cyber_security.url_analyzer https://example.com
 """
+
 from __future__ import annotations
 
 import argparse
@@ -105,9 +106,13 @@ def analyze(url: str) -> list[str]:
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Analyze a URL for phishing/IDN risks.")
+    parser = argparse.ArgumentParser(
+        description="Analyze a URL for phishing/IDN risks."
+    )
     parser.add_argument("url", help="URL to analyze")
-    parser.add_argument("--quiet", action="store_true", help="Exit code only: 0 safe-ish, 1 suspicious")
+    parser.add_argument(
+        "--quiet", action="store_true", help="Exit code only: 0 safe-ish, 1 suspicious"
+    )
     return parser.parse_args(argv)
 
 

@@ -5,6 +5,7 @@ Usage:
   python -m cyber_security.password_strength_checker "P@ssw0rd!"
   python -m cyber_security.password_strength_checker --help
 """
+
 from __future__ import annotations
 
 import argparse
@@ -99,14 +100,27 @@ def estimate_entropy(password: str) -> StrengthResult:
     if re.search(r"(\d){4,}", password):
         feedback.append("Avoid long digit sequences.")
 
-    estimated_space = int(2 ** entropy) if entropy < 60 else int(10 ** (entropy / math.log2(10)))
+    estimated_space = (
+        int(2**entropy) if entropy < 60 else int(10 ** (entropy / math.log2(10)))
+    )
     return StrengthResult(entropy, estimated_space, category, feedback)
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Estimate password strength and provide feedback.")
-    parser.add_argument("password", nargs="?", help="Password string to evaluate. If omitted, read from stdin.")
-    parser.add_argument("-q", "--quiet", action="store_true", help="Print only the entropy and category.")
+    parser = argparse.ArgumentParser(
+        description="Estimate password strength and provide feedback."
+    )
+    parser.add_argument(
+        "password",
+        nargs="?",
+        help="Password string to evaluate. If omitted, read from stdin.",
+    )
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="Print only the entropy and category.",
+    )
     return parser.parse_args(argv)
 
 

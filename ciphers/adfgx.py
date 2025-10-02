@@ -8,6 +8,7 @@ Usage examples:
 The ADFGX cipher uses a 5x5 Polybius square (I/J merged) and a columnar
 transposition with a keyword.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -60,7 +61,7 @@ def columnar_transpose_encrypt(text: str, key: str) -> str:
     key = "".join(ch for ch in key.upper() if ch.isalpha())
     order = sorted(range(len(key)), key=lambda i: (key[i], i))
     rows = math.ceil(len(text) / len(key))
-    grid = [list(text[i * len(key):(i + 1) * len(key)]) for i in range(rows)]
+    grid = [list(text[i * len(key) : (i + 1) * len(key)]) for i in range(rows)]
     # Pad with X
     if grid:
         last = grid[-1]
