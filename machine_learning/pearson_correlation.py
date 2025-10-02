@@ -1,14 +1,15 @@
 import numpy as np
 
+
 def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
     """
     Calculate the Pearson correlation coefficient between two sets of data.
 
     Parameters:
-    data_x (np.ndarray): Array of numeric values representing a column of data 
+    data_x (np.ndarray): Array of numeric values representing a column of data
                          that will be compared with another column to determine
                          how strongly the two vectors are related.
-    data_y (np.ndarray): Array of numeric values representing the second column 
+    data_y (np.ndarray): Array of numeric values representing the second column
                          of data to compare with data_x.
 
     Returns:
@@ -25,7 +26,7 @@ def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
     """
     if len(data_x) != len(data_y):
         raise ValueError("data_x and data_y must have the same length")
-    
+
     n = len(data_x)
     if n == 0:
         return 0.0
@@ -34,7 +35,9 @@ def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
     mean_y = np.mean(data_y)
 
     numerator = np.sum((data_x - mean_x) * (data_y - mean_y))
-    denominator = np.sqrt(np.sum((data_x - mean_x)**2) * np.sum((data_y - mean_y)**2))
+    denominator = np.sqrt(
+        np.sum((data_x - mean_x) ** 2) * np.sum((data_y - mean_y) ** 2)
+    )
 
     if denominator == 0:
         return 0.0
@@ -44,4 +47,5 @@ def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
