@@ -11,7 +11,6 @@ Author: Letitia Gilbert
 
 import hashlib
 from time import time
-from typing import List, Tuple
 
 
 class Block:
@@ -57,7 +56,7 @@ class Block:
         )
         return hashlib.sha256(block_string.encode()).hexdigest()
 
-    def mine_block(self, difficulty: int) -> Tuple[int, str]:
+    def mine_block(self, difficulty: int) -> tuple[int, str]:
         """
         Simple Proof-of-Work mining algorithm.
 
@@ -92,7 +91,7 @@ class Blockchain:
 
     def __init__(self, difficulty: int = 2) -> None:
         self.difficulty = difficulty
-        self.chain: List[Block] = [self.create_genesis_block()]
+        self.chain: list[Block] = [self.create_genesis_block()]
 
     def create_genesis_block(self) -> Block:
         """
