@@ -46,7 +46,7 @@ def prime_sieve(num: int) -> list[int]:
 
     # marked all even numbers as non-prime
     for i in range(3, int(math.sqrt(num)) + 1, 2):
-        if sieve[i]:  
+        if sieve[i]:
             for j in range(i * i, num + 1, 2 * i):
                 sieve[j] = False
 
