@@ -1,4 +1,5 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
+# flake8: noqa: E402
 """
 Requirements:
   - numpy version 1.21
@@ -18,7 +19,6 @@ Includes:
 """
 import doctest
 import logging
-
 import numpy as np
 from scipy.linalg import eigh
 from scipy.spatial.distance import cdist
