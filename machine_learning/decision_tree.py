@@ -4,9 +4,9 @@ Decision Tree Regression Implementation
 This module implements a basic regression decision tree using Python and NumPy.
 
 📄 Overview:
-Decision Trees are a type of supervised learning algorithm used for both 
-classification and regression tasks. In this implementation, the tree 
-is specifically designed for regression: mapping continuous input features 
+Decision Trees are a type of supervised learning algorithm used for both
+classification and regression tasks. In this implementation, the tree
+is specifically designed for regression: mapping continuous input features
 to continuous outputs.
 
 📌 Features:
@@ -35,7 +35,7 @@ Audience:
 📦 Dependencies:
 - numpy
 
-Note: This implementation is meant for demonstration and learning purposes 
+Note: This implementation is meant for demonstration and learning purposes
 and may not be optimized for large-scale production datasets.
 """
 
