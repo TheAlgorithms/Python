@@ -8,6 +8,7 @@ Includes:
 - Locally Linear Embedding (LLE)
 - Multidimensional Scaling (MDS)
 """
+
 """
 Requirements:
   - numpy version 1.21
@@ -121,9 +122,7 @@ def covariance_between_classes(
     return covariance_sum / features.shape[1]
 
 
-def principal_component_analysis(
-    features: np.ndarray, dimensions: int
-) -> np.ndarray:
+def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.ndarray:
     """Principal Component Analysis (PCA).
 
     For more details: https://en.wikipedia.org/wiki/Principal_component_analysis
@@ -424,16 +423,16 @@ def test_linear_discriminant_analysis() -> None:
             features, labels, classes, dimensions
         )
         if isinstance(projected_data, np.ndarray):
-            raise AssertionError("Did not raise AssertionError for dimensions > classes")
+            raise AssertionError(
+                "Did not raise AssertionError for dimensions > classes"
+            )
 
 
 def test_principal_component_analysis() -> None:
     """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array(
-        [[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]]
-    )
+    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
     output = principal_component_analysis(features, dimensions)
     if not np.allclose(expected_output, output):
