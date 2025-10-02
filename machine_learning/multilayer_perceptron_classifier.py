@@ -1,5 +1,5 @@
 """
-Multilayer Perceptron (MLP) Classifier Example
+Multilayer Perceptron (MLP) Classifier
 
 A Multilayer Perceptron (MLP) is a type of feedforward artificial neural network
 that consists of at least three layers of nodes: an input layer, one or more hidden
@@ -19,6 +19,21 @@ Practical Use Cases:
 - Binary and multiclass classification tasks
 - Predicting outcomes based on multiple features
   (e.g., medical diagnosis, spam detection)
+
+Advantages:
+-----------
+- Can learn non-linear decision boundaries
+- Works well with complex pattern recognition
+- Flexible architecture for various problem types
+
+Limitations:
+------------
+- Requires careful tuning of hyperparameters
+- Sensitive to feature scaling
+- Can overfit on small datasets
+
+Time Complexity: O(n_samples * n_features * n_layers * n_epochs)
+Space Complexity: O(n_features * n_hidden_units + n_hidden_units * n_classes)
 
 References:
 -----------
@@ -62,13 +77,17 @@ def multilayer_perceptron_classifier(
         >>> X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
         >>> y = [0, 1, 0, 0]
         >>> multilayer_perceptron_classifier(X, y, [[0.0, 0.0], [1.0, 1.0]])
-        # Multiple possible outputs True
+        [0, 1]
     """
     if len(train_features) != len(train_labels):
         raise ValueError("Number of training samples and labels must match.")
 
     clf = MLPClassifier(
-        solver="lbfgs", alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1
+        solver="lbfgs",
+        alpha=1e-5,
+        hidden_layer_sizes=(5, 2),
+        random_state=42,  # Fixed for deterministic results
+        max_iter=1000,    # Ensure convergence
     )
     clf.fit(train_features, train_labels)
     predictions = clf.predict(test_features)
