@@ -3,49 +3,51 @@ import numpy as np
 
 def pearson_correlation(data_x: np.ndarray, data_y: np.ndarray) -> float:
     """
-    Calculate the Pearson correlation coefficient between two sets of data.
+    Calculate the Pearson correlation coefficient (PCC) between two arrays.
+
+    Pearson correlation measures the linear relationship between two datasets,
+    returning a value between -1 and 1:
+      - 1   indicates a perfect positive linear correlation
+      - 0   indicates no linear correlation
+      - -1  indicates a perfect negative linear correlation
+
+    Formula:
+    r = Σ((x - mean(x)) * (y - mean(y))) / sqrt(Σ(x - mean(x))^2 * Σ(y - mean(y))^2)
+
+    Reference: https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 
     Parameters:
-    data_x (np.ndarray): Array of numeric values representing a column of data
-                         that will be compared with another column to determine
-                         how strongly the two vectors are related.
-    data_y (np.ndarray): Array of numeric values representing the second column
-                         of data to compare with data_x.
+    - x: 1D numpy array of values
+    - y: 1D numpy array of values
 
     Returns:
-    float: Pearson correlation coefficient between data_x and data_y.
+    - The Pearson correlation coefficient (float)
 
-    Reference:
-    https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
-
-    Example:
-    >>> data_x = np.array([1, 2, 3, 4, 5])
-    >>> data_y = np.array([2, 4, 6, 8, 10])
-    >>> round(pearson_correlation(data_x, data_y), 2)
+      a = np.array([1, 2, 3, 4, 5])
+      b = np.array([2, 4, 6, 8, 10])
+      float(np.round(pearson_correlation(a, b), 5))
     1.0
+      a = np.array([1, 2, 3, 4, 5])
+      b = np.array([10, 9, 2, 6, 4])
+      float(np.round(pearson_correlation(a, b), 5))
+    -0.18845
+      a = np.array([1, 2, 3])
+      b = np.array([1, 2])
+      pearson_correlation(a, b)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
     """
     if len(data_x) != len(data_y):
-        raise ValueError("data_x and data_y must have the same length")
+        raise ValueError("Input arrays must have the same length.")
 
-    n = len(data_x)
-    if n == 0:
-        return 0.0
+    x_mean = np.mean(data_x)
+    y_mean = np.mean(data_y)
 
-    mean_x = np.mean(data_x)
-    mean_y = np.mean(data_y)
-
-    numerator = np.sum((data_x - mean_x) * (data_y - mean_y))
-    denominator = np.sqrt(
-        np.sum((data_x - mean_x) ** 2) * np.sum((data_y - mean_y) ** 2)
-    )
+    numerator = np.sum((data_x - x_mean) * (data_y - y_mean))
+    denominator = np.sqrt(np.sum((data_x - x_mean) ** 2) * np.sum((data_y - y_mean) ** 2))
 
     if denominator == 0:
-        return 0.0
+        raise ValueError("Standard deviation of input arrays must not be zero.")
 
     return numerator / denominator
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
