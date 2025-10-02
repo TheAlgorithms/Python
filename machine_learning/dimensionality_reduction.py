@@ -1,5 +1,4 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
-
 """
 Requirements:
   - numpy version 1.21
@@ -7,7 +6,6 @@ Requirements:
 Notes:
   - Each column of the features matrix corresponds to a class item
 """
-
 """
 Implementation of dimensionality reduction algorithms.
 
@@ -17,7 +15,6 @@ Includes:
 - Locally Linear Embedding (LLE)
 - Multidimensional Scaling (MDS)
 """
-
 import doctest
 import logging
 
@@ -432,7 +429,9 @@ def test_principal_component_analysis() -> None:
     """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
+    expected_output = np.array(
+        [[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]]
+    )
 
     output = principal_component_analysis(features, dimensions)
     if not np.allclose(expected_output, output):
