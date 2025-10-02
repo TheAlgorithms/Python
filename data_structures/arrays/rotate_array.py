@@ -1,6 +1,6 @@
-def rotate_array(arr: list[int], k: int) -> list[int]:
+def rotate_array(arr: list[int], steps: int) -> list[int]:
     """
-    Rotates the array to the right by k steps
+    Rotates the array to the right by a given number of steps
 
     Args:
         arr (list[int]): The input array.
@@ -18,7 +18,7 @@ def rotate_array(arr: list[int], k: int) -> list[int]:
         []
     """
     n = len(arr)
-    k = k % n if n else 0
+    k = steps % n if n else 0
 
     arr.reverse()  # Reverse the entire array
     arr[:k] = reversed(arr[:k])  # Reverse the first k elements
