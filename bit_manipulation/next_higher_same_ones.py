@@ -26,6 +26,7 @@ Traceback (most recent call last):
     ...
 ValueError: input_value must be a non-negative integer
 """
+
 from __future__ import annotations
 
 
