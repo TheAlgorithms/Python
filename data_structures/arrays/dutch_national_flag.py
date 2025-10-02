@@ -7,6 +7,16 @@ def dutch_national_flag(arr: list[int]) -> list[int]:
 
     Returns:
         list[int]: Sorted array
+
+    Examples:
+        >>> dutch_national_flag([2, 0, 2, 1, 2, 0, 1])
+        [0, 0, 1, 1, 2, 2, 2]
+        >>> dutch_national_flag([0, 1, 2, 0, 1, 2])
+        [0, 0, 1, 1, 2, 2]
+        >>> dutch_national_flag([1, 1, 1])
+        [1, 1, 1]
+        >>> dutch_national_flag([])
+        []
     """
 
     low, mid, high = 0, 0, len(arr) - 1
