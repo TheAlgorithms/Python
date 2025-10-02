@@ -47,7 +47,6 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 # ///
 
 
-
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
