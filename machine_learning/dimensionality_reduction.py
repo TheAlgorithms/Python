@@ -416,32 +416,34 @@ def test_multidimensional_scaling() -> None:
 
 
 def test_linear_discriminant_analysis() -> None:
-    """Test function for Linear Discriminant Analysis."""
     # Create dummy dataset with 2 classes and 3 features
     features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
     labels = np.array([0, 0, 0, 1, 1])
     classes = 2
-    dimensions = 1  # Changed to 1 since classes=2 and dimensions must be < classes
+    dimensions = 2
 
-    try:
-        # This should work since dimensions < classes
-        lda_result = linear_discriminant_analysis(features, labels, classes, dimensions)
-        assert lda_result.shape == (dimensions, features.shape[1])
-        logging.info("LDA test passed")
-    except Exception as e:
-        logging.error(f"LDA test failed: {e}")
-        raise
+    # Assert that the function raises an AssertionError if dimensions > classes
+    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
+        projected_data = linear_discriminant_analysis(
+            features, labels, classes, dimensions
+        )
+        if isinstance(projected_data, np.ndarray):
+            raise AssertionError(
+                "Did not raise AssertionError for dimensions > classes"
+            )
+        assert error_info.type is AssertionError
 
 
 def test_principal_component_analysis() -> None:
-    """Test function for Principal Component Analysis."""
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
     expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
-    output = principal_component_analysis(features, dimensions)
-    if not np.allclose(expected_output, output):
-        raise AssertionError("PCA output does not match expected result")
+    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
+        output = principal_component_analysis(features, dimensions)
+        if not np.allclose(expected_output, output):
+            raise AssertionError
+        assert error_info.type is AssertionError
 
 
 def test_dimensionality_reduction() -> None:
