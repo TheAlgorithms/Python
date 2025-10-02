@@ -13,6 +13,8 @@ import logging
 import numpy as np
 import pytest
 from scipy.linalg import eigh
+from scipy.spatial.distance import cdist
+from sklearn.neighbors import NearestNeighbors
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -159,6 +161,200 @@ def linear_discriminant_analysis(
         logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
         logging.error("Dataset empty")
         raise AssertionError
+
+
+def locally_linear_embedding(
+    features: np.ndarray, dimensions: int, n_neighbors: int = 12, reg: float = 1e-3
+) -> np.ndarray:
+    """
+    Locally Linear Embedding (LLE).
+
+    For more details, see: https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction#Locally_linear_embedding
+    Parameters:
+        * features: the features extracted from the dataset (shape: [n_features, n_samples])
+        * dimensions: target dimension for embedding
+        * n_neighbors: number of neighbors to consider for each point
+        * reg: regularization constant
+
+    >>> test_locally_linear_embedding()
+    """
+    if not features.any():
+        logging.error("Dataset empty")
+        raise AssertionError
+
+    # Transpose to have shape [n_samples, n_features] for easier processing
+    X = features.T.astype(np.float64)  # Ensure float64 to avoid dtype issues
+    n_samples, n_features = X.shape
+
+    # Find k-nearest neighbors
+    knn = NearestNeighbors(n_neighbors=n_neighbors + 1)
+    knn.fit(X)
+    distances, indices = knn.kneighbors(X)
+
+    # Remove the first index (point itself)
+    indices = indices[:, 1:]
+    
+    # Create weight matrix W
+    W = np.zeros((n_samples, n_samples))
+    
+    for i in range(n_samples):
+        # Get neighbors (excluding the point itself)
+        neighbors = indices[i]
+        # Center the neighbors
+        Z = X[neighbors] - X[i]
+        # Local covariance matrix - ensure float64
+        C = np.dot(Z, Z.T).astype(np.float64)
+        
+        # Regularization
+        trace = np.trace(C)
+        if trace > 0:
+            reg_value = reg * trace
+        else:
+            reg_value = reg
+            
+        # Ensure we're working with floats for the diagonal update
+        C = C.astype(np.float64)
+        np.fill_diagonal(C, C.diagonal() + reg_value)
+        
+        # Solve for weights
+        try:
+            w = np.linalg.solve(C, np.ones(n_neighbors))
+        except np.linalg.LinAlgError:
+            # If singular, use pseudoinverse
+            w = np.linalg.pinv(C).dot(np.ones(n_neighbors))
+            
+        # Normalize weights
+        w /= np.sum(w)
+        W[i, neighbors] = w
+
+    # Create cost matrix M = (I - W)^T (I - W)
+    I = np.eye(n_samples)
+    M = (I - W).T.dot(I - W)
+
+    # Compute eigenvectors - use all and then select
+    eigenvalues, eigenvectors = eigh(M)
+    
+    # Sort eigenvalues and take the ones after the first (skip the zero eigenvalue)
+    idx = np.argsort(eigenvalues)[1:dimensions+1]  # Skip first (zero) eigenvalue
+    embedding = eigenvectors[:, idx].T
+    
+    logging.info("Locally Linear Embedding computed")
+    return embedding
+
+
+def multidimensional_scaling(
+    features: np.ndarray, dimensions: int, metric: bool = True
+) -> np.ndarray:
+    """
+    Multidimensional Scaling (MDS).
+
+    For more details, see: https://en.wikipedia.org/wiki/Multidimensional_scaling
+    Parameters:
+        * features: the features extracted from the dataset (shape: [n_features, n_samples])
+        * dimensions: target dimension for embedding
+        * metric: if True, use metric MDS (classical), if False, use non-metric MDS
+
+    >>> test_multidimensional_scaling()
+    """
+    if not features.any():
+        logging.error("Dataset empty")
+        raise AssertionError
+
+    # Transpose to have shape [n_samples, n_features]
+    X = features.T
+    n_samples = X.shape[0]
+
+    if metric:
+        # Classical MDS
+        # Compute distance matrix
+        D = cdist(X, X, metric='euclidean')
+        D_squared = D ** 2
+
+        # Double centering
+        H = np.eye(n_samples) - np.ones((n_samples, n_samples)) / n_samples
+        B = -0.5 * H.dot(D_squared).dot(H)
+
+        # Eigen decomposition - get all eigenvectors and select top ones
+        eigenvalues, eigenvectors = eigh(B)
+        
+        # Sort in descending order and take top dimensions
+        idx = np.argsort(eigenvalues)[::-1][:dimensions]
+        eigenvalues = eigenvalues[idx]
+        eigenvectors = eigenvectors[:, idx]
+        
+        # Embedding
+        embedding = eigenvectors * np.sqrt(eigenvalues)
+        
+    else:
+        
+        # Initialize random configuration
+        rng = np.random.RandomState(42)
+        embedding = rng.randn(n_samples, dimensions)
+        
+        # Simple gradient descent (very basic implementation)
+        D_original = cdist(X, X, metric='euclidean')
+        
+        for iteration in range(100):
+            D_embedded = cdist(embedding, embedding, metric='euclidean')
+            
+            # Stress (loss function)
+            stress = np.sum((D_original - D_embedded) ** 2)
+            
+            
+            # Simple gradient update
+            grad = np.zeros_like(embedding)
+            for i in range(n_samples):
+                for j in range(n_samples):
+                    if i != j:
+                        diff = embedding[i] - embedding[j]
+                        dist = np.linalg.norm(diff)
+                        if dist > 1e-10:
+                            grad[i] += 2 * (D_embedded[i, j] - D_original[i, j]) * (diff / dist)
+            
+            embedding -= 0.01 * grad / n_samples
+
+    logging.info("Multidimensional Scaling computed")
+    return embedding.T  # Transpose back to match original format
+
+
+def test_locally_linear_embedding() -> None:
+    """Test function for Locally Linear Embedding"""
+    # Use float data to avoid dtype issues
+    features = np.array([[1.0, 2.0, 3.0, 4.0], 
+                         [2.0, 3.0, 4.0, 5.0], 
+                         [3.0, 4.0, 5.0, 6.0]])
+    dimensions = 2
+    
+    try:
+        embedding = locally_linear_embedding(features, dimensions, n_neighbors=2)
+        assert embedding.shape[0] == dimensions
+        assert embedding.shape[1] == features.shape[1]
+    except Exception as e:
+        logging.error(f"LLE test failed: {e}")
+        raise
+
+
+def test_multidimensional_scaling() -> None:
+    """Test function for Multidimensional Scaling"""
+    features = np.array([[1.0, 2.0, 3.0, 4.0], 
+                         [2.0, 3.0, 4.0, 5.0], 
+                         [3.0, 4.0, 5.0, 6.0]])
+    dimensions = 2
+    
+    try:
+        # Test metric MDS
+        embedding_metric = multidimensional_scaling(features, dimensions, metric=True)
+        assert embedding_metric.shape[0] == dimensions
+        assert embedding_metric.shape[1] == features.shape[1]
+        
+        # Test non-metric MDS
+        embedding_nonmetric = multidimensional_scaling(features, dimensions, metric=False)
+        assert embedding_nonmetric.shape[0] == dimensions
+        assert embedding_nonmetric.shape[1] == features.shape[1]
+        
+    except Exception as e:
+        logging.error(f"MDS test failed: {e}")
+        raise
 
 
 def test_linear_discriminant_analysis() -> None:
