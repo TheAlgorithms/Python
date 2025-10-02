@@ -40,7 +40,12 @@ def _normalize_key(key: str) -> str:
 def _column_order(key: str) -> list[int]:
     # Stable sort by character then original index to handle duplicates
     indexed = list(enumerate(key))
-    return [i for i, _ in sorted(indexed, key=lambda indexed_pair: (indexed_pair[1], indexed_pair[0]))]
+    return [
+        i
+        for i, _ in sorted(
+            indexed, key=lambda indexed_pair: (indexed_pair[1], indexed_pair[0])
+        )
+    ]
 
 
 def encrypt(plaintext: str, key: str) -> str:

@@ -26,6 +26,7 @@ Traceback (most recent call last):
     ...
 ValueError: n must be a non-negative integer
 """
+
 from __future__ import annotations
 
 
