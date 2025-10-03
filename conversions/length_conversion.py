@@ -30,13 +30,14 @@ class FromTo(NamedTuple):
     to_factor: float
 
 
+# The 'inche' key is removed as the code already handles the plural 's' via rstrip("s").
 TYPE_CONVERSION = {
     "millimeter": "mm",
     "centimeter": "cm",
     "meter": "m",
     "kilometer": "km",
     "inch": "in",
-    "inche": "in",  # Trailing 's' has been stripped off
+    # "inche": "in", # Removed redundant/misspelled key
     "feet": "ft",
     "foot": "ft",
     "yard": "yd",
@@ -99,7 +100,7 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     0.1181103
     >>> length_conversion(4, "wrongUnit", "inch")
     Traceback (most recent call last):
-      ...
+    ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'.
     Conversion abbreviations are: mm, cm, m, km, in, ft, yd, mi
     """
