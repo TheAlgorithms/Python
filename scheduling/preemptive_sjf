@@ -1,14 +1,15 @@
 """
-Shortest Remaining Time First (SRTF) scheduling is a preemptive version of Shortest Job First (SJF).
-At every unit of time, it selects the process with the smallest remaining burst time
-among the processes that have arrived.
+Shortest Remaining Time First (SRTF) scheduling is a preemptive version of
+Shortest Job First (SJF).
+At every unit of time, it selects the process with the smallest remaining
+burst time among the processes that have arrived.
 https://en.wikipedia.org/wiki/Shortest_job_next#Preemptive_SJF_(SRTF)
 """
 
-from statistics import mean
-from typing import List
+def mean(a):
+    return sum(a) / len(a)
 
-def calculate_srtf_waiting_time(arrival: List[int], burst: List[int]) -> List[int]:
+def calculate_srtf_waiting_time(arrival: list[int], burst: list[int]) -> list[int]:
     """
     Calculate waiting time for each process using Shortest Remaining Time First (SRTF).
 
@@ -55,7 +56,7 @@ def calculate_srtf_waiting_time(arrival: List[int], burst: List[int]) -> List[in
 
     return waiting
 
-def calculate_srtf_turnaround_time(arrival: List[int], burst: List[int], waiting: List[int]) -> List[int]:
+def calculate_srtf_turnaround_time(arrival: list[int], burst: list[int], waiting: list[int]) -> list[int]:
     """
     Calculate turnaround time for each process using waiting time.
 

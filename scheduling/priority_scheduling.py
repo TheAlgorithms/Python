@@ -5,7 +5,8 @@ or non-preemptive.
 https://en.wikipedia.org/wiki/Priority_scheduling
 """
 
-from statistics import mean
+def mean(a):
+    return sum(a) / len(a)
 
 def calculate_priority_waiting_time(arrival: list, burst: list, priority: list) -> list:
     """
