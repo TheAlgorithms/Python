@@ -1,37 +1,77 @@
 """
 Snake-Water-Gun Game
 
-This program allows a user to play the classic Snake-Water-Gun game against the computer.
-The user can play multiple rounds, and scores are displayed at the end.
+A simple game where the user plays against the computer.
+Choices: 's' for Snake, 'w' for Water, 'g' for Gun.
 
-Fixes Issue: #12987
+Reference: https://en.wikipedia.org/wiki/Rock_paper_scissors
 """
 
 import random
 from typing import Literal
 
 
+<<<<<<< HEAD
 def snake_water_gun(
     user_choice: Literal["s", "w", "g"], computer_choice: Literal["s", "w", "g"]
 ) -> str:
+=======
+def get_computer_choice() -> Literal["s", "w", "g"]:
+>>>>>>> b5d62810 (Refactored snake_game.py with doctests and type hints for automated testing)
     """
-    Determines the winner between user and computer.
+    Randomly returns the computer's choice.
 
-    Parameters:
-    user_choice (str): 's' for Snake, 'w' for Water, 'g' for Gun
-    computer_choice (str): 's' for Snake, 'w' for Water, 'g' for Gun
+    Returns
+    -------
+    str
+        's' for snake, 'w' for water, or 'g' for gun
+    """
+    return random.choice(["s", "w", "g"])
 
-    Returns:
-    str: Result message - 'Draw', 'You win!', or 'Computer wins!'
 
-    >>> snake_water_gun('s', 'w')
-    'You win!'
-    >>> snake_water_gun('g', 's')
-    'You win!'
-    >>> snake_water_gun('w', 'w')
-    'Draw'
+def get_user_choice() -> Literal["s", "w", "g"]:
+    """
+    Prompts the user to enter their choice and validates it.
+
+    Returns
+    -------
+    str
+        's' for snake, 'w' for water, or 'g' for gun
+    """
+    while True:
+        choice = input("Enter your choice: s for snake, w for water, g for gun: ").strip().lower()
+        if choice in ("s", "w", "g"):
+            return choice
+        print("Invalid input! Please enter 's', 'w', or 'g'.")
+
+
+def determine_winner(user_choice: str, computer_choice: str) -> str:
+    """
+    Determines the winner of the Snake-Water-Gun game.
+
+    Parameters
+    ----------
+    user_choice : str
+        The user's choice
+    computer_choice : str
+        The computer's choice
+
+    Returns
+    -------
+    str
+        "draw", "user", or "computer" indicating the winner
+
+    Examples
+    --------
+    >>> determine_winner("s", "w")
+    'user'
+    >>> determine_winner("w", "s")
+    'computer'
+    >>> determine_winner("g", "g")
+    'draw'
     """
     if user_choice == computer_choice:
+<<<<<<< HEAD
         return "Draw"
     if (user_choice, computer_choice) in [("s", "w"), ("w", "g"), ("g", "s")]:
         return "You win!"
@@ -39,12 +79,29 @@ def snake_water_gun(
 
 
 def main() -> None:
-    """
-    Main function to run the Snake-Water-Gun game with multiple rounds.
-    """
-    print("Welcome to Snake-Water-Gun Game!")
-    rounds = 0
+=======
+        return "draw"
 
+    wins = {
+        "s": "w",  # snake drinks water
+        "w": "g",  # water damages gun
+        "g": "s",  # gun kills snake
+    }
+
+    if wins[user_choice] == computer_choice:
+        return "user"
+    return "computer"
+
+
+def play_game() -> None:
+>>>>>>> b5d62810 (Refactored snake_game.py with doctests and type hints for automated testing)
+    """
+    Runs the Snake-Water-Gun game.
+    """
+    user_choice = get_user_choice()
+    computer_choice = get_computer_choice()
+
+<<<<<<< HEAD
     while True:
         try:
             rounds = int(
@@ -93,9 +150,20 @@ def main() -> None:
         print("Congratulations! You won the game!")
     elif score_user < score_computer:
         print("Computer won the game! Better luck next time!")
+=======
+    print(f"You chose: {user_choice}")
+    print(f"Computer chose: {computer_choice}")
+
+    winner = determine_winner(user_choice, computer_choice)
+    if winner == "draw":
+        print("It's a draw!")
+    elif winner == "user":
+        print("You win!")
+>>>>>>> b5d62810 (Refactored snake_game.py with doctests and type hints for automated testing)
     else:
-        print("It's a tie!")
+        print("Computer wins!")
+
 
 
 if __name__ == "__main__":
-    main()
+    play_game()
