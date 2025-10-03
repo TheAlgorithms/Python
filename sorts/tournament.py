@@ -5,7 +5,6 @@ def tournament_sort(arr):
 Tournament Sort implementation.
 Sorts the input list in ascending order.
 
-```
 Args:
     arr (list): List of comparable elements
 
@@ -50,6 +49,3 @@ for _ in range(n):
         idx //= 2
 
 return sorted_list
-```
-
-
