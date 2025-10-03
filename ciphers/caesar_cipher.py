@@ -1,7 +1,10 @@
 from __future__ import annotations
-
 from string import ascii_letters
+import os
 
+def show_banner(text="CaesarCipher", font="block"):
+    f = Figlet(font=font)
+    print(f.renderText(text))
 
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
@@ -68,25 +71,42 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Set default alphabet to lower and upper case english chars
+    # Use the provided alphabet if given, otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
-    # The final result string
-    result = ""
+    # Create a shifted version of the alphabet by the key
+    # This rotated alphabet will be used for mapping original characters to encrypted characters
+    shifted = alpha[key % len(alpha):] + alpha[:key % len(alpha)]
 
-    for character in input_string:
-        if character not in alpha:
-            # Append without encryption if character is not in the alphabet
-            result += character
-        else:
-            # Get the index of the new key and make sure it isn't too large
-            new_key = (alpha.index(character) + key) % len(alpha)
+    # Create a translation table: original alphabet -> shifted alphabet
+    table = str.maketrans(alpha, shifted)
+    
+    # Apply the translation table to the input string
+    # Characters not in the alphabet remain unchanged
+    return input_string.translate(table)
 
-            # Append the encoded character to the alphabet
-            result += alpha[new_key]
+def encrypt_file(input_path: str, output_path: str, key: int, alphabet: str | None = None):
 
-    return result
+    """
+    Encrypts a text file line by line using Caesar Cipher and writes
+    the encrypted content to the output file.
+    """
+    
+    # Use the provided alphabet if given; otherwise default to ascii_letters (a-z + A-Z)
+    alpha = alphabet or ascii_letters
 
+    # Open input file for reading and output file for writing
+    with open(input_path, 'r') as fin, open(output_path, 'w') as fout:
+        
+        # Read the input file line by line to avoid loading the entire file into memory
+        for line in fin:
+
+            # Encrypt the current line using the encrypt function
+            encrypted_line = encrypt(line, key, alpha)
+
+            # Write the encrypted line to the output file
+            fout.write(encrypted_line)
+        print("File has been successfully been encrypted !!")
 
 def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
@@ -159,6 +179,30 @@ def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
 
     return encrypt(input_string, key, alphabet)
 
+def decrypt_file(input_path: str, output_path: str, key: int, alphabet: str | None = None):
+
+    """
+    Decrypts a text file line by line using Caesar Cipher and writes
+    the decrypted content to the output file.
+    """
+    
+    # Use the provided alphabet if given; otherwise default to ascii_letters (a-z + A-Z)
+    alpha = alphabet or ascii_letters
+
+    # Open input file for reading and output file for writing
+    with open(input_path, 'r') as fin, open(output_path, 'w') as fout:
+        
+        # Read the input file line by line to avoid loading the entire file into memory
+        for line in fin:
+
+            # Encrypt the current line using the encrypt function
+            decrypted_line = decrypt(line, key, alpha)
+
+            # Write the encrypted line to the output file
+            fout.write(decrypted_line)
+
+        print("File has been successfully been decrypted !!")
+    
 
 def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:
     """
@@ -225,8 +269,9 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 
 if __name__ == "__main__":
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
-        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        print(*["1.Encrypt", "2.Encrypt a File", "3.Decrypt", "4.Decrypt a File", "5.BruteForce", "6.Quit", ], sep="\n")
 
         # get user input
         choice = input("\nWhat would you like to do?: ").strip() or "4"
@@ -237,20 +282,37 @@ if __name__ == "__main__":
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
             key = int(input("Please enter off-set: ").strip())
-
-            print(encrypt(input_string, key))
+            alphabet_input = input("Enter custom alphabet (press Enter to use default): ").strip() or None
+            print(encrypt(input_string, key, alphabet_input))
+        
         elif choice == "2":
+            input_file_path = input("Please enter path of the input file: ")
+            output_file_path = input("Please enter path of the output file: ")
+            key = int(input("Please enter off-set: ").strip())
+            alphabet_input = input("Enter custom alphabet (press Enter to use default): ").strip() or None
+            encrypt_file(input_file_path, output_file_path, key, alphabet_input)
+            
+        elif choice == "3":
             input_string = input("Please enter the string to be decrypted: ")
             key = int(input("Please enter off-set: ").strip())
+            alphabet_input = input("Enter custom alphabet (press Enter to use default): ").strip() or None
 
-            print(decrypt(input_string, key))
-        elif choice == "3":
+            print(decrypt(input_string, key, alphabet_input))
+
+        elif choice == "4":
+            input_file_path = input("Please enter path of the input file: ")
+            output_file_path = input("Please enter path of the output file: ")
+            key = int(input("Please enter off-set: ").strip())
+            alphabet_input = input("Enter custom alphabet (press Enter to use default): ").strip() or None
+            decrypt_file(input_file_path, output_file_path, key, alphabet_input)
+
+        elif choice == "5":
             input_string = input("Please enter the string to be decrypted: ")
             brute_force_data = brute_force(input_string)
 
             for key, value in brute_force_data.items():
                 print(f"Key: {key} | Message: {value}")
 
-        elif choice == "4":
+        elif choice == "6":
             print("Goodbye.")
             break
