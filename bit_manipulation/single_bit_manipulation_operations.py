@@ -94,6 +94,29 @@ def get_bit(number: int, position: int) -> int:
     return int((number & (1 << position)) != 0)
 
 
+def clear_least_significant_set_bit(number: int) -> int:
+    """
+    Clear the least significant set bit (rightmost 1 bit).
+
+    Details: perform bitwise and for given number and (number - 1).
+    Subtracting 1 from a number flips all the bits after the rightmost set bit
+    (including the rightmost set bit). When we AND with the original number,
+    the rightmost set bit becomes 0.
+
+    >>> clear_least_significant_set_bit(0b1010) # 0b1000
+    8
+    >>> clear_least_significant_set_bit(0b1100) # 0b1000
+    8
+    >>> clear_least_significant_set_bit(0b1111) # 0b1110
+    14
+    >>> clear_least_significant_set_bit(0b1) # 0b0
+    0
+    >>> clear_least_significant_set_bit(0b0) # 0b0
+    0
+    """
+    return number & (number - 1)
+
+
 if __name__ == "__main__":
     import doctest
 
