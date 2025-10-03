@@ -11,12 +11,14 @@ any two numbers in the array. The implementation uses a bitwise Trie to efficien
 compute the maximum XOR.
 """
 
+from __future__ import annotations
+
 
 class TrieNode:
     """Node of the Bitwise Trie."""
 
     def __init__(self) -> None:
-        self.child = [None, None]  # child[0] for bit 0, child[1] for bit 1
+        self.child: list[TrieNode | None] = [None, None]
 
 
 class BitwiseTrieMaxXOR:
@@ -30,11 +32,17 @@ class BitwiseTrieMaxXOR:
         self.root = TrieNode()
 
     def insert(self, num: int) -> None:
-        """Insert a number into the trie."""
+        """
+        Insert a number into the trie.
+
+        >>> trie = BitwiseTrieMaxXOR()
+        >>> trie.insert(5)
+        >>> trie.insert(10)
+        """
         node = self.root
         for i in range(31, -1, -1):  # 32-bit integers
             bit = (num >> i) & 1
-            if not node.child[bit]:
+            if node.child[bit] is None:
                 node.child[bit] = TrieNode()
             node = node.child[bit]
 
@@ -47,13 +55,21 @@ class BitwiseTrieMaxXOR:
 
         Returns:
             int: Maximum XOR value achievable with `num`.
+
+        >>> trie = BitwiseTrieMaxXOR()
+        >>> trie.insert(5)
+        >>> trie.insert(10)
+        >>> trie.query_max_xor(5)
+        15
+        >>> trie.query_max_xor(10)
+        15
         """
         node = self.root
         max_xor = 0
         for i in range(31, -1, -1):
             bit = (num >> i) & 1
             toggle = 1 - bit
-            if node.child[toggle]:
+            if node.child[toggle] is not None:
                 max_xor |= 1 << i
                 node = node.child[toggle]
             else:
@@ -61,7 +77,19 @@ class BitwiseTrieMaxXOR:
         return max_xor
 
     def find_maximum_xor(self, nums: list[int]) -> int:
-        """Compute maximum XOR of any two numbers in `nums`."""
+        """
+        Compute maximum XOR of any two numbers in `nums`.
+
+        >>> solver = BitwiseTrieMaxXOR()
+        >>> solver.find_maximum_xor([3, 10, 5, 25, 2, 8])
+        28
+        >>> solver.find_maximum_xor([42])
+        0
+        >>> solver.find_maximum_xor([8, 1])
+        9
+        >>> solver.find_maximum_xor([0, 0, 0])
+        0
+        """
         if not nums:
             return 0
         for num in nums:
@@ -70,8 +98,13 @@ class BitwiseTrieMaxXOR:
 
 
 if __name__ == "__main__":
-    print("************ Testing Bitwise Trie Maximum XOR Algorithm ************\n")
+    import doctest
 
+    doctest.testmod()
+    print("All doctests passed!")
+
+    # Optional: full test suite
+    print("************ Testing Bitwise Trie Maximum XOR Algorithm ************\n")
     test_cases = [
         ([3, 10, 5, 25, 2, 8], 28),
         ([42], 0),
@@ -86,7 +119,7 @@ if __name__ == "__main__":
     ]
 
     for idx, (nums, expected) in enumerate(test_cases, 1):
-        solver = BitwiseTrieMaxXOR()  # Reset trie for each test case
+        solver = BitwiseTrieMaxXOR()
         result = solver.find_maximum_xor(nums)
         print(f"Testcase {idx}: Expected={expected}, Got={result}")
         assert result == expected, f"Testcase {idx} failed!"
