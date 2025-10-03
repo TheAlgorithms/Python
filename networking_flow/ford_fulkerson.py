@@ -19,9 +19,7 @@ graph = [
 ]
 
 
-def breadth_first_search(
-    graph: list, source: int, sink: int, parents: list
-) -> bool:
+def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
     """
     This function returns True if there is a node that has not iterated.
 
