@@ -37,7 +37,7 @@ class SlidingWindowXOR:
         first_element: int,
         multiplier: int,
         increment: int,
-        modulo: int
+        modulo: int,
     ) -> int:
         """
         Compute cumulative XOR of all sliding windows of size window_size.
