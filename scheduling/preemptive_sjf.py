@@ -3,15 +3,26 @@ Shortest Remaining Time First (SRTF) scheduling is a preemptive version of
 Shortest Job First (SJF).
 At every unit of time, it selects the process with the smallest remaining
 burst time among the processes that have arrived.
+
 https://en.wikipedia.org/wiki/Shortest_job_next#Preemptive_SJF_(SRTF)
 """
 
-def mean(a):
-    return sum(a) / len(a)
+from __future__ import annotations
+
+
+def mean(values: list[int]) -> float:
+    """
+    Return arithmetic mean of a list of numbers.
+
+    >>> mean([2, 4, 6, 8])
+    5.0
+    """
+    return sum(values) / len(values)
+
 
 def calculate_srtf_waiting_time(arrival: list[int], burst: list[int]) -> list[int]:
     """
-    Calculate waiting time for each process using Shortest Remaining Time First (SRTF).
+    Calculate waiting time for each process using Shortest Remaining Time First.
 
     Args:
         arrival: List of arrival times of processes.
@@ -28,13 +39,12 @@ def calculate_srtf_waiting_time(arrival: list[int], burst: list[int]) -> list[in
     waiting = [0] * n
     completed = 0
     t = 0
-    last_executed = -1
     completion_time = [0] * n
 
     while completed < n:
         # Find process with smallest remaining time that has arrived
         idx = -1
-        min_remaining = float('inf')
+        min_remaining = float("inf")
         for i in range(n):
             if arrival[i] <= t and remaining[i] > 0 and remaining[i] < min_remaining:
                 min_remaining = remaining[i]
@@ -56,33 +66,37 @@ def calculate_srtf_waiting_time(arrival: list[int], burst: list[int]) -> list[in
 
     return waiting
 
-def calculate_srtf_turnaround_time(arrival: list[int], burst: list[int], waiting: list[int]) -> list[int]:
+
+def calculate_srtf_turnaround_time(burst: list[int], waiting: list[int]) -> list[int]:
     """
     Calculate turnaround time for each process using waiting time.
 
     Args:
-        arrival: List of arrival times.
         burst: List of burst times.
         waiting: List of waiting times.
 
     Returns:
         List of turnaround times.
 
-    >>> calculate_srtf_turnaround_time([0,1,2,3],[8,4,9,5],[6,0,12,0])
-    [14, 4, 21, 5]
+    >>> calculate_srtf_turnaround_time([8, 4, 9, 5], [9, 0, 15, 2])
+    [17, 4, 24, 7]
     """
     return [burst[i] + waiting[i] for i in range(len(burst))]
+
 
 if __name__ == "__main__":
     arrival_time = [0, 1, 2, 3]
     burst_time = [8, 4, 9, 5]
 
     waiting_time = calculate_srtf_waiting_time(arrival_time, burst_time)
-    turnaround_time = calculate_srtf_turnaround_time(arrival_time, burst_time, waiting_time)
+    turnaround_time = calculate_srtf_turnaround_time(burst_time, waiting_time)
 
     print("PID\tArrival\tBurst\tWaiting\tTurnaround")
     for i in range(len(arrival_time)):
-        print(f"P{i+1}\t{arrival_time[i]}\t{burst_time[i]}\t{waiting_time[i]}\t{turnaround_time[i]}")
+        print(
+            f"P{i + 1}\t{arrival_time[i]}\t{burst_time[i]}\t"
+            f"{waiting_time[i]}\t{turnaround_time[i]}"
+        )
 
     print(f"Average Waiting Time: {mean(waiting_time):.2f}")
     print(f"Average Turnaround Time: {mean(turnaround_time):.2f}")
