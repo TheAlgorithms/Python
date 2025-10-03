@@ -8,7 +8,27 @@ https://en.wikipedia.org/wiki/Thresholding_(image_processing)
 
 def mean_threshold(image: Image) -> Image:
     """
-    image: is a grayscale PIL image object
+    Apply mean thresholding to a grayscale image.
+
+    Converts image to binary: pixels above mean become white (255),
+    pixels below mean become black (0).
+
+    Args:
+        image: Grayscale PIL Image object
+
+    Returns:
+        Thresholded PIL Image (binary)
+
+    >>> from PIL import Image
+    >>> import numpy as np
+    >>> arr = np.array([[50, 100], [150, 200]], dtype=np.uint8)
+    >>> img = Image.fromarray(arr, mode='L')
+    >>> result = mean_threshold(img.copy())
+    >>> px = result.load()
+    >>> px[0, 0]
+    0
+    >>> px[1, 1]
+    255
     """
     height, width = image.size
     mean = 0
