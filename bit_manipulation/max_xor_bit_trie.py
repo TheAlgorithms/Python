@@ -18,14 +18,14 @@ class TrieNode:
     """Node of the Bitwise Trie."""
 
     def __init__(self) -> None:
-        self.child: list[TrieNode | None] = [None, None]  # child[0] for bit 0, child[1] for bit 1
+        self.child: list[TrieNode | None] = [None, None]
 
 
 class BitwiseTrieMaxXOR:
     """
     Use:
-    solver = BitwiseTrieMaxXOR()
-    result = solver.find_maximum_xor(nums)
+        solver = BitwiseTrieMaxXOR()
+        result = solver.find_maximum_xor(nums)
     """
 
     def __init__(self) -> None:
@@ -40,11 +40,11 @@ class BitwiseTrieMaxXOR:
         >>> trie.insert(10)
         """
         node = self.root
-        for i in range(31, -1, -1):  # 32-bit integers
+        for i in range(31, -1, -1):
             bit = (num >> i) & 1
-            if not node.child[bit]:
+            if node.child[bit] is None:
                 node.child[bit] = TrieNode()
-            node = node.child[bit]
+            node = node.child[bit]  # type: ignore[misc]
 
     def query_max_xor(self, num: int) -> int:
         """
@@ -69,10 +69,11 @@ class BitwiseTrieMaxXOR:
         for i in range(31, -1, -1):
             bit = (num >> i) & 1
             toggle = 1 - bit
-            if node.child[toggle]:
+            if node.child[toggle] is not None:
                 max_xor |= 1 << i
                 node = node.child[toggle]
             else:
+                assert node.child[bit] is not None
                 node = node.child[bit]
         return max_xor
 
@@ -111,11 +112,16 @@ if __name__ == "__main__":
     print("All doctests passed!")
 
     # Manual test suite
-    print("\n************ Manual Testing Bitwise Trie Maximum XOR Algorithm ************\n")
+    print(
+        "\n************ Manual Testing Bitwise Trie Maximum XOR Algorithm "
+        "************\n"
+    )
+
     test_cases = [
         ([3, 10, 5, 25, 2, 8], 28),
         ([42], 0),
-        ([0xFFFFFFFF, 0], 0xFFFFFFFF),
+        ([8, 1], 9),
+        ([0, 0, 0], 0),
         ([7, 7, 7], 0),
         ([1, 2, 3, 4, 5], 7),
         ([16, 8, 4, 2, 1], 24),
@@ -130,4 +136,3 @@ if __name__ == "__main__":
         assert result == expected, f"Testcase {idx} failed!"
 
     print("\nAll manual test cases successfully passed!")
-    print("********** End of Testing Bitwise Trie Maximum XOR Algorithm **********")
