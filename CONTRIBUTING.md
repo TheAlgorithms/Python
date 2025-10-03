@@ -79,27 +79,27 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Please write in Python 3.13+. For instance: `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
 - Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
-  - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
+  - Single-letter variable names are *old school*, so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
-- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
+- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python), where they make the code easier to read.
 
-- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
+- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement, but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf), but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
 
   ```bash
   python3 -m pip install black  # only required the first time
   black .
   ```
 
-- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted, so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
   python3 -m pip install ruff  # only required the first time
   ruff check
   ```
 
-- Original code submission require docstrings or comments to describe your work.
+- Original code submission requires docstrings or comments to describe your work.
 
 - More on docstrings and comments:
 
@@ -113,7 +113,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
 
-  We encourage you to put docstrings inside your functions but please pay attention to the indentation of docstrings. The following is a good example:
+  We encourage you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
 
   ```python
   def sum_ab(a, b):
@@ -139,7 +139,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
       return a + b
   ```
 
-  These doctests will be run by pytest as part of our automated testing so please try to run your doctests locally and make sure that they are found and pass:
+  These doctests will be run by pytest as part of our automated testing, so please try to run your doctests locally and make sure that they are found and pass:
 
   ```bash
   python3 -m doctest -v my_submission.py
@@ -176,12 +176,12 @@ We want your work to be readable by others; therefore, we encourage you to note 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
 - The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
-- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
+- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in the future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
 - If you have modified/added code work, make sure the code compiles before submitting.
 - If you have modified/added documentation work, ensure your language is concise and contains no grammar errors.
-- Do not update the README.md or DIRECTORY.md file which will be periodically autogenerated by our GitHub Actions processes.
+- Do not update the README.md or DIRECTORY.md file, which will be periodically autogenerated by our GitHub Actions processes.
 - Add a corresponding explanation to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
 - All submissions will be tested with [__mypy__](http://www.mypy-lang.org) so we encourage you to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
 
