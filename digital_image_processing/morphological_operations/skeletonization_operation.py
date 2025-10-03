@@ -2,9 +2,11 @@
 # @File: skeletonization_operation.py
 # @Time: 2025-10-03 13:45 IST
 
+from itertools import pairwise
+from pathlib import Path
+
 import numpy as np
 from PIL import Image
-from pathlib import Path
 
 
 def rgb_to_gray(rgb: np.ndarray) -> np.ndarray:
@@ -46,42 +48,89 @@ def neighbours(image: np.ndarray, x: int, y: int) -> list:
     """
     Return 8-neighbours of point (x, y), in clockwise order
 
-    >>> neighbours(1, 1, np.array([[True, True, False], [True, False, False], [False, True, False]]))
+    >>> neighbours(
+    ...     np.array(
+    ...         [
+    ...             [True, True, False],
+    ...             [True, False, False],
+    ...             [False, True, False]
+    ...         ]
+    ...     ), 1, 1
+    ... )
     [np.True_, np.False_, np.False_, np.False_, np.True_, np.False_, np.True_, np.True_]
-    >>> neighbours(1, 2, np.array([[True, True, False, True], [True, False, False, True], [False, True, False, True]]))
+    >>> neighbours(
+    ...     np.array(
+    ...         [
+    ...             [True, True, False, True],
+    ...             [True, False, False, True],
+    ...             [False, True, False, True]
+    ...         ]
+    ...     ), 1, 2
+    ... )
     [np.False_, np.True_, np.True_, np.True_, np.False_, np.True_, np.False_, np.True_]
     """
     img = image
     return [
-        img[x-1][y], img[x-1][y+1], img[x][y+1], img[x+1][y+1],
-        img[x+1][y], img[x+1][y-1], img[x][y-1], img[x-1][y-1]
+        img[x - 1][y],
+        img[x - 1][y + 1],
+        img[x][y + 1],
+        img[x + 1][y + 1],
+        img[x + 1][y],
+        img[x + 1][y - 1],
+        img[x][y - 1],
+        img[x - 1][y - 1],
     ]
 
 
 def transitions(neighbors: list) -> int:
     """
     Count 0->1 transitions in the neighborhood
-    
-    >>> transitions([np.False_, np.True_, np.True_, np.False_, np.True_, np.False_, np.False_, np.False_])
+
+    >>> transitions(
+    ...     [
+    ...         np.False_, np.True_, np.True_, np.False_,
+    ...         np.True_, np.False_, np.False_, np.False_
+    ...     ]
+    ... )
     2
-    >>> transitions([np.True_, np.True_, np.True_, np.True_, np.True_, np.True_, np.True_, np.True_])
+    >>> transitions(
+    ...     [
+    ...         np.True_, np.True_, np.True_, np.True_,
+    ...         np.True_, np.True_, np.True_, np.True_
+    ...     ]
+    ... )
     0
-    >>> transitions([np.False_, np.False_, np.False_, np.False_, np.False_, np.False_, np.False_, np.False_])
+    >>> transitions(
+    ...     [
+    ...         np.False_, np.False_, np.False_, np.False_,
+    ...         np.False_, np.False_, np.False_, np.False_
+    ...     ]
+    ... )
     0
-    >>> transitions([np.False_, np.True_, np.False_, np.True_, np.False_, np.True_, np.False_, np.True_])
+    >>> transitions(
+    ...     [
+    ...         np.False_, np.True_, np.False_, np.True_,
+    ...         np.False_, np.True_, np.False_, np.True_
+    ...     ]
+    ... )
     4
-    >>> transitions([np.True_, np.False_, np.True_, np.False_, np.True_, np.False_, np.True_, np.False_])
+    >>> transitions(
+    ...     [
+    ...         np.True_, np.False_, np.True_, np.False_,
+    ...         np.True_, np.False_, np.True_, np.False_
+    ...     ]
+    ... )
     4
     """
-    n = neighbors + [neighbors[0]]
-    return int(sum((n1 == 0 and n2 == 1) for n1, n2 in zip(n, n[1:])))
+    n = [*neighbors, neighbors[0]]
+    return int(sum((n1 == 0 and n2 == 1) for n1, n2 in pairwise(n)))
 
 
 def skeletonize_image(image: np.ndarray) -> np.ndarray:
     """
     Apply Zhang-Suen thinning to binary image for skeletonization.
     Source: https://rstudio-pubs-static.s3.amazonaws.com/302782_e337cfbc5ad24922bae96ca5977f4da8.html
-    
+
     >>> skeletonize_image(np.array([[np.False_, np.True_, np.False_],
     ...                 [np.True_, np.True_, np.True_],
     ...                 [np.False_, np.True_, np.False_]]))
@@ -96,7 +145,7 @@ def skeletonize_image(image: np.ndarray) -> np.ndarray:
            [False, False, False]])
     """
     img = image.copy()
-    changing1 = changing2 = True
+    changing1 = changing2 = [(-1, -1)]
 
     while changing1 or changing2:
 
@@ -105,16 +154,20 @@ def skeletonize_image(image: np.ndarray) -> np.ndarray:
         rows, cols = img.shape
         for x in range(1, rows - 1):
             for y in range(1, cols - 1):
-                P = img[x][y]
-                if P != 1:
+                pixel = img[x][y]
+                if pixel != 1:
                     continue
                 neighbours_list = neighbours(img, x, y)
                 total_transitions = transitions(neighbours_list)
-                N = sum(neighbours_list)
-                if (2 <= N <= 6 and
-                    total_transitions == 1 and
-                    neighbours_list[0] * neighbours_list[2] * neighbours_list[4] == 0 and
-                    neighbours_list[2] * neighbours_list[4] * neighbours_list[6] == 0):
+                n = sum(neighbours_list)
+                if (
+                    2 <= n <= 6
+                    and total_transitions == 1
+                    and neighbours_list[0] * neighbours_list[2] * neighbours_list[4]
+                    == 0
+                    and neighbours_list[2] * neighbours_list[4] * neighbours_list[6]
+                    == 0
+                ):
                     changing1.append((x, y))
         for x, y in changing1:
             img[x][y] = 0
@@ -123,16 +176,20 @@ def skeletonize_image(image: np.ndarray) -> np.ndarray:
         changing2 = []
         for x in range(1, rows - 1):
             for y in range(1, cols - 1):
-                P = img[x][y]
-                if P != 1:
+                pixel = img[x][y]
+                if pixel != 1:
                     continue
                 neighbours_list = neighbours(img, x, y)
                 total_transitions = transitions(neighbours_list)
-                N = sum(neighbours_list)
-                if (2 <= N <= 6 and
-                    total_transitions == 1 and
-                    neighbours_list[0] * neighbours_list[2] * neighbours_list[6] == 0 and
-                    neighbours_list[0] * neighbours_list[4] * neighbours_list[6] == 0):
+                n = sum(neighbours_list)
+                if (
+                    2 <= n <= 6
+                    and total_transitions == 1
+                    and neighbours_list[0] * neighbours_list[2] * neighbours_list[6]
+                    == 0
+                    and neighbours_list[0] * neighbours_list[4] * neighbours_list[6]
+                    == 0
+                ):
                     changing2.append((x, y))
         for x, y in changing2:
             img[x][y] = 0
