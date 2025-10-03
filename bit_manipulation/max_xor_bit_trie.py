@@ -12,10 +12,9 @@ compute the maximum XOR.
 """
 
 
-
-
 class TrieNode:
     """Node of the Bitwise Trie."""
+
     def __init__(self) -> None:
         self.child = [None, None]  # child[0] for bit 0, child[1] for bit 1
 
@@ -55,7 +54,7 @@ class BitwiseTrieMaxXOR:
             bit = (num >> i) & 1
             toggle = 1 - bit
             if node.child[toggle]:
-                max_xor |= (1 << i)
+                max_xor |= 1 << i
                 node = node.child[toggle]
             else:
                 node = node.child[bit]

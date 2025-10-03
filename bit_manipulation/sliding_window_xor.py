@@ -17,16 +17,16 @@ Compute the XOR of each window of size window_size, and cumulatively XOR all win
 
 class SlidingWindowXOR:
     """
-    Use:
-    solver       = SlidingWindowXOR()
-    result = solver.compute(
-    array_length,
-    window_size,
-    first_element,
-    multiplier,
-    increment,
-    modulo
-)
+        Use:
+        solver       = SlidingWindowXOR()
+        result = solver.compute(
+        array_length,
+        window_size,
+        first_element,
+        multiplier,
+        increment,
+        modulo
+    )
 
     """
 
@@ -90,15 +90,10 @@ if __name__ == "__main__":
             multiplier,
             increment,
             modulo,
-            expected
+            expected,
         ) = test_case
         result = solver.compute(
-            array_length,
-            window_size,
-            first_element,
-            multiplier,
-            increment,
-            modulo
+            array_length, window_size, first_element, multiplier, increment, modulo
         )
         print(f"Testcase {idx}: Expected={expected}, Got={result}")
         assert result == expected, f"Testcase {idx} failed!"
