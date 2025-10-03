@@ -6,7 +6,9 @@ This is a pure Python implementation to calculate the cumulative XOR of all
 sliding windows of size window_size in an array generated via a linear recurrence.
 
 The problem is :
-Given parameters array_length, window_size, first_element, multiplier, increment, modulo, generate an array:
+Given parameters array_length, window_size, first_element, multiplier, increment,
+modulo, generate an array:
+
     arr[0] = first_element
     arr[i] = (multiplier * arr[i-1] + increment) % modulo
 Compute the XOR of each window of size window_size, and cumulatively XOR all windows.
@@ -17,7 +19,15 @@ class SlidingWindowXOR:
     """
     Use:
     solver       = SlidingWindowXOR()
-    result       = solver.compute(array_length, window_size, first_element, multiplier, increment, modulo)
+    result = solver.compute(
+    array_length,
+    window_size,
+    first_element,
+    multiplier,
+    increment,
+    modulo
+)
+
     """
 
     def compute(
@@ -72,8 +82,24 @@ if __name__ == "__main__":
         (4, 4, 3, 1, 0, 10, 0),
     ]
 
-    for idx, (array_length, window_size, first_element, multiplier, increment, modulo, expected) in enumerate(test_cases, 1):
-        result = solver.compute(array_length, window_size, first_element, multiplier, increment, modulo)
+    for idx, test_case in enumerate(test_cases, 1):
+        (
+            array_length,
+            window_size,
+            first_element,
+            multiplier,
+            increment,
+            modulo,
+            expected
+        ) = test_case
+        result = solver.compute(
+            array_length,
+            window_size,
+            first_element,
+            multiplier,
+            increment,
+            modulo
+        )
         print(f"Testcase {idx}: Expected={expected}, Got={result}")
         assert result == expected, f"Testcase {idx} failed!"
 
