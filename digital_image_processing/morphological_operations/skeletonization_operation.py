@@ -1,6 +1,6 @@
 # @Author: @joydipb01
 # @File: skeletonization_operation.py
-# @Time: 2025-10-03 13:45 IST
+# @Time: 2025-10-03 13:45
 
 from itertools import pairwise
 from pathlib import Path
@@ -148,7 +148,6 @@ def skeletonize_image(image: np.ndarray) -> np.ndarray:
     changing1 = changing2 = [(-1, -1)]
 
     while changing1 or changing2:
-
         # Step 1: Points to be removed in the first sub-iteration
         changing1 = []
         rows, cols = img.shape

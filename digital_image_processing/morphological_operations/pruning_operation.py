@@ -1,6 +1,6 @@
 # @Author: @joydipb01
 # @File: pruning_operation.py
-# @Time: 2025-10-03 19:45 IST
+# @Time: 2025-10-03 19:45
 
 from pathlib import Path
 
@@ -129,6 +129,7 @@ def prune_skeletonized_image(
 ) -> np.ndarray:
     """
     Return pruned image by removing spurious branches of specified length
+    Source: https://www.scribd.com/doc/15792184/042805-04
 
     >>> arr = np.array([
     ...     [False, True, False],
