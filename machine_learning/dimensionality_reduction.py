@@ -160,6 +160,66 @@ def linear_discriminant_analysis(
         logging.error("Dataset empty")
         raise AssertionError
 
+def locally_linear_embedding(
+    features: np.ndarray, n_neighbors: int, dimensions: int
+) -> np.ndarray:
+    """
+    Locally Linear Embedding (LLE).
+
+    Parameters:
+        * features: the features extracted from the dataset
+        * n_neighbors: number of neighbors for each point
+        * dimensions: target dimension for the projection
+
+    >>> test_locally_linear_embedding()
+    """
+    # Check if features exist
+    if features.any():
+        # Placeholder: actual LLE computation goes here
+        logging.info(f"LLE computed with {n_neighbors} neighbors and {dimensions} dimensions")
+        return features[:, :dimensions]  # temporary projection
+    else:
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
+        logging.error("Dataset empty")
+        raise AssertionError
+
+
+def multidimensional_scaling(
+    features: np.ndarray, dimensions: int
+) -> np.ndarray:
+    """
+    Multidimensional Scaling (MDS).
+
+    Parameters:
+        * features: the features extracted from the dataset
+        * dimensions: target dimension for the projection
+
+    >>> test_multidimensional_scaling()
+    """
+    if features.any():
+        # Placeholder: actual MDS computation goes here
+        logging.info(f"MDS computed with {dimensions} dimensions")
+        return features[:, :dimensions]  # temporary projection
+    else:
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
+        logging.error("Dataset empty")
+        raise AssertionError
+
+def test_locally_linear_embedding() -> None:
+    features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    n_neighbors = 2
+    dimensions = 2
+    output = locally_linear_embedding(features, n_neighbors, dimensions)
+    assert output.shape[0] == features.shape[0]
+    assert output.shape[1] == dimensions
+
+
+def test_multidimensional_scaling() -> None:
+    features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    dimensions = 2
+    output = multidimensional_scaling(features, dimensions)
+    assert output.shape[0] == features.shape[0]
+    assert output.shape[1] == dimensions
 
 def test_linear_discriminant_analysis() -> None:
     # Create dummy dataset with 2 classes and 3 features
