@@ -173,27 +173,44 @@ def linear_discriminant_analysis(
     Example:
     >>> features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
     >>> labels = np.array([0, 0, 0, 1, 1])
-    >>> lda_result = linear_discriminant_analysis(features, labels, 2, 1)  # CHANGED: 2 to 1
+    >>> lda_result = linear_discriminant_analysis(features, labels, 2, 1)
     >>> lda_result.shape
-    (1, 5)  # CHANGED: 2 to 1
+    (1, 5)
     """
     assert classes > dimensions
 
-    if features.any:
-        _, eigenvectors = eigh(
-            covariance_between_classes(features, labels, classes),
-            covariance_within_classes(features, labels, classes),
-        )
-        filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
-        svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
-        filtered_svd_matrix = svd_matrix[:, 0:dimensions]
-        projected_data = np.dot(filtered_svd_matrix.T, features)
-        logging.info("Linear Discriminant Analysis computed")
-        return projected_data
+    if features.any():
+        # Add regularization to avoid singular matrix
+        sw = covariance_within_classes(features, labels, classes)
+        sb = covariance_between_classes(features, labels, classes)
+        
+        # Regularize the within-class covariance matrix
+        reg_param = 1e-6
+        sw_reg = sw + reg_param * np.eye(sw.shape[0])
+        
+        try:
+            _, eigenvectors = eigh(sb, sw_reg)
+            filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
+            svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
+            filtered_svd_matrix = svd_matrix[:, 0:dimensions]
+            projected_data = np.dot(filtered_svd_matrix.T, features)
+            logging.info("Linear Discriminant Analysis computed")
+            return projected_data
+        except np.linalg.LinAlgError:
+            # Fallback: use pseudoinverse if still singular
+            try:
+                sw_pinv = np.linalg.pinv(sw_reg)
+                _, eigenvectors = eigh(sb, sw_pinv)
+                filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
+                projected_data = np.dot(filtered_eigenvectors.T, features)
+                logging.info("Linear Discriminant Analysis computed with pseudoinverse")
+                return projected_data
+            except np.linalg.LinAlgError:
+                logging.error("LDA failed: matrix is too ill-conditioned")
+                raise AssertionError("LDA computation failed")
     else:
         logging.error("Dataset empty")
         raise AssertionError
-
 
 def locally_linear_embedding(
     features: np.ndarray, dimensions: int, n_neighbors: int = 12, reg: float = 1e-3
