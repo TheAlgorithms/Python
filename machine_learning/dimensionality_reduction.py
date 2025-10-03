@@ -160,6 +160,7 @@ def linear_discriminant_analysis(
         logging.error("Dataset empty")
         raise AssertionError
 
+
 def locally_linear_embedding(
     features: np.ndarray, n_neighbors: int, dimensions: int
 ) -> np.ndarray:
@@ -176,7 +177,9 @@ def locally_linear_embedding(
     # Check if features exist
     if features.any():
         # Placeholder: actual LLE computation goes here
-        logging.info(f"LLE computed with {n_neighbors} neighbors and {dimensions} dimensions")
+        logging.info(
+            f"LLE computed with {n_neighbors} neighbors and {dimensions} dimensions"
+        )
         return features[:, :dimensions]  # temporary projection
     else:
         logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
@@ -184,9 +187,7 @@ def locally_linear_embedding(
         raise AssertionError
 
 
-def multidimensional_scaling(
-    features: np.ndarray, dimensions: int
-) -> np.ndarray:
+def multidimensional_scaling(features: np.ndarray, dimensions: int) -> np.ndarray:
     """
     Multidimensional Scaling (MDS).
 
@@ -205,6 +206,7 @@ def multidimensional_scaling(
         logging.error("Dataset empty")
         raise AssertionError
 
+
 def test_locally_linear_embedding() -> None:
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     n_neighbors = 2
@@ -220,6 +222,7 @@ def test_multidimensional_scaling() -> None:
     output = multidimensional_scaling(features, dimensions)
     assert output.shape[0] == features.shape[0]
     assert output.shape[1] == dimensions
+
 
 def test_linear_discriminant_analysis() -> None:
     # Create dummy dataset with 2 classes and 3 features
