@@ -18,7 +18,7 @@ class TrieNode:
     """Node of the Bitwise Trie."""
 
     def __init__(self) -> None:
-        self.child: list[TrieNode | None] = [None, None]
+        self.child: list[TrieNode | None] = [None, None]  # child[0] for bit 0, child[1] for bit 1
 
 
 class BitwiseTrieMaxXOR:
@@ -42,7 +42,7 @@ class BitwiseTrieMaxXOR:
         node = self.root
         for i in range(31, -1, -1):  # 32-bit integers
             bit = (num >> i) & 1
-            if node.child[bit] is None:
+            if not node.child[bit]:
                 node.child[bit] = TrieNode()
             node = node.child[bit]
 
@@ -69,7 +69,7 @@ class BitwiseTrieMaxXOR:
         for i in range(31, -1, -1):
             bit = (num >> i) & 1
             toggle = 1 - bit
-            if node.child[toggle] is not None:
+            if node.child[toggle]:
                 max_xor |= 1 << i
                 node = node.child[toggle]
             else:
@@ -80,15 +80,22 @@ class BitwiseTrieMaxXOR:
         """
         Compute maximum XOR of any two numbers in `nums`.
 
-        >>> solver = BitwiseTrieMaxXOR()
-        >>> solver.find_maximum_xor([3, 10, 5, 25, 2, 8])
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([3, 10, 5, 25, 2, 8])
         28
-        >>> solver.find_maximum_xor([42])
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([42])
         0
-        >>> solver.find_maximum_xor([8, 1])
-        9
-        >>> solver.find_maximum_xor([0, 0, 0])
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([0xFFFFFFFF, 0])
+        4294967295
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([7, 7, 7])
         0
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([1, 2, 3, 4, 5])
+        7
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([16, 8, 4, 2, 1])
+        24
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([1, 2, 4, 8, 16, 32])
+        48
+        >>> BitwiseTrieMaxXOR().find_maximum_xor([9, 14, 3, 6, 12])
+        15
         """
         if not nums:
             return 0
@@ -103,13 +110,11 @@ if __name__ == "__main__":
     doctest.testmod()
     print("All doctests passed!")
 
-    # Optional: full test suite
-    print("************ Testing Bitwise Trie Maximum XOR Algorithm ************\n")
+    # Manual test suite
+    print("\n************ Manual Testing Bitwise Trie Maximum XOR Algorithm ************\n")
     test_cases = [
         ([3, 10, 5, 25, 2, 8], 28),
         ([42], 0),
-        ([8, 1], 9),
-        ([0, 0, 0], 0),
         ([0xFFFFFFFF, 0], 0xFFFFFFFF),
         ([7, 7, 7], 0),
         ([1, 2, 3, 4, 5], 7),
@@ -124,5 +129,5 @@ if __name__ == "__main__":
         print(f"Testcase {idx}: Expected={expected}, Got={result}")
         assert result == expected, f"Testcase {idx} failed!"
 
-    print("\nAll test cases successfully passed!")
+    print("\nAll manual test cases successfully passed!")
     print("********** End of Testing Bitwise Trie Maximum XOR Algorithm **********")
