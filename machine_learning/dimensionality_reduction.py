@@ -183,11 +183,11 @@ def linear_discriminant_analysis(
         # Add regularization to avoid singular matrix
         sw = covariance_within_classes(features, labels, classes)
         sb = covariance_between_classes(features, labels, classes)
-        
+
         # Regularize the within-class covariance matrix
         reg_param = 1e-6
         sw_reg = sw + reg_param * np.eye(sw.shape[0])
-        
+
         try:
             _, eigenvectors = eigh(sb, sw_reg)
             filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
@@ -211,6 +211,7 @@ def linear_discriminant_analysis(
     else:
         logging.error("Dataset empty")
         raise AssertionError
+
 
 def locally_linear_embedding(
     features: np.ndarray, dimensions: int, n_neighbors: int = 12, reg: float = 1e-3
