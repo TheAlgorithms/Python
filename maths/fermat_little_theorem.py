@@ -6,6 +6,26 @@
 
 
 def binary_exponentiation(a: int, n: float, mod: int) -> int:
+    """
+    Compute (a^n) % mod using binary exponentiation.
+
+    Args:
+        a: Base number
+        n: Exponent
+        mod: Modulus
+
+    Returns:
+        Result of (a^n) % mod
+
+    >>> binary_exponentiation(2, 10, 1000)
+    24
+    >>> binary_exponentiation(5, 3, 13)
+    8
+    >>> binary_exponentiation(10, 0, 7)
+    1
+    >>> binary_exponentiation(3, 4, 5)
+    1
+    """
     if n == 0:
         return 1
 
