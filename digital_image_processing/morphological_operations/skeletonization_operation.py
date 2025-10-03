@@ -203,7 +203,7 @@ if __name__ == "__main__":
     lena = np.array(Image.open(lena_path))
 
     # Apply skeletonization operation to a binary image
-    # Caution: Takes at least 20 seconds to execute
+    # Caution: Takes at least 30 seconds to execute
     output = skeletonize_image(gray_to_binary(rgb_to_gray(lena)))
 
     # Save the output image
