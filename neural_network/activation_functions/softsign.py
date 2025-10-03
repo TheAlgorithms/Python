@@ -5,8 +5,8 @@ Softsign is a smooth activation function defined as:
 
     f(x) = x / (1 + |x|)
 
-It maps input values into the range (-1, 1), similar to the tanh function 
-but with a polynomial decay instead of exponential. 
+It maps input values into the range (-1, 1), similar to the tanh function
+but with a polynomial decay instead of exponential.
 
 More about this function can be found in the article:
 https://www.gabormelli.com/RKB/Softsign_Activation_Function
