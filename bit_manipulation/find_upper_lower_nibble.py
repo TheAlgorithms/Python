@@ -5,6 +5,8 @@ def get_nibbles(num: int) -> tuple[int, int]:
     A nibble is 4 bits. The lower nibble is the last 4 bits, and
     the upper nibble is the first 4 bits of the 8-bit number.
 
+    See also: https://en.wikipedia.org/wiki/Nibble
+
     >>> get_nibbles(100)   # binary: 01100100
     (6, 4)
     >>> get_nibbles(255)   # binary: 11111111
