@@ -33,6 +33,10 @@ def is_power_of_two(number: int) -> bool:
     True
     >>> is_power_of_two(17)
     False
+    >>> is_power_of_two(1024)
+    True
+    >>> is_power_of_two(1023)
+    False
     >>> is_power_of_two(-1)
     Traceback (most recent call last):
         ...
