@@ -43,9 +43,9 @@ def gray_to_binary(gray: np.ndarray) -> np.ndarray:
     return (gray > 127) & (gray <= 255)
 
 
-def neighbours(image: np.ndarray, x: int, y: int) -> list:
+def neighbours(image: np.ndarray, x_coord: int, y_coord: int) -> list:
     """
-    Return 8-neighbours of point (x, y), in clockwise order
+    Return 8-neighbours of point (x_coord, y_coord), in clockwise order
 
     >>> neighbours(
     ...     np.array(
@@ -84,15 +84,15 @@ def neighbours(image: np.ndarray, x: int, y: int) -> list:
     neighbour_points = []
 
     for dx, dy in neighborhood:
-        if 0 <= x + dx < img.shape[0] and 0 <= y + dy < img.shape[1]:
-            neighbour_points.append(img[x + dx][y + dy])
+        if 0 <= x_coord + dx < img.shape[0] and 0 <= y_coord + dy < img.shape[1]:
+            neighbour_points.append(img[x_coord + dx][y_coord + dy])
         else:
             neighbour_points.append(False)
 
     return neighbour_points
 
 
-def is_endpoint(image: np.ndarray, x: int, y: int) -> bool:
+def is_endpoint(image: np.ndarray, x_coord: int, y_coord: int) -> bool:
     """
     Check if a pixel is an endpoint based on its 8-neighbors.
 
@@ -121,7 +121,7 @@ def is_endpoint(image: np.ndarray, x: int, y: int) -> bool:
     True
     """
     img = image
-    return int(sum(neighbours(img, x, y))) == 1
+    return int(sum(neighbours(img, x_coord, y_coord))) == 1
 
 
 def prune_skeletonized_image(

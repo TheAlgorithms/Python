@@ -44,9 +44,9 @@ def gray_to_binary(gray: np.ndarray) -> np.ndarray:
     return (gray > 127) & (gray <= 255)
 
 
-def neighbours(image: np.ndarray, x: int, y: int) -> list:
+def neighbours(image: np.ndarray, x_coord: int, y_coord: int) -> list:
     """
-    Return 8-neighbours of point (x, y), in clockwise order
+    Return 8-neighbours of point (x_coord, y_coord), in clockwise order
 
     >>> neighbours(
     ...     np.array(
@@ -71,14 +71,14 @@ def neighbours(image: np.ndarray, x: int, y: int) -> list:
     """
     img = image
     return [
-        img[x - 1][y],
-        img[x - 1][y + 1],
-        img[x][y + 1],
-        img[x + 1][y + 1],
-        img[x + 1][y],
-        img[x + 1][y - 1],
-        img[x][y - 1],
-        img[x - 1][y - 1],
+        img[x_coord - 1][y_coord],
+        img[x_coord - 1][y_coord + 1],
+        img[x_coord][y_coord + 1],
+        img[x_coord + 1][y_coord + 1],
+        img[x_coord + 1][y_coord],
+        img[x_coord + 1][y_coord - 1],
+        img[x_coord][y_coord - 1],
+        img[x_coord - 1][y_coord - 1],
     ]
 
 
