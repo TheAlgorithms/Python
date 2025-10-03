@@ -27,7 +27,7 @@ class SlidingWindowXOR:
         first_element: int,
         multiplier: int,
         increment: int,
-        modulo: int
+        modulo: int,
     ) -> int:
         """
         Compute cumulative XOR of all sliding windows of size window_size.
@@ -72,8 +72,18 @@ if __name__ == "__main__":
         (4, 4, 3, 1, 0, 10, 0),
     ]
 
-    for idx, (array_length, window_size, first_element, multiplier, increment, modulo, expected) in enumerate(test_cases, 1):
-        result = solver.compute(array_length, window_size, first_element, multiplier, increment, modulo)
+    for idx, (
+        array_length,
+        window_size,
+        first_element,
+        multiplier,
+        increment,
+        modulo,
+        expected,
+    ) in enumerate(test_cases, 1):
+        result = solver.compute(
+            array_length, window_size, first_element, multiplier, increment, modulo
+        )
         print(f"Testcase {idx}: Expected={expected}, Got={result}")
         assert result == expected, f"Testcase {idx} failed!"
 
