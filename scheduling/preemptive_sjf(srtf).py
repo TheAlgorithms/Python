@@ -8,6 +8,7 @@ https://en.wikipedia.org/wiki/Shortest_job_next#Preemptive_SJF_(SRTF)
 from statistics import mean
 from typing import List
 
+
 def calculate_srtf_waiting_time(arrival: List[int], burst: List[int]) -> List[int]:
     """
     Calculate waiting time for each process using Shortest Remaining Time First (SRTF).
@@ -33,7 +34,7 @@ def calculate_srtf_waiting_time(arrival: List[int], burst: List[int]) -> List[in
     while completed < n:
         # Find process with smallest remaining time that has arrived
         idx = -1
-        min_remaining = float('inf')
+        min_remaining = float("inf")
         for i in range(n):
             if arrival[i] <= t and remaining[i] > 0 and remaining[i] < min_remaining:
                 min_remaining = remaining[i]
@@ -55,7 +56,10 @@ def calculate_srtf_waiting_time(arrival: List[int], burst: List[int]) -> List[in
 
     return waiting
 
-def calculate_srtf_turnaround_time(arrival: List[int], burst: List[int], waiting: List[int]) -> List[int]:
+
+def calculate_srtf_turnaround_time(
+    arrival: List[int], burst: List[int], waiting: List[int]
+) -> List[int]:
     """
     Calculate turnaround time for each process using waiting time.
 
@@ -72,16 +76,21 @@ def calculate_srtf_turnaround_time(arrival: List[int], burst: List[int], waiting
     """
     return [burst[i] + waiting[i] for i in range(len(burst))]
 
+
 if __name__ == "__main__":
     arrival_time = [0, 1, 2, 3]
     burst_time = [8, 4, 9, 5]
 
     waiting_time = calculate_srtf_waiting_time(arrival_time, burst_time)
-    turnaround_time = calculate_srtf_turnaround_time(arrival_time, burst_time, waiting_time)
+    turnaround_time = calculate_srtf_turnaround_time(
+        arrival_time, burst_time, waiting_time
+    )
 
     print("PID\tArrival\tBurst\tWaiting\tTurnaround")
     for i in range(len(arrival_time)):
-        print(f"P{i+1}\t{arrival_time[i]}\t{burst_time[i]}\t{waiting_time[i]}\t{turnaround_time[i]}")
+        print(
+            f"P{i + 1}\t{arrival_time[i]}\t{burst_time[i]}\t{waiting_time[i]}\t{turnaround_time[i]}"
+        )
 
     print(f"Average Waiting Time: {mean(waiting_time):.2f}")
     print(f"Average Turnaround Time: {mean(turnaround_time):.2f}")

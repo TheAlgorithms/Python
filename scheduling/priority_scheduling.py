@@ -7,6 +7,7 @@ https://en.wikipedia.org/wiki/Priority_scheduling
 
 from statistics import mean
 
+
 def calculate_priority_waiting_time(arrival: list, burst: list, priority: list) -> list:
     """
     Calculate waiting time for each process using preemptive priority scheduling.
@@ -22,7 +23,7 @@ def calculate_priority_waiting_time(arrival: list, burst: list, priority: list) 
 
     while complete < n:
         idx = -1
-        highest_pri = float('inf')
+        highest_pri = float("inf")
         for i in range(n):
             if arrival[i] <= t and remaining[i] > 0 and priority[i] < highest_pri:
                 highest_pri = priority[i]
@@ -62,7 +63,9 @@ if __name__ == "__main__":
 
     print("PID\tArrival\tBurst\tPriority\tWaiting\tTurnaround")
     for i in range(len(arrival_time)):
-        print(f"P{i+1}\t{arrival_time[i]}\t{burst_time[i]}\t{priority[i]}\t\t{waiting_time[i]}\t{turnaround_time[i]}")
+        print(
+            f"P{i + 1}\t{arrival_time[i]}\t{burst_time[i]}\t{priority[i]}\t\t{waiting_time[i]}\t{turnaround_time[i]}"
+        )
 
     print(f"Average Waiting Time: {mean(waiting_time):.2f}")
     print(f"Average Turnaround Time: {mean(turnaround_time):.2f}")
