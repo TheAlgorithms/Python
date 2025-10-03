@@ -14,6 +14,25 @@ machine_time = 0
 
 
 def push(seed):
+    """
+    Push data into the chaos machine buffer.
+
+    Updates the buffer space and parameters space using chaotic dynamics
+    based on the input seed value.
+
+    Args:
+        seed: Input value to push into the chaos machine
+
+    >>> reset()
+    >>> initial_time = machine_time
+    >>> push(12345)
+    >>> machine_time == initial_time + 1
+    True
+    >>> len(buffer_space) == m
+    True
+    >>> all(0 <= x < 1 for x in buffer_space)
+    True
+    """
     global buffer_space, params_space, machine_time, K, m, t
 
     # Choosing Dynamical Systems (All)
@@ -73,6 +92,20 @@ def pull():
 
 
 def reset():
+    """
+    Reset the chaos machine to initial state.
+
+    Resets buffer space to initial values K, clears parameters space,
+    and resets machine time to 0.
+
+    >>> reset()
+    >>> buffer_space == K
+    True
+    >>> machine_time
+    0
+    >>> len(params_space)
+    5
+    """
     global buffer_space, params_space, machine_time, K, m, t
 
     buffer_space = K
