@@ -18,7 +18,10 @@ class TrieNode:
     """Node of the Bitwise Trie."""
 
     def __init__(self) -> None:
-        self.child: list[TrieNode | None] = [None, None]  # child[0] for bit 0, child[1] for bit 1
+        self.child: list[TrieNode | None] = [
+            None,
+            None,
+        ]  # child[0] for bit 0, child[1] for bit 1
 
 
 class BitwiseTrieMaxXOR:
@@ -111,7 +114,9 @@ if __name__ == "__main__":
     print("All doctests passed!")
 
     # Manual test suite
-    print("\n************ Manual Testing Bitwise Trie Maximum XOR Algorithm ************\n")
+    print(
+        "\n************ Manual Testing Bitwise Trie Maximum XOR Algorithm ************\n"
+    )
     test_cases = [
         ([3, 10, 5, 25, 2, 8], 28),
         ([42], 0),
