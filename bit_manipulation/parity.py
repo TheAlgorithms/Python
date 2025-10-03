@@ -7,6 +7,7 @@ Simple parity utility for integers.
 The parity is 1 when the number of set bits is odd, otherwise 0.
 """
 
+
 def parity(number: int) -> int:
     """
     Return 1 if `number` has an odd number of set bits, otherwise 0.

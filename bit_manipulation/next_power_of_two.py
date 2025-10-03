@@ -5,6 +5,7 @@ Date    : 2025-10-04
 Utility to compute the next power of two greater than or equal to n.
 """
 
+
 def next_power_of_two(n: int) -> int:
     """
     Return the smallest power of two >= n for positive integers.

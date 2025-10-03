@@ -5,6 +5,7 @@ Date    : 2025-10-04
 Bit rotation helpers for 32-bit unsigned integers.
 """
 
+
 def rotate_left32(x: int, k: int) -> int:
     """
     Rotate the lower 32 bits of x left by k and return result in 0..2**32-1.
