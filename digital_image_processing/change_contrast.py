@@ -13,7 +13,23 @@ from PIL import Image
 
 def change_contrast(img: Image, level: int) -> Image:
     """
-    Function to change contrast
+    Change the contrast of a PIL Image.
+
+    Args:
+        img: PIL Image to adjust
+        level: Contrast level (-255 to 255)
+
+    Returns:
+        New PIL Image with adjusted contrast
+
+    >>> from PIL import Image
+    >>> img = Image.new('RGB', (2, 2), color=(128, 128, 128))
+    >>> high_contrast = change_contrast(img, 100)
+    >>> isinstance(high_contrast, Image.Image)
+    True
+    >>> low_contrast = change_contrast(img, -50)
+    >>> isinstance(low_contrast, Image.Image)
+    True
     """
     factor = (259 * (level + 255)) / (255 * (259 - level))
 
