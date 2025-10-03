@@ -10,7 +10,10 @@ Fixes Issue: #12987
 import random
 from typing import Literal
 
-def snake_water_gun(user_choice: Literal['s', 'w', 'g'], computer_choice: Literal['s', 'w', 'g']) -> str:
+
+def snake_water_gun(
+    user_choice: Literal["s", "w", "g"], computer_choice: Literal["s", "w", "g"]
+) -> str:
     """
     Determines the winner between user and computer.
 
@@ -30,9 +33,10 @@ def snake_water_gun(user_choice: Literal['s', 'w', 'g'], computer_choice: Litera
     """
     if user_choice == computer_choice:
         return "Draw"
-    if (user_choice, computer_choice) in [('s', 'w'), ('w', 'g'), ('g', 's')]:
+    if (user_choice, computer_choice) in [("s", "w"), ("w", "g"), ("g", "s")]:
         return "You win!"
     return "Computer wins!"
+
 
 def main() -> None:
     """
@@ -43,7 +47,9 @@ def main() -> None:
 
     while True:
         try:
-            rounds = int(input("Enter the number of rounds you want to play (1-10): ").strip())
+            rounds = int(
+                input("Enter the number of rounds you want to play (1-10): ").strip()
+            )
             if 1 <= rounds <= 10:
                 break
             else:
@@ -53,12 +59,16 @@ def main() -> None:
 
     score_user = 0
     score_computer = 0
-    choices = ['s', 'w', 'g']
+    choices = ["s", "w", "g"]
 
     for round_number in range(1, rounds + 1):
         print(f"\nRound {round_number}:")
         while True:
-            user_input = input("Enter your choice: s for Snake, w for Water, g for Gun: ").strip().lower()
+            user_input = (
+                input("Enter your choice: s for Snake, w for Water, g for Gun: ")
+                .strip()
+                .lower()
+            )
             if user_input in choices:
                 break
             else:
@@ -85,6 +95,7 @@ def main() -> None:
         print("Computer won the game! Better luck next time!")
     else:
         print("It's a tie!")
+
 
 if __name__ == "__main__":
     main()
