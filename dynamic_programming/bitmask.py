@@ -62,6 +62,26 @@ class AssignmentUsingBitmask:
         return self.dp[mask][task_no]
 
     def count_no_of_ways(self, task_performed):
+        """
+        Calculate the total number of ways to assign tasks to people.
+
+        Args:
+            task_performed: List where task_performed[i] contains task IDs
+                          that person i can perform
+
+        Returns:
+            Total number of valid task assignment ways
+
+        >>> tp = [[1, 3, 4], [1, 2, 5], [3, 4]]
+        >>> AssignmentUsingBitmask(tp, 5).count_no_of_ways(tp)
+        10
+        >>> tp2 = [[1, 2], [1, 3]]
+        >>> AssignmentUsingBitmask(tp2, 3).count_no_of_ways(tp2)
+        2
+        >>> tp3 = [[1], [2]]
+        >>> AssignmentUsingBitmask(tp3, 2).count_no_of_ways(tp3)
+        1
+        """
         # Store the list of persons for each task
         for i in range(len(task_performed)):
             for j in task_performed[i]:
