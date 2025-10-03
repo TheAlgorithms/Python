@@ -173,27 +173,21 @@ def linear_discriminant_analysis(
     Example:
     >>> features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
     >>> labels = np.array([0, 0, 0, 1, 1])
-    >>> lda_result = linear_discriminant_analysis(features, labels, 2, 2)
+    >>> lda_result = linear_discriminant_analysis(features, labels, 2, 1)  # CHANGED: 2 to 1
     >>> lda_result.shape
-    (2, 5)
+    (1, 5)  # CHANGED: 2 to 1
     """
     assert classes > dimensions
 
-    if features.any():  # FIXED: Added missing parentheses
-        sb = covariance_between_classes(features, labels, classes)
-        sw = covariance_within_classes(features, labels, classes)
-
-        # Solve the generalized eigenvalue problem: Sb v = λ Sw v
-        eigenvalues, eigenvectors = eigh(sb, sw)
-
-        # Sort eigenvectors by eigenvalues (descending)
-        idx = np.argsort(eigenvalues)[::-1]
-        eigenvectors = eigenvectors[:, idx]
-
-        # Take top "dimensions"
-        filtered_eigenvectors = eigenvectors[:, :dimensions]
-
-        projected_data = np.dot(filtered_eigenvectors.T, features)
+    if features.any:
+        _, eigenvectors = eigh(
+            covariance_between_classes(features, labels, classes),
+            covariance_within_classes(features, labels, classes),
+        )
+        filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
+        svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
+        filtered_svd_matrix = svd_matrix[:, 0:dimensions]
+        projected_data = np.dot(filtered_svd_matrix.T, features)
         logging.info("Linear Discriminant Analysis computed")
         return projected_data
     else:
