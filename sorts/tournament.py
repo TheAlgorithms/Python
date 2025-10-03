@@ -52,9 +52,4 @@ for _ in range(n):
 return sorted_list
 ```
 
-# Example usage
 
-if **name** == "**main**":
-nums = [5, 3, 8, 4, 2, 7, 1, 6]
-print("Original:", nums)
-print("Sorted  :", tournament_sort(nums))
