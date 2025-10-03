@@ -18,7 +18,10 @@ class TrieNode:
     """Node of the Bitwise Trie."""
 
     def __init__(self) -> None:
-        self.child: list[TrieNode | None] = [None, None]  # child[0] for bit 0, child[1] for bit 1
+        self.child: list[TrieNode | None] = [
+            None,
+            None,
+        ]  # child[0] for bit 0, child[1] for bit 1
 
 
 class BitwiseTrieMaxXOR:
