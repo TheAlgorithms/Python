@@ -8,7 +8,6 @@ Description:
 """
 
 from collections import deque
-from typing import List
 
 graph = [
     [0, 16, 13, 0, 0, 0],
@@ -20,7 +19,9 @@ graph = [
 ]
 
 
-def breadth_first_search(graph: List[List[int]], source: int, sink: int, parents: List[int]) -> bool:
+def breadth_first_search(
+    graph: list, source: int, sink: int, parents: list
+) -> bool:
     """
     This function returns True if there is a node that has not iterated.
 
@@ -43,28 +44,28 @@ def breadth_first_search(graph: List[List[int]], source: int, sink: int, parents
     num_nodes = len(graph)
     visited = [False] * num_nodes
     queue = deque()
-    
+
     queue.append(source)
     visited[source] = True
-    
+
     while queue:
         current_node = queue.popleft()
-        
+
         # If we reached the sink, we can stop early
         if current_node == sink:
             return True
-            
+
         # Check all adjacent nodes
         for neighbor, capacity in enumerate(graph[current_node]):
             if not visited[neighbor] and capacity > 0:
                 visited[neighbor] = True
                 parents[neighbor] = current_node
                 queue.append(neighbor)
-                
+
     return visited[sink]
 
 
-def ford_fulkerson(graph: List[List[int]], source: int, sink: int) -> int:
+def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     """
     This function returns the maximum flow from source to sink in the given graph.
 
@@ -100,7 +101,7 @@ def ford_fulkerson(graph: List[List[int]], source: int, sink: int) -> int:
         # Find the minimum residual capacity along the path
         path_flow = float('inf')
         current_node = sink
-        
+
         # Find the minimum capacity in the path
         while current_node != source:
             parent_node = parents[current_node]
