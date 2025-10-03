@@ -148,7 +148,6 @@ def skeletonize_image(image: np.ndarray) -> np.ndarray:
     changing1 = changing2 = [(-1, -1)]
 
     while changing1 or changing2:
-
         # Step 1: Points to be removed in the first sub-iteration
         changing1 = []
         rows, cols = img.shape
