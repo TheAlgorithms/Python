@@ -19,9 +19,7 @@ graph = [
 ]
 
 
-def breadth_first_search(
-    graph: list, source: int, sink: int, parents: list
-) -> bool:
+def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
     """
     This function returns True if there is a node that has not iterated.
 
@@ -99,7 +97,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     # Augment the flow while there is a path from source to sink
     while breadth_first_search(residual_graph, source, sink, parents):
         # Find the minimum residual capacity along the path
-        path_flow = float('inf')
+        path_flow = float("inf")
         current_node = sink
 
         # Find the minimum capacity in the path
