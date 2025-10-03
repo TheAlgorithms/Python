@@ -69,7 +69,7 @@ if __name__ == "__main__":
         (2, 1, 2, 3, 4, 5, 2),
         (5, 2, 1, 1, 1, 100, 4),
         (3, 5, 5, 2, 1, 100, 0),
-        (4, 4, 3, 1, 0, 10, 0)
+        (4, 4, 3, 1, 0, 10, 0),
     ]
 
     for idx, (array_length, window_size, first_element, multiplier, increment, modulo, expected) in enumerate(test_cases, 1):
