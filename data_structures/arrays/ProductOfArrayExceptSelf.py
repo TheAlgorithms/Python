@@ -1,6 +1,7 @@
 from typing import List
 import doctest
 
+
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         """
@@ -50,6 +51,7 @@ class Solution:
 
         return answer
 
+
 # #optimized Answer
 # class Solution(object):
 #     def productExceptSelf(self, nums):
@@ -84,11 +86,10 @@ if __name__ == "__main__":
         [1, 2],
         [1, 1, 1],
         [-30, 30, -30, 30],
-        [5, 0, 0, 5]
+        [5, 0, 0, 5],
     ]
 
     print("\nRunning additional test cases:")
     for case in test_cases:
         result = sol.productExceptSelf(case)
         print(f"Input: {case} -> Output: {result}")
-
