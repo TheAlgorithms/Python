@@ -119,14 +119,23 @@ if __name__ == "__main__":
     timer_iterative = timeit(
         "bubble_sort_iterative(unsorted[:])", globals=globals(), number=num_runs
     )
-    print("\nIterative bubble sort:")
-    print(*bubble_sort_iterative(unsorted), sep=",")
-    print(f"Processing time (iterative): {timer_iterative:.5f}s for {num_runs:,} runs")
 
-    unsorted = sample(range(-50, 50), 100)
-    timer_recursive = timeit(
-        "bubble_sort_recursive(unsorted[:])", globals=globals(), number=num_runs
-    )
-    print("\nRecursive bubble sort:")
-    print(*bubble_sort_recursive(unsorted), sep=",")
-    print(f"Processing time (recursive): {timer_recursive:.5f}s for {num_runs:,} runs")
+print(f"Total runs for benchmark: {num_runs:,}\n")
+
+# Iterative version
+print("➡️  Iterative Bubble Sort:")
+sorted_iter = bubble_sort_iterative(unsorted)
+print("Sorted Output:", ", ".join(map(str, sorted_iter)))
+print(f"Time Taken (Iterative): {timer_iterative:.5f}s\n")
+
+# Recursive version
+unsorted = sample(range(-50, 50), 100)
+timer_recursive = timeit(
+    "bubble_sort_recursive(unsorted[:])", globals=globals(), number=num_runs
+)
+print("➡️  Recursive Bubble Sort:")
+sorted_rec = bubble_sort_recursive(unsorted)
+print("Sorted Output:", ", ".join(map(str, sorted_rec)))
+print(f"Time Taken (Recursive): {timer_recursive:.5f}s")
+
+print("\n✅ Comparison completed successfully!")
