@@ -1,7 +1,7 @@
 # Decision Tree Algorithm
 
 ## Overview
-A **Decision Tree** is a supervised machine learning algorithm used for both classification and regression tasks.  
+A **Decision Tree** is a supervised machine learning algorithm used for both classification and regression tasks.
 It works by recursively splitting the dataset into smaller subsets based on feature values until a stopping criterion is met.
 
 ---
@@ -31,9 +31,9 @@ IG(S, A) = H(S) - Σ ( |Sv| / |S| ) * H(Sv)
 
 
 Where:
-- `S` = dataset  
-- `A` = attribute (feature)  
-- `Sv` = subset after splitting by `A`  
+- `S` = dataset
+- `A` = attribute (feature)
+- `Sv` = subset after splitting by `A`
 
 A split with the **highest information gain** is chosen.
 
@@ -48,30 +48,30 @@ Gini(S) = 1 - Σ (p(i)²)
 
 
 Where:
-- `p(i)` = probability of class `i` in dataset `S`  
+- `p(i)` = probability of class `i` in dataset `S`
 
 A pure dataset has Gini = 0.
 
 ---
 
 ## Practical Use Cases
-- **Business**: Predicting customer churn  
-- **Finance**: Credit scoring / loan approval  
-- **Healthcare**: Diagnosing diseases based on symptoms  
-- **Cybersecurity**: Spam / phishing detection  
+- **Business**: Predicting customer churn
+- **Finance**: Credit scoring / loan approval
+- **Healthcare**: Diagnosing diseases based on symptoms
+- **Cybersecurity**: Spam / phishing detection
 
 ---
 
 ## Advantages
-- Simple to understand and visualize  
-- Handles both numerical and categorical data  
-- Requires little preprocessing (no normalization or scaling)  
+- Simple to understand and visualize
+- Handles both numerical and categorical data
+- Requires little preprocessing (no normalization or scaling)
 
 ---
 
 ## Limitations
-- Prone to overfitting (can be solved using pruning or ensembles like Random Forests)  
-- Small changes in data can lead to different trees (instability)  
+- Prone to overfitting (can be solved using pruning or ensembles like Random Forests)
+- Small changes in data can lead to different trees (instability)
 
 ---
 
