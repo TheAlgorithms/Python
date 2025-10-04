@@ -1,5 +1,5 @@
 # Let's assume 1 ETH = 2500 USD (you can change this number)
-eth_price_usd = 2500  
+eth_price_usd = 2500
 
 print("=== ETH to USD Converter ===")
 
