@@ -3,7 +3,7 @@ Approximate Nearest Neighbor (ANN) Search
 https://en.wikipedia.org/wiki/Nearest_neighbor_search#Approximate_nearest_neighbor
 
 ANN search finds "close enough" vectors instead of the exact nearest neighbor,
-which makes it much faster for large datasets.  
+which makes it much faster for large datasets.
 This implementation uses a simple **random projection hashing** method.
 
 Steps:
@@ -104,7 +104,5 @@ class ANN:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-
-
-
