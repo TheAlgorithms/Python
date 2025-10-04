@@ -13,7 +13,7 @@ class BinarySearchTree:
         self.root = None
 
     def create(self, val):
-        if self.root == None:
+        if self.root is None:
             self.root = Node(val)
         else:
             current = self.root
