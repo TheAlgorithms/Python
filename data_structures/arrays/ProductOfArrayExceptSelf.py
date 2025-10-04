@@ -50,6 +50,24 @@ class Solution:
 
         return answer
 
+# #optimized Answer
+# class Solution(object):
+#     def productExceptSelf(self, nums):
+#         m = 1
+#         z = 0
+#         for i in nums:
+#             if i !=0:
+#                 m*= i
+#             else:
+#                 z+=1
+
+#         if z==1:
+#             return [m if i==0 else 0 for i in nums]
+#         if z>1:
+#             return [0]*len(nums)
+#         return [m//i for i in nums]
+
+
 if __name__ == "__main__":
     # Run doctests
     doctest.testmod()
