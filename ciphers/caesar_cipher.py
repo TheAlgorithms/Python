@@ -70,7 +70,8 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Use the provided alphabet if given, otherwise default to ascii_letters (a-z + A-Z)
+    # Use the provided alphabet if given, 
+    # otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
     # Create a shifted version of the alphabet by the key.
