@@ -18,11 +18,7 @@ A = area (square meter (m²))
 from math import cos, radians as deg_to_rad
 
 
-def check_args(
-        magnetic_field: float,
-        area: float,
-        angle: float
-) -> None:
+def check_args(magnetic_field: float, area: float, angle: float) -> None:
     """
     Check that the arguments are valid
     """
@@ -36,11 +32,11 @@ def check_args(
 
     if not isinstance(angle, (int, float)):
         raise TypeError("Invalid angle. Should be an integer or float.")
-    
+
     # Ensure valid angle
     if angle < 0 or angle > 180:
         raise ValueError("Invalid angle. Range is 0-180 degrees.")
-    
+
     # Ensure valid magnetic field
     if magnetic_field < 0:
         raise ValueError("Invalid magnetic field. Should be a positive number.")
@@ -50,11 +46,7 @@ def check_args(
         raise ValueError("Invalid area. Should be a positive number.")
 
 
-def magnetic_flux(
-        magnetic_field: float,
-        area: float,
-        angle: float
-) -> float:
+def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     """
     >>> magnetic_flux(50.0, 2, 0.0)
     250.0
