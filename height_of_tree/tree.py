@@ -1,8 +1,8 @@
 class Node:
     def __init__(self, info: int) -> None:
         self.info = info
-        self.left: "Node|None" = None
-        self.right: "Node|None" = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
     def __str__(self) -> str:
         """
@@ -14,7 +14,7 @@ class Node:
 
 class BinarySearchTree:
     def __init__(self) -> None:
-        self.root: "Node|None" = None
+        self.root: Node | None = None
 
     def create(self, val: int) -> None:
         """
@@ -47,7 +47,7 @@ class BinarySearchTree:
                     break
 
 
-def height(node: "Node|None") -> int:
+def height(node: Node | None) -> int:
     """
     >>> height(None)
     -1
