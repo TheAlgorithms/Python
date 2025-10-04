@@ -4,7 +4,6 @@ from string import ascii_letters
 
 import pyfiglet
 
-
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
@@ -73,8 +72,9 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     # Use the provided alphabet if given, otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
-    # Create a shifted version of the alphabet by the key
-    # This rotated alphabet will be used for mapping original characters to encrypted characters
+    # Create a shifted version of the alphabet by the key.
+    # This rotated alphabet will be used for mapping original characters
+    # to encrypted characters.
     shifted = alpha[key % len(alpha) :] + alpha[: key % len(alpha)]
 
     # Create a translation table: original alphabet -> shifted alphabet
@@ -97,7 +97,7 @@ def encrypt_file(
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
-    with open(input_path, "r") as fin, open(output_path, "w") as fout:
+    with open(input_path) as fin, open(output_path, "w") as fout:
         # Read the input file line by line to avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
@@ -192,7 +192,7 @@ def decrypt_file(
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
-    with open(input_path, "r") as fin, open(output_path, "w") as fout:
+    with open(input_path) as fin, open(output_path, "w") as fout:
         # Read the input file line by line to avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
