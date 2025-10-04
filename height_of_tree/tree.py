@@ -1,11 +1,8 @@
-from typing import Optional, List
-
-
 class Node:
     def __init__(self, info: int) -> None:
         self.info: int = info
-        self.left: Optional["Node"] = None
-        self.right: Optional["Node"] = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
     def __str__(self) -> str:
         """
@@ -14,10 +11,9 @@ class Node:
         """
         return str(self.info)
 
-
 class BinarySearchTree:
     def __init__(self) -> None:
-        self.root: Optional[Node] = None
+        self.root: Node | None = None
 
     def create(self, val: int) -> None:
         """
@@ -49,8 +45,7 @@ class BinarySearchTree:
                 else:
                     break
 
-
-def height(node: Optional[Node]) -> int:
+def height(node: Node | None) -> int:
     """
     >>> height(None)
     -1
@@ -67,8 +62,7 @@ def height(node: Optional[Node]) -> int:
         return -1
     return 1 + max(height(node.left), height(node.right))
 
-
-def tree_height_from_list(data: List[int]) -> int:
+def tree_height_from_list(data: list[int]) -> int:
     """
     >>> tree_height_from_list([3,2,5,6])
     2
@@ -82,8 +76,6 @@ def tree_height_from_list(data: List[int]) -> int:
         bst.create(x)
     return height(bst.root)
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
