@@ -6,6 +6,7 @@ Description: Finds the peak index in a mountain array using binary search.
 
 from typing import List
 
+
 def peak_mountain(arr: List[int]) -> int:
     start, end = 0, len(arr) - 1
 
@@ -16,6 +17,7 @@ def peak_mountain(arr: List[int]) -> int:
         else:
             start = mid + 1
     return start
+
 
 if __name__ == "__main__":
     arr = [1, 2, 3, 5, 7, 8, 6, 3, 2]
