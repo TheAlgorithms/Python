@@ -11,6 +11,7 @@ class Node:
         """
         return str(self.info)
 
+
 class BinarySearchTree:
     def __init__(self) -> None:
         self.root: Node | None = None
@@ -45,6 +46,7 @@ class BinarySearchTree:
                 else:
                     break
 
+
 def height(node: Node | None) -> int:
     """
     >>> height(None)
@@ -62,6 +64,7 @@ def height(node: Node | None) -> int:
         return -1
     return 1 + max(height(node.left), height(node.right))
 
+
 def tree_height_from_list(data: list[int]) -> int:
     """
     >>> tree_height_from_list([3,2,5,6])
@@ -76,6 +79,8 @@ def tree_height_from_list(data: list[int]) -> int:
         bst.create(x)
     return height(bst.root)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
