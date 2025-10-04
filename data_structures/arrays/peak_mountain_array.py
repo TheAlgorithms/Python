@@ -4,10 +4,7 @@ Author: Taha Zulfiquar
 Description: Finds the peak index in a mountain array using binary search.
 """
 
-from typing import List
-
-
-def peak_mountain(arr: List[int]) -> int:
+def peak_mountain(arr):
     start, end = 0, len(arr) - 1
 
     while start < end:
@@ -22,4 +19,4 @@ def peak_mountain(arr: List[int]) -> int:
 if __name__ == "__main__":
     arr = [1, 2, 3, 5, 7, 8, 6, 3, 2]
     peak_index = peak_mountain(arr)
-    print(f"The peak index is: {peak_index}")
+    print("The peak index is:", peak_index)
