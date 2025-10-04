@@ -87,7 +87,11 @@ def dijkstra(graph: List[List[float]], src: int) -> List[float]:
         visited[u] = True
 
         for v in range(num_vertices):
-            if not visited[v] and graph[u][v] != float("inf") and dist[u] + graph[u][v] < dist[v]:
+            if (
+                not visited[v]
+                and graph[u][v] != float("inf")
+                and dist[u] + graph[u][v] < dist[v]
+            ):
                 dist[v] = dist[u] + graph[u][v]
 
     return [int(d) if d != float("inf") else float("inf") for d in dist]
