@@ -4,6 +4,7 @@ Author: Taha Zulfiquar
 Description: Finds the peak index in a mountain array using binary search.
 """
 
+
 def peak_mountain(arr):
     start, end = 0, len(arr) - 1
 
