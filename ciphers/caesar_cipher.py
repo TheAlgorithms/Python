@@ -272,12 +272,9 @@ if __name__ == "__main__":
     banner = pyfiglet.figlet_format("Caesar Cipher", font="big")
     print(banner)
     while True:
-        banner = pyfiglet.figlet_format("Caesar Ciphar", font="big")
-        print(banner)
         print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
         print("Please select from the following options: ")
-        print(
-            *[
+        print(*[
                 "1.Encrypt",
                 "2.Encrypt a File",
                 "3.Decrypt",
@@ -289,10 +286,10 @@ if __name__ == "__main__":
         )
 
         # get user input
-        choice = input("\nWhat would you like to do?: ").strip() or "4"
+        choice = input("\nWhat would you like to do?: ").strip() or "6"
 
         # run functions based on what the user chose
-        if choice not in ("1", "2", "3", "4"):
+        if choice not in ("1", "2", "3", "4", "5", "6"):
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
