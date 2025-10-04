@@ -26,6 +26,7 @@
 
 from typing import List
 
+
 def max_profit(prices: List[int]) -> int:
     """
     Calculate the maximum profit from at most one buy-sell transaction.
@@ -55,7 +56,6 @@ def max_profit(prices: List[int]) -> int:
         max_profit_val = max(max_profit_val, price - min_price_so_far)
 
     return max_profit_val
-
 
 
 # ---------------------------------------------------------------
