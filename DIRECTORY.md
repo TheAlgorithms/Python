@@ -1258,6 +1258,9 @@
   * [Tabu Search](searches/tabu_search.py)
   * [Ternary Search](searches/ternary_search.py)
 
+  ## Sliding Window
+  * [Maximum Sum Subarray](sliding_window/maximum_sum_subarray.py)
+
 ## Sorts
   * [Bead Sort](sorts/bead_sort.py)
   * [Binary Insertion Sort](sorts/binary_insertion_sort.py)
