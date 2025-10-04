@@ -36,7 +36,7 @@ def longest_substring_without_repeating_characters(s: str) -> int:
     >>> longest_substring_without_repeating_characters("tmmzuxt")
     5
     """
-    char_set = set()
+    char_set: set[str] = set()
     left_pointer = 0
     max_length = 0
 
