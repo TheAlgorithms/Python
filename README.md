@@ -37,12 +37,12 @@
   <h3>A collection of algorithms implemented in Python for educational purposes 📚</h3>
 </div>
 
-These implementations are intended for learning purposes.  
+These implementations are intended for learning purposes.
 They may not be as efficient as the Python standard library alternatives, so use them with discretion.
 
 ## 🚀 Getting Started
 
-📋 Please read our [Contribution Guidelines](CONTRIBUTING.md) before contributing.  
+📋 Please read our [Contribution Guidelines](CONTRIBUTING.md) before contributing.
 This ensures your pull requests follow the project’s conventions.
 
 ## 🌐 Community Channels
