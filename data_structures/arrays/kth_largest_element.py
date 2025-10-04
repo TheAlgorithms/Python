@@ -2,7 +2,9 @@ import heapq
 from typing import List, Union
 
 
-def kth_largest_element(arr: List[Union[int, float, str]], k: int) -> Union[int, float, str]:
+def kth_largest_element(
+    arr: List[Union[int, float, str]], k: int
+) -> Union[int, float, str]:
     """
     Finds the kth largest element in an array using a heap.
 
@@ -43,4 +45,5 @@ def kth_largest_element(arr: List[Union[int, float, str]], k: int) -> Union[int,
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
