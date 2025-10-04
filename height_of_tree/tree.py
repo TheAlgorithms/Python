@@ -13,7 +13,7 @@ class BinarySearchTree:
         self.root = None
 
     def create(self, val):  
-        if self.root == None:
+        if self.root is None:
             self.root = Node(val)
         else:
             current = self.root
@@ -39,6 +39,14 @@ def height(node):
     return 1 + max(height(node.left), height(node.right))
 
 def tree_height_from_list(data):
+    """
+    >>> tree_height_from_list([3,2,5,6])
+    2
+    >>> tree_height_from_list([1])
+    0
+    >>> tree_height_from_list([5,1,10,15,7])
+    3
+    """
     bst = BinarySearchTree()
     for x in data:
         bst.create(x)
