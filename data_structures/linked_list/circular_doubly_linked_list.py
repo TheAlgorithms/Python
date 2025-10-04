@@ -10,6 +10,7 @@ class Node:
     """
     A node in a circular doubly linked list.
     """
+
     data: Any
     next_node: Node | None = None
     prev_node: Node | None = None
@@ -24,6 +25,7 @@ class CircularDoublyLinkedList:
     - The last node's next points to the first node
     - The first node's previous points to the last node
     """
+
     head: Node | None = None  # Reference to the head (first node)
     tail: Node | None = None  # Reference to the tail (last node)
 
@@ -35,7 +37,7 @@ class CircularDoublyLinkedList:
         """
         if self.head is None:
             return
-        
+
         node = self.head
         while True:
             yield node.data
@@ -81,9 +83,9 @@ class CircularDoublyLinkedList:
         """
         if index < 0 or index > len(self):
             raise IndexError("list index out of range.")
-        
+
         new_node: Node = Node(data)
-        
+
         if self.head is None:
             # First node - points to itself in both directions
             new_node.next_node = new_node
@@ -111,12 +113,12 @@ class CircularDoublyLinkedList:
             for _ in range(index):
                 assert temp is not None
                 temp = temp.next_node
-            
+
             assert temp is not None
             # Insert before temp
             prev_node = temp.prev_node
             assert prev_node is not None
-            
+
             new_node.next_node = temp
             new_node.prev_node = prev_node
             temp.prev_node = new_node
@@ -155,7 +157,7 @@ class CircularDoublyLinkedList:
 
         assert self.head is not None
         assert self.tail is not None
-        
+
         if self.head == self.tail:
             # Only one node
             delete_node = self.head
@@ -173,20 +175,20 @@ class CircularDoublyLinkedList:
             for _ in range(index):
                 assert delete_node is not None
                 delete_node = delete_node.next_node
-            
+
             assert delete_node is not None
             prev_node = delete_node.prev_node
             next_node = delete_node.next_node
-            
+
             assert prev_node is not None
             assert next_node is not None
-            
+
             prev_node.next_node = next_node
             next_node.prev_node = prev_node
-            
+
             if delete_node == self.tail:
                 self.tail = prev_node
-        
+
         return delete_node.data
 
     def is_empty(self) -> bool:
@@ -213,7 +215,7 @@ class CircularDoublyLinkedList:
         """
         if self.tail is None:
             return []
-        
+
         result = []
         node = self.tail
         while True:
@@ -292,8 +294,14 @@ def test_circular_doubly_linked_list() -> None:
 
     # Test circular property
     if circular_doubly_linked_list.head and circular_doubly_linked_list.tail:
-        assert circular_doubly_linked_list.head.prev_node == circular_doubly_linked_list.tail
-        assert circular_doubly_linked_list.tail.next_node == circular_doubly_linked_list.head
+        assert (
+            circular_doubly_linked_list.head.prev_node
+            == circular_doubly_linked_list.tail
+        )
+        assert (
+            circular_doubly_linked_list.tail.next_node
+            == circular_doubly_linked_list.head
+        )
 
 
 if __name__ == "__main__":
