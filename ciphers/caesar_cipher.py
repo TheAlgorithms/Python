@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 from string import ascii_letters
-import os
+
 import pyfiglet
+
 
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
@@ -71,8 +73,9 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     # Use the provided alphabet if given, otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
-    # Create a shifted version of the alphabet by the key
-    # This rotated alphabet will be used for mapping original characters to encrypted characters
+    # Create a shifted version of the alphabet by the key.
+    # This rotated alphabet will be used for mapping original characters
+    # to encrypted characters.
     shifted = alpha[key % len(alpha):] + alpha[:key % len(alpha)]
 
     # Create a translation table: original alphabet -> shifted alphabet
@@ -93,7 +96,7 @@ def encrypt_file(input_path: str, output_path: str, key: int, alphabet: str | No
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
-    with open(input_path, 'r') as fin, open(output_path, 'w') as fout:
+    with open(input_path) as fin, open(output_path, 'w') as fout:
         
         # Read the input file line by line to avoid loading the entire file into memory
         for line in fin:
@@ -187,7 +190,7 @@ def decrypt_file(input_path: str, output_path: str, key: int, alphabet: str | No
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
-    with open(input_path, 'r') as fin, open(output_path, 'w') as fout:
+    with open(input_path) as fin, open(output_path, 'w') as fout:
         
         # Read the input file line by line to avoid loading the entire file into memory
         for line in fin:
@@ -265,10 +268,9 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 
 
 if __name__ == "__main__":
+    banner = pyfiglet.figlet_format("Caesar Cipher", font="big")
+    print(banner)
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        banner = pyfiglet.figlet_format("Caesar Ciphar", font="big")
-        print(banner)
         print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
         print("Please select from the following options: ")
         print(*["1.Encrypt", "2.Encrypt a File", "3.Decrypt", "4.Decrypt a File", "5.BruteForce", "6.Quit", ], sep="\n")
