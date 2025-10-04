@@ -273,7 +273,8 @@ if __name__ == "__main__":
     while True:
         print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
         print("Please select from the following options: ")
-        print(*[
+        print(
+            *[
                 "1.Encrypt",
                 "2.Encrypt a File",
                 "3.Decrypt",
