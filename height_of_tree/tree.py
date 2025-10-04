@@ -1,18 +1,18 @@
 class Node:
-    def __init__(self, info): 
-        self.info = info  
-        self.left = None  
-        self.right = None 
+    def __init__(self, info):
+        self.info = info
+        self.left = None
+        self.right = None
 
     def __str__(self):
-        return str(self.info) 
+        return str(self.info)
 
 
 class BinarySearchTree:
-    def __init__(self): 
+    def __init__(self):
         self.root = None
 
-    def create(self, val):  
+    def create(self, val):
         if self.root == None:
             self.root = Node(val)
         else:
@@ -33,10 +33,12 @@ class BinarySearchTree:
                 else:
                     break
 
+
 def height(node):
     if node is None:
         return -1
     return 1 + max(height(node.left), height(node.right))
+
 
 def tree_height_from_list(data):
     bst = BinarySearchTree()
@@ -44,6 +46,8 @@ def tree_height_from_list(data):
         bst.create(x)
     return height(bst.root)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
