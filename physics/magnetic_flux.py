@@ -57,11 +57,9 @@ def magnetic_flux(
 ) -> float:
     """
     >>> magnetic_flux(50.0, 2, 0.0)
-    250.0
-    >>> magnetic_flux(1.5, 3.0, 60.0)
-    2.25
-    >>> magnetic_flux(1.5, 3.0, -60.0)
-    2.25
+    100.0
+    >>> magnetic_flux(50, 2, 60.0)
+    50.0
     >>> magnetic_flux(0.5, 4.0, 90.0)
     0.0
     >>> magnetic_flux(1, 2.0, 180.0)
