@@ -2,10 +2,6 @@ from __future__ import annotations
 from string import ascii_letters
 import os
 
-def show_banner(text="CaesarCipher", font="block"):
-    f = Figlet(font=font)
-    print(f.renderText(text))
-
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
