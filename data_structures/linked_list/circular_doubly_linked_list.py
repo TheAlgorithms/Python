@@ -31,7 +31,8 @@ class CircularDoublyLinkedList:
 
     def __iter__(self) -> Iterator[Any]:
         """
-        Iterate through all nodes in the Circular Doubly Linked List yielding their data.
+        Iterate through all nodes in the Circular Doubly Linked List yielding their
+        data.
         Yields:
             The data of each node in the linked list.
         """
@@ -41,6 +42,7 @@ class CircularDoublyLinkedList:
         node = self.head
         while True:
             yield node.data
+            assert node.next_node is not None
             node = node.next_node
             if node == self.head:
                 break
@@ -67,13 +69,15 @@ class CircularDoublyLinkedList:
 
     def insert_head(self, data: Any) -> None:
         """
-        Insert a node with the given data at the beginning of the Circular Doubly Linked List.
+        Insert a node with the given data at the beginning of the Circular Doubly
+        Linked List.
         """
         self.insert_nth(0, data)
 
     def insert_nth(self, index: int, data: Any) -> None:
         """
-        Insert the data of the node at the nth position in the Circular Doubly Linked List.
+        Insert the data of the node at the nth position in the Circular Doubly
+        Linked List.
         Args:
             index: The index at which the data should be inserted.
             data: The data to be inserted.
@@ -126,7 +130,8 @@ class CircularDoublyLinkedList:
 
     def delete_front(self) -> Any:
         """
-        Delete and return the data of the node at the front of the Circular Doubly Linked List.
+        Delete and return the data of the node at the front of the Circular Doubly
+        Linked List.
         Raises:
             IndexError: If the list is empty.
         """
@@ -134,7 +139,8 @@ class CircularDoublyLinkedList:
 
     def delete_tail(self) -> Any:
         """
-        Delete and return the data of the node at the end of the Circular Doubly Linked List.
+        Delete and return the data of the node at the end of the Circular Doubly
+        Linked List.
         Returns:
             Any: The data of the deleted node.
         Raises:
@@ -144,7 +150,8 @@ class CircularDoublyLinkedList:
 
     def delete_nth(self, index: int = 0) -> Any:
         """
-        Delete and return the data of the node at the nth position in Circular Doubly Linked List.
+        Delete and return the data of the node at the nth position in Circular
+        Doubly Linked List.
         Args:
             index (int): The index of the node to be deleted. Defaults to 0.
         Returns:
@@ -171,9 +178,10 @@ class CircularDoublyLinkedList:
             self.tail.next_node = self.head
         else:
             # Find the node to delete
-            delete_node: Node | None = self.head
+            delete_node = self.head
             for _ in range(index):
                 assert delete_node is not None
+                assert delete_node.next_node is not None
                 delete_node = delete_node.next_node
 
             assert delete_node is not None
@@ -220,6 +228,7 @@ class CircularDoublyLinkedList:
         node = self.tail
         while True:
             result.append(node.data)
+            assert node.prev_node is not None
             node = node.prev_node
             if node == self.tail:
                 break
