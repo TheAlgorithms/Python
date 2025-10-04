@@ -24,39 +24,38 @@
 # Space Complexity: O(1)
 # ---------------------------------------------------------------
 
-def max_profit(prices):
+from typing import List
+
+def max_profit(prices: List[int]) -> int:
     """
-    Calculate maximum profit from at most one buy-sell transaction.
+    Calculate the maximum profit from at most one buy-sell transaction.
 
     Parameters:
-        prices (list[int]): List of stock prices per day.
+        prices (List[int]): List of stock prices per day.
 
     Returns:
         int: Maximum profit possible. Returns 0 if no profit is possible.
-    """
 
-    # Edge case: no transaction possible if list is too short
+    Doctests:
+    >>> max_profit([7, 10, 1, 3, 6, 9, 2])
+    8
+    >>> max_profit([7, 6, 4, 3, 1])
+    0
+    >>> max_profit([1, 3, 6, 9, 11])
+    10
+    """
     if not prices or len(prices) < 2:
         return 0
 
-    # Initialize minimum price as the first day's price
     min_price_so_far = prices[0]
+    max_profit_val = 0
 
-    # Initialize maximum profit
-    max_profit = 0
-
-    # Traverse price list starting from the second day
     for price in prices[1:]:
-        # Update the minimum price seen so far
         min_price_so_far = min(min_price_so_far, price)
+        max_profit_val = max(max_profit_val, price - min_price_so_far)
 
-        # Calculate today's potential profit
-        profit_today = price - min_price_so_far
+    return max_profit_val
 
-        # Update max profit if today's profit is higher
-        max_profit = max(max_profit, profit_today)
-
-    return max_profit
 
 
 # ---------------------------------------------------------------
