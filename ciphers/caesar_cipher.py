@@ -93,12 +93,14 @@ def encrypt_file(
     the encrypted content to the output file.
     """
 
-    # Use the provided alphabet if given; otherwise default to ascii_letters (a-z + A-Z)
+    # Use the provided alphabet if given; 
+    # otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
     with open(input_path) as fin, open(output_path, "w") as fout:
-        # Read the input file line by line to avoid loading the entire file into memory
+        # Read the input file line by line to 
+        # avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
             encrypted_line = encrypt(line, key, alpha)
@@ -188,12 +190,14 @@ def decrypt_file(
     the decrypted content to the output file.
     """
 
-    # Use the provided alphabet if given; otherwise default to ascii_letters (a-z + A-Z)
+    # Use the provided alphabet if given
+    # otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
     with open(input_path) as fin, open(output_path, "w") as fout:
-        # Read the input file line by line to avoid loading the entire file into memory
+        # Read the input file line by line 
+        # to avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
             decrypted_line = decrypt(line, key, alpha)
