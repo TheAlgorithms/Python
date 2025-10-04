@@ -1,5 +1,6 @@
 from typing import Optional, List
 
+
 class Node:
     def __init__(self, info: int) -> None:
         self.info: int = info
@@ -12,6 +13,7 @@ class Node:
         '5'
         """
         return str(self.info)
+
 
 class BinarySearchTree:
     def __init__(self) -> None:
@@ -47,6 +49,7 @@ class BinarySearchTree:
                 else:
                     break
 
+
 def height(node: Optional[Node]) -> int:
     """
     >>> height(None)
@@ -64,6 +67,7 @@ def height(node: Optional[Node]) -> int:
         return -1
     return 1 + max(height(node.left), height(node.right))
 
+
 def tree_height_from_list(data: List[int]) -> int:
     """
     >>> tree_height_from_list([3,2,5,6])
@@ -78,6 +82,8 @@ def tree_height_from_list(data: List[int]) -> int:
         bst.create(x)
     return height(bst.root)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
