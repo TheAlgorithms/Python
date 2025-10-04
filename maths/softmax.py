@@ -1,7 +1,6 @@
 import numpy as np
 
 
-
 def softmax(vector: np.ndarray | list | tuple, axis: int | None = -1) -> np.ndarray:
     """
     Compute the softmax of `vector` along `axis` in a numerically-stable way.
