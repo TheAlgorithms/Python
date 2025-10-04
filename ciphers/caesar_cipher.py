@@ -2,6 +2,7 @@ from __future__ import annotations
 from string import ascii_letters
 import os
 import pyfiglet
+
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
