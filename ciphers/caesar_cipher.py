@@ -70,7 +70,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Use the provided alphabet if given, 
+    # Use the provided alphabet if given,
     # otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
@@ -95,13 +95,13 @@ def encrypt_file(
     the encrypted content to the output file.
     """
 
-    # Use the provided alphabet if given; 
+    # Use the provided alphabet if given;
     # otherwise default to ascii_letters (a-z + A-Z)
     alpha = alphabet or ascii_letters
 
     # Open input file for reading and output file for writing
     with open(input_path) as fin, open(output_path, "w") as fout:
-        # Read the input file line by line to 
+        # Read the input file line by line to
         # avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
@@ -198,7 +198,7 @@ def decrypt_file(
 
     # Open input file for reading and output file for writing
     with open(input_path) as fin, open(output_path, "w") as fout:
-        # Read the input file line by line 
+        # Read the input file line by line
         # to avoid loading the entire file into memory
         for line in fin:
             # Encrypt the current line using the encrypt function
