@@ -36,7 +36,6 @@ TYPE_CONVERSION = {
     "meter": "m",
     "kilometer": "km",
     "inch": "in",
-    "inche": "in",  # Trailing 's' has been stripped off
     "feet": "ft",
     "foot": "ft",
     "yard": "yd",
