@@ -30,22 +30,22 @@
     <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" height="20" alt="pre-commit">
   </a>
   <a href="https://docs.astral.sh/ruff/formatter/">
-    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: black">
+    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: ruff">
   </a>
 
 <!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education 📚</h3>
+  <h3>All algorithms implemented in Python – for education 📚</h3>
 </div>
 
 Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
 
 ## 🚀 Getting Started
 
-📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+📋 Please read through our [Contribution Guidelines](CONTRIBUTING.md) before contributing.
 
 ## 🌐 Community Channels
 
-We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
+We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great place to ask questions and get help. Join us and be part of the community!
 
 ## 📜 List of Algorithms
 
