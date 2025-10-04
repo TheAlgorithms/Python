@@ -1,11 +1,7 @@
 from __future__ import annotations
 from string import ascii_letters
 import os
-
-def show_banner(text="CaesarCipher", font="block"):
-    f = Figlet(font=font)
-    print(f.renderText(text))
-
+import pyfiglet
 def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
@@ -270,7 +266,10 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 if __name__ == "__main__":
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
+        banner = pyfiglet.figlet_format("Caesar Ciphar", font="big")
+        print(banner)
         print(f"\n{'-' * 10}\n Menu\n{'-' * 10}")
+        print("Please select from the following options: ")
         print(*["1.Encrypt", "2.Encrypt a File", "3.Decrypt", "4.Decrypt a File", "5.BruteForce", "6.Quit", ], sep="\n")
 
         # get user input
