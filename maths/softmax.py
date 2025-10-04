@@ -3,8 +3,7 @@ from typing import Optional, Union
 
 
 def softmax(
-    vector: Union[np.ndarray, list, tuple],
-    axis: Optional[int] = -1
+    vector: Union[np.ndarray, list, tuple], axis: Optional[int] = -1
 ) -> np.ndarray:
     """
     Compute the softmax of `vector` along `axis` in a numerically-stable way.
@@ -52,39 +51,39 @@ def softmax(
 # Example unit tests
 def _test_softmax():
     import numpy.testing as npt
-    
+
     # Typical 1D input
     result = softmax([1, 2, 3])
     npt.assert_almost_equal(result.sum(), 1)
-    
+
     # Typical 2D, axis=-1
     result = softmax([[1, 2, 3], [4, 5, 6]])
     npt.assert_almost_equal(result.sum(axis=-1).tolist(), [1, 1])
-    
+
     # Scalar input
     result = softmax([0])
     npt.assert_almost_equal(result, [1.0])
-    
+
     # Identical values
     result = softmax([5, 5])
     npt.assert_almost_equal(result, [0.5, 0.5])
-    
+
     # Large values for numeric stability
     result = softmax([1000, 1001])
     npt.assert_almost_equal(result.sum(), 1)
-    
+
     # axis=None flatten
     data = np.array([[1, 2], [3, 4]])
     flat_result = softmax(data, axis=None)
     npt.assert_almost_equal(flat_result.sum(), 1)
-    
+
     # Empty input error
     try:
         softmax([])
         assert False, "Expected ValueError for empty input"
     except ValueError:
         pass
-    
+
     print("All tests passed.")
 
 
