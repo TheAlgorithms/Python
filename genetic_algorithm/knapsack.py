@@ -1,6 +1,12 @@
 """Did you know that Genetic Algorithms can be used to quickly approximate
 combinatorial optimization problems such as knapsack?
 
+It is commonly known that combinatorial optimization problems can be solved using
+dynamic programming. It is lesser known that genetic algorithms (or evolutionary
+computing in general) can reach the best solution fairly quickly in a lot of cases.
+Otherwise, it can still approximate a very good solution (in life, good is good 
+enough).
+
 Genetic algorithms: https://en.wikipedia.org/wiki/Genetic_algorithm
 Evolutionary computation: https://en.wikipedia.org/wiki/Evolutionary_computation
 Knapsack problem: https://en.wikipedia.org/wiki/Knapsack_problem
