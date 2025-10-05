@@ -284,7 +284,7 @@ def run_ga(
 
         # Elitism
         sorted_indices = sorted(range(pop_size), key=lambda idx: fitnesses[idx])
-        elite_indices = sorted_indices[::-1][:elitism] # reverse and take top indices
+        elite_indices = sorted_indices[::-1][:elitism]  # reverse and take top indices
         elites = [population[idx][:] for idx in elite_indices]
 
         # New generation
