@@ -32,13 +32,13 @@ def partition(arr: list[int], low: int, high: int) -> int:
         1
     """
     pivot = arr[high]
-    i = low - 1
-    for j in range(low, high):
-        if arr[j] >= pivot:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    return i + 1
+    store_index = low - 1
+    for i in range(low, high):
+        if arr[i] >= pivot:
+            store_index += 1
+            arr[store_index], arr[i] = arr[i], arr[store_index]
+    arr[store_index + 1], arr[high] = arr[high], arr[store_index + 1]
+    return store_index + 1
 
 
 def kth_largest_element(arr: list[int], position: int) -> int:
@@ -99,12 +99,11 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         raise ValueError("Invalid value of 'position'")
     low, high = 0, len(arr) - 1
     while low <= high:
-        if low > len(arr) - 1 or high < 0:
-            return -1
         pivot_index = partition(arr, low, high)
-        if pivot_index == position - 1:
+        target_index = position - 1
+        if pivot_index == target_index:
             return arr[pivot_index]
-        elif pivot_index > position - 1:
+        elif pivot_index > target_index:
             high = pivot_index - 1
         else:
             low = pivot_index + 1
