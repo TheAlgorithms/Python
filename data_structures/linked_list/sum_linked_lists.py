@@ -4,6 +4,8 @@ contains a single digit, write a function that adds the two
 numbers and returns the sum as a linked list. The digits are
 stored in reverse order, meaning the 1's digit is at the
 head of the list.
+
+Explanation from GeeksForGeeks: https://www.geeksforgeeks.org/dsa/add-number-and-its-reverse-represented-by-linked-list/
 """
 
 from __future__ import annotations
