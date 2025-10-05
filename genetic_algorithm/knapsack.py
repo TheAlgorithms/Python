@@ -1,15 +1,17 @@
 """Did you know that Genetic Algorithms can be used to quickly approximate
 combinatorial optimization problems such as knapsack?
 
+Genetic algorithms: https://en.wikipedia.org/wiki/Genetic_algorithm
+Evolutionary computation: https://en.wikipedia.org/wiki/Evolutionary_computation
+Knapsack problem: https://en.wikipedia.org/wiki/Knapsack_problem
+
 Run doctests:
-    python -m doctest -v ga_knapsack.py
+    python -m doctest -v knapsack.py
 """
 
 import random
 from dataclasses import dataclass
 
-# Keep module-level RNG deterministic for examples that rely on random,
-# but individual doctests re-seed locally as needed.
 random.seed(42)
 
 # =========================== Problem setup: Knapsack ===========================
