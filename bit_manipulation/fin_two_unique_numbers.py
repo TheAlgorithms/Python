@@ -1,3 +1,4 @@
+#Reference : https://www.geeksforgeeks.org/dsa/find-two-non-repeating-elements-in-an-array-of-repeating-elements
 def find_two_unique_numbers(arr: list[int]) -> tuple[int,int]:
     """
     Given a list of integers where every elemnt appears twice except for two numbers,
