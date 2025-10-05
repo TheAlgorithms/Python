@@ -1,7 +1,7 @@
 # Reference : https://www.geeksforgeeks.org/dsa/find-two-non-repeating-elements-in-an-array-of-repeating-elements
 def find_two_unique_numbers(arr: list[int]) -> tuple[int, int]:
     """
-    Given a list of integers where every elemnt appears twice except for two numbers,
+    Given a list of integers where every element appears twice except for two numbers,
     find the two numbers that appear only once.
 
     this method returns the tuple of two numbers that appear only once using bitwise XOR
@@ -49,7 +49,8 @@ def find_two_unique_numbers(arr: list[int]) -> tuple[int, int]:
             num1 ^= number
         else:
             num2 ^= number
-    return tuple(sorted((num1, num2)))
+    a,b=sorted((num1,num2))
+    return a,b
 
 
 if __name__ == "__main__":
