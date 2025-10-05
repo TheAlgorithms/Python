@@ -33,7 +33,6 @@ Check it out:
 """
 
 
-
 def check_args(final_flux: float, initinal_flux: float, time_interval: float) -> None:
     """
     Check that the arguments are valid
@@ -55,9 +54,7 @@ def check_args(final_flux: float, initinal_flux: float, time_interval: float) ->
 
 
 def induced_electromotive_force(
-        final_flux: float,
-        initinal_flux: float,
-        time_interval: float
+    final_flux: float, initinal_flux: float, time_interval: float
 ) -> float:
     """
     >>> induced_electromotive_force(50.0, 20, 3.0)
