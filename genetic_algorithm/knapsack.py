@@ -89,7 +89,6 @@ OVERWEIGHT_PENALTY_FACTOR = 10
 
 genome_t = list[int]  # An index list where 1 means item is included, 0 means excluded
 
-
 def evaluate(genome: genome_t, items: list[Item], capacity: int) -> tuple[int, int]:
     """
     Calculates fitness (value) and weight of a candidate solution. If overweight,
