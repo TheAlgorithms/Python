@@ -142,7 +142,9 @@ def random_genome(length: int) -> genome_t:
     return [random.randint(0, 1) for _ in range(length)]
 
 
-def selection(population: list[genome_t], fitnesses: list[int], tournament_k: int) -> genome_t:
+def selection(
+    population: list[genome_t], fitnesses: list[int], tournament_k: int
+) -> genome_t:
     """
     Performs tournament selection to choose a genome from the population.
 
@@ -196,7 +198,9 @@ def crossover(
     if random.random() > p_crossover or min_length < 2:
         return genome_1[:], genome_2[:]
     cutoff_point = random.randint(1, min_length - 1)
-    return genome_1[:cutoff_point] + genome_2[cutoff_point:], genome_2[:cutoff_point] + genome_1[cutoff_point:]
+    return genome_1[:cutoff_point] + genome_2[cutoff_point:], genome_2[
+        :cutoff_point
+    ] + genome_1[cutoff_point:]
 
 
 def mutation(genome: genome_t, p_mutation: float) -> genome_t:
