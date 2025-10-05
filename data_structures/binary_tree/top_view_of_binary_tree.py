@@ -63,7 +63,7 @@ root.right.left = TreeNode(9)
 solution = Solution()
 
 # Get the top view traversal
-top_view = solution.topView(root)
+top_view = solution.top_view(root)
 
 # Print the result
 print("Top View Traversal:")
