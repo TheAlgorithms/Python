@@ -61,7 +61,7 @@ def gradient_descent(
 
         if i % (iterations // 10) == 0:  # log occasionally
             cost = np.sum(errors**2) / (2 * m)
-            print(f"Iteration {i+1}: Error = {cost:.5f}")
+            print(f"Iteration {i + 1}: Error = {cost:.5f}")
 
     return theta
 
@@ -96,4 +96,3 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
-
