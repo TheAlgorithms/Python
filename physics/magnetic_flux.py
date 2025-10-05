@@ -1,8 +1,9 @@
 """
-Magnetic flux (Φ) is a scalar quantity that measures the number of magnetic field lines (B)
-that pass through a closed area (A). Furthermore, the magnetic flux depends on the angle
-formed between the magnetic field and the normal line (N) in area A. Check out the formula
-used to calculate this flux:
+________________________________________________________________________________________
+Magnetic flux (Φ) is a scalar quantity that measures the number of magnetic field
+lines (B) that pass through a closed area (A). Furthermore, the magnetic flux depends
+on the angle formed between the magnetic field and the normal line (N) in area A.
+Check out the formula used to calculate this flux:
  ------------
  | Φ = B.A.cos(θ) |
  ------------
@@ -15,8 +16,7 @@ A = area (square meter (m²))
 (Description adapted from https://en.wikipedia.org/wiki/Ideal_gas_law )
 """
 
-from math import cos, radians as deg_to_rad
-
+from math import cos, radians
 
 def check_args(magnetic_field: float, area: float, angle: float) -> None:
     """
@@ -50,8 +50,8 @@ def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     """
     >>> magnetic_flux(50.0, 2, 0.0)
     100.0
-    >>> magnetic_flux(1.5, 3.0, 60.0)
-    2.25
+    >>> magnetic_flux(50, 2, 60.0)
+    50.0
     >>> magnetic_flux(0.5, 4.0, 90.0)
     0.0
     >>> magnetic_flux(1, 2.0, 180.0)
@@ -67,8 +67,8 @@ def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     ... ValueError: Invalid area. Should be a positive number.
     """
     check_args(magnetic_field, area, angle)
-    radians = deg_to_rad(angle)
-    return magnetic_field * area * cos(radians)
+    rad = radians(angle)
+    return magnetic_field * area * cos(rad)
 
 
 if __name__ == "__main__":
