@@ -116,6 +116,35 @@ def euler_phi(n: int) -> int:
     return int(s)
 
 
+def isPrime(n: int) -> bool:
+    """Checks if a number is prime.
+    >>> isPrime(11)
+    True
+    >>> isPrime(15)
+    False
+    >>> isPrime(1)
+    False
+    Traceback (most recent call last):
+        ...
+    ValueError: Only integers greater than 1 can be prime
+    >>> isPrime(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only integers greater than 1 can be prime
+    """
+    if n<=1:
+        raise ValueError("Only integers greater than 1 can be prime")
+    if n==2 or n==3:
+        return True
+    if n%2==0 or n%3==0:
+        return False
+    for i in range(5, int(math.sqrt(n)) + 1, 6):
+        if n%i==0 or n%(i+2)==0:
+            return False
+    
+    return True
+
+
 if __name__ == "__main__":
     import doctest
 
