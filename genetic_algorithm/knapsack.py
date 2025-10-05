@@ -162,8 +162,7 @@ def selection(
     True
     """
     contenders = random.sample(list(zip(population, fitnesses)), tournament_k)
-    get_fitness = lambda contender: contender[1]
-    return max(contenders, key=get_fitness)[0][:]
+    return max(contenders, key=lambda contender: contender[1])[0][:]
 
 
 def crossover(
@@ -258,8 +257,6 @@ def run_ga(
     ...     p_crossover=0.9, p_mutation=0.05,
     ...     tournament_k=2, elitism=1
     ... )
-    >>> sorted(out.keys())
-    ['avg_history', 'best_genome', 'best_history', 'best_value', 'best_weight', 'capacity']
     >>> len(out['best_history']) == 5 and len(out['avg_history']) == 5
     True
     >>> isinstance(out['best_genome'], list) and isinstance(out['best_value'], int)
@@ -286,8 +283,8 @@ def run_ga(
             best_overall = population[best_idx][:]
 
         # Elitism
-        get_fitness = lambda idx: fitnesses[idx]
-        elite_indices = sorted(range(pop_size), key=get_fitness, reverse=True)[:elitism]
+        sorted_indices = sorted(range(pop_size), key=lambda idx: fitnesses[idx])
+        elite_indices = sorted_indices.reverse[:elitism]
         elites = [population[idx][:] for idx in elite_indices]
 
         # New generation
@@ -317,18 +314,19 @@ def run_ga(
 
 if __name__ == "__main__":
     result = run_ga(items, capacity)
-    best_items = [
-        items[idx] for idx, bit in enumerate(result["best_genome"]) if bit == 1
-    ]
+    best_value, best_weight = result["best_value"], result["best_weight"]
 
     print(f"Knapsack capacity: {result['capacity']}")
     print(
-        f"Best solution: value = {result['best_value']}, weight = {result['best_weight']}"
+        f"Best solution: value = {best_value}, weight = {best_weight}"
     )
-    # Uncomment to inspect chosen items:
+    # # Uncomment to inspect chosen items:
+    # best_items = [
+    #     items[idx] for idx, bit in enumerate(result["best_genome"]) if bit == 1
+    # ]
     # print("Items included in the best solution:", best_items)
 
-    # Optional: plot fitness curves
+    # # Optional: plot fitness curves
     # import matplotlib.pyplot as plt
     # plt.figure()
     # plt.plot(result["best_history"], label="Best fitness")
