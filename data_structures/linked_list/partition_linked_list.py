@@ -62,7 +62,7 @@ def linked_list_to_list(head: ListNode | None) -> list[int]:
     return values
 
 
-def partition_linked_list(head: ListNode | None, x: int) -> ListNode | None:
+def partition_linked_list(head: ListNode | None, partition: int) -> ListNode | None:
     """
     Args:
         head: The head of the linked list.
@@ -108,7 +108,7 @@ def partition_linked_list(head: ListNode | None, x: int) -> ListNode | None:
 
     current: ListNode | None = head
     while current:
-        if current.value < x:
+        if current.value < partition:
             left.next_node = current
             left = current
         else:
