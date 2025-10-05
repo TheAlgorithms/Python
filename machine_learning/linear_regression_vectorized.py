@@ -115,4 +115,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()  # runs all doctests
-    main()             # runs main function
+    main()  # runs main function
