@@ -63,7 +63,10 @@ def collect_dataset() -> np.ndarray:
 
 
 def gradient_descent(
-    features: np.ndarray, labels: np.ndarray, alpha: float = 0.000155, iterations: int = 100000
+    features: np.ndarray,
+    labels: np.ndarray,
+    alpha: float = 0.000155,
+    iterations: int = 100000,
 ) -> np.ndarray:
     """Run gradient descent in a fully vectorized form.
 
