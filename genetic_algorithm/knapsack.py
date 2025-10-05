@@ -317,9 +317,7 @@ if __name__ == "__main__":
     best_value, best_weight = result["best_value"], result["best_weight"]
 
     print(f"Knapsack capacity: {result['capacity']}")
-    print(
-        f"Best solution: value = {best_value}, weight = {best_weight}"
-    )
+    print(f"Best solution: value = {best_value}, weight = {best_weight}")
     # # Uncomment to inspect chosen items:
     # best_items = [
     #     items[idx] for idx, bit in enumerate(result["best_genome"]) if bit == 1
