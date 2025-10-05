@@ -64,7 +64,7 @@ def induced_electromotive_force(
     >>> induced_electromotive_force(30.0, 50.0, 10)
     2.0
     >>> induced_electromotive_force(100, 100.0, 20.0)
-    0.0
+    -0.0
     >>> induced_electromotive_force(10.0, 2.0, -2.0)
     Traceback (most recent call last):
         ...
