@@ -11,7 +11,7 @@ class TreeNode:
 
 class Solution:
     # Function to return the top view of the binary tree
-    def topView(self, root):
+    def top_view(self, root):
         # List to store the result
         ans = []
 
@@ -22,7 +22,7 @@ class Solution:
         # Dictionary to store the top view nodes based on their vertical positions
         mpp = {}
 
-        # Queue for BFS traversal, each element is a pair containing node and its vertical position
+        # Queue for BFS traversal
         q = deque([(root, 0)])
 
         # BFS traversal
@@ -30,7 +30,7 @@ class Solution:
             # Retrieve the node and its vertical position from the front of the queue
             node, line = q.popleft()
 
-            # If the vertical position is not already in the map, add the node's data to the map
+
             if line not in mpp:
                 mpp[line] = node.data
 
@@ -41,7 +41,7 @@ class Solution:
 
             # Process right child
             if node.right:
-                # Push the right child with an increased vertical position into the queue
+             
                 q.append((node.right, line + 1))
 
         # Transfer values from the map to the result list
