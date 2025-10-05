@@ -41,11 +41,7 @@ def collect_dataset() -> np.ndarray:
 
 
 def run_steep_gradient_descent(
-    data_x: np.ndarray,
-    data_y: np.ndarray,
-    len_data: int,
-    alpha: float,
-    theta: np.ndarray
+    data_x: np.ndarray, data_y: np.ndarray, len_data: int, alpha: float, theta: np.ndarray
 ) -> np.ndarray:
     """Run one step of steep gradient descent.
 
