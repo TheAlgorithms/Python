@@ -68,7 +68,7 @@ def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     """
     check_args(magnetic_field, area, angle)
     rad = radians(angle)
-    return magnetic_field * area * cos(rad)
+    return round(magnetic_field * area * cos(rad), 1)
 
 
 if __name__ == "__main__":
