@@ -30,7 +30,6 @@ class Solution:
             # Retrieve the node and its vertical position from the front of the queue
             node, line = q.popleft()
 
-
             if line not in mpp:
                 mpp[line] = node.data
 
@@ -41,7 +40,6 @@ class Solution:
 
             # Process right child
             if node.right:
-             
                 q.append((node.right, line + 1))
 
         # Transfer values from the map to the result list
