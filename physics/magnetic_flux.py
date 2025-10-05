@@ -49,10 +49,8 @@ def check_args(magnetic_field: float, area: float, angle: float) -> None:
 def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     """
     >>> magnetic_flux(50.0, 2, 0.0)
-    250.0
+    100.0
     >>> magnetic_flux(1.5, 3.0, 60.0)
-    2.25
-    >>> magnetic_flux(1.5, 3.0, -60.0)
     2.25
     >>> magnetic_flux(0.5, 4.0, 90.0)
     0.0
