@@ -233,7 +233,7 @@ def run_ga(
     p_mutation: float = MUTATION_PROBABILITY,
     tournament_k: int = TOURNAMENT_K,
     elitism: int = ELITISM,
-):
+) -> dict:
     """
     Runs the genetic algorithm to (approximately) solve the knapsack problem.
 
