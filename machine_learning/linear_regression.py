@@ -46,7 +46,7 @@ def sum_of_square_error(data_x, data_y, theta):
     n = data_x.shape[0]
     predictions = data_x @ theta.T
     errors = predictions.flatten() - data_y
-    return np.sum(errors ** 2) / (2 * n)
+    return np.sum(errors**2) / (2 * n)
 
 
 def run_linear_regression(data_x, data_y, iterations=100000, alpha=0.000155):
