@@ -20,7 +20,7 @@ emoji_dict = {
     "sad": "sad_emoji.webp",
     "angry": "angry_emoji.jpg",
     "surprise": "surprise_emoji.png",
-    "neutral": "neutral_emoji.webp"
+    "neutral": "neutral_emoji.webp",
 }
 
 while True:
@@ -38,11 +38,11 @@ while True:
         # Use DeepFace to analyze the face in the frame
         try:
             analysis = DeepFace.analyze(
-                frame, 
-                actions=['emotion'], 
-                enforce_detection=False  # ✅ FIXED: Removed 'model_name'
+                frame,
+                actions=["emotion"],
+                enforce_detection=False,  # ✅ FIXED: Removed 'model_name'
             )
-            detected_emotion = analysis[0]['dominant_emotion']
+            detected_emotion = analysis[0]["dominant_emotion"]
 
             # Add the latest emotion to the queue
             emotion_queue.append(detected_emotion)
@@ -63,8 +63,15 @@ while True:
             frame = cv2.cvtColor(np.array(frame_pil), cv2.COLOR_RGB2BGR)
 
             # Display detected emotion text
-            cv2.putText(frame, detected_emotion.capitalize(), (50, 180),
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            cv2.putText(
+                frame,
+                detected_emotion.capitalize(),
+                (50, 180),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (0, 255, 0),
+                2,
+            )
 
         except Exception as e:
             print("Error:", e)
@@ -73,7 +80,7 @@ while True:
     cv2.imshow("Live Emoji Detection", frame)
 
     # Press 'q' to exit
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 cap.release()
