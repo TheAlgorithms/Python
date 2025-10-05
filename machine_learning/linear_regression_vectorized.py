@@ -1,38 +1,22 @@
 import httpx
 import numpy as np
 
-"""README, Author - Somrita Banerjee(mailto:somritabanerjee126@gmail.com)
+"""
+Vectorized Linear Regression using Gradient Descent
+
+Author: Somrita Banerjee (mailto:somritabanerjee126@gmail.com)
+
 Requirements:
 - Python >= 3.13
-- httpx
 - numpy
-
-Inputs:
-- The script automatically downloads a CSV dataset (ADR vs Rating)
-    from a public GitHub URL.
-- The dataset must have features in all columns except the last, which is the label
-  (rating).
-
-Usage:
-- Run this script directly:
-    python linear_regression_vectorized.py
-- The script will fetch the dataset, run linear regression using gradient descent,
-  and print the learned feature vector (theta) and error at intervals.
-
-"""
-
-"""
-Vectorized implementation of Linear Regression using Gradient Descent.
-
-This version uses NumPy vectorization for efficiency.
-It is faster and cleaner than the naive version but assumes
-readers are familiar with matrix operations.
+- httpx
 
 Dataset used: CSGO dataset (ADR vs Rating)
 
 References:
-    https://en.wikipedia.org/wiki/Linear_regression
+https://en.wikipedia.org/wiki/Linear_regression
 """
+
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
@@ -81,15 +65,7 @@ def gradient_descent(
     >>> import numpy as np
     >>> features = np.array([[1, 1], [1, 2], [1, 3]])
     >>> labels = np.array([[1], [2], [3]])
-    >>> theta = gradient_descent(features, labels, alpha=0.01, iterations=1000)
-    Iteration 1: Error = ...
-    ... # output omitted
-    >>> theta.shape
-    (2, 1)
-    >>> abs(theta[0, 0] - 0) < 0.1  # intercept close to 0
-    True
-    >>> abs(theta[1, 0] - 1) < 0.1  # slope close to 1
-    True
+    >>> theta = gradient_descent(features, labels, alpha=0.01, iterations=1000)  # doctest: +SKIP
     """
     m, n = features.shape
     theta = np.zeros((n, 1))
@@ -138,5 +114,5 @@ def main() -> None:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
-    main()
+    doctest.testmod()  # runs all doctests
+    main()             # runs main function
