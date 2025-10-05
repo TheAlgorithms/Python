@@ -6,6 +6,9 @@ It is faster and cleaner than the naive version but assumes
 readers are familiar with matrix operations.
 
 Dataset used: CSGO dataset (ADR vs Rating)
+
+References:
+    https://en.wikipedia.org/wiki/Linear_regression
 """
 
 # /// script

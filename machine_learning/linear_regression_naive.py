@@ -6,6 +6,9 @@ designed for educational clarity. It shows the step-by-step
 gradient descent update and error calculation.
 
 Dataset used: CSGO dataset (ADR vs Rating)
+
+References:
+https://en.wikipedia.org/wiki/Linear_regression
 """
 
 # /// script
