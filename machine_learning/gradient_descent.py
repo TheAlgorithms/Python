@@ -4,6 +4,7 @@ function.
 """
 
 import numpy as np
+from typing import Tuple, List, Union
 
 # List of input, output pairs
 train_data = (
@@ -19,7 +20,7 @@ m = len(train_data)
 LEARNING_RATE = 0.009
 
 
-def _error(example_no, data_set="train"):
+def _error(example_no: int, data_set: str = "train") -> float:
     """
     :param data_set: train data or test data
     :param example_no: example number whose error has to be checked
@@ -30,7 +31,7 @@ def _error(example_no, data_set="train"):
     )
 
 
-def _hypothesis_value(data_input_tuple):
+def _hypothesis_value(data_input_tuple: Tuple[float, ...]) -> float:
     """
     Calculates hypothesis function value for a given input
     :param data_input_tuple: Input tuple of a particular example
@@ -46,7 +47,7 @@ def _hypothesis_value(data_input_tuple):
     return hyp_val
 
 
-def output(example_no, data_set):
+def output(example_no: int, data_set: str) -> float:
     """
     :param data_set: test data or train data
     :param example_no: example whose output is to be fetched
@@ -59,7 +60,7 @@ def output(example_no, data_set):
     return None
 
 
-def calculate_hypothesis_value(example_no, data_set):
+def calculate_hypothesis_value(example_no: int, data_set: str) -> float:
     """
     Calculates hypothesis value for a given example
     :param data_set: test data or train_data
@@ -73,7 +74,7 @@ def calculate_hypothesis_value(example_no, data_set):
     return None
 
 
-def summation_of_cost_derivative(index, end=m):
+def summation_of_cost_derivative(index: int, end: int = m) -> float:
     """
     Calculates the sum of cost function derivative
     :param index: index wrt derivative is being calculated
@@ -91,7 +92,7 @@ def summation_of_cost_derivative(index, end=m):
     return summation_value
 
 
-def get_cost_derivative(index):
+def get_cost_derivative(index: int) -> float:
     """
     :param index: index of the parameter vector wrt to derivative is to be calculated
     :return: derivative wrt to that index
@@ -102,7 +103,7 @@ def get_cost_derivative(index):
     return cost_derivative_value
 
 
-def run_gradient_descent():
+def run_gradient_descent() -> None:
     global parameter_vector
     # Tune these values to set a tolerance value for predicted output
     absolute_error_limit = 0.000002
@@ -127,13 +128,89 @@ def run_gradient_descent():
     print(("Number of iterations:", j))
 
 
-def test_gradient_descent():
+def test_gradient_descent() -> None:
     for i in range(len(test_data)):
         print(("Actual output value:", output(i, "test")))
         print(("Hypothesis output:", calculate_hypothesis_value(i, "test")))
 
 
+def run_gradient_descent_vectorized() -> None:
+    """
+    Vectorized implementation of gradient descent for a linear hypothesis
+    using NumPy arrays for efficient matrix operations.
+    """
+    global parameter_vector
+
+    # Convert training data into NumPy arrays
+    X = np.array([x for x, _ in train_data])
+    y = np.array([y for _, y in train_data])
+
+    # Add bias term (column of ones)
+    X = np.hstack((np.ones((X.shape[0], 1)), X))
+
+    # Convert parameter vector to NumPy array
+    theta = np.array(parameter_vector, dtype=float)
+
+    absolute_error_limit = 0.000002
+    relative_error_limit = 0
+    j = 0
+
+    while True:
+        j += 1
+
+        # Compute predictions
+        predictions = X @ theta
+
+        # Compute errors
+        errors = predictions - y
+
+        # Compute gradient
+        gradient = (X.T @ errors) / len(y)
+
+        # Update parameters
+        new_theta = theta - LEARNING_RATE * gradient
+
+        # Check for convergence
+        if np.allclose(
+            theta,
+            new_theta,
+            atol=absolute_error_limit,
+            rtol=relative_error_limit,
+        ):
+            break
+
+        theta = new_theta
+
+    parameter_vector = theta.tolist()
+    print(("Number of iterations (vectorized):", j))
+
+
+def test_gradient_descent_vectorized() -> None:
+    """
+    Tests the vectorized gradient descent implementation on test data
+    and prints predicted vs actual outputs.
+    """
+    X_test = np.array([x for x, _ in test_data])
+    y_test = np.array([y for _, y in test_data])
+
+    # Add bias term
+    X_test = np.hstack((np.ones((X_test.shape[0], 1)), X_test))
+
+    theta = np.array(parameter_vector, dtype=float)
+    predictions = X_test @ theta
+
+    for i in range(len(test_data)):
+        print(("Actual output value:", y_test[i]))
+        print(("Hypothesis output:", predictions[i]))
+
+
 if __name__ == "__main__":
+    print("Running naive (loop-based) gradient descent...\n")
     run_gradient_descent()
     print("\nTesting gradient descent for a linear hypothesis function.\n")
     test_gradient_descent()
+
+    print("\nRunning vectorized gradient descent using NumPy...\n")
+    run_gradient_descent_vectorized()
+    print("\nTesting vectorized gradient descent.\n")
+    test_gradient_descent_vectorized()
