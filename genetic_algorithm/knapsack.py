@@ -318,7 +318,7 @@ def run_ga(
 
 if __name__ == "__main__":
     result = run_ga(items, capacity)
-    best_items = [items[i] for i, bit in enumerate(result["best_genome"]) if bit == 1]
+    best_items = [items[idx] for idx, bit in enumerate(result["best_genome"]) if bit == 1]
 
     print(f"Knapsack capacity: {result['capacity']}")
     print(
