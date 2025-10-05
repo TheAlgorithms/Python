@@ -14,21 +14,23 @@ random.seed(42)
 
 # =========================== Problem setup: Knapsack ===========================
 
-KNAPSACK_N_ITEMS: int = 42                   # Number of items in the knapsack problem
-KNAPSACK_VALUE_RANGE: tuple[int, int] = (10, 100)        # Range of item values
-KNAPSACK_WEIGHT_RANGE: tuple[int, int] = (5, 50)         # Range of item weights
-KNAPSACK_CAPACITY_RATIO: float = 0.5           # Capacity as a fraction of total weight
+KNAPSACK_N_ITEMS: int = 42  # Number of items in the knapsack problem
+KNAPSACK_VALUE_RANGE: tuple[int, int] = (10, 100)  # Range of item values
+KNAPSACK_WEIGHT_RANGE: tuple[int, int] = (5, 50)  # Range of item weights
+KNAPSACK_CAPACITY_RATIO: float = 0.5  # Capacity as a fraction of total weight
+
 
 @dataclass
 class Item:
     value: int
     weight: int
 
+
 def generate_knapsack_instance(
     n_items: int,
     value_range: tuple[int, int],
     weight_range: tuple[int, int],
-    capacity_ratio: float
+    capacity_ratio: float,
 ) -> tuple[list[Item], int]:
     """
     Generates a random knapsack problem instance.
@@ -63,12 +65,13 @@ def generate_knapsack_instance(
     capacity = int(sum(it.weight for it in items) * capacity_ratio)
     return items, capacity
 
+
 # Example instance (guarded by __main__ below for printing)
 items, capacity = generate_knapsack_instance(
     n_items=KNAPSACK_N_ITEMS,
     value_range=KNAPSACK_VALUE_RANGE,
     weight_range=KNAPSACK_WEIGHT_RANGE,
-    capacity_ratio=KNAPSACK_CAPACITY_RATIO
+    capacity_ratio=KNAPSACK_CAPACITY_RATIO,
 )
 
 # ============================== GA Representation ==============================
@@ -85,6 +88,7 @@ ELITISM = 2
 OVERWEIGHT_PENALTY_FACTOR = 10
 
 Genome = list[int]  # An index list where 1 means item is included, 0 means excluded
+
 
 def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int]:
     """
@@ -117,7 +121,7 @@ def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int
             total_value += item.value
             total_weight += item.weight
     if total_weight > capacity:
-        overflow = (total_weight - capacity)
+        overflow = total_weight - capacity
         total_value = max(0, total_value - overflow * OVERWEIGHT_PENALTY_FACTOR)
     return total_value, total_weight
 
@@ -136,6 +140,7 @@ def random_genome(n: int) -> Genome:
     (5, True)
     """
     return [random.randint(0, 1) for _ in range(n)]
+
 
 def selection(population: list[Genome], fitnesses: list[int], k: int) -> Genome:
     """
@@ -190,6 +195,7 @@ def crossover(a: Genome, b: Genome, p_crossover: float) -> tuple[Genome, Genome]
         return a[:], b[:]
     cutoff_point = random.randint(1, min_length - 1)
     return a[:cutoff_point] + b[cutoff_point:], b[:cutoff_point] + a[cutoff_point:]
+
 
 def mutation(g: Genome, p_mutation: float) -> Genome:
     """
@@ -301,6 +307,7 @@ def run_ga(
         "avg_history": avg_history,
     }
 
+
 # ================================ Script entry =================================
 
 if __name__ == "__main__":
@@ -308,7 +315,9 @@ if __name__ == "__main__":
     best_items = [items[i] for i, bit in enumerate(result["best_genome"]) if bit == 1]
 
     print(f"Knapsack capacity: {result['capacity']}")
-    print(f"Best solution: value = {result['best_value']}, weight = {result['best_weight']}")
+    print(
+        f"Best solution: value = {result['best_value']}, weight = {result['best_weight']}"
+    )
     # Uncomment to inspect chosen items:
     # print("Items included in the best solution:", best_items)
 
