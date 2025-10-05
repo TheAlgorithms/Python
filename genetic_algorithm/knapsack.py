@@ -257,7 +257,7 @@ def run_ga(
     ...     p_crossover=0.9, p_mutation=0.05,
     ...     tournament_k=2, elitism=1
     ... )
-    >>> len(out['best_history']) == 5 and len(out['avg_history']) == 5
+    >>> len(out['best_fitness_history']) == 5 and len(out['avg_fitness_history']) == 5
     True
     >>> isinstance(out['best_genome'], list) and isinstance(out['best_value'], int)
     True
