@@ -41,7 +41,11 @@ def collect_dataset() -> np.ndarray:
 
 
 def run_steep_gradient_descent(
-    data_x: np.ndarray, data_y: np.ndarray, len_data: int, alpha: float, theta: np.ndarray
+    data_x: np.ndarray,
+    data_y: np.ndarray,
+    len_data: int,
+    alpha: float,
+    theta: np.ndarray,
 ) -> np.ndarray:
     """Run one step of steep gradient descent.
 
@@ -70,10 +74,7 @@ def run_steep_gradient_descent(
 
 
 def sum_of_square_error(
-    data_x: np.ndarray,
-    data_y: np.ndarray,
-    len_data: int,
-    theta: np.ndarray
+    data_x: np.ndarray, data_y: np.ndarray, len_data: int, theta: np.ndarray
 ) -> float:
     """Return sum of square error for error calculation.
 
@@ -88,10 +89,7 @@ def sum_of_square_error(
     return float(error)
 
 
-def run_linear_regression(
-    data_x: np.ndarray,
-    data_y: np.ndarray
-) -> np.ndarray:
+def run_linear_regression(data_x: np.ndarray, data_y: np.ndarray) -> np.ndarray:
     """Run linear regression using gradient descent.
 
     :param data_x: dataset features
@@ -114,10 +112,7 @@ def run_linear_regression(
     return theta
 
 
-def mean_absolute_error(
-    predicted_y: np.ndarray,
-    original_y: np.ndarray
-) -> float:
+def mean_absolute_error(predicted_y: np.ndarray, original_y: np.ndarray) -> float:
     """Return mean absolute error.
 
     >>> predicted_y = np.array([3, -0.5, 2, 7])
