@@ -7,17 +7,24 @@ random.seed(42)
 
 # =========================== Problem setup: Knapsack ===========================
 
-KNAPSACK_N_ITEMS = 42                   # Number of items in the knapsack problem
-KNAPSACK_VALUE_RANGE = (10, 100)        # Range of item values
-KNAPSACK_WEIGHT_RANGE = (5, 50)         # Range of item weights
-KNAPSACK_CAPACITY_RATIO = 0.5           # Capacity as a fraction of total weight
+KNAPSACK_N_ITEMS = 42  # Number of items in the knapsack problem
+KNAPSACK_VALUE_RANGE = (10, 100)  # Range of item values
+KNAPSACK_WEIGHT_RANGE = (5, 50)  # Range of item weights
+KNAPSACK_CAPACITY_RATIO = 0.5  # Capacity as a fraction of total weight
+
 
 @dataclass
 class Item:
     value: int
     weight: int
 
-def generate_knapsack_instance(n_items: int, value_range: tuple[int, int], weight_range: tuple[int, int], capacity_ratio=float) -> tuple[list[Item], int]:
+
+def generate_knapsack_instance(
+    n_items: int,
+    value_range: tuple[int, int],
+    weight_range: tuple[int, int],
+    capacity_ratio=float,
+) -> tuple[list[Item], int]:
     """Generates a random knapsack problem instance."""
     items = []
     for _ in range(n_items):
@@ -28,8 +35,13 @@ def generate_knapsack_instance(n_items: int, value_range: tuple[int, int], weigh
     capacity = int(sum(it.weight for it in items) * capacity_ratio)
     return items, capacity
 
-items, capacity = generate_knapsack_instance(n_items=KNAPSACK_N_ITEMS, value_range=KNAPSACK_VALUE_RANGE, weight_range=KNAPSACK_WEIGHT_RANGE, capacity_ratio=KNAPSACK_CAPACITY_RATIO)
 
+items, capacity = generate_knapsack_instance(
+    n_items=KNAPSACK_N_ITEMS,
+    value_range=KNAPSACK_VALUE_RANGE,
+    weight_range=KNAPSACK_WEIGHT_RANGE,
+    capacity_ratio=KNAPSACK_CAPACITY_RATIO,
+)
 
 
 # ============================== GA Representation ==============================
@@ -45,7 +57,8 @@ ELITISM = 2
 
 OVERWEIGHT_PENALTY_FACTOR = 10
 
-Genome = list[int] # An index list where 1 means item is included, 0 means excluded
+Genome = list[int]  # An index list where 1 means item is included, 0 means excluded
+
 
 def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int]:
     """Evaluation function - calculates the fitness of each candidate based on total value and weight."""
@@ -57,13 +70,15 @@ def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int
             total_weight += item.weight
     if total_weight > capacity:
         # Penalize overweight solutions: return small value scaled by overflow
-        overflow = (total_weight - capacity)
+        overflow = total_weight - capacity
         total_value = max(0, total_value - overflow * OVERWEIGHT_PENALTY_FACTOR)
     return total_value, total_weight
 
+
 def random_genome(n: int) -> Genome:
     """Generates a random genome of length n."""
-    return [random.randint(0,1) for _ in range(n)]
+    return [random.randint(0, 1) for _ in range(n)]
+
 
 def selection(population: list[Genome], fitnesses: list[int], k: int) -> Genome:
     """Performs tournament selection to choose genomes from the population.
@@ -73,6 +88,7 @@ def selection(population: list[Genome], fitnesses: list[int], k: int) -> Genome:
     get_fitness = lambda x: x[1]
     return max(contenders, key=get_fitness)[0][:]
 
+
 def crossover(a: Genome, b: Genome, p_crossover: float) -> tuple[Genome, Genome]:
     """Performs single-point crossover between two genomes.
     Note that other crossover strategies exist such as two-point crossover, uniform crossover, etc."""
@@ -80,13 +96,15 @@ def crossover(a: Genome, b: Genome, p_crossover: float) -> tuple[Genome, Genome]
     if random.random() > p_crossover or min_length < 2:
         return a[:], b[:]
     cutoff_point = random.randint(1, min_length - 1)
-    return a[:cutoff_point]+b[cutoff_point:], b[:cutoff_point]+a[cutoff_point:]
+    return a[:cutoff_point] + b[cutoff_point:], b[:cutoff_point] + a[cutoff_point:]
+
 
 def mutation(g: Genome, p_mutation: int) -> Genome:
     """Performs bit-flip mutation on a genome.
     Note that other mutation strategies exist such as swap mutation, scramble mutation, etc.
     """
     return [(1 - gene) if random.random() < p_mutation else gene for gene in g]
+
 
 def run_ga(
     items: list[Item],
@@ -120,8 +138,10 @@ def run_ga(
 
         # Elitism
         get_fitness = lambda i: fitnesses[i]
-        elite_indices = sorted(range(pop_size), key=get_fitness, reverse=True)[:elitism] # Sort the population by fitness and get the top `elitism` indices
-        elites = [population[i][:] for i in elite_indices] # Make nepo babies
+        elite_indices = sorted(range(pop_size), key=get_fitness, reverse=True)[
+            :elitism
+        ]  # Sort the population by fitness and get the top `elitism` indices
+        elites = [population[i][:] for i in elite_indices]  # Make nepo babies
 
         # New generation
         new_pop = elites[:]
@@ -145,12 +165,15 @@ def run_ga(
         "avg_history": avg_history,
     }
 
+
 result = run_ga(items, capacity)
 
 best_items = [items[i] for i, bit in enumerate(result["best_genome"]) if bit == 1]
 
-print(f"Knapsack capacity: {result["capacity"]}")
-print(f"Best solution: value = {result["best_value"]}, weight = {result["best_weight"]}")
+print(f"Knapsack capacity: {result['capacity']}")
+print(
+    f"Best solution: value = {result['best_value']}, weight = {result['best_weight']}"
+)
 
 # print("Items included in the best solution:", best_items)
 
