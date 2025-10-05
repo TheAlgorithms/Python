@@ -87,10 +87,10 @@ ELITISM = 2
 
 OVERWEIGHT_PENALTY_FACTOR = 10
 
-Genome = list[int]  # An index list where 1 means item is included, 0 means excluded
+genome_t = list[int]  # An index list where 1 means item is included, 0 means excluded
 
 
-def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int]:
+def evaluate(genome: genome_t, items: list[Item], capacity: int) -> tuple[int, int]:
     """
     Calculates fitness (value) and weight of a candidate solution. If overweight,
     the returned value is penalized; weight is the actual summed weight.
@@ -126,7 +126,7 @@ def evaluate(genome: Genome, items: list[Item], capacity: int) -> tuple[int, int
     return total_value, total_weight
 
 
-def random_genome(n: int) -> Genome:
+def random_genome(n: int) -> genome_t:
     """
     Generates a random genome (list of 0/1) of length n.
 
@@ -142,7 +142,7 @@ def random_genome(n: int) -> Genome:
     return [random.randint(0, 1) for _ in range(n)]
 
 
-def selection(population: list[Genome], fitnesses: list[int], k: int) -> Genome:
+def selection(population: list[genome_t], fitnesses: list[int], k: int) -> genome_t:
     """
     Performs tournament selection to choose a genome from the population.
 
@@ -164,7 +164,7 @@ def selection(population: list[Genome], fitnesses: list[int], k: int) -> Genome:
     return max(contenders, key=get_fitness)[0][:]
 
 
-def crossover(a: Genome, b: Genome, p_crossover: float) -> tuple[Genome, Genome]:
+def crossover(a: genome_t, b: genome_t, p_crossover: float) -> tuple[genome_t, genome_t]:
     """
     Performs single-point crossover between two genomes.
     If crossover does not occur (random > p_crossover) or genomes are too short,
@@ -197,7 +197,7 @@ def crossover(a: Genome, b: Genome, p_crossover: float) -> tuple[Genome, Genome]
     return a[:cutoff_point] + b[cutoff_point:], b[:cutoff_point] + a[cutoff_point:]
 
 
-def mutation(g: Genome, p_mutation: float) -> Genome:
+def mutation(g: genome_t, p_mutation: float) -> genome_t:
     """
     Performs bit-flip mutation on a genome. Each bit flips with probability p_mutation.
 
@@ -232,7 +232,7 @@ def run_ga(
     Runs the genetic algorithm to (approximately) solve the knapsack problem.
 
     Returns a dict with keys:
-      - 'best_genome' (Genome)
+      - 'best_genome' (genome_t)
       - 'best_value' (int)
       - 'best_weight' (int)
       - 'capacity' (int)
