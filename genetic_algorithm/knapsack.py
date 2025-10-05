@@ -266,7 +266,7 @@ def run_ga(
     """
     population = [random_genome(len(items)) for _ in range(pop_size)]
     best_fitness_history: list[int] = []  # track best fitness per generation
-    avg_fitness_history: list[int] = []
+    avg_fitness_history: list[float] = []
     best_genome_overall: genome_t = []
     best_fitness_overall: int = -1
 
