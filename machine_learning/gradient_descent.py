@@ -4,7 +4,6 @@ function.
 """
 
 import numpy as np
-from typing import Tuple, List, Union
 
 # List of input, output pairs
 train_data = (
@@ -15,7 +14,7 @@ train_data = (
     ((11, 12, 13), 41),
 )
 test_data = (((515, 22, 13), 555), ((61, 35, 49), 150))
-parameter_vector = [2, 4, 1, 5]
+parameter_vector = [2.0, 4.0, 1.0, 5.0]
 m = len(train_data)
 LEARNING_RATE = 0.009
 
@@ -31,7 +30,7 @@ def _error(example_no: int, data_set: str = "train") -> float:
     )
 
 
-def _hypothesis_value(data_input_tuple: Tuple[float, ...]) -> float:
+def _hypothesis_value(data_input_tuple: tuple[float, ...]) -> float:
     """
     Calculates hypothesis function value for a given input
     :param data_input_tuple: Input tuple of a particular example
@@ -40,7 +39,7 @@ def _hypothesis_value(data_input_tuple: Tuple[float, ...]) -> float:
     It is not explicitly mentioned in input data.. But, ML hypothesis functions use it.
     So, we have to take care of it separately. Line 36 takes care of it.
     """
-    hyp_val = 0
+    hyp_val = 0.0
     for i in range(len(parameter_vector) - 1):
         hyp_val += data_input_tuple[i] * parameter_vector[i + 1]
     hyp_val += parameter_vector[0]
@@ -57,7 +56,7 @@ def output(example_no: int, data_set: str) -> float:
         return train_data[example_no][1]
     elif data_set == "test":
         return test_data[example_no][1]
-    return None
+    raise ValueError(f"Unknown data_set: {data_set}")
 
 
 def calculate_hypothesis_value(example_no: int, data_set: str) -> float:
@@ -71,7 +70,7 @@ def calculate_hypothesis_value(example_no: int, data_set: str) -> float:
         return _hypothesis_value(train_data[example_no][0])
     elif data_set == "test":
         return _hypothesis_value(test_data[example_no][0])
-    return None
+    raise ValueError(f"Unknown data_set: {data_set}")
 
 
 def summation_of_cost_derivative(index: int, end: int = m) -> float:
@@ -83,7 +82,7 @@ def summation_of_cost_derivative(index: int, end: int = m) -> float:
     Note: If index is -1, this means we are calculating summation wrt to biased
         parameter.
     """
-    summation_value = 0
+    summation_value = 0.0
     for i in range(end):
         if index == -1:
             summation_value += _error(i)
@@ -111,7 +110,7 @@ def run_gradient_descent() -> None:
     j = 0
     while True:
         j += 1
-        temp_parameter_vector = [0, 0, 0, 0]
+        temp_parameter_vector = [0.0, 0.0, 0.0, 0.0]
         for i in range(len(parameter_vector)):
             cost_derivative = get_cost_derivative(i - 1)
             temp_parameter_vector[i] = (
@@ -142,11 +141,11 @@ def run_gradient_descent_vectorized() -> None:
     global parameter_vector
 
     # Convert training data into NumPy arrays
-    X = np.array([x for x, _ in train_data])
+    x_train = np.array([x for x, _ in train_data])
     y = np.array([y for _, y in train_data])
 
     # Add bias term (column of ones)
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
+    x_train = np.hstack((np.ones((x_train.shape[0], 1)), x_train))
 
     # Convert parameter vector to NumPy array
     theta = np.array(parameter_vector, dtype=float)
@@ -159,13 +158,13 @@ def run_gradient_descent_vectorized() -> None:
         j += 1
 
         # Compute predictions
-        predictions = X @ theta
+        predictions = x_train @ theta
 
         # Compute errors
         errors = predictions - y
 
         # Compute gradient
-        gradient = (X.T @ errors) / len(y)
+        gradient = (x_train.T @ errors) / len(y)
 
         # Update parameters
         new_theta = theta - LEARNING_RATE * gradient
@@ -190,14 +189,14 @@ def test_gradient_descent_vectorized() -> None:
     Tests the vectorized gradient descent implementation on test data
     and prints predicted vs actual outputs.
     """
-    X_test = np.array([x for x, _ in test_data])
+    x_test = np.array([x for x, _ in test_data])
     y_test = np.array([y for _, y in test_data])
 
     # Add bias term
-    X_test = np.hstack((np.ones((X_test.shape[0], 1)), X_test))
+    x_test = np.hstack((np.ones((x_test.shape[0], 1)), x_test))
 
     theta = np.array(parameter_vector, dtype=float)
-    predictions = X_test @ theta
+    predictions = x_test @ theta
 
     for i in range(len(test_data)):
         print(("Actual output value:", y_test[i]))
