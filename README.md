@@ -48,7 +48,7 @@
 
 ## 🧠 About the Project
 
-**The Algorithms – Python** is a learning-focused repository containing a variety of algorithms, data structures, and problem-solving approaches written in Python.  
+**The Algorithms – Python** is a learning-focused repository containing a variety of algorithms, data structures, and problem-solving approaches written in Python.
 It’s a community effort to make algorithm learning more approachable and hands-on.
 
 💡 Whether you’re a **beginner exploring your first pull request** or an **experienced developer refining your craft**, this project welcomes you!
@@ -57,8 +57,8 @@ It’s a community effort to make algorithm learning more approachable and hands
 
 ## 🚀 Getting Started
 
-1. Read the [**Contribution Guidelines**](CONTRIBUTING.md) — they’ll help you set up your local environment and understand our workflow.  
-2. Pick an algorithm idea you’d like to implement or improve.  
+1. Read the [**Contribution Guidelines**](CONTRIBUTING.md) — they’ll help you set up your local environment and understand our workflow.
+2. Pick an algorithm idea you’d like to implement or improve.
 3. Submit your pull request — every contribution matters, no matter how small.
 
 > 🏆 **Tip:** Even fixing typos or improving documentation helps the project — and it counts toward open-source experience!
@@ -69,11 +69,11 @@ It’s a community effort to make algorithm learning more approachable and hands
 
 We believe everyone can contribute — here’s how you can get involved:
 
-- 🧩 **Add a new algorithm or data structure**  
-- 🧠 **Optimize or refactor** an existing one  
-- 🧾 **Improve documentation** or code comments  
-- 🧪 **Add test cases** to increase reliability  
-- 🎨 **Enhance visuals or examples** for better understanding  
+- 🧩 **Add a new algorithm or data structure**
+- 🧠 **Optimize or refactor** an existing one
+- 🧾 **Improve documentation** or code comments
+- 🧪 **Add test cases** to increase reliability
+- 🎨 **Enhance visuals or examples** for better understanding
 
 Check the [Issues tab](https://github.com/TheAlgorithms/Python/issues) — some are tagged with `good first issue` and are great starting points!
 
@@ -81,7 +81,7 @@ Check the [Issues tab](https://github.com/TheAlgorithms/Python/issues) — some 
 
 ## 🎉 Community Challenges
 
-Want to go beyond code? Join our monthly **Algorithm Challenges** on Discord!  
+Want to go beyond code? Join our monthly **Algorithm Challenges** on Discord!
 Each month we pick a topic (e.g., Sorting, Graphs, Dynamic Programming) and contributors compete in a friendly way to improve or implement related algorithms.
 
 > 🧭 Participation badges and GitHub shoutouts are awarded to active contributors!
@@ -102,24 +102,24 @@ We’re building not just a codebase — but a **learning community** that helps
 
 ## 📂 Explore Algorithms
 
-Browse through the [**Directory**](DIRECTORY.md) for all algorithm implementations, organized by topic and complexity level.  
+Browse through the [**Directory**](DIRECTORY.md) for all algorithm implementations, organized by topic and complexity level.
 Each section includes beginner-friendly examples and explanations.
 
 ---
 
 ## 🌟 Contributor Recognition
 
-Every contributor is a valuable part of this project.  
+Every contributor is a valuable part of this project.
 We regularly feature top contributors and new members in our community newsletter.
 
-💬 Join us → contribute, learn, and get recognized!  
+💬 Join us → contribute, learn, and get recognized!
 You can also add yourself to the **Contributors Wall** once your PR is merged.
 
 ---
 
 <div align="center">
 
-🧡 Built with curiosity, collaboration, and community spirit by  
+🧡 Built with curiosity, collaboration, and community spirit by
 <a href="https://github.com/TheAlgorithms/">The Algorithms Contributors</a>
 
 </div>
