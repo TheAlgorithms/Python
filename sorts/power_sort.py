@@ -113,7 +113,8 @@ def _node_power(total_length: int, b1: int, n1: int, b2: int, n2: int) -> int:
     >>> _node_power(100, 0, 50, 50, 50)
     1
     """
-    # Calculate midpoints: a = (b1 + n1/2) / total_length, b = (b2 + n2/2) / total_length
+    # Calculate midpoints: a = (b1 + n1/2) / total_length,
+    # b = (b2 + n2/2) / total_length
     # To avoid floating point, we work with a = (2*b1 + n1) / (2*total_length) and
     # b = (2*b2 + n2) / (2*total_length)
     # We want smallest p where floor(a * 2^p) != floor(b * 2^p)
@@ -273,13 +274,13 @@ def power_sort(
             def reverse_key(element: Any) -> Any:
                 """
                 Reverse key function for numeric values.
-                
+
                 Args:
                     element: The element to process
-                    
+
                 Returns:
                     Negated value for numeric types, original value otherwise
-                    
+
                 >>> reverse_key(5)
                 -5
                 >>> reverse_key('hello')
@@ -297,13 +298,13 @@ def power_sort(
             def reverse_cmp(element: Any) -> Any:
                 """
                 Reverse comparison function for numeric values.
-                
+
                 Args:
                     element: The element to process
-                    
+
                 Returns:
                     Negated value for numeric types, original value otherwise
-                    
+
                 >>> reverse_cmp(10)
                 -10
                 >>> reverse_cmp('test')
@@ -330,7 +331,9 @@ def power_sort(
             power = 0
         else:
             prev_start, prev_length, _ = stack[-1]
-            power = _node_power(total_length, prev_start, prev_length, start, run_length)
+            power = _node_power(
+                total_length, prev_start, prev_length, start, run_length
+            )
 
         # Merge runs from stack based on power comparison
         while len(stack) > 0 and stack[-1][2] >= power:
@@ -367,7 +370,9 @@ def power_sort(
         else:
             prev_start, prev_length, _ = stack[-1]
             merged_length = start2 + length2 - start1
-            power = _node_power(total_length, prev_start, prev_length, start1, merged_length)
+            power = _node_power(
+                total_length, prev_start, prev_length, start1, merged_length
+            )
 
         stack.append((start1, start2 + length2 - start1, power))
 
