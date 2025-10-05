@@ -164,7 +164,9 @@ def selection(population: list[genome_t], fitnesses: list[int], k: int) -> genom
     return max(contenders, key=get_fitness)[0][:]
 
 
-def crossover(a: genome_t, b: genome_t, p_crossover: float) -> tuple[genome_t, genome_t]:
+def crossover(
+    a: genome_t, b: genome_t, p_crossover: float
+) -> tuple[genome_t, genome_t]:
     """
     Performs single-point crossover between two genomes.
     If crossover does not occur (random > p_crossover) or genomes are too short,
