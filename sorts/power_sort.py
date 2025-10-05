@@ -67,7 +67,7 @@ def _find_run(
     if start >= end - 1:
         return start + 1
 
-    key_func = key if key else lambda x: x
+    key_func = key if key else lambda element: element
     run_end = start + 1
 
     # Check if run is ascending or descending
@@ -85,7 +85,7 @@ def _find_run(
     return run_end
 
 
-def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
+def _node_power(total_length: int, b1: int, n1: int, b2: int, n2: int) -> int:
     """
     Calculate the node power for two adjacent runs.
 
@@ -97,7 +97,7 @@ def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
 
 
     Args:
-        n: Total length of the array
+        total_length: Total length of the array
         b1: Start index of first run
         n1: Length of first run
         b2: Start index of second run
@@ -113,16 +113,16 @@ def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
     >>> _node_power(100, 0, 50, 50, 50)
     1
     """
-    # Calculate midpoints: a = (b1 + n1/2) / n, b = (b2 + n2/2) / n
-    # To avoid floating point, we work with a = (2*b1 + n1) / (2*n) and
-    # b = (2*b2 + n2) / (2*n)
+    # Calculate midpoints: a = (b1 + n1/2) / total_length, b = (b2 + n2/2) / total_length
+    # To avoid floating point, we work with a = (2*b1 + n1) / (2*total_length) and
+    # b = (2*b2 + n2) / (2*total_length)
     # We want smallest p where floor(a * 2^p) != floor(b * 2^p)
-    # This is floor((2*b1 + n1) * 2^p / (2*n)) !=
-    # floor((2*b2 + n2) * 2^p / (2*n))
+    # This is floor((2*b1 + n1) * 2^p / (2*total_length)) !=
+    # floor((2*b2 + n2) * 2^p / (2*total_length))
 
     a = 2 * b1 + n1
     b = 2 * b2 + n2
-    two_n = 2 * n
+    two_n = 2 * total_length
 
     # Find smallest power p where floor(a * 2^p / two_n) !=
     # floor(b * 2^p / two_n)
@@ -164,7 +164,7 @@ def _merge(
     >>> arr
     [1, 2, 3, 5, 6, 7]
     """
-    key_func = key if key else lambda x: x
+    key_func = key if key else lambda element: element
 
     # Copy the runs to temporary storage
     left = arr[start1:end1]
@@ -262,7 +262,7 @@ def power_sort(
 
     # Make a copy to avoid modifying the original if it's immutable
     arr = list(collection)
-    n = len(arr)
+    total_length = len(arr)
 
     # Adjust key function for reverse sorting
     needs_final_reverse = False
@@ -270,8 +270,22 @@ def power_sort(
         if key:
             original_key = key
 
-            def reverse_key(x):
-                val = original_key(x)
+            def reverse_key(element: Any) -> Any:
+                """
+                Reverse key function for numeric values.
+                
+                Args:
+                    element: The element to process
+                    
+                Returns:
+                    Negated value for numeric types, original value otherwise
+                    
+                >>> reverse_key(5)
+                -5
+                >>> reverse_key('hello')
+                'hello'
+                """
+                val = original_key(element)
                 if isinstance(val, int | float):
                     return -val
                 return val
@@ -280,10 +294,24 @@ def power_sort(
             needs_final_reverse = True
         else:
 
-            def reverse_cmp(x):
-                if isinstance(x, int | float):
-                    return -x
-                return x
+            def reverse_cmp(element: Any) -> Any:
+                """
+                Reverse comparison function for numeric values.
+                
+                Args:
+                    element: The element to process
+                    
+                Returns:
+                    Negated value for numeric types, original value otherwise
+                    
+                >>> reverse_cmp(10)
+                -10
+                >>> reverse_cmp('test')
+                'test'
+                """
+                if isinstance(element, int | float):
+                    return -element
+                return element
 
             key = reverse_cmp
             needs_final_reverse = True
@@ -292,9 +320,9 @@ def power_sort(
     stack: list[tuple[int, int, int]] = []
 
     start = 0
-    while start < n:
+    while start < total_length:
         # Find the next run
-        run_end = _find_run(arr, start, n, key)
+        run_end = _find_run(arr, start, total_length, key)
         run_length = run_end - start
 
         # Calculate power for this run
@@ -302,7 +330,7 @@ def power_sort(
             power = 0
         else:
             prev_start, prev_length, _ = stack[-1]
-            power = _node_power(n, prev_start, prev_length, start, run_length)
+            power = _node_power(total_length, prev_start, prev_length, start, run_length)
 
         # Merge runs from stack based on power comparison
         while len(stack) > 0 and stack[-1][2] >= power:
@@ -320,7 +348,7 @@ def power_sort(
             else:
                 prev_prev_start, prev_prev_length, _ = stack[-1]
                 power = _node_power(
-                    n, prev_prev_start, prev_prev_length, start, run_length
+                    total_length, prev_prev_start, prev_prev_length, start, run_length
                 )
 
         # Push current run onto stack
@@ -339,7 +367,7 @@ def power_sort(
         else:
             prev_start, prev_length, _ = stack[-1]
             merged_length = start2 + length2 - start1
-            power = _node_power(n, prev_start, prev_length, start1, merged_length)
+            power = _node_power(total_length, prev_start, prev_length, start1, merged_length)
 
         stack.append((start1, start2 + length2 - start1, power))
 
