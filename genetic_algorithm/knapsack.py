@@ -126,7 +126,7 @@ def evaluate(genome: genome_t, items: list[Item], capacity: int) -> tuple[int, i
     return total_value, total_weight
 
 
-def random_genome(n: int) -> genome_t:
+def random_genome(length: int) -> genome_t:
     """
     Generates a random genome (list of 0/1) of length n.
 
@@ -139,10 +139,10 @@ def random_genome(n: int) -> genome_t:
     >>> len(g), set(g).issubset({0, 1})
     (5, True)
     """
-    return [random.randint(0, 1) for _ in range(n)]
+    return [random.randint(0, 1) for _ in range(length)]
 
 
-def selection(population: list[genome_t], fitnesses: list[int], k: int) -> genome_t:
+def selection(population: list[genome_t], fitnesses: list[int], tournament_k: int) -> genome_t:
     """
     Performs tournament selection to choose a genome from the population.
 
@@ -159,13 +159,13 @@ def selection(population: list[genome_t], fitnesses: list[int], k: int) -> genom
     >>> parent in pop
     True
     """
-    contenders = random.sample(list(zip(population, fitnesses)), k)
-    get_fitness = lambda x: x[1]
+    contenders = random.sample(list(zip(population, fitnesses)), tournament_k)
+    get_fitness = lambda contender: contender[1]
     return max(contenders, key=get_fitness)[0][:]
 
 
 def crossover(
-    a: genome_t, b: genome_t, p_crossover: float
+    genome_1: genome_t, genome_2: genome_t, p_crossover: float
 ) -> tuple[genome_t, genome_t]:
     """
     Performs single-point crossover between two genomes.
@@ -192,14 +192,14 @@ def crossover(
     >>> c1, c2
     ([0, 0, 0], [1, 1, 1])
     """
-    min_length = min(len(a), len(b))
+    min_length = min(len(genome_1), len(genome_2))
     if random.random() > p_crossover or min_length < 2:
-        return a[:], b[:]
+        return genome_1[:], genome_2[:]
     cutoff_point = random.randint(1, min_length - 1)
-    return a[:cutoff_point] + b[cutoff_point:], b[:cutoff_point] + a[cutoff_point:]
+    return genome_1[:cutoff_point] + genome_2[cutoff_point:], genome_2[:cutoff_point] + genome_1[cutoff_point:]
 
 
-def mutation(g: genome_t, p_mutation: float) -> genome_t:
+def mutation(genome: genome_t, p_mutation: float) -> genome_t:
     """
     Performs bit-flip mutation on a genome. Each bit flips with probability p_mutation.
 
@@ -217,7 +217,7 @@ def mutation(g: genome_t, p_mutation: float) -> genome_t:
     >>> mutation([0, 1, 1, 0], p_mutation=0.0)
     [0, 1, 1, 0]
     """
-    return [(1 - gene) if random.random() < p_mutation else gene for gene in g]
+    return [(1 - gene) if random.random() < p_mutation else gene for gene in genome]
 
 
 def run_ga(
@@ -290,8 +290,8 @@ def run_ga(
         # New generation
         new_pop = elites[:]
         while len(new_pop) < pop_size:
-            parent1 = selection(population, fitnesses, k=tournament_k)
-            parent2 = selection(population, fitnesses, k=tournament_k)
+            parent1 = selection(population, fitnesses, tournament_k=tournament_k)
+            parent2 = selection(population, fitnesses, tournament_k=tournament_k)
             child1, child2 = crossover(parent1, parent2, p_crossover)
             child1 = mutation(child1, p_mutation)
             child2 = mutation(child2, p_mutation)
