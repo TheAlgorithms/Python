@@ -59,13 +59,16 @@ def magnetic_flux(magnetic_field: float, area: float, angle: float) -> float:
     -2.0
     >>> magnetic_flux(-1.0, 2.0, 30.0)
     Traceback (most recent call last):
-    ... ValueError: Invalid magnetic field. Should be a positive number.
+        ...
+    ValueError: Invalid magnetic field. Should be a positive number.
     >>> magnetic_flux(1.0, 'a', 30.0)
     Traceback (most recent call last):
-    ... TypeError: Invalid area. Should be an integer or float.
+        ...
+    TypeError: Invalid area. Should be an integer or float.
     >>> magnetic_flux(1.0, -2.0, 30.0)
     Traceback (most recent call last):
-    ... ValueError: Invalid area. Should be a positive number.
+        ...
+    ValueError: Invalid area. Should be a positive number.
     """
     check_args(magnetic_field, area, angle)
     rad = radians(angle)
