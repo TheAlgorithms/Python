@@ -3,6 +3,8 @@ Partitions a linked list around a value x such that all nodes less than x come b
 nodes greater than or equal to x. The original relative order of the nodes in each
 partition should be preserved. The partition value x can appear anywhere in the "right
 partition" and it does not need to appear between the left and right partitions.
+
+Explanation from GeeksforGeeks: https://www.geeksforgeeks.org/dsa/partitioning-a-linked-list-around-a-given-value-and-keeping-the-original-order/
 """
 
 from __future__ import annotations
@@ -17,7 +19,19 @@ class ListNode:
 
 
 def create_linked_list(values: list[int]) -> ListNode | None:
-    """Helper function to create a linked list from a list of values."""
+    """
+    Helper function to create a linked list from a list of values.
+
+    >>> head = create_linked_list([1, 2, 3])
+    >>> head.value
+    1
+    >>> head.next_node.value
+    2
+    >>> head.next_node.next_node.value
+    3
+    >>> create_linked_list([]) is None
+    True
+    """
     if not values:
         return None
     head = ListNode(values[0])
@@ -29,7 +43,17 @@ def create_linked_list(values: list[int]) -> ListNode | None:
 
 
 def linked_list_to_list(head: ListNode | None) -> list[int]:
-    """Helper function to convert a linked list to a list of values."""
+    """
+    Helper function to convert a linked list to a list of values.
+
+    >>> head = ListNode(1)
+    >>> head.next_node = ListNode(2)
+    >>> head.next_node.next_node = ListNode(3)
+    >>> linked_list_to_list(head)
+    [1, 2, 3]
+    >>> linked_list_to_list(None)
+    []
+    """
     values = []
     current = head
     while current:
