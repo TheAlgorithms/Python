@@ -157,7 +157,7 @@ def selection(
     >>> random.seed(1)
     >>> pop = [[0,0,0], [1,0,0], [1,1,0], [1,1,1]]
     >>> fits = [0, 5, 9, 7]
-    >>> parent = selection(pop, fits, k=2)
+    >>> parent = selection(pop, fits, tournament_k=2)
     >>> parent in pop
     True
     """
