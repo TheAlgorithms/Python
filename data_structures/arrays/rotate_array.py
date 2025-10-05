@@ -2,6 +2,7 @@
 Rotate an array to the right by k steps.
 """
 
+
 def rotate(nums: list[int], k: int) -> list[int]:
     """
     Rotate the array to the right by k steps.
@@ -28,4 +29,5 @@ def rotate(nums: list[int], k: int) -> list[int]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -2,6 +2,7 @@
 Find the majority element in an array.
 """
 
+
 def majority_element(nums: list[int]) -> int:
     """
     Find the element that appears more than n/2 times using
@@ -25,11 +26,12 @@ def majority_element(nums: list[int]) -> int:
     for num in nums:
         if count == 0:
             candidate = num
-        count += (1 if num == candidate else -1)
+        count += 1 if num == candidate else -1
 
     return candidate
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

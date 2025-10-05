@@ -2,6 +2,7 @@
 Find the maximum subarray sum (Kadane's Algorithm).
 """
 
+
 def max_subarray(nums: list[int]) -> int:
     """
     Find the contiguous subarray with the largest sum.
@@ -31,4 +32,5 @@ def max_subarray(nums: list[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
