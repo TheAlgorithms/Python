@@ -33,7 +33,7 @@ def sum_of_geometric_progression(
     >>> sum_of_geometric_progression(1, 2, -10)
     -0.9990234375
 <<<<<<< HEAD
-    
+
 =======
 
 >>>>>>> a2c7d8949a86c6146c216bfdb2c8ba4799f63740
