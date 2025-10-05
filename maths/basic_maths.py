@@ -116,18 +116,21 @@ def euler_phi(n: int) -> int:
     return int(s)
 
 
-def isPrime(n: int) -> bool:
+def is_prime(n: int) -> bool:
     """Checks if a number is prime.
-    >>> isPrime(11)
+
+    Source: https://en.wikipedia.org/wiki/Prime_number
+
+    >>> is_prime(11)
     True
-    >>> isPrime(15)
+    >>> is_prime(15)
     False
-    >>> isPrime(1)
+    >>> is_prime(1)
     False
     Traceback (most recent call last):
         ...
     ValueError: Only integers greater than 1 can be prime
-    >>> isPrime(0)
+    >>> is_prime(0)
     Traceback (most recent call last):
         ...
     ValueError: Only integers greater than 1 can be prime
