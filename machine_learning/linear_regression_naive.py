@@ -1,3 +1,19 @@
+"""README, Author - Somrita Banerjee(mailto:somritabanerjee126@gmail.com)
+Requirements:
+- Python >= 3.13
+- httpx
+- numpy
+
+Inputs:
+- Downloads a CSV dataset (ADR vs Rating) from a public GitHub URL.
+- The dataset should have features in all columns except the last, which is the label.
+
+Usage:
+- Run this script directly:
+    python linear_regression_naive.py
+- The script will fetch the dataset, run linear regression using gradient descent, and print the learned feature vector (theta) and error at each iteration.
+
+"""
 """
 Naive implementation of Linear Regression using Gradient Descent.
 
@@ -120,7 +136,7 @@ def mean_absolute_error(predicted_y: np.ndarray, original_y: np.ndarray) -> floa
     >>> mean_absolute_error(predicted_y, original_y)
     0.5
     """
-    total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
+    total = sum(abs(predicted_y[i] - y) for i, y in enumerate(original_y))
     return total / len(original_y)
 
 

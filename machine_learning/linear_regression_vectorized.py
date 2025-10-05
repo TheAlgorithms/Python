@@ -1,3 +1,19 @@
+"""README, Author - Somrita Banerjee(mailto:somritabanerjee126@gmail.com)
+Requirements:
+- Python >= 3.13
+- httpx
+- numpy
+
+Inputs:
+- The script automatically downloads a CSV dataset (ADR vs Rating) from a public GitHub URL.
+- The dataset must have features in all columns except the last, which is the label (rating).
+
+Usage:
+- Run this script directly:
+    python linear_regression_vectorized.py
+- The script will fetch the dataset, run linear regression using gradient descent, and print the learned feature vector (theta) and error at intervals.
+
+"""
 """
 Vectorized implementation of Linear Regression using Gradient Descent.
 
