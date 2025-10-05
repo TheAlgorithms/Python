@@ -56,7 +56,9 @@ def output(example_no: int, data_set: str) -> float:
         return train_data[example_no][1]
     elif data_set == "test":
         return test_data[example_no][1]
-    raise ValueError(f"Unknown data_set: {data_set}")
+    msg = "Unknown data_set: " + data_set
+    raise ValueError(msg)
+
 
 
 def calculate_hypothesis_value(example_no: int, data_set: str) -> float:
@@ -70,7 +72,9 @@ def calculate_hypothesis_value(example_no: int, data_set: str) -> float:
         return _hypothesis_value(train_data[example_no][0])
     elif data_set == "test":
         return _hypothesis_value(test_data[example_no][0])
-    raise ValueError(f"Unknown data_set: {data_set}")
+    msg = "Unknown data_set: " + data_set
+    raise ValueError(msg)
+
 
 
 def summation_of_cost_derivative(index: int, end: int = m) -> float:
