@@ -78,7 +78,8 @@ def induced_electromotive_force(
     TypeError: Invalid final flux. Should be an integer or float.
     """
     check_args(final_flux, initinal_flux, time_interval)
-    return round((final_flux - initinal_flux) / time_interval, 1)
+    flux_variation = final_flux - initinal_flux
+    return round(-flux_variation / time_interval, 1)
 
 
 if __name__ == "__main__":
