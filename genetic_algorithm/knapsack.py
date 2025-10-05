@@ -267,8 +267,7 @@ def run_ga(
     >>> out['capacity'] == cap
     True
     """
-    n = len(items)
-    population = [random_genome(n) for _ in range(pop_size)]
+    population = [random_genome(len(items)) for _ in range(pop_size)]
     best_history = []  # track best fitness per generation
     avg_history = []
     best_overall = None
@@ -287,9 +286,9 @@ def run_ga(
             best_overall = population[best_idx][:]
 
         # Elitism
-        get_fitness = lambda i: fitnesses[i]
+        get_fitness = lambda idx: fitnesses[idx]
         elite_indices = sorted(range(pop_size), key=get_fitness, reverse=True)[:elitism]
-        elites = [population[i][:] for i in elite_indices]
+        elites = [population[idx][:] for idx in elite_indices]
 
         # New generation
         new_pop = elites[:]
