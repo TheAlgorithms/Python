@@ -2,8 +2,10 @@
 https://www.enjoyalgorithms.com/blog/reverse-linked-list
 """
 
+
 class ListNode:
     """Definition for singly-linked list."""
+
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
@@ -40,6 +42,7 @@ def reverse_linked_list(head: ListNode) -> ListNode:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Example execution
@@ -50,4 +53,6 @@ if __name__ == "__main__":
 
     print("Original Linked List: 1 -> 2 -> 3")
     new_head = reverse_linked_list(a)
-    print(f"Reversed Linked List: {new_head.val} -> {new_head.next.val} -> {new_head.next.next.val}")
+    print(
+        f"Reversed Linked List: {new_head.val} -> {new_head.next.val} -> {new_head.next.next.val}"
+    )
