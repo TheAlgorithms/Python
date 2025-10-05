@@ -37,8 +37,10 @@ def _find_run(
     """
     Detect a run (ascending or descending sequence) starting at 'start'.
 
+
     If the run is descending, reverse it in-place to make it ascending.
     Returns the end index (exclusive) of the detected run.
+
 
     Args:
         arr: The list to search in
@@ -46,8 +48,10 @@ def _find_run(
         end: End index (exclusive) of the search range
         key: Optional key function for comparisons
 
+
     Returns:
         End index (exclusive) of the detected run
+
 
     >>> arr = [3, 2, 1, 4, 5, 6]
     >>> _find_run(arr, 0, 6)
@@ -63,8 +67,10 @@ def _find_run(
     if start >= end - 1:
         return start + 1
 
+
     key_func = key if key else lambda x: x
     run_end = start + 1
+
 
     # Check if run is ascending or descending
     if key_func(arr[run_end]) < key_func(arr[start]):
@@ -78,6 +84,7 @@ def _find_run(
         while run_end < end and key_func(arr[run_end]) >= key_func(arr[run_end - 1]):
             run_end += 1
 
+
     return run_end
 
 
@@ -85,10 +92,12 @@ def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
     """
     Calculate the node power for two adjacent runs.
 
+
     This determines the merge priority in the stack. The power is the smallest
     integer p such that floor(a * 2^p) != floor(b * 2^p), where:
     - a = (b1 + n1/2) / n
     - b = (b2 + n2/2) / n
+
 
     Args:
         n: Total length of the array
@@ -97,8 +106,10 @@ def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
         b2: Start index of second run
         n2: Length of second run
 
+
     Returns:
         The calculated node power
+
 
     >>> _node_power(100, 0, 25, 25, 25)
     2
@@ -122,6 +133,7 @@ def _node_power(n: int, b1: int, n1: int, b2: int, n2: int) -> int:
     while (a * (1 << power)) // two_n == (b * (1 << power)) // two_n:
         power += 1
 
+
     return power
 
 
@@ -135,7 +147,9 @@ def _merge(
     """
     Merge two adjacent sorted runs in-place using auxiliary space.
 
+
     Merges arr[start1:end1] with arr[end1:end2].
+
 
     Args:
         arr: The list containing the runs
@@ -143,6 +157,7 @@ def _merge(
         end1: End index of first run (start of second run)
         end2: End index of second run
         key: Optional key function for comparisons
+
 
     >>> arr = [1, 3, 5, 2, 4, 6]
     >>> _merge(arr, 0, 3, 6)
@@ -155,12 +170,15 @@ def _merge(
     """
     key_func = key if key else lambda x: x
 
+
     # Copy the runs to temporary storage
     left = arr[start1:end1]
     right = arr[end1:end2]
 
+
     i = j = 0
     k = start1
+
 
     # Merge the two runs
     while i < len(left) and j < len(right):
@@ -172,11 +190,13 @@ def _merge(
             j += 1
         k += 1
 
+
     # Copy remaining elements
     while i < len(left):
         arr[k] = left[i]
         i += 1
         k += 1
+
 
     while j < len(right):
         arr[k] = right[j]
@@ -193,19 +213,24 @@ def power_sort(
     """
     Sort a list using the PowerSort algorithm.
 
+
     PowerSort is an adaptive merge sort that detects existing runs in the data
     and uses a power-based merging strategy for optimal performance.
+
 
     Args:
         collection: A mutable ordered collection with comparable items
         key: Optional function to extract comparison key from each element
         reverse: If True, sort in descending order
 
+
     Returns:
         The same collection ordered according to the parameters
 
+
     Time Complexity: O(n log n) worst case, O(n) for nearly sorted data
     Space Complexity: O(n)
+
 
     Examples:
     >>> power_sort([0, 5, 3, 2, 2])
@@ -244,9 +269,11 @@ def power_sort(
     if len(collection) <= 1:
         return collection
 
+
     # Make a copy to avoid modifying the original if it's immutable
     arr = list(collection)
     n = len(arr)
+
 
     # Adjust key function for reverse sorting
     needs_final_reverse = False
@@ -259,6 +286,7 @@ def power_sort(
                 if isinstance(val, int | float):
                     return -val
                 return val
+
 
             key = reverse_key
             needs_final_reverse = True
@@ -275,11 +303,13 @@ def power_sort(
     # Stack to hold runs: each entry is (start_index, length, power)
     stack: list[tuple[int, int, int]] = []
 
+
     start = 0
     while start < n:
         # Find the next run
         run_end = _find_run(arr, start, n, key)
         run_length = run_end - start
+
 
         # Calculate power for this run
         if len(stack) == 0:
@@ -288,15 +318,18 @@ def power_sort(
             prev_start, prev_length, _ = stack[-1]
             power = _node_power(n, prev_start, prev_length, start, run_length)
 
+
         # Merge runs from stack based on power comparison
         while len(stack) > 0 and stack[-1][2] >= power:
             # Merge the top run with the current run
             prev_start, prev_length, _ = stack.pop()
             _merge(arr, prev_start, prev_start + prev_length, run_end, key)
 
+
             # Update current run to include the merged run
             start = prev_start
             run_length = run_end - start
+
 
             # Recalculate power
             if len(stack) == 0:
@@ -307,15 +340,18 @@ def power_sort(
                     n, prev_prev_start, prev_prev_length, start, run_length
                 )
 
+
         # Push current run onto stack
         stack.append((start, run_length, power))
         start = run_end
+
 
     # Merge all remaining runs on the stack
     while len(stack) > 1:
         start2, length2, _ = stack.pop()
         start1, length1, _ = stack.pop()
         _merge(arr, start1, start1 + length1, start2 + length2, key)
+
 
         # Recalculate power for merged run
         if len(stack) == 0:
@@ -326,6 +362,7 @@ def power_sort(
             power = _node_power(n, prev_start, prev_length, start1, merged_length)
 
         stack.append((start1, start2 + length2 - start1, power))
+
 
     # Handle reverse sorting for non-numeric types
     if (
@@ -345,10 +382,13 @@ def power_sort(
 if __name__ == "__main__":
     import doctest
 
+
     doctest.testmod()
+
 
     print("\nPowerSort Interactive Testing")
     print("=" * 40)
+
 
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
@@ -357,15 +397,19 @@ if __name__ == "__main__":
         else:
             unsorted = [int(item.strip()) for item in user_input.split(",")]
 
+
         print(f"\nOriginal: {unsorted}")
         sorted_list = power_sort(unsorted)
         print(f"Sorted:   {sorted_list}")
+
 
         # Test reverse
         sorted_reverse = power_sort(unsorted, reverse=True)
         print(f"Reverse:  {sorted_reverse}")
 
+
     except ValueError:
         print("Invalid input. Please enter valid integers separated by commas.")
     except KeyboardInterrupt:
         print("\n\nGoodbye!")
+
