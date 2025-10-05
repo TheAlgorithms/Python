@@ -43,6 +43,12 @@ def collect_dataset() -> np.ndarray:
     """Collect dataset of CSGO (ADR vs Rating)
 
     :return: dataset as numpy matrix
+
+    >>> ds = collect_dataset()
+    >>> isinstance(ds, np.matrix)
+    True
+    >>> ds.shape[1] >= 2
+    True
     """
     response = httpx.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
@@ -111,6 +117,19 @@ def run_linear_regression(data_x: np.ndarray, data_y: np.ndarray) -> np.ndarray:
     :param data_x: dataset features
     :param data_y: dataset labels
     :return: learned feature vector theta
+
+    >>> import numpy as np
+    >>> x = np.array([[1, 1], [1, 2], [1, 3]])
+    >>> y = np.array([1, 2, 3])
+    >>> theta = run_linear_regression(x, y)
+    Iteration 1: Error = ...
+    ... # lots of output omitted
+    >>> theta.shape
+    (1, 2)
+    >>> abs(theta[0, 0] - 0) < 0.1  # intercept close to 0
+    True
+    >>> abs(theta[0, 1] - 1) < 0.1  # slope close to 1
+    True
     """
     iterations = 100000
     alpha = 0.000155

@@ -43,6 +43,12 @@ def collect_dataset() -> np.ndarray:
     """Collect dataset of CSGO (ADR vs Rating).
 
     :return: dataset as numpy array
+
+    >>> ds = collect_dataset()
+    >>> isinstance(ds, np.ndarray)
+    True
+    >>> ds.shape[1] >= 2
+    True
     """
     response = httpx.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
@@ -56,23 +62,36 @@ def collect_dataset() -> np.ndarray:
 
 
 def gradient_descent(
-    x: np.ndarray, y: np.ndarray, alpha: float = 0.000155, iterations: int = 100000
+    features: np.ndarray, labels: np.ndarray, alpha: float = 0.000155, iterations: int = 100000
 ) -> np.ndarray:
     """Run gradient descent in a fully vectorized form.
 
-    :param x: dataset features
-    :param y: dataset labels
+    :param features: dataset features
+    :param labels: dataset labels
     :param alpha: learning rate
     :param iterations: number of iterations
     :return: learned feature vector theta
+
+    >>> import numpy as np
+    >>> features = np.array([[1, 1], [1, 2], [1, 3]])
+    >>> labels = np.array([[1], [2], [3]])
+    >>> theta = gradient_descent(features, labels, alpha=0.01, iterations=1000)
+    Iteration 1: Error = ...
+    ... # output omitted
+    >>> theta.shape
+    (2, 1)
+    >>> abs(theta[0, 0] - 0) < 0.1  # intercept close to 0
+    True
+    >>> abs(theta[1, 0] - 1) < 0.1  # slope close to 1
+    True
     """
-    m, n = x.shape
+    m, n = features.shape
     theta = np.zeros((n, 1))
 
     for i in range(iterations):
-        predictions = x @ theta
-        errors = predictions - y
-        gradients = (x.T @ errors) / m
+        predictions = features @ theta
+        errors = predictions - labels
+        gradients = (features.T @ errors) / m
         theta -= alpha * gradients
 
         if i % (iterations // 10) == 0:  # log occasionally
@@ -94,14 +113,17 @@ def mean_absolute_error(predicted_y: np.ndarray, original_y: np.ndarray) -> floa
 
 
 def main() -> None:
-    """Driver function."""
+    """Driver function.
+
+    >>> main()  # doctest: +SKIP
+    """
     dataset = collect_dataset()
 
     m = dataset.shape[0]
-    x = np.c_[np.ones(m), dataset[:, :-1]]  # add intercept term
-    y = dataset[:, -1].reshape(-1, 1)
+    features = np.c_[np.ones(m), dataset[:, :-1]]  # add intercept term
+    labels = dataset[:, -1].reshape(-1, 1)
 
-    theta = gradient_descent(x, y)
+    theta = gradient_descent(features, labels)
     print("Resultant Feature vector:")
     for value in theta.ravel():
         print(f"{value:.5f}")
