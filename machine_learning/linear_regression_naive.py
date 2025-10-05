@@ -1,3 +1,6 @@
+import httpx
+import numpy as np
+
 """README, Author - Somrita Banerjee(mailto:somritabanerjee126@gmail.com)
 Requirements:
 - Python >= 3.13
@@ -11,7 +14,8 @@ Inputs:
 Usage:
 - Run this script directly:
     python linear_regression_naive.py
-- The script will fetch the dataset, run linear regression using gradient descent, and print the learned feature vector (theta) and error at each iteration.
+- The script will fetch the dataset, run linear regression using gradient descent,
+  and print the learned feature vector (theta) and error at each iteration.
 
 """
 
@@ -27,7 +31,6 @@ Dataset used: CSGO dataset (ADR vs Rating)
 References:
 https://en.wikipedia.org/wiki/Linear_regression
 """
-
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
@@ -35,9 +38,6 @@ https://en.wikipedia.org/wiki/Linear_regression
 #     "numpy",
 # ]
 # ///
-
-import httpx
-import numpy as np
 
 
 def collect_dataset() -> np.ndarray:
