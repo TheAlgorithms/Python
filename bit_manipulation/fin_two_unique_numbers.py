@@ -49,8 +49,8 @@ def find_two_unique_numbers(arr: list[int]) -> tuple[int, int]:
             num1 ^= number
         else:
             num2 ^= number
-    a,b=sorted((num1,num2))
-    return a,b
+    a, b = sorted((num1, num2))
+    return a, b
 
 
 if __name__ == "__main__":
