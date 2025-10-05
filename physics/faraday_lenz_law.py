@@ -71,7 +71,7 @@ def induced_electromotive_force(
     >>> induced_electromotive_force(10.0, 2.0, -2.0)
     Traceback (most recent call last):
         ...
-    Invalid time interval. Should be a positive number.
+    ValueError: Invalid time interval. Should be a positive number.
     >>> induced_electromotive_force(11.0, 'a', 5.0)
     Traceback (most recent call last):
         ...
