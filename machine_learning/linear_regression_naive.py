@@ -161,7 +161,14 @@ def mean_absolute_error(predicted_y: np.ndarray, original_y: np.ndarray) -> floa
 
 
 def main() -> None:
-    """Driver function."""
+    """Driver function.
+
+    >>> main()  # doctest: +ELLIPSIS
+    Iteration 1: Error = ...
+    ... # lots of output omitted
+    Resultant Feature vector:
+    ...
+    """
     data = collect_dataset()
 
     len_data = data.shape[0]
@@ -170,7 +177,7 @@ def main() -> None:
 
     theta = run_linear_regression(data_x, data_y)
     print("Resultant Feature vector:")
-    for value in theta.ravel():
+    for value in np.asarray(theta).ravel():
         print(f"{value:.5f}")
 
 
