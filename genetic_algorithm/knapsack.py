@@ -265,22 +265,22 @@ def run_ga(
     True
     """
     population = [random_genome(len(items)) for _ in range(pop_size)]
-    best_history = []  # track best fitness per generation
-    avg_history = []
-    best_overall = None
-    best_fit_overall = -1
+    best_fitness_history: list[int] = []  # track best fitness per generation
+    avg_fitness_history: list[int] = []
+    best_genome_overall: genome_t = []
+    best_fitness_overall: int = -1
 
     for _ in range(generations):
         fitnesses = [evaluate(genome, items, capacity)[0] for genome in population]
         best_fit = max(fitnesses)
         best_idx = fitnesses.index(best_fit)
-        best_history.append(best_fit)
+        best_fitness_history.append(best_fit)
         avg_fit = sum(fitnesses) / pop_size
-        avg_history.append(avg_fit)
+        avg_fitness_history.append(avg_fit)
 
-        if best_fit > best_fit_overall:
-            best_fit_overall = best_fit
-            best_overall = population[best_idx][:]
+        if best_fit > best_fitness_overall:
+            best_fitness_overall = best_fit
+            best_genome_overall = population[best_idx][:]
 
         # Elitism
         sorted_indices = sorted(range(pop_size), key=lambda idx: fitnesses[idx])
@@ -299,14 +299,14 @@ def run_ga(
         population = new_pop[:pop_size]
 
     # Final evaluation of the best
-    best_value, best_weight = evaluate(best_overall, items, capacity)
+    best_value, best_weight = evaluate(best_genome_overall, items, capacity)
     return {
-        "best_genome": best_overall,
+        "best_genome": best_genome_overall,
         "best_value": best_value,
         "best_weight": best_weight,
         "capacity": capacity,
-        "best_history": best_history,
-        "avg_history": avg_history,
+        "best_fitness_history": best_fitness_history,
+        "avg_fitness_history": avg_fitness_history,
     }
 
 
@@ -327,8 +327,8 @@ if __name__ == "__main__":
     # # Optional: plot fitness curves
     # import matplotlib.pyplot as plt
     # plt.figure()
-    # plt.plot(result["best_history"], label="Best fitness")
-    # plt.plot(result["avg_history"], label="Average fitness")
+    # plt.plot(result["best_fitness_history"], label="Best fitness")
+    # plt.plot(result["avg_fitness_history"], label="Average fitness")
     # plt.title("GA on Knapsack: Fitness over Generations")
     # plt.xlabel("Generation")
     # plt.ylabel("Fitness")
