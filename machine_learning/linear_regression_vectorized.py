@@ -65,7 +65,10 @@ def gradient_descent(
     >>> import numpy as np
     >>> features = np.array([[1, 1], [1, 2], [1, 3]])
     >>> labels = np.array([[1], [2], [3]])
-    >>> theta = gradient_descent(features, labels, alpha=0.01, iterations=1000)  # doctest: +SKIP
+        >>> theta = gradient_descent(
+    ...     features, labels, alpha=0.01, iterations=1000  # doctest: +SKIP
+    ... )
+
     """
     m, n = features.shape
     theta = np.zeros((n, 1))
@@ -115,4 +118,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()  # runs all doctests
-    main()             # runs main function
+    main()  # runs main function
