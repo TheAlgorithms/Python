@@ -18,6 +18,7 @@ A = area (square meter (m²))
 
 from math import cos, radians
 
+
 def check_args(magnetic_field: float, area: float, angle: float) -> None:
     """
     Check that the arguments are valid
