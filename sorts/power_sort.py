@@ -14,6 +14,10 @@ The algorithm works by:
 Time Complexity: O(n log n) worst case, O(n) for nearly sorted data
 Space Complexity: O(n) for merge buffer
 
+References:
+- https://en.wikipedia.org/wiki/Powersort
+- https://arxiv.org/abs/1805.04154 (Original paper by Munro and Wild)
+
 For doctests run:
 python -m doctest -v power_sort.py
 
