@@ -42,11 +42,12 @@ def search_in_rotated_sorted_array(nums: list[int], target: int) -> int:
         if nums[middle_index] == target:
             return middle_index
 
-        # Check if left half is sorted
+        # Check if left half is sorted array
         if nums[left_index] <= nums[middle_index]:
             # Target is in the sorted left half
             if nums[left_index] <= target < nums[middle_index]:
                 right_index = middle_index - 1
+            #If target is not in sorted part searching in other part
             else:
                 left_index = middle_index + 1
         # Right half is sorted
