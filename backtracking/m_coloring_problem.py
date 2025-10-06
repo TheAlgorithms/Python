@@ -1,5 +1,6 @@
-def is_safe(node: int, color: int, graph: list[list[int]], num_vertices: int,
-            col: list[int]) -> bool:
+def is_safe(
+    node: int, color: int, graph: list[list[int]], num_vertices: int, col: list[int]
+) -> bool:
     """
     Check if it is safe to assign a color to a node.
 
@@ -8,12 +9,18 @@ def is_safe(node: int, color: int, graph: list[list[int]], num_vertices: int,
     >>> is_safe(0, 2, [[0,1],[1,0]], 2, [0,1])
     True
     """
-    return all(not (graph[node][k] == 1 and col[k] == color)
-               for k in range(num_vertices))
+    return all(
+        not (graph[node][k] == 1 and col[k] == color) for k in range(num_vertices)
+    )
 
 
-def solve(node: int, col: list[int], max_colors: int, num_vertices: int,
-          graph: list[list[int]]) -> bool:
+def solve(
+    node: int,
+    col: list[int],
+    max_colors: int,
+    num_vertices: int,
+    graph: list[list[int]],
+) -> bool:
     """
     Recursively try to color the graph using at most max_colors.
 
@@ -33,8 +40,7 @@ def solve(node: int, col: list[int], max_colors: int, num_vertices: int,
     return False
 
 
-def graph_coloring(graph: list[list[int]], max_colors: int,
-                   num_vertices: int) -> bool:
+def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -> bool:
     """
     Determine if the graph can be colored with at most max_colors.
 
@@ -52,7 +58,7 @@ if __name__ == "__main__":
     num_vertices = int(input("Enter number of vertices: "))
     num_edges = int(input("Enter number of edges: "))
     print("Enter each edge as 'u v' (0-based indexing):")
-    graph = [[0]*num_vertices for _ in range(num_vertices)]
+    graph = [[0] * num_vertices for _ in range(num_vertices)]
     for _ in range(num_edges):
         u, v = map(int, input().split())
         graph[u][v] = 1
