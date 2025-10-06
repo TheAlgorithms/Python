@@ -2,6 +2,7 @@ from flask import Flask, request, render_template_string
 
 app = Flask(__name__)
 
+
 def calculate(num1: float, num2: float, operation: str) -> float:
     """
     Perform basic arithmetic operations: add, subtract, multiply, divide.
@@ -31,6 +32,7 @@ def calculate(num1: float, num2: float, operation: str) -> float:
         return num1 / num2
     else:
         raise ValueError(f"Unknown operation: {operation}")
+
 
 # HTML template for the web interface
 template = """
@@ -68,6 +70,7 @@ template = """
 </html>
 """
 
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     result = None
@@ -80,6 +83,7 @@ def home():
         except Exception as e:
             result = str(e)
     return render_template_string(template, result=result)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
