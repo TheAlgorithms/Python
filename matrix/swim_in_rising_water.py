@@ -1,6 +1,7 @@
 import heapq
 from typing import List
 
+
 def swim_in_rising_water(grid: List[List[int]]) -> int:
     """
     Return the minimum time to reach the bottom right square of the grid from the top left,
@@ -57,6 +58,8 @@ def swim_in_rising_water(grid: List[List[int]]) -> int:
     # Should always reach if grid is valid, but for completeness
     raise ValueError("No path found to bottom-right (grid constraints violated)")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
