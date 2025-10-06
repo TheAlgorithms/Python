@@ -77,7 +77,9 @@ def classical_hamiltonian(mass: float, momentum: Any, potential_energy: Any) -> 
     return h
 
 
-def quantum_hamiltonian_1d(mass: float, hbar: float, potential_energy: Any, dx: float) -> np.ndarray:
+def quantum_hamiltonian_1d(
+    mass: float, hbar: float, potential_energy: Any, dx: float
+) -> np.ndarray:
     """
     Construct the 1D quantum Hamiltonian matrix using finite differences.
 
