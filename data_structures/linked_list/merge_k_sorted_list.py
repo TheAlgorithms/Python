@@ -1,4 +1,4 @@
-""" This algorithm merges k sorted linked lists into a single sorted linked list.
+"""This algorithm merges k sorted linked lists into a single sorted linked list.
 
 Each input linked list is assumed to be sorted in non-decreasing order. The algorithm uses a min-heap (priority queue) to efficiently determine the next smallest node among all the heads of the lists.
 
@@ -16,6 +16,7 @@ The final result is a single sorted linked list containing all elements from the
 Solve on:
 https://leetcode.com/problems/merge-k-sorted-lists/
 """
+
 from __future__ import annotations
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
@@ -62,7 +63,7 @@ def merge_two_lists(
 def merge_k_sorted_lists(lists: list[SortedLinkedList]) -> SortedLinkedList:
     """
     Merge k sorted linked lists into one sorted linked list.
-    
+
     >>> SSL = SortedLinkedList
     >>> lists = [SSL([1, 4, 7]), SSL([2, 5, 8]), SSL([3, 6, 9])]
     >>> merged = merge_k_sorted_lists(lists)
@@ -109,5 +110,5 @@ if __name__ == "__main__":
     print("Merged K Sorted Lists:")
     print(merged_k)
 
-'''
-'''
+"""
+"""
