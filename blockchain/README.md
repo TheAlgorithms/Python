@@ -14,7 +14,7 @@ Blockchain is also called distributed ledger technology. It is simply the opposi
 
 *Why is Blockchain addressed as a digital ledger if it can record more than account transactions? What other transaction details and information can it hold?*
 
-Digital Ledger Technology is just a ledger that is shared among multiple nodes. This way there is no need for a central authority to hold the info. 
+Digital Ledger Technology is just a ledger that is shared among multiple nodes. This way there is no need for a central authority to hold the info.
 
 *Okay, how is it differentiated from a central database and what are their benefits?*
 
