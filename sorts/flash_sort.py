@@ -1,5 +1,5 @@
 # Flash Sort Algorithm
-# 
+#
 # Flash Sort is a distribution sorting algorithm designed for large arrays with elements
 # that are relatively uniformly distributed. The algorithm can achieve close to O(n) time
 # complexity under favorable conditions.
@@ -21,6 +21,7 @@
 #
 # Reference:
 # https://en.wikipedia.org/wiki/Flashsort
+
 
 def flash_sort(array):
     """
