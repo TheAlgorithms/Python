@@ -42,7 +42,7 @@ class SimpleCNN:
         for f in range(num_filters):
             for i in range(height - fh + 1):
                 for j in range(width - fw + 1):
-                    region = input_tensor[:, i:i + fh, j:j + fw]
+                    region = input_tensor[:, i : i + fh, j : j + fw]
                     output[f, i, j] = np.sum(region * filters[f])
         return output
 
