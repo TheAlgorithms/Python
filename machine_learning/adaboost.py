@@ -73,7 +73,10 @@ class AdaBoost:
         return np.where(clf_preds >= 0, 1, 0)
 
     def _build_stump(
-        self, feature_matrix: np.ndarray, target_signed: np.ndarray, sample_weights: np.ndarray
+        self,
+        feature_matrix: np.ndarray,
+        target_signed: np.ndarray,
+        sample_weights: np.ndarray,
     ) -> Dict[str, Any]:
         """Find the best decision stump for current weights."""
         n_samples, n_features = feature_matrix.shape
@@ -83,7 +86,9 @@ class AdaBoost:
             thresholds = np.unique(feature_matrix[:, feature])
             for threshold in thresholds:
                 for polarity in [1, -1]:
-                    pred = self._stump_predict(feature_matrix, feature, threshold, polarity)
+                    pred = self._stump_predict(
+                        feature_matrix, feature, threshold, polarity
+                    )
                     error = np.sum(sample_weights * (pred != target_signed))
                     if error < min_error:
                         min_error = error
