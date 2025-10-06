@@ -53,8 +53,11 @@ if __name__ == "__main__":
     graph = [[0]*num_vertices for _ in range(num_vertices)]
     for _ in range(num_edges):
         u, v = map(int, input().split())
-        graph[u][v] = 1
-        graph[v][u] = 1
+        if 0 <= u < num_vertices and 0 <= v < num_vertices:
+            graph[u][v] = 1
+            graph[v][u] = 1
+        else:
+            raise ValueError("Edge indices out of range")
     max_colors = int(input())
     col = [0]*num_vertices
     print(solve(0, col, max_colors, num_vertices, graph))
