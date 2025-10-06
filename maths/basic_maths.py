@@ -4,6 +4,11 @@ import math
 
 
 def prime_factors(n: int) -> list:
+    """
+    Uses a standard method of dividing by 2, then odd divisors up to sqrt(n).
+    Time Complexity: O(sqrt(n))
+    Space Complexity: O(log n) on average
+    """
     """Find Prime Factors.
     >>> prime_factors(100)
     [2, 2, 5, 5]
@@ -120,3 +125,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
