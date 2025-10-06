@@ -14,7 +14,8 @@ def is_safe(
     True
     """
     return all(
-        not (graph[node][k] == 1 and col[k] == color) for k in range(num_vertices)
+        not (graph[node][k] == 1 and col[k] == color)
+        for k in range(num_vertices)
     )
 
 
@@ -31,7 +32,7 @@ def solve(
     >>> solve(0, [0]*3, 3, 3, [[0,1,0],[1,0,1],[0,1,0]])
     True
     >>> solve(0, [0]*3, 2, 3, [[0,1,0],[1,0,1],[0,1,0]])
-    False
+    True
     """
     if node == num_vertices:
         return True
@@ -44,7 +45,9 @@ def solve(
     return False
 
 
-def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -> bool:
+def graph_coloring(
+    graph: list[list[int]], max_colors: int, num_vertices: int
+) -> bool:
     """
     Determine if the graph can be colored with at most max_colors.
 
@@ -66,13 +69,21 @@ if __name__ == "__main__":
     num_edges = int(input("Enter number of edges: "))
     graph = [[0] * num_vertices for _ in range(num_vertices)]
 
+    print("Enter the edges (u v):")
     for _ in range(num_edges):
-        u, v = map(int, input().split())
-        if 0 <= u < num_vertices and 0 <= v < num_vertices:
-            graph[u][v] = 1
-            graph[v][u] = 1
-        else:
-            raise ValueError("Edge indices out of range")
+        try:
+            u, v = map(int, input().split())
+            if 0 <= u < num_vertices and 0 <= v < num_vertices:
+                graph[u][v] = 1
+                graph[v][u] = 1
+            else:
+                print(f"Invalid edge: vertices must be between 0 and {num_vertices - 1}.")
+        except ValueError:
+            print("Invalid input format. Please enter two integers separated by a space.")
 
     max_colors = int(input("Enter maximum number of colors: "))
-    print(graph_coloring(graph, max_colors, num_vertices))
+    
+    if graph_coloring(graph, max_colors, num_vertices):
+        print("The graph can be colored with the given number of colors.")
+    else:
+        print("The graph cannot be colored with the given number of colors.")
