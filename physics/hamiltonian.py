@@ -79,7 +79,6 @@ def ham_c(
     return h
 
 
-
 def ham_1d(
     mass: float,
     hbar: float,
