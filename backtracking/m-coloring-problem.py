@@ -4,6 +4,7 @@ def isSafe(node, color, graph, n, col):
             return False
     return True
 
+
 def solve(node, col, m, n, graph):
     if node == n:
         return True
@@ -15,11 +16,13 @@ def solve(node, col, m, n, graph):
             col[node] = 0
     return False
 
+
 def graphColoring(graph, m, n):
     col = [0] * n
     if solve(0, col, m, n, graph):
         return True
     return False
+
 
 if __name__ == "__main__":
     V = int(input())
