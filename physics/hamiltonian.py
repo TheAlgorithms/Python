@@ -3,12 +3,12 @@ Hamiltonian functions for classical and quantum mechanics.
 
 This module provides two educational, minimal implementations:
 
-- classical_hamiltonian(m, p, v): Computes H = T + v for a particle/system, where
-  T = p^2 / (2 m) is the kinetic energy expressed in terms of momentum p, and v is
+- classical_hamiltonian(mass, momentum, potential_energy): Computes H = T + V for a particle/system, where
+    T = p^2 / (2 m) is the kinetic energy expressed in terms of momentum p, and V is
   the potential energy (can be a scalar or an array broadcastable to p).
 
-- quantum_hamiltonian_1d(m, hbar, v, dx): Builds the 1D Hamiltonian matrix for a
-  particle in a potential v using second-order central finite differences for the
+- quantum_hamiltonian_1d(mass, hbar, potential_energy, dx): Builds the 1D Hamiltonian matrix for a
+    particle in a potential V using second-order central finite differences for the
   kinetic energy operator: T = - (hbar^2 / 2m) d^2/dx^2 with Dirichlet boundaries.
 
 These functions are intended for learners to quickly prototype and simulate basic
@@ -27,9 +27,9 @@ from typing import Any
 import numpy as np
 
 
-def classical_hamiltonian(m: float, p: Any, v: Any) -> Any:
+def classical_hamiltonian(mass: float, momentum: Any, potential_energy: Any) -> Any:
     """
-    Classical Hamiltonian H = T + v with T = p^2 / (2 m).
+    Classical Hamiltonian H = T + V with T = p^2 / (2 m).
 
     The function supports scalars or array-like inputs for momentum ``p`` and
     potential energy ``v``; NumPy broadcasting rules apply. If inputs are scalars,
@@ -37,17 +37,17 @@ def classical_hamiltonian(m: float, p: Any, v: Any) -> Any:
 
     Parameters
     ----------
-    m : float
+    mass : float
         Mass (must be positive).
-    p : array-like or scalar
+    momentum : array-like or scalar
         Canonical momentum.
-    v : array-like or scalar
+    potential_energy : array-like or scalar
         Potential energy evaluated for the corresponding configuration.
 
     Returns
     -------
     float | np.ndarray
-        The Hamiltonian value(s) H = p^2/(2m) + v.
+    The Hamiltonian value(s) H = p^2/(2m) + V.
 
     Examples
     --------
@@ -56,35 +56,35 @@ def classical_hamiltonian(m: float, p: Any, v: Any) -> Any:
     2.25
 
     Harmonic oscillator snapshot with vectorized p and v:
-    >>> m = 1.0
-    >>> p = np.array([0.0, 1.0, 2.0])
-    >>> v = np.array([0.5, 0.5, 0.5])  # e.g., 1/2 k x^2 at three positions
-    >>> classical_hamiltonian(m, p, v).tolist()
+    >>> mass = 1.0
+    >>> momentum = np.array([0.0, 1.0, 2.0])
+    >>> potential_energy = np.array([0.5, 0.5, 0.5])  # e.g., 1/2 k x^2 at three positions
+    >>> classical_hamiltonian(mass, momentum, potential_energy).tolist()
     [0.5, 1.0, 2.5]
     """
-    if m <= 0:
+    if mass <= 0:
         raise ValueError("Mass m must be positive.")
 
-    p_arr = np.asarray(p)
-    v_arr = np.asarray(v)
+    p = np.asarray(momentum)
+    v = np.asarray(potential_energy)
 
-    T = (p_arr * p_arr) / (2.0 * m)
-    H = T + v_arr
+    t = (p * p) / (2.0 * mass)
+    h = t + v
 
     # Preserve scalar type when both inputs are scalar
-    if np.isscalar(p) and np.isscalar(v):
-        return float(H)
-    return H
+    if np.isscalar(momentum) and np.isscalar(potential_energy):
+        return float(h)
+    return h
 
 
-def quantum_hamiltonian_1d(m: float, hbar: float, v: Any, dx: float) -> np.ndarray:
+def quantum_hamiltonian_1d(mass: float, hbar: float, potential_energy: Any, dx: float) -> np.ndarray:
     """
     Construct the 1D quantum Hamiltonian matrix using finite differences.
 
     Discretizes the kinetic operator with second-order central differences and
     Dirichlet boundary conditions (wavefunction assumed zero beyond endpoints):
 
-        H = - (hbar^2 / 2m) d^2/dx^2 + v
+    H = - (hbar^2 / 2m) d^2/dx^2 + V
 
     On a uniform grid with spacing ``dx`` and N sites, the Laplacian is
     approximated by the tridiagonal matrix with main diagonal ``-2`` and
@@ -93,63 +93,63 @@ def quantum_hamiltonian_1d(m: float, hbar: float, v: Any, dx: float) -> np.ndarr
 
     Parameters
     ----------
-    m : float
+    mass : float
         Particle mass (must be positive).
     hbar : float
         Reduced Planck constant (can be set to 1.0 in natural units).
-    v : array-like shape (N,)
+    potential_energy : array-like shape (N,)
         Potential energy values on the grid. Defines the matrix size.
     dx : float
         Grid spacing (must be positive).
 
     Returns
     -------
-    np.ndarray shape (N, N)
+    np.ndarray shape (n, n)
         The Hermitian Hamiltonian matrix.
 
     Examples
     --------
     Free particle (v=0) on a small grid: main diagonal = 1/dx^2, off = -1/(2*dx^2) in units m=hbar=1.
-    >>> N, dx = 5, 0.1
-    >>> H = quantum_hamiltonian_1d(m=1.0, hbar=1.0, v=np.zeros(N), dx=dx)
-    >>> float(H[0, 0])
+    >>> n, dx = 5, 0.1
+    >>> h = quantum_hamiltonian_1d(mass=1.0, hbar=1.0, potential_energy=np.zeros(n), dx=dx)
+    >>> float(h[0, 0])
     99.99999999999999
-    >>> float(H[0, 1])
+    >>> float(h[0, 1])
     -49.99999999999999
 
     Add a harmonic-like site potential to the diagonal:
-    >>> x = dx * (np.arange(N) - (N-1)/2)
-    >>> v = 0.5 * x**2  # k=m=omega=1 for illustration
-    >>> H2 = quantum_hamiltonian_1d(1.0, 1.0, v, dx)
-    >>> np.allclose(np.diag(H2) - np.diag(H), v)
+    >>> x = dx * (np.arange(n) - (n-1)/2)
+    >>> potential_energy = 0.5 * x**2  # k=m=omega=1 for illustration
+    >>> h2 = quantum_hamiltonian_1d(1.0, 1.0, potential_energy, dx)
+    >>> np.allclose(np.diag(h2) - np.diag(h), potential_energy)
     True
     """
-    if m <= 0:
+    if mass <= 0:
         raise ValueError("Mass m must be positive.")
     if dx <= 0:
         raise ValueError("Grid spacing dx must be positive.")
 
-    v_arr = np.asarray(v, dtype=float)
-    if v_arr.ndim != 1:
+    v = np.asarray(potential_energy, dtype=float)
+    if v.ndim != 1:
         raise ValueError("v must be a 1D array-like of potential values.")
 
-    N = v_arr.size
-    if N == 0:
+    n = v.size
+    if n == 0:
         raise ValueError("v must contain at least one grid point.")
 
-    coeff_main = (hbar * hbar) / (m * dx * dx)
-    coeff_off = -0.5 * (hbar * hbar) / (m * dx * dx)
+    coeff_main = (hbar * hbar) / (mass * dx * dx)
+    coeff_off = -0.5 * (hbar * hbar) / (mass * dx * dx)
 
     # Build tridiagonal kinetic matrix
-    H = np.zeros((N, N), dtype=float)
-    np.fill_diagonal(H, coeff_main)
-    idx = np.arange(N - 1)
-    H[idx, idx + 1] = coeff_off
-    H[idx + 1, idx] = coeff_off
+    h = np.zeros((n, n), dtype=float)
+    np.fill_diagonal(h, coeff_main)
+    idx = np.arange(n - 1)
+    h[idx, idx + 1] = coeff_off
+    h[idx + 1, idx] = coeff_off
 
     # Add the potential on the diagonal
-    H[np.arange(N), np.arange(N)] += v_arr
-    return H
+    h[np.arange(n), np.arange(n)] += v
+    return h
 
 
 if __name__ == "__main__":
