@@ -1,3 +1,21 @@
+""" This algorithm merges k sorted linked lists into a single sorted linked list.
+
+Each input linked list is assumed to be sorted in non-decreasing order. The algorithm uses a min-heap (priority queue) to efficiently determine the next smallest node among all the heads of the lists.
+
+At every step:
+
+The smallest element among the current nodes of all lists is extracted from the heap.
+
+That node is appended to the result list.
+
+The next node from the same list (if any) is then pushed into the heap.
+
+This process repeats until all nodes from all lists have been processed.
+The final result is a single sorted linked list containing all elements from the input lists.
+
+Solve on:
+https://leetcode.com/problems/merge-k-sorted-lists/
+"""
 from __future__ import annotations
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
@@ -90,3 +108,6 @@ if __name__ == "__main__":
 
     print("Merged K Sorted Lists:")
     print(merged_k)
+
+'''
+'''
