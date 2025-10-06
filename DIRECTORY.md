@@ -343,6 +343,8 @@
   * [Sepia](digital_image_processing/sepia.py)
   * [Test Digital Image Processing](digital_image_processing/test_digital_image_processing.py)
 
+## [Dijkastra](/dijkastra.py)
+
 ## Divide And Conquer
   * [Closest Pair Of Points](divide_and_conquer/closest_pair_of_points.py)
   * [Convex Hull](divide_and_conquer/convex_hull.py)
