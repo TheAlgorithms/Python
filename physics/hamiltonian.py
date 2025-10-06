@@ -1,5 +1,5 @@
 """
-Hamiltonian functions for classical and quantum mechanics.
+Hamiltonian functions for classical and quantum  mechanics.
 
 This module provides two educational, minimal implementations:
 
