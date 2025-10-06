@@ -127,16 +127,13 @@ def is_prime(n: int) -> bool:
     False
     >>> is_prime(1)
     False
-    Traceback (most recent call last):
-        ...
-    ValueError: Only integers greater than 1 can be prime
     >>> is_prime(0)
-    Traceback (most recent call last):
-        ...
-    ValueError: Only integers greater than 1 can be prime
+    False
+    >>> is_prime(2)
+    True
     """
     if n <= 1:
-        raise ValueError("Only integers greater than 1 can be prime")
+        return False
     if n in {2, 3}:
         return True
     if n % 2 == 0 or n % 3 == 0:
