@@ -12,12 +12,16 @@ ARIMAModel(...)
 array([10.99999999, 12.00000001])
 """
 
-
 import numpy as np
 
 
 class ARIMAModel:
-    def __init__(self, ar_order: int = 1, diff_order: int = 0, ma_order: int = 0) -> None:
+    def __init__(
+        self,
+        ar_order: int = 1,
+        diff_order: int = 0,
+        ma_order: int = 0,
+    ) -> None:
         """Initialize ARIMA model.
         Args:
             ar_order: Autoregressive order (p)
@@ -50,14 +54,18 @@ class ARIMAModel:
         """
         y = np.asarray(time_series)
         y_diff = self.difference(y, self.diff_order)
+
         # Build lagged feature matrix
-        feature_matrix = np.column_stack([np.roll(y_diff, i) for i in range(1, self.ar_order + 1)])
+        feature_matrix = np.column_stack(
+            [np.roll(y_diff, i) for i in range(1, self.ar_order + 1)]
+        )
         feature_matrix = feature_matrix[self.ar_order:]
         target = y_diff[self.ar_order:]
+
         # Add intercept
-        feature_matrix = np.hstack(
-            [np.ones((feature_matrix.shape[0], 1)), feature_matrix]
-        )
+        intercept = np.ones((feature_matrix.shape[0], 1))
+        feature_matrix = np.hstack([intercept, feature_matrix])
+
         # Solve least squares for AR coefficients
         self.coef_ = np.linalg.lstsq(feature_matrix, target, rcond=None)[0]
         self.resid_ = target - feature_matrix @ self.coef_
@@ -82,7 +90,7 @@ class ARIMAModel:
         y_pred = list(y[-self.ar_order:])
         for _ in range(n_periods):
             # Build feature vector for prediction
-            features = [1] + y_pred[-self.ar_order:][::-1]
+            features = [1, *y_pred[-self.ar_order:][::-1]]
             next_val = np.dot(features, self.coef_)
             y_pred.append(next_val)
         return np.array(y_pred[self.ar_order:])
