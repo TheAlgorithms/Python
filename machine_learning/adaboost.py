@@ -113,11 +113,11 @@ class AdaBoost:
             for threshold in thresholds:
                 for polarity in [1, -1]:
                     pred = self._stump_predict(
-                            feature_matrix,
-                            feature,
-                            threshold,
-                            polarity,
-                        )
+                        feature_matrix,
+                        feature,
+                        threshold,
+                        polarity,
+                    )
                     error = np.sum(sample_weights * (pred != target_signed))
 
                     # Keep stump with lowest weighted error
