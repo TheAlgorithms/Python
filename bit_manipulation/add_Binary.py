@@ -14,9 +14,9 @@ def add_Binary(a: str, b: str) -> str:
             j -= 1
 
         result.append(str(total % 2))  # current bit
-        carry = total // 2             # update carry
+        carry = total // 2  # update carry
 
-    return ''.join(reversed(result))   # reverse the result to get correct order
+    return "".join(reversed(result))  # reverse the result to get correct order
 
 
 # Example usage
