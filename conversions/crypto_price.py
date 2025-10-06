@@ -56,10 +56,11 @@ def get_live_eth_price() -> float:
     """
     try:
         import requests
+
         response = requests.get(
             "https://api.coingecko.com/api/v3/simple/price",
             params={"ids": "ethereum", "vs_currencies": "usd"},
-            timeout=10
+            timeout=10,
         )
         response.raise_for_status()
         return response.json()["ethereum"]["usd"]
@@ -69,6 +70,7 @@ def get_live_eth_price() -> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Interactive example
