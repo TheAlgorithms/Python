@@ -1,0 +1,69 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+NUM_PARTICLES = 150
+NUM_GROUPS = 4
+G = 1.0
+BETA = 0.9
+BOUNDS = 100
+
+particles = np.zeros(NUM_PARTICLES, dtype=[
+    ('position', float, 2),
+    ('velocity', float, 2),
+    ('force', float, 2),
+    ('group', int, 1)
+])
+
+particles['position'] = np.random.rand(NUM_PARTICLES, 2) * BOUNDS
+particles['velocity'] = np.zeros((NUM_PARTICLES, 2))
+particles['group'] = np.random.randint(0, NUM_GROUPS, size=NUM_PARTICLES)
+
+fig, ax = plt.subplots()
+ax.set_facecolor('black')
+fig.set_size_inches(8, 8)
+ax.set_xticks([])
+ax.set_yticks([])
+plt.xlim(0, BOUNDS)
+plt.ylim(0, BOUNDS)
+
+scatter = ax.scatter(
+    particles['position'][:, 0],
+    particles['position'][:, 1],
+    c=particles['group'],
+    cmap='viridis',
+    s=10
+)
+
+def update(frame):
+    particles['force'] = 0.0
+    
+    for i in range(NUM_PARTICLES):
+        for j in range(NUM_PARTICLES):
+            if i == j:
+                continue
+            
+            delta_pos = particles['position'][j] - particles['position'][i]
+            dist_sq = max(np.sum(delta_pos**2), 1.0)
+            
+            force_mag = G / dist_sq
+            
+            force_vec = delta_pos * force_mag / np.sqrt(dist_sq)
+            
+            if particles['group'][i] == particles['group'][j]:
+                particles['force'][i] -= force_vec
+            else:
+                particles['force'][i] += force_vec
+
+    particles['velocity'] = (particles['velocity'] + particles['force']) * BETA
+    particles['position'] += particles['velocity']
+    
+    particles['position'] %= BOUNDS
+    
+    scatter.set_offsets(particles['position'])
+    
+    return scatter,
+
+ani = FuncAnimation(fig, update, frames=200, interval=10, blit=True)
+
+plt.show()
