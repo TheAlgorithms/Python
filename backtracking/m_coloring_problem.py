@@ -44,9 +44,7 @@ def solve(
     return False
 
 
-def graph_coloring(
-    graph: list[list[int]], max_colors: int, num_vertices: int
-) -> bool:
+def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -> bool:
     """
     Determine if the graph can be colored with at most max_colors.
 
