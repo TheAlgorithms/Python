@@ -84,7 +84,7 @@ def work(heat: float, internal_energy_variation: float) -> float:
 
     __categorize_system(heat, "heat")
     __categorize_system(internal_energy_variation, "internal_energy_variation")
-    
+
     work = heat - internal_energy_variation
     __categorize_system(work, "work")
     return round(work, 1)
@@ -113,7 +113,7 @@ def heat(internal_energy_variation: float, work: float) -> float:
 
     __categorize_system(internal_energy_variation, "internal_energy_variation")
     __categorize_system(work, "work")
-    
+
     heat = round(internal_energy_variation + work, 1)
     __categorize_system(heat, "heat")
     return heat
@@ -142,7 +142,7 @@ def internal_energy_variation(heat: float, work: float) -> float:
 
     __categorize_system(heat, "heat")
     __categorize_system(work, "work")
-    
+
     internal_energy_variation = round(heat - work, 1)
     __categorize_system(internal_energy_variation, "internal_energy_variation")
     return internal_energy_variation
