@@ -13,7 +13,7 @@ array([0, 1])
 """
 
 import numpy as np
-from typing import Any, Dict, List
+from typing import Any
 
 
 class AdaBoost:
@@ -23,8 +23,8 @@ class AdaBoost:
             n_estimators: Number of boosting rounds.
         """
         self.n_estimators: int = n_estimators
-        self.alphas: List[float] = []  # Weights for each weak learner
-        self.models: List[Dict[str, Any]] = []  # List of weak learners (stumps)
+        self.alphas: list[float] = []  # Weights for each weak learner
+        self.models: list[dict[str, Any]] = []  # List of weak learners (stumps)
 
     def fit(self, feature_matrix: np.ndarray, target: np.ndarray) -> None:
         """Fit AdaBoost model.
@@ -32,19 +32,16 @@ class AdaBoost:
             feature_matrix: (n_samples, n_features) feature matrix
             target: (n_samples,) labels (0 or 1)
         """
-        n_samples, n_features = feature_matrix.shape
-        sample_weights = np.ones(n_samples) / n_samples  # Initialize sample weights
+        n_samples, _ = feature_matrix.shape
+        sample_weights = np.ones(n_samples) / n_samples
         self.models = []
         self.alphas = []
-        y_signed = np.where(target == 0, -1, 1)  # Convert labels to -1, 1
+        y_signed = np.where(target == 0, -1, 1)
         for _ in range(self.n_estimators):
-            # Train a decision stump with weighted samples
             stump = self._build_stump(feature_matrix, y_signed, sample_weights)
             pred = stump["pred"]
             err = stump["error"]
-            # Compute alpha (learner weight)
             alpha = 0.5 * np.log((1 - err) / (err + 1e-10))
-            # Update sample weights
             sample_weights *= np.exp(-alpha * y_signed * pred)
             sample_weights /= np.sum(sample_weights)
             self.models.append(stump)
@@ -56,13 +53,6 @@ class AdaBoost:
             feature_matrix: (n_samples, n_features) feature matrix
         Returns:
             (n_samples,) predicted labels (0 or 1)
-        >>> import numpy as np
-        >>> features = np.array([[0, 0], [1, 1], [1, 0], [0, 1]])
-        >>> labels = np.array([0, 1, 1, 0])
-        >>> clf = AdaBoost(n_estimators=5)
-        >>> clf.fit(features, labels)
-        >>> clf.predict(np.array([[0, 0], [1, 1]]))
-        array([0, 1])
         """
         clf_preds = np.zeros(feature_matrix.shape[0])
         for alpha, stump in zip(self.alphas, self.models):
@@ -73,12 +63,15 @@ class AdaBoost:
         return np.where(clf_preds >= 0, 1, 0)
 
     def _build_stump(
-        self, feature_matrix: np.ndarray, target_signed: np.ndarray, sample_weights: np.ndarray
-    ) -> Dict[str, Any]:
+        self,
+        feature_matrix: np.ndarray,
+        target_signed: np.ndarray,
+        sample_weights: np.ndarray,
+    ) -> dict[str, Any]:
         """Find the best decision stump for current weights."""
-        n_samples, n_features = feature_matrix.shape
+        _, n_features = feature_matrix.shape
         min_error = float("inf")
-        best_stump: Dict[str, Any] = {}
+        best_stump: dict[str, Any] = {}
         for feature in range(n_features):
             thresholds = np.unique(feature_matrix[:, feature])
             for threshold in thresholds:
