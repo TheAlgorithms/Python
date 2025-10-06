@@ -1,7 +1,9 @@
 from typing import List
 
 
-def is_safe(node: int, color: int, graph: List[List[int]], n: int, col: List[int]) -> bool:
+def is_safe(
+    node: int, color: int, graph: List[List[int]], n: int, col: List[int]
+) -> bool:
     """
     Check if it is safe to assign a color to a node.
 
