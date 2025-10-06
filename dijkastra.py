@@ -1,8 +1,9 @@
 import heapq
 
+
 def dijkstra(graph, start):
     # Step 1: Initialize distances and priority queue
-    distances = {node: float('inf') for node in graph}  # Initially all are infinity
+    distances = {node: float("inf") for node in graph}  # Initially all are infinity
     distances[start] = 0  # Distance to start node is 0
     priority_queue = [(0, start)]  # (distance, node)
 
