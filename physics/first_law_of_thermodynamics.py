@@ -22,7 +22,13 @@ OBS: All units must be equal to each other.
 
 def __check_args(argument: float) -> None:
     """
-    Check that the arguments are valid
+    Check that the arguments are valid.
+    >>> __check_args(50.0)
+    >>> __check_args(-20)
+    >>> __check_args("50")
+    Traceback (most recent call last):
+        ...
+    TypeError: Invalid argument. Should be an integer or float.
     """
 
     # Ensure valid instance
@@ -34,6 +40,16 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
     """
     Categorizes the system based on the work done, heat added/removed,
     and internal energy variation.
+    >>> __categorize_system(0, "work")
+    The system is isochoric (constant volume).
+    >>> __categorize_system(50, "heat")
+    The system is endothermic (absorbing heat).
+    >>> __categorize_system(-20, "internal_energy_variation")
+    The internal energy of the system is decreasing. It cooling down.
+    >>> __categorize_system(10, "invalid")
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid argument name. Should be 'work', 'heat', or 'internal_energy_variation'.
     """
 
     if argument_name == "work":
@@ -60,6 +76,10 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
         elif argument_value < 0:
             print("The internal energy of the system is decreasing. It cooling down.")
 
+    else:
+        error_type = "Invalid argument name."
+        error_msg = "Should be 'work', 'heat', or 'internal_energy_variation'."
+        raise ValueError(f"{error_type} {error_msg}")
 
 def work(heat: float, internal_energy_variation: float) -> float:
     """
