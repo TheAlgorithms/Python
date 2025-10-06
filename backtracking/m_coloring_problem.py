@@ -14,8 +14,7 @@ def is_safe(
     True
     """
     return all(
-        not (graph[node][k] == 1 and col[k] == color)
-        for k in range(num_vertices)
+        not (graph[node][k] == 1 and col[k] == color) for k in range(num_vertices)
     )
 
 
@@ -45,9 +44,7 @@ def solve(
     return False
 
 
-def graph_coloring(
-    graph: list[list[int]], max_colors: int, num_vertices: int
-) -> bool:
+def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -> bool:
     """
     Determine if the graph can be colored with at most max_colors.
 
