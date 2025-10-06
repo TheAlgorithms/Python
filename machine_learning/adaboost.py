@@ -12,8 +12,9 @@ Reference: https://en.wikipedia.org/wiki/AdaBoost
 array([0, 1])
 """
 
+from typing import Any
+
 import numpy as np
-from typing import Any, Dict, List
 
 
 class AdaBoost:
@@ -23,8 +24,8 @@ class AdaBoost:
             n_estimators: Number of boosting rounds.
         """
         self.n_estimators: int = n_estimators
-        self.alphas: List[float] = []  # Weights for each weak learner
-        self.models: List[Dict[str, Any]] = []  # List of weak learners (stumps)
+        self.alphas: list[float] = []  # Weights for each weak learner
+        self.models: list[dict[str, Any]] = []  # List of weak learners (stumps)
 
     def fit(self, feature_matrix: np.ndarray, target: np.ndarray) -> None:
         """Fit AdaBoost model.
@@ -77,11 +78,11 @@ class AdaBoost:
         feature_matrix: np.ndarray,
         target_signed: np.ndarray,
         sample_weights: np.ndarray,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Find the best decision stump for current weights."""
         n_samples, n_features = feature_matrix.shape
         min_error = float("inf")
-        best_stump: Dict[str, Any] = {}
+        best_stump: dict[str, Any] = {}
         for feature in range(n_features):
             thresholds = np.unique(feature_matrix[:, feature])
             for threshold in thresholds:

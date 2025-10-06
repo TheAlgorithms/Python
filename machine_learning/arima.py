@@ -12,8 +12,8 @@ ARIMAModel(...)
 array([10.99999999, 12.00000001])
 """
 
+
 import numpy as np
-from typing import Optional
 
 
 class ARIMAModel:
@@ -27,8 +27,8 @@ class ARIMAModel:
         self.ar_order = ar_order
         self.diff_order = diff_order
         self.ma_order = ma_order
-        self.coef_: Optional[np.ndarray] = None
-        self.resid_: Optional[np.ndarray] = None
+        self.coef_: np.ndarray | None = None
+        self.resid_: np.ndarray | None = None
 
     def difference(self, time_series: np.ndarray, order: int) -> np.ndarray:
         """Apply differencing to make series stationary."""
