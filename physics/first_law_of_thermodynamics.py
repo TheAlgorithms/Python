@@ -49,7 +49,7 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
     >>> __categorize_system(10, "invalid")
     Traceback (most recent call last):
         ...
-    ValueError: Invalid argument name. Should be 'work', 'heat', or 'internal_energy_variation'.
+    ValueError: Should be 'work', 'heat', or 'internal_energy_variation'.
     """
 
     if argument_name == "work":
@@ -77,9 +77,7 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
             print("The internal energy of the system is decreasing. It cooling down.")
 
     else:
-        error_type = "Invalid argument name."
-        error_msg = "Should be 'work', 'heat', or 'internal_energy_variation'."
-        raise ValueError(f"{error_type} {error_msg}")
+        raise ValueError("Should be 'work', 'heat', or 'internal_energy_variation'.")
 
 def work(heat: float, internal_energy_variation: float) -> float:
     """
