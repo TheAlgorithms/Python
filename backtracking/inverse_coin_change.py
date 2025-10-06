@@ -1,7 +1,7 @@
 def inverse_coin_change(amount, coins):
     """
     Finds all combinations of coins that sum up to the given amount.
-    
+
     :param amount: Target amount
     :param coins: List of coin denominations
     :return: List of combinations (each combination is a list of coins)
@@ -28,8 +28,12 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Inverse Coin Change Solver")
-    parser.add_argument("--amount", type=int, required=True, help="Target amount to reach")
-    parser.add_argument("--coins", type=int, nargs="+", required=True, help="List of coin denominations")
+    parser.add_argument(
+        "--amount", type=int, required=True, help="Target amount to reach"
+    )
+    parser.add_argument(
+        "--coins", type=int, nargs="+", required=True, help="List of coin denominations"
+    )
 
     args = parser.parse_args()
 
