@@ -27,6 +27,8 @@
   * [Word Ladder](backtracking/word_ladder.py)
   * [Word Search](backtracking/word_search.py)
 
+## [Binary Search-Iterative](/binary_search-iterative.py)
+
 ## Bit Manipulation
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
   * [Binary Coded Decimal](bit_manipulation/binary_coded_decimal.py)
