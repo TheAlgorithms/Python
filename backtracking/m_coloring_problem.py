@@ -14,7 +14,8 @@ def is_safe(
     True
     """
     return all(
-        not (graph[node][k] == 1 and col[k] == color) for k in range(num_vertices)
+        not (graph[node][k] == 1 and col[k] == color)
+        for k in range(num_vertices)
     )
 
 
@@ -44,7 +45,9 @@ def solve(
     return False
 
 
-def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -> bool:
+def graph_coloring(
+    graph: list[list[int]], max_colors: int, num_vertices: int
+) -> bool:
     """
     Determine if the graph can be colored with at most max_colors.
 
@@ -58,9 +61,14 @@ def graph_coloring(graph: list[list[int]], max_colors: int, num_vertices: int) -
 
 
 if __name__ == "__main__":
-    num_vertices = int(input())
-    num_edges = int(input())
+    import doctest
+
+    doctest.testmod()
+
+    num_vertices = int(input("Enter number of vertices: "))
+    num_edges = int(input("Enter number of edges: "))
     graph = [[0] * num_vertices for _ in range(num_vertices)]
+
     for _ in range(num_edges):
         u, v = map(int, input().split())
         if 0 <= u < num_vertices and 0 <= v < num_vertices:
@@ -68,5 +76,6 @@ if __name__ == "__main__":
             graph[v][u] = 1
         else:
             raise ValueError("Edge indices out of range")
-    max_colors = int(input())
+
+    max_colors = int(input("Enter maximum number of colors: "))
     print(graph_coloring(graph, max_colors, num_vertices))
