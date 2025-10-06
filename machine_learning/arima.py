@@ -59,8 +59,8 @@ class ARIMAModel:
         feature_matrix = np.column_stack(
             [np.roll(y_diff, i) for i in range(1, self.ar_order + 1)]
         )
-        feature_matrix = feature_matrix[self.ar_order:]
-        target = y_diff[self.ar_order:]
+        feature_matrix = feature_matrix[self.ar_order :]
+        target = y_diff[self.ar_order :]
 
         # Add intercept
         intercept = np.ones((feature_matrix.shape[0], 1))
@@ -87,10 +87,10 @@ class ARIMAModel:
         array([10.99999999, 12.00000001])
         """
         y = np.asarray(time_series)
-        y_pred = list(y[-self.ar_order:])
+        y_pred = list(y[-self.ar_order :])
         for _ in range(n_periods):
             # Build feature vector for prediction
-            features = [1, *y_pred[-self.ar_order:][::-1]]
+            features = [1, *y_pred[-self.ar_order :][::-1]]
             next_val = np.dot(features, self.coef_)
             y_pred.append(next_val)
-        return np.array(y_pred[self.ar_order:])
+        return np.array(y_pred[self.ar_order :])
