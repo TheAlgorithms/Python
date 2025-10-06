@@ -14,8 +14,7 @@ def is_safe(
     True
     """
     return all(
-        not (graph[node][k] == 1 and col[k] == color)
-        for k in range(num_vertices)
+        not (graph[node][k] == 1 and col[k] == color) for k in range(num_vertices)
     )
 
 
@@ -65,11 +64,11 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    num_vertices = int(input("Enter number of vertices: "))
-    num_edges = int(input("Enter number of edges: "))
+    num_vertices = int(input("Enter vertices: "))
+    num_edges = int(input("Enter edges: "))
     graph = [[0] * num_vertices for _ in range(num_vertices)]
 
-    print("Enter the edges (u v):")
+    print("Enter edges (u v):")
     for _ in range(num_edges):
         try:
             u, v = map(int, input().split())
@@ -77,13 +76,13 @@ if __name__ == "__main__":
                 graph[u][v] = 1
                 graph[v][u] = 1
             else:
-                print(f"Invalid edge: vertices must be between 0 and {num_vertices - 1}.")
+                print("Invalid edge.")
         except ValueError:
-            print("Invalid input format. Please enter two integers separated by a space.")
+            print("Invalid input.")
 
-    max_colors = int(input("Enter maximum number of colors: "))
-    
+    max_colors = int(input("Enter max colors: "))
+
     if graph_coloring(graph, max_colors, num_vertices):
-        print("The graph can be colored with the given number of colors.")
+        print("Coloring possible.")
     else:
-        print("The graph cannot be colored with the given number of colors.")
+        print("Coloring not possible.")
