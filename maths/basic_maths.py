@@ -2,6 +2,7 @@
 
 import math
 
+
 def gcd(a: int, b: int) -> int:
     """Calculate the Greatest Common Divisor (GCD) using Euclid's Algorithm.
     >>> gcd(54, 24)
@@ -161,5 +162,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
