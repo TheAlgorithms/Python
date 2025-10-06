@@ -12,9 +12,8 @@ Reference: https://en.wikipedia.org/wiki/AdaBoost
 array([0, 1])
 """
 
-from typing import Any
-
 import numpy as np
+from typing import Any
 
 
 class AdaBoost:
@@ -33,7 +32,7 @@ class AdaBoost:
             feature_matrix: (n_samples, n_features) feature matrix
             target: (n_samples,) labels (0 or 1)
         """
-        n_samples, n_features = feature_matrix.shape
+        n_samples, _n_features = feature_matrix.shape
         sample_weights = np.ones(n_samples) / n_samples  # Initialize sample weights
         self.models = []
         self.alphas = []
@@ -74,22 +73,17 @@ class AdaBoost:
         return np.where(clf_preds >= 0, 1, 0)
 
     def _build_stump(
-        self,
-        feature_matrix: np.ndarray,
-        target_signed: np.ndarray,
-        sample_weights: np.ndarray,
+        self, feature_matrix: np.ndarray, target_signed: np.ndarray, sample_weights: np.ndarray
     ) -> dict[str, Any]:
         """Find the best decision stump for current weights."""
-        n_samples, n_features = feature_matrix.shape
+        _n_samples, n_features = feature_matrix.shape
         min_error = float("inf")
         best_stump: dict[str, Any] = {}
         for feature in range(n_features):
             thresholds = np.unique(feature_matrix[:, feature])
             for threshold in thresholds:
                 for polarity in [1, -1]:
-                    pred = self._stump_predict(
-                        feature_matrix, feature, threshold, polarity
-                    )
+                    pred = self._stump_predict(feature_matrix, feature, threshold, polarity)
                     error = np.sum(sample_weights * (pred != target_signed))
                     if error < min_error:
                         min_error = error
