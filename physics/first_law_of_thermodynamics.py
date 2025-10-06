@@ -43,7 +43,7 @@ def categorize_system(argument_value: float, argument_name: str) -> None:
             print("The system is expanding.")
         elif argument_value < 0:
             print("The system is compressing.")
-    
+
     elif argument_name == "heat":
         if argument_value == 0:
             print("The system is adiabatic (no heat exchange).")
@@ -51,7 +51,7 @@ def categorize_system(argument_value: float, argument_name: str) -> None:
             print("The system is endothermic (absorbing heat).")
         elif argument_value < 0:
             print("The system is exothermic (releasing heat).")
-    
+
     elif argument_name == "internal_energy_variation":
         if argument_value == 0:
             print("The system is isothermic (constant internal energy)")
@@ -84,10 +84,11 @@ def work(heat: float, internal_energy_variation: float) -> float:
 
     categorize_system(heat, "heat")
     categorize_system(internal_energy_variation, "internal_energy_variation")
-    
+
     work = heat - internal_energy_variation
     categorize_system(work, "work")
     return round(work, 1)
+
 
 def heat(internal_energy_variation: float, work: float) -> float:
     """
@@ -112,10 +113,11 @@ def heat(internal_energy_variation: float, work: float) -> float:
 
     categorize_system(internal_energy_variation, "internal_energy_variation")
     categorize_system(work, "work")
-    
+
     heat = round(internal_energy_variation + work, 1)
     categorize_system(heat, "heat")
     return heat
+
 
 def internal_energy_variation(heat: float, work: float) -> float:
     """
@@ -140,10 +142,11 @@ def internal_energy_variation(heat: float, work: float) -> float:
 
     categorize_system(heat, "heat")
     categorize_system(work, "work")
-    
+
     internal_energy_variation = round(heat - work, 1)
     categorize_system(internal_energy_variation, "internal_energy_variation")
     return internal_energy_variation
+
 
 if __name__ == "__main__":
     from doctest import testmod
