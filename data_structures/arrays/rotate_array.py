@@ -1,5 +1,6 @@
 from typing import List
 
+
 def rotate_array(arr: List[int], k: int) -> List[int]:
     n = len(arr)
     if n == 0:
