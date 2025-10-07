@@ -285,7 +285,9 @@ def feedforward_network(x: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
 
 
 def transformer_encoder_block(
-    x: np.ndarray, num_heads: int = 12, hidden_dim: int = 3072  # noqa: ARG001
+    x: np.ndarray,
+    num_heads: int = 12,
+    hidden_dim: int = 3072,  # noqa: ARG001
 ) -> np.ndarray:
     """
     Apply a single Transformer encoder block.
