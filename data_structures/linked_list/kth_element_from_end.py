@@ -16,27 +16,75 @@ class LinkedList:
         self.size = 0
 
     def __str__(self) -> str:
-        if self.is_empty():
-            return ""
-        else:
-            iterate = self.head
-            item_str = ""
-            item_list: list[str] = []
-            while iterate:
-                item_list.append(str(iterate.item))
-                iterate = iterate.next
+        """
+        >>> linked_list = LinkedList()
+        >>> linked_list.add(23)
+        >>> linked_list.add(14)
+        >>> linked_list.add(9)
+        >>> print(linked_list)
+        9 --> 14 --> 23
+        """
+        iterate = self.head
+        item_str = ""
+        item_list: list[str] = []
+        while iterate:
+            item_list.append(str(iterate.item))
+            iterate = iterate.next
 
-            item_str = " --> ".join(item_list)
+        item_str = " --> ".join(item_list)
 
-            return item_str
+        return item_str
 
     def __len__(self) -> int:
+        """
+        >>> linked_list = LinkedList()
+        >>> len(linked_list)
+        0
+        >>> linked_list.add("a")
+        >>> len(linked_list)
+        1
+        >>> linked_list.add("b")
+        >>> len(linked_list)
+        2
+        """
         return self.size
 
-    def is_empty(self) -> bool:
-        return self.head is None
-
     def add(self, item: Any, position: int = 0) -> None:
+        """
+        Add an item to the LinkedList at the specified position.
+        Default position is 0 (the head).
+
+        Args:
+            item (Any): The item to add to the LinkedList.
+            position (int, optional): The position at which to add the item.
+                Defaults to 0.
+
+        Raises:
+            ValueError: If the position is negative or out of bounds.
+
+        >>> linked_list = LinkedList()
+        >>> linked_list.add(1)
+        >>> linked_list.add(2)
+        >>> linked_list.add(3)
+        >>> linked_list.add(4, 2)
+        >>> print(linked_list)
+        3 --> 2 --> 4 --> 1
+
+        # Test adding to a negative position
+        >>> linked_list.add(5, -3)
+        Traceback (most recent call last):
+            ...
+        ValueError: Position must be non-negative
+
+        # Test adding to an out-of-bounds position
+        >>> linked_list.add(5,7)
+        Traceback (most recent call last):
+            ...
+        ValueError: Out of bounds
+        >>> linked_list.add(5, 4)
+        >>> print(linked_list)
+        3 --> 2 --> 4 --> 1 --> 5
+        """
         if position < 0:
             raise ValueError("Position must be non-negative")
 
@@ -53,11 +101,11 @@ class LinkedList:
             current.next = new_node
         self.size += 1
 
-    def kth_element_from_end(self, k: int) -> Any:
+    def kth_element_from_end(self, position: int) -> Any:
         """
         Find the kth node element from the end of the Linked List.
         This is not a zero-based index search.
-        If k=1, it will return the last element in the list.
+        If position=1, it will return the last element in the list.
 
         >>> linked_list = LinkedList()
         >>> linked_list.add(1)
@@ -77,12 +125,12 @@ class LinkedList:
         >>> linked_list.kth_element_from_end(0)
         >>> linked_list.kth_element_from_end(-5)
         """
-        if (self.head is None) or (k <= 0) or (k > self.size):
+        if (self.head is None) or (position <= 0) or (position > self.size):
             return None
 
         slow_pointer = fast_pointer = self.head
 
-        for _ in range(k):
+        for _ in range(position):
             fast_pointer = fast_pointer.next
 
         while fast_pointer is not None and slow_pointer is not None:
