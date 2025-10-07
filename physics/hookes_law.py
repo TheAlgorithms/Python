@@ -1,4 +1,4 @@
-#Hookes Law
+# Hookes Law
 """
 Hookes Law states that the Force is directly proportional to the extension or compression of an elastic object, provided the limit of proportionality is not exceeded.
 
@@ -14,7 +14,8 @@ Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 
 """
 
-def hookes_law(k:float, x:float) ->float:
+
+def hookes_law(k: float, x: float) -> float:
     """
     Calculate the Hookes law from the given values of spring constant 'k'
     and the displacement 'x' from the equilibrium position.
@@ -26,13 +27,10 @@ def hookes_law(k:float, x:float) ->float:
     >>> hookes_law(300, 3)
     -900
     """
-    return round(-k*x, 2)
+    return round(-k * x, 2)
 
 
-if __name__ ==  "__main__":
+if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
-
-
-
