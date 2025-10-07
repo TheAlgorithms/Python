@@ -15,7 +15,7 @@ Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 """
 
 
-def hookes_law(spring_contant: float, displacement: float) -> float:
+def hookes_law(spring_constant: float, displacement: float) -> float:
     """
     Calculate the Hookes law from the given values of spring constant 'k'
     and the displacement 'x' from the equilibrium position.
