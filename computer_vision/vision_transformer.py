@@ -16,7 +16,6 @@ Author: devvratpathak
 """
 
 import numpy as np
-from typing import Optional
 
 
 def create_patches(
@@ -50,15 +49,17 @@ def create_patches(
         (14, 14)
     """
     if len(image.shape) != 3:
-        raise ValueError(f"Expected 3D image, got shape {image.shape}")
+        msg = f"Expected 3D image, got shape {image.shape}"
+        raise ValueError(msg)
 
     height, width, channels = image.shape
 
     if height % patch_size != 0 or width % patch_size != 0:
-        raise ValueError(
+        msg = (
             f"Image dimensions ({height}x{width}) must be divisible by "
             f"patch_size ({patch_size})"
         )
+        raise ValueError(msg)
 
     # Calculate number of patches in each dimension
     num_patches_h = height // patch_size
@@ -81,7 +82,8 @@ def patch_embedding(patches: np.ndarray, embedding_dim: int = 768) -> np.ndarray
     Linearly project flattened patches to embedding dimension.
 
     Args:
-        patches: Array of patches with shape (num_patches, patch_size, patch_size, channels)
+        patches: Array of patches with shape
+            (num_patches, patch_size, patch_size, channels)
         embedding_dim: Dimension of the embedding space (default: 768)
 
     Returns:
@@ -102,10 +104,11 @@ def patch_embedding(patches: np.ndarray, embedding_dim: int = 768) -> np.ndarray
     # Flatten each patch
     flattened = patches.reshape(num_patches, -1)
 
-    # Linear projection (simplified - in practice this would be a learned weight matrix)
+    # Linear projection (simplified - in practice this is a learned weight matrix)
     # For demonstration, we use random projection
     patch_dim = flattened.shape[1]
-    projection_matrix = np.random.randn(patch_dim, embedding_dim) * 0.02
+    rng = np.random.default_rng()
+    projection_matrix = rng.standard_normal((patch_dim, embedding_dim)) * 0.02
 
     embedded = flattened @ projection_matrix
 
@@ -113,7 +116,7 @@ def patch_embedding(patches: np.ndarray, embedding_dim: int = 768) -> np.ndarray
 
 
 def add_positional_encoding(
-    embeddings: np.ndarray, num_positions: Optional[int] = None
+    embeddings: np.ndarray, num_positions: int | None = None
 ) -> np.ndarray:
     """
     Add learnable positional encodings to patch embeddings.
@@ -142,11 +145,12 @@ def add_positional_encoding(
         # Add 1 for the CLS token
         num_positions = num_patches + 1
 
-    # Create learnable positional encodings (simplified - normally learned parameters)
-    positional_encodings = np.random.randn(num_positions, embedding_dim) * 0.02
+    # Create learnable positional encodings (simplified - normally learned)
+    rng = np.random.default_rng()
+    positional_encodings = rng.standard_normal((num_positions, embedding_dim)) * 0.02
 
     # Prepend CLS token
-    cls_token = np.random.randn(1, embedding_dim) * 0.02
+    cls_token = rng.standard_normal((1, embedding_dim)) * 0.02
 
     # Concatenate CLS token with patch embeddings
     embeddings_with_cls = np.vstack([cls_token, embeddings])
@@ -158,7 +162,10 @@ def add_positional_encoding(
 
 
 def attention_mechanism(
-    query: np.ndarray, key: np.ndarray, value: np.ndarray, mask: Optional[np.ndarray] = None
+    query: np.ndarray,
+    key: np.ndarray,
+    value: np.ndarray,
+    mask: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     Compute scaled dot-product attention.
@@ -257,18 +264,20 @@ def feedforward_network(x: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
         >>> output.shape
         (197, 512)
     """
-    seq_len, embedding_dim = x.shape
+    embedding_dim = x.shape[1]
+    rng = np.random.default_rng()
 
     # First linear layer
-    w1 = np.random.randn(embedding_dim, hidden_dim) * 0.02
+    w1 = rng.standard_normal((embedding_dim, hidden_dim)) * 0.02
     b1 = np.zeros(hidden_dim)
     hidden = x @ w1 + b1
 
     # GELU activation (approximation)
-    hidden = 0.5 * hidden * (1 + np.tanh(np.sqrt(2 / np.pi) * (hidden + 0.044715 * hidden**3)))
+    gelu_factor = np.sqrt(2 / np.pi) * (hidden + 0.044715 * hidden**3)
+    hidden = 0.5 * hidden * (1 + np.tanh(gelu_factor))
 
     # Second linear layer
-    w2 = np.random.randn(hidden_dim, embedding_dim) * 0.02
+    w2 = rng.standard_normal((hidden_dim, embedding_dim)) * 0.02
     b2 = np.zeros(embedding_dim)
     output = hidden @ w2 + b2
 
@@ -276,7 +285,7 @@ def feedforward_network(x: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
 
 
 def transformer_encoder_block(
-    x: np.ndarray, num_heads: int = 12, hidden_dim: int = 3072
+    x: np.ndarray, num_heads: int = 12, hidden_dim: int = 3072  # noqa: ARG001
 ) -> np.ndarray:
     """
     Apply a single Transformer encoder block.
@@ -287,7 +296,7 @@ def transformer_encoder_block(
 
     Args:
         x: Input array of shape (seq_len, embedding_dim)
-        num_heads: Number of attention heads (default: 12)
+        num_heads: Number of attention heads (default: 12, kept for API)
         hidden_dim: Hidden dimension for FFN (default: 3072)
 
     Returns:
@@ -304,11 +313,9 @@ def transformer_encoder_block(
         >>> output.shape
         (50, 512)
     """
-    seq_len, embedding_dim = x.shape
-    head_dim = embedding_dim // num_heads
-
     # Multi-head self-attention (simplified - using single head for demonstration)
     # In practice, this would split into multiple heads
+    # num_heads parameter is kept for API compatibility
     attention_output, _ = attention_mechanism(x, x, x)
 
     # Add residual connection and apply layer norm
@@ -361,12 +368,14 @@ def vision_transformer(
         (10,)
 
         >>> img = np.random.rand(32, 32, 3)
-        >>> logits = vision_transformer(img, patch_size=16, embedding_dim=512, num_layers=6, num_classes=100)
+        >>> logits = vision_transformer(
+        ...     img, patch_size=16, embedding_dim=512, num_layers=6, num_classes=100
+        ... )
         >>> logits.shape
         (100,)
     """
     # Step 1: Create patches
-    patches, grid_size = create_patches(image, patch_size)
+    patches, _ = create_patches(image, patch_size)
 
     # Step 2: Embed patches
     embeddings = patch_embedding(patches, embedding_dim)
@@ -382,7 +391,8 @@ def vision_transformer(
     cls_token = embeddings[0]
 
     # Step 6: Classification head (linear layer)
-    classifier_weights = np.random.randn(embedding_dim, num_classes) * 0.02
+    rng = np.random.default_rng()
+    classifier_weights = rng.standard_normal((embedding_dim, num_classes)) * 0.02
     classifier_bias = np.zeros(num_classes)
     logits = cls_token @ classifier_weights + classifier_bias
 
@@ -399,7 +409,8 @@ if __name__ == "__main__":
     print("=" * 50)
 
     # Create a sample image (224x224x3 for ImageNet-style input)
-    sample_image = np.random.rand(224, 224, 3)
+    rng = np.random.default_rng()
+    sample_image = rng.random((224, 224, 3))
     print(f"Input image shape: {sample_image.shape}")
 
     # Apply Vision Transformer
