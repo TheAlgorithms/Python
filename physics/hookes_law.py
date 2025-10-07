@@ -12,6 +12,8 @@ direction to the displacement, always working to bring the object back to
 its original state.
 Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 """
+
+
 def hookes_law(k: float, x: float) -> float:
     """
     Calculate the Hookes law from the given values of spring constant 'k'
@@ -24,6 +26,8 @@ def hookes_law(k: float, x: float) -> float:
     -900
     """
     return round(-k * x, 2)
+
+
 if __name__ == "__main__":
     import doctest
 
