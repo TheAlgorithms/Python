@@ -15,7 +15,6 @@ Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 """
 
 def hookes_law(k:float, x:float) ->float:
-    return round(-k*x, 2)
     """
     Calculate the Hookes law from the given values of spring constant 'k'
     and the displacement 'x' from the equilibrium position.
@@ -27,6 +26,7 @@ def hookes_law(k:float, x:float) ->float:
     >>> hookes_law(300, 3)
     -900
     """
+    return round(-k*x, 2)
 
 
 if __name__ ==  "__main__":
