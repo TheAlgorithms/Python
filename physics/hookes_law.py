@@ -1,6 +1,8 @@
 # Hookes Law
 """
-Hookes Law states that the Force is directly proportional to the extension or compression of an elastic object, provided the limit of proportionality is not exceeded.
+Hookes Law states that the Force is directly proportional to the extension 
+or compression of an elastic object, provided the limit of proportionality 
+is not exceeded.
 
 Formulae : F = -k*x
 
@@ -8,7 +10,9 @@ F: Force
 k: Spring constant
 x: displacement from the equilibrium position
 
-The negative sign indicates that the restoring force acts in the opposite direction to the displacement, always working to bring the object back to its original state.
+The negative sign indicates that the restoring force acts in the opposite 
+direction to the displacement, always working to bring the object back to 
+its original state.
 
 Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 
