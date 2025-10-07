@@ -28,6 +28,7 @@ Example:
 0
 """
 
+
 def karatsuba_multiply(x: str, y: str) -> int:
     """
     Multiplies two binary strings using the Karatsuba algorithm.
@@ -62,7 +63,7 @@ def karatsuba_multiply(x: str, y: str) -> int:
     p2 = karatsuba_multiply(x_right, y_right)
     p3 = karatsuba_multiply(
         bin(int(x_left, 2) + int(x_right, 2))[2:],
-        bin(int(y_left, 2) + int(y_right, 2))[2:]
+        bin(int(y_left, 2) + int(y_right, 2))[2:],
     )
 
     # Karatsuba combination formula:
@@ -73,4 +74,5 @@ def karatsuba_multiply(x: str, y: str) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
