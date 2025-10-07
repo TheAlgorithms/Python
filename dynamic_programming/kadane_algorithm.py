@@ -7,31 +7,29 @@ Source:
 https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
 
-from typing import List, Tuple
 
-
-def kadane(arr: List[int]) -> Tuple[int, List[int]]:
+def kadane(arr):
     """
     Returns the maximum sum of a contiguous subarray and the subarray itself.
 
     Parameters
     ----------
-    arr : List[int]
+    arr : list
         List of integers (can be positive, negative, or zero).
 
     Returns
     -------
-    Tuple[int, List[int]]
+    tuple
         Maximum subarray sum and the corresponding subarray.
 
     Examples
     --------
     >>> kadane([-2,1,-3,4,-1,2,1,-5,4])
     (6, [4, -1, 2, 1])
-
+    
     >>> kadane([1,2,3,4])
     (10, [1, 2, 3, 4])
-
+    
     >>> kadane([-1,-2,-3])
     (-1, [-1])
     """
@@ -53,11 +51,10 @@ def kadane(arr: List[int]) -> Tuple[int, List[int]]:
             start = s
             end = i
 
-    return max_global, arr[start : end + 1]
+    return max_global, arr[start:end+1]
 
 
 # Doctest runner
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
