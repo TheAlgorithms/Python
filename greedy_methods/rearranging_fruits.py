@@ -10,6 +10,7 @@
 from typing import List
 from collections import defaultdict
 
+
 def min_cost(basket1: List[int], basket2: List[int]) -> int:
     n = len(basket1)
     freq = defaultdict(int)
@@ -37,11 +38,11 @@ def min_cost(basket1: List[int], basket2: List[int]) -> int:
 if __name__ == "__main__":
     # ---- Test Cases ----
     test_cases = [
-        ([4, 2, 2, 2], [1, 4, 1, 2]),     # Expected: 1
-        ([1, 2, 3, 4], [2, 3, 4, 1]),     # Expected: 0
-        ([1, 1, 1, 1], [1, 1, 1, 1]),     # Expected: 0
-        ([1, 2, 2], [2, 1, 1]),           # Expected: -1
-        ([5, 3, 3, 2], [2, 5, 5, 3])      # Expected: -1
+        ([4, 2, 2, 2], [1, 4, 1, 2]),  # Expected: 1
+        ([1, 2, 3, 4], [2, 3, 4, 1]),  # Expected: 0
+        ([1, 1, 1, 1], [1, 1, 1, 1]),  # Expected: 0
+        ([1, 2, 2], [2, 1, 1]),  # Expected: -1
+        ([5, 3, 3, 2], [2, 5, 5, 3]),  # Expected: -1
     ]
 
     print("Running test cases...\n")
