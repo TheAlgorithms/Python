@@ -214,20 +214,20 @@ def attention_mechanism(
     return output, attention_weights
 
 
-def layer_norm(x: np.ndarray, epsilon: float = 1e-6) -> np.ndarray:
+def layer_norm(embeddings: np.ndarray, epsilon: float = 1e-6) -> np.ndarray:
     """
     Apply Layer Normalization.
 
     Args:
-        x: Input array of shape (seq_len, embedding_dim)
+        embeddings: Input array of shape (seq_len, embedding_dim)
         epsilon: Small constant for numerical stability (default: 1e-6)
 
     Returns:
         Normalized array of same shape as input
 
     Examples:
-        >>> x = np.random.rand(10, 768)
-        >>> normalized = layer_norm(x)
+        >>> embeddings = np.random.rand(10, 768)
+        >>> normalized = layer_norm(embeddings)
         >>> normalized.shape
         (10, 768)
         >>> np.allclose(normalized.mean(axis=1), 0.0, atol=1e-6)
@@ -235,42 +235,44 @@ def layer_norm(x: np.ndarray, epsilon: float = 1e-6) -> np.ndarray:
         >>> np.allclose(normalized.std(axis=1), 1.0, atol=1e-6)
         True
     """
-    mean = x.mean(axis=-1, keepdims=True)
-    std = x.std(axis=-1, keepdims=True)
-    return (x - mean) / (std + epsilon)
+    mean = embeddings.mean(axis=-1, keepdims=True)
+    std = embeddings.std(axis=-1, keepdims=True)
+    return (embeddings - mean) / (std + epsilon)
 
 
-def feedforward_network(x: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
+def feedforward_network(
+    embeddings: np.ndarray, hidden_dim: int = 3072
+) -> np.ndarray:
     """
     Apply position-wise feed-forward network.
 
     FFN(x) = max(0, xW1 + b1)W2 + b2
 
     Args:
-        x: Input array of shape (seq_len, embedding_dim)
+        embeddings: Input array of shape (seq_len, embedding_dim)
         hidden_dim: Hidden dimension size (default: 3072, typically 4x embedding_dim)
 
     Returns:
         Output array of shape (seq_len, embedding_dim)
 
     Examples:
-        >>> x = np.random.rand(10, 768)
-        >>> output = feedforward_network(x, hidden_dim=3072)
+        >>> embeddings = np.random.rand(10, 768)
+        >>> output = feedforward_network(embeddings, hidden_dim=3072)
         >>> output.shape
         (10, 768)
 
-        >>> x = np.random.rand(197, 512)
-        >>> output = feedforward_network(x, hidden_dim=2048)
+        >>> embeddings = np.random.rand(197, 512)
+        >>> output = feedforward_network(embeddings, hidden_dim=2048)
         >>> output.shape
         (197, 512)
     """
-    embedding_dim = x.shape[1]
+    embedding_dim = embeddings.shape[1]
     rng = np.random.default_rng()
 
     # First linear layer
     w1 = rng.standard_normal((embedding_dim, hidden_dim)) * 0.02
     b1 = np.zeros(hidden_dim)
-    hidden = x @ w1 + b1
+    hidden = embeddings @ w1 + b1
 
     # GELU activation (approximation)
     gelu_factor = np.sqrt(2 / np.pi) * (hidden + 0.044715 * hidden**3)
@@ -285,9 +287,9 @@ def feedforward_network(x: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
 
 
 def transformer_encoder_block(
-    x: np.ndarray,
-    num_heads: int = 12,
-    hidden_dim: int = 3072,  # noqa: ARG001
+    embeddings: np.ndarray,
+    num_heads: int = 12,  # noqa: ARG001
+    hidden_dim: int = 3072,
 ) -> np.ndarray:
     """
     Apply a single Transformer encoder block.
@@ -297,7 +299,7 @@ def transformer_encoder_block(
     2. Feed-forward network with residual connection and layer norm
 
     Args:
-        x: Input array of shape (seq_len, embedding_dim)
+        embeddings: Input array of shape (seq_len, embedding_dim)
         num_heads: Number of attention heads (default: 12, kept for API)
         hidden_dim: Hidden dimension for FFN (default: 3072)
 
@@ -305,31 +307,35 @@ def transformer_encoder_block(
         Output array of shape (seq_len, embedding_dim)
 
     Examples:
-        >>> x = np.random.rand(197, 768)
-        >>> output = transformer_encoder_block(x, num_heads=12, hidden_dim=3072)
+        >>> embeddings = np.random.rand(197, 768)
+        >>> output = transformer_encoder_block(
+        ...     embeddings, num_heads=12, hidden_dim=3072
+        ... )
         >>> output.shape
         (197, 768)
 
-        >>> x = np.random.rand(50, 512)
-        >>> output = transformer_encoder_block(x, num_heads=8, hidden_dim=2048)
+        >>> embeddings = np.random.rand(50, 512)
+        >>> output = transformer_encoder_block(
+        ...     embeddings, num_heads=8, hidden_dim=2048
+        ... )
         >>> output.shape
         (50, 512)
     """
     # Multi-head self-attention (simplified - using single head for demonstration)
     # In practice, this would split into multiple heads
     # num_heads parameter is kept for API compatibility
-    attention_output, _ = attention_mechanism(x, x, x)
+    attention_output, _ = attention_mechanism(embeddings, embeddings, embeddings)
 
     # Add residual connection and apply layer norm
-    x = layer_norm(x + attention_output)
+    embeddings = layer_norm(embeddings + attention_output)
 
     # Feed-forward network
-    ffn_output = feedforward_network(x, hidden_dim)
+    ffn_output = feedforward_network(embeddings, hidden_dim)
 
     # Add residual connection and apply layer norm
-    x = layer_norm(x + ffn_output)
+    embeddings = layer_norm(embeddings + ffn_output)
 
-    return x
+    return embeddings
 
 
 def vision_transformer(
