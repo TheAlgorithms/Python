@@ -26,7 +26,7 @@ def hookes_law(spring_contant: float, displacement: float) -> float:
     >>> hookes_law(300, 3)
     -900
     """
-    return round(-k * x, 2)
+    return round(-spring_constant * displacement, 2)
 
 
 if __name__ == "__main__":
