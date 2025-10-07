@@ -28,8 +28,7 @@ Example:
 0
 """
 
-
-def karatsuba_multiply(x: str, y: str) -> int:
+def karatsuba_multiply(binary_str_1: str, binary_str_2: str) -> int:
     """
     Multiplies two binary strings using the Karatsuba algorithm.
 
@@ -42,37 +41,38 @@ def karatsuba_multiply(x: str, y: str) -> int:
     >>> karatsuba_multiply("1111", "1111")
     225
     """
-    n = max(len(x), len(y))
+    n = max(len(binary_str_1), len(binary_str_2))
 
     # Pad the shorter string with leading zeros
-    x = x.zfill(n)
-    y = y.zfill(n)
+    binary_str_1 = binary_str_1.zfill(n)
+    binary_str_2 = binary_str_2.zfill(n)
 
     # Base case: single bit multiplication
     if n == 1:
-        return int(x) * int(y)
+        return int(binary_str_1) * int(binary_str_2)
 
     mid = n // 2
 
     # Split the binary strings into left and right halves
-    x_left, x_right = x[:mid], x[mid:]
-    y_left, y_right = y[:mid], y[mid:]
+    left_1, right_1 = binary_str_1[:mid], binary_str_1[mid:]
+    left_2, right_2 = binary_str_2[:mid], binary_str_2[mid:]
 
     # Recursively compute partial products
-    p1 = karatsuba_multiply(x_left, y_left)
-    p2 = karatsuba_multiply(x_right, y_right)
-    p3 = karatsuba_multiply(
-        bin(int(x_left, 2) + int(x_right, 2))[2:],
-        bin(int(y_left, 2) + int(y_right, 2))[2:],
+    product_left = karatsuba_multiply(left_1, left_2)
+    product_right = karatsuba_multiply(right_1, right_2)
+    product_sum = karatsuba_multiply(
+        bin(int(left_1, 2) + int(right_1, 2))[2:],
+        bin(int(left_2, 2) + int(right_2, 2))[2:]
     )
 
-    # Karatsuba combination formula:
-    result = (p1 << (2 * (n - mid))) + ((p3 - p1 - p2) << (n - mid)) + p2
+    # Karatsuba combination formula
+    result = (product_left << (2 * (n - mid))) + (
+        (product_sum - product_left - product_right) << (n - mid)
+    ) + product_right
 
     return result
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
