@@ -10,7 +10,7 @@ def rotate_array(arr: List[int], k: int) -> List[int]:
     if k < 0:
         k += n
 
-    def reverse(start, end):
+    def reverse(start: int, end: int) -> None:
         while start < end:
             arr[start], arr[end] = arr[end], arr[start]
             start += 1
