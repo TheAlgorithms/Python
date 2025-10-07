@@ -50,3 +50,40 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+## 🤝 Contributing
+
+We welcome contributions from the community!
+Whether you’re fixing a typo, improving documentation, or adding new algorithms, every contribution is valuable.
+
+Before contributing, please make sure to:
+
+1. Read our full [Contributing Guidelines](./CONTRIBUTING.md).
+2. Ensure your code follows our style guide:
+   - Python 3.13+ compatible
+   - Uses descriptive variable and function names
+   - Includes type hints and docstrings with doctests
+3. Run the following tools locally before submitting a pull request:
+   ```bash
+   # Format your code
+   black .
+
+   # Lint and style checks
+   ruff check
+
+   # Run doctests
+   python3 -m doctest -v your_file.py
+
+   # Run mypy type checking
+   mypy --ignore-missing-imports .
+   ```
+4. Make sure your pull request is original and not a duplicate implementation.
+
+If you want to fix an existing issue, just open a PR. there’s no need to ask for assignment.
+For new algorithms, please go straight to submitting a pull request rather than opening an issue.
+
+For more details, check the full [Contributing Guide](./CONTRIBUTING.md).
+
+## 🧾 License
+
+This project is licensed under the [MIT License](./LICENSE).
