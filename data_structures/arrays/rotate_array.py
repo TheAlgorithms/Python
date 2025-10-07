@@ -1,13 +1,13 @@
 from typing import List
 
 
-def rotate_array(arr: List[int], k: int) -> List[int]:
+def rotate_array(arr: List[int], steps: int) -> List[int]:
     """
-    Rotates a list to the right by k positions.
+    Rotates a list to the right by steps positions.
 
     Parameters:
     arr (List[int]): The list of integers to rotate.
-    k (int): Number of positions to rotate. Can be negative for left rotation.
+    steps (int): Number of positions to rotate. Can be negative for left rotation.
 
     Returns:
     List[int]: Rotated list.
@@ -27,10 +27,10 @@ def rotate_array(arr: List[int], k: int) -> List[int]:
     if n == 0:
         return arr
 
-    k = k % n
+    steps = steps % n
 
-    if k < 0:
-        k += n
+    if steps < 0:
+        steps += n
 
     def reverse(start: int, end: int) -> None:
         """
@@ -57,15 +57,15 @@ def rotate_array(arr: List[int], k: int) -> List[int]:
         >>> example
         [3, 2, 5, 4, 1]
         """
-        
+
         while start < end:
             arr[start], arr[end] = arr[end], arr[start]
             start += 1
             end -= 1
 
     reverse(0, n - 1)
-    reverse(0, k - 1)
-    reverse(k, n - 1)
+    reverse(0, steps - 1)
+    reverse(steps, n - 1)
 
     return arr
 
@@ -78,6 +78,6 @@ if __name__ == "__main__":
         ([], 3),
     ]
 
-    for arr, k in examples:
-        rotated = rotate_array(arr.copy(), k)
-        print(f"Rotate {arr} by {k}: {rotated}")
+    for arr, steps in examples:
+        rotated = rotate_array(arr.copy(), steps)
+        print(f"Rotate {arr} by {steps}: {rotated}")
