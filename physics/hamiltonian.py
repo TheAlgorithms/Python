@@ -16,7 +16,9 @@ This module includes:
 import numpy as np
 
 
-def classical_hamiltonian(mass: float, momentum: float, potential_energy: float) -> float:
+def classical_hamiltonian(
+    mass: float, momentum: float, potential_energy: float
+) -> float:
     """
     Calculate the classical Hamiltonian (total energy) of a particle.
 
@@ -43,7 +45,7 @@ def classical_hamiltonian(mass: float, momentum: float, potential_energy: float)
     """
     if mass <= 0:
         raise ValueError("Mass must be a positive value.")
-    return (momentum ** 2) / (2 * mass) + potential_energy
+    return (momentum**2) / (2 * mass) + potential_energy
 
 
 def quantum_hamiltonian_1d(
@@ -51,7 +53,7 @@ def quantum_hamiltonian_1d(
     hbar: float,
     potential_energy_array: np.ndarray,
     grid_spacing: float,
-    round_to: int | None = None
+    round_to: int | None = None,
 ) -> np.ndarray:
     """
     Construct the 1-D quantum Hamiltonian matrix for a particle in given potential.
@@ -109,9 +111,7 @@ def quantum_hamiltonian_1d(
     off_diagonal = np.ones(num_points - 1)
 
     kinetic_matrix = kinetic_prefactor * (
-        np.diag(diagonal)
-        - np.diag(off_diagonal, 1)
-        - np.diag(off_diagonal, -1)
+        np.diag(diagonal) - np.diag(off_diagonal, 1) - np.diag(off_diagonal, -1)
     )
 
     potential_matrix = np.diag(potential_energy_array)
@@ -121,6 +121,7 @@ def quantum_hamiltonian_1d(
         total_hamiltonian = np.round(total_hamiltonian, round_to)
 
     return total_hamiltonian
+
 
 if __name__ == "__main__":
     import doctest
