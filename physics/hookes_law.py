@@ -5,8 +5,9 @@ or compression of an elastic object, provided the limit of proportionality
 is not exceeded.
 Formulae : F = -k*x
 F: Force
-k: Spring constant
-x: displacement from the equilibrium position
+k: spring constant
+x: displacement
+x is the displacement from the equilibrium position
 The negative sign indicates that the restoring force acts in the opposite
 direction to the displacement, always working to bring the object back to
 its original state.
@@ -14,7 +15,7 @@ Reference: https://en.wikipedia.org/wiki/Hooke%27s_law
 """
 
 
-def hookes_law(k: float, x: float) -> float:
+def hookes_law(spring_contant: float, displacement: float) -> float:
     """
     Calculate the Hookes law from the given values of spring constant 'k'
     and the displacement 'x' from the equilibrium position.
