@@ -23,7 +23,7 @@ jobs:
           libopenblas-dev
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.14
           allow-prereleases: true
@@ -41,7 +41,7 @@ jobs:
           libopenblas-dev
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: 3.14
           allow-prereleases: true
