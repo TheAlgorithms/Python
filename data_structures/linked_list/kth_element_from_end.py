@@ -55,7 +55,10 @@ class LinkedList:
 
     def kth_element_from_end(self, k: int) -> Any:
         """
-        Find the kth node from the end of the Linked List
+        Find the kth node element from the end of the Linked List.
+        This is not a zero-based index search.
+        If k=1, it will return the last element in the list.
+
         >>> linked_list = LinkedList()
         >>> linked_list.add(1)
         >>> linked_list.add(2)
