@@ -16,12 +16,15 @@ Each result contains:
     1. The nearest (approximate) vector.
     2. Its distance from the query vector.
 """
+
 from __future__ import annotations
 
 import math
 from collections import defaultdict
 
 import numpy as np
+
+
 def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
     """
     Calculates Euclidean distance between two vectors.
@@ -114,5 +117,5 @@ class ANN:
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
