@@ -57,7 +57,7 @@ def rotate_array(arr: List[int], k: int) -> List[int]:
         >>> example
         [3, 2, 5, 4, 1]
         """
-        
+
         while start < end:
             arr[start], arr[end] = arr[end], arr[start]
             start += 1
