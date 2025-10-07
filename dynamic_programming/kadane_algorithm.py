@@ -26,10 +26,10 @@ def kadane(arr):
     --------
     >>> kadane([-2,1,-3,4,-1,2,1,-5,4])
     (6, [4, -1, 2, 1])
-    
+
     >>> kadane([1,2,3,4])
     (10, [1, 2, 3, 4])
-    
+
     >>> kadane([-1,-2,-3])
     (-1, [-1])
     """
@@ -51,10 +51,11 @@ def kadane(arr):
             start = s
             end = i
 
-    return max_global, arr[start:end+1]
+    return max_global, arr[start : end + 1]
 
 
 # Doctest runner
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
