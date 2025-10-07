@@ -240,9 +240,7 @@ def layer_norm(embeddings: np.ndarray, epsilon: float = 1e-6) -> np.ndarray:
     return (embeddings - mean) / (std + epsilon)
 
 
-def feedforward_network(
-    embeddings: np.ndarray, hidden_dim: int = 3072
-) -> np.ndarray:
+def feedforward_network(embeddings: np.ndarray, hidden_dim: int = 3072) -> np.ndarray:
     """
     Apply position-wise feed-forward network.
 
