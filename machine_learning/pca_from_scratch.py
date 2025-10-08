@@ -318,7 +318,8 @@ def main() -> None:
     print(x_transformed[:5])
 
     print(f"\nExplained variance ratio: {pca.explained_variance_ratio_}")
-    print(f"Total variance explained: {np.sum(pca.explained_variance_ratio_):.4f}")
+    if pca.explained_variance_ratio_ is not None:
+        print(f"Total variance explained: {np.sum(pca.explained_variance_ratio_):.4f}")
 
     # Demonstrate inverse transform
     x_reconstructed = pca.inverse_transform(x_transformed)

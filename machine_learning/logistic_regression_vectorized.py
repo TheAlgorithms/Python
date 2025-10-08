@@ -292,7 +292,7 @@ class LogisticRegressionVectorized:
             self.weights_ = self.rng_.standard_normal((n_features, n_classes)) * 0.01
             self.bias_ = np.zeros(n_classes)
         else:
-            self.weights_ = self.rng_.standard_normal(n_features) * 0.01
+            self.weights_ = self.rng_.standard_normal(n_features) * 0.01 # type: ignore
             bias_value: np.ndarray | float = 0.0  # type: ignore
             self.bias_ = bias_value  # type: ignore[assignment]
             
