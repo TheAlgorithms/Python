@@ -124,7 +124,7 @@ class NaiveBayesLaplace:
         >>> int(counts[1][1][0])  # class 1, feature 1, value 0
         1
         """
-        feature_counts = {}
+        feature_counts: dict[int, dict[int, dict[int, int]]] = {}
 
         for class_label in np.unique(y):
             feature_counts[class_label] = {}
@@ -164,8 +164,8 @@ class NaiveBayesLaplace:
         >>> len(vars)
         2
         """
-        means = {}
-        variances = {}
+        means: dict[int, dict[int, float]] = {}
+        variances: dict[int, dict[int, float]] = {}
 
         for class_label in np.unique(y):
             means[class_label] = {}
@@ -197,7 +197,7 @@ class NaiveBayesLaplace:
             Nested dictionary: class -> feature -> value -> log_probability
         """
         feature_counts = self._compute_feature_counts(x, y)
-        log_probabilities = {}
+        log_probabilities: dict[int, dict[int, dict[int, float]]] = {}
 
         for class_label in np.unique(y):
             log_probabilities[class_label] = {}
@@ -213,10 +213,10 @@ class NaiveBayesLaplace:
                 for feature_value in all_values:
                     # Count occurrences of this value in this class
                     count = feature_counts[class_label][feature_idx].get(
-                        feature_value, 0
+                        int(feature_value), 0
                     )
 
-                    # Apply Laplace smoothing: (count + alpha) / (n_class_samples + alpha * n_unique_values)
+                    # Apply Laplace smoothing formula
                     n_unique_values = len(all_values)
                     smoothed_prob = (count + self.alpha) / (
                         n_class_samples + self.alpha * n_unique_values
