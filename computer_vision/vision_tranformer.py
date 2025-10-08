@@ -1,8 +1,9 @@
 """
-Vision Transformer (ViT) Implementation
+Vision Transformer (ViT) Implementation.
 
 This module contains a PyTorch implementation of the Vision Transformer (ViT)
-architecture based on the paper "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale".
+architecture based on the paper "An Image is Worth 16x16 Words:
+Transformers for Image Recognition at Scale".
 
 Key Components:
 - Patch Embedding
@@ -12,17 +13,13 @@ Key Components:
 - Vision Transformer Model
 """
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch import Tensor
-from typing import Optional, Tuple
-import math
+from torch import Tensor, nn
+import torch.nn.functional as functional
 
 
 class PatchEmbedding(nn.Module):
     """
-    Creates patch embeddings from input images as described in Equation 1 of ViT paper.
+    Creates patch embeddings from input images as described in Equation 1.
 
     Args:
         img_size (int): Size of input image (assumed square)
@@ -32,11 +29,8 @@ class PatchEmbedding(nn.Module):
     """
 
     def __init__(
-        self,
-        img_size: int = 224,
-        patch_size: int = 16,
-        in_channels: int = 3,
-        embed_dim: int = 768,
+        self, img_size: int = 224, patch_size: int = 16,
+        in_channels: int = 3, embed_dim: int = 768
     ):
         super().__init__()
         self.img_size = img_size
@@ -47,7 +41,7 @@ class PatchEmbedding(nn.Module):
             in_channels=in_channels,
             out_channels=embed_dim,
             kernel_size=patch_size,
-            stride=patch_size,
+            stride=patch_size
         )
 
     def forward(self, x: Tensor) -> Tensor:
@@ -68,7 +62,7 @@ class PatchEmbedding(nn.Module):
 
 class MultiHeadSelfAttention(nn.Module):
     """
-    Multi-Head Self Attention (MSA) block as described in Equation 2 of ViT paper.
+    Multi-Head Self Attention (MSA) block as described in Equation 2.
 
     Args:
         embed_dim (int): Dimension of embedding
@@ -101,23 +95,23 @@ class MultiHeadSelfAttention(nn.Module):
         Returns:
             Tensor: Output tensor of same shape as input
         """
-        B, N, C = x.shape
+        batch_size, num_patches, channels = x.shape
 
         # Create Q, K, V
         qkv = (
             self.qkv(x)
-            .reshape(B, N, 3, self.num_heads, self.head_dim)
+            .reshape(batch_size, num_patches, 3, self.num_heads, self.head_dim)
             .permute(2, 0, 3, 1, 4)
         )
         q, k, v = qkv[0], qkv[1], qkv[2]  # (B, num_heads, N, head_dim)
 
         # Scaled dot-product attention
-        attn = (q @ k.transpose(-2, -1)) * (self.head_dim**-0.5)  # (B, num_heads, N, N)
-        attn = F.softmax(attn, dim=-1)
+        attn = (q @ k.transpose(-2, -1)) * (self.head_dim ** -0.5)
+        attn = functional.softmax(attn, dim=-1)
         attn = self.attn_dropout(attn)
 
         # Apply attention to values
-        x = (attn @ v).transpose(1, 2).reshape(B, N, C)  # (B, N, embed_dim)
+        x = (attn @ v).transpose(1, 2).reshape(batch_size, num_patches, channels)
 
         # Projection
         x = self.proj(x)
@@ -128,7 +122,7 @@ class MultiHeadSelfAttention(nn.Module):
 
 class MLPBlock(nn.Module):
     """
-    Multilayer Perceptron (MLP) block as described in Equation 3 of ViT paper.
+    Multilayer Perceptron (MLP) block as described in Equation 3.
 
     Args:
         embed_dim (int): Dimension of embedding
@@ -136,9 +130,7 @@ class MLPBlock(nn.Module):
         dropout (float): Dropout rate
     """
 
-    def __init__(
-        self, embed_dim: int = 768, mlp_ratio: float = 4.0, dropout: float = 0.0
-    ):
+    def __init__(self, embed_dim: int = 768, mlp_ratio: float = 4.0, dropout: float = 0.0):
         super().__init__()
         hidden_dim = int(embed_dim * mlp_ratio)
 
@@ -177,11 +169,8 @@ class TransformerEncoderBlock(nn.Module):
     """
 
     def __init__(
-        self,
-        embed_dim: int = 768,
-        num_heads: int = 12,
-        mlp_ratio: float = 4.0,
-        dropout: float = 0.1,
+        self, embed_dim: int = 768, num_heads: int = 12,
+        mlp_ratio: float = 4.0, dropout: float = 0.1
     ):
         super().__init__()
 
@@ -237,7 +226,7 @@ class VisionTransformer(nn.Module):
         num_heads: int = 12,
         mlp_ratio: float = 4.0,
         dropout: float = 0.1,
-        emb_dropout: float = 0.1,
+        emb_dropout: float = 0.1
     ):
         super().__init__()
 
@@ -255,12 +244,10 @@ class VisionTransformer(nn.Module):
         self.pos_dropout = nn.Dropout(emb_dropout)
 
         # Transformer encoder blocks
-        self.blocks = nn.ModuleList(
-            [
-                TransformerEncoderBlock(embed_dim, num_heads, mlp_ratio, dropout)
-                for _ in range(depth)
-            ]
-        )
+        self.blocks = nn.ModuleList([
+            TransformerEncoderBlock(embed_dim, num_heads, mlp_ratio, dropout)
+            for _ in range(depth)
+        ])
 
         # Layer normalization and classifier
         self.norm = nn.LayerNorm(embed_dim)
@@ -300,14 +287,14 @@ class VisionTransformer(nn.Module):
         Returns:
             Tensor: Output logits of shape (B, num_classes)
         """
-        B = x.shape[0]
+        batch_size = x.shape[0]
 
         # Create patch embeddings
         x = self.patch_embed(x)  # (B, n_patches, embed_dim)
 
         # Add class token
-        cls_tokens = self.cls_token.expand(B, -1, -1)  # (B, 1, embed_dim)
-        x = torch.cat((cls_tokens, x), dim=1)  # (B, n_patches + 1, embed_dim)
+        cls_tokens = self.cls_token.expand(batch_size, -1, -1)
+        x = torch.cat((cls_tokens, x), dim=1)
 
         # Add position embedding and apply dropout
         x = x + self.pos_embed
@@ -337,7 +324,7 @@ def create_vit_model(
     num_heads: int = 12,
     mlp_ratio: float = 4.0,
     dropout: float = 0.1,
-    emb_dropout: float = 0.1,
+    emb_dropout: float = 0.1
 ) -> VisionTransformer:
     """
     Factory function to create a Vision Transformer model.
@@ -367,13 +354,11 @@ def create_vit_model(
         num_heads=num_heads,
         mlp_ratio=mlp_ratio,
         dropout=dropout,
-        emb_dropout=emb_dropout,
+        emb_dropout=emb_dropout
     )
 
 
-def get_pretrained_vit(
-    model_name: str = "vit_base_patch16_224", num_classes: int = 1000
-) -> nn.Module:
+def get_pretrained_vit(model_name: str = "vit_base_patch16_224", num_classes: int = 1000) -> nn.Module:
     """
     Load a pretrained ViT model from torchvision.
 
@@ -385,19 +370,20 @@ def get_pretrained_vit(
         nn.Module: Pretrained ViT model
     """
     try:
-        import torchvision.models as models
+        from torchvision import models
 
         if hasattr(models, model_name):
             model = getattr(models, model_name)(pretrained=True)
             if num_classes != 1000:
                 # Replace the head for fine-tuning
-                if hasattr(model, "heads"):
+                if hasattr(model, 'heads'):
                     model.heads = nn.Linear(model.heads.in_features, num_classes)
-                elif hasattr(model, "head"):
+                elif hasattr(model, 'head'):
                     model.head = nn.Linear(model.head.in_features, num_classes)
             return model
         else:
-            raise ValueError(f"Model {model_name} not found in torchvision.models")
+            error_msg = f"Model {model_name} not found in torchvision.models"
+            raise ValueError(error_msg)
 
     except ImportError:
         raise ImportError("torchvision is required to load pretrained models")
@@ -424,7 +410,7 @@ if __name__ == "__main__":
         num_classes=3,  # pizza, steak, sushi
         embed_dim=768,
         depth=12,
-        num_heads=12,
+        num_heads=12
     )
 
     print(f"Model created with {count_parameters(model):,} parameters")
