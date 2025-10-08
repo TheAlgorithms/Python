@@ -159,9 +159,7 @@ class PCAFromScratch:
                 f"n_components={self.n_components} cannot be larger than "
                 f"min(n_samples, n_features)={min(n_samples, n_features)}"
             )
-            raise ValueError(
-                msg
-            )
+            raise ValueError(msg)
 
         # Standardize the data
         x_standardized = self._standardize_data(x)
@@ -173,14 +171,12 @@ class PCAFromScratch:
         eigenvalues, eigenvectors = self._eigenvalue_decomposition(covariance_matrix)
 
         # Select the top n_components
-        self.components_ = eigenvectors[:, :self.n_components]
-        self.explained_variance_ = eigenvalues[:self.n_components]
+        self.components_ = eigenvectors[:, : self.n_components]
+        self.explained_variance_ = eigenvalues[: self.n_components]
 
         # Calculate explained variance ratio
         total_variance = np.sum(eigenvalues)
-        self.explained_variance_ratio_ = (
-            self.explained_variance_ / total_variance
-        )
+        self.explained_variance_ratio_ = self.explained_variance_ / total_variance
 
         return self
 
@@ -327,7 +323,7 @@ def main() -> None:
     print(f"\nReconstruction error (MSE): {reconstruction_error:.6f}")
 
     # Compare with sklearn
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("Comparison with scikit-learn:")
     compare_with_sklearn()
 

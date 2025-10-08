@@ -104,7 +104,7 @@ class DecisionTreePruning:
 
         _, counts = np.unique(y, return_counts=True)
         probabilities = counts / len(y)
-        return 1 - np.sum(probabilities ** 2)
+        return 1 - np.sum(probabilities**2)
 
     def _entropy(self, y: np.ndarray) -> float:
         """
@@ -140,7 +140,7 @@ class DecisionTreePruning:
         """
         best_feature = -1
         best_threshold = 0.0
-        best_impurity = float('inf')
+        best_impurity = float("inf")
 
         n_features = x.shape[1]
         current_impurity = self._mse(y) if task_type == "regression" else self._gini(y)
@@ -194,7 +194,7 @@ class DecisionTreePruning:
         x: np.ndarray,
         y: np.ndarray,
         depth: int = 0,
-        task_type: str = "regression"
+        task_type: str = "regression",
     ) -> "TreeNode":
         """
         Recursively build the decision tree.
@@ -211,9 +211,11 @@ class DecisionTreePruning:
         node = TreeNode()
 
         # Check stopping criteria
-        if (len(y) < self.min_samples_split or
-            (self.max_depth is not None and depth >= self.max_depth) or
-            len(np.unique(y)) == 1):
+        if (
+            len(y) < self.min_samples_split
+            or (self.max_depth is not None and depth >= self.max_depth)
+            or len(np.unique(y)) == 1
+        ):
             node.is_leaf = True
             node.value = (
                 np.mean(y) if task_type == "regression" else self._most_common(y)
@@ -247,9 +249,7 @@ class DecisionTreePruning:
         node.impurity = best_impurity
 
         # Recursively build left and right subtrees
-        node.left = self._build_tree(
-            x[left_mask], y[left_mask], depth + 1, task_type
-        )
+        node.left = self._build_tree(x[left_mask], y[left_mask], depth + 1, task_type)
         node.right = self._build_tree(
             x[right_mask], y[right_mask], depth + 1, task_type
         )
@@ -651,7 +651,7 @@ def compare_pruning_methods() -> None:
             max_depth=10,
             min_samples_leaf=2,
             pruning_method=method,  # type: ignore[arg-type]
-            ccp_alpha=0.01
+            ccp_alpha=0.01,
         )
 
         if method == "reduced_error":
@@ -686,7 +686,7 @@ def main() -> None:
         max_depth=10,
         min_samples_leaf=2,
         pruning_method="cost_complexity",
-        ccp_alpha=0.01
+        ccp_alpha=0.01,
     )
     tree_reg.fit(x_train, y_train)
 
@@ -713,9 +713,7 @@ def main() -> None:
     y_val, y_train = y_train[:val_split], y_train[val_split:]
 
     tree_cls = DecisionTreePruning(
-        max_depth=10,
-        min_samples_leaf=2,
-        pruning_method="reduced_error"
+        max_depth=10, min_samples_leaf=2, pruning_method="reduced_error"
     )
     tree_cls.fit(x_train, y_train, x_val, y_val)
 
@@ -733,4 +731,3 @@ def main() -> None:
 if __name__ == "__main__":
     doctest.testmod()
     main()
-

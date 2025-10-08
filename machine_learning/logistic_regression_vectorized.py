@@ -445,6 +445,7 @@ def generate_sample_data(
     else:
         # Multi-class classification
         from sklearn.datasets import make_classification
+
         x, y = make_classification(
             n_samples=n_samples,
             n_features=n_features,
@@ -544,4 +545,3 @@ def main() -> None:
 if __name__ == "__main__":
     doctest.testmod()
     main()
-

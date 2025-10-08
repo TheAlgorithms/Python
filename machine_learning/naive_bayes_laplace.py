@@ -103,7 +103,8 @@ class NaiveBayesLaplace:
 
         return prior
 
-    def _compute_feature_counts(self, x: np.ndarray, y: np.ndarray
+    def _compute_feature_counts(
+        self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, dict[int, int]]]:
         """
         Compute feature counts for each class (for discrete features).
@@ -144,7 +145,8 @@ class NaiveBayesLaplace:
 
         return feature_counts
 
-    def _compute_feature_statistics(self, x: np.ndarray, y: np.ndarray
+    def _compute_feature_statistics(
+        self, x: np.ndarray, y: np.ndarray
     ) -> tuple[dict[int, dict[int, float]], dict[int, dict[int, float]]]:
         """
         Compute mean and variance for each feature in each class (continuous features).
@@ -185,7 +187,8 @@ class NaiveBayesLaplace:
 
         return means, variances
 
-    def _compute_log_probabilities_discrete(self, x: np.ndarray, y: np.ndarray
+    def _compute_log_probabilities_discrete(
+        self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, dict[int, float]]]:
         """
         Compute log probabilities for discrete features with Laplace smoothing.
@@ -224,9 +227,9 @@ class NaiveBayesLaplace:
                     )
 
                     # Store log probability
-                    log_probabilities[class_label][feature_idx][
-                        feature_value
-                    ] = np.log(smoothed_prob)
+                    log_probabilities[class_label][feature_idx][feature_value] = np.log(
+                        smoothed_prob
+                    )
 
         return log_probabilities
 
@@ -319,9 +322,9 @@ class NaiveBayesLaplace:
                         feature_value_int
                         in self.feature_log_prob_[class_label][feature_idx]
                     ):
-                        log_prob = self.feature_log_prob_[class_label][
-                            feature_idx
-                        ][feature_value_int]
+                        log_prob = self.feature_log_prob_[class_label][feature_idx][
+                            feature_value_int
+                        ]
                     else:
                         # Unseen feature value: use Laplace smoothing
                         all_values = list(
@@ -370,10 +373,12 @@ class NaiveBayesLaplace:
 
                 # Compute Gaussian log probabilities for all samples
                 feature_values = x[:, feature_idx]
-                log_proba[:, i] += np.array([
-                    self._gaussian_log_probability(val, means, variances)
-                    for val in feature_values
-                ])
+                log_proba[:, i] += np.array(
+                    [
+                        self._gaussian_log_probability(val, means, variances)
+                        for val in feature_values
+                    ]
+                )
 
         return log_proba
 
@@ -660,4 +665,3 @@ def main() -> None:
 if __name__ == "__main__":
     doctest.testmod()
     main()
-
