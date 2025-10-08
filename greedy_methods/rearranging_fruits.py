@@ -1,21 +1,20 @@
 from collections import defaultdict
-from typing import DefaultDict, List
 
 
-def min_cost(basket1: List[int], basket2: List[int]) -> int:
+def min_cost(basket1: list[int], basket2: list[int]) -> int:
     """
     Compute the minimum cost to make two baskets identical by swapping fruits.
 
     Each fruit is represented by an integer value. The goal is to make both baskets
     have the same multiset of elements with the minimum swap cost. Each swap cost
-    is defined as the minimum of the swapped fruit’s value and twice the smallest
+    is defined as the minimum of the swapped fruit's value and twice the smallest
     fruit value in both baskets.
 
     If it's impossible to make the baskets identical, return -1.
 
     Args:
-        basket1 (List[int]): The first basket of fruits.
-        basket2 (List[int]): The second basket of fruits.
+        basket1 (list[int]): The first basket of fruits.
+        basket2 (list[int]): The second basket of fruits.
 
     Returns:
         int: The minimum total cost, or -1 if impossible.
@@ -33,7 +32,7 @@ def min_cost(basket1: List[int], basket2: List[int]) -> int:
         -1
     """
     n = len(basket1)
-    freq: DefaultDict[int, int] = defaultdict(int)
+    freq: defaultdict[int, int] = defaultdict(int)
     mn: float = float("inf")
 
     for i in range(n):
@@ -41,7 +40,7 @@ def min_cost(basket1: List[int], basket2: List[int]) -> int:
         freq[basket2[i]] -= 1
         mn = min(mn, basket1[i], basket2[i])
 
-    to_swap: List[int] = []
+    to_swap: list[int] = []
     for j, k in freq.items():
         if k % 2 != 0:
             return -1
@@ -57,6 +56,5 @@ def min_cost(basket1: List[int], basket2: List[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     print("All doctests passed.")
