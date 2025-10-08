@@ -103,7 +103,8 @@ class NaiveBayesLaplace:
 
         return prior
 
-    def _compute_feature_counts(self, x: np.ndarray, y: np.ndarray
+    def _compute_feature_counts(
+        self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, int]]:
         """
         Compute feature counts for each class (for discrete features).
@@ -143,7 +144,8 @@ class NaiveBayesLaplace:
 
         return feature_counts
 
-    def _compute_feature_statistics(self, x: np.ndarray, y: np.ndarray
+    def _compute_feature_statistics(
+        self, x: np.ndarray, y: np.ndarray
     ) -> tuple[dict, dict]:
         """
         Compute mean and variance for each feature in each class (continuous features).
@@ -184,7 +186,8 @@ class NaiveBayesLaplace:
 
         return means, variances
 
-    def _compute_log_probabilities_discrete(self, x: np.ndarray, y: np.ndarray
+    def _compute_log_probabilities_discrete(
+        self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, dict[int, float]]]:
         """
         Compute log probabilities for discrete features with Laplace smoothing.
@@ -223,9 +226,9 @@ class NaiveBayesLaplace:
                     )
 
                     # Store log probability
-                    log_probabilities[class_label][feature_idx][
-                        feature_value
-                    ] = np.log(smoothed_prob)
+                    log_probabilities[class_label][feature_idx][feature_value] = np.log(
+                        smoothed_prob
+                    )
 
         return log_probabilities
 
@@ -314,9 +317,9 @@ class NaiveBayesLaplace:
                         feature_value
                         in self.feature_log_prob_[class_label][feature_idx]
                     ):
-                        log_prob = self.feature_log_prob_[class_label][
-                            feature_idx
-                        ][feature_value]
+                        log_prob = self.feature_log_prob_[class_label][feature_idx][
+                            feature_value
+                        ]
                     else:
                         # Unseen feature value: use Laplace smoothing
                         all_values = list(
@@ -648,4 +651,3 @@ def main() -> None:
 if __name__ == "__main__":
     doctest.testmod()
     main()
-
