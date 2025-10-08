@@ -11,6 +11,7 @@ Source: https://en.wikipedia.org/wiki/Maximum_and_minimum
 >>> find_max_min([])
 """
 
+
 def find_max_min(arr: list[int]) -> tuple[int, int]:
     """
     Returns the maximum and minimum elements of a list.
