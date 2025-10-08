@@ -2,13 +2,13 @@ import heapq
 from collections.abc import Hashable
 
 Node = Hashable
-Edge = tuple[Node, Node, float]
-Adjacency = dict[Node, list[tuple[Node, float]]]
+edge = tuple[Node, Node, float]
+adjacency = dict[Node, list[tuple[Node, float]]]
 
 
-def _collect_nodes_and_edges(graph: Adjacency) -> tuple[list[Node], list[Edge]]:
+def _collect_nodes_and_edges(graph: adjacency) -> tuple[list[Node], list[edge]]:
     nodes = set()
-    edges: list[Edge] = []
+    edges: list[edge] = []
     for u, neighbors in graph.items():
         nodes.add(u)
         for v, w in neighbors:
@@ -17,7 +17,7 @@ def _collect_nodes_and_edges(graph: Adjacency) -> tuple[list[Node], list[Edge]]:
     return list(nodes), edges
 
 
-def _bellman_ford(nodes: list[Node], edges: list[Edge]) -> dict[Node, float]:
+def _bellman_ford(nodes: list[Node], edges: list[edge]) -> dict[Node, float]:
     """
     Bellman-Ford relaxation to compute potentials h[v] for all vertices.
     Raises ValueError if a negative weight cycle exists.
@@ -34,7 +34,6 @@ def _bellman_ford(nodes: list[Node], edges: list[Edge]) -> dict[Node, float]:
         if not updated:
             break
     else:
-        # One more iteration to check for negative cycles
         for u, v, w in edges:
             if dist[u] + w < dist[v]:
                 raise ValueError("Negative weight cycle detected")
@@ -44,8 +43,8 @@ def _bellman_ford(nodes: list[Node], edges: list[Edge]) -> dict[Node, float]:
 def _dijkstra(
     start: Node,
     nodes: list[Node],
-    graph: Adjacency,
-    h: dict[Node, float],
+    graph: adjacency,
+    potentials: dict[Node, float],
 ) -> dict[Node, float]:
     """
     Dijkstra over reweighted graph, using potentials h to make weights non-negative.
@@ -61,7 +60,7 @@ def _dijkstra(
         if d_u > dist[u]:
             continue
         for v, w in graph.get(u, []):
-            w_prime = w + h[u] - h[v]
+            w_prime = w + potentials[u] - potentials[v]
             if w_prime < 0:
                 raise ValueError(
                     "Negative edge weight after reweighting: numeric error"
@@ -73,7 +72,7 @@ def _dijkstra(
     return dist
 
 
-def johnson(graph: Adjacency) -> dict[Node, dict[Node, float]]:
+def johnson(graph: adjacency) -> dict[Node, dict[Node, float]]:
     """
     Compute all-pairs shortest paths using Johnson's algorithm.
 
@@ -98,17 +97,17 @@ def johnson(graph: Adjacency) -> dict[Node, dict[Node, float]]:
     2.0
     """
     nodes, edges = _collect_nodes_and_edges(graph)
-    h = _bellman_ford(nodes, edges)
+    potentials = _bellman_ford(nodes, edges)
 
     all_pairs: dict[Node, dict[Node, float]] = {}
     inf = float("inf")
     for s in nodes:
-        dist_reweighted = _dijkstra(s, nodes, graph, h)
+        dist_reweighted = _dijkstra(s, nodes, graph, potentials)
         dists_orig: dict[Node, float] = {}
         for v in nodes:
             d_prime = dist_reweighted[v]
             if d_prime < inf:
-                dists_orig[v] = d_prime - h[s] + h[v]
+                dists_orig[v] = d_prime - potentials[s] + potentials[v]
             else:
                 dists_orig[v] = inf
         all_pairs[s] = dists_orig
