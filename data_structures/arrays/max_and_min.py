@@ -16,18 +16,16 @@ def find_max_min(arr: list[int]) -> tuple[int, int]:
     Returns the maximum and minimum elements of a list.
 
     Parameters:
-    arr (list): The list of numbers.
+    arr (list[int]): The list of numbers.
 
     Returns:
-    tuple: (maximum, minimum)
+    Tuple[int, int]: (maximum, minimum)
 
     Raises:
     ValueError: If the list is empty.
     """
-
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
-
     maximum = max(arr)
     minimum = min(arr)
     return maximum, minimum
