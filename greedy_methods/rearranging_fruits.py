@@ -1,8 +1,6 @@
-from typing import List
 from collections import defaultdict
 
-
-def min_cost(basket1: List[int], basket2: List[int]) -> int:
+def min_cost(basket1: list[int], basket2: list[int]) -> int:
     n = len(basket1)
     freq = defaultdict(int)
     mn = float("inf")
