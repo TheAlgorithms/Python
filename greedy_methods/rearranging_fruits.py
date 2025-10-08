@@ -57,5 +57,6 @@ def min_cost(basket1: List[int], basket2: List[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print("All doctests passed.")
