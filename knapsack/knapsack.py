@@ -63,7 +63,9 @@ def knapsack(
     return recur(capacity, n_items)
 
 
-def _knapsack_dp(capacity: int, weights: list[int], values: list[int], allow_repetition: bool) -> int:
+def _knapsack_dp(
+    capacity: int, weights: list[int], values: list[int], allow_repetition: bool
+) -> int:
     """Iterative dynamic programming version of the knapsack problem."""
     n = len(weights)
     dp = [0] * (capacity + 1)
@@ -85,4 +87,5 @@ def _knapsack_dp(capacity: int, weights: list[int], values: list[int], allow_rep
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
