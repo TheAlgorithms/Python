@@ -12,7 +12,7 @@ Source: https://en.wikipedia.org/wiki/Maximum_and_minimum
 """
 
 
-def find_max_min(arr: list[int]) -> tuple[int, int]:
+def find_max_min(arr: list[int]) -> tuple[int | None, int | None]:
     """
     Returns the maximum and minimum elements of a list.
 
@@ -20,10 +20,7 @@ def find_max_min(arr: list[int]) -> tuple[int, int]:
     arr (list[int]): The list of numbers.
 
     Returns:
-    Tuple[int, int]: (maximum, minimum)
-
-    Raises:
-    ValueError: If the list is empty.
+    tuple[int | None, int | None]: (maximum, minimum), or (None, None) if the list is empty.
     """
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
