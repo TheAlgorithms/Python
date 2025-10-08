@@ -119,7 +119,7 @@ class LogisticRegressionVectorized:
 
     def _compute_cost(
         self,
-        X: np.ndarray,
+        x: np.ndarray,
         y: np.ndarray,
         weights: np.ndarray,
         bias: float,
@@ -129,7 +129,7 @@ class LogisticRegressionVectorized:
         Compute the cost function.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
             y: Target labels
             weights: Model weights
             bias: Model bias
@@ -139,18 +139,18 @@ class LogisticRegressionVectorized:
             Cost value
 
         >>> lr = LogisticRegressionVectorized()
-        >>> X = np.array([[1, 2], [3, 4]])
+        >>> x = np.array([[1, 2], [3, 4]])
         >>> y = np.array([0, 1])
         >>> weights = np.array([0.1, 0.2])
         >>> bias = 0.0
-        >>> cost = lr._compute_cost(X, y, weights, bias)
+        >>> cost = lr._compute_cost(x, y, weights, bias)
         >>> isinstance(cost, float)
         True
         """
-        X.shape[0]
+        x.shape[0]
 
         # Compute predictions
-        z = np.dot(X, weights) + bias
+        z = np.dot(x, weights) + bias
 
         if is_multiclass:
             # Multi-class: use softmax and cross-entropy
@@ -174,7 +174,7 @@ class LogisticRegressionVectorized:
 
     def _compute_gradients(
         self,
-        X: np.ndarray,
+        x: np.ndarray,
         y: np.ndarray,
         weights: np.ndarray,
         bias: float,
@@ -184,7 +184,7 @@ class LogisticRegressionVectorized:
         Compute gradients using vectorized operations.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
             y: Target labels
             weights: Model weights
             bias: Model bias
@@ -194,20 +194,20 @@ class LogisticRegressionVectorized:
             Tuple of (weight_gradients, bias_gradient)
 
         >>> lr = LogisticRegressionVectorized()
-        >>> X = np.array([[1, 2], [3, 4]])
+        >>> x = np.array([[1, 2], [3, 4]])
         >>> y = np.array([0, 1])
         >>> weights = np.array([0.1, 0.2])
         >>> bias = 0.0
-        >>> grad_w, grad_b = lr._compute_gradients(X, y, weights, bias)
+        >>> grad_w, grad_b = lr._compute_gradients(x, y, weights, bias)
         >>> grad_w.shape == weights.shape
         True
         >>> isinstance(grad_b, (float, np.floating))
         True
         """
-        n_samples = X.shape[0]
+        n_samples = x.shape[0]
 
         # Compute predictions
-        z = np.dot(X, weights) + bias
+        z = np.dot(x, weights) + bias
 
         if is_multiclass:
             # Multi-class: use softmax
@@ -219,7 +219,7 @@ class LogisticRegressionVectorized:
             error = predictions - y
 
         # Compute gradients
-        weight_gradients = np.dot(X.T, error) / n_samples
+        weight_gradients = np.dot(x.T, error) / n_samples
         bias_gradient = np.mean(error)
 
         # Add regularization gradients
@@ -250,28 +250,28 @@ class LogisticRegressionVectorized:
 
         return y_onehot
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> "LogisticRegressionVectorized":
+    def fit(self, x: np.ndarray, y: np.ndarray) -> "LogisticRegressionVectorized":
         """
         Fit the logistic regression model.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
             y: Target labels of shape (n_samples,)
 
         Returns:
             Self for method chaining
 
         >>> lr = LogisticRegressionVectorized(max_iterations=10)
-        >>> X = np.array([[1, 2], [3, 4], [5, 6]])
+        >>> x = np.array([[1, 2], [3, 4], [5, 6]])
         >>> y = np.array([0, 1, 0])
-        >>> _ = lr.fit(X, y)
+        >>> _ = lr.fit(x, y)
         """
-        if X.ndim != 2:
-            raise ValueError("X must be 2-dimensional")
-        if len(X) != len(y):
-            raise ValueError("X and y must have the same number of samples")
+        if x.ndim != 2:
+            raise ValueError("x must be 2-dimensional")
+        if len(x) != len(y):
+            raise ValueError("x and y must have the same number of samples")
 
-        _n_samples, n_features = X.shape
+        _n_samples, n_features = x.shape
 
         # Determine if this is multi-class classification
         unique_classes = np.unique(y)
@@ -298,13 +298,13 @@ class LogisticRegressionVectorized:
         for iteration in range(self.max_iterations):
             # Compute cost
             cost = self._compute_cost(
-                X, y_encoded, self.weights_, self.bias_, is_multiclass
+                x, y_encoded, self.weights_, self.bias_, is_multiclass
             )
             self.cost_history_.append(cost)
 
             # Compute gradients
             weight_gradients, bias_gradient = self._compute_gradients(
-                X, y_encoded, self.weights_, self.bias_, is_multiclass
+                x, y_encoded, self.weights_, self.bias_, is_multiclass
             )
 
             # Update parameters
@@ -321,30 +321,30 @@ class LogisticRegressionVectorized:
 
         return self
 
-    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
         """
         Predict class probabilities.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
 
         Returns:
             Probability matrix of shape (n_samples, n_classes) for multi-class
             or (n_samples,) for binary classification
 
         >>> lr = LogisticRegressionVectorized()
-        >>> X_train = np.array([[1, 2], [3, 4]])
+        >>> x_train = np.array([[1, 2], [3, 4]])
         >>> y_train = np.array([0, 1])
-        >>> _ = lr.fit(X_train, y_train)
-        >>> X_test = np.array([[1, 2], [3, 4]])
-        >>> proba = lr.predict_proba(X_test)
-        >>> proba.shape[0] == X_test.shape[0]
+        >>> _ = lr.fit(x_train, y_train)
+        >>> x_test = np.array([[1, 2], [3, 4]])
+        >>> proba = lr.predict_proba(x_test)
+        >>> proba.shape[0] == x_test.shape[0]
         True
         """
         if self.weights_ is None:
             raise ValueError("Model must be fitted before prediction")
 
-        z = np.dot(X, self.weights_) + self.bias_
+        z = np.dot(x, self.weights_) + self.bias_
 
         if self.n_classes_ is None or self.n_classes_ <= 2:
             # Binary classification
@@ -353,26 +353,26 @@ class LogisticRegressionVectorized:
             # Multi-class classification
             return self._softmax(z)
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Predict class labels.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
 
         Returns:
             Predicted class labels
 
         >>> lr = LogisticRegressionVectorized()
-        >>> X_train = np.array([[1, 2], [3, 4], [5, 6]])
+        >>> x_train = np.array([[1, 2], [3, 4], [5, 6]])
         >>> y_train = np.array([0, 1, 0])
-        >>> _ = lr.fit(X_train, y_train)
-        >>> X_test = np.array([[1, 2], [3, 4]])
-        >>> predictions = lr.predict(X_test)
-        >>> len(predictions) == X_test.shape[0]
+        >>> _ = lr.fit(x_train, y_train)
+        >>> x_test = np.array([[1, 2], [3, 4]])
+        >>> predictions = lr.predict(x_test)
+        >>> len(predictions) == x_test.shape[0]
         True
         """
-        probabilities = self.predict_proba(X)
+        probabilities = self.predict_proba(x)
 
         if self.n_classes_ is None or self.n_classes_ <= 2:
             # Binary classification
@@ -385,26 +385,26 @@ class LogisticRegressionVectorized:
 
         return predictions
 
-    def score(self, X: np.ndarray, y: np.ndarray) -> float:
+    def score(self, x: np.ndarray, y: np.ndarray) -> float:
         """
         Compute the accuracy score.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: True labels
 
         Returns:
             Accuracy score between 0 and 1
 
         >>> lr = LogisticRegressionVectorized()
-        >>> X = np.array([[1, 2], [3, 4], [5, 6]])
+        >>> x = np.array([[1, 2], [3, 4], [5, 6]])
         >>> y = np.array([0, 1, 0])
-        >>> _ = lr.fit(X, y)
-        >>> score = lr.score(X, y)
+        >>> _ = lr.fit(x, y)
+        >>> score = lr.score(x, y)
         >>> bool(0 <= score <= 1)
         True
         """
-        predictions = self.predict(X)
+        predictions = self.predict(x)
         return np.mean(predictions == y)
 
 
@@ -430,13 +430,13 @@ def generate_sample_data(
 
     if n_classes == 2:
         # Binary classification: linearly separable data
-        X = rng.standard_normal((n_samples, n_features))
+        x = rng.standard_normal((n_samples, n_features))
         # Create a simple linear boundary
-        y = (X[:, 0] + X[:, 1] > 0).astype(int)
+        y = (x[:, 0] + x[:, 1] > 0).astype(int)
     else:
         # Multi-class classification
         from sklearn.datasets import make_classification
-        X, y = make_classification(
+        x, y = make_classification(
             n_samples=n_samples,
             n_features=n_features,
             n_classes=n_classes,
@@ -445,7 +445,7 @@ def generate_sample_data(
             random_state=random_state,
         )
 
-    return X, y
+    return x, y
 
 
 def compare_with_sklearn() -> None:
@@ -457,23 +457,23 @@ def compare_with_sklearn() -> None:
         from sklearn.metrics import accuracy_score
 
         # Generate data
-        X, y = generate_sample_data(n_samples=100, n_features=4, n_classes=2)
+        x, y = generate_sample_data(n_samples=100, n_features=4, n_classes=2)
 
         # Split data
-        split_idx = int(0.8 * len(X))
-        X_train, X_test = X[:split_idx], X[split_idx:]
+        split_idx = int(0.8 * len(x))
+        x_train, x_test = x[:split_idx], x[split_idx:]
         y_train, y_test = y[:split_idx], y[split_idx:]
 
         # Our implementation
         lr_ours = LogisticRegressionVectorized(max_iterations=1000, learning_rate=0.1)
-        lr_ours.fit(X_train, y_train)
-        lr_ours.predict(X_test)
-        accuracy_ours = lr_ours.score(X_test, y_test)
+        lr_ours.fit(x_train, y_train)
+        lr_ours.predict(x_test)
+        accuracy_ours = lr_ours.score(x_test, y_test)
 
         # Scikit-learn implementation
         lr_sklearn = SklearnLR(max_iter=1000, random_state=42)
-        lr_sklearn.fit(X_train, y_train)
-        predictions_sklearn = lr_sklearn.predict(X_test)
+        lr_sklearn.fit(x_train, y_train)
+        predictions_sklearn = lr_sklearn.predict(x_test)
         accuracy_sklearn = accuracy_score(y_test, predictions_sklearn)
 
         print(f"Our implementation accuracy: {accuracy_ours:.4f}")
@@ -491,40 +491,40 @@ def main() -> None:
     print("=== Binary Classification Example ===")
 
     # Generate binary classification data
-    X_binary, y_binary = generate_sample_data(n_samples=100, n_features=2, n_classes=2)
+    x_binary, y_binary = generate_sample_data(n_samples=100, n_features=2, n_classes=2)
 
-    print(f"Data shape: {X_binary.shape}")
+    print(f"Data shape: {x_binary.shape}")
     print(f"Classes: {np.unique(y_binary)}")
 
     # Train model
     lr_binary = LogisticRegressionVectorized(learning_rate=0.1, max_iterations=1000)
-    lr_binary.fit(X_binary, y_binary)
+    lr_binary.fit(x_binary, y_binary)
 
     # Make predictions
-    lr_binary.predict(X_binary)
-    probabilities = lr_binary.predict_proba(X_binary)
+    lr_binary.predict(x_binary)
+    probabilities = lr_binary.predict_proba(x_binary)
 
-    print(f"Training accuracy: {lr_binary.score(X_binary, y_binary):.4f}")
+    print(f"Training accuracy: {lr_binary.score(x_binary, y_binary):.4f}")
     print(f"Final cost: {lr_binary.cost_history_[-1]:.6f}")
     print(f"Sample probabilities: {probabilities[:5]}")
 
     print("\n=== Multi-class Classification Example ===")
 
     # Generate multi-class data
-    X_multi, y_multi = generate_sample_data(n_samples=150, n_features=4, n_classes=3)
+    x_multi, y_multi = generate_sample_data(n_samples=150, n_features=4, n_classes=3)
 
-    print(f"Data shape: {X_multi.shape}")
+    print(f"Data shape: {x_multi.shape}")
     print(f"Classes: {np.unique(y_multi)}")
 
     # Train model
     lr_multi = LogisticRegressionVectorized(learning_rate=0.1, max_iterations=1000)
-    lr_multi.fit(X_multi, y_multi)
+    lr_multi.fit(x_multi, y_multi)
 
     # Make predictions
-    lr_multi.predict(X_multi)
-    probabilities_multi = lr_multi.predict_proba(X_multi)
+    lr_multi.predict(x_multi)
+    probabilities_multi = lr_multi.predict_proba(x_multi)
 
-    print(f"Training accuracy: {lr_multi.score(X_multi, y_multi):.4f}")
+    print(f"Training accuracy: {lr_multi.score(x_multi, y_multi):.4f}")
     print(f"Final cost: {lr_multi.cost_history_[-1]:.6f}")
     print(f"Sample probabilities shape: {probabilities_multi[:5].shape}")
 

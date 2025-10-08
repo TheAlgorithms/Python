@@ -56,21 +56,21 @@ class NaiveBayesLaplace:
         self.feature_var_: dict[int, dict[int, float]] = {}
         self.n_features_: int | None = None
 
-    def _check_input(self, X: np.ndarray, y: np.ndarray) -> None:
+    def _check_input(self, x: np.ndarray, y: np.ndarray) -> None:
         """
         Validate input data.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target labels
 
         Raises:
             ValueError: If input is invalid
         """
-        if X.ndim != 2:
-            raise ValueError("X must be 2-dimensional")
-        if len(X) != len(y):
-            raise ValueError("X and y must have the same length")
+        if x.ndim != 2:
+            raise ValueError("x must be 2-dimensional")
+        if len(x) != len(y):
+            raise ValueError("x and y must have the same length")
         if self.alpha <= 0:
             raise ValueError("Alpha must be positive")
         if self.feature_type not in ["discrete", "continuous"]:
@@ -103,23 +103,22 @@ class NaiveBayesLaplace:
 
         return prior
 
-    def _compute_feature_counts(
-        self, X: np.ndarray, y: np.ndarray
+    def _compute_feature_counts(self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, int]]:
         """
         Compute feature counts for each class (for discrete features).
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target labels
 
         Returns:
             Nested dictionary: class -> feature -> count
 
         >>> nb = NaiveBayesLaplace()
-        >>> X = np.array([[0, 1], [1, 0], [0, 1]])
+        >>> x = np.array([[0, 1], [1, 0], [0, 1]])
         >>> y = np.array([0, 1, 0])
-        >>> counts = nb._compute_feature_counts(X, y)
+        >>> counts = nb._compute_feature_counts(x, y)
         >>> int(counts[0][0][0])  # class 0, feature 0, value 0
         2
         >>> int(counts[1][1][0])  # class 1, feature 1, value 0
@@ -132,35 +131,34 @@ class NaiveBayesLaplace:
 
             # Get samples for this class
             class_mask = y == class_label
-            X_class = X[class_mask]
+            x_class = x[class_mask]
 
             # Count occurrences of each feature value
-            for feature_idx in range(X.shape[1]):
+            for feature_idx in range(x.shape[1]):
                 feature_counts[class_label][feature_idx] = {}
 
-                for feature_value in np.unique(X[:, feature_idx]):
-                    count = np.sum(X_class[:, feature_idx] == feature_value)
+                for feature_value in np.unique(x[:, feature_idx]):
+                    count = np.sum(x_class[:, feature_idx] == feature_value)
                     feature_counts[class_label][feature_idx][feature_value] = count
 
         return feature_counts
 
-    def _compute_feature_statistics(
-        self, X: np.ndarray, y: np.ndarray
+    def _compute_feature_statistics(self, x: np.ndarray, y: np.ndarray
     ) -> tuple[dict, dict]:
         """
         Compute mean and variance for each feature in each class (continuous features).
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target labels
 
         Returns:
             Tuple of (means, variances) dictionaries
 
         >>> nb = NaiveBayesLaplace(feature_type="continuous")
-        >>> X = np.array([[1.0, 2.0], [2.0, 3.0], [1.5, 2.5]])
+        >>> x = np.array([[1.0, 2.0], [2.0, 3.0], [1.5, 2.5]])
         >>> y = np.array([0, 1, 0])
-        >>> means, vars = nb._compute_feature_statistics(X, y)
+        >>> means, vars = nb._compute_feature_statistics(x, y)
         >>> len(means)
         2
         >>> len(vars)
@@ -175,31 +173,30 @@ class NaiveBayesLaplace:
 
             # Get samples for this class
             class_mask = y == class_label
-            X_class = X[class_mask]
+            x_class = x[class_mask]
 
             # Compute mean and variance for each feature
-            for feature_idx in range(X.shape[1]):
-                feature_values = X_class[:, feature_idx]
+            for feature_idx in range(x.shape[1]):
+                feature_values = x_class[:, feature_idx]
                 means[class_label][feature_idx] = np.mean(feature_values)
                 # Add small epsilon to avoid division by zero
                 variances[class_label][feature_idx] = np.var(feature_values) + 1e-9
 
         return means, variances
 
-    def _compute_log_probabilities_discrete(
-        self, X: np.ndarray, y: np.ndarray
+    def _compute_log_probabilities_discrete(self, x: np.ndarray, y: np.ndarray
     ) -> dict[int, dict[int, dict[int, float]]]:
         """
         Compute log probabilities for discrete features with Laplace smoothing.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target labels
 
         Returns:
             Nested dictionary: class -> feature -> value -> log_probability
         """
-        feature_counts = self._compute_feature_counts(X, y)
+        feature_counts = self._compute_feature_counts(x, y)
         log_probabilities = {}
 
         for class_label in np.unique(y):
@@ -207,11 +204,11 @@ class NaiveBayesLaplace:
             class_mask = y == class_label
             n_class_samples = np.sum(class_mask)
 
-            for feature_idx in range(X.shape[1]):
+            for feature_idx in range(x.shape[1]):
                 log_probabilities[class_label][feature_idx] = {}
 
                 # Get all possible values for this feature
-                all_values = np.unique(X[:, feature_idx])
+                all_values = np.unique(x[:, feature_idx])
 
                 for feature_value in all_values:
                     # Count occurrences of this value in this class
@@ -252,54 +249,54 @@ class NaiveBayesLaplace:
         # Gaussian log probability: -0.5 * log(2*pi*var) - (x-mean)^2/(2*var)
         return -0.5 * (np.log(2 * np.pi * var) + (x - mean) ** 2 / var)
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> "NaiveBayesLaplace":
+    def fit(self, x: np.ndarray, y: np.ndarray) -> "NaiveBayesLaplace":
         """
         Fit the Naive Bayes classifier.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
             y: Target labels of shape (n_samples,)
 
         Returns:
             Self for method chaining
 
         >>> nb = NaiveBayesLaplace()
-        >>> X = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
+        >>> x = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
         >>> y = np.array([0, 1, 0, 1])
-        >>> _ = nb.fit(X, y)
+        >>> _ = nb.fit(x, y)
         """
-        self._check_input(X, y)
+        self._check_input(x, y)
 
         self.classes_ = np.unique(y)
-        self.n_features_ = X.shape[1]
+        self.n_features_ = x.shape[1]
 
         # Compute class priors
         self.class_prior_ = self._compute_class_prior(y)
 
         if self.feature_type == "discrete":
             # For discrete features: compute feature counts and log probabilities
-            self.feature_count_ = self._compute_feature_counts(X, y)
-            self.feature_log_prob_ = self._compute_log_probabilities_discrete(X, y)
+            self.feature_count_ = self._compute_feature_counts(x, y)
+            self.feature_log_prob_ = self._compute_log_probabilities_discrete(x, y)
 
         elif self.feature_type == "continuous":
             # For continuous features: compute means and variances
             self.feature_mean_, self.feature_var_ = self._compute_feature_statistics(
-                X, y
+                x, y
             )
 
         return self
 
-    def _predict_log_proba_discrete(self, X: np.ndarray) -> np.ndarray:
+    def _predict_log_proba_discrete(self, x: np.ndarray) -> np.ndarray:
         """
         Predict log probabilities for discrete features.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
 
         Returns:
             Log probability matrix of shape (n_samples, n_classes)
         """
-        n_samples = X.shape[0]
+        n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
 
@@ -308,9 +305,9 @@ class NaiveBayesLaplace:
             log_proba[:, i] = np.log(self.class_prior_[class_label])
 
             # Add log likelihood for each feature
-            for feature_idx in range(X.shape[1]):
+            for feature_idx in range(x.shape[1]):
                 for sample_idx in range(n_samples):
-                    feature_value = X[sample_idx, feature_idx]
+                    feature_value = x[sample_idx, feature_idx]
 
                     # Get log probability for this feature value in this class
                     if (
@@ -340,17 +337,17 @@ class NaiveBayesLaplace:
 
         return log_proba
 
-    def _predict_log_proba_continuous(self, X: np.ndarray) -> np.ndarray:
+    def _predict_log_proba_continuous(self, x: np.ndarray) -> np.ndarray:
         """
         Predict log probabilities for continuous features.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
 
         Returns:
             Log probability matrix of shape (n_samples, n_classes)
         """
-        n_samples = X.shape[0]
+        n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
 
@@ -359,34 +356,34 @@ class NaiveBayesLaplace:
             log_proba[:, i] = np.log(self.class_prior_[class_label])
 
             # Add log likelihood for each feature
-            for feature_idx in range(X.shape[1]):
+            for feature_idx in range(x.shape[1]):
                 means = self.feature_mean_[class_label][feature_idx]
                 variances = self.feature_var_[class_label][feature_idx]
 
                 # Compute Gaussian log probabilities for all samples
-                feature_values = X[:, feature_idx]
+                feature_values = x[:, feature_idx]
                 log_proba[:, i] += self._gaussian_log_probability(
                     feature_values, means, variances
                 )
 
         return log_proba
 
-    def predict_log_proba(self, X: np.ndarray) -> np.ndarray:
+    def predict_log_proba(self, x: np.ndarray) -> np.ndarray:
         """
         Predict log probabilities for each class.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
 
         Returns:
             Log probability matrix of shape (n_samples, n_classes)
 
         >>> nb = NaiveBayesLaplace()
-        >>> X_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
+        >>> x_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
         >>> y_train = np.array([0, 1, 0, 1])
-        >>> _ = nb.fit(X_train, y_train)
-        >>> X_test = np.array([[0, 1], [1, 0]])
-        >>> log_proba = nb.predict_log_proba(X_test)
+        >>> _ = nb.fit(x_train, y_train)
+        >>> x_test = np.array([[0, 1], [1, 0]])
+        >>> log_proba = nb.predict_log_proba(x_test)
         >>> log_proba.shape
         (2, 2)
         """
@@ -394,32 +391,32 @@ class NaiveBayesLaplace:
             raise ValueError("Model must be fitted before prediction")
 
         if self.feature_type == "discrete":
-            return self._predict_log_proba_discrete(X)
+            return self._predict_log_proba_discrete(x)
         else:
-            return self._predict_log_proba_continuous(X)
+            return self._predict_log_proba_continuous(x)
 
-    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+    def predict_proba(self, x: np.ndarray) -> np.ndarray:
         """
         Predict class probabilities.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
 
         Returns:
             Probability matrix of shape (n_samples, n_classes)
 
         >>> nb = NaiveBayesLaplace()
-        >>> X_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
+        >>> x_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
         >>> y_train = np.array([0, 1, 0, 1])
-        >>> _ = nb.fit(X_train, y_train)
-        >>> X_test = np.array([[0, 1], [1, 0]])
-        >>> proba = nb.predict_proba(X_test)
+        >>> _ = nb.fit(x_train, y_train)
+        >>> x_test = np.array([[0, 1], [1, 0]])
+        >>> proba = nb.predict_proba(x_test)
         >>> proba.shape
         (2, 2)
         >>> np.allclose(np.sum(proba, axis=1), 1.0)
         True
         """
-        log_proba = self.predict_log_proba(X)
+        log_proba = self.predict_log_proba(x)
 
         # Convert log probabilities to probabilities using log-sum-exp trick
         # for numerical stability
@@ -429,49 +426,49 @@ class NaiveBayesLaplace:
 
         return proba
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Predict class labels.
 
         Args:
-            X: Feature matrix of shape (n_samples, n_features)
+            x: Feature matrix of shape (n_samples, n_features)
 
         Returns:
             Predicted class labels
 
         >>> nb = NaiveBayesLaplace()
-        >>> X_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
+        >>> x_train = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
         >>> y_train = np.array([0, 1, 0, 1])
-        >>> _ = nb.fit(X_train, y_train)
-        >>> X_test = np.array([[0, 1], [1, 0]])
-        >>> predictions = nb.predict(X_test)
-        >>> len(predictions) == X_test.shape[0]
+        >>> _ = nb.fit(x_train, y_train)
+        >>> x_test = np.array([[0, 1], [1, 0]])
+        >>> predictions = nb.predict(x_test)
+        >>> len(predictions) == x_test.shape[0]
         True
         """
-        log_proba = self.predict_log_proba(X)
+        log_proba = self.predict_log_proba(x)
         predictions = self.classes_[np.argmax(log_proba, axis=1)]
         return predictions
 
-    def score(self, X: np.ndarray, y: np.ndarray) -> float:
+    def score(self, x: np.ndarray, y: np.ndarray) -> float:
         """
         Compute accuracy score.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: True labels
 
         Returns:
             Accuracy score between 0 and 1
 
         >>> nb = NaiveBayesLaplace()
-        >>> X = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
+        >>> x = np.array([[0, 1], [1, 0], [0, 1], [1, 1]])
         >>> y = np.array([0, 1, 0, 1])
-        >>> _ = nb.fit(X, y)
-        >>> score = nb.score(X, y)
+        >>> _ = nb.fit(x, y)
+        >>> score = nb.score(x, y)
         >>> bool(0 <= score <= 1)
         True
         """
-        predictions = self.predict(X)
+        predictions = self.predict(x)
         return np.mean(predictions == y)
 
 
@@ -491,17 +488,17 @@ def generate_discrete_data(
         random_state: Random seed
 
     Returns:
-        Tuple of (X, y)
+        Tuple of (x, y)
     """
     rng = np.random.default_rng(random_state)
 
     # Generate random discrete features (0, 1, 2)
-    X = rng.integers(0, 3, size=(n_samples, n_features))
+    x = rng.integers(0, 3, size=(n_samples, n_features))
 
     # Create simple decision rule for labels
-    y = np.sum(X, axis=1) % n_classes
+    y = np.sum(x, axis=1) % n_classes
 
-    return X, y
+    return x, y
 
 
 def generate_continuous_data(
@@ -520,20 +517,20 @@ def generate_continuous_data(
         random_state: Random seed
 
     Returns:
-        Tuple of (X, y)
+        Tuple of (x, y)
     """
     rng = np.random.default_rng(random_state)
 
     # Generate continuous features with different means for different classes
-    X = rng.standard_normal((n_samples, n_features))
+    x = rng.standard_normal((n_samples, n_features))
     y = rng.integers(0, n_classes, size=n_samples)
 
     # Add class-specific offsets
     for class_label in range(n_classes):
         mask = y == class_label
-        X[mask] += class_label * 2  # Separate classes by offset
+        x[mask] += class_label * 2  # Separate classes by offset
 
-    return X, y
+    return x, y
 
 
 def compare_with_sklearn() -> None:
@@ -545,23 +542,23 @@ def compare_with_sklearn() -> None:
         from sklearn.naive_bayes import GaussianNB, MultinomialNB
 
         print("=== Discrete Features Comparison ===")
-        X_disc, y_disc = generate_discrete_data(n_samples=100, n_features=4)
+        x_disc, y_disc = generate_discrete_data(n_samples=100, n_features=4)
 
         # Split data
-        split_idx = int(0.8 * len(X_disc))
-        X_train, X_test = X_disc[:split_idx], X_disc[split_idx:]
+        split_idx = int(0.8 * len(x_disc))
+        x_train, x_test = x_disc[:split_idx], x_disc[split_idx:]
         y_train, y_test = y_disc[:split_idx], y_disc[split_idx:]
 
         # Our implementation
         nb_ours = NaiveBayesLaplace(alpha=1.0, feature_type="discrete")
-        nb_ours.fit(X_train, y_train)
-        nb_ours.predict(X_test)
-        accuracy_ours = nb_ours.score(X_test, y_test)
+        nb_ours.fit(x_train, y_train)
+        nb_ours.predict(x_test)
+        accuracy_ours = nb_ours.score(x_test, y_test)
 
         # Scikit-learn implementation
         nb_sklearn = MultinomialNB(alpha=1.0)
-        nb_sklearn.fit(X_train, y_train)
-        predictions_sklearn = nb_sklearn.predict(X_test)
+        nb_sklearn.fit(x_train, y_train)
+        predictions_sklearn = nb_sklearn.predict(x_test)
         accuracy_sklearn = accuracy_score(y_test, predictions_sklearn)
 
         print(f"Our implementation accuracy: {accuracy_ours:.4f}")
@@ -569,23 +566,23 @@ def compare_with_sklearn() -> None:
         print(f"Difference: {abs(accuracy_ours - accuracy_sklearn):.4f}")
 
         print("\n=== Continuous Features Comparison ===")
-        X_cont, y_cont = generate_continuous_data(n_samples=100, n_features=2)
+        x_cont, y_cont = generate_continuous_data(n_samples=100, n_features=2)
 
         # Split data
-        split_idx = int(0.8 * len(X_cont))
-        X_train, X_test = X_cont[:split_idx], X_cont[split_idx:]
+        split_idx = int(0.8 * len(x_cont))
+        x_train, x_test = x_cont[:split_idx], x_cont[split_idx:]
         y_train, y_test = y_cont[:split_idx], y_cont[split_idx:]
 
         # Our implementation
         nb_ours_cont = NaiveBayesLaplace(alpha=1.0, feature_type="continuous")
-        nb_ours_cont.fit(X_train, y_train)
-        nb_ours_cont.predict(X_test)
-        accuracy_ours_cont = nb_ours_cont.score(X_test, y_test)
+        nb_ours_cont.fit(x_train, y_train)
+        nb_ours_cont.predict(x_test)
+        accuracy_ours_cont = nb_ours_cont.score(x_test, y_test)
 
         # Scikit-learn implementation
         nb_sklearn_cont = GaussianNB()
-        nb_sklearn_cont.fit(X_train, y_train)
-        predictions_sklearn_cont = nb_sklearn_cont.predict(X_test)
+        nb_sklearn_cont.fit(x_train, y_train)
+        predictions_sklearn_cont = nb_sklearn_cont.predict(x_test)
         accuracy_sklearn_cont = accuracy_score(y_test, predictions_sklearn_cont)
 
         print(f"Our implementation accuracy: {accuracy_ours_cont:.4f}")
@@ -603,45 +600,45 @@ def main() -> None:
     print("=== Discrete Features Example ===")
 
     # Generate discrete data
-    X_disc, y_disc = generate_discrete_data(n_samples=100, n_features=3, n_classes=2)
+    x_disc, y_disc = generate_discrete_data(n_samples=100, n_features=3, n_classes=2)
 
-    print(f"Data shape: {X_disc.shape}")
+    print(f"Data shape: {x_disc.shape}")
     print(f"Classes: {np.unique(y_disc)}")
-    print(f"Feature values: {np.unique(X_disc)}")
+    print(f"Feature values: {np.unique(x_disc)}")
 
     # Train model
     nb_disc = NaiveBayesLaplace(alpha=1.0, feature_type="discrete")
-    nb_disc.fit(X_disc, y_disc)
+    nb_disc.fit(x_disc, y_disc)
 
     # Make predictions
-    nb_disc.predict(X_disc)
-    probabilities = nb_disc.predict_proba(X_disc)
+    nb_disc.predict(x_disc)
+    probabilities = nb_disc.predict_proba(x_disc)
 
-    print(f"Training accuracy: {nb_disc.score(X_disc, y_disc):.4f}")
+    print(f"Training accuracy: {nb_disc.score(x_disc, y_disc):.4f}")
     print(f"Sample probabilities: {probabilities[:5]}")
 
     # Test with unseen feature values
-    X_unseen = np.array([[5, 6, 7], [8, 9, 10]])  # Unseen values
-    predictions_unseen = nb_disc.predict(X_unseen)
+    x_unseen = np.array([[5, 6, 7], [8, 9, 10]])  # Unseen values
+    predictions_unseen = nb_disc.predict(x_unseen)
     print(f"Predictions on unseen data: {predictions_unseen}")
 
     print("\n=== Continuous Features Example ===")
 
     # Generate continuous data
-    X_cont, y_cont = generate_continuous_data(n_samples=100, n_features=2, n_classes=2)
+    x_cont, y_cont = generate_continuous_data(n_samples=100, n_features=2, n_classes=2)
 
-    print(f"Data shape: {X_cont.shape}")
+    print(f"Data shape: {x_cont.shape}")
     print(f"Classes: {np.unique(y_cont)}")
 
     # Train model
     nb_cont = NaiveBayesLaplace(alpha=1.0, feature_type="continuous")
-    nb_cont.fit(X_cont, y_cont)
+    nb_cont.fit(x_cont, y_cont)
 
     # Make predictions
-    nb_cont.predict(X_cont)
-    probabilities_cont = nb_cont.predict_proba(X_cont)
+    nb_cont.predict(x_cont)
+    probabilities_cont = nb_cont.predict_proba(x_cont)
 
-    print(f"Training accuracy: {nb_cont.score(X_cont, y_cont):.4f}")
+    print(f"Training accuracy: {nb_cont.score(x_cont, y_cont):.4f}")
     print(f"Sample probabilities: {probabilities_cont[:5]}")
 
     print("\n=== Comparison with Scikit-learn ===")
