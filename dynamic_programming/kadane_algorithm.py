@@ -1,14 +1,15 @@
 """
 Kadane's Algorithm implementation in Python.
 
-Finds the maximum sum of a contiguous subarray within a one-dimensional array of numbers.
+Finds the maximum sum of a contiguous subarray within
+a one-dimensional array of numbers.
 
 Source:
 https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
 
 
-def kadane(arr):
+def kadane(arr: list[int]) -> tuple[int, list[int]]:
     """
     Returns the maximum sum of a contiguous subarray and the subarray itself.
 
@@ -51,11 +52,10 @@ def kadane(arr):
             start = s
             end = i
 
-    return max_global, arr[start : end + 1]
+    return max_global, arr[start:end+1]
 
 
 # Doctest runner
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
