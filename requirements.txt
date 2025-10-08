@@ -9,6 +9,7 @@ numpy
 opencv-python
 pandas
 pillow
+requests
 rich
 scikit-learn
 sphinx-pyproject
