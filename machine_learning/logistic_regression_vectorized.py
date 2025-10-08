@@ -17,7 +17,6 @@ Reference: https://en.wikipedia.org/wiki/Logistic_regression
 """
 
 import doctest
-from typing import cast
 
 import numpy as np
 
@@ -292,10 +291,10 @@ class LogisticRegressionVectorized:
             self.weights_ = self.rng_.standard_normal((n_features, n_classes)) * 0.01
             self.bias_ = np.zeros(n_classes)
         else:
-            self.weights_ = self.rng_.standard_normal(n_features) * 0.01 # type: ignore
-            bias_value: np.ndarray | float = 0.0  # type: ignore
+            self.weights_ = self.rng_.standard_normal(n_features) * 0.01  # type: ignore[assignment]
+            bias_value: np.ndarray | float = 0.0  # type: ignore[assignment]
             self.bias_ = bias_value  # type: ignore[assignment]
-            
+
         # Type assertions to help mypy
         assert self.weights_ is not None
         assert self.bias_ is not None

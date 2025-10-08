@@ -139,7 +139,8 @@ class NaiveBayesLaplace:
 
                 for feature_value in np.unique(x[:, feature_idx]):
                     count = np.sum(x_class[:, feature_idx] == feature_value)
-                    feature_counts[class_label][feature_idx][int(feature_value)] = int(count)
+                    feat_val_int = int(feature_value)
+                    feature_counts[class_label][feature_idx][feat_val_int] = int(count)
 
         return feature_counts
 
@@ -298,7 +299,7 @@ class NaiveBayesLaplace:
         """
         if self.classes_ is None:
             raise ValueError("Model must be fitted before predict")
-            
+
         n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
@@ -353,7 +354,7 @@ class NaiveBayesLaplace:
         """
         if self.classes_ is None:
             raise ValueError("Model must be fitted before predict")
-            
+
         n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
@@ -455,7 +456,7 @@ class NaiveBayesLaplace:
         """
         if self.classes_ is None:
             raise ValueError("Model must be fitted before predict")
-            
+
         log_proba = self.predict_log_proba(x)
         predictions = self.classes_[np.argmax(log_proba, axis=1)]
         return predictions

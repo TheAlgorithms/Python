@@ -433,7 +433,7 @@ class DecisionTreePruning:
         """
         if self.root_ is None:
             raise ValueError("Model must be fitted before predict")
-            
+
         predictions = np.zeros(len(x))
         for i, sample in enumerate(x):
             predictions[i] = self._predict_single(sample, self.root_)
