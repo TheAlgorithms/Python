@@ -195,6 +195,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Rotate Array](data_structures/arrays/rotate_array.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
@@ -336,6 +337,8 @@
   * Morphological Operations
     * [Dilation Operation](digital_image_processing/morphological_operations/dilation_operation.py)
     * [Erosion Operation](digital_image_processing/morphological_operations/erosion_operation.py)
+    * [Pruning Operation](digital_image_processing/morphological_operations/pruning_operation.py)
+    * [Skeletonization Operation](digital_image_processing/morphological_operations/skeletonization_operation.py)
   * Resize
     * [Resize](digital_image_processing/resize/resize.py)
   * Rotation
