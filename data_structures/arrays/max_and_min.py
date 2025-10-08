@@ -20,7 +20,8 @@ def find_max_min(arr: list[int]) -> tuple[int | None, int | None]:
     arr (list[int]): The list of numbers.
 
     Returns:
-    tuple[int | None, int | None]: (maximum, minimum), or (None, None) if the list is empty.
+    tuple[int | None, int | None]: A tuple of (maximum, minimum),
+    or (None, None) if the list is empty.
     """
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
