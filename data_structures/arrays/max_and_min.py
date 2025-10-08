@@ -11,6 +11,7 @@ Source: https://en.wikipedia.org/wiki/Maximum_and_minimum
 >>> find_max_min([])
 """
 
+
 def find_max_min(arr):
     """
     Returns the maximum and minimum elements of a list.
@@ -27,7 +28,7 @@ def find_max_min(arr):
 
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
-    
+
     maximum = max(arr)
     minimum = min(arr)
     return maximum, minimum
