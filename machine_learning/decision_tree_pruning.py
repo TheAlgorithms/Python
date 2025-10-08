@@ -287,7 +287,7 @@ class DecisionTreePruning:
         improved = True
         while improved:
             improved = False
-            best_improvement = 0
+            best_improvement = 0.0
             best_node = None
 
             for node in internal_nodes:
@@ -364,8 +364,8 @@ class DecisionTreePruning:
             return 0.0
 
         # Calculate cost-complexity for children
-        left_cc = self._calculate_cost_complexity(node.left)
-        right_cc = self._calculate_cost_complexity(node.right)
+        left_cc = self._calculate_cost_complexity(node.left) if node.left else 0.0
+        right_cc = self._calculate_cost_complexity(node.right) if node.right else 0.0
 
         # Calculate total cost-complexity
         total_cc = left_cc + right_cc + self.ccp_alpha
@@ -396,8 +396,10 @@ class DecisionTreePruning:
             node.value = 0.0  # Will be updated during fit
         else:
             # Recursively check children
-            self._prune_high_cost_nodes(node.left)
-            self._prune_high_cost_nodes(node.right)
+            if node.left:
+                self._prune_high_cost_nodes(node.left)
+            if node.right:
+                self._prune_high_cost_nodes(node.right)
 
     def _get_internal_nodes(self, node: "TreeNode") -> list["TreeNode"]:
         """
@@ -413,8 +415,10 @@ class DecisionTreePruning:
             return []
 
         nodes = [node]
-        nodes.extend(self._get_internal_nodes(node.left))
-        nodes.extend(self._get_internal_nodes(node.right))
+        if node.left:
+            nodes.extend(self._get_internal_nodes(node.left))
+        if node.right:
+            nodes.extend(self._get_internal_nodes(node.right))
         return nodes
 
     def _predict_batch(self, x: np.ndarray) -> np.ndarray:
@@ -427,6 +431,9 @@ class DecisionTreePruning:
         Returns:
             Predictions
         """
+        if self.root_ is None:
+            raise ValueError("Model must be fitted before predict")
+            
         predictions = np.zeros(len(x))
         for i, sample in enumerate(x):
             predictions[i] = self._predict_single(sample, self.root_)
@@ -444,11 +451,17 @@ class DecisionTreePruning:
             Prediction
         """
         if node.is_leaf:
+            if node.value is None:
+                raise ValueError("Leaf node must have a value")
             return node.value
 
         if sample[node.feature] <= node.threshold:
+            if node.left is None:
+                raise ValueError("Non-leaf node must have left child")
             return self._predict_single(sample, node.left)
         else:
+            if node.right is None:
+                raise ValueError("Non-leaf node must have right child")
             return self._predict_single(sample, node.right)
 
     def _calculate_error(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -637,7 +650,7 @@ def compare_pruning_methods() -> None:
         tree = DecisionTreePruning(
             max_depth=10,
             min_samples_leaf=2,
-            pruning_method=method,
+            pruning_method=method,  # type: ignore[arg-type]
             ccp_alpha=0.01
         )
 
