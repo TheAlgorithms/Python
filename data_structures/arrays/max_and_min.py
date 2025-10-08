@@ -27,7 +27,7 @@ def find_max_min(arr: list[int]) -> tuple[int, int]:
 
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
-    
+
     maximum = max(arr)
     minimum = min(arr)
     return maximum, minimum
