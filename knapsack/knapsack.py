@@ -5,7 +5,7 @@ References:
     https://en.wikipedia.org/wiki/Knapsack_problem
 """
 
-from functools import lru_cache
+from functools import cache
 
 
 def knapsack(
@@ -47,7 +47,7 @@ def knapsack(
     if method == "dp":
         return _knapsack_dp(capacity, weights, values, allow_repetition)
 
-    @lru_cache(maxsize=None)
+    @cache
     def recur(cap: int, idx: int) -> int:
         if idx == 0 or cap == 0:
             return 0
@@ -64,7 +64,10 @@ def knapsack(
 
 
 def _knapsack_dp(
-    capacity: int, weights: list[int], values: list[int], allow_repetition: bool
+    capacity: int,
+    weights: list[int],
+    values: list[int],
+    allow_repetition: bool,
 ) -> int:
     """Iterative dynamic programming version of the knapsack problem."""
     n = len(weights)
