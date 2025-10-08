@@ -46,12 +46,12 @@ class PCAFromScratch:
         self.mean_: np.ndarray | None = None
         self.std_: np.ndarray | None = None
 
-    def _standardize_data(self, X: np.ndarray) -> np.ndarray:
+    def _standardize_data(self, x: np.ndarray) -> np.ndarray:
         """
         Standardize the data by mean centering and scaling to unit variance.
 
         Args:
-            X: Input data matrix of shape (n_samples, n_features)
+            x: Input data matrix of shape (n_samples, n_features)
 
         Returns:
             Standardized data matrix
@@ -65,23 +65,23 @@ class PCAFromScratch:
         True
         """
         # Calculate mean and standard deviation
-        self.mean_ = np.mean(X, axis=0)
-        self.std_ = np.std(X, axis=0, ddof=0)  # ddof=0 for population std
+        self.mean_ = np.mean(x, axis=0)
+        self.std_ = np.std(x, axis=0, ddof=0)  # ddof=0 for population std
 
         # Avoid division by zero for constant features
         self.std_[self.std_ == 0] = 1.0
 
         # Standardize the data
-        X_standardized = (X - self.mean_) / self.std_
+        x_standardized = (x - self.mean_) / self.std_
 
-        return X_standardized
+        return x_standardized
 
-    def _compute_covariance_matrix(self, X: np.ndarray) -> np.ndarray:
+    def _compute_covariance_matrix(self, x: np.ndarray) -> np.ndarray:
         """
         Compute the covariance matrix of the standardized data.
 
         Args:
-            X: Standardized data matrix of shape (n_samples, n_features)
+            x: Standardized data matrix of shape (n_samples, n_features)
 
         Returns:
             Covariance matrix of shape (n_features, n_features)
@@ -95,9 +95,9 @@ class PCAFromScratch:
         >>> np.allclose(cov_matrix, cov_matrix.T)  # Symmetric matrix
         True
         """
-        n_samples = X.shape[0]
+        n_samples = x.shape[0]
         # Covariance matrix = (X^T * X) / (n_samples - 1)
-        covariance_matrix = np.dot(X.T, X) / (n_samples - 1)
+        covariance_matrix = np.dot(x.T, x) / (n_samples - 1)
         return covariance_matrix
 
     def _eigenvalue_decomposition(
@@ -130,12 +130,12 @@ class PCAFromScratch:
 
         return eigenvalues, eigenvectors
 
-    def fit(self, X: np.ndarray) -> "PCAFromScratch":
+    def fit(self, x: np.ndarray) -> "PCAFromScratch":
         """
         Fit PCA to the data.
 
         Args:
-            X: Input data matrix of shape (n_samples, n_features)
+            x: Input data matrix of shape (n_samples, n_features)
 
         Returns:
             Self for method chaining
@@ -146,10 +146,10 @@ class PCAFromScratch:
         >>> isinstance(fitted, PCAFromScratch)
         True
         """
-        if X.ndim != 2:
+        if x.ndim != 2:
             raise ValueError("Input data must be 2-dimensional")
 
-        n_samples, n_features = X.shape
+        n_samples, n_features = x.shape
 
         # Set default number of components
         if self.n_components is None:
@@ -164,10 +164,10 @@ class PCAFromScratch:
             )
 
         # Standardize the data
-        X_standardized = self._standardize_data(X)
+        x_standardized = self._standardize_data(x)
 
         # Compute covariance matrix
-        covariance_matrix = self._compute_covariance_matrix(X_standardized)
+        covariance_matrix = self._compute_covariance_matrix(x_standardized)
 
         # Perform eigenvalue decomposition
         eigenvalues, eigenvectors = self._eigenvalue_decomposition(covariance_matrix)
@@ -184,12 +184,12 @@ class PCAFromScratch:
 
         return self
 
-    def transform(self, X: np.ndarray) -> np.ndarray:
+    def transform(self, x: np.ndarray) -> np.ndarray:
         """
         Transform data using the fitted PCA.
 
         Args:
-            X: Input data matrix of shape (n_samples, n_features)
+            x: Input data matrix of shape (n_samples, n_features)
 
         Returns:
             Transformed data matrix of shape (n_samples, n_components)
@@ -205,19 +205,19 @@ class PCAFromScratch:
             raise ValueError("PCA must be fitted before transform")
 
         # Standardize the input data using the same parameters as during fit
-        X_standardized = (X - self.mean_) / self.std_
+        x_standardized = (x - self.mean_) / self.std_
 
         # Project data onto principal components
-        X_transformed = np.dot(X_standardized, self.components_)
+        x_transformed = np.dot(x_standardized, self.components_)
 
-        return X_transformed
+        return x_transformed
 
-    def fit_transform(self, X: np.ndarray) -> np.ndarray:
+    def fit_transform(self, x: np.ndarray) -> np.ndarray:
         """
         Fit PCA and transform data in one step.
 
         Args:
-            X: Input data matrix of shape (n_samples, n_features)
+            x: Input data matrix of shape (n_samples, n_features)
 
         Returns:
             Transformed data matrix of shape (n_samples, n_components)
@@ -228,14 +228,14 @@ class PCAFromScratch:
         >>> X_transformed.shape
         (50, 2)
         """
-        return self.fit(X).transform(X)
+        return self.fit(x).transform(x)
 
-    def inverse_transform(self, X_transformed: np.ndarray) -> np.ndarray:
+    def inverse_transform(self, x_transformed: np.ndarray) -> np.ndarray:
         """
         Transform data back to original space.
 
         Args:
-            X_transformed: Transformed data matrix of shape (n_samples, n_components)
+            x_transformed: Transformed data matrix of shape (n_samples, n_components)
 
         Returns:
             Data in original space of shape (n_samples, n_features)
@@ -251,12 +251,12 @@ class PCAFromScratch:
             raise ValueError("PCA must be fitted before inverse_transform")
 
         # Transform back to standardized space
-        X_standardized = np.dot(X_transformed, self.components_.T)
+        x_standardized = np.dot(x_transformed, self.components_.T)
 
         # Denormalize to original space
-        X_original = (X_standardized * self.std_) + self.mean_
+        x_original = (x_standardized * self.std_) + self.mean_
 
-        return X_original
+        return x_original
 
 
 def compare_with_sklearn() -> None:
@@ -267,31 +267,31 @@ def compare_with_sklearn() -> None:
     very close to the scikit-learn implementation.
     """
     from sklearn.datasets import make_blobs
-    from sklearn.decomposition import PCA as sklearn_pca
+    from sklearn.decomposition import PCA
 
     # Generate sample data
-    X, _ = make_blobs(n_samples=100, centers=3, n_features=4, random_state=42)
+    x, _ = make_blobs(n_samples=100, centers=3, n_features=4, random_state=42)
 
     # Our implementation
     pca_ours = PCAFromScratch(n_components=2)
-    X_transformed_ours = pca_ours.fit_transform(X)
+    x_transformed_ours = pca_ours.fit_transform(x)
 
     # Scikit-learn implementation
-    pca_sklearn = sklearn_pca(n_components=2, random_state=42)
-    X_transformed_sklearn = pca_sklearn.fit_transform(X)
+    pca_sklearn = PCA(n_components=2, random_state=42)
+    x_transformed_sklearn = pca_sklearn.fit_transform(x)
 
     # Compare results (should be very similar, possibly with different signs)
     print("Our PCA - First 5 rows:")
-    print(X_transformed_ours[:5])
+    print(x_transformed_ours[:5])
     print("\nScikit-learn PCA - First 5 rows:")
-    print(X_transformed_sklearn[:5])
+    print(x_transformed_sklearn[:5])
 
     print(f"\nOur explained variance ratio: {pca_ours.explained_variance_ratio_}")
     print(f"Sklearn explained variance ratio: {pca_sklearn.explained_variance_ratio_}")
 
     # Check if results are similar (within tolerance)
     correlation = np.corrcoef(
-        X_transformed_ours.flatten(), X_transformed_sklearn.flatten()
+        x_transformed_ours.flatten(), x_transformed_sklearn.flatten()
     )[0, 1]
     print(f"\nCorrelation between implementations: {correlation:.6f}")
 
@@ -303,26 +303,26 @@ def main() -> None:
     # Generate sample data
     rng = np.random.default_rng(42)
     n_samples, n_features = 100, 4
-    X = rng.standard_normal((n_samples, n_features))
+    x = rng.standard_normal((n_samples, n_features))
 
-    print("Original data shape:", X.shape)
+    print("Original data shape:", x.shape)
     print("Original data (first 5 rows):")
-    print(X[:5])
+    print(x[:5])
 
     # Apply PCA
     pca = PCAFromScratch(n_components=2)
-    X_transformed = pca.fit_transform(X)
+    x_transformed = pca.fit_transform(x)
 
-    print(f"\nTransformed data shape: {X_transformed.shape}")
+    print(f"\nTransformed data shape: {x_transformed.shape}")
     print("Transformed data (first 5 rows):")
-    print(X_transformed[:5])
+    print(x_transformed[:5])
 
     print(f"\nExplained variance ratio: {pca.explained_variance_ratio_}")
     print(f"Total variance explained: {np.sum(pca.explained_variance_ratio_):.4f}")
 
     # Demonstrate inverse transform
-    X_reconstructed = pca.inverse_transform(X_transformed)
-    reconstruction_error = np.mean((X - X_reconstructed) ** 2)
+    x_reconstructed = pca.inverse_transform(x_transformed)
+    reconstruction_error = np.mean((x - x_reconstructed) ** 2)
     print(f"\nReconstruction error (MSE): {reconstruction_error:.6f}")
 
     # Compare with sklearn
