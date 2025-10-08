@@ -125,13 +125,13 @@ class DecisionTreePruning:
         return -np.sum(probabilities * np.log2(probabilities))
 
     def _find_best_split(
-        self, X: np.ndarray, y: np.ndarray, task_type: str
+        self, x: np.ndarray, y: np.ndarray, task_type: str
     ) -> tuple[int, float, float]:
         """
         Find the best split for the given data.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target values
             task_type: 'regression' or 'classification'
 
@@ -142,16 +142,16 @@ class DecisionTreePruning:
         best_threshold = 0.0
         best_impurity = float('inf')
 
-        n_features = X.shape[1]
+        n_features = x.shape[1]
         current_impurity = self._mse(y) if task_type == "regression" else self._gini(y)
 
         for feature_idx in range(n_features):
             # Get unique values for this feature
-            feature_values = np.unique(X[:, feature_idx])
+            feature_values = np.unique(x[:, feature_idx])
 
             for threshold in feature_values[:-1]:  # Exclude the last value
                 # Split the data
-                left_mask = X[:, feature_idx] <= threshold
+                left_mask = x[:, feature_idx] <= threshold
                 right_mask = ~left_mask
 
                 if (
@@ -191,7 +191,7 @@ class DecisionTreePruning:
 
     def _build_tree(
         self,
-        X: np.ndarray,
+        x: np.ndarray,
         y: np.ndarray,
         depth: int = 0,
         task_type: str = "regression"
@@ -200,7 +200,7 @@ class DecisionTreePruning:
         Recursively build the decision tree.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: Target values
             depth: Current depth
             task_type: 'regression' or 'classification'
@@ -223,7 +223,7 @@ class DecisionTreePruning:
 
         # Find best split
         best_feature, best_threshold, best_impurity = self._find_best_split(
-            X, y, task_type
+            x, y, task_type
         )
 
         # If no good split found, make it a leaf
@@ -236,7 +236,7 @@ class DecisionTreePruning:
             return node
 
         # Split the data
-        left_mask = X[:, best_feature] <= best_threshold
+        left_mask = x[:, best_feature] <= best_threshold
         right_mask = ~left_mask
 
         # Create internal node
@@ -248,10 +248,10 @@ class DecisionTreePruning:
 
         # Recursively build left and right subtrees
         node.left = self._build_tree(
-            X[left_mask], y[left_mask], depth + 1, task_type
+            x[left_mask], y[left_mask], depth + 1, task_type
         )
         node.right = self._build_tree(
-            X[right_mask], y[right_mask], depth + 1, task_type
+            x[right_mask], y[right_mask], depth + 1, task_type
         )
 
         return node
@@ -269,12 +269,12 @@ class DecisionTreePruning:
         values, counts = np.unique(y, return_counts=True)
         return values[np.argmax(counts)]
 
-    def _reduced_error_pruning(self, X_val: np.ndarray, y_val: np.ndarray) -> None:
+    def _reduced_error_pruning(self, x_val: np.ndarray, y_val: np.ndarray) -> None:
         """
         Perform reduced error pruning on the tree.
 
         Args:
-            X_val: Validation feature matrix
+            x_val: Validation feature matrix
             y_val: Validation target values
         """
         if self.root_ is None:
@@ -295,7 +295,7 @@ class DecisionTreePruning:
                     continue
 
                 # Calculate validation error before pruning
-                predictions_before = self._predict_batch(X_val)
+                predictions_before = self._predict_batch(x_val)
                 error_before = self._calculate_error(y_val, predictions_before)
 
                 # Temporarily prune the node
@@ -310,7 +310,7 @@ class DecisionTreePruning:
                 node.value = self._most_common(y_val)  # Use validation set majority
 
                 # Calculate validation error after pruning
-                predictions_after = self._predict_batch(X_val)
+                predictions_after = self._predict_batch(x_val)
                 error_after = self._calculate_error(y_val, predictions_after)
 
                 # Calculate improvement
@@ -417,18 +417,18 @@ class DecisionTreePruning:
         nodes.extend(self._get_internal_nodes(node.right))
         return nodes
 
-    def _predict_batch(self, X: np.ndarray) -> np.ndarray:
+    def _predict_batch(self, x: np.ndarray) -> np.ndarray:
         """
         Make predictions for a batch of samples.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
 
         Returns:
             Predictions
         """
-        predictions = np.zeros(len(X))
-        for i, sample in enumerate(X):
+        predictions = np.zeros(len(x))
+        for i, sample in enumerate(x):
             predictions[i] = self._predict_single(sample, self.root_)
         return predictions
 
@@ -466,29 +466,29 @@ class DecisionTreePruning:
 
     def fit(
         self,
-        X: np.ndarray,
+        x: np.ndarray,
         y: np.ndarray,
-        X_val: np.ndarray | None = None,
+        x_val: np.ndarray | None = None,
         y_val: np.ndarray | None = None,
     ) -> "DecisionTreePruning":
         """
         Fit the decision tree with optional pruning.
 
         Args:
-            X: Training feature matrix
+            x: Training feature matrix
             y: Training target values
-            X_val: Validation feature matrix (for pruning)
+            x_val: Validation feature matrix (for pruning)
             y_val: Validation target values (for pruning)
 
         Returns:
             Self for method chaining
         """
-        if X.ndim != 2:
-            raise ValueError("X must be 2-dimensional")
-        if len(X) != len(y):
-            raise ValueError("X and y must have the same length")
+        if x.ndim != 2:
+            raise ValueError("x must be 2-dimensional")
+        if len(x) != len(y):
+            raise ValueError("x and y must have the same length")
 
-        self.n_features_ = X.shape[1]
+        self.n_features_ = x.shape[1]
 
         # Determine task type
         task_type = (
@@ -496,24 +496,24 @@ class DecisionTreePruning:
         )
 
         # Build the tree
-        self.root_ = self._build_tree(X, y, task_type=task_type)
+        self.root_ = self._build_tree(x, y, task_type=task_type)
 
         # Apply pruning if specified
         if self.pruning_method == "reduced_error":
-            if X_val is None or y_val is None:
+            if x_val is None or y_val is None:
                 raise ValueError("Validation data required for reduced error pruning")
-            self._reduced_error_pruning(X_val, y_val)
+            self._reduced_error_pruning(x_val, y_val)
         elif self.pruning_method == "cost_complexity":
             self._cost_complexity_pruning()
 
         return self
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Make predictions.
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
 
         Returns:
             Predictions
@@ -521,20 +521,20 @@ class DecisionTreePruning:
         if self.root_ is None:
             raise ValueError("Tree must be fitted before prediction")
 
-        return self._predict_batch(X)
+        return self._predict_batch(x)
 
-    def score(self, X: np.ndarray, y: np.ndarray) -> float:
+    def score(self, x: np.ndarray, y: np.ndarray) -> float:
         """
         Calculate accuracy (for classification) or R² (for regression).
 
         Args:
-            X: Feature matrix
+            x: Feature matrix
             y: True values
 
         Returns:
             Score
         """
-        predictions = self.predict(X)
+        predictions = self.predict(x)
 
         if np.issubdtype(y.dtype, np.integer):
             # Classification: accuracy
@@ -576,12 +576,12 @@ def generate_regression_data(
         random_state: Random seed
 
     Returns:
-        Tuple of (X, y)
+        Tuple of (x, y)
     """
     rng = np.random.default_rng(random_state)
-    X = rng.standard_normal((n_samples, 2))
-    y = X[:, 0] ** 2 + X[:, 1] ** 2 + noise * rng.standard_normal(n_samples)
-    return X, y
+    x = rng.standard_normal((n_samples, 2))
+    y = x[:, 0] ** 2 + x[:, 1] ** 2 + noise * rng.standard_normal(n_samples)
+    return x, y
 
 
 def generate_classification_data(
@@ -595,12 +595,12 @@ def generate_classification_data(
         random_state: Random seed
 
     Returns:
-        Tuple of (X, y)
+        Tuple of (x, y)
     """
     rng = np.random.default_rng(random_state)
-    X = rng.standard_normal((n_samples, 2))
-    y = ((X[:, 0] + X[:, 1]) > 0).astype(int)
-    return X, y
+    x = rng.standard_normal((n_samples, 2))
+    y = ((x[:, 0] + x[:, 1]) > 0).astype(int)
+    return x, y
 
 
 def compare_pruning_methods() -> None:
@@ -608,21 +608,21 @@ def compare_pruning_methods() -> None:
     Compare different pruning methods.
     """
     # Generate data
-    X, y = generate_regression_data(n_samples=200)
+    x, y = generate_regression_data(n_samples=200)
 
     # Split data
-    split_idx = int(0.7 * len(X))
-    X_train, X_test = X[:split_idx], X[split_idx:]
+    split_idx = int(0.7 * len(x))
+    x_train, x_test = x[:split_idx], x[split_idx:]
     y_train, y_test = y[:split_idx], y[split_idx:]
 
     # Further split training data for validation
-    val_split = int(0.5 * len(X_train))
-    X_val, X_train = X_train[:val_split], X_train[val_split:]
+    val_split = int(0.5 * len(x_train))
+    x_val, x_train = x_train[:val_split], x_train[val_split:]
     y_val, y_train = y_train[:val_split], y_train[val_split:]
 
-    print(f"Training set size: {len(X_train)}")
-    print(f"Validation set size: {len(X_val)}")
-    print(f"Test set size: {len(X_test)}")
+    print(f"Training set size: {len(x_train)}")
+    print(f"Validation set size: {len(x_val)}")
+    print(f"Test set size: {len(x_test)}")
 
     # Test different pruning methods
     methods = [
@@ -642,12 +642,12 @@ def compare_pruning_methods() -> None:
         )
 
         if method == "reduced_error":
-            tree.fit(X_train, y_train, X_val, y_val)
+            tree.fit(x_train, y_train, x_val, y_val)
         else:
-            tree.fit(X_train, y_train)
+            tree.fit(x_train, y_train)
 
-        train_score = tree.score(X_train, y_train)
-        test_score = tree.score(X_test, y_test)
+        train_score = tree.score(x_train, y_train)
+        test_score = tree.score(x_test, y_test)
 
         print(f"Training R²: {train_score:.4f}")
         print(f"Test R²: {test_score:.4f}")
@@ -661,11 +661,11 @@ def main() -> None:
     print("=== Regression Example ===")
 
     # Generate regression data
-    X_reg, y_reg = generate_regression_data(n_samples=200, noise=0.1)
+    x_reg, y_reg = generate_regression_data(n_samples=200, noise=0.1)
 
     # Split data
-    split_idx = int(0.8 * len(X_reg))
-    X_train, X_test = X_reg[:split_idx], X_reg[split_idx:]
+    split_idx = int(0.8 * len(x_reg))
+    x_train, x_test = x_reg[:split_idx], x_reg[split_idx:]
     y_train, y_test = y_reg[:split_idx], y_reg[split_idx:]
 
     # Train tree with cost-complexity pruning
@@ -675,11 +675,11 @@ def main() -> None:
         pruning_method="cost_complexity",
         ccp_alpha=0.01
     )
-    tree_reg.fit(X_train, y_train)
+    tree_reg.fit(x_train, y_train)
 
     # Make predictions
-    train_score = tree_reg.score(X_train, y_train)
-    test_score = tree_reg.score(X_test, y_test)
+    train_score = tree_reg.score(x_train, y_train)
+    test_score = tree_reg.score(x_test, y_test)
 
     print(f"Training R²: {train_score:.4f}")
     print(f"Test R²: {test_score:.4f}")
@@ -687,16 +687,16 @@ def main() -> None:
     print("\n=== Classification Example ===")
 
     # Generate classification data
-    X_cls, y_cls = generate_classification_data(n_samples=200)
+    x_cls, y_cls = generate_classification_data(n_samples=200)
 
     # Split data
-    split_idx = int(0.8 * len(X_cls))
-    X_train, X_test = X_cls[:split_idx], X_cls[split_idx:]
+    split_idx = int(0.8 * len(x_cls))
+    x_train, x_test = x_cls[:split_idx], x_cls[split_idx:]
     y_train, y_test = y_cls[:split_idx], y_cls[split_idx:]
 
     # Train tree with reduced error pruning
-    val_split = int(0.5 * len(X_train))
-    X_val, X_train = X_train[:val_split], X_train[val_split:]
+    val_split = int(0.5 * len(x_train))
+    x_val, x_train = x_train[:val_split], x_train[val_split:]
     y_val, y_train = y_train[:val_split], y_train[val_split:]
 
     tree_cls = DecisionTreePruning(
@@ -704,11 +704,11 @@ def main() -> None:
         min_samples_leaf=2,
         pruning_method="reduced_error"
     )
-    tree_cls.fit(X_train, y_train, X_val, y_val)
+    tree_cls.fit(x_train, y_train, x_val, y_val)
 
     # Make predictions
-    train_accuracy = tree_cls.score(X_train, y_train)
-    test_accuracy = tree_cls.score(X_test, y_test)
+    train_accuracy = tree_cls.score(x_train, y_train)
+    test_accuracy = tree_cls.score(x_test, y_test)
 
     print(f"Training accuracy: {train_accuracy:.4f}")
     print(f"Test accuracy: {test_accuracy:.4f}")
