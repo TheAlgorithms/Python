@@ -1,7 +1,4 @@
-from typing import List
-
-
-def rotate_array(arr: List[int], steps: int) -> List[int]:
+def rotate_array(arr: list[int], steps: int) -> list[int]:
     """
     Rotates a list to the right by steps positions.
 
