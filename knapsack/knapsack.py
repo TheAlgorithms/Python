@@ -1,8 +1,9 @@
-"""A recursive implementation of 0-N Knapsack Problem
-https://en.wikipedia.org/wiki/Knapsack_problem
 """
+Recursive and Dynamic Programming implementation of the 0-N Knapsack Problem.
 
-from __future__ import annotations
+References:
+    https://en.wikipedia.org/wiki/Knapsack_problem
+"""
 
 from functools import lru_cache
 
@@ -11,58 +12,77 @@ def knapsack(
     capacity: int,
     weights: list[int],
     values: list[int],
-    counter: int,
-    allow_repetition=False,
+    allow_repetition: bool = False,
+    method: str = "recursive",
 ) -> int:
     """
-    Returns the maximum value that can be put in a knapsack of a capacity cap,
-    whereby each weight w has a specific value val
-    with option to allow repetitive selection of items
+    Compute the maximum total value that can be obtained by placing items
+    in a knapsack of given capacity.
 
-    >>> cap = 50
-    >>> val = [60, 100, 120]
-    >>> w = [10, 20, 30]
-    >>> c = len(val)
-    >>> knapsack(cap, w, val, c)
-    220
+    Args:
+        capacity (int): Maximum weight capacity of the knapsack.
+        weights (list[int]): List of item weights.
+        values (list[int]): List of item values corresponding to weights.
+        allow_repetition (bool): If True, items can be taken multiple times.
+        method (str): "recursive" (default) or "dp" for bottom-up approach.
 
-    Given the repetition is NOT allowed,
-    the result is 220 cause the values of 100 and 120 got the weight of 50
-    which is the limit of the capacity.
-    >>> knapsack(cap, w, val, c, True)
-    300
+    Returns:
+        int: Maximum achievable value.
 
-    Given the repetition is allowed,
-    the result is 300 cause the values of 60*5 (pick 5 times)
-    got the weight of 10*5 which is the limit of the capacity.
+    Examples:
+        >>> knapsack(50, [10, 20, 30], [60, 100, 120])
+        220
+        >>> knapsack(50, [10, 20, 30], [60, 100, 120], allow_repetition=True)
+        300
     """
+    if len(weights) != len(values):
+        raise ValueError("weights and values must have the same length")
+    if capacity < 0:
+        raise ValueError("capacity must be non-negative")
+    if method not in ("recursive", "dp"):
+        raise ValueError("method must be 'recursive' or 'dp'")
 
-    @lru_cache
-    def knapsack_recur(capacity: int, counter: int) -> int:
-        # Base Case
-        if counter == 0 or capacity == 0:
+    n_items = len(weights)
+
+    if method == "dp":
+        return _knapsack_dp(capacity, weights, values, allow_repetition)
+
+    @lru_cache(maxsize=None)
+    def recur(cap: int, idx: int) -> int:
+        if idx == 0 or cap == 0:
             return 0
+        if weights[idx - 1] > cap:
+            return recur(cap, idx - 1)
+        include_value = values[idx - 1] + recur(
+            cap - weights[idx - 1],
+            idx if allow_repetition else idx - 1,
+        )
+        exclude_value = recur(cap, idx - 1)
+        return max(include_value, exclude_value)
 
-        # If weight of the nth item is more than Knapsack of capacity,
-        #   then this item cannot be included in the optimal solution,
-        # else return the maximum of two cases:
-        #   (1) nth item included only once (0-1), if allow_repetition is False
-        #       nth item included one or more times (0-N), if allow_repetition is True
-        #   (2) not included
-        if weights[counter - 1] > capacity:
-            return knapsack_recur(capacity, counter - 1)
-        else:
-            left_capacity = capacity - weights[counter - 1]
-            new_value_included = values[counter - 1] + knapsack_recur(
-                left_capacity, counter - 1 if not allow_repetition else counter
-            )
-            without_new_value = knapsack_recur(capacity, counter - 1)
-            return max(new_value_included, without_new_value)
+    return recur(capacity, n_items)
 
-    return knapsack_recur(capacity, counter)
+
+def _knapsack_dp(capacity: int, weights: list[int], values: list[int], allow_repetition: bool) -> int:
+    """Iterative dynamic programming version of the knapsack problem."""
+    n = len(weights)
+    dp = [0] * (capacity + 1)
+
+    if allow_repetition:
+        # Unbounded knapsack
+        for cap in range(1, capacity + 1):
+            for i in range(n):
+                if weights[i] <= cap:
+                    dp[cap] = max(dp[cap], dp[cap - weights[i]] + values[i])
+    else:
+        # 0-1 knapsack
+        for i in range(n):
+            for cap in range(capacity, weights[i] - 1, -1):
+                dp[cap] = max(dp[cap], dp[cap - weights[i]] + values[i])
+
+    return dp[capacity]
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
