@@ -229,10 +229,12 @@ def t_distributed_stochastic_neighbor_embedding(
     _, num_samples = features.shape
 
     if num_samples < dimensions + 1:
-        raise ValueError(
-            f"Need at least {dimensions + 1} samples for t-SNE with {dimensions} dimensions, "
-            f"but got {num_samples} samples"
+        min_samples = dimensions + 1
+        msg = (
+            f"Need at least {min_samples} samples for t-SNE with {dimensions} "
+            f"dimensions, but got {num_samples} samples"
         )
+        raise ValueError(msg)
 
     # Compute pairwise squared Euclidean distances
     def compute_pairwise_distances(data: np.ndarray) -> np.ndarray:
