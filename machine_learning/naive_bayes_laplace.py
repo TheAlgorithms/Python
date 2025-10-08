@@ -50,8 +50,8 @@ class NaiveBayesLaplace:
         # Model parameters
         self.classes_: np.ndarray | None = None
         self.class_prior_: dict[int, float] = {}
-        self.feature_count_: dict[int, dict[int, int]] = {}
-        self.feature_log_prob_: dict[int, dict[int, float]] = {}
+        self.feature_count_: dict[int, dict[int, dict[int, int]]] = {}
+        self.feature_log_prob_: dict[int, dict[int, dict[int, float]]] = {}
         self.feature_mean_: dict[int, dict[int, float]] = {}
         self.feature_var_: dict[int, dict[int, float]] = {}
         self.n_features_: int | None = None
@@ -104,7 +104,7 @@ class NaiveBayesLaplace:
         return prior
 
     def _compute_feature_counts(self, x: np.ndarray, y: np.ndarray
-    ) -> dict[int, dict[int, int]]:
+    ) -> dict[int, dict[int, dict[int, int]]]:
         """
         Compute feature counts for each class (for discrete features).
 
@@ -139,12 +139,12 @@ class NaiveBayesLaplace:
 
                 for feature_value in np.unique(x[:, feature_idx]):
                     count = np.sum(x_class[:, feature_idx] == feature_value)
-                    feature_counts[class_label][feature_idx][feature_value] = count
+                    feature_counts[class_label][feature_idx][int(feature_value)] = int(count)
 
         return feature_counts
 
     def _compute_feature_statistics(self, x: np.ndarray, y: np.ndarray
-    ) -> tuple[dict, dict]:
+    ) -> tuple[dict[int, dict[int, float]], dict[int, dict[int, float]]]:
         """
         Compute mean and variance for each feature in each class (continuous features).
 
@@ -296,6 +296,9 @@ class NaiveBayesLaplace:
         Returns:
             Log probability matrix of shape (n_samples, n_classes)
         """
+        if self.classes_ is None:
+            raise ValueError("Model must be fitted before predict")
+            
         n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
@@ -310,13 +313,14 @@ class NaiveBayesLaplace:
                     feature_value = x[sample_idx, feature_idx]
 
                     # Get log probability for this feature value in this class
+                    feature_value_int = int(feature_value)
                     if (
-                        feature_value
+                        feature_value_int
                         in self.feature_log_prob_[class_label][feature_idx]
                     ):
                         log_prob = self.feature_log_prob_[class_label][
                             feature_idx
-                        ][feature_value]
+                        ][feature_value_int]
                     else:
                         # Unseen feature value: use Laplace smoothing
                         all_values = list(
@@ -347,6 +351,9 @@ class NaiveBayesLaplace:
         Returns:
             Log probability matrix of shape (n_samples, n_classes)
         """
+        if self.classes_ is None:
+            raise ValueError("Model must be fitted before predict")
+            
         n_samples = x.shape[0]
         n_classes = len(self.classes_)
         log_proba = np.zeros((n_samples, n_classes))
@@ -362,9 +369,10 @@ class NaiveBayesLaplace:
 
                 # Compute Gaussian log probabilities for all samples
                 feature_values = x[:, feature_idx]
-                log_proba[:, i] += self._gaussian_log_probability(
-                    feature_values, means, variances
-                )
+                log_proba[:, i] += np.array([
+                    self._gaussian_log_probability(val, means, variances)
+                    for val in feature_values
+                ])
 
         return log_proba
 
@@ -445,6 +453,9 @@ class NaiveBayesLaplace:
         >>> len(predictions) == x_test.shape[0]
         True
         """
+        if self.classes_ is None:
+            raise ValueError("Model must be fitted before predict")
+            
         log_proba = self.predict_log_proba(x)
         predictions = self.classes_[np.argmax(log_proba, axis=1)]
         return predictions

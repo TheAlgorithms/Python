@@ -17,6 +17,7 @@ Reference: https://en.wikipedia.org/wiki/Logistic_regression
 """
 
 import doctest
+from typing import cast
 
 import numpy as np
 
@@ -64,7 +65,7 @@ class LogisticRegressionVectorized:
 
         # Initialize parameters
         self.weights_: np.ndarray | None = None
-        self.bias_: float | None = None
+        self.bias_: np.ndarray | float | None = None
         self.cost_history_: list[float] = []
         self.n_classes_: int | None = None
         self.classes_: np.ndarray | None = None
@@ -122,7 +123,7 @@ class LogisticRegressionVectorized:
         x: np.ndarray,
         y: np.ndarray,
         weights: np.ndarray,
-        bias: float,
+        bias: np.ndarray | float,
         is_multiclass: bool = False,
     ) -> float:
         """
@@ -177,9 +178,9 @@ class LogisticRegressionVectorized:
         x: np.ndarray,
         y: np.ndarray,
         weights: np.ndarray,
-        bias: float,
+        bias: np.ndarray | float,
         is_multiclass: bool = False,
-    ) -> tuple[np.ndarray, float]:
+    ) -> tuple[np.ndarray, np.ndarray | float]:
         """
         Compute gradients using vectorized operations.
 
@@ -280,6 +281,8 @@ class LogisticRegressionVectorized:
         if is_multiclass:
             y_encoded = self._prepare_multiclass_targets(y)
             n_classes = self.n_classes_
+            if n_classes is None:
+                raise ValueError("n_classes_ must be set for multiclass classification")
         else:
             y_encoded = y
             n_classes = 1
@@ -290,7 +293,12 @@ class LogisticRegressionVectorized:
             self.bias_ = np.zeros(n_classes)
         else:
             self.weights_ = self.rng_.standard_normal(n_features) * 0.01
-            self.bias_ = 0.0
+            bias_value: np.ndarray | float = 0.0  # type: ignore
+            self.bias_ = bias_value  # type: ignore[assignment]
+            
+        # Type assertions to help mypy
+        assert self.weights_ is not None
+        assert self.bias_ is not None
 
         # Gradient descent
         self.cost_history_ = []
@@ -381,6 +389,8 @@ class LogisticRegressionVectorized:
             # Multi-class classification
             predictions = np.argmax(probabilities, axis=1)
             # Convert back to original class labels
+            if self.classes_ is None:
+                raise ValueError("Model must be fitted before predict")
             predictions = self.classes_[predictions]
 
         return predictions
