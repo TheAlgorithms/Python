@@ -195,6 +195,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Rotate Array](data_structures/arrays/rotate_array.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
@@ -460,6 +461,7 @@
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
+  * [Knapsack](genetic_algorithm/knapsack.py)
 
 ## Geodesy
   * [Haversine Distance](geodesy/haversine_distance.py)
