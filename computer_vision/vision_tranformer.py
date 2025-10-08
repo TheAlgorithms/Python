@@ -13,8 +13,9 @@ Key Components:
 - Vision Transformer Model
 """
 
+import torch
 from torch import Tensor, nn
-import torch.nn.functional as functional
+from torch.nn import functional
 
 
 class PatchEmbedding(nn.Module):
@@ -29,11 +30,8 @@ class PatchEmbedding(nn.Module):
     """
 
     def __init__(
-        self,
-        img_size: int = 224,
-        patch_size: int = 16,
-        in_channels: int = 3,
-        embed_dim: int = 768,
+        self, img_size: int = 224, patch_size: int = 16,
+        in_channels: int = 3, embed_dim: int = 768
     ):
         super().__init__()
         self.img_size = img_size
@@ -44,7 +42,7 @@ class PatchEmbedding(nn.Module):
             in_channels=in_channels,
             out_channels=embed_dim,
             kernel_size=patch_size,
-            stride=patch_size,
+            stride=patch_size
         )
 
     def forward(self, x: Tensor) -> Tensor:
@@ -109,7 +107,7 @@ class MultiHeadSelfAttention(nn.Module):
         q, k, v = qkv[0], qkv[1], qkv[2]  # (B, num_heads, N, head_dim)
 
         # Scaled dot-product attention
-        attn = (q @ k.transpose(-2, -1)) * (self.head_dim**-0.5)
+        attn = (q @ k.transpose(-2, -1)) * (self.head_dim ** -0.5)
         attn = functional.softmax(attn, dim=-1)
         attn = self.attn_dropout(attn)
 
@@ -133,9 +131,7 @@ class MLPBlock(nn.Module):
         dropout (float): Dropout rate
     """
 
-    def __init__(
-        self, embed_dim: int = 768, mlp_ratio: float = 4.0, dropout: float = 0.0
-    ):
+    def __init__(self, embed_dim: int = 768, mlp_ratio: float = 4.0, dropout: float = 0.0):
         super().__init__()
         hidden_dim = int(embed_dim * mlp_ratio)
 
@@ -174,11 +170,8 @@ class TransformerEncoderBlock(nn.Module):
     """
 
     def __init__(
-        self,
-        embed_dim: int = 768,
-        num_heads: int = 12,
-        mlp_ratio: float = 4.0,
-        dropout: float = 0.1,
+        self, embed_dim: int = 768, num_heads: int = 12,
+        mlp_ratio: float = 4.0, dropout: float = 0.1
     ):
         super().__init__()
 
@@ -234,7 +227,7 @@ class VisionTransformer(nn.Module):
         num_heads: int = 12,
         mlp_ratio: float = 4.0,
         dropout: float = 0.1,
-        emb_dropout: float = 0.1,
+        emb_dropout: float = 0.1
     ):
         super().__init__()
 
@@ -252,12 +245,10 @@ class VisionTransformer(nn.Module):
         self.pos_dropout = nn.Dropout(emb_dropout)
 
         # Transformer encoder blocks
-        self.blocks = nn.ModuleList(
-            [
-                TransformerEncoderBlock(embed_dim, num_heads, mlp_ratio, dropout)
-                for _ in range(depth)
-            ]
-        )
+        self.blocks = nn.ModuleList([
+            TransformerEncoderBlock(embed_dim, num_heads, mlp_ratio, dropout)
+            for _ in range(depth)
+        ])
 
         # Layer normalization and classifier
         self.norm = nn.LayerNorm(embed_dim)
@@ -334,7 +325,7 @@ def create_vit_model(
     num_heads: int = 12,
     mlp_ratio: float = 4.0,
     dropout: float = 0.1,
-    emb_dropout: float = 0.1,
+    emb_dropout: float = 0.1
 ) -> VisionTransformer:
     """
     Factory function to create a Vision Transformer model.
@@ -364,13 +355,11 @@ def create_vit_model(
         num_heads=num_heads,
         mlp_ratio=mlp_ratio,
         dropout=dropout,
-        emb_dropout=emb_dropout,
+        emb_dropout=emb_dropout
     )
 
 
-def get_pretrained_vit(
-    model_name: str = "vit_base_patch16_224", num_classes: int = 1000
-) -> nn.Module:
+def get_pretrained_vit(model_name: str = "vit_base_patch16_224", num_classes: int = 1000) -> nn.Module:
     """
     Load a pretrained ViT model from torchvision.
 
@@ -388,9 +377,9 @@ def get_pretrained_vit(
             model = getattr(models, model_name)(pretrained=True)
             if num_classes != 1000:
                 # Replace the head for fine-tuning
-                if hasattr(model, "heads"):
+                if hasattr(model, 'heads'):
                     model.heads = nn.Linear(model.heads.in_features, num_classes)
-                elif hasattr(model, "head"):
+                elif hasattr(model, 'head'):
                     model.head = nn.Linear(model.head.in_features, num_classes)
             return model
         else:
@@ -422,7 +411,7 @@ if __name__ == "__main__":
         num_classes=3,  # pizza, steak, sushi
         embed_dim=768,
         depth=12,
-        num_heads=12,
+        num_heads=12
     )
 
     print(f"Model created with {count_parameters(model):,} parameters")
