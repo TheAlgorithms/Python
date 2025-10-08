@@ -1,100 +1,107 @@
 """
-A Segment Tree is a binary tree data structure used for efficiently answering
-range queries and updates on an array, such as sum, minimum, or maximum over
-a subrange. It offers O(log n) time complexity for both queries and updates,
-making it very efficient compared to a naive O(n) approach.
-
-While building the tree takes O(n) time and the tree requires O(n) space,
-this preprocessing enables fast range queries that would otherwise be slow.
-Segment Trees are especially useful when the array is mutable and queries
-and updates are intermixed.
+A Segment Tree is a binary tree used for storing intervals or segments.
+It allows querying the sum, minimum, or maximum of elements in a range efficiently.
 
 Time Complexity:
 - Build: O(n)
 - Query: O(log n)
 - Update: O(log n)
-
-Example usage and doctests:
-
->>> data = [1, 2, 3, 4, 5]
->>> st = SegmentTree(data)
->>> st.query(1, 4)
-9
->>> st.update(2, 10)
->>> st.query(1, 4)
-16
 """
 
 
 class SegmentTree:
-    """Segment Tree for efficient range sum queries."""
-
-    def __init__(self, data: list[int]):
-        """Initialize the segment tree with the input data.
-
-        Args:
-            data (list[int]): List of integers to build the segment tree.
+    def __init__(self, data: list[int]) -> None:
+        """
+        Initializes the Segment Tree from a list of integers.
+        :param data: List of integer elements.
+        :return: None
         """
         self.n = len(data)
-        self.tree = [0] * (2 * self.n)
-        # Build the tree
-        for i in range(self.n):
-            self.tree[self.n + i] = data[i]
-        for i in range(self.n - 1, 0, -1):
-            self.tree[i] = self.tree[i << 1] + self.tree[i << 1 | 1]
+        self.tree = [0] * (4 * self.n)
+        self._build(data, 0, 0, self.n - 1)
+
+    def _build(self, data: list[int], node: int, start: int, end: int) -> None:
+        if start == end:
+            self.tree[node] = data[start]
+        else:
+            mid = (start + end) // 2
+            self._build(data, 2 * node + 1, start, mid)
+            self._build(data, 2 * node + 2, mid + 1, end)
+            self.tree[node] = self.tree[2 * node + 1] + self.tree[2 * node + 2]
 
     def update(self, index: int, value: int) -> None:
-        """Update element at index with a new value.
-
-        Args:
-            index (int): Index of the element to update.
-            value (int): New value to set at the given index.
         """
-        if index < 0 or index >= self.n:
-            raise ValueError("Index out of bounds")
-        index += self.n
-        self.tree[index] = value
-        while index > 1:
-            index >>= 1
-            self.tree[index] = self.tree[index << 1] + self.tree[index << 1 | 1]
+        Updates the value at the given index and updates the tree.
+        :param index: Index to update.
+        :param value: New value.
+        :return: None
+        """
+        self._update(0, 0, self.n - 1, index, value)
+
+    def _update(self, node: int, start: int, end: int, index: int, value: int) -> None:
+        if start == end:
+            self.tree[node] = value
+        else:
+            mid = (start + end) // 2
+            if index <= mid:
+                self._update(2 * node + 1, start, mid, index, value)
+            else:
+                self._update(2 * node + 2, mid + 1, end, index, value)
+            self.tree[node] = self.tree[2 * node + 1] + self.tree[2 * node + 2]
 
     def query(self, left: int, right: int) -> int:
-        """Compute the sum of elements in the interval [left, right).
-
-        Args:
-            left (int): Left index (inclusive).
-            right (int): Right index (exclusive).
-
-        Returns:
-            int: Sum of elements from left to right-1.
-
-        Raises:
-            ValueError: If indices are out of bounds or left >= right.
         """
-        if left < 0 or right > self.n or left >= right:
-            raise ValueError("Invalid query range")
-        res = 0
-        left += self.n
-        right += self.n
-        while left < right:
-            if left & 1:
-                res += self.tree[left]
-                left += 1
-            if right & 1:
-                right -= 1
-                res += self.tree[right]
-            left >>= 1
-            right >>= 1
-        return res
+        Returns the sum of elements in the range [left, right].
+        :param left: Left index (inclusive).
+        :param right: Right index (inclusive).
+        :return: Sum of the range.
+
+        >>> data = [1, 2, 3, 4, 5]
+        >>> st = SegmentTree(data)
+        >>> st.query(1, 3)
+        9
+        >>> st.update(2, 10)
+        >>> st.query(1, 3)
+        16
+        """
+        return self._query(0, 0, self.n - 1, left, right)
+
+    def _query(self, node: int, start: int, end: int, left: int, right: int) -> int:
+        if right < start or left > end:
+            return 0
+        if left <= start and end <= right:
+            return self.tree[node]
+        mid = (start + end) // 2
+        return self._query(2 * node + 1, start, mid, left, right) + self._query(
+            2 * node + 2, mid + 1, end, left, right
+        )
+
+
+def test_segment_tree() -> bool:
+    data = [1, 2, 3, 4, 5]
+    st = SegmentTree(data)
+    assert st.query(0, 2) == 6
+    assert st.query(1, 4) == 14
+    st.update(2, 10)
+    assert st.query(1, 3) == 16
+    assert st.query(0, 4) == 22
+    return True
+
+
+def print_results(msg: str, passes: bool) -> None:
+    print(str(msg), "works!" if passes else "doesn't work :(")
+
+
+def pytests() -> None:
+    assert test_segment_tree()
+
+
+def main() -> None:
+    """
+    >>> pytests()
+    """
+    print_results("Testing Segment Tree functionality", test_segment_tree())
 
 
 if __name__ == "__main__":
-    import doctest
-
-    data = [1, 2, 3, 4, 5]
-    st = SegmentTree(data)
-    print("Initial sum 1-4:", st.query(1, 4))
-    st.update(2, 10)
-    print("Updated sum 1-4:", st.query(1, 4))
-
-    doctest.testmod()
+    main()
