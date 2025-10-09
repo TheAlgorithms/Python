@@ -16,6 +16,8 @@ def job_scheduling(jobs):
     >>> job_scheduling(jobs)
     250
     """
+    if not jobs:
+        return 0
     # Sort jobs by end time
     jobs = sorted(jobs, key=lambda x: x[1])
     n = len(jobs)
