@@ -9,10 +9,10 @@ Source:
 https://huggingface.co/docs/transformers/model_doc/vit
 """
 
-from transformers import ViTImageProcessor, ViTForImageClassification
 from PIL import Image
 import requests
 import torch
+from transformers import ViTForImageClassification, ViTImageProcessor
 
 
 def vision_transformer_demo() -> None:
@@ -24,7 +24,7 @@ def vision_transformer_demo() -> None:
         Predicted label: tabby, tabby cat
     """
     url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/cat_sample.jpeg"
-    image = Image.open(requests.get(url, stream=True).raw)
+    image = Image.open(requests.get(url, stream=True, timeout=10).raw)
 
     processor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224")
     model = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224")
