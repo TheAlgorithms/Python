@@ -17,7 +17,7 @@ def job_scheduling(jobs):
     250
     """
     # Sort jobs by end time
-    jobs.sort(key=lambda x: x[1])
+    jobs = sorted(jobs, key=lambda x: x[1])
     n = len(jobs)
     # dp[i] stores max profit including jobs[i]
     dp = [0] * n
@@ -34,9 +34,3 @@ def job_scheduling(jobs):
             profit_incl += dp[index]
         dp[i] = max(profit_incl, dp[i - 1])
     return dp[-1]
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
