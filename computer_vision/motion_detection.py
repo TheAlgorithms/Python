@@ -31,7 +31,9 @@ def create_background_subtractor() -> cv2.BackgroundSubtractor:
     True
     """
     # history=500, varThreshold=16 are common defaults; detectShadows adds robustness
-    return cv2.createBackgroundSubtractorMOG2(history=500, varThreshold=16, detectShadows=True)
+    return cv2.createBackgroundSubtractorMOG2(
+        history=500, varThreshold=16, detectShadows=True
+    )
 
 
 def preprocess_frame(frame: cv2.Mat) -> cv2.Mat:
@@ -72,7 +74,9 @@ def frame_difference(prev_gray: cv2.Mat, curr_gray: cv2.Mat) -> cv2.Mat:
     return closed
 
 
-def background_subtraction_mask(subtractor: cv2.BackgroundSubtractor, frame: cv2.Mat) -> cv2.Mat:
+def background_subtraction_mask(
+    subtractor: cv2.BackgroundSubtractor, frame: cv2.Mat
+) -> cv2.Mat:
     """
     Apply background subtraction to obtain a motion mask. Includes morphology.
 
@@ -106,7 +110,9 @@ def annotate_motion(frame: cv2.Mat, motion_mask: cv2.Mat) -> cv2.Mat:
     >>> np.any(annotated[..., 1] == 255)  # green channel from rectangle
     True
     """
-    contours, _ = cv2.findContours(motion_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(
+        motion_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+    )
     annotated = frame.copy()
     for contour in contours:
         if cv2.contourArea(contour) < MIN_CONTOUR_AREA:
@@ -181,5 +187,3 @@ def main() -> None:
 if __name__ == "__main__":
     main()
     print("DONE ✅")
-
-
