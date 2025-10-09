@@ -6,10 +6,9 @@ https://en.wikipedia.org/wiki/Weighted_interval_scheduling
 """
 
 from bisect import bisect_right
-from typing import List, Tuple
 
 
-def job_scheduling(jobs: List[Tuple[int, int, int]]) -> int:
+def job_scheduling(jobs: list[tuple[int, int, int]]) -> int:
     """
     >>> jobs = [(1, 3, 50), (3, 5, 20), (0, 6, 100), (4, 6, 70), (3, 8, 60)]
     >>> job_scheduling(jobs)
@@ -29,8 +28,7 @@ def job_scheduling(jobs: List[Tuple[int, int, int]]) -> int:
 
     for i in range(1, n):
         profit_incl = jobs[i][2]
-        # ✅ allow jobs that start when another ends
-        index = bisect_right(end_times, jobs[i][0]) - 1
+        index = bisect_right(end_times, jobs[i][0]) - 1  # allow adjacent jobs
         if index != -1:
             profit_incl += dp[index]
         dp[i] = max(profit_incl, dp[i - 1])
