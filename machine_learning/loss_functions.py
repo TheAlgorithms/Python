@@ -663,6 +663,94 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
+
+def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculate the Root Mean Squared Error (RMSE) between ground truth and predicted values.
+
+    RMSE is the square root of the mean squared error. It is commonly used in regression
+    tasks to measure the magnitude of prediction errors in the same units as the target.
+
+    RMSE = sqrt( (1/n) * Σ(y_true - y_pred)^2 )
+
+    Reference: https://en.wikipedia.org/wiki/Mean_squared_error#Root-mean-square_error
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+
+    >>> true_values = np.array([3, -0.5, 2, 7])
+    >>> predicted_values = np.array([2.5, 0.0, 2, 8])
+    >>> float(root_mean_squared_error(true_values, predicted_values))
+    0.6123724356957945
+    >>> true_values = np.array([1, 2, 3])
+    >>> predicted_values = np.array([1, 2, 3])
+    >>> float(root_mean_squared_error(true_values, predicted_values))
+    0.0
+    >>> true_values = np.array([0, 0, 0])
+    >>> predicted_values = np.array([1, 1, 1])
+    >>> float(root_mean_squared_error(true_values, predicted_values))
+    1.0
+    >>> true_values = np.array([1, 2])
+    >>> predicted_values = np.array([1, 2, 3])
+    >>> root_mean_squared_error(true_values, predicted_values)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    mse = np.mean((y_true - y_pred) ** 2)
+    return np.sqrt(mse)
+
+
+
+def log_cosh_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculate the Log-Cosh Loss between ground truth and predicted values.
+
+    Log-Cosh is the logarithm of the hyperbolic cosine of the prediction error.
+    It behaves like mean squared error for small errors and like mean absolute error
+    for large errors, making it less sensitive to outliers.
+
+    Log-Cosh = (1/n) * Σ log(cosh(y_pred - y_true))
+
+    Reference: https://en.wikipedia.org/wiki/Huber_loss#Pseudo-Huber_loss
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+
+    >>> true_values = np.array([0.0, 0.0, 0.0])
+    >>> predicted_values = np.array([0.0, 0.0, 0.0])
+    >>> float(log_cosh_loss(true_values, predicted_values))
+    0.0
+    >>> true_values = np.array([1.0, 2.0])
+    >>> predicted_values = np.array([1.1, 2.1])
+    >>> float(round(log_cosh_loss(true_values, predicted_values), 10))
+    0.0049916889
+    >>> true_values = np.array([0.0])
+    >>> predicted_values = np.array([1.0])
+    >>> float(round(log_cosh_loss(true_values, predicted_values), 10))
+    0.4337808305
+    >>> true_values = np.array([1, 2])
+    >>> predicted_values = np.array([1, 2, 3])
+    >>> log_cosh_loss(true_values, predicted_values)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    errors = y_pred - y_true
+    # Use np.logaddexp for numerical stability: log(cosh(x)) = x + log(1 + exp(-2x)) - log(2)
+    # But for simplicity and readability, we use np.cosh with clipping for large values
+    # Alternatively, use stable version:
+    loss = np.logaddexp(errors, -errors) - np.log(2)
+    return np.mean(loss)
+
 if __name__ == "__main__":
     import doctest
 
