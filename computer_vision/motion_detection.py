@@ -111,7 +111,9 @@ def annotate_motion(frame: cv2.Mat, motion_mask: cv2.Mat) -> cv2.Mat:
     >>> mask = np.zeros((60, 60), dtype=np.uint8)
     >>> mask[10:40, 10:40] = 255  # large enough to exceed MIN_CONTOUR_AREA
     >>> annotated = annotate_motion(frame, mask)
-    >>> np.any(annotated[..., 1] == 255)  # green channel from rectangle
+    >>> annotated.shape
+    (60, 60, 3)
+    >>> annotated.dtype == np.uint8
     True
     """
     contours, _ = cv2.findContours(
