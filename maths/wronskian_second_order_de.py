@@ -1,6 +1,6 @@
 """
 wronskian_second_order_de.py
-A symbolic and numerical exploration of the Wronskian 
+A symbolic and numerical exploration of the Wronskian
 for second-order linear differential equations.
 
 This program:
@@ -68,12 +68,13 @@ def classify_solution_type(root1: complex, root2: complex) -> str:
 
 from typing import Callable
 
+
 def compute_wronskian(
     function_1: Callable[[float], float],
     function_2: Callable[[float], float],
     derivative_1: Callable[[float], float],
     derivative_2: Callable[[float], float],
-    evaluation_point: float
+    evaluation_point: float,
 ) -> float:
     """
     Compute the Wronskian of two functions at a given point.
@@ -88,8 +89,9 @@ def compute_wronskian(
     Returns:
     float: Value of the Wronskian at the given point.
     """
-    return function_1(evaluation_point) * derivative_2(evaluation_point) - \
-           function_2(evaluation_point) * derivative_1(evaluation_point)
+    return function_1(evaluation_point) * derivative_2(evaluation_point) - function_2(
+        evaluation_point
+    ) * derivative_1(evaluation_point)
 
 
 def construct_general_solution(root1: complex, root2: complex) -> str:
@@ -155,4 +157,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()  # doctest: +SKIP
-
