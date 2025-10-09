@@ -11,6 +11,7 @@ Flip the first 0 at index 1 -> subarray [1,1,1,1] has length 4
 
 from typing import List
 
+
 class LongestOnesAfterReplacement:
     def longest_ones(self, nums: List[int], k: int) -> int:
         left = 0  # Left pointer of sliding window
@@ -31,9 +32,10 @@ class LongestOnesAfterReplacement:
 
         return max_len
 
+
 # Example dry run
 if __name__ == "__main__":
-    nums = [1,0,1,1,0,1]
+    nums = [1, 0, 1, 1, 0, 1]
     k = 1
     solver = LongestOnesAfterReplacement()
     print("Longest Ones After Replacement:", solver.longest_ones(nums, k))

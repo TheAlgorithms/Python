@@ -18,6 +18,7 @@ Window positions and max values:
 from collections import deque
 from typing import List
 
+
 class SlidingWindowMaximum:
     def max_sliding_window(self, nums: List[int], k: int) -> List[int]:
         if not nums:
@@ -43,9 +44,10 @@ class SlidingWindowMaximum:
 
         return result
 
+
 # Example dry run
 if __name__ == "__main__":
-    nums = [1,3,-1,-3,5,3,6,7]
+    nums = [1, 3, -1, -3, 5, 3, 6, 7]
     k = 3
     solver = SlidingWindowMaximum()
     print("Sliding Window Maximum:", solver.max_sliding_window(nums, k))

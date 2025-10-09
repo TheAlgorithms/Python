@@ -13,6 +13,7 @@ Pick subarray [1,2,1,2] -> contains 2 types and length 4
 from typing import List
 from collections import defaultdict
 
+
 class FruitIntoBaskets:
     def total_fruit(self, fruits: List[int]) -> int:
         count = defaultdict(int)  # Stores count of each fruit type
@@ -33,8 +34,9 @@ class FruitIntoBaskets:
 
         return max_fruit
 
+
 # Example dry run
 if __name__ == "__main__":
-    fruits = [1,2,1,2,3]
+    fruits = [1, 2, 1, 2, 3]
     solver = FruitIntoBaskets()
     print("Maximum Fruits Collected:", solver.total_fruit(fruits))
