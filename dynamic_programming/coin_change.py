@@ -15,6 +15,7 @@ Doctests:
 20
 """
 
+
 def coin_change(coins: list[int], amount: int) -> int:
     """
     Calculate the minimum number of coins required to make up the given amount.
