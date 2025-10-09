@@ -9,10 +9,13 @@ Source: https://en.wikipedia.org/wiki/Maximum_and_minimum
 >>> find_max_min([42])
 (42, 42)
 >>> find_max_min([])
+Traceback (most recent call last):
+    ...
+ValueError: find_max_min() arg is an empty list
 """
 
 
-def find_max_min(arr: list[int]) -> tuple[int | None, int | None]:
+def find_max_min(arr: list[int]) -> tuple[int, int]:
     """
     Returns the maximum and minimum elements of a list.
 
@@ -20,11 +23,14 @@ def find_max_min(arr: list[int]) -> tuple[int | None, int | None]:
     arr (list[int]): The list of numbers.
 
     Returns:
-    tuple[int | None, int | None]: A tuple of (maximum, minimum),
-    or (None, None) if the list is empty.
+    tuple[int, int]: A tuple of (maximum, minimum).
+
+    Raises:
+    ValueError: If the list is empty.
     """
     if not arr:
         raise ValueError("find_max_min() arg is an empty list")
+
     maximum = max(arr)
     minimum = min(arr)
     return maximum, minimum
