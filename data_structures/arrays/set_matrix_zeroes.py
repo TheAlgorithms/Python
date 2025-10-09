@@ -32,4 +32,3 @@ class Solution(object):
         if col0 == 0:
             for i in range(rows):
                 matrix[i][0] = 0
-        
