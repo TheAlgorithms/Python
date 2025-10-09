@@ -668,7 +668,6 @@ def root_mean_squared_error(y_true, y_pred):
 
     RMSE =  sqrt( (1/n) * Σ (y_true - y_pred) ^ 2)
 
-
     Args:
         y_pred: Predicted Value
         y_true: Actual Value
