@@ -17,16 +17,19 @@ def get_1s_count(number: int) -> int:
     >>> get_1s_count(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be positive
+    ValueError: Input must be a non-negative integer
     >>> get_1s_count(0.8)
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be an 'int' type
+    ValueError: Input must be a non-negative integer
+    >>> get_1s_count("25")
+    Traceback (most recent call last):
+        ...
+    ValueError: Input must be a non-negative integer
     """
-    if number < 0:
-        raise ValueError("the value of input must be positive")
-    elif isinstance(number, float):
-        raise TypeError("Input value must be an 'int' type")
+    if not isinstance(number, int) or number < 0:
+        raise ValueError("Input must be a non-negative integer")
+
     count = 0
     while number:
         # This way we arrive at next set bit (next 1) instead of looping

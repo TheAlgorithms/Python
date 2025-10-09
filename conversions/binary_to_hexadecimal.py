@@ -30,11 +30,11 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     '-0x1d'
     >>> bin_to_hexadecimal('a')
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Non-binary value was passed to the function
     >>> bin_to_hexadecimal('')
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Empty string was passed to the function
     """
     # Sanitising parameter

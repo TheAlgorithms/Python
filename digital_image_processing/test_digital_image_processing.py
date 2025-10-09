@@ -1,6 +1,7 @@
 """
 PyTest's for Digital Image Processing
 """
+
 import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
@@ -10,7 +11,7 @@ from digital_image_processing import change_contrast as cc
 from digital_image_processing import convert_to_negative as cn
 from digital_image_processing import sepia as sp
 from digital_image_processing.dithering import burkes as bs
-from digital_image_processing.edge_detection import canny as canny
+from digital_image_processing.edge_detection import canny
 from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
 from digital_image_processing.filters import local_binary_pattern as lbp
@@ -73,7 +74,8 @@ def test_median_filter():
 
 def test_sobel_filter():
     grad, theta = sob.sobel_filter(gray)
-    assert grad.any() and theta.any()
+    assert grad.any()
+    assert theta.any()
 
 
 def test_sepia():
@@ -96,9 +98,16 @@ def test_nearest_neighbour(
 
 
 def test_local_binary_pattern():
-    file_path: str = "digital_image_processing/image_data/lena.jpg"
+    # pull request 10161 before:
+    # "digital_image_processing/image_data/lena.jpg"
+    # after: "digital_image_processing/image_data/lena_small.jpg"
 
-    # Reading the image and converting it to grayscale.
+    from os import getenv  # Speed up our Continuous Integration tests
+
+    file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
+    file_path = f"digital_image_processing/image_data/{file_name}"
+
+    # Reading the image and converting it to grayscale
     image = imread(file_path, 0)
 
     # Test for get_neighbors_pixel function() return not None
@@ -118,8 +127,8 @@ def test_local_binary_pattern():
 
     # Iterating through the image and calculating the local binary pattern value
     # for each pixel.
-    for i in range(0, image.shape[0]):
-        for j in range(0, image.shape[1]):
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
             lbp_image[i][j] = lbp.local_binary_value(image, i, j)
 
     assert lbp_image.any()

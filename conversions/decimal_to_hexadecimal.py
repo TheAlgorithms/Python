@@ -1,4 +1,4 @@
-""" Convert Base 10 (Decimal) Values to Hexadecimal Representations """
+"""Convert Base 10 (Decimal) Values to Hexadecimal Representations"""
 
 # set decimal value for each hexadecimal digit
 values = {
@@ -46,18 +46,19 @@ def decimal_to_hexadecimal(decimal: float) -> str:
     >>> # other floats will error
     >>> decimal_to_hexadecimal(16.16) # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError
     >>> # strings will error as well
     >>> decimal_to_hexadecimal('0xfffff') # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError
     >>> # results are the same when compared to Python's default hex function
     >>> decimal_to_hexadecimal(-256) == hex(-256)
     True
     """
-    assert type(decimal) in (int, float) and decimal == int(decimal)
+    assert isinstance(decimal, (int, float))
+    assert decimal == int(decimal)
     decimal = int(decimal)
     hexadecimal = ""
     negative = False

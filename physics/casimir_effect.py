@@ -47,7 +47,6 @@ SPEED_OF_LIGHT = 3e8  # unit of c : m * s^-1
 
 
 def casimir_force(force: float, area: float, distance: float) -> dict[str, float]:
-
     """
     Input Parameters
     ----------------

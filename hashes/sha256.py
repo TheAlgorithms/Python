@@ -138,7 +138,7 @@ class SHA256:
 
             a, b, c, d, e, f, g, h = self.hashes
 
-            for index in range(0, 64):
+            for index in range(64):
                 if index > 15:
                     # modify the zero-ed indexes at the end of the array
                     s0 = (
@@ -203,7 +203,7 @@ class SHA256HashTest(unittest.TestCase):
         import hashlib
 
         msg = bytes("Test String", "utf-8")
-        self.assertEqual(SHA256(msg).hash, hashlib.sha256(msg).hexdigest())
+        assert SHA256(msg).hash == hashlib.sha256(msg).hexdigest()
 
 
 def main() -> None:

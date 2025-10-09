@@ -1,8 +1,8 @@
 """
-An AND Gate is a logic gate in boolean algebra which results to 1 (True) if both the
-inputs are 1, and 0 (False) otherwise.
+An AND Gate is a logic gate in boolean algebra which results to 1 (True) if all the
+inputs are 1 (True), and 0 (False) otherwise.
 
-Following is the truth table of an AND Gate:
+Following is the truth table of a Two Input AND Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |
     ------------------------------
@@ -12,7 +12,7 @@ Following is the truth table of an AND Gate:
     |    1    |    1    |    1   |
     ------------------------------
 
-Refer - https://www.geeksforgeeks.org/logic-gates-in-python/
+Refer - https://www.geeksforgeeks.org/logic-gates/
 """
 
 
@@ -29,20 +29,22 @@ def and_gate(input_1: int, input_2: int) -> int:
     >>> and_gate(1, 1)
     1
     """
-    return int((input_1, input_2).count(0) == 0)
+    return int(input_1 and input_2)
 
 
-def test_and_gate() -> None:
+def n_input_and_gate(inputs: list[int]) -> int:
     """
-    Tests the and_gate function
+    Calculate AND of a list of input values
+
+    >>> n_input_and_gate([1, 0, 1, 1, 0])
+    0
+    >>> n_input_and_gate([1, 1, 1, 1, 1])
+    1
     """
-    assert and_gate(0, 0) == 0
-    assert and_gate(0, 1) == 0
-    assert and_gate(1, 0) == 0
-    assert and_gate(1, 1) == 1
+    return int(all(inputs))
 
 
 if __name__ == "__main__":
-    print(and_gate(0, 0))
-    print(and_gate(0, 1))
-    print(and_gate(1, 1))
+    import doctest
+
+    doctest.testmod()

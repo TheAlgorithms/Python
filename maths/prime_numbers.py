@@ -2,7 +2,7 @@ import math
 from collections.abc import Generator
 
 
-def slow_primes(max_n: int) -> Generator[int, None, None]:
+def slow_primes(max_n: int) -> Generator[int]:
     """
     Return a list of all primes numbers up to max.
     >>> list(slow_primes(0))
@@ -17,8 +17,8 @@ def slow_primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(slow_primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(slow_primes(10000))[-1]
-    9973
+    >>> list(slow_primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1)))
     for i in (n for n in numbers if n > 1):
@@ -29,7 +29,7 @@ def slow_primes(max_n: int) -> Generator[int, None, None]:
             yield i
 
 
-def primes(max_n: int) -> Generator[int, None, None]:
+def primes(max_n: int) -> Generator[int]:
     """
     Return a list of all primes numbers up to max.
     >>> list(primes(0))
@@ -44,8 +44,8 @@ def primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(primes(10000))[-1]
-    9973
+    >>> list(primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1)))
     for i in (n for n in numbers if n > 1):
@@ -58,7 +58,7 @@ def primes(max_n: int) -> Generator[int, None, None]:
             yield i
 
 
-def fast_primes(max_n: int) -> Generator[int, None, None]:
+def fast_primes(max_n: int) -> Generator[int]:
     """
     Return a list of all primes numbers up to max.
     >>> list(fast_primes(0))
@@ -73,8 +73,8 @@ def fast_primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(fast_primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(fast_primes(10000))[-1]
-    9973
+    >>> list(fast_primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1), 2))
     # It's useless to test even numbers as they will not be prime
@@ -90,32 +90,20 @@ def fast_primes(max_n: int) -> Generator[int, None, None]:
             yield i
 
 
+def benchmark():
+    """
+    Let's benchmark our functions side-by-side...
+    """
+    from timeit import timeit
+
+    setup = "from __main__ import slow_primes, primes, fast_primes"
+    print(timeit("slow_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+    print(timeit("primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+    print(timeit("fast_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+
+
 if __name__ == "__main__":
     number = int(input("Calculate primes up to:\n>> ").strip())
     for ret in primes(number):
         print(ret)
-
-    # Let's benchmark them side-by-side...
-    from timeit import timeit
-
-    print(
-        timeit(
-            "slow_primes(1_000_000_000_000)",
-            setup="from __main__ import slow_primes",
-            number=1_000_000,
-        )
-    )
-    print(
-        timeit(
-            "primes(1_000_000_000_000)",
-            setup="from __main__ import primes",
-            number=1_000_000,
-        )
-    )
-    print(
-        timeit(
-            "fast_primes(1_000_000_000_000)",
-            setup="from __main__ import fast_primes",
-            number=1_000_000,
-        )
-    )
+    benchmark()

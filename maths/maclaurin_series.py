@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 """
+
 from math import factorial, pi
 
 
@@ -17,28 +18,28 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     >>> all(isclose(maclaurin_sin(x, 50), sin(x)) for x in range(-25, 25))
     True
     >>> maclaurin_sin(10)
-    -0.544021110889369
+    -0.5440211108893691
     >>> maclaurin_sin(-10)
-    0.5440211108893703
+    0.5440211108893704
     >>> maclaurin_sin(10, 15)
-    -0.5440211108893689
+    -0.544021110889369
     >>> maclaurin_sin(-10, 15)
-    0.5440211108893703
+    0.5440211108893704
     >>> maclaurin_sin("10")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires either an int or float for theta
     >>> maclaurin_sin(10, -30)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, 30.5)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, "30")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     """
 
@@ -69,28 +70,28 @@ def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     >>> all(isclose(maclaurin_cos(x, 50), cos(x)) for x in range(-25, 25))
     True
     >>> maclaurin_cos(5)
-    0.28366218546322675
+    0.2836621854632268
     >>> maclaurin_cos(-5)
-    0.2836621854632266
+    0.2836621854632265
     >>> maclaurin_cos(10, 15)
-    -0.8390715290764525
+    -0.8390715290764524
     >>> maclaurin_cos(-10, 15)
     -0.8390715290764521
     >>> maclaurin_cos("10")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires either an int or float for theta
     >>> maclaurin_cos(10, -30)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     >>> maclaurin_cos(10, 30.5)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     >>> maclaurin_cos(10, "30")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     """
 

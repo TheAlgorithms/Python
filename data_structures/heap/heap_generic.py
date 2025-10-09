@@ -166,7 +166,6 @@ def test_heap() -> None:
     >>> h.get_top()
     [9, -40]
     """
-    pass
 
 
 if __name__ == "__main__":

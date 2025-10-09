@@ -65,7 +65,7 @@ def solution(limit: int = 100) -> int:
     >>> solution(50)
     12577
     """
-    singles: list[int] = list(range(1, 21)) + [25]
+    singles: list[int] = [*list(range(1, 21)), 25]
     doubles: list[int] = [2 * x for x in range(1, 21)] + [50]
     triples: list[int] = [3 * x for x in range(1, 21)]
     all_values: list[int] = singles + doubles + triples + [0]

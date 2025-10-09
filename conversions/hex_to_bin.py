@@ -21,11 +21,11 @@ def hex_to_bin(hex_num: str) -> int:
     -1111111111111111
     >>> hex_to_bin("F-f")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Invalid value was passed to the function
     >>> hex_to_bin("")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: No value was passed to the function
     """
 

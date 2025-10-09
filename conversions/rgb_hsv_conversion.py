@@ -121,8 +121,8 @@ def rgb_to_hsv(red: int, green: int, blue: int) -> list[float]:
     float_red = red / 255
     float_green = green / 255
     float_blue = blue / 255
-    value = max(max(float_red, float_green), float_blue)
-    chroma = value - min(min(float_red, float_green), float_blue)
+    value = max(float_red, float_green, float_blue)
+    chroma = value - min(float_red, float_green, float_blue)
     saturation = 0 if value == 0 else chroma / value
 
     if chroma == 0:

@@ -54,7 +54,7 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
             return
 
         # horizotal printing increasing
-        for i in range(0, mat_col):
+        for i in range(mat_col):
             print(a[0][i])
         # vertical printing down
         for i in range(1, mat_row):
@@ -89,7 +89,7 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
     Algorithm:
         Step 1. first pop the 0 index list. (which is [1,2,3,4] and concatenate the
                 output of [step 2])
-        Step 2. Now perform matrix’s Transpose operation (Change rows to column
+        Step 2. Now perform matrix's Transpose operation (Change rows to column
                 and vice versa) and reverse the resultant matrix.
         Step 3. Pass the output of [2nd step], to same recursive function till
                 base case hits.
@@ -116,7 +116,9 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
     """
     if matrix:
-        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
+        return list(matrix.pop(0)) + spiral_traversal(
+            [list(row) for row in zip(*matrix)][::-1]
+        )
     else:
         return []
 

@@ -4,6 +4,7 @@ It was developed as modification of shortest job next or shortest job first (SJN
 to mitigate the problem of process starvation.
 https://en.wikipedia.org/wiki/Highest_response_ratio_next
 """
+
 from statistics import mean
 
 import numpy as np
@@ -37,7 +38,6 @@ def calculate_turn_around_time(
     arrival_time.sort()
 
     while no_of_process > finished_process_count:
-
         """
         If the current time is less than the arrival time of
         the process that arrives first among the processes that have not been performed,
@@ -46,15 +46,14 @@ def calculate_turn_around_time(
         i = 0
         while finished_process[i] == 1:
             i += 1
-        if current_time < arrival_time[i]:
-            current_time = arrival_time[i]
+        current_time = max(current_time, arrival_time[i])
 
         response_ratio = 0
         # Index showing the location of the process being performed
         loc = 0
         # Saves the current response ratio.
         temp = 0
-        for i in range(0, no_of_process):
+        for i in range(no_of_process):
             if finished_process[i] == 0 and arrival_time[i] <= current_time:
                 temp = (burst_time[i] + (current_time - arrival_time[i])) / burst_time[
                     i
@@ -75,7 +74,10 @@ def calculate_turn_around_time(
 
 
 def calculate_waiting_time(
-    process_name: list, turn_around_time: list, burst_time: list, no_of_process: int
+    process_name: list,  # noqa: ARG001
+    turn_around_time: list,
+    burst_time: list,
+    no_of_process: int,
 ) -> list:
     """
     Calculate the waiting time of each processes.
@@ -88,13 +90,12 @@ def calculate_waiting_time(
     """
 
     waiting_time = [0] * no_of_process
-    for i in range(0, no_of_process):
+    for i in range(no_of_process):
         waiting_time[i] = turn_around_time[i] - burst_time[i]
     return waiting_time
 
 
 if __name__ == "__main__":
-
     no_of_process = 5
     process_name = ["A", "B", "C", "D", "E"]
     arrival_time = [1, 2, 3, 4, 5]
@@ -108,7 +109,7 @@ if __name__ == "__main__":
     )
 
     print("Process name \tArrival time \tBurst time \tTurn around time \tWaiting time")
-    for i in range(0, no_of_process):
+    for i in range(no_of_process):
         print(
             f"{process_name[i]}\t\t{arrival_time[i]}\t\t{burst_time[i]}\t\t"
             f"{turn_around_time[i]}\t\t\t{waiting_time[i]}"

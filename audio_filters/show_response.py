@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from math import pi
 from typing import Protocol
 
@@ -8,6 +9,7 @@ import numpy as np
 
 
 class FilterType(Protocol):
+    @abstractmethod
     def process(self, sample: float) -> float:
         """
         Calculate y[n]
@@ -15,7 +17,6 @@ class FilterType(Protocol):
         >>> issubclass(FilterType, Protocol)
         True
         """
-        return 0.0
 
 
 def get_bounds(

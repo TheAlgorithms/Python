@@ -31,7 +31,7 @@ Explanation: There is no 1 in the matrix.
 
 Approach:
 We initialize another matrix (dp) with the same dimensions
-as the original one initialized with all 0’s.
+as the original one initialized with all 0's.
 
 dp_array(i,j) represents the side length of the maximum square whose
 bottom right corner is the cell with index (i,j) in the original matrix.
@@ -39,7 +39,7 @@ bottom right corner is the cell with index (i,j) in the original matrix.
 Starting from index (0,0), for every 1 found in the original matrix,
 we update the value of the current element as
 
-dp_array(i,j)=dp_array(dp(i−1,j),dp_array(i−1,j−1),dp_array(i,j−1)) + 1.
+dp_array(i,j)=dp_array(dp(i-1,j),dp_array(i-1,j-1),dp_array(i,j-1)) + 1.
 """
 
 
@@ -59,7 +59,6 @@ def largest_square_area_in_matrix_top_down_approch(
     """
 
     def update_area_of_max_square(row: int, col: int) -> int:
-
         # BASE CASE
         if row >= rows or col >= cols:
             return 0
@@ -138,7 +137,6 @@ def largest_square_area_in_matrix_bottom_up(
     largest_square_area = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-
             right = dp_array[row][col + 1]
             diagonal = dp_array[row + 1][col + 1]
             bottom = dp_array[row + 1][col]
@@ -169,7 +167,6 @@ def largest_square_area_in_matrix_bottom_up_space_optimization(
     largest_square_area = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-
             right = current_row[col + 1]
             diagonal = next_row[col + 1]
             bottom = next_row[col]

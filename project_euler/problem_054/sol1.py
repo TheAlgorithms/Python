@@ -40,6 +40,7 @@ Similar problem on codewars:
 https://www.codewars.com/kata/ranking-poker-hands
 https://www.codewars.com/kata/sortable-poker-hands
 """
+
 from __future__ import annotations
 
 import os
@@ -47,18 +48,18 @@ import os
 
 class PokerHand:
     """Create an object representing a Poker Hand based on an input of a
-    string which represents the best 5 card combination from the player's hand
+    string which represents the best 5-card combination from the player's hand
     and board cards.
 
     Attributes: (read-only)
-        hand: string representing the hand consisting of five cards
+        hand: a string representing the hand consisting of five cards
 
     Methods:
         compare_with(opponent): takes in player's hand (self) and
             opponent's hand (opponent) and compares both hands according to
             the rules of Texas Hold'em.
             Returns one of 3 strings (Win, Loss, Tie) based on whether
-            player's hand is better than opponent's hand.
+            player's hand is better than the opponent's hand.
 
         hand_name(): Returns a string made up of two parts: hand name
             and high card.
@@ -66,11 +67,11 @@ class PokerHand:
     Supported operators:
         Rich comparison operators: <, >, <=, >=, ==, !=
 
-    Supported builtin methods and functions:
+    Supported built-in methods and functions:
         list.sort(), sorted()
     """
 
-    _HAND_NAME = [
+    _HAND_NAME = (
         "High card",
         "One pair",
         "Two pairs",
@@ -81,10 +82,10 @@ class PokerHand:
         "Four of a kind",
         "Straight flush",
         "Royal flush",
-    ]
+    )
 
-    _CARD_NAME = [
-        "",  # placeholder as lists are zero indexed
+    _CARD_NAME = (
+        "",  # placeholder as tuples are zero-indexed
         "One",
         "Two",
         "Three",
@@ -99,7 +100,7 @@ class PokerHand:
         "Queen",
         "King",
         "Ace",
-    ]
+    )
 
     def __init__(self, hand: str) -> None:
         """
@@ -119,10 +120,12 @@ class PokerHand:
         For example: "6S 4C KC AS TH"
         """
         if not isinstance(hand, str):
-            raise TypeError(f"Hand should be of type 'str': {hand!r}")
+            msg = f"Hand should be of type 'str': {hand!r}"
+            raise TypeError(msg)
         # split removes duplicate whitespaces so no need of strip
         if len(hand.split(" ")) != 5:
-            raise ValueError(f"Hand should contain only 5 cards: {hand!r}")
+            msg = f"Hand should contain only 5 cards: {hand!r}"
+            raise ValueError(msg)
         self._hand = hand
         self._first_pair = 0
         self._second_pair = 0

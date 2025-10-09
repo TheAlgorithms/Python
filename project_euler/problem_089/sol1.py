@@ -138,5 +138,4 @@ def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
 
 
 if __name__ == "__main__":
-
     print(f"{solution() = }")

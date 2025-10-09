@@ -5,7 +5,6 @@ https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-poi
 
 
 def decimal_isolate(number: float, digit_amount: int) -> float:
-
     """
     Isolates the decimal part of a number.
     If digitAmount > 0 round to that decimal place, else print the entire decimal.

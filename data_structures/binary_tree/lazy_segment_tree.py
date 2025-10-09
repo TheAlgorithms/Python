@@ -7,10 +7,10 @@ class SegmentTree:
     def __init__(self, size: int) -> None:
         self.size = size
         # approximate the overall size of segment tree with given value
-        self.segment_tree = [0 for i in range(0, 4 * size)]
+        self.segment_tree = [0 for i in range(4 * size)]
         # create array to store lazy update
-        self.lazy = [0 for i in range(0, 4 * size)]
-        self.flag = [0 for i in range(0, 4 * size)]  # flag for lazy update
+        self.lazy = [0 for i in range(4 * size)]
+        self.flag = [0 for i in range(4 * size)]  # flag for lazy update
 
     def left(self, idx: int) -> int:
         """

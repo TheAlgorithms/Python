@@ -47,7 +47,7 @@ def int_to_roman(number: int) -> str:
     True
     """
     result = []
-    for (arabic, roman) in ROMAN:
+    for arabic, roman in ROMAN:
         (factor, number) = divmod(number, arabic)
         result.append(roman * factor)
         if number == 0:

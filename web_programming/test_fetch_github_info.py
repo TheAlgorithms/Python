@@ -1,6 +1,6 @@
 import json
 
-import requests
+import httpx
 
 from .fetch_github_info import AUTHENTICATED_USER_ENDPOINT, fetch_github_info
 
@@ -21,7 +21,7 @@ def test_fetch_github_info(monkeypatch):
         assert "Accept" in kwargs["headers"]
         return FakeResponse(b'{"login":"test","id":1}')
 
-    monkeypatch.setattr(requests, "get", mock_response)
+    monkeypatch.setattr(httpx, "get", mock_response)
     result = fetch_github_info("token")
     assert result["login"] == "test"
     assert result["id"] == 1

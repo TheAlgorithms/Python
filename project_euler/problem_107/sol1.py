@@ -27,6 +27,7 @@ Solution:
     We use Prim's algorithm to find a Minimum Spanning Tree.
     Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
+
 from __future__ import annotations
 
 import os
@@ -80,10 +81,11 @@ class Graph:
         while len(subgraph.vertices) < len(self.vertices):
             min_weight = max(self.edges.values()) + 1
             for edge, weight in self.edges.items():
-                if (edge[0] in subgraph.vertices) ^ (edge[1] in subgraph.vertices):
-                    if weight < min_weight:
-                        min_edge = edge
-                        min_weight = weight
+                if (edge[0] in subgraph.vertices) ^ (
+                    edge[1] in subgraph.vertices
+                ) and weight < min_weight:
+                    min_edge = edge
+                    min_weight = weight
 
             subgraph.add_edge(min_edge, min_weight)
 
@@ -99,7 +101,6 @@ def solution(filename: str = "p107_network.txt") -> int:
     """
     script_dir: str = os.path.abspath(os.path.dirname(__file__))
     network_file: str = os.path.join(script_dir, filename)
-    adjacency_matrix: list[list[str]]
     edges: dict[EdgeT, int] = {}
     data: list[str]
     edge1: int

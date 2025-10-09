@@ -182,7 +182,7 @@ class IndexCalculation:
         Atmospherically Resistant Vegetation Index 2
         https://www.indexdatabase.de/db/i-single.php?id=396
         :return: index
-            −0.18+1.17*(self.nir−self.red)/(self.nir+self.red)
+            -0.18+1.17*(self.nir-self.red)/(self.nir+self.red)
         """
         return -0.18 + (1.17 * ((self.nir - self.red) / (self.nir + self.red)))
 
@@ -413,7 +413,7 @@ class IndexCalculation:
         """
         return (self.nir / ((self.nir + self.red) / 2)) * (self.ndvi() + 1)
 
-    def i(self):  # noqa: E741,E743
+    def i(self):
         """
         Intensity
         https://www.indexdatabase.de/db/i-single.php?id=36

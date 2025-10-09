@@ -35,7 +35,6 @@ def hamming_distance(string1: str, string2: str) -> int:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()

@@ -1,6 +1,6 @@
 """
-    Disjoint set.
-    Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
+Disjoint set.
+Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
 
 
@@ -56,7 +56,8 @@ def find_python_set(node: Node) -> set:
     for s in sets:
         if node.data in s:
             return s
-    raise ValueError(f"{node.data} is not in {sets}")
+    msg = f"{node.data} is not in {sets}"
+    raise ValueError(msg)
 
 
 def test_disjoint_set() -> None:

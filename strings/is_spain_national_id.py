@@ -48,7 +48,8 @@ def is_spain_national_id(spanish_id: str) -> bool:
     """
 
     if not isinstance(spanish_id, str):
-        raise TypeError(f"Expected string as input, found {type(spanish_id).__name__}")
+        msg = f"Expected string as input, found {type(spanish_id).__name__}"
+        raise TypeError(msg)
 
     spanish_id_clean = spanish_id.replace("-", "").upper()
     if len(spanish_id_clean) != 9:

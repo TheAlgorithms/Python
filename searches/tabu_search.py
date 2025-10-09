@@ -24,6 +24,7 @@ python tabu_search.py -f your_file_name.txt -number_of_iterations_of_tabu_search
     -s size_of_tabu_search
 e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 """
+
 import argparse
 import copy
 
@@ -220,7 +221,6 @@ def tabu_search(
         while not found:
             i = 0
             while i < len(best_solution):
-
                 if best_solution[i] != solution[i]:
                     first_exchange_node = best_solution[i]
                     second_exchange_node = solution[i]

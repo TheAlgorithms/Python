@@ -63,6 +63,7 @@ def solution(n: int = 20) -> int:
             if i == 0:
                 i = 1
             return i
+    return None
 
 
 if __name__ == "__main__":

@@ -3,9 +3,17 @@ Get book and author data from https://openlibrary.org
 
 ISBN: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 """
-from json import JSONDecodeError  # Workaround for requests.exceptions.JSONDecodeError
 
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
+from json import JSONDecodeError
+
+import httpx
 
 
 def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
@@ -19,26 +27,25 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     {'publishers': ['Puffin'], 'number_of_pages': 96, 'isbn_10': ['0140328726'], ...
     # >>> get_openlibrary_data(olid='/authors/OL7353617A')  # doctest: +ELLIPSIS
     {'name': 'Adrian Brisku', 'created': {'type': '/type/datetime', ...
-    >>> pass  # Placate https://github.com/apps/algorithms-keeper
     """
     new_olid = olid.strip().strip("/")  # Remove leading/trailing whitespace & slashes
     if new_olid.count("/") != 1:
-        raise ValueError(f"{olid} is not a valid Open Library olid")
-    return requests.get(f"https://openlibrary.org/{new_olid}.json").json()
+        msg = f"{olid} is not a valid Open Library olid"
+        raise ValueError(msg)
+    return httpx.get(
+        f"https://openlibrary.org/{new_olid}.json", timeout=10, follow_redirects=True
+    ).json()
 
 
 def summarize_book(ol_book_data: dict) -> dict:
     """
-     Given Open Library book data, return a summary as a Python dict.
-
-    >>> pass  # Placate https://github.com/apps/algorithms-keeper
+    Given Open Library book data, return a summary as a Python dict.
     """
     desired_keys = {
         "title": "Title",
         "publish_date": "Publish date",
         "authors": "Authors",
-        "number_of_pages": "Number of pages:",
-        "first_sentence": "First sentence",
+        "number_of_pages": "Number of pages",
         "isbn_10": "ISBN (10)",
         "isbn_13": "ISBN (13)",
     }
@@ -46,7 +53,6 @@ def summarize_book(ol_book_data: dict) -> dict:
     data["Authors"] = [
         get_openlibrary_data(author["key"])["name"] for author in data["Authors"]
     ]
-    data["First sentence"] = data["First sentence"]["value"]
     for key, value in data.items():
         if isinstance(value, list):
             data[key] = ", ".join(value)
@@ -72,5 +78,5 @@ if __name__ == "__main__":
         try:
             book_summary = summarize_book(get_openlibrary_data(f"isbn/{isbn}"))
             print("\n".join(f"{key}: {value}" for key, value in book_summary.items()))
-        except JSONDecodeError:  # Workaround for requests.exceptions.RequestException:
+        except JSONDecodeError:
             print(f"Sorry, there are no results for ISBN: {isbn}.")

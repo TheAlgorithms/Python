@@ -77,15 +77,17 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     to_sanitized = UNIT_SYMBOL.get(to_sanitized, to_sanitized)
 
     if from_sanitized not in METRIC_CONVERSION:
-        raise ValueError(
+        msg = (
             f"Invalid 'from_type' value: {from_type!r}.\n"
             f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
         )
+        raise ValueError(msg)
     if to_sanitized not in METRIC_CONVERSION:
-        raise ValueError(
+        msg = (
             f"Invalid 'to_type' value: {to_type!r}.\n"
             f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
         )
+        raise ValueError(msg)
     from_exponent = METRIC_CONVERSION[from_sanitized]
     to_exponent = METRIC_CONVERSION[to_sanitized]
     exponent = 1

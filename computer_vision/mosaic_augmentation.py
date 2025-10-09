@@ -8,7 +8,7 @@ from string import ascii_lowercase, digits
 import cv2
 import numpy as np
 
-# Parrameters
+# Parameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width
 SCALE_RANGE = (0.4, 0.6)  # if height or width lower than this scale, drop it.
 FILTER_TINY_SCALE = 1 / 100
@@ -23,7 +23,6 @@ def main() -> None:
     Get images list and annotations list from input dir.
     Update new images and annotations.
     Save images and annotations in output dir.
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMG_DIR)
     for index in range(NUMBER_IMAGES):
@@ -42,7 +41,7 @@ def main() -> None:
         file_name = path.split(os.sep)[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_MOSAIC_{letter_code}"
         cv2.imwrite(f"{file_root}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print(f"Succeeded {index+1}/{NUMBER_IMAGES} with {file_name}")
+        print(f"Succeeded {index + 1}/{NUMBER_IMAGES} with {file_name}")
         annos_list = []
         for anno in new_annos:
             width = anno[3] - anno[1]
@@ -60,7 +59,6 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
     Return <type: list>: List of images path and labels
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths = []
     labels = []
@@ -105,7 +103,6 @@ def update_image_and_anno(
         - output_img <type: narray>: image after resize
         - new_anno <type: list>: list of new annotation after scale
         - path[0] <type: string>: get the name of image file
-    >>> pass  # A doctest is not possible for this function.
     """
     output_img = np.zeros([output_size[0], output_size[1], 3], dtype=np.uint8)
     scale_x = scale_range[0] + random.random() * (scale_range[1] - scale_range[0])
@@ -162,7 +159,7 @@ def update_image_and_anno(
                 new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
 
     # Remove bounding box small than scale of filter
-    if 0 < filter_scale:
+    if filter_scale > 0:
         new_anno = [
             anno
             for anno in new_anno

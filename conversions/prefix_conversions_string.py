@@ -53,7 +53,7 @@ class SIUnit(Enum):
     yocto = -24
 
     @classmethod
-    def get_positive(cls: type[T]) -> dict:
+    def get_positive(cls) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a positive value
@@ -68,7 +68,7 @@ class SIUnit(Enum):
         return {unit.name: unit.value for unit in cls if unit.value > 0}
 
     @classmethod
-    def get_negative(cls: type[T]) -> dict:
+    def get_negative(cls) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a negative value
@@ -96,7 +96,7 @@ def add_si_prefix(value: float) -> str:
     for name_prefix, value_prefix in prefixes.items():
         numerical_part = value / (10**value_prefix)
         if numerical_part > 1:
-            return f"{str(numerical_part)} {name_prefix}"
+            return f"{numerical_part!s} {name_prefix}"
     return str(value)
 
 
@@ -111,7 +111,7 @@ def add_binary_prefix(value: float) -> str:
     for prefix in BinaryUnit:
         numerical_part = value / (2**prefix.value)
         if numerical_part > 1:
-            return f"{str(numerical_part)} {prefix.name}"
+            return f"{numerical_part!s} {prefix.name}"
     return str(value)
 
 

@@ -20,7 +20,7 @@ def check_circuit_or_path(graph, max_node):
     odd_degree_nodes = 0
     odd_node = -1
     for i in range(max_node):
-        if i not in graph.keys():
+        if i not in graph:
             continue
         if len(graph[i]) % 2 == 1:
             odd_degree_nodes += 1
@@ -56,7 +56,7 @@ def main():
     g4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
     g5 = {
         1: [],
-        2: []
+        2: [],
         # all degree is zero
     }
     max_node = 10

@@ -1,7 +1,7 @@
 def is_even(number: int) -> bool:
     """
     return true if the input integer is even
-    Explanation: Lets take a look at the following deicmal to binary conversions
+    Explanation: Lets take a look at the following decimal to binary conversions
     2 => 10
     14 => 1110
     100 => 1100100
@@ -11,7 +11,7 @@ def is_even(number: int) -> bool:
     from the above examples we can observe that
     for all the odd integers there is always 1 set bit at the end
     also, 1 in binary can be represented as 001, 00001, or 0000001
-    so for any odd integer n => n&1 is always equlas 1 else the integer is even
+    so for any odd integer n => n&1 is always equals 1 else the integer is even
 
     >>> is_even(1)
     False

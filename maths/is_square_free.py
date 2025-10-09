@@ -1,8 +1,9 @@
 """
 References: wikipedia:square free number
-python/black : True
-flake8 : True
+psf/black : True
+ruff : True
 """
+
 from __future__ import annotations
 
 

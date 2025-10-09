@@ -1,7 +1,6 @@
 """
 https://en.wikipedia.org/wiki/Combination
 """
-from math import factorial
 
 
 def combinations(n: int, k: int) -> int:
@@ -35,11 +34,14 @@ def combinations(n: int, k: int) -> int:
     # to calculate a factorial of a negative number, which is not possible
     if n < k or k < 0:
         raise ValueError("Please enter positive integers for n and k where n >= k")
-    return factorial(n) // (factorial(k) * factorial(n - k))
+    res = 1
+    for i in range(k):
+        res *= n - i
+        res //= i + 1
+    return res
 
 
 if __name__ == "__main__":
-
     print(
         "The number of five-card hands possible from a standard",
         f"fifty-two card deck is: {combinations(52, 5)}\n",

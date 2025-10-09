@@ -5,6 +5,7 @@ python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
 """
+
 from __future__ import annotations
 
 import math
@@ -60,19 +61,15 @@ class MyNode:
 
     def set_data(self, data: Any) -> None:
         self.data = data
-        return
 
     def set_left(self, node: MyNode | None) -> None:
         self.left = node
-        return
 
     def set_right(self, node: MyNode | None) -> None:
         self.right = node
-        return
 
     def set_height(self, height: int) -> None:
         self.height = height
-        return
 
 
 def get_height(node: MyNode | None) -> int:
@@ -218,11 +215,15 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             return root
         else:
             root.set_left(del_node(left_child, data))
-    else:  # root.get_data() < data
-        if right_child is None:
-            return root
-        else:
-            root.set_right(del_node(right_child, data))
+    # root.get_data() < data
+    elif right_child is None:
+        return root
+    else:
+        root.set_right(del_node(right_child, data))
+
+    # Re-fetch left_child and right_child references
+    left_child = root.get_left()
+    right_child = root.get_right()
 
     if get_height(right_child) - get_height(left_child) == 2:
         assert right_child is not None

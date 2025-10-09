@@ -22,7 +22,6 @@ def main() -> None:
     Get images list and annotations list from input dir.
     Update new images and annotations.
     Save images and annotations in output dir.
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print("Processing...")
@@ -33,13 +32,13 @@ def main() -> None:
         letter_code = random_chars(32)
         file_name = paths[index].split(os.sep)[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_FLIP_{letter_code}"
-        cv2.imwrite(f"/{file_root}.jpg", image, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print(f"Success {index+1}/{len(new_images)} with {file_name}")
+        cv2.imwrite(f"{file_root}.jpg", image, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        print(f"Success {index + 1}/{len(new_images)} with {file_name}")
         annos_list = []
         for anno in new_annos[index]:
             obj = f"{anno[0]} {anno[1]} {anno[2]} {anno[3]} {anno[4]}"
             annos_list.append(obj)
-        with open(f"/{file_root}.txt", "w") as outfile:
+        with open(f"{file_root}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
 
 
@@ -48,7 +47,6 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
     Return <type: list>: List of images path and labels
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths = []
     labels = []
@@ -88,7 +86,6 @@ def update_image_and_anno(
         - new_imgs_list <type: narray>: image after resize
         - new_annos_lists <type: list>: list of new annotation after scale
         - path_list <type: list>: list the name of image file
-    >>> pass  # A doctest is not possible for this function.
     """
     new_annos_lists = []
     path_list = []

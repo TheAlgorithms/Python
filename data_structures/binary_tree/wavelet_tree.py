@@ -7,6 +7,7 @@ such as the with segment trees or fenwick trees. You can read more about them he
 2. https://www.youtube.com/watch?v=4aSv9PcecDw&t=811s
 3. https://www.youtube.com/watch?v=CybAgVF-MMc&t=1178s
 """
+
 from __future__ import annotations
 
 test_array = [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
@@ -24,11 +25,11 @@ class Node:
         """
         >>> node = Node(length=27)
         >>> repr(node)
-        'min_value: -1, max_value: -1'
+        'Node(min_value=-1 max_value=-1)'
         >>> repr(node) == str(node)
         True
         """
-        return f"min_value: {self.minn}, max_value: {self.maxx}"
+        return f"Node(min_value={self.minn} max_value={self.maxx})"
 
 
 def build_tree(arr: list[int]) -> Node | None:
@@ -37,7 +38,7 @@ def build_tree(arr: list[int]) -> Node | None:
     of the constructed tree
 
     >>> build_tree(test_array)
-    min_value: 0, max_value: 9
+    Node(min_value=0 max_value=9)
     """
     root = Node(len(arr))
     root.minn, root.maxx = min(arr), max(arr)

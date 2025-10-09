@@ -1,6 +1,7 @@
 """
 Author: https://github.com/bhushan-borole
 """
+
 """
 The input graph for the algorithm is:
 
@@ -27,7 +28,7 @@ class Node:
         self.outbound.append(node)
 
     def __repr__(self):
-        return f"Node {self.name}: Inbound: {self.inbound} ; Outbound: {self.outbound}"
+        return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
 
 
 def page_rank(nodes, limit=3, d=0.85):
