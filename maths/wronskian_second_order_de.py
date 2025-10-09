@@ -10,6 +10,8 @@ This program:
 5. Demonstrates Wronskian computation.
 
 Author: Venkat Thadi
+
+References: https://tutorial.math.lamar.edu/classes/de/wronskian.aspx
 """
 
 import math
@@ -138,3 +140,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main() # doctest: +SKIP
+
