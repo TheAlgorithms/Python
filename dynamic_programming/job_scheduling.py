@@ -20,7 +20,7 @@ def job_scheduling(jobs: list[tuple[int, int, int]]) -> int:
     if not jobs:
         return 0
 
-    jobs.sort(key=lambda x: x[1])
+    jobs.sort(key=lambda job: job[1])
     n = len(jobs)
     dp = [0] * n
     dp[0] = jobs[0][2]
