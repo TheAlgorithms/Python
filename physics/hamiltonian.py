@@ -6,11 +6,14 @@ Overview:
 
     - In classical mechanics, it is the sum of kinetic and potential energies.
 
-    - In quantum mechanics, it becomes an operator acting on the wavefunction ψ(x), describing how the system evolves in time.
+    - In quantum mechanics, it becomes an operator acting on the wavefunction ψ(x),
+     describing how the system evolves in time.
 
 This module includes:
-    - classical_hamiltonian(): return total energy for given mass, momentum, and potential.
-    - quantum_hamiltonian_1d(): Builds a 1D Hamiltonian matrix for numerical quantum systems.
+    - classical_hamiltonian(): return total energy for given mass, momentum,
+     and potential.
+    - quantum_hamiltonian_1d(): Builds a 1D Hamiltonian matrix for numerical
+     quantum systems.
 """
 
 import numpy as np
@@ -23,7 +26,7 @@ def classical_hamiltonian(
     Calculate the classical Hamiltonian (total energy) of a particle.
 
     The Hamiltonian(H) represents the total energy of the system:
-        H = (momentum² / (2 × mass)) + potential_energy
+        H = (momentum² / (2 * mass)) + potential_energy
 
     Parameters:
         mass (float): Mass of the particle (must be positive).
@@ -74,19 +77,22 @@ def quantum_hamiltonian_1d(
         This turns the continuous operator into a discrete matrix.
 
     Formula:
-        H[i, i]   = (ħ² / (m × Δx²)) + V[i]
-        H[i, i±1] = - (ħ² / (2m × Δx²))
+        H[i, i]   = (ħ² / (m * Δx²)) + V[i]
+        H[i, i±1] = - (ħ² / (2m * Δx²))
 
     Parameters:
         mass (float): Mass of the particle. (must be positive)
         hbar (float): Reduced Planck constant. (must be positive)
-        potential_energy_array (np.ndarray): Potential energy values V(x) at each grid point.
-        grid_spacing (float): Distance between consecutive grid points Δx. (must be positive)
+        potential_energy_array (np.ndarray): Potential energy values V(x)
+         at each grid point.
+        grid_spacing (float): Distance between consecutive grid points Δx.
+         (must be positive)
         round_to (int | None): Number of decimal places to round the matrix to.
                                If None (default), no rounding is applied.
 
     Returns:
-        np.ndarray: The discrete Hamiltonian matrix representing the total energy operator.
+        np.ndarray: The discrete Hamiltonian matrix representing
+         the total energy operator.
 
     Examples:
         >>> import numpy as np
