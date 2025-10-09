@@ -41,6 +41,7 @@ def preprocess_frame(frame: cv2.Mat) -> cv2.Mat:
     Convert to grayscale and apply Gaussian blur to suppress noise.
 
     Doctest:
+    >>> import numpy as np
     >>> dummy = np.zeros((10, 10, 3), dtype=np.uint8)
     >>> out = preprocess_frame(dummy)
     >>> out.shape == (10, 10) and out.dtype == np.uint8
@@ -57,6 +58,7 @@ def frame_difference(prev_gray: cv2.Mat, curr_gray: cv2.Mat) -> cv2.Mat:
     Returns a binary motion mask after thresholding and morphology.
 
     Doctest:
+    >>> import numpy as np
     >>> a = np.zeros((8, 8), dtype=np.uint8)
     >>> b = np.zeros((8, 8), dtype=np.uint8)
     >>> b[2:6, 2:6] = 255
@@ -82,6 +84,7 @@ def background_subtraction_mask(
 
     Doctest:
     >>> subtractor = create_background_subtractor()
+    >>> import numpy as np
     >>> frame = np.zeros((12, 12, 3), dtype=np.uint8)
     >>> mask = background_subtraction_mask(subtractor, frame)
     >>> mask.shape
@@ -103,6 +106,7 @@ def annotate_motion(frame: cv2.Mat, motion_mask: cv2.Mat) -> cv2.Mat:
     Find contours on the motion mask and draw bounding boxes on the frame.
 
     Doctest:
+    >>> import numpy as np
     >>> frame = np.zeros((60, 60, 3), dtype=np.uint8)
     >>> mask = np.zeros((60, 60), dtype=np.uint8)
     >>> mask[10:40, 10:40] = 255  # large enough to exceed MIN_CONTOUR_AREA
