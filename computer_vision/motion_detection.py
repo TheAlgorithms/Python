@@ -25,6 +25,11 @@ DISPLAY_SCALE = 1.0  # resize factor for display
 def create_background_subtractor() -> cv2.BackgroundSubtractor:
     """
     Create and return a MOG2 background subtractor with sensible defaults.
+
+    Doctest:
+    >>> subtractor = create_background_subtractor()
+    >>> hasattr(subtractor, "apply")
+    True
     """
     # history=500, varThreshold=16 are common defaults; detectShadows adds robustness
     return cv2.createBackgroundSubtractorMOG2(history=500, varThreshold=16, detectShadows=True)
@@ -33,6 +38,12 @@ def create_background_subtractor() -> cv2.BackgroundSubtractor:
 def preprocess_frame(frame: cv2.Mat) -> cv2.Mat:
     """
     Convert to grayscale and apply Gaussian blur to suppress noise.
+
+    Doctest:
+    >>> dummy = np.zeros((10, 10, 3), dtype=np.uint8)
+    >>> out = preprocess_frame(dummy)
+    >>> out.shape == (10, 10) and out.dtype == np.uint8
+    True
     """
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
@@ -43,6 +54,16 @@ def frame_difference(prev_gray: cv2.Mat, curr_gray: cv2.Mat) -> cv2.Mat:
     """
     Compute absolute difference between consecutive grayscale frames.
     Returns a binary motion mask after thresholding and morphology.
+
+    Doctest:
+    >>> a = np.zeros((8, 8), dtype=np.uint8)
+    >>> b = np.zeros((8, 8), dtype=np.uint8)
+    >>> b[2:6, 2:6] = 255
+    >>> mask = frame_difference(a, b)
+    >>> mask.shape
+    (8, 8)
+    >>> mask.dtype == np.uint8
+    True
     """
     diff = cv2.absdiff(prev_gray, curr_gray)
     _, thresh = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)
@@ -55,6 +76,15 @@ def frame_difference(prev_gray: cv2.Mat, curr_gray: cv2.Mat) -> cv2.Mat:
 def background_subtraction_mask(subtractor: cv2.BackgroundSubtractor, frame: cv2.Mat) -> cv2.Mat:
     """
     Apply background subtraction to obtain a motion mask. Includes morphology.
+
+    Doctest:
+    >>> subtractor = create_background_subtractor()
+    >>> frame = np.zeros((12, 12, 3), dtype=np.uint8)
+    >>> mask = background_subtraction_mask(subtractor, frame)
+    >>> mask.shape
+    (12, 12)
+    >>> mask.dtype == np.uint8
+    True
     """
     fg_mask = subtractor.apply(frame)
     # Remove shadows if present (MOG2 shadows are typically 127)
@@ -68,6 +98,14 @@ def background_subtraction_mask(subtractor: cv2.BackgroundSubtractor, frame: cv2
 def annotate_motion(frame: cv2.Mat, motion_mask: cv2.Mat) -> cv2.Mat:
     """
     Find contours on the motion mask and draw bounding boxes on the frame.
+
+    Doctest:
+    >>> frame = np.zeros((60, 60, 3), dtype=np.uint8)
+    >>> mask = np.zeros((60, 60), dtype=np.uint8)
+    >>> mask[10:40, 10:40] = 255  # large enough to exceed MIN_CONTOUR_AREA
+    >>> annotated = annotate_motion(frame, mask)
+    >>> np.any(annotated[..., 1] == 255)  # green channel from rectangle
+    True
     """
     contours, _ = cv2.findContours(motion_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     annotated = frame.copy()
@@ -80,6 +118,19 @@ def annotate_motion(frame: cv2.Mat, motion_mask: cv2.Mat) -> cv2.Mat:
 
 
 def main() -> None:
+    """
+    Run motion detection loop for the configured VIDEO_SOURCE.
+
+    Doctest (expect a RuntimeError when pointing to an invalid source):
+    >>> _prev = VIDEO_SOURCE
+    >>> VIDEO_SOURCE = "nonexistent_file_does_not_exist.mp4"
+    >>> try:
+    ...     main()
+    ... except RuntimeError as e:
+    ...     isinstance(e, RuntimeError)
+    True
+    >>> VIDEO_SOURCE = _prev
+    """
     cap = cv2.VideoCapture(VIDEO_SOURCE)
     if not cap.isOpened():
         raise RuntimeError("Unable to open video source. Set VIDEO_SOURCE correctly.")
