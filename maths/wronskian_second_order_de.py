@@ -17,7 +17,10 @@ References: https://tutorial.math.lamar.edu/classes/de/wronskian.aspx
 import math
 import cmath
 
-def compute_characteristic_roots(a: float, b: float, c: float) -> tuple[complex, complex]:
+
+def compute_characteristic_roots(
+    a: float, b: float, c: float
+) -> tuple[complex, complex]:
     """
     Compute characteristic roots for a second-order homogeneous linear DE.
 
@@ -29,7 +32,7 @@ def compute_characteristic_roots(a: float, b: float, c: float) -> tuple[complex,
     if a == 0:
         raise ValueError("Coefficient 'a' cannot be zero for a second-order equation.")
 
-    discriminant = b ** 2 - 4 * a * c
+    discriminant = b**2 - 4 * a * c
     sqrt_disc = cmath.sqrt(discriminant)
     root1 = (-b + sqrt_disc) / (2 * a)
     root2 = (-b - sqrt_disc) / (2 * a)
@@ -137,7 +140,5 @@ def main() -> None:
     analyze_differential_equation(a, b, c)
 
 
-
 if __name__ == "__main__":
-    main() # doctest: +SKIP
-
+    main()  # doctest: +SKIP
