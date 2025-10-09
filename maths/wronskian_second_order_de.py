@@ -1,180 +1,140 @@
 """
-Module to analyze homogeneous linear differential equations.
+wronskian_second_order_de.py
+A symbolic and numerical exploration of the Wronskian for second-order linear differential equations.
 
-It supports:
-    - Second-order equations: a*y'' + b*y' + c*y = 0
-    - First-order equations:  b*y' + c*y = 0  (when a = 0)
+This program:
+1. Takes coefficients (a, b, c) for a*y'' + b*y' + c*y = 0.
+2. Computes characteristic roots.
+3. Classifies the solution type.
+4. Constructs the general solution.
+5. Demonstrates Wronskian computation.
 
-Features:
-    - Computes characteristic roots (for second-order)
-    - Derives fundamental solutions
-    - Calculates first derivatives
-    - Evaluates the Wronskian determinant
-    - Tests for linear independence
-
-References:
-    https://en.wikipedia.org/wiki/Linear_differential_equation
+Author: Venkat Thadi
 """
 
+import math
 import cmath
-from sympy import symbols, exp, cos, sin, diff, simplify
 
-
-def compute_characteristic_roots(
-    coefficient_a: float, coefficient_b: float, coefficient_c: float
-) -> tuple[complex, complex]:
+def compute_characteristic_roots(a: float, b: float, c: float) -> tuple[complex, complex]:
     """
-    Compute roots of the characteristic equation:
-        a*r^2 + b*r + c = 0
+    Compute characteristic roots for a second-order homogeneous linear DE.
 
-    >>> compute_characteristic_roots(1, -2, 1)
-    ((1+0j), (1+0j))
-    >>> compute_characteristic_roots(1, 0, 1)
-    ((0+1j), (0-1j))
+    >>> compute_characteristic_roots(1, -3, 2)
+    (2.0, 1.0)
+    >>> compute_characteristic_roots(1, 2, 5)
+    ((-1+2j), (-1-2j))
     """
-    discriminant = coefficient_b**2 - 4 * coefficient_a * coefficient_c
-    sqrt_discriminant = cmath.sqrt(discriminant)
-    root_1 = (-coefficient_b + sqrt_discriminant) / (2 * coefficient_a)
-    root_2 = (-coefficient_b - sqrt_discriminant) / (2 * coefficient_a)
-    return root_1, root_2
+    if a == 0:
+        raise ValueError("Coefficient 'a' cannot be zero for a second-order equation.")
+
+    discriminant = b ** 2 - 4 * a * c
+    sqrt_disc = cmath.sqrt(discriminant)
+    root1 = (-b + sqrt_disc) / (2 * a)
+    root2 = (-b - sqrt_disc) / (2 * a)
+
+    # Simplify if roots are purely real
+    if abs(root1.imag) < 1e-12:
+        root1 = float(root1.real)
+    if abs(root2.imag) < 1e-12:
+        root2 = float(root2.real)
+
+    return root1, root2
 
 
-def construct_fundamental_solutions(root_1: complex, root_2: complex):
+def classify_solution_type(root1: complex, root2: complex) -> str:
     """
-    Construct fundamental solutions (y1, y2) of a 2nd-order ODE.
+    Classify the nature of the roots.
 
-    >>> from sympy import symbols, exp
-    >>> x = symbols('x')
-    >>> r1, r2 = 1, 1
-    >>> construct_fundamental_solutions(r1, r2)
-    (exp(x), x*exp(x))
+    >>> classify_solution_type(2, 1)
+    'Distinct Real Roots'
+    >>> classify_solution_type(1+2j, 1-2j)
+    'Complex Conjugate Roots'
+    >>> classify_solution_type(3, 3)
+    'Repeated Real Roots'
     """
-    variable_x = symbols("x")
-
-    # Case 1: Real and equal roots
-    if root_1 == root_2 and root_1.imag == 0:
-        solution_1 = exp(root_1.real * variable_x)
-        solution_2 = variable_x * exp(root_1.real * variable_x)
-
-    # Case 2: Real and distinct roots
-    elif root_1.imag == 0 and root_2.imag == 0:
-        solution_1 = exp(root_1.real * variable_x)
-        solution_2 = exp(root_2.real * variable_x)
-
-    # Case 3: Complex conjugate roots (α ± iβ)
+    if isinstance(root1, complex) and isinstance(root2, complex) and root1.imag != 0:
+        return "Complex Conjugate Roots"
+    elif root1 == root2:
+        return "Repeated Real Roots"
     else:
-        alpha = root_1.real
-        beta = abs(root_1.imag)
-        solution_1 = exp(alpha * variable_x) * cos(beta * variable_x)
-        solution_2 = exp(alpha * variable_x) * sin(beta * variable_x)
-
-    return solution_1, solution_2
+        return "Distinct Real Roots"
 
 
-def compute_wronskian(function_1, function_2):
+def compute_wronskian(f, g, f_prime, g_prime, x: float) -> float:
     """
-    Compute the Wronskian determinant of two functions.
+    Compute Wronskian determinant W(f, g) = f * g' - f' * g.
 
-    >>> from sympy import symbols, exp
-    >>> x = symbols('x')
-    >>> f1, f2 = exp(x), x*exp(x)
-    >>> compute_wronskian(f1, f2)
-    exp(2*x)
+    >>> import math
+    >>> def f(x): return math.exp(x)
+    >>> def g(x): return x * math.exp(x)
+    >>> def f_prime(x): return math.exp(x)
+    >>> def g_prime(x): return math.exp(x) + x * math.exp(x)
+    >>> round(compute_wronskian(f, g, f_prime, g_prime, 0), 3)
+    1.0
     """
-    variable_x = symbols("x")
-    derivative_1 = diff(function_1, variable_x)
-    derivative_2 = diff(function_2, variable_x)
-    wronskian = simplify(function_1 * derivative_2 - function_2 * derivative_1)
-    return wronskian
+    return f(x) * g_prime(x) - f_prime(x) * g(x)
 
 
-def solve_first_order_equation(coefficient_b: float, coefficient_c: float) -> None:
+def construct_general_solution(root1: complex, root2: complex) -> str:
     """
-    Solve the first-order ODE: b*y' + c*y = 0
-    and display its general solution and Wronskian.
+    Construct the general solution based on the roots.
 
-    >>> solve_first_order_equation(2, 4)
+    >>> construct_general_solution(2, 1)
+    'y(x) = C1 * e^(2x) + C2 * e^(1x)'
+    >>> construct_general_solution(3, 3)
+    'y(x) = (C1 + C2 * x) * e^(3x)'
+    >>> construct_general_solution(-1+2j, -1-2j)
+    'y(x) = e^(-1x) * (C1 * cos(2x) + C2 * sin(2x))'
     """
-    variable_x = symbols("x")
-    if coefficient_b == 0:
-        print("Error: Both a and b cannot be zero. Not a valid differential equation.")
-        return
-
-    # Simplified form: y' + (c/b)*y = 0
-    constant_k = coefficient_c / coefficient_b
-    solution = exp(-constant_k * variable_x)
-
-    derivative_solution = diff(solution, variable_x)
-    wronskian = simplify(solution * derivative_solution)
-
-    print("\n--- First-Order Differential Equation ---")
-    print(f"Equation: {coefficient_b}*y' + {coefficient_c}*y = 0")
-    print(f"Solution: y = C * e^(-({coefficient_c}/{coefficient_b}) * x)")
-    print(f"y'(x) = {derivative_solution}")
-    print(f"Wronskian (single function): {wronskian}")
-    print("Linear independence: Trivial (only one solution).")
-
-
-def analyze_differential_equation(
-    coefficient_a: float, coefficient_b: float, coefficient_c: float
-) -> None:
-    """
-    Determine the type of equation and analyze it accordingly.
-    """
-    # Case 1: Not a valid DE
-    if coefficient_a == 0 and coefficient_b == 0:
-        print(
-            "Error: Both 'a' and 'b' cannot be zero. Not a valid differential equation."
-        )
-        return
-
-    # Case 2: First-order DE
-    if coefficient_a == 0:
-        solve_first_order_equation(coefficient_b, coefficient_c)
-        return
-
-    # Case 3: Second-order DE
-    print("\n--- Second-Order Differential Equation ---")
-    root_1, root_2 = compute_characteristic_roots(
-        coefficient_a, coefficient_b, coefficient_c
-    )
-
-    print(f"Characteristic roots: r1 = {root_1}, r2 = {root_2}")
-
-    function_1, function_2 = construct_fundamental_solutions(root_1, root_2)
-
-    variable_x = symbols("x")
-    derivative_1 = diff(function_1, variable_x)
-    derivative_2 = diff(function_2, variable_x)
-    wronskian = compute_wronskian(function_1, function_2)
-
-    print(f"y₁(x) = {function_1}")
-    print(f"y₂(x) = {function_2}")
-    print(f"y₁'(x) = {derivative_1}")
-    print(f"y₂'(x) = {derivative_2}")
-    print(f"Wronskian: {wronskian}")
-
-    if wronskian == 0:
-        print("The functions are linearly dependent.")
+    if isinstance(root1, complex) and root1.imag != 0:
+        alpha = round(root1.real, 10)
+        beta = round(abs(root1.imag), 10)
+        return f"y(x) = e^({alpha:g}x) * (C1 * cos({beta:g}x) + C2 * sin({beta:g}x))"
+    elif root1 == root2:
+        return f"y(x) = (C1 + C2 * x) * e^({root1:g}x)"
     else:
-        print("The functions are linearly independent.")
+        return f"y(x) = C1 * e^({root1:g}x) + C2 * e^({root2:g}x)"
+
+
+def analyze_differential_equation(a: float, b: float, c: float) -> None:
+    """
+    Analyze the DE and print the roots, type, and general solution.
+
+    >>> analyze_differential_equation(1, -3, 2)  # doctest: +ELLIPSIS
+    Characteristic Roots: (2.0, 1.0)
+    Solution Type: Distinct Real Roots
+    General Solution: y(x) = C1 * e^(2x) + C2 * e^(1x)
+    """
+    roots = compute_characteristic_roots(a, b, c)
+    root1, root2 = roots
+    sol_type = classify_solution_type(root1, root2)
+    general_solution = construct_general_solution(root1, root2)
+
+    print(f"Characteristic Roots: ({root1:.1f}, {root2:.1f})")
+    print(f"Solution Type: {sol_type}")
+    print(f"General Solution: {general_solution}")
 
 
 def main() -> None:
     """
-    Entry point of the program.
+    Main function to run the second-order differential equation Wronskian analysis.
+
+    Interactive input is expected, so this function is skipped in doctests.
     """
     print("Enter coefficients for the equation a*y'' + b*y' + c*y = 0")
-    try:
-        coefficient_a = float(input("a = ").strip())
-        coefficient_b = float(input("b = ").strip())
-        coefficient_c = float(input("c = ").strip())
-    except ValueError:
-        print("Invalid input. Please enter numeric values for coefficients.")
+
+    # Skipping main in doctests because input() cannot be tested directly
+    a = float(input("a = ").strip())  # doctest: +SKIP
+    b = float(input("b = ").strip())  # doctest: +SKIP
+    c = float(input("c = ").strip())  # doctest: +SKIP
+
+    if a == 0:
+        print("Invalid input: coefficient 'a' cannot be zero.")
         return
 
-    analyze_differential_equation(coefficient_a, coefficient_b, coefficient_c)
+    analyze_differential_equation(a, b, c)
+
 
 
 if __name__ == "__main__":
-    main()
+    main() # doctest: +SKIP
