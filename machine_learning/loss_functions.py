@@ -662,6 +662,7 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     kl_loss = y_true * np.log(y_true / y_pred)
     return np.sum(kl_loss)
 
+
 def root_mean_squared_error(y_true, y_pred):
     """
     Root Mean Squared Error (RMSE)
@@ -700,7 +701,7 @@ def root_mean_squared_error(y_true, y_pred):
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
-    y_true,y_pred = np.array(y_true), np.array(y_pred)
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
 
     mse = np.mean((y_pred - y_true) ** 2)
     return np.sqrt(mse)
