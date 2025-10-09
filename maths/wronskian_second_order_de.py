@@ -123,7 +123,9 @@ def analyze_differential_equation(
     """
     # Case 1: Not a valid DE
     if coefficient_a == 0 and coefficient_b == 0:
-        print("Error: Both 'a' and 'b' cannot be zero. Not a valid differential equation.")
+        print(
+            "Error: Both 'a' and 'b' cannot be zero. Not a valid differential equation."
+        )
         return
 
     # Case 2: First-order DE
