@@ -6,6 +6,7 @@ subset of non-overlapping jobs.
 
 from bisect import bisect_right
 
+
 def job_scheduling(jobs):
     """
     >>> jobs = [(1, 3, 50), (3, 5, 20), (0, 6, 100), (4, 6, 70), (3, 8, 60)]
@@ -28,13 +29,14 @@ def job_scheduling(jobs):
     for i in range(1, n):
         profit_incl = jobs[i][2]
         # Find last non-conflicting job using binary search
-        index = bisect_right(end_times, jobs[i][0]-1) - 1
+        index = bisect_right(end_times, jobs[i][0] - 1) - 1
         if index != -1:
             profit_incl += dp[index]
-        dp[i] = max(profit_incl, dp[i-1])
+        dp[i] = max(profit_incl, dp[i - 1])
     return dp[-1]
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
