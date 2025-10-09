@@ -666,11 +666,18 @@ def root_mean_squared_error(y_true, y_pred):
     """
     Root Mean Squared Error (RMSE)
 
+    Root Mean Squared Error (RMSE) is a standard metric used to evaluate the accuracy of regression models.  
+    It measures the average magnitude of the prediction errors, giving higher weight to larger errors due to squaring.  
+    The RMSE value is always non-negative, and a lower RMSE indicates better model performance.
+
     RMSE =  sqrt( (1/n) * Σ (y_true - y_pred) ^ 2)
 
-    Args:
+    Reference: https://en.wikipedia.org/wiki/Root_mean_square_deviation
+
+    Parameters:
         y_pred: Predicted Value
         y_true: Actual Value
+
     Returns:
         float: The RMSE Loss function between y_Pred and y_true
     
