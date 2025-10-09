@@ -21,6 +21,7 @@ Doctest:
 [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
 """
 
+
 def set_matrix_zeroes(matrix: list[list[int]]) -> None:
     """
     Modify the matrix in-place such that if an element is 0,
