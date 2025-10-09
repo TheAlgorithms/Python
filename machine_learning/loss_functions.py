@@ -673,7 +673,7 @@ def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     RMSE = sqrt( (1/n) * Σ(y_true - y_pred)^2 )
 
-    Reference: https://en.wikipedia.org/wiki/Mean_squared_error#Root-mean-square_error
+    Reference: https://en.wikipedia.org/wiki/Root-mean-square_deviation
 
     Parameters:
     - y_true: The true values (ground truth)
