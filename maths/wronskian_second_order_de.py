@@ -1,6 +1,7 @@
 """
 wronskian_second_order_de.py
-A symbolic and numerical exploration of the Wronskian for second-order linear differential equations.
+A symbolic and numerical exploration of the Wronskian 
+for second-order linear differential equations.
 
 This program:
 1. Takes coefficients (a, b, c) for a*y'' + b*y' + c*y = 0.
@@ -65,12 +66,14 @@ def classify_solution_type(root1: complex, root2: complex) -> str:
         return "Distinct Real Roots"
 
 
+from typing import Callable
+
 def compute_wronskian(
     function_1: Callable[[float], float],
     function_2: Callable[[float], float],
     derivative_1: Callable[[float], float],
     derivative_2: Callable[[float], float],
-    evaluation_point: float,
+    evaluation_point: float
 ) -> float:
     """
     Compute the Wronskian of two functions at a given point.
@@ -85,9 +88,8 @@ def compute_wronskian(
     Returns:
     float: Value of the Wronskian at the given point.
     """
-    return function_1(evaluation_point) * derivative_2(evaluation_point) - function_2(
-        evaluation_point
-    ) * derivative_1(evaluation_point)
+    return function_1(evaluation_point) * derivative_2(evaluation_point) - \
+           function_2(evaluation_point) * derivative_1(evaluation_point)
 
 
 def construct_general_solution(root1: complex, root2: complex) -> str:
@@ -153,3 +155,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()  # doctest: +SKIP
+
