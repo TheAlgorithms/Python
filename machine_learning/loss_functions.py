@@ -663,17 +663,17 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
-
 def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the Root Mean Squared Error (RMSE) between ground truth and predicted values.
+    Calculate the Root Mean Squared Error (RMSE) between ground truth and
+    predicted values.
 
     RMSE is the square root of the mean squared error. It is commonly used in regression
     tasks to measure the magnitude of prediction errors in the same units as the target.
 
     RMSE = sqrt( (1/n) * Σ(y_true - y_pred)^2 )
 
-    Reference: https://en.wikipedia.org/wiki/Mean_squared_error#Root-mean-square_error
+    Reference: https://en.wikipedia.org/wiki/Root-mean-square_deviation
 
     Parameters:
     - y_true: The true values (ground truth)
@@ -703,7 +703,6 @@ def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     mse = np.mean((y_true - y_pred) ** 2)
     return np.sqrt(mse)
-
 
 
 def log_cosh_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -745,12 +744,12 @@ def log_cosh_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         raise ValueError("Input arrays must have the same length.")
 
     errors = y_pred - y_true
-    # Use np.logaddexp for numerical stability: log(cosh(x)) = x + log(1 + exp(-2x)) - log(2)
+    # Use np.logaddexp for numerical stability:
+    # log(cosh(x)) = x + log(1 + exp(-2x)) - log(2)
     # But for simplicity and readability, we use np.cosh with clipping for large values
     # Alternatively, use stable version:
     loss = np.logaddexp(errors, -errors) - np.log(2)
     return np.mean(loss)
-
 if __name__ == "__main__":
     import doctest
 
