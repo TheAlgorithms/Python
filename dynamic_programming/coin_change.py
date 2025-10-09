@@ -1,43 +1,46 @@
 """
-Coin Change Problem - Dynamic Programming Approach
---------------------------------------------------
+Coin Change - Dynamic Programming Algorithm
 
-Given a list of coin denominations and a target amount,
-this function returns the minimum number of coins needed
-to make up that amount. If it's not possible, returns -1.
+This module implements the classic coin change problem:
+finding the minimum number of coins required to make up a given amount.
 
-Example:
-    >>> coin_change([1, 2, 5], 11)
-    3
-    # Explanation: 11 = 5 + 5 + 1
+Doctests:
+>>> coin_change([1, 2, 5], 11)
+3
+>>> coin_change([2], 3)
+-1
+>>> coin_change([1], 0)
+0
+>>> coin_change([1, 2, 5], 100)
+20
 """
 
-from typing import List
-
-
-def coin_change(coins: List[int], amount: int) -> int:
+def coin_change(coins: list[int], amount: int) -> int:
     """
-    Calculate the minimum number of coins required
-    to make up the given amount using dynamic programming.
+    Calculate the minimum number of coins required to make up the given amount.
 
     Args:
-        coins (List[int]): List of coin denominations.
-        amount (int): The target amount.
+        coins (list[int]): List of coin denominations.
+        amount (int): Total amount to make.
 
     Returns:
-        int: Minimum number of coins required, or -1 if not possible.
+        int: Minimum number of coins needed to make up the amount,
+             or -1 if it's not possible.
+
+    >>> coin_change([1, 2, 5], 11)
+    3
+    >>> coin_change([2], 3)
+    -1
+    >>> coin_change([1], 0)
+    0
     """
     dp = [float("inf")] * (amount + 1)
     dp[0] = 0
 
-    for coin in coins:
-        for i in range(coin, amount + 1):
-            dp[i] = min(dp[i], dp[i - coin] + 1)
+    for i in range(1, amount + 1):
+        for coin in coins:
+            if i - coin >= 0:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
 
-    return dp[amount] if dp[amount] != float("inf") else -1
-
-
-if __name__ == "__main__":
-    coins = [1, 2, 5]
-    amount = 11
-    print(f"Minimum coins required: {coin_change(coins, amount)}")
+    result = dp[amount]
+    return result if result != float("inf") else -1
