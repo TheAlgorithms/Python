@@ -662,12 +662,13 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     kl_loss = y_true * np.log(y_true / y_pred)
     return np.sum(kl_loss)
 
+
 def root_mean_squared_error(y_true, y_pred):
     """
     Root Mean Squared Error (RMSE)
 
-    Root Mean Squared Error (RMSE) is a standard metric used to evaluate the accuracy of regression models.  
-    It measures the average magnitude of the prediction errors, giving higher weight to larger errors due to squaring.  
+    Root Mean Squared Error (RMSE) is a standard metric used to evaluate the accuracy of regression models.
+    It measures the average magnitude of the prediction errors, giving higher weight to larger errors due to squaring.
     The RMSE value is always non-negative, and a lower RMSE indicates better model performance.
 
     RMSE =  sqrt( (1/n) * Σ (y_true - y_pred) ^ 2)
@@ -680,7 +681,7 @@ def root_mean_squared_error(y_true, y_pred):
 
     Returns:
         float: The RMSE Loss function between y_Pred and y_true
-    
+
     Example:
         >>> y_true = np.array([100, 200, 300])
         >>> y_pred = np.array([110, 190, 310])
