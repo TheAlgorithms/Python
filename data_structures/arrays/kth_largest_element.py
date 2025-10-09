@@ -99,12 +99,11 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         raise ValueError("Invalid value of 'position'")
     low, high = 0, len(arr) - 1
     while low <= high:
-        if low > len(arr) - 1 or high < 0:
-            return -1
         pivot_index = partition(arr, low, high)
-        if pivot_index == position - 1:
+         target_index = position - 1
+        if pivot_index == target_index:
             return arr[pivot_index]
-        elif pivot_index > position - 1:
+        elif pivot_index > target_index:
             high = pivot_index - 1
         else:
             low = pivot_index + 1
