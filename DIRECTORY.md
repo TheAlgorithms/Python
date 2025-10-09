@@ -14,6 +14,7 @@
   * [Generate Parentheses](backtracking/generate_parentheses.py)
   * [Generate Parentheses Iterative](backtracking/generate_parentheses_iterative.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
+  * [Ip Address](backtracking/ip_address.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
   * [Minimax](backtracking/minimax.py)
@@ -195,6 +196,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Rotate Array](data_structures/arrays/rotate_array.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
