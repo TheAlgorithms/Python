@@ -663,6 +663,50 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
+def root_mean_squared_error(y_true, y_pred):
+    """
+    Root Mean Squared Error (RMSE)
+
+    Root Mean Squared Error (RMSE) is a standard metric,
+    it measures the average magnitude of the prediction errors, giving
+    higher weight to larger errors due to squaring.
+
+    RMSE = sqrt( (1/n) * Σ (y_true - y_pred) ^ 2)
+
+    Reference: https://en.wikipedia.org/wiki/Root_mean_square_deviation
+
+    Parameters:
+    - y_pred: Predicted Value
+    - y_true: Actual Value
+
+    Returns:
+        float: The RMSE Loss function between y_pred and y_true
+
+    >>> true_labels = np.array([100, 200, 300])
+    >>> predicted_probs = np.array([110, 190, 310])
+    >>> root_mean_squared_error(true_labels, predicted_probs)
+    3.42
+
+    >>> true_labels = [2, 4, 6, 8]
+    >>> predicted_probs = [3, 5, 7, 10]
+    >>> root_mean_squared_error(true_labels, predicted_probs)
+    1.2247
+
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> root_mean_squared_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+
+    mse = np.mean((y_pred - y_true) ** 2)
+    return np.sqrt(mse)
+
+
 if __name__ == "__main__":
     import doctest
 
