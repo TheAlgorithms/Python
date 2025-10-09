@@ -16,13 +16,14 @@ References: https://tutorial.math.lamar.edu/classes/de/wronskian.aspx
 
 import cmath
 
+
 def compute_characteristic_roots(
     a: float, b: float, c: float
 ) -> tuple[complex, complex]:
     """
     Compute characteristic roots for a second-order homogeneous linear DE.
     a, b, c -> coefficients
-    
+
     >>> compute_characteristic_roots(1, -3, 2)
     (2.0, 1.0)
     >>> compute_characteristic_roots(1, 2, 5)
@@ -69,7 +70,7 @@ def compute_wronskian(
     function_2: Callable[[float], float],
     derivative_1: Callable[[float], float],
     derivative_2: Callable[[float], float],
-    evaluation_point: float
+    evaluation_point: float,
 ) -> float:
     """
     Compute the Wronskian of two functions at a given point.
@@ -84,7 +85,9 @@ def compute_wronskian(
     Returns:
     float: Value of the Wronskian at the given point.
     """
-    return function_1(evaluation_point) * derivative_2(evaluation_point) - function_2(evaluation_point) * derivative_1(evaluation_point)
+    return function_1(evaluation_point) * derivative_2(evaluation_point) - function_2(
+        evaluation_point
+    ) * derivative_1(evaluation_point)
 
 
 def construct_general_solution(root1: complex, root2: complex) -> str:
@@ -112,7 +115,7 @@ def analyze_differential_equation(a: float, b: float, c: float) -> None:
     """
     Analyze the DE and print the roots, type, and general solution.
     a, b, c -> coefficients
-    
+
     >>> analyze_differential_equation(1, -3, 2)  # doctest: +ELLIPSIS
     Characteristic Roots: (2.0, 1.0)
     Solution Type: Distinct Real Roots
@@ -150,4 +153,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()  # doctest: +SKIP
-
