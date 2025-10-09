@@ -2,6 +2,9 @@ def longest_common_prefix(strs: list[str])->str:
     """
     :type strs: List[str]
     
+    URL:
+        https://en.wikipedia.org/wiki/Longest_common_prefix
+
     Args:
         strs (list[str]): A list of strings.
 
