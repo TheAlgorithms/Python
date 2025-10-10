@@ -13,14 +13,14 @@ https://en.wikipedia.org/wiki/Softmax_function
 import numpy as np
 
 
-def softmax(vector):
+def softmax(vector, axis=-1):
     """
     Implements the softmax function
 
     Parameters:
         vector (np.array,list,tuple): A  numpy array of shape (1,n)
         consisting of real values or a similar list,tuple
-
+        axis (int, optional): Axis along which to compute softmax. Default is -1.
 
     Returns:
         softmax_vec (np.array): The input numpy array  after applying
@@ -39,18 +39,40 @@ def softmax(vector):
     array([1.])
     """
 
-    # Calculate e^x for each x in your vector where e is Euler's
-    # number (approximately 2.718)
-    exponent_vector = np.exp(vector)
+    # Convert input to numpy array of floats
+    vector = np.asarray(vector, dtype=float)
 
-    # Add up the all the exponentials
-    sum_of_exponents = np.sum(exponent_vector)
+    # Handle empty input
+    if vector.size == 0:
+        raise ValueError("softmax input must be non-empty")
 
-    # Divide every exponent by the sum of all exponents
+    # Validate axis
+    if not (-vector.ndim <= axis < vector.ndim):
+        raise np.AxisError(f"axis {axis} is out of bounds for array of dimension {vector.ndim}")
+
+    # Subtract max for numerical stability
+    vector_max = np.max(vector, axis=axis, keepdims=True)
+    exponent_vector = np.exp(vector - vector_max)
+
+    # Sum of exponentials along the axis
+    sum_of_exponents = np.sum(exponent_vector, axis=axis, keepdims=True)
+
+    # Divide each exponent by the sum along the axis
     softmax_vector = exponent_vector / sum_of_exponents
 
     return softmax_vector
 
 
 if __name__ == "__main__":
+    # Single value
     print(softmax((0,)))
+
+    # Vector
+    print(softmax([1, 2, 3]))
+
+    # Matrix along last axis
+    mat = np.array([[1, 2, 3], [4, 5, 6]])
+    print("Softmax along last axis:\n", softmax(mat))
+
+    # Matrix along axis 0
+    print("Softmax along axis 0:\n", softmax(mat, axis=0))
