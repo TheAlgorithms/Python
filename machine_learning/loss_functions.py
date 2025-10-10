@@ -676,16 +676,21 @@ def root_mean_squared_error(y_true: np.array, y_pred: np.array) -> float:
     Reference: https://en.wikipedia.org/wiki/Root_mean_square_deviation
 
     Parameters:
-    - y_pred: Predicted Value
-    - y_true: Actual Value
+        y_true: Actual Value
+        y_pred: Predicted Value
 
     Returns:
         float: The RMSE Loss function between y_pred and y_true
 
-    >>> true_labels = np.array([2, 4, 6, 8])
-    >>> predicted_probs = np.array([3, 5, 7, 10])
-    >>> root_mean_squared_error(true_labels, predicted_probs)
-    1.3228
+    >>> true_labels = np.array([100, 200, 300])
+    >>> predicted_probs = np.array([110, 190, 310])
+    >>> round(root_mean_squared_error(true_labels, predicted_probs), 4)
+    10.0
+
+    >>> true_labels = [2, 4, 6, 8]
+    >>> predicted_probs = [3, 5, 7, 10]
+    >>> round(root_mean_squared_error(true_labels, predicted_probs), 4)
+    1.3229
 
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -698,7 +703,7 @@ def root_mean_squared_error(y_true: np.array, y_pred: np.array) -> float:
         raise ValueError("Input arrays must have the same length.")
     y_true, y_pred = np.array(y_true), np.array(y_pred)
 
-    mse = np.mean((y_true - y_pred) ** 2)
+    mse = np.mean((y_pred - y_true) ** 2)
     return np.sqrt(mse)
 
 
