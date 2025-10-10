@@ -104,17 +104,13 @@ def update(
     global LEARNING_RATE, DISCOUNT_FACTOR
     alpha = alpha if alpha is not None else LEARNING_RATE
     gamma = gamma if gamma is not None else DISCOUNT_FACTOR
-    max_q_next = 0.0 if done or not next_available_actions else max(
-        get_q_value(next_state, a) for a in next_available_actions
     max_q_next = (
         0.0
         if done or not next_available_actions
         else max(get_q_value(next_state, a) for a in next_available_actions)
     )
     old_q = get_q_value(state, action)
-    new_q = (1 - alpha) * old_q + alpha * (
-        reward + gamma * max_q_next
-    )
+    new_q = (1 - alpha) * old_q + alpha * (reward + gamma * max_q_next)
     q_table[state][action] = new_q
 
 
