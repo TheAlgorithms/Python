@@ -9,11 +9,6 @@ Source:
 https://huggingface.co/docs/transformers/model_doc/vit
 """
 
-import requests
-import torch
-from PIL import Image
-from transformers import ViTForImageClassification, ViTImageProcessor
-
 
 def vision_transformer_demo() -> None:
     """
@@ -23,14 +18,32 @@ def vision_transformer_demo() -> None:
         >>> vision_transformer_demo()  # doctest: +SKIP
         Predicted label: tabby, tabby cat
     """
-    url = "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/cat_sample.jpeg"
+    try:
+        import requests
+        import torch
+        from PIL import Image
+        from transformers import ViTForImageClassification, ViTImageProcessor
+    except ImportError as e:
+        raise ImportError(
+            "This demo requires 'torch', 'transformers', 'PIL', and 'requests' packages. "
+            "Install them with: pip install torch transformers pillow requests"
+        ) from e
+
+    # Load a sample image
+    url = (
+        "https://huggingface.co/datasets/huggingface/documentation-images/"
+        "resolve/main/cat_sample.jpeg"
+    )
     image = Image.open(requests.get(url, stream=True, timeout=10).raw)
 
+    # Load pretrained model and processor
     processor = ViTImageProcessor.from_pretrained("google/vit-base-patch16-224")
     model = ViTForImageClassification.from_pretrained("google/vit-base-patch16-224")
 
+    # Preprocess the image
     inputs = processor(images=image, return_tensors="pt")
 
+    # Run inference
     with torch.no_grad():
         outputs = model(**inputs)
         logits = outputs.logits
