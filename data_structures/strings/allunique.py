@@ -6,6 +6,7 @@ def has_unique_chars(s):
         seen.add(char)
     return True
 
+
 # Example
 s = "abcdefga"
 print("Unique Characters:", has_unique_chars(s))
