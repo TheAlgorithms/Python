@@ -1,29 +1,27 @@
-"""
-Question:
-Given an array fruits representing types of fruit, pick a contiguous subarray containing at most 2 different types of fruit.
-Return the maximum number of fruits you can collect.
-
-Example:
-Input: fruits = [1,2,1,2,3]
-Output: 4
-Explanation:
-Pick subarray [1,2,1,2] -> contains 2 types and length 4
-"""
-
 from typing import List
 from collections import defaultdict
 
-
 class FruitIntoBaskets:
+    """
+    Problem:
+    Given an array of integers representing types of fruit, pick a contiguous subarray
+    containing at most two different types of fruit. Return the maximum number
+    of fruits you can collect.
+
+    Example:
+    >>> solver = FruitIntoBaskets()
+    >>> solver.total_fruit([1, 2, 1, 2, 3])
+    4
+    """
+
     def total_fruit(self, fruits: List[int]) -> int:
-        count = defaultdict(int)  # Stores count of each fruit type
-        left = 0  # Left pointer of sliding window
-        max_fruit = 0  # Tracks max number of fruits collected
+        count = defaultdict(int)
+        left = 0
+        max_fruit = 0
 
         for right, fruit in enumerate(fruits):
-            count[fruit] += 1  # Include current fruit
+            count[fruit] += 1
 
-            # Shrink window if more than 2 types
             while len(count) > 2:
                 count[fruits[left]] -= 1
                 if count[fruits[left]] == 0:
@@ -35,8 +33,7 @@ class FruitIntoBaskets:
         return max_fruit
 
 
-# Example dry run
 if __name__ == "__main__":
-    fruits = [1, 2, 1, 2, 3]
     solver = FruitIntoBaskets()
-    print("Maximum Fruits Collected:", solver.total_fruit(fruits))
+    print("Maximum Fruits Collected:", solver.total_fruit([1, 2, 1, 2, 3]))
+
