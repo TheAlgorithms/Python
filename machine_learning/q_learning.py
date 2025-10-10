@@ -8,8 +8,11 @@ without requiring a model of the environment.
 See: [https://en.wikipedia.org/wiki/Q-learning](https://en.wikipedia.org/wiki/Q-learning)
 """
 
-from collections import defaultdict
 import random
+from collections import defaultdict
+
+# Type alias for state
+type State = tuple[int, int]
 
 # Hyperparameters for Q-Learning
 LEARNING_RATE = 0.1
@@ -19,7 +22,7 @@ EPSILON_DECAY = 0.995
 EPSILON_MIN = 0.01
 
 # Global Q-table to store state-action values
-q_table = defaultdict(lambda: defaultdict(float))
+q_table: dict[State, dict[int, float]] = defaultdict(lambda: defaultdict(float))
 
 # Environment variables for simple grid world
 SIZE = 4
@@ -27,20 +30,22 @@ GOAL = (SIZE - 1, SIZE - 1)
 current_state = (0, 0)
 
 
-def get_q_value(state, action):
+def get_q_value(state: State, action: int) -> float:
     """
     Get Q-value for a given state-action pair.
 
+    >>> q_table.clear()
     >>> get_q_value((0, 0), 2)
     0.0
     """
     return q_table[state][action]
 
 
-def get_best_action(state, available_actions):
+def get_best_action(state: State, available_actions: list[int]) -> int:
     """
     Get the action with maximum Q-value in the given state.
 
+    >>> q_table.clear()
     >>> q_table[(0, 0)][1] = 0.7
     >>> q_table[(0, 0)][2] = 0.7
     >>> q_table[(0, 0)][3] = 0.5
@@ -54,14 +59,18 @@ def get_best_action(state, available_actions):
     return random.choice(best)
 
 
-def choose_action(state, available_actions):
+def choose_action(state: State, available_actions: list[int]) -> int:
     """
     Choose action using epsilon-greedy policy.
 
+    >>> q_table.clear()
+    >>> old_epsilon = EPSILON
     >>> EPSILON = 0.0
     >>> q_table[(0, 0)][1] = 1.0
     >>> q_table[(0, 0)][2] = 0.5
-    >>> choose_action((0, 0), [1, 2])
+    >>> result = choose_action((0, 0), [1, 2])
+    >>> EPSILON = old_epsilon  # Restore
+    >>> result
     1
     """
     global EPSILON
@@ -72,64 +81,84 @@ def choose_action(state, available_actions):
     return get_best_action(state, available_actions)
 
 
-def update(state, action, reward, next_state, next_available_actions, done=False):
+def update(
+    state: State,
+    action: int,
+    reward: float,
+    next_state: State,
+    next_available_actions: list[int],
+    done: bool = False,
+    alpha: float | None = None,
+    gamma: float | None = None,
+) -> None:
     """
     Perform Q-value update for a transition using the Q-learning rule.
 
     Q(s,a) <- Q(s,a) + alpha * (r + gamma * max_a' Q(s',a') - Q(s,a))
 
-    >>> LEARNING_RATE = 0.5
-    >>> DISCOUNT_FACTOR = 0.9
-    >>> update((0,0), 1, 1.0, (0,1), [1,2], done=True)
-    >>> get_q_value((0,0), 1)
+    >>> q_table.clear()
+    >>> update((0, 0), 1, 1.0, (0, 1), [1, 2], done=True, alpha=0.5, gamma=0.9)
+    >>> get_q_value((0, 0), 1)
     0.5
     """
     global LEARNING_RATE, DISCOUNT_FACTOR
+    alpha = alpha if alpha is not None else LEARNING_RATE
+    gamma = gamma if gamma is not None else DISCOUNT_FACTOR
+    max_q_next = 0.0 if done or not next_available_actions else max(
+        get_q_value(next_state, a) for a in next_available_actions
     max_q_next = (
         0.0
         if done or not next_available_actions
         else max(get_q_value(next_state, a) for a in next_available_actions)
     )
     old_q = get_q_value(state, action)
-    new_q = (1 - LEARNING_RATE) * old_q + LEARNING_RATE * (
-        reward + DISCOUNT_FACTOR * max_q_next
+    new_q = (1 - alpha) * old_q + alpha * (
+        reward + gamma * max_q_next
     )
     q_table[state][action] = new_q
 
 
-def get_policy():
+def get_policy() -> dict[State, int]:
     """
     Extract a deterministic policy from the Q-table.
 
-    >>> q_table[(1,2)][1] = 2.0
-    >>> q_table[(1,2)][2] = 1.0
-    >>> get_policy()[(1,2)]
+    >>> q_table.clear()
+    >>> q_table[(1, 2)][1] = 2.0
+    >>> q_table[(1, 2)][2] = 1.0
+    >>> get_policy()[(1, 2)]
     1
     """
-    policy = {}
+    policy: dict[State, int] = {}
     for s, a_dict in q_table.items():
         if a_dict:
             policy[s] = max(a_dict, key=a_dict.get)
     return policy
 
 
-def reset_env():
+def reset_env() -> State:
     """
     Reset the environment to initial state.
+
+    >>> old_state = current_state
+    >>> current_state = (1, 1)  # Simulate non-initial state
+    >>> result = reset_env()
+    >>> current_state = old_state  # Restore for other tests
+    >>> result
+    (0, 0)
     """
     global current_state
     current_state = (0, 0)
     return current_state
 
 
-def get_available_actions_env():
+def get_available_actions_env() -> list[int]:
     """
     Get available actions in the current environment state.
     """
-    return [0, 1, 2, 3]
+    return [0, 1, 2, 3]  # 0: up, 1: right, 2: down, 3: left
 
 
-def step_env(action):
+def step_env(action: int) -> tuple[State, float, bool]:
     """
     Take a step in the environment with the given action.
     """
@@ -150,13 +179,13 @@ def step_env(action):
     return next_state, reward, done
 
 
-def run_q_learning():
+def run_q_learning() -> None:
     """
     Run Q-Learning on the simple grid world environment.
     """
     global EPSILON
     episodes = 200
-    for episode in range(episodes):
+    for _ in range(episodes):
         state = reset_env()
         done = False
         while not done:
@@ -178,3 +207,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
     run_q_learning()
+
