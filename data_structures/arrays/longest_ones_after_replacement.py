@@ -1,29 +1,27 @@
-"""
-Question:
-Given a binary array nums and an integer k, find the length of the longest subarray containing 1s after flipping at most k zeros.
-
-Example:
-Input: nums = [1,0,1,1,0,1], k = 1
-Output: 4
-Explanation:
-Flip the first 0 at index 1 -> subarray [1,1,1,1] has length 4
-"""
-
 from typing import List
 
-
 class LongestOnesAfterReplacement:
-    def longest_ones(self, nums: List[int], k: int) -> int:
-        left = 0  # Left pointer of sliding window
-        max_len = 0  # Tracks maximum window length
-        zeros_count = 0  # Count of zeros in current window
+    """
+    Problem:
+    Given a binary array and an integer max_zero_flips, find the length of the
+    longest subarray containing only 1s after flipping at most max_zero_flips zeros.
+
+    Example:
+    >>> solver = LongestOnesAfterReplacement()
+    >>> solver.longest_ones([1, 0, 1, 1, 0, 1], 1)
+    4
+    """
+
+    def longest_ones(self, nums: List[int], max_zero_flips: int) -> int:
+        left = 0
+        max_len = 0
+        zeros_count = 0
 
         for right in range(len(nums)):
             if nums[right] == 0:
                 zeros_count += 1
 
-            # Shrink window if zeros exceed k
-            while zeros_count > k:
+            while zeros_count > max_zero_flips:
                 if nums[left] == 0:
                     zeros_count -= 1
                 left += 1
@@ -33,9 +31,8 @@ class LongestOnesAfterReplacement:
         return max_len
 
 
-# Example dry run
 if __name__ == "__main__":
-    nums = [1, 0, 1, 1, 0, 1]
-    k = 1
     solver = LongestOnesAfterReplacement()
-    print("Longest Ones After Replacement:", solver.longest_ones(nums, k))
+    print("Longest Ones After Replacement:",
+          solver.longest_ones([1, 0, 1, 1, 0, 1], 1))
+
