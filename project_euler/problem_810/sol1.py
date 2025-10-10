@@ -27,6 +27,8 @@ http://en.wikipedia.org/wiki/M%C3%B6bius_function
 
 """
 
+from array import array
+
 
 def xor_multiply(op_a: int, op_b: int) -> int:
     """
@@ -108,23 +110,17 @@ def find_xor_prime(rank: int) -> int:
     41
     """
     total, degree = 0, 1
-    while True:
-        count = count_irreducibles(degree)
-        if total + count > rank:
-            break
-        total += count
+    while total + count_irreducibles(degree) < rank:
+        total += count_irreducibles(degree)
         degree += 1
 
     limit = 1 << (degree + 1)
 
-    sieve = [True] * limit
-    sieve[0] = sieve[1] = False
+    sieve = array("B", [1]) * limit
+    sieve[0] = sieve[1] = 0
 
-    for even in range(4, limit, 2):
-        sieve[even] = False
-
-    current = 1
-    for i in range(3, limit, 2):
+    current = 0
+    for i in range(2, limit):
         if sieve[i]:
             current += 1
             if current == rank:
@@ -135,12 +131,10 @@ def find_xor_prime(rank: int) -> int:
                 prod = xor_multiply(i, j)
                 if prod >= limit:
                     break
-                sieve[prod] = False
-                j += 2
+                sieve[prod] = 0
+                j += 1
 
-    raise ValueError(
-        "Failed to locate the requested XOR-prime within the computed limit"
-    )
+    raise ValueError("Failed to locate the requested XOR-prime")
 
 
 def solution(limit: int = 5000001) -> int:
