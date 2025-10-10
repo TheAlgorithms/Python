@@ -28,7 +28,7 @@ http://en.wikipedia.org/wiki/M%C3%B6bius_function
 """
 
 
-def xor_multiply(a: int, b: int) -> int:
+def xor_multiply(op_a: int, op_b: int) -> int:
     """
     Perform XOR multiplication of two integers, equivalent to polynomial
     multiplication in GF(2).
@@ -37,33 +37,33 @@ def xor_multiply(a: int, b: int) -> int:
     15
     """
     res = 0
-    while b:
-        if b & 1:
-            res ^= a
-        a <<= 1
-        b >>= 1
+    while op_b:
+        if op_b & 1:
+            res ^= op_a
+        op_a <<= 1
+        op_b >>= 1
     return res
 
 
-def divisors(n: int) -> set[int]:
+def divisors(num: int) -> set[int]:
     """
-    Return all divisors of n (excluding 0).
+    Return all divisors of `num` (excluding 0).
 
     >>> divisors(12)
     {1, 2, 3, 4, 6, 12}
     """
     s = {1}
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
             s.add(i)
-            s.add(n // i)
-    s.add(n)
+            s.add(num // i)
+    s.add(num)
     return s
 
 
 def mobius_table(n: int) -> list[int]:
     """
-    Generate Möbius function values from 1 to n.
+    Generate a variant of Möbius function values from 1 to n.
 
     >>> mobius_table(10)[:6]
     [0, 1, -1, -1, 0, -1]
@@ -85,19 +85,19 @@ def mobius_table(n: int) -> list[int]:
     return mob
 
 
-def count_irreducibles(d: int) -> int:
+def count_irreducibles(deg: int) -> int:
     """
-    Count the number of irreducible polynomials of degree d over GF(2)
-    using the Möbius function.
+    Count the number of irreducible polynomials of degree `deg` over GF(2)
+    using the variant of Möbius function.
 
     >>> count_irreducibles(3)
     2
     """
-    mob = mobius_table(d)
+    mob = mobius_table(deg)
     total = 0
-    for div in divisors(d) | {d}:
-        total += mob[div] * (1 << (d // div))
-    return total // d
+    for div in divisors(deg) | {deg}:
+        total += mob[div] * (1 << (deg // div))
+    return total // deg
 
 
 def find_xor_prime(rank: int) -> int:
