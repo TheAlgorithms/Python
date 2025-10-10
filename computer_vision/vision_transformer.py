@@ -14,7 +14,6 @@ import requests
 import torch
 from transformers import ViTForImageClassification, ViTImageProcessor
 
-
 def vision_transformer_demo() -> None:
     """
     Demonstrates Vision Transformer (ViT) on a sample image.
@@ -39,7 +38,6 @@ def vision_transformer_demo() -> None:
     predicted_label = model.config.id2label[predicted_class_idx]
 
     print(f"Predicted label: {predicted_label}")
-
 
 if __name__ == "__main__":
     vision_transformer_demo()
