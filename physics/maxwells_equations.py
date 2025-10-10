@@ -31,24 +31,24 @@ def gauss_law_electric(
 ) -> bool:
     """
     Gauss's law for electricity: ∇·E = ρ/ε₀
-    
+
     In integral form: ∮E·dA = Q_enclosed/ε₀
-    
-    This law states that the electric flux through any closed surface is 
+
+    This law states that the electric flux through any closed surface is
     proportional to the total electric charge enclosed within that surface.
-    
+
     Args:
         electric_field_magnitude: Magnitude of electric field (V/m or N/C)
         surface_area: Area of the closed surface (m²)
         enclosed_charge: Total charge enclosed by the surface (C - coulombs)
         permittivity: Permittivity of the medium (F/m), defaults to vacuum
-        
+
     Returns:
         bool: True if Gauss's law is satisfied within numerical tolerance
-        
+
     Raises:
         ValueError: If surface_area is negative or permittivity is non-positive
-        
+
     Example:
         >>> gauss_law_electric(1000, 1.0, 8.854e-9)
         True
@@ -79,24 +79,24 @@ def gauss_law_magnetic(
 ) -> bool:
     """
     Gauss's law for magnetism: ∇·B = 0
-    
+
     In integral form: ∮B·dA = 0
-    
+
     This law states that there are no magnetic monopoles - the magnetic flux
     through any closed surface is always zero. Magnetic field lines always
     form closed loops or extend to infinity.
-    
+
     Args:
         magnetic_field_magnitude: Magnitude of magnetic field (T - tesla)
         surface_area: Area of the closed surface (m²)
-        
+
     Returns:
         bool: Always True for physically realistic magnetic fields,
               False if net flux is non-zero (indicating monopoles)
-              
+
     Raises:
         ValueError: If surface_area is negative
-        
+
     Example:
         >>> gauss_law_magnetic(0.5, 2.0)
         True
@@ -124,19 +124,19 @@ def faraday_law(
 ) -> bool:
     """
     Faraday's law of electromagnetic induction: ∇×E = -∂B/∂t
-    
+
     In integral form: ∮E·dl = -dΦ_B/dt
-    
+
     This law describes how a changing magnetic field induces an electric field.
     The induced electric field opposes the change in magnetic flux (Lenz's law).
-    
+
     Args:
         electric_field_circulation: Line integral of E around closed loop (V)
         magnetic_flux_change_rate: Rate of change of magnetic flux (Wb/s or V)
-        
+
     Returns:
         bool: True if Faraday's law is satisfied within numerical tolerance
-        
+
     Example:
         >>> faraday_law(10.0, -10.0)
         True
@@ -164,26 +164,26 @@ def ampere_maxwell_law(
 ) -> bool:
     """
     Ampère-Maxwell law: ∇×B = μ₀(J + ε₀∂E/∂t)
-    
+
     In integral form: ∮B·dl = μ₀(I_enclosed + ε₀dΦ_E/dt)
-    
+
     This law relates magnetic fields to electric currents and changing electric fields.
     Maxwell's addition of the displacement current term (ε₀∂E/∂t) was crucial for
     predicting electromagnetic waves.
-    
+
     Args:
         magnetic_field_circulation: Line integral of B around closed loop (T·m)
         enclosed_current: Current passing through surface bounded by loop (A)
         electric_flux_change_rate: Rate of change of electric flux (V·m/s)
         permeability: Permeability of the medium (H/m), defaults to vacuum
         permittivity: Permittivity of the medium (F/m), defaults to vacuum
-        
+
     Returns:
         bool: True if Ampère-Maxwell law is satisfied within numerical tolerance
-        
+
     Raises:
         ValueError: If permeability or permittivity is non-positive
-        
+
     Example:
         >>> ampere_maxwell_law(1.256e-6, 1.0, 0.0)
         True
@@ -217,20 +217,20 @@ def electromagnetic_wave_speed(
 ) -> float:
     """
     Calculate the speed of electromagnetic waves in a medium.
-    
+
     From Maxwell's equations: c = 1/√(μ₀ε₀) in vacuum
     In a medium: v = 1/√(μεr)
-    
+
     Args:
         permeability: Permeability of the medium (H/m)
         permittivity: Permittivity of the medium (F/m)
-        
+
     Returns:
         float: Speed of electromagnetic waves in the medium (m/s)
-        
+
     Raises:
         ValueError: If permeability or permittivity is non-positive
-        
+
     Example:
         >>> abs(electromagnetic_wave_speed() - 2.998e8) < 1e6
         True
@@ -252,20 +252,20 @@ def electromagnetic_wave_impedance(
 ) -> float:
     """
     Calculate the impedance of electromagnetic waves in a medium.
-    
+
     The impedance Z₀ = √(μ/ε) determines the ratio of electric to magnetic
     field strength in an electromagnetic wave.
-    
+
     Args:
         permeability: Permeability of the medium (H/m)
         permittivity: Permittivity of the medium (F/m)
-        
+
     Returns:
         float: Wave impedance of the medium (Ω - ohms)
-        
+
     Raises:
         ValueError: If permeability or permittivity is non-positive
-        
+
     Example:
         >>> abs(electromagnetic_wave_impedance() - 376.73) < 0.01
         True
@@ -288,21 +288,21 @@ def poynting_vector_magnitude(
 ) -> float:
     """
     Calculate the magnitude of the Poynting vector (electromagnetic power flow).
-    
+
     The Poynting vector S = (1/μ₀) * E × B represents the directional energy
     flux density of an electromagnetic field (power per unit area).
-    
+
     Args:
         electric_field: Magnitude of electric field (V/m)
         magnetic_field: Magnitude of magnetic field (T)
         permeability: Permeability of the medium (H/m)
-        
+
     Returns:
         float: Magnitude of Poynting vector (W/m²)
-        
+
     Raises:
         ValueError: If permeability is non-positive
-        
+
     Example:
         >>> abs(poynting_vector_magnitude(1000, 1e-6) - 795.8) < 1.0
         True
@@ -326,22 +326,22 @@ def energy_density_electromagnetic(
 ) -> float:
     """
     Calculate the energy density of an electromagnetic field.
-    
+
     The energy density u = ½(ε₀E² + B²/μ₀) represents the electromagnetic
     energy stored per unit volume.
-    
+
     Args:
         electric_field: Magnitude of electric field (V/m)
         magnetic_field: Magnitude of magnetic field (T)
         permittivity: Permittivity of the medium (F/m)
         permeability: Permeability of the medium (H/m)
-        
+
     Returns:
         float: Energy density (J/m³)
-        
+
     Raises:
         ValueError: If permittivity or permeability is non-positive
-        
+
     Example:
         >>> abs(energy_density_electromagnetic(1000, 1e-3) - 0.398) < 0.001
         True
@@ -371,9 +371,9 @@ if __name__ == "__main__":
     doctest.testmod(verbose=True)
 
     # Additional demonstration
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("Maxwell's Equations Demonstration")
-    print("="*50)
+    print("=" * 50)
 
     # Demonstrate speed of light calculation
     c = electromagnetic_wave_speed()
