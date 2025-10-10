@@ -1,6 +1,7 @@
 from collections import deque
 from typing import List
 
+
 class SlidingWindowMaximum:
     """
     Problem:
@@ -37,6 +38,7 @@ class SlidingWindowMaximum:
 
 if __name__ == "__main__":
     solver = SlidingWindowMaximum()
-    print("Sliding Window Maximum:",
-          solver.max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3))
-
+    print(
+        "Sliding Window Maximum:",
+        solver.max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3),
+    )
