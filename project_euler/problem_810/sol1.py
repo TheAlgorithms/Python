@@ -61,26 +61,26 @@ def divisors(num: int) -> set[int]:
     return s
 
 
-def mobius_table(n: int) -> list[int]:
+def mobius_table(num: int) -> list[int]:
     """
-    Generate a variant of Möbius function values from 1 to n.
+    Generate a variant of Möbius function values from 1 to num.
 
     >>> mobius_table(10)[:6]
     [0, 1, -1, -1, 0, -1]
     """
-    mob = [1] * (n + 1)
-    is_prime = [True] * (n + 1)
+    mob = [1] * (num + 1)
+    is_prime = [True] * (num + 1)
     mob[0] = 0
 
-    for p in range(2, n + 1):
+    for p in range(2, num + 1):
         if is_prime[p]:
             mob[p] = -1
-            for j in range(2 * p, n + 1, p):
+            for j in range(2 * p, num + 1, p):
                 is_prime[j] = False
                 mob[j] *= -1
             p2 = p * p
-            if p2 <= n:
-                for j in range(p2, n + 1, p2):
+            if p2 <= num:
+                for j in range(p2, num + 1, p2):
                     mob[j] = 0
     return mob
 
