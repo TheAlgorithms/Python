@@ -27,8 +27,6 @@ http://en.wikipedia.org/wiki/M%C3%B6bius_function
 
 """
 
-from bitarray import bitarray
-
 
 def xor_multiply(a: int, b: int) -> int:
     """
@@ -92,15 +90,8 @@ def count_irreducibles(d: int) -> int:
     Count the number of irreducible polynomials of degree d over GF(2)
     using the Möbius function.
 
-    Args:
-        d (int): Polynomial degree.
-
-    Returns:
-        int: Count of irreducible polynomials.
-
-    Example:
-        >>> count_irreducibles(3)
-        2
+    >>> count_irreducibles(3)
+    2
     """
     mob = mobius_table(d)
     total = 0
@@ -126,9 +117,8 @@ def find_xor_prime(rank: int) -> int:
 
     limit = 1 << (degree + 1)
 
-    sieve = bitarray(limit)
-    sieve.setall(True)
-    sieve[0:2] = False
+    sieve = [True] * limit
+    sieve[0] = sieve[1] = False
 
     for even in range(4, limit, 2):
         sieve[even] = False
