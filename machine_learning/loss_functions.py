@@ -750,6 +750,8 @@ def log_cosh_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     # Alternatively, use stable version:
     loss = np.logaddexp(errors, -errors) - np.log(2)
     return np.mean(loss)
+
+
 if __name__ == "__main__":
     import doctest
 
