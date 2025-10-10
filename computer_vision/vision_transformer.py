@@ -42,7 +42,7 @@ def classify_image(image: Image.Image) -> str:
 def demo(url: str = None) -> None:
     """
     Run a demo using a sample image or provided URL.
-    
+
     Args:
         url (str): URL of the image. If None, uses a default cat image.
     """
