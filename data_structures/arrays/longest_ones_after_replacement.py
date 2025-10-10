@@ -1,5 +1,6 @@
 from typing import List
 
+
 class LongestOnesAfterReplacement:
     """
     Problem:
@@ -33,6 +34,4 @@ class LongestOnesAfterReplacement:
 
 if __name__ == "__main__":
     solver = LongestOnesAfterReplacement()
-    print("Longest Ones After Replacement:",
-          solver.longest_ones([1, 0, 1, 1, 0, 1], 1))
-
+    print("Longest Ones After Replacement:", solver.longest_ones([1, 0, 1, 1, 0, 1], 1))
