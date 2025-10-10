@@ -36,4 +36,3 @@ if __name__ == "__main__":
         "Longest Ones After Replacement:",
         solver.longest_ones([1, 0, 1, 1, 0, 1], 1),
     )
-
