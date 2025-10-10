@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class SlidingWindowMaximum:
@@ -14,7 +13,7 @@ class SlidingWindowMaximum:
     [3, 3, 5, 5, 6, 7]
     """
 
-    def max_sliding_window(self, nums: List[int], window_size: int) -> List[int]:
+    def max_sliding_window(self, nums: list[int], window_size: int) -> list[int]:
         if not nums:
             return []
 
