@@ -9,9 +9,9 @@ Source:
 https://huggingface.co/docs/transformers/model_doc/vit
 """
 
-from PIL import Image
 import requests
 import torch
+from PIL import Image
 from transformers import ViTForImageClassification, ViTImageProcessor
 
 
