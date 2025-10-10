@@ -1,8 +1,8 @@
 """
-Q-Learning is a widely-used model-free algorithm in reinforcement learning that 
-learns the optimal action-value function Q(s, a), which tells an agent the expected 
+Q-Learning is a widely-used model-free algorithm in reinforcement learning that
+learns the optimal action-value function Q(s, a), which tells an agent the expected
 utility of taking action a in state s and then following the optimal policy after.
-It is able to find the best policy for any given finite Markov decision process (MDP) 
+It is able to find the best policy for any given finite Markov decision process (MDP)
 without requiring a model of the environment.
 
 See: [https://en.wikipedia.org/wiki/Q-learning](https://en.wikipedia.org/wiki/Q-learning)
@@ -85,8 +85,10 @@ def update(state, action, reward, next_state, next_available_actions, done=False
     0.5
     """
     global LEARNING_RATE, DISCOUNT_FACTOR
-    max_q_next = 0.0 if done or not next_available_actions else max(
-        get_q_value(next_state, a) for a in next_available_actions
+    max_q_next = (
+        0.0
+        if done or not next_available_actions
+        else max(get_q_value(next_state, a) for a in next_available_actions)
     )
     old_q = get_q_value(state, action)
     new_q = (1 - LEARNING_RATE) * old_q + LEARNING_RATE * (
@@ -173,5 +175,6 @@ def run_q_learning():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     run_q_learning()
