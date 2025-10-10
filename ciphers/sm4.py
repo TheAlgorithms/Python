@@ -317,10 +317,7 @@ def _rotl32(value: int, shift: int) -> int:
 
 
 def _bytes_to_u32_list(data: bytes) -> list[int]:
-    """
-    Convert `data` bytes to list of 32-bit unsigned integers (big-endian).
-    Length must be multiple of 4.
-    """
+    """Convert `data` bytes to list of 32-bit unsigned integers."""
     if len(data) % 4 != 0:
         raise ValueError("bytes length must be multiple of 4")
     return [int.from_bytes(data[i : i + 4], "big") for i in range(0, len(data), 4)]
@@ -332,10 +329,7 @@ def _u32_list_to_bytes(words: Iterable[int]) -> bytes:
 
 
 def _tau(word: int) -> int:
-    """
-    Non-linear byte substitution using SBOX.
-    Applies SBOX to each byte of the 32-bit word.
-    """
+    """Non-linear byte substitution using SBOX."""
     b0 = (word >> 24) & 0xFF
     b1 = (word >> 16) & 0xFF
     b2 = (word >> 8) & 0xFF
@@ -353,7 +347,7 @@ def _l_transform(b: int) -> int:
 
 def _l_transform_key(b: int) -> int:
     """
-    Linear transform L' used in key schedule:
+    Linear transform L':
     L'(B) = B ^ (B <<< 13) ^ (B <<< 23)
     """
     return b ^ _rotl32(b, 13) ^ _rotl32(b, 23)
@@ -361,19 +355,25 @@ def _l_transform_key(b: int) -> int:
 
 class SM4:
     """
-    Simple, typed SM4 implementation.
-
+    SM4 implementation.
     Example:
         cipher = SM4(key_bytes)
         ct = cipher.encrypt_ecb(plaintext)
         pt = cipher.decrypt_ecb(ct)
+
+    >>> key = bytes.fromhex("0123456789abcdeffedcba9876543210")
+    >>> sm4 = SM4(key)
+    >>> pt_block = b"0123456789abcdeF"
+    >>> ct_block = sm4.encrypt_block(pt_block)
+    >>> sm4.decrypt_block(ct_block) == pt_block
+    True
     """
 
     rk: list[int]
 
     def __init__(self, key: bytes) -> None:
         """
-        Initialize with a 16-byte (128-bit) key.
+        Initialize with a 16-byte key.
 
         :param key: 16 bytes
         :raises ValueError: if key length != 16
@@ -383,9 +383,7 @@ class SM4:
         self.rk = self._key_schedule(key)
 
     def _key_schedule(self, key: bytes) -> list[int]:
-        """
-        Generate 32 round keys from the 128-bit key using FK and CK constants.
-        """
+        """Generate 32 round keys from the 128-bit key using FK and CK constants."""
         mk = _bytes_to_u32_list(key)
         k = [mk[i] ^ FK[i] for i in range(4)]
         rk: list[int] = []
