@@ -1,6 +1,7 @@
 from typing import List
 from collections import defaultdict
 
+
 class FruitIntoBaskets:
     """
     Problem:
@@ -36,4 +37,3 @@ class FruitIntoBaskets:
 if __name__ == "__main__":
     solver = FruitIntoBaskets()
     print("Maximum Fruits Collected:", solver.total_fruit([1, 2, 1, 2, 3]))
-
