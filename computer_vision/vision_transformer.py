@@ -38,9 +38,7 @@ def demo(url: Optional[str] = None) -> None:
         url (Optional[str]): URL of the image. If None, uses default cat image.
     """
     if url is None:
-        url = (
-            "https://images.unsplash.com/photo-1592194996308-7b43878e84a6"
-        )  # default example image
+        url = "https://images.unsplash.com/photo-1592194996308-7b43878e84a6"  # default example image
 
     try:
         response = requests.get(url, timeout=10)
