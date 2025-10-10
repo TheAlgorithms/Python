@@ -663,7 +663,7 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
-def root_mean_squared_error(y_true: np.array, y_pred:np.array) -> float:
+def root_mean_squared_error(y_true: np.array, y_pred: np.array) -> float:
     """
     Root Mean Squared Error (RMSE)
 
