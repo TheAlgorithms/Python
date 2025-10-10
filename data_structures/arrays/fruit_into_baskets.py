@@ -1,13 +1,12 @@
-from typing import List
 from collections import defaultdict
 
 
 class FruitIntoBaskets:
     """
     Problem:
-    Given an array of integers representing types of fruit, pick a contiguous subarray
-    containing at most two different types of fruit. Return the maximum number
-    of fruits you can collect.
+    Given an array of integers representing types of fruit, pick a contiguous
+    subarray containing at most two different types of fruit. Return the maximum
+    number of fruits you can collect.
 
     Example:
     >>> solver = FruitIntoBaskets()
@@ -15,7 +14,7 @@ class FruitIntoBaskets:
     4
     """
 
-    def total_fruit(self, fruits: List[int]) -> int:
+    def total_fruit(self, fruits: list[int]) -> int:
         count = defaultdict(int)
         left = 0
         max_fruit = 0
@@ -37,3 +36,4 @@ class FruitIntoBaskets:
 if __name__ == "__main__":
     solver = FruitIntoBaskets()
     print("Maximum Fruits Collected:", solver.total_fruit([1, 2, 1, 2, 3]))
+
