@@ -48,7 +48,9 @@ def softmax(vector, axis=-1):
 
     # Validate axis
     if not (-vector.ndim <= axis < vector.ndim):
-        raise np.AxisError(f"axis {axis} is out of bounds for array of dimension {vector.ndim}")
+        raise np.AxisError(
+            f"axis {axis} is out of bounds for array of dimension {vector.ndim}"
+        )
 
     # Subtract max for numerical stability
     vector_max = np.max(vector, axis=axis, keepdims=True)
