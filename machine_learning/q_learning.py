@@ -118,6 +118,7 @@ def get_policy() -> dict[State, int]:
     """
     Extract a deterministic policy from the Q-table.
 
+
     >>> q_table.clear()
     >>> q_table[(1, 2)][1] = 2.0
     >>> q_table[(1, 2)][2] = 1.0
@@ -127,7 +128,7 @@ def get_policy() -> dict[State, int]:
     policy: dict[State, int] = {}
     for s, a_dict in q_table.items():
         if a_dict:
-            policy[s] = max(a_dict, key=a_dict.get)
+            policy[s] = max(a_dict, key=lambda a: a_dict[a])
     return policy
 
 
