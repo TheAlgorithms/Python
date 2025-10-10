@@ -62,6 +62,7 @@ def softmax(vector: np.ndarray, axis: int = -1) -> np.ndarray:
     softmax_vector = exponent_vector / sum_of_exponents
     return softmax_vector
 
+
 if __name__ == "__main__":
     # Single value
     print(softmax((0,)))
