@@ -1,11 +1,9 @@
-from typing import List
-
-
 class LongestOnesAfterReplacement:
     """
     Problem:
     Given a binary array and an integer max_zero_flips, find the length of the
-    longest subarray containing only 1s after flipping at most max_zero_flips zeros.
+    longest subarray containing only 1s after flipping at most max_zero_flips
+    zeros.
 
     Example:
     >>> solver = LongestOnesAfterReplacement()
@@ -13,7 +11,7 @@ class LongestOnesAfterReplacement:
     4
     """
 
-    def longest_ones(self, nums: List[int], max_zero_flips: int) -> int:
+    def longest_ones(self, nums: list[int], max_zero_flips: int) -> int:
         left = 0
         max_len = 0
         zeros_count = 0
@@ -34,4 +32,8 @@ class LongestOnesAfterReplacement:
 
 if __name__ == "__main__":
     solver = LongestOnesAfterReplacement()
-    print("Longest Ones After Replacement:", solver.longest_ones([1, 0, 1, 1, 0, 1], 1))
+    print(
+        "Longest Ones After Replacement:",
+        solver.longest_ones([1, 0, 1, 1, 0, 1], 1),
+    )
+
