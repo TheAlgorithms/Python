@@ -1,5 +1,6 @@
 import heapq
 
+
 def prim_mst(graph, start=0):
     visited = set()
     mst = []
@@ -29,7 +30,7 @@ graph = {
     1: [(0, 2), (2, 3), (3, 8), (4, 5)],
     2: [(1, 3), (4, 7)],
     3: [(0, 6), (1, 8)],
-    4: [(1, 5), (2, 7)]
+    4: [(1, 5), (2, 7)],
 }
 
 mst, cost = prim_mst(graph)
