@@ -690,7 +690,7 @@ def root_mean_squared_error(y_true: np.array, y_pred: np.array) -> float:
     >>> true_labels = [2, 4, 6, 8]
     >>> predicted_probs = [3, 5, 7, 10]
     >>> round(root_mean_squared_error(true_labels, predicted_probs), 4)
-    1.3229
+    1.3228756555322954
 
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -701,7 +701,6 @@ def root_mean_squared_error(y_true: np.array, y_pred: np.array) -> float:
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
-    y_true, y_pred = np.array(y_true), np.array(y_pred)
 
     mse = np.mean((y_pred - y_true) ** 2)
     return np.sqrt(mse)
