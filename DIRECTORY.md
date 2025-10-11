@@ -623,7 +623,7 @@
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
-  * [t-SNE] (machine_learning/tsne.py)
+  * [t-SNE](machine_learning/tsne.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
