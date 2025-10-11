@@ -667,3 +667,23 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+
+def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculate the Root Mean Squared Error (RMSE) between ground truth and predicted values.
+    """
+    # Checking if input arrays have same length
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    # Calculating squared differences between true and predicted values
+    # (y_true - y_pred) gives errors, then we square each error
+    squared_errors = (y_true - y_pred) ** 2
+
+    # Calculate mean of all squared errors
+    # So that to get the MSE
+    mean_squared_error = np.mean(squared_errors)
+
+    # Taken the square root of MSE to get RMSE
+    return np.sqrt(mean_squared_error)
