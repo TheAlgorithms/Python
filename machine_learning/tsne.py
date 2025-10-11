@@ -14,19 +14,17 @@ References:
 """
 
 import doctest
-from typing import Tuple
-
 import numpy as np
 from numpy import ndarray
 from sklearn.datasets import load_iris
 
 
-def collect_dataset() -> Tuple[ndarray, ndarray]:
+def collect_dataset() -> tuple[ndarray, ndarray]:
     """
     Load Iris dataset and return features and labels.
 
     Returns:
-        Tuple[ndarray, ndarray]: feature matrix and target labels
+        tuple[ndarray, ndarray]: feature matrix and target labels
 
     Example:
     >>> x, y = collect_dataset()
@@ -39,9 +37,7 @@ def collect_dataset() -> Tuple[ndarray, ndarray]:
     return np.array(data.data), np.array(data.target)
 
 
-def compute_pairwise_affinities(
-    data_x: ndarray, sigma: float = 1.0
-) -> ndarray:
+def compute_pairwise_affinities(data_x: ndarray, sigma: float = 1.0) -> ndarray:
     """
     Compute high-dimensional affinities (P matrix) using Gaussian kernel.
 
@@ -67,9 +63,7 @@ def compute_pairwise_affinities(
     return (p + p.T) / (2 * n_samples)
 
 
-def compute_low_dim_affinities(
-    low_dim_embedding: ndarray,
-) -> Tuple[ndarray, ndarray]:
+def compute_low_dim_affinities(low_dim_embedding: ndarray) -> tuple[ndarray, ndarray]:
     """
     Compute low-dimensional affinities (Q matrix) using Student-t distribution.
 
@@ -77,7 +71,7 @@ def compute_low_dim_affinities(
         low_dim_embedding: shape (n_samples, n_components)
 
     Returns:
-        Tuple[ndarray, ndarray]: Q probability matrix and numerator
+        tuple[ndarray, ndarray]: Q probability matrix and numerator
 
     Example:
     >>> y = np.array([[0.0, 0.0], [1.0, 0.0]])
