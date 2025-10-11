@@ -36,4 +36,5 @@ def bubble_sort_recursive(arr: List[int]) -> List[int]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
