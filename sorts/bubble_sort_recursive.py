@@ -1,7 +1,4 @@
-from typing import List
-
-
-def bubble_sort_recursive(arr: List[int]) -> List[int]:
+def bubble_sort_recursive(arr: list[int]) -> list[int]:
     """
     Sorts a list of integers using the recursive Bubble Sort algorithm.
 
@@ -26,12 +23,10 @@ def bubble_sort_recursive(arr: List[int]) -> List[int]:
             arr[i], arr[i + 1] = arr[i + 1], arr[i]
             swapped = True
 
-    # Base case: if no elements were swapped, the array is sorted
     if not swapped:
         return arr
 
-    # Recursive call for the remaining unsorted part
-    return bubble_sort_recursive(arr[:-1]) + [arr[-1]]
+    return [*bubble_sort_recursive(arr[:-1]), arr[-1]]
 
 
 if __name__ == "__main__":
