@@ -5,7 +5,7 @@ t-Distributed Stochastic Neighbor Embedding (t-SNE)
 t-SNE is a nonlinear dimensionality reduction algorithm for visualizing
 high-dimensional data in a low-dimensional space (2D or 3D).
 
-It computes pairwise similarities in both spaces and minimizes the 
+It computes pairwise similarities in both spaces and minimizes the
 Kullback-Leibler divergence using gradient descent.
 
 References:
@@ -37,9 +37,7 @@ def collect_dataset() -> tuple[np.ndarray, np.ndarray]:
     return np.array(data.data), np.array(data.target)
 
 
-def compute_pairwise_affinities(
-    data_x: np.ndarray, sigma: float = 1.0
-) -> np.ndarray:
+def compute_pairwise_affinities(data_x: np.ndarray, sigma: float = 1.0) -> np.ndarray:
     """
     Compute high-dimensional affinities (P matrix) using Gaussian kernel.
 
