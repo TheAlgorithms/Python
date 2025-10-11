@@ -15,6 +15,7 @@ import numpy as np
 from numpy import ndarray
 from sklearn.datasets import load_iris
 
+
 def _compute_pairwise_affinities(data_x: ndarray, sigma: float = 1.0) -> ndarray:
     """
     Compute high-dimensional affinities using Gaussian kernel.
@@ -58,7 +59,12 @@ def _compute_low_dim_affinities(low_dim_embedding: ndarray) -> tuple[ndarray, nd
     (2, 2)
     """
     sum_y = np.sum(np.square(low_dim_embedding), axis=1)
-    num = 1 / (1 + np.add(np.add(-2 * np.dot(low_dim_embedding, low_dim_embedding.T), sum_y).T, sum_y))
+    num = 1 / (
+        1
+        + np.add(
+            np.add(-2 * np.dot(low_dim_embedding, low_dim_embedding.T), sum_y).T, sum_y
+        )
+    )
     np.fill_diagonal(num, 0)
     q = num / np.sum(num)
     return q, num
@@ -82,7 +88,9 @@ class TSNE:
     (150, 2)
     """
 
-    def __init__(self, *, n_components: int = 2, learning_rate: float = 200.0, n_iter: int = 500) -> None:
+    def __init__(
+        self, *, n_components: int = 2, learning_rate: float = 200.0, n_iter: int = 500
+    ) -> None:
         if n_components < 1:
             raise ValueError("n_components must be >= 1")
         if n_iter < 1:
@@ -195,5 +203,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
