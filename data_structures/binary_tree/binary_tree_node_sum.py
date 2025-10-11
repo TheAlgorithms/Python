@@ -8,7 +8,6 @@ Python implementation:
                             frames that could be in memory is `n`
 """
 
-
 from __future__ import annotations
 
 from collections.abc import Iterator

@@ -3,6 +3,7 @@ https://en.wikipedia.org/wiki/Weird_number
 
 Fun fact: The set of weird numbers has positive asymptotic density.
 """
+
 from math import sqrt
 
 

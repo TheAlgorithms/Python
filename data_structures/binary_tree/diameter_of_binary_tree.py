@@ -2,6 +2,7 @@
 The diameter/width of a tree is defined as the number of nodes on the longest path
 between two end nodes.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

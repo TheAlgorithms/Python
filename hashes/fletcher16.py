@@ -1,6 +1,6 @@
 """
 The Fletcher checksum is an algorithm for computing a position-dependent
-checksum devised by John G. Fletcher (1934–2012) at Lawrence Livermore Labs
+checksum devised by John G. Fletcher (1934-2012) at Lawrence Livermore Labs
 in the late 1970s.[1] The objective of the Fletcher checksum was to
 provide error-detection properties approaching those of a cyclic
 redundancy check but with the lower computational effort associated

@@ -8,13 +8,13 @@ and buoyancy is equal to the downward gravity force acting on the
 object. The acceleration of the object is zero as the net force acting on
 the object is zero.
 
-Vt = ((2 * m * g)/(ρ * A * Cd))^0.5
+Vt = ((2 * m * g)/(p * A * Cd))^0.5
 
 where :
 Vt = Terminal velocity (in m/s)
 m = Mass of the falling object (in Kg)
 g = Acceleration due to gravity (value taken : imported from scipy)
-ρ = Density of the fluid through which the object is falling (in Kg/m^3)
+p = Density of the fluid through which the object is falling (in Kg/m^3)
 A = Projected area of the object (in m^2)
 Cd = Drag coefficient (dimensionless)
 

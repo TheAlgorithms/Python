@@ -15,6 +15,7 @@ below 1 million using the Sieve of Eratosthenes. Then, out of all these primes,
 we will rule out the numbers which contain an even digit. After this we will
 generate each circular combination of the number and check if all are prime.
 """
+
 from __future__ import annotations
 
 sieve = [True] * 1000001

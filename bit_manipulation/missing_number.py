@@ -11,6 +11,12 @@ def find_missing_number(nums: list[int]) -> int:
     Example:
         >>> find_missing_number([0, 1, 3, 4])
         2
+        >>> find_missing_number([4, 3, 1, 0])
+        2
+        >>> find_missing_number([-4, -3, -1, 0])
+        -2
+        >>> find_missing_number([-2, 2, 1, 3, 0])
+        -1
         >>> find_missing_number([1, 3, 4, 5, 6])
         2
         >>> find_missing_number([6, 5, 4, 2, 1])
@@ -26,3 +32,9 @@ def find_missing_number(nums: list[int]) -> int:
         missing_number ^= i ^ nums[i - low]
 
     return missing_number
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

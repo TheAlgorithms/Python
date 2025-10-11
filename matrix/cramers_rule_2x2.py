@@ -73,12 +73,11 @@ def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float,
             raise ValueError("Infinite solutions. (Consistent system)")
         else:
             raise ValueError("No solution. (Inconsistent system)")
+    elif determinant_x == determinant_y == 0:
+        # Trivial solution (Inconsistent system)
+        return (0.0, 0.0)
     else:
-        if determinant_x == determinant_y == 0:
-            # Trivial solution (Inconsistent system)
-            return (0.0, 0.0)
-        else:
-            x = determinant_x / determinant
-            y = determinant_y / determinant
-            # Non-Trivial Solution (Consistent system)
-            return (x, y)
+        x = determinant_x / determinant
+        y = determinant_y / determinant
+        # Non-Trivial Solution (Consistent system)
+        return (x, y)

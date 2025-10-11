@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LRU Cache
 
@@ -28,7 +28,7 @@ class DoubleLinkedListNode(Generic[T, U]):
         )
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList[T, U]:
     """
     Double Linked List built specifically for LRU Cache
 
@@ -143,7 +143,7 @@ class DoubleLinkedList(Generic[T, U]):
         return node
 
 
-class LRUCache(Generic[T, U]):
+class LRUCache[T, U]:
     """
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
@@ -208,9 +208,6 @@ class LRUCache(Generic[T, U]):
     >>> fib.cache_info()
     CacheInfo(hits=194, misses=99, capacity=100, current size=99)
     """
-
-    # class variable to map the decorator functions to their respective instance
-    decorator_function_to_instance_map: dict[Callable[[T], U], LRUCache[T, U]] = {}
 
     def __init__(self, capacity: int):
         self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
@@ -308,18 +305,23 @@ class LRUCache(Generic[T, U]):
         """
 
         def cache_decorator_inner(func: Callable[[T], U]) -> Callable[..., U]:
-            def cache_decorator_wrapper(*args: T) -> U:
-                if func not in cls.decorator_function_to_instance_map:
-                    cls.decorator_function_to_instance_map[func] = LRUCache(size)
+            # variable to map the decorator functions to their respective instance
+            decorator_function_to_instance_map: dict[
+                Callable[[T], U], LRUCache[T, U]
+            ] = {}
 
-                result = cls.decorator_function_to_instance_map[func].get(args[0])
+            def cache_decorator_wrapper(*args: T) -> U:
+                if func not in decorator_function_to_instance_map:
+                    decorator_function_to_instance_map[func] = LRUCache(size)
+
+                result = decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
                     result = func(*args)
-                    cls.decorator_function_to_instance_map[func].put(args[0], result)
+                    decorator_function_to_instance_map[func].put(args[0], result)
                 return result
 
             def cache_info() -> LRUCache[T, U]:
-                return cls.decorator_function_to_instance_map[func]
+                return decorator_function_to_instance_map[func]
 
             setattr(cache_decorator_wrapper, "cache_info", cache_info)  # noqa: B010
 

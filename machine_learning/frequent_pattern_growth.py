@@ -9,6 +9,7 @@ WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -106,8 +107,8 @@ def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     if not (freq_item_set := set(header_table)):
         return TreeNode("Null Set", 1, None), {}
 
-    for k in header_table:
-        header_table[k] = [header_table[k], None]
+    for key, value in header_table.items():
+        header_table[key] = [value, None]
 
     fp_tree = TreeNode("Null Set", 1, None)  # Parent is None for the root node
     for tran_set in data_set:
@@ -239,7 +240,7 @@ def ascend_tree(leaf_node: TreeNode, prefix_path: list[str]) -> None:
         ascend_tree(leaf_node.parent, prefix_path)
 
 
-def find_prefix_path(base_pat: frozenset, tree_node: TreeNode | None) -> dict:
+def find_prefix_path(base_pat: frozenset, tree_node: TreeNode | None) -> dict:  # noqa: ARG001
     """
     Find the conditional pattern base for a given base pattern.
 
@@ -276,7 +277,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: TreeNode | None) -> dict:
 
 
 def mine_tree(
-    in_tree: TreeNode,
+    in_tree: TreeNode,  # noqa: ARG001
     header_table: dict,
     min_sup: int,
     pre_fix: set,

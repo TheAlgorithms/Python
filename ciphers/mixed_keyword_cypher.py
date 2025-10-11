@@ -67,7 +67,7 @@ def mixed_keyword(
     if verbose:
         print(mapping)
     # create the encrypted text by mapping the plaintext to the modified alphabet
-    return "".join(mapping[char] if char in mapping else char for char in plaintext)
+    return "".join(mapping.get(char, char) for char in plaintext)
 
 
 if __name__ == "__main__":

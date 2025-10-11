@@ -9,6 +9,7 @@ with the precision of the approximation increasing as the number of iterations i
 
 Reference: https://en.wikipedia.org/wiki/Newton%27s_method
 """
+
 from collections.abc import Callable
 
 RealFunc = Callable[[float], float]

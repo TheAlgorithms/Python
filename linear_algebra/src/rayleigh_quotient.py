@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Rayleigh_quotient
 """
+
 from typing import Any
 
 import numpy as np

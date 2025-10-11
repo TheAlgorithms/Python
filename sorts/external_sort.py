@@ -61,7 +61,7 @@ class FilesArray:
         self.files = files
         self.empty = set()
         self.num_buffers = len(files)
-        self.buffers = {i: None for i in range(self.num_buffers)}
+        self.buffers = dict.fromkeys(range(self.num_buffers))
 
     def get_dict(self):
         return {
@@ -77,10 +77,7 @@ class FilesArray:
                     self.empty.add(i)
                     self.files[i].close()
 
-        if len(self.empty) == self.num_buffers:
-            return False
-
-        return True
+        return len(self.empty) != self.num_buffers
 
     def unshift(self, index):
         value = self.buffers[index]

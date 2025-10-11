@@ -13,6 +13,7 @@ Using words.txt (right click and 'Save Link/Target As...'), a 16K text file
 containing nearly two-thousand common English words, how many are triangle
 words?
 """
+
 import os
 
 # Precomputes a list of the 100 first triangular numbers

@@ -82,8 +82,8 @@ def reformat_hex(i: int) -> bytes:
 
     hex_rep = format(i, "08x")[-8:]
     little_endian_hex = b""
-    for i in [3, 2, 1, 0]:
-        little_endian_hex += hex_rep[2 * i : 2 * i + 2].encode("utf-8")
+    for j in [3, 2, 1, 0]:
+        little_endian_hex += hex_rep[2 * j : 2 * j + 2].encode("utf-8")
     return little_endian_hex
 
 
@@ -131,7 +131,7 @@ def preprocess(message: bytes) -> bytes:
     return bit_string
 
 
-def get_block_words(bit_string: bytes) -> Generator[list[int], None, None]:
+def get_block_words(bit_string: bytes) -> Generator[list[int]]:
     """
     Splits bit string into blocks of 512 chars and yields each block as a list
     of 32-bit words

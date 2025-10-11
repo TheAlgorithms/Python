@@ -2,7 +2,8 @@
 Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis
 function.
 """
-import numpy
+
+import numpy as np
 
 # List of input, output pairs
 train_data = (
@@ -115,7 +116,7 @@ def run_gradient_descent():
             temp_parameter_vector[i] = (
                 parameter_vector[i] - LEARNING_RATE * cost_derivative
             )
-        if numpy.allclose(
+        if np.allclose(
             parameter_vector,
             temp_parameter_vector,
             atol=absolute_error_limit,

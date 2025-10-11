@@ -6,10 +6,11 @@ edges in the tree is minimized. The algorithm operates by building this tree one
 at a time, from an arbitrary starting vertex, at each step adding the cheapest possible
 connection from the tree to another vertex.
 """
+
 from __future__ import annotations
 
 from sys import maxsize
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -46,7 +47,7 @@ def get_child_right_position(position: int) -> int:
     return (2 * position) + 2
 
 
-class MinPriorityQueue(Generic[T]):
+class MinPriorityQueue[T]:
     """
     Minimum Priority Queue Class
 
@@ -183,7 +184,7 @@ class MinPriorityQueue(Generic[T]):
         self.position_map[node2_elem] = node1_pos
 
 
-class GraphUndirectedWeighted(Generic[T]):
+class GraphUndirectedWeighted[T]:
     """
     Graph Undirected Weighted Class
 
@@ -216,7 +217,7 @@ class GraphUndirectedWeighted(Generic[T]):
         self.connections[node2][node1] = weight
 
 
-def prims_algo(
+def prims_algo[T](
     graph: GraphUndirectedWeighted[T],
 ) -> tuple[dict[T, int], dict[T, T | None]]:
     """
@@ -238,8 +239,8 @@ def prims_algo(
     13
     """
     # prim's algorithm for minimum spanning tree
-    dist: dict[T, int] = {node: maxsize for node in graph.connections}
-    parent: dict[T, T | None] = {node: None for node in graph.connections}
+    dist: dict[T, int] = dict.fromkeys(graph.connections, maxsize)
+    parent: dict[T, T | None] = dict.fromkeys(graph.connections)
 
     priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
     for node, weight in dist.items():

@@ -7,7 +7,8 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Mish
 """
 
 import numpy as np
-from softplus import softplus
+
+from .softplus import softplus
 
 
 def mish(vector: np.ndarray) -> np.ndarray:

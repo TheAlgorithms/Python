@@ -13,6 +13,7 @@ This problem can be solved using the concept of "GREEDY ALGORITHM".
 Time Complexity - O(n log n)
 https://medium.com/@nihardudhat2000/job-sequencing-with-deadline-17ddbb5890b5
 """
+
 from dataclasses import dataclass
 from operator import attrgetter
 

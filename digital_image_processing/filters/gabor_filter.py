@@ -48,9 +48,9 @@ def gabor_filter_kernel(
             _y = -sin_theta * px + cos_theta * py
 
             # fill kernel
-            gabor[y, x] = np.exp(
-                -(_x**2 + gamma**2 * _y**2) / (2 * sigma**2)
-            ) * np.cos(2 * np.pi * _x / lambd + psi)
+            gabor[y, x] = np.exp(-(_x**2 + gamma**2 * _y**2) / (2 * sigma**2)) * np.cos(
+                2 * np.pi * _x / lambd + psi
+            )
 
     return gabor
 

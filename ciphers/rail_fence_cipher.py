@@ -1,4 +1,4 @@
-""" https://en.wikipedia.org/wiki/Rail_fence_cipher """
+"""https://en.wikipedia.org/wiki/Rail_fence_cipher"""
 
 
 def encrypt(input_string: str, key: int) -> str:

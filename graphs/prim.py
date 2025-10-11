@@ -1,8 +1,8 @@
 """Prim's Algorithm.
 
-    Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm.
+Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm.
 
-    Details: https://en.wikipedia.org/wiki/Prim%27s_algorithm
+Details: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
 
 import heapq as hq

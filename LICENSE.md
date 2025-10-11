@@ -1,4 +1,4 @@
-MIT License
+## MIT License
 
 Copyright (c) 2016-2022 TheAlgorithms and contributors
 

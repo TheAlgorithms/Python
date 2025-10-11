@@ -41,7 +41,7 @@ def calculate_pi(limit: int) -> str:
     t = 1
     k = 1
     n = 3
-    l = 3
+    m = 3
 
     decimal = limit
     counter = 0
@@ -65,11 +65,11 @@ def calculate_pi(limit: int) -> str:
             q *= 10
             r = nr
         else:
-            nr = (2 * q + r) * l
-            nn = (q * (7 * k) + 2 + (r * l)) // (t * l)
+            nr = (2 * q + r) * m
+            nn = (q * (7 * k) + 2 + (r * m)) // (t * m)
             q *= k
-            t *= l
-            l += 2
+            t *= m
+            m += 2
             k += 1
             n = nn
             r = nr

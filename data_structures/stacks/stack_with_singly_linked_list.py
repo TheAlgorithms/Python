@@ -1,13 +1,14 @@
-""" A Stack using a linked list like structure """
+"""A Stack using a linked list like structure"""
+
 from __future__ import annotations
 
 from collections.abc import Iterator
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class Node(Generic[T]):
+class Node[T]:
     def __init__(self, data: T):
         self.data = data
         self.next: Node[T] | None = None
@@ -16,7 +17,7 @@ class Node(Generic[T]):
         return f"{self.data}"
 
 
-class LinkedStack(Generic[T]):
+class LinkedStack[T]:
     """
     Linked List Stack implementing push (to top),
     pop (from top) and is_empty

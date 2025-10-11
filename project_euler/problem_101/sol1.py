@@ -41,6 +41,7 @@ Consider the following tenth degree polynomial generating function:
 
 Find the sum of FITs for the BOPs.
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable

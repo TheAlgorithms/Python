@@ -88,9 +88,11 @@ def solution(max_proportion: float = 1 / 12345) -> int:
             total_partitions += 1
             if check_partition_perfect(partition_candidate):
                 perfect_partitions += 1
-        if perfect_partitions > 0:
-            if perfect_partitions / total_partitions < max_proportion:
-                return int(partition_candidate)
+        if (
+            perfect_partitions > 0
+            and perfect_partitions / total_partitions < max_proportion
+        ):
+            return int(partition_candidate)
         integer += 1
 
 

@@ -9,6 +9,7 @@ After through ReLU, the element of the vector always 0 or real number.
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 """
+
 from __future__ import annotations
 
 import numpy as np

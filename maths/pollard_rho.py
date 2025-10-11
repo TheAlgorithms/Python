@@ -94,14 +94,13 @@ def pollard_rho(
             if divisor == 1:
                 # No common divisor yet, just keep searching.
                 continue
+            # We found a common divisor!
+            elif divisor == num:
+                # Unfortunately, the divisor is ``num`` itself and is useless.
+                break
             else:
-                # We found a common divisor!
-                if divisor == num:
-                    # Unfortunately, the divisor is ``num`` itself and is useless.
-                    break
-                else:
-                    # The divisor is a nontrivial factor of ``num``!
-                    return divisor
+                # The divisor is a nontrivial factor of ``num``!
+                return divisor
 
         # If we made it here, then this attempt failed.
         # We need to pick a new starting seed for the tortoise and hare

@@ -75,6 +75,7 @@ Applying these two formulas we can check if a queen in some position is being at
 for another one or vice versa.
 
 """
+
 from __future__ import annotations
 
 

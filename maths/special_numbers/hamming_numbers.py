@@ -13,6 +13,10 @@ def hamming(n_element: int) -> list:
     :param n_element: The number of elements on the list
     :return: The nth element of the list
 
+    >>> hamming(-5)
+    Traceback (most recent call last):
+        ...
+    ValueError: n_element should be a positive number
     >>> hamming(5)
     [1, 2, 3, 4, 5]
     >>> hamming(10)
@@ -22,7 +26,7 @@ def hamming(n_element: int) -> list:
     """
     n_element = int(n_element)
     if n_element < 1:
-        my_error = ValueError("a should be a positive number")
+        my_error = ValueError("n_element should be a positive number")
         raise my_error
 
     hamming_list = [1]

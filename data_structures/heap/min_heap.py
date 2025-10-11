@@ -66,14 +66,14 @@ class MinHeap:
     # this is min-heapify method
     def sift_down(self, idx, array):
         while True:
-            l = self.get_left_child_idx(idx)  # noqa: E741
-            r = self.get_right_child_idx(idx)
+            left = self.get_left_child_idx(idx)
+            right = self.get_right_child_idx(idx)
 
             smallest = idx
-            if l < len(array) and array[l] < array[idx]:
-                smallest = l
-            if r < len(array) and array[r] < array[smallest]:
-                smallest = r
+            if left < len(array) and array[left] < array[idx]:
+                smallest = left
+            if right < len(array) and array[right] < array[smallest]:
+                smallest = right
 
             if smallest != idx:
                 array[idx], array[smallest] = array[smallest], array[idx]
@@ -124,9 +124,9 @@ class MinHeap:
         return len(self.heap) == 0
 
     def decrease_key(self, node, new_value):
-        assert (
-            self.heap[self.idx_of_element[node]].val > new_value
-        ), "newValue must be less that current value"
+        assert self.heap[self.idx_of_element[node]].val > new_value, (
+            "newValue must be less that current value"
+        )
         node.val = new_value
         self.heap_dict[node.name] = new_value
         self.sift_up(self.idx_of_element[node])

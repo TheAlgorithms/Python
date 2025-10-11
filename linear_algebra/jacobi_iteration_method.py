@@ -1,6 +1,7 @@
 """
 Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -111,7 +112,7 @@ def jacobi_iteration_method(
         (coefficient_matrix, constant_matrix), axis=1
     )
 
-    rows, cols = table.shape
+    rows, _cols = table.shape
 
     strictly_diagonally_dominant(table)
 
@@ -148,7 +149,7 @@ def jacobi_iteration_method(
 
     # Here we get 'i_col' - these are the column numbers, for each row
     # without diagonal elements, except for the last column.
-    i_row, i_col = np.where(masks)
+    _i_row, i_col = np.where(masks)
     ind = i_col.reshape(-1, rows - 1)
 
     #'i_col' is converted to a two-dimensional list 'ind', which will be

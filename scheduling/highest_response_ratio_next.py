@@ -4,6 +4,7 @@ It was developed as modification of shortest job next or shortest job first (SJN
 to mitigate the problem of process starvation.
 https://en.wikipedia.org/wiki/Highest_response_ratio_next
 """
+
 from statistics import mean
 
 import numpy as np
@@ -45,8 +46,7 @@ def calculate_turn_around_time(
         i = 0
         while finished_process[i] == 1:
             i += 1
-        if current_time < arrival_time[i]:
-            current_time = arrival_time[i]
+        current_time = max(current_time, arrival_time[i])
 
         response_ratio = 0
         # Index showing the location of the process being performed
@@ -74,7 +74,10 @@ def calculate_turn_around_time(
 
 
 def calculate_waiting_time(
-    process_name: list, turn_around_time: list, burst_time: list, no_of_process: int
+    process_name: list,  # noqa: ARG001
+    turn_around_time: list,
+    burst_time: list,
+    no_of_process: int,
 ) -> list:
     """
     Calculate the waiting time of each processes.

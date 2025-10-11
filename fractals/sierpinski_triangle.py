@@ -22,6 +22,7 @@ Credits:
     This code was written by editing the code from
     https://www.riannetrujillo.com/blog/python-fractal/
 """
+
 import sys
 import turtle
 
