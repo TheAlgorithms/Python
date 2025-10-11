@@ -672,22 +672,20 @@ if __name__ == "__main__":
 def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the Root Mean Squared Error (RMSE) between ground truth and predicted values.
-    # ... docstring continues ...
     """
-    # LINE 1: Check if input arrays have same length
+    # Checking if input arrays have same length
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
 
-    # LINE 2: Calculate squared differences between true and predicted values
+    # Calculating squared differences between true and predicted values
     # (y_true - y_pred) gives errors, then we square each error
     squared_errors = (y_true - y_pred) ** 2
 
-    # LINE 3: Calculate mean of all squared errors
-    # This gives Mean Squared Error (MSE)
+    # Calculate mean of all squared errors
+    # So that to get the MSE
     mean_squared_error = np.mean(squared_errors)
 
-    # LINE 4: Take square root of MSE to get RMSE
-    # This brings units back to original scale
+    # Taken the square root of MSE to get RMSE
     return np.sqrt(mean_squared_error)
 
 
