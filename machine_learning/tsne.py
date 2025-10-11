@@ -66,7 +66,7 @@ def compute_pairwise_affinities(x: np.ndarray, sigma: float = 1.0) -> np.ndarray
     n_samples = x.shape[0]
     sum_x = np.sum(np.square(x), axis=1)
     d = np.add(np.add(-2 * np.dot(x, x.T), sum_x).T, sum_x)
-    p = np.exp(-d / (2 * sigma ** 2))
+    p = np.exp(-d / (2 * sigma**2))
     np.fill_diagonal(p, 0)
     p /= np.sum(p)
     return (p + p.T) / (2 * n_samples)
