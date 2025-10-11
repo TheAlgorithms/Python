@@ -5,7 +5,7 @@ t-Distributed Stochastic Neighbor Embedding (t-SNE)
 t-SNE is a nonlinear dimensionality reduction algorithm for visualizing
 high-dimensional data in a low-dimensional space (2D or 3D).
 
-It computes pairwise similarities in both spaces and minimizes the 
+It computes pairwise similarities in both spaces and minimizes the
 Kullback-Leibler divergence using gradient descent.
 
 References:
