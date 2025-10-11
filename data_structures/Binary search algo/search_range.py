@@ -1,5 +1,6 @@
 from typing import List
 
+
 def search_range(nums: List[int], target: int) -> List[int]:
     """
     Finds the first and last position of a given target value in a sorted array.

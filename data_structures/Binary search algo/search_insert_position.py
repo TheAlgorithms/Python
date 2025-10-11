@@ -1,5 +1,6 @@
 from typing import List
 
+
 def search_insert(nums: List[int], target: int) -> int:
     """
     Finds the index to insert a target value into a sorted list.
