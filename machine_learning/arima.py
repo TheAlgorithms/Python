@@ -12,6 +12,7 @@ Wikipedia page on ARIMA:
 https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 """
 
+
 class ARIMA:
     def __init__(self, p=1, d=1, q=1, lr=0.001, epochs=500) -> None:
         """
@@ -93,8 +94,11 @@ class ARIMA:
         return forecast
 
     def _compute_residuals(
-        self, diff_data: NDArray[np.float64], phi: NDArray[np.float64],
-        theta: NDArray[np.float64], c: float
+        self,
+        diff_data: NDArray[np.float64],
+        phi: NDArray[np.float64],
+        theta: NDArray[np.float64],
+        c: float,
     ) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
         """
         Computes residuals for given parameters.
@@ -115,12 +119,12 @@ class ARIMA:
         for t in range(start, n):
             # AR part: a weighted sum of the last 'p' actual values.
             # We reverse the data slice [::-1] so that the most recent value is first.
-            ar_term = (np.dot(phi, diff_data[t - self.p:t][::-1])
-                      if self.p > 0 else 0.0)
+            ar_term = (
+                np.dot(phi, diff_data[t - self.p : t][::-1]) if self.p > 0 else 0.0
+            )
 
             # MA part: a weighted sum of the last 'q' prediction errors.
-            ma_term = (np.dot(theta, errors[t - self.q:t][::-1])
-                      if self.q > 0 else 0.0)
+            ma_term = np.dot(theta, errors[t - self.q : t][::-1]) if self.q > 0 else 0.0
 
             # Combine everything to make the one-step-ahead prediction.
             preds[t] = c + ar_term + ma_term
@@ -131,7 +135,7 @@ class ARIMA:
 
     def fit(
         self, data: list[float] | NDArray[np.float64], method: str = "opt"
-    ) -> 'ARIMA':
+    ) -> "ARIMA":
         """
         Trains the ARIMA model.
 
@@ -190,10 +194,16 @@ class ARIMA:
         for epoch in range(self.epochs):
             # First, calculate the predictions and errors with the current parameters.
             for t in range(start, n):
-                ar_term = (np.dot(self.phi, diff_data[t - self.p:t][::-1])
-                          if self.p > 0 else 0.0)
-                ma_term = (np.dot(self.theta, errors[t - self.q:t][::-1])
-                          if self.q > 0 else 0.0)
+                ar_term = (
+                    np.dot(self.phi, diff_data[t - self.p : t][::-1])
+                    if self.p > 0
+                    else 0.0
+                )
+                ma_term = (
+                    np.dot(self.theta, errors[t - self.q : t][::-1])
+                    if self.q > 0
+                    else 0.0
+                )
                 preds[t] = self.c + ar_term + ma_term
                 errors[t] = diff_data[t] - preds[t]
 
@@ -231,7 +241,7 @@ class ARIMA:
         self.n_train = n  # Ensure n_train is assigned as an integer
         sigma_term = np.sum(self.errors[start:] ** 2) / m
         self.sigma_err = float(np.sqrt(sigma_term))
-        msg=f"Fitted params (GD): phi={self.phi},theta={self.theta},c={self.c:.6f}\n"
+        msg = f"Fitted params (GD): phi={self.phi},theta={self.theta},c={self.c:.6f}\n"
         print(msg)
 
     def _fit_optimization(self, diff_data: NDArray[np.float64], start: int) -> None:
@@ -249,8 +259,8 @@ class ARIMA:
         # Must find 'params' that make output of this function as small as possible.
         def sse_objective(params):
             # Unpack the parameters from the single array the optimizer uses.
-            phi = params[:self.p] if self.p > 0 else np.array([])
-            theta = params[self.p:self.p + self.q] if self.q > 0 else np.array([])
+            phi = params[: self.p] if self.p > 0 else np.array([])
+            theta = params[self.p : self.p + self.q] if self.q > 0 else np.array([])
             c = params[-1]
 
             # Calculate the errors for these parameters.
@@ -265,18 +275,22 @@ class ARIMA:
         result = minimize(
             sse_objective,
             init_params,
-            method='L-BFGS-B',
-            options={"maxiter": 5000, "ftol": 1e-9}
+            method="L-BFGS-B",
+            options={"maxiter": 5000, "ftol": 1e-9},
         )
 
         # Once it's done, unpack the best parameters it found.
         best_params = result.x
-        self.phi = best_params[:self.p] if self.p > 0 else np.array([])
-        self.theta = best_params[self.p:self.p + self.q] if self.q > 0 else np.array([])
+        self.phi = best_params[: self.p] if self.p > 0 else np.array([])
+        self.theta = (
+            best_params[self.p : self.p + self.q] if self.q > 0 else np.array([])
+        )
         self.c = float(best_params[-1])
 
         # Recalculate final errors with these optimal parameters and store everything.
-        _,final_errors=self._compute_residuals(diff_data,self.phi,self.theta,self.c)
+        _, final_errors = self._compute_residuals(
+            diff_data, self.phi, self.theta, self.c
+        )
         self.errors = final_errors  # Ensure errors is assigned correctly
         self.diff_data = diff_data  # Ensure diff_data is assigned correctly
         self.n_train = n  # Ensure n_train is assigned as an integer
@@ -285,11 +299,7 @@ class ARIMA:
         self.sigma_err = float(np.sqrt(sigma_term / denom))
 
         # Format and print results
-        params = {
-            'phi': self.phi,
-            'theta': self.theta,
-            'c': f"{self.c:.6f}"
-        }
+        params = {"phi": self.phi, "theta": self.theta, "c": f"{self.c:.6f}"}
         msg = "Fitted params (Opt): phi={phi}, theta={theta}, c={c}\n"
         print(msg.format(**params))
 
@@ -325,12 +335,10 @@ class ARIMA:
         for _ in range(steps):
             # AR part: Use the last 'p' values (from previous y-values).
             ar_slice = slice(-self.p, None)
-            ar_term = (np.dot(self.phi, diff_data[ar_slice][::-1])
-                      if self.p > 0 else 0.0)
+            ar_term = np.dot(self.phi, diff_data[ar_slice][::-1]) if self.p > 0 else 0.0
             # MA part:Use the last 'q' errors(from prediction errors).
             ma_slice = slice(-self.q, None)
-            ma_term = (np.dot(self.theta, errors[ma_slice][::-1])
-                      if self.q > 0 else 0.0)
+            ma_term = np.dot(self.theta, errors[ma_slice][::-1]) if self.q > 0 else 0.0
 
             # The next predicted value (on the differenced scale).
             next_diff_forecast = self.c + ar_term + ma_term
@@ -385,7 +393,7 @@ if __name__ == "__main__":
     forecast = model.forecast(forecast_steps, simulate_errors=True)
 
     # Compare forecast to the actual data.
-    true_future = data[train_end:train_end + forecast_steps]
+    true_future = data[train_end : train_end + forecast_steps]
     rmse = np.sqrt(np.mean((np.array(forecast) - true_future) ** 2))
     print(f"Forecast RMSE: {rmse:.6f}\n")
 
@@ -405,7 +413,7 @@ if __name__ == "__main__":
         color="gray",
         linestyle=":",
         alpha=0.7,
-        label=f"Train/Test {split_label}"
+        label=f"Train/Test {split_label}",
     )
     plt.xlabel("Time Step")
     plt.ylabel("Value")
