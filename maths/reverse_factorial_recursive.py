@@ -2,7 +2,7 @@ def reverse_factorial(n: int, divisor: int = 1) -> int:
     """
     Return x such that x! equals the given n, or -1 if no such integer exists.
 
-    This function recursively divides the number `n` by successive integers 
+    This function recursively divides the number `n` by successive integers
     starting from 1 until it reaches 1. If the division completes exactly at 1,
     the last divisor - 1 is the factorial root. Otherwise, return -1.
 
