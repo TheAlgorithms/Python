@@ -2,58 +2,33 @@
 t-Distributed Stochastic Neighbor Embedding (t-SNE)
 ---------------------------------------------------
 
-t-SNE is a nonlinear dimensionality reduction algorithm for visualizing
-high-dimensional data in a low-dimensional space (2D or 3D).
-
-It computes pairwise similarities in both spaces and minimizes the 
-Kullback-Leibler divergence using gradient descent.
+Nonlinear dimensionality reduction for visualizing high-dimensional data
+in 2D or 3D. Computes pairwise similarities in high and low-dimensional
+spaces and minimizes Kullback-Leibler divergence using gradient descent.
 
 References:
 - van der Maaten, L. & Hinton, G. (2008), JMLR.
 - https://lvdmaaten.github.io/tsne/
 """
 
-import doctest
-
 import numpy as np
+from numpy import ndarray
 from sklearn.datasets import load_iris
 
-
-def collect_dataset() -> tuple[np.ndarray, np.ndarray]:
+def _compute_pairwise_affinities(data_x: ndarray, sigma: float = 1.0) -> ndarray:
     """
-    Load Iris dataset and return features and labels.
-
-    Returns:
-        Tuple[np.ndarray, np.ndarray]: feature matrix and target labels
-
-    Example:
-    >>> x, y = collect_dataset()
-    >>> x.shape
-    (150, 4)
-    >>> y.shape
-    (150,)
-    """
-    data = load_iris()
-    return np.array(data.data), np.array(data.target)
-
-
-def compute_pairwise_affinities(
-    data_x: np.ndarray, sigma: float = 1.0
-) -> np.ndarray:
-    """
-    Compute high-dimensional affinities (P matrix) using Gaussian kernel.
+    Compute high-dimensional affinities using Gaussian kernel.
 
     Args:
-        data_x: Input data of shape (n_samples, n_features)
-        sigma: Gaussian kernel bandwidth
+        data_x (ndarray): shape (n_samples, n_features)
+        sigma (float): Gaussian kernel bandwidth
 
     Returns:
-        np.ndarray: Symmetrized probability matrix
+        ndarray: Symmetrized probability matrix
 
     Example:
-    >>> import numpy as np
     >>> x = np.array([[0.0, 0.0], [1.0, 0.0]])
-    >>> p = compute_pairwise_affinities(x)
+    >>> p = _compute_pairwise_affinities(x)
     >>> float(round(p[0, 1], 3))
     0.25
     """
@@ -66,97 +41,159 @@ def compute_pairwise_affinities(
     return (p + p.T) / (2 * n_samples)
 
 
-def compute_low_dim_affinities(
-    y: np.ndarray,
-) -> tuple[np.ndarray, np.ndarray]:
+def _compute_low_dim_affinities(low_dim_embedding: ndarray) -> tuple[ndarray, ndarray]:
     """
-    Compute low-dimensional affinities (Q matrix) using Student-t distribution.
+    Compute low-dimensional affinities using Student-t distribution.
 
     Args:
-        y: Low-dimensional embeddings of shape (n_samples, n_components)
+        low_dim_embedding (ndarray): shape (n_samples, n_components)
 
     Returns:
-        Tuple[np.ndarray, np.ndarray]: Q probability matrix and numerator array
+        tuple[ndarray, ndarray]: Q matrix and numerator
+
+    Example:
+    >>> y = np.array([[0.0, 0.0], [1.0, 0.0]])
+    >>> q, num = _compute_low_dim_affinities(y)
+    >>> q.shape
+    (2, 2)
     """
-    sum_y = np.sum(np.square(y), axis=1)
-    num = 1 / (1 + np.add(np.add(-2 * np.dot(y, y.T), sum_y).T, sum_y))
+    sum_y = np.sum(np.square(low_dim_embedding), axis=1)
+    num = 1 / (1 + np.add(np.add(-2 * np.dot(low_dim_embedding, low_dim_embedding.T), sum_y).T, sum_y))
     np.fill_diagonal(num, 0)
     q = num / np.sum(num)
     return q, num
 
 
-def apply_tsne(
-    data_x: np.ndarray,
-    n_components: int = 2,
-    learning_rate: float = 200.0,
-    n_iter: int = 500,
-) -> np.ndarray:
+class TSNE:
     """
-    Apply t-SNE for dimensionality reduction.
+    t-SNE class for dimensionality reduction.
 
     Args:
-        data_x: Original dataset (features)
-        n_components: Target dimension (2D or 3D)
-        learning_rate: Step size for gradient descent
-        n_iter: Number of iterations
-
-    Returns:
-        np.ndarray: Low-dimensional embedding of the data
+        n_components (int): target dimension (default: 2)
+        learning_rate (float): gradient descent step size (default: 200)
+        n_iter (int): number of iterations (default: 500)
 
     Example:
-    >>> x, _ = collect_dataset()
-    >>> y_emb = apply_tsne(x, n_components=2, n_iter=50)
-    >>> y_emb.shape
+    >>> x, _ = load_iris(return_X_y=True)
+    >>> tsne = TSNE(n_components=2, n_iter=50)
+    >>> tsne.fit(x)
+    >>> emb = tsne.embedding_
+    >>> emb.shape
     (150, 2)
     """
-    if n_components < 1 or n_iter < 1:
-        raise ValueError("n_components and n_iter must be >= 1")
 
-    n_samples = data_x.shape[0]
-    rng = np.random.default_rng()
-    y = rng.standard_normal((n_samples, n_components)) * 1e-4
+    def __init__(self, *, n_components: int = 2, learning_rate: float = 200.0, n_iter: int = 500) -> None:
+        if n_components < 1:
+            raise ValueError("n_components must be >= 1")
+        if n_iter < 1:
+            raise ValueError("n_iter must be >= 1")
+        self.n_components = n_components
+        self.learning_rate = learning_rate
+        self.n_iter = n_iter
+        self.embedding_: ndarray | None = None
 
-    p = compute_pairwise_affinities(data_x)
-    p = np.maximum(p, 1e-12)
+    def fit(self, data_x: ndarray) -> None:
+        """
+        Fit t-SNE on data and compute low-dimensional embedding.
 
-    y_inc = np.zeros_like(y)
-    momentum = 0.5
+        Args:
+            data_x (ndarray): shape (n_samples, n_features)
 
-    for i in range(n_iter):
-        q, num = compute_low_dim_affinities(y)
-        q = np.maximum(q, 1e-12)
+        Example:
+        >>> x, _ = load_iris(return_X_y=True)
+        >>> tsne = TSNE(n_iter=10)
+        >>> tsne.fit(x)
+        >>> tsne.embedding_.shape
+        (150, 2)
+        """
+        n_samples = data_x.shape[0]
+        rng = np.random.default_rng()
+        y = rng.standard_normal((n_samples, self.n_components)) * 1e-4
 
-        pq = p - q
-        d_y = 4 * (
-            np.dot((pq * num), y)
-            - np.multiply(np.sum(pq * num, axis=1)[:, np.newaxis], y)
-        )
+        p = _compute_pairwise_affinities(data_x)
+        p = np.maximum(p, 1e-12)
 
-        y_inc = momentum * y_inc - learning_rate * d_y
-        y += y_inc
+        y_inc = np.zeros_like(y)
+        momentum = 0.5
 
-        if i == int(n_iter / 4):
-            momentum = 0.8
+        for i in range(self.n_iter):
+            q, num = _compute_low_dim_affinities(y)
+            q = np.maximum(q, 1e-12)
+            pq = p - q
 
-    return y
+            d_y = 4 * (
+                np.dot((pq * num), y)
+                - np.multiply(np.sum(pq * num, axis=1)[:, np.newaxis], y)
+            )
+
+            y_inc = momentum * y_inc - self.learning_rate * d_y
+            y += y_inc
+
+            if i == int(self.n_iter / 4):
+                momentum = 0.8
+
+        self.embedding_ = y
+
+    def transform(self, data_x: ndarray) -> ndarray:
+        """
+        Return the computed embedding after fitting.
+
+        Args:
+            data_x (ndarray): unused, exists for API consistency
+
+        Returns:
+            ndarray: low-dimensional embedding
+
+        Example:
+        >>> x, _ = load_iris(return_X_y=True)
+        >>> tsne = TSNE(n_iter=10)
+        >>> tsne.fit(x)
+        >>> tsne.transform(x).shape
+        (150, 2)
+        """
+        if self.embedding_ is None:
+            raise ValueError("Fit the model first using fit()")
+        return self.embedding_
+
+
+def collect_dataset() -> tuple[ndarray, ndarray]:
+    """
+    Load Iris dataset.
+
+    Returns:
+        tuple[ndarray, ndarray]: features and labels
+
+    Example:
+    >>> x, y = collect_dataset()
+    >>> x.shape
+    (150, 4)
+    >>> y.shape
+    (150,)
+    """
+    data = load_iris()
+    return np.array(data.data), np.array(data.target)
 
 
 def main() -> None:
     """
-    Run t-SNE on Iris dataset and display the first 5 embeddings.
+    Run t-SNE on Iris dataset and print first 5 points.
+
+    Example:
+    >>> main()  # runs without errors
     """
     data_x, _ = collect_dataset()
-    y_emb = apply_tsne(data_x, n_components=2, n_iter=300)
-
+    tsne = TSNE(n_components=2, n_iter=300)
+    tsne.fit(data_x)
     print("t-SNE embedding (first 5 points):")
-    print(y_emb[:5])
+    print(tsne.embedding_[:5])
 
-    # Optional visualization (commented out)
+    # Optional visualization
     # import matplotlib.pyplot as plt
-    # plt.scatter(y_emb[:, 0], y_emb[:, 1], c=_labels, cmap="viridis")
+    # plt.scatter(tsne.embedding_[:, 0], tsne.embedding_[:, 1], c=_labels, cmap="viridis")
     # plt.show()
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
     main()
