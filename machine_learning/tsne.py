@@ -154,7 +154,9 @@ def main() -> None:
     Run t-SNE on Iris dataset and display the first 5 embeddings.
 
     Example:
-    >>> main()  # runs without errors
+    >>> main()  # doctest: +ELLIPSIS
+    t-SNE embedding (first 5 points):
+    [[-...
     """
     data_x, _ = collect_dataset()
     y_emb = apply_tsne(data_x, n_components=2, n_iter=300)
