@@ -65,13 +65,15 @@ def compute_pairwise_affinities(data_x: np.ndarray, sigma: float = 1.0) -> np.nd
     n_samples = data_x.shape[0]
     sum_x = np.sum(np.square(data_x), axis=1)
     d = np.add(np.add(-2 * np.dot(data_x, data_x.T), sum_x).T, sum_x)
-    p = np.exp(-d / (2 * sigma ** 2))
+    p = np.exp(-d / (2 * sigma**2))
     np.fill_diagonal(p, 0)
     p /= np.sum(p)
     return (p + p.T) / (2 * n_samples)
 
 
-def compute_low_dim_affinities(embedding_y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def compute_low_dim_affinities(
+    embedding_y: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Computes low-dimensional similarities (Q matrix) using Student-t distribution.
 
@@ -87,7 +89,9 @@ def compute_low_dim_affinities(embedding_y: np.ndarray) -> tuple[np.ndarray, np.
     (2, 2)
     """
     sum_y = np.sum(np.square(embedding_y), axis=1)
-    num = 1 / (1 + np.add(np.add(-2 * np.dot(embedding_y, embedding_y.T), sum_y).T, sum_y))
+    num = 1 / (
+        1 + np.add(np.add(-2 * np.dot(embedding_y, embedding_y.T), sum_y).T, sum_y)
+    )
     np.fill_diagonal(num, 0)
     q = num / np.sum(num)
     return q, num
