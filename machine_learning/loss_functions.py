@@ -687,5 +687,3 @@ def root_mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     # Taken the square root of MSE to get RMSE
     return np.sqrt(mean_squared_error)
-
-
