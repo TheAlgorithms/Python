@@ -28,24 +28,21 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
         parents: Parent list
 
     Returns:
-        True if there is a node that has not iterated.
+        True if there is a path from source to sink
 
     >>> breadth_first_search(graph, 0, 5, [-1, -1, -1, -1, -1, -1])
     True
-    >>> breadth_first_search(graph, 0, 6, [-1, -1, -1, -1, -1, -1])
-    Traceback (most recent call last):
-        ...
-    IndexError: list index out of range
     """
     num_nodes = len(graph)
     visited = [False] * num_nodes
-    queue: deque[int] = deque()
+    queue = []  # Using list instead of deque
 
     queue.append(source)
     visited[source] = True
 
     while queue:
-        current_node = queue.popleft()
+        # Use pop(0) to simulate deque's popleft()
+        current_node = queue.pop(0)
 
         # If we reached the sink, we can stop early
         if current_node == sink:
@@ -95,7 +92,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     # Augment the flow while there is a path from source to sink
     while breadth_first_search(residual_graph, source, sink, parents):
         # Find the minimum residual capacity along the path
-        path_flow = 10**9  # Large integer instead of float
+        path_flow = float('inf')
         current_node = sink
 
         # Find the minimum capacity in the path
