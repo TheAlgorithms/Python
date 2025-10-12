@@ -52,10 +52,8 @@ def decrypt_message(key: int, message: str) -> str:
         plain_text[col] += symbol
         col += 1
 
-        if (
-            (col == num_cols)
-            or (col == num_cols - 1)
-            and (row >= num_rows - num_shaded_boxes)
+        if (col == num_cols) or (
+            (col == num_cols - 1) and (row >= num_rows - num_shaded_boxes)
         ):
             col = 0
             row += 1

@@ -1,7 +1,7 @@
 """
 This module provides two implementations for the rod-cutting problem:
-1. A naive recursive implementation which has an exponential runtime
-2. Two dynamic programming implementations which have quadratic runtime
+  1. A naive recursive implementation which has an exponential runtime
+  2. Two dynamic programming implementations which have quadratic runtime
 
 The rod-cutting problem is the problem of finding the maximum possible revenue
 obtainable from a rod of length ``n`` given a list of prices for each integral piece
@@ -20,18 +20,21 @@ def naive_cut_rod_recursive(n: int, prices: list):
     Runtime: O(2^n)
 
     Arguments
-    -------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    ---------
+
+    * `n`: int, the length of the rod
+    * `prices`: list, the prices for each piece of rod. ``p[i-i]`` is the
+      price for a rod of length ``i``
 
     Returns
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
+
+    The maximum revenue obtainable for a rod of length `n` given the list of prices
     for each piece.
 
     Examples
     --------
+
     >>> naive_cut_rod_recursive(4, [1, 5, 8, 9])
     10
     >>> naive_cut_rod_recursive(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
@@ -54,28 +57,30 @@ def top_down_cut_rod(n: int, prices: list):
     """
     Constructs a top-down dynamic programming solution for the rod-cutting
     problem via memoization. This function serves as a wrapper for
-    _top_down_cut_rod_recursive
+    ``_top_down_cut_rod_recursive``
 
     Runtime: O(n^2)
 
     Arguments
-    --------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    ---------
 
-    Note
-    ----
-    For convenience and because Python's lists using 0-indexing, length(max_rev) =
-    n + 1, to accommodate for the revenue obtainable from a rod of length 0.
+    * `n`: int, the length of the rod
+    * `prices`: list, the prices for each piece of rod. ``p[i-i]`` is the
+      price for a rod of length ``i``
+
+    .. note::
+      For convenience and because Python's lists using ``0``-indexing, ``length(max_rev)
+      = n + 1``, to accommodate for the revenue obtainable from a rod of length ``0``.
 
     Returns
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
+
+    The maximum revenue obtainable for a rod of length `n` given the list of prices
     for each piece.
 
     Examples
-    -------
+    --------
+
     >>> top_down_cut_rod(4, [1, 5, 8, 9])
     10
     >>> top_down_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
@@ -94,16 +99,18 @@ def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
     Runtime: O(n^2)
 
     Arguments
-    --------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
-    max_rev: list, the computed maximum revenue for a piece of rod.
-    ``max_rev[i]`` is the maximum revenue obtainable for a rod of length ``i``
+    ---------
+
+    * `n`: int, the length of the rod
+    * `prices`: list, the prices for each piece of rod. ``p[i-i]`` is the
+      price for a rod of length ``i``
+    * `max_rev`: list, the computed maximum revenue for a piece of rod.
+      ``max_rev[i]`` is the maximum revenue obtainable for a rod of length ``i``
 
     Returns
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
+
+    The maximum revenue obtainable for a rod of length `n` given the list of prices
     for each piece.
     """
     if max_rev[n] >= 0:
@@ -130,18 +137,21 @@ def bottom_up_cut_rod(n: int, prices: list):
     Runtime: O(n^2)
 
     Arguments
-    ----------
-    n: int, the maximum length of the rod.
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    ---------
+
+    * `n`: int, the maximum length of the rod.
+    * `prices`: list, the prices for each piece of rod. ``p[i-i]`` is the
+      price for a rod of length ``i``
 
     Returns
     -------
-    The maximum revenue obtainable from cutting a rod of length n given
+
+    The maximum revenue obtainable from cutting a rod of length `n` given
     the prices for each piece of rod p.
 
     Examples
-    -------
+    --------
+
     >>> bottom_up_cut_rod(4, [1, 5, 8, 9])
     10
     >>> bottom_up_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
@@ -168,13 +178,12 @@ def _enforce_args(n: int, prices: list):
     """
     Basic checks on the arguments to the rod-cutting algorithms
 
-    n: int, the length of the rod
-    prices: list, the price list for each piece of rod.
+    * `n`: int, the length of the rod
+    * `prices`: list, the price list for each piece of rod.
 
-    Throws ValueError:
-
-    if n is negative or there are fewer items in the price list than the length of
-    the rod
+    Throws ``ValueError``:
+        if `n` is negative or there are fewer items in the price list than the length of
+        the rod
     """
     if n < 0:
         msg = f"n must be greater than or equal to 0. Got n = {n}"

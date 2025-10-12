@@ -46,17 +46,27 @@ def perfect(number: int) -> bool:
     False
     >>> perfect(-1)
     False
+    >>> perfect(33550336)  # Large perfect number
+    True
+    >>> perfect(33550337)  # Just above a large perfect number
+    False
+    >>> perfect(1)  # Edge case: 1 is not a perfect number
+    False
+    >>> perfect("123")  # String representation of a number
+    Traceback (most recent call last):
+    ...
+    ValueError: number must be an integer
     >>> perfect(12.34)
     Traceback (most recent call last):
       ...
-    ValueError: number must an integer
+    ValueError: number must be an integer
     >>> perfect("Hello")
     Traceback (most recent call last):
       ...
-    ValueError: number must an integer
+    ValueError: number must be an integer
     """
     if not isinstance(number, int):
-        raise ValueError("number must an integer")
+        raise ValueError("number must be an integer")
     if number <= 0:
         return False
     return sum(i for i in range(1, number // 2 + 1) if number % i == 0) == number
@@ -70,8 +80,7 @@ if __name__ == "__main__":
     try:
         number = int(input("Enter a positive integer: ").strip())
     except ValueError:
-        msg = "number must an integer"
-        print(msg)
+        msg = "number must be an integer"
         raise ValueError(msg)
 
     print(f"{number} is {'' if perfect(number) else 'not '}a Perfect Number.")

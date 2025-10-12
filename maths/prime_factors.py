@@ -47,6 +47,46 @@ def prime_factors(n: int) -> list[int]:
     return factors
 
 
+def unique_prime_factors(n: int) -> list[int]:
+    """
+    Returns unique prime factors of n as a list.
+
+    >>> unique_prime_factors(0)
+    []
+    >>> unique_prime_factors(100)
+    [2, 5]
+    >>> unique_prime_factors(2560)
+    [2, 5]
+    >>> unique_prime_factors(10**-2)
+    []
+    >>> unique_prime_factors(0.02)
+    []
+    >>> unique_prime_factors(10**241)
+    [2, 5]
+    >>> unique_prime_factors(10**-354)
+    []
+    >>> unique_prime_factors('hello')
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'str'
+    >>> unique_prime_factors([1,2,'hello'])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'list'
+    """
+    i = 2
+    factors = []
+    while i * i <= n:
+        if not n % i:
+            while not n % i:
+                n //= i
+            factors.append(i)
+        i += 1
+    if n > 1:
+        factors.append(n)
+    return factors
+
+
 if __name__ == "__main__":
     import doctest
 

@@ -1,6 +1,13 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
 from __future__ import annotations
 
-import requests
+import httpx
 
 valid_terms = set(
     """approved_at_utc approved_by author_flair_background_color
@@ -28,13 +35,14 @@ def get_subreddit_data(
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
         msg = f"Invalid search term: {invalid_search_terms}"
         raise ValueError(msg)
-    response = requests.get(
-        f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
+    response = httpx.get(
+        f"https://www.reddit.com/r/{subreddit}/{age}.json?limit={limit}",
         headers={"User-agent": "A random string"},
         timeout=10,
     )
+    response.raise_for_status()
     if response.status_code == 429:
-        raise requests.HTTPError(response=response)
+        raise httpx.HTTPError(response=response)
 
     data = response.json()
     if not wanted_data:
