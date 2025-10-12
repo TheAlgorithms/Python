@@ -9,7 +9,9 @@ from __future__ import annotations
 from statistics import mean
 
 
-def calculate_waiting_times(burst_times: list[int], arrival_times: list[int]) -> list[int]:
+def calculate_waiting_times(
+    burst_times: list[int], arrival_times: list[int]
+) -> list[int]:
     """
     Calculate the waiting times of processes using SRTF scheduling.
 
@@ -39,7 +41,11 @@ def calculate_waiting_times(burst_times: list[int], arrival_times: list[int]) ->
     while complete != n:
         # Find process with minimum remaining time at current time
         for j in range(n):
-            if arrival_times[j] <= t and remaining_times[j] < min_remaining and remaining_times[j] > 0:
+            if (
+                arrival_times[j] <= t
+                and remaining_times[j] < min_remaining
+                and remaining_times[j] > 0
+            ):
                 min_remaining = remaining_times[j]
                 shortest = j
                 check = True
@@ -95,4 +101,3 @@ if __name__ == "__main__":
         )
     print(f"\nAverage waiting time = {mean(waiting_times):.5f}")
     print(f"Average turn around time = {mean(turn_around_times):.5f}")
-
