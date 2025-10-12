@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/Lucas_number
 import functools
 import math
 
+
 def recursive_lucas_number(n_th_number: int) -> int:
     """
     Returns the nth lucas number
