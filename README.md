@@ -107,5 +107,5 @@ Before you start contributing, please read our [Contribution Guidelines](CONTRIB
 
 ## 📄 License
 
-This project is licensed under the terms of the [MIT License](LICENSE).  
+This project is licensed under the terms of the [MIT License](LICENSE).
 You are free to use, modify, and distribute the code as long as proper credit is given.
