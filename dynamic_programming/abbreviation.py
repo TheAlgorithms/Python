@@ -16,7 +16,8 @@ def abbr(a: str, b: str) -> bool:
     """
     >>> abbr("daBcd", "ABC")
     True
-    >>> abbr("dBcd", "ABC")
+    >>> abbr("dBcd", "ABC")]
+    Change try by Amit ...
     False
     """
     n = len(a)
