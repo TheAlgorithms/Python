@@ -48,6 +48,18 @@ class Side:
     Side(length=5, angle=Angle(degrees=45.6), next_side=None)
     >>> Side(5, Angle(45.6), Side(1, Angle(2)))  # doctest: +ELLIPSIS
     Side(length=5, angle=Angle(degrees=45.6), next_side=Side(length=1, angle=Angle(d...
+    >>> Side(-1)
+    Traceback (most recent call last):
+        ...
+    TypeError: length must be a positive numeric value.
+    >>> Side(5, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: angle must be an Angle object.
+    >>> Side(5, Angle(90), "Invalid next_side")
+    Traceback (most recent call last):
+        ...
+    TypeError: next_side must be a Side or None.
     """
 
     length: float
@@ -162,6 +174,19 @@ class Polygon:
 
     >>> Polygon()
     Polygon(sides=[])
+    >>> polygon = Polygon()
+    >>> polygon.add_side(Side(5)).get_side(0)
+    Side(length=5, angle=Angle(degrees=90), next_side=None)
+    >>> polygon.get_side(1)
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
+    >>> polygon.set_side(0, Side(10)).get_side(0)
+    Side(length=10, angle=Angle(degrees=90), next_side=None)
+    >>> polygon.set_side(1, Side(10))
+    Traceback (most recent call last):
+        ...
+    IndexError: list assignment index out of range
     """
 
     sides: list[Side] = field(default_factory=list)
@@ -207,6 +232,10 @@ class Rectangle(Polygon):
     30
     >>> rectangle_one.area()
     50
+    >>> Rectangle(-5, 10)
+    Traceback (most recent call last):
+        ...
+    TypeError: length must be a positive numeric value.
     """
 
     def __init__(self, short_side_length: float, long_side_length: float) -> None:

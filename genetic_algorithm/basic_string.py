@@ -144,18 +144,18 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
 
         # Random population created. Now it's time to evaluate.
 
-        # Adding a bit of concurrency can make everything faster,
+        # (Option 1) Adding a bit of concurrency can make everything faster,
         #
         # import concurrent.futures
         # population_score: list[tuple[str, float]] = []
         # with concurrent.futures.ThreadPoolExecutor(
         #                                   max_workers=NUM_WORKERS) as executor:
-        #     futures = {executor.submit(evaluate, item) for item in population}
+        #     futures = {executor.submit(evaluate, item, target) for item in population}
         #     concurrent.futures.wait(futures)
         #     population_score = [item.result() for item in futures]
         #
         # but with a simple algorithm like this, it will probably be slower.
-        # We just need to call evaluate for every item inside the population.
+        # (Option 2) We just need to call evaluate for every item inside the population.
         population_score = [evaluate(item, target) for item in population]
 
         # Check if there is a matching evolution.

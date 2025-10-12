@@ -1,8 +1,9 @@
 """
-Python3 program to evaluate a prefix expression.
+Program to evaluate a prefix expression.
+https://en.wikipedia.org/wiki/Polish_notation
 """
 
-calc = {
+operators = {
     "+": lambda x, y: x + y,
     "-": lambda x, y: x - y,
     "*": lambda x, y: x * y,
@@ -31,6 +32,10 @@ def evaluate(expression):
     21
     >>> evaluate("/ * 10 2 + 4 1 ")
     4.0
+    >>> evaluate("2")
+    2
+    >>> evaluate("+ * 2 3 / 8 4")
+    8.0
     """
     stack = []
 
@@ -45,9 +50,37 @@ def evaluate(expression):
             # push the result onto the stack again
             o1 = stack.pop()
             o2 = stack.pop()
-            stack.append(calc[c](o1, o2))
+            stack.append(operators[c](o1, o2))
 
     return stack.pop()
+
+
+def evaluate_recursive(expression: list[str]):
+    """
+    Alternative recursive implementation
+
+    >>> evaluate_recursive(['2'])
+    2
+    >>> expression = ['+', '*', '2', '3', '/', '8', '4']
+    >>> evaluate_recursive(expression)
+    8.0
+    >>> expression
+    []
+    >>> evaluate_recursive(['+', '9', '*', '2', '6'])
+    21
+    >>> evaluate_recursive(['/', '*', '10', '2', '+', '4', '1'])
+    4.0
+    """
+
+    op = expression.pop(0)
+    if is_operand(op):
+        return int(op)
+
+    operation = operators[op]
+
+    a = evaluate_recursive(expression)
+    b = evaluate_recursive(expression)
+    return operation(a, b)
 
 
 # Driver code

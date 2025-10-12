@@ -1,14 +1,16 @@
 """
-Wikipedia: https://en.wikipedia.org/wiki/Enigma_machine
-Video explanation: https://youtu.be/QwQVMqfoB2E
-Also check out Numberphile's and Computerphile's videos on this topic
+| Wikipedia: https://en.wikipedia.org/wiki/Enigma_machine
+| Video explanation: https://youtu.be/QwQVMqfoB2E
+| Also check out Numberphile's and Computerphile's videos on this topic
 
-This module contains function 'enigma' which emulates
+This module contains function ``enigma`` which emulates
 the famous Enigma machine from WWII.
+
 Module includes:
-- enigma function
+
+- ``enigma`` function
 - showcase of function usage
-- 9 randomly generated rotors
+- ``9`` randomly generated rotors
 - reflector (aka static rotor)
 - original alphabet
 
@@ -73,7 +75,7 @@ def _validator(
     rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
 ) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
-    Checks if the values can be used for the 'enigma' function
+    Checks if the values can be used for the ``enigma`` function
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
     ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', \
@@ -83,7 +85,7 @@ def _validator(
     :param rotpos: rotor_positon
     :param rotsel: rotor_selection
     :param pb: plugb -> validated and transformed
-    :return: (rotpos, rotsel, pb)
+    :return: (`rotpos`, `rotsel`, `pb`)
     """
     # Checks if there are 3 unique rotors
 
@@ -118,9 +120,10 @@ def _plugboard(pbstring: str) -> dict[str, str]:
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
-    In the code, 'pb' stands for 'plugboard'
+    In the code, ``pb`` stands for ``plugboard``
 
     Pairs can be separated by spaces
+
     :param pbstring: string containing plugboard setting for the Enigma machine
     :return: dictionary containing converted pairs
     """
@@ -168,31 +171,34 @@ def enigma(
     plugb: str = "",
 ) -> str:
     """
-    The only difference with real-world enigma is that I allowed string input.
+    The only difference with real-world enigma is that ``I`` allowed string input.
     All characters are converted to uppercase. (non-letter symbol are ignored)
-    How it works:
-    (for every letter in the message)
+
+    | How it works:
+    | (for every letter in the message)
 
     - Input letter goes into the plugboard.
-    If it is connected to another one, switch it.
+      If it is connected to another one, switch it.
 
-    - Letter goes through 3 rotors.
-    Each rotor can be represented as 2 sets of symbol, where one is shuffled.
-    Each symbol from the first set has corresponding symbol in
-    the second set and vice versa.
+    - Letter goes through ``3`` rotors.
+      Each rotor can be represented as ``2`` sets of symbol, where one is shuffled.
+      Each symbol from the first set has corresponding symbol in
+      the second set and vice versa.
 
-    example:
-    | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
-    | VKLEPDBGRNWTFCJOHQAMUZYIXS |
+      example::
+
+      | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
+      | VKLEPDBGRNWTFCJOHQAMUZYIXS |
 
     - Symbol then goes through reflector (static rotor).
-    There it is switched with paired symbol
-    The reflector can be represented as2 sets, each with half of the alphanet.
-    There are usually 10 pairs of letters.
+      There it is switched with paired symbol.
+      The reflector can be represented as ``2`` sets, each with half of the alphanet.
+      There are usually ``10`` pairs of letters.
 
-    Example:
-    | ABCDEFGHIJKLM | e.g. E is paired to X
-    | ZYXWVUTSRQPON | so when E goes in X goes out and vice versa
+      Example::
+
+      | ABCDEFGHIJKLM | e.g. E is paired to X
+      | ZYXWVUTSRQPON | so when E goes in X goes out and vice versa
 
     - Letter then goes through the rotors again
 
@@ -211,9 +217,9 @@ def enigma(
 
 
     :param text: input message
-    :param rotor_position: tuple with 3 values in range 1..26
-    :param rotor_selection: tuple with 3 rotors ()
-    :param plugb: string containing plugboard configuration (default '')
+    :param rotor_position: tuple with ``3`` values in range ``1``.. ``26``
+    :param rotor_selection: tuple with ``3`` rotors
+    :param plugb: string containing plugboard configuration (default ``''``)
     :return: en/decrypted string
     """
 

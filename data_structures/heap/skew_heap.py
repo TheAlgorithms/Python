@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 T = TypeVar("T", bound=bool)
 
 
-class SkewNode(Generic[T]):
+class SkewNode[T: bool]:
     """
     One node of the skew heap. Contains the value and references to
     two children.
@@ -87,7 +87,7 @@ class SkewNode(Generic[T]):
         return result
 
 
-class SkewHeap(Generic[T]):
+class SkewHeap[T: bool]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the

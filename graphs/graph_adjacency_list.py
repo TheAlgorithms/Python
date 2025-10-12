@@ -21,14 +21,14 @@ from __future__ import annotations
 import random
 import unittest
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 import pytest
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class GraphAdjacencyList[T]:
     def __init__(
         self, vertices: list[T], edges: list[list[T]], directed: bool = True
     ) -> None:
@@ -448,7 +448,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -502,7 +502,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
@@ -516,7 +516,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for i in range(101):
@@ -530,7 +530,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -569,7 +569,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:

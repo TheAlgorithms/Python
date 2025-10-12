@@ -1,13 +1,10 @@
 """Queue represented by a Python list"""
 
 from collections.abc import Iterable
-from typing import Generic, TypeVar
-
-_T = TypeVar("_T")
 
 
-class QueueByList(Generic[_T]):
-    def __init__(self, iterable: Iterable[_T] | None = None) -> None:
+class QueueByList[T]:
+    def __init__(self, iterable: Iterable[T] | None = None) -> None:
         """
         >>> QueueByList()
         Queue(())
@@ -16,7 +13,7 @@ class QueueByList(Generic[_T]):
         >>> QueueByList((i**2 for i in range(1, 4)))
         Queue((1, 4, 9))
         """
-        self.entries: list[_T] = list(iterable or [])
+        self.entries: list[T] = list(iterable or [])
 
     def __len__(self) -> int:
         """
@@ -58,7 +55,7 @@ class QueueByList(Generic[_T]):
 
         return f"Queue({tuple(self.entries)})"
 
-    def put(self, item: _T) -> None:
+    def put(self, item: T) -> None:
         """Put `item` to the Queue
 
         >>> queue = QueueByList()
@@ -72,7 +69,7 @@ class QueueByList(Generic[_T]):
 
         self.entries.append(item)
 
-    def get(self) -> _T:
+    def get(self) -> T:
         """
         Get `item` from the Queue
 
@@ -118,7 +115,7 @@ class QueueByList(Generic[_T]):
         for _ in range(rotation):
             put(get(0))
 
-    def get_front(self) -> _T:
+    def get_front(self) -> T:
         """Get the front item from the Queue
 
         >>> queue = QueueByList((10, 20, 30))

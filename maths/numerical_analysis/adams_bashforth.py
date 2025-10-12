@@ -102,7 +102,7 @@ class AdamsBashforth:
         >>> def f(x, y):
         ...     return x + y
         >>> y = AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_3()
-        >>> y[3]
+        >>> float(y[3])
         0.15533333333333332
 
         >>> AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_3()
@@ -140,9 +140,9 @@ class AdamsBashforth:
         ...     return x + y
         >>> y = AdamsBashforth(
         ...    f, [0, 0.2, 0.4, 0.6], [0, 0, 0.04, 0.128], 0.2, 1).step_4()
-        >>> y[4]
+        >>> float(y[4])
         0.30699999999999994
-        >>> y[5]
+        >>> float(y[5])
         0.5771083333333333
 
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_4()
@@ -185,7 +185,7 @@ class AdamsBashforth:
         >>> y = AdamsBashforth(
         ...     f, [0, 0.2, 0.4, 0.6, 0.8], [0, 0.02140, 0.02140, 0.22211, 0.42536],
         ...     0.2, 1).step_5()
-        >>> y[-1]
+        >>> float(y[-1])
         0.05436839444444452
 
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_5()

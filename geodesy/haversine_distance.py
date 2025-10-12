@@ -21,10 +21,11 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     computation like Haversine can be handy for shorter range distances.
 
     Args:
-        lat1, lon1: latitude and longitude of coordinate 1
-        lat2, lon2: latitude and longitude of coordinate 2
+        * `lat1`, `lon1`: latitude and longitude of coordinate 1
+        * `lat2`, `lon2`: latitude and longitude of coordinate 2
     Returns:
         geographical distance between two points in metres
+
     >>> from collections import namedtuple
     >>> point_2d = namedtuple("point_2d", "lat lon")
     >>> SAN_FRANCISCO = point_2d(37.774856, -122.424227)
