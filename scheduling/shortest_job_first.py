@@ -1,40 +1,34 @@
 """
-Shortest job remaining first
-Please note arrival time and burst
-Please use spaces to separate times entered.
+Shortest Job Remaining First (Preemptive SJF)
+---------------------------------------------
+Please note arrival time and burst time.
+Use spaces to separate times entered.
 """
 
 from __future__ import annotations
-
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 def calculate_waitingtime(
     arrival_time: list[int], burst_time: list[int], no_of_processes: int
-) -> list[int]:
+) -> tuple[list[int], list[tuple[int, int, int]]]:
     """
-    Calculate the waiting time of each processes
-    Return: List of waiting times.
-    >>> calculate_waitingtime([1,2,3,4],[3,3,5,1],4)
-    [0, 3, 5, 0]
-    >>> calculate_waitingtime([1,2,3],[2,5,1],3)
-    [0, 2, 0]
-    >>> calculate_waitingtime([2,3],[5,1],2)
-    [1, 0]
+    Calculate the waiting time for each process and record execution timeline for Gantt Chart.
+    Returns: (waiting_time, timeline)
+    timeline -> list of tuples: (start_time, end_time, process_id)
     """
-    remaining_time = [0] * no_of_processes
+    remaining_time = burst_time.copy()
     waiting_time = [0] * no_of_processes
-    # Copy the burst time into remaining_time[]
-    for i in range(no_of_processes):
-        remaining_time[i] = burst_time[i]
-
     complete = 0
     increment_time = 0
-    minm = 999999999
+    minm = float("inf")
     short = 0
     check = False
 
-    # Process until all processes are completed
+    timeline = []  # To store execution sequence for Gantt chart
+    last_process = -1
+
     while complete != no_of_processes:
         for j in range(no_of_processes):
             if (
@@ -49,43 +43,41 @@ def calculate_waitingtime(
         if not check:
             increment_time += 1
             continue
-        remaining_time[short] -= 1
 
+        # Record when process switches (for Gantt chart)
+        if short != last_process:
+            if timeline and timeline[-1][2] == last_process:
+                timeline[-1] = (timeline[-1][0], increment_time, last_process)
+            if short != -1:
+                timeline.append((increment_time, None, short))
+            last_process = short
+
+        remaining_time[short] -= 1
         minm = remaining_time[short]
         if minm == 0:
-            minm = 999999999
+            minm = float("inf")
 
         if remaining_time[short] == 0:
             complete += 1
             check = False
-
-            # Find finish time of current process
             finish_time = increment_time + 1
-
-            # Calculate waiting time
             finar = finish_time - arrival_time[short]
             waiting_time[short] = finar - burst_time[short]
-
             waiting_time[short] = max(waiting_time[short], 0)
 
-        # Increment time
         increment_time += 1
-    return waiting_time
+
+    # Close last ongoing process in timeline
+    if timeline and timeline[-1][1] is None:
+        timeline[-1] = (timeline[-1][0], increment_time, last_process)
+
+    return waiting_time, timeline
 
 
 def calculate_turnaroundtime(
     burst_time: list[int], no_of_processes: int, waiting_time: list[int]
 ) -> list[int]:
-    """
-    Calculate the turn around time of each Processes
-    Return: list of turn around times.
-    >>> calculate_turnaroundtime([3,3,5,1], 4, [0,3,5,0])
-    [3, 6, 10, 1]
-    >>> calculate_turnaroundtime([3,3], 2, [0,3])
-    [3, 6]
-    >>> calculate_turnaroundtime([8,10,1], 3, [1,0,3])
-    [9, 10, 4]
-    """
+    """Calculate the turn around time for each process."""
     turn_around_time = [0] * no_of_processes
     for i in range(no_of_processes):
         turn_around_time[i] = burst_time[i] + waiting_time[i]
@@ -94,60 +86,64 @@ def calculate_turnaroundtime(
 
 def calculate_average_times(
     waiting_time: list[int], turn_around_time: list[int], no_of_processes: int
-) -> None:
-    """
-    This function calculates the average of the waiting & turnaround times
-    Prints: Average Waiting time & Average Turn Around Time
-    >>> calculate_average_times([0,3,5,0],[3,6,10,1],4)
-    Average waiting time = 2.00000
-    Average turn around time = 5.0
-    >>> calculate_average_times([2,3],[3,6],2)
-    Average waiting time = 2.50000
-    Average turn around time = 4.5
-    >>> calculate_average_times([10,4,3],[2,7,6],3)
-    Average waiting time = 5.66667
-    Average turn around time = 5.0
-    """
-    total_waiting_time = 0
-    total_turn_around_time = 0
-    for i in range(no_of_processes):
-        total_waiting_time = total_waiting_time + waiting_time[i]
-        total_turn_around_time = total_turn_around_time + turn_around_time[i]
-    print(f"Average waiting time = {total_waiting_time / no_of_processes:.5f}")
-    print("Average turn around time =", total_turn_around_time / no_of_processes)
+) -> tuple[float, float]:
+    """Calculate and return average waiting and turnaround times."""
+    avg_wait = sum(waiting_time) / no_of_processes
+    avg_turn = sum(turn_around_time) / no_of_processes
+    print(f"Average waiting time = {avg_wait:.5f}")
+    print(f"Average turn around time = {avg_turn:.5f}")
+    return avg_wait, avg_turn
+
+
+def plot_gantt_chart(timeline: list[tuple[int, int, int]], processes: list[int]) -> None:
+    """Plot a Gantt chart for process execution."""
+    fig, ax = plt.subplots(figsize=(10, 2))
+    colors = plt.cm.tab10.colors  # Nice color set
+    for start, end, pid in timeline:
+        ax.barh(
+            0,
+            end - start,
+            left=start,
+            color=colors[pid % len(colors)],
+            edgecolor="black",
+            label=f"P{processes[pid]}",
+        )
+        ax.text((start + end) / 2, 0, f"P{processes[pid]}", ha="center", va="center", color="white", fontsize=9)
+
+    ax.set_xlabel("Time")
+    ax.set_yticks([])
+    ax.set_title("Gantt Chart - Shortest Job Remaining First (SJF Preemptive)")
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax.legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.05, 1), loc="upper left")
+    plt.tight_layout()
+    plt.show()
 
 
 if __name__ == "__main__":
-    print("Enter how many process you want to analyze")
-    no_of_processes = int(input())
+    print("Enter how many processes you want to analyze:")
+    no_of_processes = int(input().strip())
+
     burst_time = [0] * no_of_processes
     arrival_time = [0] * no_of_processes
     processes = list(range(1, no_of_processes + 1))
 
     for i in range(no_of_processes):
-        print("Enter the arrival time and burst time for process:--" + str(i + 1))
+        print(f"Enter the arrival time and burst time for process {i + 1}:")
         arrival_time[i], burst_time[i] = map(int, input().split())
 
-    waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
-
-    bt = burst_time
-    n = no_of_processes
-    wt = waiting_time
-    turn_around_time = calculate_turnaroundtime(bt, n, wt)
-
+    waiting_time, timeline = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
+    turn_around_time = calculate_turnaroundtime(burst_time, no_of_processes, waiting_time)
     calculate_average_times(waiting_time, turn_around_time, no_of_processes)
 
-    fcfs = pd.DataFrame(
-        list(zip(processes, burst_time, arrival_time, waiting_time, turn_around_time)),
-        columns=[
-            "Process",
-            "BurstTime",
-            "ArrivalTime",
-            "WaitingTime",
-            "TurnAroundTime",
-        ],
+    # Display results table
+    df = pd.DataFrame(
+        list(zip(processes, arrival_time, burst_time, waiting_time, turn_around_time)),
+        columns=["Process", "ArrivalTime", "BurstTime", "WaitingTime", "TurnAroundTime"],
     )
+    pd.set_option("display.max_rows", df.shape[0] + 1)
+    print("\n--- Process Table ---")
+    print(df)
 
-    # Printing the dataFrame
-    pd.set_option("display.max_rows", fcfs.shape[0] + 1)
-    print(fcfs)
+    # Plot Gantt chart
+    plot_gantt_chart(timeline, processes)
