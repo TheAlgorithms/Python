@@ -9,6 +9,7 @@ Description:
 
 from collections import deque
 
+
 graph = [
     [0, 16, 13, 0, 0, 0],
     [0, 0, 10, 12, 0, 0],
