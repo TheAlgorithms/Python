@@ -95,7 +95,9 @@ def calculate_average_times(
     return avg_wait, avg_turn
 
 
-def plot_gantt_chart(timeline: list[tuple[int, int, int]], processes: list[int]) -> None:
+def plot_gantt_chart(
+    timeline: list[tuple[int, int, int]], processes: list[int]
+) -> None:
     """Plot a Gantt chart for process execution."""
     fig, ax = plt.subplots(figsize=(10, 2))
     colors = plt.cm.tab10.colors  # Nice color set
@@ -108,14 +110,24 @@ def plot_gantt_chart(timeline: list[tuple[int, int, int]], processes: list[int])
             edgecolor="black",
             label=f"P{processes[pid]}",
         )
-        ax.text((start + end) / 2, 0, f"P{processes[pid]}", ha="center", va="center", color="white", fontsize=9)
+        ax.text(
+            (start + end) / 2,
+            0,
+            f"P{processes[pid]}",
+            ha="center",
+            va="center",
+            color="white",
+            fontsize=9,
+        )
 
     ax.set_xlabel("Time")
     ax.set_yticks([])
     ax.set_title("Gantt Chart - Shortest Job Remaining First (SJF Preemptive)")
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    ax.legend(by_label.values(), by_label.keys(), bbox_to_anchor=(1.05, 1), loc="upper left")
+    ax.legend(
+        by_label.values(), by_label.keys(), bbox_to_anchor=(1.05, 1), loc="upper left"
+    )
     plt.tight_layout()
     plt.show()
 
@@ -132,14 +144,24 @@ if __name__ == "__main__":
         print(f"Enter the arrival time and burst time for process {i + 1}:")
         arrival_time[i], burst_time[i] = map(int, input().split())
 
-    waiting_time, timeline = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
-    turn_around_time = calculate_turnaroundtime(burst_time, no_of_processes, waiting_time)
+    waiting_time, timeline = calculate_waitingtime(
+        arrival_time, burst_time, no_of_processes
+    )
+    turn_around_time = calculate_turnaroundtime(
+        burst_time, no_of_processes, waiting_time
+    )
     calculate_average_times(waiting_time, turn_around_time, no_of_processes)
 
     # Display results table
     df = pd.DataFrame(
         list(zip(processes, arrival_time, burst_time, waiting_time, turn_around_time)),
-        columns=["Process", "ArrivalTime", "BurstTime", "WaitingTime", "TurnAroundTime"],
+        columns=[
+            "Process",
+            "ArrivalTime",
+            "BurstTime",
+            "WaitingTime",
+            "TurnAroundTime",
+        ],
     )
     pd.set_option("display.max_rows", df.shape[0] + 1)
     print("\n--- Process Table ---")
