@@ -121,8 +121,9 @@ class Ellipse:
         >>> round(Ellipse(5, 10).perimeter, 10)
         48.4422410807
         """
-        a, b = max(self.major_radius, self.minor_radius), min(
-            self.major_radius, self.minor_radius
+        a, b = (
+            max(self.major_radius, self.minor_radius),
+            min(self.major_radius, self.minor_radius),
         )
         h = ((a - b) ** 2) / ((a + b) ** 2)
         return math.pi * (a + b) * (1 + 3 * h / (10 + math.sqrt(4 - 3 * h)))
@@ -135,8 +136,9 @@ class Ellipse:
         >>> Circle(5).eccentricity
         0.0
         """
-        a, b = max(self.major_radius, self.minor_radius), min(
-            self.major_radius, self.minor_radius
+        a, b = (
+            max(self.major_radius, self.minor_radius),
+            min(self.major_radius, self.minor_radius),
         )
         return math.sqrt(1 - (b / a) ** 2)
 
