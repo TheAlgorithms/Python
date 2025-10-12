@@ -1,0 +1,65 @@
+{
+  "name": "juno-health-api",
+  "version": "1.0.0",
+  "description": "Backend API for Juno colon health tracking application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": [
+    "health",
+    "colon",
+    "tracking",
+    "wellness",
+    "api"
+  ],
+  "author": "Juno Health Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "morgan": "^1.10.0",
+    "compression": "^1.7.4",
+    "nodemailer": "^6.9.7",
+    "multer": "^1.4.5-lts.1",
+    "date-fns": "^3.0.6",
+    "winston": "^3.11.0",
+    "joi": "^17.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "@types/node": "^20.10.6",
+    "mongodb-memory-server": "^9.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juno-health/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/juno-health/api/issues"
+  },
+  "homepage": "https://github.com/juno-health/api#readme"
+}
