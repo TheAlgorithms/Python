@@ -52,10 +52,11 @@ def kadane(arr: list[int]) -> tuple[int, list[int]]:
             start = s
             end = i
 
-    return max_global, arr[start:end+1]
+    return max_global, arr[start : end + 1]
 
 
 # Doctest runner
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
