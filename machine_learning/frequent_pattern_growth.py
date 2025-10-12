@@ -107,8 +107,8 @@ def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     if not (freq_item_set := set(header_table)):
         return TreeNode("Null Set", 1, None), {}
 
-    for k in header_table:
-        header_table[k] = [header_table[k], None]
+    for key, value in header_table.items():
+        header_table[key] = [value, None]
 
     fp_tree = TreeNode("Null Set", 1, None)  # Parent is None for the root node
     for tran_set in data_set:

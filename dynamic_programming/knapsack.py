@@ -11,7 +11,7 @@ def mf_knapsack(i, wt, val, j):
     """
     This code involves the concept of memory functions. Here we solve the subproblems
     which are needed unlike the below example
-    F is a 2D array with -1s filled up
+    F is a 2D array with ``-1`` s filled up
     """
     global f  # a global dp table for knapsack
     if f[i][j] < 0:
@@ -45,22 +45,24 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
     the several possible optimal subsets.
 
     Parameters
-    ---------
+    ----------
 
-    W: int, the total maximum weight for the given knapsack problem.
-    wt: list, the vector of weights for all items where wt[i] is the weight
-    of the i-th item.
-    val: list, the vector of values for all items where val[i] is the value
-    of the i-th item
+    * `w`: int, the total maximum weight for the given knapsack problem.
+    * `wt`: list, the vector of weights for all items where ``wt[i]`` is the weight
+       of the ``i``-th item.
+    * `val`: list, the vector of values for all items where ``val[i]`` is the value
+      of the ``i``-th item
 
     Returns
     -------
-    optimal_val: float, the optimal value for the given knapsack problem
-    example_optional_set: set, the indices of one of the optimal subsets
-    which gave rise to the optimal value.
+
+    * `optimal_val`: float, the optimal value for the given knapsack problem
+    * `example_optional_set`: set, the indices of one of the optimal subsets
+      which gave rise to the optimal value.
 
     Examples
-    -------
+    --------
+
     >>> knapsack_with_example_solution(10, [1, 3, 5, 2], [10, 20, 100, 22])
     (142, {2, 3, 4})
     >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4, 4])
@@ -104,19 +106,19 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
     a filled DP table and the vector of weights
 
     Parameters
-    ---------
+    ----------
 
-    dp: list of list, the table of a solved integer weight dynamic programming problem
-
-    wt: list or tuple, the vector of weights of the items
-    i: int, the index of the item under consideration
-    j: int, the current possible maximum weight
-    optimal_set: set, the optimal subset so far. This gets modified by the function.
+    * `dp`: list of list, the table of a solved integer weight dynamic programming
+      problem
+    * `wt`: list or tuple, the vector of weights of the items
+    * `i`: int, the index of the item under consideration
+    * `j`: int, the current possible maximum weight
+    * `optimal_set`: set, the optimal subset so far. This gets modified by the function.
 
     Returns
     -------
-    None
 
+    ``None``
     """
     # for the current item i at a maximum weight j to be part of an optimal subset,
     # the optimal value at (i, j) must be greater than the optimal value at (i-1, j).

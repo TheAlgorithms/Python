@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import os
 
 try:
@@ -9,28 +10,25 @@ except ImportError:
 filepaths = list(good_file_paths())
 assert filepaths, "good_file_paths() failed!"
 
-upper_files = [file for file in filepaths if file != file.lower()]
-if upper_files:
+if upper_files := [file for file in filepaths if file != file.lower()]:
     print(f"{len(upper_files)} files contain uppercase characters:")
     print("\n".join(upper_files) + "\n")
 
-space_files = [file for file in filepaths if " " in file]
-if space_files:
+if space_files := [file for file in filepaths if " " in file]:
     print(f"{len(space_files)} files contain space characters:")
     print("\n".join(space_files) + "\n")
 
-hyphen_files = [file for file in filepaths if "-" in file]
-if hyphen_files:
+if hyphen_files := [
+    file for file in filepaths if "-" in file and "/site-packages/" not in file
+]:
     print(f"{len(hyphen_files)} files contain hyphen characters:")
     print("\n".join(hyphen_files) + "\n")
 
-nodir_files = [file for file in filepaths if os.sep not in file]
-if nodir_files:
+if nodir_files := [file for file in filepaths if os.sep not in file]:
     print(f"{len(nodir_files)} files are not in a directory:")
     print("\n".join(nodir_files) + "\n")
 
-bad_files = len(upper_files + space_files + hyphen_files + nodir_files)
-if bad_files:
+if bad_files := len(upper_files + space_files + hyphen_files + nodir_files):
     import sys
 
     sys.exit(bad_files)

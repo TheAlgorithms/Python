@@ -61,7 +61,7 @@ class FilesArray:
         self.files = files
         self.empty = set()
         self.num_buffers = len(files)
-        self.buffers = {i: None for i in range(self.num_buffers)}
+        self.buffers = dict.fromkeys(range(self.num_buffers))
 
     def get_dict(self):
         return {

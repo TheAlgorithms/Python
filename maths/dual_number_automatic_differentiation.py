@@ -17,10 +17,8 @@ class Dual:
             self.duals = rank
 
     def __repr__(self):
-        return (
-            f"{self.real}+"
-            f"{'+'.join(str(dual)+'E'+str(n+1)for n,dual in enumerate(self.duals))}"
-        )
+        s = "+".join(f"{dual}E{n}" for n, dual in enumerate(self.duals, 1))
+        return f"{self.real}+{s}"
 
     def reduce(self):
         cur = self.duals.copy()

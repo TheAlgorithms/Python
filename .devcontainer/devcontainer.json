@@ -7,9 +7,11 @@
 			// Update 'VARIANT' to pick a Python version: 3, 3.11, 3.10, 3.9, 3.8
 			// Append -bullseye or -buster to pin to an OS version.
 			// Use -bullseye variants on local on arm64/Apple Silicon.
-			"VARIANT": "3.12-bookworm",
+			"VARIANT": "3.13-bookworm"
 		}
 	},
+
+	"postCreateCommand": "zsh .devcontainer/post_install",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -20,7 +22,8 @@
 				"python.defaultInterpreterPath": "/usr/local/bin/python",
 				"python.linting.enabled": true,
 				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy"
+				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+				"terminal.integrated.defaultProfile.linux": "zsh"
 			},
 
 			// Add the IDs of extensions you want installed when the container is created.

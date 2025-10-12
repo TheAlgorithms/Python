@@ -194,10 +194,8 @@ def city_select(
     IndexError: list index out of range
     """
     probabilities = []
-    for city in unvisited_cities:
-        city_distance = distance(
-            unvisited_cities[city], next(iter(current_city.values()))
-        )
+    for city, value in unvisited_cities.items():
+        city_distance = distance(value, next(iter(current_city.values())))
         probability = (pheromone[city][next(iter(current_city.keys()))] ** alpha) * (
             (1 / city_distance) ** beta
         )

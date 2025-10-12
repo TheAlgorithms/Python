@@ -1,6 +1,9 @@
+ci:
+  autoupdate_schedule: monthly
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-toml
@@ -16,20 +19,20 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.7
+    rev: v0.13.3
     hooks:
-      - id: ruff
+      - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "2.2.4"
+    rev: v2.7.0
     hooks:
       - id: pyproject-fmt
 
@@ -42,23 +45,22 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.19
+    rev: v0.24.1
     hooks:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.2
+    rev: v1.18.2
     hooks:
       - id: mypy
         args:
           - --explicit-package-bases
           - --ignore-missing-imports
-          - --install-types # See mirrors-mypy README.md
+          - --install-types
           - --non-interactive
-        additional_dependencies: [types-requests]
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v4.0.0-alpha.8"
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         types_or: [toml, yaml]

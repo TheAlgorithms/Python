@@ -5,19 +5,31 @@ Provide the current worldwide COVID-19 statistics.
 This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
 """
 
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "httpx",
+# ]
+# ///
+
+import httpx
 from bs4 import BeautifulSoup
 
 
-def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
+def world_covid19_stats(
+    url: str = "https://www.worldometers.info/coronavirus/",
+) -> dict:
     """
     Return a dict of current worldwide COVID-19 statistics
     """
-    soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
-    keys = soup.findAll("h1")
-    values = soup.findAll("div", {"class": "maincounter-number"})
-    keys += soup.findAll("span", {"class": "panel-title"})
-    values += soup.findAll("div", {"class": "number-table-main"})
+    soup = BeautifulSoup(
+        httpx.get(url, timeout=10, follow_redirects=True).text, "html.parser"
+    )
+    keys = soup.find_all("h1")
+    values = soup.find_all("div", {"class": "maincounter-number"})
+    keys += soup.find_all("span", {"class": "panel-title"})
+    values += soup.find_all("div", {"class": "number-table-main"})
     return {key.text.strip(): value.text.strip() for key, value in zip(keys, values)}
 
 

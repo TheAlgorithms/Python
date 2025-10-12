@@ -1,24 +1,25 @@
 """
 Question:
-You are given an array of distinct integers and you have to tell how many
-different ways of selecting the elements from the array are there such that
-the sum of chosen elements is equal to the target number tar.
+    You are given an array of distinct integers and you have to tell how many
+    different ways of selecting the elements from the array are there such that
+    the sum of chosen elements is equal to the target number tar.
 
 Example
 
 Input:
-N = 3
-target = 5
-array = [1, 2, 5]
+    * N = 3
+    * target = 5
+    * array = [1, 2, 5]
 
 Output:
-9
+    9
 
 Approach:
-The basic idea is to go over recursively to find the way such that the sum
-of chosen elements is “tar”. For every element, we have two choices
-    1. Include the element in our set of chosen elements.
-    2. Don't include the element in our set of chosen elements.
+    The basic idea is to go over recursively to find the way such that the sum
+    of chosen elements is `target`. For every element, we have two choices
+
+        1. Include the element in our set of chosen elements.
+        2. Don't include the element in our set of chosen elements.
 """
 
 

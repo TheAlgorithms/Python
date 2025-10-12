@@ -6,7 +6,7 @@ Source: https://en.wikipedia.org/wiki/Electrical_impedance
 
 from __future__ import annotations
 
-from math import pow, sqrt
+from math import pow, sqrt  # noqa: A004
 
 
 def electrical_impedance(
