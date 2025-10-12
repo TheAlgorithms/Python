@@ -21,24 +21,6 @@ PRINTABLE_END = 126
 PRINTABLE_RANGE = PRINTABLE_END - PRINTABLE_START + 1
 
 
-def main() -> None:
-    message = input("Enter message: ")
-    key = input("Enter secret key: ")
-    mode = input("Encrypt/Decrypt [e/d]: ")
-
-    if mode.lower().startswith("e"):
-        mode = "encrypt"
-        translated = encrypt_message(key, message)
-    elif mode.lower().startswith("d"):
-        mode = "decrypt"
-        translated = decrypt_message(key, message)
-    else:
-        print("Invalid mode. Use 'e' or 'd'.")
-        return
-
-    print(f"\n{mode.title()}ed message: {translated}")
-
-
 def encrypt_message(key: str, message: str) -> str:
     """
     Encrypts a message using printable ASCII Vigenere cipher.
@@ -64,6 +46,14 @@ def decrypt_message(key: str, message: str) -> str:
 
 
 def translate_message(key: str, message: str, mode: str) -> str:
+    """
+    Translates (encrypts or decrypts) a message using the given key.
+
+    >>> translate_message('key', 'Hello!', 'encrypt')
+    "Tk'xu;"
+    >>> translate_message('key', "Tk'xu;", 'decrypt')
+    'Hello!'
+    """
     translated = []
     key_index = 0
     key_bytes = [ord(ch) for ch in key]
@@ -95,4 +85,19 @@ def translate_message(key: str, message: str, mode: str) -> str:
 
 
 if __name__ == "__main__":
-    main()
+    message = input("Enter message: ")
+    key = input("Enter secret key: ")
+    mode = input("Encrypt/Decrypt [e/d]: ")
+
+    if mode.lower().startswith("e"):
+        mode = "encrypt"
+        translated = encrypt_message(key, message)
+
+        print(f"Encrypted message: {translated}")
+    elif mode.lower().startswith("d"):
+        mode = "decrypt"
+        translated = decrypt_message(key, message)
+
+        print(f"Decrypted message: {translated}")
+    else:
+        print("Invalid mode. Use 'e' or 'd'.")
