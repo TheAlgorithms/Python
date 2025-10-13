@@ -20,133 +20,132 @@ The above example shows that 9 is not an XOR-prime.
 Similarly, 5 = 3 ⊗ 3 is not an XOR-prime.
 The first few XOR-primes are 2, 3, 7, 11, 13, ... and the 10th XOR-prime is 41.
 
-Find the 5,000,000.th XOR-prime.
+Find the 5,000,000 th XOR-prime.
 
 References:
 http://en.wikipedia.org/wiki/M%C3%B6bius_function
 
 """
 
-from array import array
+import math
+
+
+def get_divisors(num: int) -> set[int]:
+    """
+    Return all positive divisors of num.
+    >>> get_divisors(12)
+    {1, 2, 3, 4, 6, 12}
+    """
+    divisors = {1}
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            divisors.add(i)
+            divisors.add(num // i)
+    divisors.add(num)
+    return divisors
 
 
 def xor_multiply(op_a: int, op_b: int) -> int:
     """
-    Perform XOR multiplication of two integers, equivalent to polynomial
-    multiplication in GF(2).
-
-    >>> xor_multiply(3, 5)  # (011) ⊗ (101)
+    Perform XOR-based multiplication (polynomial multiplication mod 2).
+    >>> xor_multiply(3, 5)
     15
     """
-    res = 0
+    result = 0
     while op_b:
         if op_b & 1:
-            res ^= op_a
+            result ^= op_a
         op_a <<= 1
         op_b >>= 1
-    return res
+    return result
 
 
-def divisors(num: int) -> set[int]:
+def mobius_table(lim: int, k: int = 2) -> list[int]:
     """
-    Return all divisors of `num` (excluding 0).
-
-    >>> divisors(12)
-    {1, 2, 3, 4, 6, 12}
-    """
-    s = {1}
-    for i in range(2, int(num**0.5) + 1):
-        if num % i == 0:
-            s.add(i)
-            s.add(num // i)
-    s.add(num)
-    return s
-
-
-def mobius_table(num: int) -> list[int]:
-    """
-    Generate a variant of Möbius function values from 1 to num.
-
+    Compute a modified Mobius function table up to `lim`.
     >>> mobius_table(10)[:6]
     [0, 1, -1, -1, 0, -1]
     """
-    mob = [1] * (num + 1)
-    is_prime = [True] * (num + 1)
-    mob[0] = 0
+    mob = [0] + [1] * lim
+    is_prime = [True] * (lim + 1)
+    is_prime[0] = is_prime[1] = False
 
-    for p in range(2, num + 1):
+    for p in range(2, lim + 1):
         if is_prime[p]:
-            mob[p] = -1
-            for j in range(2 * p, num + 1, p):
-                is_prime[j] = False
-                mob[j] *= -1
-            p2 = p * p
-            if p2 <= num:
-                for j in range(p2, num + 1, p2):
-                    mob[j] = 0
+            mob[p] *= -1
+            for mul in range(2 * p, lim + 1, p):
+                is_prime[mul] = False
+                mob[mul] *= -1
+
+            p_pow = p**k
+            if p_pow <= lim:
+                for mul in range(p_pow, lim + 1, p_pow):
+                    mob[mul] = 0
     return mob
 
 
-def count_irreducibles(deg: int) -> int:
+def cnt_irred_pol(num: int) -> int:
     """
-    Count the number of irreducible polynomials of degree `deg` over GF(2)
-    using the variant of Möbius function.
-
-    >>> count_irreducibles(3)
+    Return the number of monic irreducible polynomials of degree num over GF(2).
+    >>> cnt_irred_pol(3)
     2
     """
-    mob = mobius_table(deg)
-    total = 0
-    for div in divisors(deg) | {deg}:
-        total += mob[div] * (1 << (deg // div))
-    return total // deg
+    mob = mobius_table(num)
+    total = sum(mob[d] * (2 ** (num // d)) for d in get_divisors(num))
+    return total // num
 
 
-def find_xor_prime(rank: int) -> int:
+def xor_prime_func(tgt_idx: int) -> int:
     """
-    Find the Nth XOR prime using a bitarray-based sieve.
-
-    >>> find_xor_prime(10)
+    Find the N-th XOR-prime (irreducible polynomial) index approximation.
+    >>> xor_prime_func(10)
     41
     """
     total, degree = 0, 1
-    while total + count_irreducibles(degree) < rank:
-        total += count_irreducibles(degree)
+
+    while True:
+        cnt = cnt_irred_pol(degree)
+        if total + cnt > tgt_idx:
+            break
+        total += cnt
         degree += 1
 
-    limit = 1 << (degree + 1)
+    lim = 1 << (degree + 1)
+    is_prime = [True] * lim
+    is_prime[0] = is_prime[1] = False
 
-    sieve = array("B", [1]) * limit
-    sieve[0] = sieve[1] = 0
+    for even in range(4, lim, 2):
+        is_prime[even] = False
 
-    current = 0
-    for i in range(2, limit):
-        if sieve[i]:
-            current += 1
-            if current == rank:
-                return i
+    cnt = 1
+    for num in range(3, lim, 2):
+        if not is_prime[num]:
+            continue
 
-            j = i
-            while True:
-                prod = xor_multiply(i, j)
-                if prod >= limit:
-                    break
-                sieve[prod] = 0
-                j += 1
+        cnt += 1
+        if cnt == tgt_idx:
+            return num
 
-    raise ValueError("Failed to locate the requested XOR-prime")
+        mul = num
+        while True:
+            prod = xor_multiply(mul, num)
+            if prod >= lim:
+                break
+            is_prime[prod] = False
+            mul += 2
+
+    raise ValueError("Could not compute the XOR-prime.")
 
 
-def solution(limit: int = 5000001) -> int:
+def solution(nth: int = 5000000) -> int:
     """
-    Wrapper for Project Euler-style solution function.
-
+    Compute the Nth XOR prime and print timing.
     >>> solution(10)
     41
     """
-    result = find_xor_prime(limit)
+    result = xor_prime_func(nth)
     return result
 
 
 if __name__ == "__main__":
-    print(f"{solution(5000000) = }")
+    print(f"{solution() = }")
