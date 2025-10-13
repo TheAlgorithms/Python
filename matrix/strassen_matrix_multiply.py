@@ -1,3 +1,18 @@
+"""
+Strassen's Matrix Multiplication Algorithm
+------------------------------------------
+An optimized divide-and-conquer algorithm for matrix multiplication that
+reduces the number of multiplications from 8 (in the naive approach)
+to 7 per recursion step.
+
+This results in a time complexity of approximately O(n^2.807),
+which is faster than the standard O(n^3) algorithm for large matrices.
+
+Reference:
+https://en.wikipedia.org/wiki/Strassen_algorithm
+"""
+
+
 from typing import List
 
 Matrix = List[List[int]]
