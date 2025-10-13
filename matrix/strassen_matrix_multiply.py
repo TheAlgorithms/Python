@@ -13,9 +13,7 @@ https://en.wikipedia.org/wiki/Strassen_algorithm
 """
 
 
-from typing import List
-
-Matrix = List[List[int]]
+Matrix = list[list[int]]
 
 def add(A: Matrix, B: Matrix) -> Matrix:
     n = len(A)
