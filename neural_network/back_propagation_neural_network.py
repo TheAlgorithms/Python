@@ -23,6 +23,15 @@ from matplotlib import pyplot as plt
 
 
 def sigmoid(x: np.ndarray) -> np.ndarray:
+    """
+    Compute the sigmoid activation function
+
+    >>> import numpy as np
+    >>> np.allclose(sigmoid(np.array([0])), np.array([0.5]))
+    True
+    >>> np.allclose(sigmoid(np.array([-1, 0, 1])), np.array([0.26894142, 0.5, 0.73105858]))
+    True
+    """
     return 1 / (1 + np.exp(-x))
 
 
@@ -158,6 +167,19 @@ class BPNN:
         return None
 
     def cal_loss(self, ydata, ydata_):
+        """
+        Calculate Mean Squared Error (MSE) loss and its gradient.
+
+        >>> import numpy as np
+        >>> bp = BPNN()
+        >>> y_true = np.asmatrix([[1.0], [0.5]])
+        >>> y_pred = np.asmatrix([[0.8], [0.3]])
+        >>> loss, grad = bp.cal_loss(y_true, y_pred)
+        >>> float(round(loss, 2))
+        0.08
+        >>> np.allclose(grad, np.array([[-0.4], [-0.4]]))
+        True
+        """
         self.loss = np.sum(np.power((ydata - ydata_), 2))
         self.loss_gradient = 2 * (ydata_ - ydata)
         # vector (shape is the same as _ydata.shape)
