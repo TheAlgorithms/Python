@@ -193,5 +193,5 @@ if __name__ == "__main__":
         print(row)
 
     expected = naive_mul(A, B)
-    assert C == expected, "Strassen result differs from naive multiplication!"
+    assert expected == C, "Strassen result differs from naive multiplication!"
     print("Verified: result matches naive multiplication.")
