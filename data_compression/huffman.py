@@ -68,7 +68,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring dictionary, and return the list of Letters
 
-     >>> letters = [Letter('a', 2), Letter('b', 3), Letter('c', 4)]
+    >>> letters = [Letter('a', 2), Letter('b', 3), Letter('c', 4)]
     >>> root = build_tree(letters)
     >>> result = traverse_tree(root, "")
     >>> sorted([l.letter for l in result])
