@@ -29,7 +29,10 @@ def sigmoid(x: np.ndarray) -> np.ndarray:
     >>> import numpy as np
     >>> np.allclose(sigmoid(np.array([0])), np.array([0.5]))
     True
-    >>> np.allclose(sigmoid(np.array([-1, 0, 1])), np.array([0.26894142, 0.5, 0.73105858]))
+    >>> np.allclose(
+    ...     sigmoid(np.array([-1, 0, 1])),
+    ...     np.array([0.26894142, 0.5, 0.73105858])
+    ... )
     True
     """
     return 1 / (1 + np.exp(-x))
