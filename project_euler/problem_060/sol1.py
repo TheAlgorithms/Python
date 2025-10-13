@@ -217,6 +217,11 @@ def solution(
         Recursive backtracking search to find a valid set of primes.
         A threshold is used to ensure we don't exceed the smallest sum.
         Returns the valid set if found, else None.
+
+        >>> search((3,))
+        (3, 7, 109, 673)
+        >>> search((7,))
+        (7, 109, 673, 3)
         """
         if len(chain) == target_size:
             return chain
