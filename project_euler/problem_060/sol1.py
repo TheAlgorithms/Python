@@ -175,9 +175,9 @@ def add_prime(primes: list[int]) -> list[int]:
     return primes
 
 
-def generate_primes(n: int, flag: int = 1) -> list[int]:
+def generate_primes(num_primes: int, flag: int = 1) -> list[int]:
     """
-    Ensure we have at least n primes in the selected list.
+    Generates a list of the first num_primes primes based on their modulo 3 value.
 
     >>> generate_primes(5, 1)
     [3, 7, 13, 19, 31]
@@ -185,7 +185,7 @@ def generate_primes(n: int, flag: int = 1) -> list[int]:
     [3, 5, 11, 17, 23]
     """
     primes = prime_mod_3_is_1_list if flag == 1 else prime_mod_3_is_2_list
-    while len(primes) < n:
+    while len(primes) < num_primes:
         primes = add_prime(primes)
     return primes
 
@@ -212,7 +212,7 @@ def solution(
         raise ValueError("flag must be either 1 or 2")
     primes = generate_primes(prime_limit, flag)
 
-    def search(chain):
+    def search(chain: tuple) -> tuple[int, ...] | None:
         """
         Recursive backtracking search to find a valid set of primes.
         A threshold is used to ensure we don't exceed the smallest sum.
