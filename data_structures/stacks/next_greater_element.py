@@ -6,6 +6,7 @@ The next greater element for an element x is the first greater element on the
 right side of x in the array. If no such element exists, output -1.
 """
 
+
 def next_greater_elements(arr):
     stack = []
     result = [-1] * len(arr)
