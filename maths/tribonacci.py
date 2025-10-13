@@ -10,14 +10,16 @@ we have to calculate nth Tribinacci number
 
 """
 
-def tribonacci(n : int) -> int :
-    trib = [0,1,1]
-    for i in range(3,n+1):
-        x = trib[i-1] + trib[i-2] + trib[i-3]
+
+def tribonacci(n: int) -> int:
+    trib = [0, 1, 1]
+    for i in range(3, n + 1):
+        x = trib[i - 1] + trib[i - 2] + trib[i - 3]
         trib.append(x)
     return trib[n]
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
