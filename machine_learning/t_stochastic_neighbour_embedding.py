@@ -154,5 +154,5 @@ def main() -> None:
     plt.show()
 
 if __name__ == "__main__":
-    # doctest.testmod()
+    doctest.testmod()
     main()
