@@ -14,6 +14,7 @@ https://en.wikipedia.org/wiki/Strassen_algorithm
 
 Matrix = list[list[int]]
 
+
 def add(A: Matrix, B: Matrix) -> Matrix:
     n = len(A)
     return [[A[i][j] + B[i][j] for j in range(n)] for i in range(n)]
