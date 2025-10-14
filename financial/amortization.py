@@ -104,10 +104,8 @@ def amortization_schedule(
 
     if print_annual_summary:
         print(
-            (
-                f"{'Year':<6}{'Months Pd':<12}{'Tenure Left':<13}"
-                f"{'Payment/Period':<16}{'Outstanding':<14}"
-            )
+            f"{'Year':<6}{'Months Pd':<12}{'Tenure Left':<13}"
+            f"{'Payment/Period':<16}{'Outstanding':<14}"
         )
 
     for period in range(1, n + 1):
@@ -142,10 +140,8 @@ def amortization_schedule(
         if print_annual_summary and (months_elapsed % 12 == 0 or balance <= eps):
             tenure_left = n - period
             print(
-                (
-                    f"{months_elapsed // 12:<6}{months_elapsed:<12}{tenure_left:<13}"
-                    f"{pmt:<16.2f}{balance:<14.2f}"
-                )
+                f"{months_elapsed // 12:<6}{months_elapsed:<12}{tenure_left:<13}"
+                f"{pmt:<16.2f}{balance:<14.2f}"
             )
 
         if balance <= eps:
