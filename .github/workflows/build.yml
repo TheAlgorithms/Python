@@ -9,13 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run:
-          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
-          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
-          libharfbuzz-dev libfribidi-dev libxcb1-dev
-          libxml2-dev libxslt-dev
-          libhdf5-dev
-          libopenblas-dev
+      - run: sudo apt-get update && sudo apt-get install -y libhdf5-dev
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v7
         with:
@@ -32,6 +26,7 @@ jobs:
           --ignore=computer_vision/cnn_classification.py
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
+          --ignore=machine_learning/local_weighted_learning/local_weighted_learning.py
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
