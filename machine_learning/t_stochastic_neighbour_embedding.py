@@ -146,7 +146,7 @@ def main() -> None:
         t-SNE embedding (first 5 points):
         [[...
     """
-    features, labels = collect_dataset()
+    features, _labels = collect_dataset()
     embedding = apply_tsne(features, n_components=2, n_iter=300)
 
     if not isinstance(embedding, np.ndarray):
