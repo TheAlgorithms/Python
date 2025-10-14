@@ -11,7 +11,14 @@ def level_payment(principal, annual_rate_pct, years, payments_per_year=12):
     return principal * (r * factor) / (factor - 1)
 
 
-def amortization_schedule(principal, annual_rate_pct, years, payments_per_year=12, print_annual_summary=False, eps=1e-9):
+def amortization_schedule(
+    principal,
+    annual_rate_pct,
+    years,
+    payments_per_year=12,
+    print_annual_summary=False,
+    eps=1e-9,
+):
     pmt = level_payment(principal, annual_rate_pct, years, payments_per_year)
     r = (annual_rate_pct / 100.0) / payments_per_year
     n = years * payments_per_year
@@ -20,7 +27,9 @@ def amortization_schedule(principal, annual_rate_pct, years, payments_per_year=1
     schedule = []
 
     if print_annual_summary:
-        print(f"{'Year':<6}{'Months Pd':<12}{'Tenure Left':<13}{'Payment/Period':<16}{'Outstanding':<14}")
+        print(
+            f"{'Year':<6}{'Months Pd':<12}{'Tenure Left':<13}{'Payment/Period':<16}{'Outstanding':<14}"
+        )
 
     for period in range(1, n + 1):
         interest = balance * r
@@ -33,7 +42,9 @@ def amortization_schedule(principal, annual_rate_pct, years, payments_per_year=1
         else:
             payment_made = pmt
 
-        if principal_component < 0 and principal_component > -eps:  # clamp tiny negatives
+        if (
+            principal_component < 0 and principal_component > -eps
+        ):  # clamp tiny negatives
             principal_component = 0.0
 
         balance = max(0.0, balance - principal_component)
@@ -44,7 +55,9 @@ def amortization_schedule(principal, annual_rate_pct, years, payments_per_year=1
 
         if print_annual_summary and (months_elapsed % 12 == 0 or balance <= eps):
             tenure_left_periods = n - period
-            print(f"{months_elapsed // 12:<6}{months_elapsed:<12}{tenure_left_periods:<13}{pmt:<16.2f}{balance:<14.2f}")
+            print(
+                f"{months_elapsed // 12:<6}{months_elapsed:<12}{tenure_left_periods:<13}{pmt:<16.2f}{balance:<14.2f}"
+            )
 
         if balance <= eps:
             break
@@ -56,5 +69,7 @@ def amortization_schedule(principal, annual_rate_pct, years, payments_per_year=1
     return round(pmt, 4), schedule
 
 
-pmt, sched = amortization_schedule(10000, 5.5, 15, payments_per_year=12, print_annual_summary=True)
+pmt, sched = amortization_schedule(
+    10000, 5.5, 15, payments_per_year=12, print_annual_summary=True
+)
 print(pmt)
