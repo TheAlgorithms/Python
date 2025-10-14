@@ -78,9 +78,3 @@ def amortization_schedule(
         schedule[-1][4] = 0.0
 
     return round(pmt, 4), schedule
-
-
-pmt, sched = amortization_schedule(
-    10000, 5.5, 15, payments_per_year=12, print_annual_summary=True
-)
-print(pmt)
