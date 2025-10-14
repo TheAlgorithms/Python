@@ -149,19 +149,14 @@ def apply_tsne(
     return y
 
 
-def main() -> ndarray:
+def main() -> None:
     """
-    Run t-SNE on Iris dataset and return the embeddings.
-
-    Returns:
-        ndarray: t-SNE embedding of the Iris dataset
+    Run t-SNE on Iris dataset and display the first 5 embeddings.
 
     Example:
-    >>> result = main()
-    >>> result.shape
-    (150, 2)
-    >>> isinstance(result, np.ndarray)
-    True
+    >>> main()  # doctest: +ELLIPSIS
+    t-SNE embedding (first 5 points):
+    [[...
     """
     data_x, _ = collect_dataset()
     y_emb = apply_tsne(data_x, n_components=2, n_iter=300)
@@ -169,13 +164,18 @@ def main() -> ndarray:
     if not isinstance(y_emb, np.ndarray):
         raise TypeError("t-SNE embedding must be an ndarray")
 
-    return y_emb
+    print("t-SNE embedding (first 5 points):")
+    print(y_emb[:5])
+
+    # Optional visualization (commented out for automated testing)
+    # import matplotlib.pyplot as plt
+    # plt.scatter(y_emb[:, 0], y_emb[:, 1], c=labels, cmap="viridis")
+    # plt.title("t-SNE Visualization of Iris Dataset")
+    # plt.xlabel("Dimension 1")
+    # plt.ylabel("Dimension 2")
+    # plt.show()
 
 
 if __name__ == "__main__":
     doctest.testmod()
-
-    # Demonstration of the algorithm
-    result = main()
-    print("t-SNE embedding (first 5 points):")
-    print(result[:5])
+    main()
