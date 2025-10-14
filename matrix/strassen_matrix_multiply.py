@@ -26,7 +26,7 @@ def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     return [[matrix_a[i][j] + matrix_b[i][j] for j in range(n)] for i in range(n)]
 
 
-def sub(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def subtract(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Subtract matrix_b from matrix_a.
 
@@ -37,7 +37,7 @@ def sub(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     return [[matrix_a[i][j] - matrix_b[i][j] for j in range(n)] for i in range(n)]
 
 
-def naive_mul(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def naive_multiplication(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Multiply two square matrices using the naive O(n^3) method.
 
@@ -160,7 +160,7 @@ def strassen(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
 def _strassen_recursive(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
     n = len(matrix_a)
     if n <= threshold:
-        return naive_mul(matrix_a, matrix_b)
+        return naive_multiplication(matrix_a, matrix_b)
     if n == 1:
         return [[matrix_a[0][0] * matrix_b[0][0]]]
 
@@ -169,16 +169,16 @@ def _strassen_recursive(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> M
 
     m1 = _strassen_recursive(add(a11, a22), add(b11, b22), threshold)
     m2 = _strassen_recursive(add(a21, a22), b11, threshold)
-    m3 = _strassen_recursive(a11, sub(b12, b22), threshold)
-    m4 = _strassen_recursive(a22, sub(b21, b11), threshold)
+    m3 = _strassen_recursive(a11, subtract(b12, b22), threshold)
+    m4 = _strassen_recursive(a22, subtract(b21, b11), threshold)
     m5 = _strassen_recursive(add(a11, a12), b22, threshold)
-    m6 = _strassen_recursive(sub(a21, a11), add(b11, b12), threshold)
-    m7 = _strassen_recursive(sub(a12, a22), add(b21, b22), threshold)
+    m6 = _strassen_recursive(subtract(a21, a11), add(b11, b12), threshold)
+    m7 = _strassen_recursive(subtract(a12, a22), add(b21, b22), threshold)
 
-    c11 = add(sub(add(m1, m4), m5), m7)
+    c11 = add(subtract(add(m1, m4), m5), m7)
     c12 = add(m3, m5)
     c21 = add(m2, m4)
-    c22 = add(sub(add(m1, m3), m2), m6)
+    c22 = add(subtract(add(m1, m3), m2), m6)
 
     return join(c11, c12, c21, c22)
 
@@ -192,6 +192,6 @@ if __name__ == "__main__":
     for row in C:
         print(row)
 
-    expected = naive_mul(A, B)
+    expected = naive_multiplication(A, B)
     assert expected == C, "Strassen result differs from naive multiplication!"
     print("Verified: result matches naive multiplication.")
