@@ -32,19 +32,19 @@ if __name__ == "__main__":
 
     # Doctests for the new problem
     print("--- Max Depth Sum Examples ---")
-    
+
     # Example 1: Max sum at depth 2 (4+5=9)
     # >>> calculate_max_depth_sum([1, [4, 5], 2])
     # 9
-    
+
     # Example 2: Max sum at depth 1 (10)
     # >>> calculate_max_depth_sum([10, [1, [2, 3]]])
     # 10
-    
+
     # Example 3: Max sum at depth 3 (100)
     # >>> calculate_max_depth_sum([2, [1, [100], 1], 2])
     # 100
-    
+
     # Example 4: Nested zeroes and negatives
     # The max sum can still be negative if all levels are negative
     # >>> calculate_max_depth_sum([-1, [-5, -2], -1])
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     # Since the prompt asks for a simpler problem, I will only include basic doctests
     # but the implementation provided above works for the complex examples.
-    
+
     # Running basic doctests for validation
     class MaxDepthSumTests:
         """
@@ -62,6 +62,7 @@ if __name__ == "__main__":
         >>> calculate_max_depth_sum([10, [1, [2, 3]]])
         10
         """
+
         pass
-    
+
     doctest.run_docstring_examples(MaxDepthSumTests, globals())
