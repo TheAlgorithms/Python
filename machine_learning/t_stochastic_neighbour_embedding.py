@@ -12,11 +12,11 @@ def collect_dataset() -> tuple[ndarray, ndarray]:
     Returns:
         tuple[ndarray, ndarray]: Feature matrix and target labels.
 
-        >>> features, targets = collect_dataset()
-        >>> features.shape
-        (150, 4)
-        >>> targets.shape
-        (150,)
+    >>> features, targets = collect_dataset()
+    >>> features.shape
+    (150, 4)
+    >>> targets.shape
+    (150,)
     """
     iris_dataset = load_iris()
     return np.array(iris_dataset.data), np.array(iris_dataset.target)
