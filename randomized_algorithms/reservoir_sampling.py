@@ -3,6 +3,7 @@ from typing import List, Iterator, TypeVar
 
 T = TypeVar("T")
 
+
 def reservoir_sampling(stream: Iterator[T], k: int) -> List[T]:
     """
     Randomly select k items from a stream of unknown length using reservoir sampling.
@@ -29,6 +30,8 @@ def reservoir_sampling(stream: Iterator[T], k: int) -> List[T]:
                 reservoir[j] = item
     return reservoir
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

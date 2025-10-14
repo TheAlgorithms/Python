@@ -1,6 +1,7 @@
 import random
 from typing import List
 
+
 def randomized_quicksort(arr: List[int]) -> List[int]:
     """
     Sorts a list of integers using randomized QuickSort algorithm.
@@ -25,6 +26,8 @@ def randomized_quicksort(arr: List[int]) -> List[int]:
     greater = [x for x in arr if x > pivot]
     return randomized_quicksort(less) + equal + randomized_quicksort(greater)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

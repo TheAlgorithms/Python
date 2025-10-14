@@ -1,5 +1,6 @@
 import random
 
+
 def miller_rabin_primality_test(n: int, k: int = 5) -> bool:
     """
     Probabilistic primality test using Miller-Rabin algorithm.
@@ -46,6 +47,8 @@ def miller_rabin_primality_test(n: int, k: int = 5) -> bool:
             return False
     return True
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
