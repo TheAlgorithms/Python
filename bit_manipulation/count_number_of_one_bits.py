@@ -66,7 +66,7 @@ def get_set_bits_count_using_lookup_table(number: int) -> int:
 
     Note: I see similar approach in GeeksforGeeks, but their implementation is little different.
     Link to Code: https://www.geeksforgeeks.org/dsa/count-set-bits-integer-using-lookup-table/
-    
+
     >>> get_set_bits_count_using_lookup_table(25)
     3
     >>> get_set_bits_count_using_lookup_table(37)
@@ -96,7 +96,6 @@ def get_set_bits_count_using_lookup_table(number: int) -> int:
         + _LOOKUP_TABLE[(number >> 16) & 0xFF]
         + _LOOKUP_TABLE[(number >> 24) & 0xFF]
     )
-
 
 
 def benchmark() -> None:
