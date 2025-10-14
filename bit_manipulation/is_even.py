@@ -30,6 +30,7 @@ def is_even(number: int) -> bool:
     """
     return number & 1 == 0
 
+
 def is_even_using_shift_operator(number: int) -> bool:
     """
     Returns True if the input integer is even.
