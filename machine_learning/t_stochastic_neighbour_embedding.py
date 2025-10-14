@@ -12,12 +12,11 @@ def collect_dataset() -> tuple[ndarray, ndarray]:
     Returns:
         tuple[ndarray, ndarray]: Feature matrix and target labels.
 
-    Example:
-        >>> features, targets = collect_dataset()
-        >>> features.shape
-        (150, 4)
-        >>> targets.shape
-        (150,)
+    >>> features, targets = collect_dataset()
+    >>> features.shape
+    (150, 4)
+    >>> targets.shape
+    (150,)
     """
     iris_dataset = load_iris()
     return np.array(iris_dataset.data), np.array(iris_dataset.target)
@@ -34,11 +33,10 @@ def compute_pairwise_affinities(data_matrix: ndarray, sigma: float = 1.0) -> nda
     Returns:
         ndarray: Symmetrized probability matrix.
 
-    Example:
-        >>> x = np.array([[0.0, 0.0], [1.0, 0.0]])
-        >>> probabilities = compute_pairwise_affinities(x)
-        >>> float(round(probabilities[0, 1], 3))
-        0.25
+    >>> x = np.array([[0.0, 0.0], [1.0, 0.0]])
+    >>> probabilities = compute_pairwise_affinities(x)
+    >>> float(round(probabilities[0, 1], 3))
+    0.25
     """
     n_samples = data_matrix.shape[0]
     squared_sum = np.sum(np.square(data_matrix), axis=1)
@@ -63,11 +61,10 @@ def compute_low_dim_affinities(embedding_matrix: ndarray) -> tuple[ndarray, ndar
     Returns:
         tuple[ndarray, ndarray]: (Q probability matrix, numerator matrix).
 
-    Example:
-        >>> y = np.array([[0.0, 0.0], [1.0, 0.0]])
-        >>> q_matrix, numerators = compute_low_dim_affinities(y)
-        >>> q_matrix.shape
-        (2, 2)
+    >>> y = np.array([[0.0, 0.0], [1.0, 0.0]])
+    >>> q_matrix, numerators = compute_low_dim_affinities(y)
+    >>> q_matrix.shape
+    (2, 2)
     """
     squared_sum = np.sum(np.square(embedding_matrix), axis=1)
     numerator_matrix = 1 / (
@@ -101,11 +98,10 @@ def apply_tsne(
     Returns:
         ndarray: Low-dimensional embedding of the data.
 
-    Example:
-        >>> features, _ = collect_dataset()
-        >>> embedding = apply_tsne(features, n_components=2, n_iter=50)
-        >>> embedding.shape
-        (150, 2)
+    >>> features, _ = collect_dataset()
+    >>> embedding = apply_tsne(features, n_components=2, n_iter=50)
+    >>> embedding.shape
+    (150, 2)
     """
     if n_components < 1 or n_iter < 1:
         raise ValueError("n_components and n_iter must be >= 1")
@@ -147,10 +143,9 @@ def main() -> None:
     """
     Run t-SNE on the Iris dataset and display the first 5 embeddings.
 
-    Example:
-        >>> main()  # doctest: +ELLIPSIS
-        t-SNE embedding (first 5 points):
-        [[...
+    >>> main()  # doctest: +ELLIPSIS
+    t-SNE embedding (first 5 points):
+    [[...
     """
     features, _labels = collect_dataset()
     embedding = apply_tsne(features, n_components=2, n_iter=300)
