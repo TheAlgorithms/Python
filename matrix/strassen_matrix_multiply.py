@@ -30,7 +30,7 @@ def subtract(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Subtract matrix_b from matrix_a.
 
-    >>> sub([[5,6],[7,8]], [[1,2],[3,4]])
+    >>> subtract([[5,6],[7,8]], [[1,2],[3,4]])
     [[4, 4], [4, 4]]
     """
     n = len(matrix_a)
@@ -41,7 +41,7 @@ def naive_multiplication(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Multiply two square matrices using the naive O(n^3) method.
 
-    >>> naive_mul([[1,2],[3,4]], [[5,6],[7,8]])
+    >>> naive_multiplication([[1,2],[3,4]], [[5,6],[7,8]])
     [[19, 22], [43, 50]]
     """
     n = len(matrix_a)
