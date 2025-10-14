@@ -41,7 +41,9 @@ def compute_pairwise_affinities(data_matrix: ndarray, sigma: float = 1.0) -> nda
     """
     n_samples = data_matrix.shape[0]
     squared_sum = np.sum(np.square(data_matrix), axis=1)
-    squared_distance = np.add(np.add(-2 * np.dot(data_matrix, data_matrix.T), squared_sum).T, squared_sum)
+    squared_distance = np.add(
+        np.add(-2 * np.dot(data_matrix, data_matrix.T), squared_sum).T, squared_sum
+    )
 
     affinity_matrix = np.exp(-squared_distance / (2 * sigma**2))
     np.fill_diagonal(affinity_matrix, 0)
@@ -125,7 +127,10 @@ def apply_tsne(
 
         gradient = 4 * (
             np.dot((affinity_diff * numerator_matrix), embedding)
-            - np.multiply(np.sum(affinity_diff * numerator_matrix, axis=1)[:, np.newaxis], embedding)
+            - np.multiply(
+                np.sum(affinity_diff * numerator_matrix, axis=1)[:, np.newaxis],
+                embedding,
+            )
         )
 
         embedding_increment = momentum * embedding_increment - learning_rate * gradient
@@ -168,4 +173,3 @@ def main() -> None:
 if __name__ == "__main__":
     doctest.testmod()
     main()
-        
