@@ -1,5 +1,5 @@
 """
-t-SNE (t-distributed Stochastic Neighbor Embedding) implementation.
+t-distributed stochastic neighbor embedding (t-SNE)
 
 For more details, see:
 https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
