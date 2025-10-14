@@ -64,7 +64,7 @@ def get_set_bits_count_using_lookup_table(number: int) -> int:
     """
     Count the number of set bits in a 32-bit integer using a precomputed lookup table.
 
-    Note: I see similar approach in GeeksforGeeks, but the implementation is little different.
+    I see similar approach in GeeksforGeeks, but the implementation is different.
     Link to Code:
     https://www.geeksforgeeks.org/dsa/count-set-bits-integer-using-lookup-table/
 
