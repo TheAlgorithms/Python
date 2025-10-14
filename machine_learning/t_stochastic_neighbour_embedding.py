@@ -146,8 +146,8 @@ def main() -> None:
         t-SNE embedding (first 5 points):
         [[...
     """
-    data_x,labels = collect_dataset()
-    y_emb = apply_tsne(data_x, n_components=2, n_iter=300)
+    features, labels = collect_dataset()
+    embedding = apply_tsne(features, n_components=2, n_iter=300)
 
     if not isinstance(embedding, np.ndarray):
         raise TypeError("t-SNE embedding must be an ndarray")
@@ -155,18 +155,14 @@ def main() -> None:
     print("t-SNE embedding (first 5 points):")
     print(embedding[:5])
 
-    # Optional visualization ( Ruff/mypy compliant)
-    import matplotlib.pyplot as plt
-    plt.scatter(
-        y_emb[:, 0],
-        y_emb[:, 1],
-        c=labels,
-        cmap="viridis"
-    )
-    plt.title("t-SNE Visualization of Iris Dataset")
-    plt.xlabel("Dimension 1")
-    plt.ylabel("Dimension 2")
-    plt.show()
+    # Optional visualization (Ruff/mypy compliant)
+
+    # import matplotlib.pyplot as plt
+    # plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap="viridis")
+    # plt.title("t-SNE Visualization of the Iris Dataset")
+    # plt.xlabel("Dimension 1")
+    # plt.ylabel("Dimension 2")
+    # plt.show()
 
 
 if __name__ == "__main__":
