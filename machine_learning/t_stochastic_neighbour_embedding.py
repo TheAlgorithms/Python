@@ -1,3 +1,10 @@
+"""
+t-SNE (t-distributed Stochastic Neighbor Embedding) implementation.
+
+For more details, see:
+https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
+"""
+
 import doctest
 
 import numpy as np
