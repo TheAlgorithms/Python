@@ -1,5 +1,6 @@
 from typing import List
 
+
 def moving_average(values: List[float], window: int) -> List[float]:
     """
     Compute the moving average of a list of numbers with a given window size.
@@ -15,4 +16,6 @@ def moving_average(values: List[float], window: int) -> List[float]:
     """
     if window > len(values):
         raise ValueError("Window size cannot be larger than list length.")
-    return [sum(values[i:i+window]) / window for i in range(len(values)-window+1)]
+    return [
+        sum(values[i : i + window]) / window for i in range(len(values) - window + 1)
+    ]
