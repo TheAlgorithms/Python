@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 # Step 1: Create a sample DataFrame
 data = {
     "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    "Sales": [250, 300, 280, 350, 400, 380]
+    "Sales": [250, 300, 280, 350, 400, 380],
 }
 df = pd.DataFrame(data)
 
@@ -25,8 +25,15 @@ df["Moving_Avg"] = df["Sales"].rolling(window=2).mean()
 
 # Step 3: Plot the data
 plt.figure(figsize=(8, 5))
-plt.plot(df["Month"], df["Sales"], marker='o', label="Sales", color="blue")
-plt.plot(df["Month"], df["Moving_Avg"], marker='s', label="Moving Avg", linestyle="--", color="orange")
+plt.plot(df["Month"], df["Sales"], marker="o", label="Sales", color="blue")
+plt.plot(
+    df["Month"],
+    df["Moving_Avg"],
+    marker="s",
+    label="Moving Avg",
+    linestyle="--",
+    color="orange",
+)
 
 plt.title("Monthly Sales with Moving Average")
 plt.xlabel("Month")
