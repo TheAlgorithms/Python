@@ -67,14 +67,18 @@ def pad_matrix_to_size(matrix: Matrix, target_size: int) -> Matrix:
     return padded_matrix
 
 
-def remove_matrix_padding(matrix: Matrix, original_rows: int, original_cols: int) -> Matrix:
+def remove_matrix_padding(
+    matrix: Matrix, original_rows: int, original_cols: int
+) -> Matrix:
     """
     Remove zero padding from a matrix to restore its original size.
     """
     return [row[:original_cols] for row in matrix[:original_rows]]
 
 
-def split_matrix_into_quadrants(matrix: Matrix) -> tuple[Matrix, Matrix, Matrix, Matrix]:
+def split_matrix_into_quadrants(
+    matrix: Matrix,
+) -> tuple[Matrix, Matrix, Matrix, Matrix]:
     """
     Split a matrix into four equal quadrants:
     top-left, top-right, bottom-left, bottom-right.
@@ -107,7 +111,9 @@ def join_matrix_quadrants(
     return combined_matrix
 
 
-def strassen_matrix_multiplication(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
+def strassen_matrix_multiplication(
+    matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64
+) -> Matrix:
     """
     Multiply two square matrices using Strassen's algorithm.
     Uses naive multiplication for matrices smaller than the threshold.
@@ -121,8 +127,7 @@ def strassen_matrix_multiplication(matrix_a: Matrix, matrix_b: Matrix, threshold
         return []
 
     # Pad matrices to next power of two for even splitting
-    padded_size = get_next_power_of_two(original_size)
-    if padded_size != original_size:
+    if (padded_size := get_next_power_of_two(original_size)) != original_size:
         matrix_a = pad_matrix_to_size(matrix_a, padded_size)
         matrix_b = pad_matrix_to_size(matrix_b, padded_size)
 
@@ -130,7 +135,9 @@ def strassen_matrix_multiplication(matrix_a: Matrix, matrix_b: Matrix, threshold
     return remove_matrix_padding(result_padded, original_size, original_size)
 
 
-def _strassen_recursive_multiply(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
+def _strassen_recursive_multiply(
+    matrix_a: Matrix, matrix_b: Matrix, threshold: int
+) -> Matrix:
     """
     Recursive implementation of Strassen's algorithm.
     """
@@ -148,13 +155,19 @@ def _strassen_recursive_multiply(matrix_a: Matrix, matrix_b: Matrix, threshold: 
     b11, b12, b21, b22 = split_matrix_into_quadrants(matrix_b)
 
     # Compute the 7 Strassen products
-    p1 = _strassen_recursive_multiply(add_matrices(a11, a22), add_matrices(b11, b22), threshold)
+    p1 = _strassen_recursive_multiply(
+        add_matrices(a11, a22), add_matrices(b11, b22), threshold
+    )
     p2 = _strassen_recursive_multiply(add_matrices(a21, a22), b11, threshold)
     p3 = _strassen_recursive_multiply(a11, subtract_matrices(b12, b22), threshold)
     p4 = _strassen_recursive_multiply(a22, subtract_matrices(b21, b11), threshold)
     p5 = _strassen_recursive_multiply(add_matrices(a11, a12), b22, threshold)
-    p6 = _strassen_recursive_multiply(subtract_matrices(a21, a11), add_matrices(b11, b12), threshold)
-    p7 = _strassen_recursive_multiply(subtract_matrices(a12, a22), add_matrices(b21, b22), threshold)
+    p6 = _strassen_recursive_multiply(
+        subtract_matrices(a21, a11), add_matrices(b11, b12), threshold
+    )
+    p7 = _strassen_recursive_multiply(
+        subtract_matrices(a12, a22), add_matrices(b21, b22), threshold
+    )
 
     # Combine partial results into final quadrants
     c11 = add_matrices(subtract_matrices(add_matrices(p1, p4), p5), p7)
@@ -175,5 +188,7 @@ if __name__ == "__main__":
         print(row)
 
     expected_matrix = multiply_matrices_naive(matrix_A, matrix_B)
-    assert expected_matrix == result_matrix, "Strassen result differs from naive multiplication!"
+    assert expected_matrix == result_matrix, (
+        "Strassen result differs from naive multiplication!"
+    )
     print("Verified: result matches naive multiplication.")
