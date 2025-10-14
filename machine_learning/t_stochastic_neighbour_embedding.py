@@ -12,7 +12,6 @@ def collect_dataset() -> tuple[ndarray, ndarray]:
     Returns:
         tuple[ndarray, ndarray]: Feature matrix and target labels.
 
-    Example:
         >>> features, targets = collect_dataset()
         >>> features.shape
         (150, 4)
