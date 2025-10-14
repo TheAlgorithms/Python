@@ -99,7 +99,6 @@ def get_set_bits_count_using_lookup_table(number: int) -> int:
     )
 
 
-
 def benchmark() -> None:
     """
     Benchmark code for comparing 3 functions, with different length int values.
