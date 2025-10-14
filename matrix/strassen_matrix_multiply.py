@@ -1,6 +1,6 @@
 """
-Strassen's Matrix Multiplication Algorithm
-------------------------------------------
+Strassen's Matrix Multiplication Algorithm (Descriptive Version)
+---------------------------------------------------------------
 An optimized divide-and-conquer algorithm for matrix multiplication that
 reduces the number of multiplications from 8 (in the naive approach)
 to 7 per recursion step.
@@ -15,54 +15,39 @@ https://en.wikipedia.org/wiki/Strassen_algorithm
 Matrix = list[list[int]]
 
 
-def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def add_matrices(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Add two square matrices of the same size.
-
-    >>> add([[1,2],[3,4]], [[5,6],[7,8]])
-    [[6, 8], [10, 12]]
     """
-    n = len(matrix_a)
-    return [[matrix_a[i][j] + matrix_b[i][j] for j in range(n)] for i in range(n)]
+    size = len(matrix_a)
+    return [[matrix_a[i][j] + matrix_b[i][j] for j in range(size)] for i in range(size)]
 
 
-def sub(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def subtract_matrices(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Subtract matrix_b from matrix_a.
-
-    >>> sub([[5,6],[7,8]], [[1,2],[3,4]])
-    [[4, 4], [4, 4]]
     """
-    n = len(matrix_a)
-    return [[matrix_a[i][j] - matrix_b[i][j] for j in range(n)] for i in range(n)]
+    size = len(matrix_a)
+    return [[matrix_a[i][j] - matrix_b[i][j] for j in range(size)] for i in range(size)]
 
 
-def naive_mul(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def multiply_matrices_naive(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     Multiply two square matrices using the naive O(n^3) method.
-
-    >>> naive_mul([[1,2],[3,4]], [[5,6],[7,8]])
-    [[19, 22], [43, 50]]
     """
-    n = len(matrix_a)
-    result = [[0] * n for _ in range(n)]
-    for i in range(n):
-        row_a = matrix_a[i]
-        row_result = result[i]
-        for k in range(n):
-            a_ik = row_a[k]
-            col_b = matrix_b[k]
-            for j in range(n):
-                row_result[j] += a_ik * col_b[j]
-    return result
+    size = len(matrix_a)
+    result_matrix = [[0] * size for _ in range(size)]
+
+    for i in range(size):
+        for k in range(size):
+            for j in range(size):
+                result_matrix[i][j] += matrix_a[i][k] * matrix_b[k][j]
+    return result_matrix
 
 
-def next_power_of_two(n: int) -> int:
+def get_next_power_of_two(n: int) -> int:
     """
     Return the next power of two greater than or equal to n.
-
-    >>> next_power_of_two(5)
-    8
     """
     power = 1
     while power < n:
@@ -70,128 +55,125 @@ def next_power_of_two(n: int) -> int:
     return power
 
 
-def pad_matrix(matrix: Matrix, size: int) -> Matrix:
+def pad_matrix_to_size(matrix: Matrix, target_size: int) -> Matrix:
     """
-    Pad a matrix with zeros to reach the given size.
-
-    >>> pad_matrix([[1,2],[3,4]], 4)
-    [[1, 2, 0, 0], [3, 4, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    Pad a matrix with zeros to reach the given target size.
     """
-    rows = len(matrix)
-    cols = len(matrix[0])
-    padded = [[0] * size for _ in range(size)]
+    rows, cols = len(matrix), len(matrix[0])
+    padded_matrix = [[0] * target_size for _ in range(target_size)]
     for i in range(rows):
         for j in range(cols):
-            padded[i][j] = matrix[i][j]
-    return padded
+            padded_matrix[i][j] = matrix[i][j]
+    return padded_matrix
 
 
-def unpad_matrix(matrix: Matrix, rows: int, cols: int) -> Matrix:
+def remove_matrix_padding(matrix: Matrix, original_rows: int, original_cols: int) -> Matrix:
     """
-    Remove padding from a matrix.
-
-    >>> unpad_matrix([[1,2,0],[3,4,0],[0,0,0]], 2, 2)
-    [[1, 2], [3, 4]]
+    Remove zero padding from a matrix to restore its original size.
     """
-    return [row[:cols] for row in matrix[:rows]]
+    return [row[:original_cols] for row in matrix[:original_rows]]
 
 
-def split(matrix: Matrix) -> tuple:
+def split_matrix_into_quadrants(matrix: Matrix) -> tuple[Matrix, Matrix, Matrix, Matrix]:
     """
-    Split a matrix into four quadrants (top-left, top-right, bottom-left, bottom-right).
-
-    >>> split([[1,2],[3,4]])
-    ([[1]], [[2]], [[3]], [[4]])
+    Split a matrix into four equal quadrants:
+    top-left, top-right, bottom-left, bottom-right.
     """
-    n = len(matrix)
-    mid = n // 2
+    size = len(matrix)
+    mid = size // 2
     top_left = [[matrix[i][j] for j in range(mid)] for i in range(mid)]
-    top_right = [[matrix[i][j] for j in range(mid, n)] for i in range(mid)]
-    bottom_left = [[matrix[i][j] for j in range(mid)] for i in range(mid, n)]
-    bottom_right = [[matrix[i][j] for j in range(mid, n)] for i in range(mid, n)]
+    top_right = [[matrix[i][j] for j in range(mid, size)] for i in range(mid)]
+    bottom_left = [[matrix[i][j] for j in range(mid)] for i in range(mid, size)]
+    bottom_right = [[matrix[i][j] for j in range(mid, size)] for i in range(mid, size)]
     return top_left, top_right, bottom_left, bottom_right
 
 
-def join(c11: Matrix, c12: Matrix, c21: Matrix, c22: Matrix) -> Matrix:
+def join_matrix_quadrants(
+    top_left: Matrix, top_right: Matrix, bottom_left: Matrix, bottom_right: Matrix
+) -> Matrix:
     """
-    Join four quadrants into a single matrix.
-
-    >>> join([[1]], [[2]], [[3]], [[4]])
-    [[1, 2], [3, 4]]
+    Join four quadrants into a single square matrix.
     """
-    n2 = len(c11)
-    n = n2 * 2
-    result = [[0] * n for _ in range(n)]
-    for i in range(n2):
-        for j in range(n2):
-            result[i][j] = c11[i][j]
-            result[i][j + n2] = c12[i][j]
-            result[i + n2][j] = c21[i][j]
-            result[i + n2][j + n2] = c22[i][j]
-    return result
+    quadrant_size = len(top_left)
+    full_size = quadrant_size * 2
+    combined_matrix = [[0] * full_size for _ in range(full_size)]
+
+    for i in range(quadrant_size):
+        for j in range(quadrant_size):
+            combined_matrix[i][j] = top_left[i][j]
+            combined_matrix[i][j + quadrant_size] = top_right[i][j]
+            combined_matrix[i + quadrant_size][j] = bottom_left[i][j]
+            combined_matrix[i + quadrant_size][j + quadrant_size] = bottom_right[i][j]
+    return combined_matrix
 
 
-def strassen(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
+def strassen_matrix_multiplication(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
     """
     Multiply two square matrices using Strassen's algorithm.
-    Uses naive multiplication for matrices smaller than threshold.
-
-    >>> strassen([[1,2],[3,4]], [[5,6],[7,8]])
-    [[19, 22], [43, 50]]
+    Uses naive multiplication for matrices smaller than the threshold.
     """
     assert len(matrix_a) == len(matrix_a[0]) == len(matrix_b) == len(matrix_b[0]), (
-        "Only square matrices supported"
+        "Strassen's algorithm supports only square matrices."
     )
 
-    n_orig = len(matrix_a)
-    if n_orig == 0:
+    original_size = len(matrix_a)
+    if original_size == 0:
         return []
 
-    if (m := next_power_of_two(n_orig)) != n_orig:
-        a_pad = pad_matrix(matrix_a, m)
-        b_pad = pad_matrix(matrix_b, m)
-    else:
-        a_pad, b_pad = matrix_a, matrix_b
+    # Pad matrices to next power of two for even splitting
+    padded_size = get_next_power_of_two(original_size)
+    if padded_size != original_size:
+        matrix_a = pad_matrix_to_size(matrix_a, padded_size)
+        matrix_b = pad_matrix_to_size(matrix_b, padded_size)
 
-    c_pad = _strassen_recursive(a_pad, b_pad, threshold)
-    return unpad_matrix(c_pad, n_orig, n_orig)
+    result_padded = _strassen_recursive_multiply(matrix_a, matrix_b, threshold)
+    return remove_matrix_padding(result_padded, original_size, original_size)
 
 
-def _strassen_recursive(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
-    n = len(matrix_a)
-    if n <= threshold:
-        return naive_mul(matrix_a, matrix_b)
-    if n == 1:
+def _strassen_recursive_multiply(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
+    """
+    Recursive implementation of Strassen's algorithm.
+    """
+    size = len(matrix_a)
+
+    # Base case: use naive multiplication for small matrices
+    if size <= threshold:
+        return multiply_matrices_naive(matrix_a, matrix_b)
+
+    if size == 1:
         return [[matrix_a[0][0] * matrix_b[0][0]]]
 
-    a11, a12, a21, a22 = split(matrix_a)
-    b11, b12, b21, b22 = split(matrix_b)
+    # Split matrices into quadrants
+    a11, a12, a21, a22 = split_matrix_into_quadrants(matrix_a)
+    b11, b12, b21, b22 = split_matrix_into_quadrants(matrix_b)
 
-    m1 = _strassen_recursive(add(a11, a22), add(b11, b22), threshold)
-    m2 = _strassen_recursive(add(a21, a22), b11, threshold)
-    m3 = _strassen_recursive(a11, sub(b12, b22), threshold)
-    m4 = _strassen_recursive(a22, sub(b21, b11), threshold)
-    m5 = _strassen_recursive(add(a11, a12), b22, threshold)
-    m6 = _strassen_recursive(sub(a21, a11), add(b11, b12), threshold)
-    m7 = _strassen_recursive(sub(a12, a22), add(b21, b22), threshold)
+    # Compute the 7 Strassen products
+    p1 = _strassen_recursive_multiply(add_matrices(a11, a22), add_matrices(b11, b22), threshold)
+    p2 = _strassen_recursive_multiply(add_matrices(a21, a22), b11, threshold)
+    p3 = _strassen_recursive_multiply(a11, subtract_matrices(b12, b22), threshold)
+    p4 = _strassen_recursive_multiply(a22, subtract_matrices(b21, b11), threshold)
+    p5 = _strassen_recursive_multiply(add_matrices(a11, a12), b22, threshold)
+    p6 = _strassen_recursive_multiply(subtract_matrices(a21, a11), add_matrices(b11, b12), threshold)
+    p7 = _strassen_recursive_multiply(subtract_matrices(a12, a22), add_matrices(b21, b22), threshold)
 
-    c11 = add(sub(add(m1, m4), m5), m7)
-    c12 = add(m3, m5)
-    c21 = add(m2, m4)
-    c22 = add(sub(add(m1, m3), m2), m6)
+    # Combine partial results into final quadrants
+    c11 = add_matrices(subtract_matrices(add_matrices(p1, p4), p5), p7)
+    c12 = add_matrices(p3, p5)
+    c21 = add_matrices(p2, p4)
+    c22 = add_matrices(subtract_matrices(add_matrices(p1, p3), p2), p6)
 
-    return join(c11, c12, c21, c22)
+    return join_matrix_quadrants(c11, c12, c21, c22)
 
 
 if __name__ == "__main__":
-    A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    B = [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
+    matrix_A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    matrix_B = [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
 
-    C = strassen(A, B, threshold=1)
-    print("A * B =")
-    for row in C:
+    result_matrix = strassen_matrix_multiplication(matrix_A, matrix_B, threshold=1)
+    print("A × B =")
+    for row in result_matrix:
         print(row)
 
-    expected = naive_mul(A, B)
-    assert expected == C, "Strassen result differs from naive multiplication!"
+    expected_matrix = multiply_matrices_naive(matrix_A, matrix_B)
+    assert expected_matrix == result_matrix, "Strassen result differs from naive multiplication!"
     print("Verified: result matches naive multiplication.")
