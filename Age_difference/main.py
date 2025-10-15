@@ -4,6 +4,7 @@ Algorithm to calculate age difference and display a message with safe input hand
 Wikipedia: https://en.wikipedia.org/wiki/Chronological_age
 """
 
+
 def age_difference(boy_age: int, girl_age: int) -> int:
     """
     Returns the absolute age difference between two people.
