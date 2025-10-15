@@ -27,7 +27,7 @@ def sigmoid_function(value: float, deriv: bool = False) -> float:
 
 # Initial constants
 INITIAL_VALUE = 0.02  # learning rate
-SEQUENCE_LENGTH = 5   # time steps in the sequence
+SEQUENCE_LENGTH = 5  # time steps in the sequence
 
 
 def forward_propagation_rnn(expected: int, number_propagations: int) -> float:
@@ -44,9 +44,9 @@ def forward_propagation_rnn(expected: int, number_propagations: int) -> float:
     random.seed(0)
 
     # Random weight initialization
-    W_xh = (random.random() * 2 - 1)  # Input to hidden
-    W_hh = (random.random() * 2 - 1)  # Hidden to hidden (recurrent)
-    W_hy = (random.random() * 2 - 1)  # Hidden to output
+    w_xh = random.random() * 2 - 1  # Input to hidden
+    w_hh = random.random() * 2 - 1  # Hidden to hidden (recurrent)
+    w_hy = random.random() * 2 - 1  # Hidden to output
 
     # Training loop
     for _ in range(number_propagations):
@@ -54,15 +54,15 @@ def forward_propagation_rnn(expected: int, number_propagations: int) -> float:
         total_error = 0.0
 
         # Forward pass through time
-        for t in range(SEQUENCE_LENGTH):
+        for _t in range(SEQUENCE_LENGTH):
             # Fake input sequence: small constant or could be pattern-based
             x_t = INITIAL_VALUE
 
             # Hidden state update
-            h_t = sigmoid_function(W_xh * x_t + W_hh * h_prev)
+            h_t = sigmoid_function(w_xh * x_t + w_hh * h_prev)
 
             # Output
-            y_t = sigmoid_function(W_hy * h_t)
+            y_t = sigmoid_function(w_hy * h_t)
 
             # Error (target distributed over time steps)
             error_t = (expected / 100) - y_t
@@ -70,12 +70,12 @@ def forward_propagation_rnn(expected: int, number_propagations: int) -> float:
 
             # Backpropagation Through Time (simplified)
             d_y = error_t * sigmoid_function(y_t, True)
-            d_h = d_y * W_hy * sigmoid_function(h_t, True)
+            d_h = d_y * w_hy * sigmoid_function(h_t, True)
 
             # Weight updates
-            W_hy += INITIAL_VALUE * d_y * h_t
-            W_xh += INITIAL_VALUE * d_h * x_t
-            W_hh += INITIAL_VALUE * d_h * h_prev
+            w_hy += INITIAL_VALUE * d_y * h_t
+            w_xh += INITIAL_VALUE * d_h * x_t
+            w_hh += INITIAL_VALUE * d_h * h_prev
 
             # Move to next time step
             h_prev = h_t
