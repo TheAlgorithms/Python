@@ -66,12 +66,12 @@ class SegmentTree:
     def _build(self, node: int, start: int, end: int) -> None:
         """
         Build the segment tree recursively.
-        
+
         Args:
             node: Current node index
             start: Start of current segment
             end: End of current segment
-            
+
         Examples:
             >>> st = SegmentTree([1, 2, 3, 4, 5])
             >>> st._build(0, 0, 4)  # Builds the entire tree
@@ -247,12 +247,12 @@ class LazySegmentTree:
     def _push_lazy(self, node: int, start: int, end: int) -> None:
         """
         Push lazy updates to children.
-        
+
         Args:
             node: Current node index
             start: Start of current segment
             end: End of current segment
-            
+
         Examples:
             >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
             >>> lst.lazy[0] = 2
@@ -279,7 +279,7 @@ class LazySegmentTree:
             left: Left boundary (0-indexed)
             right: Right boundary (0-indexed)
             delta: Value to add to the range
-            
+
         Examples:
             >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
             >>> lst.range_update(1, 3, 2)
@@ -344,7 +344,7 @@ class LazySegmentTree:
 
         Returns:
             Result of the operation over the range
-            
+
         Examples:
             >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
             >>> lst.query(1, 3)
@@ -361,17 +361,17 @@ class LazySegmentTree:
     def _query(self, node: int, start: int, end: int, left: int, right: int) -> int:
         """
         Internal query method.
-        
+
         Args:
             node: Current node index
             start: Start of current segment
             end: End of current segment
             left: Left boundary of query
             right: Right boundary of query
-            
+
         Returns:
             Result of the operation over the range
-            
+
         Examples:
             >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
             >>> lst._query(0, 0, 4, 1, 3)

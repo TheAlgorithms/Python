@@ -368,13 +368,13 @@ class Trie:
     ) -> None:
         """
         Helper method for pattern search.
-        
+
         Args:
             node: Current trie node
             current_word: Current word being built
             pattern: Pattern to match
             words: List to collect matching words
-            
+
         Examples:
             >>> trie = Trie()
             >>> trie.insert("hello")
@@ -430,7 +430,7 @@ class Trie:
     def clear(self) -> None:
         """
         Clear all words from the trie.
-        
+
         Examples:
             >>> trie = Trie()
             >>> trie.insert("hello")
