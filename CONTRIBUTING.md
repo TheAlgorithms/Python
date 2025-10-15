@@ -99,7 +99,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ruff check
   ```
 
-- Original code submission require docstrings or comments to describe your work.
+- Original code submissions require docstrings or comments to describe your work.
 
 - More on docstrings and comments:
 
