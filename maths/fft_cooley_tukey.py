@@ -13,10 +13,10 @@ Reference: https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm
 """
 
 import math
-from typing import List, Tuple
+from typing import Optional
 
 
-def fft_cooley_tukey(signal: List[complex]) -> List[complex]:
+def fft_cooley_tukey(signal: list[complex]) -> list[complex]:
     """
     Compute the Fast Fourier Transform using Cooley-Tukey algorithm.
 
@@ -65,7 +65,7 @@ def fft_cooley_tukey(signal: List[complex]) -> List[complex]:
     return result
 
 
-def ifft_cooley_tukey(fft_signal: List[complex]) -> List[complex]:
+def ifft_cooley_tukey(fft_signal: list[complex]) -> list[complex]:
     """
     Compute the Inverse Fast Fourier Transform using Cooley-Tukey algorithm.
 
@@ -96,7 +96,7 @@ def ifft_cooley_tukey(fft_signal: List[complex]) -> List[complex]:
     return result
 
 
-def fft_magnitude_phase(fft_result: List[complex]) -> Tuple[List[float], List[float]]:
+def fft_magnitude_phase(fft_result: list[complex]) -> tuple[list[float], list[float]]:
     """
     Extract magnitude and phase from FFT result.
 
@@ -119,7 +119,7 @@ def fft_magnitude_phase(fft_result: List[complex]) -> Tuple[List[float], List[fl
     return magnitudes, phases
 
 
-def fft_frequency_bins(sample_rate: float, n_samples: int) -> List[float]:
+def fft_frequency_bins(sample_rate: float, n_samples: int) -> list[float]:
     """
     Generate frequency bins for FFT result.
 
@@ -199,6 +199,10 @@ if __name__ == "__main__":
     plt.show()
 
     print("FFT implementation completed successfully!")
-    print(
-        f"Peak frequencies detected: {[f for f, m in zip(frequencies[: len(frequencies) // 2], magnitudes[: len(magnitudes) // 2]) if m > max(magnitudes[: len(magnitudes) // 2]) * 0.1]}"
-    )
+    peak_frequencies = [
+        f for f, m in zip(
+            frequencies[:len(frequencies)//2], 
+            magnitudes[:len(magnitudes)//2]
+        ) if m > max(magnitudes[:len(magnitudes)//2]) * 0.1
+    ]
+    print(f"Peak frequencies detected: {peak_frequencies}")

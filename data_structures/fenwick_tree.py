@@ -15,7 +15,7 @@ Space Complexity: O(n)
 Reference: https://en.wikipedia.org/wiki/Fenwick_tree
 """
 
-from typing import List
+from typing import Optional
 
 
 class FenwickTree:
@@ -45,11 +45,11 @@ class FenwickTree:
     def update(self, index: int, delta: int) -> None:
         """
         Update element at given index by adding delta.
-
+        
         Args:
             index: 1-indexed position to update
             delta: Value to add to the element
-
+            
         Examples:
             >>> ft = FenwickTree(5)
             >>> ft.update(1, 5)
@@ -57,7 +57,8 @@ class FenwickTree:
             5
         """
         if index < 1 or index > self.size:
-            raise ValueError(f"Index {index} out of range [1, {self.size}]")
+            msg = f"Index {index} out of range [1, {self.size}]"
+            raise ValueError(msg)
 
         while index <= self.size:
             self.tree[index] += delta
@@ -81,7 +82,8 @@ class FenwickTree:
             7
         """
         if index < 1 or index > self.size:
-            raise ValueError(f"Index {index} out of range [1, {self.size}]")
+            msg = f"Index {index} out of range [1, {self.size}]"
+            raise ValueError(msg)
 
         result = 0
         while index > 0:
@@ -110,7 +112,8 @@ class FenwickTree:
             5
         """
         if left < 1 or right > self.size or left > right:
-            raise ValueError(f"Invalid range [{left}, {right}]")
+            msg = f"Invalid range [{left}, {right}]"
+            raise ValueError(msg)
 
         return self.query(right) - self.query(left - 1)
 
@@ -195,7 +198,8 @@ class FenwickTree2D:
             delta: Value to add
         """
         if row < 1 or row > self.rows or col < 1 or col > self.cols:
-            raise ValueError(f"Position ({row}, {col}) out of range")
+            msg = f"Position ({row}, {col}) out of range"
+            raise ValueError(msg)
 
         i = row
         while i <= self.rows:
@@ -217,7 +221,8 @@ class FenwickTree2D:
             Sum from (1, 1) to (row, col)
         """
         if row < 1 or row > self.rows or col < 1 or col > self.cols:
-            raise ValueError(f"Position ({row}, {col}) out of range")
+            msg = f"Position ({row}, {col}) out of range"
+            raise ValueError(msg)
 
         result = 0
         i = row
@@ -265,30 +270,30 @@ if __name__ == "__main__":
         ft.update(i, val)
         print(f"Added {val} at position {i}")
 
-    print(f"\nPrefix sums:")
+    print("\nPrefix sums:")
     for i in range(1, 11):
         prefix_sum = ft.query(i)
         print(f"Sum from 1 to {i}: {prefix_sum}")
 
-    print(f"\nRange queries:")
+    print("\nRange queries:")
     ranges = [(2, 5), (1, 10), (3, 7)]
     for left, right in ranges:
         range_sum = ft.range_query(left, right)
         print(f"Sum from {left} to {right}: {range_sum}")
 
-    print(f"\nIndividual values:")
+    print("\nIndividual values:")
     for i in range(1, 11):
         value = ft.get(i)
         print(f"Value at position {i}: {value}")
 
     # Test update
-    print(f"\nUpdating position 3 by adding 5:")
+    print("\nUpdating position 3 by adding 5:")
     ft.update(3, 5)
     print(f"New value at position 3: {ft.get(3)}")
     print(f"New prefix sum from 1 to 3: {ft.query(3)}")
 
     # 2D Fenwick Tree example
-    print(f"\n2D Fenwick Tree Example")
+    print("\n2D Fenwick Tree Example")
     print("=" * 50)
 
     ft2d = FenwickTree2D(3, 3)
@@ -310,7 +315,7 @@ if __name__ == "__main__":
         ft2d.update(row, col, val)
         print(f"Added {val} at position ({row}, {col})")
 
-    print(f"\n2D Range queries:")
+    print("\n2D Range queries:")
     queries = [
         (1, 1, 2, 2),  # Top-left 2x2
         (2, 2, 3, 3),  # Bottom-right 2x2
@@ -321,4 +326,4 @@ if __name__ == "__main__":
         result = ft2d.range_query(r1, c1, r2, c2)
         print(f"Sum from ({r1}, {c1}) to ({r2}, {c2}): {result}")
 
-    print(f"\nFenwick Tree implementation completed successfully!")
+    print("\nFenwick Tree implementation completed successfully!")

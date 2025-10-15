@@ -13,20 +13,19 @@ Time Complexity:
     - Search: O(m) where m is the length of the string
     - Delete: O(m) where m is the length of the string
     - Prefix search: O(m + k) where m is prefix length, k is number of results
-Space Complexity: O(ALPHABET_SIZE * N * M) where N is number of strings, M is average length
+Space Complexity: O(ALPHABET_SIZE * N * M) where N is number of strings, M is avg length
 
 Reference: https://en.wikipedia.org/wiki/Trie
 """
 
-from typing import List, Set, Optional, Dict, Any
-import re
+from typing import Optional, Any
 
 
 class TrieNode:
     """Node in the Trie data structure."""
 
     def __init__(self):
-        self.children: Dict[str, "TrieNode"] = {}
+        self.children: dict[str, TrieNode] = {}
         self.is_end_of_word: bool = False
         self.word_count: int = 0  # Number of words ending at this node
         self.prefix_count: int = 0  # Number of words with this prefix
@@ -171,7 +170,7 @@ class Trie:
         node.prefix_count -= 1
         return len(node.children) == 0 and not node.is_end_of_word
 
-    def _find_node(self, word: str) -> Optional[TrieNode]:
+    def _find_node(self, word: str) -> TrieNode | None:
         """
         Find the node corresponding to the given word.
 
@@ -199,7 +198,7 @@ class Trie:
             node = node.children[char]
         return node
 
-    def get_all_words_with_prefix(self, prefix: str) -> List[str]:
+    def get_all_words_with_prefix(self, prefix: str) -> list[str]:
         """
         Get all words that start with the given prefix.
 
@@ -226,7 +225,7 @@ class Trie:
         return words
 
     def _collect_words(
-        self, node: TrieNode, current_word: str, words: List[str]
+        self, node: TrieNode, current_word: str, words: list[str]
     ) -> None:
         """
         Collect all words from a given node.
@@ -251,7 +250,7 @@ class Trie:
         for char, child_node in node.children.items():
             self._collect_words(child_node, current_word + char, words)
 
-    def autocomplete(self, prefix: str, max_results: int = 10) -> List[str]:
+    def autocomplete(self, prefix: str, max_results: int = 10) -> list[str]:
         """
         Get autocomplete suggestions for the given prefix.
 
@@ -341,7 +340,7 @@ class Trie:
         node = self._find_node(prefix)
         return node.prefix_count if node else 0
 
-    def pattern_search(self, pattern: str) -> List[str]:
+    def pattern_search(self, pattern: str) -> list[str]:
         """
         Search for words matching a pattern with wildcards.
         Supports '*' for any character and '?' for single character.
@@ -365,7 +364,7 @@ class Trie:
         return words
 
     def _pattern_search_helper(
-        self, node: TrieNode, current_word: str, pattern: str, words: List[str]
+        self, node: TrieNode, current_word: str, pattern: str, words: list[str]
     ) -> None:
         """Helper method for pattern search."""
         if not pattern:
@@ -389,14 +388,13 @@ class Trie:
                 self._pattern_search_helper(
                     child_node, current_word + child_char, remaining_pattern, words
                 )
-        else:
+        elif char in node.children:
             # Match exact character
-            if char in node.children:
-                self._pattern_search_helper(
-                    node.children[char], current_word + char, remaining_pattern, words
-                )
+            self._pattern_search_helper(
+                node.children[char], current_word + char, remaining_pattern, words
+            )
 
-    def get_all_words(self) -> List[str]:
+    def get_all_words(self) -> list[str]:
         """
         Get all words in the trie.
 
@@ -448,7 +446,7 @@ class CompressedTrie(Trie):
     def _compress_helper(self, node: TrieNode) -> None:
         """Helper method for compression."""
         if len(node.children) == 1 and not node.is_end_of_word:
-            child_char, child_node = next(iter(node.children.items()))
+            _child_char, child_node = next(iter(node.children.items()))
             # Merge single child
             node.children = child_node.children
             node.is_end_of_word = child_node.is_end_of_word
@@ -477,14 +475,14 @@ if __name__ == "__main__":
     print(f"\nTrie size: {len(trie)}")
 
     # Search operations
-    print(f"\nSearch operations:")
+    print("\nSearch operations:")
     search_words = ["hello", "help", "xyz", "world"]
     for word in search_words:
         result = trie.search(word)
         print(f"'{word}': {'Found' if result else 'Not found'}")
 
     # Prefix operations
-    print(f"\nPrefix operations:")
+    print("\nPrefix operations:")
     prefixes = ["hel", "wor", "xyz"]
     for prefix in prefixes:
         has_prefix = trie.starts_with(prefix)
@@ -492,7 +490,7 @@ if __name__ == "__main__":
         print(f"Prefix '{prefix}': {has_prefix}, Words: {words_with_prefix}")
 
     # Autocomplete
-    print(f"\nAutocomplete:")
+    print("\nAutocomplete:")
     autocomplete_prefixes = ["hel", "wor"]
     for prefix in autocomplete_prefixes:
         suggestions = trie.autocomplete(prefix, 3)
@@ -502,20 +500,20 @@ if __name__ == "__main__":
     print(f"\nLongest common prefix: '{trie.longest_common_prefix()}'")
 
     # Pattern search
-    print(f"\nPattern search:")
+    print("\nPattern search:")
     patterns = ["hel*", "wor?", "h*"]
     for pattern in patterns:
         matches = trie.pattern_search(pattern)
         print(f"Pattern '{pattern}': {matches}")
 
     # Word counts
-    print(f"\nWord counts:")
+    print("\nWord counts:")
     trie.insert("hello")  # Insert again
     print(f"'hello' count: {trie.get_word_count('hello')}")
     print(f"'hel' prefix count: {trie.get_prefix_count('hel')}")
 
     # Delete operation
-    print(f"\nDelete operation:")
+    print("\nDelete operation:")
     print(f"Before delete - 'help' exists: {trie.search('help')}")
     trie.delete("help")
     print(f"After delete - 'help' exists: {trie.search('help')}")
@@ -524,4 +522,4 @@ if __name__ == "__main__":
     # All words
     print(f"\nAll words in trie: {trie.get_all_words()}")
 
-    print(f"\nTrie implementation completed successfully!")
+    print("\nTrie implementation completed successfully!")

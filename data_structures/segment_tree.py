@@ -17,14 +17,14 @@ Space Complexity: O(n)
 Reference: https://en.wikipedia.org/wiki/Segment_tree
 """
 
-from typing import List, Callable, Any
+from collections.abc import Callable
 import math
 
 
 class SegmentTree:
     """
     Segment Tree implementation with configurable operations.
-
+    
     Attributes:
         data: Original array
         tree: Segment tree array
@@ -35,8 +35,8 @@ class SegmentTree:
 
     def __init__(
         self,
-        data: List[int],
-        operation: Callable[[int, int], int] = None,
+        data: list[int],
+        operation: Callable[[int, int], int] | None = None,
         default_value: int = 0,
     ):
         """
@@ -100,7 +100,8 @@ class SegmentTree:
             3
         """
         if left < 0 or right >= self.size or left > right:
-            raise ValueError(f"Invalid range [{left}, {right}]")
+            msg = f"Invalid range [{left}, {right}]"
+            raise ValueError(msg)
 
         return self._query(0, 0, self.size - 1, left, right)
 
@@ -153,7 +154,8 @@ class SegmentTree:
             10
         """
         if index < 0 or index >= self.size:
-            raise ValueError(f"Index {index} out of range")
+            msg = f"Index {index} out of range"
+            raise ValueError(msg)
 
         self.data[index] = value
         self._update(0, 0, self.size - 1, index, value)
@@ -189,8 +191,8 @@ class LazySegmentTree:
 
     def __init__(
         self,
-        data: List[int],
-        operation: Callable[[int, int], int] = None,
+        data: list[int],
+        operation: Callable[[int, int], int] | None = None,
         default_value: int = 0,
     ):
         """
@@ -252,7 +254,8 @@ class LazySegmentTree:
             delta: Value to add to the range
         """
         if left < 0 or right >= self.size or left > right:
-            raise ValueError(f"Invalid range [{left}, {right}]")
+            msg = f"Invalid range [{left}, {right}]"
+            raise ValueError(msg)
 
         self._range_update(0, 0, self.size - 1, left, right, delta)
 
@@ -310,7 +313,8 @@ class LazySegmentTree:
             Result of the operation over the range
         """
         if left < 0 or right >= self.size or left > right:
-            raise ValueError(f"Invalid range [{left}, {right}]")
+            msg = f"Invalid range [{left}, {right}]"
+            raise ValueError(msg)
 
         return self._query(0, 0, self.size - 1, left, right)
 
@@ -337,14 +341,14 @@ class LazySegmentTree:
 class MinSegmentTree(SegmentTree):
     """Segment Tree for range minimum queries."""
 
-    def __init__(self, data: List[int]) -> None:
+    def __init__(self, data: list[int]) -> None:
         super().__init__(data, min, float("inf"))
 
 
 class MaxSegmentTree(SegmentTree):
     """Segment Tree for range maximum queries."""
 
-    def __init__(self, data: List[int]) -> None:
+    def __init__(self, data: list[int]) -> None:
         super().__init__(data, max, float("-inf"))
 
 
@@ -361,20 +365,20 @@ if __name__ == "__main__":
     print(f"Tree size: {st.tree_size}")
 
     # Range sum queries
-    print(f"\nRange sum queries:")
+    print("\nRange sum queries:")
     queries = [(0, 2), (1, 4), (0, 5), (2, 3)]
     for left, right in queries:
         result = st.query(left, right)
         print(f"Sum from {left} to {right}: {result}")
 
     # Update element
-    print(f"\nUpdating element at index 2 to 10:")
+    print("\nUpdating element at index 2 to 10:")
     st.update(2, 10)
     print(f"New data: {st.data}")
     print(f"Sum from 0 to 2: {st.query(0, 2)}")
 
     # Min Segment Tree
-    print(f"\nMin Segment Tree Example")
+    print("\nMin Segment Tree Example")
     print("=" * 50)
 
     min_st = MinSegmentTree([3, 1, 4, 1, 5, 9, 2, 6])
@@ -386,14 +390,14 @@ if __name__ == "__main__":
         print(f"Min from {left} to {right}: {result}")
 
     # Lazy Segment Tree
-    print(f"\nLazy Segment Tree Example")
+    print("\nLazy Segment Tree Example")
     print("=" * 50)
 
     lazy_st = LazySegmentTree([1, 2, 3, 4, 5])
     print(f"Original data: {lazy_st.data}")
 
     # Range update
-    print(f"\nAdding 2 to range [1, 3]:")
+    print("\nAdding 2 to range [1, 3]:")
     lazy_st.range_update(1, 3, 2)
 
     # Query after update
@@ -401,8 +405,8 @@ if __name__ == "__main__":
     print(f"Sum from 1 to 3: {lazy_st.query(1, 3)}")
 
     # Another range update
-    print(f"\nAdding 1 to range [0, 2]:")
+    print("\nAdding 1 to range [0, 2]:")
     lazy_st.range_update(0, 2, 1)
     print(f"Sum from 0 to 4: {lazy_st.query(0, 4)}")
 
-    print(f"\nSegment Tree implementation completed successfully!")
+    print("\nSegment Tree implementation completed successfully!")

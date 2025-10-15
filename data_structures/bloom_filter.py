@@ -15,7 +15,7 @@ Reference: https://en.wikipedia.org/wiki/Bloom_filter
 
 import hashlib
 import math
-from typing import List, Union
+from typing import Union
 
 
 class BloomFilter:
@@ -62,15 +62,15 @@ class BloomFilter:
 
         # m = -(n * ln(p)) / (ln(2)^2)
         size = -(n * math.log(p)) / (math.log(2) ** 2)
-        return int(math.ceil(size))
+        return math.ceil(size)
 
     def _calculate_hash_functions(self, m: int, n: int) -> int:
         """Calculate optimal number of hash functions."""
         # k = (m/n) * ln(2)
         k = (m / n) * math.log(2)
-        return int(math.ceil(k))
+        return math.ceil(k)
 
-    def _hash(self, item: Union[str, bytes], seed: int) -> int:
+    def _hash(self, item: str | bytes, seed: int) -> int:
         """
         Generate hash value for an item with given seed.
 
@@ -100,7 +100,7 @@ class BloomFilter:
 
         return int(hash_obj.hexdigest(), 16) % self.size
 
-    def add(self, item: Union[str, bytes]) -> None:
+    def add(self, item: str | bytes) -> None:
         """
         Add an item to the Bloom Filter.
 
@@ -119,7 +119,7 @@ class BloomFilter:
 
         self.count += 1
 
-    def contains(self, item: Union[str, bytes]) -> bool:
+    def contains(self, item: str | bytes) -> bool:
         """
         Check if an item might be in the Bloom Filter.
 
@@ -193,7 +193,7 @@ class BloomFilter:
         """Return the number of items added to the filter."""
         return self.count
 
-    def __contains__(self, item: Union[str, bytes]) -> bool:
+    def __contains__(self, item: str | bytes) -> bool:
         """Support 'in' operator."""
         return self.contains(item)
 
@@ -237,14 +237,14 @@ class CountingBloomFilter:
             raise ValueError("False positive rate must be between 0 and 1")
 
         size = -(n * math.log(p)) / (math.log(2) ** 2)
-        return int(math.ceil(size))
+        return math.ceil(size)
 
     def _calculate_hash_functions(self, m: int, n: int) -> int:
         """Calculate optimal number of hash functions."""
         k = (m / n) * math.log(2)
-        return int(math.ceil(k))
+        return math.ceil(k)
 
-    def _hash(self, item: Union[str, bytes], seed: int) -> int:
+    def _hash(self, item: str | bytes, seed: int) -> int:
         """Generate hash value for an item with given seed."""
         if isinstance(item, str):
             item = item.encode("utf-8")
@@ -264,7 +264,7 @@ class CountingBloomFilter:
 
         return int(hash_obj.hexdigest(), 16) % self.size
 
-    def add(self, item: Union[str, bytes]) -> None:
+    def add(self, item: str | bytes) -> None:
         """Add an item to the Counting Bloom Filter."""
         for i in range(self.hash_functions):
             index = self._hash(item, i)
@@ -292,7 +292,7 @@ class CountingBloomFilter:
         self.count -= 1
         return True
 
-    def contains(self, item: Union[str, bytes]) -> bool:
+    def contains(self, item: str | bytes) -> bool:
         """Check if an item might be in the Counting Bloom Filter."""
         for i in range(self.hash_functions):
             index = self._hash(item, i)
@@ -316,7 +316,7 @@ if __name__ == "__main__":
         bf.add(item)
         print(f"Added: {item}")
 
-    print(f"\nBloom Filter Info:")
+    print("\nBloom Filter Info:")
     print(f"Size: {bf.size}")
     print(f"Hash Functions: {bf.hash_functions}")
     print(f"Items Added: {len(bf)}")
@@ -325,13 +325,13 @@ if __name__ == "__main__":
 
     # Test contains
     test_items = ["apple", "banana", "grape", "kiwi", "mango"]
-    print(f"\nTesting items:")
+    print("\nTesting items:")
     for item in test_items:
         result = bf.contains(item)
         print(f"'{item}': {'Found' if result else 'Not found'}")
 
     # Counting Bloom Filter example
-    print(f"\nCounting Bloom Filter Example")
+    print("\nCounting Bloom Filter Example")
     print("=" * 50)
 
     cbf = CountingBloomFilter(expected_items=100, false_positive_rate=0.05)
@@ -346,6 +346,6 @@ if __name__ == "__main__":
     print(f"Contains 'test2': {cbf.contains('test2')}")
     print(f"Contains 'test1': {cbf.contains('test1')}")
 
-    print(f"\nCounting Bloom Filter Info:")
+    print("\nCounting Bloom Filter Info:")
     print(f"Items: {len(cbf)}")
     print(f"Load Factor: {cbf.get_load_factor():.3f}")
