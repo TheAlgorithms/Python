@@ -1,50 +1,44 @@
-try:
-    # Get boy's name
-    boyName = input("Boy Name : ")
-    if not boyName or not boyName.strip():
-        raise ValueError("Boy name cannot be empty")
-    if not boyName.replace(" ", "").isalpha():
-        raise TypeError("Boy name must contain only alphabetic characters")
-    
-    # Get boy's age
-    boyAgeInput = input("Boy age : ")
-    if not boyAgeInput.strip():
-        raise ValueError("Boy age cannot be empty")
-    try:
-        boyAge = int(boyAgeInput)
-        if boyAge <= 0:
-            raise ValueError("Boy age must be a positive number")
-    except ValueError as e:
-        if "invalid literal" in str(e):
-            raise TypeError("Boy age must be a valid integer")
-        raise
-    
-    # Get girl's name
-    girlName = input("Girl Name : ")
-    if not girlName or not girlName.strip():
-        raise ValueError("Girl name cannot be empty")
-    if not girlName.replace(" ", "").isalpha():
-        raise TypeError("Girl name must contain only alphabetic characters")
-    
-    # Get girl's age
-    girlAgeInput = input("Girl age : ")
-    if not girlAgeInput.strip():
-        raise ValueError("Girl age cannot be empty")
-    try:
-        girlAge = int(girlAgeInput)
-        if girlAge <= 0:
-            raise ValueError("Girl age must be a positive number")
-    except ValueError as e:
-        if "invalid literal" in str(e):
-            raise TypeError("Girl age must be a valid integer")
-        raise
-    
-    # Calculate and display result
-    print(boyName, "loves", girlName, ". Age difference is", abs(boyAge - girlAge))
+"""
+Algorithm to calculate age difference and display a message with safe input handling.
 
-except TypeError as e:
-    print(f"Type Mismatch Error: {e}")
-except ValueError as e:
-    print(f"Value Error: {e}")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+Wikipedia: https://en.wikipedia.org/wiki/Chronological_age
+"""
+
+def age_difference(boy_age: int, girl_age: int) -> int:
+    """
+    Returns the absolute age difference between two people.
+
+    >>> age_difference(22, 20)
+    2
+    >>> age_difference(20, 22)
+    2
+    >>> age_difference(30, 30)
+    0
+    """
+    return abs(boy_age - girl_age)
+
+
+def get_valid_age(prompt: str) -> int:
+    """Prompt the user until a valid non-negative integer age is entered."""
+    while True:
+        try:
+            age = int(input(prompt))
+            if age < 0:
+                raise ValueError("Age cannot be negative.")
+            return age
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please enter a valid positive integer age.\n")
+
+
+if __name__ == "__main__":
+    try:
+        boy_name = input("Boy Name: ").strip().capitalize()
+        boy_age = get_valid_age("Boy age: ")
+        girl_name = input("Girl Name: ").strip().capitalize()
+        girl_age = get_valid_age("Girl age: ")
+
+        diff = age_difference(boy_age, girl_age)
+        print(f"{boy_name} loves {girl_name}. Age difference is {diff}\n")
+
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Exiting safely...")
