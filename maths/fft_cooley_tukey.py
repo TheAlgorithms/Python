@@ -200,9 +200,10 @@ if __name__ == "__main__":
 
     print("FFT implementation completed successfully!")
     peak_frequencies = [
-        f for f, m in zip(
-            frequencies[:len(frequencies)//2], 
-            magnitudes[:len(magnitudes)//2]
-        ) if m > max(magnitudes[:len(magnitudes)//2]) * 0.1
+        f
+        for f, m in zip(
+            frequencies[: len(frequencies) // 2], magnitudes[: len(magnitudes) // 2]
+        )
+        if m > max(magnitudes[: len(magnitudes) // 2]) * 0.1
     ]
     print(f"Peak frequencies detected: {peak_frequencies}")

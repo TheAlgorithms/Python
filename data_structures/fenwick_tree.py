@@ -45,11 +45,11 @@ class FenwickTree:
     def update(self, index: int, delta: int) -> None:
         """
         Update element at given index by adding delta.
-        
+
         Args:
             index: 1-indexed position to update
             delta: Value to add to the element
-            
+
         Examples:
             >>> ft = FenwickTree(5)
             >>> ft.update(1, 5)

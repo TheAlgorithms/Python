@@ -24,7 +24,7 @@ import math
 class SegmentTree:
     """
     Segment Tree implementation with configurable operations.
-    
+
     Attributes:
         data: Original array
         tree: Segment tree array
