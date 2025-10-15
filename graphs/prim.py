@@ -1,10 +1,7 @@
 """Prim's Algorithm.
-
 Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm.
-
 Details: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
-
 import heapq as hq
 import math
 from collections.abc import Iterator
@@ -45,6 +42,18 @@ class Vertex:
 
 
 def connect(graph, a, b, edge):
+    """
+    Connect two vertices in an undirected graph with a weighted edge.
+    
+    Args:
+        graph: List of Vertex objects representing the graph
+        a: Index (1-based) of the first vertex
+        b: Index (1-based) of the second vertex
+        edge: Weight of the edge connecting vertices a and b
+    
+    Returns:
+        None: Modifies the graph in-place by adding bidirectional edges
+    """
     # add the neighbors:
     graph[a - 1].add_neighbor(graph[b - 1])
     graph[b - 1].add_neighbor(graph[a - 1])
@@ -55,13 +64,10 @@ def connect(graph, a, b, edge):
 
 def prim(graph: list, root: Vertex) -> list:
     """Prim's Algorithm.
-
     Runtime:
         O(mn) with `m` edges and `n` vertices
-
     Return:
         List with the edges of a Minimum Spanning Tree
-
     Usage:
         prim(graph, graph[0])
     """
@@ -85,24 +91,19 @@ def prim(graph: list, root: Vertex) -> list:
 
 def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
     """Prim's Algorithm with min heap.
-
     Runtime:
         O((m + n)log n) with `m` edges and `n` vertices
-
     Yield:
         Edges of a Minimum Spanning Tree
-
     Usage:
-        prim(graph, graph[0])
+        prim_heap(graph, graph[0])
     """
     for u in graph:
         u.key = math.inf
         u.pi = None
     root.key = 0
-
     h = list(graph)
     hq.heapify(h)
-
     while h:
         u = hq.heappop(h)
         for v in u.neighbors:
@@ -110,7 +111,6 @@ def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
                 v.pi = u
                 v.key = u.edges[v.id]
                 hq.heapify(h)
-
     for i in range(1, len(graph)):
         yield (int(graph[i].id) + 1, int(graph[i].pi.id) + 1)
 
@@ -120,7 +120,6 @@ def test_vector() -> None:
     # Creates a list to store x vertices.
     >>> x = 5
     >>> G = [Vertex(n) for n in range(x)]
-
     >>> connect(G, 1, 2, 15)
     >>> connect(G, 1, 3, 12)
     >>> connect(G, 2, 4, 13)
