@@ -41,7 +41,7 @@ def swap_bits(number: int, i: int, j: int) -> int:
             Traceback (most recent call last):
                 ...
             ValueError: Bit positions MUST be non-negative!
-            """
+    """
     if not all(isinstance(x, int) for x in (number, i, j)):
         raise TypeError("All arguments MUST be integers!")
 
