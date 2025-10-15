@@ -244,4 +244,4 @@ if __name__ == "__main__":
     probas = clf.predict_proba(X_test[:5])
     print("\nProbability predictions for first 5 samples:")
     for i, proba in enumerate(probas):
-        print(f"Sample {i+1}: {proba}")
+        print(f"Sample {i + 1}: {proba}")
