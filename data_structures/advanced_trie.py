@@ -172,7 +172,26 @@ class Trie:
         return len(node.children) == 0 and not node.is_end_of_word
 
     def _find_node(self, word: str) -> Optional[TrieNode]:
-        """Find the node corresponding to the given word."""
+        """
+        Find the node corresponding to the given word.
+        
+        Args:
+            word: Word to find node for
+            
+        Returns:
+            TrieNode if found, None otherwise
+            
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("hello")
+            >>> node = trie._find_node("hello")
+            >>> node is not None
+            True
+            >>> node.is_end_of_word
+            True
+            >>> trie._find_node("world") is None
+            True
+        """
         node = self.root
         for char in word:
             if char not in node.children:
@@ -209,7 +228,23 @@ class Trie:
     def _collect_words(
         self, node: TrieNode, current_word: str, words: List[str]
     ) -> None:
-        """Collect all words from a given node."""
+        """
+        Collect all words from a given node.
+        
+        Args:
+            node: Current trie node
+            current_word: Current word being built
+            words: List to collect words into
+            
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("hello")
+            >>> trie.insert("help")
+            >>> words = []
+            >>> trie._collect_words(trie._find_node("hel"), "hel", words)
+            >>> sorted(words)
+            ['hello', 'help']
+        """
         if node.is_end_of_word:
             words.append(current_word)
 

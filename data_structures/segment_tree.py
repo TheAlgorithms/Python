@@ -94,6 +94,10 @@ class SegmentTree:
             >>> st = SegmentTree([1, 2, 3, 4, 5])
             >>> st.query(1, 3)
             9
+            >>> st.query(0, 4)
+            15
+            >>> st.query(2, 2)
+            3
         """
         if left < 0 or right >= self.size or left > right:
             raise ValueError(f"Invalid range [{left}, {right}]")
@@ -101,7 +105,24 @@ class SegmentTree:
         return self._query(0, 0, self.size - 1, left, right)
 
     def _query(self, node: int, start: int, end: int, left: int, right: int) -> int:
-        """Internal query method."""
+        """
+        Internal query method.
+        
+        Args:
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
+            left: Left boundary of query
+            right: Right boundary of query
+            
+        Returns:
+            Result of the operation over the range
+            
+        Examples:
+            >>> st = SegmentTree([1, 2, 3, 4, 5])
+            >>> st._query(0, 0, 4, 1, 3)
+            9
+        """
         if right < start or left > end:
             return self.default_value
 
@@ -238,7 +259,23 @@ class LazySegmentTree:
     def _range_update(
         self, node: int, start: int, end: int, left: int, right: int, delta: int
     ) -> None:
-        """Internal range update method."""
+        """
+        Internal range update method with lazy propagation.
+        
+        Args:
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
+            left: Left boundary of update
+            right: Right boundary of update
+            delta: Value to add to the range
+            
+        Examples:
+            >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
+            >>> lst._range_update(0, 0, 4, 1, 3, 2)
+            >>> lst.query(1, 3)
+            11
+        """
         self._push_lazy(node, start, end)
 
         if right < start or left > end:
@@ -300,14 +337,14 @@ class LazySegmentTree:
 class MinSegmentTree(SegmentTree):
     """Segment Tree for range minimum queries."""
 
-    def __init__(self, data: List[int]):
+    def __init__(self, data: List[int]) -> None:
         super().__init__(data, min, float("inf"))
 
 
 class MaxSegmentTree(SegmentTree):
     """Segment Tree for range maximum queries."""
 
-    def __init__(self, data: List[int]):
+    def __init__(self, data: List[int]) -> None:
         super().__init__(data, max, float("-inf"))
 
 
