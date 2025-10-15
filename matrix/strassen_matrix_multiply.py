@@ -158,6 +158,12 @@ def strassen(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
 
 
 def _strassen_recursive(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
+    """
+    Recursive helper for Strassen's algorithm.
+
+    >>> _strassen_recursive([[1, 2], [3, 4]], [[5, 6], [7, 8]], 1)
+    [[19, 22], [43, 50]]
+    """
     n = len(matrix_a)
     if n <= threshold:
         return naive_multiplication(matrix_a, matrix_b)
