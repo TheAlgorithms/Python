@@ -10,16 +10,17 @@ classifiers = [
 ]
 dependencies = [
   "beautifulsoup4>=4.12.3",
+  "cython>=3.1.2",
   "fake-useragent>=1.5.1",
   "httpx>=0.28.1",
   "imageio>=2.36.1",
   "keras>=3.7",
-  "lxml>=5.3",
+  "lxml>=6",
   "matplotlib>=3.9.3",
   "numpy>=2.1.3",
   "opencv-python>=4.10.0.84",
   "pandas>=2.2.3",
-  "pillow>=11",
+  "pillow>=11.3",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
   "sphinx-pyproject>=0.3",
@@ -32,7 +33,7 @@ dependencies = [
 
 [dependency-groups]
 test = [
-  "pytest>=8.3.4",
+  "pytest>=8.4.1",
   "pytest-cov>=6",
 ]
 
