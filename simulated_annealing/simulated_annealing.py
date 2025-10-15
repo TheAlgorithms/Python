@@ -65,8 +65,12 @@ class SimulatedAnnealing:
             prob = 0.0
         return random.random() < prob
 
-    def optimize(self, max_steps: Optional[int] = None) -> Tuple[List[float], float, dict]:
+    def optimize(self, max_steps: Optional[int] = None, stop_event: Optional[object] = None, progress_callback: Optional[Callable[[int, float, float], None]] = None) -> Tuple[List[float], float, dict]:
         """Run optimization and return best solution, cost, and history.
+
+        New optional args:
+        - stop_event: a threading.Event-like object. If set, optimization stops early.
+        - progress_callback: callable(step, best_cost, current_cost) called periodically.
 
         history dict contains: temps, best_costs, current_costs
         """
@@ -81,6 +85,11 @@ class SimulatedAnnealing:
         steps = 0
         while temp > self.min_temperature:
             for _ in range(self.iterations_per_temp):
+                # Check stop event
+                if stop_event is not None and getattr(stop_event, "is_set", lambda: False)():
+                    self.current = current
+                    return best, best_cost, history
+
                 candidate = self._neighbor(current)
                 candidate_cost = float(self.func(candidate))
                 delta = candidate_cost - current_cost
@@ -96,6 +105,13 @@ class SimulatedAnnealing:
                 history["current_costs"].append(current_cost)
 
                 steps += 1
+                if progress_callback is not None and steps % max(1, self.iterations_per_temp // 10) == 0:
+                    try:
+                        progress_callback(steps, best_cost, current_cost)
+                    except Exception:
+                        # Don't let callback errors stop optimization
+                        pass
+
                 if max_steps is not None and steps >= max_steps:
                     self.current = current
                     return best, best_cost, history

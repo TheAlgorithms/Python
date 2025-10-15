@@ -121,16 +121,24 @@ class SA_GUI(tk.Tk):
 
         def worker():
             sa = SimulatedAnnealing(func, initial, bounds=bounds, temperature=temp, cooling_rate=cooling, iterations_per_temp=iterations)
-            best, cost, history = sa.optimize()
-            # update plot on main thread
+
+            def progress_cb(step, best_cost, current_cost):
+                # schedule a plot update on the main thread
+                self.after(0, lambda: self._update_plot_partial(step, best_cost))
+
+            best, cost, history = sa.optimize(stop_event=self.stop_flag, progress_callback=progress_cb)
+            # update final plot on main thread
             self.after(0, lambda: self._on_complete(best, cost, history))
 
         t = threading.Thread(target=worker, daemon=True)
         t.start()
 
     def _on_stop(self):
-        # currently we don't have a cooperative stop in the algorithm; inform user
-        messagebox.showinfo("Stop", "Stop requested, but immediate stop is not implemented. The run will finish current loop.")
+        # set stop flag; optimizer will stop cooperatively
+        self.stop_flag.set()
+        self.stop_btn.config(state=tk.DISABLED)
+        self.run_btn.config(state=tk.NORMAL)
+        messagebox.showinfo("Stop", "Stop requested; optimizer will stop shortly.")
 
     def _on_complete(self, best, cost, history):
         x = list(range(len(history.get("best_costs", []))))
@@ -146,6 +154,23 @@ class SA_GUI(tk.Tk):
         messagebox.showinfo("Done", f"Best cost: {cost:.6g}\nBest solution: {best}")
         self.run_btn.config(state=tk.NORMAL)
         self.stop_btn.config(state=tk.DISABLED)
+
+    def _update_plot_partial(self, step: int, best_cost: float):
+        # Append a new point to plot (x=step, y=best_cost)
+        # We'll redraw full plot for simplicity
+        line_x = list(range(len(self.ax.lines[0].get_xdata()) + 1)) if self.ax.lines else [step]
+        if self.ax.lines:
+            ydata = list(self.ax.lines[0].get_ydata())
+            ydata.append(best_cost)
+        else:
+            ydata = [best_cost]
+        self.ax.clear()
+        self.ax.plot(line_x, ydata, label="best_cost")
+        self.ax.set_xlabel("Iterations")
+        self.ax.set_ylabel("Best cost")
+        self.ax.grid(True)
+        self.ax.legend()
+        self.canvas.draw()
 
 
 def main():

@@ -29,5 +29,28 @@ def cli_example():
     print("Cost:", cost)
 
 
+def tsp_example():
+    # Small TSP demo
+    from .simulated_annealing import SimulatedAnnealing
+    from .tsp import make_tsp_cost, random_tour, vector_to_tour
+
+    coords = [(0, 0), (1, 5), (5, 4), (6, 1), (3, -2)]
+    n = len(coords)
+    init_tour = random_tour(n)
+    # represent tour as vector by using tour indices as values (so ranking recovers order)
+    initial = [float(i) for i in init_tour]
+    cost_fn = make_tsp_cost(coords)
+
+    sa = SimulatedAnnealing(cost_fn, initial, temperature=100.0, cooling_rate=0.995, iterations_per_temp=500)
+    best, cost, history = sa.optimize()
+    best_tour = vector_to_tour(best)
+    print("Best tour:", best_tour)
+    print("Cost:", cost)
+
+
 if __name__ == "__main__":
+    # Run CLI examples
+    print("Running continuous example...")
     cli_example()
+    print("Running TSP example...")
+    tsp_example()
