@@ -221,7 +221,9 @@ def demonstrate_point_prompt(predictor, image):
     return masks, scores, logits
 
 
-def demonstrate_multiple_points(predictor, image, previous_masks, previous_scores, previous_logits):
+def demonstrate_multiple_points(
+    predictor, image, previous_masks, previous_scores, previous_logits
+):
     """Demonstrate segmentation using multiple point prompts"""
     print("=== Multiple Points Prompt ===")
 
@@ -358,7 +360,7 @@ def demonstrate_batched_images(predictor):
 
     # Process batch
     predictor.set_image_batch(img_batch)
-    masks_batch, _ , _ = predictor.predict_batch(
+    masks_batch, _, _ = predictor.predict_batch(
         None, None, box_batch=boxes_batch, multimask_output=False
     )
 
