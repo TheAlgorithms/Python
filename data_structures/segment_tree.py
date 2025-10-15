@@ -107,17 +107,17 @@ class SegmentTree:
     def _query(self, node: int, start: int, end: int, left: int, right: int) -> int:
         """
         Internal query method.
-        
+
         Args:
             node: Current node index
             start: Start of current segment
             end: End of current segment
             left: Left boundary of query
             right: Right boundary of query
-            
+
         Returns:
             Result of the operation over the range
-            
+
         Examples:
             >>> st = SegmentTree([1, 2, 3, 4, 5])
             >>> st._query(0, 0, 4, 1, 3)
@@ -261,7 +261,7 @@ class LazySegmentTree:
     ) -> None:
         """
         Internal range update method with lazy propagation.
-        
+
         Args:
             node: Current node index
             start: Start of current segment
@@ -269,7 +269,7 @@ class LazySegmentTree:
             left: Left boundary of update
             right: Right boundary of update
             delta: Value to add to the range
-            
+
         Examples:
             >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
             >>> lst._range_update(0, 0, 4, 1, 3, 2)

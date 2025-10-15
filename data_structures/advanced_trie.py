@@ -174,13 +174,13 @@ class Trie:
     def _find_node(self, word: str) -> Optional[TrieNode]:
         """
         Find the node corresponding to the given word.
-        
+
         Args:
             word: Word to find node for
-            
+
         Returns:
             TrieNode if found, None otherwise
-            
+
         Examples:
             >>> trie = Trie()
             >>> trie.insert("hello")
@@ -230,12 +230,12 @@ class Trie:
     ) -> None:
         """
         Collect all words from a given node.
-        
+
         Args:
             node: Current trie node
             current_word: Current word being built
             words: List to collect words into
-            
+
         Examples:
             >>> trie = Trie()
             >>> trie.insert("hello")
