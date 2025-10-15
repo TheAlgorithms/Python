@@ -38,7 +38,7 @@ def setup_device():
 
 
 # Visualization functions
-np.random.seed(3)
+rng = np.random.default_rng(3)
 
 
 def show_mask(mask, ax, random_color=False, borders=True):
@@ -52,7 +52,7 @@ def show_mask(mask, ax, random_color=False, borders=True):
         borders: Whether to draw mask borders
     """
     if random_color:
-        color = np.concatenate([np.random.random(3), np.array([0.6])], axis=0)
+        color = np.concatenate([rng.random(3), np.array([0.6])], axis=0)
     else:
         color = np.array([30 / 255, 144 / 255, 255 / 255, 0.6])
 
@@ -221,9 +221,7 @@ def demonstrate_point_prompt(predictor, image):
     return masks, scores, logits
 
 
-def demonstrate_multiple_points(
-    predictor, image, previous_masks, previous_scores, previous_logits
-):
+def demonstrate_multiple_points(predictor, image, previous_masks, previous_scores, previous_logits):
     """Demonstrate segmentation using multiple point prompts"""
     print("=== Multiple Points Prompt ===")
 
@@ -321,8 +319,8 @@ def demonstrate_batched_prompts(predictor, image):
     plt.imshow(image)
     for i, mask in enumerate(masks):
         show_mask(mask.squeeze(0), plt.gca(), random_color=True)
-    for box in input_boxes:
-        show_box(box, plt.gca())
+    for mask in masks:
+        show_mask(mask.squeeze(0), plt.gca(), random_color=True)
     plt.axis("off")
     plt.title("Batched Prompts - Multiple Objects")
     plt.show()
@@ -360,7 +358,7 @@ def demonstrate_batched_images(predictor):
 
     # Process batch
     predictor.set_image_batch(img_batch)
-    masks_batch, scores_batch, _ = predictor.predict_batch(
+    masks_batch, _ , _ = predictor.predict_batch(
         None, None, box_batch=boxes_batch, multimask_output=False
     )
 
