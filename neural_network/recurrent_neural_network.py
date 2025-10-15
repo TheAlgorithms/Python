@@ -90,6 +90,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    expected = int(input("Expected value: "))
-    number_propagations = int(input("Number of propagations: "))
+    expected = int(input("Expected value: ").strip())
+    number_propagations = int(input("Number of propagations: ").strip())
     print(forward_propagation_rnn(expected, number_propagations))
