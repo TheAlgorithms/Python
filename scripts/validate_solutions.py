@@ -67,6 +67,7 @@ def get_files_url() -> str:
         FileNotFoundError: if GITHUB_EVENT_PATH is missing.
     """
     import os, json
+
     with open(os.environ["GITHUB_EVENT_PATH"]) as f:
         event = json.load(f)
     return event["pull_request"]["url"] + "/files"
