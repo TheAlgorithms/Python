@@ -12,10 +12,10 @@ Reference:
 https://en.wikipedia.org/wiki/Strassen_algorithm
 """
 
-Matrix = list[list[int]]
+matrix = list[list[int]]
 
 
-def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def add(matrix_a: matrix, matrix_b: matrix) -> matrix:
     """
     Add two square matrices of the same size.
 
@@ -26,7 +26,7 @@ def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     return [[matrix_a[i][j] + matrix_b[i][j] for j in range(n)] for i in range(n)]
 
 
-def subtract(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def subtract(matrix_a: matrix, matrix_b: matrix) -> matrix:
     """
     Subtract matrix_b from matrix_a.
 
@@ -37,7 +37,7 @@ def subtract(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     return [[matrix_a[i][j] - matrix_b[i][j] for j in range(n)] for i in range(n)]
 
 
-def naive_multiplication(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def naive_multiplication(matrix_a: matrix, matrix_b: matrix) -> matrix:
     """
     Multiply two square matrices using the naive O(n^3) method.
 
@@ -70,7 +70,7 @@ def next_power_of_two(n: int) -> int:
     return power
 
 
-def pad_matrix(matrix: Matrix, size: int) -> Matrix:
+def pad_matrix(matrix: matrix, size: int) -> matrix:
     """
     Pad a matrix with zeros to reach the given size.
 
@@ -86,7 +86,7 @@ def pad_matrix(matrix: Matrix, size: int) -> Matrix:
     return padded
 
 
-def unpad_matrix(matrix: Matrix, rows: int, cols: int) -> Matrix:
+def unpad_matrix(matrix: matrix, rows: int, cols: int) -> matrix:
     """
     Remove padding from a matrix.
 
@@ -96,7 +96,7 @@ def unpad_matrix(matrix: Matrix, rows: int, cols: int) -> Matrix:
     return [row[:cols] for row in matrix[:rows]]
 
 
-def split(matrix: Matrix) -> tuple:
+def split(matrix: matrix) -> tuple:
     """
     Split a matrix into four quadrants (top-left, top-right, bottom-left, bottom-right).
 
@@ -112,7 +112,7 @@ def split(matrix: Matrix) -> tuple:
     return top_left, top_right, bottom_left, bottom_right
 
 
-def join(c11: Matrix, c12: Matrix, c21: Matrix, c22: Matrix) -> Matrix:
+def join(c11: matrix, c12: matrix, c21: matrix, c22: matrix) -> matrix:
     """
     Join four quadrants into a single matrix.
 
@@ -131,7 +131,7 @@ def join(c11: Matrix, c12: Matrix, c21: Matrix, c22: Matrix) -> Matrix:
     return result
 
 
-def strassen(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
+def strassen(matrix_a: matrix, matrix_b: matrix, threshold: int = 64) -> matrix:
     """
     Multiply two square matrices using Strassen's algorithm.
     Uses naive multiplication for matrices smaller than threshold.
@@ -157,7 +157,7 @@ def strassen(matrix_a: Matrix, matrix_b: Matrix, threshold: int = 64) -> Matrix:
     return unpad_matrix(c_pad, n_orig, n_orig)
 
 
-def _strassen_recursive(matrix_a: Matrix, matrix_b: Matrix, threshold: int) -> Matrix:
+def _strassen_recursive(matrix_a: matrix, matrix_b: matrix, threshold: int) -> matrix:
     """
     Recursive helper for Strassen's algorithm.
 
