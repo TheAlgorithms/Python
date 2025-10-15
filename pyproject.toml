@@ -108,7 +108,7 @@ lint.ignore = [
   # `ruff rule S101` for a description of that rule
   "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "EM101",   # Exception must not use a string literal, assign to variable first
+  "EM101",   # Exception must not use a string literal, assign to a variable first
   "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
   "G004",    # Logging statement uses f-string
   "ISC001",  # Conflicts with ruff format -- DO NOT FIX
@@ -124,6 +124,7 @@ lint.ignore = [
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
   "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
+  "UP037",   # FIX ME
 ]
 
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
