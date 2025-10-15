@@ -57,15 +57,15 @@ def naive_multiplication(matrix_a: matrix, matrix_b: matrix) -> matrix:
     return result
 
 
-def next_power_of_two(n: int) -> int:
+def next_power_of_two(number: int) -> int:
     """
-    Return the next power of two greater than or equal to n.
+    Return the next power of two greater than or equal to number.
 
     >>> next_power_of_two(5)
     8
     """
     power = 1
-    while power < n:
+    while power < number:
         power <<= 1
     return power
 
