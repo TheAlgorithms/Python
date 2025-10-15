@@ -64,7 +64,20 @@ class SegmentTree:
         self._build(0, 0, self.size - 1)
 
     def _build(self, node: int, start: int, end: int) -> None:
-        """Build the segment tree recursively."""
+        """
+        Build the segment tree recursively.
+        
+        Args:
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
+            
+        Examples:
+            >>> st = SegmentTree([1, 2, 3, 4, 5])
+            >>> st._build(0, 0, 4)  # Builds the entire tree
+            >>> st.query(0, 4)
+            15
+        """
         if start == end:
             self.tree[node] = self.data[start]
         else:
@@ -232,7 +245,21 @@ class LazySegmentTree:
             )
 
     def _push_lazy(self, node: int, start: int, end: int) -> None:
-        """Push lazy updates to children."""
+        """
+        Push lazy updates to children.
+        
+        Args:
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
+            
+        Examples:
+            >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
+            >>> lst.lazy[0] = 2
+            >>> lst._push_lazy(0, 0, 4)
+            >>> lst.lazy[0]
+            0
+        """
         if self.lazy[node] != 0:
             self.tree[node] += self.lazy[node] * (end - start + 1)
 
@@ -252,6 +279,12 @@ class LazySegmentTree:
             left: Left boundary (0-indexed)
             right: Right boundary (0-indexed)
             delta: Value to add to the range
+            
+        Examples:
+            >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
+            >>> lst.range_update(1, 3, 2)
+            >>> lst.query(1, 3)
+            11
         """
         if left < 0 or right >= self.size or left > right:
             msg = f"Invalid range [{left}, {right}]"
@@ -311,6 +344,13 @@ class LazySegmentTree:
 
         Returns:
             Result of the operation over the range
+            
+        Examples:
+            >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
+            >>> lst.query(1, 3)
+            9
+            >>> lst.query(0, 4)
+            15
         """
         if left < 0 or right >= self.size or left > right:
             msg = f"Invalid range [{left}, {right}]"
@@ -319,7 +359,24 @@ class LazySegmentTree:
         return self._query(0, 0, self.size - 1, left, right)
 
     def _query(self, node: int, start: int, end: int, left: int, right: int) -> int:
-        """Internal query method."""
+        """
+        Internal query method.
+        
+        Args:
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
+            left: Left boundary of query
+            right: Right boundary of query
+            
+        Returns:
+            Result of the operation over the range
+            
+        Examples:
+            >>> lst = LazySegmentTree([1, 2, 3, 4, 5])
+            >>> lst._query(0, 0, 4, 1, 3)
+            9
+        """
         self._push_lazy(node, start, end)
 
         if right < start or left > end:

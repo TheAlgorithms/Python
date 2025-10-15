@@ -366,7 +366,24 @@ class Trie:
     def _pattern_search_helper(
         self, node: TrieNode, current_word: str, pattern: str, words: list[str]
     ) -> None:
-        """Helper method for pattern search."""
+        """
+        Helper method for pattern search.
+        
+        Args:
+            node: Current trie node
+            current_word: Current word being built
+            pattern: Pattern to match
+            words: List to collect matching words
+            
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("hello")
+            >>> trie.insert("help")
+            >>> words = []
+            >>> trie._pattern_search_helper(trie.root, "", "hel*", words)
+            >>> sorted(words)
+            ['hello', 'help']
+        """
         if not pattern:
             if node.is_end_of_word:
                 words.append(current_word)
@@ -411,7 +428,21 @@ class Trie:
         return self.get_all_words_with_prefix("")
 
     def clear(self) -> None:
-        """Clear all words from the trie."""
+        """
+        Clear all words from the trie.
+        
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("hello")
+            >>> trie.insert("world")
+            >>> len(trie)
+            2
+            >>> trie.clear()
+            >>> len(trie)
+            0
+            >>> trie.search("hello")
+            False
+        """
         self.root = TrieNode()
         self.size = 0
 
