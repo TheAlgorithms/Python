@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+
 class Node:
     """A node in the doubly linked list."""
+
     def __init__(self, key: int, val: int) -> None:
         self.key, self.val = key, val
         self.prev: Node | None = None
         self.next: Node | None = None
+
 
 class LRUCache:
     """
@@ -26,6 +29,7 @@ class LRUCache:
     >>> cache.get(4)
     4
     """
+
     def __init__(self, capacity: int) -> None:
         if capacity <= 0:
             raise ValueError("Capacity must be a positive integer.")
@@ -83,6 +87,8 @@ class LRUCache:
                 self._remove(lru)
                 del self.cache[lru.key]
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
