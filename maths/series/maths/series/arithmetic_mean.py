@@ -38,11 +38,11 @@ def compute_arithmetic_mean(*args: float) -> float:
     except (TypeError, ValueError) as error:
         return f"Error: {error}"
 
-    
+
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod(name="compute_arithmetic_mean")
     print(compute_arithmetic_mean(1, 2, 3, 4, 5))
-    print(compute_arithmetic_mean('a', 69))
+    print(compute_arithmetic_mean("a", 69))
     print(compute_arithmetic_mean())
