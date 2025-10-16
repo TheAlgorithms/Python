@@ -64,11 +64,13 @@ def is_power_of_two(number: int) -> bool:
         raise ValueError("number must not be negative")
     return number & (number - 1) == 0
 
+
 def is_power_of_two_math(number: int) -> bool:
     from math import log2
+
     """
     Alternative method using math.log2 to check if number is a power of 2.
-    
+
     >>> is_power_of_two_math(0)
     True
     >>> is_power_of_two_math(1)
@@ -84,15 +86,15 @@ def is_power_of_two_math(number: int) -> bool:
         raise TypeError("number must be an integer")
     if number < 0:
         raise ValueError("number must not be negative")
-    
+
     if number == 0:
         return True
-    
+
     value = log2(number)
     return value == int(value)
+
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
