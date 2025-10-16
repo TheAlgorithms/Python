@@ -16,6 +16,8 @@ def gauss_seidel(a: list[list[float]], b: list[float], tol: float = 1e-10, max_i
         >>> b = [4,7,3]
         >>> gauss_seidel(A, b)
         [0.5, 1.0, 0.5]
+
+    Wikipedia : https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method
     """
     n = len(a)
     x = [0.0] * n
