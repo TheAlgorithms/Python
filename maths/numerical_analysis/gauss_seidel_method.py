@@ -1,4 +1,6 @@
-def gauss_seidel(a: list[list[float]], b: list[float], tol: float = 1e-10, max_iter: int = 1000) -> list[float]:
+def gauss_seidel(
+    a: list[list[float]], b: list[float], tol: float = 1e-10, max_iter: int = 1000
+) -> list[float]:
     """
     Solve the linear system Ax = b using the Gauss-Seidel iterative method.
 
