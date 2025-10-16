@@ -6,8 +6,10 @@ https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
 """
 
 import doctest
+
 import numpy as np
 from numpy import ndarray
+
 try:
     from sklearn.datasets import load_iris
     from sklearn.manifold import TSNE
