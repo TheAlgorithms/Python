@@ -555,7 +555,7 @@ def main():
     print(f"Torus: {vol_torus(2, 2) = }")  # ~= 157.9
     print(f"Conical Frustum: {vol_conical_frustum(2, 2, 4) = }")  # ~= 58.6
     print(f"Spherical cap: {vol_spherical_cap(1, 2) = }")  # ~= 5.24
-    print(f"Spheres intersetion: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
+    print(f"Spheres intersection: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
     print(f"Spheres union: {vol_spheres_union(2, 2, 1) = }")  # ~= 45.81
     print(
         f"Hollow Circular Cylinder: {vol_hollow_circular_cylinder(1, 2, 3) = }"
