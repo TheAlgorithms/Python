@@ -5,6 +5,7 @@ the sum of its digits powered to their respective positions equals the number it
 Examples of Disarium Numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598, ...
 """
 
+
 def is_disarium_number(number: int) -> bool:
     """
     This function takes an integer number as input.
@@ -43,6 +44,8 @@ def is_disarium_number(number: int) -> bool:
     total = sum(int(digit) ** (idx + 1) for idx, digit in enumerate(digits))
     return total == number
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
