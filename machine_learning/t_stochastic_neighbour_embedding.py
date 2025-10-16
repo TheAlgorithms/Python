@@ -8,6 +8,7 @@ https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
 import doctest
 import numpy as np
 from numpy import ndarray
+
 try:
     from sklearn.datasets import load_iris
     from sklearn.manifold import TSNE
@@ -101,7 +102,9 @@ def main() -> None:
         import matplotlib.pyplot as plt
 
         plt.figure(figsize=(7, 5))
-        scatter = plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap="viridis")
+        scatter = plt.scatter(
+            embedding[:, 0], embedding[:, 1], c=labels, cmap="viridis"
+        )
         plt.title("t-SNE Visualization of the Iris Dataset")
         plt.xlabel("Dimension 1")
         plt.ylabel("Dimension 2")
