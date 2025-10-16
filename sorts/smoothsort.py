@@ -1,5 +1,6 @@
 from typing import List
 
+
 def smoothsort(seq: List[int]) -> List[int]:
     """
     Smoothsort algorithm (Edsger W. Dijkstra).
