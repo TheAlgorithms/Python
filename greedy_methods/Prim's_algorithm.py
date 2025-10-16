@@ -1,6 +1,7 @@
 from typing import Dict, Any
 import heapq
 
+
 def prim_mst(graph: Dict[Any, Dict[Any, int]]) -> Dict[Any, Any]:
     """
     Generate the Minimum Spanning Tree (MST) using Prim's algorithm.
@@ -41,6 +42,8 @@ def prim_mst(graph: Dict[Any, Dict[Any, int]]) -> Dict[Any, Any]:
 
     return mst
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
