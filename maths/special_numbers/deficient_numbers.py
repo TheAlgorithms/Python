@@ -5,6 +5,7 @@ the sum of its proper divisors is less than the number itself.
 Examples of Deficient Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, ...
 """
 
+
 def is_deficient_number(number: int) -> bool:
     """
     This function takes an integer number as input.
@@ -40,13 +41,15 @@ def is_deficient_number(number: int) -> bool:
         return False
 
     divisor_sum = 1  # 1 is always a proper divisor
-    for i in range(2, int(number ** 0.5) + 1):
+    for i in range(2, int(number**0.5) + 1):
         if number % i == 0:
             divisor_sum += i
             if i != number // i:
                 divisor_sum += number // i
     return divisor_sum < number
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
