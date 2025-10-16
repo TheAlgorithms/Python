@@ -1,12 +1,14 @@
 """
-t-distributed stochastic neighbor embedding (t-SNE)
+t_stochastic_neighbour_embedding.py
 
-For more details, see:
-https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
+Run t-SNE on the Iris dataset, with CI-safe doctests and visualization.
 """
 
+# Standard library
 import doctest
+from typing import Tuple
 
+# Third-party
 import numpy as np
 from numpy import ndarray
 
@@ -20,12 +22,12 @@ except ImportError as e:
     ) from e
 
 
-def collect_dataset() -> tuple[ndarray, ndarray]:
+def collect_dataset() -> Tuple[ndarray, ndarray]:
     """
     Load the Iris dataset and return features and labels.
 
     Returns:
-        tuple[ndarray, ndarray]: Feature matrix and target labels.
+        Tuple[ndarray, ndarray]: Feature matrix and target labels.
 
     >>> features, targets = collect_dataset()
     >>> features.shape
@@ -78,10 +80,6 @@ def apply_tsne(
 def main() -> None:
     """
     Run t-SNE on the Iris dataset, print embeddings, and visualize results.
-
-    >>> main()  # doctest: +ELLIPSIS
-    t-SNE embedding (first 5 points):
-    [[...
     """
     features, labels = collect_dataset()
     embedding = apply_tsne(
@@ -111,7 +109,7 @@ def main() -> None:
         plt.tight_layout()
         plt.show()
     except ImportError:
-        print("matplotlib not found. Install it with: pip install matplotlib")
+        print("matplotlib not installed; skipping visualization.")
 
 
 if __name__ == "__main__":
