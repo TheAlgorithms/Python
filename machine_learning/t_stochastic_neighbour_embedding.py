@@ -6,7 +6,6 @@ Run t-SNE on the Iris dataset, with CI-safe doctests and visualization.
 
 # Standard library
 import doctest
-from typing import Tuple
 
 # Third-party
 import numpy as np
@@ -22,7 +21,7 @@ except ImportError as e:
     ) from e
 
 
-def collect_dataset() -> Tuple[ndarray, ndarray]:
+def collect_dataset() -> tuple[ndarray, ndarray]:
     """
     Load the Iris dataset and return features and labels.
 
