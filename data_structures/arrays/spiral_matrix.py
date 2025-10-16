@@ -7,38 +7,39 @@ class Solution:
         value = 1
         
         # Define the boundaries for rows and columns
-        rowStart, rowEnd = 0, n - 1
-        colStart, colEnd = 0, n - 1
+        row_start, row_end = 0, n - 1
+        col_start, col_end = 0, n - 1
 
         # Continue filling the matrix layer by layer in spiral order
-        while rowStart <= rowEnd and colStart <= colEnd:
+        while row_start <= row_end and col_start <= col_end:
             
             # Step 1: Fill the top row (left → right)
-            for i in range(colStart, colEnd + 1):
-                result[rowStart][i] = value   # assign the current value
+            for i in range(col_start, col_end + 1):
+                result[row_start][i] = value   # assign the current value
                 value += 1                    # move to next number
-            rowStart += 1  # move top boundary down (row filled)
+            row_start += 1  # move top boundary down (row filled)
             
             # Step 2: Fill the rightmost column (top → bottom)
-            for j in range(rowStart, rowEnd + 1):
-                result[j][colEnd] = value
+            for j in range(row_start, row_end + 1):
+                result[j][col_end] = value
                 value += 1
-            colEnd -= 1  # move right boundary left (column filled)
+            col_end -= 1  # move right boundary left (column filled)
             
             # Step 3: Fill the bottom row (right → left)
             # Only if there are rows remaining to fill
-            if rowStart <= rowEnd:
-                for k in range(colEnd, colStart - 1, -1):
-                    result[rowEnd][k] = value
+            if row_start <= row_end:
+                for k in range(col_end, col_start - 1, -1):
+                    result[row_end][k] = value
                     value += 1
-                rowEnd -= 1  # move bottom boundary up (row filled)
+                row_end -= 1  # move bottom boundary up (row filled)
             
             # Step 4: Fill the leftmost column (bottom → top)
             # Only if there are columns remaining to fill
-            if colStart <= colEnd:
-                for l in range(rowEnd, rowStart - 1, -1):
-                    result[l][colStart] = value
+            if col_start <= col_end:
+                for l in range(row_end, row_start - 1, -1):
+                    result[l][col_start] = value
                     value += 1
+                
                 col_start += 1
 
         # return the completed spiral matrix
