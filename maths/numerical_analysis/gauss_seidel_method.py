@@ -2,7 +2,7 @@ def gauss_seidel(
     coefficients: list[list[float]],
     rhs: list[float],
     tol: float = 1e-10,
-    max_iter: int = 1000
+    max_iter: int = 1000,
 ) -> list[float]:
     """
     Solve the linear system Ax = b using the Gauss-Seidel iterative method.
