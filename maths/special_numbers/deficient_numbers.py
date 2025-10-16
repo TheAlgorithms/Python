@@ -39,6 +39,8 @@ def is_deficient_number(number: int) -> bool:
         raise TypeError(msg)
     if number < 1:
         return False
+    if number == 1:
+        return True
 
     divisor_sum = 1
     for i in range(2, int(number**0.5) + 1):
