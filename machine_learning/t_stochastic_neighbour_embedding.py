@@ -4,10 +4,8 @@ t_stochastic_neighbour_embedding.py
 Run t-SNE on the Iris dataset, with CI-safe doctests and visualization.
 """
 
-# Standard library
 import doctest
 
-# Third-party
 import numpy as np
 from numpy import ndarray
 
