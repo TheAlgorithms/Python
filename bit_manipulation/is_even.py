@@ -1,17 +1,9 @@
 def is_even(number: int) -> bool:
-    """
-    return true if the input integer is even
-    Explanation: Lets take a look at the following decimal to binary conversions
-    2 => 10
-    14 => 1110
-    100 => 1100100
-    3 => 11
-    13 => 1101
-    101 => 1100101
-    from the above examples we can observe that
-    for all the odd integers there is always 1 set bit at the end
-    also, 1 in binary can be represented as 001, 00001, or 0000001
-    so for any odd integer n => n&1 is always equals 1 else the integer is even
+    """Return True if the input integer is even using a bitwise check.
+
+    Explanation:
+    In binary, even numbers always have the least significant bit cleared (0),
+    while odd numbers have it set (1). Therefore, ``n & 1 == 0`` implies even.
 
     >>> is_even(1)
     False
@@ -27,8 +19,19 @@ def is_even(number: int) -> bool:
     True
     >>> is_even(101)
     False
+    >>> is_even(True)
+    Traceback (most recent call last):
+        ...
+    TypeError: input must be an integer
+    >>> is_even(3.14)
+    Traceback (most recent call last):
+        ...
+    TypeError: input must be an integer
     """
-    return number & 1 == 0
+    if not isinstance(number, int) or isinstance(number, bool):
+        # bool is a subclass of int; explicitly disallow it as a number here.
+        raise TypeError("input must be an integer")
+    return (number & 1) == 0
 
 
 if __name__ == "__main__":
