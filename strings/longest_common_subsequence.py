@@ -2,6 +2,7 @@
 # This program finds the Longest Common Subsequence (LCS) between two strings
 # using Dynamic Programming and also prints the actual LCS string.
 
+
 def longest_common_subsequence(x: str, y: str):
     m, n = len(x), len(y)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
@@ -28,7 +29,7 @@ def longest_common_subsequence(x: str, y: str):
             j -= 1
 
     lcs.reverse()
-    lcs_str = ''.join(lcs)
+    lcs_str = "".join(lcs)
 
     # Print DP table (for visualization)
     print("DP Table:")
