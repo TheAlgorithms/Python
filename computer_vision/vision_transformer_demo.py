@@ -12,7 +12,7 @@ Requirements:
     - torch
     - transformers
     - Pillow (PIL)
-    - requests
+    - httpx (already in repo dependencies)
 
 Resources:
     - Paper: https://arxiv.org/abs/2010.11929
@@ -40,13 +40,13 @@ from pathlib import Path
 from typing import Any
 
 try:
-    import requests
+    import httpx
     import torch
     from PIL import Image
     from transformers import ViTForImageClassification, ViTImageProcessor
 except ImportError as e:
     print(f"Error: Missing required dependency: {e.name}")
-    print("Install dependencies: pip install torch transformers pillow requests")
+    print("Install dependencies: pip install torch transformers pillow httpx")
     sys.exit(1)
 
 
@@ -62,8 +62,8 @@ def load_image(image_source: str | Path, timeout: int = 10) -> Image.Image:
         PIL Image object
 
     Raises:
-        TimeoutError: If request times out
-        ConnectionError: If URL is unreachable
+    TimeoutError: If request times out
+    ConnectionError: If URL is unreachable
         FileNotFoundError: If local file doesn't exist
         IOError: If image cannot be opened
 
@@ -79,16 +79,17 @@ def load_image(image_source: str | Path, timeout: int = 10) -> Image.Image:
         ("http://", "https://")
     ):
         try:
-            response = requests.get(str(image_source), timeout=timeout)
-            response.raise_for_status()
-            return Image.open(BytesIO(response.content)).convert("RGB")
-        except requests.exceptions.Timeout:
+            with httpx.Client(timeout=timeout) as client:
+                response = client.get(str(image_source))
+                response.raise_for_status()
+                return Image.open(BytesIO(response.content)).convert("RGB")
+        except httpx.TimeoutException:
             msg = (
                 f"Request timed out after {timeout} seconds. "
                 "Try increasing the timeout parameter."
             )
             raise TimeoutError(msg)
-        except requests.exceptions.RequestException as e:
+        except httpx.HTTPError as e:
             msg = f"Failed to download image from URL: {e}"
             raise ConnectionError(msg) from e
     else:
