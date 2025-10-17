@@ -1,5 +1,6 @@
 from typing import Union
 
+
 def is_armstrong_number(n: int) -> bool:
     """
     Check whether a non-negative integer is an Armstrong (narcissistic) number.
@@ -37,4 +38,4 @@ def is_armstrong_number(n: int) -> bool:
     # Sum of each digit raised to the 'power'
     total = sum(int(d) ** power for d in digits)
 
-    return total == n  
+    return total == n
