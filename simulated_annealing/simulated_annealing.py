@@ -21,6 +21,8 @@ class SimulatedAnnealing:
         min_temperature: float = 1e-3,
         iterations_per_temp: int = 100,
         neighbor_scale: float = 0.1,
+        local_search: Optional[Callable[[Sequence[float], Callable[[Sequence[float]], float], Callable[[Sequence[float]], Sequence[float]], int], Tuple[Sequence[float], float]]] = None,
+        local_search_iters: int = 10,
         seed: Optional[int] = None,
     ):
         self.func = func
@@ -33,6 +35,9 @@ class SimulatedAnnealing:
         self.min_temperature = float(min_temperature)
         self.iterations_per_temp = int(iterations_per_temp)
         self.neighbor_scale = float(neighbor_scale)
+        # local_search: callable(solution, func, neighbor_fn, iters) -> (improved_solution, improved_cost)
+        self.local_search = local_search
+        self.local_search_iters = int(local_search_iters)
         if seed is not None:
             random.seed(seed)
 
@@ -91,7 +96,17 @@ class SimulatedAnnealing:
                     return best, best_cost, history
 
                 candidate = self._neighbor(current)
-                candidate_cost = float(self.func(candidate))
+                # Optionally refine candidate with local search before evaluating/accepting
+                if self.local_search is not None:
+                    try:
+                        improved, improved_cost = self.local_search(candidate, self.func, self._neighbor, self.local_search_iters)
+                        candidate = list(improved)
+                        candidate_cost = float(improved_cost)
+                    except Exception:
+                        # Fall back to plain candidate evaluation if local search fails
+                        candidate_cost = float(self.func(candidate))
+                else:
+                    candidate_cost = float(self.func(candidate))
                 delta = candidate_cost - current_cost
                 if self._accept(delta, temp):
                     current = candidate
@@ -129,6 +144,67 @@ def _test_quadratic():
     sa = SimulatedAnnealing(func, [0.0], bounds=[(-10, 10)], temperature=10, iterations_per_temp=50)
     best, cost, hist = sa.optimize()
     print("best:", best, "cost:", cost)
+
+
+def simple_local_search(solution: Sequence[float], func: Callable[[Sequence[float]], float], neighbor_fn: Callable[[Sequence[float]], Sequence[float]], iterations: int = 10) -> Tuple[Sequence[float], float]:
+    """A tiny hill-climbing local search that repeatedly accepts improving neighbors.
+
+    Parameters
+    - solution: starting solution sequence
+    - func: objective function (lower is better)
+    - neighbor_fn: function that given a solution returns a new neighbor solution
+    - iterations: number of neighbor attempts
+
+    Returns a tuple (best_solution, best_cost).
+
+    >>> func = lambda x: (x[0] - 5) ** 2
+    >>> start = [0.0]
+    >>> def neighbor(x):
+    ...     return [x[0] + 0.5]
+    >>> best, cost = simple_local_search(start, func, neighbor, iterations=5)
+    >>> best[0] > start[0]
+    True
+    >>> cost == func(best)
+    True
+    """
+    best = list(solution)
+    best_cost = float(func(best))
+    for _ in range(int(iterations)):
+        cand = neighbor_fn(best)
+        cand_cost = float(func(cand))
+        if cand_cost < best_cost:
+            best = list(cand)
+            best_cost = cand_cost
+    return best, best_cost
+
+
+def _doctest_local_search_benefit():
+    """Demonstrate that providing a local_search can improve or match the solution found by SimulatedAnnealing.
+
+    The test uses a deterministic seed so the result is reproducible in doctest.
+
+    >>> func = lambda x: (x[0] - 5) ** 2
+    >>> sa1 = SimulatedAnnealing(func, [0.0], bounds=[(-10, 10)], temperature=10, iterations_per_temp=20, seed=1)
+    >>> best1, cost1, _ = sa1.optimize(max_steps=200)
+    >>> # define a deterministic, greedy local search that moves toward the known minimum (5.0)
+    >>> def my_local_search(sol, f, neighbour, iters):
+    ...     s = list(sol)
+    ...     bestc = float(f(s))
+    ...     for _ in range(int(iters)):
+    ...         # move halfway toward 5.0 (gradient-free, deterministic)
+    ...         s[0] = s[0] + 0.5 * (5.0 - s[0])
+    ...         c = float(f(s))
+    ...         if c < bestc:
+    ...             bestc = c
+    ...         else:
+    ...             break
+    ...     return s, bestc
+    >>> sa2 = SimulatedAnnealing(func, [0.0], bounds=[(-10, 10)], temperature=10, iterations_per_temp=20, seed=1, local_search=my_local_search, local_search_iters=5)
+    >>> best2, cost2, _ = sa2.optimize(max_steps=200)
+    >>> cost2 <= cost1
+    True
+    """
+    pass
 
 
 if __name__ == "__main__":
