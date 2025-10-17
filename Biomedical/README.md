@@ -90,8 +90,8 @@ before_treatment = [145, 142, 138, 150, 155, 148, 152, 160]
 after_treatment = [140, 138, 135, 145, 148, 142, 147, 152]
 
 w_stat, p_value, stats = wilcoxon_signed_rank_test(
-    before_treatment, 
-    after_treatment, 
+    before_treatment,
+    after_treatment,
     alternative="greater"  # one-sided: treatment reduces BP
 )
 
@@ -101,7 +101,7 @@ print(f"Effect size: {stats['effect_size']:.3f}")
 
 # Visualize results
 plot_wilcoxon_results(
-    before_treatment, 
+    before_treatment,
     after_treatment,
     ("Before Treatment", "After Treatment"),
     "Blood Pressure Reduction Study"
@@ -112,7 +112,7 @@ treatment_group = [85, 88, 90, 92, 95, 98, 100]
 control_group = [78, 80, 82, 85, 87, 89, 91]
 
 u_stat, p_value, stats = mann_whitney_u_test(
-    treatment_group, 
+    treatment_group,
     control_group,
     alternative="greater"  # treatment > control
 )
@@ -180,7 +180,7 @@ else:
 
 ### P-value Interpretation
 - **p < 0.001**: Very strong evidence against null hypothesis
-- **p < 0.01**: Strong evidence against null hypothesis  
+- **p < 0.01**: Strong evidence against null hypothesis
 - **p < 0.05**: Moderate evidence against null hypothesis
 - **p ≥ 0.05**: Insufficient evidence to reject null hypothesis
 
