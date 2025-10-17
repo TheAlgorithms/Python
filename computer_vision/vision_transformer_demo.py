@@ -176,6 +176,14 @@ def main() -> None:
     Main function demonstrating Vision Transformer usage.
 
     Downloads a sample image and performs classification.
+
+    Examples:
+        >>> # Verify main is callable
+        >>> callable(main)
+        True
+        >>> # Verify main returns None
+        >>> main() is None  # doctest: +SKIP
+        True
     """
     print("Vision Transformer (ViT) Image Classification Demo")
     print("=" * 60)
