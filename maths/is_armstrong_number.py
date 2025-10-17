@@ -1,4 +1,4 @@
-def is_armstrong_number(n: int) -> bool:
+def is_armstrong_number(number: int) -> bool:
     """
     Check whether a non-negative integer is an Armstrong (narcissistic) number.
 
@@ -25,14 +25,15 @@ def is_armstrong_number(n: int) -> bool:
     False
     """
     # Only non-negative integers are considered
-    if n < 0:
+    if number < 0:
         return False
 
     # Convert to string to count digits
-    digits = str(n)
+    digits = str(number)
     power = len(digits)
 
     # Sum of each digit raised to the 'power'
     total = sum(int(d) ** power for d in digits)
 
-    return total == n
+    return total == number
+
