@@ -1,4 +1,20 @@
-from .stack import Stack
+try:
+    from .stack import Stack
+except Exception:  # pragma: no cover - fallback for direct script execution / doctest
+    # When this module is executed directly (for example via `python -m doctest`),
+    # package-relative imports like `from .stack import Stack` may fail because
+    # there's no package context. Load the sibling `stack.py` file directly as a
+    # module so the functions here still work when run from the filesystem.
+    import importlib.util
+    import sys
+    from pathlib import Path
+
+    stack_path = Path(__file__).with_name("stack.py")
+    spec = importlib.util.spec_from_file_location("data_structures.stacks.stack", str(stack_path))
+    _stack = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = _stack
+    spec.loader.exec_module(_stack)  # type: ignore[attr-defined]
+    Stack = _stack.Stack
 
 
 def balanced_parentheses(parentheses: str) -> bool:
