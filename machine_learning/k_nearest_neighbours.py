@@ -131,9 +131,11 @@ class KNN:
         """
         # Choose the distance function once
         if self.distance_metric == "euclidean":
+
             def dist_fn(a: np.ndarray[float]) -> float:
                 return self._euclidean_distance(a, pred_point)
         elif self.distance_metric == "manhattan":
+
             def dist_fn(a: np.ndarray[float]) -> float:
                 return self._manhattan_distance(a, pred_point)
         else:  # minkowski
