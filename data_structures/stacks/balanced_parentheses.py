@@ -10,7 +10,9 @@ except Exception:  # pragma: no cover - fallback for direct script execution / d
     from pathlib import Path
 
     stack_path = Path(__file__).with_name("stack.py")
-    spec = importlib.util.spec_from_file_location("data_structures.stacks.stack", str(stack_path))
+    spec = importlib.util.spec_from_file_location(
+        "data_structures.stacks.stack", str(stack_path)
+    )
     _stack = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = _stack
     spec.loader.exec_module(_stack)  # type: ignore[attr-defined]

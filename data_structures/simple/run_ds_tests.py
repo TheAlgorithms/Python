@@ -26,7 +26,7 @@ def run() -> None:
         assert ll.to_list() == [0, 2]
         print("LinkedList: OK")
     except Exception as e:
-        failures.append(('LinkedList', e))
+        failures.append(("LinkedList", e))
 
     try:
         s = ListStack()
@@ -36,13 +36,13 @@ def run() -> None:
         assert s.pop() == 2
 
         ls = LinkedStack()
-        ls.push('a')
-        ls.push('b')
-        assert ls.peek() == 'b'
-        assert ls.pop() == 'b'
+        ls.push("a")
+        ls.push("b")
+        assert ls.peek() == "b"
+        assert ls.pop() == "b"
         print("Stacks: OK")
     except Exception as e:
-        failures.append(('Stacks', e))
+        failures.append(("Stacks", e))
 
     try:
         q = Queue()
@@ -52,7 +52,7 @@ def run() -> None:
         assert q.dequeue() == 1
         print("Queue: OK")
     except Exception as e:
-        failures.append(('Queue', e))
+        failures.append(("Queue", e))
 
     try:
         bst = BinarySearchTree()
@@ -62,7 +62,7 @@ def run() -> None:
         assert bst.inorder() == [1, 2, 3, 4]
         print("BST: OK")
     except Exception as e:
-        failures.append(('BST', e))
+        failures.append(("BST", e))
 
     try:
         g = Graph()
@@ -74,16 +74,16 @@ def run() -> None:
         assert 1 in order_dfs
         print("Graph: OK")
     except Exception as e:
-        failures.append(('Graph', e))
+        failures.append(("Graph", e))
 
     try:
         t = Trie()
-        t.insert('hello')
-        assert t.search('hello')
-        assert t.starts_with('hel')
+        t.insert("hello")
+        assert t.search("hello")
+        assert t.starts_with("hel")
         print("Trie: OK")
     except Exception as e:
-        failures.append(('Trie', e))
+        failures.append(("Trie", e))
 
     try:
         uf = UnionFind()
@@ -93,7 +93,7 @@ def run() -> None:
         assert uf.find(1) == uf.find(2)
         print("UnionFind: OK")
     except Exception as e:
-        failures.append(('UnionFind', e))
+        failures.append(("UnionFind", e))
 
     try:
         h = MinHeap()
@@ -104,16 +104,16 @@ def run() -> None:
         assert h.pop() == 1
         print("MinHeap: OK")
     except Exception as e:
-        failures.append(('MinHeap', e))
+        failures.append(("MinHeap", e))
 
     if failures:
-        print('\nFAILURES:')
+        print("\nFAILURES:")
         for name, exc in failures:
             print(f"- {name}: {exc}")
         sys.exit(2)
     else:
-        print('\nAll data_structures.simple smoke tests passed.')
+        print("\nAll data_structures.simple smoke tests passed.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()

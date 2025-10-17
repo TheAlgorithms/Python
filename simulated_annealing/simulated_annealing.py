@@ -21,7 +21,17 @@ class SimulatedAnnealing:
         min_temperature: float = 1e-3,
         iterations_per_temp: int = 100,
         neighbor_scale: float = 0.1,
-        local_search: Optional[Callable[[Sequence[float], Callable[[Sequence[float]], float], Callable[[Sequence[float]], Sequence[float]], int], Tuple[Sequence[float], float]]] = None,
+        local_search: Optional[
+            Callable[
+                [
+                    Sequence[float],
+                    Callable[[Sequence[float]], float],
+                    Callable[[Sequence[float]], Sequence[float]],
+                    int,
+                ],
+                Tuple[Sequence[float], float],
+            ]
+        ] = None,
         local_search_iters: int = 10,
         seed: Optional[int] = None,
     ):
@@ -70,7 +80,12 @@ class SimulatedAnnealing:
             prob = 0.0
         return random.random() < prob
 
-    def optimize(self, max_steps: Optional[int] = None, stop_event: Optional[object] = None, progress_callback: Optional[Callable[[int, float, float], None]] = None) -> Tuple[List[float], float, dict]:
+    def optimize(
+        self,
+        max_steps: Optional[int] = None,
+        stop_event: Optional[object] = None,
+        progress_callback: Optional[Callable[[int, float, float], None]] = None,
+    ) -> Tuple[List[float], float, dict]:
         """Run optimization and return best solution, cost, and history.
 
         New optional args:
@@ -91,7 +106,10 @@ class SimulatedAnnealing:
         while temp > self.min_temperature:
             for _ in range(self.iterations_per_temp):
                 # Check stop event
-                if stop_event is not None and getattr(stop_event, "is_set", lambda: False)():
+                if (
+                    stop_event is not None
+                    and getattr(stop_event, "is_set", lambda: False)()
+                ):
                     self.current = current
                     return best, best_cost, history
 
@@ -99,7 +117,12 @@ class SimulatedAnnealing:
                 # Optionally refine candidate with local search before evaluating/accepting
                 if self.local_search is not None:
                     try:
-                        improved, improved_cost = self.local_search(candidate, self.func, self._neighbor, self.local_search_iters)
+                        improved, improved_cost = self.local_search(
+                            candidate,
+                            self.func,
+                            self._neighbor,
+                            self.local_search_iters,
+                        )
                         candidate = list(improved)
                         candidate_cost = float(improved_cost)
                     except Exception:
@@ -120,7 +143,10 @@ class SimulatedAnnealing:
                 history["current_costs"].append(current_cost)
 
                 steps += 1
-                if progress_callback is not None and steps % max(1, self.iterations_per_temp // 10) == 0:
+                if (
+                    progress_callback is not None
+                    and steps % max(1, self.iterations_per_temp // 10) == 0
+                ):
                     try:
                         progress_callback(steps, best_cost, current_cost)
                     except Exception:
@@ -141,12 +167,19 @@ class SimulatedAnnealing:
 def _test_quadratic():
     # Simple test: minimize f(x) = (x-3)^2
     func = lambda x: (x[0] - 3) ** 2
-    sa = SimulatedAnnealing(func, [0.0], bounds=[(-10, 10)], temperature=10, iterations_per_temp=50)
+    sa = SimulatedAnnealing(
+        func, [0.0], bounds=[(-10, 10)], temperature=10, iterations_per_temp=50
+    )
     best, cost, hist = sa.optimize()
     print("best:", best, "cost:", cost)
 
 
-def simple_local_search(solution: Sequence[float], func: Callable[[Sequence[float]], float], neighbor_fn: Callable[[Sequence[float]], Sequence[float]], iterations: int = 10) -> Tuple[Sequence[float], float]:
+def simple_local_search(
+    solution: Sequence[float],
+    func: Callable[[Sequence[float]], float],
+    neighbor_fn: Callable[[Sequence[float]], Sequence[float]],
+    iterations: int = 10,
+) -> Tuple[Sequence[float], float]:
     """A tiny hill-climbing local search that repeatedly accepts improving neighbors.
 
     Parameters

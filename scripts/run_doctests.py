@@ -19,7 +19,9 @@ import sys
 import traceback
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]  # Python/ (project root where data_structures lives)
+ROOT = (
+    Path(__file__).resolve().parents[1]
+)  # Python/ (project root where data_structures lives)
 DATA_DIR = ROOT / "data_structures"
 
 
@@ -69,7 +71,9 @@ def main() -> int:
             except Exception as ex2:
                 print(f"Fallback testfile raised {ex2.__class__.__name__}: {ex2}")
                 traceback.print_exc()
-                results.append((str(rel), "error", f"import error: {e}; fallback error: {ex2}"))
+                results.append(
+                    (str(rel), "error", f"import error: {e}; fallback error: {ex2}")
+                )
 
     # Summary
     print("\n=== Summary ===")
