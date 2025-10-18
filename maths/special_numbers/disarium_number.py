@@ -15,10 +15,7 @@ def is_disarium(num):
         total += int(i) ** position
         position += 1
 
-    if total == num:
-        return True
-    else:
-        return False
+    return total == num
 
 
 if __name__ == "__main__":
