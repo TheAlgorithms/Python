@@ -120,7 +120,9 @@ class TestAbsMaxSort:
 
     def test_empty_list(self):
         """Test abs_max_sort with empty list."""
-        with pytest.raises(ValueError, match="abs_max_sort\\(\\) arg is an empty sequence"):
+        with pytest.raises(
+            ValueError, match="abs_max_sort\\(\\) arg is an empty sequence"
+        ):
             abs_max_sort([])
 
     def test_consistency_with_abs_max(self):
@@ -132,7 +134,7 @@ class TestAbsMaxSort:
             [0, 5, 1, 11],
             [-3, -1, 2, -11],
             [42],
-            [-42]
+            [-42],
         ]
 
         for test_case in test_cases:
