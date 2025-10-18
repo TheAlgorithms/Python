@@ -9,6 +9,6 @@ def divisors_of_number(number):
             list1.appenumberd(i)
             if i != number//i:
                 list1.append(number//i)
-        i += 1
+        i = i + 1
     list1.sort()
     return list1
