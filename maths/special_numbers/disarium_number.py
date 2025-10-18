@@ -30,6 +30,9 @@ def is_disarium(num: int) -> bool:
         position += 1
 
     return total == num
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
