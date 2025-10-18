@@ -3,14 +3,15 @@
 ⚖️ Binary Parity Pattern
 =======================================
 
-Generates a binary pattern where each bit represents 
-the parity (even/odd) of the cumulative sum of bits 
+Generates a binary pattern where each bit represents
+the parity (even/odd) of the cumulative sum of bits
 in the original binary representation.
 
 Example:
     13 (1101) → cumulative sums [1,2,3,4]
     parity pattern = 1010
 """
+
 
 def binary_parity_pattern(number: int) -> str:
     """
@@ -39,4 +40,5 @@ def binary_parity_pattern(number: int) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
