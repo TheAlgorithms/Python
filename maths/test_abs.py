@@ -7,7 +7,7 @@
 
 import pytest
 
-from maths.abs import abs_val, abs_min, abs_max, abs_max_sort
+from maths.abs import abs_max, abs_max_sort, abs_min, abs_val
 
 
 class TestAbsVal:
