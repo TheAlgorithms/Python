@@ -1,4 +1,4 @@
-number = int(input("Enter you number here ").strip())
+number = int(input("Enter your number here: ").strip())
 
 
 def divisors_of_number(number):
@@ -10,7 +10,7 @@ def divisors_of_number(number):
             list1.append(i)
             # added the number to list
             if i != number // i:
-                # if i is the divisor then n/i will also be a divsior
+                # if i is the divisor then n/i will also be a divisor
                 list1.append(number // i)
                 # added the number to list
         i = i + 1
