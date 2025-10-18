@@ -1,21 +1,18 @@
 """
-=======================================
-⚖️ Binary Parity Pattern
-=======================================
+binary_parity_pattern.py
+========================
 
-Generates a binary pattern where each bit represents
-the parity (even/odd) of the cumulative sum of bits
-in the original binary representation.
+Generates a binary parity pattern based on the cumulative sum of bits
+in the binary representation of an integer.
 
-Example:
-    13 (1101) → cumulative sums [1,2,3,4]
-    parity pattern = 1010
+Reference:
+https://en.wikipedia.org/wiki/Parity_(mathematics)
 """
 
 
 def binary_parity_pattern(number: int) -> str:
     """
-    Generate parity pattern of cumulative binary sums.
+    Return a binary parity pattern string for a given integer.
 
     >>> binary_parity_pattern(13)
     '0b1010'
@@ -23,19 +20,22 @@ def binary_parity_pattern(number: int) -> str:
     '0b111'
     >>> binary_parity_pattern(4)
     '0b10'
+    >>> binary_parity_pattern(0)
+    '0b0'
     """
     if number < 0:
-        number = abs(number)
+        raise ValueError("Number must be non-negative")
 
-    binary = bin(number)[2:]
-    parity_pattern = ""
+    binary_str = bin(number)[2:]
     cum_sum = 0
+    pattern = []
 
-    for bit in binary:
+    for bit in binary_str:
         cum_sum += int(bit)
-        parity_pattern += str(cum_sum % 2)
+        pattern.append(str(cum_sum % 2))
 
-    return "0b" + parity_pattern
+    result = "0b" + "".join(pattern)
+    return result if result != "0b" else "0b0"
 
 
 if __name__ == "__main__":
