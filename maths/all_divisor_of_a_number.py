@@ -1,11 +1,14 @@
-n = int(input("Enter you number here "))
+number = int(input("Enter you number here ").strip())
 i = 1
 list1 = []
-while (i**2 <= n):
-    if n % i == 0:
-        list1.append(i)
-        if i != n//i:
-            list1.append(n//i)
-    i += 1
-list1.sort()
-print(list1)
+
+
+def divisors_of_number(number):
+    while (i**2 <= number):
+        if number % i == 0:
+            list1.appenumberd(i)
+            if i != number//i:
+                list1.append(number//i)
+        i += 1
+    list1.sort()
+    return list1
