@@ -48,7 +48,9 @@ def compute_pairwise_affinities(data_matrix: ndarray, sigma: float = 1.0) -> nda
     # Compute pairwise squared Euclidean distances
     squared_sum = np.sum(np.square(data_matrix), axis=1)
     squared_distance = (
-        squared_sum[:, np.newaxis] + squared_sum[np.newaxis, :] - 2 * np.dot(data_matrix, data_matrix.T)
+        squared_sum[:, np.newaxis]
+        + squared_sum[np.newaxis, :]
+        - 2 * np.dot(data_matrix, data_matrix.T)
     )
 
     # Gaussian kernel
@@ -78,7 +80,9 @@ def compute_low_dim_affinities(embedding_matrix: ndarray) -> tuple[ndarray, ndar
     """
     squared_sum = np.sum(np.square(embedding_matrix), axis=1)
     squared_distance = (
-        squared_sum[:, np.newaxis] + squared_sum[np.newaxis, :] - 2 * np.dot(embedding_matrix, embedding_matrix.T)
+        squared_sum[:, np.newaxis]
+        + squared_sum[np.newaxis, :]
+        - 2 * np.dot(embedding_matrix, embedding_matrix.T)
     )
     numerator_matrix = 1 / (1 + squared_distance)
     np.fill_diagonal(numerator_matrix, 0)
