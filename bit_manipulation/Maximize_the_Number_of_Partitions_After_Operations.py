@@ -40,7 +40,3 @@ class Solution:
         :rtype: int
         """
         return self.helper(s, k, 0, 0, 0)
-
-
-# Time Complexity: O(n × 2²⁷)
-# Auxiliary Space: O(n × 2²⁷)
