@@ -1,11 +1,25 @@
-def is_disarium(num):
+def is_disarium(num: int) -> bool:
     """
     Check if a number is a Disarium number.
+
     A Disarium number is a number in which the sum of its digits
     powered with their respective positions is equal to the number itself.
 
-    Example:
-        135 -> 1¹ + 3² + 5³ = 135 ✅
+    Args:
+        num (int): The number to check.
+
+    Returns:
+        bool: True if num is a Disarium number, False otherwise.
+
+    Examples:
+    >>> is_disarium(135)
+    True
+    >>> is_disarium(89)
+    True
+    >>> is_disarium(75)
+    False
+    >>> is_disarium(9)
+    True
     """
     digits = str(num)
     total = 0
@@ -16,9 +30,6 @@ def is_disarium(num):
         position += 1
 
     return total == num
-
-
 if __name__ == "__main__":
-    test_numbers = [89, 135, 175, 518, 9, 10]
-    for n in test_numbers:
-        print(f"{n} → {'Disarium' if is_disarium(n) else 'Not Disarium'}")
+    import doctest
+    doctest.testmod()
