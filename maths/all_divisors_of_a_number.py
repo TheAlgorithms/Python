@@ -1,46 +1,78 @@
-def divisors_of_number(number: int) -> list[int]:
+"""
+All divisors of a number.
+
+This module provides a function to compute all positive divisors of an integer.
+
+Reference:
+https://en.wikipedia.org/wiki/Divisor
+
+Examples
+--------
+>>> all_divisors(1)
+[1]
+>>> all_divisors(28)
+[1, 2, 4, 7, 14, 28]
+>>> all_divisors(-6)
+[1, 2, 3, 6]
+>>> all_divisors(16)
+[1, 2, 4, 8, 16]
+"""
+
+from math import isqrt
+
+
+def all_divisors(n: int) -> list[int]:
     """
-    Returns a sorted list of all divisors of the input number.
-    optimized approach by checking divisors only up to the square root of the number.
+    Return a sorted list of all positive divisors of n.
 
-    @param number: a positive integer whose divisors are to be found
-    @return: a sorted list of divisors of the number
+    Parameters
+    ----------
+    n : int
+        Integer for which to compute positive divisors. If n == 0 a ValueError
+        is raised because the set of divisors of 0 is not finite.
 
-    >>> divisors_of_number(15)
-    [1, 3, 5, 15]
-    >>> divisors_of_number(12)
-    [1, 2, 3, 4, 6, 12]
-    >>> divisors_of_number(1)
+    Returns
+    -------
+    List[int]
+        Sorted list of positive divisors of abs(n).
+
+    Raises
+    ------
+    ValueError
+        If n == 0.
+
+    Complexity
+    ----------
+    Runs in O(sqrt(n)) time.
+
+    Doctests
+    --------
+    >>> all_divisors(1)
     [1]
-    >>> divisors_of_number(-5)
-    Traceback (most recent call last):
-      ...
-    ValueError: Input must be positive
-    >>> divisors_of_number(2.5)
-    Traceback (most recent call last):
-      ...
-    ValueError: Input must be an integer
+    >>> all_divisors(28)
+    [1, 2, 4, 7, 14, 28]
+    >>> all_divisors(-6)
+    [1, 2, 3, 6]
+    >>> all_divisors(36)
+    [1, 2, 3, 4, 6, 9, 12, 18, 36]
     """
-    if not isinstance(number, int):
-        raise ValueError("Input must be an integer")
-    if number <= 0:
-        raise ValueError("Input must be positive")
+    if n == 0:
+        raise ValueError("Divisors of 0 are not defined (infinite).")
 
-    i = 1
-    divisors = []
+    n_abs = abs(n)
+    divisors: list[int] = []
 
-    while i * i <= number:
-        if number % i == 0:
+    for i in range(1, isqrt(n_abs) + 1):
+        if n_abs % i == 0:
             divisors.append(i)
-            if i != number // i:
-                divisors.append(number // i)
-        i += 1
+            j = n_abs // i
+            if j != i:
+                divisors.append(j)
 
-    divisors.sort()
-    return divisors
+    return sorted(divisors)
 
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     import doctest
 
     doctest.testmod()
