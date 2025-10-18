@@ -13,12 +13,13 @@ def capitalize(sentence: str) -> str:
     >>> capitalize("")
     ''
     """
-    if not sentence:
+    if not sentence or not sentence.isalpha():
         return ""
 
     # Capitalize the first character if it's a lowercase letter
     # Concatenate the capitalized character with the rest of the string
-    return sentence[0].upper() + sentence[1:]
+    result= sentence[0].upper() + sentence[1:]
+    return result
 
 
 if __name__ == "__main__":
