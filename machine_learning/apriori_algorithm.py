@@ -51,7 +51,10 @@ def prune(itemset: list, candidates: list, length: int) -> list:
         is_subsequence = True
         for item in candidate:
             item_tuple = tuple(item)
-            if item_tuple not in itemset_counter or itemset_counter[item_tuple] < length - 1:
+            if (
+                item_tuple not in itemset_counter
+                or itemset_counter[item_tuple] < length - 1
+            ):
                 is_subsequence = False
                 break
         if is_subsequence:
