@@ -1,5 +1,5 @@
 """
-Towers of Hanoi is a mathematical puzzle that is solved using a recursive 
+Towers of Hanoi is a mathematical puzzle that is solved using a recursive
 divide-and-conquer strategy.
 
 It moves a stack of disks from a source pole to a destination pole,
@@ -14,7 +14,9 @@ https://en.wikipedia.org/wiki/Tower_of_Hanoi
 """
 
 
-def tower_of_hanoi(n: int, source: str = "A", auxiliary: str = "B", destination: str = "C") -> list[tuple[str, str]]:
+def tower_of_hanoi(
+    n: int, source: str = "A", auxiliary: str = "B", destination: str = "C"
+) -> list[tuple[str, str]]:
     """
     Pure python implementation of the Towers of Hanoi puzzle (recursive version),
     returning the sequence of moves required to solve the puzzle.
@@ -53,7 +55,9 @@ def tower_of_hanoi(n: int, source: str = "A", auxiliary: str = "B", destination:
 
 if __name__ == "__main__":
     try:
-        n_disks = int(input("Enter the number of disks for the Tower of Hanoi: ").strip())
+        n_disks = int(
+            input("Enter the number of disks for the Tower of Hanoi: ").strip()
+        )
         if n_disks < 0:
             print("Please enter a non-negative number of disks.")
         else:
