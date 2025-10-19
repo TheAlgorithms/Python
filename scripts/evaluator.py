@@ -28,6 +28,7 @@ Usage:
 
 import re
 
+
 def evaluate(expr: str):
     """
     Evaluate an arithmetic/bitwise expression string and return result.
@@ -50,7 +51,7 @@ def evaluate(expr: str):
     """
 
     # --- Tokenization ---
-    tokens = re.findall(r'\d+\.\d+|\d+|\*\*|<<|>>|[&|^+\-*/()]', expr.replace(" ", ""))
+    tokens = re.findall(r"\d+\.\d+|\d+|\*\*|<<|>>|[&|^+\-*/()]", expr.replace(" ", ""))
 
     # --- Handle unary minus (e.g., -5 + 3) and minus in starting ---
     if tokens and tokens[0] == "-":
@@ -63,7 +64,7 @@ def evaluate(expr: str):
         while "**" in z:
             i = z.index("**")
             z[i - 1] = float(z[i - 1]) ** float(z[i + 1])
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -71,7 +72,7 @@ def evaluate(expr: str):
         while "/" in z:
             i = z.index("/")
             z[i - 1] = float(z[i - 1]) / float(z[i + 1])
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -79,7 +80,7 @@ def evaluate(expr: str):
         while "*" in z:
             i = z.index("*")
             z[i - 1] = float(z[i - 1]) * float(z[i + 1])
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -94,7 +95,7 @@ def evaluate(expr: str):
         while "+" in z:
             i = z.index("+")
             z[i - 1] = float(z[i - 1]) + float(z[i + 1])
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -102,7 +103,7 @@ def evaluate(expr: str):
         while "<<" in z:
             i = z.index("<<")
             z[i - 1] = int(float(z[i - 1])) << int(float(z[i + 1]))
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -110,7 +111,7 @@ def evaluate(expr: str):
         while ">>" in z:
             i = z.index(">>")
             z[i - 1] = int(float(z[i - 1])) >> int(float(z[i + 1]))
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -118,7 +119,7 @@ def evaluate(expr: str):
         while "&" in z:
             i = z.index("&")
             z[i - 1] = int(float(z[i - 1])) & int(float(z[i + 1]))
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -126,7 +127,7 @@ def evaluate(expr: str):
         while "^" in z:
             i = z.index("^")
             z[i - 1] = int(float(z[i - 1])) ^ int(float(z[i + 1]))
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -134,7 +135,7 @@ def evaluate(expr: str):
         while "|" in z:
             i = z.index("|")
             z[i - 1] = int(float(z[i - 1])) | int(float(z[i + 1]))
-            z[i:i + 2] = [None, None]
+            z[i : i + 2] = [None, None]
             z = clean(z)
         return z
 
@@ -142,16 +143,26 @@ def evaluate(expr: str):
         while "(" in z:
             close = z.index(")")
             open_ = max(i for i, v in enumerate(z[:close]) if v == "(")
-            inner = z[open_ + 1:close]
+            inner = z[open_ + 1 : close]
             result = evaluate(" ".join(map(str, inner)))
-            z = z[:open_] + [str(result)] + z[close + 1:]
+            z = z[:open_] + [str(result)] + z[close + 1 :]
         return z
 
     tokens = solve_parentheses(tokens)
 
     # Precedence order
-    for func in [solve_power, solve_div, solve_mul, solve_minus, solve_add,
-                 solve_lshift, solve_rshift, solve_and, solve_xor, solve_or]:
+    for func in [
+        solve_power,
+        solve_div,
+        solve_mul,
+        solve_minus,
+        solve_add,
+        solve_lshift,
+        solve_rshift,
+        solve_and,
+        solve_xor,
+        solve_or,
+    ]:
         tokens = func(tokens)
 
     result = tokens[0]
@@ -168,8 +179,9 @@ def evaluate(expr: str):
         return int(f) if f.is_integer() else f
     except ValueError:
         raise ValueError("Invalid expression or unsupported syntax.")
-    
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
