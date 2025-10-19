@@ -1,5 +1,6 @@
 # disarium.py
 
+
 def is_disarium(num):
     """
     Check if a number is Disarium.
@@ -20,4 +21,5 @@ def is_disarium(num):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
