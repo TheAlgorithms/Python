@@ -63,10 +63,9 @@ class CircularQueue:
         ['A', 'B', None, None, None]
         >>> (cq.size, cq.first())
         (2, 'A')
-        >>> cq2 = CircularQueue(2)
-        >>> cq2.enqueue("X").enqueue("Y")  # doctest: +ELLIPSIS
+        >>> cq.enqueue("C").enqueue("D").enqueue("E")  # doctest: +ELLIPSIS
         <data_structures.queues.circular_queue.CircularQueue object at ...>
-        >>> cq2.enqueue("Z")  # Queue is full
+        >>> cq2.enqueue("F")
         Traceback (most recent call last):
            ...
         Exception: QUEUE IS FULL
