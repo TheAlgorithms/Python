@@ -45,7 +45,7 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     >>> prune(itemset, candidates, 3)
     []
     """
-    itemset_counter = Counter(tuple(x) for x in itemset)
+    itemset_counter = Counter(tuple(item) for item in itemset)
     pruned = []
     for candidate in candidates:
         is_subsequence = True
