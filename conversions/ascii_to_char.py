@@ -1,3 +1,9 @@
+"""
+This script converts an ASCII value to its corresponding character.
+Example:
+    Input: 65
+    Output: A
+"""
 def ascii_to_char(ascii_val: int) -> str:
     """Convert ASCII value to corresponding character."""
     return chr(ascii_val)
