@@ -1,6 +1,4 @@
 # Implementation of Circular Queue (using Python lists)
-
-
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
@@ -17,7 +15,7 @@ class CircularQueue:
         >>> len(cq)
         0
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> cq.array
         ['A', None, None, None, None]
         >>> len(cq)
@@ -51,21 +49,28 @@ class CircularQueue:
         """
         This function inserts an element at the end of the queue using self.rear value
         as an index.
+
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> (cq.size, cq.first())
         (1, 'A')
         >>> cq.enqueue("B")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> cq.array
         ['A', 'B', None, None, None]
         >>> (cq.size, cq.first())
         (2, 'A')
+        >>> cq2 = CircularQueue(2)
+        >>> cq2.enqueue("X").enqueue("Y")  # doctest: +ELLIPSIS
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
+        >>> cq2.enqueue("Z")  # Queue is full
+        Traceback (most recent call last):
+           ...
+        Exception: QUEUE IS FULL
         """
         if self.size >= self.n:
             raise Exception("QUEUE IS FULL")
-
         self.array[self.rear] = data
         self.rear = (self.rear + 1) % self.n
         self.size += 1
@@ -75,6 +80,7 @@ class CircularQueue:
         """
         This function removes an element from the queue using on self.front value as an
         index and returns it
+
         >>> cq = CircularQueue(5)
         >>> cq.dequeue()
         Traceback (most recent call last):
@@ -93,7 +99,6 @@ class CircularQueue:
         """
         if self.size == 0:
             raise Exception("UNDERFLOW")
-
         temp = self.array[self.front]
         self.array[self.front] = None
         self.front = (self.front + 1) % self.n
