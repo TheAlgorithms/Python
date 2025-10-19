@@ -1,3 +1,6 @@
+import numpy as np
+import cv2
+
 """
 Color Augmentation Module for Computer Vision
 
@@ -7,17 +10,15 @@ in computer vision and deep learning for data augmentation during model training
 Reference: https://en.wikipedia.org/wiki/Data_augmentation
 """
 
-import numpy as np
-import cv2
-
-
 def brightness_adjustment(image: np.ndarray, factor: float = 1.0) -> np.ndarray:
     """
     Adjust image brightness by modifying the V channel in HSV color space.
 
     Args:
         image: Input image in BGR format
-        factor: Brightness multiplication factor (0.0 = black, 1.0 = original, >1.0 = brighter)
+        factor: Brightness multiplication factor (
+            0.0 = black, 1.0 = original, >1.0 = brighter
+        )
 
     Returns:
         Brightness adjusted image in BGR format
@@ -79,7 +80,8 @@ def saturation_adjustment(image: np.ndarray, factor: float = 1.0) -> np.ndarray:
 
     Args:
         image: Input image in BGR format
-        factor: Saturation factor (0.0 = grayscale, 1.0 = original, >1.0 = more saturated)
+        factor: Saturation factor
+            (0.0 = grayscale, 1.0 = original, >1.0 = more saturated)
 
     Returns:
         Saturation adjusted image in BGR format
@@ -225,7 +227,8 @@ def channel_shuffle(image: np.ndarray) -> np.ndarray:
         dtype('uint8')
     """
     channels = list(cv2.split(image))
-    np.random.shuffle(channels)
+    rng = np.random.default_rng()
+    rng.shuffle(channels)
     return cv2.merge(channels)
 
 
@@ -264,12 +267,17 @@ def temperature_tint(
     """
     Adjust color temperature and tint of an image.
 
-    Temperature affects the blue-red balance, while tint affects the green-magenta balance.
+    Temperature affects the blue-red balance, while tint affects the
+    green-magenta balance.
 
     Args:
         image: Input image in BGR format
-        temperature: Temperature adjustment (-1.0 to 1.0, negative = cooler, positive = warmer)
-        tint: Tint adjustment (-1.0 to 1.0, negative = green, positive = magenta)
+        temperature: Temperature adjustment (
+            -1.0 to 1.0, negative = cooler, positive = warmer
+        )
+        tint: Tint adjustment (
+            -1.0 to 1.0, negative = green, positive = magenta
+        )
 
     Returns:
         Adjusted image in BGR format
