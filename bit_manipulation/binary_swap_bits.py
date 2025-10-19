@@ -6,14 +6,14 @@ https://en.wikipedia.org/wiki/Bit_manipulation
 """
 
 
-def swap_bits(number: int, i: int, j: int) -> int:
+def swap_bits(number: int, first: int, second: int) -> int:
     """
-    Swap the bits at the position i and j (0-indexed from right side)
+    Swap the bits at the position first and second (0-indexed from right side)
 
     Arguments:
             number (int): Non-negative integer whose bits are to be swapped.
-            i (int): Index of 1st bit to swap.
-            j (int): Index of 2nd bit to swap.
+            first (int): Index of 1st bit to swap.
+            second (int): Index of 2nd bit to swap.
 
     Returns:
             int: Integer obtained after swapping of bits.
@@ -42,22 +42,22 @@ def swap_bits(number: int, i: int, j: int) -> int:
                 ...
             ValueError: Bit positions MUST be non-negative!
     """
-    if not all(isinstance(x, int) for x in (number, i, j)):
+    if not all(isinstance(x, int) for x in (number, first, second)):
         raise TypeError("All arguments MUST be integers!")
 
     if number < 0:
         raise ValueError("The number MUST be non-negative!")
 
-    if i < 0 or j < 0:
+    if first < 0 or second < 0:
         raise ValueError("Bit positions MUST be non-negative!")
 
     # Extraction of Bits
-    bit_first = (number >> i) & 1
-    bit_second = (number >> j) & 1
+    bit_first = (number >> first) & 1
+    bit_second = (number >> second) & 1
 
     # If bits differ swap them
     if bit_first != bit_second:
-        number ^= (1 << i) | (1 << j)
+        number ^= (1 << first) | (1 << second)
 
     return number
 
