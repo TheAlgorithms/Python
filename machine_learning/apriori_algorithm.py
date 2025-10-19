@@ -33,7 +33,7 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     the frequent itemsets of the previous iteration (valid subsequences of the frequent
     itemsets from the previous iteration).
 
-    Prunes candidate itemsets that are not frequent using Counter for optimization.
+    Prunes candidate itemsets that are not frequent.
 
     >>> itemset = ['X', 'Y', 'Z']
     >>> candidates = [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
@@ -47,12 +47,11 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     """
     itemset_counter = Counter(tuple(x) for x in itemset)
     pruned = []
-
     for candidate in candidates:
         is_subsequence = True
         for item in candidate:
-            tupla = tuple(item)
-            if tupla not in itemset_counter or itemset_counter[tupla] < length - 1:
+            item_tuple = tuple(item)
+            if item_tuple not in itemset_counter or itemset_counter[item_tuple] < length - 1:
                 is_subsequence = False
                 break
         if is_subsequence:
