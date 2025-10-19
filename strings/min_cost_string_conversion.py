@@ -3,6 +3,7 @@ Algorithm for calculating the most cost-efficient sequence for converting one st
 into another (Levenshtein distance).
 The allowed operations are insertion, deletion, or substitution of a single character.
 """
+
 import doctest
 
 
@@ -76,8 +77,7 @@ def compute_transform_tables(
         [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
     ops = [
-        ["0" for _ in range(len_destination_seq + 1)]
-        for _ in range(len_source_seq + 1)
+        ["0" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
     for i in range(1, len_source_seq + 1):
