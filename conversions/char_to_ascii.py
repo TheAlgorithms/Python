@@ -17,6 +17,7 @@ References:
     https://en.wikipedia.org/wiki/ASCII
 """
 
+
 def char_to_ascii(char: str) -> int:
     """
     Convert a single character to its ASCII integer value.
