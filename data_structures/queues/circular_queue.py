@@ -73,6 +73,7 @@ class CircularQueue:
         """
         if self.size >= self.n:
             raise Exception("QUEUE IS FULL")
+
         self.array[self.rear] = data
         self.rear = (self.rear + 1) % self.n
         self.size += 1
