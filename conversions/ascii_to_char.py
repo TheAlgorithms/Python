@@ -17,6 +17,7 @@ References:
     https://en.wikipedia.org/wiki/ASCII
 """
 
+
 def ascii_to_char(ascii_value: int) -> str:
     """
     Convert an ASCII integer (0-255) into its corresponding character.
