@@ -21,7 +21,7 @@ Usage:
     >>> evaluate("10 & 6")
     2
     >>> evaluate("(10 | 6) ^ 5")
-    9
+    11
     >>> evaluate("10 / 4")
     2.5
 """
@@ -46,7 +46,7 @@ def evaluate(expr: str):
         >>> evaluate("10 / 4")
         2.5
         >>> evaluate("(10 | 6) ^ 5")
-        9
+        11
     """
 
     # --- Tokenization ---
