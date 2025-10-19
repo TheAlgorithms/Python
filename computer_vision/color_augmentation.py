@@ -260,44 +260,6 @@ class ColorAugmentation:
         return result.astype(np.uint8)
     
     @staticmethod
-    def posterize(image: np.ndarray, 
-                  levels: int = 4) -> np.ndarray:
-        """
-        Reduce the number of color levels (posterization effect).
-        
-        Args:
-            image: Input image (BGR or RGB)
-            levels: Number of color levels per channel (2-8)
-            
-        Returns:
-            Posterized image
-        """
-        if not 2 <= levels <= 8:
-            raise ValueError("Levels must be between 2 and 8")
-        
-        step = 256 // levels
-        result = (image // step) * step
-        return result.astype(np.uint8)
-    
-    @staticmethod
-    def solarize(image: np.ndarray, 
-                threshold: int = 128) -> np.ndarray:
-        """
-        Apply solarization effect (invert pixels above threshold).
-        
-        Args:
-            image: Input image (BGR or RGB)
-            threshold: Threshold value (0-255)
-            
-        Returns:
-            Solarized image
-        """
-        result = image.copy()
-        mask = result >= threshold
-        result[mask] = 255 - result[mask]
-        return result
-    
-    @staticmethod
     def random_color_augmentation(image: np.ndarray,
                                  probability: float = 0.5) -> np.ndarray:
         """
