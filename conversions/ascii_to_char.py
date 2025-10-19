@@ -2,6 +2,7 @@
 Convert a given ASCII value to its corresponding character.
 """
 
+
 def ascii_to_char(ascii_value: int) -> str:
     """
     Converts an ASCII integer value to its character equivalent.
@@ -15,6 +16,7 @@ def ascii_to_char(ascii_value: int) -> str:
     """
     return chr(ascii_value)
 
+
 if __name__ == "__main__":
     import doctest
 
@@ -24,7 +26,9 @@ if __name__ == "__main__":
     try:
         ascii_val = int(input_value)
         if 0 <= ascii_val <= 127:
-            print(f"The character for ASCII value {ascii_val} is: {ascii_to_char(ascii_val)}")
+            print(
+                f"The character for ASCII value {ascii_val} is: {ascii_to_char(ascii_val)}"
+            )
         else:
             print("Please enter a valid ASCII value (0-127).")
     except ValueError:
