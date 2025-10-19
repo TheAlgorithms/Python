@@ -1,4 +1,6 @@
 # Implementation of Circular Queue (using Python lists)
+
+
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
@@ -99,6 +101,7 @@ class CircularQueue:
         """
         if self.size == 0:
             raise Exception("UNDERFLOW")
+
         temp = self.array[self.front]
         self.array[self.front] = None
         self.front = (self.front + 1) % self.n
