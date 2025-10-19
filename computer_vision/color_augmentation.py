@@ -10,6 +10,7 @@ in computer vision and deep learning for data augmentation during model training
 Reference: https://en.wikipedia.org/wiki/Data_augmentation
 """
 
+
 def brightness_adjustment(image: np.ndarray, factor: float = 1.0) -> np.ndarray:
     """
     Adjust image brightness by modifying the V channel in HSV color space.
