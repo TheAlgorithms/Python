@@ -1,12 +1,18 @@
+#!/usr/bin/env python3
 """
-Algorithm to calculate the absolute age difference between two dates (YYYY-MM-DD).
+Age difference calculator.
 
-Wikipedia: https://en.wikipedia.org/wiki/Chronological_age
+This module provides functions to compute the absolute age difference between
+two birthdates in years, months, and days.
+
+Doctest usage:
+    python3 -m doctest -v maths/age_difference.py
 """
 
 from __future__ import annotations
 
 from datetime import date
+from typing import Tuple
 
 
 def parse_date(dob: str) -> date:
@@ -25,45 +31,60 @@ def parse_date(dob: str) -> date:
     try:
         year, month, day = map(int, dob.split("-"))
         return date(year, month, day)
-    except Exception as e:
-        raise ValueError(f"Invalid date format or value: {dob}") from e
+    except Exception as e:  # noqa: BLE001
+        msg = f"Invalid date format or value: {dob}"
+        raise ValueError(msg) from e
 
 
-def absolute_age_difference(dob1: str, dob2: str) -> tuple[int, int, int]:
+def _days_in_previous_month(ref: date) -> int:
     """
-    Returns the absolute age difference as (years, months, days).
+    Return the number of days in the month before the given date's month.
 
+    >>> _days_in_previous_month(date(2020, 3, 5))  # Feb in leap year
+    29
+    >>> _days_in_previous_month(date(2021, 3, 5))  # Feb non-leap
+    28
+    """
+    first_of_month = ref.replace(day=1)
+    previous_month_last_day = first_of_month - date.resolution
+    return previous_month_last_day.day
+
+
+def absolute_age_difference(d1: str, d2: str) -> Tuple[int, int, int]:
+    """
+    Return the absolute difference between two dates as (years, months, days).
+
+    Rules:
+      - Order does not matter
+      - Uses calendar-accurate borrowing of months and days
+      - Handles leap years
+
+    >>> absolute_age_difference("2000-01-01", "2000-01-01")
+    (0, 0, 0)
     >>> absolute_age_difference("1990-05-10", "1995-07-15")
+    (5, 2, 5)
+    >>> absolute_age_difference("1995-07-15", "1990-05-10")
     (5, 2, 5)
     >>> absolute_age_difference("2000-02-29", "2001-02-28")
     (0, 11, 30)
-    >>> absolute_age_difference("2000-01-01", "2000-01-01")
-    (0, 0, 0)
     """
-    d1, d2 = parse_date(dob1), parse_date(dob2)
+    a = parse_date(d1)
+    b = parse_date(d2)
 
-    if d1 == d2:
-        return (0, 0, 0)
+    # Ensure a <= b
+    if a > b:
+        a, b = b, a
 
-    # Order dates so d1 is always the earlier date
-    if d1 > d2:
-        d1, d2 = d2, d1
+    years = b.year - a.year
+    months = b.month - a.month
+    days = b.day - a.day
 
-    years = d2.year - d1.year
-    months = d2.month - d1.month
-    days = d2.day - d1.day
-
-    # Adjust for negative days
+    # Borrow days if needed
     if days < 0:
         months -= 1
-        previous_month = d2.month - 1 or 12
-        previous_year = d2.year if d2.month != 1 else d2.year - 1
-        days += (
-            date(previous_year, previous_month + 1, 1)
-            - date(previous_year, previous_month, 1)
-        ).days
+        days += _days_in_previous_month(b)
 
-    # Adjust for negative months
+    # Borrow months if needed
     if months < 0:
         years -= 1
         months += 12
