@@ -85,7 +85,9 @@ class GaussianMixture:
 
         for k in range(self.n_components):
             diff = X - self.means_[k]
-            self.covariances_[k] = (responsibilities[:, k][:, np.newaxis] * diff).T @ diff
+            self.covariances_[k] = (
+                responsibilities[:, k][:, np.newaxis] * diff
+            ).T @ diff
             self.covariances_[k] /= Nk[k]
             # Add small regularization term for numerical stability
             self.covariances_[k] += np.eye(n_features) * 1e-6
