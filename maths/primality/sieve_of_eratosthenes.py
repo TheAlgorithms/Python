@@ -3,6 +3,19 @@
 # This method is suitable for n up to about 10**7 on typical hardware.
 
 def sieve_of_erastosthenes(n):
+    """
+Compute all prime numbers up to and including n using the Sieve of Eratosthenes.
+Parameters
+----------
+n : int
+    Upper bound (inclusive) of the range in which to find prime numbers.
+    Expected to be a non-negative integer. If n < 2 the function returns an empty list.
+Returns
+-------
+list[int]
+    A list of primes in ascending order that are <= n.
+    """
+
    
     #Boolean list to track prime status of numbers
     prime = [True] * (n + 1)
