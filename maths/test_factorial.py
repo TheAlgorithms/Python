@@ -34,7 +34,7 @@ def test_negative_number(function):
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_non_integer_input(function):
+def test_float_number(function):
     with pytest.raises(ValueError):
         function(1.5)
 
