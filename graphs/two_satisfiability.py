@@ -66,7 +66,7 @@ class TwoSatisfiability:
     Kosaraju's algorithm for finding strongly connected components
     """
 
-    def __init__(self, number_of_variables: int):
+    def __init__(self, number_of_variables: int) -> None:
         """
         Initializes the TwoSat solver with the given number of variables.
 
@@ -97,15 +97,21 @@ class TwoSatisfiability:
         # Tracks whether the solve() method has been called
         self.__is_solved: bool = False
 
-    def add_clause(self, a: int, is_negate_a: bool, b: int, is_negate_b: bool) -> None:
+    def add_clause(
+        self,
+        first_var: int,
+        is_negate_first_var: bool,
+        second_var: int,
+        is_negate_second_var: bool,
+    ) -> None:
         """
         Adds a clause of the form (a v b) to the boolean expression.
 
         Args:
-            a (int): The first variable (1 ≤ a ≤ number_of_variables)
-            is_negate_a (bool): True if variable a is negated
-            b (int): The second variable (1 ≤ b ≤ number_of_variables)
-            is_negate_b (bool): True if variable b is negated
+            first_var (int): The first variable (1 ≤ a ≤ number_of_variables)
+            is_negate_first_var (bool): True if variable a is negated
+            second_var (int): The second variable (1 ≤ b ≤ number_of_variables)
+            is_negate_second_var (bool): True if variable b is negated
 
         For example::
 
@@ -117,23 +123,23 @@ class TwoSatisfiability:
         """
         exception_message = f"Variable number must be \
             between 1 and {self.__number_of_variables}"
-        if a <= 0 or a > self.__number_of_variables:
+        if first_var <= 0 or first_var > self.__number_of_variables:
             raise ValueError(exception_message)
-        if b <= 0 or b > self.__number_of_variables:
+        if second_var <= 0 or second_var > self.__number_of_variables:
             raise ValueError(exception_message)
 
-        a = self.__negate(a) if is_negate_a else a
-        b = self.__negate(b) if is_negate_b else b
-        not_a = self.__negate(a)
-        not_b = self.__negate(b)
+        first_var = self.__negate(first_var) if is_negate_first_var else first_var
+        second_var = self.__negate(second_var) if is_negate_second_var else second_var
+        not_of_first_var = self.__negate(first_var)
+        not_of_second_var = self.__negate(second_var)
 
-        # Add implications: (¬a → b) and (¬b → a)
-        self.__graph[not_a].append(b)
-        self.__graph[not_b].append(a)
+        # Add implications: (¬first_var → second_var) and (¬second_var → first_var)
+        self.__graph[not_of_first_var].append(second_var)
+        self.__graph[not_of_second_var].append(first_var)
 
         # Build transpose graph
-        self.__graph_transpose[b].append(not_a)
-        self.__graph_transpose[a].append(not_b)
+        self.__graph_transpose[second_var].append(not_of_first_var)
+        self.__graph_transpose[first_var].append(not_of_second_var)
 
     def solve(self) -> None:
         """
@@ -207,48 +213,50 @@ class TwoSatisfiability:
         return self.__variable_assignments.copy()
 
     def __depth_first_search_for_topological_order(
-        self, u: int, visited: list[bool], topological_order: list[int]
+        self, node: int, visited: list[bool], topological_order: list[int]
     ) -> None:
         """
         Performs DFS to compute topological order.
 
         Args:
-            u (int): Current node
+            node (int): Current node
             visited (list[bool]): Visited array
             topological_order (list[int]): list to store topological order
         """
-        visited[u] = True
-        for v in self.__graph[u]:
-            if not visited[v]:
+        visited[node] = True
+        for neighbour_node in self.__graph[node]:
+            if not visited[neighbour_node]:
                 self.__depth_first_search_for_topological_order(
-                    v, visited, topological_order
+                    neighbour_node, visited, topological_order
                 )
-        topological_order.append(u)
+        topological_order.append(node)
 
     def __depth_first_search_for_scc(
-        self, u: int, visited: list[bool], component: list[int], scc_id: int
+        self, node: int, visited: list[bool], component: list[int], scc_id: int
     ) -> None:
         """
         Performs DFS on the transposed graph to identify SCCs.
 
         Args:
-            u (int): Current node
+            node (int): Current node
             visited (list[bool]): Visited array
             component (list[int]): Array to store component IDs
             scc_id (int): Current SCC identifier
         """
-        visited[u] = True
-        component[u] = scc_id
-        for v in self.__graph_transpose[u]:
-            if not visited[v]:
-                self.__depth_first_search_for_scc(v, visited, component, scc_id)
+        visited[node] = True
+        component[node] = scc_id
+        for neighbour_node in self.__graph_transpose[node]:
+            if not visited[neighbour_node]:
+                self.__depth_first_search_for_scc(
+                    neighbour_node, visited, component, scc_id
+                )
 
-    def __negate(self, a: int) -> int:
+    def __negate(self, variable_index: int) -> int:
         """
-        Returns the index representing the negation of the given variable.
+        Returns the index representing the negation of the given variable index.
 
         Args:
-            a (int): The variable index
+            variable_index (int): The variable index
 
         Mapping rule:
         -------------
@@ -264,7 +272,7 @@ class TwoSatisfiability:
                 The index representing its negation
         """
         return (
-            a + self.__number_of_variables
-            if a <= self.__number_of_variables
-            else a - self.__number_of_variables
+            variable_index + self.__number_of_variables
+            if variable_index <= self.__number_of_variables
+            else variable_index - self.__number_of_variables
         )
