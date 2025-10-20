@@ -1,4 +1,11 @@
-def get_minor(matrix: list[list[int] | list[float]], row: int, col: int) -> list[list[int] | list[float]]:
+# Determinant calculator using cofactor expansion.
+# Calculates the determinant of a square matrix recursively.
+# Wikipedia URL - https://en.wikipedia.org/wiki/Determinant
+
+
+def get_minor(
+    matrix: list[list[int] | list[float]], row: int, col: int
+) -> list[list[int] | list[float]]:
     """
     Returns the minor matrix obtained by removing the specified row and column.
 
@@ -18,12 +25,12 @@ def get_minor(matrix: list[list[int] | list[float]], row: int, col: int) -> list
 
     Examples
     --------
-    >>> get_minor([[1,2],[3,4]], 0, 0)
+    >>> get_minor([[1, 2], [3, 4]], 0, 0)
     [[4]]
-    >>> get_minor([[1,2,3],[4,5,6],[7,8,9]], 1, 1)
+    >>> get_minor([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1, 1)
     [[1, 3], [7, 9]]
     """
-    return [r[:col] + r[col+1:] for i, r in enumerate(matrix) if i != row]
+    return [r[:col] + r[col + 1 :] for i, r in enumerate(matrix) if i != row]
 
 
 def determinant_manual(matrix: list[list[int] | list[float]]) -> int | float:
@@ -44,11 +51,20 @@ def determinant_manual(matrix: list[list[int] | list[float]]) -> int | float:
     --------
     >>> determinant_manual([[2]])
     2
-    >>> determinant_manual([[1, 2], [3, 4]])
+    >>> determinant_manual([[1, 2],
+    ...                    [3, 4]])
     -2
-    >>> determinant_manual([[1,2,3],[4,5,6],[7,8,9]])
+    >>> determinant_manual([
+    ...     [1, 2, 3],
+    ...     [4, 5, 6],
+    ...     [7, 8, 9]
+    ... ])
     0
-    >>> determinant_manual([[3,0,2],[2,0,-2],[0,1,1]])
+    >>> determinant_manual([
+    ...     [3, 0, 2],
+    ...     [2, 0, -2],
+    ...     [0, 1, 1]
+    ... ])
     10
     """
     n = len(matrix)
@@ -57,7 +73,7 @@ def determinant_manual(matrix: list[list[int] | list[float]]) -> int | float:
         return matrix[0][0]
 
     if n == 2:
-        return matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0]
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
 
     det = 0
     for j in range(n):
@@ -68,7 +84,7 @@ def determinant_manual(matrix: list[list[int] | list[float]]) -> int | float:
 
 
 if __name__ == "__main__":
-    # Simple demo
+
     matrix_demo = [
         [1, 2, 3],
         [4, 5, 6],
