@@ -11,8 +11,14 @@ Doctests
 Basic equal-weight averaging across two "clients" with two tensors each
 (vector and 2x2 matrix):
 
->>> A = [np.array([1.0, 2.0]), np.array([[1.0, 2.0], [3.0, 4.0]])]
->>> B = [np.array([3.0, 4.0]), np.array([[5.0, 6.0], [7.0, 8.0]])]
+>>> A = [
+...     np.array([1.0, 2.0]),
+...     np.array([[1.0, 2.0], [3.0, 4.0]]),
+... ]
+>>> B = [
+...     np.array([3.0, 4.0]),
+...     np.array([[5.0, 6.0], [7.0, 8.0]]),
+... ]
 >>> eq = federated_average([A, B])
 >>> eq[0].tolist()
 [2.0, 3.0]
@@ -21,7 +27,10 @@ Basic equal-weight averaging across two "clients" with two tensors each
 
 Weighted averaging with weights [2, 1] (normalized to [2/3, 1/3]):
 
->>> w = federated_average([A, B], weights=np.array([2.0, 1.0]))
+>>> w = federated_average(
+...     [A, B],
+...     weights=np.array([2.0, 1.0]),
+... )
 >>> w[0].tolist()
 [1.6666666666666665, 2.6666666666666665]
 >>> w[1].tolist()
@@ -46,7 +55,10 @@ ValueError: All clients must have the same number of tensors
 
 - Mismatched tensor shapes across clients
 
->>> C2 = [np.array([1.0, 2.0]), np.array([[1.0, 2.0]])]  # second tensor has different shape
+>>> C2 = [
+...     np.array([1.0, 2.0]),
+...     np.array([[1.0, 2.0]]),
+... ]  # second tensor has different shape
 >>> federated_average([A, C2])  # doctest: +ELLIPSIS
 Traceback (most recent call last):
 ...
@@ -64,14 +76,19 @@ Traceback (most recent call last):
 ...
 ValueError: weights must sum to a positive value
 
->>> federated_average([A, B], weights=np.array([1.0, 2.0, 3.0]))  # doctest: +ELLIPSIS
+>>> federated_average(
+...     [A, B],
+...     weights=np.array([1.0, 2.0, 3.0]),
+... )  # doctest: +ELLIPSIS
 Traceback (most recent call last):
 ...
 ValueError: weights must have shape (2,)
 """
 
 from __future__ import annotations
-from typing import Iterable, List, Sequence
+
+from collections.abc import Sequence
+
 import numpy as np
 
 
@@ -85,14 +102,17 @@ def _validate_clients(client_models: Sequence[Sequence[np.ndarray]]) -> None:
             raise ValueError("All clients must have the same number of tensors")
         for s_ref, arr in zip(ref_shapes, cm):
             if tuple(arr.shape) != s_ref:
-                raise ValueError(
-                    f"Client {idx} tensor shape {tuple(arr.shape)} does not match {s_ref}"
+                msg = (
+                    f"Client {idx} tensor shape {tuple(arr.shape)} "
+                    f"does not match {s_ref}"
                 )
+                raise ValueError(msg)
 
 
 def _normalize_weights(weights: np.ndarray, num_clients: int) -> np.ndarray:
     if weights.shape != (num_clients,):
-        raise ValueError(f"weights must have shape ({num_clients},)")
+        msg = f"weights must have shape ({num_clients},)"
+        raise ValueError(msg)
     if np.any(weights < 0):
         raise ValueError("weights must be non-negative")
     total = float(weights.sum())
@@ -104,7 +124,7 @@ def _normalize_weights(weights: np.ndarray, num_clients: int) -> np.ndarray:
 def federated_average(
     client_models: Sequence[Sequence[np.ndarray]],
     weights: np.ndarray | None = None,
-) -> List[np.ndarray]:
+) -> list[np.ndarray]:
     """Compute the weighted average of clients' model tensors.
 
     Parameters
@@ -118,7 +138,7 @@ def federated_average(
 
     Returns
     -------
-    List[np.ndarray]
+    list[np.ndarray]
         The list of aggregated tensors with the same shapes as the inputs.
     """
     _validate_clients(client_models)
@@ -131,7 +151,7 @@ def federated_average(
         weights_n = _normalize_weights(weights, num_clients)
 
     num_tensors = len(client_models[0])
-    aggregated: List[np.ndarray] = []
+    aggregated: list[np.ndarray] = []
     for t_idx in range(num_tensors):
         # Stack the t_idx-th tensor from each client into shape (num_clients, ...)
         stacked = np.stack([np.asarray(cm[t_idx]) for cm in client_models], axis=0)
