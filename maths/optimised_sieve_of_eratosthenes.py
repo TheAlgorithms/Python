@@ -37,12 +37,14 @@ def optimized_sieve(limit: int) -> list[int]:
     [2]
     >>> optimized_sieve(30)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    >>> optimized_sieve(0)
+    []
     """
     if limit < 2:
         return []
 
-    # Handle 2 separately, then consider only odd numbers
-    primes = [2] if limit >= 2 else []
+    # Handle 2 separately
+    primes = [2]
 
     # Only odd numbers from 3 to limit
     size = (limit - 1) // 2
@@ -62,4 +64,7 @@ def optimized_sieve(limit: int) -> list[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(optimized_sieve(50))
