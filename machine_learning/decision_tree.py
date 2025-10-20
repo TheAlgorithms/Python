@@ -178,16 +178,19 @@ class DecisionTree:
             left_indices = x <= split_point
             right_indices = x > split_point
 
-            if np.sum(left_indices) < self.min_leaf_size or \
-               np.sum(right_indices) < self.min_leaf_size:
+            if (
+                np.sum(left_indices) < self.min_leaf_size
+                or np.sum(right_indices) < self.min_leaf_size
+            ):
                 continue
 
             y_left = y[left_indices]
             y_right = y[right_indices]
 
             # Calculate weighted MSE for this split
-            error = (len(y_left) * self.mean_squared_error(y_left, np.mean(y_left)) +
-                    len(y_right) * self.mean_squared_error(y_right, np.mean(y_right)))
+            error = len(y_left) * self.mean_squared_error(
+                y_left, np.mean(y_left)
+            ) + len(y_right) * self.mean_squared_error(y_right, np.mean(y_right))
 
             if error < min_error:
                 min_error = error
@@ -201,7 +204,9 @@ class DecisionTree:
         # Create child nodes and recursively train them
         self.decision_boundary = best_split
         self.left = DecisionTree(depth=self.depth - 1, min_leaf_size=self.min_leaf_size)
-        self.right = DecisionTree(depth=self.depth - 1, min_leaf_size=self.min_leaf_size)
+        self.right = DecisionTree(
+            depth=self.depth - 1, min_leaf_size=self.min_leaf_size
+        )
 
         left_indices = x <= best_split
         right_indices = x > best_split
@@ -244,9 +249,7 @@ class TestDecisionTree:
     """Decision Tree test class for verification purposes."""
 
     @staticmethod
-    def helper_mean_squared_error_test(
-        labels: np.ndarray, prediction: float
-    ) -> float:
+    def helper_mean_squared_error_test(labels: np.ndarray, prediction: float) -> float:
         """
         Helper function to test mean_squared_error implementation.
 
@@ -278,9 +281,9 @@ def main() -> None:
     - Error analysis: Understanding model performance
     """
     # Example 1: Sine wave function approximation
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("Example 1: Sine Wave Function Approximation")
-    print("="*60)
+    print("=" * 60)
     print("Training a decision tree to approximate f(x) = sin(x)")
     print("This demonstrates the tree's ability to learn non-linear patterns\n")
 
@@ -304,9 +307,9 @@ def main() -> None:
     print(f"Average MSE:      {avg_error:.6f}")
 
     # Example 2: Linear relationship
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("Example 2: Linear Relationship (House Price Analogy)")
-    print("="*60)
+    print("=" * 60)
     print("Simulating house price prediction based on square footage\n")
 
     # Simple linear relationship: price = 100 * sqft + noise
