@@ -62,7 +62,6 @@ class GraphAdjacencyList[T]:
         Adds a vertex to the graph. If the given vertex already exists,
         a ValueError will be thrown.
 
-        Example:
         >>> g = GraphAdjacencyList(vertices=[], edges=[], directed=False)
         >>> g.add_vertex("A")
         >>> g.adj_list
