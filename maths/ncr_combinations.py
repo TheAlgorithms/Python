@@ -9,7 +9,7 @@ from math import factorial as math_factorial
 
 def combinations(total: float, choose: int) -> float:
     """
-    Compute the number of combinations (total choose choose) for real total and integer choose
+    Compute the number of combinations 
     using the formula:
 
         combinations = total * (total-1) * ... * (total-choose+1) / choose!
