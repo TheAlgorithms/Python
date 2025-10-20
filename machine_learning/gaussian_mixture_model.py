@@ -23,6 +23,7 @@ Usage:
 """
 
 import warnings
+from typing import TypeAlias
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -32,7 +33,7 @@ from scipy.stats import multivariate_normal
 warnings.filterwarnings("ignore")
 
 TAG = "GAUSSIAN-MIXTURE/ "
-FloatArray = NDArray[np.float64]
+FloatArray: TypeAlias = NDArray[np.float64]
 
 
 class GaussianMixture:
