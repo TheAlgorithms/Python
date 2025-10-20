@@ -1,66 +1,77 @@
 """
-Federated Averaging (FedAvg)
-https://arxiv.org/abs/1602.05629
+Federated averaging (FedAvg) utilities.
 
-This module provides a minimal, educational implementation of the Federated
-Learning paradigm using the Federated Averaging algorithm. Multiple clients
-compute local model updates on their private data and the server aggregates
-their updates by (weighted) averaging without collecting raw data.
+This module provides a simple NumPy-based implementation of the FedAvg
+aggregation algorithm. It supports equal weighting and custom non-negative
+weights that are normalized internally.
 
-Notes
------
-- This implementation is framework-agnostic and uses NumPy arrays to represent
-  model parameters for simplicity and portability within this repository.
-- It demonstrates the mechanics of FedAvg, not production concerns like
-  privacy amplification (e.g., differential privacy), robustness, or security.
+Doctests
+========
 
-Terminology
------------
-- Global model: a list of NumPy arrays representing model parameters.
-- Client update: new model parameters produced locally, or the delta from the
-  global model; we aggregate parameters directly here for clarity.
+Basic equal-weight averaging across two "clients" with two tensors each
+(vector and 2x2 matrix):
 
-Examples
---------
-Create three synthetic "clients" whose local training produces simple parameter
-arrays, then aggregate them with FedAvg.
+>>> A = [np.array([1.0, 2.0]), np.array([[1.0, 2.0], [3.0, 4.0]])]
+>>> B = [np.array([3.0, 4.0]), np.array([[5.0, 6.0], [7.0, 8.0]])]
+>>> eq = federated_average([A, B])
+>>> eq[0].tolist()
+[2.0, 3.0]
+>>> eq[1].tolist()
+[[3.0, 4.0], [5.0, 6.0]]
 
->>> import numpy as np
->>> # Global model with two parameter tensors
->>> global_model = [np.array([0.0, 0.0]), np.array([[0.0]])]
->>> # Client models after local training
->>> client_models = [
-...     [np.array([1.0, 2.0]), np.array([[1.0]])],
-...     [np.array([3.0, 4.0]), np.array([[3.0]])],
-...     [np.array([5.0, 6.0]), np.array([[5.0]])],
-... ]
->>> # Equal weights -> simple average
->>> new_global = federated_average(client_models)
->>> [arr.tolist() for arr in new_global]
-[[3.0, 4.0], [[3.0]]]
+Weighted averaging with weights [2, 1] (normalized to [2/3, 1/3]):
 
-Weighted averaging by client data sizes:
+>>> w = federated_average([A, B], weights=np.array([2.0, 1.0]))
+>>> w[0].tolist()
+[1.6666666666666665, 2.6666666666666665]
+>>> w[1].tolist()
+[[2.333333333333333, 3.333333333333333], [4.333333333333333, 5.333333333333333]]
 
->>> weights = np.array([10, 20, 30], dtype=float)
->>> new_global_w = federated_average(client_models, weights)
->>> [arr.tolist() for arr in new_global_w]
-[[3.6666666666666665, 4.666666666666666], [[3.6666666666666665]]]
+Error cases:
 
-Contract
---------
-Inputs:
-  - client_models: list[list[np.ndarray]]: each inner list mirrors model layers
-  - weights: Optional[np.ndarray] of shape (num_clients,), non-negative, sums to > 0
-Output:
-  - list[np.ndarray]: aggregated model parameters, same shapes as client models
-Error modes:
-  - ValueError for empty clients, shape mismatch, or invalid weights
+- No clients
+
+>>> federated_average([])  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: client_models must be a non-empty list
+
+- Mismatched number of tensors per client
+
+>>> C = [np.array([1.0, 2.0])]  # only one tensor
+>>> federated_average([A, C])  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: All clients must have the same number of tensors
+
+- Mismatched tensor shapes across clients
+
+>>> C2 = [np.array([1.0, 2.0]), np.array([[1.0, 2.0]])]  # second tensor has different shape
+>>> federated_average([A, C2])  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: Client 2 tensor shape (1, 2) does not match (2, 2)
+
+- Invalid weights: negative or wrong shape or zero-sum
+
+>>> federated_average([A, B], weights=np.array([1.0, -1.0]))  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: weights must be non-negative
+
+>>> federated_average([A, B], weights=np.array([0.0, 0.0]))  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: weights must sum to a positive value
+
+>>> federated_average([A, B], weights=np.array([1.0, 2.0, 3.0]))  # doctest: +ELLIPSIS
+Traceback (most recent call last):
+...
+ValueError: weights must have shape (2,)
 """
 
 from __future__ import annotations
-
 from typing import Iterable, List, Sequence
-
 import numpy as np
 
 
@@ -94,33 +105,21 @@ def federated_average(
     client_models: Sequence[Sequence[np.ndarray]],
     weights: np.ndarray | None = None,
 ) -> List[np.ndarray]:
-    """
-    Aggregate client model parameters using (weighted) averaging.
+    """Compute the weighted average of clients' model tensors.
 
     Parameters
     ----------
-    client_models : list[list[np.ndarray]]
-        Model parameters for each client; all clients must have same shapes.
-    weights : np.ndarray | None
-        Optional non-negative weights per client. If None, equal weights.
+    client_models : Sequence[Sequence[np.ndarray]]
+        A list of clients, each being a sequence of NumPy arrays (tensors).
+        All clients must have the same number of tensors with identical shapes.
+    weights : np.ndarray | None, optional
+        A 1-D array of non-negative weights, one per client. If None,
+        equal weighting is used. Weights are normalized to sum to 1.
 
     Returns
     -------
-    list[np.ndarray]
-        Aggregated model parameters (same shapes as client tensors).
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> cm = [
-    ...     [np.array([1.0, 2.0])],
-    ...     [np.array([3.0, 4.0])],
-    ... ]
-    >>> [arr.tolist() for arr in federated_average(cm)]
-    [[2.0, 3.0]]
-    >>> w = np.array([1.0, 3.0])
-    >>> [arr.tolist() for arr in federated_average(cm, w)]
-    [[2.5, 3.5]]
+    List[np.ndarray]
+        The list of aggregated tensors with the same shapes as the inputs.
     """
     _validate_clients(client_models)
     num_clients = len(client_models)
