@@ -1,24 +1,24 @@
 """
-Generalized nCr (combinations) calculator for real numbers n and integer r.
+Generalized combinations (n choose r) calculator for real total and integer choose.
 Wikipedia URL: https://en.wikipedia.org/wiki/Binomial_coefficient
 """
 
 from math import factorial as math_factorial
 
 
-def nCr(n: float, r: int) -> float:
+def combinations(total: float, choose: int) -> float:
     """
-    Compute the number of combinations (n choose r) for real n and integer r
+    Compute the number of combinations (total choose choose) for real total and integer choose
     using the formula:
 
-        nCr = n * (n-1) * (n-2) * ... * (n-r+1) / r!
+        combinations = total * (total-1) * ... * (total-choose+1) / choose!
 
     Parameters
     ----------
-    n : float
+    total : float
         Total number of items. Can be any real number.
-    r : int
-        Number of items to choose. Must be a non-negative integer.
+    choose : int
+        Number of items to select. Must be a non-negative integer.
 
     Returns
     -------
@@ -28,38 +28,38 @@ def nCr(n: float, r: int) -> float:
     Raises
     ------
     ValueError
-        If r is not an integer or r < 0
+        If choose is not a non-negative integer.
 
     Examples
     --------
-    >>> nCr(5, 2)
+    >>> combinations(5, 2)
     10.0
-    >>> nCr(5.5, 2)
+    >>> combinations(5.5, 2)
     12.375
-    >>> nCr(10, 0)
+    >>> combinations(10, 0)
     1.0
-    >>> nCr(0, 0)
+    >>> combinations(0, 0)
     1.0
-    >>> nCr(5, -1)
+    >>> combinations(5, -1)
     Traceback (most recent call last):
         ...
-    ValueError: r must be a non-negative integer
-    >>> nCr(5, 2.5)
+    ValueError: choose must be a non-negative integer
+    >>> combinations(5, 2.5)
     Traceback (most recent call last):
         ...
-    ValueError: r must be a non-negative integer
+    ValueError: choose must be a non-negative integer
     """
-    if not isinstance(r, int) or r < 0:
-        raise ValueError("r must be a non-negative integer")
+    if not isinstance(choose, int) or choose < 0:
+        raise ValueError("choose must be a non-negative integer")
 
-    if r == 0:
+    if choose == 0:
         return 1.0
 
     numerator = 1.0
-    for i in range(r):
-        numerator *= n - i
+    for i in range(choose):
+        numerator *= total - i
 
-    denominator = math_factorial(r)
+    denominator = math_factorial(choose)
     return numerator / denominator
 
 
@@ -69,6 +69,6 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example usage
-    n = float(input("Enter n (real number): ").strip() or 0)
-    r = int(input("Enter r (integer): ").strip() or 0)
-    print(f"nCr({n}, {r}) = {nCr(n, r)}")
+    total_input = float(input("Enter total (real number): ").strip() or 0)
+    choose_input = int(input("Enter choose (integer): ").strip() or 0)
+    print(f"combinations({total_input}, {choose_input}) = {combinations(total_input, choose_input)}")
