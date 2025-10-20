@@ -1,5 +1,3 @@
-# Wikipedia URL- https://en.wikipedia.org/wiki/Determinant
-
 def get_minor(matrix: list[list[int] | list[float]], row: int, col: int) -> list[list[int] | list[float]]:
     """
     Returns the minor matrix obtained by removing the specified row and column.
@@ -9,14 +7,21 @@ def get_minor(matrix: list[list[int] | list[float]], row: int, col: int) -> list
     matrix : list[list[int] | list[float]]
         The original square matrix.
     row : int
-        The row to remove.
+        Row to remove.
     col : int
-        The column to remove.
+        Column to remove.
 
     Returns
     -------
     list[list[int] | list[float]]
         Minor matrix.
+
+    Examples
+    --------
+    >>> get_minor([[1,2],[3,4]], 0, 0)
+    [[4]]
+    >>> get_minor([[1,2,3],[4,5,6],[7,8,9]], 1, 1)
+    [[1, 3], [7, 9]]
     """
     return [r[:col] + r[col+1:] for i, r in enumerate(matrix) if i != row]
 
@@ -37,12 +42,14 @@ def determinant_manual(matrix: list[list[int] | list[float]]) -> int | float:
 
     Examples
     --------
-    >>> determinant_manual([[1,2],[3,4]])
-    -2
     >>> determinant_manual([[2]])
     2
+    >>> determinant_manual([[1, 2], [3, 4]])
+    -2
     >>> determinant_manual([[1,2,3],[4,5,6],[7,8,9]])
     0
+    >>> determinant_manual([[3,0,2],[2,0,-2],[0,1,1]])
+    10
     """
     n = len(matrix)
 
