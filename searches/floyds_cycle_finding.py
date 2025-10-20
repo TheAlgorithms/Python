@@ -7,6 +7,7 @@ It can also find the starting index and length of the cycle.
 
 Wikipedia: https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare
 """
+
 from collections.abc import Callable
 from typing import Any
 
