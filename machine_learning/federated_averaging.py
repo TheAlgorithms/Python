@@ -90,9 +90,9 @@ def _validate_clients(client_models: Sequence[Sequence[np.ndarray]]) -> None:
                 )
 
 
-def _normalize_weights(weights: np.ndarray, n: int) -> np.ndarray:
-    if weights.shape != (n,):
-        raise ValueError(f"weights must have shape ({n},)")
+def _normalize_weights(weights: np.ndarray, num_clients: int) -> np.ndarray:
+    if weights.shape != (num_clients,):
+        raise ValueError(f"weights must have shape ({num_clients},)")
     if np.any(weights < 0):
         raise ValueError("weights must be non-negative")
     total = float(weights.sum())
