@@ -13,9 +13,9 @@ from collections import Counter
 
 class DecisionTreeClassifier:
     """A Decision Tree Classifier built from scratch.
-    
+
     This tree uses information gain (entropy-based) for splitting decisions.
-    
+
     Attributes:
         max_depth: Maximum depth of the tree
         min_samples_split: Minimum samples required to split a node
@@ -31,12 +31,14 @@ class DecisionTreeClassifier:
 
     def fit(self, X, y):
         """Build the decision tree.
-        
+
         Args:
             X: Training features, shape (n_samples, n_features)
             y: Training labels, shape (n_samples,)
         """
-        self.n_features = X.shape[1] if not self.n_features else min(self.n_features, X.shape[1])
+        self.n_features = (
+            X.shape[1] if not self.n_features else min(self.n_features, X.shape[1])
+        )
         self.tree = self._grow_tree(X, y)
 
     def _grow_tree(self, X, y, depth=0):
@@ -45,9 +47,13 @@ class DecisionTreeClassifier:
         n_labels = len(np.unique(y))
 
         # Stopping criteria
-        if depth >= self.max_depth or n_labels == 1 or n_samples < self.min_samples_split:
+        if (
+            depth >= self.max_depth
+            or n_labels == 1
+            or n_samples < self.min_samples_split
+        ):
             leaf_value = self._most_common_label(y)
-            return {'leaf': True, 'value': leaf_value}
+            return {"leaf": True, "value": leaf_value}
 
         # Find best split
         feat_idxs = np.random.choice(n_features, self.n_features, replace=False)
@@ -55,7 +61,7 @@ class DecisionTreeClassifier:
 
         if best_feat is None:
             leaf_value = self._most_common_label(y)
-            return {'leaf': True, 'value': leaf_value}
+            return {"leaf": True, "value": leaf_value}
 
         # Split the data
         left_idxs = X[:, best_feat] <= best_thresh
@@ -66,11 +72,11 @@ class DecisionTreeClassifier:
         right = self._grow_tree(X[right_idxs], y[right_idxs], depth + 1)
 
         return {
-            'leaf': False,
-            'feature': best_feat,
-            'threshold': best_thresh,
-            'left': left,
-            'right': right
+            "leaf": False,
+            "feature": best_feat,
+            "threshold": best_thresh,
+            "left": left,
+            "right": right,
         }
 
     def _best_split(self, X, y, feat_idxs):
@@ -127,10 +133,10 @@ class DecisionTreeClassifier:
 
     def predict(self, X):
         """Predict class labels for samples in X.
-        
+
         Args:
             X: Features, shape (n_samples, n_features)
-            
+
         Returns:
             Predicted labels, shape (n_samples,)
         """
@@ -138,33 +144,33 @@ class DecisionTreeClassifier:
 
     def _traverse_tree(self, x, node):
         """Traverse the tree to make a prediction for a single sample."""
-        if node['leaf']:
-            return node['value']
+        if node["leaf"]:
+            return node["value"]
 
-        if x[node['feature']] <= node['threshold']:
-            return self._traverse_tree(x, node['left'])
-        return self._traverse_tree(x, node['right'])
+        if x[node["feature"]] <= node["threshold"]:
+            return self._traverse_tree(x, node["left"])
+        return self._traverse_tree(x, node["right"])
 
 
 class RandomForestClassifier:
     """Random Forest Classifier built from scratch.
-    
+
     Random Forest is an ensemble learning method that constructs multiple
     decision trees during training and outputs the mode of the classes
     (classification) of the individual trees.
-    
+
     Features:
     - Bootstrap sampling (bagging) to create diverse trees
     - Random feature selection at each split
     - Majority voting for final predictions
-    
+
     Attributes:
         n_estimators: Number of trees in the forest
         max_depth: Maximum depth of each tree
         min_samples_split: Minimum samples required to split a node
         n_features: Number of features to consider for best split
         trees: List of trained decision trees
-    
+
     Example:
         >>> from sklearn.datasets import make_classification
         >>> from sklearn.model_selection import train_test_split
@@ -186,9 +192,11 @@ class RandomForestClassifier:
         >>> print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
     """
 
-    def __init__(self, n_estimators=100, max_depth=10, min_samples_split=2, n_features=None):
+    def __init__(
+        self, n_estimators=100, max_depth=10, min_samples_split=2, n_features=None
+    ):
         """Initialize Random Forest Classifier.
-        
+
         Args:
             n_estimators: Number of trees in the forest (default: 100)
             max_depth: Maximum depth of each tree (default: 10)
@@ -204,17 +212,17 @@ class RandomForestClassifier:
 
     def fit(self, X, y):
         """Build a forest of trees from the training set (X, y).
-        
+
         Args:
             X: Training features, shape (n_samples, n_features)
             y: Training labels, shape (n_samples,)
-            
+
         Returns:
             self: Fitted classifier
         """
         self.trees = []
         n_features = X.shape[1]
-        
+
         # Default to sqrt of total features if not specified
         if self.n_features is None:
             self.n_features = int(np.sqrt(n_features))
@@ -223,24 +231,24 @@ class RandomForestClassifier:
             tree = DecisionTreeClassifier(
                 max_depth=self.max_depth,
                 min_samples_split=self.min_samples_split,
-                n_features=self.n_features
+                n_features=self.n_features,
             )
             X_sample, y_sample = self._bootstrap_sample(X, y)
             tree.fit(X_sample, y_sample)
             self.trees.append(tree)
-            
+
         return self
 
     def _bootstrap_sample(self, X, y):
         """Create a bootstrap sample from the dataset.
-        
+
         Bootstrap sampling randomly samples with replacement from the dataset.
         This creates diverse training sets for each tree.
-        
+
         Args:
             X: Features, shape (n_samples, n_features)
             y: Labels, shape (n_samples,)
-            
+
         Returns:
             X_sample: Bootstrap sample of features
             y_sample: Bootstrap sample of labels
@@ -251,19 +259,19 @@ class RandomForestClassifier:
 
     def predict(self, X):
         """Predict class labels for samples in X.
-        
+
         Uses majority voting: each tree votes for a class, and the
         class with the most votes becomes the final prediction.
-        
+
         Args:
             X: Features, shape (n_samples, n_features)
-            
+
         Returns:
             Predicted labels, shape (n_samples,)
         """
         # Get predictions from all trees
         tree_preds = np.array([tree.predict(X) for tree in self.trees])
-        
+
         # Majority voting: transpose to get predictions per sample
         # then find most common prediction for each sample
         tree_preds = np.swapaxes(tree_preds, 0, 1)
@@ -287,11 +295,7 @@ if __name__ == "__main__":
 
     # Generate sample classification dataset
     X, y = make_classification(
-        n_samples=1000,
-        n_features=20,
-        n_informative=15,
-        n_redundant=5,
-        random_state=42
+        n_samples=1000, n_features=20, n_informative=15, n_redundant=5, random_state=42
     )
 
     # Split the data
@@ -307,9 +311,7 @@ if __name__ == "__main__":
     # Train Random Forest Classifier
     print("Training Random Forest Classifier...")
     rf_classifier = RandomForestClassifier(
-        n_estimators=10,
-        max_depth=10,
-        min_samples_split=2
+        n_estimators=10, max_depth=10, min_samples_split=2
     )
     rf_classifier.fit(X_train, y_train)
     print("Training complete!")

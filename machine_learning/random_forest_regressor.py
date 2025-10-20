@@ -88,9 +88,7 @@ class DecisionTreeRegressor:
         right_indices = ~left_indices
 
         left_subtree = self._grow_tree(X[left_indices], y[left_indices], depth + 1)
-        right_subtree = self._grow_tree(
-            X[right_indices], y[right_indices], depth + 1
-        )
+        right_subtree = self._grow_tree(X[right_indices], y[right_indices], depth + 1)
 
         return {
             "feature": best_split["feature"],
@@ -129,9 +127,7 @@ class DecisionTreeRegressor:
                 if np.sum(left_indices) == 0 or np.sum(right_indices) == 0:
                     continue
 
-                mse = self._calculate_mse(
-                    y[left_indices], y[right_indices], len(y)
-                )
+                mse = self._calculate_mse(y[left_indices], y[right_indices], len(y))
 
                 if mse < best_mse:
                     best_mse = mse
@@ -292,9 +288,7 @@ class RandomForestRegressor:
             y_bootstrap = y[indices]
 
             # Feature sampling
-            feature_indices = np.random.choice(
-                n_features, max_features, replace=False
-            )
+            feature_indices = np.random.choice(n_features, max_features, replace=False)
             X_bootstrap = X_bootstrap[:, feature_indices]
 
             # Train decision tree
@@ -353,9 +347,7 @@ if __name__ == "__main__":
     )
 
     # Train the Random Forest Regressor
-    rf_regressor = RandomForestRegressor(
-        n_estimators=10, max_depth=5, random_state=42
-    )
+    rf_regressor = RandomForestRegressor(n_estimators=10, max_depth=5, random_state=42)
     rf_regressor.fit(X_train, y_train)
 
     # Make predictions
