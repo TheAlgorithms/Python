@@ -8,7 +8,7 @@ from random import uniform
 from statistics import mean
 
 
-def pi_estimator(iterations: int):
+def pi_estimator(iterations: int) -> None:
     """
     An implementation of the Monte Carlo method used to find pi.
     1. Draw a 2x2 square centred at (0,0).
