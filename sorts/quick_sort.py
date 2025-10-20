@@ -15,7 +15,7 @@ from random import randrange
 
 def insertion_sort(collection: list, left: int, right: int) -> None:
     """Insertion sort for small arrays (optimization for quicksort).
-    
+
     Args:
         collection: List to sort
         left: Starting index
@@ -32,13 +32,13 @@ def insertion_sort(collection: list, left: int, right: int) -> None:
 
 def median_of_three(collection: list, left: int, mid: int, right: int) -> int:
     """Return the index of the median of three elements.
-    
+
     Args:
         collection: List to find median in
         left: Left index
-        mid: Middle index  
+        mid: Middle index
         right: Right index
-        
+
     Returns:
         Index of the median element
     """
@@ -53,49 +53,49 @@ def median_of_three(collection: list, left: int, mid: int, right: int) -> int:
 
 def partition_hoare(collection: list, left: int, right: int) -> int:
     """Hoare partition scheme for quicksort.
-    
+
     Args:
         collection: List to partition
         left: Left boundary
         right: Right boundary
-        
+
     Returns:
         Final position of pivot
     """
     # Use median of three for better pivot selection
     mid = left + (right - left) // 2
     pivot_idx = median_of_three(collection, left, mid, right)
-    
+
     # Move pivot to the beginning
     collection[left], collection[pivot_idx] = collection[pivot_idx], collection[left]
     pivot = collection[left]
-    
+
     i, j = left - 1, right + 1
-    
+
     while True:
         i += 1
         while collection[i] < pivot:
             i += 1
-            
+
         j -= 1
         while collection[j] > pivot:
             j -= 1
-            
+
         if i >= j:
             return j
-            
+
         collection[i], collection[j] = collection[j], collection[i]
 
 
 def quick_sort_inplace(collection: list, left: int = 0, right: int = None) -> None:
     """Optimized in-place quicksort with multiple optimizations.
-    
+
     Optimizations:
     - In-place partitioning (O(1) extra space vs O(n))
     - Median-of-three pivot selection
     - Hybrid with insertion sort for small arrays
     - Hoare partition scheme (better for duplicates)
-    
+
     Args:
         collection: List to sort (modified in-place)
         left: Left boundary
@@ -103,16 +103,16 @@ def quick_sort_inplace(collection: list, left: int = 0, right: int = None) -> No
     """
     if right is None:
         right = len(collection) - 1
-        
+
     if left < right:
         # Use insertion sort for small arrays (optimization)
         if right - left < 10:
             insertion_sort(collection, left, right)
             return
-            
+
         # Partition and get pivot position
         pivot_pos = partition_hoare(collection, left, right)
-        
+
         # Recursively sort left and right partitions
         quick_sort_inplace(collection, left, pivot_pos)
         quick_sort_inplace(collection, pivot_pos + 1, right)
@@ -120,7 +120,7 @@ def quick_sort_inplace(collection: list, left: int = 0, right: int = None) -> No
 
 def quick_sort(collection: list) -> list:
     """A pure Python implementation of quicksort algorithm.
-    
+
     This is the original implementation kept for compatibility.
     For better performance, use quick_sort_optimized().
 
@@ -153,19 +153,19 @@ def quick_sort(collection: list) -> list:
 
 def quick_sort_optimized(collection: list) -> list:
     """Optimized quicksort with in-place partitioning and multiple optimizations.
-    
+
     Performance improvements:
     - O(1) extra space vs O(n) in original
     - Better pivot selection (median of three)
     - Hybrid with insertion sort for small arrays
     - More efficient partitioning
-    
+
     Args:
         collection: List to sort
-        
+
     Returns:
         Sorted list
-        
+
     Examples:
     >>> quick_sort_optimized([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -178,7 +178,7 @@ def quick_sort_optimized(collection: list) -> list:
     """
     if len(collection) < 2:
         return collection
-        
+
     # Create a copy to avoid modifying the original
     result = collection.copy()
     quick_sort_inplace(result)
