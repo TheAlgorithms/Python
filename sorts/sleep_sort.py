@@ -145,7 +145,7 @@ class SleepSort:
         return result
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Example usage and test cases
     import doctest
 
