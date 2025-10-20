@@ -42,7 +42,7 @@ def create_client_datasets(
     samples_each: int,
     n_features: int,
     noise: float = 0.1,
-    seed: int = 42
+    seed: int = 42,
 ) -> List[Tuple[np.ndarray, np.ndarray]]:
     """
     Generates synthetic linear regression datasets for multiple clients.
@@ -81,17 +81,19 @@ def initialize_parameters(n_params: int, seed: int = 0) -> np.ndarray:
 
 def mean_squared_error(params: np.ndarray, X: np.ndarray, y: np.ndarray) -> float:
     """Computes mean squared error for predictions on dataset (X, y).
-         >>> params = np.array([0.0, 1.0])
-         >>> X = np.array([[1.0, 0.0], [1.0, 1.0]])
-         >>> y = np.array([0.0, 2.0])
-         >>> mean_squared_error(params, X, y)
-         0.5
+    >>> params = np.array([0.0, 1.0])
+    >>> X = np.array([[1.0, 0.0], [1.0, 1.0]])
+    >>> y = np.array([0.0, 2.0])
+    >>> mean_squared_error(params, X, y)
+    0.5
     """
     predictions = X @ params
     return float(np.mean((predictions - y) ** 2))
 
 
-def evaluate_global_model(params: np.ndarray, client_data: List[Tuple[np.ndarray, np.ndarray]]) -> float:
+def evaluate_global_model(
+    params: np.ndarray, client_data: List[Tuple[np.ndarray, np.ndarray]]
+) -> float:
     """Evaluates the average global MSE across all client datasets."""
     total_loss, total_samples = 0.0, 0
 
@@ -108,7 +110,7 @@ def client_update(
     y: np.ndarray,
     lr: float = 0.01,
     epochs: int = 1,
-    batch_size: int = 0
+    batch_size: int = 0,
 ) -> np.ndarray:
     """
     Performs local training on a client's dataset.
@@ -127,7 +129,7 @@ def client_update(
             # Mini-batch gradient descent
             order = np.random.permutation(n_samples)
             for i in range(0, n_samples, batch_size):
-                idx = order[i:i + batch_size]
+                idx = order[i : i + batch_size]
                 Xb, yb = X[idx], y[idx]
                 preds = Xb @ updated_params
                 grad = (2 / len(yb)) * (Xb.T @ (preds - yb))
@@ -162,7 +164,7 @@ def run_federated_training(
     local_epochs: int = 1,
     lr: float = 0.01,
     batch_size: int = 0,
-    seed: int = 0
+    seed: int = 0,
 ) -> Tuple[np.ndarray, List[float]]:
     """
     Runs the full FedAvg simulation for the given client datasets.
@@ -179,7 +181,9 @@ def run_federated_training(
         client_models, client_sizes = [], []
 
         for X, y in clients:
-            local_params = client_update(global_params, X, y, lr, local_epochs, batch_size)
+            local_params = client_update(
+                global_params, X, y, lr, local_epochs, batch_size
+            )
             client_models.append(local_params)
             client_sizes.append(len(y))
 
@@ -194,14 +198,19 @@ def run_federated_training(
 
 if __name__ == "__main__":
     # Example demonstration
-    datasets = create_client_datasets(n_clients=5, samples_each=200, n_features=3, noise=0.5, seed=123)
-    final_model, loss_curve = run_federated_training(datasets, rounds=12, local_epochs=2, lr=0.05)
+    datasets = create_client_datasets(
+        n_clients=5, samples_each=200, n_features=3, noise=0.5, seed=123
+    )
+    final_model, loss_curve = run_federated_training(
+        datasets, rounds=12, local_epochs=2, lr=0.05
+    )
 
     print("\nFinal model parameters:\n", np.round(final_model, 4))
 
     try:
         import matplotlib.pyplot as plt
-        plt.plot(loss_curve, marker='o')
+
+        plt.plot(loss_curve, marker="o")
         plt.title("Federated Averaging - Training Loss Curve")
         plt.xlabel("Round")
         plt.ylabel("Mean Squared Error")
@@ -213,7 +222,7 @@ if __name__ == "__main__":
 """
  for testing:
     Create "tests/test_federated_averaging.py"
-    
+
     " import numpy as np
       from machine_learning.federated_learning import federated_averaging as fed
 
