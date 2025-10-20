@@ -1,6 +1,7 @@
 """
 Generalized combinations (n choose r) calculator for real total and integer choose.
-Wikipedia URL: https://en.wikipedia.org/wiki/Binomial_coefficient
+Wikipedia URL:
+https://en.wikipedia.org/wiki/Binomial_coefficient
 """
 
 from math import factorial as math_factorial
@@ -70,5 +71,8 @@ if __name__ == "__main__":
 
     # Example usage
     total_input = float(input("Enter total (real number): ").strip() or 0)
-    choose_input = int(input("Enter choose (integer): ").strip() or 0)
-    print(f"combinations({total_input}, {choose_input}) = {combinations(total_input, choose_input)}")
+    choose_input = int(input("Enter choose (non-negative integer): ").strip() or 0)
+    print(
+        f"combinations({total_input}, {choose_input}) = "
+        f"{combinations(total_input, choose_input)}"
+    )
