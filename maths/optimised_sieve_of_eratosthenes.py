@@ -1,21 +1,26 @@
-# Optimized Sieve of Eratosthenes: An efficient algorithm to compute all prime numbers up to limit.
-# This version skips even numbers after 2, improving both memory and time usage.
-# It is particularly efficient for larger limits (e.g., up to 10**8 on typical hardware).
+# Optimized Sieve of Eratosthenes: An efficient algorithm to compute all prime numbers
+# up to limit. This version skips even numbers after 2, improving both memory and time
+# usage. It is particularly efficient for larger limits (e.g., up to 10**8 on typical
+# hardware).
 # Wikipedia URL - https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 from math import isqrt
 
+
 def optimized_sieve(limit: int) -> list[int]:
     """
-    Compute all prime numbers up to and including `limit` using an optimized Sieve of Eratosthenes.
+    Compute all prime numbers up to and including `limit` using an optimized
+    Sieve of Eratosthenes.
 
-    This implementation skips even numbers after 2 to reduce memory and runtime by about 50%.
+    This implementation skips even numbers after 2 to reduce memory and
+    runtime by about 50%.
 
     Parameters
     ----------
     limit : int
         Upper bound (inclusive) of the range in which to find prime numbers.
-        Expected to be a non-negative integer. If limit < 2 the function returns an empty list.
+        Expected to be a non-negative integer. If limit < 2 the function
+        returns an empty list.
 
     Returns
     -------
