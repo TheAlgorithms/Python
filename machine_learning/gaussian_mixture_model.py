@@ -23,7 +23,6 @@ Usage:
 """
 
 import warnings
-from typing import TypeAlias
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -33,7 +32,6 @@ from scipy.stats import multivariate_normal
 warnings.filterwarnings("ignore")
 
 TAG = "GAUSSIAN-MIXTURE/ "
-FloatArray: TypeAlias = NDArray[np.float64]
 
 
 class GaussianMixture:
@@ -54,12 +52,12 @@ class GaussianMixture:
         self.seed: int | None = seed
 
         # parameters
-        self.weights_: FloatArray | None = None
-        self.means_: FloatArray | None = None
+        self.weights_: NDArray[np.float64] | None = None
+        self.means_: NDArray[np.float64] | None = None
         self.covariances_: NDArray[np.float64] | None = None
         self.log_likelihoods_: list[float] = []
 
-    def _initialize_parameters(self, data: FloatArray) -> None:
+    def _initialize_parameters(self, data: NDArray[np.float64]) -> None:
         """Randomly initialize means, covariances, and mixture weights.
 
         Examples
@@ -86,7 +84,7 @@ class GaussianMixture:
         )
         self.weights_ = np.ones(self.n_components) / self.n_components
 
-    def _e_step(self, data: FloatArray) -> FloatArray:
+    def _e_step(self, data: NDArray[np.float64]) -> NDArray[np.float64]:
         """Compute responsibilities (posterior probabilities).
 
         Examples
@@ -123,7 +121,11 @@ class GaussianMixture:
         responsibilities /= responsibilities.sum(axis=1, keepdims=True)
         return responsibilities
 
-    def _m_step(self, data: FloatArray, responsibilities: FloatArray) -> None:
+    def _m_step(
+        self,
+        data: NDArray[np.float64],
+        responsibilities: NDArray[np.float64],
+    ) -> None:
         """Update weights, means, and covariances.
 
         Note: assumes the model parameters are already initialized.
@@ -161,7 +163,7 @@ class GaussianMixture:
             # Add small regularization term for numerical stability
             covariances[k] += np.eye(n_features) * 1e-6
 
-    def _compute_log_likelihood(self, data: FloatArray) -> float:
+    def _compute_log_likelihood(self, data: NDArray[np.float64]) -> float:
         """Compute total log-likelihood of the model.
 
         Note: assumes the model parameters are already initialized.
@@ -196,7 +198,7 @@ class GaussianMixture:
         log_likelihood = np.sum(np.log(np.sum(total_pdf, axis=1) + 1e-12))
         return log_likelihood
 
-    def fit(self, data: FloatArray) -> None:
+    def fit(self, data: NDArray[np.float64]) -> None:
         """Fit the Gaussian Mixture Model to data using the EM algorithm.
 
         Examples
@@ -235,7 +237,7 @@ class GaussianMixture:
 
         print(f"{TAG}Training complete. Final log-likelihood: {log_likelihood:.4f}")
 
-    def predict(self, data: FloatArray) -> NDArray[np.int_]:
+    def predict(self, data: NDArray[np.float64]) -> NDArray[np.int_]:
         """Predict cluster assignment for each data point.
 
         Note: assumes the model parameters are already initialized.
@@ -255,7 +257,7 @@ class GaussianMixture:
         responsibilities = self._e_step(data)
         return np.argmax(responsibilities, axis=1)
 
-    def plot_results(self, data: FloatArray) -> None:
+    def plot_results(self, data: NDArray[np.float64]) -> None:
         """Visualize GMM clustering results (2D only).
 
         Note: This method assumes self.means_ is initialized.
