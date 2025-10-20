@@ -71,7 +71,7 @@ class RadialBasisFunctionNetwork:
         distance_squared = np.sum((x - center) ** 2)
         return np.exp(-self.gamma * distance_squared)
 
-    def _compute_rbf_activations(self, X: np.ndarray) -> np.ndarray:
+    def _compute_rbf_activations(self, X: np.ndarray) -> np.ndarray:  # noqa: N803
         """
         Compute RBF activations for all input samples.
 
@@ -90,7 +90,7 @@ class RadialBasisFunctionNetwork:
 
         return activations
 
-    def train(self, X: np.ndarray, y: np.ndarray) -> None:
+    def train(self, X: np.ndarray, y: np.ndarray) -> None:   # noqa: N803
         """
         Train the RBFNN using KMeans clustering and least-squares fitting.
 
@@ -132,7 +132,7 @@ class RadialBasisFunctionNetwork:
         # weights = (A^T A)^-1 A^T y, where A is the activation matrix
         self.weights = np.linalg.lstsq(activations, y, rcond=None)[0]
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, X: np.ndarray) -> np.ndarray:   # noqa: N803
         """
         Make predictions using trained RBFNN.
 
