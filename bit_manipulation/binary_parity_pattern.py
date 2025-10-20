@@ -28,7 +28,7 @@ def binary_parity_pattern(number: int) -> str:
 
     if number == 0:
         return "0b0"
-    
+
     binary_str = bin(number)[2:]
     cum_sum = 0
     pattern = []
@@ -37,10 +37,11 @@ def binary_parity_pattern(number: int) -> str:
         cum_sum += int(bit)
         pattern.append(str(cum_sum % 2))
 
-    result = ''.join(pattern).lstrip('0')
-    return '0b' + (result if result else '0')
+    result = "".join(pattern).lstrip("0")
+    return "0b" + (result if result else "0")
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
