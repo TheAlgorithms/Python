@@ -628,6 +628,7 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
     loss = np.where(diff < beta, 0.5 * diff**2 / beta, diff - 0.5 * beta)
     return np.mean(loss)
 
+
 def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the Kullback-Leibler divergence (KL divergence) loss between true labels
@@ -671,8 +672,6 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     mask = y_true != 0
     kl_loss = y_true[mask] * np.log(y_true[mask] / y_pred[mask])
     return np.sum(kl_loss)
-
-
 
 
 if __name__ == "__main__":
