@@ -14,9 +14,49 @@ from __future__ import annotations
 precision = 10
 
 
+def adaptive_precision(array_size: int) -> int:
+    """Calculate adaptive precision based on array size.
+    
+    Args:
+        array_size: Size of the array
+        
+    Returns:
+        Optimal precision value
+    """
+    if array_size <= 10:
+        return 3
+    elif array_size <= 100:
+        return 5
+    elif array_size <= 1000:
+        return 8
+    else:
+        return 10
+
+
+def binary_search_fallback(left: int, right: int, array: list[int], target: int) -> int:
+    """Binary search fallback for small ranges (more efficient than linear search).
+    
+    Args:
+        left: Left boundary
+        right: Right boundary
+        array: Array to search in
+        target: Target value
+        
+    Returns:
+        Index of target or -1 if not found
+    """
+    while left <= right:
+        mid = left + (right - left) // 2
+        if array[mid] == target:
+            return mid
+        elif array[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+
 # This is the linear search that will occur after the search space has become smaller.
-
-
 def lin_search(left: int, right: int, array: list[int], target: int) -> int:
     """Perform linear search in list. Returns -1 if element is not found.
 
@@ -109,6 +149,74 @@ def ite_ternary_search(array: list[int], target: int) -> int:
     return -1
 
 
+def ite_ternary_search_optimized(array: list[int], target: int) -> int:
+    """Optimized iterative ternary search with adaptive precision and binary search fallback.
+    
+    Optimizations:
+    - Adaptive precision based on array size
+    - Binary search fallback instead of linear search
+    - Memoized calculations for one_third and two_third
+    - Early termination conditions
+    
+    Args:
+        array: Sorted array to search in
+        target: Target value to find
+        
+    Returns:
+        Index of target or -1 if not found
+        
+    Examples:
+    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> ite_ternary_search_optimized(test_list, 3)
+    -1
+    >>> ite_ternary_search_optimized(test_list, 13)
+    4
+    >>> ite_ternary_search_optimized([4, 5, 6, 7], 4)
+    0
+    >>> ite_ternary_search_optimized([4, 5, 6, 7], -10)
+    -1
+    >>> ite_ternary_search_optimized([-18, 2], -18)
+    0
+    >>> ite_ternary_search_optimized([5], 5)
+    0
+    >>> ite_ternary_search_optimized([], 1)
+    -1
+    """
+    if not array:
+        return -1
+        
+    left = 0
+    right = len(array) - 1
+    adaptive_prec = adaptive_precision(len(array))
+    
+    while left <= right:
+        # Use binary search for small ranges (more efficient)
+        if right - left < adaptive_prec:
+            return binary_search_fallback(left, right, array, target)
+
+        # Memoize calculations
+        range_size = right - left
+        one_third = left + range_size // 3
+        two_third = left + 2 * range_size // 3
+
+        # Early termination if found
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
+
+        # Narrow search space
+        if target < array[one_third]:
+            right = one_third - 1
+        elif array[two_third] < target:
+            left = two_third + 1
+        else:
+            left = one_third + 1
+            right = two_third - 1
+            
+    return -1
+
+
 def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> int:
     """Recursive method of the ternary search algorithm.
 
@@ -151,6 +259,74 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
             return rec_ternary_search(two_third + 1, right, array, target)
         else:
             return rec_ternary_search(one_third + 1, two_third - 1, array, target)
+    else:
+        return -1
+
+
+def rec_ternary_search_optimized(left: int, right: int, array: list[int], target: int) -> int:
+    """Optimized recursive ternary search with adaptive precision and binary search fallback.
+    
+    Optimizations:
+    - Adaptive precision based on array size
+    - Binary search fallback instead of linear search
+    - Memoized calculations for one_third and two_third
+    - Early termination conditions
+    
+    Args:
+        left: Left boundary
+        right: Right boundary  
+        array: Sorted array to search in
+        target: Target value to find
+        
+    Returns:
+        Index of target or -1 if not found
+        
+    Examples:
+    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> rec_ternary_search_optimized(0, len(test_list) - 1, test_list, 3)
+    -1
+    >>> rec_ternary_search_optimized(4, len(test_list) - 1, test_list, 42)
+    8
+    >>> rec_ternary_search_optimized(0, 3, [4, 5, 6, 7], 4)
+    0
+    >>> rec_ternary_search_optimized(0, 3, [4, 5, 6, 7], -10)
+    -1
+    >>> rec_ternary_search_optimized(0, 1, [-18, 2], -18)
+    0
+    >>> rec_ternary_search_optimized(0, 0, [5], 5)
+    0
+    >>> rec_ternary_search_optimized(0, 2, ['a', 'c', 'd'], 'c')
+    1
+    >>> rec_ternary_search_optimized(0, 2, ['a', 'c', 'd'], 'f')
+    -1
+    >>> rec_ternary_search_optimized(0, -1, [], 1)
+    -1
+    """
+    if left <= right:
+        adaptive_prec = adaptive_precision(right - left + 1)
+        
+        # Use binary search for small ranges (more efficient)
+        if right - left < adaptive_prec:
+            return binary_search_fallback(left, right, array, target)
+            
+        # Memoize calculations
+        range_size = right - left
+        one_third = left + range_size // 3
+        two_third = left + 2 * range_size // 3
+
+        # Early termination if found
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
+
+        # Recursively search appropriate partition
+        if target < array[one_third]:
+            return rec_ternary_search_optimized(left, one_third - 1, array, target)
+        elif array[two_third] < target:
+            return rec_ternary_search_optimized(two_third + 1, right, array, target)
+        else:
+            return rec_ternary_search_optimized(one_third + 1, two_third - 1, array, target)
     else:
         return -1
 
