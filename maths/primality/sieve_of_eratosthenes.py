@@ -1,6 +1,7 @@
 # Sieve of Eratosthenes: an efficient algorithm to compute all prime numbers up to n.
 # It repeatedly marks multiples of each prime as non-prime, starting from 2.
 # This method is suitable for n up to about 10**7 on typical hardware.
+# Wikipedia URl- https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 def sieve_of_erastosthenes(n):
     """
