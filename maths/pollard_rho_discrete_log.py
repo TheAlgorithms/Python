@@ -3,12 +3,12 @@ import math
 import random
 
 
-def pollards_rho_discrete_log(g: int, h: int, p: int) -> Optional[int]:
+def pollards_rho_discrete_log(base: int, target: int, modulus: int) -> Optional[int]:
     """
-    Solve for x in the discrete logarithm problem: g^x ≡ h (mod p)
+    Solve for x in the discrete logarithm problem: base^x ≡ target (mod modulus)
     using Pollard's Rho algorithm.
 
-    This is a probabilistic algorithm that finds discrete logarithms in O(√p) time.
+    This is a probabilistic algorithm that finds discrete logarithms in O(√modulus) time.
     The algorithm may not always find a solution in a single run due to its 
     probabilistic nature, but it will find the correct answer when it succeeds.
     
@@ -16,11 +16,11 @@ def pollards_rho_discrete_log(g: int, h: int, p: int) -> Optional[int]:
 
     Parameters
     ----------
-    g : int
-        The generator (base).
-    h : int
-        The result value (h ≡ g^x mod p).
-    p : int
+    base : int
+        The generator (base of the exponential).
+    target : int
+        The target value (target ≡ base^x mod modulus).
+    modulus : int
         A prime modulus.
 
     Returns
@@ -48,64 +48,88 @@ def pollards_rho_discrete_log(g: int, h: int, p: int) -> Optional[int]:
     True
     """
 
-    def f(x, a, b):
-        """Pseudo-random function that partitions the search space into 3 sets."""
-        if x % 3 == 0:
-            # Multiply by g
-            return (x * g) % p, (a + 1) % (p - 1), b
-        elif x % 3 == 1:
+    def pseudo_random_function(
+        current_value: int, exponent_base: int, exponent_target: int
+    ) -> tuple[int, int, int]:
+        """
+        Pseudo-random function that partitions the search space into 3 sets.
+        
+        Returns a tuple of (new_value, new_exponent_base, new_exponent_target).
+        """
+        if current_value % 3 == 0:
+            # Multiply by base
+            return (
+                (current_value * base) % modulus,
+                (exponent_base + 1) % (modulus - 1),
+                exponent_target,
+            )
+        elif current_value % 3 == 1:
             # Square
-            return (x * x) % p, (2 * a) % (p - 1), (2 * b) % (p - 1)
+            return (
+                (current_value * current_value) % modulus,
+                (2 * exponent_base) % (modulus - 1),
+                (2 * exponent_target) % (modulus - 1),
+            )
         else:
-            # Multiply by h
-            return (x * h) % p, a, (b + 1) % (p - 1)
+            # Multiply by target
+            return (
+                (current_value * target) % modulus,
+                exponent_base,
+                (exponent_target + 1) % (modulus - 1),
+            )
 
     # Try multiple random starting points to avoid immediate collisions
     max_attempts = 50  # Increased attempts for better reliability
     
     for attempt in range(max_attempts):
         # Use different starting values to avoid trivial collisions
-        # x represents g^a * h^b
+        # current_value represents base^exponent_base * target^exponent_target
         random.seed()  # Ensure truly random values
-        a = random.randint(0, p - 2)
-        b = random.randint(0, p - 2)
+        exponent_base = random.randint(0, modulus - 2)
+        exponent_target = random.randint(0, modulus - 2)
         
-        # Ensure x = g^a * h^b mod p
-        x = (pow(g, a, p) * pow(h, b, p)) % p
+        # Ensure current_value = base^exponent_base * target^exponent_target mod modulus
+        current_value = (pow(base, exponent_base, modulus) * pow(target, exponent_target, modulus)) % modulus
         
-        # Skip if x is 0 or 1 (problematic starting points)
-        if x <= 1:
+        # Skip if current_value is 0 or 1 (problematic starting points)
+        if current_value <= 1:
             continue
             
-        X, A, B = x, a, b  # Tortoise and hare start at same position
+        # Tortoise and hare start at same position
+        tortoise_value, tortoise_exp_base, tortoise_exp_target = current_value, exponent_base, exponent_target
+        hare_value, hare_exp_base, hare_exp_target = current_value, exponent_base, exponent_target
 
         # Increased iteration limit for better coverage
-        max_iterations = max(int(math.sqrt(p)) * 2, p // 2)
+        max_iterations = max(int(math.sqrt(modulus)) * 2, modulus // 2)
         for i in range(1, max_iterations):
             # Tortoise: one step
-            x, a, b = f(x, a, b)
+            tortoise_value, tortoise_exp_base, tortoise_exp_target = pseudo_random_function(
+                tortoise_value, tortoise_exp_base, tortoise_exp_target
+            )
             # Hare: two steps
-            X, A, B = f(*f(X, A, B))
+            hare_value, hare_exp_base, hare_exp_target = pseudo_random_function(
+                *pseudo_random_function(hare_value, hare_exp_base, hare_exp_target)
+            )
 
-            if x == X and i > 1:  # Avoid immediate collision
+            if tortoise_value == hare_value and i > 1:  # Avoid immediate collision
                 # Collision found
-                r = (a - A) % (p - 1)
-                s = (B - b) % (p - 1)
+                exponent_difference = (tortoise_exp_base - hare_exp_base) % (modulus - 1)
+                target_difference = (hare_exp_target - tortoise_exp_target) % (modulus - 1)
 
-                if s == 0:
+                if target_difference == 0:
                     break  # Try with different starting point
 
                 try:
                     # Compute modular inverse using extended Euclidean algorithm
-                    inv_s = pow(s, -1, p - 1)
+                    inverse_target_diff = pow(target_difference, -1, modulus - 1)
                 except ValueError:
                     break  # No inverse, try different starting point
 
-                x_log = (r * inv_s) % (p - 1)
+                discrete_log = (exponent_difference * inverse_target_diff) % (modulus - 1)
                 
                 # Verify the solution
-                if pow(g, x_log, p) == h:
-                    return x_log
+                if pow(base, discrete_log, modulus) == target:
+                    return discrete_log
                 break  # This attempt failed, try with different starting point
     
     return None
