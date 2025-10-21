@@ -1335,6 +1335,7 @@
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
   * [Is Isogram](strings/is_isogram.py)
+  * [Is Isomorphic](strings/is_isomorphic.py)
   * [Is Pangram](strings/is_pangram.py)
   * [Is Polish National Id](strings/is_polish_national_id.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
