@@ -1,24 +1,18 @@
-# Wikipedia URL- https://en.wikipedia.org/wiki/Adjacency_list
 """
 Closed Tour Adjacency Representation
 ------------------------------------
 
-This converts a path representation (like A→L→G→C→...) into an
-adjacency vector form, where each position corresponds to a city in
-alphabetical order and the value indicates the next city in the tour.
+Converts a path representation (like A→L→G→C→...) into an adjacency
+vector form, where each position corresponds to a city in alphabetical
+order and the value indicates the next city in the tour.
 
 A closed tour means the last city connects back to the first.
 
-Usage
------
-Run doctests with:
-    python -m doctest -v closed_tour_adjacency.py
+Reference:
+https://en.wikipedia.org/wiki/Adjacency_list
 """
 
-from typing import List, Dict
-
-
-def adjacency_vector_closed(path: List[str], nodes: List[str]) -> List[str]:
+def adjacency_vector_closed(path: list[str], nodes: list[str]) -> list[str]:
     """
     Generate adjacency vector for a closed tour.
 
@@ -27,14 +21,14 @@ def adjacency_vector_closed(path: List[str], nodes: List[str]) -> List[str]:
 
     Parameters
     ----------
-    path : List[str]
+    path : list[str]
         Ordered list of cities representing the tour.
-    nodes : List[str]
+    nodes : list[str]
         Fixed node order (e.g., ['A', 'B', 'C', ...]).
 
     Returns
     -------
-    List[str]
+    list[str]
         Adjacency vector aligned with the node order.
 
     Examples
@@ -48,11 +42,10 @@ def adjacency_vector_closed(path: List[str], nodes: List[str]) -> List[str]:
     ['B', 'C', 'D', 'A']
     """
 
-    next_city_map: Dict[str, str] = {}
+    next_city_map: dict[str, str] = {}
     total_cities = len(path)
 
     for index, city in enumerate(path):
-        # The last city connects to the first (closed tour)
         next_city = path[(index + 1) % total_cities]
         next_city_map[city] = next_city
 
