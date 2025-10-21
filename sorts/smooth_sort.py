@@ -124,7 +124,7 @@ def _add_to_heap(arr: list[int], end: int, leonardo: list[int]) -> None:
     _heapify_up(arr, end, leonardo)
 
 
-def _extract_from_heap(arr: list[int], end: int, leonardo: list[int]) -> None:
+def _extract_from_heap(arr: list[int], end: int, _leonardo: list[int]) -> None:
     """
     Remove maximum element from heap ending at index 'end'.
 
@@ -193,7 +193,7 @@ def _heapify_down(arr: list[int], index: int, end: int) -> None:
             break
 
 
-def _find_parent(index: int, leonardo: list[int]) -> int:
+def _find_parent(index: int, _leonardo: list[int]) -> int:
     """
     Find parent index in Leonardo heap structure.
 
