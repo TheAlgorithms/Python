@@ -35,9 +35,9 @@ class TestPollardRhoDiscreteLog(unittest.TestCase):
     def test_simple_cases(self):
         """Test simple discrete log cases with known answers."""
         test_cases = [
-            (2, 8, 17),   # 2^3 ≡ 8 (mod 17)
-            (5, 3, 7),    # 5^5 ≡ 3 (mod 7)
-            (3, 9, 11),   # 3^2 ≡ 9 (mod 11)
+            (2, 8, 17),  # 2^3 ≡ 8 (mod 17)
+            (5, 3, 7),  # 5^5 ≡ 3 (mod 7)
+            (3, 9, 11),  # 3^2 ≡ 9 (mod 11)
         ]
 
         for g, h, p in test_cases:
@@ -53,8 +53,7 @@ class TestPollardRhoDiscreteLog(unittest.TestCase):
         """Test case where no solution exists."""
         # 3^x ≡ 7 (mod 11) has no solution (verified by brute force)
         # The algorithm should return None or fail to find a solution
-        result = pollards_rho_discrete_log(3, 7, 11)
-        if result is not None:
+        if (result := pollards_rho_discrete_log(3, 7, 11)) is not None:
             # If it returns a result, it must be wrong since no solution exists
             assert pow(3, result, 11) != 7
 
@@ -73,10 +72,10 @@ class TestPollardRhoDiscreteLog(unittest.TestCase):
     def test_small_primes(self):
         """Test with small prime moduli."""
         test_cases = [
-            (2, 4, 5),   # 2^2 ≡ 4 (mod 5)
-            (2, 3, 5),   # 2^? ≡ 3 (mod 5)
-            (2, 1, 3),   # 2^2 ≡ 1 (mod 3)
-            (3, 2, 5),   # 3^3 ≡ 2 (mod 5)
+            (2, 4, 5),  # 2^2 ≡ 4 (mod 5)
+            (2, 3, 5),  # 2^? ≡ 3 (mod 5)
+            (2, 1, 3),  # 2^2 ≡ 1 (mod 3)
+            (3, 2, 5),  # 3^3 ≡ 2 (mod 5)
         ]
 
         for g, h, p in test_cases:
@@ -89,9 +88,9 @@ class TestPollardRhoDiscreteLog(unittest.TestCase):
         """Test with larger numbers to ensure algorithm scales."""
         # Test cases with larger primes
         test_cases = [
-            (2, 15, 31),   # Find x where 2^x ≡ 15 (mod 31)
-            (3, 10, 37),   # Find x where 3^x ≡ 10 (mod 37)
-            (5, 17, 41),   # Find x where 5^x ≡ 17 (mod 41)
+            (2, 15, 31),  # Find x where 2^x ≡ 15 (mod 31)
+            (3, 10, 37),  # Find x where 3^x ≡ 10 (mod 37)
+            (5, 17, 41),  # Find x where 5^x ≡ 17 (mod 41)
         ]
 
         for g, h, p in test_cases:
