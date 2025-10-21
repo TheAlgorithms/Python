@@ -4,7 +4,7 @@ Related to issue #12809.
 """
 
 
-def validate_age(age: int | str | float) -> int:
+def validate_age(age: float | str) -> int:
     """Validate and process age input.
 
     This function validates that the provided age is a valid positive integer
@@ -58,7 +58,7 @@ def validate_age(age: int | str | float) -> int:
         raise ValueError(msg)
 
     # Validate age is within reasonable range
-    if age_int > 150:  # noqa: PLR2004
+    if age_int > 150:
         msg = "Age must be between 0 and 150 years"
         raise ValueError(msg)
 
