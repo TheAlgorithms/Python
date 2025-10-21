@@ -46,7 +46,7 @@ def tower_of_hanoi(
         ...     moves_test.append((source, destination))
         ...     solve_hanoi_test(num_disks - 1, auxiliary, source, destination)
         >>> solve_hanoi_test(2, "S", "A", "D")
-        >>> moves_test  # This line was previously too long due to the doctest content.
+        >>> moves_test
         [('S', 'A'), ('S', 'D'), ('A', 'D')]
         """
         if num_disks == 0:
