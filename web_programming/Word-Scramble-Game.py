@@ -1,6 +1,6 @@
 # ...existing code...
-"""
-Word Scramble — interactive CLI game
+"""Word Scramble — interactive CLI game.
+
 Features:
  - Difficulty levels (easy / medium / hard)
  - Multiple rounds per game based on difficulty
@@ -12,9 +12,10 @@ Features:
 
 import json
 import random
+import sys
 import time
 from pathlib import Path
-from datetime import datetime
+from typing import Dict, List, Optional, Sequence, Union
 
 # Files (stored in the same folder)
 DATA_DIR = Path(__file__).parent
@@ -68,34 +69,34 @@ WORD_LIST = [
 ]
 
 # Optional categories to make the game more interesting — each category is a small subset
+# small sets to keep comprehensions readable and within line length
+PROGRAMMING_SET = {
+    "python",
+    "function",
+    "variable",
+    "module",
+    "algorithm",
+    "debug",
+    "compile",
+    "object",
+    "inheritance",
+    "interface",
+    "repository",
+    "commit",
+    "lambda",
+    "generator",
+    "concurrency",
+    "thread",
+    "process",
+}
+
 CATEGORIES = {
     "general": WORD_LIST,
-    "programming": [
+    "programming": [w for w in WORD_LIST if w in PROGRAMMING_SET],
+    "networking": [
         w
         for w in WORD_LIST
-        if w
-        in (
-            "python",
-            "function",
-            "variable",
-            "module",
-            "algorithm",
-            "debug",
-            "compile",
-            "object",
-            "inheritance",
-            "interface",
-            "repository",
-            "commit",
-            "lambda",
-            "generator",
-            "concurrency",
-            "thread",
-            "process",
-        )
-    ],
-    "networking": [
-        w for w in WORD_LIST if w in ("network", "protocol", "bandwidth", "packet")
+        if w in ("network", "protocol", "bandwidth", "packet")
     ],
 }
 
@@ -164,44 +165,51 @@ DIFFICULTIES = {
 }
 
 
-def load_high_scores():
-    """Load high scores from disk; return list of dicts."""
+def load_high_scores() -> List[Dict[str, Union[str, int]]]:
+    """Load high scores from disk; return list of dicts.
+
+    Each entry is expected to contain at least 'name' and 'score'.
+    """
     if HIGH_SCORES_FILE.exists():
         try:
             with HIGH_SCORES_FILE.open("r", encoding="utf-8") as fh:
                 return json.load(fh)
-        except Exception:
+        except (json.JSONDecodeError, OSError):
+            # Corrupted file or IO issue — return empty scores
             return []
     return []
 
 
-def save_high_scores(scores):
+def save_high_scores(scores: Sequence[Dict[str, Union[str, int]]]) -> None:
     """Save high scores to disk (keep only top 10)."""
-    scores = sorted(scores, key=lambda s: s["score"], reverse=True)[:10]
+    # Use descriptive name for sorting key
+    top_scores: List[Dict[str, Union[str, int]]] = sorted(
+        scores, key=lambda entry: entry["score"], reverse=True
+    )[:10]
     with HIGH_SCORES_FILE.open("w", encoding="utf-8") as fh:
-        json.dump(scores, fh, indent=2)
+        json.dump(top_scores, fh, indent=2)
 
 
-def load_stats():
+def load_stats() -> Dict[str, int]:
     """Load simple player stats (games_played, best_streak)."""
     if STATS_FILE.exists():
         try:
             with STATS_FILE.open("r", encoding="utf-8") as fh:
                 return json.load(fh)
-        except Exception:
+        except (json.JSONDecodeError, OSError):
             return {"games_played": 0, "best_streak": 0}
     return {"games_played": 0, "best_streak": 0}
 
 
-def save_stats(stats):
+def save_stats(stats: Dict[str, int]) -> None:
     try:
         with STATS_FILE.open("w", encoding="utf-8") as fh:
             json.dump(stats, fh, indent=2)
-    except Exception:
-        pass
+    except OSError as exc:  # disk write / permissions issue
+        print(f"Failed to save stats: {exc}", file=sys.stderr)
 
 
-def show_high_scores():
+def show_high_scores() -> None:
     scores = load_high_scores()
     if not scores:
         print("\nNo high scores yet. Be the first!\n")
@@ -213,7 +221,7 @@ def show_high_scores():
     print()
 
 
-def scramble_word(word):
+def scramble_word(word: str) -> str:
     """Return a scrambled version of word that's not identical to original if possible."""
     if len(set(word)) == 1:
         # all same letter (rare) — return as-is
@@ -229,12 +237,12 @@ def scramble_word(word):
     return scrambled  # fallback
 
 
-def color(text, code):
+def color(text: str, code: str) -> str:
     """Lightweight colored output using ANSI codes. Works on modern terminals."""
     return f"\x1b[{code}m{text}\x1b[0m"
 
 
-def compute_score(word, elapsed, difficulty):
+def compute_score(word: str, elapsed: float, difficulty: str) -> int:
     """Compute score for a correct guess."""
     base = len(word) * 10
     mult = DIFFICULTIES[difficulty]["multiplier"]
@@ -244,8 +252,12 @@ def compute_score(word, elapsed, difficulty):
     return int(base * mult + time_bonus)
 
 
-def play_round(word, difficulty):
-    """Play one scramble round. Returns points earned (0 if failed/skip)."""
+def play_round(word: str, difficulty: str) -> Union[int, tuple]:
+    """Play one scramble round. Returns points earned (0 if failed/skip).
+
+    - Returns an int for points.
+    - Returns ("quit", 0) if the player chose to quit.
+    """
     max_time = DIFFICULTIES[difficulty]["max_time"]
     scrambled = scramble_word(word)
     hint_mask = ["_"] * len(word)
@@ -254,7 +266,8 @@ def play_round(word, difficulty):
 
     print("\nScrambled:", " ".join(scrambled))
     print(
-        f"(Type your guess, or 'hint', 'skip', 'quit'. Time suggested: {max_time}s)\n"
+        "(Type your guess, or 'hint', 'skip', 'quit'."
+        f" Time suggested: {max_time}s)\n"
     )
 
     start = time.perf_counter()
@@ -282,61 +295,52 @@ def play_round(word, difficulty):
         # check answer
         if guess == word:
             points = compute_score(word, elapsed, difficulty)
-            print(
-                color(
-                    f"Correct! +{points} pts (time: {int(elapsed)}s, attempts: {attempts})",
-                    "32",
-                )
-            )
+            print(color(f"Correct! +{points} pts (time: {int(elapsed)}s, attempts: {attempts})", '32'))
             return points
         else:
             # small helpful feedback
             same_positions = sum(1 for a, b in zip(guess, word) if a == b)
-            print(
-                f"Not quite. {same_positions} letter(s) in the correct position. Try again."
-            )
+            print(f"Not quite. {same_positions} letter(s) in the correct position. Try again.")
 
 
-def pick_word_by_difficulty_and_category(difficulty, category=None):
+def pick_word_by_difficulty_and_category(
+    difficulty: str, category: Optional[str] = None
+) -> str:
     """Pick a word influenced by difficulty and optional category (longer words for harder)."""
     if category and category in CATEGORIES:
         pool = CATEGORIES[category]
+    elif difficulty == "easy":
+        pool = [w for w in WORD_LIST if 4 <= len(w) <= 6]
+    elif difficulty == "medium":
+        pool = [w for w in WORD_LIST if 5 <= len(w) <= 8]
     else:
-        if difficulty == "easy":
-            pool = [w for w in WORD_LIST if 4 <= len(w) <= 6]
-        elif difficulty == "medium":
-            pool = [w for w in WORD_LIST if 5 <= len(w) <= 8]
-        else:
-            pool = [w for w in WORD_LIST if len(w) >= 6]
+        pool = [w for w in WORD_LIST if len(w) >= 6]
     if not pool:
         pool = WORD_LIST
     return random.choice(pool)
 
 
-def celebratory_art():
+def celebratory_art() -> None:
     art = [
         "\n  ★ Congratulations! ★\n",
-        "\n  (\_/)",
+        "\n  (\\_/)",
         "\n  ( •_•)",
         "\n  / >💥 You did it!\n",
     ]
     print(color("\n".join(art), "35"))
 
 
-def play_game():
-    print(color("WELCOME TO WORD SCRAMBLE", "36"))
-    print(color("------------------------", "36"))
+def play_game() -> None:
+    print(color("WELCOME TO WORD SCRAMBLE", '36'))
+    print(color("------------------------", '36'))
     # choose difficulty
     while True:
-        diff = (
-            input("Choose difficulty (easy / medium / hard) [medium]: ").strip().lower()
-            or "medium"
-        )
+        diff = input("Choose difficulty (easy / medium / hard) [medium]: ").strip().lower() or "medium"
         if diff in DIFFICULTIES:
             break
         print("Invalid choice.")
     # choose optional category
-    print("Available categories:", ", ".join(CATEGORIES.keys()))
+    print("Available categories:", ', '.join(CATEGORIES.keys()))
     cat = input("Pick category (or press Enter for mixed): ").strip().lower() or None
     if cat and cat not in CATEGORIES:
         print("Unknown category, using mixed words.")
@@ -364,12 +368,7 @@ def play_game():
             # combo bonus for streaks: +5% per consecutive correct (rounded)
             combo_bonus = int(points * (0.05 * (streak - 1))) if streak > 1 else 0
             if combo_bonus:
-                print(
-                    color(
-                        f"Combo! +{combo_bonus} bonus points for a streak of {streak}",
-                        "33",
-                    )
-                )
+                print(color(f"Combo! +{combo_bonus} bonus points for a streak of {streak}", '33'))
             points += combo_bonus
             total_score += points
             celebratory_art()
@@ -383,7 +382,7 @@ def play_game():
     save_stats(stats)
 
 
-def main_menu():
+def main_menu() -> None:
     while True:
         print("Word Scramble — Main Menu")
         print("1) Play")
@@ -398,9 +397,7 @@ def main_menu():
         elif choice == "3":
             print("\nInstructions:")
             print("- Guess the original word from the scrambled letters.")
-            print(
-                "- Commands during a round: 'hint' (reveals one letter), 'skip', 'quit'."
-            )
+            print("- Commands during a round: 'hint' (reveals one letter), 'skip', 'quit'.")
             print("- Faster correct answers score more points.")
             print("- High scores are saved locally in high_scores.json.\n")
         elif choice == "4":
