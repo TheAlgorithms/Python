@@ -14,7 +14,6 @@ Reference: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
 
 from collections import Counter
 from heapq import nsmallest
-
 import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
@@ -26,23 +25,36 @@ class KNN:
         train_data: np.ndarray[float],
         train_target: np.ndarray[int],
         class_labels: list[str],
+        distance_metric: str = "euclidean",
+        p: int = 2,
     ) -> None:
         """
-        Create a kNN classifier using the given training data and class labels
-        """
-        self.data = zip(train_data, train_target)
-        self.labels = class_labels
+        Create a kNN classifier using the given training data and class labels.
 
-    @staticmethod
-    def _euclidean_distance(a: np.ndarray[float], b: np.ndarray[float]) -> float:
+        Parameters:
+        -----------
+        distance_metric : str
+            Type of distance metric to use ('euclidean', 'manhattan', 'minkowski')
+        p : int
+            Power parameter for Minkowski distance (default 2)
         """
-        Calculate the Euclidean distance between two points
-        >>> KNN._euclidean_distance(np.array([0, 0]), np.array([3, 4]))
-        5.0
-        >>> KNN._euclidean_distance(np.array([1, 2, 3]), np.array([1, 8, 11]))
-        10.0
+        self.data = list(zip(train_data, train_target))
+        self.labels = class_labels
+        self.distance_metric = distance_metric
+        self.p = p
+
+    def _calculate_distance(self, a: np.ndarray[float], b: np.ndarray[float]) -> float:
         """
-        return float(np.linalg.norm(a - b))
+        Calculate distance between two points based on the selected metric.
+        """
+        if self.distance_metric == "euclidean":
+            return float(np.linalg.norm(a - b))
+        elif self.distance_metric == "manhattan":
+            return float(np.sum(np.abs(a - b)))
+        elif self.distance_metric == "minkowski":
+            return float(np.sum(np.abs(a - b) ** self.p) ** (1 / self.p))
+        else:
+            raise ValueError("Invalid distance metric. Choose 'euclidean', 'manhattan', or 'minkowski'.")
 
     def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
         """
@@ -57,23 +69,18 @@ class KNN:
         >>> knn.classify(point)
         'A'
         """
-        # Distances of all points from the point to be classified
         distances = (
-            (self._euclidean_distance(data_point[0], pred_point), data_point[1])
+            (self._calculate_distance(data_point[0], pred_point), data_point[1])
             for data_point in self.data
         )
 
-        # Choosing k points with the shortest distances
         votes = (i[1] for i in nsmallest(k, distances))
-
-        # Most commonly occurring class is the one into which the point is classified
         result = Counter(votes).most_common(1)[0][0]
         return self.labels[result]
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
     iris = datasets.load_iris()
@@ -84,5 +91,15 @@ if __name__ == "__main__":
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
     iris_point = np.array([4.4, 3.1, 1.3, 1.4])
-    classifier = KNN(X_train, y_train, iris_classes)
-    print(classifier.classify(iris_point, k=3))
+
+    print("\nUsing Euclidean Distance:")
+    classifier1 = KNN(X_train, y_train, iris_classes, distance_metric="euclidean")
+    print(classifier1.classify(iris_point, k=3))
+
+    print("\nUsing Manhattan Distance:")
+    classifier2 = KNN(X_train, y_train, iris_classes, distance_metric="manhattan")
+    print(classifier2.classify(iris_point, k=3))
+
+    print("\nUsing Minkowski Distance (p=3):")
+    classifier3 = KNN(X_train, y_train, iris_classes, distance_metric="minkowski", p=3)
+    print(classifier3.classify(iris_point, k=3))
