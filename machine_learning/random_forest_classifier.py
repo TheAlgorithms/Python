@@ -5,10 +5,19 @@ This module implements a Random Forest Classifier using:
 - Bootstrap sampling (bagging)
 - Random feature selection at splits
 - Majority voting for aggregation
+
+References:
+- https://en.wikipedia.org/wiki/Random_forest
+- https://en.wikipedia.org/wiki/Decision_tree_learning
 """
+from __future__ import annotations
+
+from collections import Counter
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
-from collections import Counter
+
+TreeNode = Dict[str, Any]
 
 
 class DecisionTreeClassifier:
@@ -23,133 +32,181 @@ class DecisionTreeClassifier:
         tree: The built tree structure
     """
 
-    def __init__(self, max_depth=10, min_samples_split=2, n_features=None):
-        self.max_depth = max_depth
-        self.min_samples_split = min_samples_split
-        self.n_features = n_features
-        self.tree = None
+    def __init__(
+        self,
+        max_depth: int = 10,
+        min_samples_split: int = 2,
+        n_features: Optional[int] = None,
+    ) -> None:
+        self.max_depth: int = max_depth
+        self.min_samples_split: int = min_samples_split
+        self.n_features: Optional[int] = n_features
+        self.tree: Optional[TreeNode] = None
 
-    def fit(self, X, y):
+    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
         """Build the decision tree.
 
         Args:
-            X: Training features, shape (n_samples, n_features)
+            x: Training features, shape (n_samples, n_features)
             y: Training labels, shape (n_samples,)
-        """
-        self.n_features = (
-            X.shape[1] if not self.n_features else min(self.n_features, X.shape[1])
-        )
-        self.tree = self._grow_tree(X, y)
 
-    def _grow_tree(self, X, y, depth=0):
-        """Recursively grow the decision tree."""
-        n_samples, n_features = X.shape
+        >>> clf = DecisionTreeClassifier(max_depth=1, min_samples_split=2, n_features=1)
+        >>> x = np.array([[0.0], [0.0], [1.0], [1.0]])
+        >>> y = np.array([0, 0, 1, 1])
+        >>> clf.fit(x, y)
+        >>> isinstance(clf.tree, dict)
+        True
+        """
+        n_total_features = x.shape[1]
+        self.n_features = (
+            n_total_features if self.n_features in (None, 0) else min(self.n_features, n_total_features)
+        )
+        self.tree = self._grow_tree(x, y, depth=0)
+
+    def _grow_tree(self, x: np.ndarray, y: np.ndarray, depth: int = 0) -> TreeNode:
+        """Recursively grow the decision tree.
+
+        >>> clf = DecisionTreeClassifier(max_depth=0)
+        >>> x = np.array([[0.0], [1.0]])
+        >>> y = np.array([0, 1])
+        >>> node = clf._grow_tree(x, y, depth=0)
+        >>> node['leaf']
+        True
+        """
+        n_samples, n_features = x.shape
         n_labels = len(np.unique(y))
 
         # Stopping criteria
-        if (
-            depth >= self.max_depth
-            or n_labels == 1
-            or n_samples < self.min_samples_split
-        ):
+        if depth >= self.max_depth or n_labels == 1 or n_samples < self.min_samples_split:
             leaf_value = self._most_common_label(y)
-            return {"leaf": True, "value": leaf_value}
+            return {"leaf": True, "value": int(leaf_value)}
 
         # Find best split
-        feat_idxs = np.random.choice(n_features, self.n_features, replace=False)
-        best_feat, best_thresh = self._best_split(X, y, feat_idxs)
-
+        rng = np.random.default_rng()
+        feat_indices = rng.choice(n_features, int(self.n_features), replace=False)
+        best_feat, best_thresh = self._best_split(x, y, feat_indices)
         if best_feat is None:
             leaf_value = self._most_common_label(y)
-            return {"leaf": True, "value": leaf_value}
+            return {"leaf": True, "value": int(leaf_value)}
 
         # Split the data
-        left_idxs = X[:, best_feat] <= best_thresh
-        right_idxs = ~left_idxs
+        left_mask = x[:, best_feat] <= best_thresh
+        right_mask = ~left_mask
 
         # Grow subtrees
-        left = self._grow_tree(X[left_idxs], y[left_idxs], depth + 1)
-        right = self._grow_tree(X[right_idxs], y[right_idxs], depth + 1)
-
+        left = self._grow_tree(x[left_mask], y[left_mask], depth + 1)
+        right = self._grow_tree(x[right_mask], y[right_mask], depth + 1)
         return {
             "leaf": False,
-            "feature": best_feat,
-            "threshold": best_thresh,
+            "feature": int(best_feat),
+            "threshold": float(best_thresh),
             "left": left,
             "right": right,
         }
 
-    def _best_split(self, X, y, feat_idxs):
-        """Find the best feature and threshold to split on."""
-        best_gain = -1
-        split_idx, split_thresh = None, None
+    def _best_split(
+        self, x: np.ndarray, y: np.ndarray, feat_indices: Sequence[int]
+    ) -> Tuple[Optional[int], Optional[float]]:
+        """Find the best feature and threshold to split on.
 
-        for feat_idx in feat_idxs:
-            X_column = X[:, feat_idx]
-            thresholds = np.unique(X_column)
+        >>> clf = DecisionTreeClassifier()
+        >>> x = np.array([[0.0], [0.5], [1.0]])
+        >>> y = np.array([0, 0, 1])
+        >>> feat, thresh = clf._best_split(x, y, [0])
+        >>> feat in (None, 0)
+        True
+        """
+        best_gain = -np.inf
+        split_idx: Optional[int] = None
+        split_thresh: Optional[float] = None
 
+        for feat_idx in feat_indices:
+            x_column = x[:, int(feat_idx)]
+            thresholds = np.unique(x_column)
             for threshold in thresholds:
-                gain = self._information_gain(y, X_column, threshold)
-
+                gain = self._information_gain(y, x_column, float(threshold))
                 if gain > best_gain:
                     best_gain = gain
-                    split_idx = feat_idx
-                    split_thresh = threshold
-
+                    split_idx = int(feat_idx)
+                    split_thresh = float(threshold)
         return split_idx, split_thresh
 
-    def _information_gain(self, y, X_column, threshold):
-        """Calculate information gain from a split."""
+    def _information_gain(self, y: np.ndarray, x_column: np.ndarray, threshold: float) -> float:
+        """Calculate information gain from a split.
+
+        >>> y = np.array([0, 0, 1, 1])
+        >>> x_col = np.array([0.0, 0.2, 0.8, 1.0])
+        >>> DecisionTreeClassifier()._information_gain(y, x_col, 0.5) >= 0.0
+        True
+        """
         # Parent entropy
         parent_entropy = self._entropy(y)
 
         # Create children
-        left_idxs = X_column <= threshold
-        right_idxs = ~left_idxs
-
-        if np.sum(left_idxs) == 0 or np.sum(right_idxs) == 0:
-            return 0
+        left_mask = x_column <= threshold
+        right_mask = ~left_mask
+        if np.sum(left_mask) == 0 or np.sum(right_mask) == 0:
+            return 0.0
 
         # Calculate weighted average entropy of children
         n = len(y)
-        n_left, n_right = np.sum(left_idxs), np.sum(right_idxs)
-        e_left, e_right = self._entropy(y[left_idxs]), self._entropy(y[right_idxs])
+        n_left, n_right = int(np.sum(left_mask)), int(np.sum(right_mask))
+        e_left, e_right = self._entropy(y[left_mask]), self._entropy(y[right_mask])
         child_entropy = (n_left / n) * e_left + (n_right / n) * e_right
 
         # Information gain
         ig = parent_entropy - child_entropy
-        return ig
+        return float(ig)
 
-    def _entropy(self, y):
-        """Calculate entropy of a label distribution."""
+    def _entropy(self, y: np.ndarray) -> float:
+        """Calculate entropy of a label distribution.
+
+        >>> DecisionTreeClassifier()._entropy(np.array([0, 0, 1, 1])) >= 0
+        True
+        """
         hist = np.bincount(y)
         ps = hist / len(y)
-        return -np.sum([p * np.log2(p) for p in ps if p > 0])
+        return float(-np.sum([p * np.log2(p) for p in ps if p > 0]))
 
-    def _most_common_label(self, y):
-        """Return the most common label."""
-        counter = Counter(y)
-        return counter.most_common(1)[0][0]
+    def _most_common_label(self, y: np.ndarray) -> int:
+        """Return the most common label.
 
-    def predict(self, X):
-        """Predict class labels for samples in X.
+        >>> DecisionTreeClassifier()._most_common_label(np.array([0, 1, 1]))
+        1
+        """
+        counter = Counter(y.tolist())
+        return int(counter.most_common(1)[0][0])
+
+    def predict(self, x: np.ndarray) -> np.ndarray:
+        """Predict class labels for samples in x.
 
         Args:
-            X: Features, shape (n_samples, n_features)
-
+            x: Features, shape (n_samples, n_features)
         Returns:
             Predicted labels, shape (n_samples,)
+
+        >>> clf = DecisionTreeClassifier(max_depth=1, n_features=1)
+        >>> x = np.array([[0.0], [1.0]])
+        >>> y = np.array([0, 1])
+        >>> clf.fit(x, y)
+        >>> clf.predict(x).tolist()
+        [0, 1]
         """
-        return np.array([self._traverse_tree(x, self.tree) for x in X])
+        assert self.tree is not None, "Model is not fitted. Call fit first."
+        return np.array([self._traverse_tree(row, self.tree) for row in x])
 
-    def _traverse_tree(self, x, node):
-        """Traverse the tree to make a prediction for a single sample."""
+    def _traverse_tree(self, x_row: np.ndarray, node: TreeNode) -> int:
+        """Traverse the tree to make a prediction for a single sample.
+
+        >>> node = {"leaf": True, "value": 1}
+        >>> DecisionTreeClassifier()._traverse_tree(np.array([0.0]), node)
+        1
+        """
         if node["leaf"]:
-            return node["value"]
-
-        if x[node["feature"]] <= node["threshold"]:
-            return self._traverse_tree(x, node["left"])
-        return self._traverse_tree(x, node["right"])
+            return int(node["value"])
+        if x_row[int(node["feature"])] <= float(node["threshold"]):
+            return self._traverse_tree(x_row, node["left"])  # type: ignore[arg-type]
+        return self._traverse_tree(x_row, node["right"])  # type: ignore[arg-type]
 
 
 class RandomForestClassifier:
@@ -174,27 +231,22 @@ class RandomForestClassifier:
     Example:
         >>> from sklearn.datasets import make_classification
         >>> from sklearn.model_selection import train_test_split
-        >>> from sklearn.metrics import accuracy_score
-        >>>
-        >>> # Generate sample data
-        >>> X, y = make_classification(n_samples=1000, n_features=20,
-        ...                            n_informative=15, n_redundant=5,
-        ...                            random_state=42)
-        >>> X_train, X_test, y_train, y_test = train_test_split(
-        ...     X, y, test_size=0.2, random_state=42)
-        >>>
-        >>> # Train Random Forest
-        >>> rf = RandomForestClassifier(n_estimators=10, max_depth=10)
-        >>> rf.fit(X_train, y_train)
-        >>>
-        >>> # Make predictions
-        >>> y_pred = rf.predict(X_test)
-        >>> print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+        >>> x, y = make_classification(n_samples=200, n_features=10, random_state=0)
+        >>> x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
+        >>> rf = RandomForestClassifier(n_estimators=5, max_depth=5, n_features=3)
+        >>> _ = rf.fit(x_train, y_train)
+        >>> y_pred = rf.predict(x_test)
+        >>> isinstance(y_pred, np.ndarray)
+        True
     """
 
     def __init__(
-        self, n_estimators=100, max_depth=10, min_samples_split=2, n_features=None
-    ):
+        self,
+        n_estimators: int = 100,
+        max_depth: int = 10,
+        min_samples_split: int = 2,
+        n_features: Optional[int] = None,
+    ) -> None:
         """Initialize Random Forest Classifier.
 
         Args:
@@ -204,125 +256,139 @@ class RandomForestClassifier:
             n_features: Number of features to consider for best split.
                        If None, uses sqrt(n_features) (default: None)
         """
-        self.n_estimators = n_estimators
-        self.max_depth = max_depth
-        self.min_samples_split = min_samples_split
-        self.n_features = n_features
-        self.trees = []
+        self.n_estimators: int = n_estimators
+        self.max_depth: int = max_depth
+        self.min_samples_split: int = min_samples_split
+        self.n_features: Optional[int] = n_features
+        self.trees: List[DecisionTreeClassifier] = []
 
-    def fit(self, X, y):
-        """Build a forest of trees from the training set (X, y).
+    def fit(self, x: np.ndarray, y: np.ndarray) -> "RandomForestClassifier":
+        """Build a forest of trees from the training set (x, y).
 
         Args:
-            X: Training features, shape (n_samples, n_features)
+            x: Training features, shape (n_samples, n_features)
             y: Training labels, shape (n_samples,)
-
         Returns:
             self: Fitted classifier
+
+        >>> rf = RandomForestClassifier(n_estimators=2, max_depth=2, n_features=1)
+        >>> x = np.array([[0.0], [0.1], [0.9], [1.0]])
+        >>> y = np.array([0, 0, 1, 1])
+        >>> isinstance(rf.fit(x, y), RandomForestClassifier)
+        True
         """
         self.trees = []
-        n_features = X.shape[1]
-
+        n_features = x.shape[1]
         # Default to sqrt of total features if not specified
         if self.n_features is None:
             self.n_features = int(np.sqrt(n_features))
-
         for _ in range(self.n_estimators):
             tree = DecisionTreeClassifier(
                 max_depth=self.max_depth,
                 min_samples_split=self.min_samples_split,
                 n_features=self.n_features,
             )
-            X_sample, y_sample = self._bootstrap_sample(X, y)
-            tree.fit(X_sample, y_sample)
+            x_sample, y_sample = self._bootstrap_sample(x, y)
+            tree.fit(x_sample, y_sample)
             self.trees.append(tree)
-
         return self
 
-    def _bootstrap_sample(self, X, y):
+    def _bootstrap_sample(self, x: np.ndarray, y: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         """Create a bootstrap sample from the dataset.
 
         Bootstrap sampling randomly samples with replacement from the dataset.
         This creates diverse training sets for each tree.
 
         Args:
-            X: Features, shape (n_samples, n_features)
+            x: Features, shape (n_samples, n_features)
             y: Labels, shape (n_samples,)
-
         Returns:
-            X_sample: Bootstrap sample of features
+            x_sample: Bootstrap sample of features
             y_sample: Bootstrap sample of labels
-        """
-        n_samples = X.shape[0]
-        idxs = np.random.choice(n_samples, n_samples, replace=True)
-        return X[idxs], y[idxs]
 
-    def predict(self, X):
-        """Predict class labels for samples in X.
+        >>> rf = RandomForestClassifier()
+        >>> x = np.arange(10).reshape(5, 2).astype(float)
+        >>> y = np.array([0, 1, 0, 1, 0])
+        >>> xs, ys = rf._bootstrap_sample(x, y)
+        >>> xs.shape[0] == x.shape[0] == ys.shape[0]
+        True
+        """
+        n_samples = x.shape[0]
+        rng = np.random.default_rng()
+        idxs = rng.choice(n_samples, n_samples, replace=True)
+        return x[idxs], y[idxs]
+
+    def predict(self, x: np.ndarray) -> np.ndarray:
+        """Predict class labels for samples in x.
 
         Uses majority voting: each tree votes for a class, and the
         class with the most votes becomes the final prediction.
 
         Args:
-            X: Features, shape (n_samples, n_features)
-
+            x: Features, shape (n_samples, n_features)
         Returns:
             Predicted labels, shape (n_samples,)
-        """
-        # Get predictions from all trees
-        tree_preds = np.array([tree.predict(X) for tree in self.trees])
 
-        # Majority voting: transpose to get predictions per sample
-        # then find most common prediction for each sample
+        >>> rf = RandomForestClassifier(n_estimators=3, max_depth=2, n_features=1)
+        >>> x = np.array([[0.0], [1.0]])
+        >>> y = np.array([0, 1])
+        >>> _ = rf.fit(x, y)
+        >>> rf.predict(x).shape
+        (2,)
+        """
+        if not self.trees:
+            raise RuntimeError("Model is not fitted. Call fit first.")
+        # Get predictions from all trees
+        tree_preds = np.array([tree.predict(x) for tree in self.trees])
+        # Majority voting: transpose to get predictions per sample then most common
         tree_preds = np.swapaxes(tree_preds, 0, 1)
-        y_pred = [self._most_common_label(tree_pred) for tree_pred in tree_preds]
+        y_pred = [self._most_common_label(sample_preds) for sample_preds in tree_preds]
         return np.array(y_pred)
 
-    def _most_common_label(self, y):
-        """Return the most common label (majority vote)."""
-        counter = Counter(y)
-        return counter.most_common(1)[0][0]
+    def _most_common_label(self, y: Sequence[int]) -> int:
+        """Return the most common label (majority vote).
+
+        >>> RandomForestClassifier()._most_common_label([0, 1, 1])
+        1
+        """
+        counter = Counter(list(map(int, y)))
+        return int(counter.most_common(1)[0][0])
 
 
 if __name__ == "__main__":
     # Example usage with synthetic data
     from sklearn.datasets import make_classification
-    from sklearn.model_selection import train_test_split
     from sklearn.metrics import accuracy_score, classification_report
+    from sklearn.model_selection import train_test_split
 
     print("Random Forest Classifier - Example Usage")
     print("=" * 50)
 
     # Generate sample classification dataset
-    X, y = make_classification(
+    x, y = make_classification(
         n_samples=1000, n_features=20, n_informative=15, n_redundant=5, random_state=42
     )
 
     # Split the data
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
-    print(f"Training samples: {X_train.shape[0]}")
-    print(f"Test samples: {X_test.shape[0]}")
-    print(f"Number of features: {X_train.shape[1]}")
+    print(f"Training samples: {x_train.shape[0]}")
+    print(f"Test samples: {x_test.shape[0]}")
+    print(f"Number of features: {x_train.shape[1]}")
     print()
 
     # Train Random Forest Classifier
     print("Training Random Forest Classifier...")
-    rf_classifier = RandomForestClassifier(
-        n_estimators=10, max_depth=10, min_samples_split=2
-    )
-    rf_classifier.fit(X_train, y_train)
+    rf_classifier = RandomForestClassifier(n_estimators=10, max_depth=10, min_samples_split=2)
+    rf_classifier.fit(x_train, y_train)
     print("Training complete!")
     print()
 
     # Make predictions
-    y_pred = rf_classifier.predict(X_test)
+    y_pred = rf_classifier.predict(x_test)
 
     # Evaluate
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.4f}")
     print()
     print("Classification Report:")
-    print(classification_report(y_test, y_pred))
