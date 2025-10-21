@@ -15,7 +15,7 @@ https://en.wikipedia.org/wiki/Tower_of_Hanoi
 
 
 def tower_of_hanoi(
-    n: int, source: str = "A", auxiliary: str = "B", destination: str = "C"
+    num_disks: int, source: str = "A", auxiliary: str = "B", destination: str = "C"
 ) -> list[tuple[str, str]]:
     """
     Pure python implementation of the Towers of Hanoi puzzle (recursive version),
@@ -32,14 +32,29 @@ def tower_of_hanoi(
     """
     moves = []
 
-    def solve_hanoi(n: int, source: str, auxiliary: str, destination: str):
-        """Recursive helper function to generate the moves."""
-        if n == 0:
+    def solve_hanoi(
+        num_disks: int, source: str, auxiliary: str, destination: str
+    ) -> None:
+        """
+        Recursive helper function to generate the moves and append them to the 'moves' list.
+
+        >>> moves_test = []
+        >>> def solve_hanoi_test(num_disks, source, auxiliary, destination):
+        ...     if num_disks == 0:
+        ...         return
+        ...     solve_hanoi_test(num_disks - 1, source, destination, auxiliary)
+        ...     moves_test.append((source, destination))
+        ...     solve_hanoi_test(num_disks - 1, auxiliary, source, destination)
+        >>> solve_hanoi_test(2, "S", "A", "D")
+        >>> moves_test
+        [('S', 'A'), ('S', 'D'), ('A', 'D')]
+        """
+        if num_disks == 0:
             return
 
         # 1. Move n-1 disks from Source to Auxiliary, using Destination as auxiliary.
         # This is the "Divide" step.
-        solve_hanoi(n - 1, source, destination, auxiliary)
+        solve_hanoi(num_disks - 1, source, destination, auxiliary)
 
         # 2. Move the largest disk (n) from Source to Destination.
         # This is the "Conquer" step (base step of the recursion).
@@ -47,21 +62,23 @@ def tower_of_hanoi(
 
         # 3. Move n-1 disks from Auxiliary to Destination, using Source as auxiliary.
         # This is the "Combine" step.
-        solve_hanoi(n - 1, auxiliary, source, destination)
+        solve_hanoi(num_disks - 1, auxiliary, source, destination)
 
-    solve_hanoi(n, source, auxiliary, destination)
+    solve_hanoi(num_disks, source, auxiliary, destination)
     return moves
 
 
 if __name__ == "__main__":
     try:
-        n_disks = int(
-            input("Enter the number of disks for the Tower of Hanoi: ").strip()
-        )
-        if n_disks < 0:
+        n_disks_input = input(
+            "Enter the number of disks for the Tower of Hanoi: "
+        ).strip()
+        num_disks = int(n_disks_input)
+
+        if num_disks < 0:
             print("Please enter a non-negative number of disks.")
         else:
-            all_moves = tower_of_hanoi(n_disks)
+            all_moves = tower_of_hanoi(num_disks)
             print(f"\nTotal moves required: {len(all_moves)}")
             print("Sequence of Moves (Source -> Destination):")
             for move in all_moves:
