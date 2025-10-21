@@ -23,12 +23,14 @@ and hence a number between 1000 and 1000000
 
 DIGITS_FIFTH_POWER = {str(digit): digit**5 for digit in range(10)}
 
+
 def digits_fifth_powers_sum(number: int) -> int:
     """
     >>> digits_fifth_powers_sum(1234)
     1300
     """
     return sum(DIGITS_FIFTH_POWER[digit] for digit in str(number))
+
 
 def solution() -> int:
     return sum(
@@ -37,6 +39,6 @@ def solution() -> int:
         if number == digits_fifth_powers_sum(number)
     )
 
+
 if __name__ == "__main__":
     print(solution())
-
