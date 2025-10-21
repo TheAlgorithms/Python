@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 def a_very_big_sum(arr: list[int]) -> int:
+=======
+from typing import List
+
+
+def a_very_big_sum(arr: List[int]) -> int:
+>>>>>>> 2e5b8980304014f131c23d43a7a08e624c23de8b
     """
     Return the sum of all integers in the input array.
 
