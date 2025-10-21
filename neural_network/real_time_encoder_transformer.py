@@ -1,10 +1,12 @@
-#imports
+# imports
 import torch
 import torch.nn as nn
 import math
-#Time2Vec layer for positional encoding of real-time data like EEG
+
+
+# Time2Vec layer for positional encoding of real-time data like EEG
 class Time2Vec(nn.Module):
-    #Encodes time steps into a continuous embedding space so to help the transformer learn temporal dependencies.
+    # Encodes time steps into a continuous embedding space so to help the transformer learn temporal dependencies.
     def __init__(self, d_model):
         super().__init__()
         self.w0 = nn.Parameter(torch.randn(1, 1))
@@ -13,11 +15,12 @@ class Time2Vec(nn.Module):
         self.b = nn.Parameter(torch.randn(1, d_model - 1))
 
     def forward(self, t):
-        linear = self.w0 * t + self.b0           
-        periodic = torch.sin(self.w * t + self.b)    
-        return torch.cat([linear, periodic], dim=-1) 
-      
-#positionwise feedforward network
+        linear = self.w0 * t + self.b0
+        periodic = torch.sin(self.w * t + self.b)
+        return torch.cat([linear, periodic], dim=-1)
+
+
+# positionwise feedforward network
 class PositionwiseFeedForward(nn.Module):
     def __init__(self, d_model, hidden, drop_prob=0.1):
         super().__init__()
@@ -31,7 +34,9 @@ class PositionwiseFeedForward(nn.Module):
         x = self.relu(x)
         x = self.dropout(x)
         return self.fc2(x)
-#scaled dot product attention
+
+
+# scaled dot product attention
 class ScaleDotProductAttention(nn.Module):
     def __init__(self):
         super().__init__()
@@ -47,7 +52,9 @@ class ScaleDotProductAttention(nn.Module):
         attn = self.softmax(scores)
         context = attn @ v
         return context, attn
-#multi head attention
+
+
+# multi head attention
 class MultiHeadAttention(nn.Module):
     def __init__(self, d_model, n_head):
         super().__init__()
@@ -75,7 +82,8 @@ class MultiHeadAttention(nn.Module):
         batch, n_head, seq_len, d_k = x.size()
         return x.transpose(1, 2).contiguous().view(batch, seq_len, n_head * d_k)
 
-#Layer normalization
+
+# Layer normalization
 class LayerNorm(nn.Module):
     def __init__(self, d_model, eps=1e-12):
         super().__init__()
@@ -88,7 +96,8 @@ class LayerNorm(nn.Module):
         var = x.var(-1, unbiased=False, keepdim=True)
         return self.gamma * (x - mean) / torch.sqrt(var + self.eps) + self.beta
 
-#transformer encoder layer
+
+# transformer encoder layer
 class TransformerEncoderLayer(nn.Module):
     def __init__(self, d_model, n_head, hidden_dim, drop_prob=0.1):
         super().__init__()
@@ -106,14 +115,17 @@ class TransformerEncoderLayer(nn.Module):
 
         return x
 
-#encoder stack
+
+# encoder stack
 class TransformerEncoder(nn.Module):
     def __init__(self, d_model, n_head, hidden_dim, num_layers, drop_prob=0.1):
         super().__init__()
-        self.layers = nn.ModuleList([
-            TransformerEncoderLayer(d_model, n_head, hidden_dim, drop_prob)
-            for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                TransformerEncoderLayer(d_model, n_head, hidden_dim, drop_prob)
+                for _ in range(num_layers)
+            ]
+        )
 
     def forward(self, x, mask=None):
         for layer in self.layers:
@@ -121,7 +133,7 @@ class TransformerEncoder(nn.Module):
         return x
 
 
-#attention pooling layer
+# attention pooling layer
 class AttentionPooling(nn.Module):
     def __init__(self, d_model):
         super().__init__()
@@ -137,12 +149,22 @@ class AttentionPooling(nn.Module):
         pooled = torch.bmm(attn_weights.unsqueeze(1), x).squeeze(1)
         return pooled, attn_weights
 
+
 # transformer model
 
-class EEGTransformer(nn.Module):
 
-    def __init__(self, feature_dim, d_model=128, n_head=8, hidden_dim=512,
-                 num_layers=4, drop_prob=0.1, output_dim=1, task_type='regression'):
+class EEGTransformer(nn.Module):
+    def __init__(
+        self,
+        feature_dim,
+        d_model=128,
+        n_head=8,
+        hidden_dim=512,
+        num_layers=4,
+        drop_prob=0.1,
+        output_dim=1,
+        task_type="regression",
+    ):
         super().__init__()
         self.task_type = task_type
         self.input_proj = nn.Linear(feature_dim, d_model)
@@ -151,7 +173,9 @@ class EEGTransformer(nn.Module):
         self.time2vec = Time2Vec(d_model)
 
         # Transformer encoder for sequence modeling
-        self.encoder = TransformerEncoder(d_model, n_head, hidden_dim, num_layers, drop_prob)
+        self.encoder = TransformerEncoder(
+            d_model, n_head, hidden_dim, num_layers, drop_prob
+        )
 
         # Attention pooling to summarize time dimension
         self.pooling = AttentionPooling(d_model)
@@ -160,7 +184,6 @@ class EEGTransformer(nn.Module):
         self.output_layer = nn.Linear(d_model, output_dim)
 
     def forward(self, x, mask=None):
-
         b, t, _ = x.size()
 
         # Create time indices and embed them
@@ -179,7 +202,7 @@ class EEGTransformer(nn.Module):
         # Final output (regression or classification)
         out = self.output_layer(pooled)
 
-        if self.task_type == 'classification':
+        if self.task_type == "classification":
             out = torch.softmax(out, dim=-1)
 
         return out, attn_weights
