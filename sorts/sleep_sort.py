@@ -58,28 +58,28 @@ def test_sleep_sort() -> None:
     """Test sleep sort algorithm with various test cases."""
     # Test basic functionality
     assert sleep_sort([3, 1, 4, 2]) == [1, 2, 3, 4]
-    
+
     # Test edge cases
     assert sleep_sort([]) == []
     assert sleep_sort([5]) == [5]
     assert sleep_sort([1, 1, 1]) == [1, 1, 1]
     assert sleep_sort([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
     assert sleep_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-    
+
     print("All tests passed!")
 
 
 if __name__ == "_main_":
     # Run automated tests
     test_sleep_sort()
-    
+
     # Interactive demo
     try:
         user_input = input("Enter numbers separated by commas: ").strip()
         if user_input:
             numbers = [int(x.strip()) for x in user_input.split(",")]
             print(f"Original list: {numbers}")
-            
+
             # Validate input
             if any(num < 0 for num in numbers):
                 print("Error: Only non-negative integers allowed")
