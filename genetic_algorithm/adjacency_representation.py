@@ -49,7 +49,7 @@ def adjacency_vector_closed(path: list[str], nodes: list[str]) -> list[str]:
         next_city = path[(index + 1) % total_cities]
         next_city_map[city] = next_city
 
-    return [next_city_map.get(city, '-') for city in nodes]
+    return [next_city_map.get(city, "-") for city in nodes]
 
 
 if __name__ == "__main__":
