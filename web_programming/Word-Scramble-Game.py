@@ -23,42 +23,132 @@ STATS_FILE = DATA_DIR / "stats.json"
 
 # Simple embedded word list (can be extended)
 WORD_LIST = [
-    "planet", "python", "scramble", "library", "function", "variable",
-    "keyboard", "monitor", "developer", "network", "package", "module",
-    "algorithm", "debug", "database", "container", "virtual", "iterate",
-    "compile", "syntax", "object", "inheritance", "interface", "performance",
-    "encryption", "protocol", "bandwidth", "repository", "branch", "commit",
-    "feature", "engine", "cursor", "iterator", "lambda", "generator",
-    "concurrency", "thread", "process", "serializer", "message", "payload"
+    "planet",
+    "python",
+    "scramble",
+    "library",
+    "function",
+    "variable",
+    "keyboard",
+    "monitor",
+    "developer",
+    "network",
+    "package",
+    "module",
+    "algorithm",
+    "debug",
+    "database",
+    "container",
+    "virtual",
+    "iterate",
+    "compile",
+    "syntax",
+    "object",
+    "inheritance",
+    "interface",
+    "performance",
+    "encryption",
+    "protocol",
+    "bandwidth",
+    "repository",
+    "branch",
+    "commit",
+    "feature",
+    "engine",
+    "cursor",
+    "iterator",
+    "lambda",
+    "generator",
+    "concurrency",
+    "thread",
+    "process",
+    "serializer",
+    "message",
+    "payload",
 ]
 
 # Optional categories to make the game more interesting — each category is a small subset
 CATEGORIES = {
     "general": WORD_LIST,
-    "programming": [w for w in WORD_LIST if w in (
-        "python","function","variable","module","algorithm","debug","compile",
-        "object","inheritance","interface","repository","commit","lambda","generator",
-        "concurrency","thread","process"
-    )],
-    "networking": [w for w in WORD_LIST if w in (
-        "network","protocol","bandwidth","packet" )],
+    "programming": [
+        w
+        for w in WORD_LIST
+        if w
+        in (
+            "python",
+            "function",
+            "variable",
+            "module",
+            "algorithm",
+            "debug",
+            "compile",
+            "object",
+            "inheritance",
+            "interface",
+            "repository",
+            "commit",
+            "lambda",
+            "generator",
+            "concurrency",
+            "thread",
+            "process",
+        )
+    ],
+    "networking": [
+        w for w in WORD_LIST if w in ("network", "protocol", "bandwidth", "packet")
+    ],
 }
 
 # New extended categories
 ANIMALS = [
-    "elephant", "tiger", "penguin", "giraffe", "dolphin", "kangaroo", "alligator",
-    "cheetah", "hedgehog", "raccoon", "squirrel", "porcupine", "butterfly", "octopus",
-    "hummingbird", "flamingo"
+    "elephant",
+    "tiger",
+    "penguin",
+    "giraffe",
+    "dolphin",
+    "kangaroo",
+    "alligator",
+    "cheetah",
+    "hedgehog",
+    "raccoon",
+    "squirrel",
+    "porcupine",
+    "butterfly",
+    "octopus",
+    "hummingbird",
+    "flamingo",
 ]
 
 MOVIES = [
-    "inception", "gladiator", "titanic", "avatar", "interstellar", "matrix", "casablanca",
-    "goodfellas", "amadeus", "psycho", "rocky", "alien", "jaws"
+    "inception",
+    "gladiator",
+    "titanic",
+    "avatar",
+    "interstellar",
+    "matrix",
+    "casablanca",
+    "goodfellas",
+    "amadeus",
+    "psycho",
+    "rocky",
+    "alien",
+    "jaws",
 ]
 
 FOODS = [
-    "pizza", "sushi", "taco", "lasagna", "pancake", "risotto", "casserole", "burger",
-    "cupcake", "avocado", "blueberry", "spaghetti", "chocolate"
+    "pizza",
+    "sushi",
+    "taco",
+    "lasagna",
+    "pancake",
+    "risotto",
+    "casserole",
+    "burger",
+    "cupcake",
+    "avocado",
+    "blueberry",
+    "spaghetti",
+    "chocolate",
 ]
 
 # merge into categories dict
@@ -163,7 +253,9 @@ def play_round(word, difficulty):
     attempts = 0
 
     print("\nScrambled:", " ".join(scrambled))
-    print(f"(Type your guess, or 'hint', 'skip', 'quit'. Time suggested: {max_time}s)\n")
+    print(
+        f"(Type your guess, or 'hint', 'skip', 'quit'. Time suggested: {max_time}s)\n"
+    )
 
     start = time.perf_counter()
     while True:
@@ -190,12 +282,19 @@ def play_round(word, difficulty):
         # check answer
         if guess == word:
             points = compute_score(word, elapsed, difficulty)
-            print(color(f"Correct! +{points} pts (time: {int(elapsed)}s, attempts: {attempts})", '32'))
+            print(
+                color(
+                    f"Correct! +{points} pts (time: {int(elapsed)}s, attempts: {attempts})",
+                    "32",
+                )
+            )
             return points
         else:
             # small helpful feedback
             same_positions = sum(1 for a, b in zip(guess, word) if a == b)
-            print(f"Not quite. {same_positions} letter(s) in the correct position. Try again.")
+            print(
+                f"Not quite. {same_positions} letter(s) in the correct position. Try again."
+            )
 
 
 def pick_word_by_difficulty_and_category(difficulty, category=None):
@@ -219,22 +318,25 @@ def celebratory_art():
         "\n  ★ Congratulations! ★\n",
         "\n  (\_/)",
         "\n  ( •_•)",
-        "\n  / >💥 You did it!\n"
+        "\n  / >💥 You did it!\n",
     ]
-    print(color('\n'.join(art), '35'))
+    print(color("\n".join(art), "35"))
 
 
 def play_game():
-    print(color("WELCOME TO WORD SCRAMBLE", '36'))
-    print(color("------------------------", '36'))
+    print(color("WELCOME TO WORD SCRAMBLE", "36"))
+    print(color("------------------------", "36"))
     # choose difficulty
     while True:
-        diff = input("Choose difficulty (easy / medium / hard) [medium]: ").strip().lower() or "medium"
+        diff = (
+            input("Choose difficulty (easy / medium / hard) [medium]: ").strip().lower()
+            or "medium"
+        )
         if diff in DIFFICULTIES:
             break
         print("Invalid choice.")
     # choose optional category
-    print("Available categories:", ', '.join(CATEGORIES.keys()))
+    print("Available categories:", ", ".join(CATEGORIES.keys()))
     cat = input("Pick category (or press Enter for mixed): ").strip().lower() or None
     if cat and cat not in CATEGORIES:
         print("Unknown category, using mixed words.")
@@ -262,7 +364,12 @@ def play_game():
             # combo bonus for streaks: +5% per consecutive correct (rounded)
             combo_bonus = int(points * (0.05 * (streak - 1))) if streak > 1 else 0
             if combo_bonus:
-                print(color(f"Combo! +{combo_bonus} bonus points for a streak of {streak}", '33'))
+                print(
+                    color(
+                        f"Combo! +{combo_bonus} bonus points for a streak of {streak}",
+                        "33",
+                    )
+                )
             points += combo_bonus
             total_score += points
             celebratory_art()
@@ -291,7 +398,9 @@ def main_menu():
         elif choice == "3":
             print("\nInstructions:")
             print("- Guess the original word from the scrambled letters.")
-            print("- Commands during a round: 'hint' (reveals one letter), 'skip', 'quit'.")
+            print(
+                "- Commands during a round: 'hint' (reveals one letter), 'skip', 'quit'."
+            )
             print("- Faster correct answers score more points.")
             print("- High scores are saved locally in high_scores.json.\n")
         elif choice == "4":
