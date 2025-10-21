@@ -160,8 +160,9 @@ class RBM:
 
         >>> rbm = RBM(3, 2, cd_steps=2)
         >>> data = np.array([[0., 1., 0.]])
-        >>> round(rbm.contrastive_divergence(data), 5)
-        0.0 < 1.0  # Loss should be a non-negative float less than 1
+        >>> loss = rbm.contrastive_divergence(data)
+        >>> 0 <= loss and loss < 1
+        np.True_
         """
         h_probs0, h0 = self.sample_hidden_given_visible(visible_zero)
         vk, hk = visible_zero, h0
@@ -182,19 +183,20 @@ class RBM:
         loss = np.mean((visible_zero - vk) ** 2)
         return loss
 
-    def train(self, dataset: np.ndarray) -> None:
+    def train(self, dataset: np.ndarray, verbose: bool = True) -> None:
         """
         Train the RBM on the entire dataset.
 
         Args:
             dataset (np.ndarray): Training dataset matrix.
 
-        >>> rbm = RBM(6, 3, epochs=1, batch_size=2)
-        >>> data = np.random.randint(0, 2, (4, 6)).astype(float)
-        >>> rbm.train(data)  # runs without error
+        >>> rbm = RBM(16, 3, epochs=1, batch_size=2)
+        >>> rng = np.random.default_rng()  # for random number generation
+        >>> data = rng.integers(0, 2, size=(4, 16)).astype(float)
+        >>> rbm.train(data, verbose = False)  # doctest: +ELLIPSIS
         """
         n_samples = dataset.shape[0]
-        for epoch in range(self.epochs):
+        for _epoch in range(self.epochs):
             self.rng.shuffle(dataset)
             losses = []
 
@@ -203,7 +205,8 @@ class RBM:
                 loss = self.contrastive_divergence(batch)
                 losses.append(loss)
 
-            print(f"Epoch [{epoch + 1}/{self.epochs}] avg loss: {np.mean(losses):.6f}")
+        if verbose:
+            print(f"Epoch [{_epoch + 1}/{self.epochs}] avg loss: {np.mean(losses):.6f}")
 
 
 class DeepBeliefNetwork:
@@ -355,64 +358,113 @@ class DeepBeliefNetwork:
             samples.append(x_dash)
         return np.mean(np.stack(samples, axis=0), axis=0)
 
-    def train_dbn(self, training_data: np.ndarray) -> None:
+    def train_dbn(self, training_data: np.ndarray, verbose: bool = True) -> None:
         """
         Layer-wise train the DBN using RBMs.
 
         Args:
             training_data (np.ndarray): Training dataset.
 
-        >>> dbn = DeepBeliefNetwork(4, [3])
-        >>> data = np.random.randint(0, 2, (10, 4)).astype(float)
-        >>> dbn.train_dbn(data)  # runs without error
+        >>> dbn = DeepBeliefNetwork(input_size=16, layers=[16, 8, 4])
+        >>> rng = np.random.default_rng()  # for random number generation
+        >>> data = rng.integers(0, 2, size=(100, 16)).astype(float)
+        >>> dbn.train_dbn(data, verbose=False)  # doctest: +ELLIPSIS
         """
         for idx, layer_size in enumerate(self.layers):
             n_visible = self.input_size if idx == 0 else self.layers[idx - 1]
             n_hidden = layer_size
 
-            rbm = RBM(n_visible, n_hidden, cd_steps=5, epochs=300)
+            rbm = RBM(n_visible=n_visible, n_hidden=n_hidden, cd_steps=5, epochs=300)
             x_input = self.generate_input_for_layer(idx, training_data)
-            rbm.train(x_input)
+            rbm.train(x_input, verbose=verbose)
             self.layer_params[idx]["W"] = rbm.weights
             self.layer_params[idx]["hb"] = rbm.hidden_bias
             self.layer_params[idx]["vb"] = rbm.visible_bias
+
+        if verbose:
             print(f"Finished training layer {idx + 1}/{len(self.layers)}")
 
     def reconstruct(
         self, input_data: np.ndarray
     ) -> tuple[np.ndarray, np.ndarray, float]:
         """
-        Reconstruct input through forward and backward Gibbs sampling.
+        Reconstructs the input through the stacked RBMs.
 
-        Args:
-            input_data (np.ndarray): Input data to reconstruct.
+        Parameters
+        ----------
+        input_data : np.ndarray
+            Input data for reconstruction.
 
-        Returns:
-            tuple: (encoded representation, reconstructed input, MSE error)
+        Returns
+        -------
+        tuple[np.ndarray, np.ndarray, float]
+            A tuple containing the encoded representation,
+            reconstructed data, and reconstruction error.
 
+        Examples
+        --------
+        >>> import numpy as np
         >>> dbn = DeepBeliefNetwork(4, [3])
         >>> data = np.ones((2, 4))
+        >>> dbn.train_dbn(data, verbose=False)  # doctest: +ELLIPSIS
         >>> encoded, reconstructed, error = dbn.reconstruct(data)
         >>> encoded.shape
         (2, 3)
+        >>> reconstructed.shape
+        (2, 4)
+        >>> isinstance(error, float)
+        True
         """
-        h = input_data.copy()
-        for i in range(len(self.layer_params)):
-            _, h = self.sample_h(
-                h, self.layer_params[i]["W"], self.layer_params[i]["hb"]
-            )
-        encoded = h.copy()
+        # --- Ensure weights are initialized ---
+        prev_size = self.input_size
+        for i, layer in enumerate(self.layer_params):
+            if layer["W"] is None:
+                n_visible = prev_size
+                n_hidden = self.layers[i]
+                rng = np.random.default_rng()
+                layer["W"] = rng.normal(0, 0.01, (n_visible, n_hidden))
+                layer["hb"] = np.zeros(n_hidden)
+                layer["vb"] = np.zeros(n_visible)
+            prev_size = self.layers[i]
 
-        for i in reversed(range(len(self.layer_params))):
-            _, h = self.sample_v(
-                h, self.layer_params[i]["W"], self.layer_params[i]["vb"]
-            )
-        reconstructed = h
+        # --- Forward pass (encoding) ---
+        input_data = self._normalize_input(input_data)
+        encoded = input_data.copy()
+        for layer in self.layer_params:
+            result = self.sample_h(encoded, layer["W"], layer["hb"])
+            encoded = result[0] if isinstance(result, tuple) else result
 
-        error = np.mean((input_data - reconstructed) ** 2)
-        print(f"Reconstruction error: {error:.6f}")
+        # --- Backward pass (decoding) ---
+        reconstructed = encoded.copy()
+        for layer in reversed(self.layer_params):
+            result = self.sample_v(reconstructed, layer["W"], layer["vb"])
+            reconstructed = result[0] if isinstance(result, tuple) else result
+
+        # --- Reconstruction error ---
+        error = float(np.mean((input_data - reconstructed) ** 2))
 
         return encoded, reconstructed, error
+
+    def _normalize_input(self, data: np.ndarray) -> np.ndarray:
+        """
+        Normalize the input data to range [0, 1] if not already binary.
+
+        Args:
+            data (np.ndarray): Input data.
+
+        Returns:
+            np.ndarray: Normalized data.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> import numpy as np
+        >>> x = np.array([[2., 4.], [0., 6.]])
+        >>> np.allclose(dbn._normalize_input(x).max(), 1.0)
+        True
+        """
+        data = np.asarray(data, dtype=float)
+        if data.max() > 1.0 or data.min() < 0.0:
+            data = (data - data.min()) / (data.max() - data.min())
+        return data
 
 
 # Usage example
