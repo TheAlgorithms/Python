@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Optional
 import math
 import random
 
@@ -11,6 +11,8 @@ def pollards_rho_discrete_log(g: int, h: int, p: int) -> Optional[int]:
     This is a probabilistic algorithm that finds discrete logarithms in O(√p) time.
     The algorithm may not always find a solution in a single run due to its 
     probabilistic nature, but it will find the correct answer when it succeeds.
+    
+    More info: https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm_for_logarithms
 
     Parameters
     ----------
