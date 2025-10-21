@@ -1,3 +1,21 @@
+"""
+Linear Congruential Generator (LCG)
+https://en.wikipedia.org/wiki/Linear_congruential_generator
+
+This module implements a simple linear congruential generator.  It is intended
+for educational purposes, not for cryptographic use.
+
+>>> lcg = LinearCongruentialGenerator(2, 3, 9, seed=1)
+>>> [lcg.next_number() for _ in range(5)]
+[5, 4, 2, 7, 8]
+
+The generated values are always in the half-open interval [0, modulo):
+
+>>> lcg = LinearCongruentialGenerator(2, 3, 9, seed=1)
+>>> all(0 <= lcg.next_number() < 9 for _ in range(10))
+True
+"""
+
 __author__ = "Tobias Carryer"
 
 from time import time
@@ -28,9 +46,15 @@ class LinearCongruentialGenerator:
 
     def next_number(self):
         """
+        Generate the next number in the sequence.
+
         The smallest number that can be generated is zero.
-        The largest number that can be generated is modulo-1. modulo is set in the
-        constructor.
+        The largest number that can be generated is ``modulo - 1``. ``modulo`` is
+        set in the constructor.
+
+        >>> lcg = LinearCongruentialGenerator(5, 1, 16, seed=0)
+        >>> [lcg.next_number() for _ in range(4)]
+        [1, 6, 15, 12]
         """
         self.seed = (self.multiplier * self.seed + self.increment) % self.modulo
         return self.seed
