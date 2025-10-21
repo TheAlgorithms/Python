@@ -10,6 +10,7 @@ References:
 - https://en.wikipedia.org/wiki/Random_forest
 - https://en.wikipedia.org/wiki/Decision_tree_learning
 """
+
 from __future__ import annotations
 
 from collections import Counter
@@ -59,7 +60,9 @@ class DecisionTreeClassifier:
         """
         n_total_features = x.shape[1]
         self.n_features = (
-            n_total_features if self.n_features in (None, 0) else min(self.n_features, n_total_features)
+            n_total_features
+            if self.n_features in (None, 0)
+            else min(self.n_features, n_total_features)
         )
         self.tree = self._grow_tree(x, y, depth=0)
 
@@ -77,7 +80,11 @@ class DecisionTreeClassifier:
         n_labels = len(np.unique(y))
 
         # Stopping criteria
-        if depth >= self.max_depth or n_labels == 1 or n_samples < self.min_samples_split:
+        if (
+            depth >= self.max_depth
+            or n_labels == 1
+            or n_samples < self.min_samples_split
+        ):
             leaf_value = self._most_common_label(y)
             return {"leaf": True, "value": int(leaf_value)}
 
@@ -131,7 +138,9 @@ class DecisionTreeClassifier:
                     split_thresh = float(threshold)
         return split_idx, split_thresh
 
-    def _information_gain(self, y: np.ndarray, x_column: np.ndarray, threshold: float) -> float:
+    def _information_gain(
+        self, y: np.ndarray, x_column: np.ndarray, threshold: float
+    ) -> float:
         """Calculate information gain from a split.
 
         >>> y = np.array([0, 0, 1, 1])
@@ -293,7 +302,9 @@ class RandomForestClassifier:
             self.trees.append(tree)
         return self
 
-    def _bootstrap_sample(self, x: np.ndarray, y: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    def _bootstrap_sample(
+        self, x: np.ndarray, y: np.ndarray
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """Create a bootstrap sample from the dataset.
 
         Bootstrap sampling randomly samples with replacement from the dataset.
@@ -370,7 +381,9 @@ if __name__ == "__main__":
     )
 
     # Split the data
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.2, random_state=42
+    )
 
     print(f"Training samples: {x_train.shape[0]}")
     print(f"Test samples: {x_test.shape[0]}")
@@ -379,7 +392,9 @@ if __name__ == "__main__":
 
     # Train Random Forest Classifier
     print("Training Random Forest Classifier...")
-    rf_classifier = RandomForestClassifier(n_estimators=10, max_depth=10, min_samples_split=2)
+    rf_classifier = RandomForestClassifier(
+        n_estimators=10, max_depth=10, min_samples_split=2
+    )
     rf_classifier.fit(x_train, y_train)
     print("Training complete!")
     print()
