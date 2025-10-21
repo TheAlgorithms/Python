@@ -23,14 +23,14 @@ import numpy as np
 class RBM:
     def __init__(
         self,
-        n_visible,
-        n_hidden,
-        learning_rate=0.01,
-        k=1,
-        epochs=10,
-        batch_size=64,
-        mode="bernoulli",
-    ):
+        n_visible: int,
+        n_hidden: int,
+        learning_rate: float = 0.01,
+        k: int = 1,
+        epochs: int = 10,
+        batch_size: int = 64,
+        mode: str = "bernoulli",
+    ) -> None:
         """
         Initialize an RBM (Restricted Boltzmann Machine).
 
@@ -58,7 +58,7 @@ class RBM:
         self.hidden_bias = np.zeros(n_hidden)
         self.visible_bias = np.zeros(n_visible)
 
-    def sigmoid(self, x):
+    def sigmoid(self, x: np.ndarray) -> np.ndarray:
         """
         Compute the sigmoid activation function element-wise.
 
@@ -67,10 +67,19 @@ class RBM:
 
         Returns:
             np.ndarray: Sigmoid output of input.
+
+        >>> rbm = RBM(3, 2)
+        >>> import numpy as np
+        >>> np.allclose(
+        ...    dbn.sigmoid(np.array([0, 1])),
+        ...    np.array([0.5, 1/(1+np.exp(-1))])
+        ... )
+        True
+
         """
         return 1.0 / (1.0 + np.exp(-x))
 
-    def sample_prob(self, probs):
+    def sample_prob(self, probs: np.ndarray) -> np.ndarray:
         """
         Sample binary states from given probabilities.
 
@@ -79,10 +88,18 @@ class RBM:
 
         Returns:
             np.ndarray: Binary sampled values.
+
+        >>> rbm = RBM(3, 2)
+        >>> probs = np.array([0., 1.])
+        >>> result = rbm.sample_prob(probs)
+        >>> set(result).issubset({0., 1.})
+        True
         """
         return (self.rng.random(probs.shape) < probs).astype(float)
 
-    def sample_hidden_given_visible(self, v):
+    def sample_hidden_given_visible(
+        self, v: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Sample hidden units conditioned on visible units.
 
@@ -96,7 +113,9 @@ class RBM:
         hid_samples = self.sample_prob(hid_probs)
         return hid_probs, hid_samples
 
-    def sample_visible_given_hidden(self, h):
+    def sample_visible_given_hidden(
+        self, h: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Sample visible units conditioned on hidden units.
 
@@ -110,7 +129,7 @@ class RBM:
         vis_samples = self.sample_prob(vis_probs)
         return vis_probs, vis_samples
 
-    def contrastive_divergence(self, v0):
+    def contrastive_divergence(self, v0: np.ndarray) -> float:
         """
         Perform Contrastive Divergence (CD-k) for a single batch.
 
@@ -139,12 +158,16 @@ class RBM:
         loss = np.mean((v0 - vk) ** 2)
         return loss
 
-    def train(self, data):
+    def train(self, data: np.ndarray) -> None:
         """
         Train the RBM on the entire dataset.
 
         Args:
             data (np.ndarray): Training dataset matrix.
+
+        >>> rbm = RBM(6, 3, epochs=1, batch_size=2)
+        >>> data = np.random.randint(0, 2, (4, 6)).astype(float)
+        >>> rbm.train(data)  # runs without error
         """
         n_samples = data.shape[0]
         for epoch in range(self.epochs):
@@ -160,16 +183,24 @@ class RBM:
 
 
 class DeepBeliefNetwork:
-    def __init__(self, input_size, layers, mode="bernoulli", k=5, save_path=None):
+    def __init__(
+        self,
+        input_size: int,
+        layers: list[int],
+        mode: str = "bernoulli",
+        k: int = 5,
+        save_path: str | None = None,
+    ) -> None:
         """
         Initialize a Deep Belief Network (DBN) with multiple RBM layers.
 
         Args:
             input_size (int): Number of features in input layer.
-            layers (list): List of hidden layer unit counts.
+            layers (list): list of hidden layer unit counts.
             mode (str): Sampling mode ('bernoulli' or 'gaussian').
             k (int): Number of sampling steps in generate_input_for_layer.
-            save_path (str): Path for saving trained model parameters (optional).
+            save_path (str, optional): Path for saving trained model parameters.
+
         """
         self.input_size = input_size
         self.layers = layers
@@ -178,7 +209,7 @@ class DeepBeliefNetwork:
         self.save_path = save_path
         self.layer_params = [{"W": None, "hb": None, "vb": None} for _ in layers]
 
-    def sigmoid(self, x):
+    def sigmoid(self, x: np.ndarray) -> np.ndarray:
         """
         Compute sigmoid activation function.
 
@@ -187,10 +218,19 @@ class DeepBeliefNetwork:
 
         Returns:
             np.ndarray: Sigmoid of input.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> import numpy as np
+        >>> np.allclose(
+        ...    dbn.sigmoid(np.array([0, 1])),
+        ...    np.array([0.5, 1/(1+np.exp(-1))])
+        ... )
+        True
+
         """
         return 1.0 / (1.0 + np.exp(-x))
 
-    def sample_prob(self, probs):
+    def sample_prob(self, probs: np.ndarray) -> np.ndarray:
         """
         Sample binary states from probabilities.
 
@@ -203,7 +243,9 @@ class DeepBeliefNetwork:
         rng = np.random.default_rng()
         return (rng.random(probs.shape) < probs).astype(float)
 
-    def sample_h(self, x, w, hb):
+    def sample_h(
+        self, x: np.ndarray, w: np.ndarray, hb: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Sample hidden units given visible units for a DBN layer.
 
@@ -219,7 +261,9 @@ class DeepBeliefNetwork:
         samples = self.sample_prob(probs)
         return probs, samples
 
-    def sample_v(self, y, w, vb):
+    def sample_v(
+        self, y: np.ndarray, w: np.ndarray, vb: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Sample visible units given hidden units for a DBN layer.
 
@@ -235,7 +279,7 @@ class DeepBeliefNetwork:
         samples = self.sample_prob(probs)
         return probs, samples
 
-    def generate_input_for_layer(self, layer_index, x):
+    def generate_input_for_layer(self, layer_index: int, x: np.ndarray) -> np.ndarray:
         """
         Generate input for a particular DBN layer by sampling and averaging.
 
@@ -258,7 +302,7 @@ class DeepBeliefNetwork:
             samples.append(x_dash)
         return np.mean(np.stack(samples, axis=0), axis=0)
 
-    def train_dbn(self, x):
+    def train_dbn(self, x: np.ndarray) -> None:
         """
         Layer-wise train the DBN using RBMs.
 
@@ -277,7 +321,7 @@ class DeepBeliefNetwork:
             self.layer_params[idx]["vb"] = rbm.visible_bias
             print(f"Finished training layer {idx + 1}/{len(self.layers)}")
 
-    def reconstruct(self, x):
+    def reconstruct(self, x: np.ndarray) -> tuple[np.ndarray, np.ndarray, float]:
         """
         Reconstruct input through forward and backward Gibbs sampling.
 
