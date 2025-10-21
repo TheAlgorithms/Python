@@ -15,6 +15,7 @@ class Time2Vec(nn.Module):
     >>> output.shape
     torch.Size([1, 3, 4])
     """
+
     def __init__(self, d_model: int) -> None:
         super().__init__()
         self.w0 = nn.Parameter(torch.randn(1, 1))
@@ -39,6 +40,7 @@ class PositionwiseFeedForward(nn.Module):
     >>> out.shape
     torch.Size([4, 10, 8])
     """
+
     def __init__(self, d_model: int, hidden: int, drop_prob: float = 0.1) -> None:
         super().__init__()
         self.fc1 = nn.Linear(d_model, hidden)
@@ -66,6 +68,7 @@ class ScaleDotProductAttention(nn.Module):
     >>> ctx.shape
     torch.Size([2, 8, 10, 16])
     """
+
     def __init__(self) -> None:
         super().__init__()
         self.softmax = nn.Softmax(dim=-1)
@@ -99,6 +102,7 @@ class MultiHeadAttention(nn.Module):
     >>> out.shape
     torch.Size([2, 10, 16])
     """
+
     def __init__(self, d_model: int, n_head: int) -> None:
         super().__init__()
         self.n_head = n_head
@@ -135,7 +139,9 @@ class MultiHeadAttention(nn.Module):
 
     def concat_heads(self, input_tensor: Tensor) -> Tensor:
         batch, n_head, seq_len, d_k = input_tensor.size()
-        return input_tensor.transpose(1, 2).contiguous().view(batch, seq_len, n_head * d_k)
+        return (
+            input_tensor.transpose(1, 2).contiguous().view(batch, seq_len, n_head * d_k)
+        )
 
 
 class LayerNorm(nn.Module):
@@ -149,6 +155,7 @@ class LayerNorm(nn.Module):
     >>> out.shape
     torch.Size([4, 10, 8])
     """
+
     def __init__(self, d_model: int, eps: float = 1e-12) -> None:
         super().__init__()
         self.gamma = nn.Parameter(torch.ones(d_model))
@@ -158,7 +165,9 @@ class LayerNorm(nn.Module):
     def forward(self, input_tensor: Tensor) -> Tensor:
         mean = input_tensor.mean(-1, keepdim=True)
         var = input_tensor.var(-1, unbiased=False, keepdim=True)
-        return self.gamma * (input_tensor - mean) / torch.sqrt(var + self.eps) + self.beta
+        return (
+            self.gamma * (input_tensor - mean) / torch.sqrt(var + self.eps) + self.beta
+        )
 
 
 class TransformerEncoderLayer(nn.Module):
@@ -172,6 +181,7 @@ class TransformerEncoderLayer(nn.Module):
     >>> out.shape
     torch.Size([4, 10, 8])
     """
+
     def __init__(
         self,
         d_model: int,
@@ -205,6 +215,7 @@ class TransformerEncoder(nn.Module):
     >>> out.shape
     torch.Size([4, 10, 8])
     """
+
     def __init__(
         self,
         d_model: int,
@@ -241,11 +252,14 @@ class AttentionPooling(nn.Module):
     >>> weights.shape
     torch.Size([4, 10])
     """
+
     def __init__(self, d_model: int) -> None:
         super().__init__()
         self.attn_score = nn.Linear(d_model, 1)
 
-    def forward(self, input_tensor: Tensor, mask: Tensor = None) -> tuple[Tensor, Tensor]:
+    def forward(
+        self, input_tensor: Tensor, mask: Tensor = None
+    ) -> tuple[Tensor, Tensor]:
         attn_weights = torch.softmax(self.attn_score(input_tensor).squeeze(-1), dim=-1)
 
         if mask is not None:
@@ -267,6 +281,7 @@ class EEGTransformer(nn.Module):
     >>> out.shape
     torch.Size([2, 1])
     """
+
     def __init__(
         self,
         feature_dim: int,
@@ -288,9 +303,16 @@ class EEGTransformer(nn.Module):
         self.pooling = AttentionPooling(d_model)
         self.output_layer = nn.Linear(d_model, output_dim)
 
-    def forward(self, input_tensor: Tensor, mask: Tensor = None) -> tuple[Tensor, Tensor]:
+    def forward(
+        self, input_tensor: Tensor, mask: Tensor = None
+    ) -> tuple[Tensor, Tensor]:
         b, t, _ = input_tensor.size()
-        t_idx = torch.arange(t, device=input_tensor.device).view(1, t, 1).expand(b, t, 1).float()
+        t_idx = (
+            torch.arange(t, device=input_tensor.device)
+            .view(1, t, 1)
+            .expand(b, t, 1)
+            .float()
+        )
         time_emb = self.time2vec(t_idx)
         x = self.input_proj(input_tensor) + time_emb
         x = self.encoder(x, mask)
