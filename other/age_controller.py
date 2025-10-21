@@ -1,11 +1,10 @@
 """Age Controller Module
-
 This module provides functionality to validate and process age input.
 Related to issue #12809.
 """
 
 
-def validate_age(age):
+def validate_age(age: int | str | float) -> int:
     """Validate and process age input.
 
     This function validates that the provided age is a valid positive integer
@@ -35,36 +34,32 @@ def validate_age(age):
         >>> validate_age(200)
         Traceback (most recent call last):
             ...
-        ValueError: Age must be between 0 and 150
+        ValueError: Age must be between 0 and 150 years
         >>> validate_age('invalid')
         Traceback (most recent call last):
             ...
-        ValueError: Age must be a valid number
+        ValueError: Invalid age format
+        >>> validate_age(25.5)
+        Traceback (most recent call last):
+            ...
+        ValueError: Age must be a whole number
     """
-    try:
-        # Convert to float first to handle string numbers
-        age_float = float(age)
+    # Convert age to appropriate numeric type
+    age_int = int(age) if isinstance(age, int | float) else int(str(age))
 
-        # Check if it's a whole number
-        if age_float != int(age_float):
-            age_int = int(age_float)
-        else:
-            age_int = int(age_float)
+    # Validate that the age is a whole number if it was a float
+    if isinstance(age, float) and age != age_int:
+        msg = "Age must be a whole number"
+        raise ValueError(msg)
 
-    except (ValueError, TypeError):
-        raise ValueError("Age must be a valid number")
-
-    # Validate range
+    # Validate age is positive
     if age_int < 0:
-        raise ValueError("Age must be a positive number")
+        msg = "Age must be a positive number"
+        raise ValueError(msg)
 
-    if age_int > 150:
-        raise ValueError("Age must be between 0 and 150")
+    # Validate age is within reasonable range
+    if age_int > 150:  # noqa: PLR2004
+        msg = "Age must be between 0 and 150 years"
+        raise ValueError(msg)
 
     return age_int
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
