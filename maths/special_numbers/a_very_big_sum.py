@@ -1,5 +1,6 @@
 from typing import List
 
+
 def a_very_big_sum(arr: List[int]) -> int:
     """
     Return the sum of all integers in the input array.
