@@ -3,26 +3,29 @@ name = "thealgorithms-python"
 version = "0.0.1"
 description = "TheAlgorithms in Python"
 authors = [ { name = "TheAlgorithms Contributors" } ]
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
   "beautifulsoup4>=4.12.3",
-  "cython>=3.1.2",
+  "cython>=3.0.11",
   "fake-useragent>=1.5.1",
   "httpx>=0.28.1",
   "imageio>=2.36.1",
   "keras>=3.7",
-  "lxml>=6",
+  "lxml>=5.3",
   "matplotlib>=3.9.3",
   "numpy>=2.1.3",
   "opencv-python>=4.10.0.84",
   "pandas>=2.2.3",
-  "pillow>=11.3",
+  "pillow>=11",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
-  "scipy>=1.16.2",
+  "scipy>=1.14.1",
   "sphinx-pyproject>=0.3",
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
@@ -42,123 +45,93 @@ docs = [
   "sphinx-autoapi>=3.4",
   "sphinx-pyproject>=0.3",
 ]
+
 euler-validate = [
   "httpx>=0.28.1",
   "numpy>=2.1.3",
 ]
 
 [tool.ruff]
-target-version = "py314"
-
+target-version = "py311"
 output-format = "full"
 lint.select = [
-  # https://beta.ruff.rs/docs/rules
-  "A",     # flake8-builtins
-  "ARG",   # flake8-unused-arguments
-  "ASYNC", # flake8-async
-  "B",     # flake8-bugbear
-  "BLE",   # flake8-blind-except
-  "C4",    # flake8-comprehensions
-  "C90",   # McCabe cyclomatic complexity
-  "DJ",    # flake8-django
-  "DTZ",   # flake8-datetimez
-  "E",     # pycodestyle
-  "EM",    # flake8-errmsg
-  "EXE",   # flake8-executable
-  "F",     # Pyflakes
-  "FA",    # flake8-future-annotations
-  "FLY",   # flynt
-  "G",     # flake8-logging-format
-  "I",     # isort
-  "ICN",   # flake8-import-conventions
-  "INP",   # flake8-no-pep420
-  "INT",   # flake8-gettext
-  "ISC",   # flake8-implicit-str-concat
-  "N",     # pep8-naming
-  "NPY",   # NumPy-specific rules
-  "PD",    # pandas-vet
-  "PGH",   # pygrep-hooks
-  "PIE",   # flake8-pie
-  "PL",    # Pylint
-  "PT",    # flake8-pytest-style
-  "PYI",   # flake8-pyi
-  "RSE",   # flake8-raise
-  "RUF",   # Ruff-specific rules
-  "S",     # flake8-bandit
-  "SIM",   # flake8-simplify
-  "SLF",   # flake8-self
-  "T10",   # flake8-debugger
-  "TD",    # flake8-todos
-  "TID",   # flake8-tidy-imports
-  "UP",    # pyupgrade
-  "W",     # pycodestyle
-  "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations -- FIX ME?
-  # "COM",  # flake8-commas -- DO NOT FIX
-  # "D",    # pydocstyle -- FIX ME?
-  # "ERA",  # eradicate -- DO NOT FIX
-  # "FBT",  # flake8-boolean-trap  # FIX ME
-  # "PTH",  # flake8-use-pathlib  # FIX ME
-  # "Q",    # flake8-quotes
-  # "RET",  # flake8-return  # FIX ME?
-  # "T20",  # flake8-print
-  # "TCH",  # flake8-type-checking
-  # "TRY",  # tryceratops
+  "A",
+  "ARG",
+  "ASYNC",
+  "B",
+  "BLE",
+  "C4",
+  "C90",
+  "DJ",
+  "DTZ",
+  "E",
+  "EM",
+  "EXE",
+  "F",
+  "FA",
+  "FLY",
+  "G",
+  "I",
+  "ICN",
+  "INP",
+  "INT",
+  "ISC",
+  "N",
+  "NPY",
+  "PD",
+  "PGH",
+  "PIE",
+  "PL",
+  "PT",
+  "PYI",
+  "RSE",
+  "RUF",
+  "S",
+  "SIM",
+  "SLF",
+  "T10",
+  "TD",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
 ]
 lint.ignore = [
-  # `ruff rule S101` for a description of that rule
-  "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
-  "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "EM101",   # Exception must not use a string literal, assign to a variable first
-  "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
-  "G004",    # Logging statement uses f-string
-  "ISC001",  # Conflicts with ruff format -- DO NOT FIX
-  "PLC0415", # import-outside-top-level -- DO NOT FIX
-  "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
-  "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
-  "PLW1641", # eq-without-hash
-  "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
-  "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
-  "PT018",   # Assertion should be broken down into multiple parts
-  "PT028",   # pytest-parameter-with-default-argument
-  "S101",    # Use of `assert` detected -- DO NOT FIX
-  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
-  "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
-  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
-  "UP037",   # FIX ME
+  "B904",
+  "B905",
+  "EM101",
+  "EXE001",
+  "G004",
+  "ISC001",
+  "PLC0415",
+  "PLC1901",
+  "PLW060",
+  "PLW1641",
+  "PLW2901",
+  "PT011",
+  "PT018",
+  "PT028",
+  "S101",
+  "S311",
+  "SIM905",
+  "SLF001",
+  "UP037",
 ]
 
-lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
-  "BLE001",
-]
-lint.per-file-ignores."hashes/enigma_machine.py" = [
-  "BLE001",
-]
-lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
-  "SIM115",
-]
-lint.per-file-ignores."matrix/sherman_morrison.py" = [
-  "SIM103",
-]
-lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
-  "BLE001",
-]
-lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
-  "SIM115",
-]
-lint.per-file-ignores."sorts/external_sort.py" = [
-  "SIM115",
-]
-lint.mccabe.max-complexity = 17 # default: 10
-lint.pylint.allow-magic-value-types = [
-  "float",
-  "int",
-  "str",
-]
-lint.pylint.max-args = 10 # default: 5
-lint.pylint.max-branches = 20 # default: 12
-lint.pylint.max-returns = 8 # default: 6
-lint.pylint.max-statements = 88 # default: 50
+lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [ "BLE001" ]
+lint.per-file-ignores."hashes/enigma_machine.py" = [ "BLE001" ]
+lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [ "SIM115" ]
+lint.per-file-ignores."matrix/sherman_morrison.py" = [ "SIM103" ]
+lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [ "BLE001" ]
+lint.per-file-ignores."project_euler/problem_099/sol1.py" = [ "SIM115" ]
+lint.per-file-ignores."sorts/external_sort.py" = [ "SIM115" ]
+
+lint.mccabe.max-complexity = 17
+lint.pylint.allow-magic-value-types = [ "float", "int", "str" ]
+lint.pylint.max-args = 10
+lint.pylint.max-branches = 20
+lint.pylint.max-returns = 8
+lint.pylint.max-statements = 88
 
 [tool.codespell]
 ignore-words-list = "3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
@@ -229,11 +202,7 @@ autoapi_dirs = [
   "web_programming",
 ]
 autoapi_member_order = "groupwise"
-# autoapi_python_use_implicit_namespaces = true
-exclude_patterns = [
-  ".*/*",
-  "docs/",
-]
+exclude_patterns = [ ".*/*", "docs/" ]
 extensions = [
   "autoapi.extension",
   "myst_parser",
@@ -249,18 +218,15 @@ myst_enable_extensions = [
   "fieldlist",
   "html_admonition",
   "html_image",
-  # "linkify",
   "replacements",
   "smartquotes",
   "strikethrough",
   "substitution",
   "tasklist",
 ]
-myst_fence_as_directive = [
-  "include",
-]
+myst_fence_as_directive = [ "include" ]
 templates_path = [ "_templates" ]
+
 [tool.sphinx-pyproject.source_suffix]
 ".rst" = "restructuredtext"
-# ".txt" = "markdown"
 ".md" = "markdown"
