@@ -4,6 +4,7 @@ References:
 - https://en.wikipedia.org/wiki/Random_forest
 - https://en.wikipedia.org/wiki/Decision_tree_learning
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List, Optional, Sequence, Tuple
@@ -35,7 +36,9 @@ class DecisionTreeRegressor:
     True
     """
 
-    def __init__(self, max_depth: Optional[int] = None, min_samples_split: int = 2) -> None:
+    def __init__(
+        self, max_depth: Optional[int] = None, min_samples_split: int = 2
+    ) -> None:
         self.max_depth: Optional[int] = max_depth
         self.min_samples_split: int = min_samples_split
         self.tree: Optional[TreeNodeReg] = None
@@ -103,7 +106,9 @@ class DecisionTreeRegressor:
             "right": right_subtree,
         }
 
-    def _best_split(self, x: np.ndarray, y: np.ndarray, n_features: int) -> Optional[Dict[str, Any]]:
+    def _best_split(
+        self, x: np.ndarray, y: np.ndarray, n_features: int
+    ) -> Optional[Dict[str, Any]]:
         """
         Find the best feature and threshold to split on.
 
@@ -133,10 +138,15 @@ class DecisionTreeRegressor:
                 mse = self._calculate_mse(y[left_indices], y[right_indices], len(y))
                 if mse < best_mse:
                     best_mse = mse
-                    best_split = {"feature": int(feature), "threshold": float(threshold)}
+                    best_split = {
+                        "feature": int(feature),
+                        "threshold": float(threshold),
+                    }
         return best_split
 
-    def _calculate_mse(self, left_y: np.ndarray, right_y: np.ndarray, n_samples: int) -> float:
+    def _calculate_mse(
+        self, left_y: np.ndarray, right_y: np.ndarray, n_samples: int
+    ) -> float:
         """
         Calculate weighted mean squared error for a split.
 
@@ -289,7 +299,9 @@ class RandomForestRegressor:
             feature_indices = rng.choice(n_features, max_features, replace=False)
             x_bootstrap = x_bootstrap[:, feature_indices]
             # Train decision tree
-            tree = DecisionTreeRegressor(max_depth=self.max_depth, min_samples_split=self.min_samples_split)
+            tree = DecisionTreeRegressor(
+                max_depth=self.max_depth, min_samples_split=self.min_samples_split
+            )
             tree.fit(x_bootstrap, y_bootstrap)
             self.trees.append((tree, feature_indices))
         return self
@@ -328,10 +340,14 @@ if __name__ == "__main__":
     from sklearn.model_selection import train_test_split
 
     # Generate synthetic regression data
-    x, y = make_regression(n_samples=200, n_features=5, n_informative=3, noise=10, random_state=42)
+    x, y = make_regression(
+        n_samples=200, n_features=5, n_informative=3, noise=10, random_state=42
+    )
 
     # Split the data
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.3, random_state=42
+    )
 
     # Train the Random Forest Regressor
     rf_regressor = RandomForestRegressor(n_estimators=10, max_depth=5, random_state=42)
