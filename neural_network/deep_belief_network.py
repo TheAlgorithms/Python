@@ -42,6 +42,12 @@ class RBM:
             epochs (int): Number of training epochs.
             batch_size (int): Batch size.
             mode (str): Sampling mode ('bernoulli' or 'gaussian').
+
+        >>> rbm = RBM(3, 2)
+        >>> rbm.n_visible
+        3
+        >>> rbm.n_hidden
+        2
         """
         self.n_visible = n_visible
         self.n_hidden = n_hidden
@@ -75,7 +81,6 @@ class RBM:
         ...    np.array([0.5, 1/(1+np.exp(-1))])
         ... )
         True
-
         """
         return 1.0 / (1.0 + np.exp(-input_array))
 
@@ -108,6 +113,12 @@ class RBM:
 
         Returns:
             tuple: (hidden probabilities, hidden samples)
+
+        >>> rbm = RBM(3, 2)
+        >>> visible = np.array([[0., 1., 0.]])
+        >>> probs, samples = rbm.sample_hidden_given_visible(visible)
+        >>> probs.shape == samples.shape == (1, 2)
+        True
         """
         hid_probs = self.sigmoid(np.dot(visible_batch, self.weights) + self.hidden_bias)
         hid_samples = self.sample_prob(hid_probs)
@@ -124,6 +135,12 @@ class RBM:
 
         Returns:
             tuple: (visible probabilities, visible samples)
+
+        >>> rbm = RBM(3, 2)
+        >>> hidden = np.array([[0., 1.]])
+        >>> probs, samples = rbm.sample_visible_given_hidden(hidden)
+        >>> probs.shape == samples.shape == (1, 3)
+        True
         """
         vis_probs = self.sigmoid(
             np.dot(hidden_batch, self.weights.T) + self.visible_bias
@@ -140,6 +157,11 @@ class RBM:
 
         Returns:
             float: Reconstruction loss (mean squared error) for batch.
+
+        >>> rbm = RBM(3, 2, cd_steps=2)
+        >>> data = np.array([[0., 1., 0.]])
+        >>> round(rbm.contrastive_divergence(data), 5)
+        0.0 < 1.0  # Loss should be a non-negative float less than 1
         """
         h_probs0, h0 = self.sample_hidden_given_visible(visible_zero)
         vk, hk = visible_zero, h0
@@ -203,6 +225,9 @@ class DeepBeliefNetwork:
             cd_steps (int): Number of sampling steps in generate_input_for_layer.
             save_path (str, optional): Path for saving trained model parameters.
 
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> dbn.input_size
+        4
         """
         self.input_size = input_size
         self.layers = layers
@@ -228,7 +253,6 @@ class DeepBeliefNetwork:
         ...    np.array([0.5, 1/(1+np.exp(-1))])
         ... )
         True
-
         """
         return 1.0 / (1.0 + np.exp(-input_array))
 
@@ -241,6 +265,12 @@ class DeepBeliefNetwork:
 
         Returns:
             np.ndarray: Binary sampled values.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> probs = np.array([0., 1.])
+        >>> result = dbn.sample_prob(probs)
+        >>> set(result).issubset({0., 1.})
+        True
         """
         rng = np.random.default_rng()
         return (rng.random(probabilities.shape) < probabilities).astype(float)
@@ -258,6 +288,13 @@ class DeepBeliefNetwork:
 
         Returns:
             tuple: Hidden probabilities and binary samples.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> import numpy as np
+        >>> visible = np.array([[0., 1., 0., 1.]])
+        >>> probs, samples = dbn.sample_h(visible, np.ones((4,3)), np.zeros(3))
+        >>> probs.shape == samples.shape == (1, 3)
+        True
         """
         probs = self.sigmoid(np.dot(visible_units, weights) + hidden_bias)
         samples = self.sample_prob(probs)
@@ -276,6 +313,13 @@ class DeepBeliefNetwork:
 
         Returns:
             tuple: Visible probabilities and binary samples.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> import numpy as np
+        >>> hidden = np.array([[0., 1., 1.]])
+        >>> probs, samples = dbn.sample_v(hidden, np.ones((4,3)), np.zeros(4))
+        >>> probs.shape == samples.shape == (1, 4)
+        True
         """
         probs = self.sigmoid(np.dot(hidden_units, weights.T) + visible_bias)
         samples = self.sample_prob(probs)
@@ -293,6 +337,11 @@ class DeepBeliefNetwork:
 
         Returns:
             np.ndarray: Smoothed input for the layer.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> data = np.ones((2, 4))
+        >>> np.allclose(dbn.generate_input_for_layer(0, data), data)
+        True
         """
         if layer_index == 0:
             return original_input.copy()
@@ -312,6 +361,10 @@ class DeepBeliefNetwork:
 
         Args:
             training_data (np.ndarray): Training dataset.
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> data = np.random.randint(0, 2, (10, 4)).astype(float)
+        >>> dbn.train_dbn(data)  # runs without error
         """
         for idx, layer_size in enumerate(self.layers):
             n_visible = self.input_size if idx == 0 else self.layers[idx - 1]
@@ -336,6 +389,12 @@ class DeepBeliefNetwork:
 
         Returns:
             tuple: (encoded representation, reconstructed input, MSE error)
+
+        >>> dbn = DeepBeliefNetwork(4, [3])
+        >>> data = np.ones((2, 4))
+        >>> encoded, reconstructed, error = dbn.reconstruct(data)
+        >>> encoded.shape
+        (2, 3)
         """
         h = input_data.copy()
         for i in range(len(self.layer_params)):
