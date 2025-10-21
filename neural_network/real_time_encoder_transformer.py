@@ -6,7 +6,7 @@ from torch import nn
 
 # Time2Vec layer for positional encoding of real-time data like EEG
 class Time2Vec(nn.Module):
-    # Encodes time steps into a continuous embedding space 
+    # Encodes time steps into a continuous embedding space
     def __init__(self, d_model):
         super().__init__()
         self.w0 = nn.Parameter(torch.randn(1, 1))
@@ -174,12 +174,8 @@ class EEGTransformer(nn.Module):
 
         # Transformer encoder for sequence modeling
         self.encoder = TransformerEncoder(
-    d_model,
-    n_head,
-    hidden_dim,
-    num_layers,
-    drop_prob
-)
+            d_model, n_head, hidden_dim, num_layers, drop_prob
+        )
 
         # Attention pooling to summarize time dimension
         self.pooling = AttentionPooling(d_model)
