@@ -1,8 +1,7 @@
 import threading
 import time
-from typing import List
 
-def sleep_sort(arr: List[int]) -> List[int]:
+def sleep_sort(arr: list[int]) -> list[int]:
     """
     Sleep sort implementation - each element sleeps for n seconds then gets appended
     """
