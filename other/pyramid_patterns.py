@@ -29,6 +29,7 @@ Example:
 
 # No import needed for None type annotation
 
+
 def pyramid(height: int) -> None:
     """Prints a pyramid pattern of the specified height."""
     for i in range(height):
