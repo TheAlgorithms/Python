@@ -6,7 +6,6 @@ https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
 """
 
 import doctest
-
 import numpy as np
 from numpy import ndarray
 from sklearn.datasets import load_iris
@@ -42,19 +41,25 @@ def compute_pairwise_affinities(data_matrix: ndarray, sigma: float = 1.0) -> nda
 
     >>> x = np.array([[0.0, 0.0], [1.0, 0.0]])
     >>> probabilities = compute_pairwise_affinities(x)
-    >>> float(round(probabilities[0, 1], 3))
+    >>> round(float(probabilities[0, 1]), 3)
     0.25
     """
     n_samples = data_matrix.shape[0]
+    # Compute pairwise squared Euclidean distances
     squared_sum = np.sum(np.square(data_matrix), axis=1)
-    squared_distance = np.add(
-        np.add(-2 * np.dot(data_matrix, data_matrix.T), squared_sum).T, squared_sum
+    squared_distance = (
+        squared_sum[:, np.newaxis]
+        + squared_sum[np.newaxis, :]
+        - 2 * np.dot(data_matrix, data_matrix.T)
     )
 
+    # Gaussian kernel
     affinity_matrix = np.exp(-squared_distance / (2 * sigma**2))
     np.fill_diagonal(affinity_matrix, 0)
 
+    # Normalize to form probability distribution
     affinity_matrix /= np.sum(affinity_matrix)
+    # Symmetrize
     return (affinity_matrix + affinity_matrix.T) / (2 * n_samples)
 
 
@@ -74,13 +79,12 @@ def compute_low_dim_affinities(embedding_matrix: ndarray) -> tuple[ndarray, ndar
     (2, 2)
     """
     squared_sum = np.sum(np.square(embedding_matrix), axis=1)
-    numerator_matrix = 1 / (
-        1
-        + np.add(
-            np.add(-2 * np.dot(embedding_matrix, embedding_matrix.T), squared_sum).T,
-            squared_sum,
-        )
+    squared_distance = (
+        squared_sum[:, np.newaxis]
+        + squared_sum[np.newaxis, :]
+        - 2 * np.dot(embedding_matrix, embedding_matrix.T)
     )
+    numerator_matrix = 1 / (1 + squared_distance)
     np.fill_diagonal(numerator_matrix, 0)
 
     q_matrix = numerator_matrix / np.sum(numerator_matrix)
@@ -129,6 +133,7 @@ def apply_tsne(
 
         affinity_diff = high_dim_affinities - low_dim_affinities
 
+        # Gradient of the Kullback-Leibler divergence cost function
         gradient = 4 * (
             np.dot((affinity_diff * numerator_matrix), embedding)
             - np.multiply(
@@ -137,7 +142,7 @@ def apply_tsne(
             )
         )
 
-        embedding_increment = momentum * embedding_increment - learning_rate * gradient
+        embedding_increment = momentum * embedding_increment + learning_rate * gradient
         embedding += embedding_increment
 
         if iteration == int(n_iter / 4):
@@ -161,16 +166,7 @@ def main() -> None:
         raise TypeError("t-SNE embedding must be an ndarray")
 
     print("t-SNE embedding (first 5 points):")
-    print(embedding[:5])
-
-    # Optional visualization (Ruff/mypy compliant)
-
-    # import matplotlib.pyplot as plt
-    # plt.scatter(embedding[:, 0], embedding[:, 1], c=labels, cmap="viridis")
-    # plt.title("t-SNE Visualization of the Iris Dataset")
-    # plt.xlabel("Dimension 1")
-    # plt.ylabel("Dimension 2")
-    # plt.show()
+    print(np.round(embedding[:5], 4))
 
 
 if __name__ == "__main__":
