@@ -54,7 +54,9 @@ class KNN:
         elif self.distance_metric == "minkowski":
             return float(np.sum(np.abs(a - b) ** self.p) ** (1 / self.p))
         else:
-            raise ValueError("Invalid distance metric. Choose 'euclidean', 'manhattan', or 'minkowski'.")
+            raise ValueError(
+                "Invalid distance metric. Choose 'euclidean', 'manhattan', or 'minkowski'."
+            )
 
     def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
         """
@@ -81,6 +83,7 @@ class KNN:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     iris = datasets.load_iris()
