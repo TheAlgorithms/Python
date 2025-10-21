@@ -258,6 +258,76 @@ def post_order_iter(node: TreeNode) -> None:
         print(stack2.pop().data, end=",")
 
 
+# Morris Traversal implementations
+def morris_in_order(node: TreeNode) -> None:
+    """
+    Morris In-Order Traversal without recursion or stack
+    >>> root = TreeNode(1)
+    >>> tree_node2 = TreeNode(2)
+    >>> tree_node3 = TreeNode(3)
+    >>> tree_node4 = TreeNode(4)
+    >>> tree_node5 = TreeNode(5)
+    >>> tree_node6 = TreeNode(6)
+    >>> tree_node7 = TreeNode(7)
+    >>> root.left, root.right = tree_node2, tree_node3
+    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
+    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
+    >>> morris_in_order(root)
+    4,2,5,1,6,3,7,
+    """
+    current = node
+    while current:
+        if not current.left:
+            print(current.data, end=",")
+            current = current.right
+        else:
+            pre = current.left
+            while pre.right and pre.right != current:
+                pre = pre.right
+            if not pre.right:
+                pre.right = current
+                current = current.left
+            else:
+                pre.right = None
+                print(current.data, end=",")
+                current = current.right
+
+
+def morris_pre_order(node: TreeNode) -> None:
+    """
+    Morris Pre-Order Traversal without recursion or stack
+    >>> root = TreeNode(1)
+    >>> tree_node2 = TreeNode(2)
+    >>> tree_node3 = TreeNode(3)
+    >>> tree_node4 = TreeNode(4)
+    >>> tree_node5 = TreeNode(5)
+    >>> tree_node6 = TreeNode(6)
+    >>> tree_node7 = TreeNode(7)
+    >>> root.left, root.right = tree_node2, tree_node3
+    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
+    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
+    >>> morris_pre_order(root)
+    1,2,4,5,3,6,7,
+    """
+    current = node
+    while current:
+        if not current.left:
+            print(current.data, end=",")
+            current = current.right
+        else:
+            pre = current.left
+            while pre.right and pre.right != current:
+                pre = pre.right
+            if not pre.right:
+                print(current.data, end=",")
+                pre.right = current
+                current = current.left
+            else:
+                pre.right = None
+                current = current.right
+
+
+
 def prompt(s: str = "", width=50, char="*") -> str:
     if not s:
         return "\n" + width * char
@@ -302,4 +372,11 @@ if __name__ == "__main__":
 
     print(prompt("Post Order Traversal - Iteration Version"))
     post_order_iter(node)
+    print(prompt())
+
+    morris_in_order(node)
+    print(prompt() + "\n")
+
+    print(prompt("Morris Pre-Order Traversal"))
+    morris_pre_order(node)
     print(prompt())
