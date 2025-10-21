@@ -12,6 +12,7 @@ Reference:
 https://en.wikipedia.org/wiki/Adjacency_list
 """
 
+
 def adjacency_vector_closed(path: list[str], nodes: list[str]) -> list[str]:
     """
     Generate adjacency vector for a closed tour.
