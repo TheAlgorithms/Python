@@ -830,6 +830,7 @@
   * [Spiral Print](matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
+  * [Transitive Closure](matrix/transitive_closure.py)
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
