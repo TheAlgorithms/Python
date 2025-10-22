@@ -1,11 +1,6 @@
 """
 A simple implementation of the Snake, Water, Gun game.
 """
-<<<<<<< HEAD
-=======
-
-import random
->>>>>>> cb64f9d3ea4c19f69d60567f21cfbc41a0229195
 import doctest
 import random
 
@@ -52,9 +47,7 @@ def main():
     """
     print("--- Snake, Water, Gun Game ---")
     player_input = (
-        input("Enter your choice (s for snake, w for water, g for gun): ")
-        .lower()
-        .strip()
+        input("Enter your choice (s for snake, w for water, g for gun): ").lower().strip()
     )
 
     if player_input not in ["s", "w", "g"]:
