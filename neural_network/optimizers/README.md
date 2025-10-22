@@ -14,7 +14,7 @@ The most basic optimizer that updates parameters in the direction opposite to th
 ### 2. MomentumSGD (SGD with Momentum)
 Adds a momentum term that accumulates past gradients to accelerate convergence and reduce oscillations.
 
-**Update Rule:** 
+**Update Rule:**
 ```
 v = β * v + (1-β) * g
 θ = θ - α * v
@@ -97,10 +97,10 @@ x_adam = [5.0]
 for i in range(20):
     grad_sgd = [gradient_quadratic(x_sgd[0])]
     grad_adam = [gradient_quadratic(x_adam[0])]
-    
+
     x_sgd = sgd.update(x_sgd, grad_sgd)
     x_adam = adam.update(x_adam, grad_adam)
-    
+
     print(f"Step {i+1}: SGD={x_sgd[0]:.4f}, Adam={x_adam[0]:.4f}")
 ```
 
@@ -153,7 +153,7 @@ for step in range(100):
         x, y = positions[name]
         grad = rosenbrock_grad(x, y)
         positions[name] = optimizer.update(positions[name], grad)
-    
+
     if step % 20 == 19:
         print(f"\\nStep {step + 1}:")
         for name, pos in positions.items():
@@ -209,7 +209,7 @@ where `f(θ)` is typically a loss function and `θ` represents the parameters of
 The optimizers differ in how they use gradient information `g = ∇f(θ)` to update parameters:
 
 1. **SGD** uses gradients directly
-2. **Momentum** accumulates gradients over time  
+2. **Momentum** accumulates gradients over time
 3. **NAG** uses lookahead to reduce overshooting
 4. **Adagrad** adapts learning rates based on gradient history
 5. **Adam** combines momentum with adaptive learning rates

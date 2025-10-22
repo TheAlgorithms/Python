@@ -8,7 +8,7 @@ follow standard mathematical definitions.
 Available optimizers:
     - SGD: Stochastic Gradient Descent
     - MomentumSGD: SGD with momentum
-    - NAG: Nesterov Accelerated Gradient 
+    - NAG: Nesterov Accelerated Gradient
     - Adagrad: Adaptive Gradient Algorithm
     - Adam: Adaptive Moment Estimation
 
