@@ -319,7 +319,7 @@ def demonstrate_batched_prompts(predictor, image):
     # Display all masks together
     plt.figure(figsize=(10, 10))
     plt.imshow(image)
-    for i, mask in enumerate(masks):
+    for _i, mask in enumerate(masks):
         show_mask(mask.squeeze(0), plt.gca(), random_color=True)
     for mask in masks:
         show_mask(mask.squeeze(0), plt.gca(), random_color=True)
