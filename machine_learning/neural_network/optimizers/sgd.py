@@ -4,6 +4,7 @@ Stochastic Gradient Descent (SGD) optimizer.
 
 from typing import List
 
+
 def sgd_update(weights: List[float], grads: List[float], lr: float) -> List[float]:
     """
     Update weights using SGD.
