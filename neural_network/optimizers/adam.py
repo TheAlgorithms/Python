@@ -16,7 +16,6 @@ v̂_t = v_t / (1 - β₂^t)                   # Bias-corrected second moment
 from __future__ import annotations
 
 import math
-from typing import List, Union, Tuple
 
 from .base_optimizer import BaseOptimizer
 
@@ -109,11 +108,14 @@ class Adam(BaseOptimizer):
         super().__init__(learning_rate)
 
         if not 0 <= beta1 < 1:
-            raise ValueError(f"beta1 must be in [0, 1), got {beta1}")
+            msg = f"beta1 must be in [0, 1), got {beta1}"
+            raise ValueError(msg)
         if not 0 <= beta2 < 1:
-            raise ValueError(f"beta2 must be in [0, 1), got {beta2}")
+            msg = f"beta2 must be in [0, 1), got {beta2}"
+            raise ValueError(msg)
         if epsilon <= 0:
-            raise ValueError(f"epsilon must be positive, got {epsilon}")
+            msg = f"epsilon must be positive, got {epsilon}"
+            raise ValueError(msg)
 
         self.beta1 = beta1
         self.beta2 = beta2
@@ -126,9 +128,9 @@ class Adam(BaseOptimizer):
 
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using Adam rule.
 
@@ -162,11 +164,11 @@ class Adam(BaseOptimizer):
         bias_correction2 = 1 - self.beta2**self._time_step
 
         def _adam_update_recursive(
-            parameters: Union[float, List],
-            gradients: Union[float, List],
-            first_moment: Union[float, List],
-            second_moment: Union[float, List]
-        ) -> Tuple[Union[float, List], Union[float, List], Union[float, List]]:
+            parameters: float | list,
+            gradients: float | list,
+            first_moment: float | list,
+            second_moment: float | list
+        ) -> tuple[float | list, float | list, float | list]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -195,9 +197,12 @@ class Adam(BaseOptimizer):
 
             # Handle list case
             if len(parameters) != len(gradients):
-                raise ValueError(
+                msg = (
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
+                )
+                raise ValueError(
+                    msg
                 )
 
             new_params = []
@@ -231,8 +236,9 @@ class Adam(BaseOptimizer):
                     new_first_moments.append(new_m1)
                     new_second_moments.append(new_m2)
                 else:
+                    msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
                     raise ValueError(
-                        f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
+                        msg
                     )
 
             return new_params, new_first_moments, new_second_moments
@@ -247,8 +253,8 @@ class Adam(BaseOptimizer):
         return updated_params
 
     def _initialize_like(
-        self, gradients: Union[List[float], List[List[float]]]
-    ) -> Union[List[float], List[List[float]]]:
+        self, gradients: list[float] | list[list[float]]
+    ) -> list[float] | list[list[float]]:
         """
         Initialize moments with same structure as gradients, filled with zeros.
 
@@ -301,8 +307,8 @@ if __name__ == "__main__":
     print("This is a classic non-convex optimization test function.")
     print("Global minimum at (1, 1) with f(1,1) = 0")
 
-    from .sgd import SGD
     from .adagrad import Adagrad
+    from .sgd import SGD
 
     # Initialize optimizers for comparison
     sgd = SGD(learning_rate=0.001)
@@ -318,7 +324,7 @@ if __name__ == "__main__":
         """Rosenbrock function: f(x,y) = 100*(y-x²)² + (1-x)²"""
         return 100 * (y - x * x) ** 2 + (1 - x) ** 2
 
-    def rosenbrock_gradient(x: float, y: float) -> List[float]:
+    def rosenbrock_gradient(x: float, y: float) -> list[float]:
         """Gradient of Rosenbrock function"""
         df_dx = -400 * x * (y - x * x) - 2 * (1 - x)
         df_dy = 200 * (y - x * x)
@@ -355,7 +361,7 @@ if __name__ == "__main__":
                 f"  Adam:    f = {f_adam:10.3f}, x = ({x_adam[0]:6.3f}, {x_adam[1]:6.3f})"
             )
 
-    print(f"\\nFinal Results (target: x=1, y=1, f=0):")
+    print("\\nFinal Results (target: x=1, y=1, f=0):")
     f_final_sgd = rosenbrock(x_sgd[0], x_sgd[1])
     f_final_adagrad = rosenbrock(x_adagrad[0], x_adagrad[1])
     f_final_adam = rosenbrock(x_adam[0], x_adam[1])

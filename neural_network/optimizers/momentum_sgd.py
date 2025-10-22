@@ -15,8 +15,6 @@ where v_t is the velocity (momentum), β is the momentum coefficient,
 
 from __future__ import annotations
 
-from typing import List, Union, Tuple
-
 from .base_optimizer import BaseOptimizer
 
 
@@ -87,16 +85,17 @@ class MomentumSGD(BaseOptimizer):
         super().__init__(learning_rate)
 
         if not 0 <= momentum < 1:
-            raise ValueError(f"Momentum must be in [0, 1), got {momentum}")
+            msg = f"Momentum must be in [0, 1), got {momentum}"
+            raise ValueError(msg)
 
         self.momentum = momentum
         self._velocity = None  # Will be initialized on first update
 
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using Momentum SGD rule.
 
@@ -116,10 +115,10 @@ class MomentumSGD(BaseOptimizer):
         """
 
         def _check_shapes_and_get_velocity(
-            parameters: Union[float, List[Union[float, List[float]]]], 
-            gradients: Union[float, List[Union[float, List[float]]]], 
-            velocity_values: Union[float, List[Union[float, List[float]]]]
-        ) -> Tuple[Union[float, List[Union[float, List[float]]]], Union[float, List[Union[float, List[float]]]]]:
+            parameters: float | list[float | list[float]],
+            gradients: float | list[float | list[float]],
+            velocity_values: float | list[float | list[float]]
+        ) -> tuple[float | list[float | list[float]], float | list[float | list[float]]]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -139,9 +138,12 @@ class MomentumSGD(BaseOptimizer):
 
             # Handle list case
             if len(parameters) != len(gradients):
-                raise ValueError(
+                msg = (
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
+                )
+                raise ValueError(
+                    msg
                 )
 
             if velocity_values is None:
@@ -152,7 +154,7 @@ class MomentumSGD(BaseOptimizer):
             new_params = []
             new_velocity = []
 
-            for i, (p, g, v) in enumerate(zip(parameters, gradients, velocity_values)):
+            for _i, (p, g, v) in enumerate(zip(parameters, gradients, velocity_values)):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_v = _check_shapes_and_get_velocity(p, g, v)
@@ -169,8 +171,9 @@ class MomentumSGD(BaseOptimizer):
                     new_params.append(new_p)
                     new_velocity.append(new_v)
                 else:
+                    msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
                     raise ValueError(
-                        f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
+                        msg
                     )
 
             return new_params, new_velocity
@@ -187,8 +190,8 @@ class MomentumSGD(BaseOptimizer):
         return updated_params
 
     def _initialize_velocity_like(
-        self, gradients: Union[List[float], List[List[float]]]
-    ) -> Union[List[float], List[List[float]]]:
+        self, gradients: list[float] | list[list[float]]
+    ) -> list[float] | list[list[float]]:
         """
         Initialize velocity with the same structure as gradients, filled with zeros.
 
@@ -271,7 +274,7 @@ if __name__ == "__main__":
                 f"  Momentum: f = {f_momentum:.6f}, x = ({x_momentum[0]:6.3f}, {x_momentum[1]:6.3f})"
             )
 
-    print(f"\\nFinal comparison:")
+    print("\\nFinal comparison:")
     f_final_sgd = x_sgd[0] ** 2 + 10 * x_sgd[1] ** 2
     f_final_momentum = x_momentum[0] ** 2 + 10 * x_momentum[1] ** 2
     print(f"SGD final loss: {f_final_sgd:.6f}")

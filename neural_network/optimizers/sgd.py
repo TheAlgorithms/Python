@@ -10,8 +10,6 @@ where θ are the parameters, α is the learning rate, and ∇θ is the gradient.
 
 from __future__ import annotations
 
-from typing import List, Union
-
 from .base_optimizer import BaseOptimizer
 
 
@@ -79,9 +77,9 @@ class SGD(BaseOptimizer):
 
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using SGD rule.
 
@@ -99,9 +97,9 @@ class SGD(BaseOptimizer):
         """
 
         def _check_and_update_recursive(
-            parameters: Union[float, List[Union[float, List[float]]]], 
-            gradients: Union[float, List[Union[float, List[float]]]]
-        ) -> Union[float, List[Union[float, List[float]]]]:
+            parameters: float | list[float | list[float]],
+            gradients: float | list[float | list[float]]
+        ) -> float | list[float | list[float]]:
             # Handle 1D case (list of floats)
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -112,9 +110,12 @@ class SGD(BaseOptimizer):
 
             # Handle list case
             if len(parameters) != len(gradients):
-                raise ValueError(
+                msg = (
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
+                )
+                raise ValueError(
+                    msg
                 )
 
             result = []
@@ -126,8 +127,9 @@ class SGD(BaseOptimizer):
                     # Base case for numbers
                     result.append(p - self.learning_rate * g)
                 else:
+                    msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
                     raise ValueError(
-                        f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
+                        msg
                     )
 
             return result

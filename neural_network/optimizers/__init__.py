@@ -15,10 +15,10 @@ Available optimizers:
 Each optimizer implements a common interface for updating parameters given gradients.
 """
 
-from .sgd import SGD
-from .momentum_sgd import MomentumSGD
-from .nag import NAG
 from .adagrad import Adagrad
 from .adam import Adam
+from .momentum_sgd import MomentumSGD
+from .nag import NAG
+from .sgd import SGD
 
-__all__ = ["SGD", "MomentumSGD", "NAG", "Adagrad", "Adam"]
+__all__ = ["NAG", "SGD", "Adagrad", "Adam", "MomentumSGD"]

@@ -7,10 +7,9 @@ analysis on different optimization problems.
 """
 
 import math
-from typing import List, Tuple
 
 # Import all optimizers
-from neural_network.optimizers import SGD, MomentumSGD, NAG, Adagrad, Adam
+from neural_network.optimizers import NAG, SGD, Adagrad, Adam, MomentumSGD
 
 
 def test_basic_functionality() -> None:
@@ -115,7 +114,7 @@ def multidimensional_optimization() -> None:
     def f(x: float, y: float) -> float:
         return x * x + 10 * y * y
 
-    def grad_f(x: float, y: float) -> List[float]:
+    def grad_f(x: float, y: float) -> list[float]:
         return [2 * x, 20 * y]
 
     print(f"{'Step':<4} {'Loss':<45}")
@@ -169,7 +168,7 @@ def rosenbrock_optimization() -> None:
     def rosenbrock(x: float, y: float) -> float:
         return 100 * (y - x * x) ** 2 + (1 - x) ** 2
 
-    def rosenbrock_grad(x: float, y: float) -> List[float]:
+    def rosenbrock_grad(x: float, y: float) -> list[float]:
         df_dx = -400 * x * (y - x * x) - 2 * (1 - x)
         df_dy = 200 * (y - x * x)
         return [df_dx, df_dy]
@@ -228,7 +227,7 @@ def convergence_analysis() -> None:
     }
 
     positions = {name: [10.0] for name in optimizers}
-    convergence_steps = {name: None for name in optimizers}
+    convergence_steps = dict.fromkeys(optimizers)
     tolerance = 0.01
 
     for step in range(100):

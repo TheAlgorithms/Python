@@ -8,7 +8,6 @@ to ensure a consistent interface for parameter updates.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import List, Union
 
 
 class BaseOptimizer(ABC):
@@ -41,16 +40,17 @@ class BaseOptimizer(ABC):
             0.1
         """
         if learning_rate <= 0:
-            raise ValueError(f"Learning rate must be positive, got {learning_rate}")
+            msg = f"Learning rate must be positive, got {learning_rate}"
+            raise ValueError(msg)
 
         self.learning_rate = learning_rate
 
     @abstractmethod
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using gradients.
 
@@ -68,7 +68,6 @@ class BaseOptimizer(ABC):
         Raises:
             ValueError: If parameters and gradients have different shapes
         """
-        pass
 
     def reset(self) -> None:
         """
@@ -78,7 +77,6 @@ class BaseOptimizer(ABC):
         or when you want to clear any accumulated state (like momentum).
         Default implementation does nothing, but optimizers with state should override.
         """
-        pass
 
     def __str__(self) -> str:
         """String representation of the optimizer."""

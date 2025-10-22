@@ -16,7 +16,6 @@ and ⊙ denotes element-wise multiplication.
 from __future__ import annotations
 
 import math
-from typing import List, Union
 
 from .base_optimizer import BaseOptimizer
 
@@ -91,16 +90,17 @@ class Adagrad(BaseOptimizer):
         super().__init__(learning_rate)
 
         if epsilon <= 0:
-            raise ValueError(f"Epsilon must be positive, got {epsilon}")
+            msg = f"Epsilon must be positive, got {epsilon}"
+            raise ValueError(msg)
 
         self.epsilon = epsilon
         self._accumulated_gradients = None  # Will be initialized on first update
 
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using Adagrad rule.
 
@@ -120,10 +120,10 @@ class Adagrad(BaseOptimizer):
         """
 
         def _adagrad_update_recursive(
-            parameters: Union[float, List[Union[float, List[float]]]], 
-            gradients: Union[float, List[Union[float, List[float]]]], 
-            accumulated_gradients: Union[float, List[Union[float, List[float]]]]
-        ) -> tuple[Union[float, List[Union[float, List[float]]]], Union[float, List[Union[float, List[float]]]]]:
+            parameters: float | list[float | list[float]],
+            gradients: float | list[float | list[float]],
+            accumulated_gradients: float | list[float | list[float]]
+        ) -> tuple[float | list[float | list[float]], float | list[float | list[float]]]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -149,9 +149,12 @@ class Adagrad(BaseOptimizer):
 
             # Handle list case
             if len(parameters) != len(gradients):
-                raise ValueError(
+                msg = (
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
+                )
+                raise ValueError(
+                    msg
                 )
 
             if accumulated_gradients is None:
@@ -162,7 +165,7 @@ class Adagrad(BaseOptimizer):
             new_params = []
             new_acc_grads = []
 
-            for i, (p, g, ag) in enumerate(zip(parameters, gradients, accumulated_gradients)):
+            for _i, (p, g, ag) in enumerate(zip(parameters, gradients, accumulated_gradients)):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_ag = _adagrad_update_recursive(p, g, ag)
@@ -183,8 +186,9 @@ class Adagrad(BaseOptimizer):
                     new_params.append(new_p)
                     new_acc_grads.append(new_ag)
                 else:
+                    msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
                     raise ValueError(
-                        f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
+                        msg
                     )
 
             return new_params, new_acc_grads
@@ -201,8 +205,8 @@ class Adagrad(BaseOptimizer):
         return updated_params
 
     def _initialize_like(
-        self, gradients: Union[List[float], List[List[float]]]
-    ) -> Union[List[float], List[List[float]]]:
+        self, gradients: list[float] | list[list[float]]
+    ) -> list[float] | list[list[float]]:
         """
         Initialize accumulated gradients with same structure as gradients, filled with zeros.
 
@@ -283,7 +287,7 @@ if __name__ == "__main__":
                 f"  Adagrad: f = {f_adagrad:8.3f}, x = ({x_adagrad[0]:6.3f}, {x_adagrad[1]:6.3f})"
             )
 
-    print(f"\\nFinal comparison:")
+    print("\\nFinal comparison:")
     f_final_sgd = x_sgd[0] ** 2 + 100 * x_sgd[1] ** 2
     f_final_adagrad = x_adagrad[0] ** 2 + 100 * x_adagrad[1] ** 2
     print(f"SGD final loss:     {f_final_sgd:.6f}")

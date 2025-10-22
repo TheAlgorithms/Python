@@ -18,8 +18,6 @@ v_t = β * v_{t-1} + (1-β) * g_t
 
 from __future__ import annotations
 
-from typing import List, Union, Tuple
-
 from .base_optimizer import BaseOptimizer
 
 
@@ -89,16 +87,17 @@ class NAG(BaseOptimizer):
         super().__init__(learning_rate)
 
         if not 0 <= momentum < 1:
-            raise ValueError(f"Momentum must be in [0, 1), got {momentum}")
+            msg = f"Momentum must be in [0, 1), got {momentum}"
+            raise ValueError(msg)
 
         self.momentum = momentum
         self._velocity = None  # Will be initialized on first update
 
     def update(
         self,
-        parameters: Union[List[float], List[List[float]]],
-        gradients: Union[List[float], List[List[float]]],
-    ) -> Union[List[float], List[List[float]]]:
+        parameters: list[float] | list[list[float]],
+        gradients: list[float] | list[list[float]],
+    ) -> list[float] | list[list[float]]:
         """
         Update parameters using NAG rule.
 
@@ -118,10 +117,10 @@ class NAG(BaseOptimizer):
         """
 
         def _nag_update_recursive(
-            parameters: Union[float, List], 
-            gradients: Union[float, List], 
-            velocity: Union[float, List, None]
-        ) -> Tuple[Union[float, List], Union[float, List]]:
+            parameters: float | list,
+            gradients: float | list,
+            velocity: float | list | None
+        ) -> tuple[float | list, float | list]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -145,9 +144,12 @@ class NAG(BaseOptimizer):
 
             # Handle list case
             if len(parameters) != len(gradients):
-                raise ValueError(
+                msg = (
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
+                )
+                raise ValueError(
+                    msg
                 )
 
             if velocity is None:
@@ -158,7 +160,7 @@ class NAG(BaseOptimizer):
             new_params = []
             new_velocity = []
 
-            for i, (p, g, v) in enumerate(zip(parameters, gradients, velocity)):
+            for _i, (p, g, v) in enumerate(zip(parameters, gradients, velocity)):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_v = _nag_update_recursive(p, g, v)
@@ -179,8 +181,9 @@ class NAG(BaseOptimizer):
                     new_params.append(new_p)
                     new_velocity.append(new_v)
                 else:
+                    msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
                     raise ValueError(
-                        f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
+                        msg
                     )
 
             return new_params, new_velocity
@@ -197,8 +200,8 @@ class NAG(BaseOptimizer):
         return updated_params
 
     def _initialize_velocity_like(
-        self, gradients: Union[List[float], List[List[float]]]
-    ) -> Union[List[float], List[List[float]]]:
+        self, gradients: list[float] | list[list[float]]
+    ) -> list[float] | list[list[float]]:
         """
         Initialize velocity with the same structure as gradients, filled with zeros.
 
@@ -282,7 +285,7 @@ if __name__ == "__main__":
             print(f"  Momentum: x = {x_momentum[0]:8.4f}, f(x) = {f_momentum:8.6f}")
             print(f"  NAG:      x = {x_nag[0]:8.4f}, f(x) = {f_nag:8.6f}")
 
-    print(f"\\nFinal comparison:")
+    print("\\nFinal comparison:")
     f_final_momentum = f(x_momentum[0])
     f_final_nag = f(x_nag[0])
     print(f"Momentum final: x = {x_momentum[0]:.4f}, f = {f_final_momentum:.6f}")
