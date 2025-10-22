@@ -1,96 +1,180 @@
-import secrets
-from random import shuffle
-from string import ascii_letters, ascii_lowercase, ascii_uppercase, digits, punctuation
+"""
+hangman.py 
+A simple command-line Hangman game implemented in Python.
+
+This program randomly selects a word from a given list and allows the user
+to guess it letter by letter. The game ends when the user either correctly
+guesses all the letters or exceeds the maximum allowed wrong attempts.
+
+Usage:
+    python hangman.py
+
+Example:
+    $ python hangman.py
+    Welcome to Hangman!
+    _ _ _ _ _
+    Enter a letter: a
+    Correct!
+    a _ _ _ _
+    ...
+"""
+
+import random
+
+# ----------------------------- #
+# HANGMAN STAGES
+# ----------------------------- #
+
+words = (
+    # Fruits 
+    'apple', 'orange', 'banana', 'coconut', 'pineapple', 'mango', 'papaya',
+    'strawberry', 'blueberry', 'raspberry', 'grape', 'watermelon', 'peach',
+    'pear', 'cherry', 'plum', 'kiwi', 'apricot', 'lemon', 'lime',
+
+    # Animals 
+    'elephant', 'tiger', 'lion', 'giraffe', 'zebra', 'monkey', 'kangaroo',
+    'dolphin', 'rabbit', 'panda', 'koala', 'wolf', 'bear', 'fox', 'camel',
+    'penguin', 'snake', 'turtle', 'deer', 'leopard',
+
+    # Countries 
+    'pakistan', 'india', 'china', 'japan', 'brazil', 'canada', 'france',
+    'germany', 'australia', 'italy', 'spain', 'egypt', 'turkey', 'russia',
+    'mexico', 'norway', 'sweden', 'argentina', 'indonesia', 'nigeria',
+
+    # Colors 
+    'red', 'blue', 'green', 'yellow', 'purple', 'orange', 'black', 'white',
+    'pink', 'brown', 'gray', 'violet', 'indigo', 'silver', 'gold',
+
+    # Computer / Tech 
+    'python', 'javascript', 'variable', 'function', 'developer', 'keyboard',
+    'internet', 'website', 'database', 'algorithm', 'software', 'hardware',
+    'network', 'browser', 'program', 'compiler', 'laptop', 'machine', 'coding',
+
+    # Random everyday words 
+    'school', 'teacher', 'window', 'garden', 'flower', 'butterfly', 'dream',
+    'sunshine', 'moonlight', 'family', 'holiday', 'mountain', 'river',
+    'forest', 'island', 'cloud', 'ocean', 'rainbow', 'friend', 'love'
+)
+
+hangman_art: dict[int, tuple[str, str, str]] = {
+    0: ("    ", "    ", "    "),
+    1: (" o  ", "    ", "    "),
+    2: (" o  ", " |  ", "    "),
+    3: (" o  ", "/|  ", "    "),
+    4: (" o  ", "/|\\ ", "    "),
+    5: (" o  ", "/|\\ ", "/   "),
+    6: (" o  ", "/|\\ ", "/ \\ "),
+}
 
 
-def password_generator(length: int = 8) -> str:
+def display_man(wrong_guesses: int) -> None:
     """
-    Password Generator allows you to generate a random password of length N.
+    Display the current hangman stage according to the number of wrong guesses.
 
-    >>> len(password_generator())
-    8
-    >>> len(password_generator(length=16))
-    16
-    >>> len(password_generator(257))
-    257
-    >>> len(password_generator(length=0))
-    0
-    >>> len(password_generator(-1))
-    0
+    Args:
+        wrong_guesses (int): Number of incorrect guesses made so far.
+
+    >>> display_man(0)
+    *****************
+        
+        
+
+    *****************
+    >>> display_man(1)
+    *****************
+     o  
+    
+    
+
+    *****************
     """
-    chars = ascii_letters + digits + punctuation
-    return "".join(secrets.choice(chars) for _ in range(length))
+    print("*****************")
+    for line in hangman_art[wrong_guesses]:
+        print(line)
+    print("*****************")
 
 
-# ALTERNATIVE METHODS
-# chars_incl= characters that must be in password
-# i= how many letters or characters the password length will be
-def alternative_password_generator(chars_incl: str, i: int) -> str:
-    # Password Generator = full boot with random_number, random_letters, and
-    # random_character FUNCTIONS
-    # Put your code here...
-    i -= len(chars_incl)
-    quotient = i // 3
-    remainder = i % 3
-    # chars = chars_incl + random_letters(ascii_letters, i / 3 + remainder) +
-    #     random_number(digits, i / 3) + random_characters(punctuation, i / 3)
-    chars = (
-        chars_incl
-        + random(ascii_letters, quotient + remainder)
-        + random(digits, quotient)
-        + random(punctuation, quotient)
-    )
-    list_of_chars = list(chars)
-    shuffle(list_of_chars)
-    return "".join(list_of_chars)
-
-    # random is a generalised function for letters, characters and numbers
-
-
-def random(chars_incl: str, i: int) -> str:
-    return "".join(secrets.choice(chars_incl) for _ in range(i))
-
-
-def is_strong_password(password: str, min_length: int = 8) -> bool:
+def display_hint(hint: list[str]) -> None:
     """
-    This will check whether a given password is strong or not. The password must be at
-    least as long as the provided minimum length, and it must contain at least 1
-    lowercase letter, 1 uppercase letter, 1 number and 1 special character.
+    Display the current state of the guessed word as underscores and letters.
 
-    >>> is_strong_password('Hwea7$2!')
-    True
-    >>> is_strong_password('Sh0r1')
-    False
-    >>> is_strong_password('Hello123')
-    False
-    >>> is_strong_password('Hello1238udfhiaf038fajdvjjf!jaiuFhkqi1')
-    True
-    >>> is_strong_password('0')
-    False
+    Args:
+        hint (list[str]): List containing correctly guessed letters or underscores.
+
+    >>> display_hint(['a', '_', 'p', '_', 'e'])
+    a _ p _ e
     """
-
-    if len(password) < min_length:
-        return False
-
-    upper = any(char in ascii_uppercase for char in password)
-    lower = any(char in ascii_lowercase for char in password)
-    num = any(char in digits for char in password)
-    spec_char = any(char in punctuation for char in password)
-
-    return upper and lower and num and spec_char
+    print(" ".join(hint))
 
 
-def main():
-    length = int(input("Please indicate the max length of your password: ").strip())
-    chars_incl = input(
-        "Please indicate the characters that must be in your password: "
-    ).strip()
-    print("Password generated:", password_generator(length))
-    print(
-        "Alternative Password generated:",
-        alternative_password_generator(chars_incl, length),
-    )
-    print("[If you are thinking of using this password, You better save it.]")
+def display_answer(answer: str) -> None:
+    """
+    Display the correct word at the end of the game.
+
+    Args:
+        answer (str): The correct word that was to be guessed.
+
+    >>> display_answer('python')
+    The correct word was: python
+    """
+    print(f"The correct word was: {answer}")
+
+
+def main() -> None:
+    """
+    Main function to run the Hangman game.
+
+    The player has up to 6 incorrect guesses to complete the word.
+    The game ends when the player wins or loses.
+    """
+    answer: str = random.choice(words)
+    hint: list[str] = ["_"] * len(answer)
+    wrong_guesses: int = 0
+    guessed_letters: set[str] = set()
+    is_running: bool = True
+
+    print("\n Welcome to Hangman!")
+    print("Guess the word, one letter at a time.\n")
+
+    while is_running:
+        display_man(wrong_guesses)
+        display_hint(hint)
+        guess = input("Enter a letter: ").lower().strip()
+
+        # Input validation
+        if len(guess) != 1 or not guess.isalpha():
+            print("Invalid input. Please enter a single alphabetic character.\n")
+            continue
+
+        if guess in guessed_letters:
+            print(f"'{guess}' has already been guessed.\n")
+            continue
+
+        guessed_letters.add(guess)
+
+        # Check if the guessed letter is in the word
+        if guess in answer:
+            for i, letter in enumerate(answer):
+                if letter == guess:
+                    hint[i] = guess
+            print("Correct!\n")
+        else:
+            wrong_guesses += 1
+            print("Wrong guess!\n")
+
+        # Win condition
+        if "_" not in hint:
+            display_man(wrong_guesses)
+            display_answer(answer)
+            print("YOU WIN!\n")
+            is_running = False
+
+        # Lose condition
+        elif wrong_guesses >= len(hangman_art) - 1:
+            display_man(wrong_guesses)
+            display_answer(answer)
+            print("YOU LOSE!\n")
+            is_running = False
 
 
 if __name__ == "__main__":
