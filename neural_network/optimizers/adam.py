@@ -177,7 +177,9 @@ class Adam(BaseOptimizer):
                     )
 
                 # Update first moment: m = β₁ * m + (1-β₁) * g
-                new_first_moment = self.beta1 * first_moment + (1 - self.beta1) * gradients
+                new_first_moment = (
+                    self.beta1 * first_moment + (1 - self.beta1) * gradients
+                )
 
                 # Update second moment: v = β₂ * v + (1-β₂) * g²
                 new_second_moment = self.beta2 * second_moment + (1 - self.beta2) * (
@@ -355,10 +357,12 @@ if __name__ == "__main__":
                 f"  SGD:     f = {f_sgd:10.3f}, x = ({x_sgd[0]:6.3f}, {x_sgd[1]:6.3f})"
             )
             print(
-                f"  Adagrad: f = {f_adagrad:10.3f}, x = ({x_adagrad[0]:6.3f}, {x_adagrad[1]:6.3f})"
+                f"  Adagrad: f = {f_adagrad:10.3f}, x = "
+                f"({x_adagrad[0]:6.3f}, {x_adagrad[1]:6.3f})"
             )
             print(
-                f"  Adam:    f = {f_adam:10.3f}, x = ({x_adam[0]:6.3f}, {x_adam[1]:6.3f})"
+                f"  Adam:    f = {f_adam:10.3f}, x = "
+                f"({x_adam[0]:6.3f}, {x_adam[1]:6.3f})"
             )
 
     print("\\nFinal Results (target: x=1, y=1, f=0):")
@@ -366,14 +370,20 @@ if __name__ == "__main__":
     f_final_adagrad = rosenbrock(x_adagrad[0], x_adagrad[1])
     f_final_adam = rosenbrock(x_adam[0], x_adam[1])
 
+    sgd_distance = math.sqrt((x_sgd[0] - 1) ** 2 + (x_sgd[1] - 1) ** 2)
     print(
-        f"SGD:     f = {f_final_sgd:.6f}, distance to optimum = {math.sqrt((x_sgd[0] - 1) ** 2 + (x_sgd[1] - 1) ** 2):.4f}"
+        f"SGD:     f = {f_final_sgd:.6f}, "
+        f"distance to optimum = {sgd_distance:.4f}"
     )
+    adagrad_distance = math.sqrt((x_adagrad[0] - 1) ** 2 + (x_adagrad[1] - 1) ** 2)
     print(
-        f"Adagrad: f = {f_final_adagrad:.6f}, distance to optimum = {math.sqrt((x_adagrad[0] - 1) ** 2 + (x_adagrad[1] - 1) ** 2):.4f}"
+        f"Adagrad: f = {f_final_adagrad:.6f}, "
+        f"distance to optimum = {adagrad_distance:.4f}"
     )
+    adam_distance = math.sqrt((x_adam[0] - 1) ** 2 + (x_adam[1] - 1) ** 2)
     print(
-        f"Adam:    f = {f_final_adam:.6f}, distance to optimum = {math.sqrt((x_adam[0] - 1) ** 2 + (x_adam[1] - 1) ** 2):.4f}"
+        f"Adam:    f = {f_final_adam:.6f}, "
+        f"distance to optimum = {adam_distance:.4f}"
     )
 
     # Determine best performer

@@ -168,7 +168,9 @@ class Adagrad(BaseOptimizer):
             new_params = []
             new_acc_grads = []
 
-            for _i, (p, g, ag) in enumerate(zip(parameters, gradients, accumulated_gradients)):
+            for _i, (p, g, ag) in enumerate(
+                zip(parameters, gradients, accumulated_gradients)
+            ):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_ag = _adagrad_update_recursive(p, g, ag)
@@ -211,7 +213,8 @@ class Adagrad(BaseOptimizer):
         self, gradients: list[float] | list[list[float]]
     ) -> list[float] | list[list[float]]:
         """
-        Initialize accumulated gradients with same structure as gradients, filled with zeros.
+        Initialize accumulated gradients with same structure as gradients,
+        filled with zeros.
 
         Args:
             gradients: Reference structure for initialization
@@ -287,7 +290,8 @@ if __name__ == "__main__":
                 f"  SGD:     f = {f_sgd:8.3f}, x = ({x_sgd[0]:6.3f}, {x_sgd[1]:6.3f})"
             )
             print(
-                f"  Adagrad: f = {f_adagrad:8.3f}, x = ({x_adagrad[0]:6.3f}, {x_adagrad[1]:6.3f})"
+                f"  Adagrad: f = {f_adagrad:8.3f}, x = "
+                f"({x_adagrad[0]:6.3f}, {x_adagrad[1]:6.3f})"
             )
 
     print("\\nFinal comparison:")
