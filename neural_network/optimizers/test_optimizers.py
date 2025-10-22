@@ -201,7 +201,8 @@ def rosenbrock_optimization() -> None:
         loss = rosenbrock(x, y)
         distance_to_optimum = math.sqrt((x - 1) ** 2 + (y - 1) ** 2)
         print(
-            f"{name:12s}: loss = {loss:8.3f}, pos = ({x:6.3f}, {y:6.3f}), dist = {distance_to_optimum:.4f}"
+            f"{name:12s}: loss = {loss:8.3f}, pos = ({x:6.3f}, {y:6.3f}), "
+            f"dist = {distance_to_optimum:.4f}"
         )
 
         if loss < best_loss:
@@ -255,7 +256,8 @@ def convergence_analysis() -> None:
         final_x = positions[name][0]
         if steps is not None:
             print(
-                f"{name:12s}: converged in {steps:2d} steps (final |x| = {abs(final_x):.6f})"
+                f"{name:12s}: converged in {steps:2d} steps "
+                f"(final |x| = {abs(final_x):.6f})"
             )
         else:
             print(f"{name:12s}: did not converge (final |x| = {abs(final_x):.6f})")

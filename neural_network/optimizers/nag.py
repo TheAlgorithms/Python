@@ -132,7 +132,9 @@ class NAG(BaseOptimizer):
                     velocity = 0.0
 
                 # Update velocity: v = β * v + (1-β) * g
-                new_velocity = self.momentum * velocity + (1 - self.momentum) * gradients
+                new_velocity = (
+                    self.momentum * velocity + (1 - self.momentum) * gradients
+                )
 
                 # NAG update: θ = θ - alpha * (β * v + (1-β) * g)
                 nesterov_update = (

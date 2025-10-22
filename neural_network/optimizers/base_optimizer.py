@@ -77,7 +77,6 @@ class BaseOptimizer(ABC):
         or when you want to clear any accumulated state (like momentum).
         Default implementation does nothing, but optimizers with state should override.
         """
-        ...
 
     def __str__(self) -> str:
         """String representation of the optimizer."""

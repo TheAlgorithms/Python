@@ -118,7 +118,9 @@ class MomentumSGD(BaseOptimizer):
             parameters: float | list[float | list[float]],
             gradients: float | list[float | list[float]],
             velocity_values: float | list[float | list[float]]
-        ) -> tuple[float | list[float | list[float]], float | list[float | list[float]]]:
+        ) -> tuple[
+            float | list[float | list[float]], float | list[float | list[float]]
+        ]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -130,7 +132,9 @@ class MomentumSGD(BaseOptimizer):
                     velocity_values = 0.0
 
                 # Update velocity: v = β * v + (1-β) * g
-                new_velocity = self.momentum * velocity_values + (1 - self.momentum) * gradients
+                new_velocity = (
+                    self.momentum * velocity_values + (1 - self.momentum) * gradients
+                )
                 # Update parameter: θ = θ - alpha * v
                 new_param = parameters - self.learning_rate * new_velocity
 
@@ -271,7 +275,8 @@ if __name__ == "__main__":
                 f"  SGD:      f = {f_sgd:.6f}, x = ({x_sgd[0]:6.3f}, {x_sgd[1]:6.3f})"
             )
             print(
-                f"  Momentum: f = {f_momentum:.6f}, x = ({x_momentum[0]:6.3f}, {x_momentum[1]:6.3f})"
+                f"  Momentum: f = {f_momentum:.6f}, x = "
+                f"({x_momentum[0]:6.3f}, {x_momentum[1]:6.3f})"
             )
 
     print("\\nFinal comparison:")
@@ -280,5 +285,6 @@ if __name__ == "__main__":
     print(f"SGD final loss: {f_final_sgd:.6f}")
     print(f"Momentum final loss: {f_final_momentum:.6f}")
     print(
-        f"Improvement with momentum: {((f_final_sgd - f_final_momentum) / f_final_sgd * 100):.1f}%"
+        f"Improvement with momentum: "
+        f"{((f_final_sgd - f_final_momentum) / f_final_sgd * 100):.1f}%"
     )
