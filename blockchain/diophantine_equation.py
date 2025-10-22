@@ -1,6 +1,7 @@
 from __future__ import annotations
 from maths.greatest_common_divisor import greatest_common_divisor
 
+
 def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
@@ -96,6 +97,7 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     assert d == a * x + b * y
 
     return (d, x, y)
+
 
 # This is very efficient
 
