@@ -1,0 +1,135 @@
+"""
+HSV Filter Tool
+
+This module allows the user to interactively select an HSV color range
+from an image using trackbars and outputs the selected HSV values.
+
+Dependencies:
+- OpenCV (cv2)
+- NumPy
+
+Usage:
+1. Set `IMAGE_PATH` to your image file.
+2. Run the script.
+3. Adjust the trackbars to select the desired HSV range.
+4. Press Enter to print the HSV lower and upper bounds.
+"""
+
+import cv2
+import numpy as np
+
+IMAGE_PATH = r"C:\Users\username\New folder\your_image.png"
+
+
+def load_image(path: str) -> np.ndarray:
+    """
+    Load an image from the specified path.
+
+    Parameters
+    ----------
+    path : str
+        Path to the image file.
+
+    Returns
+    -------
+    np.ndarray
+        Loaded BGR image.
+
+    Raises
+    ------
+    FileNotFoundError
+        If the image cannot be loaded.
+    """
+    image = cv2.imread(path)
+    if image is None:
+        raise FileNotFoundError(f"Failed to load image at path: {path}")
+    return image
+
+
+def create_hsv_trackbars(window_name: str) -> None:
+    """
+    Create HSV trackbars for filtering.
+
+    Parameters
+    ----------
+    window_name : str
+        Name of the OpenCV window.
+    """
+    cv2.createTrackbar("H Lower", window_name, 0, 179, lambda x: None)
+    cv2.createTrackbar("S Lower", window_name, 0, 255, lambda x: None)
+    cv2.createTrackbar("V Lower", window_name, 0, 255, lambda x: None)
+    cv2.createTrackbar("H Upper", window_name, 179, 179, lambda x: None)
+    cv2.createTrackbar("S Upper", window_name, 255, 255, lambda x: None)
+    cv2.createTrackbar("V Upper", window_name, 255, 255, lambda x: None)
+
+
+def get_hsv_bounds(window_name: str) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Read the HSV lower and upper bounds from the trackbars.
+
+    Parameters
+    ----------
+    window_name : str
+        Name of the OpenCV window.
+
+    Returns
+    -------
+    tuple[np.ndarray, np.ndarray]
+        Lower and upper HSV bounds as NumPy arrays.
+    """
+    lower_bound = np.array([
+        cv2.getTrackbarPos("H Lower", window_name),
+        cv2.getTrackbarPos("S Lower", window_name),
+        cv2.getTrackbarPos("V Lower", window_name),
+    ])
+    upper_bound = np.array([
+        cv2.getTrackbarPos("H Upper", window_name),
+        cv2.getTrackbarPos("S Upper", window_name),
+        cv2.getTrackbarPos("V Upper", window_name),
+    ])
+    return lower_bound, upper_bound
+
+
+def main() -> None:
+    """
+    Main function to run the HSV filter tool.
+
+    Opens the image, creates trackbars, shows filtered results,
+    and prints the final HSV bounds when Enter is pressed.
+    """
+    try:
+        image = load_image(IMAGE_PATH)
+    except FileNotFoundError as e:
+        print(e)
+        return
+
+    window_name = "HSV Filter"
+    cv2.namedWindow(window_name)
+    create_hsv_trackbars(window_name)
+
+    while True:
+        hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+        lower, upper = get_hsv_bounds(window_name)
+
+        mask = cv2.inRange(hsv_image, lower, upper)
+        filtered_result = cv2.bitwise_and(image, image, mask=mask)
+
+        cv2.imshow("Original", image)
+        cv2.imshow("Filtered", filtered_result)
+
+        key = cv2.waitKey(1) & 0xFF
+        if key == 13:  # Enter key
+            print(f"HSV Range (Lower): {lower}")
+            print(f"HSV Range (Upper): {upper}")
+            print(
+                f"CSV Format: {lower[0]},{lower[1]},{lower[2]},"
+                f"{upper[0]},{upper[1]},{upper[2]}"
+            )
+            break
+
+    cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    main()
