@@ -1,8 +1,8 @@
 """FizzBuzz Problem.
 
 This module contains a solution to the classic FizzBuzz problem.
-For numbers 1 to n, print 'Fizz' for multiples of 3, 'Buzz' for multiples of 5,
-and 'FizzBuzz' for multiples of both.
+For numbers 1 to n, print 'Fizz' for multiples of 3, 'Buzz' for
+multiples of 5, and 'FizzBuzz' for multiples of both.
 """
 
 
@@ -52,6 +52,7 @@ def fizz_buzz(n: int) -> list[str]:
             result.append("Buzz")
         else:
             result.append(str(i))
+
     return result
 
 
