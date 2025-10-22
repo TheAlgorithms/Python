@@ -2,8 +2,6 @@
 # -------------------------------
 from __future__ import annotations
 import math
-from typing import Optional, Tuple
-
 import numpy as np
 
 
@@ -110,18 +108,10 @@ class MultiHeadAttention:
         self.n_head = n_head
         self.d_k = d_model // n_head
         self.rng = np.random.default_rng(seed)
-        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
+        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
 
     def forward(
         self,
@@ -129,7 +119,7 @@ class MultiHeadAttention:
         key: np.ndarray,
         value: np.ndarray,
         mask: np.ndarray | None = None,
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         >>> attn = MultiHeadAttention(4, 2, seed=0)
         >>> x = np.ones((1, 3, 4))
@@ -140,17 +130,20 @@ class MultiHeadAttention:
         (1, 2, 3, 3)
         """
         batch_size, _seq_len, _ = query.shape
-        Q = np.tensordot(query, self.w_q, axes=([2], [0]))
-        K = np.tensordot(key, self.w_k, axes=([2], [0]))
-        V = np.tensordot(value, self.w_v, axes=([2], [0]))
-        Q = Q.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
-        K = K.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
-        V = V.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
-        scores = np.matmul(Q, K.transpose(0, 1, 3, 2)) / math.sqrt(self.d_k)
+        q = np.tensordot(query, self.w_q, axes=([2], [0]))
+        k = np.tensordot(key, self.w_k, axes=([2], [0]))
+        v = np.tensordot(value, self.w_v, axes=([2], [0]))
+
+        q = q.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+        k = k.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+        v = v.reshape(batch_size, -1, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+
+        scores = np.matmul(q, k.transpose(0, 1, 3, 2)) / math.sqrt(self.d_k)
         if mask is not None:
             scores = np.where(mask[:, None, None, :] == 0, -1e9, scores)
+
         attn_weights = _softmax(scores, axis=-1)
-        out = np.matmul(attn_weights, V)
+        out = np.matmul(attn_weights, v)
         out = out.transpose(0, 2, 1, 3).reshape(batch_size, -1, self.d_model)
         out = np.tensordot(out, self.w_o, axes=([2], [0]))
         return out, attn_weights
