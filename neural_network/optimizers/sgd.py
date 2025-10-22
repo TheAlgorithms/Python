@@ -98,7 +98,7 @@ class SGD(BaseOptimizer):
 
         def _check_and_update_recursive(
             parameters: float | list[float | list[float]],
-            gradients: float | list[float | list[float]]
+            gradients: float | list[float | list[float]],
         ) -> float | list[float | list[float]]:
             # Handle 1D case (list of floats)
             if isinstance(parameters, (int, float)):
@@ -114,9 +114,7 @@ class SGD(BaseOptimizer):
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
                 )
-                raise ValueError(
-                    msg
-                )
+                raise ValueError(msg)
 
             result = []
             for p, g in zip(parameters, gradients):
@@ -128,9 +126,7 @@ class SGD(BaseOptimizer):
                     result.append(p - self.learning_rate * g)
                 else:
                     msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
-                    raise ValueError(
-                        msg
-                    )
+                    raise ValueError(msg)
 
             return result
 

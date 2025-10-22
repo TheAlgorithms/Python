@@ -117,7 +117,7 @@ class MomentumSGD(BaseOptimizer):
         def _check_shapes_and_get_velocity(
             parameters: float | list[float | list[float]],
             gradients: float | list[float | list[float]],
-            velocity_values: float | list[float | list[float]]
+            velocity_values: float | list[float | list[float]],
         ) -> tuple[
             float | list[float | list[float]], float | list[float | list[float]]
         ]:
@@ -146,9 +146,7 @@ class MomentumSGD(BaseOptimizer):
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
                 )
-                raise ValueError(
-                    msg
-                )
+                raise ValueError(msg)
 
             if velocity_values is None:
                 velocity_values = [None] * len(parameters)
@@ -176,9 +174,7 @@ class MomentumSGD(BaseOptimizer):
                     new_velocity.append(new_v)
                 else:
                     msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
-                    raise ValueError(
-                        msg
-                    )
+                    raise ValueError(msg)
 
             return new_params, new_velocity
 

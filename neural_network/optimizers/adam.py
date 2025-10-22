@@ -167,7 +167,7 @@ class Adam(BaseOptimizer):
             parameters: float | list,
             gradients: float | list,
             first_moment: float | list,
-            second_moment: float | list
+            second_moment: float | list,
         ) -> tuple[float | list, float | list, float | list]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
@@ -203,9 +203,7 @@ class Adam(BaseOptimizer):
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
                 )
-                raise ValueError(
-                    msg
-                )
+                raise ValueError(msg)
 
             new_params = []
             new_first_moments = []
@@ -239,9 +237,7 @@ class Adam(BaseOptimizer):
                     new_second_moments.append(new_m2)
                 else:
                     msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
-                    raise ValueError(
-                        msg
-                    )
+                    raise ValueError(msg)
 
             return new_params, new_first_moments, new_second_moments
 
@@ -371,20 +367,14 @@ if __name__ == "__main__":
     f_final_adam = rosenbrock(x_adam[0], x_adam[1])
 
     sgd_distance = math.sqrt((x_sgd[0] - 1) ** 2 + (x_sgd[1] - 1) ** 2)
-    print(
-        f"SGD:     f = {f_final_sgd:.6f}, "
-        f"distance to optimum = {sgd_distance:.4f}"
-    )
+    print(f"SGD:     f = {f_final_sgd:.6f}, distance to optimum = {sgd_distance:.4f}")
     adagrad_distance = math.sqrt((x_adagrad[0] - 1) ** 2 + (x_adagrad[1] - 1) ** 2)
     print(
         f"Adagrad: f = {f_final_adagrad:.6f}, "
         f"distance to optimum = {adagrad_distance:.4f}"
     )
     adam_distance = math.sqrt((x_adam[0] - 1) ** 2 + (x_adam[1] - 1) ** 2)
-    print(
-        f"Adam:    f = {f_final_adam:.6f}, "
-        f"distance to optimum = {adam_distance:.4f}"
-    )
+    print(f"Adam:    f = {f_final_adam:.6f}, distance to optimum = {adam_distance:.4f}")
 
     # Determine best performer
     best_loss = min(f_final_sgd, f_final_adagrad, f_final_adam)

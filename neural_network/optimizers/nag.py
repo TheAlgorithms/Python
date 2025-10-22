@@ -119,7 +119,7 @@ class NAG(BaseOptimizer):
         def _nag_update_recursive(
             parameters: float | list,
             gradients: float | list,
-            velocity: float | list | None
+            velocity: float | list | None,
         ) -> tuple[float | list, float | list]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
@@ -150,9 +150,7 @@ class NAG(BaseOptimizer):
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
                 )
-                raise ValueError(
-                    msg
-                )
+                raise ValueError(msg)
 
             if velocity is None:
                 velocity = [None] * len(parameters)
@@ -184,9 +182,7 @@ class NAG(BaseOptimizer):
                     new_velocity.append(new_v)
                 else:
                     msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
-                    raise ValueError(
-                        msg
-                    )
+                    raise ValueError(msg)
 
             return new_params, new_velocity
 

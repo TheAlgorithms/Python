@@ -122,10 +122,9 @@ class Adagrad(BaseOptimizer):
         def _adagrad_update_recursive(
             parameters: float | list[float | list[float]],
             gradients: float | list[float | list[float]],
-            accumulated_gradients: float | list[float | list[float]]
+            accumulated_gradients: float | list[float | list[float]],
         ) -> tuple[
-            float | list[float | list[float]],
-            float | list[float | list[float]]
+            float | list[float | list[float]], float | list[float | list[float]]
         ]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
@@ -156,9 +155,7 @@ class Adagrad(BaseOptimizer):
                     f"Shape mismatch: parameters length {len(parameters)} vs "
                     f"gradients length {len(gradients)}"
                 )
-                raise ValueError(
-                    msg
-                )
+                raise ValueError(msg)
 
             if accumulated_gradients is None:
                 accumulated_gradients = [None] * len(parameters)
@@ -192,9 +189,7 @@ class Adagrad(BaseOptimizer):
                     new_acc_grads.append(new_ag)
                 else:
                     msg = f"Shape mismatch: inconsistent types {type(p)} vs {type(g)}"
-                    raise ValueError(
-                        msg
-                    )
+                    raise ValueError(msg)
 
             return new_params, new_acc_grads
 
