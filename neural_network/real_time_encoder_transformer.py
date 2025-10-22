@@ -20,6 +20,7 @@ def _stable_div(numerator: np.ndarray, denominator: np.ndarray) -> np.ndarray:
 # 🔹 Time2Vec
 # -------------------------------
 
+
 class Time2Vec:
     def __init__(self, d_model: int, seed: Optional[int] = None) -> None:
         if d_model < 2:
@@ -63,12 +64,23 @@ class Time2Vec:
 # 🔹 Positionwise FeedForward
 # -------------------------------
 
+
 class PositionwiseFeedForward:
-    def __init__(self, d_model: int, hidden_dim: int, drop_prob: float = 0.0, seed: Optional[int] = None) -> None:
+    def __init__(
+        self,
+        d_model: int,
+        hidden_dim: int,
+        drop_prob: float = 0.0,
+        seed: Optional[int] = None,
+    ) -> None:
         self.rng = np.random.default_rng(seed)
-        self.w1: np.ndarray = self.rng.standard_normal((d_model, hidden_dim)) * math.sqrt(2.0 / (d_model + hidden_dim))
+        self.w1: np.ndarray = self.rng.standard_normal(
+            (d_model, hidden_dim)
+        ) * math.sqrt(2.0 / (d_model + hidden_dim))
         self.b1: np.ndarray = np.zeros((hidden_dim,))
-        self.w2: np.ndarray = self.rng.standard_normal((hidden_dim, d_model)) * math.sqrt(2.0 / (hidden_dim + d_model))
+        self.w2: np.ndarray = self.rng.standard_normal(
+            (hidden_dim, d_model)
+        ) * math.sqrt(2.0 / (hidden_dim + d_model))
         self.b2: np.ndarray = np.zeros((d_model,))
 
     def forward(self, input_tensor: np.ndarray) -> np.ndarray:
@@ -81,6 +93,7 @@ class PositionwiseFeedForward:
 # -------------------------------
 # 🔹 Scaled Dot-Product Attention
 # -------------------------------
+
 
 class ScaledDotProductAttention:
     def forward(
@@ -97,7 +110,11 @@ class ScaledDotProductAttention:
             if mask.ndim == 2:
                 mask_reshaped = mask[:, None, None, :]
             elif mask.ndim == 3:
-                mask_reshaped = mask[:, None, :, :] if mask.shape[1] != seq_len else mask[:, None, None, :]
+                mask_reshaped = (
+                    mask[:, None, :, :]
+                    if mask.shape[1] != seq_len
+                    else mask[:, None, None, :]
+                )
             else:
                 mask_reshaped = mask
             scores = np.where(mask_reshaped == 0, -1e9, scores)
@@ -111,6 +128,7 @@ class ScaledDotProductAttention:
 # 🔹 Multi-Head Attention
 # -------------------------------
 
+
 class MultiHeadAttention:
     def __init__(self, d_model: int, n_head: int, seed: Optional[int] = None) -> None:
         if d_model % n_head != 0:
@@ -121,27 +139,41 @@ class MultiHeadAttention:
         self.n_head = n_head
         self.d_k = d_model // n_head
 
-        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_q = np.zeros((d_model,))
-        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_k = np.zeros((d_model,))
-        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_v = np.zeros((d_model,))
-        self.w_out = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_out = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_out = np.zeros((d_model,))
 
         self.attn = ScaledDotProductAttention()
 
-    def _linear(self, input_tensor: np.ndarray, weight: np.ndarray, bias: np.ndarray) -> np.ndarray:
+    def _linear(
+        self, input_tensor: np.ndarray, weight: np.ndarray, bias: np.ndarray
+    ) -> np.ndarray:
         return np.tensordot(input_tensor, weight, axes=([2], [0])) + bias
 
     def _split_heads(self, input_tensor: np.ndarray) -> np.ndarray:
         batch_size, seq_len, _ = input_tensor.shape
-        return input_tensor.reshape(batch_size, seq_len, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+        return input_tensor.reshape(
+            batch_size, seq_len, self.n_head, self.d_k
+        ).transpose(0, 2, 1, 3)
 
     def _concat_heads(self, input_tensor: np.ndarray) -> np.ndarray:
         batch_size, n_head, seq_len, d_k = input_tensor.shape
-        return input_tensor.transpose(0, 2, 1, 3).reshape(batch_size, seq_len, n_head * d_k)
+        return input_tensor.transpose(0, 2, 1, 3).reshape(
+            batch_size, seq_len, n_head * d_k
+        )
 
     def forward(
         self,
@@ -174,6 +206,7 @@ class MultiHeadAttention:
 # 🔹 LayerNorm
 # -------------------------------
 
+
 class LayerNorm:
     def __init__(self, d_model: int, eps: float = 1e-12) -> None:
         self.gamma: np.ndarray = np.ones((d_model,))
@@ -185,18 +218,25 @@ class LayerNorm:
         var = np.mean((input_tensor - mean) ** 2, axis=-1, keepdims=True)
         normalized_tensor = (input_tensor - mean) / np.sqrt(var + self.eps)
         return self.gamma * normalized_tensor + self.beta
+
+
 # -------------------------------
 # 🔹 Transformer Encoder Layer
 # -------------------------------
 
+
 class TransformerEncoderLayer:
-    def __init__(self, d_model: int, n_head: int, hidden_dim: int, seed: Optional[int] = None) -> None:
+    def __init__(
+        self, d_model: int, n_head: int, hidden_dim: int, seed: Optional[int] = None
+    ) -> None:
         self.self_attn = MultiHeadAttention(d_model, n_head, seed=seed)
         self.ffn = PositionwiseFeedForward(d_model, hidden_dim, seed=seed)
         self.norm1 = LayerNorm(d_model)
         self.norm2 = LayerNorm(d_model)
 
-    def forward(self, encoded_input: np.ndarray, mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def forward(
+        self, encoded_input: np.ndarray, mask: Optional[np.ndarray] = None
+    ) -> np.ndarray:
         """
         Forward pass for one encoder layer.
 
@@ -220,7 +260,9 @@ class TransformerEncoderLayer:
         >>> out.shape
         (1, 3, 4)
         """
-        attn_output, _ = self.self_attn.forward(encoded_input, encoded_input, encoded_input, mask)
+        attn_output, _ = self.self_attn.forward(
+            encoded_input, encoded_input, encoded_input, mask
+        )
         out1 = self.norm1.forward(encoded_input + attn_output)
         ffn_output = self.ffn.forward(out1)
         out2 = self.norm2.forward(out1 + ffn_output)
@@ -231,11 +273,24 @@ class TransformerEncoderLayer:
 # 🔹 Transformer Encoder Stack
 # -------------------------------
 
-class TransformerEncoder:
-    def __init__(self, d_model: int, n_head: int, hidden_dim: int, num_layers: int, seed: Optional[int] = None) -> None:
-        self.layers = [TransformerEncoderLayer(d_model, n_head, hidden_dim, seed=seed) for _ in range(num_layers)]
 
-    def forward(self, encoded_input: np.ndarray, mask: Optional[np.ndarray] = None) -> np.ndarray:
+class TransformerEncoder:
+    def __init__(
+        self,
+        d_model: int,
+        n_head: int,
+        hidden_dim: int,
+        num_layers: int,
+        seed: Optional[int] = None,
+    ) -> None:
+        self.layers = [
+            TransformerEncoderLayer(d_model, n_head, hidden_dim, seed=seed)
+            for _ in range(num_layers)
+        ]
+
+    def forward(
+        self, encoded_input: np.ndarray, mask: Optional[np.ndarray] = None
+    ) -> np.ndarray:
         """
         Forward pass for encoder stack.
 
@@ -269,13 +324,18 @@ class TransformerEncoder:
 # 🔹 Attention Pooling
 # -------------------------------
 
+
 class AttentionPooling:
     def __init__(self, d_model: int, seed: Optional[int] = None) -> None:
         self.rng = np.random.default_rng(seed)
-        self.w: np.ndarray = self.rng.standard_normal(d_model) * math.sqrt(2.0 / d_model)
+        self.w: np.ndarray = self.rng.standard_normal(d_model) * math.sqrt(
+            2.0 / d_model
+        )
         self.b: float = 0.0
 
-    def forward(self, encoded_features: np.ndarray, mask: Optional[np.ndarray] = None) -> tuple[np.ndarray, np.ndarray]:
+    def forward(
+        self, encoded_features: np.ndarray, mask: Optional[np.ndarray] = None
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Attention-based pooling.
 
@@ -315,6 +375,7 @@ class AttentionPooling:
 # 🔹 EEG Transformer
 # -------------------------------
 
+
 class EEGTransformer:
     def __init__(
         self,
@@ -332,20 +393,28 @@ class EEGTransformer:
         self.d_model = d_model
         self.task_type = task_type
 
-        self.w_in: np.ndarray = self.rng.standard_normal((feature_dim, d_model)) * math.sqrt(2.0 / (feature_dim + d_model))
+        self.w_in: np.ndarray = self.rng.standard_normal(
+            (feature_dim, d_model)
+        ) * math.sqrt(2.0 / (feature_dim + d_model))
         self.b_in: np.ndarray = np.zeros((d_model,))
 
         self.time2vec = Time2Vec(d_model, seed=seed)
-        self.encoder = TransformerEncoder(d_model, n_head, hidden_dim, num_layers, seed=seed)
+        self.encoder = TransformerEncoder(
+            d_model, n_head, hidden_dim, num_layers, seed=seed
+        )
         self.pooling = AttentionPooling(d_model, seed=seed)
 
-        self.w_out: np.ndarray = self.rng.standard_normal((d_model, output_dim)) * math.sqrt(2.0 / (d_model + output_dim))
+        self.w_out: np.ndarray = self.rng.standard_normal(
+            (d_model, output_dim)
+        ) * math.sqrt(2.0 / (d_model + output_dim))
         self.b_out: np.ndarray = np.zeros((output_dim,))
 
     def _input_projection(self, input_tensor: np.ndarray) -> np.ndarray:
         return np.tensordot(input_tensor, self.w_in, axes=([2], [0])) + self.b_in
 
-    def forward(self, input_tensor: np.ndarray, mask: Optional[np.ndarray] = None) -> tuple[np.ndarray, np.ndarray]:
+    def forward(
+        self, input_tensor: np.ndarray, mask: Optional[np.ndarray] = None
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Forward pass for EEG Transformer.
 
@@ -383,7 +452,9 @@ class EEGTransformer:
         encoded_features = self.encoder.forward(projected_input, mask)
         pooled_output, attention_weights = self.pooling.forward(encoded_features, mask)
 
-        output_tensor = np.tensordot(pooled_output, self.w_out, axes=([1], [0])) + self.b_out
+        output_tensor = (
+            np.tensordot(pooled_output, self.w_out, axes=([1], [0])) + self.b_out
+        )
         if self.task_type == "classification":
             output_tensor = _softmax(output_tensor, axis=-1)
 
