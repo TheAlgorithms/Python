@@ -126,6 +126,9 @@ def main() -> None:
 
     The player has up to 6 incorrect guesses to complete the word.
     The game ends when the player wins or loses.
+
+    >>> isinstance(main(), type(None))
+    True
     """
     answer: str = random.choice(words)
     hint: list[str] = ["_"] * len(answer)
