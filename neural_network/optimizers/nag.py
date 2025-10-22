@@ -18,7 +18,7 @@ v_t = β * v_{t-1} + (1-β) * g_t
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Tuple
 
 from .base_optimizer import BaseOptimizer
 
@@ -117,10 +117,14 @@ class NAG(BaseOptimizer):
             ValueError: If parameters and gradients have different shapes
         """
 
-        def _nag_update_recursive(params, grads, velocity):
+        def _nag_update_recursive(
+            parameters: Union[float, List], 
+            gradients: Union[float, List], 
+            velocity: Union[float, List, None]
+        ) -> Tuple[Union[float, List], Union[float, List]]:
             # Handle scalar case
-            if isinstance(params, (int, float)):
-                if not isinstance(grads, (int, float)):
+            if isinstance(parameters, (int, float)):
+                if not isinstance(gradients, (int, float)):
                     raise ValueError(
                         "Shape mismatch: parameter is scalar but gradient is not"
                     )
@@ -129,32 +133,32 @@ class NAG(BaseOptimizer):
                     velocity = 0.0
 
                 # Update velocity: v = β * v + (1-β) * g
-                new_velocity = self.momentum * velocity + (1 - self.momentum) * grads
+                new_velocity = self.momentum * velocity + (1 - self.momentum) * gradients
 
                 # NAG update: θ = θ - α * (β * v + (1-β) * g)
                 nesterov_update = (
-                    self.momentum * new_velocity + (1 - self.momentum) * grads
+                    self.momentum * new_velocity + (1 - self.momentum) * gradients
                 )
-                new_param = params - self.learning_rate * nesterov_update
+                new_param = parameters - self.learning_rate * nesterov_update
 
                 return new_param, new_velocity
 
             # Handle list case
-            if len(params) != len(grads):
+            if len(parameters) != len(gradients):
                 raise ValueError(
-                    f"Shape mismatch: parameters length {len(params)} vs "
-                    f"gradients length {len(grads)}"
+                    f"Shape mismatch: parameters length {len(parameters)} vs "
+                    f"gradients length {len(gradients)}"
                 )
 
             if velocity is None:
-                velocity = [None] * len(params)
-            elif len(velocity) != len(params):
+                velocity = [None] * len(parameters)
+            elif len(velocity) != len(parameters):
                 raise ValueError("Velocity shape mismatch")
 
             new_params = []
             new_velocity = []
 
-            for i, (p, g, v) in enumerate(zip(params, grads, velocity)):
+            for i, (p, g, v) in enumerate(zip(parameters, gradients, velocity)):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_v = _nag_update_recursive(p, g, v)
@@ -250,11 +254,11 @@ if __name__ == "__main__":
     x_momentum = [2.5]
     x_nag = [2.5]
 
-    def gradient_f(x):
+    def gradient_f(x: float) -> float:
         """Gradient of f(x) = 0.1*x^4 - 2*x^2 + x is f'(x) = 0.4*x^3 - 4*x + 1"""
         return 0.4 * x**3 - 4 * x + 1
 
-    def f(x):
+    def f(x: float) -> float:
         """The function f(x) = 0.1*x^4 - 2*x^2 + x"""
         return 0.1 * x**4 - 2 * x**2 + x
 

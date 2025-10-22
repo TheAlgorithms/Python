@@ -15,7 +15,7 @@ where v_t is the velocity (momentum), β is the momentum coefficient,
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Tuple
 
 from .base_optimizer import BaseOptimizer
 
@@ -115,40 +115,44 @@ class MomentumSGD(BaseOptimizer):
             ValueError: If parameters and gradients have different shapes
         """
 
-        def _check_shapes_and_get_velocity(params, grads, velocity):
+        def _check_shapes_and_get_velocity(
+            parameters: Union[float, List[Union[float, List[float]]]], 
+            gradients: Union[float, List[Union[float, List[float]]]], 
+            velocity_values: Union[float, List[Union[float, List[float]]]]
+        ) -> Tuple[Union[float, List[Union[float, List[float]]]], Union[float, List[Union[float, List[float]]]]]:
             # Handle scalar case
-            if isinstance(params, (int, float)):
-                if not isinstance(grads, (int, float)):
+            if isinstance(parameters, (int, float)):
+                if not isinstance(gradients, (int, float)):
                     raise ValueError(
                         "Shape mismatch: parameter is scalar but gradient is not"
                     )
 
-                if velocity is None:
-                    velocity = 0.0
+                if velocity_values is None:
+                    velocity_values = 0.0
 
                 # Update velocity: v = β * v + (1-β) * g
-                new_velocity = self.momentum * velocity + (1 - self.momentum) * grads
+                new_velocity = self.momentum * velocity_values + (1 - self.momentum) * gradients
                 # Update parameter: θ = θ - α * v
-                new_param = params - self.learning_rate * new_velocity
+                new_param = parameters - self.learning_rate * new_velocity
 
                 return new_param, new_velocity
 
             # Handle list case
-            if len(params) != len(grads):
+            if len(parameters) != len(gradients):
                 raise ValueError(
-                    f"Shape mismatch: parameters length {len(params)} vs "
-                    f"gradients length {len(grads)}"
+                    f"Shape mismatch: parameters length {len(parameters)} vs "
+                    f"gradients length {len(gradients)}"
                 )
 
-            if velocity is None:
-                velocity = [None] * len(params)
-            elif len(velocity) != len(params):
+            if velocity_values is None:
+                velocity_values = [None] * len(parameters)
+            elif len(velocity_values) != len(parameters):
                 raise ValueError("Velocity shape mismatch")
 
             new_params = []
             new_velocity = []
 
-            for i, (p, g, v) in enumerate(zip(params, grads, velocity)):
+            for i, (p, g, v) in enumerate(zip(parameters, gradients, velocity_values)):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_v = _check_shapes_and_get_velocity(p, g, v)

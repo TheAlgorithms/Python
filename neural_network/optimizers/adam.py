@@ -16,7 +16,7 @@ v̂_t = v_t / (1 - β₂^t)                   # Bias-corrected second moment
 from __future__ import annotations
 
 import math
-from typing import List, Union
+from typing import List, Union, Tuple
 
 from .base_optimizer import BaseOptimizer
 
@@ -161,20 +161,25 @@ class Adam(BaseOptimizer):
         bias_correction1 = 1 - self.beta1**self._time_step
         bias_correction2 = 1 - self.beta2**self._time_step
 
-        def _adam_update_recursive(params, grads, first_moment, second_moment):
+        def _adam_update_recursive(
+            parameters: Union[float, List],
+            gradients: Union[float, List],
+            first_moment: Union[float, List],
+            second_moment: Union[float, List]
+        ) -> Tuple[Union[float, List], Union[float, List], Union[float, List]]:
             # Handle scalar case
-            if isinstance(params, (int, float)):
-                if not isinstance(grads, (int, float)):
+            if isinstance(parameters, (int, float)):
+                if not isinstance(gradients, (int, float)):
                     raise ValueError(
                         "Shape mismatch: parameter is scalar but gradient is not"
                     )
 
                 # Update first moment: m = β₁ * m + (1-β₁) * g
-                new_first_moment = self.beta1 * first_moment + (1 - self.beta1) * grads
+                new_first_moment = self.beta1 * first_moment + (1 - self.beta1) * gradients
 
                 # Update second moment: v = β₂ * v + (1-β₂) * g²
                 new_second_moment = self.beta2 * second_moment + (1 - self.beta2) * (
-                    grads * grads
+                    gradients * gradients
                 )
 
                 # Bias-corrected moments
@@ -182,24 +187,24 @@ class Adam(BaseOptimizer):
                 v_hat = new_second_moment / bias_correction2
 
                 # Parameter update: θ = θ - α * m̂ / (√v̂ + ε)
-                new_param = params - self.learning_rate * m_hat / (
+                new_param = parameters - self.learning_rate * m_hat / (
                     math.sqrt(v_hat) + self.epsilon
                 )
 
                 return new_param, new_first_moment, new_second_moment
 
             # Handle list case
-            if len(params) != len(grads):
+            if len(parameters) != len(gradients):
                 raise ValueError(
-                    f"Shape mismatch: parameters length {len(params)} vs "
-                    f"gradients length {len(grads)}"
+                    f"Shape mismatch: parameters length {len(parameters)} vs "
+                    f"gradients length {len(gradients)}"
                 )
 
             new_params = []
             new_first_moments = []
             new_second_moments = []
 
-            for p, g, m1, m2 in zip(params, grads, first_moment, second_moment):
+            for p, g, m1, m2 in zip(parameters, gradients, first_moment, second_moment):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     new_p, new_m1, new_m2 = _adam_update_recursive(p, g, m1, m2)
@@ -309,11 +314,11 @@ if __name__ == "__main__":
     x_adagrad = [-1.0, 1.0]
     x_adam = [-1.0, 1.0]
 
-    def rosenbrock(x, y):
+    def rosenbrock(x: float, y: float) -> float:
         """Rosenbrock function: f(x,y) = 100*(y-x²)² + (1-x)²"""
         return 100 * (y - x * x) ** 2 + (1 - x) ** 2
 
-    def rosenbrock_gradient(x, y):
+    def rosenbrock_gradient(x: float, y: float) -> List[float]:
         """Gradient of Rosenbrock function"""
         df_dx = -400 * x * (y - x * x) - 2 * (1 - x)
         df_dy = 200 * (y - x * x)

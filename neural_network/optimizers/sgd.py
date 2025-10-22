@@ -98,24 +98,27 @@ class SGD(BaseOptimizer):
             ValueError: If parameters and gradients have different shapes
         """
 
-        def _check_and_update_recursive(params, grads):
+        def _check_and_update_recursive(
+            parameters: Union[float, List[Union[float, List[float]]]], 
+            gradients: Union[float, List[Union[float, List[float]]]]
+        ) -> Union[float, List[Union[float, List[float]]]]:
             # Handle 1D case (list of floats)
-            if isinstance(params, (int, float)):
-                if not isinstance(grads, (int, float)):
+            if isinstance(parameters, (int, float)):
+                if not isinstance(gradients, (int, float)):
                     raise ValueError(
                         "Shape mismatch: parameter is scalar but gradient is not"
                     )
-                return params - self.learning_rate * grads
+                return parameters - self.learning_rate * gradients
 
             # Handle list case
-            if len(params) != len(grads):
+            if len(parameters) != len(gradients):
                 raise ValueError(
-                    f"Shape mismatch: parameters length {len(params)} vs "
-                    f"gradients length {len(grads)}"
+                    f"Shape mismatch: parameters length {len(parameters)} vs "
+                    f"gradients length {len(gradients)}"
                 )
 
             result = []
-            for p, g in zip(params, grads):
+            for p, g in zip(parameters, gradients):
                 if isinstance(p, list) and isinstance(g, list):
                     # Recursive case for nested lists
                     result.append(_check_and_update_recursive(p, g))
