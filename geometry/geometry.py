@@ -106,8 +106,8 @@ class Ellipse:
         48.44222344723793
         """
         a, b = self.major_radius, self.minor_radius
-        #uses ramanujans approximation
-        return math.pi * (3*(a + b) - ((3*a + b)*(a + 3*b))**0.5)
+        # uses ramanujans approximation
+        return math.pi * (3 * (a + b) - ((3 * a + b) * (a + 3 * b)) ** 0.5)
 
 
 class Circle(Ellipse):
