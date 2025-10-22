@@ -7,7 +7,7 @@ effective learning rates, while parameters with small gradients get larger rates
 
 The update rules are:
 G_t = G_{t-1} + g_t ⊙ g_t  (element-wise squared gradient accumulation)
-θ_{t+1} = θ_t - (α / √(G_t + ε)) ⊙ g_t
+θ_{t+1} = θ_t - (alpha / √(G_t + ε)) ⊙ g_t
 
 where G_t accumulates squared gradients, ε prevents division by zero,
 and ⊙ denotes element-wise multiplication.
@@ -31,12 +31,12 @@ class Adagrad(BaseOptimizer):
 
     Mathematical formulation:
         G_t = G_{t-1} + g_t ⊙ g_t
-        θ_{t+1} = θ_t - (α / √(G_t + ε)) ⊙ g_t
+        θ_{t+1} = θ_t - (alpha / √(G_t + ε)) ⊙ g_t
 
     Where:
         - θ_t: parameters at time step t
         - G_t: accumulated squared gradients up to time t
-        - α: learning rate
+        - alpha: learning rate
         - ε: small constant for numerical stability (typically 1e-8)
         - g_t: gradients at time step t
         - ⊙: element-wise multiplication
@@ -56,7 +56,7 @@ class Adagrad(BaseOptimizer):
         True
         >>> updated1[0] > 0.85  # Small gradient -> larger step
         True
-        >>> updated1[1] < 1.95   # Large gradient -> smaller step (but still close to 2.0)
+        >>> updated1[1] < 1.95   # Large gradient -> smaller step (close to 2.0)
         True
 
         >>> # Second update (gradients accumulate)
@@ -106,7 +106,7 @@ class Adagrad(BaseOptimizer):
 
         Performs adaptive gradient update:
         G_t = G_{t-1} + g_t^2
-        θ_{t+1} = θ_t - (α / √(G_t + ε)) * g_t
+        θ_{t+1} = θ_t - (alpha / √(G_t + ε)) * g_t
 
         Args:
             parameters: Current parameter values
@@ -123,7 +123,10 @@ class Adagrad(BaseOptimizer):
             parameters: float | list[float | list[float]],
             gradients: float | list[float | list[float]],
             accumulated_gradients: float | list[float | list[float]]
-        ) -> tuple[float | list[float | list[float]], float | list[float | list[float]]]:
+        ) -> tuple[
+            float | list[float | list[float]],
+            float | list[float | list[float]]
+        ]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
@@ -137,7 +140,7 @@ class Adagrad(BaseOptimizer):
                 # Accumulate squared gradients: G = G + g^2
                 new_acc_grads = accumulated_gradients + gradients * gradients
 
-                # Adaptive learning rate: α / √(G + ε)
+                # Adaptive learning rate: alpha / √(G + ε)
                 adaptive_lr = self.learning_rate / math.sqrt(
                     new_acc_grads + self.epsilon
                 )

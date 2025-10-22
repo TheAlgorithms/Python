@@ -6,14 +6,14 @@ position, but at the approximate future position. This "look-ahead" helps reduce
 overshooting and often leads to better convergence.
 
 The update rules are:
-θ_lookahead = θ_t - α * β * v_{t-1}
+θ_lookahead = θ_t - alpha * β * v_{t-1}
 g_t = ∇f(θ_lookahead)  # Gradient at lookahead position
 v_t = β * v_{t-1} + (1-β) * g_t
-θ_{t+1} = θ_t - α * v_t
+θ_{t+1} = θ_t - alpha * v_t
 
 However, a more efficient formulation equivalent to the above is:
 v_t = β * v_{t-1} + (1-β) * g_t
-θ_{t+1} = θ_t - α * (β * v_t + (1-β) * g_t)
+θ_{t+1} = θ_t - alpha * (β * v_t + (1-β) * g_t)
 """
 
 from __future__ import annotations
@@ -31,12 +31,12 @@ class NAG(BaseOptimizer):
 
     Mathematical formulation (efficient version):
         v_t = β * v_{t-1} + (1-β) * g_t
-        θ_{t+1} = θ_t - α * (β * v_t + (1-β) * g_t)
+        θ_{t+1} = θ_t - alpha * (β * v_t + (1-β) * g_t)
 
     Where:
         - θ_t: parameters at time step t
         - v_t: velocity (momentum) at time step t
-        - α: learning rate
+        - alpha: learning rate
         - β: momentum coefficient (typically 0.9)
         - g_t: gradients at time step t
 
@@ -103,7 +103,7 @@ class NAG(BaseOptimizer):
 
         Performs Nesterov update using efficient formulation:
         v_t = β * v_{t-1} + (1-β) * g_t
-        θ_{t+1} = θ_t - α * (β * v_t + (1-β) * g_t)
+        θ_{t+1} = θ_t - alpha * (β * v_t + (1-β) * g_t)
 
         Args:
             parameters: Current parameter values
@@ -134,7 +134,7 @@ class NAG(BaseOptimizer):
                 # Update velocity: v = β * v + (1-β) * g
                 new_velocity = self.momentum * velocity + (1 - self.momentum) * gradients
 
-                # NAG update: θ = θ - α * (β * v + (1-β) * g)
+                # NAG update: θ = θ - alpha * (β * v + (1-β) * g)
                 nesterov_update = (
                     self.momentum * new_velocity + (1 - self.momentum) * gradients
                 )

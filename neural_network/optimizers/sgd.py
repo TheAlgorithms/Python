@@ -4,8 +4,8 @@ Stochastic Gradient Descent (SGD) Optimizer
 SGD is the most basic optimization algorithm for neural networks. It updates
 parameters by moving in the direction opposite to the gradient of the loss function.
 
-The update rule is: θ = θ - α * ∇θ
-where θ are the parameters, α is the learning rate, and ∇θ is the gradient.
+The update rule is: θ = θ - alpha * ∇θ
+where θ are the parameters, alpha is the learning rate, and ∇θ is the gradient.
 """
 
 from __future__ import annotations
@@ -22,11 +22,11 @@ class SGD(BaseOptimizer):
     the learning rate.
 
     Mathematical formulation:
-        θ_{t+1} = θ_t - α * g_t
+        θ_{t+1} = θ_t - alpha * g_t
 
     Where:
         - θ_t: parameters at time step t
-        - α: learning rate
+        - alpha: learning rate
         - g_t: gradients at time step t
 
     Parameters:
@@ -83,7 +83,7 @@ class SGD(BaseOptimizer):
         """
         Update parameters using SGD rule.
 
-        Performs the classic SGD update: θ = θ - α * ∇θ
+        Performs the classic SGD update: θ = θ - alpha * ∇θ
 
         Args:
             parameters: Current parameter values

@@ -10,7 +10,7 @@ m_t = β₁ * m_{t-1} + (1-β₁) * g_t        # First moment estimate
 v_t = β₂ * v_{t-1} + (1-β₂) * g_t²       # Second moment estimate
 m̂_t = m_t / (1 - β₁^t)                   # Bias-corrected first moment
 v̂_t = v_t / (1 - β₂^t)                   # Bias-corrected second moment
-θ_{t+1} = θ_t - α * m̂_t / (√v̂_t + ε)    # Parameter update
+θ_{t+1} = θ_t - alpha * m̂_t / (√v̂_t + ε)    # Parameter update
 """
 
 from __future__ import annotations
@@ -34,13 +34,13 @@ class Adam(BaseOptimizer):
         v_t = β₂ * v_{t-1} + (1-β₂) * g_t²
         m̂_t = m_t / (1 - β₁^t)
         v̂_t = v_t / (1 - β₂^t)
-        θ_{t+1} = θ_t - α * m̂_t / (√v̂_t + ε)
+        θ_{t+1} = θ_t - alpha * m̂_t / (√v̂_t + ε)
 
     Where:
         - θ_t: parameters at time step t
         - m_t, v_t: first and second moment estimates
         - m̂_t, v̂_t: bias-corrected moment estimates
-        - α: learning rate (default: 0.001)
+        - alpha: learning rate (default: 0.001)
         - β₁, β₂: exponential decay rates (default: 0.9, 0.999)
         - ε: small constant for numerical stability (default: 1e-8)
         - t: time step
@@ -139,7 +139,7 @@ class Adam(BaseOptimizer):
         v_t = β₂ * v_{t-1} + (1-β₂) * g_t²
         m̂_t = m_t / (1 - β₁^t)
         v̂_t = v_t / (1 - β₂^t)
-        θ_{t+1} = θ_t - α * m̂_t / (√v̂_t + ε)
+        θ_{t+1} = θ_t - alpha * m̂_t / (√v̂_t + ε)
 
         Args:
             parameters: Current parameter values
@@ -188,7 +188,7 @@ class Adam(BaseOptimizer):
                 m_hat = new_first_moment / bias_correction1
                 v_hat = new_second_moment / bias_correction2
 
-                # Parameter update: θ = θ - α * m̂ / (√v̂ + ε)
+                # Parameter update: θ = θ - alpha * m̂ / (√v̂ + ε)
                 new_param = parameters - self.learning_rate * m_hat / (
                     math.sqrt(v_hat) + self.epsilon
                 )

@@ -7,10 +7,10 @@ useful when the loss surface has steep, narrow valleys.
 
 The update rules are:
 v_t = β * v_{t-1} + (1-β) * g_t
-θ_t = θ_{t-1} - α * v_t
+θ_t = θ_{t-1} - alpha * v_t
 
 where v_t is the velocity (momentum), β is the momentum coefficient,
-α is the learning rate, and g_t is the gradient.
+alpha is the learning rate, and g_t is the gradient.
 """
 
 from __future__ import annotations
@@ -28,12 +28,12 @@ class MomentumSGD(BaseOptimizer):
 
     Mathematical formulation:
         v_t = β * v_{t-1} + (1-β) * g_t
-        θ_{t+1} = θ_t - α * v_t
+        θ_{t+1} = θ_t - alpha * v_t
 
     Where:
         - θ_t: parameters at time step t
         - v_t: velocity (momentum) at time step t
-        - α: learning rate
+        - alpha: learning rate
         - β: momentum coefficient (typically 0.9)
         - g_t: gradients at time step t
 
@@ -101,7 +101,7 @@ class MomentumSGD(BaseOptimizer):
 
         Performs momentum update:
         v_t = β * v_{t-1} + (1-β) * g_t
-        θ_t = θ_{t-1} - α * v_t
+        θ_t = θ_{t-1} - alpha * v_t
 
         Args:
             parameters: Current parameter values
@@ -131,7 +131,7 @@ class MomentumSGD(BaseOptimizer):
 
                 # Update velocity: v = β * v + (1-β) * g
                 new_velocity = self.momentum * velocity_values + (1 - self.momentum) * gradients
-                # Update parameter: θ = θ - α * v
+                # Update parameter: θ = θ - alpha * v
                 new_param = parameters - self.learning_rate * new_velocity
 
                 return new_param, new_velocity
