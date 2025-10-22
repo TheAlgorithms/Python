@@ -1,5 +1,5 @@
 """
-hangman.py 
+hangman.py
 A simple command-line Hangman game implemented in Python.
 
 This program randomly selects a word from a given list and allows the user
@@ -26,34 +26,126 @@ import random
 # ----------------------------- #
 
 words = (
-    # Fruits 
-    'apple', 'orange', 'banana', 'coconut', 'pineapple', 'mango', 'papaya',
-    'strawberry', 'blueberry', 'raspberry', 'grape', 'watermelon', 'peach',
-    'pear', 'cherry', 'plum', 'kiwi', 'apricot', 'lemon', 'lime',
-
-    # Animals 
-    'elephant', 'tiger', 'lion', 'giraffe', 'zebra', 'monkey', 'kangaroo',
-    'dolphin', 'rabbit', 'panda', 'koala', 'wolf', 'bear', 'fox', 'camel',
-    'penguin', 'snake', 'turtle', 'deer', 'leopard',
-
-    # Countries 
-    'pakistan', 'india', 'china', 'japan', 'brazil', 'canada', 'france',
-    'germany', 'australia', 'italy', 'spain', 'egypt', 'turkey', 'russia',
-    'mexico', 'norway', 'sweden', 'argentina', 'indonesia', 'nigeria',
-
-    # Colors 
-    'red', 'blue', 'green', 'yellow', 'purple', 'orange', 'black', 'white',
-    'pink', 'brown', 'gray', 'violet', 'indigo', 'silver', 'gold',
-
-    # Computer / Tech 
-    'python', 'javascript', 'variable', 'function', 'developer', 'keyboard',
-    'internet', 'website', 'database', 'algorithm', 'software', 'hardware',
-    'network', 'browser', 'program', 'compiler', 'laptop', 'machine', 'coding',
-
-    # Random everyday words 
-    'school', 'teacher', 'window', 'garden', 'flower', 'butterfly', 'dream',
-    'sunshine', 'moonlight', 'family', 'holiday', 'mountain', 'river',
-    'forest', 'island', 'cloud', 'ocean', 'rainbow', 'friend', 'love'
+    # Fruits
+    "apple",
+    "orange",
+    "banana",
+    "coconut",
+    "pineapple",
+    "mango",
+    "papaya",
+    "strawberry",
+    "blueberry",
+    "raspberry",
+    "grape",
+    "watermelon",
+    "peach",
+    "pear",
+    "cherry",
+    "plum",
+    "kiwi",
+    "apricot",
+    "lemon",
+    "lime",
+    # Animals
+    "elephant",
+    "tiger",
+    "lion",
+    "giraffe",
+    "zebra",
+    "monkey",
+    "kangaroo",
+    "dolphin",
+    "rabbit",
+    "panda",
+    "koala",
+    "wolf",
+    "bear",
+    "fox",
+    "camel",
+    "penguin",
+    "snake",
+    "turtle",
+    "deer",
+    "leopard",
+    # Countries
+    "pakistan",
+    "india",
+    "china",
+    "japan",
+    "brazil",
+    "canada",
+    "france",
+    "germany",
+    "australia",
+    "italy",
+    "spain",
+    "egypt",
+    "turkey",
+    "russia",
+    "mexico",
+    "norway",
+    "sweden",
+    "argentina",
+    "indonesia",
+    "nigeria",
+    # Colors
+    "red",
+    "blue",
+    "green",
+    "yellow",
+    "purple",
+    "orange",
+    "black",
+    "white",
+    "pink",
+    "brown",
+    "gray",
+    "violet",
+    "indigo",
+    "silver",
+    "gold",
+    # Computer / Tech
+    "python",
+    "javascript",
+    "variable",
+    "function",
+    "developer",
+    "keyboard",
+    "internet",
+    "website",
+    "database",
+    "algorithm",
+    "software",
+    "hardware",
+    "network",
+    "browser",
+    "program",
+    "compiler",
+    "laptop",
+    "machine",
+    "coding",
+    # Random everyday words
+    "school",
+    "teacher",
+    "window",
+    "garden",
+    "flower",
+    "butterfly",
+    "dream",
+    "sunshine",
+    "moonlight",
+    "family",
+    "holiday",
+    "mountain",
+    "river",
+    "forest",
+    "island",
+    "cloud",
+    "ocean",
+    "rainbow",
+    "friend",
+    "love",
 )
 
 hangman_art: dict[int, tuple[str, str, str]] = {
@@ -76,15 +168,15 @@ def display_man(wrong_guesses: int) -> None:
 
     >>> display_man(0)
     *****************
-        
-        
+
+
 
     *****************
     >>> display_man(1)
     *****************
-     o  
-    
-    
+     o
+
+
 
     *****************
     """
