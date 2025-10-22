@@ -39,9 +39,11 @@ class Time2Vec:
         (1, 3, 4)
         """
 
+        
         linear = self.w0 * time_steps + self.b0
-        periodic = np.sin(time_steps * self.w[:, None, :] + self.b[:, None, :])
+        periodic = np.sin(time_steps * self.w[None, None, :] + self.b[None, None, :])
         return np.concatenate([linear, periodic], axis=-1)
+
 
 
 # -------------------------------
@@ -267,15 +269,26 @@ class EEGTransformer:
     def forward(self, eeg_data: np.ndarray) -> np.ndarray:
         """
         >>> model = EEGTransformer(4, 2, 8, 2, seed=0)
-        >>> x = np.ones((1, 3, 4))
+        >>> x = np.ones((1, 3, 1))
         >>> out = model.forward(x)
         >>> out.shape
         (1, 1)
         """
+        # Ensure input shape is (batch, seq_len, 1)
+        if eeg_data.shape[-1] != 1:
+            eeg_data = eeg_data[..., :1]
+
+    # Time2Vec positional encoding
         x = self.time2vec.forward(eeg_data)
+
+    # Transformer encoder
         x = self.encoder.forward(x)
+
+    # Attention pooling
         x = self.pooling.forward(x)
-        out = np.tensordot(x, self.w_out, axes=([1], [0])) + self.b_out
+
+    # Final linear layer
+        out = np.dot(x, self.w_out) + self.b_out  # shape (batch, output_dim)
         return out
 
 
