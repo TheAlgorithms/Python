@@ -5,6 +5,7 @@ Time Complexity: O(log₃ n)
 Space Complexity: O(1)
 """
 
+
 def is_power_of_three(n: int) -> bool:
     """Return True if n is a power of three (n > 0).
 
@@ -36,4 +37,5 @@ def is_power_of_three(n: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
