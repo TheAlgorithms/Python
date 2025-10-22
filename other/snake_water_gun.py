@@ -1,8 +1,8 @@
 """
 A simple implementation of the Snake, Water, Gun game.
 """
-import random
 import doctest
+import random
 
 
 def snake_water_gun(player_choice: str, computer_choice: str) -> str:
@@ -14,7 +14,7 @@ def snake_water_gun(player_choice: str, computer_choice: str) -> str:
         computer_choice: The computer's choice.
 
     Returns:
-        A string indicating the result: "Player wins!", "Computer wins!", or "It's a draw!".
+        Result: "Player wins!", "Computer wins!", or "It's a draw!".
 
     Doctests:
         >>> snake_water_gun('s', 'w')
