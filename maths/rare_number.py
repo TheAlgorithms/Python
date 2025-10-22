@@ -104,4 +104,5 @@ def _is_perfect_square(n: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
