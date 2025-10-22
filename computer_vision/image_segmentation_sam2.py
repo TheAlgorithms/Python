@@ -221,9 +221,7 @@ def demonstrate_point_prompt(predictor, image):
     return masks, scores, logits
 
 
-def demonstrate_multiple_points(
-    predictor, image, previous_scores, previous_logits
-):
+def demonstrate_multiple_points(predictor, image, previous_scores, previous_logits):
     """Demonstrate segmentation using multiple point prompts"""
     print("=== Multiple Points Prompt ===")
 
