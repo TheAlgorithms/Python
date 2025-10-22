@@ -38,8 +38,7 @@ class Time2Vec:
         >>> out.shape
         (1, 3, 4)
         """
-      
-        
+
         linear = self.w0 * time_steps + self.b0
         periodic = np.sin(time_steps * self.w[:, None, :] + self.b[:, None, :])
         return np.concatenate([linear, periodic], axis=-1)
