@@ -64,7 +64,7 @@ def knuth_morris_pratt_search(text: str, pattern: str) -> list[int]:
 
     >>> # Test cases from the original file
     >>> knuth_morris_pratt_search("alskfjaldsabc1abc1abc12k23adsfabcabc", "abc1abc12")
-    [10]
+    [14]
     >>> knuth_morris_pratt_search("alskfjaldsk23adsfabcabc", "abc1abc12")
     []
     >>> knuth_morris_pratt_search("ABABZABABYABABX", "ABABX")
@@ -81,7 +81,7 @@ def knuth_morris_pratt_search(text: str, pattern: str) -> list[int]:
     >>> knuth_morris_pratt_search("knuth_morris_pratt", "h_m")
     [4]
     >>> knuth_morris_pratt_search("knuth_morris_pratt", "rr")
-    [12]
+    [8]
     >>> knuth_morris_pratt_search("knuth_morris_pratt", "tt")
     [16]
     >>> knuth_morris_pratt_search("knuth_morris_pratt", "not there")
