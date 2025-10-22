@@ -63,7 +63,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
-    >>> bubble_sort_iterative([])
+    >>> bubble_sort_recursive([])
     []
     >>> bubble_sort_recursive([-2, -45, -5])
     [-45, -5, -2]
