@@ -1,5 +1,6 @@
 import heapq
 
+
 def tsp(cost):
     """
     https://www.geeksforgeeks.org/dsa/approximate-solution-for-travelling-salesman-problem-using-mst/
@@ -18,8 +19,8 @@ def tsp(cost):
     Assumptions:
     1. The graph is complete.
 
-    2. The problem instance satisfies Triangle-Inequality.(The least distant path to reach a vertex j from i is always to reach j 
-    directly from i, rather than through some other vertex k) 
+    2. The problem instance satisfies Triangle-Inequality.(The least distant path to reach a vertex j from i is always to reach j
+    directly from i, rather than through some other vertex k)
 
     3. The cost matrix is symmetric, i.e., cost[i][j] = cost[j][i]
 
@@ -29,64 +30,66 @@ def tsp(cost):
     """
     # create the adjacency list
     adj = createList(cost)
- 
-    #check for triangle inequality violations
+
+    # check for triangle inequality violations
     if triangleInequality(adj):
         print("Triangle Inequality Violation")
         return -1
- 
+
     # construct the travelling salesman tour
     tspTour = approximateTSP(adj)
- 
+
     # calculate the cost of the tour
     tspCost = tourCost(tspTour)
- 
+
     return tspCost
+
 
 # function to implement approximate TSP
 def approximateTSP(adj):
     n = len(adj)
- 
+
     # to store the cost of minimum spanning tree
     mstCost = [0]
- 
+
     # stores edges of minimum spanning tree
     mstEdges = findMST(adj, mstCost)
- 
+
     # to mark the visited nodes
     visited = [False] * n
- 
+
     # create adjacency list for mst
     mstAdj = [[] for _ in range(n)]
     for e in mstEdges:
         mstAdj[e[0]].append([e[1], e[2]])
         mstAdj[e[1]].append([e[0], e[2]])
- 
+
     # to store the eulerian tour
     tour = []
     eulerianCircuit(mstAdj, 0, tour, visited, -1)
- 
+
     # add the starting node to the tour
     tour.append(0)
- 
+
     # to store the final tour path
     tourPath = []
- 
+
     for i in range(len(tour) - 1):
         u = tour[i]
         v = tour[i + 1]
         weight = 0
- 
+
         # find the weight of the edge u -> v
         for neighbor in adj[u]:
             if neighbor[0] == v:
                 weight = neighbor[1]
                 break
- 
+
         # add the edge to the tour path
         tourPath.append([u, v, weight])
- 
+
     return tourPath
+
 
 def tourCost(tour):
     cost = 0
@@ -98,67 +101,67 @@ def tourCost(tour):
 def eulerianCircuit(adj, u, tour, visited, parent):
     visited[u] = True
     tour.append(u)
- 
+
     for neighbor in adj[u]:
         v = neighbor[0]
         if v == parent:
             continue
-        
+
         if visited[v] == False:
             eulerianCircuit(adj, v, tour, visited, u)
- 
+
+
 # function to find the minimum spanning tree
 def findMST(adj, mstCost):
     n = len(adj)
- 
+
     # to marks the visited nodes
     visited = [False] * n
- 
+
     # stores edges of minimum spanning tree
     mstEdges = []
- 
+
     pq = []
     heapq.heappush(pq, [0, 0, -1])
- 
+
     while pq:
         current = heapq.heappop(pq)
- 
+
         u = current[1]
         weight = current[0]
         parent = current[2]
- 
+
         if visited[u]:
             continue
- 
+
         mstCost[0] += weight
         visited[u] = True
- 
+
         if parent != -1:
             mstEdges.append([u, parent, weight])
- 
+
         for neighbor in adj[u]:
             v = neighbor[0]
             if v == parent:
                 continue
             w = neighbor[1]
- 
+
             if not visited[v]:
                 heapq.heappush(pq, [w, v, u])
     return mstEdges
- 
 
- 
-# function to calculate if the 
+
+# function to calculate if the
 # triangle inequality is violated
 def triangleInequality(adj):
     n = len(adj)
- 
-    # Sort each adjacency list based 
+
+    # Sort each adjacency list based
     # on the weight of the edges
     for i in range(n):
         adj[i].sort(key=lambda a: a[1])
- 
-    # check triangle inequality for each 
+
+    # check triangle inequality for each
     # triplet of nodes (u, v, w)
     for u in range(n):
         for x in adj[u]:
@@ -174,14 +177,15 @@ def triangleInequality(adj):
                             return True
     # no violations found
     return False
- 
+
+
 # function to create the adjacency list
 def createList(cost):
     n = len(cost)
- 
+
     # to store the adjacency list
     adj = [[] for _ in range(n)]
- 
+
     for u in range(n):
         for v in range(n):
             # if there is no edge between u and v
@@ -189,18 +193,12 @@ def createList(cost):
                 continue
             # add the edge to the adjacency list
             adj[u].append([v, cost[u][v]])
- 
-    return adj
- 
 
- 
+    return adj
+
+
 if __name__ == "__main__":
-    #test
-    cost = [
-        [0, 1000, 5000],
-        [5000, 0, 1000],
-        [1000, 5000, 0]
-    ]
- 
+    # test
+    cost = [[0, 1000, 5000], [5000, 0, 1000], [1000, 5000, 0]]
+
     print(tsp(cost))
-    
