@@ -4,8 +4,6 @@ This module contains functions to check if a string is a pangram.
 A pangram is a sentence that contains every letter of the alphabet at least once.
 """
 
-import string
-
 
 def is_pangram(text: str) -> bool:
     """
@@ -35,7 +33,8 @@ def is_pangram(text: str) -> bool:
         True
     """
     # Convert text to lowercase and get all unique letters
-    letters = set(char.lower() for char in text if char.isalpha())
+    letters = {char.lower() for char in text if char.isalpha()}
+
     # Check if all 26 letters of the alphabet are present
     return len(letters) == 26
 
