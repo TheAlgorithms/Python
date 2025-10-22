@@ -108,18 +108,10 @@ class MultiHeadAttention:
         self.n_head = n_head
         self.d_k = d_model // n_head
         self.rng = np.random.default_rng(seed)
-        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
-        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
-            2.0 / d_model
-        )
+        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
 
     def forward(
         self,
