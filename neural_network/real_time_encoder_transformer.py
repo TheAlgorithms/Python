@@ -74,11 +74,13 @@ class LayerNorm:
 class PositionwiseFeedForward:
     def __init__(self, d_model: int, hidden: int, seed: int | None = None) -> None:
         self.rng = np.random.default_rng(seed)
-        self.linear1_w = self.rng.standard_normal((d_model, hidden)) * \
-            math.sqrt(2.0 / (d_model + hidden))
+        self.linear1_w = self.rng.standard_normal((d_model, hidden)) * math.sqrt(
+            2.0 / (d_model + hidden)
+        )
         self.linear1_b = np.zeros((hidden,))
-        self.linear2_w = self.rng.standard_normal((hidden, d_model)) * \
-            math.sqrt(2.0 / (hidden + d_model))
+        self.linear2_w = self.rng.standard_normal((hidden, d_model)) * math.sqrt(
+            2.0 / (hidden + d_model)
+        )
         self.linear2_b = np.zeros((d_model,))
 
     def forward(self, x_tensor: np.ndarray) -> np.ndarray:
@@ -89,7 +91,9 @@ class PositionwiseFeedForward:
         >>> out.shape
         (1, 3, 4)
         """
-        hidden = np.tensordot(x_tensor, self.linear1_w, axes=([2], [0])) + self.linear1_b
+        hidden = (
+            np.tensordot(x_tensor, self.linear1_w, axes=([2], [0])) + self.linear1_b
+        )
         hidden = np.maximum(0, hidden)  # ReLU
         out = np.tensordot(hidden, self.linear2_w, axes=([2], [0])) + self.linear2_b
         return out
@@ -106,10 +110,18 @@ class MultiHeadAttention:
         self.n_head = n_head
         self.d_k = d_model // n_head
         self.rng = np.random.default_rng(seed)
-        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
-        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
-        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
-        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / d_model)
+        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / d_model
+        )
+        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / d_model
+        )
+        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / d_model
+        )
+        self.w_o = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / d_model
+        )
 
     def forward(
         self,
@@ -148,13 +160,17 @@ class MultiHeadAttention:
 # 🔹 TransformerEncoderLayer
 # -------------------------------
 class TransformerEncoderLayer:
-    def __init__(self, d_model: int, n_head: int, hidden_dim: int, seed: int | None = None) -> None:
+    def __init__(
+        self, d_model: int, n_head: int, hidden_dim: int, seed: int | None = None
+    ) -> None:
         self.self_attn = MultiHeadAttention(d_model, n_head, seed)
         self.norm1 = LayerNorm(d_model)
         self.ff = PositionwiseFeedForward(d_model, hidden_dim, seed)
         self.norm2 = LayerNorm(d_model)
 
-    def forward(self, x_tensor: np.ndarray, mask: np.ndarray | None = None) -> np.ndarray:
+    def forward(
+        self, x_tensor: np.ndarray, mask: np.ndarray | None = None
+    ) -> np.ndarray:
         """
         >>> layer = TransformerEncoderLayer(4, 2, 8, seed=0)
         >>> x = np.ones((1, 3, 4))
@@ -179,14 +195,16 @@ class TransformerEncoder:
         n_head: int,
         hidden_dim: int,
         num_layers: int,
-        seed: int | None = None
+        seed: int | None = None,
     ) -> None:
         self.layers = [
             TransformerEncoderLayer(d_model, n_head, hidden_dim, seed)
             for _ in range(num_layers)
         ]
 
-    def forward(self, x_tensor: np.ndarray, mask: np.ndarray | None = None) -> np.ndarray:
+    def forward(
+        self, x_tensor: np.ndarray, mask: np.ndarray | None = None
+    ) -> np.ndarray:
         """
         >>> encoder = TransformerEncoder(4, 2, 8, 2, seed=0)
         >>> x = np.ones((1, 3, 4))
@@ -231,7 +249,7 @@ class EEGTransformer:
         num_layers: int,
         output_dim: int = 1,
         task_type: str = "regression",
-        seed: int | None = None
+        seed: int | None = None,
     ) -> None:
         self.time2vec = Time2Vec(d_model, seed)
         self.encoder = TransformerEncoder(d_model, n_head, hidden_dim, num_layers, seed)
@@ -239,9 +257,9 @@ class EEGTransformer:
         self.output_dim = output_dim
         self.task_type = task_type
         self.rng = np.random.default_rng(seed)
-        self.w_out = self.rng.standard_normal(
-            (d_model, output_dim)
-        ) * math.sqrt(2.0 / (d_model + output_dim))
+        self.w_out = self.rng.standard_normal((d_model, output_dim)) * math.sqrt(
+            2.0 / (d_model + output_dim)
+        )
         self.b_out = np.zeros((output_dim,))
 
     def forward(self, eeg_data: np.ndarray) -> np.ndarray:
