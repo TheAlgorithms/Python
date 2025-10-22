@@ -222,7 +222,7 @@ def demonstrate_point_prompt(predictor, image):
 
 
 def demonstrate_multiple_points(
-    predictor, image, previous_masks, previous_scores, previous_logits
+    predictor, image, previous_scores, previous_logits
 ):
     """Demonstrate segmentation using multiple point prompts"""
     print("=== Multiple Points Prompt ===")
@@ -406,7 +406,7 @@ def main():
 
     # Run demonstrations
     masks, scores, logits = demonstrate_point_prompt(predictor, image)
-    demonstrate_multiple_points(predictor, image, masks, scores, logits)
+    demonstrate_multiple_points(predictor, image, scores, logits)
     demonstrate_box_prompt(predictor, image)
     demonstrate_combined_prompts(predictor, image)
     demonstrate_batched_prompts(predictor, image)
