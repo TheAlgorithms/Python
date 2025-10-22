@@ -28,49 +28,50 @@ def tsp(cost):
 
     """
     # create the adjacency list
-    adj = createList(cost)
+    adj = create_list(cost)
  
     #check for triangle inequality violations
-    if triangleInequality(adj):
+    if triangle_inequality(adj):
         print("Triangle Inequality Violation")
         return -1
  
     # construct the travelling salesman tour
-    tspTour = approximateTSP(adj)
+    tsp_tour = approximate_tsp(adj)
  
     # calculate the cost of the tour
-    tspCost = tourCost(tspTour)
+    tsp_cost = tour_cost(tsp_tour)
  
-    return tspCost
+    return tsp_cost
 
 # function to implement approximate TSP
-def approximateTSP(adj):
+def approximate_tsp(adj):
     n = len(adj)
  
     # to store the cost of minimum spanning tree
-    mstCost = [0]
+    mst_cost = [0]
  
     # stores edges of minimum spanning tree
-    mstEdges = findMST(adj, mstCost)
+    mst_edges = find_mst(adj, mst_cost)
  
     # to mark the visited nodes
     visited = [False] * n
  
     # create adjacency list for mst
-    mstAdj = [[] for _ in range(n)]
-    for e in mstEdges:
-        mstAdj[e[0]].append([e[1], e[2]])
-        mstAdj[e[1]].append([e[0], e[2]])
+    mst_adj = [[] for _ in range(n)]
+    mst_edges = find_mst(adj, mst_cost)
+    for e in mst_edges:
+        mst_adj[e[0]].append([e[1], e[2]])
+        mst_adj[e[1]].append([e[0], e[2]])
  
     # to store the eulerian tour
     tour = []
-    eulerianCircuit(mstAdj, 0, tour, visited, -1)
+    eulerian_circuit(mst_adj, 0, tour, visited, -1)
  
     # add the starting node to the tour
     tour.append(0)
  
     # to store the final tour path
-    tourPath = []
+    tour_path = []
  
     for i in range(len(tour) - 1):
         u = tour[i]
@@ -84,18 +85,18 @@ def approximateTSP(adj):
                 break
  
         # add the edge to the tour path
-        tourPath.append([u, v, weight])
+        tour_path.append([u, v, weight])
  
-    return tourPath
+    return tour_path
 
-def tourCost(tour):
+def tour_cost(tour):
     cost = 0
     for edge in tour:
         cost += edge[2]
     return cost
 
 
-def eulerianCircuit(adj, u, tour, visited, parent):
+def eulerian_circuit(adj, u, tour, visited, parent):
     visited[u] = True
     tour.append(u)
  
@@ -105,17 +106,17 @@ def eulerianCircuit(adj, u, tour, visited, parent):
             continue
         
         if visited[v] == False:
-            eulerianCircuit(adj, v, tour, visited, u)
+            eulerian_circuit(adj, v, tour, visited, u)
  
 # function to find the minimum spanning tree
-def findMST(adj, mstCost):
+def find_mst(adj, mst_cost):
     n = len(adj)
  
     # to marks the visited nodes
     visited = [False] * n
  
     # stores edges of minimum spanning tree
-    mstEdges = []
+    mst_edges = []
  
     pq = []
     heapq.heappush(pq, [0, 0, -1])
@@ -130,11 +131,11 @@ def findMST(adj, mstCost):
         if visited[u]:
             continue
  
-        mstCost[0] += weight
+        mst_cost[0] += weight
         visited[u] = True
  
         if parent != -1:
-            mstEdges.append([u, parent, weight])
+            mst_edges.append([u, parent, weight])
  
         for neighbor in adj[u]:
             v = neighbor[0]
@@ -144,13 +145,13 @@ def findMST(adj, mstCost):
  
             if not visited[v]:
                 heapq.heappush(pq, [w, v, u])
-    return mstEdges
+    return mst_edges
  
 
  
 # function to calculate if the 
 # triangle inequality is violated
-def triangleInequality(adj):
+def triangle_inequality(adj):
     n = len(adj)
  
     # Sort each adjacency list based 
@@ -163,20 +164,20 @@ def triangleInequality(adj):
     for u in range(n):
         for x in adj[u]:
             v = x[0]
-            costUV = x[1]
+            cost_UV = x[1]
             for y in adj[v]:
                 w = y[0]
-                costVW = y[1]
+                cost_VW = y[1]
                 for z in adj[u]:
                     if z[0] == w:
-                        costUW = z[1]
-                        if (costUV + costVW < costUW) and (u < w):
+                        cost_UW = z[1]
+                        if (cost_UV + cost_VW < cost_UW) and (u < w):
                             return True
     # no violations found
     return False
  
 # function to create the adjacency list
-def createList(cost):
+def create_list(cost):
     n = len(cost)
  
     # to store the adjacency list
