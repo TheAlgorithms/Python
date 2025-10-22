@@ -16,6 +16,7 @@ and ⊙ denotes element-wise multiplication.
 from __future__ import annotations
 
 import math
+from typing import Any
 
 from .base_optimizer import BaseOptimizer
 
@@ -120,12 +121,10 @@ class Adagrad(BaseOptimizer):
         """
 
         def _adagrad_update_recursive(
-            parameters: float | list[float | list[float]],
-            gradients: float | list[float | list[float]],
-            accumulated_gradients: float | list[float | list[float]],
-        ) -> tuple[
-            float | list[float | list[float]], float | list[float | list[float]]
-        ]:
+            parameters: Any,
+            gradients: Any,
+            accumulated_gradients: Any,
+        ) -> tuple[Any, Any]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):

@@ -10,6 +10,8 @@ where θ are the parameters, alpha is the learning rate, and ∇θ is the gradie
 
 from __future__ import annotations
 
+from typing import Any
+
 from .base_optimizer import BaseOptimizer
 
 
@@ -97,9 +99,9 @@ class SGD(BaseOptimizer):
         """
 
         def _check_and_update_recursive(
-            parameters: float | list[float | list[float]],
-            gradients: float | list[float | list[float]],
-        ) -> float | list[float | list[float]]:
+            parameters: Any,
+            gradients: Any,
+        ) -> Any:
             # Handle 1D case (list of floats)
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):

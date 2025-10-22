@@ -15,6 +15,8 @@ alpha is the learning rate, and g_t is the gradient.
 
 from __future__ import annotations
 
+from typing import Any
+
 from .base_optimizer import BaseOptimizer
 
 
@@ -115,12 +117,10 @@ class MomentumSGD(BaseOptimizer):
         """
 
         def _check_shapes_and_get_velocity(
-            parameters: float | list[float | list[float]],
-            gradients: float | list[float | list[float]],
-            velocity_values: float | list[float | list[float]],
-        ) -> tuple[
-            float | list[float | list[float]], float | list[float | list[float]]
-        ]:
+            parameters: Any,
+            gradients: Any,
+            velocity_values: Any,
+        ) -> tuple[Any, Any]:
             # Handle scalar case
             if isinstance(parameters, (int, float)):
                 if not isinstance(gradients, (int, float)):
