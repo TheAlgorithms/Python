@@ -42,18 +42,30 @@ def floyds_cycle_finding(
     >>> floyds_cycle_finding(get_next_node, 0)
 
     """
-    # Main phase: finding a repetition x_i = x_2i.
+    # Phase 1: Find a repetition x_i = x_2i.
+    # The tortoise moves one step at a time, and the hare moves two.
+    tortoise = start_value
+    hare = successor_function(start_value)
+
     # The hare moves twice as fast as the tortoise.
-    tortoise = successor_function(start_value)
-    hare = successor_function(successor_function(start_value))
+    # The loop continues as long as they are not at the same value
+    # and the hare has not reached the end of the sequence.
     while tortoise != hare:
-        # If the hare reaches the end of the sequence, there is no cycle.
-        if hare is None or successor_function(hare) is None:
+        if hare is None:
             return None
         tortoise = successor_function(tortoise)
-        hare = successor_function(successor_function(hare))
 
-    # Phase 2: find the position of the first repetition (mu).
+        # Move hare two steps, with a check after each step.
+        hare = successor_function(hare)
+        if hare is None:
+            return None
+        hare = successor_function(hare)
+
+    # If the loop exits, a cycle was found.
+
+    # Phase 2: Find the position of the first repetition (mu).
+    # Reset tortoise to the start and move both one step at a time until they
+    # meet again.
     mu = 0
     tortoise = start_value
     while tortoise != hare:
@@ -61,7 +73,9 @@ def floyds_cycle_finding(
         hare = successor_function(hare)
         mu += 1
 
-    # Phase 3: find the length of the cycle (lam).
+    # Phase 3: Find the length of the cycle (lam).
+    # Fix the tortoise at the start of the cycle and move the hare
+    # until it returns to the tortoise.
     lam = 1
     hare = successor_function(tortoise)
     while tortoise != hare:
