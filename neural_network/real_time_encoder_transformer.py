@@ -1,287 +1,236 @@
+
+from __future__ import annotations
 import math
+from typing import Optional, Tuple
 
-import torch
-from torch import Tensor, nn
+import numpy as np
+import pandas as pd
+
+def _softmax(x: np.ndarray, axis: int = -1) -> np.ndarray:
+    x_max = np.max(x, axis=axis, keepdims=True)
+    e = np.exp(x - x_max)
+    return e / (np.sum(e, axis=axis, keepdims=True) + 1e-12)
 
 
-class Time2Vec(nn.Module):
+def _stable_div(x: np.ndarray, denom: np.ndarray) -> np.ndarray:
+    return x / (denom + 1e-12)
+
+
+# Time2Vec
+
+class Time2Vec:
     """
-    Time2Vec layer for positional encoding of real-time data like EEG.
-
-    >>> import torch
-    >>> layer = Time2Vec(4)
-    >>> t = torch.ones(1, 3, 1)
-    >>> output = layer.forward(t)
-    >>> output.shape
-    torch.Size([1, 3, 4])
-    """
-
-    def __init__(self, d_model: int) -> None:
-        super().__init__()
-        self.w0 = nn.Parameter(torch.randn(1, 1))
-        self.b0 = nn.Parameter(torch.randn(1, 1))
-        self.w = nn.Parameter(torch.randn(1, d_model - 1))
-        self.b = nn.Parameter(torch.randn(1, d_model - 1))
-
-    def forward(self, time_steps: Tensor) -> Tensor:
-        linear = self.w0 * time_steps + self.b0
-        periodic = torch.sin(self.w * time_steps + self.b)
-        return torch.cat([linear, periodic], dim=-1)
-
-
-class PositionwiseFeedForward(nn.Module):
-    """
-    Positionwise feedforward network.
-
-    >>> import torch
-    >>> layer = PositionwiseFeedForward(8, 16)
-    >>> x = torch.rand(4, 10, 8)
-    >>> out = layer.forward(x)
-    >>> out.shape
-    torch.Size([4, 10, 8])
+    Time2Vec positional encoding (simple) for real-valued time steps.
+    Produces shape (..., d_model)
     """
 
-    def __init__(self, d_model: int, hidden: int, drop_prob: float = 0.1) -> None:
-        super().__init__()
-        self.fc1 = nn.Linear(d_model, hidden)
-        self.fc2 = nn.Linear(hidden, d_model)
-        self.relu = nn.ReLU()
-        self.dropout = nn.Dropout(drop_prob)
+    def __init__(self, d_model: int, seed: Optional[int] = None):
+        if seed is not None:
+            np.random.seed(seed)
+        # linear term params (scalar per batch/time)
+        self.w0 = np.random.randn(1, 1)  # multiply time scalar
+        self.b0 = np.random.randn(1, 1)
+        # periodic terms params (d_model - 1)
+        if d_model < 2:
+            raise ValueError("d_model must be >= 2 for Time2Vec")
+        self.w = np.random.randn(1, d_model - 1)
+        self.b = np.random.randn(1, d_model - 1)
 
-    def forward(self, input_tensor: Tensor) -> Tensor:
-        x = self.fc1(input_tensor)
-        x = self.relu(x)
-        x = self.dropout(x)
-        return self.fc2(x)
+    def forward(self, time_steps: np.ndarray) -> np.ndarray:
+        """
+        time_steps: shape (batch, seq_len, 1) or (batch, seq_len) (will be reshaped)
+        returns: (batch, seq_len, d_model)
+        """
+        ts = time_steps
+        if ts.ndim == 2:
+            ts = ts[..., None]
+        linear = (self.w0 * ts) + self.b0  # (b, t, 1)
+        periodic = np.sin((ts * self.w) + self.b)  # broadcasting -> (b,t,d_model-1)
+        return np.concatenate([linear, periodic], axis=-1)
 
 
-class ScaleDotProductAttention(nn.Module):
-    """
-    Scaled dot product attention.
+# PositionwiseFeedForward
 
-    >>> import torch
-    >>> attn = ScaleDotProductAttention()
-    >>> query_tensor = torch.rand(2, 8, 10, 16)
-    >>> key_tensor = torch.rand(2, 8, 10, 16)
-    >>> value_tensor = torch.rand(2, 8, 10, 16)
-    >>> ctx, attn_w = attn.forward(query_tensor, key_tensor, value_tensor)
-    >>> ctx.shape
-    torch.Size([2, 8, 10, 16])
-    """
+class PositionwiseFeedForward:
+    def __init__(self, d_model: int, hidden: int, drop_prob: float = 0.0, seed: Optional[int] = None):
+        if seed is not None:
+            np.random.seed(seed)
+        # simple linear layers (no dropout during forward-only inference, but kept shape)
+        self.w1 = np.random.randn(d_model, hidden) * math.sqrt(2.0 / (d_model + hidden))
+        self.b1 = np.zeros((hidden,))
+        self.w2 = np.random.randn(hidden, d_model) * math.sqrt(2.0 / (hidden + d_model))
+        self.b2 = np.zeros((d_model,))
 
-    def __init__(self) -> None:
-        super().__init__()
-        self.softmax = nn.Softmax(dim=-1)
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        # x: (b, t, d_model)
+        b, t, d = x.shape
+        h = np.tensordot(x, self.w1, axes=([2], [0])) + self.b1  # (b,t,hidden)
+        h = np.maximum(h, 0.0)  # ReLU
+        out = np.tensordot(h, self.w2, axes=([2], [0])) + self.b2  # (b,t,d_model)
+        return out
 
-    def forward(
-        self,
-        query_tensor: Tensor,
-        key_tensor: Tensor,
-        value_tensor: Tensor,
-        mask: Tensor = None,
-    ) -> tuple[Tensor, Tensor]:
-        _, _, _, d_k = key_tensor.size()
-        scores = (query_tensor @ key_tensor.transpose(2, 3)) / math.sqrt(d_k)
+
+
+# Scaled Dot-Product Attention
+
+class ScaledDotProductAttention:
+    def forward(self, q: np.ndarray, k: np.ndarray, v: np.ndarray, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        q,k,v: shapes (b, n_head, seq_len, d_k)
+        mask: optional boolean or 0/1 mask of shape (b, seq_len) or (b, 1, 1, seq_len)
+        returns: context (b, n_head, seq_len, d_k), attn_weights (b, n_head, seq_len, seq_len)
+        """
+        b, n_head, seq_len, d_k = q.shape
+        # scores: (b, n_head, seq_len, seq_len)
+        scores = np.matmul(q, k.transpose(0, 1, 3, 2)) / math.sqrt(d_k)
 
         if mask is not None:
-            scores = scores.masked_fill(mask == 0, -1e9)
+            # normalize mask to shape (b, 1, 1, seq_len) broadcasting over heads and queries
+            if mask.ndim == 2:
+                mask2 = mask[:, None, None, :]  # (b,1,1,seq_len)
+            elif mask.ndim == 3:
+                # if provided as (b, n_head, seq_len) or (b, 1, seq_len)
+                mask2 = mask[:, None, :, :] if mask.shape[1] != seq_len else mask[:, None, None, :]
+            else:
+                mask2 = mask
+            # mask2==0 => masked
+            scores = np.where(mask2 == 0, -1e9, scores)
 
-        attn = self.softmax(scores)
-        context = attn @ value_tensor
+        attn = _softmax(scores, axis=-1)  # (b, n_head, seq_len, seq_len)
+        context = np.matmul(attn, v)  # (b, n_head, seq_len, d_k)
         return context, attn
 
 
-class MultiHeadAttention(nn.Module):
-    """
-    Multi-head attention.
+# MultiHeadAttention
 
-    >>> import torch
-    >>> attn = MultiHeadAttention(16, 4)
-    >>> query_tensor = torch.rand(2, 10, 16)
-    >>> out = attn.forward(query_tensor, query_tensor, query_tensor)
-    >>> out.shape
-    torch.Size([2, 10, 16])
-    """
-
-    def __init__(self, d_model: int, n_head: int) -> None:
-        super().__init__()
+class MultiHeadAttention:
+    def __init__(self, d_model: int, n_head: int, seed: Optional[int] = None):
+        if d_model % n_head != 0:
+            raise ValueError("d_model must be divisible by n_head")
+        if seed is not None:
+            np.random.seed(seed)
+        self.d_model = d_model
         self.n_head = n_head
-        self.attn = ScaleDotProductAttention()
-        self.w_q = nn.Linear(d_model, d_model)
-        self.w_k = nn.Linear(d_model, d_model)
-        self.w_v = nn.Linear(d_model, d_model)
-        self.w_out = nn.Linear(d_model, d_model)
+        self.d_k = d_model // n_head
 
-    def forward(
-        self,
-        query_tensor: Tensor,
-        key_tensor: Tensor,
-        value_tensor: Tensor,
-        mask: Tensor = None,
-    ) -> Tensor:
-        query_tensor, key_tensor, value_tensor = (
-            self.w_q(query_tensor),
-            self.w_k(key_tensor),
-            self.w_v(value_tensor),
-        )
-        query_tensor = self.split_heads(query_tensor)
-        key_tensor = self.split_heads(key_tensor)
-        value_tensor = self.split_heads(value_tensor)
+        # weight matrices for q,k,v and output
+        self.w_q = np.random.randn(d_model, d_model) * math.sqrt(2.0 / (d_model + d_model))
+        self.b_q = np.zeros((d_model,))
+        self.w_k = np.random.randn(d_model, d_model) * math.sqrt(2.0 / (d_model + d_model))
+        self.b_k = np.zeros((d_model,))
+        self.w_v = np.random.randn(d_model, d_model) * math.sqrt(2.0 / (d_model + d_model))
+        self.b_v = np.zeros((d_model,))
+        self.w_out = np.random.randn(d_model, d_model) * math.sqrt(2.0 / (d_model + d_model))
+        self.b_out = np.zeros((d_model,))
 
-        context, _ = self.attn(query_tensor, key_tensor, value_tensor, mask)
-        out = self.w_out(self.concat_heads(context))
-        return out
+        self.attn = ScaledDotProductAttention()
 
-    def split_heads(self, input_tensor: Tensor) -> Tensor:
-        batch, seq_len, d_model = input_tensor.size()
-        d_k = d_model // self.n_head
-        return input_tensor.view(batch, seq_len, self.n_head, d_k).transpose(1, 2)
+    def _linear(self, x: np.ndarray, W: np.ndarray, b: np.ndarray) -> np.ndarray:
+        # x: (b, seq_len, d_model) -> (b, seq_len, d_model)
+        return np.tensordot(x, W, axes=([2], [0])) + b
 
-    def concat_heads(self, input_tensor: Tensor) -> Tensor:
-        batch, n_head, seq_len, d_k = input_tensor.size()
-        return (
-            input_tensor.transpose(1, 2).contiguous().view(batch, seq_len, n_head * d_k)
-        )
+    def _split_heads(self, x: np.ndarray) -> np.ndarray:
+        # x: (b, seq_len, d_model) -> (b, n_head, seq_len, d_k)
+        b, seq_len, _ = x.shape
+        return x.reshape(b, seq_len, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+
+    def _concat_heads(self, x: np.ndarray) -> np.ndarray:
+        # x: (b, n_head, seq_len, d_k) -> (b, seq_len, d_model)
+        b, n_head, seq_len, d_k = x.shape
+        return x.transpose(0, 2, 1, 3).reshape(b, seq_len, n_head * d_k)
+
+    def forward(self, query: np.ndarray, key: np.ndarray, value: np.ndarray, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        query/key/value: (b, seq_len, d_model)
+        returns: out (b, seq_len, d_model), attn_weights (b, n_head, seq_len, seq_len)
+        """
+        q = self._linear(query, self.w_q, self.b_q)
+        k = self._linear(key, self.w_k, self.b_k)
+        v = self._linear(value, self.w_v, self.b_v)
+        qh = self._split_heads(q)
+        kh = self._split_heads(k)
+        vh = self._split_heads(v)
+
+        context, attn = self.attn.forward(qh, kh, vh, mask)
+        concat = self._concat_heads(context)  # (b, seq_len, d_model)
+        out = np.tensordot(concat, self.w_out, axes=([2], [0])) + self.b_out
+        return out, attn
 
 
-class LayerNorm(nn.Module):
-    """
-    Layer normalization.
 
-    >>> import torch
-    >>> ln = LayerNorm(8)
-    >>> x = torch.rand(4, 10, 8)
-    >>> out = ln.forward(x)
-    >>> out.shape
-    torch.Size([4, 10, 8])
-    """
+# LayerNorm
 
-    def __init__(self, d_model: int, eps: float = 1e-12) -> None:
-        super().__init__()
-        self.gamma = nn.Parameter(torch.ones(d_model))
-        self.beta = nn.Parameter(torch.zeros(d_model))
+class LayerNorm:
+    def __init__(self, d_model: int, eps: float = 1e-12):
+        self.gamma = np.ones((d_model,))
+        self.beta = np.zeros((d_model,))
         self.eps = eps
 
-    def forward(self, input_tensor: Tensor) -> Tensor:
-        mean = input_tensor.mean(-1, keepdim=True)
-        var = input_tensor.var(-1, unbiased=False, keepdim=True)
-        return (
-            self.gamma * (input_tensor - mean) / torch.sqrt(var + self.eps) + self.beta
-        )
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        # x: (b, seq_len, d_model)
+        mean = np.mean(x, axis=-1, keepdims=True)
+        var = np.mean((x - mean) ** 2, axis=-1, keepdims=True)
+        x_norm = (x - mean) / np.sqrt(var + self.eps)
+        return self.gamma * x_norm + self.beta
 
+# TransformerEncoderLayer
 
-class TransformerEncoderLayer(nn.Module):
-    """
-    Transformer encoder layer.
-
-    >>> import torch
-    >>> layer = TransformerEncoderLayer(8, 2, 16)
-    >>> x = torch.rand(4, 10, 8)
-    >>> out = layer.forward(x)
-    >>> out.shape
-    torch.Size([4, 10, 8])
-    """
-
-    def __init__(
-        self,
-        d_model: int,
-        n_head: int,
-        hidden_dim: int,
-        drop_prob: float = 0.1,
-    ) -> None:
-        super().__init__()
-        self.self_attn = MultiHeadAttention(d_model, n_head)
-        self.ffn = PositionwiseFeedForward(d_model, hidden_dim, drop_prob)
+class TransformerEncoderLayer:
+    def __init__(self, d_model: int, n_head: int, hidden_dim: int, seed: Optional[int] = None):
+        self.self_attn = MultiHeadAttention(d_model, n_head, seed=seed)
+        self.ffn = PositionwiseFeedForward(d_model, hidden_dim, seed=seed)
         self.norm1 = LayerNorm(d_model)
         self.norm2 = LayerNorm(d_model)
-        self.dropout = nn.Dropout(drop_prob)
 
-    def forward(self, input_tensor: Tensor, mask: Tensor = None) -> Tensor:
-        attn_out = self.self_attn(input_tensor, input_tensor, input_tensor, mask)
-        x = self.norm1(input_tensor + self.dropout(attn_out))
-        ffn_out = self.ffn(x)
-        x = self.norm2(x + self.dropout(ffn_out))
-        return x
+    def forward(self, x: np.ndarray, mask: Optional[np.ndarray] = None) -> np.ndarray:
+        # Self-attention
+        attn_out, _ = self.self_attn.forward(x, x, x, mask)  # (b, seq_len, d_model)
+        x2 = self.norm1.forward(x + attn_out)
+        ffn_out = self.ffn.forward(x2)
+        x3 = self.norm2.forward(x2 + ffn_out)
+        return x3
 
 
-class TransformerEncoder(nn.Module):
-    """
-    Encoder stack.
+# TransformerEncoder (stack)
 
-    >>> import torch
-    >>> enc = TransformerEncoder(8, 2, 16, 2)
-    >>> x = torch.rand(4, 10, 8)
-    >>> out = enc.forward(x)
-    >>> out.shape
-    torch.Size([4, 10, 8])
-    """
+class TransformerEncoder:
+    def __init__(self, d_model: int, n_head: int, hidden_dim: int, num_layers: int, seed: Optional[int] = None):
+        self.layers = [TransformerEncoderLayer(d_model, n_head, hidden_dim, seed=seed) for _ in range(num_layers)]
 
-    def __init__(
-        self,
-        d_model: int,
-        n_head: int,
-        hidden_dim: int,
-        num_layers: int,
-        drop_prob: float = 0.1,
-    ) -> None:
-        super().__init__()
-        self.layers = nn.ModuleList(
-            [
-                TransformerEncoderLayer(d_model, n_head, hidden_dim, drop_prob)
-                for _ in range(num_layers)
-            ]
-        )
-
-    def forward(self, input_tensor: Tensor, mask: Tensor = None) -> Tensor:
-        x = input_tensor
+    def forward(self, x: np.ndarray, mask: Optional[np.ndarray] = None) -> np.ndarray:
+        out = x
         for layer in self.layers:
-            x = layer(x, mask)
-        return x
+            out = layer.forward(out, mask)
+        return out
 
+# AttentionPooling
 
-class AttentionPooling(nn.Module):
-    """
-    Attention pooling layer.
+class AttentionPooling:
+    def __init__(self, d_model: int, seed: Optional[int] = None):
+        if seed is not None:
+            np.random.seed(seed)
+        self.w = np.random.randn(d_model) * math.sqrt(2.0 / d_model)
+        self.b = 0.0
 
-    >>> import torch
-    >>> pooling = AttentionPooling(8)
-    >>> x = torch.rand(4, 10, 8)
-    >>> pooled, weights = pooling.forward(x)
-    >>> pooled.shape
-    torch.Size([4, 8])
-    >>> weights.shape
-    torch.Size([4, 10])
-    """
-
-    def __init__(self, d_model: int) -> None:
-        super().__init__()
-        self.attn_score = nn.Linear(d_model, 1)
-
-    def forward(
-        self, input_tensor: Tensor, mask: Tensor = None
-    ) -> tuple[Tensor, Tensor]:
-        attn_weights = torch.softmax(self.attn_score(input_tensor).squeeze(-1), dim=-1)
+    def forward(self, x: np.ndarray, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        x: (b, seq_len, d_model)
+        mask: (b, seq_len) where 1 = valid, 0 = pad
+        returns: pooled (b, d_model), attn_weights (b, seq_len)
+        """
+        # raw scores: (b, seq_len)
+        scores = np.tensordot(x, self.w, axes=([2], [0])) + self.b
 
         if mask is not None:
-            attn_weights = attn_weights.masked_fill(mask == 0, 0)
-            attn_weights = attn_weights / (attn_weights.sum(dim=1, keepdim=True) + 1e-8)
+            scores = np.where(mask == 0, -1e9, scores)
 
-        pooled = torch.bmm(attn_weights.unsqueeze(1), input_tensor).squeeze(1)
-        return pooled, attn_weights
+        weights = _softmax(scores, axis=-1)  # (b, seq_len)
+        pooled = np.matmul(weights[:, None, :], x).squeeze(1)  # (b, d_model)
+        return pooled, weights
 
+# EEGTransformer (forward-only)
 
-class EEGTransformer(nn.Module):
-    """
-    EEG Transformer model.
-
-    >>> import torch
-    >>> model = EEGTransformer(feature_dim=8)
-    >>> x = torch.rand(2, 10, 8)
-    >>> out, attn_w = model.forward(x)
-    >>> out.shape
-    torch.Size([2, 1])
-    """
-
+class EEGTransformer:
     def __init__(
         self,
         feature_dim: int,
@@ -289,35 +238,75 @@ class EEGTransformer(nn.Module):
         n_head: int = 8,
         hidden_dim: int = 512,
         num_layers: int = 4,
-        drop_prob: float = 0.1,
         output_dim: int = 1,
         task_type: str = "regression",
-    ) -> None:
-        super().__init__()
+        seed: Optional[int] = None,
+    ):
+        if seed is not None:
+            np.random.seed(seed)
+        self.feature_dim = feature_dim
+        self.d_model = d_model
         self.task_type = task_type
-        self.input_proj = nn.Linear(feature_dim, d_model)
-        self.time2vec = Time2Vec(d_model)
-        self.encoder = TransformerEncoder(
-            d_model, n_head, hidden_dim, num_layers, drop_prob
-        )
-        self.pooling = AttentionPooling(d_model)
-        self.output_layer = nn.Linear(d_model, output_dim)
+        # input projection
+        self.w_in = np.random.randn(feature_dim, d_model) * math.sqrt(2.0 / (feature_dim + d_model))
+        self.b_in = np.zeros((d_model,))
+        # time embedding
+        self.time2vec = Time2Vec(d_model, seed=seed)
+        self.encoder = TransformerEncoder(d_model, n_head, hidden_dim, num_layers, seed=seed)
+        self.pooling = AttentionPooling(d_model, seed=seed)
+        # output
+        self.w_out = np.random.randn(d_model, output_dim) * math.sqrt(2.0 / (d_model + output_dim))
+        self.b_out = np.zeros((output_dim,))
 
-    def forward(
-        self, input_tensor: Tensor, mask: Tensor = None
-    ) -> tuple[Tensor, Tensor]:
-        b, t, _ = input_tensor.size()
-        t_idx = (
-            torch.arange(t, device=input_tensor.device)
-            .view(1, t, 1)
-            .expand(b, t, 1)
-            .float()
-        )
-        time_emb = self.time2vec(t_idx)
-        x = self.input_proj(input_tensor) + time_emb
-        x = self.encoder(x, mask)
-        pooled, attn_weights = self.pooling(x, mask)
-        out = self.output_layer(pooled)
+    def _input_proj(self, x: np.ndarray) -> np.ndarray:
+        # x: (b, seq_len, feature_dim) -> (b, seq_len, d_model)
+        return np.tensordot(x, self.w_in, axes=([2], [0])) + self.b_in
+
+    def forward(self, x: np.ndarray, mask: Optional[np.ndarray] = None) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        x: (b, seq_len, feature_dim)
+        mask: optional (b, seq_len) 1=valid,0=pad
+        returns: out (b, output_dim), attn_weights_from_pooling (b, seq_len)
+        """
+        b, t, f = x.shape
+        # time indices
+        t_idx = np.arange(t, dtype=float)[None, :, None]  # (1,t,1)
+        t_idx = np.tile(t_idx, (b, 1, 1))  # (b,t,1)
+        time_emb = self.time2vec.forward(t_idx)  # (b,t,d_model)
+        x_proj = self._input_proj(x) + time_emb  # broadcast add -> (b,t,d_model)
+        enc = self.encoder.forward(x_proj, mask)
+        pooled, attn_weights = self.pooling.forward(enc, mask)
+        out = np.tensordot(pooled, self.w_out, axes=([1], [0])) + self.b_out  # (b,output_dim)
         if self.task_type == "classification":
-            out = torch.softmax(out, dim=-1)
+            out = _softmax(out, axis=-1)
         return out, attn_weights
+
+
+# Example usage
+
+if __name__ == "__main__":
+    # Example 1: Synthetic EEG-like array
+    batch = 2
+    seq_len = 10
+    feature_dim = 8  # e.g., 8 channels
+    rng = np.random.RandomState(42)
+    X = rng.randn(batch, seq_len, feature_dim).astype(float)
+
+    model = EEGTransformer(feature_dim=feature_dim, d_model=32, n_head=4, hidden_dim=64, num_layers=2, output_dim=1, seed=0)
+    out, attn_weights = model.forward(X)
+    print("Output shape:", out.shape)
+    print("Output:", out)
+    print("Pooling attn shape:", attn_weights.shape)
+    print("Pooling attn (per sample):", attn_weights)
+
+    # Example 2: Loading EEG from a pandas DataFrame (CSV-like)
+    # Suppose CSV has columns: time, ch1, ch2, ..., chN
+    # We'll simulate a DataFrame first:
+    channels = [f"ch{i}" for i in range(feature_dim)]
+    # create a long single-trial dataframe with seq_len rows
+    df = pd.DataFrame(rng.randn(seq_len, feature_dim), columns=channels)
+    # convert to numpy trial (1, seq_len, feature_dim)
+    trial_np = df[channels].values.reshape(1, seq_len, feature_dim)
+    out2, attn2 = model.forward(trial_np)
+    print("Single-trial output:", out2)
+    print("Single-trial pooling attn:", attn2)
