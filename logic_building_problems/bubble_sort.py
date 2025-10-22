@@ -45,7 +45,7 @@ def bubble_sort(arr: list[int | float]) -> list[int | float]:
         swapped = False
 
         # Last i elements are already in place
-        for j in range(0, n - i - 1):
+        for j in range(n - i - 1):
             # Swap if the element found is greater than the next element
             if arr_copy[j] > arr_copy[j + 1]:
                 arr_copy[j], arr_copy[j + 1] = arr_copy[j + 1], arr_copy[j]
