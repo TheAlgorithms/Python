@@ -28,8 +28,9 @@ def fizz_buzz(n: int) -> list[str]:
     Examples:
         >>> fizz_buzz(5)
         ['1', '2', 'Fizz', '4', 'Buzz']
-        >>> fizz_buzz(15)
-        ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz']
+        >>> fizz_buzz(15)  # doctest: +NORMALIZE_WHITESPACE
+        ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8',
+         'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'FizzBuzz']
         >>> fizz_buzz(0)
         Traceback (most recent call last):
             ...
