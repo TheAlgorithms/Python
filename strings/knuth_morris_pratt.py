@@ -8,7 +8,7 @@ thus bypassing re-examination of previously matched characters.
 This results in an optimal time complexity of O(n + m), where n is the length
 of the text and m is the length of the pattern.
 
-Source: https://en.wikipedia.org/wiki/Knuth–Morris–Pratt_algorithm
+Source: https://en.wikipedia.org/wiki/Knuth-Morris-Pratt_algorithm
 """
 from __future__ import annotations
 
@@ -45,12 +45,11 @@ def _compute_lps_array(pattern: str) -> list[int]:
             length += 1
             lps[i] = length
             i += 1
+        elif length != 0:
+            length = lps[length - 1]
         else:
-            if length != 0:
-                length = lps[length - 1]
-            else:
-                lps[i] = 0
-                i += 1
+            lps[i] = 0
+            i += 1
     return lps
 
 
