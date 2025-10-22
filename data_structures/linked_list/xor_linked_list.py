@@ -17,16 +17,17 @@ from typing import Optional
 
 
 class Node:
-    def __init__(self, value: int):
+    def __init__(self, value: int) -> None:
         self.value = value
         self.both: int = 0  # XOR of prev and next node ids
 
 
 class XORLinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head: Optional[Node] = None
         self.tail: Optional[Node] = None
         self._nodes = {}  # id → node map to simulate pointer references
+
 
     def _xor(self, a: Optional[Node], b: Optional[Node]) -> int:
         return (id(a) if a else 0) ^ (id(b) if b else 0)
