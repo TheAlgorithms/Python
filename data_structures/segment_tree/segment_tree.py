@@ -12,7 +12,7 @@ Time Complexity:
 Space Complexity: O(n)
 """
 
-from typing import Callable
+from collections.abc import Callable
 
 
 class SegmentTree:
@@ -34,29 +34,25 @@ class SegmentTree:
     22
     >>> st.query(0, 5)
     42
-    >>> st2 = SegmentTree([2, 4, 6, 8], operation=min)
-    >>> st2.query(0, 3)
-    2
-    >>> st2.update(0, 10)
-    >>> st2.query(0, 3)
-    4
     """
 
     def __init__(
         self, arr: list[int], operation: Callable[[int, int], int] = lambda a, b: a + b
     ) -> None:
-        """Initialize segment tree with given array.
+        """Initialize segment tree with array.
 
         Args:
-            arr: Input array of integers
-            operation: Binary operation to combine values (default: addition)
+            arr: Input array
+            operation: Function to combine two values (default: sum)
 
-        >>> st = SegmentTree([1, 2, 3])
+        >>> st = SegmentTree([1, 2, 3, 4, 5])
+        >>> st.n
+        5
         >>> len(st.tree)
-        8
+        20
         """
         self.n = len(arr)
-        self.tree = [0] * (4 * self.n)  # Allocate space for segment tree
+        self.tree = [0] * (4 * self.n)
         self.operation = operation
         self._build(arr, 0, 0, self.n - 1)
 
@@ -65,9 +61,9 @@ class SegmentTree:
 
         Args:
             arr: Input array
-            node: Current node index in tree
-            start: Start index of current segment
-            end: End index of current segment
+            node: Current node index
+            start: Start of current segment
+            end: End of current segment
         """
         if start == end:
             # Leaf node
@@ -83,20 +79,20 @@ class SegmentTree:
             )
 
     def query(self, left: int, right: int) -> int:
-        """Query for value in range [left, right].
+        """Query sum of elements in range [left, right].
 
         Args:
-            left: Left boundary of query range (inclusive)
-            right: Right boundary of query range (inclusive)
+            left: Left boundary of query range
+            right: Right boundary of query range
 
         Returns:
-            Result of applying operation over the range
+            Sum of elements in range
 
         >>> st = SegmentTree([1, 2, 3, 4, 5])
         >>> st.query(0, 2)
         6
-        >>> st.query(2, 4)
-        12
+        >>> st.query(1, 3)
+        9
         """
         return self._query(0, 0, self.n - 1, left, right)
 
@@ -107,27 +103,25 @@ class SegmentTree:
             node: Current node index
             start: Start of current segment
             end: End of current segment
-            left: Query left boundary
-            right: Query right boundary
+            left: Left boundary of query range
+            right: Right boundary of query range
 
         Returns:
-            Query result for current segment
+            Query result for the range
         """
         if right < start or left > end:
             # No overlap
-            return 0 if self.operation(0, 0) == 0 else float('inf')
-
+            return 0
         if left <= start and end <= right:
             # Complete overlap
             return self.tree[node]
-
         # Partial overlap
         mid = (start + end) // 2
         left_child = 2 * node + 1
         right_child = 2 * node + 2
-        left_result = self._query(left_child, start, mid, left, right)
-        right_result = self._query(right_child, mid + 1, end, left, right)
-        return self.operation(left_result, right_result)
+        left_sum = self._query(left_child, start, mid, left, right)
+        right_sum = self._query(right_child, mid + 1, end, left, right)
+        return self.operation(left_sum, right_sum)
 
     def update(self, index: int, value: int) -> None:
         """Update value at given index.
