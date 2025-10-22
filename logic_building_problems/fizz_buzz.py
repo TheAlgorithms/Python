@@ -50,4 +50,5 @@ def fizz_buzz(num: int) -> list[str]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
