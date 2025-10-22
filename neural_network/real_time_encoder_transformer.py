@@ -64,13 +64,20 @@ class Time2Vec:
 # -------------------------------
 class PositionwiseFeedForward:
     def __init__(
-        self, d_model: int, hidden: int, drop_prob: float = 0.0,
-        seed: Optional[int] = None
+        self,
+        d_model: int,
+        hidden: int,
+        drop_prob: float = 0.0,
+        seed: Optional[int] = None,
     ) -> None:
         self.rng = np.random.default_rng(seed)
-        self.w1 = self.rng.standard_normal((d_model, hidden)) * math.sqrt(2.0 / (d_model + hidden))
+        self.w1 = self.rng.standard_normal((d_model, hidden)) * math.sqrt(
+            2.0 / (d_model + hidden)
+        )
         self.b1 = np.zeros((hidden,))
-        self.w2 = self.rng.standard_normal((hidden, d_model)) * math.sqrt(2.0 / (hidden + d_model))
+        self.w2 = self.rng.standard_normal((hidden, d_model)) * math.sqrt(
+            2.0 / (hidden + d_model)
+        )
         self.b2 = np.zeros((d_model,))
 
     def forward(self, input_tensor: np.ndarray) -> np.ndarray:
@@ -96,8 +103,11 @@ class PositionwiseFeedForward:
 # -------------------------------
 class ScaledDotProductAttention:
     def forward(
-        self, query: np.ndarray, key: np.ndarray, value: np.ndarray,
-        mask: np.ndarray | None = None
+        self,
+        query: np.ndarray,
+        key: np.ndarray,
+        value: np.ndarray,
+        mask: np.ndarray | None = None,
     ) -> tuple[np.ndarray, np.ndarray]:
         """
         Compute scaled dot-product attention.
@@ -134,31 +144,46 @@ class MultiHeadAttention:
         self.n_head = n_head
         self.d_k = d_model // n_head
 
-        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_q = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_q = np.zeros((d_model,))
-        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_k = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_k = np.zeros((d_model,))
-        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_v = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_v = np.zeros((d_model,))
-        self.w_out = self.rng.standard_normal((d_model, d_model)) * math.sqrt(2.0 / (d_model + d_model))
+        self.w_out = self.rng.standard_normal((d_model, d_model)) * math.sqrt(
+            2.0 / (d_model + d_model)
+        )
         self.b_out = np.zeros((d_model,))
 
         self.attn = ScaledDotProductAttention()
 
-    def _linear(self, x: np.ndarray, weight: np.ndarray, bias: np.ndarray) -> np.ndarray:
+    def _linear(
+        self, x: np.ndarray, weight: np.ndarray, bias: np.ndarray
+    ) -> np.ndarray:
         return np.tensordot(x, weight, axes=([2], [0])) + bias
 
     def _split_heads(self, x: np.ndarray) -> np.ndarray:
         batch_size, seq_len, _ = x.shape
-        return x.reshape(batch_size, seq_len, self.n_head, self.d_k).transpose(0, 2, 1, 3)
+        return x.reshape(batch_size, seq_len, self.n_head, self.d_k).transpose(
+            0, 2, 1, 3
+        )
 
     def _concat_heads(self, x: np.ndarray) -> np.ndarray:
         batch_size, n_head, seq_len, d_k = x.shape
         return x.transpose(0, 2, 1, 3).reshape(batch_size, seq_len, n_head * d_k)
 
     def forward(
-        self, query: np.ndarray, key: np.ndarray, value: np.ndarray,
-        mask: np.ndarray | None = None
+        self,
+        query: np.ndarray,
+        key: np.ndarray,
+        value: np.ndarray,
+        mask: np.ndarray | None = None,
     ) -> tuple[np.ndarray, np.ndarray]:
         """
         Parameters
@@ -184,6 +209,8 @@ class MultiHeadAttention:
         concat = self._concat_heads(context)
         out = np.tensordot(concat, self.w_out, axes=([2], [0])) + self.b_out
         return out, attn_weights
+
+
 # -------------------------------
 # 🔹 LayerNorm
 # -------------------------------
@@ -215,13 +242,17 @@ class LayerNorm:
 # 🔹 TransformerEncoderLayer
 # -------------------------------
 class TransformerEncoderLayer:
-    def __init__(self, d_model: int, n_head: int, hidden_dim: int, seed: Optional[int] = None) -> None:
+    def __init__(
+        self, d_model: int, n_head: int, hidden_dim: int, seed: Optional[int] = None
+    ) -> None:
         self.self_attn = MultiHeadAttention(d_model, n_head, seed)
         self.ffn = PositionwiseFeedForward(d_model, hidden_dim, seed=seed)
         self.norm1 = LayerNorm(d_model)
         self.norm2 = LayerNorm(d_model)
 
-    def forward(self, input_tensor: np.ndarray, mask: np.ndarray | None = None) -> np.ndarray:
+    def forward(
+        self, input_tensor: np.ndarray, mask: np.ndarray | None = None
+    ) -> np.ndarray:
         """
         Parameters
         ----------
@@ -235,7 +266,9 @@ class TransformerEncoderLayer:
         np.ndarray
             Shape (batch, seq_len, d_model)
         """
-        attn_out, _ = self.self_attn.forward(input_tensor, input_tensor, input_tensor, mask)
+        attn_out, _ = self.self_attn.forward(
+            input_tensor, input_tensor, input_tensor, mask
+        )
         x_norm1 = self.norm1.forward(input_tensor + attn_out)
         ffn_out = self.ffn.forward(x_norm1)
         x_norm2 = self.norm2.forward(x_norm1 + ffn_out)
@@ -246,10 +279,22 @@ class TransformerEncoderLayer:
 # 🔹 TransformerEncoder (stack)
 # -------------------------------
 class TransformerEncoder:
-    def __init__(self, d_model: int, n_head: int, hidden_dim: int, num_layers: int, seed: Optional[int] = None) -> None:
-        self.layers = [TransformerEncoderLayer(d_model, n_head, hidden_dim, seed) for _ in range(num_layers)]
+    def __init__(
+        self,
+        d_model: int,
+        n_head: int,
+        hidden_dim: int,
+        num_layers: int,
+        seed: Optional[int] = None,
+    ) -> None:
+        self.layers = [
+            TransformerEncoderLayer(d_model, n_head, hidden_dim, seed)
+            for _ in range(num_layers)
+        ]
 
-    def forward(self, input_tensor: np.ndarray, mask: np.ndarray | None = None) -> np.ndarray:
+    def forward(
+        self, input_tensor: np.ndarray, mask: np.ndarray | None = None
+    ) -> np.ndarray:
         """
         Parameters
         ----------
@@ -278,7 +323,9 @@ class AttentionPooling:
         self.w = self.rng.standard_normal((d_model,)) * math.sqrt(2.0 / d_model)
         self.b = 0.0
 
-    def forward(self, input_tensor: np.ndarray, mask: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    def forward(
+        self, input_tensor: np.ndarray, mask: np.ndarray | None = None
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Parameters
         ----------
@@ -315,27 +362,33 @@ class EEGTransformer:
         num_layers: int = 4,
         output_dim: int = 1,
         task_type: str = "regression",
-        seed: Optional[int] = None
+        seed: Optional[int] = None,
     ) -> None:
         self.rng = np.random.default_rng(seed)
         self.feature_dim = feature_dim
         self.d_model = d_model
         self.task_type = task_type
 
-        self.w_in = self.rng.standard_normal((feature_dim, d_model)) * math.sqrt(2.0 / (feature_dim + d_model))
+        self.w_in = self.rng.standard_normal((feature_dim, d_model)) * math.sqrt(
+            2.0 / (feature_dim + d_model)
+        )
         self.b_in = np.zeros((d_model,))
 
         self.time2vec = Time2Vec(d_model, seed)
         self.encoder = TransformerEncoder(d_model, n_head, hidden_dim, num_layers, seed)
         self.pooling = AttentionPooling(d_model, seed)
 
-        self.w_out = self.rng.standard_normal((d_model, output_dim)) * math.sqrt(2.0 / (d_model + output_dim))
+        self.w_out = self.rng.standard_normal((d_model, output_dim)) * math.sqrt(
+            2.0 / (d_model + output_dim)
+        )
         self.b_out = np.zeros((output_dim,))
 
     def _input_proj(self, features: np.ndarray) -> np.ndarray:
         return np.tensordot(features, self.w_in, axes=([2], [0])) + self.b_in
 
-    def forward(self, features: np.ndarray, mask: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    def forward(
+        self, features: np.ndarray, mask: np.ndarray | None = None
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Parameters
         ----------
