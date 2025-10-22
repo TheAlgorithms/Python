@@ -2,8 +2,8 @@
 
 ## 🎯 Feature Request Implementation
 
-**Issue:** "Add neural network optimizers module to enhance training capabilities"  
-**Requested by:** @Adhithya-Laxman  
+**Issue:** "Add neural network optimizers module to enhance training capabilities"
+**Requested by:** @Adhithya-Laxman
 **Status:** ✅ **COMPLETED**
 
 ## 📦 What Was Implemented
@@ -15,7 +15,7 @@ neural_network/optimizers/
 ├── base_optimizer.py        # Abstract base class for all optimizers
 ├── sgd.py                  # Stochastic Gradient Descent
 ├── momentum_sgd.py         # SGD with Momentum
-├── nag.py                  # Nesterov Accelerated Gradient  
+├── nag.py                  # Nesterov Accelerated Gradient
 ├── adagrad.py              # Adaptive Gradient Algorithm
 ├── adam.py                 # Adaptive Moment Estimation
 ├── README.md               # Comprehensive documentation
@@ -28,7 +28,7 @@ neural_network/optimizers/
    - Basic gradient descent: `θ = θ - α * g`
    - Foundation for understanding optimization
 
-2. **MomentumSGD** 
+2. **MomentumSGD**
    - Adds momentum for acceleration: `v = β*v + (1-β)*g; θ = θ - α*v`
    - Reduces oscillations and speeds convergence
 
@@ -52,7 +52,7 @@ neural_network/optimizers/
 - **Type Safety**: Full type hints throughout (`typing`, `Union`, `List`)
 - **Educational Focus**: Clear mathematical formulations in docstrings
 - **Comprehensive Testing**: Doctests + example scripts
-- **Consistent Interface**: All inherit from `BaseOptimizer` 
+- **Consistent Interface**: All inherit from `BaseOptimizer`
 - **Error Handling**: Proper validation and meaningful error messages
 
 ### 📝 Code Quality Features
@@ -80,13 +80,13 @@ The implementation was validated on multiple test problems:
 - Momentum accelerates convergence but can overshoot
 - Adam provides robust performance with adaptive learning
 
-### Multi-dimensional (f(x,y) = x² + 10y²)  
+### Multi-dimensional (f(x,y) = x² + 10y²)
 - Tests adaptation to different parameter scales
 - Adagrad and Adam handle scale differences well
 - Momentum methods show improved stability
 
 ### Rosenbrock Function (Non-convex)
-- Classic challenging optimization benchmark  
+- Classic challenging optimization benchmark
 - Adam significantly outperformed other methods
 - Demonstrates real-world applicability
 
@@ -94,7 +94,7 @@ The implementation was validated on multiple test problems:
 
 ### Progressive Complexity
 1. **SGD**: Foundation - understand basic gradient descent
-2. **Momentum**: Build intuition for acceleration methods  
+2. **Momentum**: Build intuition for acceleration methods
 3. **NAG**: Learn about lookahead and overshoot correction
 4. **Adagrad**: Understand adaptive learning rates
 5. **Adam**: See how modern optimizers combine techniques
@@ -106,7 +106,7 @@ The implementation was validated on multiple test problems:
 
 ### Code Patterns
 - Abstract base classes and inheritance
-- Recursive algorithms for nested data structures  
+- Recursive algorithms for nested data structures
 - State management in optimization algorithms
 - Type safety in scientific computing
 
@@ -126,7 +126,7 @@ from neural_network.optimizers import SGD, Adam, Adagrad
 
 optimizers = {
     "sgd": SGD(0.01),
-    "adam": Adam(0.001),  
+    "adam": Adam(0.001),
     "adagrad": Adagrad(0.01)
 }
 
@@ -147,7 +147,7 @@ updated = optimizer.update(params_2d, grads_2d)
 
 ### For the Repository
 - **Gap Filled**: Addresses missing neural network optimization algorithms
-- **Educational Value**: High-quality learning resource for ML students  
+- **Educational Value**: High-quality learning resource for ML students
 - **Code Quality**: Demonstrates best practices in scientific Python
 - **Completeness**: Makes the repo more comprehensive for ML learning
 
@@ -163,7 +163,7 @@ The modular design makes it easy to add more optimizers:
 
 ### Future Additions Could Include
 - **RMSprop**: Another popular adaptive optimizer
-- **AdamW**: Adam with decoupled weight decay  
+- **AdamW**: Adam with decoupled weight decay
 - **LAMB**: Layer-wise Adaptive Moments optimizer
 - **Muon**: Advanced Newton-Schulz orthogonalization method
 - **Learning Rate Schedulers**: Time-based adaptation
@@ -185,7 +185,7 @@ class NewOptimizer(BaseOptimizer):
 - ✅ **Incremental Complexity**: SGD → Momentum → NAG → Adagrad → Adam
 - ✅ **Documentation**: Comprehensive docstrings and README
 - ✅ **Type Hints**: Full type safety throughout
-- ✅ **Testing**: Doctests + comprehensive test suite  
+- ✅ **Testing**: Doctests + comprehensive test suite
 - ✅ **Educational Value**: Clear explanations and examples
 
 ### Additional Value Delivered
