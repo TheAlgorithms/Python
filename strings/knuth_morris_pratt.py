@@ -10,6 +10,7 @@ of the text and m is the length of the pattern.
 
 Source: https://en.wikipedia.org/wiki/Knuth-Morris-Pratt_algorithm
 """
+
 from __future__ import annotations
 
 
