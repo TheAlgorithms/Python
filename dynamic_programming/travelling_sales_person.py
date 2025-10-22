@@ -1,7 +1,7 @@
 """
 Dynamic Programming: Travelling Salesman Problem (TSP)
 -----------------------------------------------------
-Solves the classic TSP using the Held–Karp dynamic programming approach.
+Solves the classic TSP using the Held Karp dynamic programming approach.
 
 Time Complexity: O(n^2 * 2^n)
 Space Complexity: O(n * 2^n)
@@ -17,13 +17,13 @@ Example:
     80
 """
 
-from functools import lru_cache
+import functools
 
 
 def travelling_salesman(cost_matrix: list[list[int]]) -> int:
     """
     Returns the minimum travel cost for visiting all cities and returning
-    to the starting city (0-indexed), using the Held–Karp DP approach.
+    to the starting city (0-indexed), using the Held Karp DP approach.
 
     Args:
         cost_matrix (list[list[int]]): A square matrix where cost_matrix[i][j]
@@ -35,7 +35,7 @@ def travelling_salesman(cost_matrix: list[list[int]]) -> int:
     n = len(cost_matrix)
     all_visited = (1 << n) - 1  # bitmask with all cities visited
 
-    @lru_cache(maxsize=None)
+    @functools.cache
     def dp(mask: int, pos: int) -> int:
         # Base case: all cities visited, return cost to go back to start
         if mask == all_visited:
