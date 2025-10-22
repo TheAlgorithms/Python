@@ -30,18 +30,18 @@ def tsp(cost):
     """
     # create the adjacency list
     adj = create_list(cost)
- 
-    #check for triangle inequality violations
+
+    # check for triangle inequality violations
     if triangle_inequality(adj):
         print("Triangle Inequality Violation")
         return -1
 
     # construct the travelling salesman tour
     tsp_tour = approximate_tsp(adj)
- 
+
     # calculate the cost of the tour
     tsp_cost = tour_cost(tsp_tour)
- 
+
     return tsp_cost
 
 
@@ -51,10 +51,10 @@ def approximate_tsp(adj):
 
     # to store the cost of minimum spanning tree
     mst_cost = [0]
- 
+
     # stores edges of minimum spanning tree
     mst_edges = find_mst(adj, mst_cost)
- 
+
     # to mark the visited nodes
     visited = [False] * n
 
@@ -64,17 +64,17 @@ def approximate_tsp(adj):
     for e in mst_edges:
         mst_adj[e[0]].append([e[1], e[2]])
         mst_adj[e[1]].append([e[0], e[2]])
- 
+
     # to store the eulerian tour
     tour = []
     eulerian_circuit(mst_adj, 0, tour, visited, -1)
- 
+
     # add the starting node to the tour
     tour.append(0)
 
     # to store the final tour path
     tour_path = []
- 
+
     for i in range(len(tour) - 1):
         u = tour[i]
         v = tour[i + 1]
@@ -88,8 +88,9 @@ def approximate_tsp(adj):
 
         # add the edge to the tour path
         tour_path.append([u, v, weight])
- 
+
     return tour_path
+
 
 def tour_cost(tour):
     cost = 0
@@ -109,7 +110,8 @@ def eulerian_circuit(adj, u, tour, visited, parent):
 
         if visited[v] == False:
             eulerian_circuit(adj, v, tour, visited, u)
- 
+
+
 # function to find the minimum spanning tree
 def find_mst(adj, mst_cost):
     n = len(adj)
@@ -119,7 +121,7 @@ def find_mst(adj, mst_cost):
 
     # stores edges of minimum spanning tree
     mst_edges = []
- 
+
     pq = []
     heapq.heappush(pq, [0, 0, -1])
 
@@ -132,13 +134,13 @@ def find_mst(adj, mst_cost):
 
         if visited[u]:
             continue
- 
+
         mst_cost[0] += weight
         visited[u] = True
 
         if parent != -1:
             mst_edges.append([u, parent, weight])
- 
+
         for neighbor in adj[u]:
             v = neighbor[0]
             if v == parent:
@@ -148,7 +150,6 @@ def find_mst(adj, mst_cost):
             if not visited[v]:
                 heapq.heappush(pq, [w, v, u])
     return mst_edges
- 
 
 
 # function to calculate if the
