@@ -1,27 +1,23 @@
 """
 HSV Filter Tool
 
-This module allows the user to interactively select an HSV color range
-from an image using trackbars and outputs the selected HSV values.
+This file lets the user to interactively select an HSV color range
+from an image using trackbars and outputs the selected HSV range.
 
-Dependencies:
-- OpenCV (cv2)
-- NumPy
-
-Usage:
 1. Set `IMAGE_PATH` to your image file.
 2. Run the script.
 3. Adjust the trackbars to select the desired HSV range.
-4. Press Enter to print the HSV lower and upper bounds.
+4. Enter to print the HSV lower and upper bounds.
 """
 
 import cv2
 import numpy as np
 
+#Example Path
 IMAGE_PATH = r"C:\Users\username\New folder\your_image.png"
 
 
-def load_image(path: str) -> np.ndarray:
+def load_image(path):
     """
     Load an image from the specified path.
 
@@ -46,7 +42,7 @@ def load_image(path: str) -> np.ndarray:
     return image
 
 
-def create_hsv_trackbars(window_name: str) -> None:
+def create_hsv_trackbars(window_name):
     """
     Create HSV trackbars for filtering.
 
@@ -63,7 +59,7 @@ def create_hsv_trackbars(window_name: str) -> None:
     cv2.createTrackbar("V Upper", window_name, 255, 255, lambda x: None)
 
 
-def get_hsv_bounds(window_name: str) -> tuple[np.ndarray, np.ndarray]:
+def get_hsv_bounds(window_name):
     """
     Read the HSV lower and upper bounds from the trackbars.
 
@@ -90,7 +86,7 @@ def get_hsv_bounds(window_name: str) -> tuple[np.ndarray, np.ndarray]:
     return lower_bound, upper_bound
 
 
-def main() -> None:
+def main():
     """
     Main function to run the HSV filter tool.
 
