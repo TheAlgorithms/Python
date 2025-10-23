@@ -14,7 +14,7 @@ class Matrix:  # Public class to implement a graph
     """
 
     def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
-        """Initialzes the matrix with the given number of rows, columns and matrix.
+        """Initializes the matrix with the given number of rows, columns and matrix.
         Args:
             row (int): number of rows in the matrix
             col (int): number of columns in the matrix
