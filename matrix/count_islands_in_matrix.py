@@ -4,6 +4,20 @@
 
 
 class Matrix:  # Public class to implement a graph
+<<<<<<< Updated upstream
+=======
+    """This public class represents the 2-Dimensional matrix to count
+    the number of islands.An island is the connected group of 1s,including the top,
+    down, right, left as well as the diagonal connections.
+    >>> matrix1 = Matrix(3, 3, [[1, 1, 0], [0, 1, 0], [1, 0, 1]])
+    >>> matrix1.count_islands()
+    1
+    >>> matrix2 = Matrix(2, 2, [[1, 1], [1, 1]])
+    >>> matrix2.count_islands()
+    1
+    """
+
+>>>>>>> Stashed changes
     def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
         self.ROW = row
         self.COL = col
