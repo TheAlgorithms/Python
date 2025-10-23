@@ -41,13 +41,13 @@ def factorial_recursive(n: int) -> int:
     https://en.wikipedia.org/wiki/Factorial
 
     >>> import math
-    >>> all(factorial(i) == math.factorial(i) for i in range(20))
+    >>> all(factorial_recursive(i) == math.factorial(i) for i in range(20))
     True
-    >>> factorial(0.1)
+    >>> factorial_recursive(0.1)
     Traceback (most recent call last):
         ...
     ValueError: factorial() only accepts integral values
-    >>> factorial(-1)
+    >>> factorial_recursive(-1)
     Traceback (most recent call last):
         ...
     ValueError: factorial() not defined for negative values
