@@ -52,7 +52,7 @@ def rare_numbers(start: int, end: int) -> list[int]:
         rev_n = _reverse_number(n)
         if n == rev_n:
             continue  # skip palindromes
-        if _is_perfect_square(n + rev_n) and _is_perfect_square(abs(n - rev_n)):
+     if n - rev_n > 0 and _is_perfect_square(n + rev_n) and _is_perfect_square(n - rev_n):
             rares.append(n)
     return rares
 
@@ -98,7 +98,7 @@ def _is_perfect_square(n: int) -> bool:
     """
     if n < 0:
         return False
-    root = int(math.isqrt(n))
+    root = math.isqrt(n)
     return root * root == n
 
 
