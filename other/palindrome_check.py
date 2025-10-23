@@ -1,4 +1,7 @@
-from typing import Text # Imports the 'Text' type for clarity (optional, but good practice)
+from typing import (
+    Text,
+)  # Imports the 'Text' type for clarity (optional, but good practice)
+
 
 def is_palindrome(text: Text) -> bool:
     """
@@ -37,4 +40,5 @@ if __name__ == "__main__":
     # When this file is run directly (python file.py), it executes the
     # doctest examples inside the docstring to verify the function works.
     import doctest
+
     doctest.testmod()
