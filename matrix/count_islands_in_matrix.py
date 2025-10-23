@@ -12,6 +12,7 @@ class Matrix:  # Public class to implement a graph
     >>> matrix2.count_islands()
     1
     """
+
     def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
         """Initializes the matrix with the given number of rows, columns and matrix.
         Args:
