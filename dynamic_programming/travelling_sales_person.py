@@ -30,13 +30,13 @@ def travelling_salesman(cost_matrix: list[list[int]]) -> float:
             represents the cost of traveling from city i to city j.
 
     Returns:
-        int: The minimum total cost of the tour.
+        float: The minimum total cost of the tour.
     """
     n = len(cost_matrix)
     all_visited = (1 << n) - 1  # bitmask with all cities visited
 
     @functools.cache
-    def dp(mask: int, pos: int) -> int:
+    def dp(mask: int, pos: int) -> float:
         # Base case: all cities visited, return cost to go back to start
         if mask == all_visited:
             return cost_matrix[pos][0]
