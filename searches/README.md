@@ -118,18 +118,18 @@ The acceptance of worse solutions helps escape local minima, and this tendency d
 
 ### Advantages
 
-✓ Can escape local minima  
-✓ Simple to implement  
-✓ Widely applicable  
-✓ No gradient required  
-✓ Works with discrete and continuous problems  
+✓ Can escape local minima
+✓ Simple to implement
+✓ Widely applicable
+✓ No gradient required
+✓ Works with discrete and continuous problems
 
 ### Disadvantages
 
-✗ Requires careful parameter tuning  
-✗ No guarantee of finding global optimum  
-✗ Can be slow for very large problems  
-✗ Performance depends on cooling schedule  
+✗ Requires careful parameter tuning
+✗ No guarantee of finding global optimum
+✗ Can be slow for very large problems
+✗ Performance depends on cooling schedule
 
 ## Other Search Algorithms
 

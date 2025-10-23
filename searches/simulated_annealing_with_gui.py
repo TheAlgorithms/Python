@@ -85,7 +85,9 @@ class SimulatedAnnealingOptimizer:
             zip(self.current_state, self.bounds)
         ):
             # Adaptive step size based on temperature
-            step_size = (max_val - min_val) * 0.1 * (self.temperature / self.initial_temp)
+            step_size = (
+                (max_val - min_val) * 0.1 * (self.temperature / self.initial_temp)
+            )
             new_val = current_val + random.uniform(-step_size, step_size)
             # Ensure within bounds
             new_val = max(min_val, min(max_val, new_val))
@@ -214,16 +216,22 @@ class SimulatedAnnealingGUI:
             width=20,
         )
         problem_combo.grid(row=0, column=1, padx=5)
-        problem_combo.bind("<<ComboboxSelected>>", lambda e: self._load_default_problem())
+        problem_combo.bind(
+            "<<ComboboxSelected>>", lambda e: self._load_default_problem()
+        )
 
         # Parameters
-        ttk.Label(control_frame, text="Initial Temp:").grid(row=0, column=2, padx=(20, 5))
+        ttk.Label(control_frame, text="Initial Temp:").grid(
+            row=0, column=2, padx=(20, 5)
+        )
         self.temp_var = tk.StringVar(value="1000")
         ttk.Entry(control_frame, textvariable=self.temp_var, width=10).grid(
             row=0, column=3
         )
 
-        ttk.Label(control_frame, text="Cooling Rate:").grid(row=0, column=4, padx=(20, 5))
+        ttk.Label(control_frame, text="Cooling Rate:").grid(
+            row=0, column=4, padx=(20, 5)
+        )
         self.cooling_var = tk.StringVar(value="0.95")
         ttk.Entry(control_frame, textvariable=self.cooling_var, width=10).grid(
             row=0, column=5
@@ -247,7 +255,10 @@ class SimulatedAnnealingGUI:
         self.start_button.pack(side=tk.LEFT, padx=5)
 
         self.pause_button = ttk.Button(
-            button_frame, text="Pause", command=self._pause_optimization, state=tk.DISABLED
+            button_frame,
+            text="Pause",
+            command=self._pause_optimization,
+            state=tk.DISABLED,
         )
         self.pause_button.pack(side=tk.LEFT, padx=5)
 
@@ -297,7 +308,9 @@ class SimulatedAnnealingGUI:
 
         self.fig.tight_layout()
 
-    def _get_test_function(self, name: str) -> tuple[Callable, list[float], list[tuple]]:
+    def _get_test_function(
+        self, name: str
+    ) -> tuple[Callable, list[float], list[tuple]]:
         """
         Get test function, initial state, and bounds.
 

@@ -201,9 +201,9 @@ for rate in cooling_rates:
         cooling_rate=rate,
         max_iterations=1000
     )
-    
+
     best_state, best_cost = optimizer.optimize()
-    
+
     print(f"\nCooling rate: {rate}")
     print(f"  Final cost: {best_cost:.6f}")
     print(f"  Iterations: {optimizer.iteration}")
@@ -229,7 +229,7 @@ def portfolio_risk(weights):
     total = sum(weights)
     if abs(total - 1.0) > 0.01:
         return 1e6  # Penalty for invalid weights
-    
+
     # Simple risk calculation (in reality, use covariance matrix)
     risk = sum(w**2 * std**2 for w, (_, std) in zip(weights, stocks))
     return risk
@@ -290,7 +290,7 @@ print(f"Maximum profit: {max_profit:.2f}")
 
 ### Temperature Parameters
 
-- **Initial Temperature**: 
+- **Initial Temperature**:
   - Higher = more exploration, slower convergence
   - Typical range: 100 - 10000
   - Start high for complex problems
@@ -311,7 +311,7 @@ print(f"Maximum profit: {max_profit:.2f}")
 2. **Use slower cooling** (higher rate) for complex landscapes
 3. **Increase iterations** if not converging
 4. **Multiple runs** can help due to randomness
-5. **Monitor acceptance rate**: 
+5. **Monitor acceptance rate**:
    - Too high? Increase cooling rate
    - Too low? Increase initial temperature
 

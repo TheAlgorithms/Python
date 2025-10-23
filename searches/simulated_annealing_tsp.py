@@ -273,17 +273,23 @@ class TSPGUI:
         )
 
         ttk.Button(
-            control_frame, text="Generate Cities", command=self._generate_cities_from_input
+            control_frame,
+            text="Generate Cities",
+            command=self._generate_cities_from_input,
         ).grid(row=0, column=2, padx=5)
 
         # Parameters
-        ttk.Label(control_frame, text="Initial Temp:").grid(row=0, column=3, padx=(20, 5))
+        ttk.Label(control_frame, text="Initial Temp:").grid(
+            row=0, column=3, padx=(20, 5)
+        )
         self.temp_var = tk.StringVar(value="1000")
         ttk.Entry(control_frame, textvariable=self.temp_var, width=10).grid(
             row=0, column=4
         )
 
-        ttk.Label(control_frame, text="Cooling Rate:").grid(row=0, column=5, padx=(20, 5))
+        ttk.Label(control_frame, text="Cooling Rate:").grid(
+            row=0, column=5, padx=(20, 5)
+        )
         self.cooling_var = tk.StringVar(value="0.995")
         ttk.Entry(control_frame, textvariable=self.cooling_var, width=10).grid(
             row=0, column=6
@@ -299,7 +305,10 @@ class TSPGUI:
         self.start_button.pack(side=tk.LEFT, padx=5)
 
         self.pause_button = ttk.Button(
-            button_frame, text="Pause", command=self._pause_optimization, state=tk.DISABLED
+            button_frame,
+            text="Pause",
+            command=self._pause_optimization,
+            state=tk.DISABLED,
         )
         self.pause_button.pack(side=tk.LEFT, padx=5)
 
@@ -346,7 +355,8 @@ class TSPGUI:
     def _generate_random_cities(self, n: int):
         """Generate n random cities."""
         self.cities = [
-            City(random.uniform(0, 100), random.uniform(0, 100), f"C{i}") for i in range(n)
+            City(random.uniform(0, 100), random.uniform(0, 100), f"C{i}")
+            for i in range(n)
         ]
         self._plot_initial_cities()
 
@@ -478,13 +488,14 @@ class TSPGUI:
         # Plot route
         self.ax_route.plot(x_coords, y_coords, "b-", alpha=0.6, linewidth=2)
         self.ax_route.scatter(
-            [city.x for city in self.cities], [city.y for city in self.cities],
-            c="red", s=100, zorder=2
+            [city.x for city in self.cities],
+            [city.y for city in self.cities],
+            c="red",
+            s=100,
+            zorder=2,
         )
 
-        self.ax_route.set_title(
-            f"Best Route (Distance: {route.total_distance():.2f})"
-        )
+        self.ax_route.set_title(f"Best Route (Distance: {route.total_distance():.2f})")
         self.ax_route.set_xlabel("X")
         self.ax_route.set_ylabel("Y")
         self.ax_route.set_aspect("equal")
@@ -533,7 +544,10 @@ if __name__ == "__main__":
     print("=" * 60)
 
     # Create 10 random cities
-    cities = [City(random.uniform(0, 100), random.uniform(0, 100), f"City{i}") for i in range(10)]
+    cities = [
+        City(random.uniform(0, 100), random.uniform(0, 100), f"City{i}")
+        for i in range(10)
+    ]
 
     print(f"\nSolving TSP for {len(cities)} cities...")
 

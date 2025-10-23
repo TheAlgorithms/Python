@@ -151,9 +151,7 @@ def test_tsp_solver():
     # Optimal for square should be 4 (perimeter)
     print(f"  Expected optimal: 4.0")
     assert final_distance <= initial_distance, "Distance increased!"
-    assert (
-        abs(final_distance - 4.0) < 0.1
-    ), f"Not close to optimal: {final_distance}"
+    assert abs(final_distance - 4.0) < 0.1, f"Not close to optimal: {final_distance}"
     print("  ✓ Test passed!\n")
 
     # Test with more cities
@@ -177,7 +175,9 @@ def test_tsp_solver():
     print(f"\n  Initial distance: {initial_distance:.4f}")
     print(f"  Final distance: {final_distance:.4f}")
     print(f"  Improvement: {initial_distance - final_distance:.4f}")
-    print(f"  Improvement %: {100 * (initial_distance - final_distance) / initial_distance:.2f}%")
+    print(
+        f"  Improvement %: {100 * (initial_distance - final_distance) / initial_distance:.2f}%"
+    )
     print(f"  Iterations: {solver.iteration}")
 
     assert final_distance < initial_distance, "No improvement found!"
