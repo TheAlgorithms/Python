@@ -33,7 +33,5 @@ def is_palindrome(text: str) -> bool:
 if __name__ == "__main__":
     # Standard boilerplate for running documentation examples as tests.
     import doctest
-    doctest.testmod()
-    
-    
 
+    doctest.testmod()
