@@ -16,6 +16,7 @@ Example:
     'IAnepO'
 """
 
+
 def reverse_string(s: str) -> str:
     """
     Reverse the given string.
@@ -38,7 +39,7 @@ def reverse_string(s: str) -> str:
 
 if __name__ == "__main__":
     # Simple test cases for demonstration
-    print(reverse_string("Python"))      # Expected: 'nohtyP'
-    print(reverse_string("OpenAI"))      # Expected: 'IAnepO'
-    print(reverse_string(""))            # Expected: ''
-    print(reverse_string("A"))           # Expected: 'A'
+    print(reverse_string("Python"))  # Expected: 'nohtyP'
+    print(reverse_string("OpenAI"))  # Expected: 'IAnepO'
+    print(reverse_string(""))  # Expected: ''
+    print(reverse_string("A"))  # Expected: 'A'
