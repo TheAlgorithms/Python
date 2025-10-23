@@ -12,7 +12,15 @@ Constraints:
     1 <= target <= 30
 """
 
-def backtrack(candidates: list, target: int, start_index: int, total: int, path: list, answer: list) -> None:
+
+def backtrack(
+    candidates: list,
+    target: int,
+    start_index: int,
+    total: int,
+    path: list,
+    answer: list,
+) -> None:
     """
     A recursive function that searches for possible combinations. Backtracks in case
     of a bigger current combination value than the target value and removes the already
@@ -38,26 +46,31 @@ def backtrack(candidates: list, target: int, start_index: int, total: int, path:
             continue
         if total + candidates[i] > target:
             break
-        backtrack(candidates, target, i + 1, total + candidates[i], path + [candidates[i]], answer)
+        backtrack(
+            candidates,
+            target,
+            i + 1,
+            total + candidates[i],
+            path + [candidates[i]],
+            answer,
+        )
 
 
-
-
-def combination_sum_2(candidates: list,target: int) -> list:
+def combination_sum_2(candidates: list, target: int) -> list:
     """
-       >>> combination_sum_2([10,1,2,7,6,1,5], 8)
-       [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
-       >>> combination_sum_2([1,2], 2)
-       [[2]]
-       >>> combination_sum_2([-8, 2.3, 0], 1)
-       Traceback (most recent call last):
-           ...
-       ValueError: All elements in candidates must be non-negative
-       >>> combination_sum_2([], 1)
-       Traceback (most recent call last):
-           ...
-       ValueError: Candidates list should not be empty
-       """
+    >>> combination_sum_2([10,1,2,7,6,1,5], 8)
+    [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
+    >>> combination_sum_2([1,2], 2)
+    [[2]]
+    >>> combination_sum_2([-8, 2.3, 0], 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: All elements in candidates must be non-negative
+    >>> combination_sum_2([], 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Candidates list should not be empty
+    """
     if not candidates:
         raise ValueError("Candidates list should not be empty")
 
