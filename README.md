@@ -46,13 +46,13 @@ Want to get started quickly? Follow these steps!
 ### 1. Clone the repository
 <br>
 <br>
-### 2. Run tests 
+### 2. Run tests
 If tests are available, you can run them using:
 
 *Be sure to adjust the command if your test framework or folder structure is different.*
 <br>
 <br>
-### 3. Use an algorithm in Python 
+### 3. Use an algorithm in Python
 Here’s how you might use the median finder:
 
 <br>
