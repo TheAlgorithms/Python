@@ -20,7 +20,7 @@ Example:
 import functools
 
 
-def travelling_salesman(cost_matrix: list[list[int]]) -> int:
+def travelling_salesman(cost_matrix: list[list[int]]) -> float:
     """
     Returns the minimum travel cost for visiting all cities and returning
     to the starting city (0-indexed), using the Held Karp DP approach.
