@@ -34,4 +34,4 @@ if __name__ == "__main__":
     # Standard boilerplate for running documentation examples as tests.
     import doctest
     doctest.testmod()
-    # Ensure there is ONE blank newline at the end of this file (to fix W292)
+    
