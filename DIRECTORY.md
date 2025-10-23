@@ -1257,6 +1257,8 @@
   * [Sentinel Linear Search](searches/sentinel_linear_search.py)
   * [Simple Binary Search](searches/simple_binary_search.py)
   * [Simulated Annealing](searches/simulated_annealing.py)
+  * [Simulated Annealing Tsp](searches/simulated_annealing_tsp.py)
+  * [Simulated Annealing With Gui](searches/simulated_annealing_with_gui.py)
   * [Tabu Search](searches/tabu_search.py)
   * [Ternary Search](searches/ternary_search.py)
 
