@@ -1,6 +1,3 @@
-# Fixed: I001 (Import sorted), E501 (Line length), UP019 (Use 'str')
-from typing import Text
-
 def is_palindrome(text: str) -> bool:
     """
     Checks if a string is a palindrome.
@@ -36,4 +33,5 @@ def is_palindrome(text: str) -> bool:
 if __name__ == "__main__":
     # Standard boilerplate for running documentation examples as tests.
     import doctest
-    doctest.testmod() # Fixed: W292 (Newline added after this line)
+    doctest.testmod()
+    # Ensure there is ONE blank newline at the end of this file (to fix W292)
