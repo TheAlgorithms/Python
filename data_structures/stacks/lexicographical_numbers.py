@@ -1,6 +1,5 @@
 from collections.abc import Iterator
 
-
 def lexical_order(max_number: int) -> Iterator[int]:
     """
     Generate numbers in lexical order from 1 to max_number.
@@ -16,23 +15,17 @@ def lexical_order(max_number: int) -> Iterator[int]:
     >>> list(lexical_order(12))
     [1, 10, 11, 12, 2, 3, 4, 5, 6, 7, 8, 9]
     """
-
     stack = [1]
-
     while stack:
         num = stack.pop()
         if num > max_number:
             continue
-
         yield num
         if (num % 10) != 9:
             stack.append(num + 1)
-
         stack.append(num * 10)
 
-
-if __name__ == "__main__":
+if _name_ == "_main_":
     from doctest import testmod
-
     testmod()
-    print(f"Numbers from 1 to 25 in lexical order: {list(lexical_order(26))}")
+    print(f"Numbers from 1 to 25 in lexical order: {list(lexical_order(25))}")
