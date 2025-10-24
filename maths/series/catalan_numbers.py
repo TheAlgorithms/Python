@@ -9,9 +9,6 @@ C_n = 1/(n+1) * C(2n, n)
 """
 
 from __future__ import annotations
-import doctest
-import math
-
 
 def catalan_numbers(count: int) -> list[int]:
     """
@@ -65,6 +62,8 @@ def catalan_numbers(count: int) -> list[int]:
 
 
 if __name__ == "__main__":
+
+    import doctest
     doctest.testmod()
 
     try:
