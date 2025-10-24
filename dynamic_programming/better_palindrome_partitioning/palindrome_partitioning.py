@@ -46,7 +46,7 @@ def find_minimum_partitions(
     i = n - 1
     while i >= 0:
         start = parent[i] + 1 if parent[i] != -1 else 0
-        partitions.append(s[start:i + 1])
+        partitions.append(s[start : i + 1])
         if parent[i] == -1:
             break
         i = parent[i]
