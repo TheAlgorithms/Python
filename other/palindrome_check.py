@@ -28,8 +28,10 @@ def is_palindrome(text: str) -> bool:
     # is using slicing: text[::-1].
     # We compare the original string with its reversed version.
     return text == text[::-1]
+
+
 if __name__ == "__main__":
     # Standard boilerplate for running documentation examples as tests.
     import doctest
+
     doctest.testmod()
-   
