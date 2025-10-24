@@ -12,6 +12,7 @@ from __future__ import annotations
 import doctest
 
 
+
 def catalan_numbers(count: int) -> list[int]:
     """
     Generates the first 'count' Catalan numbers (C_0, C_1, ..., C_{count-1}).
