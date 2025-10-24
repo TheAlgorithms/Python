@@ -56,10 +56,10 @@ def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
         j = (m + n + 1) // 2 - i  # Partition in nums2
 
         # Edge cases for partitions
-        left1 = float('-inf') if i == 0 else nums1[i - 1]
-        right1 = float('inf') if i == m else nums1[i]
-        left2 = float('-inf') if j == 0 else nums2[j - 1]
-        right2 = float('inf') if j == n else nums2[j]
+        left1 = float("-inf") if i == 0 else nums1[i - 1]
+        right1 = float("inf") if i == m else nums1[i]
+        left2 = float("-inf") if j == 0 else nums2[j - 1]
+        right2 = float("inf") if j == n else nums2[j]
 
         # Check if this partition is correct
         if left1 <= right2 and left2 <= right1:
