@@ -70,7 +70,7 @@ if __name__ == "__main__":
     try:
         num = int(input("Enter the number of Catalan numbers to generate: "))
         if num < 0:
-             print("Please enter a non-negative integer.")
+            print("Please enter a non-negative integer.")
         else:
             print(f"The first {num} Catalan numbers are: {catalan_numbers(num)}")
     except ValueError:
