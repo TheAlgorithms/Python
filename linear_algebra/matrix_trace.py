@@ -15,13 +15,18 @@ from numpy.typing import NDArray
 def trace(matrix: NDArray[float64]) -> float:
     """
     Calculate the trace of a square matrix.
+
     The trace is the sum of the diagonal elements of a square matrix.
+
     Parameters:
         matrix (NDArray[float64]): A square matrix
+
     Returns:
         float: The trace of the matrix
+
     Raises:
         ValueError: If the matrix is not square
+
     Examples:
     >>> import numpy as np
     >>> matrix = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=float)
@@ -47,8 +52,10 @@ def trace(matrix: NDArray[float64]) -> float:
 def trace_properties_demo(matrix: NDArray[float64]) -> dict:
     """
     Demonstrate various properties of the trace operation.
+
     Parameters:
         matrix (NDArray[float64]): A square matrix
+
     Returns:
         dict: Dictionary containing trace properties and calculations
     """
@@ -78,13 +85,14 @@ def trace_properties_demo(matrix: NDArray[float64]) -> dict:
         "scalar_factor": scalar,
         "identity_trace": tr_identity,
         "trace_equals_transpose": abs(tr - tr_transpose) < 1e-10,
-        "scalar_property_check": abs(tr_scalar - scalar * tr) < 1e-10,
+        "scalar_property_check": abs(tr_scalar - scalar * tr) < 1e-10
     }
 
 
 def test_trace() -> None:
     """
     Test function for matrix trace calculation.
+
     >>> test_trace()  # self running tests
     """
     # Test 1: 2x2 matrix
@@ -93,18 +101,18 @@ def test_trace() -> None:
     assert abs(tr_2x2 - 5.0) < 1e-10, "2x2 trace calculation failed"
 
     # Test 2: 3x3 matrix
-    matrix_3x3 = np.array(
-        [[2.0, -1.0, 3.0], [4.0, 5.0, -2.0], [1.0, 0.0, 7.0]], dtype=float
-    )
+    matrix_3x3 = np.array([[2.0, -1.0, 3.0],
+                          [4.0, 5.0, -2.0],
+                          [1.0, 0.0, 7.0]], dtype=float)
     tr_3x3 = trace(matrix_3x3)
     assert abs(tr_3x3 - 14.0) < 1e-10, "3x3 trace calculation failed"
 
     # Test 3: Identity matrix
     identity_4x4 = np.eye(4, dtype=float)
     tr_identity = trace(identity_4x4)
-    assert abs(tr_identity - 4.0) < 1e-10, (
-        "Identity matrix trace should equal dimension"
-    )
+    assert (
+        abs(tr_identity - 4.0) < 1e-10
+    ), "Identity matrix trace should equal dimension"
 
     # Test 4: Zero matrix
     zero_matrix = np.zeros((3, 3), dtype=float)
@@ -112,9 +120,9 @@ def test_trace() -> None:
     assert abs(tr_zero) < 1e-10, "Zero matrix should have zero trace"
 
     # Test 5: Trace properties
-    test_matrix = np.array(
-        [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=float
-    )
+    test_matrix = np.array([[1.0, 2.0, 3.0],
+                           [4.0, 5.0, 6.0],
+                           [7.0, 8.0, 9.0]], dtype=float)
     properties = trace_properties_demo(test_matrix)
     assert properties["trace_equals_transpose"], "Trace should equal transpose trace"
     assert properties["scalar_property_check"], "Scalar multiplication property failed"
@@ -123,9 +131,9 @@ def test_trace() -> None:
     diagonal_matrix = np.diag([1.0, 2.0, 3.0, 4.0])
     tr_diagonal = trace(diagonal_matrix)
     expected = 1.0 + 2.0 + 3.0 + 4.0
-    assert abs(tr_diagonal - expected) < 1e-10, (
-        "Diagonal matrix trace should equal sum of diagonal elements"
-    )
+    assert (
+        abs(tr_diagonal - expected) < 1e-10
+    ), "Diagonal matrix trace should equal sum of diagonal elements"
 
 
 if __name__ == "__main__":
