@@ -41,6 +41,8 @@ docs = [
   "myst-parser>=4",
   "sphinx-autoapi>=3.4",
   "sphinx-pyproject>=0.3",
+      "furo>=2024.1.29",
+          "sphinx-copybutton>=0.5.2",
 ]
 euler-validate = [
   "httpx>=0.28.1",
@@ -239,7 +241,12 @@ extensions = [
   "myst_parser",
 ]
 html_static_path = [ "_static" ]
-html_theme = "alabaster"
+html_theme = "furo"
+html_theme_options = {
+    "source_repository": "https://github.com/TheAlgorithms/Python/",
+        "source_branch": "master",
+            "source_directory": "docs/",
+            }
 myst_enable_extensions = [
   "amsmath",
   "attrs_inline",
