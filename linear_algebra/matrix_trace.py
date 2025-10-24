@@ -85,7 +85,7 @@ def trace_properties_demo(matrix: NDArray[float64]) -> dict:
         "scalar_factor": scalar,
         "identity_trace": tr_identity,
         "trace_equals_transpose": abs(tr - tr_transpose) < 1e-10,
-        "scalar_property_check": abs(tr_scalar - scalar * tr) < 1e-10
+        "scalar_property_check": abs(tr_scalar - scalar * tr) < 1e-10,
     }
 
 
@@ -101,18 +101,18 @@ def test_trace() -> None:
     assert abs(tr_2x2 - 5.0) < 1e-10, "2x2 trace calculation failed"
 
     # Test 2: 3x3 matrix
-    matrix_3x3 = np.array([[2.0, -1.0, 3.0],
-                          [4.0, 5.0, -2.0],
-                          [1.0, 0.0, 7.0]], dtype=float)
+    matrix_3x3 = np.array(
+        [[2.0, -1.0, 3.0], [4.0, 5.0, -2.0], [1.0, 0.0, 7.0]], dtype=float
+    )
     tr_3x3 = trace(matrix_3x3)
     assert abs(tr_3x3 - 14.0) < 1e-10, "3x3 trace calculation failed"
 
     # Test 3: Identity matrix
     identity_4x4 = np.eye(4, dtype=float)
     tr_identity = trace(identity_4x4)
-    assert (
-        abs(tr_identity - 4.0) < 1e-10
-    ), "Identity matrix trace should equal dimension"
+    assert abs(tr_identity - 4.0) < 1e-10, (
+        "Identity matrix trace should equal dimension"
+    )
 
     # Test 4: Zero matrix
     zero_matrix = np.zeros((3, 3), dtype=float)
@@ -120,9 +120,9 @@ def test_trace() -> None:
     assert abs(tr_zero) < 1e-10, "Zero matrix should have zero trace"
 
     # Test 5: Trace properties
-    test_matrix = np.array([[1.0, 2.0, 3.0],
-                           [4.0, 5.0, 6.0],
-                           [7.0, 8.0, 9.0]], dtype=float)
+    test_matrix = np.array(
+        [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]], dtype=float
+    )
     properties = trace_properties_demo(test_matrix)
     assert properties["trace_equals_transpose"], "Trace should equal transpose trace"
     assert properties["scalar_property_check"], "Scalar multiplication property failed"
@@ -131,9 +131,9 @@ def test_trace() -> None:
     diagonal_matrix = np.diag([1.0, 2.0, 3.0, 4.0])
     tr_diagonal = trace(diagonal_matrix)
     expected = 1.0 + 2.0 + 3.0 + 4.0
-    assert (
-        abs(tr_diagonal - expected) < 1e-10
-    ), "Diagonal matrix trace should equal sum of diagonal elements"
+    assert abs(tr_diagonal - expected) < 1e-10, (
+        "Diagonal matrix trace should equal sum of diagonal elements"
+    )
 
 
 if __name__ == "__main__":
