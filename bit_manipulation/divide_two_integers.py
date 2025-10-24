@@ -22,21 +22,19 @@ class Solution:
         -3
         >>> sol.divide(1, 1)
         1
-        >>> sol.divide(-2147483648, -1)  # overflow case
+        >>> sol.divide(-2147483648, -1)
         2147483647
         >>> sol.divide(24, 8)
         3
         >>> sol.divide(43, -8)
         -5
         """
-        # Edge case: if both are equal, result is 1
+        # Edge case: if dividend equals divisor, result is 1
         if dividend == divisor:
             return 1
 
         # Determine the sign of the result
-        sign = not (
-            (dividend < 0) ^ (divisor < 0)
-        )  # True if same sign, False if different
+        sign = not ((dividend < 0) ^ (divisor < 0))  # True if same sign,
 
         # Convert both numbers to positive
         d = abs(dividend)  # remaining dividend
@@ -46,8 +44,7 @@ class Solution:
         # Outer loop: subtract divisor multiples from dividend
         while d >= n:
             cnt = 0
-            """Inner loop: find largest power-of-two multiple of divisor
-            that fits in dividend """
+            # find largest power-of-two multiple of divisor that fits in dividend
             while d >= (n << (cnt + 1)):
                 cnt += 1
 
@@ -67,10 +64,4 @@ class Solution:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()  # Run the doctest examples
-
-    # Optional: interactive test
-    sol = Solution()
-    dividend = int(input("Enter dividend: "))
-    divisor = int(input("Enter divisor: "))
-    print(f"Quotient: {sol.divide(dividend, divisor)}")
+    doctest.testmod()
