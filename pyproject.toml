@@ -242,11 +242,7 @@ extensions = [
 ]
 html_static_path = [ "_static" ]
 html_theme = "furo"
-html_theme_options = {
-    "source_repository": "https://github.com/TheAlgorithms/Python/",
-        "source_branch": "master",
-            "source_directory": "docs/",
-            }
+html_theme_options = { "source_repository" = "https://github.com/TheAlgorithms/Python/", "source_branch" = "master", "source_directory" = "docs/" }
 myst_enable_extensions = [
   "amsmath",
   "attrs_inline",
