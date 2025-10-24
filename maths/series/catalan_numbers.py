@@ -10,6 +10,7 @@ recursive definition: C_{n+1} = sum_{i=0}^{n} C_i C_{n-i}
 
 from __future__ import annotations
 
+
 def catalan_numbers(count: int) -> list[int]:
     """
     Generates the first 'count' Catalan numbers (C_0, C_1, ..., C_{count-1}).
