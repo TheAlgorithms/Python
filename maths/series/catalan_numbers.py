@@ -9,6 +9,8 @@ recursive definition: C_{n+1} = sum_{i=0}^{n} C_i C_{n-i}
 """
 
 from __future__ import annotations
+import doctest
+
 
 def catalan_numbers(count: int) -> list[int]:
     """
