@@ -38,11 +38,11 @@ test = [
 ]
 
 docs = [
+  "furo>=2024.1.29",
   "myst-parser>=4",
   "sphinx-autoapi>=3.4",
+  "sphinx-copybutton>=0.5.2",
   "sphinx-pyproject>=0.3",
-      "furo>=2024.1.29",
-          "sphinx-copybutton>=0.5.2",
 ]
 euler-validate = [
   "httpx>=0.28.1",
