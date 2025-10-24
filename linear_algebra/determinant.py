@@ -14,19 +14,16 @@ from numpy.typing import NDArray
 
 def determinant_recursive(matrix: NDArray[float64]) -> float:
     """
-    Calculate the determinant of a square matrix using recursive cofactor expansion.
-
-    This method is suitable for small matrices but becomes inefficient for large matrices.
-
+    Calculate the determinant of a square matrix 
+    using recursive cofactor expansion.
+    This method is suitable for 
+    small matrices but becomes inefficient for large matrices.
     Parameters:
         matrix (NDArray[float64]): A square matrix
-
     Returns:
         float: The determinant of the matrix
-
     Raises:
         ValueError: If the matrix is not square
-
     Examples:
     >>> import numpy as np
     >>> matrix = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=float)
@@ -65,15 +62,12 @@ def determinant_recursive(matrix: NDArray[float64]) -> float:
 def determinant_lu(matrix: NDArray[float64]) -> float:
     """
     Calculate the determinant using LU decomposition.
-
-    This method is more efficient for larger matrices than recursive expansion.
-
+    This method is more efficient for larger matrices 
+    than recursive expansion.
     Parameters:
         matrix (NDArray[float64]): A square matrix
-
     Returns:
         float: The determinant of the matrix
-
     Raises:
         ValueError: If the matrix is not square
     """
@@ -125,16 +119,14 @@ def determinant_lu(matrix: NDArray[float64]) -> float:
 
 def determinant(matrix: NDArray[float64]) -> float:
     """
-    Calculate the determinant of a square matrix using the most appropriate method.
-
-    Uses recursive expansion for small matrices (≤3x3) and LU decomposition for larger ones.
-
+    Calculate the determinant of a square matrix using 
+    the most appropriate method.
+    Uses recursive expansion for small matrices (≤3x3) 
+    and LU decomposition for larger ones.
     Parameters:
         matrix (NDArray[float64]): A square matrix
-
     Returns:
         float: The determinant of the matrix
-
     Examples:
     >>> import numpy as np
     >>> matrix = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=float)
