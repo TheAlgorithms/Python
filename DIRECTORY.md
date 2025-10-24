@@ -138,6 +138,7 @@
   * [Intensity Based Segmentation](computer_vision/intensity_based_segmentation.py)
   * [Mean Threshold](computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](computer_vision/mosaic_augmentation.py)
+  * [Motion Detection](computer_vision/motion_detection.py)
   * [Pooling Functions](computer_vision/pooling_functions.py)
 
 ## Conversions
