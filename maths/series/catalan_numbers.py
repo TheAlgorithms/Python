@@ -11,6 +11,7 @@ C_n = 1/(n+1) * C(2n, n)
 from __future__ import annotations
 import math
 
+
 def catalan_numbers(count: int) -> list[int]:
     """
     Generates the first 'count' Catalan numbers (C_0, C_1, ..., C_{count-1}).
@@ -63,8 +64,8 @@ def catalan_numbers(count: int) -> list[int]:
 
 
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
 
     try:
