@@ -77,7 +77,7 @@ def determinant_lu(matrix: NDArray[float64]) -> float:
     n = matrix.shape[0]
 
     # Create a copy to avoid modifying the original matrix
-    A = matrix.astype(float64, copy=True)
+    copy = matrix.astype(float64, copy=True)
 
     # Keep track of row swaps for sign adjustment
     swap_count = 0
@@ -87,28 +87,28 @@ def determinant_lu(matrix: NDArray[float64]) -> float:
         # Find pivot
         max_row = i
         for k in range(i + 1, n):
-            if abs(A[k, i]) > abs(A[max_row, i]):
+            if abs(copy[k, i]) > abs(copy[max_row, i]):
                 max_row = k
 
         # Swap rows if needed
         if max_row != i:
-            A[[i, max_row]] = A[[max_row, i]]
+            copy[[i, max_row]] = copy[[max_row, i]]
             swap_count += 1
 
         # Check for singular matrix
-        if abs(A[i, i]) < 1e-14:
+        if abs(copy[i, i]) < 1e-14:
             return 0.0
 
         # Eliminate below pivot
         for k in range(i + 1, n):
-            factor = A[k, i] / A[i, i]
+            factor = copy[k, i] / copy[i, i]
             for j in range(i, n):
-                A[k, j] -= factor * A[i, j]
+                copy[k, j] -= factor * copy[i, j]
 
     # Calculate determinant as product of diagonal elements
     det = 1.0
     for i in range(n):
-        det *= A[i, i]
+        det *= copy[i, i]
 
     # Adjust sign based on number of row swaps
     if swap_count % 2 == 1:
