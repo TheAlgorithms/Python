@@ -46,9 +46,8 @@ class Solution:
         # Outer loop: subtract divisor multiples from dividend
         while d >= n:
             cnt = 0
-
-            # Inner loop: find largest power-of-two multiple of divisor 
-            # that fits in dividend
+            """Inner loop: find largest power-of-two multiple of divisor
+            that fits in dividend """
             while d >= (n << (cnt + 1)):
                 cnt += 1
 
