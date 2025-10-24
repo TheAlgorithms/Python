@@ -15,28 +15,21 @@ from numpy.typing import NDArray
 def trace(matrix: NDArray[float64]) -> float:
     """
     Calculate the trace of a square matrix.
-
     The trace is the sum of the diagonal elements of a square matrix.
-
     Parameters:
         matrix (NDArray[float64]): A square matrix
-
     Returns:
         float: The trace of the matrix
-
     Raises:
         ValueError: If the matrix is not square
-
     Examples:
     >>> import numpy as np
     >>> matrix = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=float)
     >>> trace(matrix)
     5.0
-
     >>> matrix = np.array([[2.0, -1.0, 3.0], [4.0, 5.0, -2.0], [1.0, 0.0, 7.0]], dtype=float)
     >>> trace(matrix)
     14.0
-
     >>> matrix = np.array([[5.0]], dtype=float)
     >>> trace(matrix)
     5.0
@@ -50,10 +43,8 @@ def trace(matrix: NDArray[float64]) -> float:
 def trace_properties_demo(matrix: NDArray[float64]) -> dict:
     """
     Demonstrate various properties of the trace operation.
-
     Parameters:
         matrix (NDArray[float64]): A square matrix
-
     Returns:
         dict: Dictionary containing trace properties and calculations
     """
