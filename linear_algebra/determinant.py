@@ -14,9 +14,9 @@ from numpy.typing import NDArray
 
 def determinant_recursive(matrix: NDArray[float64]) -> float:
     """
-    Calculate the determinant of a square matrix 
+    Calculate the determinant of a square matrix
     using recursive cofactor expansion.
-    This method is suitable for 
+    This method is suitable for
     small matrices but becomes inefficient for large matrices.
     Parameters:
         matrix (NDArray[float64]): A square matrix
@@ -62,7 +62,7 @@ def determinant_recursive(matrix: NDArray[float64]) -> float:
 def determinant_lu(matrix: NDArray[float64]) -> float:
     """
     Calculate the determinant using LU decomposition.
-    This method is more efficient for larger matrices 
+    This method is more efficient for larger matrices
     than recursive expansion.
     Parameters:
         matrix (NDArray[float64]): A square matrix
@@ -119,9 +119,9 @@ def determinant_lu(matrix: NDArray[float64]) -> float:
 
 def determinant(matrix: NDArray[float64]) -> float:
     """
-    Calculate the determinant of a square matrix using 
+    Calculate the determinant of a square matrix using
     the most appropriate method.
-    Uses recursive expansion for small matrices (≤3x3) 
+    Uses recursive expansion for small matrices (≤3x3)
     and LU decomposition for larger ones.
     Parameters:
         matrix (NDArray[float64]): A square matrix
