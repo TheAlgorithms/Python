@@ -91,7 +91,10 @@ def test_trace() -> None:
 
     # Test 2: 3x3 matrix
     matrix_3x3 = np.array(
-        [[2.0, -1.0, 3.0], [4.0, 5.0, -2.0], [1.0, 0.0, 7.0]], dtype=float
+        [[2.0, -1.0, 3.0], 
+         [4.0, 5.0, -2.0], 
+         [1.0, 0.0, 7.0]], 
+        dtype=float
     )
     tr_3x3 = trace(matrix_3x3)
     assert abs(tr_3x3 - 14.0) < 1e-10, "3x3 trace calculation failed"
