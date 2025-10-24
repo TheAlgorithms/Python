@@ -9,6 +9,7 @@ C_n = 1/(n+1) * C(2n, n)
 """
 
 from __future__ import annotations
+import math
 
 def catalan_numbers(count: int) -> list[int]:
     """
