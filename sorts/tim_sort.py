@@ -33,6 +33,10 @@ def insertion_sort(arr: list[T]) -> list[T]:
     >>> insertion_sort([3, 1, 2, 4])
     [1, 2, 3, 4]
     """
+    from typing import TypeVar
+
+    T = TypeVar("T")
+
     for i in range(1, len(arr)):
         key = arr[i]
         j = binary_search(arr, key, 0, i - 1)
@@ -79,9 +83,12 @@ def tim_sort(arr: list[T]) -> list[T]:
     >>> tim_sort([])  # empty input
     []
     """
+    from typing import TypeVar
+
+    T = TypeVar("T")
+
     if not isinstance(arr, list):
         arr = list(arr)
-
     if not arr:
         return []
 
