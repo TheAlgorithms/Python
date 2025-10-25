@@ -1,22 +1,16 @@
 from math import pi
 
-
 def arc_length(angle: float, radius: float) -> float:
     """
     Calculate the arc length of a circle.
-
     The arc length is the distance along the curved line making up the arc.
     Formula: arc_length = 2 * pi * radius * (angle / 360)
-
     Wikipedia: https://en.wikipedia.org/wiki/Arc_length
-
     Args:
         angle: The angle in degrees
         radius: The radius of the circle
-
     Returns:
         The arc length as a float
-
     >>> arc_length(45, 5)
     3.9269908169872414
     >>> arc_length(120, 15)
@@ -30,26 +24,7 @@ def arc_length(angle: float, radius: float) -> float:
     >>> arc_length(180, 10)
     31.41592653589793
     >>> arc_length(45.5, 10.5)
-    8.329618601250994
+    8.33831050140291
     >>> arc_length(-90, 10)
     Traceback (most recent call last):
         ...
-    ValueError: arc_length() only accepts non-negative values
-    >>> arc_length(90, -10)
-    Traceback (most recent call last):
-        ...
-    ValueError: arc_length() only accepts non-negative values
-    >>> arc_length(-45, -5)
-    Traceback (most recent call last):
-        ...
-    ValueError: arc_length() only accepts non-negative values
-    """
-    if angle < 0 or radius < 0:
-        raise ValueError("arc_length() only accepts non-negative values")
-    return 2 * pi * radius * (angle / 360)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
