@@ -28,12 +28,14 @@ def xor_bits(bits1: list[int], bits2: list[int]) -> list[int]:
     return [x ^ y for x, y in zip(bits1, bits2)]
 
 
-def simons_algorithm(f: Callable[[list[int]], list[int]], num_bits: int) -> list[int]:
+def simons_algorithm(
+    hidden_function: Callable[[list[int]], list[int]], num_bits: int
+) -> list[int]:
     """
     Simulate Simon's algorithm classically to find the hidden bitstring s.
 
     Args:
-        f: A function mapping n-bit input to n-bit output.
+        hidden_function: A function mapping n-bit input to n-bit output.
         num_bits: Number of bits in the input.
 
     Returns:
@@ -41,7 +43,7 @@ def simons_algorithm(f: Callable[[list[int]], list[int]], num_bits: int) -> list
 
     >>> # Example with hidden bitstring s = [1, 0, 1]
     >>> s = [1, 0, 1]
-    >>> def f(input_bits):
+    >>> def hidden_function(input_bits):
     ...     mapping = {
     ...         (0,0,0): (1,1,0),
     ...         (1,0,1): (1,1,0),
@@ -53,14 +55,14 @@ def simons_algorithm(f: Callable[[list[int]], list[int]], num_bits: int) -> list
     ...         (1,1,0): (0,0,0),
     ...     }
     ...     return mapping[tuple(input_bits)]
-    >>> simons_algorithm(f, 3)
+    >>> simons_algorithm(hidden_function, 3)
     [1, 0, 1]
     """
     mapping: dict[tuple[int, ...], tuple[int, ...]] = {}
     inputs = list(product([0, 1], repeat=num_bits))
 
     for bits in inputs:
-        fx = tuple(f(list(bits)))
+        fx = tuple(hidden_function(list(bits)))
         if fx in mapping:
             prev_bits = mapping[fx]
             return xor_bits(list(bits), list(prev_bits))
