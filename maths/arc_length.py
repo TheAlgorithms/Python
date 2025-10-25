@@ -1,5 +1,6 @@
 from math import pi
 
+
 def arc_length(angle: float, radius: float) -> float:
     """
     Calculate the arc length of a circle.
