@@ -15,7 +15,19 @@ import hashlib
 
 
 def sha256(data: str) -> str:
-    """Compute SHA-256 hash of a string."""
+    """
+    Compute the SHA-256 hash of the given string.
+
+    Args:
+        data (str): Input string.
+
+    Returns:
+        str: Hexadecimal SHA-256 hash of the input.
+
+    Example:
+        >>> sha256("abc")
+        'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+    """
     return hashlib.sha256(data.encode()).hexdigest()
 
 
