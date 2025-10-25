@@ -1,9 +1,9 @@
-from typing import List, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-def binary_search(arr: List[T], item: T, left: int, right: int) -> int:
+def binary_search(arr: list[T], item: T, left: int, right: int) -> int:
     """
     Return the index where `item` should be inserted in `arr[left:right+1]`
     to keep it sorted.
@@ -26,7 +26,7 @@ def binary_search(arr: List[T], item: T, left: int, right: int) -> int:
     return left
 
 
-def insertion_sort(arr: List[T]) -> List[T]:
+def insertion_sort(arr: list[T]) -> list[T]:
     """
     Sort the list in-place using binary insertion sort.
 
@@ -36,18 +36,18 @@ def insertion_sort(arr: List[T]) -> List[T]:
     for i in range(1, len(arr)):
         key = arr[i]
         j = binary_search(arr, key, 0, i - 1)
-        arr[:] = arr[:j] + [key] + arr[j:i] + arr[i + 1 :]
+        arr[:] = [*arr[:j], key, *arr[j:i], *arr[i + 1 :]]
     return arr
 
 
-def merge(left: List[T], right: List[T]) -> List[T]:
+def merge(left: list[T], right: list[T]) -> list[T]:
     """
     Merge two sorted lists into one sorted list.
 
     >>> merge([1, 3, 5], [2, 4, 6])
     [1, 2, 3, 4, 5, 6]
     """
-    merged = []
+    merged: list[T] = []
     i = j = 0
     while i < len(left) and j < len(right):
         if left[i] <= right[j]:
@@ -61,7 +61,7 @@ def merge(left: List[T], right: List[T]) -> List[T]:
     return merged
 
 
-def tim_sort(arr: List[T]) -> List[T]:
+def tim_sort(arr: list[T]) -> list[T]:
     """
     Simplified version of TimSort for educational purposes.
 
@@ -91,14 +91,14 @@ def tim_sort(arr: List[T]) -> List[T]:
     if n == 1:
         return arr.copy()
 
-    runs = []
+    runs: list[list[T]] = []
     for start in range(0, n, min_run):
         end = min(start + min_run, n)
         run = insertion_sort(arr[start:end])
         runs.append(run)
 
     while len(runs) > 1:
-        new_runs = []
+        new_runs: list[list[T]] = []
         for i in range(0, len(runs), 2):
             if i + 1 < len(runs):
                 new_runs.append(merge(runs[i], runs[i + 1]))
