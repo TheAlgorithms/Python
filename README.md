@@ -50,3 +50,13 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+## 🪄 First-Time Contributor Guide
+
+Welcome! 🎉  
+If you're contributing for the first time, follow these easy steps:
+
+1. **Fork this repository** — click the "Fork" button at the top right.  
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/Python.git
