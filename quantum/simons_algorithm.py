@@ -29,7 +29,6 @@ def xor_bits(a: list[int], b: list[int]) -> list[int]:
 
 
 def simons_algorithm(f: Callable[[list[int]], list[int]], n: int) -> list[int]:
-
     """
     Simulate Simon's algorithm classically to find the hidden bitstring s.
 
