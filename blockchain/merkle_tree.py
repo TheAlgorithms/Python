@@ -103,4 +103,5 @@ def verify_proof(leaf: str, proof: list[str], root: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
