@@ -28,3 +28,18 @@ def arc_length(angle: float, radius: float) -> float:
     >>> arc_length(-90, 10)
     Traceback (most recent call last):
         ...
+    ValueError: angle and radius must be positive
+    >>> arc_length(90, -10)
+    Traceback (most recent call last):
+        ...
+    ValueError: angle and radius must be positive
+    """
+    if angle < 0 or radius < 0:
+        raise ValueError("angle and radius must be positive")
+    return 2 * pi * radius * (angle / 360)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
