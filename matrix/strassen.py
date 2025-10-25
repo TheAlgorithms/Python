@@ -118,9 +118,7 @@ def split_matrix(matrix: Matrix) -> tuple[Matrix, Matrix, Matrix, Matrix]:
     return a11, a12, a21, a22
 
 
-def combine_matrices(
-    c11: Matrix, c12: Matrix, c21: Matrix, c22: Matrix
-) -> Matrix:
+def combine_matrices(c11: Matrix, c12: Matrix, c21: Matrix, c22: Matrix) -> Matrix:
     """
     Combines four quadrants into a single matrix.
     >>> a, b, c, d = split_matrix(matrix_count_up)
@@ -185,9 +183,7 @@ def strassen(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
         return []
 
     if not (
-        len(matrix_a) == len(matrix_b)
-        and is_square(matrix_a)
-        and is_square(matrix_b)
+        len(matrix_a) == len(matrix_b) and is_square(matrix_a) and is_square(matrix_b)
     ):
         raise ValueError("Matrices must be square and of the same dimensions")
 
@@ -244,7 +240,7 @@ if __name__ == "__main__":
         from timeit import timeit
 
         # Run fewer iterations as Strassen is slower for small matrices in Python
-        mytimeit = partial(timeit, globals=globals(), number=10_0DENIED)
+        mytimeit = partial(timeit, globals=globals(), number=10_000)
         for func in ("matrix_multiply", "strassen"):
             print(
                 f"{func:>25}(): "
