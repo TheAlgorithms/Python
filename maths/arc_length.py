@@ -1,5 +1,6 @@
 from math import pi
 
+
 def arc_length(angle: float, radius: float) -> float:
     """
     Calculate the arc length of a circle.
@@ -42,6 +43,8 @@ def arc_length(angle: float, radius: float) -> float:
         raise ValueError("angle and radius must be positive")
     return 2 * pi * radius * (angle / 360)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
