@@ -50,12 +50,22 @@ def _build_tree_from_preorder(
     nums_left = in_root_index - in_start
 
     root.left = _build_tree_from_preorder(
-        preorder, pre_start + 1, pre_start + nums_left,
-        inorder, in_start, in_root_index - 1, in_map
+        preorder,
+        pre_start + 1,
+        pre_start + nums_left,
+        inorder,
+        in_start,
+        in_root_index - 1,
+        in_map,
     )
     root.right = _build_tree_from_preorder(
-        preorder, pre_start + nums_left + 1, pre_end,
-        inorder, in_root_index + 1, in_end, in_map
+        preorder,
+        pre_start + nums_left + 1,
+        pre_end,
+        inorder,
+        in_root_index + 1,
+        in_end,
+        in_map,
     )
 
     return root
@@ -64,7 +74,9 @@ def _build_tree_from_preorder(
 def build_tree_from_preorder(inorder: list[int], preorder: list[int]) -> Node | None:
     """Build binary tree from preorder and inorder sequences."""
     in_map = {val: idx for idx, val in enumerate(inorder)}
-    return _build_tree_from_preorder(preorder, 0, len(preorder) - 1, inorder, 0, len(inorder) - 1, in_map)
+    return _build_tree_from_preorder(
+        preorder, 0, len(preorder) - 1, inorder, 0, len(inorder) - 1, in_map
+    )
 
 
 def _build_tree_from_postorder(
@@ -99,12 +111,22 @@ def _build_tree_from_postorder(
     nums_left = in_root_index - in_start
 
     root.left = _build_tree_from_postorder(
-        postorder, post_start, post_start + nums_left - 1,
-        inorder, in_start, in_root_index - 1, in_map
+        postorder,
+        post_start,
+        post_start + nums_left - 1,
+        inorder,
+        in_start,
+        in_root_index - 1,
+        in_map,
     )
     root.right = _build_tree_from_postorder(
-        postorder, post_start + nums_left, post_end - 1,
-        inorder, in_root_index + 1, in_end, in_map
+        postorder,
+        post_start + nums_left,
+        post_end - 1,
+        inorder,
+        in_root_index + 1,
+        in_end,
+        in_map,
     )
 
     return root
@@ -113,7 +135,9 @@ def _build_tree_from_postorder(
 def build_tree_from_postorder(inorder: list[int], postorder: list[int]) -> Node | None:
     """Build binary tree from postorder and inorder sequences."""
     in_map = {val: idx for idx, val in enumerate(inorder)}
-    return _build_tree_from_postorder(postorder, 0, len(postorder) - 1, inorder, 0, len(inorder) - 1, in_map)
+    return _build_tree_from_postorder(
+        postorder, 0, len(postorder) - 1, inorder, 0, len(inorder) - 1, in_map
+    )
 
 
 # Optional example usage
