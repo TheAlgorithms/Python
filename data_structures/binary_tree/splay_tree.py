@@ -237,8 +237,8 @@ class SplayTree:
             self.root = node
             return
 
-        current = self.root
-        parent = None
+        current: Node | None = self.root
+        parent: Node | None = None
 
         # Standard BST insertion
         while current is not None:
@@ -253,7 +253,7 @@ class SplayTree:
                 return
 
         node.parent = parent
-        if key < parent.key:
+        if parent is not None and key < parent.key:
             parent.left = node
         else:
             parent.right = node
@@ -291,8 +291,8 @@ class SplayTree:
         if self.root is None:
             return False
 
-        current = self.root
-        parent = None
+        current: Node | None = self.root
+        parent: Node | None = None
 
         while current is not None:
             if key == current.key:
@@ -448,7 +448,7 @@ class SplayTree:
         >>> tree.inorder()
         [3, 5, 7, 10, 15]
         """
-        result = []
+        result: list[Any] = []
         self._inorder_helper(self.root, result)
         return result
 
@@ -476,7 +476,7 @@ class SplayTree:
         >>> sorted(tree.preorder())  # Tree structure varies after inserts
         [5, 10, 15]
         """
-        result = []
+        result: list[Any] = []
         self._preorder_helper(self.root, result)
         return result
 
