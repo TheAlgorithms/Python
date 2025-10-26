@@ -1,4 +1,4 @@
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
@@ -6,10 +6,7 @@ class Comparable(Protocol):
     def __le__(self, other: object) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def binary_search(arr: list[T], item: T, left: int, right: int) -> int:
+def binary_search[T: Comparable](arr: list[T], item: T, left: int, right: int) -> int:
     """
     Return the index where `item` should be inserted in `arr[left:right+1]`
     to keep it sorted.
@@ -32,7 +29,7 @@ def binary_search(arr: list[T], item: T, left: int, right: int) -> int:
     return left
 
 
-def insertion_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ignore[valid-type]
+def insertion_sort[T: Comparable](arr: list[T]) -> list[T]:
     """
     Sort the list in-place using binary insertion sort.
 
@@ -46,7 +43,7 @@ def insertion_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ig
     return arr
 
 
-def merge(left: list[T], right: list[T]) -> list[T]:
+def merge[T: Comparable](left: list[T], right: list[T]) -> list[T]:
     """
     Merge two sorted lists into one sorted list.
 
@@ -67,7 +64,7 @@ def merge(left: list[T], right: list[T]) -> list[T]:
     return merged
 
 
-def tim_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ignore[valid-type]
+def tim_sort[T: Comparable](arr: list[T]) -> list[T]:
     """
     Simplified version of TimSort for educational purposes.
 
@@ -96,14 +93,14 @@ def tim_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ignore[v
     if n == 1:
         return arr.copy()
 
-    runs: list[list[T_contra]] = []
+    runs: list[list[T]] = []
     for start in range(0, n, min_run):
         end = min(start + min_run, n)
         run = insertion_sort(arr[start:end])
         runs.append(run)
 
     while len(runs) > 1:
-        new_runs: list[list[T_contra]] = []
+        new_runs: list[list[T]] = []
         for i in range(0, len(runs), 2):
             if i + 1 < len(runs):
                 new_runs.append(merge(runs[i], runs[i + 1]))
