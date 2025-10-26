@@ -15,6 +15,7 @@ from typing import Any, Protocol, TypeVar
 
 class Comparable(Protocol):
     """Defines minimal comparison operations required for sorting."""
+
     def __lt__(self, other: Any) -> bool: ...
     def __le__(self, other: Any) -> bool: ...
 
