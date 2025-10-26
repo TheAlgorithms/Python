@@ -50,6 +50,28 @@ class Node:
         self.parent: Node | None = None
 
     def __repr__(self) -> str:
+        """
+        Return string representation of the node.
+
+        Examples:
+        >>> node = Node(10)
+        >>> repr(node)
+        'Node(10)'
+        >>> str(node)
+        'Node(10)'
+        >>> node = Node("hello")
+        >>> repr(node)
+        'Node(hello)'
+        >>> node = Node(-5)
+        >>> repr(node)
+        'Node(-5)'
+        >>> node = Node(3.14)
+        >>> repr(node)
+        'Node(3.14)'
+        >>> node = Node(None)
+        >>> repr(node)
+        'Node(None)'
+        """
         return f"Node({self.key})"
 
 
