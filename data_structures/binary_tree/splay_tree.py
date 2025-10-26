@@ -253,10 +253,11 @@ class SplayTree:
                 return
 
         node.parent = parent
-        if parent is not None and key < parent.key:
-            parent.left = node
-        else:
-            parent.right = node
+        if parent is not None:
+            if key < parent.key:
+                parent.left = node
+            else:
+                parent.right = node
 
         # Splay the newly inserted node to root
         self._splay(node)
@@ -621,7 +622,39 @@ def performance_comparison() -> None:
     Demonstrate the performance characteristics of Splay Trees.
 
     This shows how splay trees excel at repeated access to the same elements.
+
+    Examples:
+    >>> tree = SplayTree()
+    >>> for i in range(1, 11):
+    ...     tree.insert(i)
+    >>> tree.size()
+    10
+    >>> tree.get_root_key()  # Last inserted element
+    10
+    >>> # Demonstrate locality of reference - repeated access
+    >>> for _ in range(5):
+    ...     _ = tree.search(5)
+    >>> tree.get_root_key()  # Element 5 is now at root
+    5
+    >>> # Verify tree still maintains BST property
+    >>> tree.inorder()
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    >>> # Test that min/max operations work and splay to root
+    >>> min_val = tree.find_min()
+    >>> min_val
+    1
+    >>> tree.get_root_key()  # Min is now at root
+    1
+    >>> max_val = tree.find_max()
+    >>> max_val
+    10
+    >>> tree.get_root_key()  # Max is now at root
+    10
+    >>> # Verify height is reasonable (not degenerate)
+    >>> tree.height() < 10
+    True
     """
+    import random
     import time
 
     print("=== Splay Tree Performance Demonstration ===\n")
