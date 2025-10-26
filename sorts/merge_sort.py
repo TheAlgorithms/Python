@@ -1,64 +1,79 @@
 """
-This is a pure Python implementation of the merge sort algorithm.
+Optimized pure Python implementation of the merge sort algorithm.
 
-For doctests run following command:
-python -m doctest -v merge_sort.py
-or
-python3 -m doctest -v merge_sort.py
-For manual testing run:
-python merge_sort.py
+Merge Sort is a divide-and-conquer algorithm that splits the input list into halves,
+recursively sorts them, and merges the sorted halves.
+
+Source: https://en.wikipedia.org/wiki/Merge_sort
 """
 
+from __future__ import annotations
 
-def merge_sort(collection: list) -> list:
+from collections.abc import Sequence
+from typing import Any, Protocol, TypeVar
+
+
+class Comparable(Protocol):
+    """Defines minimal comparison operations required for sorting."""
+    def __lt__(self, other: Any) -> bool: ...
+    def __le__(self, other: Any) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def merge_sort(arr: Sequence[T]) -> list[T]:  # noqa: UP047
     """
-    Sorts a list using the merge sort algorithm.
+    Sort a sequence in ascending order using merge sort.
 
-    :param collection: A mutable ordered collection with comparable items.
-    :return: The same collection ordered in ascending order.
+    :param arr: Any sequence of comparable items.
+    :return: A new sorted list.
 
-    Time Complexity: O(n log n)
-    Space Complexity: O(n)
-
-    Examples:
     >>> merge_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
     >>> merge_sort([])
     []
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
+    >>> merge_sort(["b", "a", "c"])
+    ['a', 'b', 'c']
+    >>> merge_sort((3, 1, 2))
+    [1, 2, 3]
     """
+    n = len(arr)
+    if n <= 1:
+        return list(arr)
 
-    def merge(left: list, right: list) -> list:
-        """
-        Merge two sorted lists into a single sorted list.
+    mid = n // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return _merge(left, right)
 
-        :param left: Left collection
-        :param right: Right collection
-        :return: Merged result
-        """
-        result = []
-        while left and right:
-            result.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
-        result.extend(left)
-        result.extend(right)
-        return result
 
-    if len(collection) <= 1:
-        return collection
-    mid_index = len(collection) // 2
-    return merge(merge_sort(collection[:mid_index]), merge_sort(collection[mid_index:]))
+def _merge(left: list[T], right: list[T]) -> list[T]:
+    """Merge two sorted lists efficiently using index pointers."""
+    merged: list[T] = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
 
 
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True)
 
     try:
-        user_input = input("Enter numbers separated by a comma:\n").strip()
-        unsorted = [int(item) for item in user_input.split(",")]
-        sorted_list = merge_sort(unsorted)
-        print(*sorted_list, sep=",")
+        user_input = input("Enter numbers separated by commas:\n").strip()
+        numbers = [int(x) for x in user_input.split(",") if x.strip()]
+        print("Sorted:", merge_sort(numbers))
     except ValueError:
-        print("Invalid input. Please enter valid integers separated by commas.")
+        print("Invalid input. Please enter only comma-separated integers.")
