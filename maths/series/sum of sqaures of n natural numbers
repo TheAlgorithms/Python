@@ -11,5 +11,5 @@ class sum_of_squares:
         
         
 solution1=sum_of_squares()
-a=int(input("Enter a natural number to find sum of sqaures upto that number:"))
+a=int(input("Enter a natural number to find sum of squares upto that number:"))
 solution1.get_square_of_series(a)
