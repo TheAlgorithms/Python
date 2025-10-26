@@ -10,6 +10,7 @@ def single_number(nums: list[int]) -> int:
         res ^= n
     return res
 
+
 if __name__ == "__main__":
     example = [4, 1, 2, 1, 2]
     print(single_number(example))  # Output: 4
