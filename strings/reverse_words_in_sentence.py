@@ -11,6 +11,7 @@ Example:
     'fun is Python'
 """
 
+
 def reverse_words_in_sentence(sentence: str) -> str:
     """
     Reverse the order of words in a sentence.
