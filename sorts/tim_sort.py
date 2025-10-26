@@ -1,6 +1,12 @@
-from typing import TypeVar
+from typing import Protocol, TypeVar
 
-T = TypeVar("T")
+
+class Comparable(Protocol):
+    def __lt__(self, other: object) -> bool: ...
+    def __le__(self, other: object) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
 
 
 def binary_search(arr: list[T], item: T, left: int, right: int) -> int:
@@ -26,17 +32,13 @@ def binary_search(arr: list[T], item: T, left: int, right: int) -> int:
     return left
 
 
-def insertion_sort(arr: list[T]) -> list[T]:
+def insertion_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ignore[valid-type]
     """
     Sort the list in-place using binary insertion sort.
 
     >>> insertion_sort([3, 1, 2, 4])
     [1, 2, 3, 4]
     """
-    from typing import TypeVar
-
-    T = TypeVar("T")
-
     for i in range(1, len(arr)):
         key = arr[i]
         j = binary_search(arr, key, 0, i - 1)
@@ -65,7 +67,7 @@ def merge(left: list[T], right: list[T]) -> list[T]:
     return merged
 
 
-def tim_sort(arr: list[T]) -> list[T]:
+def tim_sort[T_contra](arr: list[T_contra]) -> list[T_contra]:  # type: ignore[valid-type]
     """
     Simplified version of TimSort for educational purposes.
 
@@ -83,10 +85,6 @@ def tim_sort(arr: list[T]) -> list[T]:
     >>> tim_sort([])  # empty input
     []
     """
-    from typing import TypeVar
-
-    T = TypeVar("T")
-
     if not isinstance(arr, list):
         arr = list(arr)
     if not arr:
@@ -98,14 +96,14 @@ def tim_sort(arr: list[T]) -> list[T]:
     if n == 1:
         return arr.copy()
 
-    runs: list[list[T]] = []
+    runs: list[list[T_contra]] = []
     for start in range(0, n, min_run):
         end = min(start + min_run, n)
         run = insertion_sort(arr[start:end])
         runs.append(run)
 
     while len(runs) > 1:
-        new_runs: list[list[T]] = []
+        new_runs: list[list[T_contra]] = []
         for i in range(0, len(runs), 2):
             if i + 1 < len(runs):
                 new_runs.append(merge(runs[i], runs[i + 1]))
