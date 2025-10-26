@@ -614,7 +614,9 @@ class SplayTree:
                     if child is not None:
                         self._display_helper(child, prefix + extension, i == 1)
                     else:
-                        print(prefix + extension + ("└── " if i == 1 else "├── ") + "None")
+                        print(
+                            prefix + extension + ("└── " if i == 1 else "├── ") + "None"
+                        )
 
 
 def performance_comparison() -> None:
