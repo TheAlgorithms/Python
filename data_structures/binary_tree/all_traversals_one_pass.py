@@ -19,6 +19,8 @@ class Node:
         The left child of the node.
     right : Node, optional
         The right child of the node.
+    
+    Reference: https://en.wikipedia.org/wiki/Binary_tree
     """
 
     def __init__(self, data: int):
@@ -66,6 +68,10 @@ def all_traversals(root: Optional[Node]) -> Tuple[List[int], List[int], List[int
         - If state == 3:
             → Add node to Postorder
     3. Continue until stack is empty.
+
+    Reference: Tree Traversals- https://en.wikipedia.org/wiki/Tree_traversal
+               Stack Data Structure- https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
+
     """
 
     if root is None:
@@ -116,6 +122,8 @@ def build_sample_tree() -> Node:
     -------
     Node
         The root node of the binary tree.
+    
+    Reference: https://en.wikipedia.org/wiki/Binary_tree
     """
     root = Node(1)
     root.left = Node(2)
