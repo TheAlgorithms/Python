@@ -5,7 +5,7 @@ This module demonstrates how to perform Preorder, Inorder, and Postorder travers
 of a binary tree in a single traversal using an iterative approach with a stack.
 """
 
-from typing import Optional, List, Tuple
+from __future__ import annotations
 
 
 class Node:
@@ -20,17 +20,16 @@ class Node:
         The left child of the node.
     right : Node, optional
         The right child of the node.
-
     Reference: https://en.wikipedia.org/wiki/Binary_tree
     """
 
     def __init__(self, data: int):
         self.data = data
-        self.left: Optional[Node] = None
-        self.right: Optional[Node] = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
 
-def all_traversals(root: Optional[Node]) -> Tuple[List[int], List[int], List[int]]:
+def all_traversals(root: Node | None) -> tuple[list[int], list[int], list[int]]:
     """
     Perform Preorder, Inorder, and Postorder traversals in a single pass.
 
@@ -78,8 +77,10 @@ def all_traversals(root: Optional[Node]) -> Tuple[List[int], List[int], List[int
     if root is None:
         return [], [], []
 
-    stack: List[Tuple[Node, int]] = [(root, 1)]  # (node, state)
-    preorder, inorder, postorder = [], [], []
+    stack: list[tuple[Node, int]] = [(root, 1)]  # (node, state)
+    preorder: list[int] = []
+    inorder: list[int] = []
+    postorder: list[int] = []
 
     while stack:
         node, state = stack.pop()
