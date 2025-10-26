@@ -7,6 +7,7 @@ of a binary tree in a single traversal using an iterative approach with a stack.
 
 from typing import Optional, List, Tuple
 
+
 class Node:
     """
     A class to represent a node in a binary tree.
@@ -19,7 +20,7 @@ class Node:
         The left child of the node.
     right : Node, optional
         The right child of the node.
-    
+
     Reference: https://en.wikipedia.org/wiki/Binary_tree
     """
 
@@ -122,7 +123,7 @@ def build_sample_tree() -> Node:
     -------
     Node
         The root node of the binary tree.
-    
+
     Reference: https://en.wikipedia.org/wiki/Binary_tree
     """
     root = Node(1)
