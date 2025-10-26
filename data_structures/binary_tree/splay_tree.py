@@ -680,8 +680,6 @@ def performance_comparison() -> None:
     print(f"Root after repeated access to 50: {tree.get_root_key()}\n")
 
     # Random access pattern
-    import random
-
     print("Random access pattern...")
     random.seed(42)
     keys = [random.randint(1, 100) for _ in range(100)]
