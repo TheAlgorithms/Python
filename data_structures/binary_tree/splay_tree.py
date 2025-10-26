@@ -299,10 +299,7 @@ class SplayTree:
                 self._splay(current)
                 return True
             parent = current
-            if key < current.key:
-                current = current.left
-            else:
-                current = current.right
+            current = current.left if key < current.key else current.right
 
         # Key not found, splay the last accessed node
         if parent is not None:
