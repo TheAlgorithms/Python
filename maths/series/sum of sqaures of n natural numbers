@@ -7,9 +7,9 @@ class sum_of_squares:
             print(f"The sum of squares of the first {n} natural numbers is {r}")
         else:
             print("Kindly enter a natural number!")
-        
-        
-        
+
+
+
 solution1=sum_of_squares()
 a=int(input("Enter a natural number to find sum of sqaures upto that number:"))
 solution1.get_square_of_series(a)
