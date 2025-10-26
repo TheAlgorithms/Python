@@ -15,6 +15,7 @@ Example:
     2
 """
 
+
 def digital_root(n: int) -> int:
     """Return the digital root of a non-negative integer."""
     while n >= 10:
