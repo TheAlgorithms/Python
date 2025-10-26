@@ -1,0 +1,15 @@
+#find sum of n natural numbers
+class sum_of_squares:
+    def get_square_of_series(self,n):
+        self.n=n
+        if n>0:
+            r=(n*(n+1)*((2*n)+1))/6
+            print(f"The sum of squares of the first {n} natural numbers is {r}")
+        else:
+            print("Kindly enter a natural number!")
+        
+        
+        
+solution1=sum_of_squares()
+a=int(input("Enter a natural number to find sum of sqaures upto that number:"))
+solution1.get_square_of_series(a)
