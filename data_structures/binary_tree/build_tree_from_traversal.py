@@ -10,7 +10,6 @@ Doctest examples are included for verification.
 """
 
 from __future__ import annotations  # for forward references
-from typing import Optional
 
 
 class Node:
@@ -95,7 +94,9 @@ def _build_tree_from_postorder(
     >>> inorder_seq = [1, 2, 3]
     >>> postorder_seq = [1, 3, 2]
     >>> inmp = {v:i for i,v in enumerate(inorder_seq)}
-    >>> root = _build_tree_from_postorder(postorder_seq, 0, 2, inorder_seq, 0, 2, inmp)
+    >>> root = _build_tree_from_postorder(
+    ...     postorder_seq, 0, 2, inorder_seq, 0, 2, inmp
+    ... )
     >>> root.data
     2
     >>> root.left.data
@@ -140,7 +141,6 @@ def build_tree_from_postorder(inorder: list[int], postorder: list[int]) -> Node 
     )
 
 
-# Optional example usage
 if __name__ == "__main__":
     inorder_seq = [1, 2, 3, 4, 5]
     preorder_seq = [3, 2, 1, 4, 5]
