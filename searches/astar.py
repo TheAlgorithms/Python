@@ -131,6 +131,8 @@ def neighbors(node: Node) -> Iterable[tuple[Node, float]]:
 
 if __name__ == "__main__":
     # Example usage / manual test
+    import doctest
+    doctest.testmod()
     start: Node = (0, 0)
     goal: Node = (5, 5)
     path = astar(start, goal, neighbors, heuristic)
