@@ -183,7 +183,7 @@ def fib_memoization(n: int) -> list[int]:
     """
     if n < 0:
         raise ValueError("n is negative")
-    # Cache must be outside recursuive function
+    # Cache must be outside recursive function
     # other it will reset every time it calls itself.
     cache: dict[int, int] = {0: 0, 1: 1, 2: 1}  # Prefilled cache
 
