@@ -82,9 +82,10 @@ def astar(
         # Goal check: reconstruct the path by following parents backward
         if current == goal:
             path: list[Node] = []
-            while current is not None:
-                path.append(current)
-                current = parent[current]
+            cur: Node | None = current
+            while cur is not None:
+                path.append(cur)
+                cur = parent[cur]
             return path[::-1]  # reverse to (start ... goal)
 
         # Explore current's neighbors
