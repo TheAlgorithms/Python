@@ -1,13 +1,13 @@
 """
-Suppose you have n integers labeled 1 through n. 
+Suppose you have n integers labeled 1 through n.
 A permutation of those n integers
-perm (1-indexed) is considered a 
+perm (1-indexed) is considered a
 "beautiful arrangement" if for every i (1 <= i <= n),
 either of the following is true:
 
 -> perm[i] is divisible by i.
 -> i is divisible by perm[i].
-Given an integer n, return the number of the 
+Given an integer n, return the number of the
 "beautiful arrangements" that you can construct.
 
 """
@@ -19,9 +19,9 @@ class BeautifulArrange:
     def countarrangement(self, n: int) -> int:
         self.count = 0
         """
-        We initialize a counter to record how 
+        We initialize a counter to record how
             many valid arrangements we find.
-        Using self.count lets the nested 
+        Using self.count lets the nested
             function modify it without nonlocal.
         """
 
@@ -34,7 +34,7 @@ class BeautifulArrange:
         def backtrack(pos):
             """
             Define the recursive backtracking function.
-            pos is the current position in the 
+            pos is the current position in the
                 permutation we are filling (1-indexed).
             We try to assign a number to position pos.
             """
@@ -47,9 +47,9 @@ class BeautifulArrange:
             ):  # Try every candidate number num for the current position pos.
                 """
                 Two checks in one:
-                1. not used[num] — the number num has 
+                1. not used[num] — the number num has
                     not been placed yet (we can use it).
-                2. (num % pos == 0 or pos % num == 0) — 
+                2. (num % pos == 0 or pos % num == 0) —
                     the beautiful-arrangement condition:
                     either num divides pos or pos divides num.
                 If both are true, num is a valid choice for pos.
