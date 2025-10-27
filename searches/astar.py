@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Pure Python implementation of the A* (A-star) pathfinding algorithm.
 
@@ -10,26 +9,29 @@ For manual testing run:
     python3 astar.py
 """
 
+from collections.abc import Callable, Iterable
 import heapq
-from typing import Callable, Iterable, Tuple, List, Dict, Optional, Set
 
-# Type aliases for readability
-Node = Tuple[int, int]
-NeighborsFn = Callable[[Node], Iterable[Tuple[Node, float]]]
+# Type aliases for readability (PEP 585 built-in generics, PEP 604 unions)
+Node = tuple[int, int]
+NeighborsFn = Callable[[Node], Iterable[tuple[Node, float]]]
 HeuristicFn = Callable[[Node, Node], float]
 
 
 def astar(
-    start: Node, goal: Node, neighbors: NeighborsFn, h: HeuristicFn
-) -> Optional[List[Node]]:
+    start: Node,
+    goal: Node,
+    neighbors: NeighborsFn,
+    h: HeuristicFn,
+) -> list[Node] | None:
     """
     A* algorithm for pathfinding on a graph defined by a neighbor function.
 
     A* maintains:
-      -> g[n]: cost from start to node n (best known so far)
-      -> f[n] = g[n] + h(n, goal): estimated total cost of a path through n to goal
-      -> open_list: min-heap of candidate nodes prioritized by smallest f-score
-      -> closed_list: set of nodes already expanded (best path to them fixed)
+      - g[n]: cost from start to node n (best known so far)
+      - f[n] = g[n] + h(n, goal): estimated total cost through n to goal
+      - open_list: min-heap of candidate nodes prioritized by smallest f-score
+      - closed_list: set of nodes already expanded (best path to them fixed)
 
     :param start: starting node
     :param goal: target node
@@ -38,27 +40,27 @@ def astar(
     :return: list of nodes from start to goal (inclusive), or None if no path
 
     Examples:
-    >>> def _h(a, b):  # Manhattan distance
+    >>> def _h(a: Node, b: Node) -> float:  # Manhattan distance
     ...     (x1, y1), (x2, y2) = a, b
     ...     return abs(x1 - x2) + abs(y1 - y2)
-    >>> def _nbrs(p):  # 4-connected grid, unit costs, unbounded
+    >>> def _nbrs(p: Node):
     ...     x, y = p
     ...     return [((x + 1, y), 1), ((x - 1, y), 1), ((x, y + 1), 1), ((x, y - 1), 1)]
-    >>> astar((0, 0), (2, 2), _nbrs, _h)[-1]
-    (2, 2)
+    >>> path = astar((0, 0), (2, 2), _nbrs, _h)
+    >>> path is not None and path[0] == (0, 0) and path[-1] == (2, 2)
+    True
     """
-    # Min-heap of (f_score, node). We only store (priority, node) to keep it simple;
-    # if your nodes aren't directly comparable, add a tiebreaker counter to the tuple.
-    open_list: List[Tuple[float, Node]] = []
+    # Min-heap of (f_score, node)
+    open_list: list[tuple[float, Node]] = []
 
-    # Nodes we've fully explored (their best path is finalized).
-    closed_list: Set[Node] = set()
+    # Nodes we've fully explored (their best path is finalized)
+    closed_list: set[Node] = set()
 
     # g-scores: best known cost to reach each node from start
-    g: Dict[Node, float] = {start: 0.0}
+    g: dict[Node, float] = {start: 0.0}
 
     # Parent map to reconstruct the path once we reach the goal
-    parent: Dict[Node, Optional[Node]] = {start: None}
+    parent: dict[Node, Node | None] = {start: None}
 
     # Initialize the frontier with the start node (f = h(start, goal))
     heapq.heappush(open_list, (h(start, goal), start))
@@ -74,7 +76,7 @@ def astar(
 
         # Goal check: reconstruct the path by following parents backward
         if current == goal:
-            path: List[Node] = []
+            path: list[Node] = []
             while current is not None:
                 path.append(current)
                 current = parent[current]
@@ -89,7 +91,7 @@ def astar(
             # Tentative g-score via current
             tentative_g = g[current] + cost
 
-            # If this is the first time we see neighbor, or we found a cheaper path to it
+            # If first time seeing neighbor, or we found a cheaper path to it
             if neighbor not in g or tentative_g < g[neighbor]:
                 g[neighbor] = tentative_g
                 parent[neighbor] = current
@@ -101,30 +103,17 @@ def astar(
 
 
 def heuristic(n: Node, goal: Node) -> float:
-    """
-    Manhattan (L1) distance heuristic for 4-connected grid movement with unit costs.
-    Admissible and consistent for axis-aligned moves.
-
-    :param n: current node
-    :param goal: target node
-    :return: |x1 - x2| + |y1 - y2|
-    """
+    """Manhattan (L1) distance heuristic for 4-connected grid movement with unit costs."""
     x1, y1 = n
     x2, y2 = goal
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-def neighbors(node: Node) -> Iterable[Tuple[Node, float]]:
+def neighbors(node: Node) -> Iterable[tuple[Node, float]]:
     """
     4-neighborhood on an unbounded grid with unit edge costs.
 
-    Replace/extend this for:
-      -> bounded grids (check bounds before yielding)
-      -> obstacles (skip blocked cells)
-      -> diagonal moves (add the 4 diagonals with cost sqrt(2) and switch heuristic)
-
-    :param node: (x, y) coordinate
-    :return: iterable of ((nx, ny), step_cost)
+    Replace/extend this for bounds, obstacles, or diagonal moves.
     """
     x, y = node
     return [
