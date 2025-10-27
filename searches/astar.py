@@ -9,10 +9,10 @@ For manual testing run:
     python3 astar.py
 """
 
-from collections.abc import Callable, Iterable
 import heapq
+from collections.abc import Callable, Iterable
 
-# Type aliases for readability (PEP 585 built-in generics, PEP 604 unions)
+# Type aliases (PEP 585 built-in generics, PEP 604 unions)
 Node = tuple[int, int]
 NeighborsFn = Callable[[Node], Iterable[tuple[Node, float]]]
 HeuristicFn = Callable[[Node, Node], float]
@@ -28,16 +28,16 @@ def astar(
     A* algorithm for pathfinding on a graph defined by a neighbor function.
 
     A* maintains:
-      - g[n]: cost from start to node n (best known so far)
-      - f[n] = g[n] + h(n, goal): estimated total cost through n to goal
-      - open_list: min-heap of candidate nodes prioritized by smallest f-score
-      - closed_list: set of nodes already expanded (best path to them fixed)
+      * g[n]: cost from start to node n (best known so far)
+      * f[n] = g[n] + h(n, goal): estimated total cost through n to goal
+      * open_list: min-heap of candidate nodes by smallest f-score
+      * closed_list: nodes already expanded (best path to them fixed)
 
     :param start: starting node
     :param goal: target node
     :param neighbors: function returning (neighbor, step_cost) pairs for a node
     :param h: admissible heuristic h(n, goal) estimating remaining cost
-    :return: list of nodes from start to goal (inclusive), or None if no path
+    :return: path from start to goal (inclusive), or None if no path
 
     Examples:
     >>> def _h(a: Node, b: Node) -> float:  # Manhattan distance
@@ -45,7 +45,12 @@ def astar(
     ...     return abs(x1 - x2) + abs(y1 - y2)
     >>> def _nbrs(p: Node):
     ...     x, y = p
-    ...     return [((x + 1, y), 1), ((x - 1, y), 1), ((x, y + 1), 1), ((x, y - 1), 1)]
+    ...     return [
+    ...         ((x + 1, y), 1),
+    ...         ((x - 1, y), 1),
+    ...         ((x, y + 1), 1),
+    ...         ((x, y - 1), 1),
+    ...     ]
     >>> path = astar((0, 0), (2, 2), _nbrs, _h)
     >>> path is not None and path[0] == (0, 0) and path[-1] == (2, 2)
     True
@@ -103,7 +108,7 @@ def astar(
 
 
 def heuristic(n: Node, goal: Node) -> float:
-    """Manhattan (L1) distance heuristic for 4-connected grid movement with unit costs."""
+    """Manhattan (L1) distance for 4-connected grid movement with unit costs."""
     x1, y1 = n
     x2, y2 = goal
     return abs(x1 - x2) + abs(y1 - y2)
@@ -131,5 +136,4 @@ if __name__ == "__main__":
     path = astar(start, goal, neighbors, heuristic)
     print("Path found:", path)
     # Expected (one optimal path; yours may differ but length should be 10 moves + start):
-    # Path found: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5),
-    #              (1, 5), (2, 5), (3, 5), (4, 5), (5, 5)]
+    # Path found: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5)
