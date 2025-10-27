@@ -135,5 +135,3 @@ if __name__ == "__main__":
     goal: Node = (5, 5)
     path = astar(start, goal, neighbors, heuristic)
     print("Path found:", path)
-    # Expected (one optimal path; yours may differ but length should be 10 moves + start):
-    # Path found: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5)
