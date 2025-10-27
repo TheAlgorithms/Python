@@ -31,8 +31,11 @@ def linear_search(sequence: list, target: int) -> int:
         if item == target:
             return index
     return -1
-if __name__== '__main__' :
+
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 
