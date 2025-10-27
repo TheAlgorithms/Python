@@ -138,4 +138,3 @@ if __name__ == "__main__":
     goal: Node = (5, 5)
     path = astar(start, goal, neighbors, heuristic)
     print("Path found:", path)
-
