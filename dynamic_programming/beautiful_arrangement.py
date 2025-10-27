@@ -10,7 +10,7 @@ Given an integer n, return the number of the "beautiful arrangements" that you c
 """
 # Solution using Backtracking
 
-class Solution:
+class beautifulArrange:
     # funtion call; n is the size of the permutation (numbers 1..n)
     def countArrangement(self, n: int) -> int:
         
