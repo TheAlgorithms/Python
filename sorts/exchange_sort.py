@@ -18,6 +18,8 @@ def exchange_sort(data: list) -> list:
                 data[i], data[j] = data[j], data[i]
     return data
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
