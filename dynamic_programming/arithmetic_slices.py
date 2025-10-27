@@ -53,7 +53,7 @@ class ArithmeticSlices:
         to check if they form an arithmetic pattern.
 
 <<<<<<< HEAD
-        So at each step, 
+        So at each step,
         we are looking at a triplet ending at index `i`.
 =======
         So at each step,
