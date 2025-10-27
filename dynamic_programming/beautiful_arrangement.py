@@ -13,6 +13,7 @@ Given an integer n, return the number of the
 """
 # Solution using Backtracking
 
+
 class BeautifulArrange:
     # funtion call; n is the size of the permutation (numbers 1..n)
     def countarrangement(self, n: int) -> int:
