@@ -27,6 +27,8 @@ def equilibrium_index(arr: list[int]) -> int:
         left_sum += value
     return -1
 
+
 if _name_ == "_main_":
     import doctest
+
     doctest.testmod()
