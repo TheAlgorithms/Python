@@ -15,7 +15,7 @@ Given an integer n, return the number of the
 
 
 class BeautifulArrange:
-    # funtion call; n is the size of the permutation (numbers 1..n)
+    # function call; n is the size of the permutation (numbers 1..n)
     def countarrangement(self, n: int) -> int:
         self.count = 0
         """
