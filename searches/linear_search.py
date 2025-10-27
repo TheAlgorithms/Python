@@ -31,6 +31,9 @@ def linear_search(sequence: list, target: int) -> int:
         if item == target:
             return index
     return -1
+if __name__== '__main__' :
+    import doctest
+    doctest.testmod()
 
 
 def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
