@@ -53,7 +53,7 @@ class ArithmeticSlices:
         to check if they form an arithmetic pattern.
 
         So at each step, 
-        we’re looking at a triplet ending at index `i`.
+        we are looking at a triplet ending at index `i`.
         """
         
         return total
