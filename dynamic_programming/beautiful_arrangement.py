@@ -10,19 +10,19 @@ Given an integer n, return the number of the "beautiful arrangements" that you c
 """
 # Solution using Backtracking
 
+
 class beautifularrange:
     # funtion call; n is the size of the permutation (numbers 1..n)
     def countarrangement(self, n: int) -> int:
-        
         self.count = 0
         """
-        We initialize a counter to record how many valid arrangements we find. 
+        We initialize a counter to record how many valid arrangements we find.
         Using self.count lets the nested function modify it without nonlocal.
         """
-        
+
         used = [False] * (n + 1)
         """
-        A boolean list to mark which numbers have 
+        A boolean list to mark which numbers have
         already been placed in the permutation.
         """
 
@@ -33,7 +33,7 @@ class beautifularrange:
             We try to assign a number to position pos.
             """
             if pos > n:
-                self.count += 1  
+                self.count += 1
                 # We found a complete valid arrangement, so increment the total count.
                 return
             for num in range(
