@@ -19,6 +19,7 @@ Example
 
 """
 
+
 def rob(nums: list[int]) -> int:
     n = len(nums)
     if n < 3:
@@ -33,4 +34,5 @@ def rob(nums: list[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
