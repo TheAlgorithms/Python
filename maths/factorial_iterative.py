@@ -21,4 +21,3 @@ def factorial_iterative(number: int) -> int:
 if __name__ == "__main__":
     # simple demonstration
     print(factorial_iterative(5))  # expected 120
-
