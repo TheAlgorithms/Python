@@ -3,7 +3,8 @@ def fibonacci_iterative(term_index: int) -> int:
     Return the Fibonacci number at a given index using an iterative approach.
 
     Parameters:
-        term_index (int): Index in the Fibonacci sequence. Must be a non-negative integer.
+        term_index (int): Index in the Fibonacci sequence.
+            Must be a non-negative integer.
 
     Returns:
         int: The Fibonacci number at the specified index.
@@ -30,3 +31,4 @@ def fibonacci_iterative(term_index: int) -> int:
 
 if __name__ == "__main__":
     print(fibonacci_iterative(7))  # expected 13
+
