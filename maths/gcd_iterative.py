@@ -1,4 +1,4 @@
-def gcd_iterative(a: int, b: int) -> int:
+def gcd_iterative(first_number: int, second_number: int) -> int:
     """
     Compute the greatest common divisor (GCD) of two numbers iteratively.
 
@@ -8,6 +8,6 @@ def gcd_iterative(a: int, b: int) -> int:
     >>> gcd_iterative(7, 5)
     1
     """
-    while b != 0:
-        a, b = b, a % b
-    return a
+    while second_number != 0:
+        first_number, second_number = second_number, first_number % second_number
+    return first_number
