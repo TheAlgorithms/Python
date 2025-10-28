@@ -184,7 +184,7 @@ class GroundedSAM2Segmenter:
         mask = np.zeros((h, w), dtype=np.uint8)
 
         # Create mask with some padding inside the box
-        pad = 5
+        pad = min(5, (x2 - x1) // 4, (y2 - y1) // 4)
         mask[
             max(0, y1 + pad) : min(h, y2 - pad),
             max(0, x1 + pad) : min(w, x2 - pad),
