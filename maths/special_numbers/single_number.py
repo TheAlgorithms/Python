@@ -16,4 +16,3 @@ def single_number(nums: list[int]) -> int:
     for n in nums:
         res ^= n
     return res
-
