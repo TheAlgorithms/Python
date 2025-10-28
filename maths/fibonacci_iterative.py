@@ -31,4 +31,3 @@ def fibonacci_iterative(term_index: int) -> int:
 
 if __name__ == "__main__":
     print(fibonacci_iterative(7))  # expected 13
-
