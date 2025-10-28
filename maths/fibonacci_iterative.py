@@ -1,9 +1,12 @@
-def fibonacci_iterative(n: int) -> int:
+def fibonacci_iterative(term_index: int) -> int:
     """
-    Return the n-th Fibonacci number using an iterative approach.
+    Return the Fibonacci number at a given index using an iterative approach.
 
-    The function returns the Fibonacci number at index n where:
-    F(0) == 0, F(1) == 1, F(2) == 1, ...
+    Parameters:
+        term_index (int): Index in the Fibonacci sequence. Must be a non-negative integer.
+
+    Returns:
+        int: The Fibonacci number at the specified index.
 
     Examples:
     >>> fibonacci_iterative(0)
@@ -13,17 +16,18 @@ def fibonacci_iterative(n: int) -> int:
     >>> fibonacci_iterative(7)
     13
     """
-    if n < 0:
-        raise ValueError("Input must be a non-negative integer")
+    if term_index < 0:
+        raise ValueError("term_index must be a non-negative integer.")
 
-    if n == 0:
-        return 0
-    a, b = 0, 1
-    for _ in range(1, n):
-        a, b = b, a + b
-    return b
+    if term_index <= 1:
+        return term_index
+
+    prev, curr = 0, 1
+    for _ in range(2, term_index + 1):
+        prev, curr = curr, prev + curr
+    return curr
 
 
 if __name__ == "__main__":
-    # simple demonstration
     print(fibonacci_iterative(7))  # expected 13
+
