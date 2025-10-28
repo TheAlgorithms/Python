@@ -124,7 +124,9 @@ class GroundedSAM2Segmenter:
         # Validate point labels
         for label in point_labels:
             if label not in [0, 1]:
-                raise ValueError("Point labels must be 0 (background) or 1 (foreground)")
+                raise ValueError(
+                    "Point labels must be 0 (background) or 1 (foreground)"
+                )
 
         # Simulate segmentation based on point prompts
         # In real implementation, this would use SAM2 model inference
@@ -245,9 +247,9 @@ class GroundedSAM2Segmenter:
             radius = min(h, w) // 4
 
             y_coords, x_coords = np.ogrid[:h, :w]
-            circle_mask = (
-                (x_coords - center_x) ** 2 + (y_coords - center_y) ** 2 <= radius**2
-            )
+            circle_mask = (x_coords - center_x) ** 2 + (
+                y_coords - center_y
+            ) ** 2 <= radius**2
             mask = np.zeros((h, w), dtype=np.uint8)
             mask[circle_mask] = 1
 
@@ -269,7 +271,11 @@ class GroundedSAM2Segmenter:
         return results
 
     def apply_color_mask(
-        self, image: np.ndarray, mask: np.ndarray, color: tuple[int, int, int] = (0, 255, 0), alpha: float = 0.5
+        self,
+        image: np.ndarray,
+        mask: np.ndarray,
+        color: tuple[int, int, int] = (0, 255, 0),
+        alpha: float = 0.5,
     ) -> np.ndarray:
         """
         Apply colored overlay on image based on segmentation mask.
