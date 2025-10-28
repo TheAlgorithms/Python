@@ -15,4 +15,8 @@ if __name__ == "__main__":
     arr = [2, 5, 7, 9, 14, 18, 21, 25]
     target = 18
     result = meta_binary_search(arr, target)
-    print(f"Element {target} found at index: {result}" if result != -1 else "Element not found.")
+    print(
+        f"Element {target} found at index: {result}"
+        if result != -1
+        else "Element not found."
+    )

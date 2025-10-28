@@ -14,4 +14,8 @@ if __name__ == "__main__":
     arr = [10, 20, 30, 40, 50, 60, 70]
     x = 50
     result = interpolation_search_recursive(arr, 0, len(arr) - 1, x)
-    print(f"Element {x} found at index: {result}" if result != -1 else "Element not found.")
+    print(
+        f"Element {x} found at index: {result}"
+        if result != -1
+        else "Element not found."
+    )
