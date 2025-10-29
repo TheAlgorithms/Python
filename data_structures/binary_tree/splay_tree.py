@@ -126,11 +126,19 @@ class SplayTree:
     # ------------------------- TRAVERSALS -------------------------
     def inorder(self, root: Optional[Node]) -> List[int]:
         """Returns an inorder traversal of the tree."""
-        return [] if not root else self.inorder(root.left) + [root.key] + self.inorder(root.right)
+        return (
+            []
+            if not root
+            else self.inorder(root.left) + [root.key] + self.inorder(root.right)
+        )
 
     def preorder(self, root: Optional[Node]) -> List[int]:
         """Returns a preorder traversal of the tree."""
-        return [] if not root else [root.key] + self.preorder(root.left) + self.preorder(root.right)
+        return (
+            []
+            if not root
+            else [root.key] + self.preorder(root.left) + self.preorder(root.right)
+        )
 
 
 if __name__ == "__main__":
