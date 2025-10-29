@@ -84,20 +84,21 @@ def dutch_flag_sort(arr: list[int]) -> None:
             arr[mid], arr[high] = arr[high], arr[mid]
             high -= 1
         else:
-            raise ValueError(f"Array contains invalid value: {value}")
+            msg = f"Array contains invalid value: {value}"
+            raise ValueError(msg)
 
 
 if __name__ == "__main__":
     examples = [
-        ([2, 0, 2, 1, 1, 0],),
-        ([2, 0, 1],),
-        ([],),
-        ([1],),
-        ([0, 0, 0],),
-        ([2, 2, 2],),
-        ([1, 1, 1],),
-        ([0, 1, 2, 0, 1, 2],),
-        ([2, 1, 0, 2, 1, 0],),
+        [2, 0, 2, 1, 1, 0],
+        [2, 0, 1],
+        [],
+        [1],
+        [0, 0, 0],
+        [2, 2, 2],
+        [1, 1, 1],
+        [0, 1, 2, 0, 1, 2],
+        [2, 1, 0, 2, 1, 0],
     ]
 
     for test_arr in examples:
