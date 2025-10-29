@@ -4,6 +4,7 @@ Recursive factorial implementation.
 Reference: https://en.wikipedia.org/wiki/Factorial
 """
 
+
 def factorial(number: int) -> int:
     """
     Calculate the factorial of a non-negative integer recursively.
