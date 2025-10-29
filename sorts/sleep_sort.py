@@ -29,10 +29,10 @@ def sleep_sort(arr: List[int]) -> List[int]:
         result.append(value)
 
     threads = [threading.Thread(target=sleeper, args=(x,)) for x in arr]
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
 
     return result
 
