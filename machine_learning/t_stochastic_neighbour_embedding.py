@@ -10,6 +10,7 @@ for visualizing high-dimensional datasets in 2D or 3D space. It works by:
 Reference:
     van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE.
     Journal of Machine Learning Research, 9(86), 2579-2605.
+    https://lvdmaaten.github.io/tsne/
 
 For more details, see:
 https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
