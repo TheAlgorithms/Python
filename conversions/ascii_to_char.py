@@ -10,6 +10,7 @@ Example:
 'a'
 """
 
+
 def ascii_to_char(ascii_value: int) -> str:
     """
     Convert an ASCII value to its corresponding character.
@@ -22,4 +23,5 @@ def ascii_to_char(ascii_value: int) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
