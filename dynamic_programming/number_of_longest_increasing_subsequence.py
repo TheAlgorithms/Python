@@ -1,4 +1,4 @@
-'''
+"""
 Leetcode Problem:673. Number of Longest Increasing Subsequence
 Link: https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/
 
@@ -15,14 +15,14 @@ Example 2:
 Input: nums = [2,2,2,2,2]
 Output: 5
 Explanation: The length of the longest increasing subsequence is 1, and there are 5 increasing subsequences of length 1, so output 5.
- 
+
 
 Constraints:
 
 1 <= nums.length <= 2000
 -10**6 <= nums[i] <= 10**6
 The answer is guaranteed to fit inside a 32-bit integer.
-'''
+"""
 
 
 def findNumberOfLIS(nums):
@@ -47,6 +47,6 @@ def findNumberOfLIS(nums):
 
 
 # For testing...
-n=int(input())
-nums=list(map(int,input().split()))
+n = int(input())
+nums = list(map(int, input().split()))
 print(findNumberOfLIS(nums))
