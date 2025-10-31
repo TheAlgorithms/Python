@@ -44,9 +44,7 @@ def rule_30_step(current: List[int]) -> List[int]:
     return next_gen
 
 
-def generate_rule_30(
-    size: int = 31, generations: int = 15
-) -> List[List[int]]:
+def generate_rule_30(size: int = 31, generations: int = 15) -> List[List[int]]:
     """
     Generate multiple generations of Rule 30 automaton.
 
