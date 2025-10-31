@@ -97,7 +97,9 @@ class CoordinateCompressor:
         ValueError: Invalid index: 3. Must be between 0 and 2.
         """
         if not 0 <= index < len(self.values):
-            raise ValueError(f"Invalid index: {index}. Must be between 0 and {len(self.values) - 1}.")
+            raise ValueError(
+                f"Invalid index: {index}. Must be between 0 and {len(self.values) - 1}."
+            )
         return self.values[index]
 
 
