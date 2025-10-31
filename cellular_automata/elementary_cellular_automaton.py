@@ -18,7 +18,8 @@ def rule_30_step(current: list[int]) -> list[int]:
     Each cell's next state is determined by its left, center, and right neighbors.
 
     Args:
-        current (list[int]): The current generation as a list of 0s (dead) and 1s (alive).
+        current (list[int]): The current generation as a list of 0s (dead)
+            and 1s (alive).
 
     Returns:
         list[int]: The next generation as a list of 0s and 1s.
