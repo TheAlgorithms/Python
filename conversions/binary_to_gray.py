@@ -5,6 +5,7 @@ Reference:
 https://en.wikipedia.org/wiki/Gray_code
 """
 
+
 def binary_to_gray(binary: str) -> str:
     """
     Convert a binary number (as string) to its equivalent Gray code.
