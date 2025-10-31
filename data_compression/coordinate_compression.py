@@ -1,9 +1,9 @@
 """
 Coordinate Compression Algorithm
 
-Coordinate compression is used to reduce the range of numeric values
-while preserving their order relationships. It’s often used in problems
-like coordinate mapping or ranking.
+Coordinate compression reduces the range of numeric values while
+preserving their relative order. Useful in ranking, coordinate
+mapping, or segment trees.
 
 Example:
     >>> compressor = CoordinateCompressor([100, 200, 300])
@@ -26,10 +26,10 @@ from typing import List
 
 class CoordinateCompressor:
     """
-    A class that performs coordinate compression and decompression.
+    Class for coordinate compression and decompression.
 
     Attributes:
-        values (List[int]): The sorted list of unique input values.
+        values (List[int]): Sorted list of unique input values.
     """
 
     def __init__(self, values: List[int]) -> None:
@@ -37,10 +37,10 @@ class CoordinateCompressor:
         Initialize the compressor with a list of values.
 
         Args:
-            values: A list of numeric values.
+            values: List of integers to compress.
 
         Raises:
-            ValueError: If the list is empty.
+            ValueError: If input list is empty.
 
         >>> CoordinateCompressor([5, 3, 8, 3]).values
         [3, 5, 8]
@@ -51,16 +51,16 @@ class CoordinateCompressor:
 
     def compress(self, value: int) -> int:
         """
-        Compress a value to its index in the sorted list.
+        Compress a value to its index in the sorted unique list.
 
         Args:
-            value: The value to compress.
+            value: Value to compress.
 
         Returns:
-            The index of the value in the sorted list.
+            Index of value in the sorted list.
 
         Raises:
-            ValueError: If the value does not exist in the list.
+            ValueError: If value is not present.
 
         >>> comp = CoordinateCompressor([10, 20, 30])
         >>> comp.compress(20)
@@ -80,13 +80,13 @@ class CoordinateCompressor:
         Decompress an index back to its original value.
 
         Args:
-            index: The compressed index.
+            index: Compressed index.
 
         Returns:
-            The original value corresponding to the index.
+            Original value.
 
         Raises:
-            ValueError: If the index is out of range.
+            ValueError: If index is out of bounds.
 
         >>> comp = CoordinateCompressor([1, 2, 3])
         >>> comp.decompress(0)
