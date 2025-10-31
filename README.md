@@ -50,3 +50,54 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+## 🧩 Usage Example
+
+You can use this repository to explore and run algorithms locally on your system.
+
+###1️⃣ Clone the repository
+```bash
+git clone https://github.com/TheAlgorithms/Python.git
+cd Python
+### 2️⃣Run an algorithm example
+
+Pick any algorithm and run it using Python.
+For example, to execute the binary search algorithm:
+
+python3 searches/binary_search.py
+
+###3️⃣ Using Python interactively
+
+You can also open an interactive shell:
+
+python3
+>>> from data_structures.binary_tree import splay_tree
+>>> tree = splay_tree.SplayTree()
+>>> tree.search(10)
+
+###To verify that all doctests in a file pass:
+
+python3 -m doctest -v data_structures/binary_tree/splay_tree.py
+
+
+---
+
+## 🧠 Why This Works
+
+✔️ Follows their Markdown and emoji style (`## 📜`, `## 🧩`)  
+✔️ Gives clear instructions for beginners  
+✔️ Matches issue #13714 (“Add Usage Example section to README”)  
+✔️ Maintains the tone and layout of the official README  
+
+---
+
+## 🚀 How to Commit and Push
+
+Once you add that section at the bottom of the README:
+
+```bash
+git add README.md
+git commit -m "Added 'Usage Example' section to README (fixes #13714)"
+git push origin splaytree-v3
+
+
