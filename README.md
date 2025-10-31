@@ -1,52 +1,50 @@
-<div align="center">
-<!-- Title: -->
-  <a href="https://github.com/TheAlgorithms/">
-    <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
-  </a>
-  <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
+# The Algorithms - Python
 
-<!-- Labels: -->
-  <!-- First row: -->
-  <a href="https://gitpod.io/#https://github.com/TheAlgorithms/Python">
-    <img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square" height="20" alt="Gitpod Ready-to-Code">
-  </a>
-  <a href="https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=0059b3&style=flat-square" height="20" alt="Contributions Welcome">
-  </a>
-  <img src="https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size&style=flat-square" height="20">
-  <a href="https://the-algorithms.com/discord">
-    <img src="https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square" height="20" alt="Discord chat">
-  </a>
-  <a href="https://gitter.im/TheAlgorithms/community">
-    <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
-  </a>
+**All Algorithms implemented in Python - for education 📚**
 
-  <!-- Second row: -->
-  <br>
-  <a href="https://github.com/TheAlgorithms/Python/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/TheAlgorithms/Python/build.yml?branch=master&label=CI&logo=github&style=flat-square" height="20" alt="GitHub Workflow Status">
-  </a>
-  <a href="https://github.com/pre-commit/pre-commit">
-    <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" height="20" alt="pre-commit">
-  </a>
-  <a href="https://docs.astral.sh/ruff/formatter/">
-    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: black">
-  </a>
-
-<!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education 📚</h3>
-</div>
+![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)
+![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
+[![Discord chat](https://img.shields.io/badge/Discord-Join%20us%20on%20Discord-7289DA?logo=discord)](https://discord.gg/c7gVnC6)
+[![Gitter chat](https://img.shields.io/badge/Gitter-Join%20the%20chat-ED1965?logo=gitter)](https://gitter.im/TheAlgorithms)
 
 Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
 
+***
+
 ## 🚀 Getting Started
 
-📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+📋 Read through our **[Contribution Guidelines](CONTRIBUTING.md)** before you contribute.
+
+**This is the single most important document you must read before submitting a Pull Request (PR).**
+
+***
 
 ## 🌐 Community Channels
 
-We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
+We are on **Discord** and **Gitter**! Community channels are a great way for you to ask questions and get help. Please join us!
+
+***
 
 ## 📜 List of Algorithms
 
-See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+See our **[directory (DIRECTORY.md)](DIRECTORY.md)** for easier navigation and a better overview of the project structure and all available algorithms.
+
+***
+
+## About
+
+* **Website:** [thealgorithms.github.io/Python/](https://thealgorithms.github.io/Python/)
+* **Topics:** `python` `education` `algorithm` `practice` `interview` `sorting-algorithms` `learn` `algos` `algorithm-competitions` `sorts` `hacktoberfest` `algorithms-implemented` `community-driven` `searches`
+* **License:** [MIT License](LICENSE.md)
+* **Code of Conduct:** [Code of conduct](CODE_OF_CONDUCT.md)
+* **Contributors:** 1,258+
+
+***
+
+## 💡 How to Contribute (Hacktoberfest Focus)
+
+This project is massive, so your best way to contribute for Hacktoberfest is to find a small, defined task:
+
+1.  **Look for Open Issues:** Check the repository's **Issues** page and filter by the labels **`good first issue`** or **`help wanted`**.
+2.  **Add a New Algorithm:** If you know a popular algorithm not yet implemented, you can write the Python code for it, ensuring it follows the style and includes tests as required in the **`CONTRIBUTING.md`**.
+3.  **Improve Documentation/Tests:** Add **doctests** or comprehensive unit tests for an existing algorithm file
