@@ -6,13 +6,11 @@ A one-dimensional cellular automaton introduced by Stephen Wolfram.
 Each cell's next state depends on its current state and its two immediate neighbors.
 
 Reference:
-https://en.wikipedia.org/wiki/Rule_30
+    https://en.wikipedia.org/wiki/Rule_30
 """
 
-from typing import List
 
-
-def rule_30_step(current: List[int]) -> List[int]:
+def rule_30_step(current: list[int]) -> list[int]:
     """
     Compute the next generation of a one-dimensional cellular automaton
     following Wolfram's Rule 30.
@@ -20,10 +18,10 @@ def rule_30_step(current: List[int]) -> List[int]:
     Each cell's next state is determined by its left, center, and right neighbors.
 
     Args:
-        current (List[int]): The current generation as a list of 0s (dead) and 1s (alive).
+        current (list[int]): The current generation as a list of 0s (dead) and 1s (alive).
 
     Returns:
-        List[int]: The next generation as a list of 0s and 1s.
+        list[int]: The next generation as a list of 0s and 1s.
 
     Example:
         >>> rule_30_step([0, 0, 1, 0, 0])
@@ -38,22 +36,22 @@ def rule_30_step(current: List[int]) -> List[int]:
         # Combine neighbors into a 3-bit pattern
         pattern = (left << 2) | (center << 1) | right
 
-        # Rule 30 binary: 00011110 -> 30 in decimal
+        # Rule 30 binary: 00011110 (bitwise representation of 30)
         next_gen.append((30 >> pattern) & 1)
 
     return next_gen
 
 
-def generate_rule_30(size: int = 31, generations: int = 15) -> List[List[int]]:
+def generate_rule_30(size: int = 31, generations: int = 15) -> list[list[int]]:
     """
     Generate multiple generations of Rule 30 automaton.
 
     Args:
-        size (int): Number of cells in one generation.
-        generations (int): Number of generations to evolve.
+        size (int): Number of cells in one generation. Default is 31.
+        generations (int): Number of generations to evolve. Default is 15.
 
     Returns:
-        List[List[int]]: A list of generations (each a list of 0s and 1s).
+        list[list[int]]: A list of generations (each a list of 0s and 1s).
 
     Example:
         >>> len(generate_rule_30(15, 5))
