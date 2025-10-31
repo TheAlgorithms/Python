@@ -1,3 +1,14 @@
+"""
+Splay Tree implementation in Python.
+
+A Splay Tree is a self-adjusting binary search tree where recently accessed
+elements are moved closer to the root through rotations (splaying).
+This improves access times for frequently used elements.
+
+Author:yeshuawm999
+Repository: https://github.com/TheAlgorithms/Python
+"""
+
 #class node
 class Node:
     """A node in the Splay Tree."""
@@ -8,7 +19,7 @@ class Node:
         self.right = right      # Pointer to the right child
 
 
-#Spary tree class
+#Spary Tree class
 class SplayTree:
     """A self-adjusting Binary Search Tree."""
     def __init__(self):
@@ -117,3 +128,14 @@ class SplayTree:
             return True
         return False
         
+if __name__ == "__main__":
+    tree = SplayTree()
+    # Manually create nodes to demonstrate splay
+    tree.root = Node(10)
+    tree.root.left = Node(5, parent=tree.root)
+    tree.root.right = Node(15, parent=tree.root)
+
+    print("Before search:", tree.root.key)
+    found = tree.search(5)
+    print("Found:", found)
+    print("After splay, new root:", tree.root.key)
