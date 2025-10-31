@@ -12,6 +12,9 @@ class Node:
         self.parent = None
         self.key = key
 
+    def __repr__(self):
+        return f"Node({self.key})"
+
 
 class SplayTree:
     def __init__(self):
@@ -19,6 +22,8 @@ class SplayTree:
 
     def _right_rotate(self, x):
         y = x.left
+        if not y:
+            return
         x.left = y.right
         if y.right:
             y.right.parent = x
@@ -34,6 +39,8 @@ class SplayTree:
 
     def _left_rotate(self, x):
         y = x.right
+        if not y:
+            return
         x.right = y.left
         if y.left:
             y.left.parent = x
@@ -48,25 +55,30 @@ class SplayTree:
         x.parent = y
 
     def _splay(self, x):
-        while x.parent:
-            if not x.parent.parent:
-                if x.parent.left == x:
-                    self._right_rotate(x.parent)
+        while x and x.parent:
+            p = x.parent
+            g = p.parent
+            # Zig step (p is root)
+            if not g:
+                if p.left == x:
+                    self._right_rotate(p)
                 else:
-                    self._left_rotate(x.parent)
+                    self._left_rotate(p)
             else:
-                if x.parent.left == x and x.parent.parent.left == x.parent:
-                    self._right_rotate(x.parent.parent)
-                    self._right_rotate(x.parent)
-                elif x.parent.right == x and x.parent.parent.right == x.parent:
-                    self._left_rotate(x.parent.parent)
-                    self._left_rotate(x.parent)
-                elif x.parent.left == x and x.parent.parent.right == x.parent:
-                    self._right_rotate(x.parent)
-                    self._left_rotate(x.parent)
-                else:
-                    self._left_rotate(x.parent)
-                    self._right_rotate(x.parent)
+                # Zig-Zig
+                if p.left == x and g.left == p:
+                    self._right_rotate(g)
+                    self._right_rotate(p)
+                elif p.right == x and g.right == p:
+                    self._left_rotate(g)
+                    self._left_rotate(p)
+                # Zig-Zag
+                elif p.left == x and g.right == p:
+                    self._right_rotate(p)
+                    self._left_rotate(g)
+                else:  # p.right == x and g.left == p
+                    self._left_rotate(p)
+                    self._right_rotate(g)
 
     def insert(self, key):
         z = self.root
@@ -89,26 +101,29 @@ class SplayTree:
 
     def search(self, key):
         z = self.root
+        last = None
         while z:
+            last = z
             if key == z.key:
                 self._splay(z)
                 return z
             elif key < z.key:
-                if not z.left:
-                    self._splay(z)
-                    return None
                 z = z.left
             else:
-                if not z.right:
-                    self._splay(z)
-                    return None
                 z = z.right
+        # splay the last accessed node (closest) if present
+        if last:
+            self._splay(last)
         return None
 
     def inorder(self, node=None, result=None):
         if result is None:
             result = []
-        node = node or self.root
+        # if node is explicitly passed as None and tree is empty, return empty result
+        if node is None:
+            node = self.root
+        if node is None:
+            return result
         if node.left:
             self.inorder(node.left, result)
         result.append(node.key)
@@ -120,6 +135,9 @@ class SplayTree:
 # Example Usage / Test
 if __name__ == "__main__":
     tree = SplayTree()
+    # empty tree -> inorder should return []
+    print(tree.inorder())  # []
+
     for key in [10, 20, 30, 40, 50, 25]:
         tree.insert(key)
     print(tree.inorder())  # Output should be the inorder traversal of tree
