@@ -19,7 +19,7 @@ def binary_to_excess3(binary_str: str) -> str:
     excess3_value = decimal_value + 3
 
     # Convert back to 4-bit binary
-    excess3_binary = format(excess3_value, '04b')
+    excess3_binary = format(excess3_value, "04b")
 
     return excess3_binary
 
