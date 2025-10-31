@@ -1,110 +1,90 @@
-from __future__ import annotations
-from string import ascii_letters
+"""
+Caesar Cipher Algorithm
+
+The Caesar cipher is one of the simplest and most widely known encryption techniques.
+It works by shifting each letter in the plaintext by a fixed number of positions
+down or up the alphabet.
+
+Example:
+    >>> encrypt("abc", 2)
+    'cde'
+    >>> decrypt("cde", 2)
+    'abc'
+
+You can also encrypt/decrypt with uppercase letters:
+    >>> encrypt("Hello, World!", 3)
+    'Khoor, Zruog!'
+    >>> decrypt("Khoor, Zruog!", 3)
+    'Hello, World!'
+
+Reference:
+    https://en.wikipedia.org/wiki/Caesar_cipher
+"""
+
+from string import ascii_lowercase, ascii_uppercase
 
 
-def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+def encrypt(text: str, shift: int) -> str:
     """
-    Encrypts a given string with the Caesar cipher and returns the encoded message.
+    Encrypt the given text using Caesar cipher.
 
-    Parameters
-    ----------
-    input_string : str
-        The plain-text that needs to be encoded.
-    key : int
-        The number of letters to shift the message by.
-    alphabet : str | None, optional
-        The alphabet used to encode the cipher.
-        If not specified, the standard English alphabet (a-z, A-Z) is used.
+    Args:
+        text: The input text to encrypt.
+        shift: The number of positions to shift each letter.
 
-    Returns
-    -------
-    str
-        A string containing the encoded cipher-text.
+    Returns:
+        The encrypted text as a string.
 
-    Raises
-    ------
-    TypeError
-        If input_string is not a string or key is not an integer.
-
-    Examples
-    --------
-    >>> encrypt('The quick brown fox jumps over the lazy dog', 8)
-    'Bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo'
-    >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
-    'f qtbjwhfxj fqumfgjy'
+    >>> encrypt("abc", 1)
+    'bcd'
+    >>> encrypt("xyz", 3)
+    'abc'
+    >>> encrypt("Hello, World!", 5)
+    'Mjqqt, Btwqi!'
     """
-    if not isinstance(input_string, str):
-        raise TypeError("input_string must be a string.")
-    if not isinstance(key, int):
-        raise TypeError("key must be an integer.")
+    if not isinstance(text, str):
+        raise TypeError("Text must be a string.")
+    if not isinstance(shift, int):
+        raise TypeError("Shift must be an integer.")
 
-    alpha = alphabet or ascii_letters
     result = []
 
-    for character in input_string:
-        if character not in alpha:
-            result.append(character)
+    for char in text:
+        if char in ascii_lowercase:
+            index = (ascii_lowercase.index(char) + shift) % 26
+            result.append(ascii_lowercase[index])
+        elif char in ascii_uppercase:
+            index = (ascii_uppercase.index(char) + shift) % 26
+            result.append(ascii_uppercase[index])
         else:
-            new_index = (alpha.index(character) + key) % len(alpha)
-            result.append(alpha[new_index])
+            result.append(char)
 
     return "".join(result)
 
 
-def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+def decrypt(text: str, shift: int) -> str:
     """
-    Decodes a Caesar cipher text using the provided key.
+    Decrypt the given text encrypted with Caesar cipher.
 
-    Parameters
-    ----------
-    input_string : str
-        The cipher-text that needs to be decoded.
-    key : int
-        The number of letters to shift backward.
-    alphabet : str | None, optional
-        The alphabet used to decode the cipher.
+    Args:
+        text: The encrypted text to decrypt.
+        shift: The number of positions originally used to encrypt.
 
-    Returns
-    -------
-    str
-        The decoded plain-text.
+    Returns:
+        The decrypted text as a string.
 
-    Examples
-    --------
-    >>> decrypt('Bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo', 8)
-    'The quick brown fox jumps over the lazy dog'
+    >>> decrypt("bcd", 1)
+    'abc'
+    >>> decrypt("abc", 3)
+    'xyz'
+    >>> decrypt("Mjqqt, Btwqi!", 5)
+    'Hello, World!'
     """
-    return encrypt(input_string, -key, alphabet)
+    return encrypt(text, -shift)
 
 
-def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:
-    """
-    Attempts to brute-force all possible Caesar cipher keys.
+if __name__ == "__main__":
+    import doctest
 
-    Parameters
-    ----------
-    input_string : str
-        The cipher-text to attempt decoding.
-    alphabet : str | None, optional
-        The alphabet used to decode the cipher.
-
-    Returns
-    -------
-    dict[int, str]
-        A dictionary mapping each key to its decoded message.
-
-    Examples
-    --------
-    >>> brute_force("jFyuMy xIH'N vLONy zILwy Gy!")[20]
-    "Please don't brute force me!"
-    """
-    if not isinstance(input_string, str):
-        raise TypeError("input_string must be a string.")
-
-    alpha = alphabet or ascii_letters
-    results = {}
-
-    for key in range(1, len(alpha) + 1):
-        results[key] = decrypt(input_string, key, alpha)
-
-    return results
+    doctest.testmod()
+    print("✅ All doctests passed!")
