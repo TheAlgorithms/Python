@@ -9,13 +9,16 @@ Functions:
 
 Doctests include a small example graph.
 """
+
 from __future__ import annotations
 
 import heapq
 from typing import Dict, Iterable, List, Tuple, Any
 
 
-def dijkstra(graph: Dict[Any, Iterable[Tuple[Any, float]]], source: Any) -> Tuple[Dict[Any, float], Dict[Any, Any]]:
+def dijkstra(
+    graph: Dict[Any, Iterable[Tuple[Any, float]]], source: Any
+) -> Tuple[Dict[Any, float], Dict[Any, Any]]:
     """Compute shortest path distances from source to all reachable nodes.
 
     Args:
@@ -51,11 +54,11 @@ def dijkstra(graph: Dict[Any, Iterable[Tuple[Any, float]]], source: Any) -> Tupl
     while pq:
         d, u = heapq.heappop(pq)
         # Skip stale entries
-        if d != dist.get(u, float('inf')):
+        if d != dist.get(u, float("inf")):
             continue
         for v, w in graph.get(u, []):
             nd = d + float(w)
-            if nd < dist.get(v, float('inf')):
+            if nd < dist.get(v, float("inf")):
                 dist[v] = nd
                 prev[v] = u
                 heapq.heappush(pq, (nd, v))
