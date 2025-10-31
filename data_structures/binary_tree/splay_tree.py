@@ -4,12 +4,14 @@ Solves GitHub Issue #13760
 For Hacktoberfest contribution. Please label 'hacktoberfest-accepted'.
 """
 
+
 class Node:
     def __init__(self, key):
         self.left = None
         self.right = None
         self.parent = None
         self.key = key
+
 
 class SplayTree:
     def __init__(self):
@@ -114,11 +116,12 @@ class SplayTree:
             self.inorder(node.right, result)
         return result
 
+
 # Example Usage / Test
 if __name__ == "__main__":
     tree = SplayTree()
     for key in [10, 20, 30, 40, 50, 25]:
         tree.insert(key)
-    print(tree.inorder())   # Output should be the inorder traversal of tree
+    print(tree.inorder())  # Output should be the inorder traversal of tree
     found = tree.search(30)
     print(f"Found: {found.key if found else None}")
