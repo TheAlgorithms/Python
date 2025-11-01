@@ -56,9 +56,14 @@ def _partition(collection: list, low: int, high: int) -> int:
     :param high: ending index of the partition
     :return: the final pivot index after partitioning
     """
-    # Randomly select a pivot index and swap with the last element
+  # Randomly select a pivot index and swap with the last element
     pivot_index = randrange(low, high + 1)
-    collection[pivot_index], collection[high] = collection[high], collection[pivot_index]
+    
+    # Use a temporary variable for the swap to keep lines short
+    temp_pivot = collection[pivot_index]
+    collection[pivot_index] = collection[high]
+    collection[high] = temp_pivot
+
     pivot = collection[high]
 
     # Index of smaller element (elements <= pivot will be moved to left of this)
