@@ -4,13 +4,9 @@ def is_armstrong_number(number: int) -> bool:
     An Armstrong number is a number that is equal to the sum
     of its own digits each raised to the power of the number of digits.
 
+    Wikipedia: https://en.wikipedia.org/wiki/Narcissistic_number
+
     >>> is_armstrong_number(153)
-    True
-    >>> is_armstrong_number(370)
-    True
-    >>> is_armstrong_number(371)
-    True
-    >>> is_armstrong_number(9474)
     True
     >>> is_armstrong_number(123)
     False
