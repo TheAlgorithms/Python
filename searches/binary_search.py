@@ -195,6 +195,8 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     4
     >>> binary_search([0, 5, 7, 10, 15], 5)
     1
+    >>> binary_search([0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 10)
+    6
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
     """
@@ -207,6 +209,9 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
+            # Found a match; now move left to locate the first occurrence
+            while midpoint > 0 and sorted_collection[midpoint - 1] == item:
+                midpoint -= 1
             return midpoint
         elif item < current_item:
             right = midpoint - 1
@@ -232,6 +237,8 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     4
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
     1
+    >>> binary_search_std_lib([0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 10)
+    6
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
     -1
     """
@@ -263,19 +270,30 @@ def binary_search_by_recursion(
     4
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4)
     1
+    >>> binary_search_by_recursion([0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 10)
+    6
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
     """
+    if (
+        left == 0
+        and right == len(sorted_collection) - 1
+        and list(sorted_collection) != sorted(sorted_collection)
+    ):  # only verify ascending once
+        raise ValueError("sorted_collection must be sorted in ascending order")
+
     if right < 0:
         right = len(sorted_collection) - 1
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+
     if right < left:
         return -1
 
     midpoint = left + (right - left) // 2
 
     if sorted_collection[midpoint] == item:
+        # Found a match; now move left to locate the first occurrence
+        while midpoint > 0 and sorted_collection[midpoint - 1] == item:
+            midpoint -= 1
         return midpoint
     elif sorted_collection[midpoint] > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
@@ -304,6 +322,8 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     4
     >>> exponential_search([0, 5, 7, 10, 15], 5)
     1
+    >>> exponential_search([0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 10)
+    6
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
     """
@@ -335,9 +355,20 @@ if __name__ == "__main__":
     import timeit
 
     doctest.testmod()
-    for search in searches:
-        name = f"{search.__name__:>26}"
-        print(f"{name}: {search([0, 5, 7, 10, 15], 10) = }")  # type: ignore[operator]
+
+    test_cases = [
+        ([0, 5, 7, 10, 15], 10, 3),
+        ([0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 10, 6),
+        ([0, 0, 0, 5, 6, 7, 7, 8, 10, 10, 10, 13, 15], 0, 0),
+    ]
+
+    for items, target, answer in test_cases:
+        print(f"search({items}, {target})")
+        for search in searches:
+            name = f"{search.__name__:>26}"
+            res = search(items, target)
+            mark = "✅" if res == answer else "❌"
+            print(f"{mark} {name}: {res}")
 
     print("\nBenchmarks...")
     setup = "collection = range(1000)"
