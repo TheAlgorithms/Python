@@ -1,3 +1,7 @@
+"""
+Generate Parentheses using Iterative Backtracking.
+https://leetcode.com/problems/generate-parentheses/
+"""
 def generate_parentheses_iterative(length: int) -> list:
     """
     Generate all valid combinations of parentheses (Iterative Approach).
