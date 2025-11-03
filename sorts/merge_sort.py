@@ -1,5 +1,6 @@
 """
-This is a pure Python implementation of the merge sort algorithm.
+This is a pure Python implementation of the merge sort algorithm
+with added input validation for safer usage.
 
 For doctests run following command:
 python -m doctest -v merge_sort.py
@@ -8,6 +9,22 @@ python3 -m doctest -v merge_sort.py
 For manual testing run:
 python merge_sort.py
 """
+
+# -----------------------
+# Input validation helper
+# -----------------------
+def _validate_sort_input(arr):
+    """
+    Ensures the input is a list (or tuple) of comparable elements.
+
+    Raises:
+        TypeError: if arr is not a list or tuple.
+        ValueError: if list contains uncomparable elements.
+    """
+    if not isinstance(arr, (list, tuple)):
+        raise TypeError("merge_sort() input must be a list or tuple.")
+    if len(arr) > 1 and not all(isinstance(x, (int, float, str)) for x in arr):
+        raise ValueError("merge_sort() elements must be comparable (int, float, or str).")
 
 
 def merge_sort(collection: list) -> list:
@@ -28,6 +45,7 @@ def merge_sort(collection: list) -> list:
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
     """
+    _validate_sort_input(collection)
 
     def merge(left: list, right: list) -> list:
         """
@@ -45,20 +63,25 @@ def merge_sort(collection: list) -> list:
         return result
 
     if len(collection) <= 1:
-        return collection
+        return list(collection)
+
     mid_index = len(collection) // 2
-    return merge(merge_sort(collection[:mid_index]), merge_sort(collection[mid_index:]))
+    return merge(
+        merge_sort(collection[:mid_index]),
+        merge_sort(collection[mid_index:])
+    )
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
-        unsorted = [int(item) for item in user_input.split(",")]
+        unsorted = [int(item) for item in user_input.split(",") if item]
         sorted_list = merge_sort(unsorted)
-        print(*sorted_list, sep=",")
+        print("Sorted list:", *sorted_list, sep=" ")
     except ValueError:
         print("Invalid input. Please enter valid integers separated by commas.")
+    except TypeError as e:
+        print(e)
