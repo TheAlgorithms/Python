@@ -175,6 +175,7 @@ def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
     # evaluate and if we find answer return path either return empty array
     return path if util_hamilton_cycle(graph, path, 1) else []
 
+
 if __name__ == "__main__":
     import doctest
 
