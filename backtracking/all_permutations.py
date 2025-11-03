@@ -73,13 +73,14 @@ def create_state_space_tree(
             current_sequence.pop()
             index_used[i] = False
 
+
 if __name__ == "__main__":
     # --- Example 1: Integers ---
     print("--- Permutations for [3, 1, 2, 4] ---")
     sequence: list[int | str] = [3, 1, 2, 4]
     generate_all_permutations(sequence)
 
-    print("\n" + "="*30 + "\n")
+    print("\n" + "=" * 30 + "\n")
 
     # --- Example 2: Characters ---
     print("--- Permutations for ['A', 'B', 'C'] ---")
