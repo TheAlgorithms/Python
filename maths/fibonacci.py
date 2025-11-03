@@ -53,8 +53,9 @@ def fib_iterative_yield(n: int) -> Iterator[int]:
         ...
     ValueError: n is negative
     """
-    if n < 0:
-        raise ValueError("n is negative")
+def fib_iterative(n: int) -> list[int]:
+    _validate_int_non_negative("n", n)
+
     a, b = 0, 1
     yield a
     for _ in range(n):
