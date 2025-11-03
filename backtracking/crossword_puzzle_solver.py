@@ -4,6 +4,7 @@ Reference:
 https://www.geeksforgeeks.org/solve-crossword-puzzle/
 """
 
+
 def is_valid(
     puzzle: list[list[str]], word: str, row: int, col: int, vertical: bool
 ) -> bool:
