@@ -73,20 +73,6 @@ def create_state_space_tree(
             current_sequence.pop()
             index_used[i] = False
 
-
-"""
-remove the comment to take an input from the user
-
-print("Enter the elements")
-sequence = list(map(int, input().split()))
-"""
-
-sequence: list[int | str] = [3, 1, 2, 4]
-generate_all_permutations(sequence)
-
-sequence_2: list[int | str] = ["A", "B", "C"]
-generate_all_permutations(sequence_2)
-
 if __name__ == "__main__":
     # --- Example 1: Integers ---
     print("--- Permutations for [3, 1, 2, 4] ---")
