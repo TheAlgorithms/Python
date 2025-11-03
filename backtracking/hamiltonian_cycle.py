@@ -174,3 +174,16 @@ def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
     path[0] = path[-1] = start_index
     # evaluate and if we find answer return path either return empty array
     return path if util_hamilton_cycle(graph, path, 1) else []
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    graph = [
+        [0, 1, 0, 1, 0],
+        [1, 0, 1, 1, 1],
+        [0, 1, 0, 0, 1],
+        [1, 1, 0, 0, 1],
+        [0, 1, 1, 1, 0],
+    ]
+    print(hamilton_cycle(graph))
