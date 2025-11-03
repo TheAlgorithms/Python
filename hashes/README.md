@@ -1,17 +1,35 @@
 # Hashes
-Hashing is the process of mapping any amount of data to a specified size using an algorithm. This is known as a hash value (or, if you're feeling fancy, a hash code, hash sums, or even a hash digest). Hashing is a one-way function, whereas encryption is a two-way function. While it is functionally conceivable to reverse-hash stuff, the required computing power makes it impractical. Hashing is a one-way street.
-Unlike encryption, which is intended to protect data in transit, hashing is intended to authenticate that a file or piece of data has not been altered—that it is authentic. In other words, it functions as a checksum.
 
-## Common hashing algorithms
+Hashing is the process of mapping any amount of data to a fixed-size value using a mathematical algorithm. The result is called a **hash value**, **hash code**, **hash sum**, or **hash digest**.  
+
+Hashing is a **one-way function**, whereas encryption is a **two-way function**. While it is theoretically possible to recover the original data from a hash, the computational effort required makes it impractical. In other words, hashing is a one-way street.  
+
+Unlike encryption, which is designed to protect data in transit, hashing is used to verify data integrity — to ensure that a file or piece of data has not been altered. In this sense, it functions as a **checksum**.
+
+---
+
+## Common Hashing Algorithms
+
 ### MD5
-This is one of the first algorithms that has gained widespread acceptance. MD5 is hashing algorithm made by Ray Rivest that is known to suffer vulnerabilities. It was created in 1992 as the successor to MD4. Currently MD6 is in the works, but as of 2009 Rivest had removed it from NIST consideration for SHA-3.
+MD5 is a hashing algorithm developed by **Ronald Rivest** in 1992 as the successor to MD4. It was once widely used but is now considered cryptographically broken due to discovered vulnerabilities. Although **MD6** was later proposed, Rivest withdrew it from NIST's SHA-3 competition in 2009.
+
+---
 
 ### SHA
-SHA stands for Security Hashing Algorithm and it’s probably best known as the hashing algorithm used in most SSL/TLS cipher suites. A cipher suite is a collection of ciphers and algorithms that are used for SSL/TLS connections. SHA handles the hashing aspects. SHA-1, as we mentioned earlier, is now deprecated. SHA-2 is now mandatory. SHA-2 is sometimes known as SHA-256, though variants with longer bit lengths are also available.
+**SHA** stands for **Secure Hash Algorithm**. It is best known as the hashing algorithm family used in many SSL/TLS cipher suites. A **cipher suite** is a collection of algorithms used to secure SSL/TLS connections, and SHA handles the hashing part.  
+**SHA-1** is now deprecated, while **SHA-2** (and its variants like SHA-256, SHA-384, and SHA-512) is currently recommended and widely used.
 
-### SHA256
-SHA 256 is a member of the SHA 2 algorithm family, under which SHA stands for Secure Hash Algorithm. It was a collaborative effort between both the NSA and NIST to implement a successor to the SHA 1 family, which was beginning to lose potency against brute force attacks. It was published in 2001.
-The importance of the 256 in the name refers to the final hash digest value, i.e. the hash value will remain 256 bits regardless of the size of the plaintext/cleartext. Other algorithms in the SHA family are similar to SHA 256 in some ways.
+---
+
+### SHA-256
+**SHA-256** is a member of the **SHA-2** algorithm family, where “256” refers to the number of bits in the resulting hash digest. It was developed by the **NSA** and published by **NIST** in 2001 as a successor to SHA-1, which had shown vulnerabilities to **collision attacks**.  
+Regardless of the input size, SHA-256 always produces a 256-bit hash value, making it highly consistent and secure for modern cryptographic applications.
+
+---
 
 ### Luhn
-The Luhn algorithm, also renowned as the modulus 10 or mod 10 algorithm, is a straightforward checksum formula used to validate a wide range of identification numbers, including credit card numbers, IMEI numbers, and Canadian Social Insurance Numbers. A community of mathematicians developed the LUHN formula in the late 1960s. Companies offering credit cards quickly followed suit. Since the algorithm is in the public interest, anyone can use it. The algorithm is used by most credit cards and many government identification numbers as a simple method of differentiating valid figures from mistyped or otherwise incorrect numbers. It was created to guard against unintentional errors, not malicious attacks.
+The **Luhn algorithm**, also known as the **Modulus 10** or **mod 10** algorithm, is a simple checksum formula used to validate identification numbers such as credit card numbers, IMEI numbers, and national identification numbers.  
+It was developed by **Hans Peter Luhn**, an IBM scientist, in **1954**. The algorithm is publicly available and widely used to detect accidental errors, such as mistyped digits, rather than to provide cryptographic security.
+
+---
+
