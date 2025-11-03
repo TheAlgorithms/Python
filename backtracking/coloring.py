@@ -112,6 +112,7 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
 
     return []
 
+
 if __name__ == "__main__":
     # Example graph represented as an adjacency matrix
     graph_example = [
@@ -125,6 +126,8 @@ if __name__ == "__main__":
     max_colors_example = 3
     coloring_result = color(graph_example, max_colors_example)
     if coloring_result:
-        print(f"Graph can be colored with {max_colors_example} colors: {coloring_result}")
+        print(
+            f"Graph can be colored with {max_colors_example} colors: {coloring_result}"
+        )
     else:
         print(f"Graph cannot be colored with {max_colors_example} colors.")
