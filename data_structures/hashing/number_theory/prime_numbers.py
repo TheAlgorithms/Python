@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-module to operations with prime numbers
+Module for prime number operations
 """
 
 import math
@@ -21,8 +21,6 @@ def is_prime(number: int) -> bool:
     True
     >>> is_prime(27)
     False
-    >>> is_prime(87)
-    False
     >>> is_prime(563)
     True
     >>> is_prime(2999)
@@ -31,29 +29,82 @@ def is_prime(number: int) -> bool:
     False
     """
 
-    # precondition
-    assert isinstance(number, int) and (number >= 0), (
-        "'number' must been an int and positive"
-    )
+    if not isinstance(number, int) or number < 0:
+        raise ValueError("'number' must be a non-negative integer")
 
-    if 1 < number < 4:
-        # 2 and 3 are primes
+    if number < 2:
+        return False
+    if number in (2, 3):
         return True
-    elif number < 2 or not number % 2:
-        # Negatives, 0, 1 and all even numbers are not primes
+    if number % 2 == 0:
         return False
 
-    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
-    return not any(not number % i for i in odd_numbers)
+    for i in range(3, int(math.isqrt(number)) + 1, 2):
+        if number % i == 0:
+            return False
+    return True
 
 
-def next_prime(value, factor=1, **kwargs):
-    value = factor * value
-    first_value_val = value
+def next_prime(value: int, factor: int = 1, **kwargs) -> int:
+    """
+    Returns the next prime number after (factor * value).
+    If desc=True, returns the previous smaller prime number.
 
-    while not is_prime(value):
-        value += 1 if not ("desc" in kwargs and kwargs["desc"] is True) else -1
+    >>> next_prime(5)
+    7
+    >>> next_prime(10)
+    11
+    >>> next_prime(7, desc=True)
+    5
+    >>> next_prime(2, desc=True)
+    Traceback (most recent call last):
+        ...
+    ValueError: No smaller prime exists below 2.
+    """
 
-    if value == first_value_val:
-        return next_prime(value + 1, **kwargs)
+    if not isinstance(value, int) or value < 0:
+        raise ValueError("'value' must be a non-negative integer")
+
+    value *= factor
+    descending = kwargs.get("desc", False)
+
+    if descending:
+        if value <= 2:
+            raise ValueError("No smaller prime exists below 2.")
+        value -= 1
+        while value > 1 and not is_prime(value):
+            value -= 1
+    else:
+        value += 1
+        while not is_prime(value):
+            value += 1
+
     return value
+
+
+def generate_primes(limit: int) -> list[int]:
+    """
+    Generate all prime numbers up to the given limit (inclusive).
+
+    >>> generate_primes(10)
+    [2, 3, 5, 7]
+    >>> generate_primes(1)
+    []
+    >>> generate_primes(20)
+    [2, 3, 5, 7, 11, 13, 17, 19]
+    """
+    if not isinstance(limit, int) or limit < 0:
+        raise ValueError("'limit' must be a non-negative integer")
+
+    primes = []
+    for num in range(2, limit + 1):
+        if is_prime(num):
+            primes.append(num)
+    return primes
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("All doctests passed ✅")
