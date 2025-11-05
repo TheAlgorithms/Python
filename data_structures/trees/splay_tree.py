@@ -1,18 +1,22 @@
 # the_algorithms/trees/splay_tree.py
 
+
 class Node:
     """A single node in the Splay Tree."""
+
     def __init__(self, key, parent=None, left=None, right=None):
         self.key = key
         self.parent = parent
         self.left = left
         self.right = right
 
+
 class SplayTree:
     """
     A self-adjusting Binary Search Tree (BST) that uses the splay operation
     to move the most recently accessed node to the root of the tree.
     """
+
     def __init__(self):
         self.root = None
 
@@ -43,7 +47,7 @@ class SplayTree:
             else:
                 g.right = x
         else:
-            self.root = x # x is the new root
+            self.root = x  # x is the new root
 
     def _splay(self, x: Node):
         """Moves node x to the root of the tree using zig, zig-zig, or zig-zag operations."""
@@ -70,7 +74,7 @@ class SplayTree:
         Returns the node if found, otherwise None.
         """
         curr = self.root
-        last = None # Keeps track of the last node accessed
+        last = None  # Keeps track of the last node accessed
 
         while curr:
             last = curr
@@ -83,7 +87,7 @@ class SplayTree:
                 curr = curr.right
 
         if last:
-            self._splay(last) # Splay the last accessed node if key was not found
+            self._splay(last)  # Splay the last accessed node if key was not found
         return None
 
     def insert(self, key):
@@ -101,7 +105,7 @@ class SplayTree:
                 curr = curr.left
             elif key > curr.key:
                 curr = curr.right
-            else: # Key already exists, splay it and return (or update value)
+            else:  # Key already exists, splay it and return (or update value)
                 self._splay(curr)
                 return
 
@@ -111,4 +115,4 @@ class SplayTree:
         else:
             parent.right = new_node
 
-        self._splay(new_node) 
+        self._splay(new_node)
