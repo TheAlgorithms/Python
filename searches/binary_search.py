@@ -202,17 +202,18 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1
-
+    answer = -1
     while left <= right:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            return midpoint
+            answer = midpoint
+            right = midpoint - 1
         elif item < current_item:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1
+    return answer
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
