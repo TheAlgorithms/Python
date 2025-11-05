@@ -55,9 +55,7 @@ class SchedulerEngine:
         done = 0
         while done < len(processes):
             ready = [
-                p
-                for p in processes
-                if p["arrival"] <= t and "completion" not in p
+                p for p in processes if p["arrival"] <= t and "completion" not in p
             ]
 
             if not ready:
@@ -78,11 +76,7 @@ class SchedulerEngine:
         processes = sorted(self.processes, key=lambda p: p["arrival"])
         done = 0
         while done < len(processes):
-            ready = [
-                p
-                for p in processes
-                if p["arrival"] <= t and p["remaining"] > 0
-            ]
+            ready = [p for p in processes if p["arrival"] <= t and p["remaining"] > 0]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -102,9 +96,7 @@ class SchedulerEngine:
         done = 0
         while done < len(self.processes):
             ready = [
-                p
-                for p in self.processes
-                if p["arrival"] <= t and "completion" not in p
+                p for p in self.processes if p["arrival"] <= t and "completion" not in p
             ]
 
             if not ready:
@@ -125,9 +117,7 @@ class SchedulerEngine:
         done = 0
         while done < len(self.processes):
             ready = [
-                p
-                for p in self.processes
-                if p["arrival"] <= t and p["remaining"] > 0
+                p for p in self.processes if p["arrival"] <= t and p["remaining"] > 0
             ]
 
             if not ready:
@@ -180,9 +170,7 @@ class SchedulerEngine:
             arrival = p["arrival"]
             burst = p["burst"]
             completion = p["completion"]
-            first_exec = next(
-                (t for t, pid2 in self.timeline if pid2 == pid), arrival
-            )
+            first_exec = next((t for t, pid2 in self.timeline if pid2 == pid), arrival)
             tat = completion - arrival
             wt = tat - burst
             rt = first_exec - arrival
@@ -301,8 +289,7 @@ class CPUSchedulerGUI:
             messagebox.showerror("Error", "Invalid input")
 
     def delete_process(self):
-        sel = self.tree.selection()
-        if sel:
+        if sel := self.tree.selection():
             pid = self.tree.item(sel[0])["values"][0]
             self.processes = [p for p in self.processes if p["pid"] != pid]
             self.tree.delete(sel[0])
@@ -365,9 +352,9 @@ class CPUSchedulerGUI:
         n = len(self.engine.stats) or 1
         self.avg_label.config(
             text=(
-                f"AVG WT = {total_wt/n:.2f} | "
-                f"AVG TAT = {total_tat/n:.2f} | "
-                f"AVG RT = {total_rt/n:.2f}"
+                f"AVG WT = {total_wt / n:.2f} | "
+                f"AVG TAT = {total_tat / n:.2f} | "
+                f"AVG RT = {total_rt / n:.2f}"
             )
         )
 
