@@ -22,7 +22,8 @@ jobs:
       - run: uv sync --group=test
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
-        run: uv run pytest
+        run: uv run --with=pytest-run-parallel pytest
+          --iterations=8 --parallel-threads=auto
           --ignore=computer_vision/cnn_classification.py
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
