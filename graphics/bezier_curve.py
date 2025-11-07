@@ -72,6 +72,25 @@ class BezierCurve:
             y += basis_function[i] * self.list_of_points[i][1]
         return (x, y)
 
+    def derivative(self, t: float) -> tuple[float, float]:
+        """
+        Computes the derivative (tangent vector) of the Bezier curve at time t.
+        t: parameter between 0 and 1
+        Returns the (dx, dy) vector representing the direction of the curve at t.
+        """
+        assert 0 <= t <= 1, "Time t must be between 0 and 1."
+
+        n = self.degree
+        dx = 0.0
+        dy = 0.0
+        for i in range(n):
+            coeff = comb(n - 1, i) * ((1 - t) ** (n - 1 - i)) * (t ** i)
+            delta_x = self.list_of_points[i + 1][0] - self.list_of_points[i][0]
+            delta_y = self.list_of_points[i + 1][1] - self.list_of_points[i][1]
+            dx += coeff * delta_x * n
+            dy += coeff * delta_y * n
+        return (dx, dy)
+    
     def plot_curve(self, step_size: float = 0.01):
         """
         Plots the Bezier curve using matplotlib plotting capabilities.
@@ -112,3 +131,9 @@ if __name__ == "__main__":
     BezierCurve([(1, 2), (3, 5)]).plot_curve()  # degree 1
     BezierCurve([(0, 0), (5, 5), (5, 0)]).plot_curve()  # degree 2
     BezierCurve([(0, 0), (5, 5), (5, 0), (2.5, -2.5)]).plot_curve()  # degree 3
+    
+    # Test derivative method
+    curve = BezierCurve([(0, 0), (5, 5), (5, 0)])
+    print("Derivative at t=0.0:", curve.derivative(0.0))
+    print("Derivative at t=0.5:", curve.derivative(0.5))
+    print("Derivative at t=1.0:", curve.derivative(1.0))
