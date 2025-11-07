@@ -355,7 +355,9 @@ class CPUSchedulerGUI:
     def animate(self) -> None:
         """Animates the scheduling visualization."""
         self.ax.clear()
-        x, colors, current_pid = 0, {}, None
+        x: int = 0
+        colors: dict[str, any] = {}
+        current_pid: str | None = None
         for step in self.engine.simulate():
             _, pid, rq = step
             if pid:
