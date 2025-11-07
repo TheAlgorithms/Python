@@ -2,11 +2,11 @@ import copy
 import threading
 import time
 import tkinter as tk
+from collections.abc import Generator
 from tkinter import messagebox, ttk
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from typing import Generator
 
 
 # ===================== Scheduler Engine ===================== #
@@ -29,7 +29,7 @@ class SchedulerEngine:
         self.timeline: list[tuple[int, str]] = []  # [(time, pid)]
         self.stats: list[tuple] = []
 
-    def simulate(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def simulate(self) -> Generator[tuple[int, str | None, list[str]]]:
         """
         Runs the selected CPU scheduling algorithm.
 
@@ -54,7 +54,7 @@ class SchedulerEngine:
         self._calculate_stats()
 
     # first come first serve
-    def _simulate_fcfs(self) -> Generator[tuple[int, str, list[str]], None, None]:
+    def _simulate_fcfs(self) -> Generator[tuple[int, str, list[str]]]:
         """
         Simulates First Come First Serve scheduling.
 
@@ -74,7 +74,7 @@ class SchedulerEngine:
             process["completion"] = t
 
     # shortest job first non preemptive
-    def _simulate_sjf_np(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def _simulate_sjf_np(self) -> Generator[tuple[int, str | None, list[str]]]:
         """
         Simulates Shortest Job First (Non-Preemptive).
 
@@ -87,7 +87,11 @@ class SchedulerEngine:
         processes = sorted(self.processes, key=lambda process: process["arrival"])
         done = 0
         while done < len(processes):
-            ready = [process for process in processes if process["arrival"] <= t and "completion" not in process]
+            ready = [
+                       process
+                       for process in processes
+                       if process["arrival"] <= t and "completion" not in process
+                    ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -101,13 +105,17 @@ class SchedulerEngine:
             done += 1
 
     # shortest job first preemptive
-    def _simulate_sjf_p(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def _simulate_sjf_p(self) -> Generator[tuple[int, str | None, list[str]]]:
         """Simulates SJF Preemptive scheduling."""
         t = 0
         processes = sorted(self.processes, key=lambda process: process["arrival"])
         done = 0
         while done < len(processes):
-            ready = [process for process in processes if process["arrival"] <= t and process["remaining"] > 0]
+            ready = [
+                        process
+                        for process in processes
+                        if process["arrival"] <= t and process["remaining"] > 0
+                    ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -122,12 +130,16 @@ class SchedulerEngine:
             t += 1
 
     # priority non preemptive
-    def _simulate_priority_np(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def _simulate_priority_np(self) -> Generator[tuple[int, str | None, list[str]]]:
         """Simulates Priority (Non-Preemptive) scheduling."""
         t = 0
         done = 0
         while done < len(self.processes):
-            ready = [process for process in self.processes if process["arrival"] <= t and "completion" not in process]
+            ready = [
+                      process
+                      for process in self.processes
+                      if process["arrival"] <= t and "completion" not in process
+                   ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -141,12 +153,16 @@ class SchedulerEngine:
             done += 1
 
     # priority preemptive
-    def _simulate_priority_p(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def _simulate_priority_p(self) -> Generator[tuple[int, str | None, list[str]]]:
         """Simulates Priority (Preemptive) scheduling."""
         t = 0
         done = 0
         while done < len(self.processes):
-            ready = [process for process in self.processes if process["arrival"] <= t and process["remaining"] > 0]
+            ready = [
+                        process
+                        for process in self.processes
+                        if process["arrival"] <= t and process["remaining"] > 0
+                   ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -161,7 +177,7 @@ class SchedulerEngine:
             t += 1
 
     # round robin
-    def _simulate_rr(self) -> Generator[tuple[int, str | None, list[str]], None, None]:
+    def _simulate_rr(self) -> Generator[tuple[int, str | None, list[str]]]:
         """Simulates Round Robin scheduling."""
         t = 0
         q: list[dict] = []
@@ -244,9 +260,16 @@ class CPUSchedulerGUI:
         self.arrival_e.grid(row=1, column=1)
         self.burst_e.grid(row=2, column=1)
         self.priority_e.grid(row=3, column=1)
-        ttk.Button(form, text="Add", command=self.add_process).grid(row=4, column=0, pady=5)
-        ttk.Button(form, text="Delete", command=self.delete_process).grid(row=4, column=1)
-
+        ttk.Button(
+                     form,
+                     text="Add",
+                      command=self.add_process,
+                   ).grid(row=4, column=0, pady=5)
+        ttk.Button(
+                     form,
+                     text="Delete",
+                     command=self.delete_process,
+                   ).grid(row=4, column=1)
         algo_frame = ttk.Frame(self.root)
         algo_frame.pack(pady=10)
         ttk.Label(algo_frame, text="Algorithm:").pack(side="left")
@@ -267,8 +290,11 @@ class CPUSchedulerGUI:
         self.quantum_e = ttk.Entry(algo_frame, width=5)
         self.quantum_e.insert(0, "2")
         self.quantum_e.pack(side="left")
-        ttk.Button(algo_frame, text="Run", command=self.run_scheduling).pack(side="left", padx=10)
-
+        ttk.Button(
+                     algo_frame,
+                     text="Run",
+                     command=self.run_scheduling,
+                  ).pack(side="left", padx=10)
         self.ready_label = ttk.Label(self.root, text="Ready Queue:")
         self.ready_list = tk.Listbox(self.root, height=3)
         self.ready_label.pack_forget()
@@ -338,7 +364,15 @@ class CPUSchedulerGUI:
                     current_pid = pid
                 colors.setdefault(pid, plt.cm.tab20(len(colors) % 20))
                 self.ax.barh(0, 1, left=x, color=colors[pid])
-                self.ax.text(x + 0.5, 0, pid, ha="center", va="center", color="white", fontsize=9)
+                self.ax.text(
+                               x + 0.5,
+                               0,
+                               pid,
+                               ha="center",
+                               va="center",
+                               color="white",
+                               fontsize=9,
+                         )
                 x += 1
                 self.ax.set_xticks(range(x + 1))
                 self.ax.set_yticks([])
@@ -363,10 +397,12 @@ class CPUSchedulerGUI:
             total_rt += row[6]
         n = len(self.engine.stats) or 1
         self.avg_label.config(
-            text=f"AVG WT = {total_wt/n:.2f} | AVG TAT = {total_tat/n:.2f} | AVG RT = {total_rt/n:.2f}"
+            text=(
+                   f"AVG WT = {total_wt/n:.2f} | "
+                   f"AVG TAT = {total_tat/n:.2f} | "
+                   f"AVG RT = {total_rt/n:.2f}"
+                 )
         )
-
-
 if __name__ == "__main__":
     root = tk.Tk()
     CPUSchedulerGUI(root)
