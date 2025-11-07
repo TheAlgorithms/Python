@@ -88,10 +88,10 @@ class SchedulerEngine:
         done = 0
         while done < len(processes):
             ready = [
-                       process
-                       for process in processes
-                       if process["arrival"] <= t and "completion" not in process
-                    ]
+                process
+                for process in processes
+                if process["arrival"] <= t and "completion" not in process
+            ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -112,10 +112,10 @@ class SchedulerEngine:
         done = 0
         while done < len(processes):
             ready = [
-                        process
-                        for process in processes
-                        if process["arrival"] <= t and process["remaining"] > 0
-                    ]
+                process
+                for process in processes
+                if process["arrival"] <= t and process["remaining"] > 0
+            ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -136,10 +136,10 @@ class SchedulerEngine:
         done = 0
         while done < len(self.processes):
             ready = [
-                      process
-                      for process in self.processes
-                      if process["arrival"] <= t and "completion" not in process
-                   ]
+                process
+                for process in self.processes
+                if process["arrival"] <= t and "completion" not in process
+            ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -159,10 +159,10 @@ class SchedulerEngine:
         done = 0
         while done < len(self.processes):
             ready = [
-                        process
-                        for process in self.processes
-                        if process["arrival"] <= t and process["remaining"] > 0
-                   ]
+                process
+                for process in self.processes
+                if process["arrival"] <= t and process["remaining"] > 0
+            ]
             if not ready:
                 t += 1
                 yield (t, None, [])
@@ -261,15 +261,15 @@ class CPUSchedulerGUI:
         self.burst_e.grid(row=2, column=1)
         self.priority_e.grid(row=3, column=1)
         ttk.Button(
-                     form,
-                     text="Add",
-                      command=self.add_process,
-                   ).grid(row=4, column=0, pady=5)
+            form,
+            text="Add",
+            command=self.add_process,
+        ).grid(row=4, column=0, pady=5)
         ttk.Button(
-                     form,
-                     text="Delete",
-                     command=self.delete_process,
-                   ).grid(row=4, column=1)
+            form,
+            text="Delete",
+            command=self.delete_process,
+        ).grid(row=4, column=1)
         algo_frame = ttk.Frame(self.root)
         algo_frame.pack(pady=10)
         ttk.Label(algo_frame, text="Algorithm:").pack(side="left")
@@ -291,10 +291,10 @@ class CPUSchedulerGUI:
         self.quantum_e.insert(0, "2")
         self.quantum_e.pack(side="left")
         ttk.Button(
-                     algo_frame,
-                     text="Run",
-                     command=self.run_scheduling,
-                  ).pack(side="left", padx=10)
+            algo_frame,
+            text="Run",
+            command=self.run_scheduling,
+        ).pack(side="left", padx=10)
         self.ready_label = ttk.Label(self.root, text="Ready Queue:")
         self.ready_list = tk.Listbox(self.root, height=3)
         self.ready_label.pack_forget()
@@ -365,14 +365,14 @@ class CPUSchedulerGUI:
                 colors.setdefault(pid, plt.cm.tab20(len(colors) % 20))
                 self.ax.barh(0, 1, left=x, color=colors[pid])
                 self.ax.text(
-                               x + 0.5,
-                               0,
-                               pid,
-                               ha="center",
-                               va="center",
-                               color="white",
-                               fontsize=9,
-                         )
+                    x + 0.5,
+                    0,
+                    pid,
+                    ha="center",
+                    va="center",
+                    color="white",
+                    fontsize=9,
+                )
                 x += 1
                 self.ax.set_xticks(range(x + 1))
                 self.ax.set_yticks([])
@@ -398,11 +398,13 @@ class CPUSchedulerGUI:
         n = len(self.engine.stats) or 1
         self.avg_label.config(
             text=(
-                   f"AVG WT = {total_wt/n:.2f} | "
-                   f"AVG TAT = {total_tat/n:.2f} | "
-                   f"AVG RT = {total_rt/n:.2f}"
-                 )
+                f"AVG WT = {total_wt / n:.2f} | "
+                f"AVG TAT = {total_tat / n:.2f} | "
+                f"AVG RT = {total_rt / n:.2f}"
+            )
         )
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     CPUSchedulerGUI(root)
