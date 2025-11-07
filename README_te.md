@@ -5,7 +5,7 @@
 [![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=5865F2)](https://the-algorithms.com/discord)
 [![Gitter chat](https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter)](https://gitter.im/TheAlgorithms/community)
 
-### పైథాన్‌లో అమలు చేయబడిన అన్ని అల్గోరిథమ్‌లు - విద్య కోసం 
+### పైథాన్‌లో అమలు చేయబడిన అన్ని అల్గోరిథమ్‌లు - విద్య కోసం
 
 ఈ అమలులు కేవలం అభ్యాసం కోసం మాత్రమే. అవి పైథాన్ ప్రామాణిక లైబ్రరీలో ఉన్న అమలుల కంటే తక్కువ సమర్థవంతంగా ఉండవచ్చు. వాటిని మీ విచక్షణతో ఉపయోగించండి.
 
