@@ -10,9 +10,6 @@ Author: yeshuawm999
 """
 
 from __future__ import annotations
-from typing import Optional
-
-
 class Node:
     """A node in the Splay Tree."""
 
