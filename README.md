@@ -53,27 +53,9 @@ See our [directory](DIRECTORY.md) for easier navigation and a better overview of
 
 ## 🧩 Usage Example
 
-You can use this repository to explore and run algorithms locally on your system.
-
-###1️⃣ Clone the repository
-```bash
-git clone https://github.com/TheAlgorithms/Python.git
-cd Python
-### 2️⃣Run an algorithm example
-
-Pick any algorithm and run it using Python.
-For example, to execute the binary search algorithm:
-
-python3 searches/binary_search.py
-
-###3️⃣ Using Python interactively
-
-You can also open an interactive shell:
-
-python3
->>> from data_structures.binary_tree import splay_tree
->>> tree = splay_tree.SplayTree()
->>> tree.search(10)
+	git clone https://github.com/TheAlgorithms/Python.git
+	cd Python
+	python3 -m algorithms.sorting.bubble_sort
 
 ###To verify that all doctests in a file pass:
 
