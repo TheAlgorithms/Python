@@ -19,9 +19,9 @@ class Node:
     def __init__(
         self,
         key: int,
-        parent: Optional["Node"] = None,
-        left: Optional["Node"] = None,
-        right: Optional["Node"] = None,
+        parent: Node | None = None,
+        left: Node | None = None,
+        right: Node | None = None,
     ) -> None:
         self.key = key
         self.parent = parent
@@ -33,7 +33,7 @@ class SplayTree:
     """A self-adjusting Binary Search Tree (Splay Tree)."""
 
     def __init__(self) -> None:
-        self.root: Optional[Node] = None
+        self.root: Node | None = None
 
     # --- Basic Rotation Operations ---
 
@@ -80,7 +80,7 @@ class SplayTree:
     # --- Core Splay Operation ---
 
     def _splay(self, x: Node) -> None:
-        """Moves node x to the root of the tree using a sequence of rotations."""
+        """Moves node x to the root of the tree using rotations."""
         while x.parent:
             parent = x.parent
             grandparent = parent.parent
@@ -93,26 +93,24 @@ class SplayTree:
                     self._rotate_right(parent)
                 else:
                     self._rotate_left(parent)
-
-            # Two rotations are performed: Zig-Zig or Zig-Zag
             elif x == parent.left and parent == grandparent.left:
-                # Case 1: Zig-Zig (x, parent, and grandparent all on left)
+                # Zig-Zig (both left)
                 self._rotate_right(grandparent)
                 self._rotate_right(parent)
             elif x == parent.right and parent == grandparent.right:
-                # Case 1: Zig-Zig (x, parent, and grandparent all on right)
+                # Zig-Zig (both right)
                 self._rotate_left(grandparent)
                 self._rotate_left(parent)
             elif x == parent.left and parent == grandparent.right:
-                # Case 2: Zig-Zag (x is left child, parent is right child)
+                # Zig-Zag (left-right)
                 self._rotate_right(parent)
                 self._rotate_left(grandparent)
-            elif x == parent.right and parent == grandparent.left:
-                # Case 2: Zig-Zag (x is right child, parent is left child)
+            else:
+                # Zig-Zag (right-left)
                 self._rotate_left(parent)
                 self._rotate_right(grandparent)
 
-    # --- Search Method (Uses splay) ---
+    # --- Search Method ---
 
     def search(self, key: int) -> bool:
         """Search for a key. If found, splay it to the root."""
@@ -122,10 +120,7 @@ class SplayTree:
             if key == current.key:
                 found_node = current
                 break
-            if key < current.key:
-                current = current.left
-            else:
-                current = current.right
+            current = current.left if key < current.key else current.right
 
         if found_node:
             self._splay(found_node)
@@ -133,7 +128,6 @@ class SplayTree:
         return False
 
 
-# --- Example Usage ---
 if __name__ == "__main__":
     """
     Example run:
