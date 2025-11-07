@@ -10,6 +10,8 @@ Author: yeshuawm999
 """
 
 from __future__ import annotations
+
+
 class Node:
     """A node in the Splay Tree."""
 

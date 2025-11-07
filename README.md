@@ -84,10 +84,10 @@ python3 -m doctest -v data_structures/binary_tree/splay_tree.py
 
 ## 🧠 Why This Works
 
-✔️ Follows their Markdown and emoji style (`## 📜`, `## 🧩`)  
-✔️ Gives clear instructions for beginners  
-✔️ Matches issue #13714 (“Add Usage Example section to README”)  
-✔️ Maintains the tone and layout of the official README  
+✔️ Follows their Markdown and emoji style (`## 📜`, `## 🧩`)
+✔️ Gives clear instructions for beginners
+✔️ Matches issue #13714 (“Add Usage Example section to README”)
+✔️ Maintains the tone and layout of the official README
 
 ---
 
