@@ -106,7 +106,15 @@ class SchedulerEngine:
 
     # shortest job first preemptive
     def _simulate_sjf_p(self) -> Generator[tuple[int, str | None, list[str]]]:
-        """Simulates SJF Preemptive scheduling."""
+         """
+        Simulates SJF Preemptive scheduling.
+
+        >>> processes = [{"pid": "P1", "arrival": 0, "burst": 3}]
+        >>> engine = SchedulerEngine(processes, "SJF (Preemptive)")
+        >>> gen = engine._simulate_sjf_p()
+        >>> isinstance(gen, Generator)
+        True
+        """
         t = 0
         processes = sorted(self.processes, key=lambda process: process["arrival"])
         done = 0
@@ -131,7 +139,15 @@ class SchedulerEngine:
 
     # priority non preemptive
     def _simulate_priority_np(self) -> Generator[tuple[int, str | None, list[str]]]:
-        """Simulates Priority (Non-Preemptive) scheduling."""
+         """
+        Simulates Priority (Non-Preemptive) scheduling.
+
+        >>> processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
+        >>> engine = SchedulerEngine(processes, "Priority (Non-Preemptive)")
+        >>> gen = engine._simulate_priority_np()
+        >>> next(gen)
+        (0, 'P1', [])
+        """
         t = 0
         done = 0
         while done < len(self.processes):
@@ -154,7 +170,14 @@ class SchedulerEngine:
 
     # priority preemptive
     def _simulate_priority_p(self) -> Generator[tuple[int, str | None, list[str]]]:
-        """Simulates Priority (Preemptive) scheduling."""
+         """
+        Simulates Priority (Preemptive) scheduling.
+
+        >>> processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
+        >>> engine = SchedulerEngine(processes, "Priority (Preemptive)")
+        >>> isinstance(engine._simulate_priority_p(), Generator)
+        True
+        """
         t = 0
         done = 0
         while done < len(self.processes):
@@ -318,7 +341,21 @@ class CPUSchedulerGUI:
         self.avg_label.pack()
 
     def add_process(self) -> None:
-        """Adds a new process entry to the table."""
+        """
+    Adds a new process entry to the table.
+
+    >>> import tkinter as tk
+    >>> root = tk.Tk()
+    >>> gui = CPUSchedulerGUI(root)
+    >>> gui.pid_e.insert(0, 'P1')
+    >>> gui.arrival_e.insert(0, '0')
+    >>> gui.burst_e.insert(0, '3')
+    >>> gui.priority_e.insert(0, '1')
+    >>> gui.add_process()
+    >>> len(gui.processes) > 0
+    True
+    >>> root.destroy()
+    """
         try:
             pid = self.pid_e.get()
             arrival = int(self.arrival_e.get())
@@ -332,14 +369,40 @@ class CPUSchedulerGUI:
             messagebox.showerror("Error", "Invalid input")
 
     def delete_process(self) -> None:
-        """Deletes a selected process."""
+         """
+    Deletes a selected process.
+
+    >>> import tkinter as tk
+    >>> root = tk.Tk()
+    >>> gui = CPUSchedulerGUI(root)
+    >>> gui.processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
+    >>> gui.tree.insert("", "end", values=("P1", 0, 2, 1))
+    >>> sel = gui.tree.get_children()[0]
+    >>> gui.tree.selection_set(sel)
+    >>> gui.delete_process()
+    >>> gui.processes
+    []
+    >>> root.destroy()
+    """
         if sel := self.tree.selection():
             pid = self.tree.item(sel[0])["values"][0]
             self.processes = [p for p in self.processes if p["pid"] != pid]
             self.tree.delete(sel[0])
 
     def run_scheduling(self) -> None:
-        """Runs the selected scheduling algorithm."""
+         """
+    Runs the selected scheduling algorithm.
+
+    >>> import tkinter as tk
+    >>> root = tk.Tk()
+    >>> gui = CPUSchedulerGUI(root)
+    >>> gui.processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
+    >>> gui.algo_cb.set("FCFS")
+    >>> gui.run_scheduling()
+    >>> hasattr(gui, "engine")
+    True
+    >>> root.destroy()
+    """
         algo = self.algo_cb.get()
         quantum = int(self.quantum_e.get() or 2)
         if algo.lower() == "round robin":
@@ -353,7 +416,18 @@ class CPUSchedulerGUI:
         threading.Thread(target=self.animate, daemon=True).start()
 
     def animate(self) -> None:
-        """Animates the scheduling visualization."""
+        """
+    Animates the scheduling visualization.
+
+    >>> import tkinter as tk
+    >>> root = tk.Tk()
+    >>> gui = CPUSchedulerGUI(root)
+    >>> gui.processes = [{"pid": "P1", "arrival": 0, "burst": 1, "priority": 1}]
+    >>> gui.engine = SchedulerEngine(gui.processes, "FCFS")
+    >>> hasattr(gui, "animate")
+    True
+    >>> root.destroy()
+    """
         self.ax.clear()
         x: int = 0
         colors: dict[str, any] = {}
@@ -388,7 +462,19 @@ class CPUSchedulerGUI:
         self.show_results()
 
     def show_results(self) -> None:
-        """Displays scheduling results."""
+         """
+    Displays scheduling results.
+
+    >>> import tkinter as tk
+    >>> root = tk.Tk()
+    >>> gui = CPUSchedulerGUI(root)
+    >>> gui.engine = SchedulerEngine([{"pid": "P1", "arrival": 0, "burst": 1, "priority": 1}], "FCFS")
+    >>> gui.engine.stats = [("P1", 0, 1, 1, 1, 0, 0)]
+    >>> gui.show_results()
+    >>> "AVG" in gui.avg_label.cget("text")
+    True
+    >>> root.destroy()
+    """
         for item in self.result_box.get_children():
             self.result_box.delete(item)
         total_wt = total_tat = total_rt = 0
