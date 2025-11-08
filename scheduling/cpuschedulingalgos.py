@@ -96,7 +96,7 @@ class SchedulerEngine:
                 t += 1
                 yield (t, None, [])
                 continue
-            process = min(ready, key=lambda x: x["burst"])
+            process = min(ready, key=lambda proc: x["burst"])
             for _ in range(process["burst"]):
                 self.timeline.append((t, process["pid"]))
                 yield (t, process["pid"], [])
@@ -106,7 +106,7 @@ class SchedulerEngine:
 
     # shortest job first preemptive
     def _simulate_sjf_p(self) -> Generator[tuple[int, str | None, list[str]]]:
-         """
+        """
         Simulates SJF Preemptive scheduling.
 
         >>> processes = [{"pid": "P1", "arrival": 0, "burst": 3}]
@@ -128,7 +128,7 @@ class SchedulerEngine:
                 t += 1
                 yield (t, None, [])
                 continue
-            process = min(ready, key=lambda x: x["remaining"])
+            process = min(ready, key=lambda proc: x["remaining"])
             self.timeline.append((t, process["pid"]))
             yield (t, process["pid"], [])
             process["remaining"] -= 1
@@ -139,7 +139,7 @@ class SchedulerEngine:
 
     # priority non preemptive
     def _simulate_priority_np(self) -> Generator[tuple[int, str | None, list[str]]]:
-         """
+        """
         Simulates Priority (Non-Preemptive) scheduling.
 
         >>> processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
@@ -160,7 +160,7 @@ class SchedulerEngine:
                 t += 1
                 yield (t, None, [])
                 continue
-            process = min(ready, key=lambda x: x["priority"])
+            process = min(ready, key=lambda proc: x["priority"])
             for _ in range(process["burst"]):
                 self.timeline.append((t, process["pid"]))
                 yield (t, process["pid"], [])
@@ -170,7 +170,7 @@ class SchedulerEngine:
 
     # priority preemptive
     def _simulate_priority_p(self) -> Generator[tuple[int, str | None, list[str]]]:
-         """
+        """
         Simulates Priority (Preemptive) scheduling.
 
         >>> processes = [{"pid": "P1", "arrival": 0, "burst": 2, "priority": 1}]
@@ -190,7 +190,7 @@ class SchedulerEngine:
                 t += 1
                 yield (t, None, [])
                 continue
-            process = min(ready, key=lambda x: x["priority"])
+            process = min(ready, key=lambda proc: x["priority"])
             self.timeline.append((t, process["pid"]))
             yield (t, process["pid"], [])
             process["remaining"] -= 1
@@ -299,12 +299,12 @@ class CPUSchedulerGUI:
         self.algo_cb = ttk.Combobox(
             algo_frame,
             values=[
-                "FCFS",
-                "SJF (Non-Preemptive)",
-                "SJF (Preemptive)",
-                "Priority (Non-Preemptive)",
-                "Priority (Preemptive)",
-                "Round Robin",
+               "FCFS",
+               "SJF (Non-Preemptive)",
+               "SJF (Preemptive)",
+               "Priority (Non-Preemptive)",
+               "Priority (Preemptive)",
+               "Round Robin",
             ],
         )
         self.algo_cb.current(0)
@@ -355,7 +355,7 @@ class CPUSchedulerGUI:
     >>> len(gui.processes) > 0
     True
     >>> root.destroy()
-    """
+   """
         try:
             pid = self.pid_e.get()
             arrival = int(self.arrival_e.get())
@@ -369,7 +369,7 @@ class CPUSchedulerGUI:
             messagebox.showerror("Error", "Invalid input")
 
     def delete_process(self) -> None:
-         """
+        """
     Deletes a selected process.
 
     >>> import tkinter as tk
@@ -383,14 +383,14 @@ class CPUSchedulerGUI:
     >>> gui.processes
     []
     >>> root.destroy()
-    """
+   """
         if sel := self.tree.selection():
             pid = self.tree.item(sel[0])["values"][0]
             self.processes = [p for p in self.processes if p["pid"] != pid]
             self.tree.delete(sel[0])
 
     def run_scheduling(self) -> None:
-         """
+        """
     Runs the selected scheduling algorithm.
 
     >>> import tkinter as tk
@@ -402,7 +402,7 @@ class CPUSchedulerGUI:
     >>> hasattr(gui, "engine")
     True
     >>> root.destroy()
-    """
+   """
         algo = self.algo_cb.get()
         quantum = int(self.quantum_e.get() or 2)
         if algo.lower() == "round robin":
@@ -427,7 +427,7 @@ class CPUSchedulerGUI:
     >>> hasattr(gui, "animate")
     True
     >>> root.destroy()
-    """
+   """
         self.ax.clear()
         x: int = 0
         colors: dict[str, any] = {}
@@ -462,7 +462,7 @@ class CPUSchedulerGUI:
         self.show_results()
 
     def show_results(self) -> None:
-         """
+        """
     Displays scheduling results.
 
     >>> import tkinter as tk
@@ -474,7 +474,7 @@ class CPUSchedulerGUI:
     >>> "AVG" in gui.avg_label.cget("text")
     True
     >>> root.destroy()
-    """
+   """
         for item in self.result_box.get_children():
             self.result_box.delete(item)
         total_wt = total_tat = total_rt = 0
