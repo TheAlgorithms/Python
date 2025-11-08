@@ -2,6 +2,7 @@ import copy
 import threading
 import time
 import tkinter as tk
+from typing import Any
 from collections.abc import Generator
 from tkinter import messagebox, ttk
 
