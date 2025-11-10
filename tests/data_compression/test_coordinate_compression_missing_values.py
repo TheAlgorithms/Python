@@ -24,4 +24,3 @@ def test_duplicate_values():
     cc = CoordinateCompressor(arr)
     assert cc.compress(10) == 0
     assert cc.decompress(0) == 10
-

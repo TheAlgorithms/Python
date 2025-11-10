@@ -76,9 +76,7 @@ class CoordinateCompressor:
 
         # Track invalid values (for reference, not essential)
         self.invalid_values: list[Any] = [
-            x
-            for x in arr
-            if x is None or (isinstance(x, float) and math.isnan(x))
+            x for x in arr if x is None or (isinstance(x, float) and math.isnan(x))
         ]
 
     def compress(self, original: Any) -> int:
@@ -143,4 +141,3 @@ if __name__ == "__main__":
             f"Compressed: {compressed:>2} | "
             f"Decompressed: {decompressed!r}"
         )
-
