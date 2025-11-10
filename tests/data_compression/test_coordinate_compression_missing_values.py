@@ -1,4 +1,3 @@
-
 from data_compression.coordinate_compression import CoordinateCompressor
 
 
