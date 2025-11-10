@@ -48,4 +48,3 @@ def shell_sort(arr: list[int]) -> list[int]:
         gap //= 2
 
     return arr
-
