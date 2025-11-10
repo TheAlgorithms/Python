@@ -1,5 +1,5 @@
+
 from data_compression.coordinate_compression import CoordinateCompressor
-import math
 
 
 def test_basic_compression():
