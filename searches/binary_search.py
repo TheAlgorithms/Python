@@ -214,7 +214,9 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            result = midpoint  # Found the item, but continue to find leftmost occurrence
+            result = (
+                midpoint  # Found the item, but continue to find leftmost occurrence
+            )
             right = midpoint - 1  # Look for more occurrences on the left
         elif item < current_item:
             right = midpoint - 1
@@ -284,7 +286,7 @@ def binary_search_by_recursion(
         right = len(sorted_collection) - 1
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
-    
+
     # Helper function for the binary search
     def _binary_search_recursive(left_idx: int, right_idx: int) -> int:
         if right_idx < left_idx:
@@ -302,7 +304,7 @@ def binary_search_by_recursion(
             return _binary_search_recursive(left_idx, midpoint - 1)
         else:
             return _binary_search_recursive(midpoint + 1, right_idx)
-    
+
     return _binary_search_recursive(left, right)
 
 
