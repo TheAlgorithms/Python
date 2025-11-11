@@ -321,6 +321,28 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
         return -1
     return last_result
 
+#binary search uses divide and conquer
+#We will leverage the fact that our list is sorted
+def binary_search2(l,target, low=None,high=None):
+    if low is None:
+        low=0
+    if high is None:
+        high=len(l)-1
+    if high < low:
+        return -1
+    
+    midpoint=(low+high) // 2
+    if l[midpoint] == target:
+        return midpoint
+    elif target <l [midpoint]:
+        return binary_search(l,target,low,midpoint-1)
+    else:
+        return binary_search(l,target,midpoint+1,high)
+        
+
+       
+
+
 
 searches = (  # Fastest to slowest...
     binary_search_std_lib,
@@ -358,3 +380,7 @@ if __name__ == "__main__":
         print(f"{target} was not found in {collection}.")
     else:
         print(f"{target} was found at position {result} of {collection}.")
+
+    #Testing the binary search 2
+    mylist=[1,2,3,4,5,6,7,8,9,10]
+    print(binary_search(mylist,10) ) 
