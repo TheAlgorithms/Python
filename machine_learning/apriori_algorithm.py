@@ -9,6 +9,7 @@ WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 """
 
 from collections import defaultdict
+from collections import Counter
 from itertools import combinations
 
 
@@ -95,6 +96,37 @@ class Apriori:
                 if self._get_support(c) >= self.min_support
             }
             if not freq_candidates:
+def prune(itemset: list, candidates: list, length: int) -> list:
+    """
+    Prune candidate itemsets that are not frequent.
+    The goal of pruning is to filter out candidate itemsets that are not frequent.  This
+    is done by checking if all the (k-1) subsets of a candidate itemset are present in
+    the frequent itemsets of the previous iteration (valid subsequences of the frequent
+    itemsets from the previous iteration).
+
+    Prunes candidate itemsets that are not frequent.
+
+    >>> itemset = ['X', 'Y', 'Z']
+    >>> candidates = [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
+    >>> prune(itemset, candidates, 2)
+    [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
+
+    >>> itemset = ['1', '2', '3', '4']
+    >>> candidates = ['1', '2', '4']
+    >>> prune(itemset, candidates, 3)
+    []
+    """
+    itemset_counter = Counter(tuple(item) for item in itemset)
+    pruned = []
+    for candidate in candidates:
+        is_subsequence = True
+        for item in candidate:
+            item_tuple = tuple(item)
+            if (
+                item_tuple not in itemset_counter
+                or itemset_counter[item_tuple] < length - 1
+            ):
+                is_subsequence = False
                 break
 
             self.itemsets.append(freq_candidates)
