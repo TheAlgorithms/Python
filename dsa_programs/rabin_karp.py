@@ -3,7 +3,9 @@
 from typing import List
 
 
-def rabin_karp_search(text: str, pattern: str, base: int = 256, modulus: int = 1_000_000_007) -> List[int]:
+def rabin_karp_search(
+    text: str, pattern: str, base: int = 256, modulus: int = 1_000_000_007
+) -> List[int]:
     if not pattern:
         return list(range(len(text) + 1))
     if len(pattern) > len(text):

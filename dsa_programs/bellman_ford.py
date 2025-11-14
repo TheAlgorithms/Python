@@ -6,7 +6,9 @@ T = TypeVar("T")
 Edge = Tuple[T, T, float]
 
 
-def bellman_ford(vertices: Iterable[T], edges: Iterable[Edge], source: T) -> Dict[T, float]:
+def bellman_ford(
+    vertices: Iterable[T], edges: Iterable[Edge], source: T
+) -> Dict[T, float]:
     edge_list: List[Edge] = list(edges)
     vertex_set: Set[T] = set(vertices)
     for u, v, _ in edge_list:

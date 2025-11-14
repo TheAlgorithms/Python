@@ -6,7 +6,9 @@ from typing import Iterable, List, Optional, TypeVar
 T = TypeVar("T")
 
 
-def reservoir_sample(stream: Iterable[T], k: int, rng: Optional[random.Random] = None) -> List[T]:
+def reservoir_sample(
+    stream: Iterable[T], k: int, rng: Optional[random.Random] = None
+) -> List[T]:
     if k <= 0:
         raise ValueError("Sample size must be positive")
     rand = rng or random.Random()

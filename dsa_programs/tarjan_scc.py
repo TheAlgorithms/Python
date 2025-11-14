@@ -36,7 +36,9 @@ def tarjan_strongly_connected_components(graph: Graph) -> List[List[T]]:
                     break
             components.append(component)
 
-    for node in set(graph) | {neighbor for neighbors in graph.values() for neighbor in neighbors}:
+    for node in set(graph) | {
+        neighbor for neighbors in graph.values() for neighbor in neighbors
+    }:
         if node not in indices:
             strong_connect(node)
     return components

@@ -11,5 +11,7 @@ def knapsack_01(items: Sequence[Item], capacity: int) -> int:
     dp: List[int] = [0] * (capacity + 1)
     for weight, value in items:
         for current_capacity in range(capacity, weight - 1, -1):
-            dp[current_capacity] = max(dp[current_capacity], dp[current_capacity - weight] + value)
+            dp[current_capacity] = max(
+                dp[current_capacity], dp[current_capacity - weight] + value
+            )
     return dp[capacity]

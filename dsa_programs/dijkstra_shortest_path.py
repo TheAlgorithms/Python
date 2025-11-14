@@ -15,7 +15,9 @@ def dijkstra_shortest_path(graph: Graph, source: T) -> Dict[T, float]:
         current_dist, node = heappop(heap)
         if current_dist > distances.get(node, float("inf")):
             continue
-        for neighbor, weight in graph.get(node, ()):  # missing key means no outgoing edges
+        for neighbor, weight in graph.get(
+            node, ()
+        ):  # missing key means no outgoing edges
             cost = current_dist + weight
             if cost < distances.get(neighbor, float("inf")):
                 distances[neighbor] = cost
