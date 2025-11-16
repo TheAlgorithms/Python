@@ -1,9 +1,6 @@
-from typing import List, Tuple
-
-
 def digital_differential_analyzer_line(
-    p1: Tuple[int, int], p2: Tuple[int, int]
-) -> List[Tuple[int, int]]:
+    p1: tuple[int, int], p2: tuple[int, int]
+) -> list[tuple[int, int]]:
     """
     Draw a line between two points using the Digital Differential Analyzer (DDA)
     algorithm.
@@ -46,7 +43,7 @@ def digital_differential_analyzer_line(
     y_inc = dy / float(steps)
 
     x, y = float(x1), float(y1)
-    points: List[Tuple[int, int]] = []
+    points: list[tuple[int, int]] = []
 
     for _ in range(steps):
         x += x_inc
