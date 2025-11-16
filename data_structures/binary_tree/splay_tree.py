@@ -64,7 +64,7 @@ class SplayTree:
                     self._right_rotate(p)
                 else:
                     self._left_rotate(p)
-            elif p.left == x and g.left == p:                # Zig-Zig
+            elif p.left == x and g.left == p:  # Zig-Zig
                 if p.left == x and g.left == p:
                     self._right_rotate(g)
                     self._right_rotate(p)
