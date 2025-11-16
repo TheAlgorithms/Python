@@ -39,6 +39,10 @@ def binary_search_by_recursion(
     1
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
+    >>> binary_search_by_recursion([1, 2, 2, 2, 3], 2, 0, 4)
+    1
+    >>> binary_search_by_recursion([2, 2, 2, 2], 2, 0, 3)
+    0
     """
     if right < 0:
         right = len(sorted_collection) - 1
@@ -48,10 +52,15 @@ def binary_search_by_recursion(
         return -1
 
     midpoint = left + (right - left) // 2
+    mid_value = sorted_collection[midpoint]
 
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
+    if mid_value == item:
+        # check if this is the first occurrence
+        if midpoint == 0 or sorted_collection[midpoint - 1] < item:
+            return midpoint
+        else:
+            return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+    elif mid_value > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)

@@ -1,17 +1,24 @@
 def binary_search(lst, item, start, end):
-    if start == end:
-        return start if lst[start] > item else start + 1
+    """
+    Binary search that returns the index of the first occurrence of `item` if present,
+    or the correct insertion index if not present, even with duplicates.
+    """
     if start > end:
         return start
 
     mid = (start + end) // 2
+
     if lst[mid] < item:
         return binary_search(lst, item, mid + 1, end)
     elif lst[mid] > item:
         return binary_search(lst, item, start, mid - 1)
     else:
-        return mid
-
+        # Move left to find the first occurrence
+        if mid == start or lst[mid - 1] != item:
+            return mid
+        else:
+            return binary_search(lst, item, start, mid - 1)
+        
 
 def insertion_sort(lst):
     length = len(lst)
