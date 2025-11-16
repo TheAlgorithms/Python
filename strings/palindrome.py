@@ -42,8 +42,8 @@ def is_palindrome_traversal(s: str) -> bool:
     end = len(s) // 2
     n = len(s)
 
-
     return all(s[i] == s[n - i - 1] for i in range(end))
+
 
 def is_palindrome_recursive(s: str) -> bool:
     """
