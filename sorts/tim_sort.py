@@ -18,7 +18,6 @@ def binary_search(lst, item, start, end):
     else:
         return binary_search(lst, item, start, mid - 1)
 
-
 def insertion_sort(lst):
     length = len(lst)
 
