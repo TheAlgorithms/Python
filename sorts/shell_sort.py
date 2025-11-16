@@ -2,6 +2,7 @@
 https://en.wikipedia.org/wiki/Shellsort#Pseudocode
 """
 
+
 def shell_sort(collection: list[int]) -> list[int]:
     """
     Sort a list of integers using the Shell Sort algorithm.
