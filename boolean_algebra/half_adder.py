@@ -49,6 +49,5 @@ def half_adder(input_a: int, input_b: int) -> tuple[int, int]:
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
-     
