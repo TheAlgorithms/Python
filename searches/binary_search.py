@@ -300,7 +300,7 @@ def binary_search_by_recursion(
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
-    
+
 
 def exponential_search(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of an exponential search algorithm in Python

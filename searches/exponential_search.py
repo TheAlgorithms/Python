@@ -59,7 +59,9 @@ def binary_search_by_recursion(
         if midpoint == 0 or sorted_collection[midpoint - 1] < item:
             return midpoint
         else:
-            return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+            return binary_search_by_recursion(
+                sorted_collection, item, left, midpoint - 1
+            )
     elif mid_value > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
