@@ -21,14 +21,14 @@ https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
 """
 
 
-def full_adder(a: int, b: int, cin: int) -> tuple[int, int]:
+def full_adder(input_a: int, input_b: int, carry_in: int) -> tuple[int, int]:
     """
     Compute the sum and carry-out for a Full Adder.
 
     Args:
-        a: First input bit (0 or 1).
-        b: Second input bit (0 or 1).
-        cin: Carry-in bit (0 or 1).
+        input_a: First input bit (0 or 1).
+        input_b: Second input bit (0 or 1).
+        carry_in: Carry-in bit (0 or 1).
 
     Returns:
         A tuple `(sum_bit, carry_out)`.
@@ -49,14 +49,14 @@ def full_adder(a: int, b: int, cin: int) -> tuple[int, int]:
     Raises:
         ValueError: If any input is not 0 or 1.
     """
-    if a not in (0, 1) or b not in (0, 1) or cin not in (0, 1):
+    if input_a not in (0, 1) or input_b not in (0, 1) or carry_in not in (0, 1):
         raise ValueError("Inputs must be 0 or 1.")
 
     # Sum is XOR of the inputs
-    sum_bit = a ^ b ^ cin
+    sum_bit = input_a ^ input_b ^ carry_in
 
     # Carry-out is true if any two or more inputs are 1
-    carry_out = (a & b) | (b & cin) | (a & cin)
+    carry_out = (input_a & input_b) | (input_b & carry_in) | (input_a & carry_in)
 
     return sum_bit, carry_out
 
