@@ -12,13 +12,12 @@ def binary_search(lst, item, start, end):
         return binary_search(lst, item, mid + 1, end)
     elif lst[mid] > item:
         return binary_search(lst, item, start, mid - 1)
-    else:
+    elif mid == start or lst[mid - 1] != item:
         # Move left to find the first occurrence
-        if mid == start or lst[mid - 1] != item:
-            return mid
-        else:
-            return binary_search(lst, item, start, mid - 1)
-        
+        return mid
+    else:
+        return binary_search(lst, item, start, mid - 1)
+
 
 def insertion_sort(lst):
     length = len(lst)
