@@ -42,7 +42,8 @@ def divide_numbers(a: float, b: float) -> float:
         >>> divide_numbers(10, 0)
         Traceback (most recent call last):
             ...
-        ValueError: Cannot divide by zero. Please provide a non-zero denominator.
+        ValueError: Cannot divide by zero. Please provide a non-zero
+        denominator.
 
         >>> divide_numbers(0, 5)
         0.0
