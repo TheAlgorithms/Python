@@ -7,7 +7,7 @@ error messages for educational purposes.
 """
 
 
-def divide_numbers(a: float, b: float) -> float:
+def divide_numbers(numerator: float, denominator: float) -> float:
     """
     Divide two numbers with validation for zero denominator.
 
@@ -17,14 +17,14 @@ def divide_numbers(a: float, b: float) -> float:
     beginners learning about error handling.
 
     Args:
-        a: The dividend (numerator) - the number to be divided.
-        b: The divisor (denominator) - the number to divide by.
+        numerator: The dividend - the number to be divided.
+        denominator: The divisor - the number to divide by.
 
     Returns:
-        The result of dividing a by b.
+        The result of dividing numerator by denominator.
 
     Raises:
-        ValueError: If b (denominator) is zero.
+        ValueError: If denominator is zero.
 
     Examples:
         >>> divide_numbers(10, 2)
@@ -48,11 +48,11 @@ def divide_numbers(a: float, b: float) -> float:
         >>> divide_numbers(0, 5)
         0.0
     """
-    if b == 0:
+    if denominator == 0:
         raise ValueError(
             "Cannot divide by zero. Please provide a non-zero denominator."
         )
-    return a / b
+    return numerator / denominator
 
 
 if __name__ == "__main__":
