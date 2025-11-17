@@ -48,7 +48,9 @@ def divide_numbers(a: float, b: float) -> float:
         0.0
     """
     if b == 0:
-        raise ValueError("Cannot divide by zero. Please provide a non-zero denominator.")
+        raise ValueError(
+            "Cannot divide by zero. Please provide a non-zero denominator."
+        )
     return a / b
 
 
@@ -60,7 +62,7 @@ if __name__ == "__main__":
     print(f"-10 / 2 = {divide_numbers(-10, 2)}")
     print(f"7 / 2 = {divide_numbers(7, 2)}")
     print(f"0 / 5 = {divide_numbers(0, 5)}")
-    
+
     # Test zero division error
     try:
         divide_numbers(10, 0)
