@@ -54,21 +54,14 @@ os.unsetenv("MY_VAR")
 print("MY_VAR (after unsetenv):", os.getenv("MY_VAR"))
 
 # -------------------------------
-# ⚙️ 4. SYSTEM COMMANDS
-# -------------------------------
-print("\n--- System Commands ---")
-# Example: list files using OS command
-os.system("dir" if os.name == "nt" else "ls")
-
-# -------------------------------
-# 🧱 5. PROCESS INFORMATION
+# 🧱 4. PROCESS INFORMATION
 # -------------------------------
 print("\n--- Process Info ---")
 print("Process ID:", os.getpid())
 print("CPU Count:", os.cpu_count())
 
 # -------------------------------
-# 🔐 6. FILE ACCESS & PERMISSIONS
+# 🔐 5. FILE ACCESS & PERMISSIONS
 # -------------------------------
 print("\n--- File Access & Permissions ---")
 filename = "testfile.txt"
@@ -81,7 +74,7 @@ print("Has Read Access:", os.access(filename, os.R_OK))
 print("Has Write Access:", os.access(filename, os.W_OK))
 
 # -------------------------------
-# 🧩 7. CLEANUP
+# 🧩 6. CLEANUP
 # -------------------------------
 os.remove(filename)
 print("\nFile Removed:", filename)
