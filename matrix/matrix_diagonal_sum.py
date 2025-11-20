@@ -34,6 +34,7 @@ Examples:
     ValueError: Incompatible matrix sizes
 """
 
+
 def matrix_multiply(a: list[list[float]], b: list[list[float]]) -> list[list[float]]:
     if not _is_valid_matrix(a) or not _is_valid_matrix(b):
         raise ValueError("Invalid matrix structure")
