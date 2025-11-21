@@ -28,4 +28,5 @@ def count_bits(n: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
