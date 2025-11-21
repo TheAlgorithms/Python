@@ -1,4 +1,4 @@
-def integer_to_roman(n: int) -> str:
+def integer_to_roman(number: int) -> str:
     """
     Convert an integer to a Roman numeral.
 
@@ -18,7 +18,7 @@ def integer_to_roman(n: int) -> str:
         ...
     ValueError: number must be between 1 and 3999
     """
-    if not (1 <= n <= 3999):
+    if not (1 <= number <= 3999):
         raise ValueError("number must be between 1 and 3999")
 
     symbols = [
@@ -39,9 +39,9 @@ def integer_to_roman(n: int) -> str:
 
     result = []
     for value, numeral in symbols:
-        while n >= value:
+        while number >= value:
             result.append(numeral)
-            n -= value
+            number -= value
 
     return "".join(result)
 
@@ -49,4 +49,3 @@ def integer_to_roman(n: int) -> str:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    
