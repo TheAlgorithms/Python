@@ -9,12 +9,13 @@ def longest_repeated_substring(s: str) -> str:
 
     class State:
         __slots__ = ("next", "link", "length", "first_pos", "occ")
+
         def __init__(self):
             self.next = {}
             self.link = -1
             self.length = 0
             self.first_pos = -1
-            self.occ = 0  
+            self.occ = 0
 
     st = [State()]
     last = 0
@@ -66,8 +67,8 @@ def longest_repeated_substring(s: str) -> str:
             best_end = state.first_pos
     if best_len == 0:
         return ""
-    return s[best_end - best_len + 1: best_end + 1]
+    return s[best_end - best_len + 1 : best_end + 1]
 
 
 if __name__ == "__main__":
-    print(longest_repeated_substring("banana"))  
+    print(longest_repeated_substring("banana"))
