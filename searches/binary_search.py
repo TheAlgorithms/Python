@@ -243,6 +243,71 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     return -1
 
 
+def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> list[int]:
+    """Pure implementation of a binary search algorithm in Python that supports
+    duplicates.
+
+    Resources used:
+    https://stackoverflow.com/questions/13197552/using-binary-search-with-sorted-array-with-duplicates
+
+    The collection must be sorted in ascending order; otherwise the result will be
+    unpredictable. If the target appears multiple times, this function returns a
+    list of **all** indexes where the target occurs. If the target is not found,
+    it returns an empty list.
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item value to search for
+    :return: a list of indexes where the item is found (empty list if not found)
+
+    Examples:
+    >>> binary_search_with_duplicates([0, 5, 7, 10, 15], 0)
+    [0]
+    >>> binary_search_with_duplicates([0, 5, 7, 10, 15], 15)
+    [4]
+    >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 2)
+    [1, 2, 3]
+    >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 4)
+    []
+    """
+    if list(sorted_collection) != sorted(sorted_collection):
+        raise ValueError("sorted_collection must be sorted in ascending order")
+
+    """find lower bounds"""
+
+    def lower_bound(sorted_collection: list[int], item: int) -> int:
+        left = 0
+        right = len(sorted_collection)
+        while left < right:
+            midpoint = left + (right - left) // 2
+            current_item = sorted_collection[midpoint]
+            if current_item < item:
+                left = midpoint + 1
+            else:
+                right = midpoint
+        return left
+
+    """find upper bounds"""
+
+    def upper_bound(sorted_collection: list[int], item: int) -> int:
+        left = 0
+        right = len(sorted_collection)
+        while left < right:
+            midpoint = left + (right - left) // 2
+            current_item = sorted_collection[midpoint]
+            if current_item <= item:
+                left = midpoint + 1
+            else:
+                right = midpoint
+        return left
+
+    left = lower_bound(sorted_collection, item)
+    right = upper_bound(sorted_collection, item)
+
+    if left == len(sorted_collection) or sorted_collection[left] != item:
+        return []
+    return list(range(left, right))
+
+
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int = 0, right: int = -1
 ) -> int:
