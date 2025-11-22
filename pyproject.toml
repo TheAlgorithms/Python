@@ -14,6 +14,7 @@ dependencies = [
   "fake-useragent>=1.5.1",
   "httpx>=0.28.1",
   "imageio>=2.36.1",
+  "insightface>=0.7.3",
   "keras>=3.7",
   "lxml>=6",
   "matplotlib>=3.9.3",
