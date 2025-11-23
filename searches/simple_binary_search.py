@@ -40,6 +40,14 @@ def binary_search(a_list: list[int], item: int) -> bool:
     False
     >>> binary_search(range(0, 10000, 5), 2)
     False
+    >>> binary_search([1, 1, 1, 2, 2, 3], 1)
+    True
+    >>> binary_search([1, 1, 1, 2, 2, 3], 2)
+    True
+    >>> binary_search([1, 1, 1, 2, 2, 3], 3)
+    True
+    >>> binary_search([1, 1, 1, 2, 2, 3], 4)
+    False
     """
     if len(a_list) == 0:
         return False

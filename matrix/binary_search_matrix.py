@@ -9,10 +9,20 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     0
     >>> binary_search(matrix, 0, len(matrix) - 1, 23)
     -1
+    >>> matrix_dup = [1, 4, 4, 4, 7, 11, 15]
+    >>> binary_search(matrix_dup, 0, len(matrix_dup) - 1, 4)
+    1
+    >>> binary_search(matrix_dup, 0, len(matrix_dup) - 1, 7)
+    4
+    >>> binary_search(matrix_dup, 0, len(matrix_dup) - 1, 0)
+    -1
     """
 
-    r = int((lower_bound + upper_bound) // 2)
+    r = (lower_bound + upper_bound) // 2
     if array[r] == value:
+        # Move left to find the first occurrence of duplicates
+        while r > 0 and array[r - 1] == value:
+            r -= 1
         return r
     if lower_bound >= upper_bound:
         return -1
