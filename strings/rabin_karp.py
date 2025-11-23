@@ -168,7 +168,10 @@ def rabin_karp_multiple(
             # Check if current hash matches any pattern hash
             for pattern, pattern_hash in pattern_hashes.items():
                 # Verify to avoid spurious hits
-                if text_hash == pattern_hash and text[i : i + pattern_length] == pattern:
+                if (
+                    text_hash == pattern_hash
+                    and text[i : i + pattern_length] == pattern
+                ):
                     results[pattern].append(i)
 
             # Calculate hash for next window
