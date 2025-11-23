@@ -74,11 +74,9 @@ def rabin_karp_search(
 
     # Slide the pattern over text one by one
     for i in range(n - m + 1):
-        # Check if hash values match
-        if pattern_hash == text_hash:
-            # Verify character by character to avoid spurious hits
-            if text[i : i + m] == pattern:
-                matches.append(i)
+        # Check if hash values match and verify to avoid spurious hits
+        if pattern_hash == text_hash and text[i : i + m] == pattern:
+            matches.append(i)
 
         # Calculate hash for next window (rolling hash)
         if i < n - m:
@@ -141,7 +139,7 @@ def rabin_karp_multiple(
                 patterns_by_length[length] = []
             patterns_by_length[length].append(pattern)
 
-    results = {pattern: [] for pattern in patterns}
+    results: dict[str, list[int]] = {pattern: [] for pattern in patterns}
 
     # Process each group of patterns with same length
     for pattern_length, pattern_group in patterns_by_length.items():
@@ -169,10 +167,9 @@ def rabin_karp_multiple(
         for i in range(len(text) - pattern_length + 1):
             # Check if current hash matches any pattern hash
             for pattern, pattern_hash in pattern_hashes.items():
-                if text_hash == pattern_hash:
-                    # Verify to avoid spurious hits
-                    if text[i : i + pattern_length] == pattern:
-                        results[pattern].append(i)
+                # Verify to avoid spurious hits
+                if text_hash == pattern_hash and text[i : i + pattern_length] == pattern:
+                    results[pattern].append(i)
 
             # Calculate hash for next window
             if i < len(text) - pattern_length:
