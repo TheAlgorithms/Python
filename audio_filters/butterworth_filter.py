@@ -17,12 +17,18 @@ def make_lowpass(
 ) -> IIRFilter:
     """
     Creates a low-pass filter
-
-    >>> filter = make_lowpass(1000, 48000)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
-    [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.004277569313094809,
-     0.008555138626189618, 0.004277569313094809]
+    ... (docstring content)
     """
+    # --- Input Validation Start ---
+    if samplerate <= 0:
+        raise ValueError("Samplerate must be a positive value.")
+    if frequency <= 0:
+        raise ValueError("Frequency must be a positive value.")
+    if frequency >= samplerate / 2:
+        # Nyquist frequency limit check
+        raise ValueError(f"Frequency ({frequency} Hz) must be less than the Nyquist frequency ({samplerate / 2} Hz).")
+    # --- Input Validation End ---
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)

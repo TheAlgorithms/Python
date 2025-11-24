@@ -34,7 +34,7 @@ class EqualLoudnessFilter:
         self.butterworth_filter = make_highpass(150, samplerate)
 
         # pad the data to nyquist
-        curve_freqs = np.array(data["frequencies"] + [max(20000.0, samplerate / 2)])
+        curve_freqs = np.array(data["frequencies"] + [max(20000.0, samplerate/2)])
         curve_gains = np.array(data["gains"] + [140])
 
         # Convert to angular frequency
