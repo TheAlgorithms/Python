@@ -86,6 +86,8 @@ def fib_iterative(n: int) -> list[int]:
     for _ in range(n - 1):
         fib.append(fib[-1] + fib[-2])
     return fib
+
+
 def fib_recursive(n: int) -> list[int]:
     """
     Calculate the first n (0-indexed) Fibonacci numbers using recursion.
@@ -108,6 +110,7 @@ def fib_recursive(n: int) -> list[int]:
             ...
         ValueError: n is negative
     """
+
     def fib_recursive_term(i: int) -> int:
         if i < 0:
             raise ValueError("n is negative")
