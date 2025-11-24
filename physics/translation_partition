@@ -1,0 +1,48 @@
+import math
+
+def translation_partition_function(mass: float, temperature: float,
+                                   volume: float) -> float:
+    """
+    Calculates the translational partition
+    function using the formula:
+    q_trans = ((2 * pi * m * k_B * T)^(3/2) * V) / h^3
+
+    mass: Mass of the molecule in kg
+    temperature: Temperature in Kelvin
+    volume: Volume in cubic meters
+
+    >>> round(translation_partition_function(2e-26, 300, 1e-3), 4)
+    4.081816847078438e+28
+    >>> round(translation_partition_function(4e-26, 300, 1e-3), 4)
+    1.1545121488522627e+29
+    >>> round(translation_partition_function(-4e-26, 300, 1e-3), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Mass must be positive
+    >>> round(translation_partition_function(4e-26, 0, 1e-3), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Temperature must be positive
+    >>> round(translation_partition_function(4e-26, 300, 0), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Volume must be positive
+    """
+
+    if mass <= 0:
+        raise ValueError("Mass must be positive")
+    if temperature <= 0:
+        raise ValueError("Temperature must be positive")
+    if volume <= 0:
+        raise ValueError("Volume must be positive")
+
+    h = 6.62607015e-34  # Planck's constant in J·s
+    k_B = 1.380649e-23  # Boltzmann constant in J/K
+
+    prefactor = (2 * math.pi * mass * k_B * temperature) ** (3 / 2)
+    denominator = h ** 3
+    return (prefactor * volume) / denominator
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(name="translation_partition_function")
