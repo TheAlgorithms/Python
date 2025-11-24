@@ -1,5 +1,5 @@
 """
-Sieve of Eratosthones
+Sieve of Eratosthenes
 
 The sieve of Eratosthenes is an algorithm used to find prime numbers, less than or
 equal to a given value.
@@ -9,11 +9,10 @@ Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 doctest provider: Bruno Simas Hadlich (https://github.com/brunohadlich)
 Also thanks to Dmitry (https://github.com/LizardWizzard) for finding the problem
+optimized by : Sumit Nayak (https://github.com/Sumit210106/)
 """
 
 from __future__ import annotations
-
-import math
 
 
 def prime_sieve(num: int) -> list[int]:
@@ -38,26 +37,22 @@ def prime_sieve(num: int) -> list[int]:
         msg = f"{num}: Invalid input, please enter a positive integer."
         raise ValueError(msg)
 
+    if num < 2:
+        return []
+
     sieve = [True] * (num + 1)
-    prime = []
-    start = 2
-    end = int(math.sqrt(num))
+    prime = [2]
 
-    while start <= end:
-        # If start is a prime
-        if sieve[start] is True:
-            prime.append(start)
+    # marked all even numbers as non-prime
+    for i in range(3, int(pow(num, 0.5)) + 1, 2):
+        if sieve[i]:
+            for j in range(pow(i, 2), num + 1, 2 * i):
+                sieve[j] = False
 
-            # Set multiples of start be False
-            for i in range(start * start, num + 1, start):
-                if sieve[i] is True:
-                    sieve[i] = False
-
-        start += 1
-
-    for j in range(end + 1, num + 1):
-        if sieve[j] is True:
-            prime.append(j)
+    # collect odd primes
+    for k in range(3, num + 1, 2):
+        if sieve[k]:
+            prime.append(k)
 
     return prime
 
