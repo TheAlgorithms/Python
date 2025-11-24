@@ -86,24 +86,38 @@ def fib_iterative(n: int) -> list[int]:
     for _ in range(n - 1):
         fib.append(fib[-1] + fib[-2])
     return fib
-
-
 def fib_recursive(n: int) -> list[int]:
     """
-    Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
-    [0]
-    >>> fib_iterative(1)
-    [0, 1]
-    >>> fib_iterative(5)
-    [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
-    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: n is negative
+    Calculate the first n (0-indexed) Fibonacci numbers using recursion.
+
+    Args:
+        n (int): The number of Fibonacci terms to generate.
+
+    Returns:
+        list[int]: A list of the first n Fibonacci numbers.
+
+    Examples:
+        >>> fib_recursive(0)
+        [0]
+        >>> fib_recursive(1)
+        [0, 1]
+        >>> fib_recursive(5)
+        [0, 1, 1, 2, 3, 5]
+        >>> fib_recursive(-1)
+        Traceback (most recent call last):
+            ...
+        ValueError: n is negative
     """
+    def fib_recursive_term(i: int) -> int:
+        if i < 0:
+            raise ValueError("n is negative")
+        if i < 2:
+            return i
+        return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
+
+    if n < 0:
+        raise ValueError("n is negative")
+    return [fib_recursive_term(i) for i in range(n + 1)]
 
     def fib_recursive_term(i: int) -> int:
         """
@@ -112,6 +126,8 @@ def fib_recursive(n: int) -> list[int]:
         0
         >>> fib_recursive_term(1)
         1
+        >>> fib_recursive_term(5)
+
         >>> fib_recursive_term(5)
         5
         >>> fib_recursive_term(10)
