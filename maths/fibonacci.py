@@ -122,9 +122,10 @@ def fib_recursive(n: int) -> list[int]:
         raise ValueError("n is negative")
     return [fib_recursive_term(i) for i in range(n + 1)]
 
-    def fib_recursive_cached(n: int) -> list[int]:
+def fib_recursive_cached(n: int) -> list[int]:
     """
-    Calculates the first n (0-indexed) Fibonacci numbers using recursion
+    Calculates the first n (0-indexed) Fibonacci numbers using recursion.
+
     >>> fib_iterative(0)
     [0]
     >>> fib_iterative(1)
@@ -142,7 +143,7 @@ def fib_recursive(n: int) -> list[int]:
     @functools.cache
     def fib_recursive_term(i: int) -> int:
         """
-        Calculates the i-th (0-indexed) Fibonacci number using recursion
+        Calculates the i-th (0-indexed) Fibonacci number using recursion.
         """
         if i < 0:
             raise ValueError("n is negative")
@@ -153,7 +154,6 @@ def fib_recursive(n: int) -> list[int]:
     if n < 0:
         raise ValueError("n is negative")
     return [fib_recursive_term(i) for i in range(n + 1)]
-
 
 def fib_memoization(n: int) -> list[int]:
     """
@@ -320,3 +320,4 @@ if __name__ == "__main__":
     time_func(fib_recursive_cached, num)  # 0.0153 ms
     time_func(fib_recursive, num)  # 257.0910 ms
     time_func(fib_matrix_np, num)  # 0.0000 ms
+
