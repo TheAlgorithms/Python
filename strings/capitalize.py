@@ -16,9 +16,8 @@ def capitalize(sentence: str) -> str:
     if not sentence:
         return ""
 
-    # Capitalize the first character if it's a lowercase letter
-    # Concatenate the capitalized character with the rest of the string
-    return sentence[0].upper() + sentence[1:]
+    # will see more
+    return sentence[0].upper() + sentence[1:] if sentence[0].isalpha() else sentence
 
 
 if __name__ == "__main__":
