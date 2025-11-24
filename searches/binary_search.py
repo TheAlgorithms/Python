@@ -200,7 +200,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     """
     # Use bisect_left to find the leftmost position
     index = bisect_left(sorted_collection, item)
-    
+
     # Check if the item exists at that position
     if index != len(sorted_collection) and sorted_collection[index] == item:
         return index
