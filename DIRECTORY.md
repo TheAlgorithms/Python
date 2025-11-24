@@ -617,6 +617,7 @@
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
+  * [Ordinary Least Squares Regression](machine_learning/ordinary_least_squares_regression.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Principle Component Analysis](machine_learning/principle_component_analysis.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
