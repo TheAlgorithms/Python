@@ -26,7 +26,9 @@ def make_lowpass(
         raise ValueError("Frequency must be a positive value.")
     if frequency >= samplerate / 2:
         # Nyquist frequency limit check
-        raise ValueError(f"Frequency ({frequency} Hz) must be less than the Nyquist frequency ({samplerate / 2} Hz).")
+        raise ValueError(
+            f"Frequency ({frequency} Hz) must be less than the Nyquist frequency ({samplerate / 2} Hz)."
+        )
     # --- Input Validation End ---
 
     w0 = tau * frequency / samplerate
