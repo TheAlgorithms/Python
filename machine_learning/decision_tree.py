@@ -1,10 +1,51 @@
+import numpy as np
+
+"""
+Decision Tree Regression Implementation
+
+This module implements a basic regression decision tree using Python and NumPy.
+
+📄 Overview:
+Decision Trees are a type of supervised learning algorithm used for both
+classification and regression tasks. In this implementation, the tree
+is specifically designed for regression: mapping continuous input features
+to continuous outputs.
+
+📌 Features:
+- Supports one-dimensional datasets with continuous labels.
+- Splits data recursively based on minimizing mean squared error.
+- Can specify maximum tree depth and minimum leaf size.
+- Predicts outputs for unseen data using the trained tree.
+
+🌟 Educational Value:
+This implementation is lightweight and designed for learning purposes.
+It demonstrates:
+- The core concept of recursive partitioning in decision trees.
+- How mean squared error guides splitting decisions.
+- The trade-off between tree depth and model complexity.
+
+💡 Use Cases:
+- Understanding how regression trees work internally.
+- Testing and experimenting with small datasets.
+- Educational projects, tutorials, or self-learning exercises.
+
+Audience:
+- Beginners learning machine learning concepts
+- Students studying regression algorithms
+- Anyone interested in understanding decision tree internals
+
+📦 Dependencies:
+- numpy
+
+Note: This implementation is meant for demonstration and learning purposes
+and may not be optimized for large-scale production datasets.
+"""
+
 """
 Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
-
-import numpy as np
 
 
 class DecisionTree:
