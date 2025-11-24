@@ -36,5 +36,7 @@ def divide_numbers(a: int | float, b: int | float) -> float:
         ValueError: Cannot divide by zero. Please provide a non-zero denominator.
     """
     if b == 0:
-        raise ValueError("Cannot divide by zero. Please provide a non-zero denominator.")
+        raise ValueError(
+            "Cannot divide by zero. Please provide a non-zero denominator."
+        )
     return a / b
