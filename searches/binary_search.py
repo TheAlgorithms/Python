@@ -197,6 +197,8 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+        >>> binary_search([1, 2, 2, 2, 3], 2)  # Returns one valid index of 2
+            2
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
