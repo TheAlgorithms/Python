@@ -772,6 +772,7 @@
   * [Solovay Strassen Primality Test](maths/solovay_strassen_primality_test.py)
   * [Spearman Rank Correlation Coefficient](maths/spearman_rank_correlation_coefficient.py)
   * Special Numbers
+    * [Abundant Numbers](maths/special_numbers/abundant_numbers.py)
     * [Armstrong Numbers](maths/special_numbers/armstrong_numbers.py)
     * [Automorphic Number](maths/special_numbers/automorphic_number.py)
     * [Bell Numbers](maths/special_numbers/bell_numbers.py)
