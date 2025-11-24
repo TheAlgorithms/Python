@@ -777,6 +777,7 @@
     * [Bell Numbers](maths/special_numbers/bell_numbers.py)
     * [Carmichael Number](maths/special_numbers/carmichael_number.py)
     * [Catalan Number](maths/special_numbers/catalan_number.py)
+    * [Deficient Numbers](maths/special_numbers/deficient_numbers.py)
     * [Hamming Numbers](maths/special_numbers/hamming_numbers.py)
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
