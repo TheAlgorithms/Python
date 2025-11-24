@@ -37,4 +37,3 @@ def double_linear_search(array: list[int], search_item: int) -> int:
 
 if __name__ == "__main__":
     print(double_linear_search(list(range(100)), 40))
-
