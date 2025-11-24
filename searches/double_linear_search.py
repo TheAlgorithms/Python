@@ -18,6 +18,8 @@ def double_linear_search(array: list[int], search_item: int) -> int:
     -1
     >>> double_linear_search([1, 5, 5, 10], 10)
     3
+        >>> double_linear_search([], 1)  # Empty array edge case
+            -1
     """
     # define the start and end index of the given array
     start_ind, end_ind = 0, len(array) - 1
@@ -35,3 +37,4 @@ def double_linear_search(array: list[int], search_item: int) -> int:
 
 if __name__ == "__main__":
     print(double_linear_search(list(range(100)), 40))
+
