@@ -21,7 +21,7 @@ def capitalize(sentence: str) -> str:
     # Find the first alphabetic character and capitalize it
     for idx, char in enumerate(sentence):
         if char.isalpha():
-            return sentence[:idx] + char.upper() + sentence[idx+1:]
+            return sentence[:idx] + char.upper() + sentence[idx + 1 :]
 
     # If no alphabetic character exists, return the original string
     return sentence
