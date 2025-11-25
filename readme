@@ -1,0 +1,11 @@
+This is a simple beginner-friendly Python project that sweeps a subnet and shows which IP addresses respond to a ping request.
+
+## ✨ Features
+- Works on Windows, Linux, and macOS
+- Very easy for beginners to understand
+- Scans IPs from `.1` to `.254`
+- No external libraries required
+
+## 🚀 How to Run
+```bash
+python ip.py
