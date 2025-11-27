@@ -105,6 +105,3 @@ if __name__ == "__main__":
     narcissistic_numbers = find_narcissistic_numbers(10000)
     print(f"Found {len(narcissistic_numbers)} narcissistic numbers:")
     print(narcissistic_numbers)
-
-
-
