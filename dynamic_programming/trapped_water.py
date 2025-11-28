@@ -34,23 +34,24 @@ def trapped_rainwater(heights: tuple[int, ...]) -> int:
         return 0
     if any(h < 0 for h in heights):
         raise ValueError("No height can be negative")
-    left,right=0,len(heights)-1
-    leftmax,rightmax=0,0
-    water=0
-    while left <right:
+    left, right = 0, len(heights) - 1
+    leftmax, rightmax = 0, 0
+    water = 0
+    while left < right:
         if heights[left] < heights[right]:
             if heights[left] >= leftmax:
-                leftmax=heights[left]
+                leftmax = heights[left]
             else:
-                water+=leftmax - heights[left]
-            left+=1
+                water += leftmax - heights[left]
+            left += 1
         else:
             if heights[right] >= rightmax:
-                rightmax=heights[right]
+                rightmax = heights[right]
             else:
-                water+=rightmax - heights[right]
-            right-=1
+                water += rightmax - heights[right]
+            right -= 1
     return water
+
 
 if __name__ == "__main__":
     import doctest
