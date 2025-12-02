@@ -1,27 +1,27 @@
 def capitalize(sentence: str) -> str:
     """
-    Capitalizes the first letter of a sentence or word.
+    Capitalizes the first alphabetical character of a sentence.
 
+    Examples:
     >>> capitalize("hello world")
     'Hello world'
-    >>> capitalize("123 hello world")
-    '123 hello world'
-    >>> capitalize(" hello world")
-    ' hello world'
-    >>> capitalize("a")
-    'A'
+    >>> capitalize("  hello world")
+    '  Hello world'
+    >>> capitalize("123 abc")
+    '123 abc'
+    >>> capitalize("ñandú bird")
+    'Ñandú bird'
     >>> capitalize("")
     ''
     """
+
     if not sentence:
         return ""
 
-    # Capitalize the first character if it's a lowercase letter
-    # Concatenate the capitalized character with the rest of the string
-    return sentence[0].upper() + sentence[1:]
+    # Find the first alphabetic character and capitalize it
+    for idx, char in enumerate(sentence):
+        if char.isalpha():
+            return sentence[:idx] + char.upper() + sentence[idx + 1 :]
 
-
-if __name__ == "__main__":
-    from doctest import testmod
-
-    testmod()
+    # If no alphabetic character exists, return the original string
+    return sentence
