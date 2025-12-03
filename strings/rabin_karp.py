@@ -106,4 +106,3 @@ def rabin_karp_multi(text: str, patterns: Iterable[str]) -> Dict[str, List[int]]
                 h = (h * BASE + ord(text[i + length])) % MOD
 
     return result
-
