@@ -6,7 +6,20 @@ def binary_xor(a: int, b: int) -> str:
     Take in 2 integers, convert them to binary,
     return a binary number that is the
     result of a binary xor operation on the integers provided.
-
+    The XOR operation compares each bit position of two numbers. The result has a 1 bit
+    only when the input bits are DIFFERENT (one is 1 and the other is 0);
+    the result is 0 when both input bits are the same (both 0 or both 1).
+    Algorithm:
+    1. Convert both numbers to binary representation
+    2. Pad shorter binary string with leading zeros
+    3. For each bit position, output 1 if input bits are different
+    4. Output 0 if input bits are the same
+    5. Return the result as a binary string
+    Example: 25 (0b11001) XOR 32 (0b100000)
+    Position: 5 4 3 2 1 0
+    25:       0 1 1 0 0 1
+    32:       1 0 0 0 0 0
+    Result:   1 1 1 0 0 1 = 57 (all positions have different bits)
     >>> binary_xor(25, 32)
     '0b111001'
     >>> binary_xor(37, 50)

@@ -2,6 +2,15 @@ def binary_count_setbits(a: int) -> int:
     """
     Take in 1 integer, return a number that is
     the number of 1's in binary representation of that number.
+    Counts the number of set bits (1's) in the binary representation by converting
+    the number to binary and counting occurrences of '1'.
+    Algorithm:
+    1. Convert the number to binary string representation
+    2. Count the number of '1' characters in the binary string
+    3. Return the count
+    Example: 25 in binary is 0b11001
+    - Binary representation: 11001
+    - Count of 1's: 3
 
     >>> binary_count_setbits(25)
     3
