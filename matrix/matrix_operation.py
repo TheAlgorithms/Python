@@ -148,9 +148,7 @@ def permanent(matrix: list[list[int]]) -> Any:
     if len(matrix) == 1:
         return matrix[0][0]
 
-    return sum(
-        x * permanent(minor(matrix, 0, i)) for i, x in enumerate(matrix[0])
-    )
+    return sum(x * permanent(minor(matrix, 0, i)) for i, x in enumerate(matrix[0]))
 
 
 def inverse(matrix: list[list[int]]) -> list[list[float]] | None:
