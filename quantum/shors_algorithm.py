@@ -75,10 +75,7 @@ def is_prime(n: int) -> bool:
         return True
     if n % 2 == 0:
         return False
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
-        if n % i == 0:
-            return False
-    return True
+    return all(n % i != 0 for i in range(3, int(math.sqrt(n)) + 1, 2))
 
 
 def is_perfect_power(n: int) -> tuple[int, int] | None:
@@ -463,7 +460,7 @@ def factor_with_explanation(n: int) -> None:
         print("  - Successfully found factors!")
         print()
         print("=" * 60)
-        print(f"RESULT: {n} = {factors[0]} × {factors[1]}")
+        print(f"RESULT: {n} = {factors[0]} * {factors[1]}")
         print("=" * 60)
     else:
         print("  - Failed to find factors")
@@ -491,7 +488,7 @@ if __name__ == "__main__":
         result = shors_algorithm(num)
         if result:
             p, q = result
-            print(f"{num:4d} = {p} × {q}")
+            print(f"{num:4d} = {p} * {q}")
         else:
             print(f"{num:4d} = Failed to factor")
 
