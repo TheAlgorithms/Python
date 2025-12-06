@@ -316,8 +316,7 @@ def shors_algorithm(n: int, max_attempts: int = 10) -> tuple[int, int] | None:
         raise ValueError("n is prime and cannot be factored")
 
     # Check if n is a perfect power
-    perfect_power = is_perfect_power(n)
-    if perfect_power is not None:
+    if (perfect_power := is_perfect_power(n)) is not None:
         base, _ = perfect_power
         return (base, n // base)
 
@@ -457,9 +456,7 @@ def factor_with_explanation(n: int) -> None:
     print("Step 2: Quantum period finding (simulated)")
     print("  - Selecting random base a...")
 
-    factors = shors_algorithm(n)
-
-    if factors:
+    if factors := shors_algorithm(n):
         print("  - Found suitable parameters")
         print()
         print("Step 3: Factor extraction")
