@@ -36,4 +36,5 @@ def is_automorphic(n: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
