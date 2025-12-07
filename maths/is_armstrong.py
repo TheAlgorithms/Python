@@ -11,10 +11,10 @@ def is_armstrong(n: int) -> bool:
 
     digits = list(map(int, str(n)))
     num_digits = len(digits)
-    return n == sum(d ** num_digits for d in digits)
+    return n == sum(d**num_digits for d in digits)
 
 
 if __name__ == "__main__":
     print(is_armstrong(153))  # True
     print(is_armstrong(370))  # True
-    print(is_armstrong(10))   # False
+    print(is_armstrong(10))  # False
