@@ -50,6 +50,10 @@ class NumberContainer:
         Traceback (most recent call last):
             ...
         TypeError: binary_search_delete() only accepts either a list, range or str
+        >>> NumberContainer().binary_search_delete([1,2,2,3], 2)
+        [1, 2, 3]
+        >>> NumberContainer().binary_search_delete([0,0,1,1,1], 1)
+        [0, 0, 1, 1]
         """
         if isinstance(array, (range, str)):
             array = list(array)
@@ -60,19 +64,27 @@ class NumberContainer:
 
         low = 0
         high = len(array) - 1
+        result_index = -1
 
+        # Find the first occurrence of `item`
         while low <= high:
             mid = (low + high) // 2
-            if array[mid] == item:
-                array.pop(mid)
-                return array
-            elif array[mid] < item:
+            if array[mid] < item:
                 low = mid + 1
-            else:
+            elif array[mid] > item:
                 high = mid - 1
-        raise ValueError(
-            "Either the item is not in the array or the array was unsorted"
-        )
+            else:
+                # Found the item, move left to find the first occurrence
+                result_index = mid
+                high = mid - 1
+
+        if result_index == -1:
+            raise ValueError(
+                "Either the item is not in the array or the array was unsorted"
+            )
+
+        array.pop(result_index)
+        return array
 
     def binary_search_insert(self, array: list | str | range, index: int) -> list[int]:
         """
@@ -95,6 +107,10 @@ class NumberContainer:
         Traceback (most recent call last):
             ...
         TypeError: binary_search_insert() only accepts either a list, range or str
+        >>> NumberContainer().binary_search_insert([1,2,2,3], 2)
+        [1, 2, 2, 2, 3]
+        >>> NumberContainer().binary_search_insert([0,0,1,1], 1)
+        [0, 0, 1, 1, 1]
         """
         if isinstance(array, (range, str)):
             array = list(array)
@@ -106,19 +122,14 @@ class NumberContainer:
         low = 0
         high = len(array) - 1
 
+        # Find the correct insertion position
         while low <= high:
             mid = (low + high) // 2
-            if array[mid] == index:
-                # If the item already exists in the array,
-                # insert it after the existing item
-                array.insert(mid + 1, index)
-                return array
-            elif array[mid] < index:
+            if array[mid] < index:
                 low = mid + 1
             else:
                 high = mid - 1
 
-        # If the item doesn't exist in the array, insert it at the appropriate position
         array.insert(low, index)
         return array
 
