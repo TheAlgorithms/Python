@@ -19,7 +19,7 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.3
+    rev: v0.14.7
     hooks:
       - id: ruff-check
       - id: ruff-format
@@ -32,7 +32,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.7.0
+    rev: v2.11.1
     hooks:
       - id: pyproject-fmt
 
@@ -50,7 +50,7 @@ repos:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
+    rev: v1.19.0
     hooks:
       - id: mypy
         args:
