@@ -272,12 +272,10 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
 
-   
-
     def lower_bound(sorted_collection: list[int], item: int) -> int:
         """
         Returns the index of the first element greater than or equal to the item.
-        
+
         Args:
             sorted_collection: The sorted list to search.
             item: The item to find the lower bound for.
@@ -296,12 +294,10 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
                 right = midpoint
         return left
 
-   
-
     def upper_bound(sorted_collection: list[int], item: int) -> int:
         """
         Returns the index of the first element strictly greater than the item.
-        
+
         Args:
             sorted_collection: The sorted list to search.
             item: The item to find the upper bound for.
