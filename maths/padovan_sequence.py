@@ -42,7 +42,9 @@ def padovan_sequence(n: int) -> int:
 
     return p_prev_1
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print("Doctests passed!")
