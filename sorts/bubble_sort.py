@@ -4,6 +4,11 @@ from typing import Any
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
+    Sort a list of numbers in ascending order using the bubble sort algorithm.
+    Bubble sort repeatedly steps through the list, compares adjacent elements, 
+    and swaps them if they are in the wrong order. This process continues until 
+    the list is fully sorted.
+
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
