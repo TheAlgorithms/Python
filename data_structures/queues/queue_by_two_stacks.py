@@ -1,13 +1,10 @@
 """Queue implementation using two stacks"""
 
 from collections.abc import Iterable
-from typing import Generic, TypeVar
-
-_T = TypeVar("_T")
 
 
-class QueueByTwoStacks(Generic[_T]):
-    def __init__(self, iterable: Iterable[_T] | None = None) -> None:
+class QueueByTwoStacks[T]:
+    def __init__(self, iterable: Iterable[T] | None = None) -> None:
         """
         >>> QueueByTwoStacks()
         Queue(())
@@ -16,8 +13,8 @@ class QueueByTwoStacks(Generic[_T]):
         >>> QueueByTwoStacks((i**2 for i in range(1, 4)))
         Queue((1, 4, 9))
         """
-        self._stack1: list[_T] = list(iterable or [])
-        self._stack2: list[_T] = []
+        self._stack1: list[T] = list(iterable or [])
+        self._stack2: list[T] = []
 
     def __len__(self) -> int:
         """
@@ -59,7 +56,7 @@ class QueueByTwoStacks(Generic[_T]):
         """
         return f"Queue({tuple(self._stack2[::-1] + self._stack1)})"
 
-    def put(self, item: _T) -> None:
+    def put(self, item: T) -> None:
         """
         Put `item` into the Queue
 
@@ -74,7 +71,7 @@ class QueueByTwoStacks(Generic[_T]):
 
         self._stack1.append(item)
 
-    def get(self) -> _T:
+    def get(self) -> T:
         """
         Get `item` from the Queue
 

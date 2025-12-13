@@ -115,7 +115,7 @@ class RadixNode:
         if not incoming_node:
             return False
         else:
-            matching_string, remaining_prefix, remaining_word = incoming_node.match(
+            _matching_string, remaining_prefix, remaining_word = incoming_node.match(
                 word
             )
             # If there is remaining prefix, the word can't be on the tree
@@ -144,7 +144,7 @@ class RadixNode:
         if not incoming_node:
             return False
         else:
-            matching_string, remaining_prefix, remaining_word = incoming_node.match(
+            _matching_string, remaining_prefix, remaining_word = incoming_node.match(
                 word
             )
             # If there is remaining prefix, the word can't be on the tree

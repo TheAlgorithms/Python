@@ -3,15 +3,16 @@
 name: directory_writer
 on: [push]
 jobs:
-  build:
+  directory_writer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
-          python-version: 3.x
+          python-version: 3.14
+          allow-prereleases: true
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

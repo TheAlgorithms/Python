@@ -33,7 +33,7 @@ def retroactive_resolution(
            [ 0.5]])
     """
 
-    rows, columns = np.shape(coefficients)
+    rows, _columns = np.shape(coefficients)
 
     x: NDArray[float64] = np.zeros((rows, 1), dtype=float)
     for row in reversed(range(rows)):

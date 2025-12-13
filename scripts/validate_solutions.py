@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+#     "pytest",
+# ]
+# ///
+
 import hashlib
 import importlib.util
 import json
@@ -6,8 +15,8 @@ import os
 import pathlib
 from types import ModuleType
 
+import httpx
 import pytest
-import requests
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
 PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
@@ -57,7 +66,7 @@ def added_solution_file_path() -> list[pathlib.Path]:
         "Accept": "application/vnd.github.v3+json",
         "Authorization": "token " + os.environ["GITHUB_TOKEN"],
     }
-    files = requests.get(get_files_url(), headers=headers, timeout=10).json()
+    files = httpx.get(get_files_url(), headers=headers, timeout=10).json()
     for file in files:
         filepath = pathlib.Path.cwd().joinpath(file["filename"])
         if (

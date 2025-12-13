@@ -12,6 +12,7 @@
   * [Combination Sum](backtracking/combination_sum.py)
   * [Crossword Puzzle Solver](backtracking/crossword_puzzle_solver.py)
   * [Generate Parentheses](backtracking/generate_parentheses.py)
+  * [Generate Parentheses Iterative](backtracking/generate_parentheses_iterative.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
@@ -40,6 +41,7 @@
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Excess 3 Code](bit_manipulation/excess_3_code.py)
   * [Find Previous Power Of Two](bit_manipulation/find_previous_power_of_two.py)
+  * [Find Unique Number](bit_manipulation/find_unique_number.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
   * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
@@ -127,15 +129,6 @@
   * [Vigenere Cipher](ciphers/vigenere_cipher.py)
   * [Xor Cipher](ciphers/xor_cipher.py)
 
-## Compression
-  * [Burrows Wheeler](compression/burrows_wheeler.py)
-  * [Huffman](compression/huffman.py)
-  * [Lempel Ziv](compression/lempel_ziv.py)
-  * [Lempel Ziv Decompress](compression/lempel_ziv_decompress.py)
-  * [Lz77](compression/lz77.py)
-  * [Peak Signal To Noise Ratio](compression/peak_signal_to_noise_ratio.py)
-  * [Run Length Encoding](compression/run_length_encoding.py)
-
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
@@ -180,6 +173,16 @@
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
+## Data Compression
+  * [Burrows Wheeler](data_compression/burrows_wheeler.py)
+  * [Coordinate Compression](data_compression/coordinate_compression.py)
+  * [Huffman](data_compression/huffman.py)
+  * [Lempel Ziv](data_compression/lempel_ziv.py)
+  * [Lempel Ziv Decompress](data_compression/lempel_ziv_decompress.py)
+  * [Lz77](data_compression/lz77.py)
+  * [Peak Signal To Noise Ratio](data_compression/peak_signal_to_noise_ratio.py)
+  * [Run Length Encoding](data_compression/run_length_encoding.py)
+
 ## Data Structures
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
@@ -192,6 +195,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Rotate Array](data_structures/arrays/rotate_array.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
@@ -442,6 +446,8 @@
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
+  * [Straight Line Depreciation](financial/straight_line_depreciation.py)
+  * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
   * [Julia Sets](fractals/julia_sets.py)
@@ -478,6 +484,7 @@
   * [Bi Directional Dijkstra](graphs/bi_directional_dijkstra.py)
   * [Bidirectional A Star](graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](graphs/bidirectional_breadth_first_search.py)
+  * [Bidirectional Search](graphs/bidirectional_search.py)
   * [Boruvka](graphs/boruvka.py)
   * [Breadth First Search](graphs/breadth_first_search.py)
   * [Breadth First Search 2](graphs/breadth_first_search_2.py)
@@ -570,6 +577,7 @@
   * [Gaussian Elimination](linear_algebra/gaussian_elimination.py)
   * [Jacobi Iteration Method](linear_algebra/jacobi_iteration_method.py)
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
+  * [Matrix Inversion](linear_algebra/matrix_inversion.py)
   * Src
     * [Conjugate Gradient](linear_algebra/src/conjugate_gradient.py)
     * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting.py)
@@ -616,6 +624,7 @@
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
+  * [T Stochastic Neighbour Embedding](machine_learning/t_stochastic_neighbour_embedding.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
@@ -718,6 +727,7 @@
     * [Secant Method](maths/numerical_analysis/secant_method.py)
     * [Simpson Rule](maths/numerical_analysis/simpson_rule.py)
     * [Square Root](maths/numerical_analysis/square_root.py)
+    * [Weierstrass Method](maths/numerical_analysis/weierstrass_method.py)
   * [Odd Sieve](maths/odd_sieve.py)
   * [Perfect Cube](maths/perfect_cube.py)
   * [Perfect Number](maths/perfect_number.py)
@@ -786,6 +796,7 @@
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
+  * [Test Factorial](maths/test_factorial.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Three Sum](maths/three_sum.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
@@ -881,6 +892,7 @@
   * [Centripetal Force](physics/centripetal_force.py)
   * [Coulombs Law](physics/coulombs_law.py)
   * [Doppler Frequency](physics/doppler_frequency.py)
+  * [Escape Velocity](physics/escape_velocity.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
@@ -895,6 +907,7 @@
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
+  * [Orbital Transfer Work](physics/orbital_transfer_work.py)
   * [Period Of Pendulum](physics/period_of_pendulum.py)
   * [Photoelectric Effect](physics/photoelectric_effect.py)
   * [Potential Energy](physics/potential_energy.py)
@@ -948,6 +961,7 @@
     * [Sol1](project_euler/problem_009/sol1.py)
     * [Sol2](project_euler/problem_009/sol2.py)
     * [Sol3](project_euler/problem_009/sol3.py)
+    * [Sol4](project_euler/problem_009/sol4.py)
   * Problem 010
     * [Sol1](project_euler/problem_010/sol1.py)
     * [Sol2](project_euler/problem_010/sol2.py)
@@ -1119,6 +1133,8 @@
     * [Sol1](project_euler/problem_092/sol1.py)
   * Problem 094
     * [Sol1](project_euler/problem_094/sol1.py)
+  * Problem 095
+    * [Sol1](project_euler/problem_095/sol1.py)
   * Problem 097
     * [Sol1](project_euler/problem_097/sol1.py)
   * Problem 099
@@ -1153,6 +1169,8 @@
     * [Sol1](project_euler/problem_120/sol1.py)
   * Problem 121
     * [Sol1](project_euler/problem_121/sol1.py)
+  * Problem 122
+    * [Sol1](project_euler/problem_122/sol1.py)
   * Problem 123
     * [Sol1](project_euler/problem_123/sol1.py)
   * Problem 125
@@ -1163,10 +1181,14 @@
     * [Sol1](project_euler/problem_131/sol1.py)
   * Problem 135
     * [Sol1](project_euler/problem_135/sol1.py)
+  * Problem 136
+    * [Sol1](project_euler/problem_136/sol1.py)
   * Problem 144
     * [Sol1](project_euler/problem_144/sol1.py)
   * Problem 145
     * [Sol1](project_euler/problem_145/sol1.py)
+  * Problem 164
+    * [Sol1](project_euler/problem_164/sol1.py)
   * Problem 173
     * [Sol1](project_euler/problem_173/sol1.py)
   * Problem 174
@@ -1177,6 +1199,8 @@
     * [Sol1](project_euler/problem_187/sol1.py)
   * Problem 188
     * [Sol1](project_euler/problem_188/sol1.py)
+  * Problem 190
+    * [Sol1](project_euler/problem_190/sol1.py)
   * Problem 191
     * [Sol1](project_euler/problem_191/sol1.py)
   * Problem 203
@@ -1191,6 +1215,8 @@
     * [Sol1](project_euler/problem_234/sol1.py)
   * Problem 301
     * [Sol1](project_euler/problem_301/sol1.py)
+  * Problem 345
+    * [Sol1](project_euler/problem_345/sol1.py)
   * Problem 493
     * [Sol1](project_euler/problem_493/sol1.py)
   * Problem 551
@@ -1246,6 +1272,7 @@
   * [Comb Sort](sorts/comb_sort.py)
   * [Counting Sort](sorts/counting_sort.py)
   * [Cycle Sort](sorts/cycle_sort.py)
+  * [Cyclic Sort](sorts/cyclic_sort.py)
   * [Double Sort](sorts/double_sort.py)
   * [Dutch National Flag Sort](sorts/dutch_national_flag_sort.py)
   * [Exchange Sort](sorts/exchange_sort.py)
@@ -1276,6 +1303,7 @@
   * [Shell Sort](sorts/shell_sort.py)
   * [Shrink Shell Sort](sorts/shrink_shell_sort.py)
   * [Slowsort](sorts/slowsort.py)
+  * [Stalin Sort](sorts/stalin_sort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
   * [Strand Sort](sorts/strand_sort.py)
   * [Tim Sort](sorts/tim_sort.py)

@@ -59,9 +59,9 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     Examples:
 
     >>> avg_speed_of_molecule(273, 0.028) # nitrogen at 273 K
-    454.3488755020387
+    454.3488755062257
     >>> avg_speed_of_molecule(300, 0.032) # oxygen at 300 K
-    445.52572733919885
+    445.5257273433045
     >>> avg_speed_of_molecule(-273, 0.028) # invalid temperature
     Traceback (most recent call last):
         ...
@@ -87,9 +87,9 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     Examples:
 
     >>> mps_speed_of_molecule(273, 0.028) # nitrogen at 273 K
-    402.65620701908966
+    402.65620702280023
     >>> mps_speed_of_molecule(300, 0.032) # oxygen at 300 K
-    394.836895549922
+    394.8368955535605
     >>> mps_speed_of_molecule(-273, 0.028) # invalid temperature
     Traceback (most recent call last):
         ...

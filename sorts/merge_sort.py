@@ -18,6 +18,7 @@ def merge_sort(collection: list) -> list:
     :return: The same collection ordered in ascending order.
 
     Time Complexity: O(n log n)
+    Space Complexity: O(n)
 
     Examples:
     >>> merge_sort([0, 5, 3, 2, 2])

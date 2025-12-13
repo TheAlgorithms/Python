@@ -4,9 +4,18 @@ and fetch from Amazon information about products of this name or category.  The 
 information will include title, URL, price, ratings, and the discount available.
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "httpx",
+#     "pandas",
+# ]
+# ///
+
 from itertools import zip_longest
 
-import requests
+import httpx
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
@@ -25,7 +34,7 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
         "Accept-Language": "en-US, en;q=0.5",
     }
     soup = BeautifulSoup(
-        requests.get(url, headers=header, timeout=10).text, features="lxml"
+        httpx.get(url, headers=header, timeout=10).text, features="lxml"
     )
     # Initialize a Pandas dataframe with the column titles
     data_frame = DataFrame(

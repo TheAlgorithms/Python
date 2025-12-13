@@ -1,8 +1,17 @@
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "fake-useragent",
+#     "httpx",
+# ]
+# ///
+
+import httpx
 from bs4 import BeautifulSoup, NavigableString, Tag
 from fake_useragent import UserAgent
 
-BASE_URL = "https://ww1.gogoanime2.org"
+BASE_URL = "https://ww7.gogoanime2.org"
 
 
 def search_scraper(anime_name: str) -> list:
@@ -25,9 +34,9 @@ def search_scraper(anime_name: str) -> list:
     """
 
     # concat the name to form the search url.
-    search_url = f"{BASE_URL}/search/{anime_name}"
+    search_url = f"{BASE_URL}/search?keyword={anime_name}"
 
-    response = requests.get(
+    response = httpx.get(
         search_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
     )  # request the url.
 
@@ -82,7 +91,7 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
     request_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = requests.get(
+    response = httpx.get(
         url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
@@ -133,7 +142,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     episode_page_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = requests.get(
+    response = httpx.get(
         url=episode_page_url, headers={"User-Agent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
