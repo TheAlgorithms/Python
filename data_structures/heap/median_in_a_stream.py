@@ -64,10 +64,10 @@ def median_in_a_stream(numbers: List[int]) -> List[int]:
     Find the median after each insertion in a stream of integers.
 
     Uses two heaps and follows the classic running median logic.
-    
+
     Reference:
     https://en.wikipedia.org/wiki/Median#Running_median
-    
+
     Args:
         numbers: List of integers
 
