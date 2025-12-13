@@ -253,7 +253,7 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     The collection must be sorted in ascending order; otherwise the result will be
     unpredictable. If the target appears multiple times, this function returns a
     list of all indexes where the target occurs. If the target is not found,
-    it returns an empty list.
+    this function returns an empty list.
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search for
