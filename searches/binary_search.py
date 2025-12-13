@@ -276,12 +276,9 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
         """
         Returns the index of the first element greater than or equal to the item.
 
-        Args:
-            sorted_collection: The sorted list to search.
-            item: The item to find the lower bound for.
-
-        Returns:
-            int: The index where the item can be inserted while maintaining order.
+        :param sorted_collection: The sorted list to search.
+        :param item: The item to find the lower bound for.
+        :return: The index where the item can be inserted while maintaining order.
         """
         left = 0
         right = len(sorted_collection)
@@ -298,12 +295,9 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
         """
         Returns the index of the first element strictly greater than the item.
 
-        Args:
-            sorted_collection: The sorted list to search.
-            item: The item to find the upper bound for.
-
-        Returns:
-            int: The index where the item can be inserted after all existing instances.
+        :param sorted_collection: The sorted list to search.
+        :param item: The item to find the upper bound for.
+        :return: The index where the item can be inserted after all existing instances.
         """
         left = 0
         right = len(sorted_collection)
