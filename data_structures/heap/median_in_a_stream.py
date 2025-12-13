@@ -1,5 +1,4 @@
 import heapq
-from typing import List
 
 
 def signum(a: int, b: int) -> int:
@@ -20,16 +19,15 @@ def signum(a: int, b: int) -> int:
 
 def call_median(
     element: int,
-    max_heap: List[int],
-    min_heap: List[int],
+    max_heap: list[int],
+    min_heap: list[int],
     median: int,
 ) -> int:
     """
-    Insert an element into heaps and update median.
+    Insert an element into heaps and update the median.
     """
     case = signum(len(max_heap), len(min_heap))
 
-    # Case 0: both heaps have same size
     if case == 0:
         if element > median:
             heapq.heappush(min_heap, element)
@@ -38,7 +36,6 @@ def call_median(
             heapq.heappush(max_heap, -element)
             median = -max_heap[0]
 
-    # Case 1: max heap has more elements
     elif case == 1:
         if element > median:
             heapq.heappush(min_heap, element)
@@ -47,7 +44,6 @@ def call_median(
             heapq.heappush(max_heap, -element)
         median = (-max_heap[0] + min_heap[0]) // 2
 
-    # Case -1: min heap has more elements
     else:
         if element > median:
             heapq.heappush(max_heap, -heapq.heappop(min_heap))
@@ -59,7 +55,7 @@ def call_median(
     return median
 
 
-def median_in_a_stream(numbers: List[int]) -> List[int]:
+def median_in_a_stream(numbers: list[int]) -> list[int]:
     """
     Find the median after each insertion in a stream of integers.
 
@@ -89,10 +85,10 @@ def median_in_a_stream(numbers: List[int]) -> List[int]:
     if not numbers:
         raise ValueError("Input list must not be empty")
 
-    max_heap: List[int] = []
-    min_heap: List[int] = []
+    max_heap: list[int] = []
+    min_heap: list[int] = []
     median = 0
-    result: List[int] = []
+    result: list[int] = []
 
     for element in numbers:
         median = call_median(element, max_heap, min_heap, median)
