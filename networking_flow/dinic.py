@@ -97,7 +97,7 @@ class Dinic:
     def max_flow(self, source: int, sink: int) -> int:
         """
         Computes the maximum flow from source to sink.
-        
+
         >>> dinic = Dinic(6)
         >>> dinic.add_edge(0, 1, 16)
         >>> dinic.add_edge(0, 2, 13)
