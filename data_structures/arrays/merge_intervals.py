@@ -1,6 +1,3 @@
-
-
-
 def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:
     """
     Merge all overlapping intervals.
