@@ -66,7 +66,9 @@ class RidgeRegression:
         n_samples = features.shape[0]
         return np.c_[np.ones(n_samples), features]
 
-    def fit(self, features: np.ndarray, target: np.ndarray, add_intercept: bool = True) -> None:
+    def fit(
+        self, features: np.ndarray, target: np.ndarray, add_intercept: bool = True
+    ) -> None:
         """Train the ridge regression model.
 
         Parameters
