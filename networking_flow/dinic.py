@@ -18,19 +18,31 @@ Reference:
 
 
 class Dinic:
-    def __init__(self, n: int):
+    """
+    Implements Dinic's Algorithm for finding the Maximum Flow in a flow network.
+    """
+
+    def __init__(self, n: int) -> None:
         """
         Initialize the Dinic algorithm with n nodes.
-        Nodes are 0-indexed.
+
+        Args:
+            n: Total number of nodes in the network. Nodes are 0-indexed.
         """
         self.n = n
-        self.graph = [[] for _ in range(n)]
-        self.level = []
+        self.graph: list[list[list[int]]] = [[] for _ in range(n)]
+        self.level: list[int] = []
 
     def add_edge(self, u: int, v: int, capacity: int) -> None:
         """
-        Adds a directed edge with a capacity.
-        Note: Stores indices to handle the residual edges efficiently.
+        Adds a directed edge with a specified capacity to the graph.
+        
+        Note: This stores indices to handle residual edges efficiently.
+
+        Args:
+            u: Source node index.
+            v: Destination node index.
+            capacity: Capacity of the edge.
         """
         # Forward edge: [v, capacity, index_of_reverse_edge]
         self.graph[u].append([v, capacity, len(self.graph[v])])
@@ -41,11 +53,19 @@ class Dinic:
         """
         Builds the Level Graph (L_G) using BFS.
         Corresponds to the INITIALIZE step in the Even-Itai refinement.
-        Returns True if the sink is reachable, False otherwise.
+
+        Args:
+            source: The source node index.
+            sink: The sink (target) node index.
+
+        Returns:
+            True if the sink is reachable from the source in the residual graph,
+            False otherwise.
         """
         self.level = [-1] * self.n
         self.level[source] = 0
-        # using list as queue to avoid importing collections.deque
+        # Using list as queue to avoid importing collections.deque
+        # to adhere to "no external imports" policy.
         queue = [source]
 
         while queue:
@@ -57,19 +77,20 @@ class Dinic:
 
         return self.level[sink] >= 0
 
-    def dfs(self, u: int, sink: int, flow: int, ptr: list) -> int:
+    def dfs(self, u: int, sink: int, flow: int, ptr: list[int]) -> int:
         """
-        Finds a blocking flow in the Level Graph.
+        Finds a blocking flow in the Level Graph using DFS.
         Combines the ADVANCE and RETREAT steps.
 
         Args:
             u: Current node.
             sink: Target node.
-            flow: Current flow bottleneck.
-            ptr: Current arc pointers (to implement 'Remove saturated edges').
+            flow: Current flow bottleneck along the path.
+            ptr: List of current arc pointers for each node (to implement 
+                 'Remove saturated edges' optimization).
 
         Returns:
-            The amount of flow pushed.
+            The amount of flow successfully pushed from u to sink.
         """
         if u == sink or flow == 0:
             return flow
@@ -98,19 +119,31 @@ class Dinic:
         """
         Computes the maximum flow from source to sink.
 
-        >>> dinic = Dinic(6)
-        >>> dinic.add_edge(0, 1, 16)
-        >>> dinic.add_edge(0, 2, 13)
-        >>> dinic.add_edge(1, 2, 10)
-        >>> dinic.add_edge(1, 3, 12)
-        >>> dinic.add_edge(2, 1, 4)
-        >>> dinic.add_edge(2, 4, 14)
-        >>> dinic.add_edge(3, 2, 9)
-        >>> dinic.add_edge(3, 5, 20)
-        >>> dinic.add_edge(4, 3, 7)
-        >>> dinic.add_edge(4, 5, 4)
-        >>> dinic.max_flow(0, 5)
-        23
+        Time Complexity:
+            - O(V^2 * E) for general networks.
+            - O(E * sqrt(V)) for unit networks (e.g., Bipartite Matching).
+
+        Args:
+            source: The source node index.
+            sink: The sink (target) node index.
+
+        Returns:
+            The maximum flow value.
+
+        Examples:
+            >>> dinic = Dinic(6)
+            >>> dinic.add_edge(0, 1, 16)
+            >>> dinic.add_edge(0, 2, 13)
+            >>> dinic.add_edge(1, 2, 10)
+            >>> dinic.add_edge(1, 3, 12)
+            >>> dinic.add_edge(2, 1, 4)
+            >>> dinic.add_edge(2, 4, 14)
+            >>> dinic.add_edge(3, 2, 9)
+            >>> dinic.add_edge(3, 5, 20)
+            >>> dinic.add_edge(4, 3, 7)
+            >>> dinic.add_edge(4, 5, 4)
+            >>> dinic.max_flow(0, 5)
+            23
         """
         max_f = 0
         # While we can build a Level Graph (source can reach sink)
