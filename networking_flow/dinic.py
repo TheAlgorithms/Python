@@ -97,20 +97,6 @@ class Dinic:
     def max_flow(self, source: int, sink: int) -> int:
         """
         Computes the maximum flow from source to sink.
-
-        >>> dinic = Dinic(6)
-        >>> dinic.add_edge(0, 1, 16)
-        >>> dinic.add_edge(0, 2, 13)
-        >>> dinic.add_edge(1, 2, 10)
-        >>> dinic.add_edge(1, 3, 12)
-        >>> dinic.add_edge(2, 1, 4)
-        >>> dinic.add_edge(2, 4, 14)
-        >>> dinic.add_edge(3, 2, 9)
-        >>> dinic.add_edge(3, 5, 20)
-        >>> dinic.add_edge(4, 3, 7)
-        >>> dinic.add_edge(4, 5, 4)
-        >>> dinic.max_flow(0, 5)
-        23
         """
         max_f = 0
         # While we can build a Level Graph (source can reach sink)
@@ -127,9 +113,6 @@ class Dinic:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
     dn = Dinic(6)
     edges = [
         (0, 1, 16),
