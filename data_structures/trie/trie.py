@@ -50,7 +50,7 @@ class Trie:
         True
         >>> trie.search("hell")
         False
-        >>> trie.starts_with("hel")
+        >>> trie.starts_with("hel")  # noqa: codespell
         True
     """
 
@@ -252,7 +252,7 @@ class Trie:
             >>> trie = Trie()
             >>> trie.insert("hello")
             >>> trie.insert("help")
-            >>> trie.starts_with("hel")
+            >>> trie.starts_with("hel")  # noqa: codespell
             True
             >>> trie.starts_with("hello")
             True
