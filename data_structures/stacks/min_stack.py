@@ -28,6 +28,7 @@ Space Complexity:
 - O(n) extra space for the min_stack
 """
 
+
 class MinStack:
     def __init__(self):
         """
@@ -86,5 +87,5 @@ if __name__ == "__main__":
     min_stack.push(-3)
     print("Current Min:", min_stack.getMin())  # Output: -3
     min_stack.pop()
-    print("Top Element:", min_stack.top())     # Output: 0
+    print("Top Element:", min_stack.top())  # Output: 0
     print("Current Min:", min_stack.getMin())  # Output: -2
