@@ -58,7 +58,7 @@ def find_narcissistic_numbers(limit: int) -> list[int]:
 
     narcissistic_nums = []
 
-    # Memoization: cache[num_digits][digit] = digit^num_digits
+    # Memoization: cache[(power, digit)] = digit^power
     # This avoids recalculating the same power for different numbers
     power_cache: dict[tuple[int, int], int] = {}
 
