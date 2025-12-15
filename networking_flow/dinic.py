@@ -113,7 +113,6 @@ class Dinic:
 
 
 if __name__ == "__main__":
-
     dn = Dinic(6)
     edges = [
         (0, 1, 16),
