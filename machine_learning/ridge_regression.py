@@ -26,9 +26,10 @@ array([ 8., 10.])
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Optional
+
 import httpx
 import numpy as np
-from typing import Optional
 
 
 @dataclass
@@ -49,7 +50,7 @@ class RidgeRegression:
     learning_rate: float = 0.01
     lambda_: float = 0.1
     epochs: int = 1000
-    weights: Optional[np.ndarray] = None
+    weights: np.ndarray | None = None
 
     def __post_init__(self) -> None:
         if self.learning_rate <= 0:
@@ -87,18 +88,18 @@ class RidgeRegression:
         if features.shape[0] != target.shape[0]:
             raise ValueError("Number of samples must match")
 
-        X = features if not add_intercept else self._add_intercept(features)
-        n_samples, n_features = X.shape
+        x = features if not add_intercept else self._add_intercept(features)
+        n_samples, n_features = x.shape
 
         # initialize weights (including bias as weights[0])
         self.weights = np.zeros(n_features)
 
         for _ in range(self.epochs):
-            preds = X @ self.weights
+            preds = x @ self.weights
             errors = preds - target
 
             # gradient without regularization
-            grad = (X.T @ errors) / n_samples
+            grad = (x.T @ errors) / n_samples
 
             # add L2 regularization term (do not regularize bias term)
             reg = np.concatenate(([0.0], 2 * self.lambda_ * self.weights[1:]))
@@ -118,8 +119,8 @@ class RidgeRegression:
         """
         if self.weights is None:
             raise ValueError("Model is not trained")
-        X = features if not add_intercept else self._add_intercept(features)
-        return X @ self.weights
+        x = features if not add_intercept else self._add_intercept(features)
+        return x @ self.weights
 
 
 def mean_absolute_error(predicted: np.ndarray, actual: np.ndarray) -> float:
@@ -146,16 +147,15 @@ def collect_dataset() -> np.matrix:
 
 def main() -> None:
     data = collect_dataset()
-    n = data.shape[0]
 
     # features and target (same layout as linear_regression.py)
-    X = np.c_[data[:, 0].astype(float)]
+    x = np.c_[data[:, 0].astype(float)]
     y = np.ravel(data[:, 1].astype(float))
 
     model = RidgeRegression(learning_rate=0.0002, lambda_=0.01, epochs=50000)
-    model.fit(X, y)
+    model.fit(x, y)
 
-    preds = model.predict(X)
+    preds = model.predict(x)
     mae = mean_absolute_error(preds, y)
 
     print("Learned weights:")
