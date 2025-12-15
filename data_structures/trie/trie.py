@@ -532,15 +532,9 @@ if __name__ == "__main__":
     trie.delete("apple")
     print(f"  After deletion - searching 'apple': {trie.search('apple')}")
     app_exists = trie.search("application")
-    print(
-        f"  Checking if 'application' still exists: {app_exists} "
-        "(should be True)"
-    )
+    print(f"  Checking if 'application' still exists: {app_exists} (should be True)")
     app_prefix = trie.starts_with("app")
-    print(
-        f"  Checking if prefix 'app' still matches: {app_prefix} "
-        "(should be True)"
-    )
+    print(f"  Checking if prefix 'app' still matches: {app_prefix} (should be True)")
 
     # Test 10: Verify final state
     print("\n[TEST 10] Final state - All remaining words")
