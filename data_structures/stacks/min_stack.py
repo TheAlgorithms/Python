@@ -70,5 +70,5 @@ if __name__ == "__main__":
     min_stack.push(-3)
     print("Current Min:", min_stack.get_min())  # Output: -3
     min_stack.pop()
-    print("Top Element:", min_stack.top())      # Output: 0
+    print("Top Element:", min_stack.top())  # Output: 0
     print("Current Min:", min_stack.get_min())  # Output: -2
