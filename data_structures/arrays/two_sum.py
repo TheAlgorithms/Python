@@ -51,3 +51,5 @@ def two_sum(array: list[int], target: int) -> list[int]:
             return [dictionary[array[i]], i]
 
         dictionary[complement] = i
+
+    raise ValueError("No two sum solution exists")
