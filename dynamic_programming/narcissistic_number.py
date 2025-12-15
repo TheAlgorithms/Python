@@ -78,12 +78,12 @@ def find_narcissistic_numbers(limit: int) -> list[int]:
         num_digits = len(str(number))
 
         # Calculate sum of powered digits using memoized powers
-        temp = number
+        remaining = number
         digit_sum = 0
-        while temp > 0:
-            digit = temp % 10
+        while remaining > 0:
+            digit = remaining % 10
             digit_sum += get_digit_power(digit, num_digits)
-            temp //= 10
+            remaining //= 10
 
         # Check if narcissistic
         if digit_sum == number:
