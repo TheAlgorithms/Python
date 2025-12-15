@@ -70,7 +70,6 @@ def find_narcissistic_numbers(limit: int) -> list[int]:
 
     # Check each number up to the limit
     for number in range(limit):
-
         # Count digits
         num_digits = len(str(number))
 
