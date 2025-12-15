@@ -43,12 +43,30 @@ class Node:
 
 
 class Trie:
-    """Trie (Prefix Tree) data structure for efficient string storage and retrieval."""
+    """Trie (Prefix Tree) data structure for efficient string storage and retrieval.
+
+    Examples:
+        >>> trie = Trie()
+        >>> trie.insert("hello")
+        >>> trie.search("hello")
+        True
+        >>> trie.search("hell")
+        False
+        >>> trie.starts_with("hel")
+        True
+    """
 
     def __init__(self):
         """Initialize Trie with an empty root node.
 
         The root node doesn't represent any character and serves as the entry point.
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.root is not None
+            True
+            >>> isinstance(trie.root, Node)
+            True
         """
         self.root = Node()
 
@@ -67,6 +85,20 @@ class Trie:
                - If character doesn't exist as a child, create a new node
                - Move to that child node
             3. Mark the final node as end of word
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("cat")
+            >>> trie.search("cat")
+            True
+            >>> trie.insert("car")
+            >>> trie.search("car")
+            True
+            >>> trie.search("ca")
+            False
+            >>> trie.insert("ca")
+            >>> trie.search("ca")
+            True
         """
         current_node = self.root
         # Traverse through each character in the word
@@ -97,6 +129,18 @@ class Trie:
                - If character doesn't exist as a child, word doesn't exist
                - Move to that child node
             3. Return whether the final node is marked as end of word
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("apple")
+            >>> trie.search("apple")
+            True
+            >>> trie.search("app")
+            False
+            >>> trie.search("apples")
+            False
+            >>> trie.search("orange")
+            False
         """
         current_node = self.root
         # Traverse through each character in the word
@@ -123,6 +167,25 @@ class Trie:
             2. Unmark the end-of-word flag
             3. Remove nodes with no children (cleanup unused nodes)
             4. Only removes nodes that don't form other words
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("cat")
+            >>> trie.insert("car")
+            >>> trie.search("cat")
+            True
+            >>> trie.delete("cat")
+            >>> trie.search("cat")
+            False
+            >>> trie.search("car")
+            True
+            >>> trie.insert("apple")
+            >>> trie.insert("app")
+            >>> trie.delete("app")
+            >>> trie.search("app")
+            False
+            >>> trie.search("apple")
+            True
         """
 
         def _delete(node: Node, word: str, index: int) -> bool:
@@ -186,6 +249,19 @@ class Trie:
                - If character doesn't exist as a child, prefix doesn't exist
                - Move to that child node
             3. If we successfully traverse all characters, prefix exists
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("hello")
+            >>> trie.insert("help")
+            >>> trie.starts_with("hel")
+            True
+            >>> trie.starts_with("hello")
+            True
+            >>> trie.starts_with("hey")
+            False
+            >>> trie.starts_with("h")
+            True
         """
         current_node = self.root
         # Traverse through each character in the prefix
@@ -214,6 +290,19 @@ class Trie:
                - Node is not marked as end of word (prevents prefixes)
             3. Stop when multiple paths exist or word ends
             4. Return the prefix built from traversed characters
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("flower")
+            >>> trie.insert("flow")
+            >>> trie.insert("flight")
+            >>> trie.longest_common_prefix()
+            'fl'
+            >>> trie2 = Trie()
+            >>> trie2.insert("dog")
+            >>> trie2.insert("cat")
+            >>> trie2.longest_common_prefix()
+            ''
         """
         prefix = []
         current_node = self.root
@@ -244,6 +333,13 @@ class Trie:
             3. For each node:
                - If marked as end of word, print the current word
                - Recursively visit all children
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("a")
+            >>> trie.insert("b")
+            >>> trie.print_all_words()
+            a b 
         """
 
         def _print_words(node: Node, current_word: str) -> None:
@@ -281,6 +377,23 @@ class Trie:
             2. If prefix doesn't exist, return empty list
             3. Use DFS from that node to find all words starting with prefix
             4. Stop once limit is reached
+
+        Examples:
+            >>> trie = Trie()
+            >>> trie.insert("apple")
+            >>> trie.insert("app")
+            >>> trie.insert("apply")
+            >>> trie.insert("apricot")
+            >>> results = trie.autocomplete("app", 3)
+            >>> len(results)
+            3
+            >>> "apple" in results
+            True
+            >>> results2 = trie.autocomplete("ap", 5)
+            >>> len(results2) >= 3
+            True
+            >>> trie.autocomplete("xyz", 5)
+            []
         """
         results = []
         current_node = self.root
