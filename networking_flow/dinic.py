@@ -36,7 +36,7 @@ class Dinic:
     def add_edge(self, u: int, v: int, capacity: int) -> None:
         """
         Adds a directed edge with a specified capacity to the graph.
-        
+
         Note: This stores indices to handle residual edges efficiently.
 
         Args:
@@ -86,7 +86,7 @@ class Dinic:
             u: Current node.
             sink: Target node.
             flow: Current flow bottleneck along the path.
-            ptr: List of current arc pointers for each node (to implement 
+            ptr: List of current arc pointers for each node (to implement
                  'Remove saturated edges' optimization).
 
         Returns:
