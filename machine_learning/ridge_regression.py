@@ -13,10 +13,10 @@ Features:
 Examples
 --------
 >>> import numpy as np
->>> X = np.array([[1.0], [2.0], [3.0]])
+>>> x = np.array([[1.0], [2.0], [3.0]])
 >>> y = np.array([2.0, 4.0, 6.0])
 >>> model = RidgeRegression(learning_rate=0.1, lambda_=0.0, epochs=2000)
->>> model.fit(X, y)
+>>> model.fit(x, y)
 >>> np.allclose(model.weights, [0.0, 2.0], atol=1e-2)
 True
 >>> model.predict(np.array([[4.0], [5.0]]))
@@ -26,7 +26,6 @@ array([ 8., 10.])
 from __future__ import annotations
 
 from dataclasses import dataclass
-
 
 import httpx
 import numpy as np
@@ -165,6 +164,7 @@ def main() -> None:
     mae = mean_absolute_error(preds, y)
 
     print("Learned weights:")
+    assert model.weights is not None
     for i, w in enumerate(model.weights):
         print(f"w[{i}] = {w:.6f}")
     print(f"MAE on training data: {mae:.6f}")
