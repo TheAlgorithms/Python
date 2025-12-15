@@ -1,4 +1,4 @@
-def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:
+def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
     """
     Merge all overlapping intervals.
 
@@ -37,7 +37,7 @@ def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:
     # Sort intervals based on the start time
     intervals.sort(key=lambda interval: interval[0])
 
-    merged: List[List[int]] = [intervals[0]]
+    merged: list[list[int]] = [intervals[0]]
 
     for current in intervals[1:]:
         last = merged[-1]
