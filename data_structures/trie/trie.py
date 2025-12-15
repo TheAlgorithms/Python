@@ -339,7 +339,7 @@ class Trie:
             >>> trie.insert("a")
             >>> trie.insert("b")
             >>> trie.print_all_words()
-            a b 
+            a b
         """
 
         def _print_words(node: Node, current_word: str) -> None:
