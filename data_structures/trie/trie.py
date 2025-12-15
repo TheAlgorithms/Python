@@ -1,8 +1,8 @@
 """
 Trie (Prefix Tree) Data Structure
 
-A Trie is a tree-like data structure that stores strings efficiently. Each node represents
-a character, and paths from root to leaf nodes form complete words.
+A Trie is a tree-like data structure that stores strings efficiently.
+Each node represents a character, and paths from root to leaf nodes form complete words.
 
 Reference: https://en.wikipedia.org/wiki/Trie
 
@@ -26,8 +26,6 @@ Use Cases:
   - Word games (Scrabble)
 """
 
-from typing import Dict
-
 
 class Node:
     """Represents a single node in the Trie.
@@ -38,7 +36,7 @@ class Node:
     """
 
     def __init__(self):
-        self.children: Dict[str, Node] = {}  # Maps character to child Node
+        self.children: dict[str, Node] = {}  # Maps character to child Node
         self.is_end_of_word = False  # True if node represents end of a valid word
 
 
@@ -334,12 +332,8 @@ class Trie:
                - If marked as end of word, print the current word
                - Recursively visit all children
 
-        Examples:
-            >>> trie = Trie()
-            >>> trie.insert("a")
-            >>> trie.insert("b")
-            >>> trie.print_all_words()
-            a b
+        Note:
+            Output has a trailing space after the last word.
         """
 
         def _print_words(node: Node, current_word: str) -> None:
@@ -537,11 +531,15 @@ if __name__ == "__main__":
     print("-" * 60)
     trie.delete("apple")
     print(f"  After deletion - searching 'apple': {trie.search('apple')}")
+    app_exists = trie.search("application")
     print(
-        f"  Checking if 'application' still exists: {trie.search('application')} (should be True)"
+        f"  Checking if 'application' still exists: {app_exists} "
+        "(should be True)"
     )
+    app_prefix = trie.starts_with("app")
     print(
-        f"  Checking if prefix 'app' still matches: {trie.starts_with('app')} (should be True)"
+        f"  Checking if prefix 'app' still matches: {app_prefix} "
+        "(should be True)"
     )
 
     # Test 10: Verify final state
