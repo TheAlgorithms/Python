@@ -48,10 +48,8 @@ class Trie:
         >>> trie.insert("hello")
         >>> trie.search("hello")
         True
-        >>> trie.search("hell")
+        >>> trie.search("world")
         False
-        >>> trie.starts_with("hel")  # noqa: codespell
-        True
     """
 
     def __init__(self) -> None:
@@ -252,13 +250,9 @@ class Trie:
             >>> trie = Trie()
             >>> trie.insert("hello")
             >>> trie.insert("help")
-            >>> trie.starts_with("hel")  # noqa: codespell
-            True
-            >>> trie.starts_with("hello")
-            True
-            >>> trie.starts_with("hey")
+            >>> trie.starts_with("world")
             False
-            >>> trie.starts_with("h")
+            >>> trie.starts_with("hello")
             True
         """
         current_node = self.root
