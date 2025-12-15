@@ -26,7 +26,7 @@ array([ 8., 10.])
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
+
 
 import httpx
 import numpy as np
@@ -62,10 +62,11 @@ class RidgeRegression:
 
     @staticmethod
     def _add_intercept(features: np.ndarray) -> np.ndarray:
-        if features.ndim != 2:
+        arr = np.asarray(features, dtype=float)
+        if arr.ndim != 2:
             raise ValueError("features must be a 2D array")
-        n_samples = features.shape[0]
-        return np.c_[np.ones(n_samples), features]
+        n_samples = arr.shape[0]
+        return np.c_[np.ones(n_samples), arr]
 
     def fit(
         self, features: np.ndarray, target: np.ndarray, add_intercept: bool = True
@@ -81,6 +82,9 @@ class RidgeRegression:
         add_intercept: bool
             If True the model will add a bias column of ones to `features`.
         """
+        features = np.asarray(features, dtype=float)
+        target = np.asarray(target, dtype=float)
+
         if features.ndim != 2:
             raise ValueError("features must be a 2D array")
         if target.ndim != 1:
@@ -119,6 +123,8 @@ class RidgeRegression:
         """
         if self.weights is None:
             raise ValueError("Model is not trained")
+
+        features = np.asarray(features, dtype=float)
         x = features if not add_intercept else self._add_intercept(features)
         return x @ self.weights
 

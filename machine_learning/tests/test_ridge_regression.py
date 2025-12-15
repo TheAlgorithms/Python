@@ -49,3 +49,17 @@ def test_input_validation():
     model = RidgeRegression()
     with pytest.raises(ValueError):
         model.fit(np.array([1, 2, 3]), np.array([1, 2, 3]))
+
+
+def test_accepts_numpy_matrix():
+    from machine_learning.ridge_regression import collect_dataset
+
+    data = collect_dataset()
+    X = np.c_[data[:, 0].astype(float)]  # numpy.matrix
+    y = np.ravel(data[:, 1].astype(float))
+
+    model = RidgeRegression(learning_rate=0.0002, lambda_=0.01, epochs=500)
+    model.fit(X, y)
+    preds = model.predict(X)
+    assert preds.shape == (y.shape[0],)
+    assert mean_absolute_error(preds, y) >= 0.0
