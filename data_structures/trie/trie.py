@@ -4,6 +4,8 @@ Trie (Prefix Tree) Data Structure
 A Trie is a tree-like data structure that stores strings efficiently. Each node represents
 a character, and paths from root to leaf nodes form complete words.
 
+Reference: https://en.wikipedia.org/wiki/Trie
+
 Time Complexity:
   - Insert: O(m) where m is the length of the word
   - Search: O(m) where m is the length of the word
