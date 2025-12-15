@@ -11,7 +11,7 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
 
     Returns:
     List[List[int]]: A list of merged non-overlapping intervals.
-    
+
       Edge Cases Handled:
     - Empty list: returns []
     - Single interval: returns the interval itself
@@ -19,7 +19,7 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
     - Fully overlapping intervals
     - Invalid intervals (e.g., [[]] or intervals not having exactly 2 integers) raise ValueError
 
-    
+
     Examples:
     >>> merge_intervals([[1, 3], [2, 6], [8, 10], [15, 18]])
     [[1, 6], [8, 10], [15, 18]]
@@ -34,7 +34,7 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
 
     Time Complexity:
     O(n log n) – sorting the intervals, where n is the number of intervals.
-    
+
     Space Complexity:
     O(n) – storing the merged intervals.
     """
@@ -43,7 +43,9 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
         return []
     for interval in intervals:
         if len(interval) != 2:
-            raise ValueError(f"Each interval must have exactly 2 integers, got {interval}")
+            raise ValueError(
+                f"Each interval must have exactly 2 integers, got {interval}"
+            )
     # Sort intervals based on the start time
     intervals.sort(key=lambda interval: interval[0])
 
