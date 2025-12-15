@@ -62,4 +62,3 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
             merged.append(current)
 
     return merged
-
