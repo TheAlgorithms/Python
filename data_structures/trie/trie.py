@@ -35,7 +35,7 @@ class Node:
     - is_end_of_word: Boolean flag indicating if this node marks the end of a valid word
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.children: dict[str, Node] = {}  # Maps character to child Node
         self.is_end_of_word = False  # True if node represents end of a valid word
 
@@ -54,7 +54,7 @@ class Trie:
         True
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize Trie with an empty root node.
 
         The root node doesn't represent any character and serves as the entry point.
@@ -389,7 +389,7 @@ class Trie:
             >>> trie.autocomplete("xyz", 5)
             []
         """
-        results = []
+        results: list[str] = []
         current_node = self.root
 
         # Traverse to the end of the prefix
