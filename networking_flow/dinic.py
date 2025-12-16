@@ -152,7 +152,7 @@ class Dinic:
             # This implements the "Delete v" optimization efficiently
             ptr = [0] * self.n
             while True:
-                pushed = self.dfs(source, sink, int(float("inf")), ptr)
+                pushed = self.dfs(source, sink, 10**10, ptr)
                 if pushed == 0:
                     break
                 max_f += pushed
