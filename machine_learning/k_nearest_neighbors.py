@@ -1,5 +1,5 @@
 """
-k-Nearest Neighbours (kNN) is a simple non-parametric supervised learning
+k-Nearest Neighbors (kNN) is a simple non-parametric supervised learning
 algorithm used for classification. Given some labelled training data, a given
 point is classified using its k nearest neighbours according to some distance
 metric. The most commonly occurring label among the neighbours becomes the label
