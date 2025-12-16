@@ -33,6 +33,30 @@ def compute_transform_tables(
 
     >>> compute_transform_tables("", "", 1, 2, 3, 3)
     ([[0]], [['0']])
+
+    >>> costs, ops = compute_transform_tables("a", "b", 1, 1, 1, 1)
+    >>> costs[1][1]
+    1
+    >>> ops[1][1]
+    'Rab'
+
+    >>> costs, ops = compute_transform_tables("ab", "ab", 1, 2, 3, 4)
+    >>> costs[2][2]
+    2
+
+    >>> costs, ops = compute_transform_tables("", "abc", 1, 2, 3, 1)
+    >>> costs[0][3]
+    3
+
+    >>> costs, ops = compute_transform_tables("abc", "", 1, 2, 1, 3)
+    >>> costs[3][0]
+    3
+
+    >>> costs, ops = compute_transform_tables("x", "x", 1, 5, 5, 5)
+    >>> costs[1][1]
+    1
+    >>> ops[1][1]
+    'Cx'
     """
     source_seq = list(source_string)
     destination_seq = list(destination_string)
@@ -99,6 +123,28 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> y2 = len(ops2[0]) - 1
     >>> assemble_transformation(ops2, x2, y2)
     ['C1', 'I2', 'R23']
+
+    >>> ops3 = [['0', 'Ia'],
+    ...         ['Db', 'Rab']]
+    >>> assemble_transformation(ops3, 1, 1)
+    ['Rab']
+
+    >>> ops4 = [['0', 'Ix', 'Iy'],
+    ...         ['Da', 'Cx', 'Iy'],
+    ...         ['Db', 'Db', 'Rby']]
+    >>> assemble_transformation(ops4, 2, 2)
+    ['Cx', 'Rby']
+
+    >>> ops5 = [['0', 'Ia', 'Ib'],
+    ...         ['Dx', 'Rxa', 'Ib']]
+    >>> assemble_transformation(ops5, 1, 2)
+    ['Rxa', 'Ib']
+
+    >>> ops6 = [['0', 'Ip'],
+    ...         ['Dq', 'Cq'],
+    ...         ['Dr', 'Dr', 'Cr']]
+    >>> assemble_transformation(ops6, 2, 1)
+    ['Cq']
     """
     if i == 0 and j == 0:
         return []
