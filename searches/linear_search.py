@@ -33,6 +33,12 @@ def linear_search(sequence: list, target: int) -> int:
     return -1
 
 
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+
 def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     """
     A pure Python implementation of a recursive linear search algorithm
