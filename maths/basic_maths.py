@@ -3,7 +3,49 @@
 import math
 
 
+def gcd(a: int, b: int) -> int:
+    """Calculate the Greatest Common Divisor (GCD) using Euclid's Algorithm.
+    >>> gcd(54, 24)
+    6
+    >>> gcd(10, 0)
+    10
+    >>> gcd(0, 10)
+    10
+    >>> gcd(0, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: At least one number must be non-zero
+    >>> gcd(-54, 24)
+    6
+    """
+    if a == 0 and b == 0:
+        raise ValueError("At least one number must be non-zero")
+    a, b = abs(a), abs(b)
+    while b:
+        a, b = b, a % b
+    return a
+
+
+def lcm(a: int, b: int) -> int:
+    """Calculate the Least Common Multiple (LCM) using GCD.
+    >>> lcm(12, 15)
+    60
+    >>> lcm(0, 10)
+    0
+    >>> lcm(-12, 15)
+    60
+    """
+    if a == 0 or b == 0:
+        return 0
+    return abs(a * b) // gcd(a, b)
+
+
 def prime_factors(n: int) -> list:
+    """
+    Uses a standard method of dividing by 2, then odd divisors up to sqrt(n).
+    Time Complexity: O(sqrt(n))
+    Space Complexity: O(log n) on average
+    """
     """Find Prime Factors.
     >>> prime_factors(100)
     [2, 2, 5, 5]
