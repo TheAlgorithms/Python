@@ -1230,6 +1230,7 @@
 
 ## Quantum
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
+  * [Shor Algorithm](quantum/shor_algorithm.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
