@@ -9,10 +9,29 @@
 # importing all the required libraries
 
 """
-Implementing logistic regression for classification problem
+Implementation of Logistic Regression from scratch.
+
+Audience:
+- Beginners exploring supervised learning and classification algorithms
+- Students learning how logistic regression works mathematically and programmatically
+- Developers wanting to understand how to implement gradient descent for classification
+
+Dependencies:
+- numpy
+- matplotlib
+- scikit-learn (for dataset demonstration)
+
+Notes:
+- This implementation is for educational purposes and demonstrates logistic regression
+  without using high-level libraries.
+- The training is done with gradient descent; for large datasets, optimization
+  techniques like stochastic gradient descent may be preferable.
+- Visualization is based on the Iris dataset, focusing only on two features
+  for simplicity.
+
 Helpful resources:
-Coursera ML course
-https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
+- Coursera Machine Learning course
+- https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
 """
 
 import numpy as np
@@ -20,7 +39,6 @@ from matplotlib import pyplot as plt
 from sklearn import datasets
 
 # get_ipython().run_line_magic('matplotlib', 'inline')
-
 
 # In[67]:
 
