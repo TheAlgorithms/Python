@@ -23,6 +23,9 @@ class Fibonacci:
                 self.sequence.append(self.sequence[-1] + self.sequence[-2])
         return self.sequence[:index]
 
+    def __repr__(self) -> str:
+        return f"Fibonacci(sequence={self.sequence})"
+
 
 def main() -> None:
     print(
