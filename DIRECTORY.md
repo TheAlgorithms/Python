@@ -109,6 +109,7 @@
   * [Morse Code](ciphers/morse_code.py)
   * [Onepad Cipher](ciphers/onepad_cipher.py)
   * [Permutation Cipher](ciphers/permutation_cipher.py)
+  * [Printable ASCII Vigenere Cipher](ciphers/printable_ascii_vigenere_cipher.py)
   * [Playfair Cipher](ciphers/playfair_cipher.py)
   * [Polybius](ciphers/polybius.py)
   * [Porta Cipher](ciphers/porta_cipher.py)
