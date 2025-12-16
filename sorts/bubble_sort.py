@@ -1,6 +1,16 @@
 from typing import Any
 
 
+def bubble_sort(collection: list[Any]) -> list[Any]:
+    """Non-optimised O(n^2) implementation of bubble sort algorithm (iterative)"""
+    n = len(collection)
+    for i in range(n):
+        for j in range(n - 1 - i):  # number of pairs
+            if collection[j] > collection[j + 1]:
+                collection[j], collection[j + 1] = collection[j + 1], collection[j]
+    return collection
+
+
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
@@ -45,7 +55,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     length = len(collection)
     for i in reversed(range(length)):
         swapped = False
-        for j in range(i):
+        for j in range(i):  # number of pairs
             if collection[j] > collection[j + 1]:
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
