@@ -22,10 +22,27 @@ Current ORCL stock price is   188.87
 
 def stock_price(symbol: str = "AAPL") -> str:
     """
-    >>> stock_price("EEEE")
-    'No <fin-streamer> tag with the specified data-testid attribute found.'
-    >>> isinstance(float(stock_price("GOOG")),float)
-    True
+    Get current stock price from Yahoo Finance.
+
+    Args:
+        symbol: Stock ticker symbol (e.g., 'AAPL', 'GOOG')
+
+    Returns:
+        Current stock price as string, or error message if not found
+
+    Examples:
+        >>> stock_price("EEEE")  # Invalid symbol
+        'No <fin-streamer> tag with the specified data-testid attribute found.'
+        >>> isinstance(float(stock_price("GOOG")), float)  # Valid symbol
+        True
+        >>> stock_price("")  # Empty symbol
+        'No <fin-streamer> tag with the specified data-testid attribute found.'
+        >>> stock_price("INVALID_SYMBOL_123")  # Another invalid symbol
+        'No <fin-streamer> tag with the specified data-testid attribute found.'
+        >>> # Test output format for valid symbols
+        >>> result = stock_price("AAPL")
+        >>> result.replace(".", "").replace(",", "").isdigit() or "No <fin-streamer>" in result
+        True
     """
     url = f"https://finance.yahoo.com/quote/{symbol}?p={symbol}"
     yahoo_finance_source = httpx.get(
