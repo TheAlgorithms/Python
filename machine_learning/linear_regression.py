@@ -72,7 +72,7 @@ def sum_of_square_error(
     Example:
     >>> vc_x = np.array([[1.1], [2.1], [3.1]])
     >>> vc_y = np.array([1.2, 2.2, 3.2])
-    >>> round(sum_of_square_error(vc_x, vc_y, 3, np.array([1])), 3)
+    >>> float(round(sum_of_square_error(vc_x, vc_y, 3, np.array([1])), 3))
     0.005
     """
     prod = np.dot(theta, data_x.transpose())

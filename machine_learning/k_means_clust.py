@@ -87,8 +87,11 @@ def revise_centroids(
     """Recompute centroids as the mean of the assigned samples.
 
     >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [5.0, 5.0]])
-    >>> revise_centroids(data, 2, np.array([0, 0, 1]))
-    array([[0. , 0.5],\n       [5. , 5. ]])
+    >>> np.allclose(
+    ...     revise_centroids(data, 2, np.array([0, 0, 1])),
+    ...     np.array([[0.0, 0.5], [5.0, 5.0]]),
+    ... )
+    True
     """
     new_centroids: list[NDArray[np.floating]] = []
     for i in range(k):
@@ -110,7 +113,7 @@ def compute_heterogeneity(
 
     >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [5.0, 5.0]])
     >>> centroids = np.array([[0.0, 0.5], [5.0, 5.0]])
-    >>> compute_heterogeneity(data, 2, centroids, np.array([0, 0, 1]))
+    >>> float(compute_heterogeneity(data, 2, centroids, np.array([0, 0, 1])))
     0.5
     """
     heterogeneity = 0.0
@@ -184,7 +187,7 @@ def kmeans(
     ... )
     >>> labels.tolist()
     [0, 0, 1]
-    >>> [round(value, 3) for value in heterogeneity]
+    >>> [round(float(value), 3) for value in heterogeneity]
     [0.5]
     >>> np.allclose(centroids, np.array([[0.0, 0.5], [5.0, 5.0]]))
     True
@@ -264,7 +267,7 @@ def report_generator(
     ...     {'spend': [0.0, 50.0, 100.0], 'Cluster': [0, 0, 1]}
     ... )
     >>> report = report_generator(predicted, clustering_variables=['spend'])
-    >>> report.loc[report['Features'] == '# of Customers', 0].iloc[0]
+    >>> float(report.loc[report['Features'] == '# of Customers', 0].iloc[0])
     2.0
     >>> float(report.loc[report['Features'] == '% of Customers', 1])
     0.3333333333333333
