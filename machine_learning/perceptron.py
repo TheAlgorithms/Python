@@ -41,7 +41,7 @@ class Perceptron:
         self.epochs = epochs
         self.weights = np.zeros(1)
         self.bias = 0.0
-        self.errors = []
+        self.errors: list[int] = []
 
     def fit(self, samples: np.ndarray, y: np.ndarray) -> "Perceptron":
         """
