@@ -28,11 +28,11 @@ class Perceptron:
     Examples:
     ---------
     >>> import numpy as np
-    >>> X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+    >>> samples = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     >>> y = np.array([0, 0, 0, 1])
     >>> perceptron = Perceptron(learning_rate=0.1, epochs=10)
-    >>> _ = perceptron.fit(X, y)
-    >>> perceptron.predict(X).tolist()
+    >>> _ = perceptron.fit(samples, y)
+    >>> perceptron.predict(samples).tolist()
     [0, 0, 0, 1]
     """
 
@@ -43,13 +43,13 @@ class Perceptron:
         self.bias = 0.0
         self.errors = []
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> "Perceptron":
+    def fit(self, samples: np.ndarray, y: np.ndarray) -> "Perceptron":
         """
         Fit training data.
 
         Parameters:
         -----------
-        X : shape = [n_samples, n_features]
+        samples : shape = [n_samples, n_features]
             Training vectors, where n_samples is the number of samples
             and n_features is the number of features.
         y : shape = [n_samples]
@@ -62,19 +62,19 @@ class Perceptron:
         Examples:
         ---------
         >>> import numpy as np
-        >>> X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+        >>> samples = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
         >>> y = np.array([0, 0, 0, 1])
         >>> perceptron = Perceptron(learning_rate=0.1, epochs=10)
-        >>> _ = perceptron.fit(X, y)
+        >>> _ = perceptron.fit(samples, y)
         """
-        n_samples, n_features = X.shape
+        _, n_features = samples.shape
         self.weights = np.zeros(n_features)
         self.bias = 0.0
         self.errors = []
 
         for _ in range(self.epochs):
             errors = 0
-            for xi, target in zip(X, y):
+            for xi, target in zip(samples, y):
                 # Calculate update
                 update = self.learning_rate * (target - self.predict(xi))
                 self.weights += update * xi
@@ -83,21 +83,21 @@ class Perceptron:
             self.errors.append(errors)
         return self
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, samples: np.ndarray) -> np.ndarray:
         """
         Return class label after unit step
 
         Examples:
         ---------
         >>> import numpy as np
-        >>> X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+        >>> samples = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
         >>> y = np.array([0, 0, 0, 1])
         >>> perceptron = Perceptron(learning_rate=0.1, epochs=10)
-        >>> _ = perceptron.fit(X, y)
-        >>> perceptron.predict(X).tolist()
+        >>> _ = perceptron.fit(samples, y)
+        >>> perceptron.predict(samples).tolist()
         [0, 0, 0, 1]
         """
-        linear_output = np.dot(X, self.weights) + self.bias
+        linear_output = np.dot(samples, self.weights) + self.bias
         return self.activation_function(linear_output)
 
     def activation_function(self, x: np.ndarray) -> np.ndarray:
@@ -120,12 +120,12 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example usage
-    X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+    samples = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     y = np.array([0, 0, 0, 1])  # AND gate
 
     perceptron = Perceptron(learning_rate=0.1, epochs=10)
-    perceptron.fit(X, y)
+    perceptron.fit(samples, y)
 
     print("Weights:", perceptron.weights)
     print("Bias:", perceptron.bias)
-    print("Predictions:", perceptron.predict(X))
+    print("Predictions:", perceptron.predict(samples))
