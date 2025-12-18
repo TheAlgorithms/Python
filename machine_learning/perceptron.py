@@ -1,6 +1,7 @@
 """
 Perceptron Algorithm Implementation
 """
+
 import numpy as np
 
 
