@@ -8,39 +8,23 @@ Usage:
 
 import argparse
 import struct
-from typing import List
+from typing import ClassVar
 
 
 class KeccakSHA3:
     # Round constants
-    _RC = [
-        0x0000000000000001,
-        0x0000000000008082,
-        0x800000000000808A,
-        0x8000000080008000,
-        0x000000000000808B,
-        0x0000000080000001,
-        0x8000000080008081,
-        0x8000000000008009,
-        0x000000000000008A,
-        0x0000000000000088,
-        0x0000000080008009,
-        0x000000008000000A,
-        0x000000008000808B,
-        0x800000000000008B,
-        0x8000000000008089,
-        0x8000000000008003,
-        0x8000000000008002,
-        0x8000000000000080,
-        0x000000000000800A,
-        0x800000008000000A,
-        0x8000000080008081,
-        0x8000000000008080,
-        0x0000000080000001,
-        0x8000000080008008,
+    _RC: ClassVar[list[int]] = [
+        0x0000000000000001, 0x0000000000008082, 0x800000000000808A,
+        0x8000000080008000, 0x000000000000808B, 0x0000000080000001,
+        0x8000000080008081, 0x8000000000008009, 0x000000000000008A,
+        0x0000000000000088, 0x0000000080008009, 0x000000008000000A,
+        0x000000008000808B, 0x800000000000008B, 0x8000000000008089,
+        0x8000000000008003, 0x8000000000008002, 0x8000000000000080,
+        0x000000000000800A, 0x800000008000000A, 0x8000000080008081,
+        0x8000000000008080, 0x0000000080000001, 0x8000000080008008,
     ]
 
-    _ROT = [
+    _ROT: ClassVar[list[list[int]]] = [
         [0, 36, 3, 41, 18],
         [1, 44, 10, 45, 2],
         [62, 6, 43, 15, 61],
@@ -67,50 +51,51 @@ class KeccakSHA3:
         n %= 64
         return ((x << n) | (x >> (64 - n))) & 0xFFFFFFFFFFFFFFFF
 
-    def _permute(self):
-        A = self.state
+    def _permute(self) -> None:
+        a = self.state
 
         for rnd in range(24):
-            # θ
-            C = [A[x][0] ^ A[x][1] ^ A[x][2] ^ A[x][3] ^ A[x][4] for x in range(5)]
-            D = [C[(x - 1) % 5] ^ self._rol(C[(x + 1) % 5], 1) for x in range(5)]
+            # theta
+            c = [a[x][0] ^ a[x][1] ^ a[x][2] ^ a[x][3] ^ a[x][4] for x in range(5)]
+            d = [c[(x - 1) % 5] ^ self._rol(c[(x + 1) % 5], 1) for x in range(5)]
+
             for x in range(5):
                 for y in range(5):
-                    A[x][y] ^= D[x]
+                    a[x][y] ^= d[x]
 
-            # ρ + π
-            B = [[0] * 5 for _ in range(5)]
+            # rho + pi
+            b = [[0] * 5 for _ in range(5)]
             for x in range(5):
                 for y in range(5):
-                    B[y][(2 * x + 3 * y) % 5] = self._rol(A[x][y], self._ROT[x][y])
+                    b[y][(2 * x + 3 * y) % 5] = self._rol(a[x][y], self._ROT[x][y])
 
-            # χ
+            # chi
             for x in range(5):
                 for y in range(5):
-                    A[x][y] = B[x][y] ^ ((~B[(x + 1) % 5][y]) & B[(x + 2) % 5][y])
+                    a[x][y] = b[x][y] ^ ((~b[(x + 1) % 5][y]) & b[(x + 2) % 5][y])
 
-            # ι
-            A[0][0] ^= self._RC[rnd]
+            # iota
+            a[0][0] ^= self._RC[rnd]
 
     # ================= SPONGE =================
 
     def _pad(self, data: bytes) -> bytes:
-        r = self.rate // 8
+        rate_bytes = self.rate // 8
         buf = bytearray(data)
         buf.append(0x06)
-        while len(buf) % r != r - 1:
+        while len(buf) % rate_bytes != rate_bytes - 1:
             buf.append(0x00)
         buf.append(0x80)
         return bytes(buf)
 
-    def _absorb(self):
-        r = self.rate // 8
+    def _absorb(self) -> None:
+        rate_bytes = self.rate // 8
         padded = self._pad(self.msg)
 
-        for off in range(0, len(padded), r):
-            block = padded[off : off + r]
-            for i in range(0, r, 8):
-                lane = struct.unpack("<Q", block[i : i + 8])[0]
+        for off in range(0, len(padded), rate_bytes):
+            block = padded[off:off + rate_bytes]
+            for i in range(0, rate_bytes, 8):
+                lane = struct.unpack("<Q", block[i:i + 8])[0]
                 x = (i // 8) % 5
                 y = (i // 8) // 5
                 self.state[x][y] ^= lane
@@ -118,11 +103,11 @@ class KeccakSHA3:
 
     def _squeeze(self) -> bytes:
         out = bytearray()
-        r = self.rate // 8
+        rate_bytes = self.rate // 8
         need = self.out_bits // 8
 
         while len(out) < need:
-            for i in range(0, r, 8):
+            for i in range(0, rate_bytes, 8):
                 x = (i // 8) % 5
                 y = (i // 8) // 5
                 out.extend(struct.pack("<Q", self.state[x][y]))
@@ -134,13 +119,16 @@ class KeccakSHA3:
 
 # ================= CLI =================
 
-
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="SHA-3 hashing tool")
     parser.add_argument("-s", "--string", help="String input")
     parser.add_argument("-f", "--file", help="File input")
     parser.add_argument(
-        "-l", "--length", type=int, default=256, choices=[224, 256, 384, 512]
+        "-l",
+        "--length",
+        type=int,
+        default=256,
+        choices=[224, 256, 384, 512],
     )
 
     args = parser.parse_args()
