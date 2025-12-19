@@ -43,7 +43,7 @@ class Perceptron:
         self.bias = 0.0
         self.errors: list[int] = []
 
-    def fit(self, samples: np.ndarray, y: np.ndarray) -> "Perceptron":
+    def fit(self, samples: np.ndarray, targets: np.ndarray) -> "Perceptron":
         """
         Fit training data.
 
@@ -52,7 +52,7 @@ class Perceptron:
         samples : shape = [n_samples, n_features]
             Training vectors, where n_samples is the number of samples
             and n_features is the number of features.
-        y : shape = [n_samples]
+        targets : shape = [n_samples]
             Target values.
 
         Returns:
@@ -74,7 +74,7 @@ class Perceptron:
 
         for _ in range(self.epochs):
             errors = 0
-            for xi, target in zip(samples, y):
+            for xi, target in zip(samples, targets):
                 # Calculate update
                 update = self.learning_rate * (target - self.predict(xi))
                 self.weights += update * xi
@@ -100,9 +100,9 @@ class Perceptron:
         linear_output = np.dot(samples, self.weights) + self.bias
         return self.activation_function(linear_output)
 
-    def activation_function(self, x: np.ndarray) -> np.ndarray:
+    def activation_function(self, values: np.ndarray) -> np.ndarray:
         """
-        Step activation function: returns 1 if x >= 0, else 0
+        Step activation function: returns 1 if values >= 0, else 0
 
         Examples:
         ---------
@@ -111,7 +111,7 @@ class Perceptron:
         >>> perceptron.activation_function(np.array([0.5, -0.5, 0])).tolist()
         [1, 0, 1]
         """
-        return np.where(x >= 0, 1, 0)
+        return np.where(values >= 0, 1, 0)
 
 
 if __name__ == "__main__":
