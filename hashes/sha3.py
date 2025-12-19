@@ -14,14 +14,30 @@ from typing import List
 class KeccakSHA3:
     # Round constants
     _RC = [
-        0x0000000000000001, 0x0000000000008082, 0x800000000000808A,
-        0x8000000080008000, 0x000000000000808B, 0x0000000080000001,
-        0x8000000080008081, 0x8000000000008009, 0x000000000000008A,
-        0x0000000000000088, 0x0000000080008009, 0x000000008000000A,
-        0x000000008000808B, 0x800000000000008B, 0x8000000000008089,
-        0x8000000000008003, 0x8000000000008002, 0x8000000000000080,
-        0x000000000000800A, 0x800000008000000A, 0x8000000080008081,
-        0x8000000000008080, 0x0000000080000001, 0x8000000080008008
+        0x0000000000000001,
+        0x0000000000008082,
+        0x800000000000808A,
+        0x8000000080008000,
+        0x000000000000808B,
+        0x0000000080000001,
+        0x8000000080008081,
+        0x8000000000008009,
+        0x000000000000008A,
+        0x0000000000000088,
+        0x0000000080008009,
+        0x000000008000000A,
+        0x000000008000808B,
+        0x800000000000008B,
+        0x8000000000008089,
+        0x8000000000008003,
+        0x8000000000008002,
+        0x8000000000000080,
+        0x000000000000800A,
+        0x800000008000000A,
+        0x8000000080008081,
+        0x8000000000008080,
+        0x0000000080000001,
+        0x8000000080008008,
     ]
 
     _ROT = [
@@ -29,7 +45,7 @@ class KeccakSHA3:
         [1, 44, 10, 45, 2],
         [62, 6, 43, 15, 61],
         [28, 55, 25, 21, 56],
-        [27, 20, 39, 8, 14]
+        [27, 20, 39, 8, 14],
     ]
 
     def __init__(self, message: bytes, bits: int = 256):
@@ -92,9 +108,9 @@ class KeccakSHA3:
         padded = self._pad(self.msg)
 
         for off in range(0, len(padded), r):
-            block = padded[off:off + r]
+            block = padded[off : off + r]
             for i in range(0, r, 8):
-                lane = struct.unpack("<Q", block[i:i + 8])[0]
+                lane = struct.unpack("<Q", block[i : i + 8])[0]
                 x = (i // 8) % 5
                 y = (i // 8) // 5
                 self.state[x][y] ^= lane
@@ -118,12 +134,14 @@ class KeccakSHA3:
 
 # ================= CLI =================
 
+
 def main():
     parser = argparse.ArgumentParser(description="SHA-3 hashing tool")
     parser.add_argument("-s", "--string", help="String input")
     parser.add_argument("-f", "--file", help="File input")
-    parser.add_argument("-l", "--length", type=int, default=256,
-                        choices=[224, 256, 384, 512])
+    parser.add_argument(
+        "-l", "--length", type=int, default=256, choices=[224, 256, 384, 512]
+    )
 
     args = parser.parse_args()
 
