@@ -1,6 +1,7 @@
 """ "
 this program returns the transpose of a given 2-D matrix
-The transpose of a matrix is a new matrix formed by flipping the original matrix over its diagonal.
+The transpose of a matrix is a new matrix formed by flipping the original
+ matrix over its diagonal.
 
 In python a matrix is represented by list inside a list
 suppose given matrix A is
@@ -19,6 +20,12 @@ def transpose_matrix(matrix: list[list[int]]) ->list[list[int]]:
     number of rows in the matrix=len(matrix)
     number of columns =number of elements in the matrix=number of element in 1st row of the matrix=len(matrix[0])
     """
+    
+    # creating a new empty matrix for storing transposed values
+    # number of rows in the matrix=len(matrix)
+    # number of columns =number of elements in the matrix=number of element in 1st row of the matrix
+    # =len(matrix[0])
+    
     transposed_matrix=[[0]*len(matrix) for _ in range(len(matrix[0]))]
     """ 
     created an empty matrix of dimension len(matrix)*len(matrix[0])
@@ -30,6 +37,12 @@ def transpose_matrix(matrix: list[list[int]]) ->list[list[int]]:
     1st loop--> traversing through the row
     2nd loop--> traversing through the column
     by this whole matrix is traversing
+           
+    # traversing the matrix element-by-element starting from 
+    # 1st element of 1st row to last element of last row
+    # 1st loop--> traversing through the row
+    # 2nd loop--> traversing through the column
+    # by this whole matrix is traversing
 
     """ 
             transposed_matrix[j][i]=matrix[i][j]
