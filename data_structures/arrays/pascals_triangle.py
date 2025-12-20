@@ -10,6 +10,7 @@ Given a non-negative integer num_rows, generate the first num_rows of Pascal's t
 In Pascal's triangle, each number is the sum of the two numbers directly above it.
 """
 
+
 class Solution:
     def generate(self, num_rows: int) -> list[list[int]]:
         """
@@ -36,10 +37,12 @@ class Solution:
             row = [1] * (i + 1)
             # Compute inner elements by summing elements from the previous row
             for j in range(1, i):
-                row[j] = ans[i-1][j-1] + ans[i-1][j]
+                row[j] = ans[i - 1][j - 1] + ans[i - 1][j]
             ans.append(row)
         return ans
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
