@@ -6,10 +6,9 @@ Reference: https://en.wikipedia.org/wiki/Pascal%27s_triangle
 Python doctest can be run with the following command:
 python -m doctest -v pascals_triangle.py
 
-Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+Given a non-negative integer num_rows, generate the first num_rows of Pascal's triangle.
 In Pascal's triangle, each number is the sum of the two numbers directly above it.
 """
-
 
 class Solution:
     def generate(self, num_rows: int) -> list[list[int]]:
@@ -35,16 +34,12 @@ class Solution:
         for i in range(num_rows):
             # Initialize the row with 1s
             row = [1] * (i + 1)
-
             # Compute inner elements by summing elements from the previous row
             for j in range(1, i):
-                row[j] = ans[i - 1][j - 1] + ans[i - 1][j]
-
+                row[j] = ans[i-1][j-1] + ans[i-1][j]
             ans.append(row)
         return ans
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
