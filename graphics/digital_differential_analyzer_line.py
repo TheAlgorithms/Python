@@ -5,7 +5,27 @@ def digital_differential_analyzer_line(
     p1: tuple[int, int], p2: tuple[int, int]
 ) -> list[tuple[int, int]]:
     """
-    Draws a line between two points using the DDA algorithm.
+    
+Digital Differential Analyzer (DDA) Line Drawing Algorithm.
+
+This algorithm draws a straight line between two points by calculating
+the difference in x (dx) and y (dy) coordinates and incrementally stepping
+through the dominant axis while updating the other axis using fractional
+increments.
+
+One of the main disadvantages of the DDA algorithm is its reliance on
+floating-point arithmetic, which can introduce rounding errors at each step.
+Because of this, it is generally slower and less accurate than the
+Bresenham line drawing algorithm, which uses only integer arithmetic.
+
+Despite this, DDA is useful for educational purposes as it is simple
+to understand and demonstrates the basic idea of incremental line generation.
+
+For more details, see:
+https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+
+
+
 
     Args:
     - p1: Coordinates of the starting point.
