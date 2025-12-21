@@ -18,7 +18,7 @@ i.e. trans[j][i]=matrix[i][j]
 """
 
 
-def transpose(matrix):
+def transpose(matrix: list[list[int]]) ->list[list[int]]:
     # create a null matrix of same dimension of given matrix
     trans = [[0] * len(matrix) for _ in range(len(matrix[0]))]
     for i in range(len(matrix)):
