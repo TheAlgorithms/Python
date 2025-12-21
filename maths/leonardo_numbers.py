@@ -35,7 +35,7 @@ def leonardo_numbers(n: int) -> int:
     if not isinstance(n, int) or n < 0:
         raise ValueError("n must be a non-negative integer")
 
-    if n == 0 or n == 1:
+    if n in (0, 1):
         return 1
 
     previous, current = 1, 1
