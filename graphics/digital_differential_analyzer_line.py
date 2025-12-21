@@ -21,8 +21,8 @@ def digital_differential_analyzer_line(
     Despite this, DDA is useful for educational purposes as it is simple
     to understand and demonstrates the basic idea of incremental line generation.
 
-    For more details, see:
-    https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+    References:
+    - https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
 
 
 
