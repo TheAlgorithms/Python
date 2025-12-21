@@ -6,7 +6,7 @@ effectively interchanging its rows and columns
 suppose A=[[1,2,3],
            [4,5,6],
            [7,8,9]]
-           is the given matix then it's transpose will be
+           is the given matrix then it's transpose will be
         A^t=[[1,4,7],
              [2,5,8],
              [3,6,9]]
