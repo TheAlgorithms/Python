@@ -12,7 +12,7 @@ Planck's constant.
 
 The maximum kinetic energy of the emitted electrons is given by:
 
-    K_max = hv − W
+    K_max = hv - W
 
 where:
     h  = Planck's constant
@@ -71,3 +71,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
