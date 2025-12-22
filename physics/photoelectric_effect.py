@@ -10,16 +10,15 @@ The maximum kinetic energy of the emitted electrons is given by:
     K_max = hν − Φ
 
 where:
-    h  = Planck's constant  
-    ν  = frequency of the incident radiation  
-    Φ  = work function of the material  
+    h  = Planck's constant
+    ν  = frequency of the incident radiation
+    Φ  = work function of the material
 
 The work function Φ is the minimum energy required to remove an electron
 from the surface of the material.
 
 Reference: https://en.wikipedia.org/wiki/Photoelectric_effect
 """
-
 
 PLANCK_CONSTANT_JS = 6.6261 * pow(10, -34)  # in SI (Js)
 PLANCK_CONSTANT_EVS = 4.1357 * pow(10, -15)  # in eVs
@@ -66,4 +65,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
