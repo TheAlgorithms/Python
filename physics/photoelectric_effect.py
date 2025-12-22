@@ -6,8 +6,8 @@ Electrons emitted in this manner are called photoelectrons.
 In 1905, Albert Einstein explained the photoelectric effect by proposing that
 light consists of discrete packets of energy known as photons or light quanta.
 
-Each photon carries energy proportional to the frequency v of the incident 
-electromagnetic radiation. The proportionality constant h is known as 
+Each photon carries energy proportional to the frequency v of the incident
+electromagnetic radiation. The proportionality constant h is known as
 Planck's constant.
 
 The maximum kinetic energy of the emitted electrons is given by:
@@ -71,4 +71,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
