@@ -9,7 +9,7 @@ def wheatstone_solver(
      Wheatstone Bridge is an electrical circuit used to accurately measure
     an unknown resistance by balancing two legs of a bridge circuit.
 
-    The bridge is said to be balanced when no current flows 
+    The bridge is said to be balanced when no current flows
     through the galvanometer connected between the midpoints 
      of the two voltage dividers.
       Balance condition:
