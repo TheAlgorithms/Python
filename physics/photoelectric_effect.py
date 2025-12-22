@@ -1,24 +1,25 @@
 """
-The photoelectric effect is the emission of electrons when electromagnetic radiation ,
-such as light, hits a material. Electrons emitted in this manner are called
-photoelectrons.
+The photoelectric effect is the emission of electrons from a material when electromagnetic radiation (such as light) falls on it.
+Electrons emitted in this manner are called photoelectrons.
 
-In 1905, Einstein proposed a theory of the photoelectric effect using a concept that
-light consists of tiny packets of energy known as photons or light quanta. Each packet
-carries energy hv that is proportional to the frequency v of the corresponding
-electromagnetic wave. The proportionality constant h has become known as the
-Planck constant. In the range of kinetic energies of the electrons that are removed from
-their varying atomic bindings by the absorption of a photon of energy hv, the highest
-kinetic energy K_max is :
+In 1905, Albert Einstein explained the photoelectric effect by proposing that light consists of discrete packets of energy known as photons or light quanta.
+Each photon carries energy proportional to the frequency ν of the incident electromagnetic radiation. The proportionality constant h is known as Planck's constant.
 
-K_max = hv-W
+The maximum kinetic energy of the emitted electrons is given by:
 
-Here, W is the minimum energy required to remove an electron from the surface of the
-material. It is called the work function of the surface
+    K_max = hν − Φ
+
+where:
+    h  = Planck's constant  
+    ν  = frequency of the incident radiation  
+    Φ  = work function of the material  
+
+The work function Φ is the minimum energy required to remove an electron
+from the surface of the material.
 
 Reference: https://en.wikipedia.org/wiki/Photoelectric_effect
-
 """
+
 
 PLANCK_CONSTANT_JS = 6.6261 * pow(10, -34)  # in SI (Js)
 PLANCK_CONSTANT_EVS = 4.1357 * pow(10, -15)  # in eVs
@@ -65,3 +66,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
