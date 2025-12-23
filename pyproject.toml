@@ -6,6 +6,7 @@ authors = [ { name = "TheAlgorithms Contributors" } ]
 requires-python = ">=3.14"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
   "beautifulsoup4>=4.12.3",
