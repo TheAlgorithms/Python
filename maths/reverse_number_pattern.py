@@ -34,5 +34,5 @@ def reverse_number_pattern(n: int) -> List[str]:
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
