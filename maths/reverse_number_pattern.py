@@ -23,10 +23,7 @@ def reverse_number_pattern(n: int) -> List[str]:
     if n <= 0:
         return []
 
-    return [
-        "".join(str(x) for x in range(1, i + 1))
-        for i in range(n, 0, -1)
-    ]
+    return ["".join(str(x) for x in range(1, i + 1)) for i in range(n, 0, -1)]
 
 
 if __name__ == "__main__":
