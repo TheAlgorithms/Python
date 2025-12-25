@@ -23,5 +23,3 @@ def count_vowels_and_consonants(text: str) -> tuple[int, int]:
                 consonant_count += 1
 
     return vowel_count, consonant_count
-
-
