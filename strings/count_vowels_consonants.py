@@ -10,6 +10,15 @@ def count_vowels_and_consonants(text: str) -> tuple[int, int]:
         Returns:
             tuple[int, int]: A tuple containing (vowel_count,
     consonant_count).
+     Examples:
+        >>> count_vowels_and_consonants("Hello World")
+        (3, 7)
+        >>> count_vowels_and_consonants("AEIOU")
+        (5, 0)
+        >>> count_vowels_and_consonants("bcdf")
+        (0, 4)
+        >>> count_vowels_and_consonants("")
+        (0, 0)
     """
     vowels = set("aeiouAEIOU")
     vowel_count = 0
