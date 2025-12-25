@@ -25,5 +25,3 @@ def count_vowels_and_consonants(text: str) -> tuple[int, int]:
     return vowel_count, consonant_count
 
 
-if _name_ == "_main_":
-    print(count_vowels_and_consonants("Hello World"))
