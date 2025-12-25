@@ -1,15 +1,15 @@
 def count_vowels_and_consonants(text: str) -> tuple[int, int]:
     """
-    Count the number of vowels and consonants in a given string.
+        Count the number of vowels and consonants in a given string.
 
-    This function ignores non-alphabetic characters.
+        This function ignores non-alphabetic characters.
 
-    Args:
-        text (str): Input string.
+        Args:
+            text (str): Input string.
 
-    Returns:
-        tuple[int, int]: A tuple containing (vowel_count, 
-consonant_count).
+        Returns:
+            tuple[int, int]: A tuple containing (vowel_count,
+    consonant_count).
     """
     vowels = set("aeiouAEIOU")
     vowel_count = 0

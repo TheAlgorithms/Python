@@ -9,8 +9,8 @@ def wheatstone_solver(
      Wheatstone Bridge is an electrical circuit used to accurately measure
     an unknown resistance by balancing two legs of a bridge circuit.
 
-    The bridge is said to be balanced when no current flows 
-    through the galvanometer connected between the midpoints 
+    The bridge is said to be balanced when no current flows
+    through the galvanometer connected between the midpoints
      of the two voltage dividers.
       Balance condition:
        R1 / R2 = R3 / R4
@@ -20,7 +20,7 @@ def wheatstone_solver(
       - Strain gauge circuits
       - Sensor calibration
     This function can calculate the unknown resistance in an wheatstone
-    network, given that the three other resistances 
+    network, given that the three other resistances
     in the network are known.
 
     Usage examples:
