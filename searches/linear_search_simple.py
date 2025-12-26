@@ -22,7 +22,6 @@ Space Complexity:
 - O(1) - only a constant amount of extra space is used (for variables)
 """
 
-
 from typing import Any, List, Optional
 
 
@@ -56,7 +55,7 @@ if __name__ == "__main__":
     numbers = [64, 34, 25, 12, 22, 11, 90]
     target_number = 22
     result = linear_search(numbers, target_number)
-    
+
     print("Example 1: Searching for a number")
     print(f"Collection: {numbers}")
     print(f"Target: {target_number}")
@@ -70,7 +69,7 @@ if __name__ == "__main__":
     fruits = ["apple", "banana", "cherry", "date", "elderberry"]
     target_fruit = "cherry"
     result = linear_search(fruits, target_fruit)
-    
+
     print("Example 2: Searching for a string")
     print(f"Collection: {fruits}")
     print(f"Target: {target_fruit}")
@@ -84,7 +83,7 @@ if __name__ == "__main__":
     numbers = [1, 3, 5, 7, 9]
     target_number = 4
     result = linear_search(numbers, target_number)
-    
+
     print("Example 3: Target not found")
     print(f"Collection: {numbers}")
     print(f"Target: {target_number}")
@@ -97,7 +96,7 @@ if __name__ == "__main__":
     # Example 4: Empty collection
     empty_list: List[int] = []
     result = linear_search(empty_list, 5)
-    
+
     print("Example 4: Empty collection")
     print(f"Collection: {empty_list}")
     print(f"Target: 5")
