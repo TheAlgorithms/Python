@@ -5,13 +5,13 @@ Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 
 def factorial(number: int) -> int:
     """
-  
+
     Calculate the factorial of a non-negative integer.
 
     :param n: non-negative integer
     :return: factorial of n
     :raises ValueError: if n is negative
-    
+
     """
     if number != int(number):
         raise ValueError("factorial() only accepts integral values")
