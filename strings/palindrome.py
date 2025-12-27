@@ -20,6 +20,11 @@ assert all((key == key[::-1]) is value for key, value in test_data.items())
 
 def is_palindrome(s: str) -> bool:
     """
+    Check whether a given string is a palindrome.
+    
+    :param s: input string
+    :return: True if palindrome, False otherwise
+    """
     Return True if s is a palindrome otherwise return False.
 
     >>> all(is_palindrome(key) is value for key, value in test_data.items())
