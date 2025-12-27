@@ -25,12 +25,7 @@ def is_palindrome(s: str) -> bool:
     :param s: input string
     :return: True if palindrome, False otherwise
     """
-    Return True if s is a palindrome otherwise return False.
-
-    >>> all(is_palindrome(key) is value for key, value in test_data.items())
-    True
-    """
-
+    
     start_i = 0
     end_i = len(s) - 1
     while start_i < end_i:
