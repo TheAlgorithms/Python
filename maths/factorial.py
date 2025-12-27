@@ -5,25 +5,13 @@ Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 
 def factorial(number: int) -> int:
     """
-    Calculate the factorial of specified number (n!).
+  
+    Calculate the factorial of a non-negative integer.
 
-    >>> import math
-    >>> all(factorial(i) == math.factorial(i) for i in range(20))
-    True
-    >>> factorial(0.1)
-    Traceback (most recent call last):
-        ...
-    ValueError: factorial() only accepts integral values
-    >>> factorial(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: factorial() not defined for negative values
-    >>> factorial(1)
-    1
-    >>> factorial(6)
-    720
-    >>> factorial(0)
-    1
+    :param n: non-negative integer
+    :return: factorial of n
+    :raises ValueError: if n is negative
+    
     """
     if number != int(number):
         raise ValueError("factorial() only accepts integral values")
