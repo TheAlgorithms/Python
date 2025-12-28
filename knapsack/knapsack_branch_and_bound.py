@@ -48,9 +48,7 @@ def calculate_bound(node: Node, capacity: int, items: List[Item]) -> float:
 
     if index < len(items):
         profit_bound += (
-            (capacity - total_weight)
-            * items[index].value
-            / items[index].weight
+            (capacity - total_weight) * items[index].value / items[index].weight
         )
 
     return profit_bound
@@ -122,8 +120,4 @@ if __name__ == "__main__":
     weights_example = [10, 20, 30]
     values_example = [60, 100, 120]
 
-    print(
-        knapsack_branch_and_bound(
-            capacity_example, weights_example, values_example
-        )
-    )
+    print(knapsack_branch_and_bound(capacity_example, weights_example, values_example))
