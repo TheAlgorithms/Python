@@ -16,7 +16,7 @@ class LinearProbing(HashTable):
     Hash function: h(k, i) = (h(k) + i) % m
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
 
     def _collision_resolution(self, key: int, data: Any = None) -> int | None:

@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
@@ -38,7 +38,7 @@ def _mix_hash(h: int) -> int:
 
 
 @dataclass(slots=True)
-class _Item[KEY, VAL]:
+class _Item(Generic[KEY, VAL]):  # noqa: UP046
     key: KEY
     val: VAL
 

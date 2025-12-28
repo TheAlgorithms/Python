@@ -2,21 +2,21 @@
 """
 Coalesced hashing (hybrid of open addressing + chaining inside the table).
 
-Reference: https://en.wikipedia.org/wiki/Hash_table#Coalesced_hashing
+Reference: [https://en.wikipedia.org/wiki/Hash_table#Coalesced_hashing](https://en.wikipedia.org/wiki/Hash_table#Coalesced_hashing)
 """
 
 from __future__ import annotations
 
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
-from typing import TypeVar
+from typing import Generic, TypeVar
 
 KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
 @dataclass(slots=True)
-class _Node[KEY, VAL]:
+class _Node(Generic[KEY, VAL]):  # noqa: UP046
     key: KEY
     val: VAL
     next: int  # -1 means end of chain
@@ -83,18 +83,18 @@ class CoalescedHashMap(MutableMapping[KEY, VAL]):
         # Search chain for update.
         cur = home
         while True:
-            n = self._table[cur]
-            if n is None:
+            # Explicitly type the current node to satisfy mypy
+            current_node = self._table[cur]
+            if current_node is None:
+                # Should not happen if logic is correct, but handles None safety
                 break
-            # FIX: Ensure n is not None before access
-            assert n is not None
 
-            if n.key == key:
-                n.val = val
+            if current_node.key == key:
+                current_node.val = val
                 return
-            if n.next == -1:
+            if current_node.next == -1:
                 break
-            cur = n.next
+            cur = current_node.next
 
         # Insert new node at a free slot and link it.
         free = self._find_free_from_end()
@@ -105,10 +105,10 @@ class CoalescedHashMap(MutableMapping[KEY, VAL]):
 
         self._table[free] = _Node(key, val, -1)
 
-        # FIX: Ensure we are linking from a valid node
+        # Link the previous end of chain to the new free slot
+        # We re-fetch the node at 'cur' to be safe
         if (tail_node := self._table[cur]) is not None:
             tail_node.next = free
-
         self._len += 1
 
     def __getitem__(self, key: KEY) -> VAL:
@@ -118,7 +118,6 @@ class CoalescedHashMap(MutableMapping[KEY, VAL]):
             node = self._table[cur]
             if node is None:
                 break
-            assert node is not None
             if node.key == key:
                 return node.val
             cur = node.next
@@ -133,7 +132,6 @@ class CoalescedHashMap(MutableMapping[KEY, VAL]):
             node = self._table[cur]
             if node is None:
                 break
-            assert node is not None
             if node.key == key:
                 # If deleting head: copy next node into home if exists
                 #  (keeps chains valid).
@@ -142,17 +140,17 @@ class CoalescedHashMap(MutableMapping[KEY, VAL]):
                         self._table[cur] = None
                     else:
                         nxt = node.next
-                        # Safely copy next node data
-                        nxt_node = self._table[nxt]
-                        # Mypy needs to know nxt_node exists if we are copying from it
-                        if nxt_node is not None:
+                        next_node = self._table[nxt]
+                        # Must assert next_node is not None for mypy
+                        if next_node is not None:
                             self._table[cur] = _Node(
-                                nxt_node.key,
-                                nxt_node.val,
-                                nxt_node.next,
+                                next_node.key,
+                                next_node.val,
+                                next_node.next,
                             )
                             self._table[nxt] = None
                 else:
+                    # Update previous node's next pointer
                     prev_node = self._table[prev]
                     if prev_node is not None:
                         prev_node.next = node.next
