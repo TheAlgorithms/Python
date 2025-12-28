@@ -19,22 +19,22 @@ KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
-def _next_power_of_two(n: int) -> int:
-    if n < 1:
-        raise ValueError("n must be >= 1")
-    return 1 << (n - 1).bit_length()
+def _next_power_of_two(number: int) -> int:
+    if number < 1:
+        raise ValueError("number must be >= 1")
+    return 1 << (number - 1).bit_length()
 
 
-def _mix_hash(h: int) -> int:
+def _mix_hash(hash_value: int) -> int:
     # Simple avalanching to make low bits more useful.
-    h ^= h >> 16
-    h *= 0x85EBCA6B
-    h &= 0xFFFFFFFFFFFFFFFF
-    h ^= h >> 13
-    h *= 0xC2B2AE35
-    h &= 0xFFFFFFFFFFFFFFFF
-    h ^= h >> 16
-    return h
+    hash_value ^= hash_value >> 16
+    hash_value *= 0x85EBCA6B
+    hash_value &= 0xFFFFFFFFFFFFFFFF
+    hash_value ^= hash_value >> 13
+    hash_value *= 0xC2B2AE35
+    hash_value &= 0xFFFFFFFFFFFFFFFF
+    hash_value ^= hash_value >> 16
+    return hash_value
 
 
 @dataclass(slots=True)
