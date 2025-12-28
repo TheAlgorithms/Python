@@ -29,9 +29,7 @@ class Node:
     bound: float
 
 
-def calculate_bound(
-    node: Node, capacity: int, items: List[Item]
-) -> float:
+def calculate_bound(node: Node, capacity: int, items: List[Item]) -> float:
     """
     Calculate the upper bound of profit for a node using
     the fractional knapsack approach.
@@ -50,9 +48,7 @@ def calculate_bound(
 
     if index < len(items):
         profit_bound += (
-            (capacity - total_weight)
-            * items[index].value
-            / items[index].weight
+            (capacity - total_weight) * items[index].value / items[index].weight
         )
 
     return profit_bound
@@ -101,9 +97,7 @@ def knapsack_branch_and_bound(
 
         include_node.bound = calculate_bound(include_node, capacity, items)
         if include_node.bound > max_profit:
-            heapq.heappush(
-                priority_queue, (-include_node.bound, include_node)
-            )
+            heapq.heappush(priority_queue, (-include_node.bound, include_node))
 
         # Exclude next item
         exclude_node = Node(
@@ -115,8 +109,6 @@ def knapsack_branch_and_bound(
 
         exclude_node.bound = calculate_bound(exclude_node, capacity, items)
         if exclude_node.bound > max_profit:
-            heapq.heappush(
-                priority_queue, (-exclude_node.bound, exclude_node)
-            )
+            heapq.heappush(priority_queue, (-exclude_node.bound, exclude_node))
 
     return max_profit
