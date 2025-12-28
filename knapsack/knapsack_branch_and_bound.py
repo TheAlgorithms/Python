@@ -10,9 +10,8 @@ https://en.wikipedia.org/wiki/Branch_and_bound
 https://en.wikipedia.org/wiki/Knapsack_problem
 """
 
-from dataclasses import dataclass
-from typing import List, Tuple
 import heapq
+from dataclasses import dataclass
 
 
 @dataclass
@@ -29,7 +28,7 @@ class Node:
     bound: float
 
 
-def calculate_bound(node: Node, capacity: int, items: List[Item]) -> float:
+def calculate_bound(node: Node, capacity: int, items: list[Item]) -> float:
     """
     Calculate the upper bound of profit for a node using
     the fractional knapsack approach.
@@ -48,14 +47,16 @@ def calculate_bound(node: Node, capacity: int, items: List[Item]) -> float:
 
     if index < len(items):
         profit_bound += (
-            (capacity - total_weight) * items[index].value / items[index].weight
+            (capacity - total_weight)
+            * items[index].value
+            / items[index].weight
         )
 
     return profit_bound
 
 
 def knapsack_branch_and_bound(
-    capacity: int, weights: List[int], values: List[int]
+    capacity: int, weights: list[int], values: list[int]
 ) -> int:
     """
     Solve the 0/1 Knapsack problem using the Branch and Bound technique.
@@ -66,7 +67,7 @@ def knapsack_branch_and_bound(
     items = [Item(weight=w, value=v) for w, v in zip(weights, values)]
     items.sort(key=lambda item: item.value / item.weight, reverse=True)
 
-    priority_queue: List[Tuple[float, Node]] = []
+    priority_queue: list[tuple[float, Node]] = []
 
     root = Node(level=-1, profit=0, weight=0, bound=0.0)
     root.bound = calculate_bound(root, capacity, items)
@@ -97,7 +98,9 @@ def knapsack_branch_and_bound(
 
         include_node.bound = calculate_bound(include_node, capacity, items)
         if include_node.bound > max_profit:
-            heapq.heappush(priority_queue, (-include_node.bound, include_node))
+            heapq.heappush(
+                priority_queue, (-include_node.bound, include_node)
+            )
 
         # Exclude next item
         exclude_node = Node(
@@ -109,6 +112,8 @@ def knapsack_branch_and_bound(
 
         exclude_node.bound = calculate_bound(exclude_node, capacity, items)
         if exclude_node.bound > max_profit:
-            heapq.heappush(priority_queue, (-exclude_node.bound, exclude_node))
+            heapq.heappush(
+                priority_queue, (-exclude_node.bound, exclude_node)
+            )
 
     return max_profit
