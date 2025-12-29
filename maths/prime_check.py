@@ -7,46 +7,29 @@ import pytest
 
 
 def is_prime(number: int) -> bool:
-     """
+    """
     Check whether a given integer is a prime number.
 
-    :param n: integer to check
-    :return: True if n is prime, False otherwise
-    :raises ValueError: if n is less than 2
-    """
-    if n < 2:
-        raise ValueError("n must be an integer greater than or equal to 2")
-    """Checks to see if a number is a prime in O(sqrt(n)).
+    A prime number has exactly two distinct positive divisors: 1 and itself.
 
-    A number is prime if it has exactly two factors: 1 and itself.
-
-    >>> is_prime(0)
-    False
-    >>> is_prime(1)
-    False
-    >>> is_prime(2)
-    True
-    >>> is_prime(3)
-    True
-    >>> is_prime(27)
-    False
-    >>> is_prime(87)
-    False
-    >>> is_prime(563)
-    True
-    >>> is_prime(2999)
-    True
-    >>> is_prime(67483)
-    False
-    >>> is_prime(16.1)
-    Traceback (most recent call last):
-        ...
-    ValueError: is_prime() only accepts positive integers
-    >>> is_prime(-4)
-    Traceback (most recent call last):
-        ...
-    ValueError: is_prime() only accepts positive integers
+    :param number: integer to check
+    :return: True if number is prime, False otherwise
+    :raises ValueError: if input is not a positive integer
     """
+
+    # precondition
+    if not isinstance(number, int) or number < 0:
+        raise ValueError("is_prime() only accepts positive integers")
+
+    if 1 < number < 4:
+        return True
+    if number < 2 or number % 2 == 0 or number % 3 == 0:
+        return False
+
+    for i in range(5, int(math.sqrt(number)) + 1, 6):
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+    return True
 
     # precondition
     if not isinstance(number, int) or not number >= 0:
