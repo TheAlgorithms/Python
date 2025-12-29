@@ -7,6 +7,7 @@ Example:
     123 -> False
 """
 
+
 def is_palindrome(number: int) -> bool:
     """
     Check if a number is a palindrome.
@@ -25,5 +26,5 @@ def is_palindrome(number: int) -> bool:
 
 
 if __name__ == "__main__":
-    print(is_palindrome(121))   # True
-    print(is_palindrome(123))   # False
+    print(is_palindrome(121))  # True
+    print(is_palindrome(123))  # False
