@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
 """
-Pure Python implementations of binary search algorithms
-
-For doctests run the following command:
+For doctests (running the example tests written in this file), run:
 python3 -m doctest -v binary_search.py
 
-For manual testing run:
+For manual testing (running the script normally), run:
 python3 binary_search.py
+
 """
 
 from __future__ import annotations
