@@ -7,6 +7,15 @@ import pytest
 
 
 def is_prime(number: int) -> bool:
+     """
+    Check whether a given integer is a prime number.
+
+    :param n: integer to check
+    :return: True if n is prime, False otherwise
+    :raises ValueError: if n is less than 2
+    """
+    if n < 2:
+        raise ValueError("n must be an integer greater than or equal to 2")
     """Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
