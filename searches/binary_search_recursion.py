@@ -5,7 +5,10 @@ Binary Search is a divide-and-conquer algorithm that works on sorted lists.
 """
 
 from __future__ import annotations
-from typing import Sequence, TypeVar
+
+from typing import TypeVar
+from collections.abc import Sequence
+
 
 T = TypeVar("T")
 
