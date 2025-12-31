@@ -31,8 +31,8 @@ def add(first: int, second: int) -> int:
     - AND (&) to calculate carry bits
     - Left shift (<<) to move the carry to the correct position
     """
-    
-    while second != 0: # Continue until there is no carry left
+
+    while second != 0:  # Continue until there is no carry left
         c = first & second
         first ^= second
         second = c << 1
