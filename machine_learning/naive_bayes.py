@@ -8,7 +8,7 @@ References:
 https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 """
 
-from typing import List, Dict
+from typing import Dict, List, Tuple
 import math
 
 
@@ -21,11 +21,12 @@ def gaussian_probability(x: float, mean: float, variance: float) -> float:
     >>> gaussian_probability(1.0, 1.0, 0.0)
     0.0
     """
-    if variance == 0:
+    if variance == 0.0:
         return 0.0
 
-    exponent = math.exp(-((x - mean) ** 2) / (2 * variance))
-    return (1 / math.sqrt(2 * math.pi * variance)) * exponent
+    exponent = math.exp(-((x - mean) ** 2) / (2.0 * variance))
+    coefficient = 1.0 / math.sqrt(2.0 * math.pi * variance)
+    return coefficient * exponent
 
 
 class GaussianNaiveBayes:
@@ -61,12 +62,11 @@ class GaussianNaiveBayes:
         for label, rows in separated.items():
             self.class_priors[label] = len(rows) / total_samples
 
-            transposed = list(zip(*rows))
-            self.means[label] = [sum(col) / len(col) for col in transposed]
-
+            columns = list(zip(*rows))
+            self.means[label] = [sum(col) / len(col) for col in columns]
             self.variances[label] = [
                 sum((x - mean) ** 2 for x in col) / len(col)
-                for col, mean in zip(transposed, self.means[label])
+                for col, mean in zip(columns, self.means[label])
             ]
 
     def predict(self, features: List[List[float]]) -> List[int]:
@@ -86,25 +86,22 @@ class GaussianNaiveBayes:
         predictions: List[int] = []
 
         for row in features:
-            class_scores: Dict[int, float] = {}
+            scores: List[Tuple[int, float]] = []
 
             for label in self.class_priors:
-                score = math.log(self.class_priors[label])
+                log_likelihood = math.log(self.class_priors[label])
 
                 for index, value in enumerate(row):
-                    mean = self.means[label][index]
-                    variance = self.variances[label][index]
-                    probability = gaussian_probability(value, mean, variance)
+                    probability = gaussian_probability(
+                        value,
+                        self.means[label][index],
+                        self.variances[label][index],
+                    )
+                    if probability > 0.0:
+                        log_likelihood += math.log(probability)
 
-                    if probability > 0:
-                        score += math.log(probability)
+                scores.append((label, log_likelihood))
 
-                class_scores[label] = score
-
-            predicted_label = max(
-                class_scores.items(),
-                key=lambda item: item[1],
-            )[0]
-            predictions.append(predicted_label)
+            predictions.append(max(scores, key=lambda pair: pair[1])[0])
 
         return predictions
