@@ -198,7 +198,10 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
+if any(
+        sorted_collection[i] > sorted_collection[i + 1]
+        for i in range(len(sorted_collection) - 1)
+    ):
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1
