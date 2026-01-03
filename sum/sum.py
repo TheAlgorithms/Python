@@ -1,3 +1,3 @@
-#two number sum
-def sum(a:int,b:int):
-  return a+b
+# two number sum
+def sum(a: int, b: int):
+    return a + b
