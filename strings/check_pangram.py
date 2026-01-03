@@ -1,3 +1,7 @@
+import doctest
+
+
+
 def check_pangram(input_str: str) -> bool:
     """
     Check if a string is a pangram (contains every letter of the alphabet).
@@ -12,6 +16,5 @@ def check_pangram(input_str: str) -> bool:
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
+    
