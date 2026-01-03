@@ -13,4 +13,5 @@ def check_pangram(input_str: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
