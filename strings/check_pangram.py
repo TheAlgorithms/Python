@@ -11,7 +11,7 @@ def check_pangram(input_str: str) -> bool:
     >>> check_pangram("")
     False
     """
-    return len(set(c for c in input_str.lower() if c.isalpha())) == 26
+    return {c for c in input_str.lower() if c.isalpha()} == set("abcdefghijklmnopqrstuvwxyz")
 
 
 if __name__ == "__main__":
