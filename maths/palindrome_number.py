@@ -1,27 +1,18 @@
 def is_palindrome(number: int) -> bool:
     """
-    Check whether a given integer is a palindrome.
+    Determines if an integer is a palindrome without string conversion.
 
-    A palindrome number reads the same forwards and backwards.
-
-    Examples:
-    >>> is_palindrome(121)
-    True
-    >>> is_palindrome(123)
-    False
+    Logic:
+    1. Filter out negative numbers and multiples of 10.
+    2. Reverse the second half of the number.
+    3. Compare the two halves.
     """
-    number_str = str(number)
-    return number_str == number_str[::-1]
+    if number < 0 or (number % 10 == 0 and number != 0):
+        return False
 
+    reversed_half = 0
+    while number > reversed_half:
+        reversed_half = (reversed_half * 10) + (number % 10)
+        number //= 10
 
-if __name__ == "__main__":
-    user_input = input("Enter a number: ").strip()
-
-    if user_input.isdigit():
-        number = int(user_input)
-        if is_palindrome(number):
-            print("The number is a palindrome.")
-        else:
-            print("The number is not a palindrome.")
-    else:
-        print("Please enter a valid non-negative integer.")
+    return number == reversed_half or number == reversed_half // 10
