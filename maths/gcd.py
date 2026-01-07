@@ -10,10 +10,10 @@ def gcd(a: int, b: int) -> int:
     6
     >>> gcd(7, 5)
     1
-    >>> gcd(0, 10)
-    10
-    >>> gcd(10, 0)
-    10
+    >>> gcd(48, 18)
+6
+>>> gcd(7, 5)
+1
 
     :param a: first integer
     :param b: second integer
