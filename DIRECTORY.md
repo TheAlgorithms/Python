@@ -46,6 +46,7 @@
   * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
   * [Is Even](bit_manipulation/is_even.py)
+  * [Is K Power Of N](bit_manipulation/is_k_power_of_n.py)
   * [Is Power Of Two](bit_manipulation/is_power_of_two.py)
   * [Largest Pow Of Two Le Num](bit_manipulation/largest_pow_of_two_le_num.py)
   * [Missing Number](bit_manipulation/missing_number.py)
