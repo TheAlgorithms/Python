@@ -1,3 +1,4 @@
+# pytest: disable=doctest
 """
 Topological Sort implementation using:
 1. DFS-based approach
