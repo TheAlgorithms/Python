@@ -13,6 +13,34 @@ from collections import deque
 from typing import List
 
 
+def _dfs(
+    node: int,
+    graph: List[List[int]],
+    visited: List[int],
+    result: List[int],
+) -> None:
+    """
+    Helper DFS function for topological sorting.
+
+    >>> graph = [[1], [], []]
+    >>> visited = [0, 0, 0]
+    >>> result = []
+    >>> _dfs(0, graph, visited, result)
+    >>> result
+    [0]
+    """
+    if visited[node] == 1:
+        raise ValueError("Graph contains a cycle")
+    if visited[node] == 2:
+        return
+
+    visited[node] = 1
+    for neighbor in graph[node]:
+        _dfs(neighbor, graph, visited, result)
+    visited[node] = 2
+    result.append(node)
+
+
 def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
     """
     Perform topological sort using DFS.
@@ -30,21 +58,9 @@ def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
     visited = [0] * vertices
     result: List[int] = []
 
-    def dfs(node: int) -> None:
-        if visited[node] == 1:
-            raise ValueError("Graph contains a cycle")
-        if visited[node] == 2:
-            return
-
-        visited[node] = 1
-        for neighbor in graph[node]:
-            dfs(neighbor)
-        visited[node] = 2
-        result.append(node)
-
     for vertex in range(vertices):
         if visited[vertex] == 0:
-            dfs(vertex)
+            _dfs(vertex, graph, visited, result)
 
     return result[::-1]
 
