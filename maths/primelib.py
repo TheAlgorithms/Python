@@ -66,9 +66,9 @@ def is_prime(number: int) -> bool:
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and positive"
+    assert isinstance(number, int) and (number >= 0), (
+        "'number' must been an int and positive"
+    )
 
     status = True
 
@@ -254,9 +254,9 @@ def greatest_prime_factor(number: int) -> int:
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and >= 0"
+    assert isinstance(number, int) and (number >= 0), (
+        "'number' must been an int and >= 0"
+    )
 
     ans = 0
 
@@ -296,9 +296,9 @@ def smallest_prime_factor(number: int) -> int:
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and >= 0"
+    assert isinstance(number, int) and (number >= 0), (
+        "'number' must been an int and >= 0"
+    )
 
     ans = 0
 
@@ -399,9 +399,9 @@ def goldbach(number: int) -> list[int]:
     """
 
     # precondition
-    assert (
-        isinstance(number, int) and (number > 2) and is_even(number)
-    ), "'number' must been an int, even and > 2"
+    assert isinstance(number, int) and (number > 2) and is_even(number), (
+        "'number' must been an int, even and > 2"
+    )
 
     ans = []  # this list will returned
 
@@ -525,9 +525,9 @@ def kg_v(number1: int, number2: int) -> int:
             done.append(n)
 
     # precondition
-    assert isinstance(ans, int) and (
-        ans >= 0
-    ), "'ans' must been from type int and positive"
+    assert isinstance(ans, int) and (ans >= 0), (
+        "'ans' must been from type int and positive"
+    )
 
     return ans
 
@@ -574,9 +574,9 @@ def get_prime(n: int) -> int:
             ans += 1
 
     # precondition
-    assert isinstance(ans, int) and is_prime(
-        ans
-    ), "'ans' must been a prime number and from type int"
+    assert isinstance(ans, int) and is_prime(ans), (
+        "'ans' must been a prime number and from type int"
+    )
 
     return ans
 
@@ -705,9 +705,9 @@ def is_perfect_number(number: int) -> bool:
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number > 1
-    ), "'number' must been an int and >= 1"
+    assert isinstance(number, int) and (number > 1), (
+        "'number' must been an int and >= 1"
+    )
 
     divisors = get_divisors(number)
 
