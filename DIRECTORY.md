@@ -337,6 +337,8 @@
   * Morphological Operations
     * [Dilation Operation](digital_image_processing/morphological_operations/dilation_operation.py)
     * [Erosion Operation](digital_image_processing/morphological_operations/erosion_operation.py)
+    * [Pruning Operation](digital_image_processing/morphological_operations/pruning_operation.py)
+    * [Skeletonization Operation](digital_image_processing/morphological_operations/skeletonization_operation.py)
   * Resize
     * [Resize](digital_image_processing/resize/resize.py)
   * Rotation
