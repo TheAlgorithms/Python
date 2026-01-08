@@ -1,12 +1,15 @@
 """
 Topological Sort implementation using:
 1. DFS-based approach
-2. Kahn's Algorithm (BFS-based)
+2. Kahn's Algorithm (BFS-based approach)
 
 Topological sorting is applicable only for Directed Acyclic Graphs (DAGs).
+
+Reference:
+https://en.wikipedia.org/wiki/Topological_sorting
 """
 
-from collections import deque, defaultdict
+from collections import deque
 from typing import List
 
 
@@ -14,19 +17,20 @@ def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
     """
     Perform topological sort using DFS.
 
-    :param vertices: Number of vertices in the graph
-    :param edges: List of directed edges [u, v] where u -> v
-    :return: A list representing topological order
-    :raises ValueError: If a cycle is detected
+    >>> order = topological_sort_dfs(
+    ...     6, [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
+    ... )
+    >>> len(order) == 6
+    True
     """
-    graph = defaultdict(list)
+    graph: List[List[int]] = [[] for _ in range(vertices)]
     for u, v in edges:
         graph[u].append(v)
 
-    visited = [0] * vertices  # 0 = unvisited, 1 = visiting, 2 = visited
-    stack = []
+    visited = [0] * vertices
+    result: List[int] = []
 
-    def dfs(node: int):
+    def dfs(node: int) -> None:
         if visited[node] == 1:
             raise ValueError("Graph contains a cycle")
         if visited[node] == 2:
@@ -36,33 +40,34 @@ def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
         for neighbor in graph[node]:
             dfs(neighbor)
         visited[node] = 2
-        stack.append(node)
+        result.append(node)
 
-    for v in range(vertices):
-        if visited[v] == 0:
-            dfs(v)
+    for vertex in range(vertices):
+        if visited[vertex] == 0:
+            dfs(vertex)
 
-    return stack[::-1]
+    return result[::-1]
 
 
 def topological_sort_kahn(vertices: int, edges: List[List[int]]) -> List[int]:
     """
-    Perform topological sort using Kahn's Algorithm (BFS).
+    Perform topological sort using Kahn's Algorithm.
 
-    :param vertices: Number of vertices in the graph
-    :param edges: List of directed edges [u, v] where u -> v
-    :return: A list representing topological order
-    :raises ValueError: If a cycle is detected
+    >>> order = topological_sort_kahn(
+    ...     6, [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
+    ... )
+    >>> len(order) == 6
+    True
     """
-    graph = defaultdict(list)
+    graph: List[List[int]] = [[] for _ in range(vertices)]
     in_degree = [0] * vertices
 
     for u, v in edges:
         graph[u].append(v)
         in_degree[v] += 1
 
-    queue = deque([i for i in range(vertices) if in_degree[i] == 0])
-    topo_order = []
+    queue = deque(i for i in range(vertices) if in_degree[i] == 0)
+    topo_order: List[int] = []
 
     while queue:
         node = queue.popleft()
@@ -76,21 +81,3 @@ def topological_sort_kahn(vertices: int, edges: List[List[int]]) -> List[int]:
         raise ValueError("Graph contains a cycle")
 
     return topo_order
-
-
-if __name__ == "__main__":
-    vertices = 6
-    edges = [
-        [5, 2],
-        [5, 0],
-        [4, 0],
-        [4, 1],
-        [2, 3],
-        [3, 1],
-    ]
-
-    print("DFS-based Topological Sort:")
-    print(topological_sort_dfs(vertices, edges))
-
-    print("\nKahn's Algorithm Topological Sort:")
-    print(topological_sort_kahn(vertices, edges))
