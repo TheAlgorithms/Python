@@ -607,6 +607,7 @@
   * [Gradient Boosting Classifier](machine_learning/gradient_boosting_classifier.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
+  * [K Means Plus Plus](machine_learning/k_means_plus_plus.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
   * [Linear Discriminant Analysis](machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](machine_learning/linear_regression.py)
