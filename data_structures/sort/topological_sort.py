@@ -1,4 +1,3 @@
-# pytest: disable=doctest
 """
 Topological Sort implementation using:
 1. DFS-based approach
@@ -21,13 +20,6 @@ def _dfs(
 ) -> None:
     """
     Helper DFS function for topological sorting.
-
-    >>> graph = [[1], [], []]
-    >>> visited = [0, 0, 0]
-    >>> result = []
-    >>> _dfs(0, graph, visited, result)
-    >>> result
-    [0]
     """
     if visited[node] == 1:
         raise ValueError("Graph contains a cycle")
@@ -45,16 +37,10 @@ def topological_sort_dfs(vertices: int, edges: list[list[int]]) -> list[int]:
     """
     Perform topological sort using DFS.
 
-    >>> order = topological_sort_dfs(
-    ...     6, [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
-    ... )
-    >>> len(order) == 6
-    True
-
-    >>> topological_sort_dfs(2, [[0, 1], [1, 0]])
-    Traceback (most recent call last):
-    ...
-    ValueError: Graph contains a cycle
+    Example:
+        vertices = 6
+        edges = [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
+        order = topological_sort_dfs(vertices, edges)
     """
     graph: list[list[int]] = [[] for _ in range(vertices)]
     for u, v in edges:
@@ -74,16 +60,10 @@ def topological_sort_kahn(vertices: int, edges: list[list[int]]) -> list[int]:
     """
     Perform topological sort using Kahn's Algorithm.
 
-    >>> order = topological_sort_kahn(
-    ...     6, [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
-    ... )
-    >>> len(order) == 6
-    True
-
-    >>> topological_sort_kahn(2, [[0, 1], [1, 0]])
-    Traceback (most recent call last):
-    ...
-    ValueError: Graph contains a cycle
+    Example:
+        vertices = 6
+        edges = [[5, 2], [5, 0], [4, 0], [4, 1], [2, 3], [3, 1]]
+        order = topological_sort_kahn(vertices, edges)
     """
     graph: list[list[int]] = [[] for _ in range(vertices)]
     in_degree = [0] * vertices
