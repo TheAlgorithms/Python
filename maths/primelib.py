@@ -66,9 +66,9 @@ def is_prime(number: int) -> bool:
     """
 
     # precondition
-    assert isinstance(number, int) and (number >= 0), (
-        "'number' must been an int and positive"
-    )
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and positive"
 
     status = True
 
@@ -92,7 +92,7 @@ def is_prime(number: int) -> bool:
 # ------------------------------------------
 
 
-def sieve_er(n):
+def sieve_er(n: int) -> list[int]:
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N.
@@ -138,7 +138,7 @@ def sieve_er(n):
 # --------------------------------
 
 
-def get_prime_numbers(n):
+def get_prime_numbers(n: int) -> list[int]:
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N (inclusive)
@@ -176,7 +176,7 @@ def get_prime_numbers(n):
 # -----------------------------------------
 
 
-def prime_factorization(number):
+def prime_factorization(number: int) -> list[int]:
     """
     input: positive integer 'number'
     returns a list of the prime number factors of 'number'
@@ -216,7 +216,7 @@ def prime_factorization(number):
         while quotient != 1:
             if is_prime(factor) and (quotient % factor == 0):
                 ans.append(factor)
-                quotient /= factor
+                quotient //= factor
             else:
                 factor += 1
 
@@ -232,7 +232,7 @@ def prime_factorization(number):
 # -----------------------------------------
 
 
-def greatest_prime_factor(number):
+def greatest_prime_factor(number: int) -> int:
     """
     input: positive integer 'number' >= 0
     returns the greatest prime number factor of 'number'
@@ -254,9 +254,9 @@ def greatest_prime_factor(number):
     """
 
     # precondition
-    assert isinstance(number, int) and (number >= 0), (
-        "'number' must been an int and >= 0"
-    )
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and >= 0"
 
     ans = 0
 
@@ -274,7 +274,7 @@ def greatest_prime_factor(number):
 # ----------------------------------------------
 
 
-def smallest_prime_factor(number):
+def smallest_prime_factor(number: int) -> int:
     """
     input: integer 'number' >= 0
     returns the smallest prime number factor of 'number'
@@ -296,9 +296,9 @@ def smallest_prime_factor(number):
     """
 
     # precondition
-    assert isinstance(number, int) and (number >= 0), (
-        "'number' must been an int and >= 0"
-    )
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and >= 0"
 
     ans = 0
 
@@ -316,7 +316,7 @@ def smallest_prime_factor(number):
 # ----------------------
 
 
-def is_even(number):
+def is_even(number: int) -> bool:
     """
     input: integer 'number'
     returns true if 'number' is even, otherwise false.
@@ -345,7 +345,7 @@ def is_even(number):
 # ------------------------
 
 
-def is_odd(number):
+def is_odd(number: int) -> bool:
     """
     input: integer 'number'
     returns true if 'number' is odd, otherwise false.
@@ -374,7 +374,7 @@ def is_odd(number):
 # ------------------------
 
 
-def goldbach(number):
+def goldbach(number: int) -> list[int]:
     """
     Goldbach's assumption
     input: a even positive integer 'number' > 2
@@ -399,9 +399,9 @@ def goldbach(number):
     """
 
     # precondition
-    assert isinstance(number, int) and (number > 2) and is_even(number), (
-        "'number' must been an int, even and > 2"
-    )
+    assert (
+        isinstance(number, int) and (number > 2) and is_even(number)
+    ), "'number' must been an int, even and > 2"
 
     ans = []  # this list will returned
 
@@ -444,7 +444,7 @@ def goldbach(number):
 # ----------------------------------------------
 
 
-def kg_v(number1, number2):
+def kg_v(number1: int, number2: int) -> int:
     """
     Least common multiple
     input: two positive integer 'number1' and 'number2'
@@ -525,9 +525,9 @@ def kg_v(number1, number2):
             done.append(n)
 
     # precondition
-    assert isinstance(ans, int) and (ans >= 0), (
-        "'ans' must been from type int and positive"
-    )
+    assert isinstance(ans, int) and (
+        ans >= 0
+    ), "'ans' must been from type int and positive"
 
     return ans
 
@@ -535,7 +535,7 @@ def kg_v(number1, number2):
 # ----------------------------------
 
 
-def get_prime(n):
+def get_prime(n: int) -> int:
     """
     Gets the n-th prime number.
     input: positive integer 'n' >= 0
@@ -574,9 +574,9 @@ def get_prime(n):
             ans += 1
 
     # precondition
-    assert isinstance(ans, int) and is_prime(ans), (
-        "'ans' must been a prime number and from type int"
-    )
+    assert isinstance(ans, int) and is_prime(
+        ans
+    ), "'ans' must been a prime number and from type int"
 
     return ans
 
@@ -584,7 +584,7 @@ def get_prime(n):
 # ---------------------------------------------------
 
 
-def get_primes_between(p_number_1, p_number_2):
+def get_primes_between(p_number_1: int, p_number_2: int) -> list[int]:
     """
     input: prime numbers 'pNumber1' and 'pNumber2'
             pNumber1 < pNumber2
@@ -648,7 +648,7 @@ def get_primes_between(p_number_1, p_number_2):
 # ----------------------------------------------------
 
 
-def get_divisors(n):
+def get_divisors(n: int) -> list[int]:
     """
     input: positive integer 'n' >= 1
     returns all divisors of n (inclusive 1 and 'n')
@@ -685,7 +685,7 @@ def get_divisors(n):
 # ----------------------------------------------------
 
 
-def is_perfect_number(number):
+def is_perfect_number(number: int) -> bool:
     """
     input: positive integer 'number' > 1
     returns true if 'number' is a perfect number otherwise false.
@@ -705,9 +705,9 @@ def is_perfect_number(number):
     """
 
     # precondition
-    assert isinstance(number, int) and (number > 1), (
-        "'number' must been an int and >= 1"
-    )
+    assert isinstance(number, int) and (
+        number > 1
+    ), "'number' must been an int and >= 1"
 
     divisors = get_divisors(number)
 
@@ -725,7 +725,7 @@ def is_perfect_number(number):
 # ------------------------------------------------------------
 
 
-def simplify_fraction(numerator, denominator):
+def simplify_fraction(numerator: int, denominator: int) -> tuple[int, int]:
     """
     input: two integer 'numerator' and 'denominator'
     assumes: 'denominator' != 0
@@ -764,7 +764,7 @@ def simplify_fraction(numerator, denominator):
 # -----------------------------------------------------------------
 
 
-def factorial(n):
+def factorial(n: int) -> int:
     """
     input: positive integer 'n'
     returns the factorial of 'n' (n!)
