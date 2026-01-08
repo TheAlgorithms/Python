@@ -26,6 +26,7 @@
   * [Word Break](backtracking/word_break.py)
   * [Word Ladder](backtracking/word_ladder.py)
   * [Word Search](backtracking/word_search.py)
+  * [Weighted Job Scheduling](backtracking/weighted_job_scheduling.py)
 
 ## Bit Manipulation
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
@@ -883,6 +884,8 @@
   * [Sdes](other/sdes.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
   * [Word Search](other/word_search.py)
+  * [Weighted Job Scheduling](backtracking/weighted_job_scheduling.py)
+
 
 ## Physics
   * [Altitude Pressure](physics/altitude_pressure.py)
