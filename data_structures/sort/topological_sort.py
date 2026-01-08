@@ -49,6 +49,11 @@ def topological_sort_dfs(vertices: int, edges: list[list[int]]) -> list[int]:
     ... )
     >>> len(order) == 6
     True
+
+    >>> topological_sort_dfs(2, [[0, 1], [1, 0]])
+    Traceback (most recent call last):
+    ...
+    ValueError: Graph contains a cycle
     """
     graph: list[list[int]] = [[] for _ in range(vertices)]
     for u, v in edges:
@@ -73,6 +78,11 @@ def topological_sort_kahn(vertices: int, edges: list[list[int]]) -> list[int]:
     ... )
     >>> len(order) == 6
     True
+
+    >>> topological_sort_kahn(2, [[0, 1], [1, 0]])
+    Traceback (most recent call last):
+    ...
+    ValueError: Graph contains a cycle
     """
     graph: list[list[int]] = [[] for _ in range(vertices)]
     in_degree = [0] * vertices
