@@ -10,14 +10,13 @@ https://en.wikipedia.org/wiki/Topological_sorting
 """
 
 from collections import deque
-from typing import List
 
 
 def _dfs(
     node: int,
-    graph: List[List[int]],
-    visited: List[int],
-    result: List[int],
+    graph: list[list[int]],
+    visited: list[int],
+    result: list[int],
 ) -> None:
     """
     Helper DFS function for topological sorting.
@@ -41,7 +40,7 @@ def _dfs(
     result.append(node)
 
 
-def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
+def topological_sort_dfs(vertices: int, edges: list[list[int]]) -> list[int]:
     """
     Perform topological sort using DFS.
 
@@ -51,12 +50,12 @@ def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
     >>> len(order) == 6
     True
     """
-    graph: List[List[int]] = [[] for _ in range(vertices)]
+    graph: list[list[int]] = [[] for _ in range(vertices)]
     for u, v in edges:
         graph[u].append(v)
 
     visited = [0] * vertices
-    result: List[int] = []
+    result: list[int] = []
 
     for vertex in range(vertices):
         if visited[vertex] == 0:
@@ -65,7 +64,7 @@ def topological_sort_dfs(vertices: int, edges: List[List[int]]) -> List[int]:
     return result[::-1]
 
 
-def topological_sort_kahn(vertices: int, edges: List[List[int]]) -> List[int]:
+def topological_sort_kahn(vertices: int, edges: list[list[int]]) -> list[int]:
     """
     Perform topological sort using Kahn's Algorithm.
 
@@ -75,7 +74,7 @@ def topological_sort_kahn(vertices: int, edges: List[List[int]]) -> List[int]:
     >>> len(order) == 6
     True
     """
-    graph: List[List[int]] = [[] for _ in range(vertices)]
+    graph: list[list[int]] = [[] for _ in range(vertices)]
     in_degree = [0] * vertices
 
     for u, v in edges:
@@ -83,7 +82,7 @@ def topological_sort_kahn(vertices: int, edges: List[List[int]]) -> List[int]:
         in_degree[v] += 1
 
     queue = deque(i for i in range(vertices) if in_degree[i] == 0)
-    topo_order: List[int] = []
+    topo_order: list[int] = []
 
     while queue:
         node = queue.popleft()
