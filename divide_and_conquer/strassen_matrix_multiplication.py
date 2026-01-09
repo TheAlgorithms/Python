@@ -123,7 +123,8 @@ def strassen(matrix1: list, matrix2: list) -> list:
     Multiply two matrices using Strassen's divide-and-conquer algorithm.
 
     Time complexity:
-        \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074}) (recurrence T(n) = 7 T(n/2) + \u0398(n^2)).
+        \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074})
+        (recurrence T(n) = 7 T(n/2) + \u0398(n^2)).
 
     Space complexity:
         O(n^2) due to padding and temporary matrices used during recursion.
