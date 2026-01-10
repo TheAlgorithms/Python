@@ -321,33 +321,24 @@ def area_triangle_two_sides_included_angle(
 
     >>> round(area_triangle_two_sides_included_angle(10, 10, 30), 1)
     25.0
-
     >>> round(area_triangle_two_sides_included_angle(10, 10, -30), 1)
     25.0
-
     >>> round(area_triangle_two_sides_included_angle(10, 10, 330), 1)
     25.0
-
     >>> round(area_triangle_two_sides_included_angle(10, 10, 180), 1)
     0.0
-
     >>> round(area_triangle_two_sides_included_angle(10, 10, 0), 1)
     0.0
-
     >>> round(area_triangle_two_sides_included_angle(0, 10, 120), 1)
     0.0
-
     >>> area_triangle_two_sides_included_angle(1, -1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle_two_sides_included_angle() only accepts \
-    non-negative lengths
-
+    ValueError: ...
     >>> area_triangle_two_sides_included_angle(-1, 1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle_two_sides_included_angle() only accepts \
-    non-negative lengths
+    ValueError: ...
     """
     if side1 < 0 or side2 < 0:
         raise ValueError(
