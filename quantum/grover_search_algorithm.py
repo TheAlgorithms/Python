@@ -27,7 +27,7 @@ qc.h(range(n))
 qc.measure(range(n), range(n))
 
 # Run on simulator
-backend = Aer.get_backend('qasm_simulator')
+backend = Aer.get_backend("qasm_simulator")
 result = execute(qc, backend, shots=1024).result()
 counts = result.get_counts()
 
