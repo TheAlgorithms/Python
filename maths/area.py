@@ -3,7 +3,7 @@ Find the area of various geometric shapes
 Wikipedia reference: https://en.wikipedia.org/wiki/Area
 """
 
-from math import pi, sqrt, tan
+from math import pi, sin, sqrt, tan
 
 
 def surface_area_cube(side_length: float) -> float:
@@ -310,6 +310,50 @@ def area_triangle(base: float, height: float) -> float:
     if base < 0 or height < 0:
         raise ValueError("area_triangle() only accepts non-negative values")
     return (base * height) / 2
+
+
+def area_triangle_two_sides_included_angle(
+    side1: float, side2: float, included_angle_degrees: float
+) -> float:
+    """
+    Calculate the area of a triangle given the length of any two sides and
+    their included angle.
+
+    >>> round(area_triangle_two_sides_included_angle(10, 10, 30), 1)
+    25.0
+
+    >>> round(area_triangle_two_sides_included_angle(10, 10, -30), 1)
+    25.0
+
+    >>> round(area_triangle_two_sides_included_angle(10, 10, 330), 1)
+    25.0
+
+    >>> round(area_triangle_two_sides_included_angle(10, 10, 180), 1)
+    0.0
+
+    >>> round(area_triangle_two_sides_included_angle(10, 10, 0), 1)
+    0.0
+
+    >>> round(area_triangle_two_sides_included_angle(0, 10, 120), 1)
+    0.0
+
+    >>> area_triangle_two_sides_included_angle(1, -1, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_two_sides_included_angle() only accepts \
+    non-negative lengths
+
+    >>> area_triangle_two_sides_included_angle(-1, 1, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_two_sides_included_angle() only accepts \
+    non-negative lengths
+    """
+    if side1 < 0 or side2 < 0:
+        raise ValueError(
+            "area_triangle_two_sides_included_angle() only accepts non-negative lengths"
+        )
+    return 0.5 * side1 * side2 * abs(sin(included_angle_degrees * pi / 180))
 
 
 def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
