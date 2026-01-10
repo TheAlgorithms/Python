@@ -2,7 +2,6 @@ from qiskit import QuantumCircuit, Aer, execute
 from qiskit.visualization import plot_histogram
 import math
 
-
 # Number of qubits
 n = 2
 
