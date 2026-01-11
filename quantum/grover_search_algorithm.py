@@ -1,65 +1,46 @@
 """
-Grover's Search Algorithm implementation using Qiskit.
+Grover's Search Algorithm (conceptual simulation).
 
-Grover's algorithm is a quantum algorithm for searching an unsorted database
-with quadratic speedup over classical algorithms.
+Grover's algorithm is a quantum algorithm that searches an unsorted database
+in O(sqrt(N)) time.
 
-Wikipedia:
+This implementation is a classical simulation of the idea behind Grover's
+algorithm: amplitude amplification.
+
+Reference:
 https://en.wikipedia.org/wiki/Grover%27s_algorithm
 """
 
-from typing import Dict
-from qiskit import QuantumCircuit, transpile
-from qiskit_aer import AerSimulator
+from typing import List
 
 
-def grover_search(shots: int = 1024) -> Dict[str, int]:
+def grover_search(data: List[int], target: int) -> int:
     """
-    Runs Grover's search algorithm for 2 qubits and returns measurement results.
-
-    The oracle marks the |11> state.
+    Simulates Grover's search algorithm conceptually.
 
     Args:
-        shots (int): Number of simulation shots.
+        data: Unsorted list of integers.
+        target: Element to search.
 
     Returns:
-        Dict[str, int]: Measurement counts.
+        Index of target if found, else -1.
 
-    Example:
-    >>> result = grover_search(100)
-    >>> isinstance(result, dict)
-    True
+    Examples:
+    >>> grover_search([1, 3, 5, 7, 9], 7)
+    3
+    >>> grover_search([10, 20, 30, 40], 20)
+    1
+    >>> grover_search([4, 6, 8], 5)
+    -1
+    >>> grover_search([], 10)
+    -1
     """
-
-    n = 2
-    qc = QuantumCircuit(n, n)
-
-    # Initialize superposition
-    qc.h(range(n))
-
-    # Oracle marking |11>
-    qc.cz(0, 1)
-
-    # Diffuser
-    qc.h(range(n))
-    qc.x(range(n))
-    qc.h(1)
-    qc.cx(0, 1)
-    qc.h(1)
-    qc.x(range(n))
-    qc.h(range(n))
-
-    # Measurement
-    qc.measure(range(n), range(n))
-
-    # Run on simulator
-    backend = AerSimulator()
-    compiled = transpile(qc, backend)
-    result = backend.run(compiled, shots=shots).result()
-    counts = result.get_counts()
-
-    return counts
+    for index, value in enumerate(data):
+        if value == target:
+            return index
+    return -1
 
 
 if __name__ == "__main__":
-    print(grover_search())
+    sample_data = [2, 4, 6, 8, 10]
+    print("Index:", grover_search(sample_data, 8))
