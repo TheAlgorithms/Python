@@ -4,7 +4,6 @@ from typing import Any
 # Space Complexity: O(1)
 
 
-
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
