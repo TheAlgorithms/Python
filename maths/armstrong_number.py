@@ -9,7 +9,7 @@ def is_armstrong(number: int) -> bool:
     """
     digits = list(map(int, str(number)))
     power = len(digits)
-    return sum(d ** power for d in digits) == number
+    return sum(d**power for d in digits) == number
 
 
 if __name__ == "__main__":
