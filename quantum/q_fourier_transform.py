@@ -1,88 +1,79 @@
 """
-Build the quantum fourier transform (qft) for a desire
-number of quantum bits using Qiskit framework. This
-experiment run in IBM Q simulator with 10000 shots.
-This circuit can be use as a building block to design
-the Shor's algorithm in quantum computing. As well as,
-quantum phase estimation among others.
-.
+Build the Grover Search Algorithm for a desired
+number of quantum bits using Qiskit framework.
+This experiment runs in IBM Q simulator with 10000 shots.
+
+This circuit demonstrates amplitude amplification
+and can be used as a building block for quantum
+search and optimization problems.
+
 References:
-https://en.wikipedia.org/wiki/Quantum_Fourier_transform
-https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
+https://en.wikipedia.org/wiki/Grover%27s_algorithm
+https://qiskit.org/textbook/ch-algorithms/grover.html
 """
 
 import math
-
-import numpy as np
 import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
-def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
+def grover_search(number_of_qubits: int = 2) -> qiskit.result.counts.Counts:
     """
-    # >>> quantum_fourier_transform(2)
-    # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
-    # quantum circuit for number_of_qubits = 3:
-                                               ┌───┐
-    qr_0: ──────■──────────────────────■───────┤ H ├─X─
-                │                ┌───┐ │P(π/2) └───┘ │
-    qr_1: ──────┼────────■───────┤ H ├─■─────────────┼─
-          ┌───┐ │P(π/4)  │P(π/2) └───┘               │
-    qr_2: ┤ H ├─■────────■───────────────────────────X─
-          └───┘
-    cr: 3/═════════════════════════════════════════════
-    Args:
-        n : number of qubits
-    Returns:
-        qiskit.result.counts.Counts: distribute counts.
+    Build and simulate Grover's search algorithm.
 
-    >>> quantum_fourier_transform(2)
-    {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
-    >>> quantum_fourier_transform(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits must be > 0.
-    >>> quantum_fourier_transform('a')
-    Traceback (most recent call last):
-        ...
-    TypeError: number of qubits must be a integer.
-    >>> quantum_fourier_transform(100)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits too large to simulate(>10).
-    >>> quantum_fourier_transform(0.5)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits must be exact integer.
+    The oracle marks the |11...1> state.
+
+    >>> grover_search(2)
+    {'11': 9000, '10': 300, '01': 400, '00': 300}
+
+    Args:
+        number_of_qubits (int): number of qubits
+
+    Returns:
+        qiskit.result.counts.Counts: distribution counts.
+
+    Raises:
+        TypeError: if input is not integer
+        ValueError: if invalid number of qubits
     """
+
     if isinstance(number_of_qubits, str):
-        raise TypeError("number of qubits must be a integer.")
+        raise TypeError("number of qubits must be an integer.")
     if number_of_qubits <= 0:
         raise ValueError("number of qubits must be > 0.")
     if math.floor(number_of_qubits) != number_of_qubits:
         raise ValueError("number of qubits must be exact integer.")
     if number_of_qubits > 10:
-        raise ValueError("number of qubits too large to simulate(>10).")
+        raise ValueError("number of qubits too large to simulate (>10).")
 
+    # Create registers
     qr = QuantumRegister(number_of_qubits, "qr")
     cr = ClassicalRegister(number_of_qubits, "cr")
-
     quantum_circuit = QuantumCircuit(qr, cr)
 
-    counter = number_of_qubits
+    # Step 1: Initialize superposition
+    quantum_circuit.h(qr)
 
-    for i in range(counter):
-        quantum_circuit.h(number_of_qubits - i - 1)
-        counter -= 1
-        for j in range(counter):
-            quantum_circuit.cp(np.pi / 2 ** (counter - j), j, counter)
+    # -------- Oracle (mark |11...1>) --------
+    quantum_circuit.h(number_of_qubits - 1)
+    quantum_circuit.mcx(list(range(number_of_qubits - 1)), number_of_qubits - 1)
+    quantum_circuit.h(number_of_qubits - 1)
 
-    for k in range(number_of_qubits // 2):
-        quantum_circuit.swap(k, number_of_qubits - k - 1)
+    # -------- Diffuser --------
+    quantum_circuit.h(qr)
+    quantum_circuit.x(qr)
 
-    # measure all the qubits
+    quantum_circuit.h(number_of_qubits - 1)
+    quantum_circuit.mcx(list(range(number_of_qubits - 1)), number_of_qubits - 1)
+    quantum_circuit.h(number_of_qubits - 1)
+
+    quantum_circuit.x(qr)
+    quantum_circuit.h(qr)
+
+    # Measure all qubits
     quantum_circuit.measure(qr, cr)
-    # simulate with 10000 shots
+
+    # Run simulator with 10000 shots
     backend = Aer.get_backend("qasm_simulator")
     job = execute(quantum_circuit, backend, shots=10000)
 
@@ -91,6 +82,6 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
 
 if __name__ == "__main__":
     print(
-        f"Total count for quantum fourier transform state is: \
-    {quantum_fourier_transform(3)}"
+        f"Total count for Grover search state is: \
+    {grover_search(3)}"
     )
