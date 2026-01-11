@@ -1,11 +1,10 @@
-from qiskit import QuantumCircuit, Aer, execute
-from qiskit.visualization import plot_histogram
-import math
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
 
 # Number of qubits
-n = 2
+n = int(input("Enter the number of qubits: "))
 
-# Create Quantum Circuit
+# Create Quantum Circuit with classical bits
 qc = QuantumCircuit(n, n)
 
 # Step 1: Initialize in superposition
@@ -27,8 +26,9 @@ qc.h(range(n))
 qc.measure(range(n), range(n))
 
 # Run on simulator
-backend = Aer.get_backend('qasm_simulator')
-result = execute(qc, backend, shots=1024).result()
+backend = AerSimulator()
+compiled_circuit = transpile(qc, backend)
+result = backend.run(compiled_circuit, shots=1024).result()
 counts = result.get_counts()
 
 print("Measurement Result:", counts)
