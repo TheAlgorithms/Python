@@ -2,9 +2,9 @@ from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 
 # Number of qubits
-n = int(input("Enter the number of qubits: "))
+n = 2
 
-# Create Quantum Circuit with classical bits
+# Create Quantum Circuit
 qc = QuantumCircuit(n, n)
 
 # Step 1: Initialize in superposition
