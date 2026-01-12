@@ -833,6 +833,8 @@
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
+## [My Algorithm](/my_algorithm.py)
+
 ## Networking Flow
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
   * [Minimum Cut](networking_flow/minimum_cut.py)
