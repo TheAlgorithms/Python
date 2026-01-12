@@ -1,8 +1,7 @@
 from collections import deque
-from typing import Deque, List
 
 
-def sliding_window_maximum(numbers: List[int], window_size: int) -> List[int]:
+def sliding_window_maximum(numbers: list[int], window_size: int) -> list[int]:
     """
     Return a list containing the maximum of each sliding window of size window_size.
 
@@ -38,8 +37,8 @@ def sliding_window_maximum(numbers: List[int], window_size: int) -> List[int]:
     if not numbers:
         return []
 
-    result: List[int] = []
-    index_deque: Deque[int] = deque()
+    result: list[int] = []
+    index_deque: deque[int] = deque()
 
     for current_index, current_value in enumerate(numbers):
         # Remove the element which is out of this window
