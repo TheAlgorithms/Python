@@ -197,21 +197,28 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search([1, 2, 2, 2, 3], 2)
+    2
+    >>> binary_search([4, 4, 4, 4], 4)
+    1
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
+
     left = 0
     right = len(sorted_collection) - 1
 
     while left <= right:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
+
         if current_item == item:
-            return midpoint
-        elif item < current_item:
-            right = midpoint - 1
-        else:
+            return midpoint  # correct handling even with duplicates
+        elif current_item < item:
             left = midpoint + 1
+        else:
+            right = midpoint - 1
+
     return -1
 
 
@@ -234,12 +241,17 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search_std_lib([1, 2, 2, 2, 3], 2)
+    1
+    >>> binary_search_std_lib([4, 4, 4, 4], 4)
+    0
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
+
     index = bisect.bisect_left(sorted_collection, item)
     if index != len(sorted_collection) and sorted_collection[index] == item:
-        return index
+        return index  # bisect_left handles duplicates correctly
     return -1
 
 
@@ -340,19 +352,26 @@ def binary_search_by_recursion(
     1
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
+    >>> binary_search_by_recursion([1, 2, 2, 2, 3], 2, 0, 4)
+    2
+    >>> binary_search_by_recursion([4, 4, 4, 4], 4, 0, 3)
+    1
     """
     if right < 0:
         right = len(sorted_collection) - 1
+
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
-    if right < left:
+
+    if left > right:
         return -1
 
     midpoint = left + (right - left) // 2
+    mid_value = sorted_collection[midpoint]
 
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
+    if mid_value == item:
+        return midpoint  # valid index even with duplicates
+    elif mid_value > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
