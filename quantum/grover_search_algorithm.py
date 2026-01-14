@@ -17,6 +17,7 @@ import math
 try:
     import qiskit
     from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+
     QISKIT_AVAILABLE = True
 except ModuleNotFoundError:
     QISKIT_AVAILABLE = False
