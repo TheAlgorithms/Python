@@ -12,8 +12,9 @@ https://en.wikipedia.org/wiki/Grover%27s_algorithm
 https://qiskit.org/textbook/ch-algorithms/grover.html
 """
 
-import math
 import importlib.util
+import math
+
 
 QISKIT_AVAILABLE = importlib.util.find_spec("qiskit") is not None
 
