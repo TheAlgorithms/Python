@@ -13,14 +13,12 @@ https://qiskit.org/textbook/ch-algorithms/grover.html
 """
 
 import math
+import importlib.util
 
-try:
-    import qiskit
+QISKIT_AVAILABLE = importlib.util.find_spec("qiskit") is not None
+
+if QISKIT_AVAILABLE:
     from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
-
-    QISKIT_AVAILABLE = True
-except ModuleNotFoundError:
-    QISKIT_AVAILABLE = False
 
 
 def grover_search(number_of_qubits: int = 2):
