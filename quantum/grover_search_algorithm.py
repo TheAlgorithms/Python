@@ -8,12 +8,11 @@ Wikipedia:
 https://en.wikipedia.org/wiki/Grover%27s_algorithm
 """
 
-from typing import Dict
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 
 
-def grover_search(shots: int = 1024) -> Dict[str, int]:
+def grover_search(shots: int = 1024) -> dict[str, int]:
     """
     Runs Grover's search algorithm for 2 qubits and returns measurement results.
 
@@ -23,7 +22,7 @@ def grover_search(shots: int = 1024) -> Dict[str, int]:
         shots (int): Number of simulation shots.
 
     Returns:
-        Dict[str, int]: Measurement counts.
+        dict[str, int]: Measurement counts.
 
     Example:
     >>> result = grover_search(100)
