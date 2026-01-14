@@ -9,6 +9,8 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+  "qiskit>=1.0.0",
+  "qiskit-aer>=0.13.0",
   "beautifulsoup4>=4.12.3",
   "cython>=3.1.2",
   "fake-useragent>=1.5.1",
