@@ -1,64 +1,87 @@
 """
-Grover's Search Algorithm implementation using Qiskit.
+Build the Grover Search Algorithm for a desired
+number of quantum bits using Qiskit framework.
+This experiment runs in IBM Q simulator with 10000 shots.
 
-Grover's algorithm is a quantum algorithm for searching an unsorted database
-with quadratic speedup over classical algorithms.
+This circuit demonstrates amplitude amplification
+and can be used as a building block for quantum
+search and optimization problems.
 
-Wikipedia:
+References:
 https://en.wikipedia.org/wiki/Grover%27s_algorithm
+https://qiskit.org/textbook/ch-algorithms/grover.html
 """
 
-from qiskit import QuantumCircuit, transpile
-from qiskit_aer import AerSimulator
+import math
+
+import qiskit
+from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
-def grover_search(shots: int = 1024) -> dict[str, int]:
+def grover_search(number_of_qubits: int = 2) -> qiskit.result.counts.Counts:
     """
-    Runs Grover's search algorithm for 2 qubits and returns measurement results.
+    Build and simulate Grover's search algorithm.
 
-    The oracle marks the |11> state.
+    The oracle marks the |11...1> state.
 
     Args:
-        shots (int): Number of simulation shots.
+        number_of_qubits (int): number of qubits
 
     Returns:
-        dict[str, int]: Measurement counts.
+        qiskit.result.counts.Counts: distribution counts.
 
-    Example:
-    >>> result = grover_search(100)
-    >>> isinstance(result, dict)
+    Raises:
+        TypeError: if input is not integer
+        ValueError: if invalid number of qubits
+
+    >>> counts = grover_search(2)
+    >>> isinstance(counts, dict)
     True
+    >>> sum(counts.values())
+    10000
     """
+    if isinstance(number_of_qubits, str):
+        raise TypeError("number of qubits must be an integer.")
+    if number_of_qubits <= 0:
+        raise ValueError("number of qubits must be > 0.")
+    if math.floor(number_of_qubits) != number_of_qubits:
+        raise ValueError("number of qubits must be exact integer.")
+    if number_of_qubits > 10:
+        raise ValueError("number of qubits too large to simulate (>10).")
 
-    n = 2
-    qc = QuantumCircuit(n, n)
+    # Create registers
+    qr = QuantumRegister(number_of_qubits, "qr")
+    cr = ClassicalRegister(number_of_qubits, "cr")
+    quantum_circuit = QuantumCircuit(qr, cr)
 
-    # Initialize superposition
-    qc.h(range(n))
+    # Step 1: Initialize superposition
+    quantum_circuit.h(qr)
 
-    # Oracle marking |11>
-    qc.cz(0, 1)
+    # -------- Oracle (mark |11...1>) --------
+    quantum_circuit.h(number_of_qubits - 1)
+    quantum_circuit.mcx(list(range(number_of_qubits - 1)), number_of_qubits - 1)
+    quantum_circuit.h(number_of_qubits - 1)
 
-    # Diffuser
-    qc.h(range(n))
-    qc.x(range(n))
-    qc.h(1)
-    qc.cx(0, 1)
-    qc.h(1)
-    qc.x(range(n))
-    qc.h(range(n))
+    # -------- Diffuser --------
+    quantum_circuit.h(qr)
+    quantum_circuit.x(qr)
 
-    # Measurement
-    qc.measure(range(n), range(n))
+    quantum_circuit.h(number_of_qubits - 1)
+    quantum_circuit.mcx(list(range(number_of_qubits - 1)), number_of_qubits - 1)
+    quantum_circuit.h(number_of_qubits - 1)
 
-    # Run on simulator
-    backend = AerSimulator()
-    compiled = transpile(qc, backend)
-    result = backend.run(compiled, shots=shots).result()
-    counts = result.get_counts()
+    quantum_circuit.x(qr)
+    quantum_circuit.h(qr)
 
-    return counts
+    # Measure all qubits
+    quantum_circuit.measure(qr, cr)
+
+    # Run simulator with 10000 shots
+    backend = Aer.get_backend("qasm_simulator")
+    job = execute(quantum_circuit, backend, shots=10000)
+
+    return job.result().get_counts(quantum_circuit)
 
 
 if __name__ == "__main__":
-    print(grover_search())
+    print(f"Total count for Grover search state is: {grover_search(3)}")
