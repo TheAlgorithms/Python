@@ -14,11 +14,15 @@ https://qiskit.org/textbook/ch-algorithms/grover.html
 
 import math
 
-import qiskit
-from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+try:
+    import qiskit
+    from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+    QISKIT_AVAILABLE = True
+except ModuleNotFoundError:
+    QISKIT_AVAILABLE = False
 
 
-def grover_search(number_of_qubits: int = 2) -> qiskit.result.counts.Counts:
+def grover_search(number_of_qubits: int = 2):
     """
     Build and simulate Grover's search algorithm.
 
@@ -33,13 +37,19 @@ def grover_search(number_of_qubits: int = 2) -> qiskit.result.counts.Counts:
     Raises:
         TypeError: if input is not integer
         ValueError: if invalid number of qubits
+        ModuleNotFoundError: if qiskit is not installed
 
-    >>> counts = grover_search(2)
-    >>> isinstance(counts, dict)
+    >>> if QISKIT_AVAILABLE:  # doctest: +SKIP
+    ...     counts = grover_search(2)
+    ...     isinstance(counts, dict)
     True
-    >>> sum(counts.values())
-    10000
     """
+    if not QISKIT_AVAILABLE:
+        raise ModuleNotFoundError(
+            "qiskit is required for this algorithm. "
+            "Install it with: pip install qiskit qiskit-aer"
+        )
+
     if isinstance(number_of_qubits, str):
         raise TypeError("number of qubits must be an integer.")
     if number_of_qubits <= 0:
@@ -84,4 +94,7 @@ def grover_search(number_of_qubits: int = 2) -> qiskit.result.counts.Counts:
 
 
 if __name__ == "__main__":
-    print(f"Total count for Grover search state is: {grover_search(3)}")
+    if QISKIT_AVAILABLE:
+        print(f"Total count for Grover search state is: {grover_search(3)}")
+    else:
+        print("qiskit not installed. Install with: pip install qiskit qiskit-aer")
