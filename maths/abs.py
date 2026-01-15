@@ -1,5 +1,7 @@
 """Absolute Value."""
+
 from __future__ import annotations
+
 
 def abs_val(num: float) -> float:
     """
@@ -35,7 +37,7 @@ def abs_min(x: list[int | float]) -> float:
     return j
 
 
-def abs_max(x: list[int | float]) -> float: # Changed type hint 
+def abs_max(x: list[int | float]) -> float:  # Changed type hint
     """
     >>> abs_max([0,5,1,11])
     11
