@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     steps:
       - run: sudo apt-get update && sudo apt-get install -y libhdf5-dev
       - uses: actions/checkout@v6
