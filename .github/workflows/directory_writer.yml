@@ -4,7 +4,7 @@ name: directory_writer
 on: [push]
 jobs:
   directory_writer:
-    runs-on: ubuntu-latest
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     steps:
       - uses: actions/checkout@v6
         with:
