@@ -1,5 +1,5 @@
 """Absolute Value."""
-
+from __future__ import annotations
 
 def abs_val(num: float) -> float:
     """
@@ -15,7 +15,7 @@ def abs_val(num: float) -> float:
     return -num if num < 0 else num
 
 
-def abs_min(x: list[int]) -> int:
+def abs_min(x: list[int | float]) -> float:
     """
     >>> abs_min([0,5,1,11])
     0
@@ -35,7 +35,7 @@ def abs_min(x: list[int]) -> int:
     return j
 
 
-def abs_max(x: list[int]) -> int:
+def abs_max(x: list[int | float]) -> float: # Changed type hint 
     """
     >>> abs_max([0,5,1,11])
     11
@@ -50,12 +50,12 @@ def abs_max(x: list[int]) -> int:
         raise ValueError("abs_max() arg is an empty sequence")
     j = x[0]
     for i in x:
-        if abs(i) > abs(j):
+        if abs_val(i) > abs_val(j):
             j = i
     return j
 
 
-def abs_max_sort(x: list[int]) -> int:
+def abs_max_sort(x: list[int | float]) -> float:
     """
     >>> abs_max_sort([0,5,1,11])
     11
@@ -83,6 +83,10 @@ def test_abs_val():
     assert abs_max(a) == -11
     assert abs_max_sort(a) == -11
     assert abs_min(a) == -1
+
+    b = [-3.5, 1.2, -10.1]
+    assert abs_max(b) == -10.1
+    assert abs_min(b) == 1.2
 
 
 if __name__ == "__main__":
