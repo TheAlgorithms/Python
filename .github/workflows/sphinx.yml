@@ -51,7 +51,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     if: github.event_name != 'pull_request'
     needs: build_docs
-    runs-on: ubuntu-latest
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
