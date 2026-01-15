@@ -12,7 +12,7 @@ name: "Project Euler"
 
 jobs:
   project-euler:
-    runs-on: ubuntu-latest
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     steps:
       - run:
           sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
