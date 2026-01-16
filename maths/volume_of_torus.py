@@ -29,7 +29,7 @@ def volume_of_torus(major_radius: float, minor_radius: float) -> float:
     if minor_radius < 0:
         raise ValueError("minor_radius must be non-negative")
 
-    return 2 * (pi ** 2) * major_radius * (minor_radius ** 2)
+    return 2 * (pi**2) * major_radius * (minor_radius**2)
 
 
 if __name__ == "__main__":
