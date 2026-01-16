@@ -37,9 +37,8 @@ def is_palindrome(s: str) -> bool:
     return True
 
 
-def is_palindrome_traversal(s: str) -> bool:
-    """
-    Return True if s is a palindrome otherwise return False.
+def is_palindrome(s: str) -> bool:
+    """Check whether a given string is a palindrome."""
 
     >>> all(is_palindrome_traversal(key) is value for key, value in test_data.items())
     True
