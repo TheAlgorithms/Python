@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any
 
 """
 Bubble Sort Algorithms
@@ -16,7 +16,7 @@ Space Complexity:
 """
 
 
-def bubble_sort_iterative(collection: List[Any]) -> List[Any]:
+def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """
     Bubble Sort (Iterative)
 
@@ -32,7 +32,7 @@ def bubble_sort_iterative(collection: List[Any]) -> List[Any]:
 
     for i in range(n):
         swapped = False
-        for j in range(0, n - i - 1):
+        for j in range(n - i - 1):  # removed unnecessary start=0
             if collection[j] > collection[j + 1]:
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
                 swapped = True
@@ -43,7 +43,7 @@ def bubble_sort_iterative(collection: List[Any]) -> List[Any]:
     return collection
 
 
-def bubble_sort_optimized(collection: List[Any]) -> List[Any]:
+def bubble_sort_optimized(collection: list[Any]) -> list[Any]:
     """
     Optimized Bubble Sort
 
