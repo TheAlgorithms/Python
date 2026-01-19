@@ -186,7 +186,8 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :return: index of the found item or -1 if the item is not found.
+        If duplicates exist, returns the index of the first occurrence.
 
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
@@ -197,22 +198,28 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search([1, 2, 2, 2, 3], 2)
+    1
+    >>> binary_search([2, 2, 2, 2, 2], 2)
+    0
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1
+    result = -1
 
     while left <= right:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            return midpoint
+            result = midpoint
+            right = midpoint - 1  # Continue searching left for first occurrence
         elif item < current_item:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1
+    return result
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
