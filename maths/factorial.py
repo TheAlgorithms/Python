@@ -34,6 +34,7 @@ def factorial(number: int) -> int:
         value *= i
     return value
 
+
 def factorial_recursive(number: int) -> int:
     """
     Calculate the factorial of a number using recursion.
@@ -51,13 +52,9 @@ def factorial_recursive(number: int) -> int:
     ValueError: factorial_recursive() not defined for negative values
     """
     if number != int(number):
-        raise ValueError(
-            "factorial_recursive() only accepts integral values"
-        )
+        raise ValueError("factorial_recursive() only accepts integral values")
     if number < 0:
-        raise ValueError(
-            "factorial_recursive() not defined for negative values"
-        )
+        raise ValueError("factorial_recursive() not defined for negative values")
     if number in (0, 1):
         return 1
     return number * factorial_recursive(number - 1)
@@ -65,4 +62,5 @@ def factorial_recursive(number: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
