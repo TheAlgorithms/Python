@@ -17,6 +17,12 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     [-45, -5, -2]
     >>> bubble_sort_iterative([-23, 0, 6, -4, 34])
     [-23, -4, 0, 6, 34]
+    >>> bubble_sort_iterative([1, 2, 3, 4])
+    [1, 2, 3, 4]
+    >>> bubble_sort_iterative([3, 3, 3, 3])
+    [3, 3, 3, 3]
+    >>> bubble_sort_iterative([56])
+    [56]
     >>> bubble_sort_iterative([0, 5, 2, 3, 2]) == sorted([0, 5, 2, 3, 2])
     True
     >>> bubble_sort_iterative([]) == sorted([])
