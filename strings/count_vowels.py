@@ -1,6 +1,13 @@
 def count_vowels(s: str) -> int:
+    """Count the number of vowels in a given string.
+
+    Args:
+        s (str): Input string.
+
+    Returns:
+        int: Number of vowels in the string.
     """
-    Count the number of vowels in a given string.
+
 
     :param s: Input string to count vowels in.
     :return: Number of vowels in the input string.
