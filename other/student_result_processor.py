@@ -62,4 +62,3 @@ if __name__ == "__main__":
     print("Failed:", failed)
     print("Top Performers:", top)
     print("Pass Percentage:", percentage)
-
