@@ -79,7 +79,8 @@ def find_triplets_with_0_sum_hashing(arr: list[int]) -> list[list[int]]:
 
     # Return all the triplet combinations.
     return output_arr
-    
+
+
 def find_triplets_with_0_sum_two_pointers(nums: list[int]) -> list[list[int]]:
     """
     Finds all unique triplets in the array which gives the sum of zero
