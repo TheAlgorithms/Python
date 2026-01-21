@@ -13,8 +13,7 @@ def reverse_letters(sentence: str, length: int = 0) -> str:
     'racecar'
     """
     return " ".join(
-        word[::-1] if len(word) > length else word
-        for word in sentence.split()
+        word[::-1] if len(word) > length else word for word in sentence.split()
     )
 
 
