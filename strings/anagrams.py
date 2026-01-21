@@ -42,11 +42,7 @@ for word in word_list:
     word_by_signature[signature(word)].append(word)
 
 if __name__ == "__main__":
-    all_anagrams = {
-        word: anagram(word)
-        for word in word_list
-        if len(anagram(word)) > 1
-    }
+    all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
     with open("anagrams.txt", "w", encoding="utf-8") as file:
         file.write("all_anagrams = \n")
