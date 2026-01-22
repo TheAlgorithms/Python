@@ -2,7 +2,7 @@
 Linear Search Algorithm
 
 Linear search is a simple searching technique that checks each element in the collection
-sequentially until the target element is found or the collection is exhausted. 
+sequentially until the target element is found or the collection is exhausted.
 It is also known as sequential search.
 
 Characteristics:
