@@ -137,7 +137,7 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     # Counter({2:2, 3:1}) → 2² * 3¹ = 12
     gcd_value = 1
     for factor, power in common_factors.items():
-        gcd_value *= factor ** power
+        gcd_value *= factor**power
 
     return gcd_value
 
