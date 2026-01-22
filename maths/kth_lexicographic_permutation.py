@@ -43,7 +43,6 @@ def kth_permutation(k, n):
     return permutation
 
 
-
 if __name__ == "__main__":
     import doctest
 
