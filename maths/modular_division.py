@@ -34,7 +34,7 @@ def modular_division(a: int, b: int, n: int) -> int:
         raise ValueError("Divisor a must be a positive integer")
     if greatest_common_divisor(a, n) != 1:
         raise ValueError("a and n must be coprime (gcd(a, n) = 1)")
-    
+
     (_d, _t, s) = extended_gcd(n, a)  # Implemented below
     x = (b * s) % n
     return x
