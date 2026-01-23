@@ -159,7 +159,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
 
-  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
+  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](https://mypy-lang.org) so run that locally before making your submission.
 
   ```python
   def sum_ab(a: int, b: int) -> int:
