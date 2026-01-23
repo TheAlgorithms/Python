@@ -45,7 +45,10 @@ def shannon_entropy(probabilities: list[float]) -> float:
         raise ValueError("Probabilities cannot be negative.")
 
     # Due to floating point precision, we check for closeness to 1.0
-    if not math.isclose(sum(probabilities), 1.0, rel_tol=1e-9) and sum(probabilities) > 0:
+    if (
+        not math.isclose(sum(probabilities), 1.0, rel_tol=1e-9)
+        and sum(probabilities) > 0
+    ):
         # Normalize if not summed to 1 but has values
         probabilities = [p / sum(probabilities) for p in probabilities]
 
