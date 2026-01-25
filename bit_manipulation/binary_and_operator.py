@@ -6,7 +6,19 @@ def binary_and(a: int, b: int) -> str:
     Take in 2 integers, convert them to binary,
     return a binary number that is the
     result of a binary and operation on the integers provided.
-
+    The AND operation compares each bit position of two numbers. The result has a 1 bit
+    only where BOTH input numbers have 1 bits at the same position; otherwise,
+    the result bit is 0.
+    Algorithm:
+    1. Convert both numbers to binary representation
+    2. Pad shorter binary string with leading zeros
+    3. For each bit position, output 1 only if both input bits are 1
+    4. Return the result as a binary string
+    Example: 25 (0b11001) AND 32 (0b100000)
+    Position: 5 4 3 2 1 0
+    25:       0 1 1 0 0 1
+    32:       1 0 0 0 0 0
+    Result:   0 0 0 0 0 0 = 0 (no position has both 1s)
     >>> binary_and(25, 32)
     '0b000000'
     >>> binary_and(37, 50)
