@@ -13,25 +13,22 @@ https://en.wikipedia.org/wiki/Softmax_function
 import numpy as np
 
 
-def softmax(vector):
+def softmax(vector: np.ndarray | list | tuple) -> np.ndarray:
     """
     Implements the softmax function
 
     Parameters:
-        vector (np.array,list,tuple): A  numpy array of shape (1,n)
-        consisting of real values or a similar list,tuple
-
+        vector (np.array | list | tuple): A numpy array of shape (1,n)
+        consisting of real values or a similar list, tuple
 
     Returns:
-        softmax_vec (np.array): The input numpy array  after applying
-        softmax.
+        np.array: The input numpy array after applying softmax.
 
-    The softmax vector adds up to one. We need to ceil to mitigate for
-    precision
-    >>> float(np.ceil(np.sum(softmax([1,2,3,4]))))
+    The softmax vector adds up to one. We need to ceil to mitigate for precision
+    >>> float(np.ceil(np.sum(softmax([1, 2, 3, 4]))))
     1.0
 
-    >>> vec = np.array([5,5])
+    >>> vec = np.array([5, 5])
     >>> softmax(vec)
     array([0.5, 0.5])
 
