@@ -28,9 +28,13 @@ def modular_division(a: int, b: int, n: int) -> int:
     4
 
     """
-    assert n > 1
-    assert a > 0
-    assert greatest_common_divisor(a, n) == 1
+    if n <= 1:
+        raise ValueError("Modulus n must be greater than 1")
+    if a <= 0:
+        raise ValueError("Divisor a must be a positive integer")
+    if greatest_common_divisor(a, n) != 1:
+        raise ValueError("a and n must be coprime (gcd(a, n) = 1)")
+
     (_d, _t, s) = extended_gcd(n, a)  # Implemented below
     x = (b * s) % n
     return x
