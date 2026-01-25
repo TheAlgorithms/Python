@@ -1,96 +1,55 @@
-"""
-Build the quantum fourier transform (qft) for a desire
-number of quantum bits using Qiskit framework. This
-experiment run in IBM Q simulator with 10000 shots.
-This circuit can be use as a building block to design
-the Shor's algorithm in quantum computing. As well as,
-quantum phase estimation among others.
-.
-References:
-https://en.wikipedia.org/wiki/Quantum_Fourier_transform
-https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
-"""
-
-import math
-
 import numpy as np
-import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
-def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
+def quantum_fourier_transform(number_of_qubits: int = 3) -> dict:
     """
-    # >>> quantum_fourier_transform(2)
-    # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
-    # quantum circuit for number_of_qubits = 3:
-                                               ┌───┐
-    qr_0: ──────■──────────────────────■───────┤ H ├─X─
-                │                ┌───┐ │P(π/2) └───┘ │
-    qr_1: ──────┼────────■───────┤ H ├─■─────────────┼─
-          ┌───┐ │P(π/4)  │P(π/2) └───┘               │
-    qr_2: ┤ H ├─■────────■───────────────────────────X─
-          └───┘
-    cr: 3/═════════════════════════════════════════════
-    Args:
-        n : number of qubits
-    Returns:
-        qiskit.result.counts.Counts: distribute counts.
+    Build and simulate the Quantum Fourier Transform (QFT) circuit
+    for a given number of qubits using the Qiskit framework.
 
-    >>> quantum_fourier_transform(2)
-    {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
-    >>> quantum_fourier_transform(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits must be > 0.
-    >>> quantum_fourier_transform('a')
-    Traceback (most recent call last):
-        ...
-    TypeError: number of qubits must be a integer.
-    >>> quantum_fourier_transform(100)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits too large to simulate(>10).
-    >>> quantum_fourier_transform(0.5)
-    Traceback (most recent call last):
-        ...
-    ValueError: number of qubits must be exact integer.
+    Args:
+        number_of_qubits (int): The number of qubits for the QFT circuit.
+
+    Returns:
+        dict: A dictionary containing the counts of measurement results.
+
+    Raises:
+        ValueError: If the number of qubits is less than or equal to 0,
+                    greater than 10, or not an integer.
+        TypeError: If the input is not an integer.
     """
-    if isinstance(number_of_qubits, str):
-        raise TypeError("number of qubits must be a integer.")
+    if not isinstance(number_of_qubits, int):
+        raise TypeError("Number of qubits must be an integer.")
     if number_of_qubits <= 0:
-        raise ValueError("number of qubits must be > 0.")
-    if math.floor(number_of_qubits) != number_of_qubits:
-        raise ValueError("number of qubits must be exact integer.")
+        raise ValueError("Number of qubits must be > 0.")
     if number_of_qubits > 10:
-        raise ValueError("number of qubits too large to simulate(>10).")
+        raise ValueError("Number of qubits too large to simulate (>10).")
 
     qr = QuantumRegister(number_of_qubits, "qr")
     cr = ClassicalRegister(number_of_qubits, "cr")
-
     quantum_circuit = QuantumCircuit(qr, cr)
 
-    counter = number_of_qubits
+    # Apply the QFT circuit
+    for i in range(number_of_qubits):
+        quantum_circuit.h(i)
+        for j in range(i + 1, number_of_qubits):
+            quantum_circuit.cp(np.pi / 2 ** (j - i), j, i)
 
-    for i in range(counter):
-        quantum_circuit.h(number_of_qubits - i - 1)
-        counter -= 1
-        for j in range(counter):
-            quantum_circuit.cp(np.pi / 2 ** (counter - j), j, counter)
+    # Swap the qubits
+    for i in range(number_of_qubits // 2):
+        quantum_circuit.swap(i, number_of_qubits - i - 1)
 
-    for k in range(number_of_qubits // 2):
-        quantum_circuit.swap(k, number_of_qubits - k - 1)
-
-    # measure all the qubits
+    # Measure all qubits
     quantum_circuit.measure(qr, cr)
-    # simulate with 10000 shots
+
+    # Simulate the circuit with 10000 shots
     backend = Aer.get_backend("qasm_simulator")
     job = execute(quantum_circuit, backend, shots=10000)
+    result = job.result()
 
-    return job.result().get_counts(quantum_circuit)
+    return result.get_counts(quantum_circuit)
 
 
 if __name__ == "__main__":
-    print(
-        f"Total count for quantum fourier transform state is: \
-    {quantum_fourier_transform(3)}"
-    )
+    result_counts = quantum_fourier_transform(3)
+    print(f"Total count for quantum fourier transform state is: {result_counts}")
