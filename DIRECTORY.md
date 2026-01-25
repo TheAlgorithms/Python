@@ -1321,6 +1321,7 @@
   * [Barcode Validator](strings/barcode_validator.py)
   * [Bitap String Match](strings/bitap_string_match.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
+  * [Bpe Tokenizer](strings/bpe_tokenizer.py)
   * [Camel Case To Snake Case](strings/camel_case_to_snake_case.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
