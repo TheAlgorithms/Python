@@ -112,10 +112,8 @@ class RedBlackTree:
     def _insert_repair(self) -> None:
         """Repair the coloring from inserting into a tree."""
         if self.parent is None:
-            # This node is the root, so it just needs to be black
             self.color = 0
         elif color(self.parent) == 0:
-            # If the parent is black, then it just needs to be red
             self.color = 1
         else:
             uncle = self.parent.sibling
@@ -147,133 +145,276 @@ class RedBlackTree:
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
 
-    def remove(self, label: int) -> RedBlackTree:
-        """Remove label from this tree."""
-        if self.label == label:
-            if self.left and self.right:
-                # It's easier to balance a node with at most one child,
-                # so we replace this node with the greatest one less than
-                # it and remove that.
-                value = self.left.get_max()
-                if value is not None:
-                    self.label = value
-                    self.left.remove(value)
-            else:
-                # This node has at most one non-None child, so we don't
-                # need to replace
-                child = self.left or self.right
-                if self.color == 1:
-                    # This node is red, and its child is black
-                    # The only way this happens to a node with one child
-                    # is if both children are None leaves.
-                    # We can just remove this node and call it a day.
-                    if self.parent:
-                        if self.is_left():
-                            self.parent.left = None
-                        else:
-                            self.parent.right = None
-                # The node is black
-                elif child is None:
-                    # This node and its child are black
-                    if self.parent is None:
-                        # The tree is now empty
-                        return RedBlackTree(None)
-                    else:
-                        self._remove_repair()
-                        if self.is_left():
-                            self.parent.left = None
-                        else:
-                            self.parent.right = None
-                        self.parent = None
-                else:
-                    # This node is black and its child is red
-                    # Move the child node here and make it black
-                    self.label = child.label
-                    self.left = child.left
-                    self.right = child.right
-                    if self.left:
-                        self.left.parent = self
-                    if self.right:
-                        self.right.parent = self
-        elif self.label is not None and self.label > label:
-            if self.left:
-                self.left.remove(label)
-        elif self.right:
-            self.right.remove(label)
+    def remove(self, label: int) -> "RedBlackTree":
+        """Remove label from this tree"""
+        if self.label is None:
+            return self
+
+        target = self.search(label)
+        if target is None:
+            return self.parent or self
+
+        target._remove_node()
         return self.parent or self
 
+    def _remove_node(self) -> None:
+        """
+        Physically remove the current node from the tree,
+        preserving all the invariants of the red-black tree
+        """
+        if self.left and self.right:
+            self._remove_with_two_children()
+        else:
+            self._remove_with_zero_or_one_child()
+
+    def _remove_with_two_children(self) -> None:
+        """
+        Handling the case when a node has two non-empty children:
+        Find the maximum in the left subtree, copy the value,
+        Delete the maximum in the left subtree
+        """
+        left = self.left
+        if left is None:
+            # Logically this should not happen if the caller knows that
+            # the node has two children, but this guard keeps type
+            # checkers happy and makes the method safer.
+            return
+
+        value = left.get_max()
+        if value is None:
+            # No value in the left subtree - nothing to do.
+            return
+
+        # Copy the predecessor value into the current node and
+        # delete the predecessor from the left subtree.
+        self.label = value
+        left.remove(value)
+
+    def _remove_with_zero_or_one_child(self) -> None:
+        """
+        Handling the case when a node has 0 or 1 child
+        """
+        child = self.left or self.right
+
+        if self.color == 1:
+            self._remove_red_leaf()
+            return
+
+        if child is None:
+            self._remove_black_leaf()
+            return
+
+        self._remove_black_node_with_red_child(child)
+
+    def _remove_red_leaf(self) -> None:
+        """
+        delete red leaf
+        """
+        if self.parent is None:
+            self.label = None
+            return
+
+        if self.is_left():
+            self.parent.left = None
+        else:
+            self.parent.right = None
+        self.parent = None
+
+    def _remove_black_leaf(self) -> None:
+        """
+        delete black leaf
+        """
+        if self.parent is None:
+            self.label = None
+            return
+
+        self._remove_repair()
+
+        if self.is_left():
+            self.parent.left = None
+        else:
+            self.parent.right = None
+        self.parent = None
+
+    def _remove_black_node_with_red_child(self, child: "RedBlackTree") -> None:
+        """
+        Black knot with a single red child:
+        Move the child to the top and paint it black.
+        """
+        self.label = child.label
+        self.left = child.left
+        self.right = child.right
+        if self.left:
+            self.left.parent = self
+        if self.right:
+            self.right.parent = self
+        self.color = 0
+
     def _remove_repair(self) -> None:
-        """Repair the coloring of the tree that may have been messed up."""
+        """Repair the coloring of the tree that may have been messed up
+        after deleting a black node.
+        """
         if (
             self.parent is None
             or self.sibling is None
-            or self.parent.sibling is None
-            or self.grandparent is None
+            or self.parent.grandparent is None
         ):
             return
-        if color(self.sibling) == 1:
-            self.sibling.color = 0
-            self.parent.color = 1
-            if self.is_left():
-                self.parent.rotate_left()
-            else:
-                self.parent.rotate_right()
-        if (
-            color(self.parent) == 0
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 0
-            and color(self.sibling.right) == 0
-        ):
-            self.sibling.color = 1
-            self.parent._remove_repair()
+
+        self._repair_red_sibling()
+
+        if self._repair_black_parent_black_sibling_black_children():
             return
-        if (
-            color(self.parent) == 1
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 0
-            and color(self.sibling.right) == 0
-        ):
-            self.sibling.color = 1
-            self.parent.color = 0
+
+        if self._repair_red_parent_black_sibling_black_children():
             return
+
+        self._repair_inner_nephew()
+
+        self._repair_outer_nephew()
+
+    def _repair_red_sibling(self) -> None:
+        """Case 1: sibling is red.
+
+        We rotate around the parent so that the sibling becomes black,
+        and then we continue with a configuration where the sibling is
+        black and the parent is red.
+        """
+        sibling = self.sibling
+        parent = self.parent
+
+        if sibling is None or parent is None:
+            return
+
+        if color(sibling) != 1:
+            return
+
+        sibling.color = 0
+        parent.color = 1
+
+        if self.is_left():
+            parent.rotate_left()
+        else:
+            parent.rotate_right()
+
+    def _repair_black_parent_black_sibling_black_children(self) -> bool:
+        """Case 2:
+        parent black, sibling black, sibling.left & sibling.right black.
+
+        In this case we recolor the sibling red and propagate the
+        "double black" upwards to the parent.
+        """
+        parent = self.parent
+        sibling = self.sibling
+
+        if parent is None or sibling is None:
+            return False
+
+        if color(parent) != 0:
+            return False
+        if color(sibling) != 0:
+            return False
+        if color(sibling.left) != 0:
+            return False
+        if color(sibling.right) != 0:
+            return False
+
+        sibling.color = 1
+        parent._remove_repair()
+        return True
+
+    def _repair_red_parent_black_sibling_black_children(self) -> bool:
+        """Case 3:
+        parent red, sibling black, sibling.left & sibling.right black.
+
+        We just swap the colors of the parent and sibling and finish.
+        """
+        parent = self.parent
+        sibling = self.sibling
+
+        if parent is None or sibling is None:
+            return False
+
+        if color(parent) != 1:
+            return False
+        if color(sibling) != 0:
+            return False
+        if color(sibling.left) != 0:
+            return False
+        if color(sibling.right) != 0:
+            return False
+
+        sibling.color = 1
+        parent.color = 0
+        return True
+
+    def _repair_inner_nephew(self) -> None:
+        """Case 4: inner nephew is red.
+
+        We rotate around the sibling to turn this into the outer-nephew
+        case (case 5), which can then be fixed by a rotation around
+        the parent.
+        """
+        sibling = self.sibling
+        if sibling is None:
+            return
+
+        # Left child, red left (inner) nephew
         if (
             self.is_left()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 0
-            and color(self.sibling.left) == 1
+            and color(sibling) == 0
+            and color(sibling.right) == 0
+            and color(sibling.left) == 1
         ):
-            self.sibling.rotate_right()
-            self.sibling.color = 0
-            if self.sibling.right:
-                self.sibling.right.color = 1
+            sibling.rotate_right()
+            sibling.color = 0
+            if sibling.right:
+                sibling.right.color = 1
+
+        # Right child, red right (inner) nephew
         if (
             self.is_right()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 1
-            and color(self.sibling.left) == 0
+            and color(sibling) == 0
+            and color(sibling.right) == 1
+            and color(sibling.left) == 0
         ):
-            self.sibling.rotate_left()
-            self.sibling.color = 0
-            if self.sibling.left:
-                self.sibling.left.color = 1
-        if (
-            self.is_left()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 1
-        ):
-            self.parent.rotate_left()
-            self.grandparent.color = self.parent.color
-            self.parent.color = 0
-            self.parent.sibling.color = 0
-        if (
-            self.is_right()
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 1
-        ):
-            self.parent.rotate_right()
-            self.grandparent.color = self.parent.color
-            self.parent.color = 0
-            self.parent.sibling.color = 0
+            sibling.rotate_left()
+            sibling.color = 0
+            if sibling.left:
+                sibling.left.color = 1
+
+    def _repair_outer_nephew(self) -> None:
+        """Case 5: outer nephew is red.
+
+        This is the final case: a rotation around the parent and
+        recoloring of parent / sibling / grandparent fixes the violation.
+        """
+        sibling = self.sibling
+        parent = self.parent
+        grandparent = self.grandparent
+
+        if sibling is None or parent is None or grandparent is None:
+            return
+
+        # Left child, red right (outer) nephew
+        if self.is_left() and color(sibling) == 0 and color(sibling.right) == 1:
+            parent.rotate_left()
+            grandparent.color = parent.color
+            parent.color = 0
+
+            parent_sibling = parent.sibling
+            if parent_sibling is not None:
+                parent_sibling.color = 0
+
+        # Right child, red left (outer) nephew
+        if self.is_right() and color(sibling) == 0 and color(sibling.left) == 1:
+            parent.rotate_right()
+            grandparent.color = parent.color
+            parent.color = 0
+
+            parent_sibling = parent.sibling
+            if parent_sibling is not None:
+                parent_sibling.color = 0
 
     def check_color_properties(self) -> bool:
         """Check the coloring of the tree, and return True iff the tree
