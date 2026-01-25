@@ -53,6 +53,8 @@ def pre_order(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> pre_order(root)
     1,2,4,5,3,6,7,
+    >>> tree_node = None
+    >>> pre_order(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -75,6 +77,8 @@ def in_order(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> in_order(root)
     4,2,5,1,6,3,7,
+    >>> tree_node = None
+    >>> in_order(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -97,6 +101,8 @@ def post_order(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> post_order(root)
     4,5,2,6,7,3,1,
+    >>> tree_node = None
+    >>> post_order(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -119,6 +125,8 @@ def level_order(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> level_order(root)
     1,2,3,4,5,6,7,
+    >>> tree_node = None
+    >>> level_order(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -149,6 +157,8 @@ def level_order_actual(node: TreeNode) -> None:
     1,
     2,3,
     4,5,6,7,
+    >>> tree_node = None
+    >>> level_order_actual(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -183,6 +193,8 @@ def pre_order_iter(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> pre_order_iter(root)
     1,2,4,5,3,6,7,
+    >>> tree_node = None
+    >>> pre_order_iter(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -213,6 +225,8 @@ def in_order_iter(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> in_order_iter(root)
     4,2,5,1,6,3,7,
+    >>> tree_node = None
+    >>> in_order_iter(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -241,6 +255,8 @@ def post_order_iter(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> post_order_iter(root)
     4,5,2,6,7,3,1,
+    >>> tree_node = None
+    >>> post_order_iter(tree_node)
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -259,6 +275,24 @@ def post_order_iter(node: TreeNode) -> None:
 
 
 def prompt(s: str = "", width=50, char="*") -> str:
+    """
+    >>> prompt()
+    '\\n**************************************************'
+    >>> prompt("Test")
+    '********************** Test **********************'
+    >>> prompt("Short", 40)
+    '**************** Short *****************'
+    >>> prompt("Longer Example", 30)
+    '******* Longer Example *******'
+    >>> prompt("", 10)
+    '\\n**********'
+    >>> prompt("Edge Case", 15)
+    '** Edge Case **'
+    >>> prompt("Custom Char", 20, "#")
+    '### Custom Char ####'
+    >>> prompt("ExactFit", 20)
+    '***** ExactFit *****'
+    """
     if not s:
         return "\n" + width * char
     left, extra = divmod(width - len(s) - 2, 2)
