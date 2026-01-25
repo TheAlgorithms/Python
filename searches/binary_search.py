@@ -207,7 +207,6 @@ def binary_search(arr: list[int], target: int) -> int:
     return -1
 
 
-
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python using stdlib
 
