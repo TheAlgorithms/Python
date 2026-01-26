@@ -1,132 +1,117 @@
-#!/usr/bin/env python3
-
-"""
-Implementation of entropy of information
-https://en.wikipedia.org/wiki/Entropy_(information_theory)
-"""
-
 from __future__ import annotations
 
 import math
 from collections import Counter
-from string import ascii_lowercase
+
+"""
+In information theory, entropy is a measure of the uncertainty or randomness of a
+source of data. It quantifies the expected amount of information contained in each
+message from the source.
+
+The core formula for Shannon Entropy H(X) is:
+    H(X) = -Σ P(x) * log2(P(x))
+where P(x) is the probability of an event x occurring.
+
+This concept mirrors the thermodynamic entropy in physics, representing the level
+of disorder in a system. In a digital context, it defines the theoretical limit
+for data compression.
+
+Reference: https://en.wikipedia.org/wiki/Entropy_(information_theory)
+"""
 
 
-def calculate_prob(text: str) -> None:
+def shannon_entropy(probabilities: list[float]) -> float:
     """
-    This method takes path and two dict as argument
-    and than calculates entropy of them.
-    :param dict:
-    :param dict:
-    :return: Prints
-    1) Entropy of information based on 1 alphabet
-    2) Entropy of information based on couples of 2 alphabet
-    3) print Entropy of H(X n|Xn-1)
+    Calculates the Shannon entropy of a given probability distribution.
 
-    Text from random books. Also, random quotes.
-    >>> text = ("Behind Winston's back the voice "
-    ...         "from the telescreen was still "
-    ...         "babbling and the overfulfilment")
-    >>> calculate_prob(text)
-    4.0
-    6.0
-    2.0
+    Args:
+        probabilities: A list of probabilities representing a discrete distribution.
 
-    >>> text = ("The Ministry of Truth—Minitrue, in Newspeak [Newspeak was the official"
-    ...         "face in elegant lettering, the three")
-    >>> calculate_prob(text)
-    4.0
-    5.0
-    1.0
-    >>> text = ("Had repulsive dashwoods suspicion sincerity but advantage now him. "
-    ...         "Remark easily garret nor nay.  Civil those mrs enjoy shy fat merry. "
-    ...         "You greatest jointure saw horrible. He private he on be imagine "
-    ...         "suppose. Fertile beloved evident through no service elderly is. Blind "
-    ...         "there if every no so at. Own neglected you preferred way sincerity "
-    ...         "delivered his attempted. To of message cottage windows do besides "
-    ...         "against uncivil.  Delightful unreserved impossible few estimating "
-    ...         "men favourable see entreaties. She propriety immediate was improving. "
-    ...         "He or entrance humoured likewise moderate. Much nor game son say "
-    ...         "feel. Fat make met can must form into gate. Me we offending prevailed "
-    ...         "discovery.")
-    >>> calculate_prob(text)
-    4.0
-    7.0
-    3.0
+    Returns:
+        The entropy value in bits.
+
+    Raises:
+        ValueError: If probabilities are negative or do not sum to approximately 1.0.
+
+    Examples:
+        >>> shannon_entropy([0.5, 0.5])
+        1.0
+        >>> shannon_entropy([1.0, 0.0])
+        0.0
+        >>> shannon_entropy([0.25, 0.25, 0.25, 0.25])
+        2.0
     """
-    single_char_strings, two_char_strings = analyze_text(text)
-    my_alphas = list(" " + ascii_lowercase)
-    # what is our total sum of probabilities.
-    all_sum = sum(single_char_strings.values())
+    if any(p < 0 for p in probabilities):
+        raise ValueError("Probabilities cannot be negative.")
 
-    # one length string
-    my_fir_sum = 0
-    # for each alpha we go in our dict and if it is in it we calculate entropy
-    for ch in my_alphas:
-        if ch in single_char_strings:
-            my_str = single_char_strings[ch]
-            prob = my_str / all_sum
-            my_fir_sum += prob * math.log2(prob)  # entropy formula.
+    # Due to floating point precision, we check for closeness to 1.0
+    if (
+        not math.isclose(sum(probabilities), 1.0, rel_tol=1e-9)
+        and sum(probabilities) > 0
+    ):
+        # Normalize if not summed to 1 but has values
+        probabilities = [p / sum(probabilities) for p in probabilities]
 
-    # print entropy
-    print(f"{round(-1 * my_fir_sum):.1f}")
+    entropy = 0.0
+    for p in probabilities:
+        if p > 0:
+            entropy -= p * math.log2(p)
 
-    # two len string
-    all_sum = sum(two_char_strings.values())
-    my_sec_sum = 0
-    # for each alpha (two in size) calculate entropy.
-    for ch0 in my_alphas:
-        for ch1 in my_alphas:
-            sequence = ch0 + ch1
-            if sequence in two_char_strings:
-                my_str = two_char_strings[sequence]
-                prob = int(my_str) / all_sum
-                my_sec_sum += prob * math.log2(prob)
-
-    # print second entropy
-    print(f"{round(-1 * my_sec_sum):.1f}")
-
-    # print the difference between them
-    print(f"{round((-1 * my_sec_sum) - (-1 * my_fir_sum)):.1f}")
+    return entropy
 
 
-def analyze_text(text: str) -> tuple[dict, dict]:
+def analyze_text_entropy(text: str) -> dict[str, float]:
     """
-    Convert text input into two dicts of counts.
-    The first dictionary stores the frequency of single character strings.
-    The second dictionary stores the frequency of two character strings.
+    Analyzes the entropy of a given text at different levels (1-gram, 2-gram).
+
+    Args:
+        text: The input string to analyze.
+
+    Returns:
+        A dictionary containing entropy values for different n-gram levels.
+
+    Examples:
+        >>> result = analyze_text_entropy("aaaaa")
+        >>> result['1-gram']
+        0.0
+        >>> result = analyze_text_entropy("abab")
+        >>> round(result['1-gram'], 2)
+        1.0
     """
-    single_char_strings = Counter()  # type: ignore[var-annotated]
-    two_char_strings = Counter()  # type: ignore[var-annotated]
-    single_char_strings[text[-1]] += 1
+    if not text:
+        return {"1-gram": 0.0, "2-gram": 0.0}
 
-    # first case when we have space at start.
-    two_char_strings[" " + text[0]] += 1
-    for i in range(len(text) - 1):
-        single_char_strings[text[i]] += 1
-        two_char_strings[text[i : i + 2]] += 1
-    return single_char_strings, two_char_strings
+    # 1-gram analysis (individual characters)
+    counts_1gram = Counter(text)
+    total_chars = len(text)
+    probs_1gram = [count / total_chars for count in counts_1gram.values()]
+    entropy_1gram = shannon_entropy(probs_1gram)
 
+    # 2-gram analysis (pairs of characters)
+    if len(text) < 2:
+        entropy_2gram = 0.0
+    else:
+        pairs = [text[i : i + 2] for i in range(len(text) - 1)]
+        counts_2gram = Counter(pairs)
+        total_pairs = len(pairs)
+        probs_2gram = [count / total_pairs for count in counts_2gram.values()]
+        entropy_2gram = shannon_entropy(probs_2gram)
 
-def main():
-    import doctest
-
-    doctest.testmod()
-    # text = (
-    #     "Had repulsive dashwoods suspicion sincerity but advantage now him. Remark "
-    #     "easily garret nor nay. Civil those mrs enjoy shy fat merry. You greatest "
-    #     "jointure saw horrible. He private he on be imagine suppose. Fertile "
-    #     "beloved evident through no service elderly is. Blind there if every no so "
-    #     "at. Own neglected you preferred way sincerity delivered his attempted. To "
-    #     "of message cottage windows do besides against uncivil.  Delightful "
-    #     "unreserved impossible few estimating men favourable see entreaties. She "
-    #     "propriety immediate was improving. He or entrance humoured likewise "
-    #     "moderate. Much nor game son say feel. Fat make met can must form into "
-    #     "gate. Me we offending prevailed discovery. "
-    # )
-
-    # calculate_prob(text)
+    return {
+        "1-gram": entropy_1gram,
+        "2-gram": entropy_2gram,
+        "conditional_entropy": max(0.0, entropy_2gram - entropy_1gram),
+    }
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
+
+    # Manual demonstration
+    sample_text = "Behind Winston's back the voice from the telescreen was still"
+    entropy_stats = analyze_text_entropy(sample_text)
+    print(f"Text: '{sample_text[:30]}...'")
+    for level, value in entropy_stats.items():
+        print(f"{level:>20}: {value:.4f} bits")
