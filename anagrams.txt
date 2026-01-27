@@ -1,4 +1,4 @@
-all_anagrams = 
+all_anagrams =
 {'aal': ['aal', 'ala'],
  'aam': ['aam', 'ama'],
  'aaronic': ['aaronic', 'nicarao', 'ocarina'],
