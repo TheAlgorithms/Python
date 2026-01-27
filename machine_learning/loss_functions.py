@@ -663,6 +663,46 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
+def symmetric_mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+    Calculate the Symmetric Mean Absolute Percentage Error (SMAPE) between y_true and
+    y_pred.
+
+    SMAPE is an accuracy measure based on percentage (or relative) errors. It is
+    symmetric and treats over- and under- predictions equally.
+
+    SMAPE = (1/n) * Σ( |y_true - y_pred| / ((|y_true| + |y_pred|) / 2) )
+
+    Reference: https://en.wikipedia.org/wiki/Symmetric_mean_absolute_percentage_error
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+    - epsilon: Small constant to avoid division by zero
+
+    >>> true_values = np.array([100, 200, 300, 400])
+    >>> predicted_values = np.array([110, 190, 310, 420])
+    >>> float(symmetric_mean_absolute_percentage_error(true_values, predicted_values))
+    0.05702187989273155
+    >>> true_labels = np.array([100, 200, 300])
+    >>> predicted_probs = np.array([110, 190, 310, 420])
+    >>> symmetric_mean_absolute_percentage_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    denominator = (np.abs(y_true) + np.abs(y_pred)) / 2.0
+    denominator = np.where(denominator == 0, epsilon, denominator)
+
+    smape_loss = np.abs(y_true - y_pred) / denominator
+    return np.mean(smape_loss)
+
+
 if __name__ == "__main__":
     import doctest
 
