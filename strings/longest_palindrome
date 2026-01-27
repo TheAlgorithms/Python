@@ -1,0 +1,64 @@
+import timeit
+
+def longest_palindrome(s: str) -> str:
+    if s == s[::-1] or len(s) == 1:
+        return s
+    else:
+        res = [s[i:j] for i in range(len(s)) for j in range(i + 1, len(s) + 1)]
+        output = ""
+        for k in res:
+            if k == k[::-1]:
+                if len(k) > len(output) or (len(k) == len(output) and res.index(k) < res.index(output)):
+                    output = k
+        return output
+
+
+# Test cases with longer strings containing multiple palindromes
+test_data = {
+    "abacdfgdcaba": "aba",
+    "abcdcbacdcba": "abcdcba",
+    "aabbcbbaaaab": "aabbcbbaa",
+    "racecarlevelcivic": "racecar",
+    "madamimadam": "madamimadam",
+    "abccbaabcdcb": "abccba",
+    "noonracecar": "racecar",
+    "aabbcccbbbaa": "bbcccbb",
+    "detartrated": "detartrated",
+    "civicradarlevel": "civic",
+
+    # Additional complex cases
+    "babad": "bab",
+    "cbbd": "bb",
+    "forgeeksskeegfor": "geeksskeeg",
+    "abacabadabacaba": "abacabadabacaba",
+    "a": "a",
+    "bb": "bb",
+    "pqrzzzzzyxwvutsrqponmlkjihgfedcba": "zzzzz",
+    "abcdefg": "a",
+    "noonracecarlevel": "racecar",
+    "abcdedcbaefg": "abcdedcba",
+    "abacabad": "abacaba",
+    "aaaaaaa": "aaaaaaa",
+
+    # Additional large test cases
+    "a" * 1000: "a" * 1000,
+}
+
+
+def benchmark():
+    for key, value in test_data.items():
+        start_time = timeit.default_timer()
+        result = longest_palindrome(key)
+        end_time = timeit.default_timer()
+        elapsed_time = end_time - start_time
+
+        print(f"{key[:30]:<35} -> Longest Palindrome: {result} (Time: {elapsed_time:.6f} seconds)")
+        assert result == value, f"Test failed for {key}. Expected {value}, but got {result}"
+
+    # If all tests pass
+    print("All tests passed!")
+
+
+# Main code block
+if __name__ == "__main__":
+    benchmark()
