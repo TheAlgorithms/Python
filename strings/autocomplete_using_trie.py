@@ -21,7 +21,7 @@ class Trie:
             if char in trie:
                 trie = trie[char]
             else:
-                return []
+                return ()
         return self._elements(trie)
 
     def _elements(self, d: dict) -> tuple:

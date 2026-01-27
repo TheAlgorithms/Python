@@ -15,6 +15,10 @@ def signature(word: str) -> str:
     ' 3a1e1h1i2s3t3'
     >>> signature("finaltest")
     'a1e1f1i1l1n1s1t2'
+    >>> signature("listen")
+    'silent'
+    >>> signature ("silent")
+    'listen'
     """
     frequencies = collections.Counter(word)
     return "".join(
