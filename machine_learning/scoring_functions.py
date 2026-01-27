@@ -136,4 +136,37 @@ def mbd(predict, actual):
 
 
 def manual_accuracy(predict, actual):
+    """
+    Calculate the accuracy score for binary classification predictions.
+
+    Accuracy = (Number of correct predictions) / (Total predictions)
+
+    Parameters:
+    - predict: Predicted labels
+    - actual: True labels
+
+    Returns:
+    - float: Accuracy score between 0 and 1
+
+    Examples:
+    >>> actual = [1, 0, 1, 1, 0]
+    >>> predict = [1, 0, 1, 0, 0]
+    >>> float(manual_accuracy(predict, actual))
+    0.8
+
+    >>> actual = [1, 1, 1]
+    >>> predict = [1, 1, 1]
+    >>> float(manual_accuracy(predict, actual))
+    1.0
+
+    >>> actual = [0, 0, 0]
+    >>> predict = [1, 1, 1]
+    >>> float(manual_accuracy(predict, actual))
+    0.0
+
+    >>> actual = [1, 0, 1, 0]
+    >>> predict = [0, 1, 0, 1]
+    >>> float(manual_accuracy(predict, actual))
+    0.0
+    """
     return np.mean(np.array(actual) == np.array(predict))
