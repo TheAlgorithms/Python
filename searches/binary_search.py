@@ -186,7 +186,9 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :return: index of the found item or -1 if the item is not found.
+             If there are multiple occurrences of the item, returns the index
+             of the leftmost occurrence.
 
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
@@ -197,22 +199,30 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search([1, 2, 4, 4, 4, 6, 7], 4)
+    2
+    >>> binary_search([0, 5, 7, 10, 10, 10], 10)
+    3
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1
+    result = -1
 
     while left <= right:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            return midpoint
+            result = (
+                midpoint  # Found the item, but continue to find leftmost occurrence
+            )
+            right = midpoint - 1  # Look for more occurrences on the left
         elif item < current_item:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1
+    return result
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
@@ -329,7 +339,9 @@ def binary_search_by_recursion(
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :return: index of the found item or -1 if the item is not found.
+             If there are multiple occurrences of the item, returns the index
+             of the leftmost occurrence.
 
     Examples:
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4)
@@ -340,22 +352,35 @@ def binary_search_by_recursion(
     1
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
+    >>> binary_search_by_recursion([1, 2, 4, 4, 4, 6, 7], 4, 0, 6)
+    2
+    >>> binary_search_by_recursion([0, 5, 7, 10, 10, 10], 10, 0, 5)
+    3
     """
     if right < 0:
         right = len(sorted_collection) - 1
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
-    if right < left:
-        return -1
 
-    midpoint = left + (right - left) // 2
+    # Helper function for the binary search
+    def _binary_search_recursive(left_idx: int, right_idx: int) -> int:
+        if right_idx < left_idx:
+            return -1
 
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
-    else:
-        return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
+        midpoint = left_idx + (right_idx - left_idx) // 2
+        current_item = sorted_collection[midpoint]
+
+        if current_item == item:
+            # Found the item, now find the leftmost occurrence
+            # First, recursively find any occurrence to the left
+            leftmost = _binary_search_recursive(left_idx, midpoint - 1)
+            return leftmost if leftmost != -1 else midpoint
+        elif item < current_item:
+            return _binary_search_recursive(left_idx, midpoint - 1)
+        else:
+            return _binary_search_recursive(midpoint + 1, right_idx)
+
+    return _binary_search_recursive(left, right)
 
 
 def exponential_search(sorted_collection: list[int], item: int) -> int:
