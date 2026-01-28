@@ -39,11 +39,9 @@ def base62_decode(string_val: str) -> int:
     strlen = len(string_val)
     num = 0
 
-    idx = 0
-    for char in string_val:
+    for idx, char in enumerate(string_val):
         power = strlen - (idx + 1)
         num += CHARSET.index(char) * (base**power)
-        idx += 1
     return num
 
 
