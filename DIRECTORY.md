@@ -173,6 +173,8 @@
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
+## [Coordinate Compression](/coordinate_compression.py)
+
 ## Data Compression
   * [Burrows Wheeler](data_compression/burrows_wheeler.py)
   * [Coordinate Compression](data_compression/coordinate_compression.py)
@@ -1244,6 +1246,7 @@
 
 ## Searches
   * [Binary Search](searches/binary_search.py)
+  * [Binary Search With Duplicates](searches/binary_search_with_duplicates.py)
   * [Binary Tree Traversal](searches/binary_tree_traversal.py)
   * [Double Linear Search](searches/double_linear_search.py)
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
