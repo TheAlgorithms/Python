@@ -1,27 +1,19 @@
-import doctest
 import string
-
-CHARSET = string.digits + string.ascii_lowercase + string.ascii_uppercase
 
 
 def base62_encode(num: int) -> str:
     """
     Encodes a positive integer into a base62 string.
-    >>> base62_encode(0)
-    '0'
-    >>> base62_encode(123)
-    '1z'
-    >>> base62_encode(1000000)
-    '4C92'
     """
     if num == 0:
-        return CHARSET[0]
+        return "0"
 
     arr = []
-    base = len(CHARSET)
+    base = 62
+    charset = string.digits + string.ascii_lowercase + string.ascii_uppercase
     while num:
         num, rem = divmod(num, base)
-        arr.append(CHARSET[rem])
+        arr.append(charset[rem])
     arr.reverse()
     return "".join(arr)
 
@@ -29,22 +21,32 @@ def base62_encode(num: int) -> str:
 def base62_decode(string_val: str) -> int:
     """
     Decodes a base62 string into a positive integer.
-    >>> base62_decode('0')
-    0
-    >>> base62_decode('1z')
-    123
-    >>> base62_decode('4C92')
-    1000000
     """
-    base = len(CHARSET)
+    base = 62
+    charset = string.digits + string.ascii_lowercase + string.ascii_uppercase
     strlen = len(string_val)
     num = 0
 
     for idx, char in enumerate(string_val):
         power = strlen - (idx + 1)
-        num += CHARSET.index(char) * (base**power)
+        num += charset.index(char) * (base**power)
     return num
 
 
+def test_base62() -> None:
+    """
+    Tests for base62_encode and base62_decode.
+    """
+    assert base62_encode(0) == "0"
+    assert base62_encode(123) == "1z"
+    assert base62_encode(1000000) == "4C92"
+    assert base62_decode("0") == 0
+    assert base62_decode("1z") == 123
+    assert base62_decode("4C92") == 1000000
+
+
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
+    test_base62()
