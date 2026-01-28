@@ -2,6 +2,7 @@ import string
 
 CHARSET = string.digits + string.ascii_lowercase + string.ascii_uppercase
 
+
 def base62_encode(num: int) -> str:
     """
     Encodes a positive integer into a base62 string.
@@ -14,7 +15,7 @@ def base62_encode(num: int) -> str:
     """
     if num == 0:
         return CHARSET[0]
-    
+
     arr = []
     base = len(CHARSET)
     while num:
@@ -22,6 +23,7 @@ def base62_encode(num: int) -> str:
         arr.append(CHARSET[rem])
     arr.reverse()
     return "".join(arr)
+
 
 def base62_decode(string_val: str) -> int:
     """
@@ -36,7 +38,7 @@ def base62_decode(string_val: str) -> int:
     base = len(CHARSET)
     strlen = len(string_val)
     num = 0
-    
+
     idx = 0
     for char in string_val:
         power = strlen - (idx + 1)
@@ -44,6 +46,8 @@ def base62_decode(string_val: str) -> int:
         idx += 1
     return num
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
