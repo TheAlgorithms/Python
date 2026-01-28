@@ -1,4 +1,5 @@
 import string
+import doctest
 
 CHARSET = string.digits + string.ascii_lowercase + string.ascii_uppercase
 
@@ -46,6 +47,4 @@ def base62_decode(string_val: str) -> int:
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
