@@ -1,5 +1,5 @@
-import string
 import doctest
+import string
 
 CHARSET = string.digits + string.ascii_lowercase + string.ascii_uppercase
 
