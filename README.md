@@ -34,14 +34,17 @@
   </a>
 
 <!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education 📚</h3>
+  <h3>All algorithms are implemented in Python — for educational purposes 📚</h3>
 </div>
 
-Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
+
+ ⚠️ Disclaimer: The algorithms provided here are for educational purposes only.
+ Performance and efficiency may differ from Python's standard library implementations.Use responsibly.
 
 ## 🚀 Getting Started
 
-📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+📋 To ensure a smooth contribution process, please review our [Contribution Guidelines](CONTRIBUTING.md) before making any changes or submitting pull requests.
+
 
 ## 🌐 Community Channels
 
@@ -49,4 +52,5 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 
 ## 📜 List of Algorithms
 
-See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+Refer to the [directory](DIRECTORY.md) for structured navigation and an in-depth overview of the algorithms included in this project.
+
