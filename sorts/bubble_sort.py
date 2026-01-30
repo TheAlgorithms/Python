@@ -107,8 +107,12 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
 
 
 if __name__ == "__main__":
+    
+    #doctest is a Python module used for testing your code automatically.
     import doctest
+    #sample : It picks unique random items from a list, set, or sequence.
     from random import sample
+    #timeit is used to measure how long a piece of code takes to run.
     from timeit import timeit
 
     doctest.testmod()
