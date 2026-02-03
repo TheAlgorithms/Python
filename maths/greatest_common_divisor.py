@@ -1,15 +1,17 @@
-"""
-Greatest Common Divisor.
+"""Greatest Common Divisor (GCD).
 
-Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
+Wikipedia reference:
+https://en.wikipedia.org/wiki/Greatest_common_divisor
 
-gcd(a, b) = gcd(a, -b) = gcd(-a, b) = gcd(-a, -b) by definition of divisibility
+gcd(a, b) = gcd(a, -b) = gcd(-a, b) = gcd(-a, -b)
+by definition of divisibility.
 """
 
 
 def greatest_common_divisor(a: int, b: int) -> int:
     """
-    Calculate Greatest Common Divisor (GCD).
+    Calculate the greatest common divisor (GCD).
+
     >>> greatest_common_divisor(24, 40)
     8
     >>> greatest_common_divisor(1, 1)
@@ -36,8 +38,10 @@ def greatest_common_divisor(a: int, b: int) -> int:
 
 def gcd_by_iterative(x: int, y: int) -> int:
     """
-    Below method is more memory efficient because it does not create additional
-    stack frames for recursive functions calls (as done in the above method).
+    Iterative method to compute the greatest common divisor.
+
+    This method is more memory efficient as it avoids recursive calls.
+
     >>> gcd_by_iterative(24, 40)
     8
     >>> greatest_common_divisor(24, 40) == gcd_by_iterative(24, 40)
@@ -51,15 +55,13 @@ def gcd_by_iterative(x: int, y: int) -> int:
     >>> gcd_by_iterative(11, 37)
     1
     """
-    while y:  # --> when y=0 then loop will terminate and return x as final GCD.
+    while y:
         x, y = y, x % y
     return abs(x)
 
 
 def main():
-    """
-    Call Greatest Common Divisor function.
-    """
+    """Run GCD functions with user input."""
     try:
         nums = input("Enter two integers separated by comma (,): ").split(",")
         num_1 = int(nums[0])
