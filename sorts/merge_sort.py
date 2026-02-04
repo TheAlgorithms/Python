@@ -10,7 +10,7 @@ python merge_sort.py
 """
 
 
-def merge_sort(collection: list) -> list:
+def merge_sort(collection: list[int]) -> list[int]:
     """
     Sorts a list using the merge sort algorithm.
 
@@ -29,7 +29,7 @@ def merge_sort(collection: list) -> list:
     [-45, -5, -2]
     """
 
-    def merge(left: list, right: list) -> list:
+    def merge(left: list[int], right: list[int]) -> list[int]:
         """
         Merge two sorted lists into a single sorted list.
 
