@@ -5,7 +5,8 @@ Source: https://en.wikipedia.org/wiki/Cycle_sort
 
 from typing import TypeVar
 
-T = TypeVar('T', int, float)
+T = TypeVar("T", int, float)
+
 
 def cycle_sort(array: list[T]) -> list[T]:
     """
@@ -54,5 +55,5 @@ def cycle_sort(array: list[T]) -> list[T]:
 if __name__ == "__main__":
     assert cycle_sort([4, 5, 3, 2, 1]) == [1, 2, 3, 4, 5]
     assert cycle_sort([0, 1, -10, 15, 2, -2]) == [-10, -2, 0, 1, 2, 15]
-    assert cycle_sort([-.1, -.2, 1.3, -.8]) == [-0.8, -0.2, -0.1, 1.3]
+    assert cycle_sort([-0.1, -0.2, 1.3, -0.8]) == [-0.8, -0.2, -0.1, 1.3]
     print("All tests passed")
