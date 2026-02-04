@@ -9,7 +9,7 @@ python3 circle_sort.py
 """
 
 
-def circle_sort(collection: list) -> list:
+def circle_sort(collection: list[int]) -> list[int]:
     """A pure Python implementation of circle sort algorithm
 
     :param collection: a mutable collection of comparable items in any order
@@ -30,7 +30,7 @@ def circle_sort(collection: list) -> list:
     if len(collection) < 2:
         return collection
 
-    def circle_sort_util(collection: list, low: int, high: int) -> bool:
+    def circle_sort_util(collection: list[int], low: int, high: int) -> bool:
         """
         >>> arr = [5,4,3,2,1]
         >>> circle_sort_util(lst, 0, 2)

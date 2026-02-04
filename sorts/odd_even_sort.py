@@ -5,7 +5,7 @@ https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort
 """
 
 
-def odd_even_sort(input_list: list) -> list:
+def odd_even_sort(input_list: list[int]) -> list[int]:
     """
     Sort input with odd even sort.
 
