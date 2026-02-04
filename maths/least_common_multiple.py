@@ -6,7 +6,7 @@ from maths.greatest_common_divisor import greatest_common_divisor
 
 def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     """
-    Find the least common multiple of two numbers.
+    Find the least common multiple (LCM) of two integers.
 
     Learn more: https://en.wikipedia.org/wiki/Least_common_multiple
 
@@ -14,8 +14,13 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     10
     >>> least_common_multiple_slow(12, 76)
     228
+    >>> least_common_multiple_slow(0, 5)
+    0
     """
-    max_num = first_num if first_num >= second_num else second_num
+    if first_num == 0 or second_num == 0:
+        return 0
+
+    max_num = max(abs(first_num), abs(second_num))
     common_mult = max_num
     while (common_mult % first_num > 0) or (common_mult % second_num > 0):
         common_mult += max_num
@@ -24,14 +29,24 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
 
 def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     """
-    Find the least common multiple of two numbers.
+    Find the least common multiple (LCM) of two integers.
+
+    Uses the relationship between LCM and GCD:
     https://en.wikipedia.org/wiki/Least_common_multiple#Using_the_greatest_common_divisor
-    >>> least_common_multiple_fast(5,2)
+
+    >>> least_common_multiple_fast(5, 2)
     10
-    >>> least_common_multiple_fast(12,76)
+    >>> least_common_multiple_fast(12, 76)
     228
+    >>> least_common_multiple_fast(0, 5)
+    0
     """
-    return first_num // greatest_common_divisor(first_num, second_num) * second_num
+    if first_num == 0 or second_num == 0:
+        return 0
+
+    return abs(
+        first_num // greatest_common_divisor(first_num, second_num) * second_num
+    )
 
 
 def benchmark():
@@ -59,8 +74,9 @@ class TestLeastCommonMultiple(unittest.TestCase):
         (12, 25),
         (10, 25),
         (6, 9),
+        (0, 5),
     )
-    expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18)
+    expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18, 0)
 
     def test_lcm_function(self):
         for i, (first_num, second_num) in enumerate(self.test_inputs):
