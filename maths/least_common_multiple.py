@@ -44,9 +44,7 @@ def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     if first_num == 0 or second_num == 0:
         return 0
 
-    return abs(
-        first_num // greatest_common_divisor(first_num, second_num) * second_num
-    )
+    return abs(first_num // greatest_common_divisor(first_num, second_num) * second_num)
 
 
 def benchmark():
