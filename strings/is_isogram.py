@@ -25,3 +25,5 @@ if __name__ == "__main__":
     input_str = input("Enter a string ").strip()
     isogram = is_isogram(input_str)
     print(f"{input_str} is {'an' if isogram else 'not an'} isogram.")
+
+   
