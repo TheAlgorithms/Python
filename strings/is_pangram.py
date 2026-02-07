@@ -21,10 +21,13 @@ def is_pangram(
     >>> is_pangram()
     True
     """
+    # Declare frequency as a set to have unique occurrences of letters
     frequency = set()
+
+    # Replace all the whitespace in our sentence
     input_str = input_str.replace(" ", "")
     for alpha in input_str:
-        if alpha.isalpha():
+        if "a" <= alpha.lower() <= "z":
             frequency.add(alpha.lower())
     return len(frequency) == 26
 
@@ -69,3 +72,24 @@ def is_pangram_fastest(
     True
     """
     return len({char for char in input_str.lower() if char.isalpha()}) == 26
+
+
+def benchmark() -> None:
+    """
+    Benchmark code comparing different version.
+    """
+    from timeit import timeit
+
+    setup = "from __main__ import is_pangram, is_pangram_faster, is_pangram_fastest"
+    print(timeit("is_pangram()", setup=setup))
+    print(timeit("is_pangram_faster()", setup=setup))
+    print(timeit("is_pangram_fastest()", setup=setup))
+    # 5.348480500048026, 2.6477354579837993, 1.8470395830227062
+    # 5.036091582966037, 2.644472333951853,  1.8869528750656173
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    benchmark()
