@@ -69,7 +69,3 @@ def is_pangram_fastest(
     True
     """
     return len({char for char in input_str.lower() if char.isalpha()}) == 26
-
-   
-    
-    
