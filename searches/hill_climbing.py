@@ -14,7 +14,7 @@ class SearchProblem:
         x: int,
         y: int,
         step_size: int,
-        function_to_optimize: Callable[[int, int], int],
+        function_to_optimize: Callable[[int, int], int | float],
     ) -> None:
         """
         The constructor of the search problem.
