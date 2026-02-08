@@ -29,7 +29,7 @@ class SearchProblem:
         self.step_size = step_size
         self.function = function_to_optimize
 
-    def score(self) -> int:
+    def score(self) -> int | float:
         """
         Returns the output of the function called with current x and y coordinates.
         >>> def test_function(x, y):
