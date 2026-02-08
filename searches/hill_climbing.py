@@ -2,6 +2,7 @@
 import math
 from collections.abc import Callable
 
+
 class SearchProblem:
     """
     An interface to define search problems.
@@ -9,11 +10,11 @@ class SearchProblem:
     """
 
     def __init__(
-        self, 
-        x: int, 
-        y: int, 
-        step_size: int, 
-        function_to_optimize: Callable[[int, int], int]
+        self,
+        x: int,
+        y: int,
+        step_size: int,
+        function_to_optimize: Callable[[int, int], int],
     ) -> None:
         """
         The constructor of the search problem.
