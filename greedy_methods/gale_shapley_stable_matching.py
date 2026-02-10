@@ -1,6 +1,8 @@
 """
 Gale-Shapley Stable Matching (Hospital-Proposing Version)
 
+wikipedia: https://en.wikipedia.org/wiki/Gale%E2%80%93Shapley_algorithm
+
 This function implements the Gale-Shapley algorithm to produce a stable
 matching between two groups: hospitals and students. Each hospital ranks
 students in order of preference, and each student ranks hospitals.
