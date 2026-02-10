@@ -59,19 +59,21 @@ class GaleShapley:
         ... {1: [4, 3, 2, 1], 2: [1, 2, 3, 4], 3: [2, 3, 4, 1], 4: [3, 4, 1, 2]})
         {1: 2, 2: 3, 3: 4, 4: 1}
         >>> gs.find_matches(
-        ... {1: [2, 3, 4, 5, 6, 1], 2: [2, 4, 5, 6, 1, 3], 3: [4, 5, 6, 1, 2, 3], 4: [5, 6, 1, 2, 3, 4], 5: [2, 1, 6, 3, 4, 5], 6: [1, 2, 3, 4, 5, 6]},
-        ... {1: [6, 1, 2, 3, 4, 5], 2: [1, 2, 3, 4, 5, 6], 3: [2, 3, 4, 5, 6, 1], 4: [3, 4, 5, 6, 1, 2], 5: [4, 5, 6, 1, 2, 3], 6: [5, 6, 1, 2, 3, 4]})
+        ... {1: [2, 3, 4, 5, 6, 1], 2: [2, 4, 5, 6, 1, 3], 3: [4, 5, 6, 1, 2, 3],
+        ...     4: [5, 6, 1, 2, 3, 4], 5: [2, 1, 6, 3, 4, 5], 6: [1, 2, 3, 4, 5, 6]},
+        ... {1: [6, 1, 2, 3, 4, 5], 2: [1, 2, 3, 4, 5, 6], 3: [2, 3, 4, 5, 6, 1],
+        ...     4: [3, 4, 5, 6, 1, 2], 5: [4, 5, 6, 1, 2, 3], 6: [5, 6, 1, 2, 3, 4]})
         {1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 1}
         """
 
-        matches = {key: -1 for key in proposers_preferences.keys()}
-
+        matches = dict.fromkeys(proposers_preferences.keys(), -1)
+        tested_matches = dict.fromkeys(proposers_preferences.keys(), 0)
         free_proposers = list(proposers_preferences.keys())
-        tested_matches = {key: 0 for key in proposers_preferences.keys()}
 
         while free_proposers:
             proposer = free_proposers[0]
 
+            # continue if all options for proposer have been exhausted
             if tested_matches[proposer] == len(proposers_preferences[proposer]):
                 free_proposers.remove(proposer)
                 continue
@@ -79,6 +81,7 @@ class GaleShapley:
             receiver = proposers_preferences[proposer][tested_matches[proposer]]
             tested_matches[proposer] += 1
 
+            # set receiver as match if not previously matched
             if receiver not in matches.values():
                 matches[proposer] = receiver
                 free_proposers.remove(proposer)
@@ -86,13 +89,15 @@ class GaleShapley:
             cur_proposer = next(
                 prop for prop, rec in matches.items() if rec == receiver
             )
+
+            # give receiver new proposer match only if it preferes new over old
             if receivers_preferences[receiver].index(proposer) < receivers_preferences[
                 receiver
             ].index(cur_proposer):
-                matches[cur_proposer] = -1
-                matches[proposer] = receiver
                 free_proposers.remove(proposer)
                 free_proposers.append(cur_proposer)
+                matches[cur_proposer] = -1
+                matches[proposer] = receiver
 
         return matches
 
