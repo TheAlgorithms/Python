@@ -1,3 +1,35 @@
+"""
+Gale-Shapley Stable Matching (Hospital-Proposing Version)
+
+This function implements the Gale-Shapley algorithm to produce a stable
+matching between two groups: hospitals and students. Each hospital ranks
+students in order of preference, and each student ranks hospitals.
+
+A matching is considered stable if there is no hospital-student pair who
+would both prefer to be matched with each other over their current assignment
+
+Algorithm overview:
+1. Start with all hospitals and students unmatched.
+2. While there exists an unmatched hospital that still has students left
+   to propose to:
+   a. The hospital proposes to the highest-ranked student on its preference
+      list that it has not yet proposed to.
+   b. If the student is unmatched, they tentatively accept the proposal.
+   c. If the student is already matched, they compare their current match
+      with the new hospital and keep the one they prefer more, rejecting
+      the other.
+3. Rejected hospitals continue proposing down their lists.
+4. The process ends when all hospitals are matched or have exhausted their
+   preference lists.
+
+Properties:
+- The algorithm always terminates with a stable matching.
+- The result is optimal for the proposing side (hospitals): each hospital
+  receives the best student it could obtain in any stable matching.
+- If students propose instead, the result becomes student-optimal.
+"""
+
+
 class GaleShapley:
     """Implementation of the Gale-Shapley algorithem
 
@@ -11,6 +43,7 @@ class GaleShapley:
         receivers_preferences: dict[int, list[int]],
     ) -> dict[int, int]:
         """
+        # add some tests
         >>> gs = GaleShapley()
         >>> gs.find_matches({1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]}, {1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]})
         {1: 1, 2: 2, 3: 3}
