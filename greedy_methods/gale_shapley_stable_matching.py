@@ -43,19 +43,29 @@ class GaleShapley:
         receivers_preferences: dict[int, list[int]],
     ) -> dict[int, int]:
         """
-        # add some tests
         >>> gs = GaleShapley()
-        >>> gs.find_matches({1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]}, {1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]})
+        >>> gs.find_matches(
+        ... {1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]},
+        ... {1: [1, 2, 3], 2: [2, 1, 3], 3: [2, 3, 1]})
         {1: 1, 2: 2, 3: 3}
         >>> gs.find_matches({}, {})
         {}
-        >>> gs.find_matches({1: [1,]}, {1: [1,]})
+        >>> gs.find_matches(
+        ... {1: [1,]},
+        ... {1: [1,]})
         {1: 1}
+        >>> gs.find_matches(
+        ... {1: [1, 2, 3, 4], 2: [1, 2, 3, 4], 3: [1, 2, 3, 4], 4: [1, 2, 3, 4]},
+        ... {1: [4, 3, 2, 1], 2: [1, 2, 3, 4], 3: [2, 3, 4, 1], 4: [3, 4, 1, 2]})
+        {1: 2, 2: 3, 3: 4, 4: 1}
+        >>> gs.find_matches(
+        ... {1: [2, 3, 4, 5, 6, 1], 2: [2, 4, 5, 6, 1, 3], 3: [4, 5, 6, 1, 2, 3], 4: [5, 6, 1, 2, 3, 4], 5: [2, 1, 6, 3, 4, 5], 6: [1, 2, 3, 4, 5, 6]},
+        ... {1: [6, 1, 2, 3, 4, 5], 2: [1, 2, 3, 4, 5, 6], 3: [2, 3, 4, 5, 6, 1], 4: [3, 4, 5, 6, 1, 2], 5: [4, 5, 6, 1, 2, 3], 6: [5, 6, 1, 2, 3, 4]})
+        {1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 1}
         """
 
         matches = {key: -1 for key in proposers_preferences.keys()}
 
-        # [NOTE] I would've used sets, but want replicability for easy debugging.
         free_proposers = list(proposers_preferences.keys())
         tested_matches = {key: 0 for key in proposers_preferences.keys()}
 
