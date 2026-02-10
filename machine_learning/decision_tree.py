@@ -146,14 +146,13 @@ class DecisionTree:
         """
         if self.prediction is not None:
             return self.prediction
-        elif self.left or self.right is not None:
+        elif self.left is not None and self.right is not None:
             if x >= self.decision_boundary:
                 return self.right.predict(x)
             else:
                 return self.left.predict(x)
         else:
-            print("Error: Decision tree not yet trained")
-            return None
+            raise ValueError("Decision tree not yet trained")
 
 
 class TestDecisionTree:
@@ -201,4 +200,4 @@ if __name__ == "__main__":
     main()
     import doctest
 
-    doctest.testmod(name="mean_squarred_error", verbose=True)
+    doctest.testmod(name="mean_squared_error", verbose=True)
