@@ -9,7 +9,7 @@ algorithm which runs in nlogn and the brute-force n^2 algorithm.
 """
 
 
-def count_inversions_bf(arr):
+def count_inversions_bf(arr: list[int]) -> int:
     """
     Counts the number of inversions using a naive brute-force algorithm
     Parameters
@@ -40,7 +40,7 @@ def count_inversions_bf(arr):
     return num_inversions
 
 
-def count_inversions_recursive(arr):
+def count_inversions_recursive(arr: list[int]) -> tuple[list[int], int]:
     """
     Counts the number of inversions using a divide-and-conquer algorithm
     Parameters
@@ -74,7 +74,7 @@ def count_inversions_recursive(arr):
     return c, num_inversions
 
 
-def _count_cross_inversions(p, q):
+def _count_cross_inversions(p: list[int], q: list[int]) -> tuple[list[int], int]:
     """
     Counts the inversions across two sorted arrays.
     And combine the two arrays into one sorted array
@@ -118,7 +118,7 @@ def _count_cross_inversions(p, q):
     return r, num_inversion
 
 
-def main():
+def main()-> None:
     arr_1 = [10, 2, 1, 5, 5, 2, 11]
 
     # this arr has 8 inversions:
