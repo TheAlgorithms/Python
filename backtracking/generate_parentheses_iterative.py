@@ -1,4 +1,4 @@
-def generate_parentheses_iterative(length: int) -> list:
+def generate_parentheses_iterative(length: int) -> list[str]:
     """
     Generate all valid combinations of parentheses (Iterative Approach).
 
@@ -18,13 +18,18 @@ def generate_parentheses_iterative(length: int) -> list:
 
     Returns:
         A list of strings representing valid combinations of parentheses
+    
+    Raises:
+        ValueError: If length is negative
+        TypeError: If length is not an integer
 
     Time Complexity:
-        O(2^(2*length))
+         O(4^n / sqrt(n)) - Catalan number growth
 
     Space Complexity:
-        O(2^(2*length))
+        O(4^n / sqrt(n)) - Storage for all valid combinations
 
+    
     >>> generate_parentheses_iterative(3)
     ['()()()', '()(())', '(())()', '(()())', '((()))']
     >>> generate_parentheses_iterative(2)
@@ -33,22 +38,43 @@ def generate_parentheses_iterative(length: int) -> list:
     ['()']
     >>> generate_parentheses_iterative(0)
     ['']
+    >>> generate_parentheses_iterative(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: length must be non-negative
+    >>> generate_parentheses_iterative(2.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: length must be an integer
     """
-    result = []
-    stack = []
-
+    # Input validation
+    if not isinstance(length, int):
+        raise TypeError("length must be an integer")
+    if length < 0:
+        raise ValueError("length must be non-negative")
+    
+    # Handle edge case
+    if length == 0:
+        return [""]
+    
+    result: list[str] = []
+    
     # Each element in stack is a tuple (current_combination, open_count, close_count)
-    stack.append(("", 0, 0))
+    stack: list[tuple[str, int, int]] = [("", 0, 0)]
 
     while stack:
         current_combination, open_count, close_count = stack.pop()
 
+        # If we've used all pairs, add to result
         if len(current_combination) == 2 * length:
             result.append(current_combination)
-
+            continue
+        
+        # Add '(' if we haven't used all open parentheses
         if open_count < length:
             stack.append((current_combination + "(", open_count + 1, close_count))
-
+            
+        # Add ')' if it maintains validity
         if close_count < open_count:
             stack.append((current_combination + ")", open_count, close_count + 1))
 
