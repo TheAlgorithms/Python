@@ -33,7 +33,7 @@ Properties:
 
 
 class GaleShapley:
-    """Implementation of the Gale-Shapley algorithem
+    """Implementation of the Gale-Shapley algorithm
 
     takes it 2 preference list as a 2D array of ints. First one is the
     proposing side.
@@ -91,8 +91,7 @@ class GaleShapley:
             cur_proposer = next(
                 prop for prop, rec in matches.items() if rec == receiver
             )
-
-            # give receiver new proposer match only if it preferes new over old
+            # give receiver new proposer match only if it prefers new over old
             if receivers_preferences[receiver].index(proposer) < receivers_preferences[
                 receiver
             ].index(cur_proposer):
