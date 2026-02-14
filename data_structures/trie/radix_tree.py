@@ -64,7 +64,6 @@ class RadixNode:
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
-
         # Case 2: The node has no edges that have a prefix to the word
         # Solution: We create an edge from the current node to a new one
         # containing the word
