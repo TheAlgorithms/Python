@@ -3,12 +3,19 @@
 """
 Pure Python implementations of binary search algorithms
 
+Basic Idea:
+Binary Search works by repeatedly dividing the search interval in half.
+If the target value is smaller than the middle element, the search continues
+in the left half. Otherwise, it continues in the right half.
+This process repeats until the element is found or the interval becomes empty.
+
 For doctests run the following command:
 python3 -m doctest -v binary_search.py
 
 For manual testing run:
 python3 binary_search.py
 """
+
 
 from __future__ import annotations
 
