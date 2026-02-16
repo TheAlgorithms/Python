@@ -99,7 +99,7 @@ def summation_of_cost_derivative(index: int, end: int = m) -> float:
     Note: If index is -1, this means we are calculating summation wrt to biased
         parameter.
     """
-    summation_value = 0
+    summation_value = 0.0
     for i in range(end):
         if index == -1:
             summation_value += _error(i)
