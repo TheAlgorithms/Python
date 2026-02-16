@@ -16,16 +16,19 @@ train_data: tuple[tuple[tuple[int, ...], int], ...] = (
     ((1, 1, 1), 8),
     ((11, 12, 13), 41),
 )
-test_data: tuple[tuple[tuple[int, ...], int], ...] = (((515, 22, 13), 555), ((61, 35, 49), 150))
+test_data: tuple[tuple[tuple[int, ...], int], ...] = (
+    ((515, 22, 13), 555),
+    ((61, 35, 49), 150),
+)
 parameter_vector: list[float] = [2.0, 4.0, 1.0, 5.0]
 m: int = len(train_data)
 LEARNING_RATE: float = 0.009
 
 
-def _error(example_no: int, data_set: Literal["train", "test"]="train") -> float:
+def _error(example_no: int, data_set: Literal["train", "test"] = "train") -> float:
     """
     Compute prediction error for a given example.
-    
+
     :param data_set: train data or test data
     :param example_no: example number whose error has to be checked
     :return: error in example pointed by example number.
@@ -38,7 +41,7 @@ def _error(example_no: int, data_set: Literal["train", "test"]="train") -> float
 def _hypothesis_value(data_input_tuple: Sequence[int]) -> float:
     """
     Calculates hypothesis value for a given input tuple.
-    
+
     :param data_input_tuple: Input tuple of a particular example
     :return: Value of hypothesis function at that point.
     Note that there is an 'biased input' whose value is fixed as 1.
@@ -55,7 +58,7 @@ def _hypothesis_value(data_input_tuple: Sequence[int]) -> float:
 def output(example_no: int, data_set: Literal["train", "test"]) -> float:
     """
     Get the true output value of an example.
-    
+
     :param data_set: test data or train data
     :param example_no: example whose output is to be fetched
     :return: output for that example
@@ -67,10 +70,12 @@ def output(example_no: int, data_set: Literal["train", "test"]) -> float:
     return None
 
 
-def calculate_hypothesis_value(example_no: int, data_set: Literal["train", "test"]) -> float:
+def calculate_hypothesis_value(
+    example_no: int, data_set: Literal["train", "test"]
+) -> float:
     """
     Calculates hypothesis value for a given example.
-    
+
     :param data_set: test data or train_data
     :param example_no: example whose hypothesis value is to be calculated
     :return: hypothesis value for that example
@@ -85,7 +90,7 @@ def calculate_hypothesis_value(example_no: int, data_set: Literal["train", "test
 def summation_of_cost_derivative(index: int, end: int = m) -> float:
     """
     Calculates the summation term of the cost derivative.
-    
+
     :param index: index wrt derivative is being calculated
     :param end: value where summation ends, default is m, number of examples
     :return: Returns the summation of cost derivative
@@ -104,7 +109,7 @@ def summation_of_cost_derivative(index: int, end: int = m) -> float:
 def get_cost_derivative(index: int) -> float:
     """
     Compute ∂J/∂θᵢ for a given parameter index.
-    
+
     :param index: index of the parameter vector wrt to derivative is to be calculated
     :return: derivative wrt to that index
     Note: If index is -1, this means we are calculating summation wrt to biased
