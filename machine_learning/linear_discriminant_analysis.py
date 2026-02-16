@@ -249,10 +249,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     return (correct / len(actual_y)) * 100
 
 
-num = TypeVar("num", int, float)
-
-
-def valid_input(
+def valid_input[num](
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
