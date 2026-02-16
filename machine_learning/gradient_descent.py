@@ -5,8 +5,10 @@ function.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
+from typing import Literal
+
 import numpy as np
-from typing import Literal, Sequence
 
 # List of input, output pairs
 train_data: tuple[tuple[tuple[int, ...], int], ...] = (
@@ -48,7 +50,7 @@ def _hypothesis_value(data_input_tuple: Sequence[int]) -> float:
     It is not explicitly mentioned in input data.. But, ML hypothesis functions use it.
     So, we have to take care of it separately. Line 36 takes care of it.
     """
-    hyp_val = 0
+    hyp_val = 0.0
     for i in range(len(parameter_vector) - 1):
         hyp_val += data_input_tuple[i] * parameter_vector[i + 1]
     hyp_val += parameter_vector[0]
@@ -130,7 +132,7 @@ def run_gradient_descent() -> None:
     j = 0
     while True:
         j += 1
-        temp_parameter_vector = [0, 0, 0, 0]
+        temp_parameter_vector = [0.0] * len(parameter_vector)
         for i in range(len(parameter_vector)):
             cost_derivative = get_cost_derivative(i - 1)
             temp_parameter_vector[i] = (
