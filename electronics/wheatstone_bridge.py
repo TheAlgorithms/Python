@@ -8,12 +8,12 @@ def wheatstone_solver(
     """
     Calculate the unknown resistance (Rx) in a Wheatstone bridge circuit.
 
-    A Wheatstone bridge is an electrical circuit used to precisely measure 
-    an unknown resistance. This function calculates Rx when the three other 
+    A Wheatstone bridge is an electrical circuit used to precisely measure
+    an unknown resistance. This function calculates Rx when the three other
     resistances in the bridge are known.
 
     Circuit Diagram:
-    
+
          R1         R2
       +--/\/\/--+--/\/\/--+
       |         |         |
@@ -21,15 +21,15 @@ def wheatstone_solver(
       |         |         |
       +--/\/\/--+--/\/\/--+
          R3        Rx
-    
+
     This solver uses the balanced bridge formula:
     Rx = (R2/R1) × R3
-    
+
     Args:
         resistance_1 (R1): First known resistance
         resistance_2 (R2): Second known resistance
         resistance_3 (R3): Third known resistance
-    
+
     Returns:
         float: The calculated unknown resistance (Rx)
 

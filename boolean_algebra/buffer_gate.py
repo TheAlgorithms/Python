@@ -5,7 +5,7 @@ introducing propagation delay in digital circuits.
 
 In digital electronics, buffers are essential for:
 - Isolating different circuit sections
-- Increasing current drive capability  
+- Increasing current drive capability
 - Preventing signal degradation
 - Creating intentional delays in timing circuits
 
