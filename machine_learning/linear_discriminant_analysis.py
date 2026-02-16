@@ -249,7 +249,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     return (correct / len(actual_y)) * 100
 
 
-num = TypeVar("num")
+num = TypeVar("num", int, float)
 
 
 def valid_input(
