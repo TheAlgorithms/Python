@@ -6,6 +6,7 @@ Wikipedia reference: https://en.wikipedia.org/wiki/Area
 from math import pi, sqrt, tan
 
 
+# This function is calculating Sruface area
 def surface_area_cube(side_length: float) -> float:
     """
     Calculate the Surface Area of a Cube.
