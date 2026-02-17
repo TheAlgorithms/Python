@@ -54,7 +54,9 @@ def kth_permutation(k: int, n: int) -> list[int]:
         factorial = factorials.pop()
         number, k = divmod(k, factorial)
         permutation.append(elements[number])
-        elements.pop(number)  # elements.remove(elements[number]) is slower and redundant
+        elements.pop(
+            number
+        )  # elements.remove(elements[number]) is slower and redundant
     permutation.append(elements[0])
 
     return permutation
