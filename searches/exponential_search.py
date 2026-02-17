@@ -66,11 +66,16 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     Be careful: the collection must be ascending sorted, otherwise the result will be
     unpredictable.
 
+    Exponential search (also called doubling search) works by finding a range where
+    the target element may be located, then performing a binary search within that range.
+    It's particularly efficient for unbounded or infinite arrays.
+
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :return: index of the found item or -1 if the item is not found
 
-    The time complexity of this algorithm is O(log i) where i is the index of the item.
+    Time complexity: O(log i) where i is the index of the item (faster than binary
+    search when target is near the beginning of large arrays)
 
     Examples:
     >>> exponential_search([0, 5, 7, 10, 15], 0)
@@ -81,6 +86,42 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
+
+    >>> exponential_search([1], 1)
+    0
+
+    >>> exponential_search([1], 99)
+    -1
+
+    >>> exponential_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1)
+    0
+
+    >>> exponential_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10)
+    9
+
+    >>> exponential_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5)
+    4
+
+    >>> exponential_search(list(range(1, 101)), 1)
+    0
+
+    >>> exponential_search(list(range(1, 101)), 50)
+    49
+
+    >>> exponential_search(list(range(1, 101)), 100)
+    99
+
+    >>> exponential_search(list(range(1, 101)), 101)
+    -1
+
+    >>> exponential_search([2, 4, 6, 8, 10, 12, 14], 4)
+    1
+
+    >>> exponential_search([2, 4, 6, 8, 10, 12, 14], 13)
+    -1
+
+    >>> exponential_search([1, 3, 5, 7, 9, 11], 7)
+    3
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
