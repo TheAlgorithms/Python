@@ -249,16 +249,16 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     return (correct / len(actual_y)) * 100
 
 
-num = TypeVar("num")
+T = TypeVar("T")
 
 
 def valid_input(
-    input_type: Callable[[object], num],  # Usually float or int
+    input_type: Callable[[object], T],  # Usually float or int
     input_msg: str,
     err_msg: str,
-    condition: Callable[[num], bool] = lambda _: True,
+    condition: Callable[[T], bool] = lambda _: True,
     default: str | None = None,
-) -> num:
+) -> T:
     """
     Ask for user value and validate that it fulfill a condition.
 
