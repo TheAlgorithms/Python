@@ -14,8 +14,10 @@ if __package__ is None or __package__ == "":
 
 import random
 import time
+from collections.abc import Callable
 from dataclasses import dataclass
 from statistics import mean
+from typing import Any
 
 from machine_learning.gaussian_naive_bayes import GaussianNaiveBayes
 from machine_learning.gradient_boosting_regressor import GradientBoostingRegressor
@@ -31,7 +33,7 @@ class TimingResult:
     predict_seconds: float
 
 
-def _time_call(callable_obj) -> float:
+def _time_call(callable_obj: Callable[[], Any]) -> float:
     start = time.perf_counter()
     callable_obj()
     return time.perf_counter() - start
