@@ -146,8 +146,7 @@ def main() -> None:
     print("Pure-Python models:")
     _print_results(pure_results)
 
-    sklearn_results = benchmark_sklearn_if_available()
-    if sklearn_results:
+    if sklearn_results := benchmark_sklearn_if_available():
         print("\nscikit-learn models:")
         _print_results(sklearn_results)
     else:
