@@ -4,7 +4,7 @@ from collections.abc import Generator
 
 def slow_primes(max_n: int) -> Generator[int]:
     """
-    Return a list of all primes numbers up to max.
+    Return a generator of all prime numbers up to max_n.
     >>> list(slow_primes(0))
     []
     >>> list(slow_primes(-1))
@@ -31,7 +31,7 @@ def slow_primes(max_n: int) -> Generator[int]:
 
 def primes(max_n: int) -> Generator[int]:
     """
-    Return a list of all primes numbers up to max.
+    Return a generator of all prime numbers up to max_n.
     >>> list(primes(0))
     []
     >>> list(primes(-1))
@@ -60,7 +60,7 @@ def primes(max_n: int) -> Generator[int]:
 
 def fast_primes(max_n: int) -> Generator[int]:
     """
-    Return a list of all primes numbers up to max.
+    Return a generator of all prime numbers up to max_n.
     >>> list(fast_primes(0))
     []
     >>> list(fast_primes(-1))
