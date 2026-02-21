@@ -68,7 +68,8 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
 
     Exponential search (also called doubling search) works by finding a range where
     the target element may be located, then performing a binary search within that range.
-    It's particularly efficient for unbounded or infinite arrays.
+    In theory, exponential search is particularly useful for unbounded or very large
+    sorted collections, but this implementation operates on finite Python lists.
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
