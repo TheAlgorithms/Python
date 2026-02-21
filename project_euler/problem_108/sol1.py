@@ -25,7 +25,7 @@ for i <= n. Then try all i to find the smallest.
 """
 
 
-def find_primes(n : int) -> list[int]:
+def find_primes(n: int) -> list[int]:
     """
     Returns a list of all primes less than or equal to n
     >>> find_primes(19)
@@ -39,7 +39,7 @@ def find_primes(n : int) -> list[int]:
     return [i for i in range(2, n + 1) if sieve[i]]
 
 
-def find_prime_factorizations(n : int) -> list[dict[int, int]]:
+def find_prime_factorizations(n: int) -> list[dict[int, int]]:
     """
     Returns a list of prime factorizations of 2...n, with prime
     factorization represented as a dictionary of (prime, exponent) pairs
@@ -59,7 +59,7 @@ def find_prime_factorizations(n : int) -> list[dict[int, int]]:
     return prime_factorizations
 
 
-def num_divisors_of_square(prime_factorization : dict[int, int]) -> int:
+def num_divisors_of_square(prime_factorization: dict[int, int]) -> int:
     """
     Returns the number of divisors of n * n, where n is the
     number represented by the input prime factorization
@@ -72,7 +72,7 @@ def num_divisors_of_square(prime_factorization : dict[int, int]) -> int:
     return num_divisors
 
 
-def solution(target : int = 1000) -> int:
+def solution(target: int = 1000) -> int:
     """
     Returns the smallest n with more than 'target' solutions
     >>> solution()
@@ -88,6 +88,7 @@ def solution(target : int = 1000) -> int:
     for i in range(2, upper_bound + 1):
         if num_solutions(i) > target:
             return i
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
