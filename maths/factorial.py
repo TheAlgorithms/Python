@@ -1,7 +1,14 @@
 """
 Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 """
+"""
+Implementation of factorial algorithms (iterative and recursive).
 
+Provides:
+- Strict input validation
+- Doctest examples
+- Type hints
+"""
 
 def factorial(number: int) -> int:
     """
