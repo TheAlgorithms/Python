@@ -47,7 +47,7 @@ def find_prime_factorizations(limit: int) -> list[dict[int, int]]:
     [{}, {}, {2: 1}, {3: 1}, {2: 2}, {5: 1}, {2: 1, 3: 1}, {7: 1}]
     """
     primes = find_primes(limit)
-    prime_factorizations : list[dict[int, int]] = [{} for _ in range(limit + 1)]
+    prime_factorizations: list[dict[int, int]] = [{} for _ in range(limit + 1)]
 
     for p in primes:
         for j in range(p, limit + 1, p):
@@ -86,7 +86,7 @@ def solution(target: int = 1000) -> int:
         num_solutions = (num_divisors_of_square(prime_factorizations[i]) // 2) + 1
         if num_solutions > target:
             return i
-    
+
     return -1
 
 
