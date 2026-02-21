@@ -25,32 +25,32 @@ for i <= n. Then try all i to find the smallest.
 """
 
 
-def find_primes(n: int) -> list[int]:
+def find_primes(limit: int) -> list[int]:
     """
-    Returns a list of all primes less than or equal to n
+    Returns a list of all primes less than or equal to 'limit'
     >>> find_primes(19)
     [2, 3, 5, 7, 11, 13, 17, 19]
     """
-    sieve = [True] * (n + 1)
+    sieve = [True] * (limit + 1)
 
-    for i in range(2, n + 1):
-        for j in range(2 * i, n + 1, i):
+    for i in range(2, limit + 1):
+        for j in range(2 * i, limit + 1, i):
             sieve[j] = False
-    return [i for i in range(2, n + 1) if sieve[i]]
+    return [i for i in range(2, limit + 1) if sieve[i]]
 
 
-def find_prime_factorizations(n: int) -> list[dict[int, int]]:
+def find_prime_factorizations(limit: int) -> list[dict[int, int]]:
     """
     Returns a list of prime factorizations of 2...n, with prime
     factorization represented as a dictionary of (prime, exponent) pairs
     >>> find_prime_factorizations(7)
     [{}, {}, {2: 1}, {3: 1}, {2: 2}, {5: 1}, {2: 1, 3: 1}, {7: 1}]
     """
-    primes = find_primes(n)
-    prime_factorizations = [{} for _ in range(n + 1)]
+    primes = find_primes(limit)
+    prime_factorizations = [{} for _ in range(limit + 1)]
 
     for p in primes:
-        for j in range(p, n + 1, p):
+        for j in range(p, limit + 1, p):
             j_factorization = prime_factorizations[j]
             x = j
             while x % p == 0:
@@ -82,11 +82,9 @@ def solution(target: int = 1000) -> int:
     upper_bound = 210 ** ((int((2 * target - 1) ** 0.25) + 1) // 2)
     prime_factorizations = find_prime_factorizations(upper_bound)
 
-    def num_solutions(n):
-        return (num_divisors_of_square(prime_factorizations[n]) // 2) + 1
-
     for i in range(2, upper_bound + 1):
-        if num_solutions(i) > target:
+        num_solutions = (num_divisors_of_square(prime_factorizations[i]) // 2) + 1
+        if num_solutions > target:
             return i
 
 
