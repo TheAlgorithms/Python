@@ -47,7 +47,7 @@ def find_prime_factorizations(n: int) -> list[dict[int, int]]:
     [{}, {}, {2: 1}, {3: 1}, {2: 2}, {5: 1}, {2: 1, 3: 1}, {7: 1}]
     """
     primes = find_primes(n)
-    prime_factorizations = [dict() for _ in range(n + 1)]
+    prime_factorizations = [{} for _ in range(n + 1)]
 
     for p in primes:
         for j in range(p, n + 1, p):
