@@ -1,7 +1,7 @@
 """
 
-  PV = nRT 
- 
+  PV = nRT
+
 Where, P	=	Pressure (Pa)
        V	=	Volume (m^3)
        n	=	Amount of substance (mol)
