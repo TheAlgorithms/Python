@@ -5,7 +5,7 @@ Where, F = Centripetal Force
        m = Mass of the Body
        v = Tangential Velocity
        r = Radius of Circular Path
-    
+
 """
 
 
