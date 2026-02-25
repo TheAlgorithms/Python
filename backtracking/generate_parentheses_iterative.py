@@ -18,12 +18,12 @@ def generate_parentheses_iterative(length: int) -> list[str]:
 
     Returns:
         A list of strings representing valid combinations of parentheses.
-        
+
     Time Complexity:
         O(2^(2*length))
     Space Complexity:
         O(2^(2*length))
-        
+
     >>> generate_parentheses_iterative(3)
     ['()()()', '()(())', '(())()', '(()())', '((()))']
     >>> generate_parentheses_iterative(2)
@@ -55,7 +55,6 @@ def generate_parentheses_iterative(length: int) -> list[str]:
             stack.append((current_combination + ")", open_count, close_count + 1))
 
     return result
-
 
 
 if __name__ == "__main__":
