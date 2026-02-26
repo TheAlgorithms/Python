@@ -135,6 +135,32 @@ def surface_area_cone(radius: float, height: float) -> float:
     return pi * radius * (radius + (height**2 + radius**2) ** 0.5)
 
 
+def lateral_surface_cone(radius: float, height: float) -> float:
+    """
+    Calculate the Lateral Surface Area of a Cone.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cone
+    Formula: pi * r * (h ** 2 + r ** 2) ** 0.5
+
+    >>> lateral_surface_cone(10, 20)
+    702.4814731040726
+    >>> lateral_surface_cone(6, 8)
+    188.49555921538757
+    >>> lateral_surface_cone(0, 0)
+    0.0
+    >>> lateral_surface_cone(1, -2)
+    Traceback (most recent call last):
+          ...
+    ValueError: lateral_surface_cone() only accepts non-negative values
+    >>> lateral_surface_cone(-1, 2)
+    Traceback (most recent call last):
+          ...
+    ValueError: lateral_surface_cone() only accepts non-negative values
+    """
+    if radius < 0 or height < 0:
+        raise ValueError("lateral_surface_cone() only accepts non-negative values")
+    return pi * radius * (height**2 + radius**2) ** 0.5
+
+
 def surface_area_conical_frustum(
     radius_1: float, radius_2: float, height: float
 ) -> float:
@@ -200,6 +226,32 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     if radius < 0 or height < 0:
         raise ValueError("surface_area_cylinder() only accepts non-negative values")
     return 2 * pi * radius * (height + radius)
+
+
+def lateral_surface_cylinder(radius: float, height: float) -> float:
+    """
+    Calculate the Lateral Surface Area of a Cylinder.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
+    Formula: 2 * pi * r * h
+
+    >>> lateral_surface_cylinder(10, 20)
+    1256.6370614359173
+    >>> lateral_surface_cylinder(6, 8)
+    301.59289474462014
+    >>> lateral_surface_cylinder(0, 0)
+    0.0
+    >>> lateral_surface_cylinder(1, -2)
+    Traceback (most recent call last):
+      ...
+    ValueError: lateral_surface_cylinder() only accepts non-negative values
+    >>> lateral_surface_cylinder(-1, 2)
+    Traceback (most recent call last):
+      ...
+    ValueError: lateral_surface_cylinder() only accepts non-negative values
+    """
+    if radius < 0 or height < 0:
+        raise ValueError("lateral_surface_cylinder() only accepts non-negative values")
+    return 2 * pi * radius * height
 
 
 def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
@@ -555,6 +607,50 @@ length of a side"
     return (sides * length**2) / (4 * tan(pi / sides))
 
 
+def surface_area_reg_prism(sides: int, edge: float, height: float) -> float:
+    """
+    Calculate the surface area of a regular prism.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Prism
+    Formula: 2*S(base) + n*a*h
+
+    >>> surface_area_reg_prism(3, 10, 20)
+    686.6025403784439
+    >>> surface_area_reg_prism(4, 10, 10)
+    600.0
+    >>> surface_area_reg_prism(2, 10, 15)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_reg_prism() only accepts integers greater than or equal \
+to three as number of sides
+    >>> surface_area_reg_prism(5, -2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_reg_prism() only accepts non-negative values as \
+length of an edge or height
+    >>> surface_area_reg_prism(5, 2, -3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_reg_prism() only accepts non-negative values as \
+length of an edge or height
+    >>> surface_area_reg_prism(2, -10, 15)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_reg_prism() only accepts integers greater than or equal \
+to three as number of sides
+    """
+    if not isinstance(sides, int) or sides < 3:
+        raise ValueError(
+            "surface_area_reg_prism() only accepts integers greater than or \
+equal to three as number of sides"
+        )
+    elif edge < 0 or height < 0:
+        raise ValueError(
+            "surface_area_reg_prism() only accepts non-negative values as \
+length of an edge or height"
+        )
+    return 2 * area_reg_polygon(sides, edge) + sides * edge * height
+
+
 if __name__ == "__main__":
     import doctest
 
@@ -576,9 +672,12 @@ if __name__ == "__main__":
     print(f"Sphere: {surface_area_sphere(20) = }")
     print(f"Hemisphere: {surface_area_hemisphere(20) = }")
     print(f"Cone: {surface_area_cone(10, 20) = }")
+    print(f"Cone, lateral: {lateral_surface_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
+    print(f"Cylinder, lateral: {lateral_surface_cylinder(10, 20) = }")
     print(f"Torus: {surface_area_torus(20, 10) = }")
     print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
     print(f"Square: {area_reg_polygon(4, 10) = }")
     print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")
+    print(f"Regular Pentagonal Prism: {surface_area_reg_prism(5, 10, 15) = }")
