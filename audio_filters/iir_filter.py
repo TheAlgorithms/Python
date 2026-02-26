@@ -19,8 +19,8 @@ class IIRFilter:
 
     we can rewrite this to
         .. math:: y[n]={\frac{1}{a_{0}}}
-                  \left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-
-                  \left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
+                  \left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2}+...+b_{k}x[n-k]\right)-
+                  \left(a_{1}y[n-1]+a_{2}y[n-2}+...+a_{k}y[n-k]\right)\right)
     """
 
     def __init__(self, order: int) -> None:
@@ -44,15 +44,29 @@ class IIRFilter:
 
         This method works well with scipy's filter design functions
 
-        >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
-        >>> import scipy.signal
-        >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
-        ...                                          btype='lowpass',
-        ...                                          fs=48000)
+        >>> # Make a 2nd-order 1000Hz butterworth lowpass filter (SciPy optional)
+        >>> import scipy.signal  # doctest: +SKIP
+        >>> b_coeffs, a_coeffs = scipy.signal.butter(  # doctest: +SKIP
+        ...     2, 1000, btype="lowpass", fs=48000
+        ... )
+        >>> filt = IIRFilter(2)  # doctest: +SKIP
+        >>> filt.set_coefficients(a_coeffs, b_coeffs)  # doctest: +SKIP
+
+        >>> # a0 can be omitted (defaults to 1.0)
         >>> filt = IIRFilter(2)
-        >>> filt.set_coefficients(a_coeffs, b_coeffs)
+        >>> filt.set_coefficients([0.5, 0.25], [0.1, 0.2, 0.3])
+        >>> filt.a_coeffs
+        [1.0, 0.5, 0.25]
+
+        >>> # b_coeffs length check should report len(b_coeffs)
+        >>> filt = IIRFilter(2)
+        >>> filt.set_coefficients([1.0, 0.5, 0.25], [0.1, 0.2])
+        Traceback (most recent call last):
+        ...
+        ValueError: Expected b_coeffs to have 3 elements for 2-order filter, got 2
         """
-        if len(a_coeffs) < self.order:
+        # Allow omitting a0 (use 1.0 as default) when only a1..ak are provided
+        if len(a_coeffs) == self.order:
             a_coeffs = [1.0, *a_coeffs]
 
         if len(a_coeffs) != self.order + 1:
@@ -65,7 +79,7 @@ class IIRFilter:
         if len(b_coeffs) != self.order + 1:
             msg = (
                 f"Expected b_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
+                f"for {self.order}-order filter, got {len(b_coeffs)}"
             )
             raise ValueError(msg)
 
