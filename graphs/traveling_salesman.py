@@ -18,22 +18,22 @@ class TravelingSalesman:
     """
     TSP solver using Held-Karp dynamic programming.
     """
-    
+
     def __init__(self, n: int):
         self.n = n
-        self.dist: List[List[float]] = [[float('inf')] * n for _ in range(n)]
-    
+        self.dist: List[List[float]] = [[float("inf")] * n for _ in range(n)]
+
     def add_edge(self, u: int, v: int, w: float) -> None:
         """Add directed edge."""
         self.dist[u][v] = min(self.dist[u][v], w)
-    
+
     def solve(self, start: int = 0) -> Tuple[float, List[int]]:
         """
         Solve TSP starting from given vertex.
-        
+
         Returns:
             Tuple of (minimum_cost, optimal_path)
-        
+
         Example:
             >>> tsp = TravelingSalesman(4)
             >>> tsp.add_edge(0, 1, 10)
@@ -55,40 +55,40 @@ class TravelingSalesman:
         n = self.n
         if n > 20:
             raise ValueError("Held-Karp is impractical for n > 20")
-        
+
         # dp[mask][i] = min cost to visit vertices in mask, ending at i
         # mask is bitmask of visited vertices (bit j set if vertex j visited)
-        dp: List[List[float]] = [[float('inf')] * n for _ in range(1 << n)]
+        dp: List[List[float]] = [[float("inf")] * n for _ in range(1 << n)]
         parent: List[List[Optional[int]]] = [[None] * n for _ in range(1 << n)]
-        
+
         # Base case: start at start vertex
         dp[1 << start][start] = 0
-        
+
         # Iterate over all masks
         for mask in range(1 << n):
             for last in range(n):
                 if not (mask & (1 << last)):
                     continue  # last not in mask
-                if dp[mask][last] == float('inf'):
+                if dp[mask][last] == float("inf"):
                     continue
-                
+
                 # Try to extend to next vertex
                 for next_v in range(n):
                     if mask & (1 << next_v):
                         continue  # already visited
-                    
+
                     new_mask = mask | (1 << next_v)
                     new_cost = dp[mask][last] + self.dist[last][next_v]
-                    
+
                     if new_cost < dp[new_mask][next_v]:
                         dp[new_mask][next_v] = new_cost
                         parent[new_mask][next_v] = last
-        
+
         # Find optimal tour: return to start
         full_mask = (1 << n) - 1
-        min_cost = float('inf')
+        min_cost = float("inf")
         last_vertex = -1
-        
+
         for last in range(n):
             if last == start:
                 continue
@@ -96,35 +96,37 @@ class TravelingSalesman:
             if cost < min_cost:
                 min_cost = cost
                 last_vertex = last
-        
+
         # Reconstruct path
         if last_vertex == -1:
-            return float('inf'), []
-        
+            return float("inf"), []
+
         path = []
         mask = full_mask
         curr = last_vertex
-        
+
         while curr is not None:
             path.append(curr)
             next_curr = parent[mask][curr]
-            mask ^= (1 << curr)
+            mask ^= 1 << curr
             curr = next_curr
-        
+
         path.reverse()
         path.append(start)  # Return to start
-        
+
         return min_cost, path
 
 
-def held_karp(dist_matrix: List[List[float]], start: int = 0) -> Tuple[float, List[int]]:
+def held_karp(
+    dist_matrix: List[List[float]], start: int = 0
+) -> Tuple[float, List[int]]:
     """
     Convenience function for TSP using Held-Karp.
-    
+
     Args:
         dist_matrix: Distance matrix (n x n)
         start: Starting vertex
-    
+
     Returns:
         (minimum_cost, optimal_path)
     """
@@ -136,4 +138,5 @@ def held_karp(dist_matrix: List[List[float]], start: int = 0) -> Tuple[float, Li
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
