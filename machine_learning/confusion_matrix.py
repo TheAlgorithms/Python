@@ -69,8 +69,16 @@ def precision(actual: list, predicted: list, positive_label: int = 1) -> float:
     >>> precision(actual, predicted)
     0.6666666666666666
     """
-    tp = sum(1 for a, p in zip(actual, predicted) if a == positive_label and p == positive_label)
-    fp = sum(1 for a, p in zip(actual, predicted) if a != positive_label and p == positive_label)
+    tp = sum(
+        1
+        for a, p in zip(actual, predicted)
+        if a == positive_label and p == positive_label
+    )
+    fp = sum(
+        1
+        for a, p in zip(actual, predicted)
+        if a != positive_label and p == positive_label
+    )
     return tp / (tp + fp) if (tp + fp) > 0 else 0.0
 
 
@@ -97,8 +105,16 @@ def recall(actual: list, predicted: list, positive_label: int = 1) -> float:
     >>> recall(actual, predicted)
     1.0
     """
-    tp = sum(1 for a, p in zip(actual, predicted) if a == positive_label and p == positive_label)
-    fn = sum(1 for a, p in zip(actual, predicted) if a == positive_label and p != positive_label)
+    tp = sum(
+        1
+        for a, p in zip(actual, predicted)
+        if a == positive_label and p == positive_label
+    )
+    fn = sum(
+        1
+        for a, p in zip(actual, predicted)
+        if a == positive_label and p != positive_label
+    )
     return tp / (tp + fn) if (tp + fn) > 0 else 0.0
 
 
