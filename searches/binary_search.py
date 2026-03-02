@@ -207,7 +207,10 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            return midpoint
+            if midpoint > 0 and sorted_collection[midpoint - 1] == item:
+                right = midpoint - 1  # Keep searching left
+            else:
+                return midpoint 
         elif item < current_item:
             right = midpoint - 1
         else:
