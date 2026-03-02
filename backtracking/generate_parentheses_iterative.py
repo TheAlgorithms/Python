@@ -36,9 +36,9 @@ def generate_parentheses_iterative(length: int) -> list[str]:
     """
     if length == 0:
         return [""]
-    
-    result : list[str] = []
-    stack : list[tuple[str, int, int]] = []
+
+    result: list[str] = []
+    stack: list[tuple[str, int, int]] = []
 
     # Each element in stack is a tuple (current_combination, open_count, close_count)
     stack.append(("", 0, 0))
