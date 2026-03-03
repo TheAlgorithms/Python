@@ -115,4 +115,3 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     if left == len(sorted_collection) or sorted_collection[left] != item:
         return []
     return list(range(left, right))
-    
