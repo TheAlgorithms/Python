@@ -2,13 +2,16 @@
 """
 Pure Python implementation of the jump search algorithm.
 """
+
 from __future__ import annotations
 
 import math
 from typing import Any, Protocol
 
+
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
+
 
 def jump_search[T: Comparable](arr: list[T], item: T) -> int:
     """
@@ -49,6 +52,7 @@ def jump_search[T: Comparable](arr: list[T], item: T) -> int:
         return prev
     return -1
 
+
 if __name__ == "__main__":
     import doctest
 
@@ -62,4 +66,3 @@ if __name__ == "__main__":
             print("Number not found!")
         else:
             print(f"Number {search_item} is at index {res}")
-            
