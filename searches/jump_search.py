@@ -5,14 +5,12 @@ Pure Python implementation of the jump search algorithm.
 from __future__ import annotations
 
 import math
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
-T = TypeVar("T", bound=Comparable)
-
-def jump_search(arr: list[T], item: T) -> int:
+def jump_search[T: Comparable](arr: list[T], item: T) -> int:
     """
     Python implementation of the jump search algorithm.
     Return the index if the `item` is found, otherwise return -1.
@@ -64,3 +62,4 @@ if __name__ == "__main__":
             print("Number not found!")
         else:
             print(f"Number {search_item} is at index {res}")
+            
