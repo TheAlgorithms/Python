@@ -20,7 +20,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def jump_search(arr: Sequence[T], item: T) -> int:
+def jump_search[T](arr: Sequence[T], item: T) -> int:
     """
     Python implementation of the jump search algorithm.
     Return the index if the `item` is found, otherwise return -1.
