@@ -1,3 +1,4 @@
+from typing import Any
 """
 Pure Python implementation of the jump search algorithm.
 This algorithm iterates through a sorted collection with a step of n^(1/2),
@@ -20,7 +21,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def jump_search[T](arr: Sequence[T], item: T) -> int:
+def jump_search(arr: list[Any], x: Any) -> int:
     """
     Python implementation of the jump search algorithm.
     Return the index if the `item` is found, otherwise return -1.
