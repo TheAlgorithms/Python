@@ -126,11 +126,11 @@ class HeavyLightDecomposition:
         while self.head[u] != self.head[v]:
             if self.depth[self.head[u]] > self.depth[self.head[v]]:
                 # Query from head[u] to u
-                segment = self.base_array[self.pos[self.head[u]]: self.pos[u] + 1]
+                segment = self.base_array[self.pos[self.head[u]] : self.pos[u] + 1]
                 res.extend(segment)
                 u = self.parent[self.head[u]]
             else:
-                segment = self.base_array[self.pos[self.head[v]]: self.pos[v] + 1]
+                segment = self.base_array[self.pos[self.head[v]] : self.pos[v] + 1]
                 res.extend(segment)
                 v = self.parent[self.head[v]]
 
@@ -138,7 +138,7 @@ class HeavyLightDecomposition:
         l, r = self.pos[u], self.pos[v]
         if l > r:
             l, r = r, l
-        segment = self.base_array[l: r + 1]
+        segment = self.base_array[l : r + 1]
         res.extend(segment)
 
         return operation(res) if res else 0

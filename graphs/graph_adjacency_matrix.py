@@ -246,10 +246,10 @@ class TestGraphMatrix(unittest.TestCase):
         assert edge_pick_count <= len(vertices)
 
         random_source_vertices: list[int] = random.sample(
-            vertices[0: int(len(vertices) / 2)], edge_pick_count
+            vertices[0 : int(len(vertices) / 2)], edge_pick_count
         )
         random_destination_vertices: list[int] = random.sample(
-            vertices[int(len(vertices) / 2):], edge_pick_count
+            vertices[int(len(vertices) / 2) :], edge_pick_count
         )
         random_edges: list[list[int]] = []
 
