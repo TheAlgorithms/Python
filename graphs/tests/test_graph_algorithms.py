@@ -3,26 +3,25 @@ Comprehensive tests for graph algorithms.
 Run with: pytest tests/test_graph_algorithms.py -v
 """
 
+from graphs.max_bipartite_independent_set import (
+    MaxBipartiteIndependentSet,
+    max_bipartite_independent_set,
+)
+from graphs.heavy_light_decomposition import HeavyLightDecomposition
+from graphs.traveling_salesman import TravelingSalesman, held_karp
+from graphs.chinese_postman import ChinesePostman, chinese_postman
+from graphs.two_sat import TwoSAT, solve_2sat
+from graphs.push_relabel import PushRelabel
+from graphs.ford_fulkerson import FordFulkerson, ford_fulkerson
+from graphs.hopcroft_karp import HopcroftKarp, hopcroft_karp
+from graphs.johnsons_algorithm import johnsons_algorithm
+from graphs.floyd_warshall import floyd_warshall, reconstruct_path
 import pytest
 import sys
 import os
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from graphs.floyd_warshall import floyd_warshall, reconstruct_path
-from graphs.johnsons_algorithm import johnsons_algorithm
-from graphs.hopcroft_karp import HopcroftKarp, hopcroft_karp
-from graphs.ford_fulkerson import FordFulkerson, ford_fulkerson
-from graphs.push_relabel import PushRelabel
-from graphs.two_sat import TwoSAT, solve_2sat
-from graphs.chinese_postman import ChinesePostman, chinese_postman
-from graphs.traveling_salesman import TravelingSalesman, held_karp
-from graphs.heavy_light_decomposition import HeavyLightDecomposition
-from graphs.max_bipartite_independent_set import (
-    MaxBipartiteIndependentSet,
-    max_bipartite_independent_set,
-)
 
 
 class TestFloydWarshall:
