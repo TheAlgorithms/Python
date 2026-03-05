@@ -1,11 +1,16 @@
 """
-Pure Python implementation of the jump search algorithm.
-This algorithm iterates through a sorted collection with a step of n^(1/2),
-until the element compared is bigger than the one searched.
-It will then perform a linear search until it matches the wanted number.
-If not found, it returns -1.
+Jump Search Algorithm
 
-https://en.wikipedia.org/wiki/Jump_search
+Jump Search works on sorted arrays by jumping ahead by fixed steps
+instead of checking every element sequentially.
+
+Time Complexity:
+Best case: O(1)
+Average case: O(√n)
+Worst case: O(√n)
+
+Space Complexity:
+O(1)
 """
 
 import math
