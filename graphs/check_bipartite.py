@@ -35,9 +35,7 @@ def is_bipartite_dfs(graph: dict[Hashable, list[Hashable]]) -> bool:
     False
 
     >>> is_bipartite_dfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
-    Traceback (most recent call last):
-        ...
-    ValueError: Node 0 in adjacency list of node 9 is not in the graph
+    False
     >>> is_bipartite_dfs({0: [-1, 3], 1: [0, -2]})
     False
     >>> is_bipartite_dfs({-1: [0, 2], 0: [-1, 1], 1: [0, 2], 2: [-1, 1]})
@@ -72,15 +70,6 @@ def is_bipartite_dfs(graph: dict[Hashable, list[Hashable]]) -> bool:
                 if not depth_first_search(neighbor, 1 - color):
                     return False
         return visited[node] == color
-
-    all_nodes = set(graph.keys())
-    for node, neighbors in graph.items():
-        for neighbor in neighbors:
-            if neighbor not in all_nodes and neighbor not in [
-                n for nodes in graph.values() for n in nodes
-            ]:
-                msg = f"Node {neighbor} in adjacency list of node {node} is not in the graph"
-                raise ValueError(msg)
 
     visited: defaultdict[Hashable, int] = defaultdict(lambda: -1)
     for node in graph:
@@ -122,9 +111,7 @@ def is_bipartite_bfs(graph: dict[Hashable, list[Hashable]]) -> bool:
     False
 
     >>> is_bipartite_bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
-    Traceback (most recent call last):
-        ...
-    ValueError: Node 0 in adjacency list of node 9 is not in the graph
+    False
     >>> is_bipartite_bfs({0: [-1, 3], 1: [0, -2]})
     False
     >>> is_bipartite_bfs({-1: [0, 2], 0: [-1, 1], 1: [0, 2], 2: [-1, 1]})
@@ -138,15 +125,6 @@ def is_bipartite_bfs(graph: dict[Hashable, list[Hashable]]) -> bool:
     >>> is_bipartite_bfs({0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]})
     True
     """
-    all_nodes = set(graph.keys())
-    for node, neighbors in graph.items():
-        for neighbor in neighbors:
-            if neighbor not in all_nodes and neighbor not in [
-                n for nodes in graph.values() for n in nodes
-            ]:
-                msg = f"Node {neighbor} in adjacency list of node {node} is not in the graph"
-                raise ValueError(msg)
-
     visited: defaultdict[Hashable, int] = defaultdict(lambda: -1)
     for node in graph:
         if visited[node] == -1:

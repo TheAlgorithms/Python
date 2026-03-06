@@ -41,6 +41,8 @@ class BTreeNode:
         """
         new_node = BTreeNode(is_leaf=self.is_leaf)
         mid_index = len(self.keys) // 2
+        median_key = self.keys[mid_index]
+        
         new_node.keys = self.keys[mid_index + 1 :]
         self.keys = self.keys[:mid_index]
 
@@ -48,7 +50,7 @@ class BTreeNode:
             new_node.children = self.children[mid_index + 1 :]
             self.children = self.children[: mid_index + 1]
 
-        parent.keys.insert(index, self.keys[mid_index])
+        parent.keys.insert(index, median_key)
         parent.children.insert(index + 1, new_node)
 
 
@@ -209,15 +211,14 @@ class BTree:
             node = self.root
 
         result: list[int] = []
-        i = 0
 
         for i in range(len(node.keys)):
-            if not node.is_leaf:
+            if not node.is_leaf and i < len(node.children):
                 result.extend(self.traverse(node.children[i]))
             result.append(node.keys[i])
 
-        if not node.is_leaf:
-            result.extend(self.traverse(node.children[i + 1]))
+        if not node.is_leaf and len(node.children) > len(node.keys):
+            result.extend(self.traverse(node.children[len(node.keys)]))
 
         return result
 

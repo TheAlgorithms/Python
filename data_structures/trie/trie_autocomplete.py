@@ -263,9 +263,12 @@ class TrieAutocomplete:
         if not word:
             return False
 
-        return _delete_helper(self.root, word.lower(), 0) or self._find_node(
-            word
-        ) is None or not self._find_node(word).is_end_of_word
+        node = self._find_node(word.lower())
+        if node is None or not node.is_end_of_word:
+            return False
+        
+        _delete_helper(self.root, word.lower(), 0)
+        return True
 
 
 if __name__ == "__main__":
