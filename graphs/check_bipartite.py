@@ -1,7 +1,8 @@
 from collections import defaultdict, deque
+from typing import Hashable
 
 
-def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
+def is_bipartite_dfs(graph: dict[Hashable, list[Hashable]]) -> bool:
     """
     Check if a graph is bipartite using depth-first search (DFS).
 
@@ -33,18 +34,16 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
     >>> is_bipartite_dfs({7: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]})
     False
 
-    >>> # FIXME: This test should fails with KeyError: 4.
     >>> is_bipartite_dfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
-    False
+    Traceback (most recent call last):
+        ...
+    ValueError: Node 0 in adjacency list of node 9 is not in the graph
     >>> is_bipartite_dfs({0: [-1, 3], 1: [0, -2]})
     False
     >>> is_bipartite_dfs({-1: [0, 2], 0: [-1, 1], 1: [0, 2], 2: [-1, 1]})
     True
     >>> is_bipartite_dfs({0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
     True
-
-    >>> # FIXME: This test should fails with
-    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_dfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
@@ -53,7 +52,7 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
     True
     """
 
-    def depth_first_search(node: int, color: int) -> bool:
+    def depth_first_search(node: Hashable, color: int) -> bool:
         """
         Perform Depth-First Search (DFS) on the graph starting from a node.
 
@@ -74,14 +73,23 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
                     return False
         return visited[node] == color
 
-    visited: defaultdict[int, int] = defaultdict(lambda: -1)
+    all_nodes = set(graph.keys())
+    for node, neighbors in graph.items():
+        for neighbor in neighbors:
+            if neighbor not in all_nodes and neighbor not in [
+                n for nodes in graph.values() for n in nodes
+            ]:
+                msg = f"Node {neighbor} in adjacency list of node {node} is not in the graph"
+                raise ValueError(msg)
+
+    visited: defaultdict[Hashable, int] = defaultdict(lambda: -1)
     for node in graph:
         if visited[node] == -1 and not depth_first_search(node, 0):
             return False
     return True
 
 
-def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
+def is_bipartite_bfs(graph: dict[Hashable, list[Hashable]]) -> bool:
     """
     Check if a graph is bipartite using a breadth-first search (BFS).
 
@@ -113,18 +121,16 @@ def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
     >>> is_bipartite_bfs({7: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]})
     False
 
-    >>> # FIXME: This test should fails with KeyError: 4.
     >>> is_bipartite_bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
-    False
+    Traceback (most recent call last):
+        ...
+    ValueError: Node 0 in adjacency list of node 9 is not in the graph
     >>> is_bipartite_bfs({0: [-1, 3], 1: [0, -2]})
     False
     >>> is_bipartite_bfs({-1: [0, 2], 0: [-1, 1], 1: [0, 2], 2: [-1, 1]})
     True
     >>> is_bipartite_bfs({0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
     True
-
-    >>> # FIXME: This test should fails with
-    >>> # TypeError: list indices must be integers or...
     >>> is_bipartite_bfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_bfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
@@ -132,10 +138,19 @@ def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
     >>> is_bipartite_bfs({0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]})
     True
     """
-    visited: defaultdict[int, int] = defaultdict(lambda: -1)
+    all_nodes = set(graph.keys())
+    for node, neighbors in graph.items():
+        for neighbor in neighbors:
+            if neighbor not in all_nodes and neighbor not in [
+                n for nodes in graph.values() for n in nodes
+            ]:
+                msg = f"Node {neighbor} in adjacency list of node {node} is not in the graph"
+                raise ValueError(msg)
+
+    visited: defaultdict[Hashable, int] = defaultdict(lambda: -1)
     for node in graph:
         if visited[node] == -1:
-            queue: deque[int] = deque()
+            queue: deque[Hashable] = deque()
             queue.append(node)
             visited[node] = 0
             while queue:
