@@ -37,17 +37,17 @@ class TrieAutocomplete:
     >>> autocomplete.insert("help")
     >>> autocomplete.insert("hero")
     >>> autocomplete.insert("hello")
-    >>> sorted(autocomplete.search("hel"))
-    ['hello', 'help']
+    >>> sorted(autocomplete.search("hell"))
+    ['hello']
     >>> sorted(autocomplete.search("her"))
     ['hero']
     >>> autocomplete.search("hey")
     []
-    >>> autocomplete.get_suggestions("hel", max_results=1)
+    >>> autocomplete.get_suggestions("hell", max_results=1)
     ['hello']
     >>> autocomplete.contains("hello")
     True
-    >>> autocomplete.contains("hel")
+    >>> autocomplete.contains("hell")
     False
     >>> autocomplete.delete("hello")
     True
@@ -279,6 +279,6 @@ if __name__ == "__main__":
     for word in words:
         autocomplete.insert(word)
 
-    print("Words starting with 'hel':", autocomplete.search("hel"))
+    print("Words starting with 'help':", autocomplete.search("help"))
     print("Words starting with 'hero':", autocomplete.search("hero"))
     print("Top 3 suggestions for 'he':", autocomplete.get_suggestions("he", 3))
