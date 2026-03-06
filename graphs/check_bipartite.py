@@ -1,5 +1,5 @@
 from collections import defaultdict, deque
-from typing import Hashable
+from collections.abc import Hashable
 
 
 def is_bipartite_dfs(graph: dict[Hashable, list[Hashable]]) -> bool:

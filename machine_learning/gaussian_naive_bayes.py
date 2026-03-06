@@ -5,7 +5,6 @@ This implementation demonstrates the Gaussian Naive Bayes classifier
 on the Iris dataset with proper visualization using modern sklearn methods.
 """
 
-import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
 from sklearn.model_selection import train_test_split

@@ -52,7 +52,7 @@ def main() -> None:
     print(f"Mean squared error: {mean_squared_error(y_test, y_pred):.2f}")
     print(f"Test R² score: {r2_score(y_test, y_pred):.2f}")
 
-    fig, ax = plt.subplots()
+    _fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred, edgecolors=(0, 0, 0), alpha=0.4)
     ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "r--", lw=3)
     ax.set_xlabel("Actual")

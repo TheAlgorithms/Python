@@ -63,7 +63,7 @@ class BTree:
     - Every non-leaf node (except root) has at least ⌈m/2⌉ children
     - The root has at least 2 children if it is not a leaf
     - All leaves appear on the same level
-    - A non-leaf node with k children contains k−1 keys
+    - A non-leaf node with k children contains k-1 keys
 
     Examples:
     >>> btree = BTree(order=3)

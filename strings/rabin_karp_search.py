@@ -54,7 +54,7 @@ def rabin_karp_search(text: str, pattern: str, prime: int = 101) -> list[int]:
     h = 1
     results: list[int] = []
 
-    for i in range(m - 1):
+    for _i in range(m - 1):
         h = (h * d) % prime
 
     for i in range(m):
@@ -62,9 +62,8 @@ def rabin_karp_search(text: str, pattern: str, prime: int = 101) -> list[int]:
         text_hash = (d * text_hash + ord(text[i])) % prime
 
     for i in range(n - m + 1):
-        if pattern_hash == text_hash:
-            if text[i : i + m] == pattern:
-                results.append(i)
+        if pattern_hash == text_hash and text[i : i + m] == pattern:
+            results.append(i)
 
         if i < n - m:
             text_hash = (d * (text_hash - ord(text[i]) * h) + ord(text[i + m])) % prime
