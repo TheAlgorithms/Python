@@ -42,7 +42,7 @@ class BTreeNode:
         new_node = BTreeNode(is_leaf=self.is_leaf)
         mid_index = len(self.keys) // 2
         median_key = self.keys[mid_index]
-        
+
         new_node.keys = self.keys[mid_index + 1 :]
         self.keys = self.keys[:mid_index]
 

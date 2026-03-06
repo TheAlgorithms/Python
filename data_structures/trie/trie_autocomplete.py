@@ -215,9 +215,7 @@ class TrieAutocomplete:
             results.append((current_word, node.frequency))
 
         for char, child_node in node.children.items():
-            self._collect_words_with_frequency(
-                child_node, current_word + char, results
-            )
+            self._collect_words_with_frequency(child_node, current_word + char, results)
 
     def delete(self, word: str) -> bool:
         """
@@ -266,7 +264,7 @@ class TrieAutocomplete:
         node = self._find_node(word.lower())
         if node is None or not node.is_end_of_word:
             return False
-        
+
         _delete_helper(self.root, word.lower(), 0)
         return True
 
