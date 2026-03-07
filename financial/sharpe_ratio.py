@@ -23,13 +23,13 @@ def sharpe_ratio(returns: list[float], risk_free_rate: float = 0.0) -> float:
     Calculate the Sharpe Ratio for a series of returns.
 
     The Sharpe Ratio formula:
-    S = (R - Rf) / σ
+    S = (R - Rf) / std_dev
 
     Where:
     S = Sharpe Ratio
     R = Average return of the investment
     Rf = Risk-free rate of return
-    σ = Standard deviation of returns (volatility)
+    std_dev = Standard deviation of returns (volatility)
 
     :param returns: List of periodic returns (e.g., daily, monthly)
     :param risk_free_rate: Risk-free rate of return per period, default 0.0
@@ -96,7 +96,8 @@ def annualized_sharpe_ratio(
     :param periods_per_year: Number of periods in a year, default 252 (daily)
     :return: Annualized Sharpe Ratio
 
-    >>> round(annualized_sharpe_ratio([0.001, 0.002, 0.0015, 0.0005, 0.0012], 0.0, 252), 4)
+    >>> round(annualized_sharpe_ratio(
+    ...     [0.001, 0.002, 0.0015, 0.0005, 0.0012], 0.0, 252), 4)
     35.1844
     >>> round(annualized_sharpe_ratio([0.01, 0.02, 0.015, 0.005, 0.012], 0.0, 12), 4)
     7.6779
