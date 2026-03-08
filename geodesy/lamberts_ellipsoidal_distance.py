@@ -1,6 +1,6 @@
 from math import atan, cos, radians, sin, tan
 
-from .haversine_distance import haversine_distance
+from .haversine_distance import EARTH_RADIUS, haversine_distance
 
 AXIS_A = 6378137.0
 AXIS_B = 6356752.314245
@@ -39,11 +39,11 @@ def lamberts_ellipsoidal_distance(
     >>> NEW_YORK = point_2d(40.713019, -74.012647)
     >>> VENICE = point_2d(45.443012, 12.313071)
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *YOSEMITE):0,.0f} meters"
-    '254,351 meters'
+    '254,032 meters'
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *NEW_YORK):0,.0f} meters"
-    '4,138,992 meters'
+    '4,133,295 meters'
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *VENICE):0,.0f} meters"
-    '9,737,326 meters'
+    '9,719,525 meters'
     """
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
@@ -58,7 +58,7 @@ def lamberts_ellipsoidal_distance(
 
     # Compute central angle between two points
     # using haversine theta. sigma =  haversine_distance / equatorial radius
-    sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
+    sigma = haversine_distance(lat1, lon1, lat2, lon2) / EARTH_RADIUS
 
     # Intermediate P and Q values
     p_value = (b_lat1 + b_lat2) / 2
