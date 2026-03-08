@@ -30,9 +30,8 @@ def draw_gosper_curve(
         direction: Direction of the curve (1 or -1).
         angle: Turn angle in degrees.
 
-    Example:
-    >>> import turtle
-    >>> draw_gosper_curve(100.0, 1)
+    Note:
+        Do not run this as a doctest; it uses turtle graphics.
     """
     if depth == 0:
         turtle.forward(side_length)
