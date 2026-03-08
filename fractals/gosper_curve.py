@@ -23,7 +23,7 @@ def draw_gosper_curve(
     >>> import turtle
     >>> draw_gosper_curve(side_length=200.0, depth=4, direction=-1, angle=60.0) # doctest: +SKIP
     """
-    
+
     if depth == 0:
         turtle.forward(side_length)
     else:
