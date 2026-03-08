@@ -21,7 +21,7 @@ def draw_gosper_curve(
 
     Example:
     >>> import turtle
-    >>> draw_gosper_curve(side_length=200.0, depth=4, direction=-1, angle=60.0) # doctest: +SKIP
+    >>> draw_gosper_curve(side_length=200.0, depth=4, direction=-1, angle=60.0)
     """
 
     if depth == 0:
