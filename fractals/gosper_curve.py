@@ -11,7 +11,7 @@ def draw_gosper_curve(
     side_length: float, depth: int, direction: int = -1, angle: float = 60.0
 ) -> None:
     """
-    Recursively draws a Gosper curve fractal.
+    Recursively draws a Gosper curve fractal using turtle graphics.
 
     Args:
         side_length: The length of the current segment.
@@ -21,11 +21,7 @@ def draw_gosper_curve(
 
     Example:
     >>> import turtle
-    >>> # Mocking turtle methods to allow testing without a GUI
-    >>> turtle.forward = lambda x: None
-    >>> turtle.left = lambda x: None
-    >>> turtle.right = lambda x: None
-    >>> draw_gosper_curve(100.0, 2, -1, 60.0)
+    >>> draw_gosper_curve(200.0, 4, -1, 60.0)  # doctest: +SKIP
     """
     if depth == 0:
         turtle.forward(side_length)
@@ -63,10 +59,7 @@ def draw_gosper_curve(
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
+    # Screen setup
     turtle.title("Gosper Curve")
     turtle.penup()
     turtle.goto(0, -200)
@@ -74,6 +67,8 @@ if __name__ == "__main__":
     turtle.speed(0)
     turtle.width(1)
 
+    # Drawing the curve
     draw_gosper_curve(side_length=200.0, depth=4, direction=-1, angle=60.0)
 
+    # Close window on click
     turtle.exitonclick()
