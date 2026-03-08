@@ -8,8 +8,7 @@ import turtle
 
 
 def draw_gosper_curve(
-    side_length: float, depth: int, direction: int = -1, angle: float = 60.0
-) -> None:
+    side_length: float, depth: int, direction: int = -1, angle: float = 60.0) -> None:
     """
     Recursively draws a Gosper curve fractal.
 
