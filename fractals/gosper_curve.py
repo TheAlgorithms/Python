@@ -18,7 +18,12 @@ def draw_gosper_curve(
         depth: The recursive depth of the curve.
         direction: The direction of the drawing (1 or -1).
         angle: The angle of the turns in degrees.
+
+    Example:
+    >>> import turtle
+    >>> draw_gosper_curve(side_length=200.0, depth=4, direction=-1, angle=60.0) # doctest: +SKIP
     """
+    
     if depth == 0:
         turtle.forward(side_length)
     else:
