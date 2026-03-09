@@ -5,7 +5,8 @@ def generate_parentheses_iterative(length: int) -> list[str]:
     The algorithm works as follows:
     1. Initialize an empty list to store the combinations.
     2. Initialize a stack to keep track of partial combinations.
-    3. Start with empty string and push it on stack along with the counts of '(' and ')'.
+    3. Start with empty string and push it on stack along with
+       the counts of '(' and ')'.
     4. While the stack is not empty:
         a. Pop a partial combination and its open and close counts from the stack.
         b. If the combination length is equal to 2*length, add it to the result.
