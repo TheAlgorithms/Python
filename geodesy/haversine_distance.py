@@ -1,5 +1,9 @@
 from math import asin, atan, cos, radians, sin, sqrt, tan
 
+AXIS_A = 6378137.0
+AXIS_B = 6356752.314245
+RADIUS = 6378137
+
 
 def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
@@ -17,10 +21,11 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     computation like Haversine can be handy for shorter range distances.
 
     Args:
-        lat1, lon1: latitude and longitude of coordinate 1
-        lat2, lon2: latitude and longitude of coordinate 2
+        * `lat1`, `lon1`: latitude and longitude of coordinate 1
+        * `lat2`, `lon2`: latitude and longitude of coordinate 2
     Returns:
         geographical distance between two points in metres
+
     >>> from collections import namedtuple
     >>> point_2d = namedtuple("point_2d", "lat lon")
     >>> SAN_FRANCISCO = point_2d(37.774856, -122.424227)
@@ -30,9 +35,6 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     """
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
-    AXIS_A = 6378137.0
-    AXIS_B = 6356752.314245
-    RADIUS = 6378137
     # Equation parameters
     # Equation https://en.wikipedia.org/wiki/Haversine_formula#Formulation
     flattening = (AXIS_A - AXIS_B) / AXIS_A

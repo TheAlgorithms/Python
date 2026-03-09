@@ -3,17 +3,17 @@ Problem 31: https://projecteuler.net/problem=31
 
 Coin sums
 
-In England the currency is made up of pound, £, and pence, p, and there are
+In England the currency is made up of pound, f, and pence, p, and there are
 eight coins in general circulation:
 
-1p, 2p, 5p, 10p, 20p, 50p, £1 (100p) and £2 (200p).
-It is possible to make £2 in the following way:
+1p, 2p, 5p, 10p, 20p, 50p, f1 (100p) and f2 (200p).
+It is possible to make f2 in the following way:
 
-1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
-How many different ways can £2 be made using any number of coins?
+1xf1 + 1x50p + 2x20p + 1x5p + 1x2p + 3x1p
+How many different ways can f2 be made using any number of coins?
 
 Hint:
-    > There are 100 pence in a pound (£1 = 100p)
+    > There are 100 pence in a pound (f1 = 100p)
     > There are coins(in pence) are available: 1, 2, 5, 10, 20, 50, 100 and 200.
     > how many different ways you can combine these values to create 200 pence.
 

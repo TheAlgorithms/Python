@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import random
-from typing import Generic, Iterable, TypeVar
+from collections.abc import Iterable
+from typing import Any, TypeVar
 
-T = TypeVar("T")
+T = TypeVar("T", bound=bool)
 
 
-class RandomizedHeapNode(Generic[T]):
+class RandomizedHeapNode[T: bool]:
     """
     One node of the randomized heap. Contains the value and references to
     two children.
@@ -21,14 +22,40 @@ class RandomizedHeapNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> rhn = RandomizedHeapNode(10)
+        >>> rhn.value
+        10
+        >>> rhn = RandomizedHeapNode(-10)
+        >>> rhn.value
+        -10
+        """
         return self._value
 
     @staticmethod
     def merge(
         root1: RandomizedHeapNode[T] | None, root2: RandomizedHeapNode[T] | None
     ) -> RandomizedHeapNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+
+        >>> rhn1 = RandomizedHeapNode(10)
+        >>> rhn2 = RandomizedHeapNode(20)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(20)
+        >>> rhn2 = RandomizedHeapNode(10)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(5)
+        >>> rhn2 = RandomizedHeapNode(0)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        0
+        """
         if not root1:
             return root2
 
@@ -46,7 +73,7 @@ class RandomizedHeapNode(Generic[T]):
         return root1
 
 
-class RandomizedHeap(Generic[T]):
+class RandomizedHeap[T: bool]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the
@@ -76,8 +103,10 @@ class RandomizedHeap(Generic[T]):
         [1, 3, 3, 7]
         """
         self._root: RandomizedHeapNode[T] | None = None
-        for item in data:
-            self.insert(item)
+
+        if data:
+            for item in data:
+                self.insert(item)
 
     def insert(self, value: T) -> None:
         """
@@ -93,7 +122,7 @@ class RandomizedHeap(Generic[T]):
         """
         self._root = RandomizedHeapNode.merge(self._root, RandomizedHeapNode(value))
 
-    def pop(self) -> T:
+    def pop(self) -> T | None:
         """
         Pop the smallest value from the heap and return it.
 
@@ -111,7 +140,12 @@ class RandomizedHeap(Generic[T]):
             ...
         IndexError: Can't get top element for the empty heap.
         """
+
         result = self.top()
+
+        if self._root is None:
+            return None
+
         self._root = RandomizedHeapNode.merge(self._root.left, self._root.right)
 
         return result
@@ -138,7 +172,7 @@ class RandomizedHeap(Generic[T]):
             raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the heap.
 
@@ -151,7 +185,7 @@ class RandomizedHeap(Generic[T]):
         """
         self._root = None
 
-    def to_sorted_list(self) -> list[T]:
+    def to_sorted_list(self) -> list[Any]:
         """
         Returns sorted list containing all the values in the heap.
 

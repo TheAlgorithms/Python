@@ -19,9 +19,9 @@ def left_shift(data):
     return data[1:] + data[0]
 
 
-def XOR(a, b):
+def xor(a, b):
     """
-    >>> XOR("01010101", "00001111")
+    >>> xor("01010101", "00001111")
     '01011010'
     """
     res = ""
@@ -43,18 +43,17 @@ def function(expansion, s0, s1, key, message):
     left = message[:4]
     right = message[4:]
     temp = apply_table(right, expansion)
-    temp = XOR(temp, key)
-    l = apply_sbox(s0, temp[:4])  # noqa: E741
-    r = apply_sbox(s1, temp[4:])
-    l = "0" * (2 - len(l)) + l  # noqa: E741
-    r = "0" * (2 - len(r)) + r
-    temp = apply_table(l + r, p4_table)
-    temp = XOR(left, temp)
+    temp = xor(temp, key)
+    left_bin_str = apply_sbox(s0, temp[:4])
+    right_bin_str = apply_sbox(s1, temp[4:])
+    left_bin_str = "0" * (2 - len(left_bin_str)) + left_bin_str
+    right_bin_str = "0" * (2 - len(right_bin_str)) + right_bin_str
+    temp = apply_table(left_bin_str + right_bin_str, p4_table)
+    temp = xor(left, temp)
     return temp + right
 
 
 if __name__ == "__main__":
-
     key = input("Enter 10 bit key: ")
     message = input("Enter 8 bit message: ")
 

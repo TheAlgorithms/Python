@@ -14,6 +14,7 @@ base 10 and base 2.
 (Please note that the palindromic number, in either base, may not include
 leading zeros.)
 """
+
 from __future__ import annotations
 
 
@@ -32,7 +33,7 @@ def is_palindrome(n: int | str) -> bool:
     False
     """
     n = str(n)
-    return True if n == n[::-1] else False
+    return n == n[::-1]
 
 
 def solution(n: int = 1000000):

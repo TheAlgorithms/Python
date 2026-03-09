@@ -21,12 +21,12 @@ def solution():
 
     while True:
         if (
-            sorted(list(str(i)))
-            == sorted(list(str(2 * i)))
-            == sorted(list(str(3 * i)))
-            == sorted(list(str(4 * i)))
-            == sorted(list(str(5 * i)))
-            == sorted(list(str(6 * i)))
+            sorted(str(i))
+            == sorted(str(2 * i))
+            == sorted(str(3 * i))
+            == sorted(str(4 * i))
+            == sorted(str(5 * i))
+            == sorted(str(6 * i))
         ):
             return i
 

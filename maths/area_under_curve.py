@@ -1,15 +1,16 @@
 """
 Approximates the area under the curve using the trapezoidal rule
 """
+
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 
 def trapezoidal_area(
-    fnc: Callable[[int | float], int | float],
-    x_start: int | float,
-    x_end: int | float,
+    fnc: Callable[[float], float],
+    x_start: float,
+    x_end: float,
     steps: int = 100,
 ) -> float:
     """
@@ -35,7 +36,7 @@ def trapezoidal_area(
     x1 = x_start
     fx1 = fnc(x_start)
     area = 0.0
-    for i in range(steps):
+    for _ in range(steps):
         # Approximates small segments of curve as linear and solve
         # for trapezoidal area
         x2 = (x_end - x_start) / steps + x1
@@ -50,7 +51,7 @@ def trapezoidal_area(
 if __name__ == "__main__":
 
     def f(x):
-        return x ** 3 + x ** 2
+        return x**3 + x**2
 
     print("f(x) = x^3 + x^2")
     print("The area between the curve, x = -5, x = 5 and the x axis is:")

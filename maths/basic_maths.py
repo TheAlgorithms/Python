@@ -1,4 +1,5 @@
 """Implementation of Basic Math in Python."""
+
 import math
 
 
@@ -57,6 +58,8 @@ def number_of_divisors(n: int) -> int:
             temp += 1
             n = int(n / i)
         div *= temp
+    if n > 1:
+        div *= 2
     return div
 
 
@@ -81,14 +84,14 @@ def sum_of_divisors(n: int) -> int:
         temp += 1
         n = int(n / 2)
     if temp > 1:
-        s *= (2 ** temp - 1) / (2 - 1)
+        s *= (2**temp - 1) / (2 - 1)
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         temp = 1
         while n % i == 0:
             temp += 1
             n = int(n / i)
         if temp > 1:
-            s *= (i ** temp - 1) / (i - 1)
+            s *= (i**temp - 1) / (i - 1)
     return int(s)
 
 
@@ -96,7 +99,17 @@ def euler_phi(n: int) -> int:
     """Calculate Euler's Phi Function.
     >>> euler_phi(100)
     40
+    >>> euler_phi(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
+    >>> euler_phi(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
     """
+    if n <= 0:
+        raise ValueError("Only positive numbers are accepted")
     s = n
     for x in set(prime_factors(n)):
         s *= (x - 1) / x

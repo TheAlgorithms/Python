@@ -12,6 +12,7 @@ It is possible to write ten as the sum of primes in exactly five different ways:
 What is the first value which can be written as the sum of primes in over
 five thousand different ways?
 """
+
 from __future__ import annotations
 
 from functools import lru_cache
@@ -23,7 +24,7 @@ primes = set(range(3, NUM_PRIMES, 2))
 primes.add(2)
 prime: int
 
-for prime in range(3, ceil(NUM_PRIMES ** 0.5), 2):
+for prime in range(3, ceil(NUM_PRIMES**0.5), 2):
     if prime not in primes:
         continue
     primes.difference_update(set(range(prime * prime, NUM_PRIMES, prime)))

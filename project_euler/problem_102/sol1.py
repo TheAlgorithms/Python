@@ -18,6 +18,7 @@ the number of triangles for which the interior contains the origin.
 NOTE: The first two examples in the file represent the triangles in the
 example given above.
 """
+
 from __future__ import annotations
 
 from pathlib import Path

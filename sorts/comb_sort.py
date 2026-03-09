@@ -5,8 +5,7 @@ Dobosiewicz in 1980.  It was rediscovered by Stephen Lacey and Richard Box in 19
 Comb sort improves on bubble sort algorithm.
 In bubble sort, distance (or gap) between two compared elements is always one.
 Comb sort improvement is that gap can be much more than 1, in order to prevent slowing
-down by small values
-at the end of a list.
+down by small values at the end of a list.
 
 More info on: https://en.wikipedia.org/wiki/Comb_sort
 
@@ -37,7 +36,6 @@ def comb_sort(data: list) -> list:
     completed = False
 
     while not completed:
-
         # Update the gap value for a next comb
         gap = int(gap / shrink_factor)
         if gap <= 1:

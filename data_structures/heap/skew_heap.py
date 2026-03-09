@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Generic, Iterable, Iterator, TypeVar
+from collections.abc import Iterable, Iterator
+from typing import Any, TypeVar
 
-T = TypeVar("T")
+T = TypeVar("T", bound=bool)
 
 
-class SkewNode(Generic[T]):
+class SkewNode[T: bool]:
     """
     One node of the skew heap. Contains the value and references to
     two children.
@@ -20,14 +21,55 @@ class SkewNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> SkewNode(0).value
+        0
+        >>> SkewNode(3.14159).value
+        3.14159
+        >>> SkewNode("hello").value
+        'hello'
+        >>> SkewNode(None).value
+
+        >>> SkewNode(True).value
+        True
+        >>> SkewNode([]).value
+        []
+        >>> SkewNode({}).value
+        {}
+        >>> SkewNode(set()).value
+        set()
+        >>> SkewNode(0.0).value
+        0.0
+        >>> SkewNode(-1e-10).value
+        -1e-10
+        >>> SkewNode(10).value
+        10
+        >>> SkewNode(-10.5).value
+        -10.5
+        >>> SkewNode().value
+        Traceback (most recent call last):
+        ...
+        TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
+        """
         return self._value
 
     @staticmethod
     def merge(
         root1: SkewNode[T] | None, root2: SkewNode[T] | None
     ) -> SkewNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+        >>> SkewNode.merge(SkewNode(10),SkewNode(-10.5)).value
+        -10.5
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10.5)).value
+        10
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10)).value
+        10
+        >>> SkewNode.merge(SkewNode(-100),SkewNode(-10.5)).value
+        -100
+        """
         if not root1:
             return root2
 
@@ -45,13 +87,13 @@ class SkewNode(Generic[T]):
         return result
 
 
-class SkewHeap(Generic[T]):
+class SkewHeap[T: bool]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the
     structure.
     Wiki: https://en.wikipedia.org/wiki/Skew_heap
-    Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
+    Visualization: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
 
     >>> list(SkewHeap([2, 3, 1, 5, 1, 7]))
     [1, 1, 2, 3, 5, 7]
@@ -76,8 +118,9 @@ class SkewHeap(Generic[T]):
         [1, 3, 3, 7]
         """
         self._root: SkewNode[T] | None = None
-        for item in data:
-            self.insert(item)
+        if data:
+            for item in data:
+                self.insert(item)
 
     def __bool__(self) -> bool:
         """
@@ -103,7 +146,7 @@ class SkewHeap(Generic[T]):
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        result = []
+        result: list[Any] = []
         while self:
             result.append(self.pop())
 
@@ -127,7 +170,7 @@ class SkewHeap(Generic[T]):
         """
         self._root = SkewNode.merge(self._root, SkewNode(value))
 
-    def pop(self) -> T:
+    def pop(self) -> T | None:
         """
         Pop the smallest value from the heap and return it.
 
@@ -146,7 +189,9 @@ class SkewHeap(Generic[T]):
         IndexError: Can't get top element for the empty heap.
         """
         result = self.top()
-        self._root = SkewNode.merge(self._root.left, self._root.right)
+        self._root = (
+            SkewNode.merge(self._root.left, self._root.right) if self._root else None
+        )
 
         return result
 
@@ -172,7 +217,7 @@ class SkewHeap(Generic[T]):
             raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the heap.
 

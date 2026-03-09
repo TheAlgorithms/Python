@@ -1,35 +1,51 @@
+from __future__ import annotations
+
 import collections
-import os
 import pprint
-import time
-
-start_time = time.time()
-print("creating word list...")
-path = os.path.split(os.path.realpath(__file__))
-with open(path[0] + "/words.txt") as f:
-    word_list = sorted(list({word.strip().lower() for word in f}))
+from pathlib import Path
 
 
-def signature(word):
-    return "".join(sorted(word))
+def signature(word: str) -> str:
+    """
+    Return a word's frequency-based signature.
+
+    >>> signature("test")
+    'e1s1t2'
+    >>> signature("this is a test")
+    ' 3a1e1h1i2s3t3'
+    >>> signature("finaltest")
+    'a1e1f1i1l1n1s1t2'
+    """
+    frequencies = collections.Counter(word)
+    return "".join(
+        f"{char}{frequency}" for char, frequency in sorted(frequencies.items())
+    )
 
 
-word_bysig = collections.defaultdict(list)
+def anagram(my_word: str) -> list[str]:
+    """
+    Return every anagram of the given word from the dictionary.
+
+    >>> anagram('test')
+    ['sett', 'stet', 'test']
+    >>> anagram('this is a test')
+    []
+    >>> anagram('final')
+    ['final']
+    """
+    return word_by_signature[signature(my_word)]
+
+
+data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
+word_list = sorted({word.strip().lower() for word in data.splitlines()})
+
+word_by_signature = collections.defaultdict(list)
 for word in word_list:
-    word_bysig[signature(word)].append(word)
+    word_by_signature[signature(word)].append(word)
 
+if __name__ == "__main__":
+    all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
-def anagram(my_word):
-    return word_bysig[signature(my_word)]
-
-
-print("finding anagrams...")
-all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
-
-print("writing anagrams to file...")
-with open("anagrams.txt", "w") as file:
-    file.write("all_anagrams = ")
-    file.write(pprint.pformat(all_anagrams))
-
-total_time = round(time.time() - start_time, 2)
-print(("Done [", total_time, "seconds ]"))
+    with open("anagrams.txt", "w") as file:
+        file.write("all_anagrams = \n")
+        file.write(pprint.pformat(all_anagrams))

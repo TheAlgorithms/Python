@@ -11,7 +11,6 @@ when each coordinate lies between 0 and 2 inclusive; that is,
 Given that 0 ≤ x1, y1, x2, y2 ≤ 50, how many right triangles can be formed?
 """
 
-
 from itertools import combinations, product
 
 

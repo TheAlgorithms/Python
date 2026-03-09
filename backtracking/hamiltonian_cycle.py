@@ -1,10 +1,10 @@
 """
-    A Hamiltonian cycle (Hamiltonian circuit) is a graph cycle
-    through a graph that visits each node exactly once.
-    Determining whether such paths and cycles exist in graphs
-    is the 'Hamiltonian path problem', which is NP-complete.
+A Hamiltonian cycle (Hamiltonian circuit) is a graph cycle
+through a graph that visits each node exactly once.
+Determining whether such paths and cycles exist in graphs
+is the 'Hamiltonian path problem', which is NP-complete.
 
-    Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
+Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """
 
 
@@ -15,8 +15,8 @@ def valid_connection(
     Checks whether it is possible to add next into path by validating 2 statements
     1. There should be path between current and next vertex
     2. Next vertex should not be in path
-    If both validations succeeds we return True saying that it is possible to connect
-    this vertices either we return False
+    If both validations succeed we return True, saying that it is possible to connect
+    this vertices, otherwise we return False
 
     Case 1:Use exact graph as in main function, with initialized values
     >>> graph = [[0, 1, 0, 1, 0],
@@ -71,7 +71,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
     >>> curr_ind = 1
     >>> util_hamilton_cycle(graph, path, curr_ind)
     True
-    >>> print(path)
+    >>> path
     [0, 1, 2, 4, 3, 0]
 
     Case 2: Use exact graph as in previous case, but in the properties taken from
@@ -85,7 +85,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
     >>> curr_ind = 3
     >>> util_hamilton_cycle(graph, path, curr_ind)
     True
-    >>> print(path)
+    >>> path
     [0, 1, 2, 4, 3, 0]
     """
 
@@ -95,10 +95,10 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
         return graph[path[curr_ind - 1]][path[0]] == 1
 
     # Recursive Step
-    for next in range(0, len(graph)):
-        if valid_connection(graph, next, curr_ind, path):
+    for next_ver in range(len(graph)):
+        if valid_connection(graph, next_ver, curr_ind, path):
             # Insert current vertex  into path as next transition
-            path[curr_ind] = next
+            path[curr_ind] = next_ver
             # Validate created path
             if util_hamilton_cycle(graph, path, curr_ind + 1):
                 return True

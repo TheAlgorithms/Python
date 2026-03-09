@@ -15,6 +15,7 @@ with this property.
 Find the smallest prime which, by replacing part of the number (not necessarily
 adjacent digits) with the same digit, is part of an eight prime value family.
 """
+
 from __future__ import annotations
 
 from collections import Counter
@@ -37,7 +38,7 @@ def prime_sieve(n: int) -> list[int]:
     is_prime[1] = False
     is_prime[2] = True
 
-    for i in range(3, int(n ** 0.5 + 1), 2):
+    for i in range(3, int(n**0.5 + 1), 2):
         index = i * 2
         while index < n:
             is_prime[index] = False
@@ -63,12 +64,12 @@ def digit_replacements(number: int) -> list[list[int]]:
     >>> digit_replacements(3112)
     [[3002, 3112, 3222, 3332, 3442, 3552, 3662, 3772, 3882, 3992]]
     """
-    number = str(number)
+    number_str = str(number)
     replacements = []
     digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    for duplicate in Counter(number) - Counter(set(number)):
-        family = [int(number.replace(duplicate, digit)) for digit in digits]
+    for duplicate in Counter(number_str) - Counter(set(number_str)):
+        family = [int(number_str.replace(duplicate, digit)) for digit in digits]
         replacements.append(family)
 
     return replacements
@@ -105,6 +106,8 @@ def solution(family_length: int = 8) -> int:
                 continue
 
             return min(primes_in_family)
+
+    return -1
 
 
 if __name__ == "__main__":

@@ -1,10 +1,11 @@
 """
 Problem 15: https://projecteuler.net/problem=15
 
-Starting in the top left corner of a 2×2 grid, and only being able to move to
+Starting in the top left corner of a 2x2 grid, and only being able to move to
 the right and down, there are exactly 6 routes to the bottom right corner.
-How many such routes are there through a 20×20 grid?
+How many such routes are there through a 20x20 grid?
 """
+
 from math import factorial
 
 
@@ -26,7 +27,7 @@ def solution(n: int = 20) -> int:
     """
     n = 2 * n  # middle entry of odd rows starting at row 3 is the solution for n = 1,
     # 2, 3,...
-    k = n / 2
+    k = n // 2
 
     return int(factorial(n) / (factorial(k) * factorial(n - k)))
 

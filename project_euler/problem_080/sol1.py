@@ -6,6 +6,7 @@ the digital sums of the first one hundred decimal digits for all the irrational
 square roots.
 Time: 5 October 2020, 18:30
 """
+
 import decimal
 
 
@@ -26,8 +27,8 @@ def solution() -> int:
         sqrt_number = number.sqrt(decimal_context)
         if len(str(sqrt_number)) > 1:
             answer += int(str(sqrt_number)[0])
-            sqrt_number = str(sqrt_number)[2:101]
-            answer += sum(int(x) for x in sqrt_number)
+            sqrt_number_str = str(sqrt_number)[2:101]
+            answer += sum(int(x) for x in sqrt_number_str)
     return answer
 
 
@@ -35,3 +36,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    print(f"{solution() = }")

@@ -1,7 +1,7 @@
 """
 The Fibonacci sequence is defined by the recurrence relation:
 
-    Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+    Fn = Fn-1 + Fn-2, where F1 = 1 and F2 = 1.
 
 Hence the first 12 terms will be:
 
@@ -43,7 +43,7 @@ def fibonacci(n: int) -> int:
     144
 
     """
-    if n == 1 or type(n) is not int:
+    if n == 1 or not isinstance(n, int):
         return 0
     elif n == 2:
         return 1

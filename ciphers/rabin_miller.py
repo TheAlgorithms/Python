@@ -3,7 +3,7 @@
 import random
 
 
-def rabinMiller(num: int) -> bool:
+def rabin_miller(num: int) -> bool:
     s = num - 1
     t = 0
 
@@ -11,7 +11,7 @@ def rabinMiller(num: int) -> bool:
         s = s // 2
         t += 1
 
-    for trials in range(5):
+    for _ in range(5):
         a = random.randrange(2, num - 1)
         v = pow(a, s, num)
         if v != 1:
@@ -21,15 +21,15 @@ def rabinMiller(num: int) -> bool:
                     return False
                 else:
                     i = i + 1
-                    v = (v ** 2) % num
+                    v = (v**2) % num
     return True
 
 
-def isPrime(num: int) -> bool:
+def is_prime_low_num(num: int) -> bool:
     if num < 2:
         return False
 
-    lowPrimes = [
+    low_primes = [
         2,
         3,
         5,
@@ -200,24 +200,24 @@ def isPrime(num: int) -> bool:
         997,
     ]
 
-    if num in lowPrimes:
+    if num in low_primes:
         return True
 
-    for prime in lowPrimes:
+    for prime in low_primes:
         if (num % prime) == 0:
             return False
 
-    return rabinMiller(num)
+    return rabin_miller(num)
 
 
-def generateLargePrime(keysize: int = 1024) -> int:
+def generate_large_prime(keysize: int = 1024) -> int:
     while True:
         num = random.randrange(2 ** (keysize - 1), 2 ** (keysize))
-        if isPrime(num):
+        if is_prime_low_num(num):
             return num
 
 
 if __name__ == "__main__":
-    num = generateLargePrime()
+    num = generate_large_prime()
     print(("Prime number:", num))
-    print(("isPrime:", isPrime(num)))
+    print(("is_prime_low_num:", is_prime_low_num(num)))

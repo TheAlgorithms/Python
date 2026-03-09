@@ -1,13 +1,12 @@
 """
-This is a pure Python implementation of the quick sort algorithm
-For doctests run following command:
-python -m doctest -v radix_sort.py
-or
-python3 -m doctest -v radix_sort.py
-For manual testing run:
-python radix_sort.py
+This is a pure Python implementation of the radix sort algorithm
+
+Source: https://en.wikipedia.org/wiki/Radix_sort
 """
+
 from __future__ import annotations
+
+RADIX = 10
 
 
 def radix_sort(list_of_ints: list[int]) -> list[int]:
@@ -23,12 +22,11 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
     """
-    RADIX = 10
     placement = 1
     max_digit = max(list_of_ints)
     while placement <= max_digit:
         # declare and initialize empty buckets
-        buckets: list[list] = [list() for _ in range(RADIX)]
+        buckets: list[list] = [[] for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
             tmp = int((i / placement) % RADIX)

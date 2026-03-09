@@ -12,9 +12,10 @@ There are other several other algorithms for the convex hull problem
 which have not been implemented here, yet.
 
 """
+
 from __future__ import annotations
 
-from typing import Iterable
+from collections.abc import Iterable
 
 
 class Point:
@@ -174,12 +175,12 @@ def _validate_input(points: list[Point] | list[list[float]]) -> list[Point]:
     """
 
     if not hasattr(points, "__iter__"):
-        raise ValueError(
-            f"Expecting an iterable object but got an non-iterable type {points}"
-        )
+        msg = f"Expecting an iterable object but got an non-iterable type {points}"
+        raise ValueError(msg)
 
     if not points:
-        raise ValueError(f"Expecting a list of points but got {points}")
+        msg = f"Expecting a list of points but got {points}"
+        raise ValueError(msg)
 
     return _construct_points(points)
 
@@ -266,21 +267,20 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
             points_left_of_ij = points_right_of_ij = False
             ij_part_of_convex_hull = True
             for k in range(n):
-                if k != i and k != j:
+                if k not in {i, j}:
                     det_k = _det(points[i], points[j], points[k])
 
                     if det_k > 0:
                         points_left_of_ij = True
                     elif det_k < 0:
                         points_right_of_ij = True
-                    else:
-                        # point[i], point[j], point[k] all lie on a straight line
-                        # if point[k] is to the left of point[i] or it's to the
-                        # right of point[j], then point[i], point[j] cannot be
-                        # part of the convex hull of A
-                        if points[k] < points[i] or points[k] > points[j]:
-                            ij_part_of_convex_hull = False
-                            break
+                    # point[i], point[j], point[k] all lie on a straight line
+                    # if point[k] is to the left of point[i] or it's to the
+                    # right of point[j], then point[i], point[j] cannot be
+                    # part of the convex hull of A
+                    elif points[k] < points[i] or points[k] > points[j]:
+                        ij_part_of_convex_hull = False
+                        break
 
                 if points_left_of_ij and points_right_of_ij:
                     ij_part_of_convex_hull = False
@@ -458,16 +458,16 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
             convex_hull[1] = points[i]
     i += 1
 
-    for i in range(i, n):
+    for j in range(i, n):
         if (
-            _det(convex_hull[0], convex_hull[-1], points[i]) > 0
+            _det(convex_hull[0], convex_hull[-1], points[j]) > 0
             and _det(convex_hull[-1], convex_hull[0], points[1]) < 0
         ):
             # The point lies within the convex hull
             continue
 
-        convex_hull.insert(0, points[i])
-        convex_hull.append(points[i])
+        convex_hull.insert(0, points[j])
+        convex_hull.append(points[j])
         while _det(convex_hull[0], convex_hull[1], convex_hull[2]) >= 0:
             del convex_hull[1]
         while _det(convex_hull[-1], convex_hull[-2], convex_hull[-3]) <= 0:

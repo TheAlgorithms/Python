@@ -1,16 +1,26 @@
 # Created by sarathkaul on 12/11/19
 
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
+import httpx
 
 
 def send_slack_message(message_body: str, slack_url: str) -> None:
     headers = {"Content-Type": "application/json"}
-    response = requests.post(slack_url, json={"text": message_body}, headers=headers)
+    response = httpx.post(
+        slack_url, json={"text": message_body}, headers=headers, timeout=10
+    )
     if response.status_code != 200:
-        raise ValueError(
-            f"Request to slack returned an error {response.status_code}, "
-            f"the response is:\n{response.text}"
+        msg = (
+            "Request to slack returned an error "
+            f"{response.status_code}, the response is:\n{response.text}"
         )
+        raise ValueError(msg)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 """
-Given a partially filled 9×9 2D array, the objective is to fill a 9×9
+Given a partially filled 9x9 2D array, the objective is to fill a 9x9
 square grid with digits numbered 1 to 9, so that every row, column, and
-and each of the nine 3×3 sub-grids contains all of the digits.
+and each of the nine 3x3 sub-grids contains all of the digits.
 
 This can be solved using Backtracking and is similar to n-queens.
 We check to see if a cell is safe or not and recursively call the
@@ -9,6 +9,7 @@ function on the next column to see if it returns True. if yes, we
 have solved the puzzle. else, we backtrack and place another number
 in that cell and repeat this process.
 """
+
 from __future__ import annotations
 
 Matrix = list[list[int]]
@@ -48,7 +49,7 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     is found) else returns True if it is 'safe'
     """
     for i in range(9):
-        if grid[row][i] == n or grid[i][column] == n:
+        if n in {grid[row][i], grid[i][column]}:
             return False
 
     for i in range(3):

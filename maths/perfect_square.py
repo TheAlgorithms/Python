@@ -58,9 +58,9 @@ def perfect_square_binary_search(n: int) -> bool:
     right = n
     while left <= right:
         mid = (left + right) // 2
-        if mid ** 2 == n:
+        if mid**2 == n:
             return True
-        elif mid ** 2 > n:
+        elif mid**2 > n:
             right = mid - 1
         else:
             left = mid + 1

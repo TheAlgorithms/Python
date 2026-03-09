@@ -137,11 +137,10 @@ def hill_climbing(
                 if change > max_change and change > 0:
                     max_change = change
                     next_state = neighbor
-            else:  # finding min
+            elif change < min_change and change < 0:  # finding min
                 # to direction with greatest descent
-                if change < min_change and change < 0:
-                    min_change = change
-                    next_state = neighbor
+                min_change = change
+                next_state = neighbor
         if next_state is not None:
             # we found at least one neighbor which improved the current state
             current_state = next_state
@@ -166,7 +165,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     def test_f1(x, y):
-        return (x ** 2) + (y ** 2)
+        return (x**2) + (y**2)
 
     # starting the problem with initial coordinates (3, 4)
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
@@ -187,7 +186,7 @@ if __name__ == "__main__":
     )
 
     def test_f2(x, y):
-        return (3 * x ** 2) - (6 * y)
+        return (3 * x**2) - (6 * y)
 
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
     local_min = hill_climbing(prob, find_max=True)

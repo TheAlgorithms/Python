@@ -13,6 +13,8 @@ Find the sum of all the numbers less than 10^8 that are both palindromic and can
 be written as the sum of consecutive squares.
 """
 
+LIMIT = 10**8
+
 
 def is_palindrome(n: int) -> bool:
     """
@@ -35,7 +37,6 @@ def solution() -> int:
     Returns the sum of all numbers less than 1e8 that are both palindromic and
     can be written as the sum of consecutive squares.
     """
-    LIMIT = 10 ** 8
     answer = set()
     first_square = 1
     sum_squares = 5
@@ -45,9 +46,9 @@ def solution() -> int:
             if is_palindrome(sum_squares):
                 answer.add(sum_squares)
             last_square += 1
-            sum_squares += last_square ** 2
+            sum_squares += last_square**2
         first_square += 1
-        sum_squares = first_square ** 2 + (first_square + 1) ** 2
+        sum_squares = first_square**2 + (first_square + 1) ** 2
 
     return sum(answer)
 

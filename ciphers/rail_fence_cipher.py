@@ -1,4 +1,4 @@
-""" https://en.wikipedia.org/wiki/Rail_fence_cipher """
+"""https://en.wikipedia.org/wiki/Rail_fence_cipher"""
 
 
 def encrypt(input_string: str, key: int) -> str:
@@ -72,7 +72,7 @@ def decrypt(input_string: str, key: int) -> str:
     counter = 0
     for row in temp_grid:  # fills in the characters
         splice = input_string[counter : counter + len(row)]
-        grid.append([character for character in splice])
+        grid.append(list(splice))
         counter += len(row)
 
     output_string = ""  # reads as zigzag

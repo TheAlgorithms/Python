@@ -30,6 +30,7 @@ only the distance between previous vertex and current vertex but the entire
 distance between each vertex that makes up the path from start vertex to target
 vertex.
 """
+
 import heapq
 
 
@@ -56,8 +57,8 @@ def dijkstra(graph, start, end):
         for v, c in graph[u]:
             if v in visited:
                 continue
-            next = cost + c
-            heapq.heappush(heap, (next, v))
+            next_item = cost + c
+            heapq.heappush(heap, (next_item, v))
     return -1
 
 
@@ -103,14 +104,14 @@ G3 = {
     "G": [["F", 1]],
 }
 
-shortDistance = dijkstra(G, "E", "C")
-print(shortDistance)  # E -- 3 --> F -- 3 --> C == 6
+short_distance = dijkstra(G, "E", "C")
+print(short_distance)  # E -- 3 --> F -- 3 --> C == 6
 
-shortDistance = dijkstra(G2, "E", "F")
-print(shortDistance)  # E -- 3 --> F == 3
+short_distance = dijkstra(G2, "E", "F")
+print(short_distance)  # E -- 3 --> F == 3
 
-shortDistance = dijkstra(G3, "E", "F")
-print(shortDistance)  # E -- 2 --> G -- 1 --> F == 3
+short_distance = dijkstra(G3, "E", "F")
+print(short_distance)  # E -- 2 --> G -- 1 --> F == 3
 
 if __name__ == "__main__":
     import doctest

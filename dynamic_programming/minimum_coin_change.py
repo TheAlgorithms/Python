@@ -7,7 +7,7 @@ https://www.hackerrank.com/challenges/coin-change/problem
 """
 
 
-def dp_count(S, n):
+def dp_count(s, n):
     """
     >>> dp_count([1, 2, 3], 4)
     4
@@ -33,7 +33,7 @@ def dp_count(S, n):
     # Pick all coins one by one and update table[] values
     # after the index greater than or equal to the value of the
     # picked coin
-    for coin_val in S:
+    for coin_val in s:
         for j in range(coin_val, n + 1):
             table[j] += table[j - coin_val]
 

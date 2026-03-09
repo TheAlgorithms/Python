@@ -3,6 +3,7 @@ Given an array of integers and another integer target,
 we are required to find a triplet from the array such that it's sum is equal to
 the target.
 """
+
 from __future__ import annotations
 
 from itertools import permutations

@@ -3,55 +3,87 @@
 import math
 import unittest
 
+import pytest
 
-def prime_check(number: int) -> bool:
-    """Checks to see if a number is a prime.
+
+def is_prime(number: int) -> bool:
+    """Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
+
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
+    >>> is_prime(2)
+    True
+    >>> is_prime(3)
+    True
+    >>> is_prime(27)
+    False
+    >>> is_prime(87)
+    False
+    >>> is_prime(563)
+    True
+    >>> is_prime(2999)
+    True
+    >>> is_prime(67483)
+    False
+    >>> is_prime(16.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: is_prime() only accepts positive integers
+    >>> is_prime(-4)
+    Traceback (most recent call last):
+        ...
+    ValueError: is_prime() only accepts positive integers
     """
+
+    # precondition
+    if not isinstance(number, int) or not number >= 0:
+        raise ValueError("is_prime() only accepts positive integers")
 
     if 1 < number < 4:
         # 2 and 3 are primes
         return True
-    elif number < 2 or not number % 2:
-        # Negatives, 0, 1 and all even numbers are not primes
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
 
-    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
-    return not any(not number % i for i in odd_numbers)
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+    return True
 
 
 class Test(unittest.TestCase):
     def test_primes(self):
-        self.assertTrue(prime_check(2))
-        self.assertTrue(prime_check(3))
-        self.assertTrue(prime_check(5))
-        self.assertTrue(prime_check(7))
-        self.assertTrue(prime_check(11))
-        self.assertTrue(prime_check(13))
-        self.assertTrue(prime_check(17))
-        self.assertTrue(prime_check(19))
-        self.assertTrue(prime_check(23))
-        self.assertTrue(prime_check(29))
+        assert is_prime(2)
+        assert is_prime(3)
+        assert is_prime(5)
+        assert is_prime(7)
+        assert is_prime(11)
+        assert is_prime(13)
+        assert is_prime(17)
+        assert is_prime(19)
+        assert is_prime(23)
+        assert is_prime(29)
 
     def test_not_primes(self):
-        self.assertFalse(
-            prime_check(-19),
-            "Negative numbers are excluded by definition of prime numbers.",
+        with pytest.raises(ValueError):
+            is_prime(-19)
+        assert not is_prime(0), (
+            "Zero doesn't have any positive factors, primes must have exactly two."
         )
-        self.assertFalse(
-            prime_check(0),
-            "Zero doesn't have any positive factors, primes must have exactly two.",
+        assert not is_prime(1), (
+            "One only has 1 positive factor, primes must have exactly two."
         )
-        self.assertFalse(
-            prime_check(1),
-            "One only has 1 positive factor, primes must have exactly two.",
-        )
-        self.assertFalse(prime_check(2 * 2))
-        self.assertFalse(prime_check(2 * 3))
-        self.assertFalse(prime_check(3 * 3))
-        self.assertFalse(prime_check(3 * 5))
-        self.assertFalse(prime_check(3 * 5 * 7))
+        assert not is_prime(2 * 2)
+        assert not is_prime(2 * 3)
+        assert not is_prime(3 * 3)
+        assert not is_prime(3 * 5)
+        assert not is_prime(3 * 5 * 7)
 
 
 if __name__ == "__main__":

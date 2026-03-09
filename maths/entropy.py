@@ -4,6 +4,7 @@
 Implementation of entropy of information
 https://en.wikipedia.org/wiki/Entropy_(information_theory)
 """
+
 from __future__ import annotations
 
 import math
@@ -20,10 +21,10 @@ def calculate_prob(text: str) -> None:
     :return: Prints
     1) Entropy of information based on 1 alphabet
     2) Entropy of information based on couples of 2 alphabet
-    3) print Entropy of H(X n∣Xn−1)
+    3) print Entropy of H(X n|Xn-1)
 
     Text from random books. Also, random quotes.
-    >>> text = ("Behind Winston’s back the voice "
+    >>> text = ("Behind Winston's back the voice "
     ...         "from the telescreen was still "
     ...         "babbling and the overfulfilment")
     >>> calculate_prob(text)
@@ -95,13 +96,13 @@ def analyze_text(text: str) -> tuple[dict, dict]:
     The first dictionary stores the frequency of single character strings.
     The second dictionary stores the frequency of two character strings.
     """
-    single_char_strings = Counter()  # type: ignore
-    two_char_strings = Counter()  # type: ignore
+    single_char_strings = Counter()  # type: ignore[var-annotated]
+    two_char_strings = Counter()  # type: ignore[var-annotated]
     single_char_strings[text[-1]] += 1
 
     # first case when we have space at start.
     two_char_strings[" " + text[0]] += 1
-    for i in range(0, len(text) - 1):
+    for i in range(len(text) - 1):
         single_char_strings[text[i]] += 1
         two_char_strings[text[i : i + 2]] += 1
     return single_char_strings, two_char_strings

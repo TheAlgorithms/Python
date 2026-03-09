@@ -27,6 +27,7 @@ Find the maximum total from top to bottom of the triangle below:
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 """
+
 import os
 
 
@@ -48,14 +49,8 @@ def solution():
 
     for i in range(1, len(a)):
         for j in range(len(a[i])):
-            if j != len(a[i - 1]):
-                number1 = a[i - 1][j]
-            else:
-                number1 = 0
-            if j > 0:
-                number2 = a[i - 1][j - 1]
-            else:
-                number2 = 0
+            number1 = a[i - 1][j] if j != len(a[i - 1]) else 0
+            number2 = a[i - 1][j - 1] if j > 0 else 0
             a[i][j] += max(number1, number2)
     return max(a[-1])
 

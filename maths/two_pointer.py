@@ -17,6 +17,7 @@ return [0, 1].
 
 [1]: https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py
 """
+
 from __future__ import annotations
 
 
@@ -43,7 +44,6 @@ def two_pointer(nums: list[int], target: int) -> list[int]:
     j = len(nums) - 1
 
     while i < j:
-
         if nums[i] + nums[j] == target:
             return [i, j]
         elif nums[i] + nums[j] < target:

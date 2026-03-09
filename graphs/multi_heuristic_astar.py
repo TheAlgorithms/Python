@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 import numpy as np
 
@@ -32,7 +33,7 @@ class PriorityQueue:
                 temp.append((pri, x))
                 (pri, x) = heapq.heappop(self.elements)
             temp.append((priority, item))
-            for (pro, xxx) in temp:
+            for pro, xxx in temp:
                 heapq.heappush(self.elements, (pro, xxx))
 
     def remove_element(self, item):
@@ -43,7 +44,7 @@ class PriorityQueue:
             while x != item:
                 temp.append((pro, x))
                 (pro, x) = heapq.heappop(self.elements)
-            for (prito, yyy) in temp:
+            for prito, yyy in temp:
                 heapq.heappush(self.elements, (prito, yyy))
 
     def top_show(self):
@@ -55,21 +56,21 @@ class PriorityQueue:
         return (priority, item)
 
 
-def consistent_heuristic(P: TPos, goal: TPos):
+def consistent_heuristic(p: TPos, goal: TPos):
     # euclidean distance
-    a = np.array(P)
+    a = np.array(p)
     b = np.array(goal)
     return np.linalg.norm(a - b)
 
 
-def heuristic_2(P: TPos, goal: TPos):
+def heuristic_2(p: TPos, goal: TPos):
     # integer division by time variable
-    return consistent_heuristic(P, goal) // t
+    return consistent_heuristic(p, goal) // t
 
 
-def heuristic_1(P: TPos, goal: TPos):
+def heuristic_1(p: TPos, goal: TPos):
     # manhattan distance
-    return abs(P[0] - goal[0]) + abs(P[1] - goal[1])
+    return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
 
 
 def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
@@ -78,7 +79,7 @@ def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
 
 
 def do_something(back_pointer, goal, start):
-    grid = np.chararray((n, n))
+    grid = np.char.chararray((n, n))
     for i in range(n):
         for j in range(n):
             grid[i][j] = "*"
@@ -116,15 +117,13 @@ def do_something(back_pointer, goal, start):
         print(x, end=" ")
         x = back_pointer[x]
     print(x)
-    quit()
+    sys.exit()
 
 
 def valid(p: TPos):
     if p[0] < 0 or p[0] > n - 1:
         return False
-    if p[1] < 0 or p[1] > n - 1:
-        return False
-    return True
+    return not (p[1] < 0 or p[1] > n - 1)
 
 
 def expand_state(
@@ -269,24 +268,23 @@ def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
                         back_pointer,
                     )
                     close_list_inad.append(get_s)
+            elif g_function[goal] <= open_list[0].minkey():
+                if g_function[goal] < float("inf"):
+                    do_something(back_pointer, goal, start)
             else:
-                if g_function[goal] <= open_list[0].minkey():
-                    if g_function[goal] < float("inf"):
-                        do_something(back_pointer, goal, start)
-                else:
-                    get_s = open_list[0].top_show()
-                    visited.add(get_s)
-                    expand_state(
-                        get_s,
-                        0,
-                        visited,
-                        g_function,
-                        close_list_anchor,
-                        close_list_inad,
-                        open_list,
-                        back_pointer,
-                    )
-                    close_list_anchor.append(get_s)
+                get_s = open_list[0].top_show()
+                visited.add(get_s)
+                expand_state(
+                    get_s,
+                    0,
+                    visited,
+                    g_function,
+                    close_list_anchor,
+                    close_list_inad,
+                    open_list,
+                    back_pointer,
+                )
+                close_list_anchor.append(get_s)
     print("No path found to goal")
     print()
     for i in range(n - 1, -1, -1):

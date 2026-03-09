@@ -1,7 +1,7 @@
 import operator
 
 
-def strand_sort(arr: list, reverse: bool = False, solution: list = None) -> list:
+def strand_sort(arr: list, reverse: bool = False, solution: list | None = None) -> list:
     """
     Strand sort implementation
     source: https://en.wikipedia.org/wiki/Strand_sort

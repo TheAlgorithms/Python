@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 
-def search_in_a_sorted_matrix(
-    mat: list[list], m: int, n: int, key: int | float
-) -> None:
+def search_in_a_sorted_matrix(mat: list[list[int]], m: int, n: int, key: float) -> None:
     """
     >>> search_in_a_sorted_matrix(
     ...     [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 5)
@@ -30,7 +28,7 @@ def search_in_a_sorted_matrix(
     print(f"Key {key} not found")
 
 
-def main():
+def main() -> None:
     mat = [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]]
     x = int(input("Enter the element to be searched:"))
     print(mat)

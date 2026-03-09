@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
 """
 
 
-def ceil(x) -> int:
+def ceil(x: float) -> int:
     """
     Return the ceiling of x as an Integral.
 

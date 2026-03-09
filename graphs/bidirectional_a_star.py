@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
+
 from __future__ import annotations
 
 import time
@@ -68,7 +69,7 @@ class Node:
         if HEURISTIC == 1:
             return abs(dx) + abs(dy)
         else:
-            return sqrt(dy ** 2 + dx ** 2)
+            return sqrt(dy**2 + dx**2)
 
     def __lt__(self, other: Node) -> bool:
         return self.f_cost < other.f_cost

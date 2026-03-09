@@ -18,8 +18,10 @@ Number of numbers between 1 and n that are coprime to n is given by the Euler's 
 function, phi(n). So, the answer is simply the sum of phi(n) for 2 <= n <= 1,000,000
 Sum of phi(d), for all d|n = n. This result can be used to find phi(n) using a sieve.
 
-Time: 3.5 sec
+Time: 1 sec
 """
+
+import numpy as np
 
 
 def solution(limit: int = 1_000_000) -> int:
@@ -33,13 +35,15 @@ def solution(limit: int = 1_000_000) -> int:
     304191
     """
 
-    phi = [i - 1 for i in range(limit + 1)]
+    # generating an array from -1 to limit
+    phi = np.arange(-1, limit)
 
     for i in range(2, limit + 1):
-        for j in range(2 * i, limit + 1, i):
-            phi[j] -= phi[i]
+        if phi[i] == i - 1:
+            ind = np.arange(2 * i, limit + 1, i)  # indexes for selection
+            phi[ind] -= phi[ind] // i
 
-    return sum(phi[2 : limit + 1])
+    return int(np.sum(phi[2 : limit + 1]))
 
 
 if __name__ == "__main__":

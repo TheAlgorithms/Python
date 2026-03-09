@@ -28,7 +28,7 @@ def softmax(vector):
 
     The softmax vector adds up to one. We need to ceil to mitigate for
     precision
-    >>> np.ceil(np.sum(softmax([1,2,3,4])))
+    >>> float(np.ceil(np.sum(softmax([1,2,3,4]))))
     1.0
 
     >>> vec = np.array([5,5])
@@ -41,13 +41,13 @@ def softmax(vector):
 
     # Calculate e^x for each x in your vector where e is Euler's
     # number (approximately 2.718)
-    exponentVector = np.exp(vector)
+    exponent_vector = np.exp(vector)
 
     # Add up the all the exponentials
-    sumOfExponents = np.sum(exponentVector)
+    sum_of_exponents = np.sum(exponent_vector)
 
     # Divide every exponent by the sum of all exponents
-    softmax_vector = exponentVector / sumOfExponents
+    softmax_vector = exponent_vector / sum_of_exponents
 
     return softmax_vector
 

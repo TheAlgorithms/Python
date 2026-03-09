@@ -23,7 +23,6 @@ For manual testing run:
 python dnf_sort.py
 """
 
-
 # Python program to sort a sequence containing only 0, 1 and 2 in a single pass.
 red = 0  # The first color of the flag.
 white = 1  # The second color of the flag.
@@ -84,9 +83,8 @@ def dutch_national_flag_sort(sequence: list) -> list:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
             high -= 1
         else:
-            raise ValueError(
-                f"The elements inside the sequence must contains only {colors} values"
-            )
+            msg = f"The elements inside the sequence must contains only {colors} values"
+            raise ValueError(msg)
     return sequence
 
 

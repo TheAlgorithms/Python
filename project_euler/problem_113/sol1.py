@@ -62,7 +62,7 @@ def non_bouncy_upto(n: int) -> int:
 
 def solution(num_digits: int = 100) -> int:
     """
-    Caclulate the number of non-bouncy numbers less than a googol.
+    Calculate the number of non-bouncy numbers less than a googol.
     >>> solution(6)
     12951
     >>> solution(10)

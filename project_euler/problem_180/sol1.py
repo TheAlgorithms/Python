@@ -44,6 +44,7 @@ we get the right numerator and denominator.
 Reference:
 https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 """
+
 from __future__ import annotations
 
 from fractions import Fraction
@@ -61,7 +62,7 @@ def is_sq(number: int) -> bool:
     >>> is_sq(1000000)
     True
     """
-    sq: int = int(number ** 0.5)
+    sq: int = int(number**0.5)
     return number == sq * sq
 
 

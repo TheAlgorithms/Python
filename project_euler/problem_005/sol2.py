@@ -1,3 +1,5 @@
+from maths.greatest_common_divisor import greatest_common_divisor
+
 """
 Project Euler Problem 5: https://projecteuler.net/problem=5
 
@@ -16,28 +18,11 @@ References:
 """
 
 
-def gcd(x: int, y: int) -> int:
-    """
-    Euclidean GCD algorithm (Greatest Common Divisor)
-
-    >>> gcd(0, 0)
-    0
-    >>> gcd(23, 42)
-    1
-    >>> gcd(15, 33)
-    3
-    >>> gcd(12345, 67890)
-    15
-    """
-
-    return x if y == 0 else gcd(y, x % y)
-
-
 def lcm(x: int, y: int) -> int:
     """
     Least Common Multiple.
 
-    Using the property that lcm(a, b) * gcd(a, b) = a*b
+    Using the property that lcm(a, b) * greatest_common_divisor(a, b) = a*b
 
     >>> lcm(3, 15)
     15
@@ -49,7 +34,7 @@ def lcm(x: int, y: int) -> int:
     192
     """
 
-    return (x * y) // gcd(x, y)
+    return (x * y) // greatest_common_divisor(x, y)
 
 
 def solution(n: int = 20) -> int:

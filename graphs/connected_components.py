@@ -27,7 +27,7 @@ def dfs(graph: dict, vert: int, visited: list) -> list:
         if not visited[neighbour]:
             connected_verts += dfs(graph, neighbour, visited)
 
-    return [vert] + connected_verts
+    return [vert, *connected_verts]
 
 
 def connected_components(graph: dict) -> list:

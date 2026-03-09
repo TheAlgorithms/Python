@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Shellsort#Pseudocode
 """
 
 
-def shell_sort(collection):
+def shell_sort(collection: list[int]) -> list[int]:
     """Pure implementation of shell sort algorithm in Python
     :param collection:  Some mutable ordered collection with heterogeneous
     comparable items inside

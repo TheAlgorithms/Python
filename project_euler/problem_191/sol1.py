@@ -25,8 +25,7 @@ References:
       https://projecteuler.net/problem=191
 """
 
-
-cache = {}
+cache: dict[tuple[int, int, int], int] = {}
 
 
 def _calculate(days: int, absent: int, late: int) -> int:

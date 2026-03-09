@@ -39,17 +39,16 @@ def solution():
     while year < 2001:
         day += 7
 
-        if (year % 4 == 0 and not year % 100 == 0) or (year % 400 == 0):
+        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
             if day > days_per_month[month - 1] and month != 2:
                 month += 1
                 day = day - days_per_month[month - 2]
             elif day > 29 and month == 2:
                 month += 1
                 day = day - 29
-        else:
-            if day > days_per_month[month - 1]:
-                month += 1
-                day = day - days_per_month[month - 2]
+        elif day > days_per_month[month - 1]:
+            month += 1
+            day = day - days_per_month[month - 2]
 
         if month > 12:
             year += 1

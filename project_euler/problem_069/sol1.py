@@ -24,7 +24,7 @@ Find the value of n ≤ 1,000,000 for which n/φ(n) is a maximum.
 """
 
 
-def solution(n: int = 10 ** 6) -> int:
+def solution(n: int = 10**6) -> int:
     """
     Returns solution to problem.
     Algorithm:

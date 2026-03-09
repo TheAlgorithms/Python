@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Any
 
 
@@ -7,16 +9,16 @@ class ContainsLoopError(Exception):
 
 class Node:
     def __init__(self, data: Any) -> None:
-        self.data = data
-        self.next_node = None
+        self.data: Any = data
+        self.next_node: Node | None = None
 
     def __iter__(self):
         node = self
-        visited = []
+        visited = set()
         while node:
             if node in visited:
                 raise ContainsLoopError
-            visited.append(node)
+            visited.add(node)
             yield node.data
             node = node.next_node
 

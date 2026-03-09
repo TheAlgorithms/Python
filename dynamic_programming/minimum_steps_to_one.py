@@ -1,7 +1,7 @@
 """
 YouTube Explanation: https://www.youtube.com/watch?v=f2xi3c1S95M
 
-Given an integer n, return the minimum steps to 1
+Given an integer n, return the minimum steps from n to 1
 
 AVAILABLE STEPS:
     * Decrement by 1
@@ -42,7 +42,8 @@ def min_steps_to_one(number: int) -> int:
     """
 
     if number <= 0:
-        raise ValueError(f"n must be greater than 0. Got n = {number}")
+        msg = f"n must be greater than 0. Got n = {number}"
+        raise ValueError(msg)
 
     table = [number + 1] * (number + 1)
 

@@ -29,7 +29,6 @@ Reference: https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple
 
 from collections import defaultdict
 from math import gcd
-from typing import DefaultDict
 
 
 def solution(limit: int = 1500000) -> int:
@@ -43,7 +42,7 @@ def solution(limit: int = 1500000) -> int:
     >>> solution(50000)
     5502
     """
-    frequencies: DefaultDict = defaultdict(int)
+    frequencies: defaultdict = defaultdict(int)
     euclid_m = 2
     while 2 * euclid_m * (euclid_m + 1) <= limit:
         for euclid_n in range((euclid_m % 2) + 1, euclid_m, 2):

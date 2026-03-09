@@ -38,7 +38,7 @@ def rabin_karp(pattern: str, text: str) -> bool:
             continue
         modulus_power = (modulus_power * alphabet_size) % modulus
 
-    for i in range(0, t_len - p_len + 1):
+    for i in range(t_len - p_len + 1):
         if text_hash == p_hash and text[i : i + p_len] == pattern:
             return True
         if i == t_len - p_len:
@@ -60,7 +60,8 @@ def test_rabin_karp() -> None:
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    assert rabin_karp(pattern, text1) and not rabin_karp(pattern, text2)
+    assert rabin_karp(pattern, text1)
+    assert not rabin_karp(pattern, text2)
 
     # Test 2)
     pattern = "ABABX"

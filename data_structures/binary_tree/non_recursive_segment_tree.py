@@ -35,14 +35,16 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 >>> st.query(0, 2)
 [1, 2, 3]
 """
+
 from __future__ import annotations
 
-from typing import Callable, TypeVar
+from collections.abc import Callable
+from typing import Any, TypeVar
 
 T = TypeVar("T")
 
 
-class SegmentTree:
+class SegmentTree[T]:
     def __init__(self, arr: list[T], fnc: Callable[[T, T], T]) -> None:
         """
         Segment Tree constructor, it works just with commutative combiner.
@@ -55,8 +57,10 @@ class SegmentTree:
         ...             lambda a, b: (a[0] + b[0], a[1] + b[1])).query(0, 2)
         (6, 9)
         """
-        self.N = len(arr)
-        self.st = [None for _ in range(len(arr))] + arr
+        any_type: Any | T = None
+
+        self.N: int = len(arr)
+        self.st: list[T] = [any_type for _ in range(self.N)] + arr
         self.fn = fnc
         self.build()
 
@@ -83,12 +87,12 @@ class SegmentTree:
             p = p // 2
             self.st[p] = self.fn(self.st[p * 2], self.st[p * 2 + 1])
 
-    def query(self, l: int, r: int) -> T:  # noqa: E741
+    def query(self, left: int, right: int) -> T | None:
         """
         Get range query value in log(N) time
-        :param l: left element index
-        :param r: right element index
-        :return: element combined in the range [l, r]
+        :param left: left element index
+        :param right: right element index
+        :return: element combined in the range [left, right]
 
         >>> st = SegmentTree([1, 2, 3, 4], lambda a, b: a + b)
         >>> st.query(0, 2)
@@ -100,14 +104,15 @@ class SegmentTree:
         >>> st.query(2, 3)
         7
         """
-        l, r = l + self.N, r + self.N  # noqa: E741
-        res = None
-        while l <= r:  # noqa: E741
-            if l % 2 == 1:
-                res = self.st[l] if res is None else self.fn(res, self.st[l])
-            if r % 2 == 0:
-                res = self.st[r] if res is None else self.fn(res, self.st[r])
-            l, r = (l + 1) // 2, (r - 1) // 2
+        left, right = left + self.N, right + self.N
+
+        res: T | None = None
+        while left <= right:
+            if left % 2 == 1:
+                res = self.st[left] if res is None else self.fn(res, self.st[left])
+            if right % 2 == 0:
+                res = self.st[right] if res is None else self.fn(res, self.st[right])
+            left, right = (left + 1) // 2, (right - 1) // 2
         return res
 
 
@@ -135,7 +140,7 @@ if __name__ == "__main__":
     max_segment_tree = SegmentTree(test_array, max)
     sum_segment_tree = SegmentTree(test_array, lambda a, b: a + b)
 
-    def test_all_segments():
+    def test_all_segments() -> None:
         """
         Test all possible segments
         """
