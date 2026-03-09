@@ -8,7 +8,6 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     comparable items inside
     :return: the same collection ordered in ascending order
 
-
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
