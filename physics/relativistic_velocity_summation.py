@@ -26,8 +26,12 @@ def relativistic_velocity_summation(
         ...
     ValueError: Speeds must not exceed light speed...
     """
-    if (object_velocity > c or frame_velocity >= c or 
-        object_velocity < -c or frame_velocity <= -c):
+    if (
+        object_velocity > c
+        or frame_velocity >= c
+        or object_velocity < -c
+        or frame_velocity <= -c
+    ):
         raise ValueError(
             "Speeds must not exceed light speed, and "
             "the frame speed must be lower than the light speed!"
