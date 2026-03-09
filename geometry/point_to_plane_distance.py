@@ -2,7 +2,13 @@ from math import sqrt
 
 
 def point_to_plane_distance(
-    x: float, y: float, z: float, a: float, b: float, c: float, d: float
+    point_x: float,
+    point_y: float,
+    point_z: float,
+    normal_x: float,
+    normal_y: float,
+    normal_z: float,
+    plane_constant: float
 ) -> float:
     """
     Return the distance between a point (x, y, z) and the plane
@@ -20,7 +26,12 @@ def point_to_plane_distance(
         ...
     ValueError: Normal vector cannot be zero.
     """
-    if a == 0 and b == 0 and c == 0:
+    if normal_x == 0 and normal_y == 0 and normal_z == 0:
         raise ValueError("Normal vector cannot be zero.")
 
-    return abs(a * x + b * y + c * z + d) / sqrt(a**2 + b**2 + c**2)
+    return abs(
+        normal_x * point_x
+        + normal_y * point_y
+        + normal_z * point_z
+        + plane_constant
+    ) / sqrt(normal_x**2 + normal_y**2 + normal_z**2)
