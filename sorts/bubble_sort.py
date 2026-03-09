@@ -6,7 +6,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
-    :return: the same collection ordered in ascending order
+    :return: the same collection ordered by ascending
 
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
