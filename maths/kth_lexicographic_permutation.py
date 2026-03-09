@@ -1,10 +1,10 @@
 def kth_permutation(k, n):
     """
     Finds k'th lexicographic permutation (in increasing order) of
-    0,1,2,...,n-1 in O(n^2) time.
+    0,1,2,...n-1 in O(n^2) time.
 
     Examples:
-    First permutation is always 0,1,2,...,n-1
+    First permutation is always 0,1,2,...n
     >>> kth_permutation(0,5)
     [0, 1, 2, 3, 4]
 
@@ -14,20 +14,11 @@ def kth_permutation(k, n):
     >>> kth_permutation(10,4)
     [1, 3, 0, 2]
     """
-    # Factorials from 1! to (n-1)!
-    if not isinstance(k, int) or not isinstance(n, int):
-        raise TypeError("k and n must be integers")
-
-    if n < 1:
-        raise ValueError("n must be a positive integer")
-
+    # Factorails from 1! to (n-1)!
     factorials = [1]
     for i in range(2, n):
         factorials.append(factorials[-1] * i)
-
-    max_k = factorials[-1] * n  # equals n!
-    if not (0 <= k < max_k):
-        raise ValueError("k out of bounds")
+    assert 0 <= k < factorials[-1] * n, "k out of bounds"
 
     permutation = []
     elements = list(range(n))
@@ -35,11 +26,11 @@ def kth_permutation(k, n):
     # Find permutation
     while factorials:
         factorial = factorials.pop()
-        index, k = divmod(k, factorial)
-        permutation.append(elements[index])
-        elements.pop(index)
-
+        number, k = divmod(k, factorial)
+        permutation.append(elements[number])
+        elements.remove(elements[number])
     permutation.append(elements[0])
+
     return permutation
 
 
