@@ -8,7 +8,7 @@ def point_to_plane_distance(
     normal_x: float,
     normal_y: float,
     normal_z: float,
-    plane_constant: float
+    plane_constant: float,
 ) -> float:
     """
     Return the distance between a point (x, y, z) and the plane
@@ -30,8 +30,5 @@ def point_to_plane_distance(
         raise ValueError("Normal vector cannot be zero.")
 
     return abs(
-        normal_x * point_x
-        + normal_y * point_y
-        + normal_z * point_z
-        + plane_constant
+        normal_x * point_x + normal_y * point_y + normal_z * point_z + plane_constant
     ) / sqrt(normal_x**2 + normal_y**2 + normal_z**2)
