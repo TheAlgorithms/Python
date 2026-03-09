@@ -1,6 +1,6 @@
 def reverse_letters(sentence: str, length: int = 0) -> str:
-    """Reverse all words longer than a given character length in a sentence.
-
+    """
+    Reverse all words that are longer than the given length of characters in a sentence.
     If ``length`` is not specified, it defaults to 0.
 
     >>> reverse_letters("Hey wollef sroirraw", 3)
