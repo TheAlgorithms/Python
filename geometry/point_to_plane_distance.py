@@ -21,5 +21,5 @@ def point_to_plane_distance(
     """
     if a == 0 and b == 0 and c == 0:
         raise ValueError("Normal vector cannot be zero.")
-    
+
     return abs(a * x + b * y + c * z + d) / sqrt(a**2 + b**2 + c**2)
