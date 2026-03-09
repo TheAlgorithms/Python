@@ -11,7 +11,7 @@ https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 
 
 class Matrix:
-    def __init__(self, arg: list[list[int]] | int) -> None:
+    def __init__(self, arg: list[list] | int) -> None:
         if isinstance(arg, list):  # Initializes a matrix identical to the one provided.
             self.t = arg
             self.n = len(arg)
