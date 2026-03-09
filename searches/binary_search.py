@@ -10,9 +10,8 @@ For manual testing run:
 python3 binary_search.py
 """
 
-from __future__ import annotations
-
 import bisect
+from itertools import pairwise
 
 
 def bisect_left(
