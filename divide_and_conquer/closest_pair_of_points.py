@@ -69,7 +69,7 @@ def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
     min_dis (float):  distance btw closest pair of points in the strip (< min_dis)
 
     >>> dis_between_closest_in_strip([[1,2],[2,4],[5,7],[8,9],[11,0]],5)
-    85
+    5
     """
 
     for i in range(points_counts-1):
@@ -88,7 +88,7 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     Returns :
     (float):  distance btw closest pair of points
 
-    >>> closest_pair_of_points_sqr([(1, 2), (3, 4)], [(5, 6), (7, 8)], 2)
+    >>> closest_pair_of_points_sqr([(1, 2), (3, 4)], [(1, 2), (3, 4)], 2)
     8
     """
 
@@ -124,7 +124,7 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
 
 def closest_pair_of_points(points, points_counts):
     """
-    >>> closest_pair_of_points([(2, 3), (12, 30)], len([(2, 3), (12, 30)]))
+    >>> closest_pair_of_points([(2, 3), (12, 30)], 2)
     28.792360097775937
     """
     points_sorted_on_x = column_based_sort(points, column=0)
