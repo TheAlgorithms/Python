@@ -5,7 +5,8 @@ def point_to_plane_distance(
     x: float, y: float, z: float, a: float, b: float, c: float, d: float
 ) -> float:
     """
-    Return the distance between a point (x, y, z) and the plane ax + by + cz + d = 0 using the Hesse normal form.
+    Return the distance between a point (x, y, z) and the plane
+    ax + by + cz + d = 0 using the Hesse normal form.
 
     Reference:
     https://en.wikipedia.org/wiki/Hesse_normal_form
