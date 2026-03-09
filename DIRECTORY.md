@@ -469,6 +469,11 @@
 
 ## Geometry
   * [Geometry](geometry/geometry.py)
+  * [Graham Scan](geometry/graham_scan.py)
+  * [Jarvis March](geometry/jarvis_march.py)
+  * Tests
+    * [Test Graham Scan](geometry/tests/test_graham_scan.py)
+    * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
