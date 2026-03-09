@@ -33,8 +33,6 @@ def greatest_common_divisor(a: int, b: int) -> int:
     >>> greatest_common_divisor(0, 0)
     0
     """
-    if a == 0 and b == 0:
-        return 0
     return abs(b) if a == 0 else greatest_common_divisor(b % a, a)
 
 
@@ -57,9 +55,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
     >>> gcd_by_iterative(0, 0)
     0
     """
-    if x == 0 and y == 0:
-        return 0
-    while y:
+    while y:  # --> when y=0 then loop will terminate and return x as final GCD.
         x, y = y, x % y
     return abs(x)
 
