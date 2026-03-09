@@ -18,12 +18,12 @@ def relativistic_velocity_summation(v1: float, v: float) -> float:
     >>> relativistic_velocity_summation(100000000, 299792458)
     Traceback (most recent call last):
         ...
-    ValueError: Speeds must not exceed light speed, and 
+    ValueError: Speeds must not exceed light speed, and
        the frame speed must be lower than the light speed!
     """
     if v1 > c or v >= c or v1 < -c or v <= -c:
         raise ValueError(
-            "Speeds must not exceed light speed, and 
+            "Speeds must not exceed light speed, and
                the frame speed must be lower than the light speed!"
         )
     return (v1 + v) / (1 + v1 * v / (c * c))
