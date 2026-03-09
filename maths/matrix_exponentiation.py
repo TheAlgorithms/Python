@@ -11,7 +11,7 @@ https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 
 
 class Matrix:
-    def __init__(self, arg):
+    def __init__(self, arg: list[list] | int) -> None:
         if isinstance(arg, list):  # Initializes a matrix identical to the one provided.
             self.t = arg
             self.n = len(arg)
@@ -19,7 +19,7 @@ class Matrix:
             self.n = arg
             self.t = [[0 for _ in range(self.n)] for _ in range(self.n)]
 
-    def __mul__(self, b):
+    def __mul__(self, b: Matrix) -> Matrix:
         matrix = Matrix(self.n)
         for i in range(self.n):
             for j in range(self.n):
@@ -28,7 +28,7 @@ class Matrix:
         return matrix
 
 
-def modular_exponentiation(a, b):
+def modular_exponentiation(a: Matrix, b: int) -> Matrix:
     matrix = Matrix([[1, 0], [0, 1]])
     while b > 0:
         if b & 1:
@@ -38,7 +38,7 @@ def modular_exponentiation(a, b):
     return matrix
 
 
-def fibonacci_with_matrix_exponentiation(n, f1, f2):
+def fibonacci_with_matrix_exponentiation(n: int, f1: int, f2: int) -> int:
     """
     Returns the nth number of the Fibonacci sequence that
     starts with f1 and f2
@@ -64,7 +64,7 @@ def fibonacci_with_matrix_exponentiation(n, f1, f2):
     return f2 * matrix.t[0][0] + f1 * matrix.t[0][1]
 
 
-def simple_fibonacci(n, f1, f2):
+def simple_fibonacci(n: int, f1: int, f2: int) -> int:
     """
     Returns the nth number of the Fibonacci sequence that
     starts with f1 and f2
@@ -95,7 +95,7 @@ def simple_fibonacci(n, f1, f2):
     return f2
 
 
-def matrix_exponentiation_time():
+def matrix_exponentiation_time() -> float:
     setup = """
 from random import randint
 from __main__ import fibonacci_with_matrix_exponentiation
@@ -106,7 +106,7 @@ from __main__ import fibonacci_with_matrix_exponentiation
     return exec_time
 
 
-def simple_fibonacci_time():
+def simple_fibonacci_time() -> float:
     setup = """
 from random import randint
 from __main__ import simple_fibonacci
@@ -119,7 +119,7 @@ from __main__ import simple_fibonacci
     return exec_time
 
 
-def main():
+def main() -> None:
     matrix_exponentiation_time()
     simple_fibonacci_time()
 
