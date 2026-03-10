@@ -280,7 +280,7 @@ def _play_game() -> None:
             try:
                 raw = input("Your move (row col): ").strip().split()
                 r, c = int(raw[0]), int(raw[1])
-            except (ValueError, IndexError):
+            except ValueError, IndexError:
                 print("Invalid input. Try again.")
                 continue
             if not (0 <= r < 3 and 0 <= c < 3) or board[r][c] != _EMPTY:
