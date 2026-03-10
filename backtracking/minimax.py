@@ -196,7 +196,7 @@ def minimax_ttt(board: Board, depth: int, is_maximising: bool) -> int:
 
     Parameters
     ----------
-    board         : 3×3 grid; cells are '_', 'X', or 'O'.
+    board         : 3X3 grid; cells are '_', 'X', or 'O'.
     depth         : Remaining search depth (used to prefer shorter wins).
     is_maximising : True when it is the AI's (X's) turn.
 
@@ -280,7 +280,7 @@ def _play_game() -> None:
             try:
                 raw = input("Your move (row col): ").strip().split()
                 r, c = int(raw[0]), int(raw[1])
-            except ValueError, IndexError:
+            except (ValueError, IndexError):
                 print("Invalid input. Try again.")
                 continue
             if not (0 <= r < 3 and 0 <= c < 3) or board[r][c] != _EMPTY:
