@@ -35,34 +35,32 @@ def factorial(number: int) -> int:
     return value
 
 
-def factorial_recursive(n: int) -> int:
+def factorial_recursive(number: int) -> int:
     """
-    Calculate the factorial of a positive integer
-    https://en.wikipedia.org/wiki/Factorial
+    Calculate the factorial of a number using recursion.
 
     >>> import math
-    >>> all(factorial(i) == math.factorial(i) for i in range(20))
+    >>> all(factorial_recursive(i) == math.factorial(i) for i in range(10))
     True
-    >>> factorial(0.1)
+    >>> factorial_recursive(0)
+    1
+    >>> factorial_recursive(5)
+    120
+    >>> factorial_recursive(-1)
     Traceback (most recent call last):
         ...
-    ValueError: factorial() only accepts integral values
-    >>> factorial(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: factorial() not defined for negative values
+    ValueError: factorial_recursive() not defined for negative values
     """
-    if not isinstance(n, int):
-        raise ValueError("factorial() only accepts integral values")
-    if n < 0:
-        raise ValueError("factorial() not defined for negative values")
-    return 1 if n in {0, 1} else n * factorial_recursive(n - 1)
+    if number != int(number):
+        raise ValueError("factorial_recursive() only accepts integral values")
+    if number < 0:
+        raise ValueError("factorial_recursive() not defined for negative values")
+    if number in (0, 1):
+        return 1
+    return number * factorial_recursive(number - 1)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    n = int(input("Enter a positive integer: ").strip() or 0)
-    print(f"factorial{n} is {factorial(n)}")
