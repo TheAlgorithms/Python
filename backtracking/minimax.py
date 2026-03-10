@@ -134,7 +134,9 @@ def _winning_player(board: Board) -> str | None:
     """
     lines = (
         # rows
-        board[0], board[1], board[2],
+        board[0],
+        board[1],
+        board[2],
         # columns
         [board[0][0], board[1][0], board[2][0]],
         [board[0][1], board[1][1], board[2][1]],
@@ -311,7 +313,7 @@ if __name__ == "__main__":
     demo_scores = [3, 5, 2, 9, 12, 5, 23, 23]
     result = minimax(3, 0, True, demo_scores)
     print(f"Scores      : {demo_scores}")
-    print(f"Optimal val : {result}")   # Expected: 12
+    print(f"Optimal val : {result}")  # Expected: 12
 
     # --- Demo: Tic-Tac-Toe interactive ---
     print("\nLaunching Tic-Tac-Toe …")
