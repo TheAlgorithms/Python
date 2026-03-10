@@ -1,4 +1,4 @@
-"""Prime Check."""
+"""PRIME CHECK."""
 
 import math
 import unittest
@@ -7,7 +7,8 @@ import pytest
 
 
 def is_prime(number: int) -> bool:
-    """Checks to see if a number is a prime in O(sqrt(n)).
+    """
+    Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
 
@@ -29,14 +30,21 @@ def is_prime(number: int) -> bool:
     True
     >>> is_prime(67483)
     False
+
+    If the number entered is not whole number i.e not an integer
+    For example-
     >>> is_prime(16.1)
     Traceback (most recent call last):
         ...
     ValueError: is_prime() only accepts positive integers
+
+    If the number entered is negative integer
+    For example-
     >>> is_prime(-4)
     Traceback (most recent call last):
         ...
     ValueError: is_prime() only accepts positive integers
+
     """
 
     # precondition

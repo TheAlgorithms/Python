@@ -1,23 +1,11 @@
 """
-Description : Centripetal force is the force acting on an object in
-curvilinear motion directed towards the axis of rotation
-or centre of curvature.
 
-The unit of centripetal force is newton.
-
-The centripetal force is always directed perpendicular to the
-direction of the object's displacement. Using Newton's second
-law of motion, it is found that the centripetal force of an object
-moving in a circular path always acts towards the centre of the circle.
-The Centripetal Force Formula is given as the product of mass (in kg)
-and tangential velocity (in meters per second) squared, divided by the
-radius (in meters) that implies that on doubling the tangential velocity,
-the centripetal force will be quadrupled. Mathematically it is written as:
 F = mv²/r
-Where, F is the Centripetal force, m is the mass of the object, v is the
-speed or velocity of the object and r is the radius.
+Where, F = Centripetal Force
+       m = Mass of the Body
+       v = Tangential Velocity
+       r = Radius of Circular Path
 
-Reference: https://byjus.com/physics/centripetal-and-centrifugal-force/
 """
 
 
