@@ -1,4 +1,14 @@
+<a id="index"></a>
+
 <div align="center">
+
+<!-- Hacktoberfest 2025 Banner -->
+<a href="https://hacktoberfest.com/">
+  <img src="https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=hacktoberfest" alt="Hacktoberfest 2025">
+</a>
+
+<br><br>
+
 <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
@@ -39,6 +49,33 @@
 
 Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
 
+---
+
+## 🎃 Hacktoberfest 2025
+
+This repository is participating in **Hacktoberfest 2025**! 🎉
+
+We welcome contributions from developers of all skill levels. Whether you're a beginner or an experienced developer, there's something for everyone!
+
+### How to Participate
+
+1. Register at [hacktoberfest.com](https://hacktoberfest.com/)
+2. Find issues labeled `hacktoberfest` or `good first issue`
+3. Submit quality pull requests
+4. Make 4 valid PRs between October 1-31 to earn rewards!
+
+### Hacktoberfest Guidelines
+
+- ✅ Read our [Contributing Guidelines](CONTRIBUTING.md) first
+- ✅ Look for issues tagged with `hacktoberfest`
+- ✅ Submit quality PRs (no spam!)
+- ✅ Be respectful and collaborative
+- ❌ Low-quality PRs will be marked as `invalid` or `spam`
+
+**Happy Hacking!** 🚀
+
+---
+
 ## 🚀 Getting Started
 
 📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
@@ -50,3 +87,25 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+---
+
+## 🤝 Contributing
+
+We love contributions! 🎉
+
+Before you start contributing, please read our [Contribution Guidelines](CONTRIBUTING.md) to understand our coding standards, commit message conventions, and pull request process.
+
+### How to Contribute
+
+1. **Fork the repository** to your GitHub account
+2. **Clone your fork** to your local machine
+
+```bash
+   git clone https://github.com/YOUR_USERNAME/Python.git
+```
+
+## 📄 License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
+You are free to use, modify, and distribute the code as long as proper credit is given.
