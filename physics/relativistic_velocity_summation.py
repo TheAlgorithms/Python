@@ -10,6 +10,7 @@
 
 c = 299792458
 
+
 def relativistic_velocity_summation(
     object_velocity: float, frame_velocity: float
 ) -> float:
