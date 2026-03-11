@@ -1,5 +1,5 @@
-# The relativistic velocity summation formula calculates the combined velocity v2
-# of an object moving at speed v1 relative to a frame that is itself moving at velocity v
+# The relativistic velocity summation formula calculates the combined velocity v2 of
+# an object moving at speed v1 relative to a frame that is itself moving at velocity v
 # relative to an observer. I take the last one to be strictly lower than the speed of
 # light.
 # The formula is v2 = (v1 + v)/(1 + v1 * v / c**2)
