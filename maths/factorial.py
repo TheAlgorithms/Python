@@ -46,16 +46,16 @@ def factorial_recursive(n: int) -> int:
     >>> factorial_recursive(0.1)
     Traceback (most recent call last):
         ...
-    ValueError: factorial() only accepts integral values
+    ValueError: factorial_recursive() only accepts integral values
     >>> factorial_recursive(-1)
     Traceback (most recent call last):
         ...
-    ValueError: factorial() not defined for negative values
+    ValueError: factorial_recursive() not defined for negative values
     """
     if not isinstance(n, int):
-        raise ValueError("factorial() only accepts integral values")
+        raise ValueError("factorial_recursive() only accepts integral values")
     if n < 0:
-        raise ValueError("factorial() not defined for negative values")
+        raise ValueError("factorial_recursive() not defined for negative values")
     return 1 if n in {0, 1} else n * factorial_recursive(n - 1)
 
 
