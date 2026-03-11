@@ -196,22 +196,26 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search([1, 2, 2, 2, 3], 2)
+    1
     """
     if any(a > b for a, b in pairwise(sorted_collection)):
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1
+    result = -1
 
     while left <= right:
         midpoint = left + (right - left) // 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
-            return midpoint
+            result = midpoint
+            right = midpoint - 1  # Continue searching left for first occurrence
         elif item < current_item:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1
+    return result
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
