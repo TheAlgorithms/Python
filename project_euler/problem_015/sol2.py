@@ -6,6 +6,7 @@ the right and down, there are exactly 6 routes to the bottom right corner.
 How many such routes are there through a 20x20 grid?
 """
 
+
 def solution(n: int = 20) -> int:
     """
     Solve by explicitly counting the paths with dynamic programming.
