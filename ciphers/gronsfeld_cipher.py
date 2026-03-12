@@ -20,7 +20,7 @@ def gronsfeld(text: str, key: str) -> str:
     >>> gronsfeld('yes, ¥€$ - _!@#%?', '')
     Traceback (most recent call last):
       ...
-    ZeroDivisionError: integer modulo by zero
+    ZeroDivisionError: division by zero
     """
     ascii_len = len(ascii_uppercase)
     key_len = len(key)
