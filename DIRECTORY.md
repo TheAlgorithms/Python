@@ -970,6 +970,7 @@
     * [Sol2](project_euler/problem_014/sol2.py)
   * Problem 015
     * [Sol1](project_euler/problem_015/sol1.py)
+    * [Sol2](project_euler/problem_015/sol2.py)
   * Problem 016
     * [Sol1](project_euler/problem_016/sol1.py)
     * [Sol2](project_euler/problem_016/sol2.py)
