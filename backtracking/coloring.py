@@ -112,7 +112,6 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
     []
     >>> color([[0, 1], [1, 0]], 2)  # 2 nodes, 2 colors (possible)
     [0, 1]
-
     """
     colored_vertices = [-1] * len(graph)
 
