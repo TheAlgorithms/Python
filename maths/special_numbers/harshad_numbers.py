@@ -11,6 +11,8 @@ def int_to_base(number: int, base: int) -> str:
     Where 'base' ranges from 2 to 36.
 
     Examples:
+    >>> int_to_base(0, 21)
+    '0'
     >>> int_to_base(23, 2)
     '10111'
     >>> int_to_base(58, 5)
@@ -26,6 +28,10 @@ def int_to_base(number: int, base: int) -> str:
     Traceback (most recent call last):
         ...
     ValueError: 'base' must be between 2 and 36 inclusive
+    >>> int_to_base(-99, 16)
+    Traceback (most recent call last):
+        ...
+    ValueError: number must be a positive integer
     """
 
     if base < 2 or base > 36:
@@ -101,6 +107,8 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
     Traceback (most recent call last):
         ...
     ValueError: 'base' must be between 2 and 36 inclusive
+    >>> harshad_numbers_in_base(-12, 6)
+    []
     """
 
     if base < 2 or base > 36:

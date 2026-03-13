@@ -21,6 +21,10 @@ def bell_numbers(max_set_length: int) -> list[int]:
         list: A list of Bell numbers for sets of lengths from 0 to max_set_length.
 
     Examples:
+    >>> bell_numbers(-2)
+    Traceback (most recent call last):
+        ...
+    ValueError: max_set_length must be non-negative
     >>> bell_numbers(0)
     [1]
     >>> bell_numbers(1)

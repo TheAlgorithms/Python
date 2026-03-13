@@ -14,26 +14,38 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - run:
+          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+          libharfbuzz-dev libfribidi-dev libxcb1-dev
+          libxml2-dev libxslt-dev
+          libhdf5-dev
+          libopenblas-dev
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
         with:
-          python-version: 3.x
-      - name: Install pytest and pytest-cov
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade numpy pytest pytest-cov
-      - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+          python-version: 3.14
+          allow-prereleases: true
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - run:
+          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+          libharfbuzz-dev libfribidi-dev libxcb1-dev
+          libxml2-dev libxslt-dev
+          libhdf5-dev
+          libopenblas-dev
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
         with:
-          python-version: 3.x
-      - name: Install pytest and requests
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade numpy pytest requests
-      - run: pytest scripts/validate_solutions.py
+          python-version: 3.14
+          allow-prereleases: true
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest scripts/validate_solutions.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

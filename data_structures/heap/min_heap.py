@@ -124,9 +124,9 @@ class MinHeap:
         return len(self.heap) == 0
 
     def decrease_key(self, node, new_value):
-        assert (
-            self.heap[self.idx_of_element[node]].val > new_value
-        ), "newValue must be less that current value"
+        assert self.heap[self.idx_of_element[node]].val > new_value, (
+            "newValue must be less that current value"
+        )
         node.val = new_value
         self.heap_dict[node.name] = new_value
         self.sift_up(self.idx_of_element[node])

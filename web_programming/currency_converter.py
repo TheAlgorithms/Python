@@ -3,9 +3,16 @@ This is used to convert the currency using the Amdoren Currency API
 https://www.amdoren.com
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
 import os
 
-import requests
+import httpx
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 
@@ -176,7 +183,7 @@ def convert_currency(
     params = locals()
     # from is a reserved keyword
     params["from"] = params.pop("from_")
-    res = requests.get(URL_BASE, params=params, timeout=10).json()
+    res = httpx.get(URL_BASE, params=params, timeout=10).json()
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 

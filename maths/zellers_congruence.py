@@ -4,13 +4,14 @@ import datetime
 
 def zeller(date_input: str) -> str:
     """
-    Zellers Congruence Algorithm
-    Find the day of the week for nearly any Gregorian or Julian calendar date
+    | Zellers Congruence Algorithm
+    | Find the day of the week for nearly any Gregorian or Julian calendar date
 
     >>> zeller('01-31-2010')
     'Your date 01-31-2010, is a Sunday!'
 
-    Validate out of range month
+    Validate out of range month:
+
     >>> zeller('13-31-2010')
     Traceback (most recent call last):
         ...
@@ -21,6 +22,7 @@ def zeller(date_input: str) -> str:
     ValueError: invalid literal for int() with base 10: '.2'
 
     Validate out of range date:
+
     >>> zeller('01-33-2010')
     Traceback (most recent call last):
         ...
@@ -31,30 +33,35 @@ def zeller(date_input: str) -> str:
     ValueError: invalid literal for int() with base 10: '.4'
 
     Validate second separator:
+
     >>> zeller('01-31*2010')
     Traceback (most recent call last):
         ...
     ValueError: Date separator must be '-' or '/'
 
     Validate first separator:
+
     >>> zeller('01^31-2010')
     Traceback (most recent call last):
         ...
     ValueError: Date separator must be '-' or '/'
 
     Validate out of range year:
+
     >>> zeller('01-31-8999')
     Traceback (most recent call last):
         ...
     ValueError: Year out of range. There has to be some sort of limit...right?
 
     Test null input:
+
     >>> zeller()
     Traceback (most recent call last):
         ...
     TypeError: zeller() missing 1 required positional argument: 'date_input'
 
-    Test length of date_input:
+    Test length of `date_input`:
+
     >>> zeller('')
     Traceback (most recent call last):
         ...

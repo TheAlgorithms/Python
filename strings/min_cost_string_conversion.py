@@ -91,6 +91,14 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> y1 = len(ops1[0]) - 1
     >>> assemble_transformation(ops1, x1, y1)
     []
+
+    >>> ops2 = [['0', 'I1', 'I2', 'I3'],
+    ...         ['D1', 'C1', 'I2', 'I3'],
+    ...         ['D2', 'D2', 'R23', 'R23']]
+    >>> x2 = len(ops2) - 1
+    >>> y2 = len(ops2[0]) - 1
+    >>> assemble_transformation(ops2, x2, y2)
+    ['C1', 'I2', 'R23']
     """
     if i == 0 and j == 0:
         return []
@@ -124,7 +132,7 @@ if __name__ == "__main__":
             print("".join(string))
 
             if op[0] == "C":
-                file.write("%-16s" % "Copy %c" % op[1])
+                file.write("%-16s" % "Copy %c" % op[1])  # noqa: UP031
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
@@ -132,7 +140,7 @@ if __name__ == "__main__":
             elif op[0] == "R":
                 string[i] = op[2]
 
-                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
+                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))  # noqa: UP031
                 file.write("\t\t" + "".join(string))
                 file.write("\r\n")
 
@@ -140,7 +148,7 @@ if __name__ == "__main__":
             elif op[0] == "D":
                 string.pop(i)
 
-                file.write("%-16s" % "Delete %c" % op[1])
+                file.write("%-16s" % "Delete %c" % op[1])  # noqa: UP031
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
@@ -148,7 +156,7 @@ if __name__ == "__main__":
             else:
                 string.insert(i, op[1])
 
-                file.write("%-16s" % "Insert %c" % op[1])
+                file.write("%-16s" % "Insert %c" % op[1])  # noqa: UP031
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 

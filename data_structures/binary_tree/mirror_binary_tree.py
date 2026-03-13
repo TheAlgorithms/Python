@@ -56,6 +56,8 @@ class Node:
 def make_tree_seven() -> Node:
     r"""
     Return a binary tree with 7 nodes that looks like this:
+    ::
+
            1
          /   \
         2     3
@@ -81,13 +83,15 @@ def make_tree_seven() -> Node:
 def make_tree_nine() -> Node:
     r"""
     Return a binary tree with 9 nodes that looks like this:
-          1
-         /  \
-        2    3
-       / \    \
-      4   5    6
-     / \   \
-    7   8   9
+    ::
+
+            1
+           / \
+          2   3
+         / \   \
+        4   5   6
+       / \   \
+      7   8   9
 
     >>> tree_nine = make_tree_nine()
     >>> len(tree_nine)
@@ -117,23 +121,25 @@ def main() -> None:
     >>> tuple(tree.mirror())
     (6, 3, 1, 9, 5, 2, 8, 4, 7)
 
-    nine_tree:
-          1
-         /  \
-        2    3
-       / \    \
-      4   5    6
-     / \   \
-    7   8   9
+    nine_tree::
 
-    The mirrored tree looks like this:
+            1
+           / \
+          2   3
+         / \   \
+        4   5   6
+       / \   \
+      7   8   9
+
+    The mirrored tree looks like this::
+
           1
-         /  \
-        3    2
-       /    / \
-      6    5   4
-          /   / \
-         9   8   7
+         / \
+        3   2
+       /   / \
+      6   5   4
+         /   / \
+        9   8   7
     """
     trees = {"zero": Node(0), "seven": make_tree_seven(), "nine": make_tree_nine()}
     for name, tree in trees.items():

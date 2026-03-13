@@ -23,20 +23,22 @@ def electric_power(voltage: float, current: float, power: float) -> tuple:
     >>> electric_power(voltage=2, current=4, power=2)
     Traceback (most recent call last):
         ...
-    ValueError: Only one argument must be 0
+    ValueError: Exactly one argument must be 0
     >>> electric_power(voltage=0, current=0, power=2)
     Traceback (most recent call last):
         ...
-    ValueError: Only one argument must be 0
+    ValueError: Exactly one argument must be 0
     >>> electric_power(voltage=0, current=2, power=-4)
     Traceback (most recent call last):
         ...
     ValueError: Power cannot be negative in any electrical/electronics system
     >>> electric_power(voltage=2.2, current=2.2, power=0)
     Result(name='power', value=4.84)
+    >>> electric_power(current=0, power=6, voltage=2)
+    Result(name='current', value=3.0)
     """
     if (voltage, current, power).count(0) != 1:
-        raise ValueError("Only one argument must be 0")
+        raise ValueError("Exactly one argument must be 0")
     elif power < 0:
         raise ValueError(
             "Power cannot be negative in any electrical/electronics system"
@@ -48,7 +50,7 @@ def electric_power(voltage: float, current: float, power: float) -> tuple:
     elif power == 0:
         return Result("power", float(round(abs(voltage * current), 2)))
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise AssertionError
 
 
 if __name__ == "__main__":

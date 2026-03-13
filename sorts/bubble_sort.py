@@ -6,7 +6,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
-    :return: the same collection ordered by ascending
+    :return: the same collection ordered in ascending order
 
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
@@ -17,6 +17,12 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     [-45, -5, -2]
     >>> bubble_sort_iterative([-23, 0, 6, -4, 34])
     [-23, -4, 0, 6, 34]
+    >>> bubble_sort_iterative([1, 2, 3, 4])
+    [1, 2, 3, 4]
+    >>> bubble_sort_iterative([3, 3, 3, 3])
+    [3, 3, 3, 3]
+    >>> bubble_sort_iterative([56])
+    [56]
     >>> bubble_sort_iterative([0, 5, 2, 3, 2]) == sorted([0, 5, 2, 3, 2])
     True
     >>> bubble_sort_iterative([]) == sorted([])
@@ -63,7 +69,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
-    >>> bubble_sort_iterative([])
+    >>> bubble_sort_recursive([])
     []
     >>> bubble_sort_recursive([-2, -45, -5])
     [-45, -5, -2]
@@ -85,6 +91,8 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     >>> bubble_sort_recursive([1, 3.3, 5, 7.7, 2, 4.4, 6])
     [1, 2, 3.3, 4.4, 5, 6, 7.7]
+    >>> bubble_sort_recursive(['a', 'Z', 'B', 'C', 'A', 'c'])
+    ['A', 'B', 'C', 'Z', 'a', 'c']
     >>> import random
     >>> collection_arg = random.sample(range(-50, 50), 100)
     >>> bubble_sort_recursive(collection_arg) == sorted(collection_arg)

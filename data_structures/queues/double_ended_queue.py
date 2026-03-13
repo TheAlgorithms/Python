@@ -33,7 +33,7 @@ class Deque:
         the number of nodes
     """
 
-    __slots__ = ("_front", "_back", "_len")
+    __slots__ = ("_back", "_front", "_len")
 
     @dataclass
     class _Node:

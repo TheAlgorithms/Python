@@ -1,16 +1,24 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "httpx",
+# ]
+# ///
+
 from __future__ import annotations
 
 import csv
 
-import requests
+import httpx
 from bs4 import BeautifulSoup
 
 
 def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
     url = url or "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
-    soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
-    titles = soup.find_all("td", attrs="titleColumn")
-    ratings = soup.find_all("td", class_="ratingColumn imdbRating")
+    soup = BeautifulSoup(httpx.get(url, timeout=10).text, "html.parser")
+    titles = soup.find_all("h3", class_="ipc-title__text")
+    ratings = soup.find_all("span", class_="ipc-rating-star--rating")
     return {
         title.a.text: float(rating.strong.text)
         for title, rating in zip(titles, ratings)
