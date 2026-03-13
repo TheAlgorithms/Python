@@ -1,11 +1,16 @@
 <div align="center">
-<!-- Title: -->
+  <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
   </a>
   <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
 
-<!-- Labels: -->
+  <!-- 🎉 Hacktoberfest 2025 Banner -->
+  <a href="https://hacktoberfest.com/">
+    <img src="https://raw.githubusercontent.com/GOURAV-SAHA007/assets/main/hacktoberfest-2025-banner.svg" alt="Hacktoberfest 2025" width="80%">
+  </a>
+
+  <!-- Labels: -->
   <!-- First row: -->
   <a href="https://gitpod.io/#https://github.com/TheAlgorithms/Python">
     <img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square" height="20" alt="Gitpod Ready-to-Code">
@@ -33,7 +38,7 @@
     <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: black">
   </a>
 
-<!-- Short description: -->
+  <!-- Short description: -->
   <h3>All algorithms implemented in Python - for education 📚</h3>
 </div>
 
