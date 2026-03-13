@@ -64,13 +64,13 @@ class RadixNode:
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
-        if self.prefix == word and not self.is_leaf:
-            self.is_leaf = True
+        # if self.prefix == word and not self.is_leaf:  -------------------------------issue fix
+        #     self.is_leaf = True --------------------------------------------------------------issue fix
 
         # Case 2: The node has no edges that have a prefix to the word
         # Solution: We create an edge from the current node to a new one
         # containing the word
-        elif word[0] not in self.nodes:
+        if word[0] not in self.nodes:
             self.nodes[word[0]] = RadixNode(prefix=word, is_leaf=True)
 
         else:
@@ -82,7 +82,10 @@ class RadixNode:
             # Case 3: The node prefix is equal to the matching
             # Solution: We insert remaining word on the next node
             if remaining_prefix == "":
-                self.nodes[matching_string[0]].insert(remaining_word)
+                if remaining_word == "":
+                    incoming_node.is_leaf = True
+                else:
+                    incoming_node.insert(remaining_word)
 
             # Case 4: The word is greater equal to the matching
             # Solution: Create a node in between both nodes, change
