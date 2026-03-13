@@ -1,0 +1,33 @@
+def rotation_partition_function(moment_of_inertia: float,
+    temperature: float) -> float:
+    """
+    Calculates the rotational partition
+    function for linear molecules.
+
+    >>> round(rotation_partition_function(1e-46, 300), 4)
+    5.9275
+    >>> round(rotation_partition_function(2e-46, 300), 4)
+    11.855
+    >>> round(rotation_partition_function(-2e-46, 300), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Moment of inertia must be positive
+    >>> round(rotation_partition_function(1e-46, -300), 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Temperature must be positive
+    """
+
+    if moment_of_inertia <= 0:
+        raise ValueError("Moment of inertia must be positive")
+    if temperature <= 0:
+        raise ValueError("Temperature must be positive")
+
+    k_B = 1.380649e-23  # Boltzmann constant
+    h = 6.62607015e-34  # Planck's constant
+
+    return (2 * math.pi * moment_of_inertia * k_B * temperature) / (h ** 2)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(name="rotation_partition_function")
