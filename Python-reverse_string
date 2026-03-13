@@ -1,0 +1,11 @@
+def reverse_string(text: str) -> str:
+    if not isinstance(text, str):
+        return ""
+
+    result = ""
+    length = len(text)
+
+    for i in range(length - 1, -1, -1):
+        result += text[i]
+
+    return result
