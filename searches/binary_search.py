@@ -44,7 +44,7 @@ def bisect_left(
     2
     """
     if hi < 0:
-        hi = len(sorted_collection)
+        hi = len(sorted_collection) + hi + 1  # in case of negetive indexing used for hi
 
     while lo < hi:
         mid = lo + (hi - lo) // 2
@@ -85,7 +85,7 @@ def bisect_right(
     2
     """
     if hi < 0:
-        hi = len(sorted_collection)
+        hi = len(sorted_collection) + hi + 1  # in case of negetive indexing used for hi
 
     while lo < hi:
         mid = lo + (hi - lo) // 2
