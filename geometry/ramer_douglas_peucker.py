@@ -28,7 +28,9 @@ from collections.abc import Sequence
 # ---------------------------------------------------------------------------
 
 
-def _euclidean_distance(a: tuple[float, float], b: tuple[float, float]) -> float:
+def _euclidean_distance(
+    point_1: tuple[float, float], point_2: tuple[float, float]
+) -> float:
     """Return the Euclidean distance between two 2-D points.
 
     >>> _euclidean_distance((0.0, 0.0), (3.0, 4.0))
@@ -36,25 +38,24 @@ def _euclidean_distance(a: tuple[float, float], b: tuple[float, float]) -> float
     >>> _euclidean_distance((1.0, 1.0), (1.0, 1.0))
     0.0
     """
-    return math.hypot(b[0] - a[0], b[1] - a[1])
+    return math.hypot(point_2[0] - point_1[0], point_2[1] - point_1[1])
 
 
 def _perpendicular_distance(
-    p: tuple[float, float],
-    a: tuple[float, float],
-    b: tuple[float, float],
+    point: tuple[float, float],
+    line_start: tuple[float, float],
+    line_end: tuple[float, float],
 ) -> float:
-    """Return the perpendicular distance from point *p* to the line through *a* and *b*.
+    """Return the perpendicular distance from *point* to the line through
+    *line_start* and *line_end*.
 
-    The result is the absolute value of the signed area of the triangle (a, b, p)
-    divided by the length of segment ab, which equals the altitude of that triangle
-    from p.
+    The result is the absolute value of the signed area of the triangle
+    (line_start, line_end, point) divided by the length of the segment, which
+    equals the altitude of that triangle from point.
 
     >>> _perpendicular_distance((4.0, 0.0), (0.0, 0.0), (0.0, 3.0))
     4.0
-    >>> _perpendicular_distance((4.0, 0.0), (0.0, 0.0), (0.0, 3.0))
-    4.0
-    >>> # order of a and b does not affect the result
+    >>> # order of line_start and line_end does not affect the result
     >>> _perpendicular_distance((4.0, 0.0), (0.0, 3.0), (0.0, 0.0))
     4.0
     >>> _perpendicular_distance((4.0, 1.0), (0.0, 1.0), (0.0, 4.0))
@@ -62,14 +63,14 @@ def _perpendicular_distance(
     >>> _perpendicular_distance((2.0, 1.0), (-2.0, 1.0), (-2.0, 4.0))
     4.0
     """
-    px, py = p
-    ax, ay = a
-    bx, by = b
+    px, py = point
+    ax, ay = line_start
+    bx, by = line_end
     numerator = abs((by - ay) * px - (bx - ax) * py + bx * ay - by * ax)
-    denominator = _euclidean_distance(a, b)
+    denominator = _euclidean_distance(line_start, line_end)
     if denominator == 0.0:
-        # a and b coincide; fall back to point-to-point distance
-        return _euclidean_distance(p, a)
+        # line_start and line_end coincide; fall back to point-to-point distance
+        return _euclidean_distance(point, line_start)
     return numerator / denominator
 
 
