@@ -11,11 +11,24 @@ def lamberts_ellipsoidal_distance(
     lat1: float, lon1: float, lat2: float, lon2: float
 ) -> float:
     """
+    Calculate the shortest distance along the surface of an ellipsoid between
+    two points on the surface of earth given longitudes and latitudes
+    https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
+
+    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
+        sigma
+
+    Representing the earth as an ellipsoid allows us to approximate distances between
+    points on the surface much better than a sphere. Ellipsoidal formulas treat the
+    Earth as an oblate ellipsoid which means accounting for the flattening that happens
+    at the North and South poles. Lambert's formulae provide accuracy on the order of
+    10 meteres over thousands of kilometeres. Other methods can provide
+    millimeter-level accuracy but this is a simpler method to calculate long range
+    distances without increasing computational intensity.
 
     Args:
         lat1, lon1: latitude and longitude of coordinate 1
         lat2, lon2: latitude and longitude of coordinate 2
-
     Returns:
         geographical distance between two points in metres
 
@@ -24,7 +37,17 @@ def lamberts_ellipsoidal_distance(
     ...
     ValueError: Latitude must be between -90 and 90 degrees
 
+    >>> lamberts_ellipsoidal_distance(0, 0, -100, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Latitude must be between -90 and 90 degrees
+
     >>> lamberts_ellipsoidal_distance(0, 200, 0, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Longitude must be between -180 and 180 degrees
+
+    >>> lamberts_ellipsoidal_distance(0, 0, 0, -200)
     Traceback (most recent call last):
     ...
     ValueError: Longitude must be between -180 and 180 degrees
