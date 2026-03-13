@@ -6,31 +6,27 @@ AXIS_A = 6378137.0
 AXIS_B = 6356752.314245
 EQUATORIAL_RADIUS = 6378137
 
-
 def lamberts_ellipsoidal_distance(
     lat1: float, lon1: float, lat2: float, lon2: float
 ) -> float:
     """
-    Calculate the shortest distance along the surface of an ellipsoid between
-    two points on the surface of earth given longitudes and latitudes
-    https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
-
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
-        sigma
-
-    Representing the earth as an ellipsoid allows us to approximate distances between
-    points on the surface much better than a sphere. Ellipsoidal formulas treat the
-    Earth as an oblate ellipsoid which means accounting for the flattening that happens
-    at the North and South poles. Lambert's formulae provide accuracy on the order of
-    10 meteres over thousands of kilometeres. Other methods can provide
-    millimeter-level accuracy but this is a simpler method to calculate long range
-    distances without increasing computational intensity.
 
     Args:
         lat1, lon1: latitude and longitude of coordinate 1
         lat2, lon2: latitude and longitude of coordinate 2
+
     Returns:
         geographical distance between two points in metres
+
+    >>> lamberts_ellipsoidal_distance(100, 0, 0, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Latitude must be between -90 and 90 degrees
+
+    >>> lamberts_ellipsoidal_distance(0, 200, 0, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Longitude must be between -180 and 180 degrees
 
     >>> from collections import namedtuple
     >>> point_2d = namedtuple("point_2d", "lat lon")
@@ -45,6 +41,14 @@ def lamberts_ellipsoidal_distance(
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *VENICE):0,.0f} meters"
     '9,737,326 meters'
     """
+
+    # Validate latitude values
+    if not -90 <= lat1 <= 90 or not -90 <= lat2 <= 90:
+        raise ValueError("Latitude must be between -90 and 90 degrees")
+
+    # Validate longitude values
+    if not -180 <= lon1 <= 180 or not -180 <= lon2 <= 180:
+        raise ValueError("Longitude must be between -180 and 180 degrees")
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
