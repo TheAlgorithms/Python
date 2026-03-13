@@ -6,6 +6,7 @@ AXIS_A = 6378137.0
 AXIS_B = 6356752.314245
 EQUATORIAL_RADIUS = 6378137
 
+
 def lamberts_ellipsoidal_distance(
     lat1: float, lon1: float, lat2: float, lon2: float
 ) -> float:
