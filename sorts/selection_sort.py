@@ -5,6 +5,9 @@ def selection_sort(collection: list[int]) -> list[int]:
     :param collection: A list of integers to be sorted.
     :return: The sorted list.
 
+
+    Time Complexity: O(n^2) - where n is the length of the collection.
+        Space Complexity: O(1) - in-place sorting, only uses constant extra space.
     Examples:
     >>> selection_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
