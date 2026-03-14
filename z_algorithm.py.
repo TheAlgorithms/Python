@@ -1,0 +1,85 @@
+### Describe your change:
+This PR adds the **Z-Algorithm**, an efficient string-matching algorithm that runs in $O(n + m)$ time. 
+
+**Overview:**
+The Z-algorithm finds all occurrences of a pattern $P$ in a text $T$ by constructing the Z-array, where each element $Z[i]$ represents the longest common prefix between the string and the suffix starting at index $i$.
+
+**Why this is a good addition:**
+- **Performance:** It is fundamentally more efficient than naive matching and often easier to implement/understand than KMP (Knuth-Morris-Pratt).
+- **Quality:** This implementation uses strict type hints, follows PEP 8, and includes comprehensive doctests.
+- **Pure Python:** No external dependencies.
+
+* [x] Add `strings/z_algorithm.py`
+* [x] All tests pass locally via `python3 -m doctest z_algorithm.py`
+* [x] Strictly type-hinted
+
+"""
+The Z-algorithm finds all occurrences of a pattern in a text in linear time O(n + m).
+Reference: https://en.wikipedia.org/wiki/Z_algorithm
+"""
+
+def z_algorithm(text: str, pattern: str) -> list[int]:
+    """
+    Finds all starting indices of a pattern in a text using the Z-array.
+    
+    Args:
+        text: The string to be searched.
+        pattern: The string to search for.
+
+    Returns:
+        A list of indices where the pattern starts.
+
+    Examples:
+        >>> z_algorithm("ababa", "aba")
+        [0, 2]
+        >>> z_algorithm("aaaaa", "aa")
+        [0, 1, 2, 3]
+        >>> z_algorithm("abcde", "f")
+        []
+    """
+    concat = f"{pattern}${text}"
+    z_array = calculate_z_array(concat)
+    pattern_len = len(pattern)
+    
+    # Indices in the z_array correspond to matches in the original text
+    return [i - (pattern_len + 1) for i, val in enumerate(z_array) if val == pattern_len]
+
+
+def calculate_z_array(s: str) -> list[int]:
+    """
+    Calculates the Z-array for a given string.
+    Z[i] is the length of the longest common prefix between s and s[i:].
+    """
+    n = len(s)
+    z = [0] * n
+    left, right, k = 0, 0, 0
+    
+    for i in range(1, n):
+        if i > right:
+            left, right = i, i
+            while right < n and s[right] == s[right - left]:
+                right += 1
+            z[i] = right - left
+            right -= 1
+        else:
+            k = i - left
+            if z[k] < right - i + 1:
+                z[i] = z[k]
+            else:
+                left = i
+                while right < n and s[right] == s[right - left]:
+                    right += 1
+                z[i] = right - left
+                right -= 1
+    return z
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    # Simple CLI interface
+    t = "baabaa"
+    p = "aab"
+    print(f"Pattern found at indices: {z_algorithm(t, p)}")
