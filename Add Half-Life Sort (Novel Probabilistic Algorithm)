@@ -1,7 +1,7 @@
 ### Describe your change:
-This PR introduces a novel, probabilistic sorting algorithm called **Half-Life Sort** (`half_life_sort.py`). 
+This PR introduces a novel, probabilistic sorting algorithm called **Half-Life Sort** (`half_life_sort.py`).
 
-It is inspired by the physics of radioactive isotope decay. Instead of deterministically swapping out-of-order elements (like Bubble Sort), it iterates through the array and gives every out-of-order adjacent pair (an "inversion") a 50% probability of "decaying" (swapping) into a stable, sorted state. The algorithm loops over the collection until it reaches perfect stability. 
+It is inspired by the physics of radioactive isotope decay. Instead of deterministically swapping out-of-order elements (like Bubble Sort), it iterates through the array and gives every out-of-order adjacent pair (an "inversion") a 50% probability of "decaying" (swapping) into a stable, sorted state. The algorithm loops over the collection until it reaches perfect stability.
 
 While theoretically highly inefficient, it mathematically guarantees a sorted array eventually and serves as a unique educational demonstration of probabilistic time complexity and non-deterministic algorithms.
 
@@ -80,4 +80,4 @@ if __name__ == "__main__":
     if user_input:
         unsorted_list = [int(item.strip()) for item in user_input.split(",")]
         print(f"Sorted using Half-Life decay: {half_life_sort(unsorted_list)}")
-                                                                      
+
