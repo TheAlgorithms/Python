@@ -9,7 +9,6 @@ For doctests run following command:
 python3 -m doctest -v gnome_sort.py
 
 For manual testing run:
-
 python3 gnome_sort.py
 Gnome Sort Algorithm implementation in Python.
 
