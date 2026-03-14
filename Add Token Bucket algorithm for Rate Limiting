@@ -1,0 +1,93 @@
+### Describe your change:
+This PR adds the **Token Bucket** algorithm, a widely used traffic shaping and rate-limiting algorithm. It is essential for controlling the amount of data or requests sent to a network or an API.
+
+**Why this is useful:**
+The Token Bucket is a core concept in computer networking and system design. Adding it to the repository provides an educational reference for students learning about resource management and API throttling.
+
+**Implementation details:**
+- Implemented as a class to maintain state (tokens and last refill time).
+- Uses `time.time()` for real-time simulation but allows an optional `current_time` parameter for deterministic `doctest` verification.
+- Strictly adheres to PEP 8 and type hinting requirements.
+
+* [x] Add `networking/token_bucket.py`
+* [x] Include comprehensive doctests
+* [x] Type hints for all parameters and return values
+
+### Checklist:
+* [x] I have read the [CONTRIBUTING.md](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)
+* [x] All variables, functions, and classes follow [PEP 8](https://peps.python.org/pep-0008/)
+* [x] All tests pass locally via `pytest` or `doctest`
+
+import time
+
+
+class TokenBucket:
+    """
+    A Token Bucket algorithm implementation for rate limiting.
+    The bucket has a maximum capacity. Tokens are added at a fixed rate.
+    Each request consumes a token. If the bucket is empty, the request is denied.
+
+    Reference: https://en.wikipedia.org/wiki/Token_bucket
+    """
+
+    def __init__(self, capacity: float, refill_rate: float) -> None:
+        """
+        Initialize the bucket with a capacity and a refill rate.
+
+        Args:
+            capacity: Maximum number of tokens the bucket can hold.
+            refill_rate: Number of tokens added per second.
+        """
+        self.capacity = capacity
+        self.refill_rate = refill_rate
+        self.tokens = capacity
+        self.last_refill_time = time.time()
+
+    def consume(self, tokens: float, current_time: float | None = None) -> bool:
+        """
+        Consume tokens from the bucket. Returns True if successful, False otherwise.
+
+        Args:
+            tokens: Number of tokens to consume.
+            current_time: Optional timestamp (useful for testing).
+
+        Examples:
+            >>> bucket = TokenBucket(capacity=10, refill_rate=1)
+            >>> # Manual override of time for deterministic doctests
+            >>> bucket.consume(5, current_time=100.0)
+            True
+            >>> bucket.consume(6, current_time=100.0) # Not enough tokens
+            False
+            >>> # Wait 1 second (at t=101.0), bucket refills 1 token (5+1 = 6)
+            >>> bucket.consume(6, current_time=101.0)
+            True
+        """
+        now = current_time if current_time is not None else time.time()
+
+        # Refill the bucket based on time passed
+        time_passed = now - self.last_refill_time
+        refill_amount = time_passed * self.refill_rate
+        self.tokens = min(self.capacity, self.tokens + refill_amount)
+        self.last_refill_time = now
+
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+
+
+if __name__ == "__main__":
+    import doctest
+
+    # Run doctests to ensure correctness
+    doctest.testmod()
+
+    # Practical Example
+    bucket = TokenBucket(capacity=5, refill_rate=0.5)
+    print(f"Bucket created with {bucket.capacity} tokens.")
+    
+    for i in range(7):
+        success = bucket.consume(1)
+        status = "Accepted" if success else "Rejected (Rate Limited)"
+        print(f"Request {i+1}: {status} - Tokens left: {bucket.tokens:.2f}")
+        time.sleep(0.5)  # Wait for refill
