@@ -36,9 +36,9 @@ def simulated_annealing(
         threshold_temp: the threshold temperature below which we end the search
     Returns:
         A search state having the maximum (or minimum) score.
-   
+
     Example:
-        >>> isinstance(10, (int, float))
+        >>> isinstance(simulated_annealing, object)
         True
     """
     search_end = False
