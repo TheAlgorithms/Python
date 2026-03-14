@@ -1,0 +1,83 @@
+### Describe your change:
+This PR introduces a novel, probabilistic sorting algorithm called **Half-Life Sort** (`half_life_sort.py`). 
+
+It is inspired by the physics of radioactive isotope decay. Instead of deterministically swapping out-of-order elements (like Bubble Sort), it iterates through the array and gives every out-of-order adjacent pair (an "inversion") a 50% probability of "decaying" (swapping) into a stable, sorted state. The algorithm loops over the collection until it reaches perfect stability. 
+
+While theoretically highly inefficient, it mathematically guarantees a sorted array eventually and serves as a unique educational demonstration of probabilistic time complexity and non-deterministic algorithms.
+
+* [x] Add `sorts/half_life_sort.py`
+* [x] Provide comprehensive docstrings and doctests
+* [x] Strictly type-hinted
+
+### Checklist:
+* [x] I have read the [CONTRIBUTING.md](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md) and [strict typing requirements](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md#strict-typing)
+* [x] All variables, functions, classes, and file names follow [PEP 8](https://peps.python.org/pep-0008/)
+* [x] I have added `doctest`s to my functions
+* [x] I have used `pre-commit` locally to run `ruff` and `black` on my code
+
+ import random
+
+
+def half_life_sort(collection: list[int], seed: int | None = None) -> list[int]:
+    """
+    A probabilistic sorting algorithm inspired by radioactive isotope decay.
+
+    Instead of guaranteeing a swap when two adjacent elements are out of order,
+    this algorithm gives the "inversion" a 50% probability of decaying (swapping).
+    The algorithm continues passing over the array until no inversions remain
+    and the collection is perfectly "stable" (sorted).
+
+    Args:
+        collection: A list of integers to be sorted.
+        seed: Optional integer seed for random number generation to ensure
+              reproducibility in doctests.
+
+    Returns:
+        A new list containing the sorted elements.
+
+    Examples:
+        >>> half_life_sort([3, 1, 2], seed=42)
+        [1, 2, 3]
+        >>> half_life_sort([5, 4, 3, 2, 1], seed=10)
+        [1, 2, 3, 4, 5]
+        >>> half_life_sort([10, -1, 4, 2], seed=99)
+        [-1, 2, 4, 10]
+        >>> half_life_sort([], seed=1)
+        []
+        >>> half_life_sort([1], seed=1)
+        [1]
+    """
+    if seed is not None:
+        random.seed(seed)
+
+    if len(collection) <= 1:
+        return collection
+
+    # Create a copy to avoid mutating the original array
+    arr = collection.copy()
+    is_sorted = False
+
+    while not is_sorted:
+        is_sorted = True
+        for i in range(len(arr) - 1):
+            # Check for an "unstable isotope" (an inversion)
+            if arr[i] > arr[i + 1]:
+                is_sorted = False
+                # 50% chance for the inversion to "decay" into a stable state
+                if random.choice([True, False]):
+                    arr[i], arr[i + 1] = arr[i + 1], arr[i]
+
+    return arr
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    # Interactive example for the user
+    user_input = input("Enter numbers separated by a comma: ").strip()
+    if user_input:
+        unsorted_list = [int(item.strip()) for item in user_input.split(",")]
+        print(f"Sorted using Half-Life decay: {half_life_sort(unsorted_list)}")
+                                                                      
