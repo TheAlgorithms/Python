@@ -210,9 +210,9 @@ class DoublyLinkedList:
         >>> head = dll.doubly_to_singly()
         >>> head.data
         1
-        >>> head.next.data
+        >>> head.next_node.data
         2
-        >>> head.next.next.data
+        >>> head.next_node.next_node.data
         3
         """
 
