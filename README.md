@@ -4,7 +4,6 @@
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
   </a>
   <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
-
 <!-- Labels: -->
   <!-- First row: -->
   <a href="https://gitpod.io/#https://github.com/TheAlgorithms/Python">
@@ -20,7 +19,6 @@
   <a href="https://gitter.im/TheAlgorithms/community">
     <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
   </a>
-
   <!-- Second row: -->
   <br>
   <a href="https://github.com/TheAlgorithms/Python/actions">
@@ -30,22 +28,21 @@
     <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" height="20" alt="pre-commit">
   </a>
   <a href="https://docs.astral.sh/ruff/formatter/">
-    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: black">
+    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: ruff">
   </a>
-
 <!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education 📚</h3>
+  <h3>All algorithms implemented in Python — for education 📚</h3>
 </div>
 
-Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
+These implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your own discretion.
 
 ## 🚀 Getting Started
 
-📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+📋 Please read our [Contribution Guidelines](CONTRIBUTING.md) before contributing.
 
 ## 🌐 Community Channels
 
-We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
+We're on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great place to ask questions and get help. Please join us!
 
 ## 📜 List of Algorithms
 
