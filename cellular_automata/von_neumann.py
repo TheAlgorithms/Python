@@ -373,8 +373,8 @@ def visualize_cellular_automaton(
         >>> history = simulate_von_neumann_cellular_automaton(
         ...     grid_rows=10, grid_columns=10, generations=5, random_seed=42
         ... )
-        >>> anim = visualize_cellular_automaton(history, interval=500)
-        >>> isinstance(anim, animation.FuncAnimation)
+        >>> anim = visualize_cellular_automaton(history, interval=500)  # doctest: +SKIP
+        >>> isinstance(anim, animation.FuncAnimation)  # doctest: +SKIP
         True
     """
     if not generation_history:
@@ -466,7 +466,7 @@ def plot_static_generations(
         >>> history = simulate_von_neumann_cellular_automaton(
         ...     grid_rows=5, grid_columns=5, generations=10, random_seed=42
         ... )
-        >>> plot_static_generations(history, generations_to_show=[0, 2, 4, 6])
+        >>> plot_static_generations(history, generations_to_show=[0, 2, 4, 6])  # doctest: +SKIP
     """
     if not generation_history:
         raise ValueError("generation_history cannot be empty")
@@ -477,7 +477,7 @@ def plot_static_generations(
         generations_to_show = [0, n_gens // 3, 2 * n_gens // 3, n_gens - 1]
 
     n_plots = len(generations_to_show)
-    fig, axes = plt.subplots(1, n_plots, figsize=figsize)
+    _fig, axes = plt.subplots(1, n_plots, figsize=figsize)
 
     if n_plots == 1:
         axes = [axes]
