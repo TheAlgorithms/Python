@@ -502,13 +502,27 @@ def plot_static_generations(
 
         # Add grid
         axes[i].set_xticks(
-            np.arange(-0.5, generation_history[gen_idx].shape[1], 1), minor=True
+            np.arange(
+                -0.5,
+                generation_history[gen_idx].shape[1],
+                1,
+            ),
+            minor=True,
         )
         axes[i].set_yticks(
-            np.arange(-0.5, generation_history[gen_idx].shape[0], 1), minor=True
+            np.arange(
+                -0.5,
+                generation_history[gen_idx].shape[0],
+                1,
+            ),
+            minor=True,
         )
         axes[i].grid(
-            which="minor", color="gray", linestyle="-", linewidth=0.5, alpha=0.3
+            which="minor",
+            color="gray",
+            linestyle="-",
+            linewidth=0.5,
+            alpha=0.3,
         )
 
     # Add colorbar to the last subplot
