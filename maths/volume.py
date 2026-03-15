@@ -171,7 +171,7 @@ def vol_spheres_union(
 
 
 def vol_cuboid(width: float, height: float, length: float) -> float:
-    """
+    r"""
     Calculate the Volume of a Cuboid.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Cuboid
