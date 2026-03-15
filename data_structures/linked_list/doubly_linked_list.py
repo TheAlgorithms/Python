@@ -1,3 +1,5 @@
+from data_structures.linked_list import singly_linked_list
+
 """
 https://en.wikipedia.org/wiki/Doubly_linked_list
 """
@@ -187,6 +189,47 @@ class DoublyLinkedList:
         """
         return len(self) == 0
 
+    def doubly_to_singly(self) -> singly_linked_list.Node | None:
+        """
+        Convert this doubly linked list into a singly linked list.
+
+        A new singly linked list is created by copying the data from
+        each node in the doubly linked list.
+
+        Returns
+        -------
+        singly_linked_list.Node | None
+            The head node of the newly created singly linked list.
+
+        Example
+        -------
+        >>> dll = DoublyLinkedList()
+        >>> dll.insert_at_tail(1)
+        >>> dll.insert_at_tail(2)
+        >>> dll.insert_at_tail(3)
+        >>> head = dll.doubly_to_singly()
+        >>> head.data
+        1
+        >>> head.next_node.data
+        2
+        >>> head.next_node.next_node.data
+        3
+        """
+
+        if self.head is None:
+            return None
+
+        doubly_current: Node | None = self.head.next
+        new_head = singly_linked_list.Node(self.head.data)
+        singly_current = new_head
+
+        while doubly_current:
+            singly_current.next_node = singly_linked_list.Node(doubly_current.data)
+            singly_current = singly_current.next_node
+            doubly_current = doubly_current.next
+
+        return new_head
+
 
 def test_doubly_linked_list() -> None:
     """
@@ -222,6 +265,25 @@ def test_doubly_linked_list() -> None:
     assert linked_list.delete_tail() == 11
     assert len(linked_list) == 9
     assert str(linked_list) == "->".join(str(i) for i in range(1, 10))
+
+    # Test doubly_to_singly conversion
+    dll = DoublyLinkedList()
+    dll.insert_at_tail(1)
+    dll.insert_at_tail(2)
+    dll.insert_at_tail(3)
+
+    head = dll.doubly_to_singly()
+
+    assert head is not None
+    s_head = head  # type: singly_linked_list.Node
+
+    assert s_head.data == 1
+
+    assert s_head.next_node is not None
+    assert s_head.next_node.data == 2
+
+    assert s_head.next_node.next_node is not None
+    assert s_head.next_node.next_node.data == 3
 
 
 if __name__ == "__main__":
