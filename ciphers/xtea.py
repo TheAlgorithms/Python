@@ -16,9 +16,7 @@ DELTA = 0x9E3779B9
 MASK = 0xFFFFFFFF
 
 
-def xtea_encrypt(
-    block: bytes, key: bytes, num_rounds: int = 64
-) -> bytes:
+def xtea_encrypt(block: bytes, key: bytes, num_rounds: int = 64) -> bytes:
     """
     Encrypt a single 64-bit block using XTEA.
 
@@ -65,9 +63,7 @@ def xtea_encrypt(
     return struct.pack("!II", v0, v1)
 
 
-def xtea_decrypt(
-    block: bytes, key: bytes, num_rounds: int = 64
-) -> bytes:
+def xtea_decrypt(block: bytes, key: bytes, num_rounds: int = 64) -> bytes:
     """
     Decrypt a single 64-bit block using XTEA.
 
