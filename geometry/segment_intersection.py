@@ -27,14 +27,14 @@ class Point(NamedTuple):
     y: float
 
 
-def direction(a: Point, b: Point, c: Point) -> float:
-    """Return the cross product of vectors (a→c) and (a→b).
+def direction(pivot: Point, target: Point, query: Point) -> float:
+    """Return the cross product of vectors (pivot->query) and (pivot->target).
 
     The sign of the result encodes the orientation of the ordered triple
-    (a, b, c):
-      - Negative  →  counter-clockwise (left turn)
-      - Positive  →  clockwise (right turn)
-      - Zero      →  collinear
+    (pivot, target, query):
+      - Negative  ->  counter-clockwise (left turn)
+      - Positive  ->  clockwise (right turn)
+      - Zero      ->  collinear
 
     >>> direction(Point(0, 0), Point(1, 0), Point(0, 1))
     -1
@@ -43,11 +43,13 @@ def direction(a: Point, b: Point, c: Point) -> float:
     >>> direction(Point(0, 0), Point(1, 1), Point(2, 2))
     0
     """
-    return (c.x - a.x) * (b.y - a.y) - (b.x - a.x) * (c.y - a.y)
+    return (query.x - pivot.x) * (target.y - pivot.y) - (target.x - pivot.x) * (
+        query.y - pivot.y
+    )
 
 
-def on_segment(a: Point, b: Point, p: Point) -> bool:
-    """Check whether point *p*, known to be collinear with segment ab, lies on it.
+def on_segment(seg_start: Point, seg_end: Point, point: Point) -> bool:
+    """Check whether *point*, known to be collinear with the segment, lies on it.
 
     >>> on_segment(Point(0, 0), Point(4, 4), Point(2, 2))
     True
@@ -56,9 +58,9 @@ def on_segment(a: Point, b: Point, p: Point) -> bool:
     >>> on_segment(Point(0, 0), Point(4, 0), Point(2, 0))
     True
     """
-    return min(a.x, b.x) <= p.x <= max(a.x, b.x) and min(a.y, b.y) <= p.y <= max(
-        a.y, b.y
-    )
+    return min(seg_start.x, seg_end.x) <= point.x <= max(
+        seg_start.x, seg_end.x
+    ) and min(seg_start.y, seg_end.y) <= point.y <= max(seg_start.y, seg_end.y)
 
 
 def segments_intersect(p1: Point, p2: Point, p3: Point, p4: Point) -> bool:
