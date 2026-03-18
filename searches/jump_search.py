@@ -6,6 +6,7 @@ Pure Python implementation of the jump search algorithm.
 from __future__ import annotations
 
 import math
+from collections.abc import Sequence
 from typing import Any, Protocol
 
 
@@ -13,7 +14,7 @@ class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
 
-def jump_search[T: Comparable](arr: list[T], item: T) -> int:
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
     """
     Python implementation of the jump search algorithm.
     Return the index if the `item` is found, otherwise return -1.

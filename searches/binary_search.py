@@ -10,9 +10,8 @@ For manual testing run:
 python3 binary_search.py
 """
 
-from __future__ import annotations
-
 import bisect
+from itertools import pairwise
 
 
 def bisect_left(
@@ -152,7 +151,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
+    if any(a > b for a, b in pairwise(sorted_collection)):
         raise ValueError("sorted_collection must be sorted in ascending order")
     left = 0
     right = len(sorted_collection) - 1

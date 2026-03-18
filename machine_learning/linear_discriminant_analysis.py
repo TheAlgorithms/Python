@@ -47,7 +47,6 @@ from collections.abc import Callable
 from math import log
 from os import name, system
 from random import gauss, seed
-from typing import TypeVar
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -247,9 +246,6 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     # percentage of accuracy equals to number of correct predictions divided by number
     # of all data and multiplied by 100
     return (correct / len(actual_y)) * 100
-
-
-num = TypeVar("num")
 
 
 def valid_input[num](
