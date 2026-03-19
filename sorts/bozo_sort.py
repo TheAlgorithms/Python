@@ -27,7 +27,7 @@ def bozo_sort(array: list) -> list:
     >>> bozo_sort([8, 16, 0, 4, 10])
     [0, 4, 8, 10, 16]
     """
-    
+
     def is_sorted(array):
         for i, n in enumerate(array):
             if i < len(array) - 1 and n > array[i + 1]:
