@@ -27,8 +27,14 @@ def bozo_sort(array: list) -> list:
     >>> bozo_sort([8, 16, 0, 4, 10])
     [0, 4, 8, 10, 16]
     """
+    
+    def is_sorted(array):
+        for i, n in enumerate(array):
+            if i < len(array) - 1 and n > array[i + 1]:
+                return False
+        return True
 
-    while array != sorted(array):
+    while not is_sorted(array):
         index_a = random.randint(0, len(array) - 1)
         index_b = random.randint(0, len(array) - 1)
 
