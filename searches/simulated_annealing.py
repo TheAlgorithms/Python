@@ -34,19 +34,24 @@ def simulated_annealing(
         start_temperate: the initial temperate of the system when the program starts.
         rate_of_decrease: the rate at which the temperate decreases in each iteration.
         threshold_temp: the threshold temperature below which we end the search
+        
     Returns:
         A search state having the maximum (or minimum) score.
 
     Example:
-        >>> isinstance(simulated_annealing, object)
+        >>> from searches.simulated_annealing import SearchProblem
+        >>> problem = SearchProblem(x=3, y=5, step_size=1,
+        ...     function_to_optimize=lambda x, y: x**2 + y**2)
+        >>> result = simulated_annealing(
+        ...     search_prob=problem,
+        ...     find_max=False,
+        ...     max_x=10, min_x=-10,
+        ...     max_y=10, min_y=-10,
+        ...     visualization=False,
+        ... )
+        >>> isinstance(result, SearchProblem)
         True
     """
-    search_end = False
-    current_state = search_prob
-    current_temp = start_temperate
-    scores = []
-    iterations = 0
-    best_state = None
 
     while not search_end:
         current_score = current_state.score()
