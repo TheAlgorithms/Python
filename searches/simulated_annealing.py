@@ -28,7 +28,7 @@ def simulated_annealing(
 
     Args:
         search_prob: The search state at the start.
-        find_max: If True, the algorithm should find the minimum else the minimum.
+        find_max: If True, the algorithm should find the maximum else the minimum.
         max_x, min_x, max_y, min_y: the maximum and minimum bounds of x and y.
         visualization: If True, a matplotlib graph is displayed.
         start_temperate: the initial temperate of the system when the program starts.
@@ -52,6 +52,12 @@ def simulated_annealing(
         >>> isinstance(result, SearchProblem)
         True
     """
+    search_end = False
+    current_state = search_prob
+    current_temp = start_temperate
+    scores = []
+    iterations = 0
+    best_state = None
 
     while not search_end:
         current_score = current_state.score()
@@ -145,3 +151,8 @@ if __name__ == "__main__":
         "The maximum score for f(x, y) = 3*x^2 - 6*y found via hill climbing: "
         f"{local_min.score()}"
     )
+```
+
+Depois commit com a mensagem:
+```
+Fix: restore function body indentation and fix docstring
