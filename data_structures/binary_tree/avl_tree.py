@@ -67,7 +67,9 @@ def right_rotation(node: MyNode) -> MyNode:
     node.set_left(ret.get_right())
     ret.set_right(node)
 
-    node.set_height(my_max(get_height(node.get_left()), get_height(node.get_right())) + 1)
+    node.set_height(
+        my_max(get_height(node.get_left()), get_height(node.get_right())) + 1
+    )
     ret.set_height(my_max(get_height(ret.get_left()), get_height(ret.get_right())) + 1)
 
     return ret
@@ -79,7 +81,9 @@ def left_rotation(node: MyNode) -> MyNode:
     node.set_right(ret.get_left())
     ret.set_left(node)
 
-    node.set_height(my_max(get_height(node.get_left()), get_height(node.get_right())) + 1)
+    node.set_height(
+        my_max(get_height(node.get_left()), get_height(node.get_right())) + 1
+    )
     ret.set_height(my_max(get_height(ret.get_left()), get_height(ret.get_right())) + 1)
 
     return ret
@@ -119,7 +123,9 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode:
             else:
                 node = left_rotation(node)
 
-    node.set_height(my_max(get_height(node.get_left()), get_height(node.get_right())) + 1)
+    node.set_height(
+        my_max(get_height(node.get_left()), get_height(node.get_right())) + 1
+    )
     return node
 
 
@@ -135,6 +141,7 @@ class AVLtree:
 
 
 # ✅ NEW FEATURE (YOUR CONTRIBUTION)
+
 
 def inorder_traversal(root, result):
     """
