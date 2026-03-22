@@ -54,11 +54,11 @@ def relativistic_kinetic_energy(mass: float, velocity: float) -> float:
 
     """
 
-    if (mass < 0 ):
+    if mass < 0:
         raise ValueError("The mass of a body cannot be negative")
     else:
-        gamma = 1/sqrt(1 - (velocity**2 / c**2))
-        return (gamma-1) * mass * c**2
+        gamma = 1 / sqrt(1 - (velocity**2 / c**2))
+        return (gamma - 1) * mass * c**2
 
 
 if __name__ == "__main__":
