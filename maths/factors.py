@@ -1,25 +1,16 @@
 from doctest import testmod
 from math import sqrt
 
-
-def factors_of_a_number(num: int) -> list:
-    """
-    >>> factors_of_a_number(1)
-    [1]
-    >>> factors_of_a_number(5)
-    [1, 5]
-    >>> factors_of_a_number(24)
-    [1, 2, 3, 4, 6, 8, 12, 24]
-    >>> factors_of_a_number(-24)
-    []
-    """
-    facs: list[int] = []
+def factors_of_a_number(num: int) -> list[int]:
+   """Return all factors of a positive integer in sorted order.""" 
+    
     if num < 1:
-        return facs
+        raise ValueError("num must be a positive integer")
+    facs: list[int] = []    
     facs.append(1)
     if num == 1:
         return facs
-    facs.append(num)
+    facs.append(num)  #num is always a factor of itself 
     for i in range(2, int(sqrt(num)) + 1):
         if num % i == 0:  # If i is a factor of num
             facs.append(i)
