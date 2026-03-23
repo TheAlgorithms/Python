@@ -87,6 +87,7 @@ def lamberts_ellipsoidal_distance(
     # Compute central angle between two points
     # using haversine theta. sigma =  haversine_distance / equatorial radius
     sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
+    
 
     # Intermediate P and Q values
     p_value = (b_lat1 + b_lat2) / 2
@@ -95,8 +96,8 @@ def lamberts_ellipsoidal_distance(
     # Intermediate X value
     # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
     x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
-    x_demonimator = cos(sigma / 2) ** 2
-    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
+    x_denominator = cos(sigma / 2) ** 2
+    x_value = (sigma - sin(sigma)) * (x_numerator / x_denominator)
 
     # Intermediate Y value
     # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
@@ -106,6 +107,8 @@ def lamberts_ellipsoidal_distance(
 
     return EQUATORIAL_RADIUS * (sigma - ((flattening / 2) * (x_value + y_value)))
 
+print(f"SF-Yosemite: {lamberts_ellipsoidal_distance(37.774856, -122.424227, 37.864742, -119.537521):0,.0f}")
+print(f"Expected ~254km but got ???") 
 
 if __name__ == "__main__":
     import doctest
