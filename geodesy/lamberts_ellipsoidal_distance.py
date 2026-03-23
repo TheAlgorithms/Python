@@ -95,8 +95,8 @@ def lamberts_ellipsoidal_distance(
     # Intermediate X value
     # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
     x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
-    x_demonimator = cos(sigma / 2) ** 2
-    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
+    x_denominator = cos(sigma / 2) ** 2
+    x_value = (sigma - sin(sigma)) * (x_numerator / x_denominator)
 
     # Intermediate Y value
     # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
