@@ -491,7 +491,7 @@ def print_score_matrix(score_matrix: list, sequence_1: str, sequence_2: str) -> 
     print("  " + "".join(header_labels))
 
     # One data row per border label + each character of sequence_2
-    row_labels = ["-"] + list(sequence_2)
+    row_labels = ["-", *list(sequence_2)]
 
     for row_index, row_label in enumerate(row_labels):
         row_cells = [f"{cell:>{col_width}}" for cell in score_matrix[row_index]]
