@@ -11,6 +11,7 @@ import os
 import re
 import sys
 import urllib.request
+from pathlib import Path
 
 import httpx
 from bs4 import BeautifulSoup
@@ -93,11 +94,18 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
             )
         ]
         urllib.request.install_opener(opener)
-        path_name = f"query_{query.replace(' ', '_')}"
-        if not os.path.exists(path_name):
-            os.makedirs(path_name)
+        # Sanitise the query so it cannot escape the output directory.
+        # Replace any character that is not alphanumeric, space, hyphen, or
+        # underscore with an underscore, then collapse spaces.
+        safe_query = re.sub(r"[^\w\s-]", "_", query).replace(" ", "_")
+        output_dir = Path.cwd() / f"query_{safe_query}"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        # Resolve to an absolute path and verify it stays inside cwd.
+        dest = (output_dir / f"original_size_img_{index}.jpg").resolve()
+        if not str(dest).startswith(str(Path.cwd().resolve())):
+            raise ValueError(f"Refusing to write outside working directory: {dest}")
         urllib.request.urlretrieve(  # noqa: S310
-            original_size_img, f"{path_name}/original_size_img_{index}.jpg"
+            original_size_img, dest
         )
     return index
 

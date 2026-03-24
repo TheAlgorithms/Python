@@ -1,9 +1,30 @@
 # Primality Testing with the Rabin-Miller Algorithm
 
-import random
+import secrets
 
 
 def rabin_miller(num: int) -> bool:
+    """
+    Rabin-Miller primality test using a cryptographically secure PRNG.
+
+    Uses 40 witness rounds (vs the original 5) to reduce the probability of
+    a composite passing to at most 4^-40 ≈ 8.3e-25.
+
+    Requires num >= 5; smaller values are handled by is_prime_low_num via the
+    low_primes list and never reach this function in normal use.
+
+    >>> rabin_miller(17)
+    True
+    >>> rabin_miller(21)
+    False
+    >>> rabin_miller(561)  # Carmichael number, composite
+    False
+    >>> rabin_miller(7919)  # prime
+    True
+    """
+    if num < 5:
+        raise ValueError(f"rabin_miller requires num >= 5, got {num}")
+
     s = num - 1
     t = 0
 
@@ -11,8 +32,9 @@ def rabin_miller(num: int) -> bool:
         s = s // 2
         t += 1
 
-    for _ in range(5):
-        a = random.randrange(2, num - 1)
+    for _ in range(40):  # 40 rounds: false-positive probability ≤ 4^-40
+        # Witness a must be in [2, num-2]; num >= 5 guarantees num-3 >= 2.
+        a = secrets.randbelow(num - 3) + 2  # range [2, num-2]
         v = pow(a, s, num)
         if v != 1:
             i = 0
@@ -26,6 +48,16 @@ def rabin_miller(num: int) -> bool:
 
 
 def is_prime_low_num(num: int) -> bool:
+    """
+    >>> is_prime_low_num(1)
+    False
+    >>> is_prime_low_num(2)
+    True
+    >>> is_prime_low_num(97)
+    True
+    >>> is_prime_low_num(100)
+    False
+    """
     if num < 2:
         return False
 
@@ -211,8 +243,19 @@ def is_prime_low_num(num: int) -> bool:
 
 
 def generate_large_prime(keysize: int = 1024) -> int:
+    """
+    Generate a large prime using a cryptographically secure PRNG.
+
+    >>> p = generate_large_prime(16)
+    >>> is_prime_low_num(p)
+    True
+    >>> p.bit_length() >= 15  # at least keysize-1 bits
+    True
+    """
     while True:
-        num = random.randrange(2 ** (keysize - 1), 2 ** (keysize))
+        # secrets.randbits produces a CSPRNG integer; set the high bit to
+        # guarantee the result is in [2^(keysize-1), 2^keysize - 1].
+        num = secrets.randbits(keysize) | (1 << (keysize - 1))
         if is_prime_low_num(num):
             return num
 

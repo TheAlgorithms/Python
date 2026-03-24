@@ -55,8 +55,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
+        if not isinstance(content, str):
+            raise TypeError(f"content must be a str, not {type(content).__name__!r}")
 
         key = key or self.__key or 1
 
@@ -90,8 +92,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
+        if not isinstance(content, str):
+            raise TypeError(f"content must be a str, not {type(content).__name__!r}")
 
         key = key or self.__key or 1
 
@@ -125,8 +129,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
+        if not isinstance(content, str):
+            raise TypeError(f"content must be a str, not {type(content).__name__!r}")
 
         key = key or self.__key or 1
 
@@ -166,8 +172,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
+        if not isinstance(content, str):
+            raise TypeError(f"content must be a str, not {type(content).__name__!r}")
 
         key = key or self.__key or 1
 
@@ -192,8 +200,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(file, str)
-        assert isinstance(key, int)
+        if not isinstance(file, str):
+            raise TypeError(f"file must be a str, not {type(file).__name__!r}")
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
 
         # make sure key is an appropriate size
         key %= 256
@@ -219,8 +229,10 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(file, str)
-        assert isinstance(key, int)
+        if not isinstance(file, str):
+            raise TypeError(f"file must be a str, not {type(file).__name__!r}")
+        if not isinstance(key, int):
+            raise TypeError(f"key must be an int, not {type(key).__name__!r}")
 
         # make sure key is an appropriate size
         key %= 256

@@ -13,7 +13,7 @@ WEATHERSTACK_API_KEY = ""
 
 # Define the URL for the APIs with placeholders
 OPENWEATHERMAP_URL_BASE = "https://api.openweathermap.org/data/2.5/weather"
-WEATHERSTACK_URL_BASE = "http://api.weatherstack.com/current"
+WEATHERSTACK_URL_BASE = "https://api.weatherstack.com/current"
 
 
 def current_weather(location: str) -> list[dict]:

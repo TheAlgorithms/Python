@@ -14,7 +14,7 @@ Date: 2017.9.20
 - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
 
-import pickle
+import json
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -52,9 +52,21 @@ class CNN:
         self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
         self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
-    def save_model(self, save_path):
-        # save model dict with pickle
-        model_dic = {
+    def save_model(self, save_path: str) -> None:
+        """
+        Save the model to *save_path* using two safe, non-executable formats:
+        - ``<save_path>/config.json``  — hyperparameters (human-readable)
+        - ``<save_path>/weights.npz``  — weight arrays (numpy binary)
+
+        This replaces the previous pickle-based format.  Pickle files execute
+        arbitrary Python on load and must never be loaded from untrusted sources.
+        """
+        import os
+
+        os.makedirs(save_path, exist_ok=True)
+
+        # Hyperparameters — plain JSON, no code execution risk.
+        config = {
             "num_bp1": self.num_bp1,
             "num_bp2": self.num_bp2,
             "num_bp3": self.num_bp3,
@@ -63,41 +75,55 @@ class CNN:
             "size_pooling1": self.size_pooling1,
             "rate_weight": self.rate_weight,
             "rate_thre": self.rate_thre,
-            "w_conv1": self.w_conv1,
-            "wkj": self.wkj,
-            "vji": self.vji,
-            "thre_conv1": self.thre_conv1,
-            "thre_bp2": self.thre_bp2,
-            "thre_bp3": self.thre_bp3,
         }
-        with open(save_path, "wb") as f:
-            pickle.dump(model_dic, f)
+        with open(f"{save_path}/config.json", "w") as f:
+            json.dump(config, f)
+
+        # Weight arrays — numpy's own safe binary format.
+        np.savez(
+            f"{save_path}/weights.npz",
+            **{f"w_conv1_{i}": np.asarray(w) for i, w in enumerate(self.w_conv1)},
+            wkj=np.asarray(self.wkj),
+            vji=np.asarray(self.vji),
+            thre_conv1=np.asarray(self.thre_conv1),
+            thre_bp2=np.asarray(self.thre_bp2),
+            thre_bp3=np.asarray(self.thre_bp3),
+        )
 
         print(f"Model saved: {save_path}")
 
     @classmethod
-    def read_model(cls, model_path):
-        # read saved model
-        with open(model_path, "rb") as f:
-            model_dic = pickle.load(f)  # noqa: S301
+    def read_model(cls, model_path: str) -> "CNN":
+        """
+        Load a model previously saved with :meth:`save_model`.
 
-        conv_get = model_dic.get("conv1")
-        conv_get.append(model_dic.get("step_conv1"))
-        size_p1 = model_dic.get("size_pooling1")
-        bp1 = model_dic.get("num_bp1")
-        bp2 = model_dic.get("num_bp2")
-        bp3 = model_dic.get("num_bp3")
-        r_w = model_dic.get("rate_weight")
-        r_t = model_dic.get("rate_thre")
-        # create model instance
-        conv_ins = CNN(conv_get, size_p1, bp1, bp2, bp3, r_w, r_t)
-        # modify model parameter
-        conv_ins.w_conv1 = model_dic.get("w_conv1")
-        conv_ins.wkj = model_dic.get("wkj")
-        conv_ins.vji = model_dic.get("vji")
-        conv_ins.thre_conv1 = model_dic.get("thre_conv1")
-        conv_ins.thre_bp2 = model_dic.get("thre_bp2")
-        conv_ins.thre_bp3 = model_dic.get("thre_bp3")
+        Reads ``<model_path>/config.json`` and ``<model_path>/weights.npz``.
+        Unlike pickle, neither format can execute arbitrary code on load.
+        """
+        with open(f"{model_path}/config.json") as f:
+            config = json.load(f)
+
+        conv_get = config["conv1"] + [config["step_conv1"]]
+        conv_ins = cls(
+            conv_get,
+            config["size_pooling1"],
+            config["num_bp1"],
+            config["num_bp2"],
+            config["num_bp3"],
+            config["rate_weight"],
+            config["rate_thre"],
+        )
+
+        weights = np.load(f"{model_path}/weights.npz")
+        num_kernels = conv_ins.conv1[1]
+        conv_ins.w_conv1 = [
+            np.asmatrix(weights[f"w_conv1_{i}"]) for i in range(num_kernels)
+        ]
+        conv_ins.wkj = np.asmatrix(weights["wkj"])
+        conv_ins.vji = np.asmatrix(weights["vji"])
+        conv_ins.thre_conv1 = weights["thre_conv1"]
+        conv_ins.thre_bp2 = weights["thre_bp2"]
+        conv_ins.thre_bp3 = weights["thre_bp3"]
         return conv_ins
 
     def sig(self, x):

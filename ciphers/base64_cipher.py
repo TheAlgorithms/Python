@@ -83,7 +83,7 @@ def base64_decode(encoded_data: str) -> bytes:
     >>> base64_decode("abc")
     Traceback (most recent call last):
       ...
-    AssertionError: Incorrect padding
+    ValueError: Incorrect padding
     """
     # Make sure encoded_data is either a string or a bytes-like object
     if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
@@ -105,16 +105,15 @@ def base64_decode(encoded_data: str) -> bytes:
 
     # Check if the encoded string contains non base64 characters
     if padding:
-        assert all(char in B64_CHARSET for char in encoded_data[:-padding]), (
-            "Invalid base64 character(s) found."
-        )
+        if not all(char in B64_CHARSET for char in encoded_data[:-padding]):
+            raise ValueError("Invalid base64 character(s) found.")
     else:
-        assert all(char in B64_CHARSET for char in encoded_data), (
-            "Invalid base64 character(s) found."
-        )
+        if not all(char in B64_CHARSET for char in encoded_data):
+            raise ValueError("Invalid base64 character(s) found.")
 
     # Check the padding
-    assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding"
+    if not (len(encoded_data) % 4 == 0 and padding < 3):
+        raise ValueError("Incorrect padding")
 
     if padding:
         # Remove padding if there is one

@@ -1,5 +1,5 @@
 import os
-import random
+import secrets
 import sys
 
 from maths.greatest_common_divisor import gcd_by_iterative
@@ -15,12 +15,18 @@ def main() -> None:
 
 def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
     """
-    >>> random.seed(0) # for repeatability
-    >>> public_key, private_key = generate_key(8)
-    >>> public_key
-    (26569, 239)
-    >>> private_key
-    (26569, 2855)
+    Generate an RSA key pair of the given bit size.
+
+    Uses secrets.randbits (CSPRNG) for all random values so that generated
+    keys are not predictable from observed outputs.
+
+    >>> public_key, private_key = generate_key(16)
+    >>> public_key[0] == private_key[0]  # same modulus n
+    True
+    >>> 0 < public_key[1] < public_key[0]  # e < n
+    True
+    >>> 0 < private_key[1] < private_key[0]  # d < n
+    True
     """
     p = rabin_miller.generate_large_prime(key_size)
     q = rabin_miller.generate_large_prime(key_size)
@@ -28,7 +34,8 @@ def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
 
     # Generate e that is relatively prime to (p - 1) * (q - 1)
     while True:
-        e = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
+        # Set the high bit so e is always in [2^(key_size-1), 2^key_size - 1]
+        e = secrets.randbits(key_size) | (1 << (key_size - 1))
         if gcd_by_iterative(e, (p - 1) * (q - 1)) == 1:
             break
 

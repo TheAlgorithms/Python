@@ -1,21 +1,24 @@
-import random
+import secrets
 
 
 class Onepad:
     @staticmethod
     def encrypt(text: str) -> tuple[list[int], list[int]]:
         """
-        Function to encrypt text using pseudo-random numbers
+        Function to encrypt text using cryptographically secure random numbers.
+
         >>> Onepad().encrypt("")
         ([], [])
         >>> Onepad().encrypt([])
         ([], [])
-        >>> random.seed(1)
-        >>> Onepad().encrypt(" ")
-        ([6969], [69])
-        >>> random.seed(1)
-        >>> Onepad().encrypt("Hello")
-        ([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
+        >>> c, k = Onepad().encrypt(" ")
+        >>> len(c) == 1 and len(k) == 1
+        True
+        >>> c, k = Onepad().encrypt("Hello")
+        >>> len(c) == 5 and len(k) == 5
+        True
+        >>> Onepad().decrypt(c, k)
+        'Hello'
         >>> Onepad().encrypt(1)
         Traceback (most recent call last):
         ...
@@ -29,7 +32,7 @@ class Onepad:
         key = []
         cipher = []
         for i in plain:
-            k = random.randint(1, 300)
+            k = secrets.randbelow(300) + 1  # range [1, 300]
             c = (i + k) * k
             cipher.append(c)
             key.append(k)
@@ -38,7 +41,7 @@ class Onepad:
     @staticmethod
     def decrypt(cipher: list[int], key: list[int]) -> str:
         """
-        Function to decrypt text using pseudo-random numbers.
+        Function to decrypt text using the key produced by encrypt().
         >>> Onepad().decrypt([], [])
         ''
         >>> Onepad().decrypt([35], [])
@@ -47,7 +50,6 @@ class Onepad:
         Traceback (most recent call last):
         ...
         IndexError: list index out of range
-        >>> random.seed(1)
         >>> Onepad().decrypt([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
         'Hello'
         """

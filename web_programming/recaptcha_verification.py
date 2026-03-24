@@ -39,6 +39,8 @@ recaptcha verification.
 # ]
 # ///
 
+import os
+
 import httpx
 
 try:
@@ -49,8 +51,8 @@ except ImportError:
 
 
 def login_using_recaptcha(request):
-    # Enter your recaptcha secret key here
-    secret_key = "secretKey"  # noqa: S105
+    # Read the recaptcha secret key from the environment; never hard-code it.
+    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY", "")
     url = "https://www.google.com/recaptcha/api/siteverify"
 
     # when method is not POST, direct user to login page

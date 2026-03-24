@@ -1,5 +1,5 @@
 import os
-import random
+import secrets
 import sys
 
 from . import cryptomath_module as cryptomath
@@ -8,18 +8,29 @@ from . import rabin_miller
 min_primitive_root = 3
 
 
-# I have written my code naively same as definition of primitive root
-# however every time I run this program, memory exceeded...
-# so I used 4.80 Algorithm in
-# Handbook of Applied Cryptography(CRC Press, ISBN : 0-8493-8523-7, October 1996)
-# and it seems to run nicely!
+# Algorithm 4.80 from Handbook of Applied Cryptography
+# (CRC Press, ISBN: 0-8493-8523-7, October 1996).
+#
+# For a large prime p, p-1 = 2 * ((p-1)/2).  A generator g of Z_p* must
+# satisfy g^((p-1)/q) ≢ 1 (mod p) for every prime factor q of p-1.
+# Because p is a safe-ish large prime here, checking q=2 (i.e. the Legendre
+# symbol) is the dominant filter; we also skip g=2 as a degenerate case.
 def primitive_root(p_val: int) -> int:
+    """
+    Return a primitive root modulo the prime p_val.
+
+    >>> p = 23  # small prime for testing
+    >>> g = primitive_root(p)
+    >>> pow(g, (p - 1) // 2, p) != 1
+    True
+    >>> 3 <= g < p
+    True
+    """
     print("Generating primitive root of p")
     while True:
-        g = random.randrange(3, p_val)
-        if pow(g, 2, p_val) == 1:
-            continue
-        if pow(g, p_val, p_val) == 1:
+        g = secrets.randbelow(p_val - 3) + 3  # range [3, p_val-1]
+        # g must not be a quadratic residue mod p (order would divide (p-1)/2)
+        if pow(g, (p_val - 1) // 2, p_val) == 1:
             continue
         return g
 
@@ -28,7 +39,7 @@ def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, i
     print("Generating prime p...")
     p = rabin_miller.generate_large_prime(key_size)  # select large prime number.
     e_1 = primitive_root(p)  # one primitive root on modulo p.
-    d = random.randrange(3, p)  # private_key -> have to be greater than 2 for safety.
+    d = secrets.randbelow(p - 3) + 3  # private key in [3, p-1]
     e_2 = cryptomath.find_mod_inverse(pow(e_1, d, p), p)
 
     public_key = (key_size, e_1, e_2, p)
