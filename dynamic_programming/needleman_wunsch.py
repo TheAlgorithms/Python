@@ -28,12 +28,12 @@ Scoring Convention used here:
 """
 
 
-
 # SECTION 1 : SCORING HELPERS
 
 
-def get_match_score(char_a: str, char_b: str,
-                    match: int = 1, mismatch: int = -1) -> int:
+def get_match_score(
+    char_a: str, char_b: str, match: int = 1, mismatch: int = -1
+) -> int:
     """Return +match if the two characters are identical, else -mismatch.
 
     This is the substitution score used when comparing two aligned residues.
@@ -61,15 +61,13 @@ def get_match_score(char_a: str, char_b: str,
     # to produce a negative score (e.g. -1).
     if char_a == char_b:
         return match
-    return -abs(mismatch)   # always produce a non-positive penalty
-
+    return -abs(mismatch)  # always produce a non-positive penalty
 
 
 # SECTION 2 : PHASE 1: INITIALIZATION
 
 
-def initialize_score_matrix(rows: int, cols: int,
-                             gap_penalty: int = -2) -> list:
+def initialize_score_matrix(rows: int, cols: int, gap_penalty: int = -2) -> list:
     """Build the empty (rows x cols) scoring grid and fill the border cells.
 
     Why do we need a border?
@@ -97,21 +95,21 @@ def initialize_score_matrix(rows: int, cols: int,
         >>> initialize_score_matrix(3, 4, gap_penalty=-2)
         [[0, -2, -4, -6], [-2, 0, 0, 0], [-4, 0, 0, 0]]
     """
-    #  Create an all-zero grid of size (rows x cols) 
+    #  Create an all-zero grid of size (rows x cols)
     # We use a list comprehension: for each row, create a list of `cols` zeros.
     score_matrix = [
-        [0] * cols           # One row = a list of `cols` zeros
-        for _ in range(rows) # Repeat this for every row
+        [0] * cols  # One row = a list of `cols` zeros
+        for _ in range(rows)  # Repeat this for every row
     ]
 
-    #  Fill the first ROW (row index 0) 
+    #  Fill the first ROW (row index 0)
     # score_matrix[0][col] represents aligning col characters of seq1
     # against zero characters of seq2, so we need `col` gaps.
     for col in range(cols):
         score_matrix[0][col] = col * gap_penalty
         # Example: col=3, gap=-2 -> score = 3 * -2 = -6
 
-    #  Fill the first COLUMN (col index 0) 
+    #  Fill the first COLUMN (col index 0)
     # score_matrix[row][0] represents aligning zero characters of seq1
     # against `row` characters of seq2, so we need `row` gaps.
     for row in range(rows):
@@ -148,25 +146,21 @@ def initialize_traceback_matrix(rows: int, cols: int) -> list:
         >>> [tb[r][0] for r in range(3)]
         ['X', 'U', 'U']
     """
-    #  Create a grid filled with empty strings 
-    traceback_matrix = [
-        [''] * cols
-        for _ in range(rows)
-    ]
+    #  Create a grid filled with empty strings
+    traceback_matrix = [[""] * cols for _ in range(rows)]
 
-    #  First cell is the origin: no predecessor 
-    traceback_matrix[0][0] = 'X'
+    #  First cell is the origin: no predecessor
+    traceback_matrix[0][0] = "X"
 
-    #  First row: to get here we always came from the LEFT 
+    #  First row: to get here we always came from the LEFT
     for col in range(1, cols):
-        traceback_matrix[0][col] = 'L'
+        traceback_matrix[0][col] = "L"
 
-    #  First column: to get here we always came from ABOVE (Up) 
+    #  First column: to get here we always came from ABOVE (Up)
     for row in range(1, rows):
-        traceback_matrix[row][0] = 'U'
+        traceback_matrix[row][0] = "U"
 
     return traceback_matrix
-
 
 
 # SECTION 3 : PHASE 2: MATRIX FILLING (Core Dynamic Programming)
@@ -222,13 +216,12 @@ def fill_score_matrix(
         >>> sm[2][3]
         0
     """
-    total_rows = len(score_matrix)      # = len(sequence_2) + 1
-    total_cols = len(score_matrix[0])   # = len(sequence_1) + 1
+    total_rows = len(score_matrix)  # = len(sequence_2) + 1
+    total_cols = len(score_matrix[0])  # = len(sequence_1) + 1
 
     # Iterate over every interior cell (skip row 0 and col 0, already filled)
     for row in range(1, total_rows):
         for col in range(1, total_cols):
-
             # - Identify which characters we are comparing -
             # Subtract 1 because row 0 / col 0 are the "empty prefix" border.
             char_from_seq2 = sequence_2[row - 1]  # character on the left axis
@@ -237,8 +230,9 @@ def fill_score_matrix(
             # - Compute score for each of the three possible moves -
 
             # Option A : DIAGONAL: pair the two characters (match or mismatch)
-            substitution_score = get_match_score(char_from_seq1, char_from_seq2,
-                                                 match=match, mismatch=mismatch)
+            substitution_score = get_match_score(
+                char_from_seq1, char_from_seq2, match=match, mismatch=mismatch
+            )
             diagonal_score = score_matrix[row - 1][col - 1] + substitution_score
 
             # Option B : UP: place a gap in sequence_1 (seq2 char is unmatched)
@@ -255,14 +249,13 @@ def fill_score_matrix(
             # Priority order when tied: Diagonal > Up > Left
             # (tie-breaking affects which of equally-optimal paths is returned)
             if best_score == diagonal_score:
-                traceback_matrix[row][col] = 'D'
+                traceback_matrix[row][col] = "D"
             elif best_score == up_score:
-                traceback_matrix[row][col] = 'U'
+                traceback_matrix[row][col] = "U"
             else:
-                traceback_matrix[row][col] = 'L'
+                traceback_matrix[row][col] = "L"
 
     return score_matrix, traceback_matrix
-
 
 
 # SECTION 4 : PHASE 3: TRACEBACK
@@ -314,40 +307,38 @@ def traceback_alignment(
     aligned_seq1_reversed = []
     aligned_seq2_reversed = []
 
-    #  Start at the bottom-right corner of the grid 
-    current_row = len(traceback_matrix) - 1       # last row index
-    current_col = len(traceback_matrix[0]) - 1    # last column index
+    #  Start at the bottom-right corner of the grid
+    current_row = len(traceback_matrix) - 1  # last row index
+    current_col = len(traceback_matrix[0]) - 1  # last column index
 
-    #  Follow arrows until we reach the origin cell 'X' 
-    while traceback_matrix[current_row][current_col] != 'X':
-
+    #  Follow arrows until we reach the origin cell 'X'
+    while traceback_matrix[current_row][current_col] != "X":
         current_direction = traceback_matrix[current_row][current_col]
 
-        if current_direction == 'D':
+        if current_direction == "D":
             # Diagonal: pair the characters and move diagonally up-left
             aligned_seq1_reversed.append(sequence_1[current_col - 1])
             aligned_seq2_reversed.append(sequence_2[current_row - 1])
             current_row -= 1
             current_col -= 1
 
-        elif current_direction == 'U':
+        elif current_direction == "U":
             # Up: seq2 has a character; seq1 gets a gap; move straight up
-            aligned_seq1_reversed.append('-')                        # gap in seq1
+            aligned_seq1_reversed.append("-")  # gap in seq1
             aligned_seq2_reversed.append(sequence_2[current_row - 1])
             current_row -= 1
 
-        elif current_direction == 'L':
+        elif current_direction == "L":
             # Left: seq1 has a character; seq2 gets a gap; move straight left
             aligned_seq1_reversed.append(sequence_1[current_col - 1])
-            aligned_seq2_reversed.append('-')                        # gap in seq2
+            aligned_seq2_reversed.append("-")  # gap in seq2
             current_col -= 1
 
-    #  Reverse both lists to get the correct left->right order 
-    aligned_seq1 = ''.join(reversed(aligned_seq1_reversed))
-    aligned_seq2 = ''.join(reversed(aligned_seq2_reversed))
+    #  Reverse both lists to get the correct left->right order
+    aligned_seq1 = "".join(reversed(aligned_seq1_reversed))
+    aligned_seq2 = "".join(reversed(aligned_seq2_reversed))
 
     return aligned_seq1, aligned_seq2
-
 
 
 # SECTION 5 : PUBLIC INTERFACE
@@ -402,17 +393,18 @@ def needleman_wunsch(
         >>> score
         -1
     """
-    #  Determine grid dimensions 
+    #  Determine grid dimensions
     # We need one extra row/column for the "empty prefix" border.
     number_of_rows = len(sequence_2) + 1
     number_of_cols = len(sequence_1) + 1
 
-    #  Phase 1: Initialization 
-    score_matrix     = initialize_score_matrix(number_of_rows, number_of_cols,
-                                               gap_penalty=gap_penalty)
+    #  Phase 1: Initialization
+    score_matrix = initialize_score_matrix(
+        number_of_rows, number_of_cols, gap_penalty=gap_penalty
+    )
     traceback_matrix = initialize_traceback_matrix(number_of_rows, number_of_cols)
 
-    #  Phase 2: Matrix Filling 
+    #  Phase 2: Matrix Filling
     score_matrix, traceback_matrix = fill_score_matrix(
         score_matrix,
         traceback_matrix,
@@ -423,16 +415,15 @@ def needleman_wunsch(
         mismatch=mismatch,
     )
 
-    #  Read the optimal alignment score from the bottom-right cell 
+    #  Read the optimal alignment score from the bottom-right cell
     optimal_score = score_matrix[number_of_rows - 1][number_of_cols - 1]
 
-    #  Phase 3: Traceback 
+    #  Phase 3: Traceback
     aligned_seq1, aligned_seq2 = traceback_alignment(
         traceback_matrix, sequence_1, sequence_2
     )
 
     return aligned_seq1, aligned_seq2, optimal_score
-
 
 
 # SECTION 6 : PRETTY PRINTERS
@@ -462,20 +453,18 @@ def format_alignment(aligned_seq1: str, aligned_seq2: str) -> str:
     annotation_chars = []
 
     for char_a, char_b in zip(aligned_seq1, aligned_seq2):
-        if char_a == '-' or char_b == '-':
-            annotation_chars.append(' ')   # gap : no match possible
+        if char_a == "-" or char_b == "-":
+            annotation_chars.append(" ")  # gap : no match possible
         elif char_a == char_b:
-            annotation_chars.append('|')   # identical
+            annotation_chars.append("|")  # identical
         else:
-            annotation_chars.append('.')   # mismatch
+            annotation_chars.append(".")  # mismatch
 
-    annotation_line = ''.join(annotation_chars)
+    annotation_line = "".join(annotation_chars)
     return f"{aligned_seq1}\n{annotation_line}\n{aligned_seq2}"
 
 
-def print_score_matrix(score_matrix: list,
-                       sequence_1: str,
-                       sequence_2: str) -> None:
+def print_score_matrix(score_matrix: list, sequence_1: str, sequence_2: str) -> None:
     """Print the filled scoring matrix in a readable table format.
 
     Useful for understanding (or teaching) what the DP grid looks like.
@@ -498,25 +487,24 @@ def print_score_matrix(score_matrix: list,
     col_width = 4
 
     # Header row: blank corner + sequence_1 characters
-    header_labels = ['  -'] + [f'{c:>{col_width}}' for c in sequence_1]
-    print('  ' + ''.join(header_labels))
+    header_labels = ["  -"] + [f"{c:>{col_width}}" for c in sequence_1]
+    print("  " + "".join(header_labels))
 
     # One data row per border label + each character of sequence_2
-    row_labels = ['-'] + list(sequence_2)
+    row_labels = ["-"] + list(sequence_2)
 
     for row_index, row_label in enumerate(row_labels):
-        row_cells = [f'{cell:>{col_width}}' for cell in score_matrix[row_index]]
-        print(f'  {row_label:>2}' + ''.join(row_cells))
-
+        row_cells = [f"{cell:>{col_width}}" for cell in score_matrix[row_index]]
+        print(f"  {row_label:>2}" + "".join(row_cells))
 
 
 # SECTION 7 : DEMO
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
-    #  Run all embedded doctests 
+    #  Run all embedded doctests
     print("=" * 60)
     print("Running doctests ...")
     results = doctest.testmod(verbose=False)
@@ -525,15 +513,15 @@ if __name__ == '__main__':
     else:
         print(f"{results.failed} doctest(s) FAILED.\n")
 
-    #  Classic Needleman & Wunsch (1970) example 
+    #  Classic Needleman & Wunsch (1970) example
     print("=" * 60)
     print("Example 1 : Classic NW paper sequences")
     print("  seq1 = GATTACA")
     print("  seq2 = GCATGCU")
     print("-" * 60)
 
-    seq1 = 'GATTACA'
-    seq2 = 'GCATGCU'
+    seq1 = "GATTACA"
+    seq2 = "GCATGCU"
 
     al1, al2, opt_score = needleman_wunsch(seq1, seq2)
 
@@ -548,19 +536,19 @@ if __name__ == '__main__':
     print("\nAlignment:")
     print(format_alignment(al1, al2))
 
-    #  Second example: identical sequences 
+    #  Second example: identical sequences
     print("\n" + "=" * 60)
     print("Example 2 : Identical sequences (perfect match)")
     print("  seq1 = seq2 = ACGT")
-    al1, al2, opt_score = needleman_wunsch('ACGT', 'ACGT')
+    al1, al2, opt_score = needleman_wunsch("ACGT", "ACGT")
     print(f"Optimal score: {opt_score}")
     print(format_alignment(al1, al2))
 
-    #  Third example: sequences requiring a gap 
+    #  Third example: sequences requiring a gap
     print("\n" + "=" * 60)
     print("Example 3 : Gap required")
     print("  seq1 = AGCT")
     print("  seq2 = AGT")
-    al1, al2, opt_score = needleman_wunsch('AGCT', 'AGT')
+    al1, al2, opt_score = needleman_wunsch("AGCT", "AGT")
     print(f"Optimal score: {opt_score}")
     print(format_alignment(al1, al2))
