@@ -11,6 +11,8 @@ def pigeonhole_sort(a):
     >>> a == b
     True
     """
+    if not a :
+        return         # this handles empty list
     # size of range of values in the list (ie, number of pigeonholes we need)
 
     min_val = min(a)  # min() finds the minimum value
@@ -38,7 +40,7 @@ def pigeonhole_sort(a):
 def main():
     a = [8, 3, 2, 7, 4, 6, 8]
     pigeonhole_sort(a)
-    print("Sorted order is:", " ".join(a))
+    print("Sorted order is:", " ".join(map(str,a))) # it converts integer into string
 
 
 if __name__ == "__main__":
