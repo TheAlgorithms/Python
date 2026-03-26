@@ -37,6 +37,7 @@ T = TypeVar("T")  # Must support < via __lt__; mirrors what bisect itself accept
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _check_sorted(collection: Sequence) -> None:
     """Raise ValueError if *collection* is not sorted in ascending order.
 
@@ -49,6 +50,7 @@ def _check_sorted(collection: Sequence) -> None:
 # ---------------------------------------------------------------------------
 # bisect_left / bisect_right
 # ---------------------------------------------------------------------------
+
 
 def bisect_left(
     sorted_collection: Sequence[T],
@@ -136,6 +138,7 @@ def bisect_right(
 # insort helpers
 # ---------------------------------------------------------------------------
 
+
 def insort_left(
     sorted_collection: list[T],
     item: T,
@@ -195,6 +198,7 @@ def insort_right(
 # ---------------------------------------------------------------------------
 # Core binary search variants
 # ---------------------------------------------------------------------------
+
 
 def binary_search(sorted_collection: Sequence[T], item: T) -> int:
     """Iterative binary search.  Returns -1 when *item* is absent.
@@ -257,9 +261,7 @@ def binary_search_std_lib(sorted_collection: Sequence[T], item: T) -> int:
     return -1
 
 
-def binary_search_with_duplicates(
-    sorted_collection: Sequence[T], item: T
-) -> list[int]:
+def binary_search_with_duplicates(sorted_collection: Sequence[T], item: T) -> list[int]:
     """Binary search that returns *all* indices where *item* appears.
 
     IMPROVEMENT: reuses the module-level ``bisect_left`` / ``bisect_right``
@@ -323,9 +325,7 @@ def binary_search_by_recursion(
     return _binary_search_recursive(sorted_collection, item, left, right)
 
 
-def _binary_search_recursive(
-    col: Sequence[T], item: T, left: int, right: int
-) -> int:
+def _binary_search_recursive(col: Sequence[T], item: T, left: int, right: int) -> int:
     """Internal recursive helper — no validation overhead."""
     if left > right:
         return -1
@@ -341,6 +341,7 @@ def _binary_search_recursive(
 # ---------------------------------------------------------------------------
 # Exponential search
 # ---------------------------------------------------------------------------
+
 
 def exponential_search(sorted_collection: Sequence[T], item: T) -> int:
     """Exponential search — efficient when the target is near the start.
