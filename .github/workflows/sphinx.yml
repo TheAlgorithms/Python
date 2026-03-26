@@ -33,7 +33,7 @@ jobs:
           libhdf5-dev
           libopenblas-dev
       - uses: actions/checkout@v6
-      - uses: astral-sh/setup-uv@v7
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
       - uses: actions/setup-python@v6
         with:
           python-version: 3.14
