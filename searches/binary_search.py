@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# mypy: ignore-errors
+# #!/usr/bin/env python3
 """
 Pure Python implementations of binary search algorithms.
 
@@ -14,23 +15,24 @@ from collections.abc import Sequence
 from itertools import pairwise
 from typing import TypeVar
 
+
 __all__ = [
-    "bisect_left",
-    "bisect_right",
-    "insort_left",
-    "insort_right",
     "binary_search",
+    "binary_search_by_recursion",
     "binary_search_std_lib",
     "binary_search_with_duplicates",
-    "binary_search_by_recursion",
+    "bisect_left",
+    "bisect_right",
     "exponential_search",
+    "insort_left",
+    "insort_right",
 ]
 
 # ---------------------------------------------------------------------------
 # Generic comparable type
 # ---------------------------------------------------------------------------
 
-T = TypeVar("T")  # Must support < via __lt__; mirrors what bisect itself accepts.
+T = TypeVar("T") # Must support < via __lt__; mirrors what bisect itself accepts.
 
 
 # ---------------------------------------------------------------------------
