@@ -15,7 +15,6 @@ from collections.abc import Sequence
 from itertools import pairwise
 from typing import TypeVar
 
-
 __all__ = [
     "binary_search",
     "binary_search_by_recursion",
@@ -32,7 +31,7 @@ __all__ = [
 # Generic comparable type
 # ---------------------------------------------------------------------------
 
-T = TypeVar("T") # Must support < via __lt__; mirrors what bisect itself accepts.
+T = TypeVar("T")  # Must support < via __lt__; mirrors what bisect itself accepts.
 
 
 # ---------------------------------------------------------------------------
