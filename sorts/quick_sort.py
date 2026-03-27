@@ -38,7 +38,8 @@ def quick_sort(collection: list) -> list:
 
     # Partition the elements
     lesser = [
-        item for index, item in enumerate(collection)
+        item
+        for index, item in enumerate(collection)
         if item <= pivot and index != pivot_index
     ]
     greater = [item for item in collection if item > pivot]
