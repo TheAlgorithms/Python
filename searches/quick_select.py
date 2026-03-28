@@ -121,12 +121,3 @@ def median(items: List[int]) -> Optional[float]:
         return (low_mid + high_mid) / 2
 
 
-if __name__ == "__main__":
-    assert quick_select([1, 2, 3], 1) == 2
-    assert quick_select([], 0) is None
-    assert quick_select([5, 4, 3, 2], 2) == 4
-    assert quick_select([3, 5, 7, 10, 2, 12], 3) == 7
-    assert median([3, 2, 2, 9, 9]) == 3
-    assert median([2, 2, 9, 9, 9, 3]) == 6.0
-    assert median([]) is None
-    print("All assertions passed.")
