@@ -1,4 +1,6 @@
-def binary_search(lst: list[int | float], item: int | float, start: int, end: int) -> int:
+def binary_search(
+    lst: list[int | float], item: int | float, start: int, end: int
+) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
