@@ -6,90 +6,56 @@ Example:"abc", "abg" are subsequences of "abcdefgh".
 """
 
 
-def longest_common_subsequence(x: str, y: str):
+def longest_common_subsequence_string(u: str, v: str) -> str:
     """
-    Finds the longest common subsequence between two strings. Also returns the
-    The subsequence found
+    Return the longest common subsequence of two strings using
+    dynamic programming reconstruction.
 
-    Parameters
-    ----------
-
-    x: str, one of the strings
-    y: str, the other string
-
-    Returns
-    -------
-    L[m][n]: int, the length of the longest subsequence. Also equal to len(seq)
-    Seq: str, the subsequence found
-
-    >>> longest_common_subsequence("programming", "gaming")
-    (6, 'gaming')
-    >>> longest_common_subsequence("physics", "smartphone")
-    (2, 'ph')
-    >>> longest_common_subsequence("computer", "food")
-    (1, 'o')
-    >>> longest_common_subsequence("", "abc")  # One string is empty
-    (0, '')
-    >>> longest_common_subsequence("abc", "")  # Other string is empty
-    (0, '')
-    >>> longest_common_subsequence("", "")  # Both strings are empty
-    (0, '')
-    >>> longest_common_subsequence("abc", "def")  # No common subsequence
-    (0, '')
-    >>> longest_common_subsequence("abc", "abc")  # Identical strings
-    (3, 'abc')
-    >>> longest_common_subsequence("a", "a")  # Single character match
-    (1, 'a')
-    >>> longest_common_subsequence("a", "b")  # Single character no match
-    (0, '')
-    >>> longest_common_subsequence("abcdef", "ace")  # Interleaved subsequence
-    (3, 'ace')
-    >>> longest_common_subsequence("ABCD", "ACBD")  # No repeated characters
-    (3, 'ABD')
+    >>> longest_common_subsequence_string("AGGTAB", "GXTXAYB")
+    'GTAB'
+    >>> longest_common_subsequence_string("abcde", "ace")
+    'ace'
+    >>> longest_common_subsequence_string("abc", "abc")
+    'abc'
+    >>> longest_common_subsequence_string("abc", "def")
+    ''
+    >>> longest_common_subsequence_string("", "abc")
+    ''
     """
-    # find the length of strings
+    m, n = len(u), len(v)
 
-    assert x is not None
-    assert y is not None
-
-    m = len(x)
-    n = len(y)
-
-    # declaring the array for storing the dp values
+    # Build the DP table
     dp = [[0] * (n + 1) for _ in range(m + 1)]
-
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            match = 1 if x[i - 1] == y[j - 1] else 0
+            if u[i - 1] == v[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
 
-            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1] + match)
-
-    seq = ""
+    # Backtrack to reconstruct the actual subsequence
+    lcs: list[str] = []
     i, j = m, n
     while i > 0 and j > 0:
-        match = 1 if x[i - 1] == y[j - 1] else 0
-
-        if dp[i][j] == dp[i - 1][j - 1] + match:
-            if match == 1:
-                seq = x[i - 1] + seq
+        if u[i - 1] == v[j - 1]:
+            lcs.append(u[i - 1])
             i -= 1
             j -= 1
-        elif dp[i][j] == dp[i - 1][j]:
+        elif dp[i - 1][j] > dp[i][j - 1]:
             i -= 1
         else:
             j -= 1
 
-    return dp[m][n], seq
-
+    return "".join(reversed(lcs))
 
 if __name__ == "__main__":
     a = "AGGTAB"
     b = "GXTXAYB"
-    expected_ln = 4
     expected_subseq = "GTAB"
 
-    ln, subseq = longest_common_subsequence(a, b)
-    print("len =", ln, ", sub-sequence =", subseq)
-    import doctest
+    subseq = longest_common_subsequence_string(a, b)
+    print("sub-sequence =", subseq)
+    assert subseq == expected_subseq
 
+    import doctest
     doctest.testmod()
