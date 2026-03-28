@@ -1,20 +1,29 @@
 """
 A Python implementation of the quick select algorithm, which is efficient for
 calculating the value that would appear in the index of a list if it would be
-sorted, even if it is not already sorted
+sorted, even if it is not already sorted.
 https://en.wikipedia.org/wiki/Quickselect
+
+Time Complexity:
+    Average: O(n)
+    Worst:   O(n^2)
 """
 
 import random
+from typing import List, Optional, Tuple
 
 
-def _partition(data: list, pivot) -> tuple:
+def _partition(data: List[int], pivot: int) -> Tuple[List[int], List[int], List[int]]:
     """
-    Three way partition the data into smaller, equal and greater lists,
-    in relationship to the pivot
-    :param data: The data to be sorted (a list)
-    :param pivot: The value to partition the data on
-    :return: Three list: smaller, equal and greater
+    Partition the input list into three lists relative to a pivot.
+
+    Args:
+        data (List[int]): Input list.
+        pivot (int): Pivot value.
+
+    Returns:
+        Tuple[List[int], List[int], List[int]]:
+            Lists of elements less than, equal to, and greater than the pivot.
     """
     less, equal, greater = [], [], []
     for element in data:
@@ -27,8 +36,23 @@ def _partition(data: list, pivot) -> tuple:
     return less, equal, greater
 
 
-def quick_select(items: list, index: int):
+def quick_select(items: List[int], index: int) -> Optional[int]:
     """
+    Return the element that would appear at the given index if the list
+    were sorted, without fully sorting the list.
+
+    Args:
+        items (List[int]): The unsorted input list.
+        index (int): The zero-based target index in the sorted order.
+
+    Returns:
+        Optional[int]: The element at the given sorted index, or None for
+        invalid input.
+
+    Time Complexity:
+        Average: O(n)
+        Worst:   O(n^2)
+
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     54
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 1)
@@ -37,17 +61,18 @@ def quick_select(items: list, index: int):
     4
     >>> quick_select([3, 5, 7, 10, 2, 12], 3)
     7
+    >>> quick_select([], 0) is None
+    True
     """
-    # index = len(items) // 2 when trying to find the median
-    #   (value of index when items is sorted)
-
-    # invalid input
-    if index >= len(items) or index < 0:
+    if not items:
         return None
 
-    pivot = items[random.randint(0, len(items) - 1)]
-    count = 0
-    smaller, equal, larger = _partition(items, pivot)
+    if not 0 <= index < len(items):
+        return None
+
+    pivot = random.choice(items)
+    smaller, equal, greater = _partition(items, pivot)
+
     count = len(equal)
     m = len(smaller)
 
@@ -57,24 +82,36 @@ def quick_select(items: list, index: int):
     # must be in smaller
     elif m > index:
         return quick_select(smaller, index)
-    # must be in larger
+    # must be in greater
     else:
-        return quick_select(larger, index - (m + count))
+        return quick_select(greater, index - (m + count))
 
 
-def median(items: list):
+def median(items: List[int]) -> Optional[float]:
     """
+    Find the median of an unsorted list using Quickselect.
+
     One common application of Quickselect is finding the median, which is
-    the middle element (or average of the two middle elements) in a sorted dataset.
-    It works efficiently on unsorted lists by partially sorting the data without
-    fully sorting the entire list.
+    the middle element (or average of the two middle elements) in a sorted
+    dataset. It works efficiently on unsorted lists by partially sorting the
+    data without fully sorting the entire list.
+
+    Args:
+        items (List[int]): The input list.
+
+    Returns:
+        Optional[float]: The median value, or None if the list is empty.
 
     >>> median([3, 2, 2, 9, 9])
     3
-
     >>> median([2, 2, 9, 9, 9, 3])
     6.0
+    >>> median([]) is None
+    True
     """
+    if not items:
+        return None
+
     mid, rem = divmod(len(items), 2)
     if rem != 0:
         return quick_select(items=items, index=mid)
@@ -82,3 +119,14 @@ def median(items: list):
         low_mid = quick_select(items=items, index=mid - 1)
         high_mid = quick_select(items=items, index=mid)
         return (low_mid + high_mid) / 2
+
+
+if __name__ == "__main__":
+    assert quick_select([1, 2, 3], 1) == 2
+    assert quick_select([], 0) is None
+    assert quick_select([5, 4, 3, 2], 2) == 4
+    assert quick_select([3, 5, 7, 10, 2, 12], 3) == 7
+    assert median([3, 2, 2, 9, 9]) == 3
+    assert median([2, 2, 9, 9, 9, 3]) == 6.0
+    assert median([]) is None
+    print("All assertions passed.")
