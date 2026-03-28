@@ -1,5 +1,6 @@
 from typing import Any
 
+
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
