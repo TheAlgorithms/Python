@@ -1,4 +1,4 @@
-def binary_search(lst: list[int | float], item: int | float, start: int, end: int) -> int:
+def binary_search(lst: list[float], item: float, start: int, end: int) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -13,7 +13,7 @@ def binary_search(lst: list[int | float], item: int | float, start: int, end: in
         return mid
 
 
-def insertion_sort(lst: list[int | float]) -> list[int | float]:
+def insertion_sort(lst: list[float]) -> list[float]:
     length = len(lst)
 
     for index in range(1, length):
@@ -24,7 +24,7 @@ def insertion_sort(lst: list[int | float]) -> list[int | float]:
     return lst
 
 
-def merge(left: list[int | float], right: list[int | float]) -> list[int | float]:
+def merge(left: list[float], right: list[float]) -> list[float]:
     if not left:
         return right
 
@@ -37,7 +37,7 @@ def merge(left: list[int | float], right: list[int | float]) -> list[int | float
     return [right[0], *merge(left, right[1:])]
 
 
-def tim_sort(lst: list[int | float]) -> list[int | float]:
+def tim_sort(lst: list[float]) -> list[float]:
     """
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
