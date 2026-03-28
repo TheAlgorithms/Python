@@ -119,5 +119,3 @@ def median(items: List[int]) -> Optional[float]:
         low_mid = quick_select(items=items, index=mid - 1)
         high_mid = quick_select(items=items, index=mid)
         return (low_mid + high_mid) / 2
-
-
