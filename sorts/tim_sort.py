@@ -1,8 +1,9 @@
-from typing import TypeVar
-
-T = TypeVar("T", int, float, str)
-
-def binary_search(lst: list[T], item: T, start: int, end: int) -> int:
+def binary_search[T: (int, float, str)](
+    lst: list[T],
+    item: T,
+    start: int,
+    end: int,
+) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,7 +18,7 @@ def binary_search(lst: list[T], item: T, start: int, end: int) -> int:
         return mid
 
 
-def insertion_sort(lst: list[T]) -> list[T]:
+def insertion_sort[T: (int, float, str)](lst: list[T]) -> list[T]:
     length = len(lst)
 
     for index in range(1, length):
@@ -28,7 +29,7 @@ def insertion_sort(lst: list[T]) -> list[T]:
     return lst
 
 
-def merge(left: list[T], right: list[T]) -> list[T]:
+def merge[T: (int, float, str)](left: list[T], right: list[T]) -> list[T]:
     if not left:
         return right
 
@@ -41,7 +42,9 @@ def merge(left: list[T], right: list[T]) -> list[T]:
     return [right[0], *merge(left, right[1:])]
 
 
-def tim_sort(lst: list[T] | tuple[T, ...] | str) -> list[T] | list[str]:
+def tim_sort[T: (int, float, str)](
+    lst: list[T] | tuple[T, ...] | str,
+) -> list[T] | list[str]:
     """
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
