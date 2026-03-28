@@ -48,6 +48,7 @@ def longest_common_subsequence_string(u: str, v: str) -> str:
 
     return "".join(reversed(lcs))
 
+
 if __name__ == "__main__":
     a = "AGGTAB"
     b = "GXTXAYB"
@@ -58,4 +59,5 @@ if __name__ == "__main__":
     assert subseq == expected_subseq
 
     import doctest
+
     doctest.testmod()
