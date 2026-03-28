@@ -2,6 +2,7 @@ from typing import TypeVar
 
 T = TypeVar("T", int, float, str)
 
+
 def binary_search(lst: list[T], item: T, start: int, end: int) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
