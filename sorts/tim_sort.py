@@ -1,8 +1,8 @@
-def binary_search(lst: list[float | str], 
-                  item: float | str, 
-                  start: int, 
-                  end: int
-                  ) -> int:
+from typing import TypeVar
+
+T = TypeVar("T", int, float, str)
+
+def binary_search(lst: list[T], item: T, start: int, end: int) -> int:
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,7 +17,7 @@ def binary_search(lst: list[float | str],
         return mid
 
 
-def insertion_sort(lst: list[float | str]) -> list[float | str]:
+def insertion_sort(lst: list[T]) -> list[T]:
     length = len(lst)
 
     for index in range(1, length):
@@ -28,7 +28,7 @@ def insertion_sort(lst: list[float | str]) -> list[float | str]:
     return lst
 
 
-def merge(left: list[float | str], right: list[float | str]) -> list[float | str]:
+def merge(left: list[T], right: list[T]) -> list[T]:
     if not left:
         return right
 
@@ -41,7 +41,7 @@ def merge(left: list[float | str], right: list[float | str]) -> list[float | str
     return [right[0], *merge(left, right[1:])]
 
 
-def tim_sort(lst: list[float | str] | tuple | str) -> list[float | str]:
+def tim_sort(lst: list[T] | tuple[T, ...] | str) -> list[T] | list[str]:
     """
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
@@ -57,7 +57,7 @@ def tim_sort(lst: list[float | str] | tuple | str) -> list[float | str]:
     length = len(lst)
     runs, sorted_runs = [], []
     new_run = [lst[0]]
-    sorted_array = []
+    sorted_array: list[T] = []
     i = 1
     while i < length:
         if lst[i] < lst[i - 1]:
