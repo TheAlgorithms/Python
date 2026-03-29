@@ -91,7 +91,7 @@ def reversort(collection: list[Any]) -> list[Any]:
 
         # Reverse the subarray from position i to min_index
         if min_index != i:
-            arr[i:min_index + 1] = arr[i:min_index + 1][::-1]
+            arr[i : min_index + 1] = arr[i : min_index + 1][::-1]
 
     return arr
 
@@ -132,7 +132,7 @@ def reversort_cost(collection: list[Any]) -> int:
                 min_index = j
 
         # Reverse the subarray from position i to min_index
-        arr[i:min_index + 1] = arr[i:min_index + 1][::-1]
+        arr[i : min_index + 1] = arr[i : min_index + 1][::-1]
 
         # Cost is the length of the reversed segment
         total_cost += min_index - i + 1
