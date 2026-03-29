@@ -1,7 +1,9 @@
 from functools import cache
 
 
-def knapsack_memoized(weights: list[int], values: list[int], capacity: int) -> int:
+def knapsack_memoized(
+    weights: list[int], values: list[int], capacity: int
+) -> int:
     """
     Solve 0/1 knapsack using memoization without global state.
 
@@ -19,6 +21,8 @@ def knapsack_memoized(weights: list[int], values: list[int], capacity: int) -> i
     65
     >>> knapsack_memoized([], [], 5)
     0
+    >>> knapsack_memoized([2, 3, 4], [4, 5, 6], 0)
+    0
     """
 
     if len(weights) != len(values):
@@ -27,16 +31,29 @@ def knapsack_memoized(weights: list[int], values: list[int], capacity: int) -> i
     n = len(weights)
 
     @cache
-    def dp(i: int, remaining: int) -> int:
-        if i == n or remaining == 0:
+    def dp(index: int, remaining: int) -> int:
+        """
+        Recursive helper function for knapsack memoization.
+
+        Args:
+            index: current item index
+            remaining: remaining capacity of knapsack
+
+        Returns:
+            Maximum value achievable from current state
+
+        Note:
+            This function is internally tested via knapsack_memoized doctests.
+        """
+        if index == n or remaining == 0:
             return 0
 
-        if weights[i] > remaining:
-            return dp(i + 1, remaining)
+        if weights[index] > remaining:
+            return dp(index + 1, remaining)
 
         return max(
-            dp(i + 1, remaining),
-            values[i] + dp(i + 1, remaining - weights[i]),
+            dp(index + 1, remaining),
+            values[index] + dp(index + 1, remaining - weights[index]),
         )
 
     return dp(0, capacity)
