@@ -18,7 +18,7 @@ class DecisionTree:
         self.prediction = None
         self.task = task
         self.criterion = criterion
-        
+
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
@@ -51,12 +51,12 @@ class DecisionTree:
         would be incorrectly classified.
         Formula: Gini = 1 - sum(p_i^2)
         where p_i is the probability of class i.
-    
+
         Lower Gini value indicates better purity (best split).
         """
         classes, counts = np.unique(y, return_counts=True)
         prob = counts / counts.sum()
-        return 1 - np.sum(prob ** 2)
+        return 1 - np.sum(prob**2)
 
     def entropy(self, y):
         """
@@ -64,7 +64,7 @@ class DecisionTree:
         Entropy measures the randomness or disorder in the data.
         Formula: Entropy = - sum(p_i * log2(p_i))
         where p_i is the probability of class i.
-    
+
         Lower entropy means higher purity.
         """
         classes, counts = np.unique(y, return_counts=True)
@@ -77,7 +77,7 @@ class DecisionTree:
         Information gain represents the reduction in impurity
         after a dataset is split into left and right subsets.
         Formula: IG = Impurity(parent) - [weighted impurity(left) + weighted impurity(right)]
-    
+
         Higher information gain indicates a better split.
         """
         if self.criterion == "gini":
@@ -90,9 +90,7 @@ class DecisionTree:
         weight_l = len(left) / len(parent)
         weight_r = len(right) / len(parent)
 
-        return func(parent) - (
-            weight_l * func(left) + weight_r * func(right)
-        )
+        return func(parent) - (weight_l * func(left) + weight_r * func(right))
 
     def most_common_label(self, y):
         return Counter(y).most_common(1)[0][0]
@@ -150,7 +148,7 @@ class DecisionTree:
             return
 
         best_split = 0
-        
+
         """
         loop over all possible splits for the decision tree. find the best split.
         if no split exists that is less than 2 * error for the entire array
@@ -180,7 +178,7 @@ class DecisionTree:
                     best_score = score
                     best_split = i
 
-            else:  
+            else:
                 gain = self.information_gain(y, left_y, right_y)
 
                 if gain > best_score:
@@ -234,7 +232,7 @@ class DecisionTree:
 
         raise ValueError("Decision tree not yet trained")
 
-        
+
 class TestDecisionTree:
     """Decision Tres test class"""
 
@@ -252,7 +250,7 @@ class TestDecisionTree:
 
         return float(squared_error_sum / labels.size)
 
-        
+
 def main():
     """
     In this demonstration we're generating a sample data set from the sin function in
@@ -270,11 +268,13 @@ def main():
     x_cls = np.array([1, 2, 3, 4, 5, 6])
     y_cls = np.array([0, 0, 0, 1, 1, 1])
 
-    clf = DecisionTree(depth=3, min_leaf_size=1, task="classification", criterion="gini")
+    clf = DecisionTree(
+        depth=3, min_leaf_size=1, task="classification", criterion="gini"
+    )
     clf.train(x_cls, y_cls)
 
-    print("Classification prediction (2):", clf.predict(2)) 
-    print("Classification prediction (5):", clf.predict(5))  
+    print("Classification prediction (2):", clf.predict(2))
+    print("Classification prediction (5):", clf.predict(5))
 
 
 if __name__ == "__main__":
