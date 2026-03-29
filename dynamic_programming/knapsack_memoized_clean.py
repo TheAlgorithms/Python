@@ -1,9 +1,7 @@
 from functools import cache
 
 
-def knapsack_memoized(
-    weights: list[int], values: list[int], capacity: int
-) -> int:
+def knapsack_memoized(weights: list[int], values: list[int], capacity: int) -> int:
     """
     Solve 0/1 knapsack using memoization without global state.
 
