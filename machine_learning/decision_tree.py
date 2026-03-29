@@ -4,8 +4,9 @@ Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
 
-import numpy as np
 from collections import Counter
+
+import numpy as np
 
 
 class DecisionTree:
@@ -54,7 +55,7 @@ class DecisionTree:
 
         Lower Gini value indicates better purity (best split).
         """
-        classes, counts = np.unique(y, return_counts=True)
+        _, counts = np.unique(y, return_counts=True)
         prob = counts / counts.sum()
         return 1 - np.sum(prob**2)
 
@@ -67,7 +68,7 @@ class DecisionTree:
 
         Lower entropy means higher purity.
         """
-        classes, counts = np.unique(y, return_counts=True)
+        _, counts = np.unique(y, return_counts=True)
         prob = counts / counts.sum()
         return -np.sum(prob * np.log2(prob + 1e-9))
 
@@ -76,7 +77,8 @@ class DecisionTree:
         Computes the information gain from splitting a dataset.
         Information gain represents the reduction in impurity
         after a dataset is split into left and right subsets.
-        Formula: IG = Impurity(parent) - [weighted impurity(left) + weighted impurity(right)]
+        Formula: IG = Impurity(parent) - [
+            weighted impurity(left) + weighted impurity(right)]
 
         Higher information gain indicates a better split.
         """
@@ -155,10 +157,7 @@ class DecisionTree:
         then the data set is not split and the average for the entire array is used as
         the predictor
         """
-        if self.task == "regression":
-            best_score = float("inf")
-        else:
-            best_score = -float("inf")
+        best_score = float("inf") if self.task == "regression" else -float("inf")
 
         for i in range(len(x)):
             if len(x[:i]) < self.min_leaf_size:
@@ -209,11 +208,10 @@ class DecisionTree:
             self.left.train(left_x, left_y)
             self.right.train(right_x, right_y)
 
+        elif self.task == "regression":
+            self.prediction = np.mean(y)
         else:
-            if self.task == "regression":
-                self.prediction = np.mean(y)
-            else:
-                self.prediction = self.most_common_label(y)
+            self.prediction = self.most_common_label(y)
 
     def predict(self, x):
         """
