@@ -5,17 +5,20 @@ Output: The decision tree maps a real number input to a real number output.
 """
 
 import numpy as np
+from collections import Counter
 
 
 class DecisionTree:
-    def __init__(self, depth=5, min_leaf_size=5):
+    def __init__(self, depth=5, min_leaf_size=5, task="regression", criterion="gini"):
         self.depth = depth
         self.decision_boundary = 0
         self.left = None
         self.right = None
         self.min_leaf_size = min_leaf_size
         self.prediction = None
-
+        self.task = task
+        self.criterion = criterion
+        
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
@@ -38,9 +41,61 @@ class DecisionTree:
         True
         """
         if labels.ndim != 1:
-            print("Error: Input labels must be one dimensional")
-
+            raise ValueError("Input labels must be one dimensional")
         return np.mean((labels - prediction) ** 2)
+
+    def gini(self, y):
+        """
+        Computes the Gini impurity for a set of labels.
+        Gini impurity measures how often a randomly chosen element
+        would be incorrectly classified.
+        Formula: Gini = 1 - sum(p_i^2)
+        where p_i is the probability of class i.
+    
+        Lower Gini value indicates better purity (best split).
+        """
+        classes, counts = np.unique(y, return_counts=True)
+        prob = counts / counts.sum()
+        return 1 - np.sum(prob ** 2)
+
+    def entropy(self, y):
+        """
+        Computes the entropy (impurity) of a set of labels.
+        Entropy measures the randomness or disorder in the data.
+        Formula: Entropy = - sum(p_i * log2(p_i))
+        where p_i is the probability of class i.
+    
+        Lower entropy means higher purity.
+        """
+        classes, counts = np.unique(y, return_counts=True)
+        prob = counts / counts.sum()
+        return -np.sum(prob * np.log2(prob + 1e-9))
+
+    def information_gain(self, parent, left, right):
+        """
+        Computes the information gain from splitting a dataset.
+        Information gain represents the reduction in impurity
+        after a dataset is split into left and right subsets.
+        Formula: IG = Impurity(parent) - [weighted impurity(left) + weighted impurity(right)]
+    
+        Higher information gain indicates a better split.
+        """
+        if self.criterion == "gini":
+            func = self.gini
+        elif self.criterion == "entropy":
+            func = self.entropy
+        else:
+            raise ValueError("Invalid criterion")
+
+        weight_l = len(left) / len(parent)
+        weight_r = len(right) / len(parent)
+
+        return func(parent) - (
+            weight_l * func(left) + weight_r * func(right)
+        )
+
+    def most_common_label(self, y):
+        return Counter(y).most_common(1)[0][0]
 
     def train(self, x, y):
         """
@@ -87,35 +142,50 @@ class DecisionTree:
         if y.ndim != 1:
             raise ValueError("Data set labels must be one-dimensional")
 
-        if len(x) < 2 * self.min_leaf_size:
-            self.prediction = np.mean(y)
-            return
-
-        if self.depth == 1:
-            self.prediction = np.mean(y)
+        if len(x) < 2 * self.min_leaf_size or self.depth == 1:
+            if self.task == "regression":
+                self.prediction = np.mean(y)
+            else:
+                self.prediction = self.most_common_label(y)
             return
 
         best_split = 0
-        min_error = self.mean_squared_error(x, np.mean(y)) * 2
-
+        
         """
         loop over all possible splits for the decision tree. find the best split.
         if no split exists that is less than 2 * error for the entire array
         then the data set is not split and the average for the entire array is used as
         the predictor
         """
+        if self.task == "regression":
+            best_score = float("inf")
+        else:
+            best_score = -float("inf")
+
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
+            if len(x[:i]) < self.min_leaf_size:
                 continue
-            elif len(x[i:]) < self.min_leaf_size:
+            if len(x[i:]) < self.min_leaf_size:
                 continue
-            else:
-                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
-                error = error_left + error_right
-                if error < min_error:
+
+            left_y = y[:i]
+            right_y = y[i:]
+
+            if self.task == "regression":
+                error_left = self.mean_squared_error(left_y, np.mean(left_y))
+                error_right = self.mean_squared_error(right_y, np.mean(right_y))
+                score = error_left + error_right
+
+                if score < best_score:
+                    best_score = score
                     best_split = i
-                    min_error = error
+
+            else:  
+                gain = self.information_gain(y, left_y, right_y)
+
+                if gain > best_score:
+                    best_score = gain
+                    best_split = i
 
         if best_split != 0:
             left_x = x[:best_split]
@@ -124,18 +194,28 @@ class DecisionTree:
             right_y = y[best_split:]
 
             self.decision_boundary = x[best_split]
+
             self.left = DecisionTree(
-                depth=self.depth - 1, min_leaf_size=self.min_leaf_size
+                depth=self.depth - 1,
+                min_leaf_size=self.min_leaf_size,
+                task=self.task,
+                criterion=self.criterion,
             )
             self.right = DecisionTree(
-                depth=self.depth - 1, min_leaf_size=self.min_leaf_size
+                depth=self.depth - 1,
+                min_leaf_size=self.min_leaf_size,
+                task=self.task,
+                criterion=self.criterion,
             )
+
             self.left.train(left_x, left_y)
             self.right.train(right_x, right_y)
-        else:
-            self.prediction = np.mean(y)
 
-        return
+        else:
+            if self.task == "regression":
+                self.prediction = np.mean(y)
+            else:
+                self.prediction = self.most_common_label(y)
 
     def predict(self, x):
         """
@@ -146,15 +226,15 @@ class DecisionTree:
         """
         if self.prediction is not None:
             return self.prediction
-        elif self.left is not None and self.right is not None:
+        if self.left is not None and self.right is not None:
             if x >= self.decision_boundary:
                 return self.right.predict(x)
             else:
                 return self.left.predict(x)
-        else:
-            raise ValueError("Decision tree not yet trained")
 
+        raise ValueError("Decision tree not yet trained")
 
+        
 class TestDecisionTree:
     """Decision Tres test class"""
 
@@ -172,7 +252,7 @@ class TestDecisionTree:
 
         return float(squared_error_sum / labels.size)
 
-
+        
 def main():
     """
     In this demonstration we're generating a sample data set from the sin function in
@@ -183,17 +263,18 @@ def main():
     x = np.arange(-1.0, 1.0, 0.005)
     y = np.sin(x)
 
-    tree = DecisionTree(depth=10, min_leaf_size=10)
+    tree = DecisionTree(depth=10, min_leaf_size=10, task="regression")
     tree.train(x, y)
 
-    rng = np.random.default_rng()
-    test_cases = (rng.random(10) * 2) - 1
-    predictions = np.array([tree.predict(x) for x in test_cases])
-    avg_error = np.mean((predictions - test_cases) ** 2)
+    print("Regression prediction:", tree.predict(0.5))
+    x_cls = np.array([1, 2, 3, 4, 5, 6])
+    y_cls = np.array([0, 0, 0, 1, 1, 1])
 
-    print("Test values: " + str(test_cases))
-    print("Predictions: " + str(predictions))
-    print("Average error: " + str(avg_error))
+    clf = DecisionTree(depth=3, min_leaf_size=1, task="classification", criterion="gini")
+    clf.train(x_cls, y_cls)
+
+    print("Classification prediction (2):", clf.predict(2)) 
+    print("Classification prediction (5):", clf.predict(5))  
 
 
 if __name__ == "__main__":
