@@ -1,11 +1,12 @@
-def generate_parentheses_iterative(length: int) -> list:
+def generate_parentheses_iterative(length: int) -> list[str]:
     """
     Generate all valid combinations of parentheses (Iterative Approach).
 
     The algorithm works as follows:
     1. Initialize an empty list to store the combinations.
     2. Initialize a stack to keep track of partial combinations.
-    3. Start with empty string and push it onstack along with the counts of '(' and ')'.
+    3. Start with empty string and push it on stack along with
+       the counts of '(' and ')'.
     4. While the stack is not empty:
         a. Pop a partial combination and its open and close counts from the stack.
         b. If the combination length is equal to 2*length, add it to the result.
@@ -34,8 +35,11 @@ def generate_parentheses_iterative(length: int) -> list:
     >>> generate_parentheses_iterative(0)
     ['']
     """
-    result = []
-    stack = []
+    if length == 0:
+        return [""]
+
+    result: list[str] = []
+    stack: list[tuple[str, int, int]] = []
 
     # Each element in stack is a tuple (current_combination, open_count, close_count)
     stack.append(("", 0, 0))
@@ -45,6 +49,7 @@ def generate_parentheses_iterative(length: int) -> list:
 
         if len(current_combination) == 2 * length:
             result.append(current_combination)
+            continue
 
         if open_count < length:
             stack.append((current_combination + "(", open_count + 1, close_count))
