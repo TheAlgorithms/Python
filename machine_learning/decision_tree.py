@@ -96,7 +96,7 @@ class DecisionTree:
             return
 
         best_split = 0
-        min_error = self.mean_squared_error(x, np.mean(y)) * 2
+        min_error = self.mean_squared_error(y, np.mean(y)) * 2
 
         """
         loop over all possible splits for the decision tree. find the best split.
