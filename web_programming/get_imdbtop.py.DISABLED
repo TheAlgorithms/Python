@@ -1,5 +1,30 @@
+from urllib.parse import urlparse
+
 import bs4
 import requests
+
+ALLOWED_HOSTS = {"www.imdb.com"}
+
+
+def _validate_url(url: str) -> str:
+    """Validate a URL against an allowlist of trusted hosts to prevent SSRF attacks.
+
+    Args:
+        url: The URL to validate.
+
+    Returns:
+        The original URL if valid.
+
+    Raises:
+        ValueError: If the URL scheme is not HTTPS or the host is not in the allowlist.
+    """
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS:
+        raise ValueError(
+            f"URL '{url}' is not allowed. Only HTTPS requests to "
+            f"{ALLOWED_HOSTS} are permitted."
+        )
+    return url
 
 
 def get_movie_data_from_soup(soup: bs4.element.ResultSet) -> dict[str, str]:
@@ -35,7 +60,9 @@ def get_imdb_top_movies(num_movies: int = 5) -> tuple:
         "https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={num_movies}"
     )
-    source = bs4.BeautifulSoup(requests.get(base_url).content, "html.parser")
+    source = bs4.BeautifulSoup(
+        requests.get(_validate_url(base_url)).content, "html.parser"
+    )
     return tuple(
         get_movie_data_from_soup(movie)
         for movie in source.find_all("div", class_="lister-item mode-advanced")
