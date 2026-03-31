@@ -2,7 +2,22 @@ from typing import Any
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
-    """Pure implementation of bubble sort algorithm in Python
+    """Pure implementation of bubble sort algorithm in Python.
+
+    BUBBLE SORT EXPLANATION:
+    Bubble sort is a simple sorting algorithm that repeatedly steps through the list,
+    compares adjacent elements, and swaps them if they are in the wrong order.
+    The largest elements "bubble up" to the end of the list with each pass.
+
+    Algorithm Steps:
+    1. Start from the beginning of the list
+    2. Compare each pair of adjacent elements
+    3. If the left element is greater than the right, swap them
+    4. After each complete pass, the largest unsorted element reaches its correct position
+    5. Repeat until no more swaps are needed
+
+    Time Complexity: O(n²) in worst and average cases, O(n) in best case
+    Space Complexity: O(1) - sorts in-place
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -48,20 +63,48 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     >>> bubble_sort_iterative(collection_arg) == sorted(collection_arg)
     True
     """
+    # Get the length of the collection to know how many passes we need
     length = len(collection)
+
+    # Outer loop: iterate from the end of the list backwards
+    # After each pass, the position 'i' will have its final, sorted element
+    # so we reduce the range each time (optimization)
     for i in reversed(range(length)):
+        # Flag to track if any swaps occurred in this pass
+        # If no swaps happen, the list is already sorted and we can stop early
         swapped = False
+
+        # Inner loop: compare adjacent elements and swap if needed
+        # We only compare up to position 'i' since elements after 'i' are already sorted
         for j in range(i):
+            # Compare current element with the next element
             if collection[j] > collection[j + 1]:
+                # If elements are in wrong order, swap them
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
+
+        # Optimization: if no swaps occurred in this pass, the list is sorted
+        # No need to continue iterating
         if not swapped:
-            break  # Stop iteration if the collection is sorted.
+            break
+
     return collection
 
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
-    """It is similar iterative bubble sort but recursive.
+    """Recursive implementation of bubble sort algorithm.
+
+    This version uses recursion instead of iteration to perform bubble sort.
+    Instead of using loops, it calls itself repeatedly until the list is sorted.
+
+    How it works:
+    1. In each recursive call, perform one complete pass through the list
+    2. Compare and swap adjacent elements that are out of order
+    3. After one pass, the largest unsorted element reaches its correct position
+    4. Recursively call the function again until no swaps occur (list is sorted)
+
+    Time Complexity: O(n²)
+    Space Complexity: O(n) - due to the call stack from recursion
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
@@ -102,13 +145,23 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     >>> bubble_sort_recursive(collection_arg) == sorted(collection_arg)
     True
     """
+    # Get the length of the collection
     length = len(collection)
+
+    # Track whether any swaps occurred in this pass
+    # If no swaps happen, the list is already sorted
     swapped = False
+
+    # Perform one complete pass: compare and swap adjacent elements
     for i in range(length - 1):
+        # Compare current element with the next element
         if collection[i] > collection[i + 1]:
+            # Swap them if they're in wrong order
             collection[i], collection[i + 1] = collection[i + 1], collection[i]
             swapped = True
 
+    # Base case: if no swaps occurred, the list is sorted - return it
+    # Recursive case: if swaps occurred, call the function again to make another pass
     return collection if not swapped else bubble_sort_recursive(collection)
 
 
