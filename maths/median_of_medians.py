@@ -47,7 +47,7 @@ def median_of_medians(arr: list, rank: int) -> int:
     if len(arr) <= 5:
         return sorted(arr)[rank - 1]
 
-    chunks = [arr[i: i + 5] for i in range(0, len(arr), 5)]
+    chunks = [arr[i : i + 5] for i in range(0, len(arr), 5)]
     medians = [sorted(chunk)[len(chunk) // 2] for chunk in chunks]
 
     pivot = median_of_medians(medians, len(medians) // 2 + 1)
@@ -64,4 +64,5 @@ def median_of_medians(arr: list, rank: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
