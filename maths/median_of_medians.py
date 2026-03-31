@@ -63,8 +63,9 @@ def median_of_medians(arr: list, k: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     sample = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
     print(f"Array: {sample}")
     for i in range(1, len(sample) + 1):
