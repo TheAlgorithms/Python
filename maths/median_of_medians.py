@@ -42,7 +42,8 @@ def median_of_medians(arr: list, rank: int) -> int:
     5
     """
     if not 1 <= rank <= len(arr):
-        raise ValueError(f"rank={rank} is out of range for array of length {len(arr)}")
+        msg = f"rank={rank} is out of range for array of length {len(arr)}"
+    raise ValueError(msg)
 
     if len(arr) <= 5:
         return sorted(arr)[rank - 1]
