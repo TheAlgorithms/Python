@@ -6,7 +6,7 @@ already O(n)
 """
 
 
-def merge_sort(collection):
+def merge_sort(collection: list[int]) -> list[int]:
     """Pure implementation of the fastest merge sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
