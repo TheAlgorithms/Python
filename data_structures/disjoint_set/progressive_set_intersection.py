@@ -1,9 +1,6 @@
 """Progressive multi-set intersection optimized for imbalanced sets."""
 
-from typing import Set
-
-
-def progressive_set_intersection(*sets: Set) -> Set:
+def progressive_set_intersection(*sets: set) -> set:
     """
     Compute the intersection of multiple sets efficiently.
 
@@ -17,6 +14,7 @@ def progressive_set_intersection(*sets: Set) -> Set:
     heuristic for educational purposes.
 
     Time Complexity: Better than naive in practice due to early pruning.
+    Space Complexity: O(size of smallest set)
 
     Examples:
         >>> progressive_set_intersection({1, 2, 3}, {2, 3, 4}, {2, 5})
@@ -42,6 +40,6 @@ def progressive_set_intersection(*sets: Set) -> Set:
     for current_set in sorted_sets[1:]:
         if not result:
             return set()
-        result &= current_set  # Efficient in-place intersection
+        result &= current_set   # Efficient in-place intersection
 
     return result
