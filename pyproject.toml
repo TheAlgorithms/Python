@@ -158,9 +158,6 @@ lint.pylint.max-branches = 20  # default: 12
 lint.pylint.max-returns = 8  # default: 6
 lint.pylint.max-statements = 88  # default: 50
 
-[tool.mypy]
-python_version = "3.14"
-
 [tool.codespell]
 ignore-words-list = "3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
 skip = """\
@@ -184,6 +181,9 @@ report.omit = [
   "project_euler/*",
 ]
 report.sort = "Cover"
+
+[tool.mypy]
+python_version = "3.14"
 
 [tool.sphinx-pyproject]
 copyright = "2014, TheAlgorithms"
