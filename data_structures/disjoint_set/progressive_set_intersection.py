@@ -1,5 +1,6 @@
 """Progressive multi-set intersection optimized for imbalanced sets."""
 
+
 def progressive_set_intersection(*sets: set) -> set:
     """
     Compute the intersection of multiple sets efficiently.
@@ -40,6 +41,6 @@ def progressive_set_intersection(*sets: set) -> set:
     for current_set in sorted_sets[1:]:
         if not result:
             return set()
-        result &= current_set   # Efficient in-place intersection
+        result &= current_set  # Efficient in-place intersection
 
     return result
