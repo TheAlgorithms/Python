@@ -42,6 +42,6 @@ def progressive_set_intersection(*sets: Set) -> Set:
     for current_set in sorted_sets[1:]:
         if not result:
             return set()
-        result &= current_set   # Efficient in-place intersection
+        result &= current_set  # Efficient in-place intersection
 
     return result
