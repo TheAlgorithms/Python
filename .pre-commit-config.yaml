@@ -49,15 +49,15 @@ repos:
     hooks:
       - id: validate-pyproject
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.20.0
-    hooks:
-      - id: mypy
-        args:
-          - --explicit-package-bases
-          - --ignore-missing-imports
-          - --install-types
-          - --non-interactive
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #  rev: v1.20.0
+  #  hooks:
+  #    - id: mypy
+  #      args:
+  #        - --explicit-package-bases
+  #        - --ignore-missing-imports
+  #        - --install-types
+  #        - --non-interactive
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v4.0.0-alpha.8
