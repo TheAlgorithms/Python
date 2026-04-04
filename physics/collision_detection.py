@@ -22,8 +22,14 @@ from math import sqrt
 
 
 def is_aabb_collision(
-    x1: float, y1: float, w1: float, h1: float,
-    x2: float, y2: float, w2: float, h2: float,
+    x1: float,
+    y1: float,
+    w1: float,
+    h1: float,
+    x2: float,
+    y2: float,
+    w2: float,
+    h2: float,
 ) -> bool:
     """
     Check if two Axis-Aligned Bounding Boxes (AABBs) are colliding.
@@ -57,8 +63,12 @@ def is_aabb_collision(
 
 
 def is_circle_collision(
-    cx1: float, cy1: float, r1: float,
-    cx2: float, cy2: float, r2: float,
+    cx1: float,
+    cy1: float,
+    r1: float,
+    cx2: float,
+    cy2: float,
+    r2: float,
 ) -> bool:
     """
     Check if two circles are colliding.
@@ -85,12 +95,17 @@ def is_circle_collision(
 
     distance_squared = (cx2 - cx1) ** 2 + (cy2 - cy1) ** 2
     radius_sum = r1 + r2
-    return distance_squared < radius_sum ** 2
+    return distance_squared < radius_sum**2
 
 
 def is_circle_aabb_collision(
-    cx: float, cy: float, r: float,
-    rx: float, ry: float, rw: float, rh: float,
+    cx: float,
+    cy: float,
+    r: float,
+    rx: float,
+    ry: float,
+    rw: float,
+    rh: float,
 ) -> bool:
     """
     Check if a circle and an Axis-Aligned Bounding Box (AABB) are colliding.
@@ -129,8 +144,12 @@ def is_circle_aabb_collision(
 
 
 def is_point_in_rectangle(
-    px: float, py: float,
-    rx: float, ry: float, rw: float, rh: float,
+    px: float,
+    py: float,
+    rx: float,
+    ry: float,
+    rw: float,
+    rh: float,
 ) -> bool:
     """
     Check if a point is inside an Axis-Aligned Bounding Box (rectangle).
@@ -161,8 +180,11 @@ def is_point_in_rectangle(
 
 
 def is_point_in_circle(
-    px: float, py: float,
-    cx: float, cy: float, r: float,
+    px: float,
+    py: float,
+    cx: float,
+    cy: float,
+    r: float,
 ) -> bool:
     """
     Check if a point is inside a circle.
@@ -248,26 +270,46 @@ def _check_collision(obj1: dict, obj2: dict) -> bool:
 
     if type1 == "circle" and type2 == "circle":
         return is_circle_collision(
-            obj1["cx"], obj1["cy"], obj1["r"],
-            obj2["cx"], obj2["cy"], obj2["r"],
+            obj1["cx"],
+            obj1["cy"],
+            obj1["r"],
+            obj2["cx"],
+            obj2["cy"],
+            obj2["r"],
         )
 
     if type1 == "rect" and type2 == "rect":
         return is_aabb_collision(
-            obj1["x"], obj1["y"], obj1["w"], obj1["h"],
-            obj2["x"], obj2["y"], obj2["w"], obj2["h"],
+            obj1["x"],
+            obj1["y"],
+            obj1["w"],
+            obj1["h"],
+            obj2["x"],
+            obj2["y"],
+            obj2["w"],
+            obj2["h"],
         )
 
     if type1 == "circle" and type2 == "rect":
         return is_circle_aabb_collision(
-            obj1["cx"], obj1["cy"], obj1["r"],
-            obj2["x"], obj2["y"], obj2["w"], obj2["h"],
+            obj1["cx"],
+            obj1["cy"],
+            obj1["r"],
+            obj2["x"],
+            obj2["y"],
+            obj2["w"],
+            obj2["h"],
         )
 
     if type1 == "rect" and type2 == "circle":
         return is_circle_aabb_collision(
-            obj2["cx"], obj2["cy"], obj2["r"],
-            obj1["x"], obj1["y"], obj1["w"], obj1["h"],
+            obj2["cx"],
+            obj2["cy"],
+            obj2["r"],
+            obj1["x"],
+            obj1["y"],
+            obj1["w"],
+            obj1["h"],
         )
 
     msg = f"Unknown object types: {type1}, {type2}"
