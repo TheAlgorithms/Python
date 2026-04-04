@@ -101,7 +101,7 @@ def is_circle_collision(
 def is_circle_aabb_collision(
     cx: float,
     cy: float,
-    r: float,
+    radius: float,
     rx: float,
     ry: float,
     rw: float,
@@ -110,7 +110,7 @@ def is_circle_aabb_collision(
     """
     Check if a circle and an Axis-Aligned Bounding Box (AABB) are colliding.
 
-    The circle is defined by its center (cx, cy) and radius (r).
+    The circle is defined by its center (cx, cy) and radius.
     The rectangle is defined by its top-left corner (rx, ry), width (rw),
     and height (rh).
 
@@ -131,7 +131,7 @@ def is_circle_aabb_collision(
         ...
     ValueError: Width and height must be non-negative
     """
-    if r < 0:
+    if radius < 0:
         raise ValueError("Radius must be non-negative")
     if rw < 0 or rh < 0:
         raise ValueError("Width and height must be non-negative")
@@ -140,7 +140,7 @@ def is_circle_aabb_collision(
     closest_y = max(ry, min(cy, ry + rh))
 
     distance_squared = (cx - closest_x) ** 2 + (cy - closest_y) ** 2
-    return distance_squared < r**2
+    return distance_squared < radius**2
 
 
 def is_point_in_rectangle(
@@ -184,13 +184,13 @@ def is_point_in_circle(
     py: float,
     cx: float,
     cy: float,
-    r: float,
+    radius: float,
 ) -> bool:
     """
     Check if a point is inside a circle.
 
     The point is defined by (px, py).
-    The circle is defined by its center (cx, cy) and radius (r).
+    The circle is defined by its center (cx, cy) and radius.
 
     >>> is_point_in_circle(3, 4, 0, 0, 10)
     True
@@ -205,11 +205,11 @@ def is_point_in_circle(
         ...
     ValueError: Radius must be non-negative
     """
-    if r < 0:
+    if radius < 0:
         raise ValueError("Radius must be non-negative")
 
     distance_squared = (px - cx) ** 2 + (py - cy) ** 2
-    return distance_squared < r**2
+    return distance_squared < radius**2
 
 
 def detect_all_collisions(
