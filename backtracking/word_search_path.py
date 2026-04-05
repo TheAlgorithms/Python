@@ -5,7 +5,6 @@ Date    : April 5, 2026
 Task:
 Given an m x n grid of characters board and a string word,
 return the first valid path of coordinates found that matches
-return the first valid path of coordinates found that matches
 the word in the grid. If the word does not exist, return None.
 
 The word can be constructed from letters of sequentially adjacent cells,
