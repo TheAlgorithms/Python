@@ -5,6 +5,7 @@ Date    : April 5, 2026
 Task:
 Given an m x n grid of characters board and a string word,
 return the first valid path of coordinates found that matches
+return the first valid path of coordinates found that matches
 the word in the grid. If the word does not exist, return None.
 
 The word can be constructed from letters of sequentially adjacent cells,
@@ -26,7 +27,8 @@ Result: [(0, 0), (0, 1), (0, 2), (1, 2)]
 
 Implementation notes:
 1. Use a backtracking (DFS) approach to explore all possible paths.
-2. At each cell, recursively check neighbors, in this question it's (Up, Down, Left, Right).
+2. At each cell, recursively check neighbors.
+    case, check: Up, Down, Left, Right.
 3. Maintain a 'visited' set for each coordinate
    to ensure cells are not reused within the same search branch.
 4. If a path matches the word, return the list of coordinates.
@@ -65,7 +67,7 @@ def get_word_path(
         return None
 
     # Track current progress
-    new_path = current_path + [(row, column)]
+    new_path = [*current_path, (row, column)]
 
     # Base case
     if word_index == len(word) - 1:
@@ -84,15 +86,12 @@ def get_word_path(
         key = get_point_key(len_board, len_board_column, next_i, next_j)
         if key in visited_points_set:
             continue
-
         visited_points_set.add(key)
         result = get_word_path(
             board, word, next_i, next_j, word_index + 1, visited_points_set, new_path
         )
-
         if result is not None:
             return result
-
         # Backtrack: remove key to try other paths
         visited_points_set.remove(key)
 
@@ -133,7 +132,6 @@ def word_search_path(board: list[list[str]], word: str) -> list[tuple[int, int]]
     # Validate board input
     if not isinstance(board, list) or len(board) == 0:
         raise ValueError(board_error_message)
-
     for row in board:
         if not isinstance(row, list) or len(row) == 0:
             raise ValueError(board_error_message)
@@ -152,7 +150,8 @@ def word_search_path(board: list[list[str]], word: str) -> list[tuple[int, int]]
     # Main entry point
     for r in range(rows):
         for c in range(cols):
-            # Optimization: only trigger recursion if first char in board matches with first char in word input
+            # Optimization: only trigger recursion if first
+            # char in board matches with first char in word.
             if board[r][c] == word[0]:
                 key = get_point_key(rows, cols, r, c)
                 path_result = get_word_path(board, word, r, c, 0, {key}, [])
