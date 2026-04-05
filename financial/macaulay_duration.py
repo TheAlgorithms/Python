@@ -1,25 +1,26 @@
+"""
+Calculate the Macaulay Duration of a bond.
+Reference: https://www.investopedia.com/terms/m/macaulayduration.asp
+"""
+
 from __future__ import annotations
+
 
 def macaulay_duration(
     face_value: float,
     coupon_rate: float,
     periods: int,
-    yield_rate: float
+    yield_rate: float,
 ) -> float:
     """
     Calculates the Macaulay Duration of a bond.
 
-    Reference:
-    https://www.investopedia.com/terms/m/macaulayduration.asp
-
-    Args:
-        face_value: The final payout amount of the bond.
-        coupon_rate: The annual interest rate paid by the bond.
-        periods: The number of years until the bond matures.
-        yield_rate: The current market interest rate used to discount future cash flows.
-
-    Returns:
-        The Macaulay Duration of the bond in years.
+    :param face_value: The final payout amount of the bond.
+    :param coupon_rate: The annual interest rate paid by the bond.
+    :param periods: The number of years until the bond matures.
+    :param yield_rate: The current market interest rate used to discount
+                       future cash flows.
+    :return: The Macaulay Duration of the bond in years.
 
     >>> round(macaulay_duration(1000.0, 0.05, 8, 0.04), 2)
     6.83
@@ -57,7 +58,9 @@ def macaulay_duration(
     total_time_weighted_value: float = 0.0
 
     for period in range(1, periods + 1):
-        cash_flow: float = (face_value * coupon_rate) + (face_value if period == periods else 0)
+        cash_flow: float = face_value * coupon_rate + (
+            face_value if period == periods else 0
+        )
 
         time_weighted_value: float = (period * cash_flow) / pow(1 + yield_rate, period)
         total_time_weighted_value += time_weighted_value
@@ -66,6 +69,7 @@ def macaulay_duration(
         total_present_value += present_value
 
     return total_time_weighted_value / total_present_value
+
 
 if __name__ == "__main__":
     import doctest
