@@ -4,7 +4,7 @@ Date    : April 5, 2026
 
 Task:
 Given an m x n grid of characters board and a string word,
-return the first valid path of coordinates found that matches 
+return the first valid path of coordinates found that matches
 the word in the grid. If the word does not exist, return None.
 
 The word can be constructed from letters of sequentially adjacent cells,
@@ -24,13 +24,13 @@ Word: "CATS"
 
 Result: [(0, 0), (0, 1), (0, 2), (1, 2)]
 
-Implementation notes: 
+Implementation notes:
 1. Use a backtracking (DFS) approach to explore all possible paths.
 2. At each cell, recursively check neighbors, in this question it's (Up, Down, Left, Right).
 3. Maintain a 'visited' set for each coordinate
    to ensure cells are not reused within the same search branch.
-4. If a path matches the word, return the list of coordinates. 
-5. If a branch fails, 'backtrack' by removing the current cell from 
+4. If a path matches the word, return the list of coordinates.
+5. If a branch fails, 'backtrack' by removing the current cell from
    the visited set and the path list to allow for other potential matches.
 
 Similar leetcode question that returns a bool: https://leetcode.com/problems/word-search/
@@ -84,15 +84,15 @@ def get_word_path(
         key = get_point_key(len_board, len_board_column, next_i, next_j)
         if key in visited_points_set:
             continue
-            
+
         visited_points_set.add(key)
         result = get_word_path(
             board, word, next_i, next_j, word_index + 1, visited_points_set, new_path
         )
-        
+
         if result is not None:
             return result
-        
+
         # Backtrack: remove key to try other paths
         visited_points_set.remove(key)
 
@@ -133,7 +133,7 @@ def word_search_path(board: list[list[str]], word: str) -> list[tuple[int, int]]
     # Validate board input
     if not isinstance(board, list) or len(board) == 0:
         raise ValueError(board_error_message)
-    
+
     for row in board:
         if not isinstance(row, list) or len(row) == 0:
             raise ValueError(board_error_message)
@@ -164,4 +164,5 @@ def word_search_path(board: list[list[str]], word: str) -> list[tuple[int, int]]
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
