@@ -87,9 +87,8 @@ def exits_word(
 
     return False
 
-def get_word_path(
-    board: list[list[str]], word: str
-) -> list[tuple[int, int]] | None:
+
+def get_word_path(board: list[list[str]], word: str) -> list[tuple[int, int]] | None:
     rows, cols = len(board), len(board[0])
 
     def backtrack(r, c, index, path, visited):
