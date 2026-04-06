@@ -165,6 +165,9 @@ skip = """\
   nary.txt,strings/words.txt\
   """
 
+[tool.mypy]
+python_version = "3.14"
+
 [tool.pytest]
 ini_options.markers = [
   "mat_ops: mark a test as utilizing matrix operations.",
@@ -181,9 +184,6 @@ report.omit = [
   "project_euler/*",
 ]
 report.sort = "Cover"
-
-[tool.mypy]
-python_version = "3.14"
 
 [tool.sphinx-pyproject]
 copyright = "2014, TheAlgorithms"
