@@ -49,4 +49,5 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 
 ## 📜 List of Algorithms
 
+- [guardian-agent-prompts](https://github.com/milkomida77/guardian-agent-prompts) - 49 production-tested AI agent system prompts for Python development orchestration, automated code review, and multi-agent coordination. MIT licensed.
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
