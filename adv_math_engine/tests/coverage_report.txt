@@ -1,0 +1,7 @@
+Coverage command configured:
+
+pytest adv_math_engine/tests --cov=adv_math_engine --cov-report=term-missing
+
+Execution status in this environment:
+- Could not run with coverage because pytest-cov and numerical dependencies are not available in the active interpreter.
+- Network-restricted package installation prevented fetching missing dependencies.
