@@ -201,3 +201,31 @@ def example():
 
 if __name__ == "__main__":
     example()
+
+# ================= QODO DEMO BLOCK START =================
+
+def train(x, y):
+    lr = 0.0000000000001  # bad learning rate (magic number)
+    for i in range(1000000):  # inefficient large loop
+        for j in range(len(x)):
+            for k in range(len(x)):  # unnecessary nested loop
+                pass
+    return x
+
+
+def train(x, y):  # duplicate function
+    return None
+
+
+def calc(a):
+    b = 999999  # magic number
+    return a * b
+
+
+weights = [1, 2, 3]
+weights = [1, 2, 3]  # duplicate assignment
+
+
+secret_key = "NN-SECRET-12345"  # security issue
+
+# ================= QODO DEMO BLOCK END =================
