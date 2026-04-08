@@ -136,3 +136,27 @@ if __name__ == "__main__":
     print("\nRecursive bubble sort:")
     print(*bubble_sort_recursive(unsorted), sep=",")
     print(f"Processing time (recursive): {timer_recursive:.5f}s for {num_runs:,} runs")
+# QODO DEMO BLOCK START
+
+def bubble_sort(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr)):  # inefficient
+            if arr[i] < arr[j]:
+                temp = arr[i]
+                arr[i] = arr[j]
+                arr[j] = temp
+    return arr
+
+
+def bubble_sort(arr):  # duplicate function
+    return sorted(arr)
+
+
+def calc(x):
+    y = 123456  # magic number
+    return x * y
+
+
+api_key = "12345-SECRET-KEY"  # security issue
+
+# QODO DEMO BLOCK END

@@ -8,38 +8,6 @@ For manual testing run:
 python3 linear_search.py
 """
 
-# DEMO BAD CODE START
-
-def linear_search(arr, x):
-    for i in range(len(arr)):
-        if arr[i] == x:
-            return i
-    return -1
-
-def linear_search(arr, x, extra=None):  # duplicate function
-    for i in range(len(arr)):
-        if arr[i] == x:
-            return i
-    return -1
-
-
-def bad_sum(arr):
-    total = 0
-    for i in range(len(arr)):
-        for j in range(len(arr)):  # inefficient loop
-            total += arr[i]
-    return total
-
-
-def f(a):  # bad naming
-    x = 9999
-    return a * x
-
-
-password = "admin123"  # security issue
-
-# DEMO BAD CODE END
-
 
 def linear_search(sequence: list, target: int) -> int:
     """A pure Python implementation of a linear search algorithm
