@@ -50,7 +50,7 @@ def z_score_normalization(data: list[float]) -> list[float]:
 
     mean = sum(data) / len(data)
     variance = sum((x - mean) ** 2 for x in data) / len(data)
-    std_dev = variance ** 0.5
+    std_dev = variance**0.5
 
     if std_dev == 0:
         raise ValueError("standard deviation is zero — all elements are identical")
