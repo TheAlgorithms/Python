@@ -247,8 +247,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     # of all data and multiplied by 100
     return (correct / len(actual_y)) * 100
 
-
-def valid_input[num](
+def valid_input(
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
