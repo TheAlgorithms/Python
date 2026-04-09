@@ -226,7 +226,9 @@ def binary_search_by_recursion(
 
     if sorted_collection[midpoint] == item:
         if midpoint > left:
-            res = binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+            res = binary_search_by_recursion(
+                sorted_collection, item, left, midpoint - 1
+            )
             return res if res != -1 else midpoint
         return midpoint
     elif sorted_collection[midpoint] > item:
@@ -268,4 +270,5 @@ searches = (
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
