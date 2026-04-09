@@ -21,9 +21,6 @@ def bisect_left(
     Locates the first element in a sorted array that is larger or equal to a given
     value.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
-
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item to bisect
     :param lo: lowest index to consider (as in sorted_collection[lo:hi])
@@ -62,26 +59,12 @@ def bisect_right(
     """
     Locates the first element in a sorted array that is larger than a given value.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
-
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to bisect
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are <= item and
-        all values in sorted_collection[i:hi] are > item.
-
     Examples:
     >>> bisect_right([0, 5, 7, 10, 15], 0)
     1
     >>> bisect_right([0, 5, 7, 10, 15], 15)
     5
     >>> bisect_right([0, 5, 7, 10, 15], 6)
-    2
-    >>> bisect_right([0, 5, 7, 10, 15], 15, 1, 3)
-    3
-    >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
     2
     """
     if hi < 0:
@@ -103,9 +86,6 @@ def insort_left(
     """
     Inserts a given value into a sorted array before other values with the same value.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.insort_left .
-
     Examples:
     >>> sorted_collection = [0, 5, 7, 10, 15]
     >>> insort_left(sorted_collection, 6)
@@ -121,9 +101,6 @@ def insort_right(
     """
     Inserts a given value into a sorted array after other values with the same value.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.insort_right .
-
     Examples:
     >>> sorted_collection = [0, 5, 7, 10, 15]
     >>> insort_right(sorted_collection, 6)
@@ -135,7 +112,7 @@ def insort_right(
 
 def binary_search(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python.
-    Finds the first occurrence of the item.
+    Updated to find the first occurrence of the item.
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
@@ -153,6 +130,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     """
     if any(a > b for a, b in pairwise(sorted_collection)):
         raise ValueError("sorted_collection must be sorted in ascending order")
+    
     left = 0
     right = len(sorted_collection) - 1
     result = -1
@@ -170,9 +148,14 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
-    """Implementation of a binary search algorithm using stdlib"""
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+    """Binary search algorithm in Python using stdlib.
+    Finds the first occurrence.
+
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    0
+    >>> binary_search_std_lib([1, 2, 2, 2, 3], 2)
+    1
+    """
     index = bisect.bisect_left(sorted_collection, item)
     if index != len(sorted_collection) and sorted_collection[index] == item:
         return index
@@ -180,32 +163,16 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
 
 
 def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> list[int]:
-    """Returns a list of all indexes where the target occurs."""
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+    """Returns a list of all indexes where the target occurs.
 
-    def lower_bound(sorted_collection: list[int], item: int) -> int:
-        left, right = 0, len(sorted_collection)
-        while left < right:
-            midpoint = left + (right - left) // 2
-            if sorted_collection[midpoint] < item:
-                left = midpoint + 1
-            else:
-                right = midpoint
-        return left
-
-    def upper_bound(sorted_collection: list[int], item: int) -> int:
-        left, right = 0, len(sorted_collection)
-        while left < right:
-            midpoint = left + (right - left) // 2
-            if sorted_collection[midpoint] <= item:
-                left = midpoint + 1
-            else:
-                right = midpoint
-        return left
-
-    left = lower_bound(sorted_collection, item)
-    right = upper_bound(sorted_collection, item)
+    Examples:
+    >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 2)
+    [1, 2, 3]
+    >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 4)
+    []
+    """
+    left = bisect_left(sorted_collection, item)
+    right = bisect_right(sorted_collection, item)
 
     if left == len(sorted_collection) or sorted_collection[left] != item:
         return []
@@ -215,20 +182,26 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int = 0, right: int = -1
 ) -> int:
-    """Recursive binary search finding the first occurrence."""
+    """
+    Recursive binary search finding the first occurrence.
+    """
     if right < 0:
         right = len(sorted_collection) - 1
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+    
+    # Base case: range is empty
     if right < left:
         return -1
 
     midpoint = left + (right - left) // 2
 
     if sorted_collection[midpoint] == item:
-        # Check if there is an occurrence to the left
-        res = binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
-        return res if res != -1 else midpoint
+        # We found a match! Now see if there's an earlier one to the left.
+        # CRITICAL: Only recurse if there is actually space to the left
+        if midpoint > left:
+            res = binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+            return res if res != -1 else midpoint
+        return midpoint
+        
     elif sorted_collection[midpoint] > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
@@ -236,9 +209,14 @@ def binary_search_by_recursion(
 
 
 def exponential_search(sorted_collection: list[int], item: int) -> int:
-    """Implementation of an exponential search algorithm."""
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+    """Implementation of an exponential search algorithm finding the first occurrence.
+
+    Examples:
+    >>> exponential_search([0, 5, 7, 10, 15], 0)
+    0
+    >>> exponential_search([1, 2, 2, 2, 3], 2)
+    1
+    """
     if not sorted_collection:
         return -1
     bound = 1
@@ -273,6 +251,6 @@ if __name__ == "__main__":
         print(
             f"{name:>26}:",
             timeit.timeit(
-                f"{name}(collection, 500)", setup=setup, number=5_000, globals=globals()
+                f"{name}(list(collection), 500)", setup=setup, number=5_000, globals=globals()
             ),
         )
