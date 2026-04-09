@@ -1,5 +1,10 @@
-from typing import Any
+"""
+Sorts a list using Bubble Sort algorithm.
 
+Time Complexity: O(n^2)
+"""
+
+from typing import Any
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
