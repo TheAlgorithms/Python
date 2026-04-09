@@ -8,6 +8,7 @@ Example:
 Reference: https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
 
+
 def kadanes_algorithm(arr: list[int]) -> int:
     """
     Finds the maximum sum of a contiguous subarray using Kadane's Algorithm.
