@@ -66,6 +66,10 @@ def bisect_right(
     5
     >>> bisect_right([0, 5, 7, 10, 15], 6)
     2
+    >>> bisect_right([0, 5, 7, 10, 15], 15, 1, 3)
+    3
+    >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
+    2
     """
     if hi < 0:
         hi = len(sorted_collection)
@@ -91,6 +95,14 @@ def insort_left(
     >>> insort_left(sorted_collection, 6)
     >>> sorted_collection
     [0, 5, 6, 7, 10, 15]
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_left(sorted_collection, 20)
+    >>> sorted_collection
+    [0, 5, 7, 10, 15, 20]
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_left(sorted_collection, 15, 1, 3)
+    >>> sorted_collection
+    [0, 5, 7, 15, 10, 15]
     """
     sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
 
@@ -106,24 +118,27 @@ def insort_right(
     >>> insort_right(sorted_collection, 6)
     >>> sorted_collection
     [0, 5, 6, 7, 10, 15]
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_right(sorted_collection, 20)
+    >>> sorted_collection
+    [0, 5, 7, 10, 15, 20]
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_right(sorted_collection, 15, 1, 3)
+    >>> sorted_collection
+    [0, 5, 7, 15, 10, 15]
     """
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
 def binary_search(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python.
-    Updated to find the first occurrence of the item.
-
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
 
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
     0
     >>> binary_search([0, 5, 7, 10, 15], 15)
     4
-    >>> binary_search([1, 2, 2, 2, 3], 2)
+    >>> binary_search([0, 5, 7, 10, 15], 5)
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
@@ -139,7 +154,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
         midpoint = left + (right - left) // 2
         if sorted_collection[midpoint] == item:
             result = midpoint
-            right = midpoint - 1  # Continue searching left
+            right = midpoint - 1  # Logic for first occurrence
         elif item < sorted_collection[midpoint]:
             right = midpoint - 1
         else:
@@ -148,13 +163,16 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
-    """Binary search algorithm in Python using stdlib.
-    Finds the first occurrence.
+    """Binary search using stdlib.
 
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
     0
-    >>> binary_search_std_lib([1, 2, 2, 2, 3], 2)
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    4
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
     1
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+    -1
     """
     index = bisect.bisect_left(sorted_collection, item)
     if index != len(sorted_collection) and sorted_collection[index] == item:
@@ -166,6 +184,10 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     """Returns a list of all indexes where the target occurs.
 
     Examples:
+    >>> binary_search_with_duplicates([0, 5, 7, 10, 15], 0)
+    [0]
+    >>> binary_search_with_duplicates([0, 5, 7, 10, 15], 15)
+    [4]
     >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 2)
     [1, 2, 3]
     >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 4)
@@ -182,28 +204,31 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int = 0, right: int = -1
 ) -> int:
-    """
-    Recursive binary search finding the first occurrence.
+    """Recursive binary search.
+
+    Examples:
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4)
+    0
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15, 0, 4)
+    4
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4)
+    1
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
+    -1
     """
     if right < 0:
         right = len(sorted_collection) - 1
 
-    # Base case: range is empty
     if right < left:
         return -1
 
     midpoint = left + (right - left) // 2
 
     if sorted_collection[midpoint] == item:
-        # We found a match! Now see if there's an earlier one to the left.
-        # CRITICAL: Only recurse if there is actually space to the left
         if midpoint > left:
-            res = binary_search_by_recursion(
-                sorted_collection, item, left, midpoint - 1
-            )
+            res = binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
             return res if res != -1 else midpoint
         return midpoint
-
     elif sorted_collection[midpoint] > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
@@ -211,13 +236,17 @@ def binary_search_by_recursion(
 
 
 def exponential_search(sorted_collection: list[int], item: int) -> int:
-    """Implementation of an exponential search algorithm finding the first occurrence.
+    """Exponential search algorithm.
 
     Examples:
     >>> exponential_search([0, 5, 7, 10, 15], 0)
     0
-    >>> exponential_search([1, 2, 2, 2, 3], 2)
+    >>> exponential_search([0, 5, 7, 10, 15], 15)
+    4
+    >>> exponential_search([0, 5, 7, 10, 15], 5)
     1
+    >>> exponential_search([0, 5, 7, 10, 15], 6)
+    -1
     """
     if not sorted_collection:
         return -1
@@ -239,23 +268,4 @@ searches = (
 
 if __name__ == "__main__":
     import doctest
-    import timeit
-
     doctest.testmod()
-    for search in searches:
-        name = f"{search.__name__:>26}"
-        print(f"{name}: {search([0, 5, 7, 10, 15], 10) = }")
-
-    print("\nBenchmarks...")
-    setup = "collection = range(1000)"
-    for search in searches:
-        name = search.__name__
-        print(
-            f"{name:>26}:",
-            timeit.timeit(
-                f"{name}(list(collection), 500)",
-                setup=setup,
-                number=5_000,
-                globals=globals(),
-            ),
-        )

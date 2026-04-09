@@ -4,6 +4,7 @@ Pure Python implementation of the jump search algorithm.
 """
 
 from __future__ import annotations
+
 import math
 from collections.abc import Sequence
 from typing import Any, Protocol
