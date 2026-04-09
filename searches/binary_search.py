@@ -130,7 +130,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     """
     if any(a > b for a, b in pairwise(sorted_collection)):
         raise ValueError("sorted_collection must be sorted in ascending order")
-    
+
     left = 0
     right = len(sorted_collection) - 1
     result = -1
@@ -187,7 +187,7 @@ def binary_search_by_recursion(
     """
     if right < 0:
         right = len(sorted_collection) - 1
-    
+
     # Base case: range is empty
     if right < left:
         return -1
@@ -198,10 +198,12 @@ def binary_search_by_recursion(
         # We found a match! Now see if there's an earlier one to the left.
         # CRITICAL: Only recurse if there is actually space to the left
         if midpoint > left:
-            res = binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+            res = binary_search_by_recursion(
+                sorted_collection, item, left, midpoint - 1
+            )
             return res if res != -1 else midpoint
         return midpoint
-        
+
     elif sorted_collection[midpoint] > item:
         return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
@@ -251,6 +253,9 @@ if __name__ == "__main__":
         print(
             f"{name:>26}:",
             timeit.timeit(
-                f"{name}(list(collection), 500)", setup=setup, number=5_000, globals=globals()
+                f"{name}(list(collection), 500)",
+                setup=setup,
+                number=5_000,
+                globals=globals(),
             ),
         )
