@@ -4,8 +4,9 @@ with the largest sum.
 
 Example:
     [-2, 1, -3, 4, -1, 2, 1, -5, 4] --> 6 (subarray [4, -1, 2, 1])
-"""
 
+Reference: https://en.wikipedia.org/wiki/Maximum_subarray_problem
+"""
 
 def kadanes_algorithm(arr: list[int]) -> int:
     """
