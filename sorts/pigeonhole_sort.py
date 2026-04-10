@@ -12,6 +12,7 @@ def pigeonhole_sort(a):
     True
 
     >>> pigeonhole_sort([])
+    None
     """
     # if not a:
     #    return  # this handles empty list
