@@ -10,9 +10,11 @@ def pigeonhole_sort(a):
     >>> pigeonhole_sort(a)  # a destructive sort
     >>> a == b
     True
+
+    >>> pigeonhole_sort([])
     """
-    if not a:
-        return  # this handles empty list
+    # if not a:
+    #    return  # this handles empty list
     # size of range of values in the list (ie, number of pigeonholes we need)
 
     min_val = min(a)  # min() finds the minimum value
