@@ -31,7 +31,13 @@ def use_effect_simulation(callback: Callable[[], None], dependency: Any) -> None
 
 
 if __name__ == "__main__":
-    def example():
+    def example() -> None:
+        """
+        Example function to demonstrate the effect.
+
+        >>> example()
+        Effect triggered!
+        """
         print("Effect triggered!")
 
     use_effect_simulation(example, 1)
