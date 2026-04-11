@@ -8,10 +8,11 @@ using dynamic programming.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from functools import lru_cache
 
 
-def mf_knapsack(i: int, wt: list[int], val: list[int], j: int) -> int:
+def mf_knapsack(i: int, wt: Sequence[int], val: Sequence[int], j: int) -> int:
     """
     Return the optimal value for the 0/1 knapsack problem using memoization.
 
@@ -53,7 +54,7 @@ def mf_knapsack(i: int, wt: list[int], val: list[int], j: int) -> int:
 
 
 def knapsack(
-    w: int, wt: list[int], val: list[int], n: int
+    w: int, wt: Sequence[int], val: Sequence[int], n: int
 ) -> tuple[int, list[list[int]]]:
     dp = [[0] * (w + 1) for _ in range(n + 1)]
 
@@ -67,7 +68,9 @@ def knapsack(
     return dp[n][w], dp
 
 
-def knapsack_with_example_solution(w: int, wt: list, val: list) -> tuple[int, set[int]]:
+def knapsack_with_example_solution(
+    w: int, wt: Sequence[int], val: Sequence[int]
+) -> tuple[int, set[int]]:
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -101,9 +104,14 @@ def knapsack_with_example_solution(w: int, wt: list, val: list) -> tuple[int, se
     ValueError: The number of weights must be the same as the number of values.
     But got 4 weights and 3 values
     """
-    if not (isinstance(wt, (list, tuple)) and isinstance(val, (list, tuple))):
+    if not (
+        isinstance(wt, Sequence)
+        and not isinstance(wt, (str, bytes))
+        and isinstance(val, Sequence)
+        and not isinstance(val, (str, bytes))
+    ):
         raise ValueError(
-            "Both the weights and values vectors must be either lists or tuples"
+            "Both the weights and values vectors must be non-string sequences"
         )
 
     num_items = len(wt)
@@ -129,7 +137,7 @@ def knapsack_with_example_solution(w: int, wt: list, val: list) -> tuple[int, se
 
 
 def _construct_solution(
-    dp: list[list[int]], wt: list[int], i: int, j: int, optimal_set: set[int]
+    dp: list[list[int]], wt: Sequence[int], i: int, j: int, optimal_set: set[int]
 ) -> None:
     """
     Recursively reconstructs one of the optimal subsets given
