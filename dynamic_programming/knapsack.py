@@ -52,7 +52,9 @@ def mf_knapsack(i: int, wt: list[int], val: list[int], j: int) -> int:
     return solve(i, j)
 
 
-def knapsack(w: int, wt: list[int], val: list[int], n: int) -> tuple[int, list[list[int]]]:
+def knapsack(
+    w: int, wt: list[int], val: list[int], n: int
+) -> tuple[int, list[list[int]]]:
     dp = [[0] * (w + 1) for _ in range(n + 1)]
 
     for i in range(1, n + 1):
