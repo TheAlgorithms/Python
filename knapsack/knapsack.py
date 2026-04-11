@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Knapsack_problem
 
 from __future__ import annotations
 
-from functools import lru_cache
+from functools import cache
 
 
 def knapsack(
@@ -37,7 +37,7 @@ def knapsack(
     got the weight of 10*5 which is the limit of the capacity.
     """
 
-    @lru_cache(maxsize=None)
+    @cache
     def knapsack_recur(capacity: int, counter: int) -> int:
         # Base Case
         if counter == 0 or capacity == 0:
@@ -93,7 +93,7 @@ def knapsack_with_count(
     (2, 2)
     """
 
-    @lru_cache(maxsize=None)
+    @cache
     def knapsack_recur(remaining_capacity: int, item_count: int) -> tuple[int, int]:
         # Base Case: one empty subset yields value 0.
         if item_count == 0 or remaining_capacity == 0:
