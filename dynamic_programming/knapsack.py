@@ -85,11 +85,14 @@ def knapsack_space_optimized(
         item_weight = weights[item_index]
         item_value = values[item_index]
         if not isinstance(item_weight, int):
-            raise TypeError(f"Weight at index {item_index} must be an integer.")
+            msg = f"Weight at index {item_index} must be an integer."
+            raise TypeError(msg)
         if item_weight < 0:
-            raise ValueError(f"Weight at index {item_index} cannot be negative.")
+            msg = f"Weight at index {item_index} cannot be negative."
+            raise ValueError(msg)
         if not isinstance(item_value, int):
-            raise TypeError(f"Value at index {item_index} must be an integer.")
+            msg = f"Value at index {item_index} must be an integer."
+            raise TypeError(msg)
 
     dp = [0] * (capacity + 1)
     for item_index in range(num_items):
