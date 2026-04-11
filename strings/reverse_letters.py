@@ -12,6 +12,12 @@ def reverse_letters(sentence: str, length: int = 0) -> str:
     >>> reverse_letters("racecar")
     'racecar'
     """
+    if not isinstance(sentence, str):
+        raise TypeError("sentence must be a string")
+
+    if not isinstance(length, int) or length < 0:
+        raise ValueError("length must be a non-negative integer")
+    
     return " ".join(
         word[::-1] if len(word) > length else word for word in sentence.split()
     )
