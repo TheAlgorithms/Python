@@ -1,21 +1,32 @@
-"""
+ """
+Two Pointer Technique for Two Sum Problem (Sorted Array)
+
 Given a sorted array of integers, return indices of the two numbers such
 that they add up to a specific target using the two pointers technique.
 
-You may assume that each input would have exactly one solution, and you
-may not use the same element twice.
+Assumptions:
+- The input array is sorted in non-decreasing order.
+- Each input has exactly one solution.
+- The same element cannot be used twice.
 
-This is an alternative solution of the two-sum problem, which uses a
-map to solve the problem. Hence can not solve the issue if there is a
-constraint not use the same index twice. [1]
+Approach:
+- Initialize two pointers:
+    left pointer at the beginning (index 0)
+    right pointer at the end (index n-1)
+- Compare sum of elements at both pointers:
+    - If sum == target → return indices
+    - If sum < target → move left pointer forward
+    - If sum > target → move right pointer backward
+
+Time Complexity: O(n)
+Space Complexity: O(1)
 
 Example:
-Given nums = [2, 7, 11, 15], target = 9,
+Input: nums = [2, 7, 11, 15], target = 9
+Output: [0, 1]
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
-
-[1]: https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py
+Reference:
+https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py
 """
 
 from __future__ import annotations
