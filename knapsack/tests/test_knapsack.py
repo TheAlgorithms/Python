@@ -58,6 +58,24 @@ class Test(unittest.TestCase):
         c = len(val)
         assert k.knapsack(cap, w, val, c, True) == 300
 
+    def test_knapsack_with_count(self):
+        """
+        test for maximum value and number of optimal subsets
+        """
+        cap = 50
+        val = [60, 100, 120]
+        w = [10, 20, 30]
+        c = len(val)
+        assert k.knapsack_with_count(cap, w, val, c) == (220, 1)
+        assert k.knapsack_with_count(cap, w, val, c, True) == (300, 1)
+
+    def test_knapsack_with_count_ties(self):
+        """
+        test tie handling for counting optimal subsets
+        """
+        assert k.knapsack_with_count(3, [1, 2, 3], [1, 2, 3], 3) == (3, 2)
+        assert k.knapsack_with_count(2, [1, 2], [1, 2], 2, True) == (2, 2)
+
 
 if __name__ == "__main__":
     unittest.main()
