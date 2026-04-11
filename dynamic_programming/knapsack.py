@@ -9,14 +9,14 @@ using dynamic programming.
 from __future__ import annotations
 
 from collections.abc import Sequence
-from functools import lru_cache
+from functools import cache
 
 
 def mf_knapsack(i: int, wt: Sequence[int], val: Sequence[int], j: int) -> int:
     """
     Return the optimal value for the 0/1 knapsack problem using memoization.
 
-    This implementation caches subproblems with ``functools.lru_cache`` and avoids
+    This implementation caches subproblems with ``functools.cache`` and avoids
     global mutable state.
 
     >>> mf_knapsack(4, [4, 3, 2, 3], [3, 2, 4, 4], 6)
@@ -38,7 +38,7 @@ def mf_knapsack(i: int, wt: Sequence[int], val: Sequence[int], j: int) -> int:
     weights = tuple(wt)
     values = tuple(val)
 
-    @lru_cache(maxsize=None)
+    @cache
     def solve(item_count: int, capacity: int) -> int:
         if item_count == 0 or capacity == 0:
             return 0
