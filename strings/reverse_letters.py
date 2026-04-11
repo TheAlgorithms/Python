@@ -17,7 +17,7 @@ def reverse_letters(sentence: str, length: int = 0) -> str:
 
     if not isinstance(length, int) or length < 0:
         raise ValueError("length must be a non-negative integer")
-    
+
     return " ".join(
         word[::-1] if len(word) > length else word for word in sentence.split()
     )
