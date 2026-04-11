@@ -54,6 +54,26 @@ def knapsack_space_optimized(
     0
     >>> knapsack_space_optimized(6, [4, 3, 2, 3], [3, 2, 4, 4], 4)
     8
+    >>> knapsack_space_optimized(-1, [1], [1], 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: The knapsack capacity cannot be negative.
+    >>> knapsack_space_optimized(1, [1], [1], -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: The number of items cannot be negative.
+    >>> knapsack_space_optimized(1, [1], [1], 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: The number of items exceeds the provided input lengths.
+    >>> knapsack_space_optimized(1, [-1], [1], 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Weight at index 0 cannot be negative.
+    >>> knapsack_space_optimized(1, [1], [1.5], 1)
+    Traceback (most recent call last):
+        ...
+    TypeError: Value at index 0 must be an integer.
     """
     if num_items < 0:
         raise ValueError("The number of items cannot be negative.")
@@ -61,6 +81,15 @@ def knapsack_space_optimized(
         raise ValueError("The knapsack capacity cannot be negative.")
     if num_items > len(weights) or num_items > len(values):
         raise ValueError("The number of items exceeds the provided input lengths.")
+    for item_index in range(num_items):
+        item_weight = weights[item_index]
+        item_value = values[item_index]
+        if not isinstance(item_weight, int):
+            raise TypeError(f"Weight at index {item_index} must be an integer.")
+        if item_weight < 0:
+            raise ValueError(f"Weight at index {item_index} cannot be negative.")
+        if not isinstance(item_value, int):
+            raise TypeError(f"Value at index {item_index} must be an integer.")
 
     dp = [0] * (capacity + 1)
     for item_index in range(num_items):
