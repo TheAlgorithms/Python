@@ -39,6 +39,40 @@ def knapsack(w, wt, val, n):
     return dp[n][w_], dp
 
 
+def knapsack_space_optimized(
+    capacity: int, weights: list[int], values: list[int], num_items: int
+) -> int:
+    """
+    Solve the 0/1 knapsack problem with O(capacity) extra space.
+
+    It uses a 1D dynamic programming array and iterates capacities in reverse
+    for each item to avoid reusing the same item more than once.
+
+    >>> knapsack_space_optimized(50, [10, 20, 30], [60, 100, 120], 3)
+    220
+    >>> knapsack_space_optimized(0, [10, 20, 30], [60, 100, 120], 3)
+    0
+    >>> knapsack_space_optimized(6, [4, 3, 2, 3], [3, 2, 4, 4], 4)
+    8
+    """
+    if num_items < 0:
+        raise ValueError("The number of items cannot be negative.")
+    if capacity < 0:
+        raise ValueError("The knapsack capacity cannot be negative.")
+    if num_items > len(weights) or num_items > len(values):
+        raise ValueError("The number of items exceeds the provided input lengths.")
+
+    dp = [0] * (capacity + 1)
+    for item_index in range(num_items):
+        item_weight = weights[item_index]
+        item_value = values[item_index]
+        for current_capacity in range(capacity, item_weight - 1, -1):
+            dp[current_capacity] = max(
+                dp[current_capacity], item_value + dp[current_capacity - item_weight]
+            )
+    return dp[capacity]
+
+
 def knapsack_with_example_solution(w: int, wt: list, val: list):
     """
     Solves the integer weights knapsack problem returns one of
