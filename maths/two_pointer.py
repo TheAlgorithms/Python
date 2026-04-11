@@ -1,4 +1,4 @@
- """
+"""
 Two Pointer Technique for Two Sum Problem (Sorted Array)
 
 Given a sorted array of integers, return indices of the two numbers such
