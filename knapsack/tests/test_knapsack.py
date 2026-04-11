@@ -60,7 +60,7 @@ class Test(unittest.TestCase):
 
     def test_knapsack_with_count(self):
         """
-        test for maximum value and number of optimal subsets
+        test for maximum value and number of optimal selections
         """
         cap = 50
         val = [60, 100, 120]
@@ -68,6 +68,8 @@ class Test(unittest.TestCase):
         c = len(val)
         assert k.knapsack_with_count(cap, w, val, c) == (220, 1)
         assert k.knapsack_with_count(cap, w, val, c, True) == (300, 1)
+        assert k.knapsack_with_count(0, w, val, c) == (0, 1)
+        assert k.knapsack_with_count(50, w, val, 0) == (0, 1)
 
     def test_knapsack_with_count_ties(self):
         """

@@ -37,7 +37,7 @@ def knapsack(
     got the weight of 10*5 which is the limit of the capacity.
     """
 
-    @lru_cache
+    @lru_cache(maxsize=None)
     def knapsack_recur(capacity: int, counter: int) -> int:
         # Base Case
         if counter == 0 or capacity == 0:
@@ -70,10 +70,14 @@ def knapsack_with_count(
     allow_repetition: bool = False,
 ) -> tuple[int, int]:
     """
-    Return both the maximum knapsack value and the number of optimal subsets.
+    Return both the maximum knapsack value and number of optimal selections.
 
-    The return value is ``(max_value, number_of_optimal_subsets)``.
+    The return value is ``(max_value, number_of_optimal_selections)``.
     If multiple choices produce the same maximum value, their counts are added.
+    Distinct selections are order-insensitive:
+    - with ``allow_repetition=False`` these are distinct subsets by item index;
+    - with ``allow_repetition=True`` these are distinct multisets by item index
+      multiplicity.
 
     >>> cap = 50
     >>> val = [60, 100, 120]
@@ -89,7 +93,7 @@ def knapsack_with_count(
     (2, 2)
     """
 
-    @lru_cache
+    @lru_cache(maxsize=None)
     def knapsack_recur(remaining_capacity: int, item_count: int) -> tuple[int, int]:
         # Base Case: one empty subset yields value 0.
         if item_count == 0 or remaining_capacity == 0:
