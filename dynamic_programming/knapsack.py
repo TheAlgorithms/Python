@@ -1,42 +1,111 @@
 """
-Given weights and values of n items, put these items in a knapsack of
-capacity W to get the maximum total value in the knapsack.
+0/1 Knapsack Problem using Dynamic Programming
 
-Note that only the integer weights 0-1 knapsack problem is solvable
-using dynamic programming.
+Problem Statement:
+Given weights and values of n items, select items to put in a knapsack of capacity W
+to maximize the total value. In the 0/1 knapsack problem, you can either take an item
+whole (1) or leave it (0) - fractional parts are not allowed.
+
+Time Complexity: O(n × W) where n is the number of items and W is the knapsack capacity
+Space Complexity: O(n × W) for the DP table
+
+Note: This implementation solves the integer weights 0/1 knapsack problem using dynamic
+programming. The problem exhibits optimal substructure and overlapping subproblems,
+making it suitable for DP.
+
+Key Insight:
+For each item i and capacity w, we decide:
+- Don't include item i: value = dp[i-1][w]
+- Include item i (if weight allows): value = val[i-1] + dp[i-1][w-wt[i-1]]
+We choose the maximum of these two options.
+
+Example:
+    >>> knapsack_with_example_solution(10, [1, 3, 5, 2], [10, 20, 100, 22])
+    (142, {2, 3, 4})
 """
 
 
-def mf_knapsack(i, wt, val, j):
+def mf_knapsack(i: int, wt: list[int], val: list[int], j: int) -> int:
     """
-    This code involves the concept of memory functions. Here we solve the subproblems
-    which are needed unlike the below example
-    F is a 2D array with ``-1`` s filled up
+    Memory function approach for 0/1 knapsack problem (top-down with memoization).
+    
+    This approach only computes subproblems that are actually needed, unlike the
+    bottom-up approach which fills the entire DP table. It uses a global DP table
+    initialized with -1 to track which subproblems have been solved.
+    
+    Args:
+        i (int): Current item index (1-indexed).
+        wt (list[int]): List of item weights.
+        val (list[int]): List of item values.
+        j (int): Current knapsack capacity.
+    
+    Returns:
+        int: Maximum value achievable with first i items and capacity j.
+    
+    Global Variables:
+        f (list[list[int]]): Memoization table initialized with -1.
+    
+    Note:
+        The global variable `f` must be initialized before calling this function.
+        See the example in __main__ for proper initialization.
     """
-    global f  # a global dp table for knapsack
+    global f  # Memoization table
     if f[i][j] < 0:
         if j < wt[i - 1]:
-            val = mf_knapsack(i - 1, wt, val, j)
+            # Item too heavy, skip it
+            f[i][j] = mf_knapsack(i - 1, wt, val, j)
         else:
-            val = max(
-                mf_knapsack(i - 1, wt, val, j),
-                mf_knapsack(i - 1, wt, val, j - wt[i - 1]) + val[i - 1],
+            # Choose maximum of: excluding vs including current item
+            f[i][j] = max(
+                mf_knapsack(i - 1, wt, val, j),  # Exclude item i
+                mf_knapsack(i - 1, wt, val, j - wt[i - 1]) + val[i - 1],  # Include item i
             )
-        f[i][j] = val
     return f[i][j]
 
 
-def knapsack(w, wt, val, n):
+def knapsack(w: int, wt: list[int], val: list[int], n: int) -> tuple[int, list[list[int]]]:
+    """
+    Bottom-up dynamic programming solution for 0/1 knapsack problem.
+    
+    This iterative approach builds a DP table where dp[i][w_] represents the maximum
+    value achievable using the first i items with a knapsack capacity of w_.
+    
+    Args:
+        w (int): Maximum knapsack capacity.
+        wt (list[int]): List of item weights (length n).
+        val (list[int]): List of item values (length n).
+        n (int): Number of items.
+    
+    Returns:
+        tuple[int, list[list[int]]]: A tuple containing:
+            - Maximum achievable value
+            - The complete DP table for solution reconstruction
+    
+    Algorithm:
+        For each item i and capacity w_:
+        - If item fits (wt[i-1] <= w_): 
+            dp[i][w_] = max(val[i-1] + dp[i-1][w_-wt[i-1]], dp[i-1][w_])
+        - Otherwise:
+            dp[i][w_] = dp[i-1][w_]
+    
+    Examples:
+        >>> knapsack(6, [4, 3, 2, 3], [3, 2, 4, 4], 4)[0]
+        8
+        >>> knapsack(10, [1, 3, 5, 2], [10, 20, 100, 22], 4)[0]
+        142
+    """
     dp = [[0] * (w + 1) for _ in range(n + 1)]
-
+    
     for i in range(1, n + 1):
         for w_ in range(1, w + 1):
             if wt[i - 1] <= w_:
+                # Max of: including item i vs excluding item i
                 dp[i][w_] = max(val[i - 1] + dp[i - 1][w_ - wt[i - 1]], dp[i - 1][w_])
             else:
+                # Item too heavy, can't include it
                 dp[i][w_] = dp[i - 1][w_]
-
-    return dp[n][w_], dp
+    
+    return dp[n][w], dp
 
 
 def knapsack_with_example_solution(w: int, wt: list, val: list):
