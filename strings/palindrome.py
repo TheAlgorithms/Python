@@ -53,7 +53,7 @@ def is_palindrome_traversal(s: str) -> bool:
     """
     if not isinstance(s, str):
         raise TypeError("Input must be a string")
-    
+
     end = len(s) // 2
     n = len(s)
 
@@ -75,7 +75,7 @@ def is_palindrome_recursive(s: str) -> bool:
     """
     if not isinstance(s, str):
         raise TypeError("Input must be a string")
-    
+
     if len(s) <= 1:
         return True
     if s[0] == s[len(s) - 1]:
