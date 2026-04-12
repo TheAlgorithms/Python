@@ -24,7 +24,14 @@ def is_palindrome(s: str) -> bool:
 
     >>> all(is_palindrome(key) == value for key, value in test_data.items())
     True
+    >>> is_palindrome(123)
+    Traceback (most recent call last):
+        ...
+    TypeError: Input must be a string
     """
+
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
 
     start_i = 0
     end_i = len(s) - 1
@@ -44,6 +51,9 @@ def is_palindrome_traversal(s: str) -> bool:
     >>> all(is_palindrome_traversal(key) == value for key, value in test_data.items())
     True
     """
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
+    
     end = len(s) // 2
     n = len(s)
 
@@ -63,6 +73,9 @@ def is_palindrome_recursive(s: str) -> bool:
     >>> all(is_palindrome_recursive(key) == value for key, value in test_data.items())
     True
     """
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
+    
     if len(s) <= 1:
         return True
     if s[0] == s[len(s) - 1]:
@@ -78,6 +91,9 @@ def is_palindrome_slice(s: str) -> bool:
     >>> all(is_palindrome_slice(key) == value for key, value in test_data.items())
     True
     """
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
+
     return s == s[::-1]
 
 
