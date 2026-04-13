@@ -25,7 +25,8 @@ class GroceryStoreCart:
 
     def add_item(self, item: str, quantity: int = 1) -> None:
         if item not in self.price_catalog:
-            raise KeyError(f"{item!r} is not in the catalog")
+            msg = f"{item!r} is not in the catalog"
+            raise KeyError(msg)
         if quantity <= 0:
             raise ValueError("quantity must be positive")
         self.quantities[item] = self.quantities.get(item, 0) + quantity
@@ -35,7 +36,8 @@ class GroceryStoreCart:
             raise ValueError("quantity must be positive")
         current = self.quantities.get(item, 0)
         if current == 0:
-            raise KeyError(f"{item!r} is not present in the cart")
+            msg = f"{item!r} is not present in the cart"
+            raise KeyError(msg)
         if (remaining := current - quantity) > 0:
             self.quantities[item] = remaining
         else:
