@@ -15,6 +15,32 @@ class GroceryStoreCart:
     >>> cart.remove_item("apple")
     >>> round(cart.total_price(), 2)
     3.5
+
+    >>> GroceryStoreCart({})
+    Traceback (most recent call last):
+    ...
+    ValueError: price_catalog cannot be empty
+
+    >>> cart.add_item("bread")
+    Traceback (most recent call last):
+    ...
+    KeyError: "'bread' is not in the catalog"
+
+    >>> cart.add_item("apple", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: quantity must be positive
+
+    >>> cart.remove_item("milk", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: quantity must be positive
+
+    >>> empty_cart = GroceryStoreCart({"apple": 1.5})
+    >>> empty_cart.remove_item("apple")
+    Traceback (most recent call last):
+    ...
+    KeyError: "'apple' is not present in the cart"
     """
 
     def __init__(self, price_catalog: dict[str, float]) -> None:
@@ -38,6 +64,8 @@ class GroceryStoreCart:
         if current == 0:
             msg = f"{item!r} is not present in the cart"
             raise KeyError(msg)
+        if quantity > current:
+            raise ValueError("quantity exceeds amount present in the cart")
         if (remaining := current - quantity) > 0:
             self.quantities[item] = remaining
         else:
