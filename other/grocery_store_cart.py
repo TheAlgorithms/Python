@@ -36,14 +36,15 @@ class GroceryStoreCart:
         current = self.quantities.get(item, 0)
         if current == 0:
             raise KeyError(f"{item!r} is not present in the cart")
-        remaining = current - quantity
-        if remaining > 0:
+        if (remaining := current - quantity) > 0:
             self.quantities[item] = remaining
         else:
             self.quantities.pop(item, None)
 
     def total_price(self) -> float:
-        return sum(self.price_catalog[item] * qty for item, qty in self.quantities.items())
+        return sum(
+            self.price_catalog[item] * qty for item, qty in self.quantities.items()
+        )
 
 
 if __name__ == "__main__":
