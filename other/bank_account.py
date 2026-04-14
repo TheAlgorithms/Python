@@ -2,14 +2,24 @@
 Simple BankAccount class demonstrating core OOP concepts.
 
 Reference:
-https://docs.python.org/3/tutorial/classes.html
+Invariant-preserving bank account state model.
+
+This module implements a minimal transactional data model whose computational
+value is the enforcement of account invariants during constant-time state
+transitions: account identifiers must be present, balances may not start
+negative, deposits must be positive, and withdrawals may not overdraw the
+account.
 """
 
 
 class BankAccount:
     """
-    Basic bank account model with encapsulated account number and balance.
+    Stateful account abstraction with validated balance updates.
 
+    The class is intentionally small, but its purpose is not to serve as a
+    generic OOP tutorial. It provides a compact example of how to model a
+    mutable record while preserving correctness constraints across operations,
+    with each transaction executing in O(1) time.
     >>> account = BankAccount("ACC-1001", initial_balance=100.0)
     >>> account.balance
     100.0
