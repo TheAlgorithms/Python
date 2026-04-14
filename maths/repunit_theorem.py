@@ -6,6 +6,10 @@ A repunit of length ``k`` is the number made of ``k`` ones:
 
 For every positive integer ``n`` with ``gcd(n, 10) = 1``,
 there exists a repunit ``R_k`` divisible by ``n``.
+
+References:
+- https://en.wikipedia.org/wiki/Repunit
+- https://en.wikipedia.org/wiki/Multiplicative_order
 """
 
 from math import gcd
