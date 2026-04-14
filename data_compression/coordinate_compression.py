@@ -126,7 +126,8 @@ class CoordinateCompressor:
         IndexError: compressed coordinate 5 is out of range
         """
         if not 0 <= num < len(self.reverse_map):
-            raise IndexError(f"compressed coordinate {num} is out of range")
+            msg = f"compressed coordinate {num} is out of range"
+            raise IndexError(msg)
         return self.reverse_map[num]
 
 
