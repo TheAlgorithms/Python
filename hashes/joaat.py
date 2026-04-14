@@ -5,6 +5,7 @@ designed for general-purpose use, such as hash table lookups.
 source: https://en.wikipedia.org/wiki/Jenkins_hash_function
 """
 
+
 def joaat(key: str) -> int:
     """
     Calculate Jenkins One-at-a-Time hash for a key.
@@ -31,6 +32,8 @@ def joaat(key: str) -> int:
 
     return hash_value
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
