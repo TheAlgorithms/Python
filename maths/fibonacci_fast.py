@@ -15,9 +15,7 @@ References:
 """
 
 
-def _mat_mul(
-    a: list[list[int]], b: list[list[int]]
-) -> list[list[int]]:
+def _mat_mul(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
     """Multiply two 2×2 integer matrices.
 
     >>> _mat_mul([[1, 1], [1, 0]], [[1, 0], [0, 1]])
