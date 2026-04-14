@@ -101,8 +101,7 @@ class GroceryStoreCart:
 
     def total_price(self) -> float:
         return sum(
-            self.price_catalog[item] * qty
-            for item, qty in self.quantities.items()
+            self.price_catalog[item] * qty for item, qty in self.quantities.items()
         )
 
 
