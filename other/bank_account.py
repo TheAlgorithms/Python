@@ -1,5 +1,8 @@
 """
 Simple BankAccount class demonstrating core OOP concepts.
+
+Reference:
+https://docs.python.org/3/tutorial/classes.html
 """
 
 
