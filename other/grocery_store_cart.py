@@ -41,6 +41,32 @@ class GroceryStoreCart:
     Traceback (most recent call last):
     ...
     KeyError: "'apple' is not present in the cart"
+
+    >>> GroceryStoreCart({})
+    Traceback (most recent call last):
+    ...
+    ValueError: price_catalog cannot be empty
+
+    >>> cart.add_item("bread")
+    Traceback (most recent call last):
+    ...
+    KeyError: "'bread' is not in the catalog"
+
+    >>> cart.add_item("apple", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: quantity must be positive
+
+    >>> cart.remove_item("milk", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: quantity must be positive
+
+    >>> empty_cart = GroceryStoreCart({"apple": 1.5})
+    >>> empty_cart.remove_item("apple")
+    Traceback (most recent call last):
+    ...
+    KeyError: "'apple' is not present in the cart"
     """
 
     def __init__(self, price_catalog: dict[str, float]) -> None:
@@ -66,14 +92,17 @@ class GroceryStoreCart:
             raise KeyError(msg)
         if quantity > current:
             raise ValueError("quantity exceeds amount present in the cart")
-        if (remaining := current - quantity) > 0:
-            self.quantities[item] = remaining
-        else:
+        if quantity > current:
+            raise ValueError("quantity exceeds amount present in the cart")
+        if quantity == current:
             self.quantities.pop(item, None)
+        else:
+            self.quantities[item] = current - quantity
 
     def total_price(self) -> float:
         return sum(
-            self.price_catalog[item] * qty for item, qty in self.quantities.items()
+            self.price_catalog[item] * qty
+            for item, qty in self.quantities.items()
         )
 
 
