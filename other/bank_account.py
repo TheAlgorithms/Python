@@ -19,6 +19,31 @@ class BankAccount:
     130.0
     >>> account.account_number
     'ACC-1001'
+
+    >>> BankAccount("", initial_balance=10.0)
+    Traceback (most recent call last):
+    ...
+    ValueError: account_number must be provided
+
+    >>> BankAccount("ACC-1002", initial_balance=-1.0)
+    Traceback (most recent call last):
+    ...
+    ValueError: initial_balance cannot be negative
+
+    >>> account.deposit(0)
+    Traceback (most recent call last):
+    ...
+    ValueError: deposit amount must be positive
+
+    >>> account.withdraw(0)
+    Traceback (most recent call last):
+    ...
+    ValueError: withdraw amount must be positive
+
+    >>> account.withdraw(1000)
+    Traceback (most recent call last):
+    ...
+    ValueError: insufficient funds
     """
 
     def __init__(self, account_number: str, initial_balance: float = 0.0) -> None:
