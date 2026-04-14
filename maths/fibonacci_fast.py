@@ -15,10 +15,8 @@ References:
 """
 
 
-def _mat_mul(
-    a: list[list[int]], b: list[list[int]]
-) -> list[list[int]]:
-    """Multiply two 2×2 integer matrices.
+def _mat_mul(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
+    """Multiply two 2x2 integer matrices.
 
     >>> _mat_mul([[1, 1], [1, 0]], [[1, 0], [0, 1]])
     [[1, 1], [1, 0]]
@@ -36,10 +34,10 @@ def _mat_mul(
 
 
 def _mat_pow(matrix: list[list[int]], power: int) -> list[list[int]]:
-    """Raise a 2×2 integer matrix to a non-negative integer power using
+    """Raise a 2x2 integer matrix to a non-negative integer power using
     fast exponentiation (repeated squaring).
 
-    :param matrix: A 2×2 matrix represented as a list of lists.
+    :param matrix: A 2x2 matrix represented as a list of lists.
     :param power: Non-negative integer exponent.
     :return: matrix ** power
 
