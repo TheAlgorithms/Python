@@ -15,7 +15,9 @@ References:
 """
 
 
-def _mat_mul(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
+def _mat_mul(
+    mat_a: list[list[int]], mat_b: list[list[int]]
+) -> list[list[int]]:
     """Multiply two 2x2 integer matrices.
 
     >>> _mat_mul([[1, 1], [1, 0]], [[1, 0], [0, 1]])
@@ -23,12 +25,12 @@ def _mat_mul(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
     """
     return [
         [
-            a[0][0] * b[0][0] + a[0][1] * b[1][0],
-            a[0][0] * b[0][1] + a[0][1] * b[1][1],
+            mat_a[0][0] * mat_b[0][0] + mat_a[0][1] * mat_b[1][0],
+            mat_a[0][0] * mat_b[0][1] + mat_a[0][1] * mat_b[1][1],
         ],
         [
-            a[1][0] * b[0][0] + a[1][1] * b[1][0],
-            a[1][0] * b[0][1] + a[1][1] * b[1][1],
+            mat_a[1][0] * mat_b[0][0] + mat_a[1][1] * mat_b[1][0],
+            mat_a[1][0] * mat_b[0][1] + mat_a[1][1] * mat_b[1][1],
         ],
     ]
 
@@ -58,16 +60,16 @@ def _mat_pow(matrix: list[list[int]], power: int) -> list[list[int]]:
     return result
 
 
-def fibonacci(n: int) -> int:
+def fibonacci(index: int) -> int:
     """Return the n-th Fibonacci number using matrix exponentiation.
 
     Time complexity: O(log n)
     Space complexity: O(log n) due to the call stack of _mat_pow
 
-    :param n: Non-negative integer index into the Fibonacci sequence
-              (0-indexed: F(0)=0, F(1)=1, F(2)=1, ...).
-    :raises ValueError: If *n* is negative.
-    :return: The n-th Fibonacci number.
+    :param index: Non-negative integer index into the Fibonacci sequence
+                  (0-indexed: F(0)=0, F(1)=1, F(2)=1, ...).
+    :raises ValueError: If *index* is negative.
+    :return: The Fibonacci number at the given index.
 
     >>> fibonacci(0)
     0
@@ -86,12 +88,12 @@ def fibonacci(n: int) -> int:
         ...
     ValueError: fibonacci() only accepts non-negative integers
     """
-    if n < 0:
+    if index < 0:
         raise ValueError("fibonacci() only accepts non-negative integers")
-    if n == 0:
+    if index == 0:
         return 0
-    m: list[list[int]] = [[1, 1], [1, 0]]
-    return _mat_pow(m, n)[0][1]
+    mat: list[list[int]] = [[1, 1], [1, 0]]
+    return _mat_pow(mat, index)[0][1]
 
 
 if __name__ == "__main__":
