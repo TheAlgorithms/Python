@@ -255,7 +255,7 @@ class MLFQ:
 
         #  all queues except last one have round_robin algorithm
         for i in range(self.number_of_queues - 1):
-            finished, self.ready_queue = self.round_robin(
+            _finished, self.ready_queue = self.round_robin(
                 self.ready_queue, self.time_slices[i]
             )
         #  the last queue has first_come_first_served algorithm

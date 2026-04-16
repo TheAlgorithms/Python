@@ -28,7 +28,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = -15
-        pytest.raises(ValueError, match="max_weight must greater than zero.")
+        pytest.raises(ValueError, match=r"max_weight must greater than zero.")
 
     def test_negative_profit_value(self):
         """
@@ -38,7 +38,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, -20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = 15
-        pytest.raises(ValueError, match="Weight can not be negative.")
+        pytest.raises(ValueError, match=r"Weight can not be negative.")
 
     def test_negative_weight_value(self):
         """
@@ -48,7 +48,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, -4, 6, -8, 10, 12]
         # max_weight = 15
-        pytest.raises(ValueError, match="Profit can not be negative.")
+        pytest.raises(ValueError, match=r"Profit can not be negative.")
 
     def test_null_max_weight(self):
         """
@@ -58,7 +58,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = null
-        pytest.raises(ValueError, match="max_weight must greater than zero.")
+        pytest.raises(ValueError, match=r"max_weight must greater than zero.")
 
     def test_unequal_list_length(self):
         """
@@ -68,7 +68,9 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = 100
-        pytest.raises(IndexError, match="The length of profit and weight must be same.")
+        pytest.raises(
+            IndexError, match=r"The length of profit and weight must be same."
+        )
 
 
 if __name__ == "__main__":
