@@ -19,16 +19,22 @@ min(closest_pair_dis, closest_in_strip) would be the final answer.
 Time complexity: O(n * log n)
 """
 
+from __future__ import annotations
 
-def euclidean_distance_sqr(point1, point2):
+from typing import Any
+
+
+def euclidean_distance_sqr(
+    point1: list[Any] | tuple[Any, ...], point2: list[Any] | tuple[Any, ...]
+) -> float:
     """
-    >>> euclidean_distance_sqr([1,2],[2,4])
+    >>> euclidean_distance_sqr([1, 2], [2, 4])
     5
     """
     return (point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2
 
 
-def column_based_sort(array, column=0):
+def column_based_sort(array: list[Any], column: int = 0) -> list[Any]:
     """
     >>> column_based_sort([(5, 1), (4, 2), (3, 0)], 1)
     [(3, 0), (5, 1), (4, 2)]
@@ -36,7 +42,9 @@ def column_based_sort(array, column=0):
     return sorted(array, key=lambda x: x[column])
 
 
-def dis_between_closest_pair(points, points_counts, min_dis=float("inf")):
+def dis_between_closest_pair(
+    points: list[Any], points_counts: int, min_dis: float = float("inf")
+) -> float:
     """
     brute force approach to find distance between closest pair points
 
@@ -46,7 +54,7 @@ def dis_between_closest_pair(points, points_counts, min_dis=float("inf")):
     Returns :
     min_dis (float):  distance between closest pair of points
 
-    >>> dis_between_closest_pair([[1,2],[2,4],[5,7],[8,9],[11,0]],5)
+    >>> dis_between_closest_pair([[1, 2], [2, 4], [5, 7], [8, 9], [11, 0]], 5)
     5
 
     """
@@ -58,7 +66,9 @@ def dis_between_closest_pair(points, points_counts, min_dis=float("inf")):
     return min_dis
 
 
-def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
+def dis_between_closest_in_strip(
+    points: list[Any], points_counts: int, min_dis: float = float("inf")
+) -> float:
     """
     closest pair of points in strip
 
@@ -68,18 +78,22 @@ def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
     Returns :
     min_dis (float):  distance btw closest pair of points in the strip (< min_dis)
 
-    >>> dis_between_closest_in_strip([[1,2],[2,4],[5,7],[8,9],[11,0]],5)
-    85
+    >>> dis_between_closest_in_strip([[1, 2], [2, 4], [5, 7], [8, 9], [11, 0]], 5)
+    5
     """
 
-    for i in range(min(6, points_counts - 1), points_counts):
-        for j in range(max(0, i - 6), i):
+    for i in range(points_counts - 1):
+        for j in range(i + 1, min(i + 6, points_counts)):
             current_dis = euclidean_distance_sqr(points[i], points[j])
             min_dis = min(min_dis, current_dis)
     return min_dis
 
 
-def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_counts):
+def closest_pair_of_points_sqr(
+    points_sorted_on_x: list[Any],
+    points_sorted_on_y: list[Any],
+    points_counts: int,
+) -> float:
     """divide and conquer approach
 
     Parameters :
@@ -88,7 +102,7 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     Returns :
     (float):  distance btw closest pair of points
 
-    >>> closest_pair_of_points_sqr([(1, 2), (3, 4)], [(5, 6), (7, 8)], 2)
+    >>> closest_pair_of_points_sqr([(1, 2), (3, 4)], [(1, 2), (3, 4)], 2)
     8
     """
 
@@ -99,10 +113,10 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     # recursion
     mid = points_counts // 2
     closest_in_left = closest_pair_of_points_sqr(
-        points_sorted_on_x, points_sorted_on_y[:mid], mid
+        points_sorted_on_x[:mid], points_sorted_on_y, mid
     )
     closest_in_right = closest_pair_of_points_sqr(
-        points_sorted_on_y, points_sorted_on_y[mid:], points_counts - mid
+        points_sorted_on_x[mid:], points_sorted_on_y, points_counts - mid
     )
     closest_pair_dis = min(closest_in_left, closest_in_right)
 
@@ -112,7 +126,7 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     """
 
     cross_strip = []
-    for point in points_sorted_on_x:
+    for point in points_sorted_on_y:
         if abs(point[0] - points_sorted_on_x[mid][0]) < closest_pair_dis:
             cross_strip.append(point)
 
@@ -122,9 +136,9 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     return min(closest_pair_dis, closest_in_strip)
 
 
-def closest_pair_of_points(points, points_counts):
+def closest_pair_of_points(points: list[Any], points_counts: int) -> float:
     """
-    >>> closest_pair_of_points([(2, 3), (12, 30)], len([(2, 3), (12, 30)]))
+    >>> closest_pair_of_points([(2, 3), (12, 30)], 2)
     28.792360097775937
     """
     points_sorted_on_x = column_based_sort(points, column=0)
