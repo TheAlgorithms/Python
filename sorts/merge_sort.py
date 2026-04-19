@@ -38,10 +38,17 @@ def merge_sort(collection: list) -> list:
         :return: Merged result
         """
         result = []
-        while left and right:
-            result.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
-        result.extend(left)
-        result.extend(right)
+        left_idx = 0
+        right_idx = 0
+        while left_idx < len(left) and right_idx < len(right):
+            if left[left_idx] <= right[right_idx]:
+                result.append(left[left_idx])
+                left_idx += 1
+            else:
+                result.append(right[right_idx])
+                right_idx += 1
+        result.extend(left[left_idx:])
+        result.extend(right[right_idx:])
         return result
 
     if len(collection) <= 1:
