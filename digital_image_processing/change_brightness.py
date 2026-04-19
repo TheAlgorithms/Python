@@ -1,6 +1,7 @@
 """
 Module for adjusting the brightness of images using PIL.
 """
+
 from PIL import Image
 
 

@@ -19,7 +19,9 @@ from collections.abc import Sequence
 class TopologicalSort:
     """Topological sort implementation using DFS."""
 
-    def __init__(self, graph: list[list[int]], labels: dict[int, str] | None = None) -> None:
+    def __init__(
+        self, graph: list[list[int]], labels: dict[int, str] | None = None
+    ) -> None:
         """Initialize the topological sorter.
 
         Args:

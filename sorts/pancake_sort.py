@@ -13,6 +13,7 @@ python -m doctest -v pancake_sort.py
 For manual testing run:
 python pancake_sort.py
 """
+
 from collections.abc import Collection
 from typing import Any
 
@@ -45,7 +46,7 @@ def pancake_sort(arr: list) -> list:
         max_index = result[:cur].index(max(result[:cur]))
 
         # Flip from 0 to max_index to move max to the front
-        result[:max_index + 1] = result[:max_index + 1][::-1]
+        result[: max_index + 1] = result[: max_index + 1][::-1]
 
         # Flip from 0 to cur-1 to move max to its correct position
         result[:cur] = result[:cur][::-1]
