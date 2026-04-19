@@ -11,7 +11,7 @@ python sentinel_linear_search.py
 """
 
 
-def sentinel_linear_search(sequence, target):
+def sentinel_linear_search(sequence: list, target) -> int | None:
     """Pure implementation of sentinel linear search algorithm in Python
 
     :param sequence: some sequence with comparable items
@@ -31,6 +31,8 @@ def sentinel_linear_search(sequence, target):
     >>> sentinel_linear_search([0, 5, 7, 10, 15], 6)
 
     """
+    # Create a copy to avoid mutating the input sequence
+    sequence = sequence.copy()
     sequence.append(target)
 
     index = 0

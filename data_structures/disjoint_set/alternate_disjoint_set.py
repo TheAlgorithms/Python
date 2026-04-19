@@ -5,13 +5,12 @@ Union by Rank Heuristic and Path Compression
 
 
 class DisjointSet:
-    def __init__(self, set_counts: list) -> None:
+    def __init__(self, set_counts: list[int]) -> None:
         """
         Initialize with a list of the number of items in each set
         and with rank = 1 for each set
         """
         self.set_counts = set_counts
-        self.max_set = max(set_counts)
         num_sets = len(set_counts)
         self.ranks = [1] * num_sets
         self.parents = list(range(num_sets))
@@ -48,7 +47,6 @@ class DisjointSet:
             self.parents[dst_parent] = src_parent
             joined_set_size = self.set_counts[src_parent]
 
-        self.max_set = max(self.max_set, joined_set_size)
         return True
 
     def get_parent(self, disj_set: int) -> int:

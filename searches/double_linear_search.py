@@ -18,7 +18,11 @@ def double_linear_search(array: list[int], search_item: int) -> int:
     -1
     >>> double_linear_search([1, 5, 5, 10], 10)
     3
+    >>> double_linear_search([], 1)
+    -1
     """
+    if not array:
+        return -1
     # define the start and end index of the given array
     start_ind, end_ind = 0, len(array) - 1
     while start_ind <= end_ind:

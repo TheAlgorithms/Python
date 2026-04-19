@@ -1,10 +1,10 @@
-def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
+def search(list_data: list, key: int, left: int = 0, right: int | None = None) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
     :param key: the key to be searched
     :param left: the index of first element
-    :param right: the index of last element
+    :param right: the index of last element (defaults to len(list_data) - 1)
     :return: the index of key value if found, -1 otherwise.
 
     >>> search(list(range(0, 11)), 5)
@@ -18,7 +18,8 @@ def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
     >>> search([], 1)
     -1
     """
-    right = right or len(list_data) - 1
+    if right is None:
+        right = len(list_data) - 1
     if left > right:
         return -1
     elif list_data[left] == key:
