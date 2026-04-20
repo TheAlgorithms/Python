@@ -52,7 +52,11 @@ def place_word(
 
 
 def remove_word(
-    puzzle: list[list[str]], word: str, row: int, col: int, vertical: bool,
+    puzzle: list[list[str]],
+    word: str,
+    row: int,
+    col: int,
+    vertical: bool,
     snapshot: list[list[str]],
 ) -> None:
     """
