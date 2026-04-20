@@ -1,7 +1,4 @@
-from typing import Any
-
-
-def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+def binary_search(lst, item, start, end):
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -16,7 +13,7 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
         return mid
 
 
-def insertion_sort(lst: list[Any]) -> list[Any]:
+def insertion_sort(lst):
     length = len(lst)
 
     for index in range(1, length):
@@ -27,7 +24,7 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
     return lst
 
 
-def merge(left: list[Any], right: list[Any]) -> list[Any]:
+def merge(left, right):
     if not left:
         return right
 
@@ -40,7 +37,7 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
     return [right[0], *merge(left, right[1:])]
 
 
-def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
+def tim_sort(lst):
     """
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
@@ -56,7 +53,7 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     length = len(lst)
     runs, sorted_runs = [], []
     new_run = [lst[0]]
-    sorted_array: list[Any] = []
+    sorted_array = []
     i = 1
     while i < length:
         if lst[i] < lst[i - 1]:
