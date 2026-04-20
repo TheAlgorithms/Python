@@ -27,7 +27,7 @@ def is_valid(
         if r >= rows or c >= cols:
             return False
         cell = puzzle[r][c]
-        if cell != "" and cell != ch:
+        if cell not in ("", ch):
             return False
     return True
 
