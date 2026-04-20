@@ -75,6 +75,13 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
     Algorithm. It only supports square matrices of any size that is a power of 2.
+    Complexity:
+    - Strassen’s algorithm runs in O(n^(log2(7))) ≈ O(n^2.81),
+      which is asymptotically faster than the classical matrix multiplication
+      algorithm O(n^3).
+    - For small matrices, Strassen may be slower due to overhead, so it is
+      typically beneficial for large n.
+
     """
     if matrix_dimensions(matrix_a) == (2, 2):
         return default_matrix_multiplication(matrix_a, matrix_b)
@@ -106,10 +113,23 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
 
 def strassen(matrix1: list, matrix2: list) -> list:
     """
-    >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
-    [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
-    >>> strassen([[3,7,5,6,9],[1,5,3,7,8],[1,4,4,5,7]], [[2,4],[5,2],[1,7],[5,5],[7,8]])
-    [[139, 163], [121, 134], [100, 121]]
+        Perform matrix multiplication using Strassen’s algorithm.
+
+            Examples:
+            >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
+            [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
+
+           >>> strassen(
+    ...     [[3,7,5,6,9],[1,5,3,7,8],[1,4,4,5,7]],
+    ...     [[2,4],[5,2],[1,7],[5,5],[7,8]]
+    ... )
+
+
+            Complexity Notes:
+            - Classical matrix multiplication: O(n^3).
+            - Strassen's algorithm: O(n^(log2(7))) ≈ O(n^2.81).
+            - Strassen reduces the number of multiplications from 8 to 7 per recursion,
+              trading them for additional additions/subtractions.
     """
     if matrix_dimensions(matrix1)[1] != matrix_dimensions(matrix2)[0]:
         msg = (
