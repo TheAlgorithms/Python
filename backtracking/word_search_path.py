@@ -60,6 +60,21 @@ def get_word_path(
 ) -> list[tuple[int, int]] | None:
     """
     Return the coordinate path if it's possible to find the word in the grid.
+
+    >>> board = [["C", "A", "T"], ["X", "Y", "S"], ["A", "B", "C"]]
+    >>> # 1. Find "CATS" starting at (0,0). Initial key is 0.
+    >>> get_word_path(board, "CATS", 0, 0, 0, {0}, [])
+    [(0, 0), (0, 1), (0, 2), (1, 2)]
+    
+    >>> # 2. Find "BC" starting at (2,1). 
+    >>> # Key for (2,1) in 3x3 is: (3 * 3 * 2) + 1 = 19
+    >>> get_word_path(board, "BC", 2, 1, 0, {19}, [])
+    [(2, 1), (2, 2)]
+    
+    >>> # 3. Partial search: current_path already has (0,0), looking for "ATS" starting at (0,1)
+    >>> # Key for (0,1) is 1. Visited includes the 'C' at key 0.
+    >>> get_word_path(board, "ATS", 0, 1, 0, {0, 1}, [(0, 0)])
+    [(0, 0), (0, 1), (0, 2), (1, 2)]
     """
 
     if board[row][column] != word[word_index]:
