@@ -462,6 +462,7 @@
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
+  * [Knapsack](genetic_algorithm/knapsack.py)
 
 ## Geodesy
   * [Haversine Distance](geodesy/haversine_distance.py)
