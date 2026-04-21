@@ -5,7 +5,20 @@ def binary_or(a: int, b: int) -> str:
     """
     Take in 2 integers, convert them to binary, and return a binary number that is the
     result of a binary or operation on the integers provided.
-
+    The OR operation compares each bit position of two numbers. The result has a 1 bit
+    if AT LEAST ONE of the input numbers has a 1 bit at that position;
+    the result is 0 only when both input bits are 0.
+    Algorithm:
+    1. Convert both numbers to binary representation
+    2. Pad shorter binary string with leading zeros
+    3. For each bit position, output 1 if at least one input bit is 1
+    4. Output 0 only if both input bits are 0
+    5. Return the result as a binary string
+    Example: 25 (0b11001) OR 32 (0b100000)
+    Position: 5 4 3 2 1 0
+    25:       0 1 1 0 0 1
+    32:       1 0 0 0 0 0
+    Result:   1 1 1 0 0 1 = 57 (all positions with at least one 1)
     >>> binary_or(25, 32)
     '0b111001'
     >>> binary_or(37, 50)
