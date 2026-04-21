@@ -77,6 +77,7 @@ def decimal_to_any(num: int, base: int) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     for base in range(2, 37):
         for num in range(1000):
