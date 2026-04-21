@@ -41,4 +41,5 @@ def bin_to_decimal(bin_string: str) -> int:
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
