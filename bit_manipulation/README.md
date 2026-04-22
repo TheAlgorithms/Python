@@ -9,3 +9,22 @@ Bit manipulation is the act of manipulating bits to detect errors (hamming code)
 * <https://wiki.python.org/moin/BitManipulation>
 * <https://wiki.python.org/moin/BitwiseOperators>
 * <https://www.tutorialspoint.com/python3/bitwise_operators_example.htm>
+
+## Example
+
+Below is a simple example using the `get_set_bits_count_using_brian_kernighans_algorithm`
+function from [bit_manipulation/count_number_of_one_bits.py](bit_manipulation/count_number_of_one_bits.py).
+
+```python
+from bit_manipulation.count_number_of_one_bits import get_set_bits_count_using_brian_kernighans_algorithm
+
+print(get_set_bits_count_using_brian_kernighans_algorithm(25))  # 3
+print(get_set_bits_count_using_brian_kernighans_algorithm(58))  # 4
+```
+
+This repository also includes doctest examples in the implementation that can be run with:
+
+```bash
+python3 bit_manipulation/count_number_of_one_bits.py
+```
+
