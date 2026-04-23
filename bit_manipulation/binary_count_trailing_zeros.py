@@ -34,15 +34,12 @@ def binary_count_trailing_zeros(a: int) -> int:
     TypeError: Input must be an integer
     """
 
-  
     if not isinstance(a, int):
         raise TypeError("Input must be an integer")
 
-  
     if a < 0:
         raise ValueError("Input must be a non-negative integer")
 
-   
     if a == 0:
         return 0
 
