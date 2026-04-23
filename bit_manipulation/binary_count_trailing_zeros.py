@@ -3,7 +3,8 @@ from math import log2
 
 def binary_count_trailing_zeros(a: int) -> int:
     """
-    Return the number of trailing zeros in the binary representation of a non-negative integer.
+    Return the number of trailing zeros in the binary
+    representation of a non-negative integer.
 
     Note:
     For a == 0, returns 0 by convention.
