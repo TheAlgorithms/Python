@@ -3,8 +3,10 @@ from math import log2
 
 def binary_count_trailing_zeros(a: int) -> int:
     """
-    Take in 1 integer, return a number that is
-    the number of trailing zeros in binary representation of that number.
+    Return the number of trailing zeros in the binary representation of a non-negative integer.
+
+    Note:
+    For a == 0, returns 0 by convention.
 
     >>> binary_count_trailing_zeros(25)
     0
@@ -21,24 +23,27 @@ def binary_count_trailing_zeros(a: int) -> int:
     >>> binary_count_trailing_zeros(-10)
     Traceback (most recent call last):
         ...
-    ValueError: Input value must be a positive integer
+    ValueError: Input must be a non-negative integer
     >>> binary_count_trailing_zeros(0.8)
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be a 'int' type
+    TypeError: Input must be an integer
     >>> binary_count_trailing_zeros("0")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: Input must be an integer
     """
+
+  
+    if not isinstance(a, int):
+        raise TypeError("Input must be an integer")
+
+  
     if a < 0:
-        raise ValueError("Input value must be a positive integer")
-    elif isinstance(a, float):
-        raise TypeError("Input value must be a 'int' type")
-    return 0 if (a == 0) else int(log2(a & -a))
+        raise ValueError("Input must be a non-negative integer")
 
+   
+    if a == 0:
+        return 0
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    return int(log2(a & -a))
