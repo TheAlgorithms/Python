@@ -11,8 +11,8 @@ WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
 
-from itertools import combinations
 from collections import defaultdict
+from itertools import combinations
 
 
 def load_data() -> list[list[str]]:
@@ -74,7 +74,11 @@ def apriori(data: list[list[str]], min_support: int):
         if count >= min_support
     }
 
-    all_frequents = [(list(i)[0], c) for i, c in item_counts.items() if c >= min_support]
+    all_frequents = [
+        (next(iter(i)), c)
+        for i, c in item_counts.items()
+        if c >= min_support
+    ]
 
     k = 2
 
@@ -102,7 +106,7 @@ def apriori(data: list[list[str]], min_support: int):
         }
 
         all_frequents.extend(
-            (sorted(list(c)), count)
+            (sorted(c), count)
             for c, count in candidate_counts.items()
             if count >= min_support
         )
