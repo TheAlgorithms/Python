@@ -1,35 +1,72 @@
 #!/usr/bin/env python3
-
 """
-Pure Python implementations of binary search algorithms
+Pure Python implementations of binary search algorithms.
 
-For doctests run the following command:
-python3 -m doctest -v binary_search.py
+For doctests run:
+    python3 -m doctest -v binary_search.py
 
 For manual testing run:
-python3 binary_search.py
+    python3 binary_search.py
 """
 
 import bisect
+from collections.abc import Sequence
 from itertools import pairwise
+from typing import TypeVar
+
+__all__ = [
+    "bisect_left",
+    "bisect_right",
+    "insort_left",
+    "insort_right",
+    "binary_search",
+    "binary_search_std_lib",
+    "binary_search_with_duplicates",
+    "binary_search_by_recursion",
+    "exponential_search",
+]
+
+# ---------------------------------------------------------------------------
+# Generic comparable type
+# ---------------------------------------------------------------------------
+
+T = TypeVar("T")  # Must support < via __lt__; mirrors what bisect itself accepts.
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+
+def _check_sorted(collection: Sequence) -> None:
+    """Raise ValueError if *collection* is not sorted in ascending order.
+
+    O(n) — uses adjacent-pair comparison, never allocates a sorted copy.
+    """
+    if any(a > b for a, b in pairwise(collection)):
+        raise ValueError("collection must be sorted in ascending order")
+
+
+# ---------------------------------------------------------------------------
+# bisect_left / bisect_right
+# ---------------------------------------------------------------------------
 
 
 def bisect_left(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: Sequence[T],
+    item: T,
+    lo: int = 0,
+    hi: int = -1,
 ) -> int:
-    """
-    Locates the first element in a sorted array that is larger or equal to a given
-    value.
+    """Return the leftmost index where *item* can be inserted to keep order.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
+    Mirrors :func:`bisect.bisect_left`.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to bisect
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are < item and all
-        values in sorted_collection[i:hi] are >= item.
+    :param sorted_collection: ascending-sorted sequence of comparable items
+    :param item: value to locate
+    :param lo: lower search bound (inclusive)
+    :param hi: upper search bound (exclusive); defaults to len(collection)
+    :return: index *i* such that ``collection[lo:i] < item <= collection[i:hi]``
 
     Examples:
     >>> bisect_left([0, 5, 7, 10, 15], 0)
@@ -57,20 +94,20 @@ def bisect_left(
 
 
 def bisect_right(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: Sequence[T],
+    item: T,
+    lo: int = 0,
+    hi: int = -1,
 ) -> int:
-    """
-    Locates the first element in a sorted array that is larger than a given value.
+    """Return the rightmost index where *item* can be inserted to keep order.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
+    Mirrors :func:`bisect.bisect_right`.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to bisect
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are <= item and
-        all values in sorted_collection[i:hi] are > item.
+    :param sorted_collection: ascending-sorted sequence of comparable items
+    :param item: value to locate
+    :param lo: lower search bound (inclusive)
+    :param hi: upper search bound (exclusive); defaults to len(collection)
+    :return: index *i* such that ``collection[lo:i] <= item < collection[i:hi]``
 
     Examples:
     >>> bisect_right([0, 5, 7, 10, 15], 0)
@@ -97,95 +134,78 @@ def bisect_right(
     return lo
 
 
+# ---------------------------------------------------------------------------
+# insort helpers
+# ---------------------------------------------------------------------------
+
+
 def insort_left(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[T],
+    item: T,
+    lo: int = 0,
+    hi: int = -1,
 ) -> None:
-    """
-    Inserts a given value into a sorted array before other values with the same value.
+    """Insert *item* into *sorted_collection* before any equal values.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.insort_left .
-
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to insert
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    Mirrors :func:`bisect.insort_left`.
 
     Examples:
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 6)
-    >>> sorted_collection
+    >>> col = [0, 5, 7, 10, 15]
+    >>> insort_left(col, 6)
+    >>> col
     [0, 5, 6, 7, 10, 15]
-    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> col = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
     >>> item = (5, 5)
-    >>> insort_left(sorted_collection, item)
-    >>> sorted_collection
+    >>> insort_left(col, item)
+    >>> col
     [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item is sorted_collection[1]
+    >>> item is col[1]
     True
-    >>> item is sorted_collection[2]
+    >>> item is col[2]
     False
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 20)
-    >>> sorted_collection
-    [0, 5, 7, 10, 15, 20]
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 15, 1, 3)
-    >>> sorted_collection
-    [0, 5, 7, 15, 10, 15]
     """
     sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
 
 
 def insort_right(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[T],
+    item: T,
+    lo: int = 0,
+    hi: int = -1,
 ) -> None:
-    """
-    Inserts a given value into a sorted array after other values with the same value.
+    """Insert *item* into *sorted_collection* after any equal values.
 
-    It has the same interface as
-    https://docs.python.org/3/library/bisect.html#bisect.insort_right .
-
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to insert
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    Mirrors :func:`bisect.insort_right`.
 
     Examples:
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 6)
-    >>> sorted_collection
+    >>> col = [0, 5, 7, 10, 15]
+    >>> insort_right(col, 6)
+    >>> col
     [0, 5, 6, 7, 10, 15]
-    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> col = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
     >>> item = (5, 5)
-    >>> insort_right(sorted_collection, item)
-    >>> sorted_collection
+    >>> insort_right(col, item)
+    >>> col
     [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item is sorted_collection[1]
+    >>> item is col[1]
     False
-    >>> item is sorted_collection[2]
+    >>> item is col[2]
     True
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 20)
-    >>> sorted_collection
-    [0, 5, 7, 10, 15, 20]
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 15, 1, 3)
-    >>> sorted_collection
-    [0, 5, 7, 15, 10, 15]
     """
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
-def binary_search(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of a binary search algorithm in Python
+# ---------------------------------------------------------------------------
+# Core binary search variants
+# ---------------------------------------------------------------------------
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+def binary_search(sorted_collection: Sequence[T], item: T) -> int:
+    """Iterative binary search.  Returns -1 when *item* is absent.
+
+    :param sorted_collection: ascending-sorted sequence
+    :param item: value to find
+    :return: index of *item*, or ``-1`` if not found
 
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
@@ -196,33 +216,33 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> binary_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> binary_search([], 1)
+    -1
     """
-    if any(a > b for a, b in pairwise(sorted_collection)):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    left = 0
-    right = len(sorted_collection) - 1
+    _check_sorted(sorted_collection)
+    left, right = 0, len(sorted_collection) - 1
 
     while left <= right:
-        midpoint = left + (right - left) // 2
-        current_item = sorted_collection[midpoint]
-        if current_item == item:
-            return midpoint
-        elif item < current_item:
-            right = midpoint - 1
+        mid = left + (right - left) // 2
+        current = sorted_collection[mid]
+        if current == item:
+            return mid
+        if item < current:
+            right = mid - 1
         else:
-            left = midpoint + 1
+            left = mid + 1
+
     return -1
 
 
-def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of a binary search algorithm in Python using stdlib
+def binary_search_std_lib(sorted_collection: Sequence[T], item: T) -> int:
+    """Binary search via the standard-library :mod:`bisect` module.
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
+    IMPROVEMENT: replaced O(n log n) ``sorted()`` copy with O(n) pairwise check.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sorted_collection: ascending-sorted sequence
+    :param item: value to find
+    :return: index of *item*, or ``-1`` if not found
 
     Examples:
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
@@ -234,29 +254,22 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
+    _check_sorted(sorted_collection)
     index = bisect.bisect_left(sorted_collection, item)
-    if index != len(sorted_collection) and sorted_collection[index] == item:
+    if index < len(sorted_collection) and sorted_collection[index] == item:
         return index
     return -1
 
 
-def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> list[int]:
-    """Pure implementation of a binary search algorithm in Python that supports
-    duplicates.
+def binary_search_with_duplicates(sorted_collection: Sequence[T], item: T) -> list[int]:
+    """Binary search that returns *all* indices where *item* appears.
 
-    Resources used:
-    https://stackoverflow.com/questions/13197552/using-binary-search-with-sorted-array-with-duplicates
+    IMPROVEMENT: reuses the module-level ``bisect_left`` / ``bisect_right``
+    instead of redefining equivalent inner functions.
 
-    The collection must be sorted in ascending order; otherwise the result will be
-    unpredictable. If the target appears multiple times, this function returns a
-    list of all indexes where the target occurs. If the target is not found,
-    this function returns an empty list.
-
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search for
-    :return: a list of indexes where the item is found (empty list if not found)
+    :param sorted_collection: ascending-sorted sequence
+    :param item: value to find
+    :return: sorted list of every index where *item* occurs (empty if absent)
 
     Examples:
     >>> binary_search_with_duplicates([0, 5, 7, 10, 15], 0)
@@ -268,108 +281,80 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     >>> binary_search_with_duplicates([1, 2, 2, 2, 3], 4)
     []
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-
-    def lower_bound(sorted_collection: list[int], item: int) -> int:
-        """
-        Returns the index of the first element greater than or equal to the item.
-
-        :param sorted_collection: The sorted list to search.
-        :param item: The item to find the lower bound for.
-        :return: The index where the item can be inserted while maintaining order.
-        """
-        left = 0
-        right = len(sorted_collection)
-        while left < right:
-            midpoint = left + (right - left) // 2
-            current_item = sorted_collection[midpoint]
-            if current_item < item:
-                left = midpoint + 1
-            else:
-                right = midpoint
-        return left
-
-    def upper_bound(sorted_collection: list[int], item: int) -> int:
-        """
-        Returns the index of the first element strictly greater than the item.
-
-        :param sorted_collection: The sorted list to search.
-        :param item: The item to find the upper bound for.
-        :return: The index where the item can be inserted after all existing instances.
-        """
-        left = 0
-        right = len(sorted_collection)
-        while left < right:
-            midpoint = left + (right - left) // 2
-            current_item = sorted_collection[midpoint]
-            if current_item <= item:
-                left = midpoint + 1
-            else:
-                right = midpoint
-        return left
-
-    left = lower_bound(sorted_collection, item)
-    right = upper_bound(sorted_collection, item)
-
+    _check_sorted(sorted_collection)
+    left = bisect_left(sorted_collection, item)
     if left == len(sorted_collection) or sorted_collection[left] != item:
         return []
+    right = bisect_right(sorted_collection, item)
     return list(range(left, right))
 
 
 def binary_search_by_recursion(
-    sorted_collection: list[int], item: int, left: int = 0, right: int = -1
+    sorted_collection: Sequence[T],
+    item: T,
+    left: int = 0,
+    right: int = -1,
 ) -> int:
-    """Pure implementation of a binary search algorithm in Python by recursion
+    """Recursive binary search.  Returns -1 when *item* is absent.
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
-    First recursion should be started with left=0 and right=(len(sorted_collection)-1)
+    IMPROVEMENT: validation is performed once in the public entry-point and
+    delegated to a private recursive helper, eliminating the O(n log n)
+    re-validation that previously happened on every recursive call.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sorted_collection: ascending-sorted sequence
+    :param item: value to find
+    :param left: lower bound index (inclusive); callers should use default
+    :param right: upper bound index (inclusive); callers should use default
+    :return: index of *item*, or ``-1`` if not found
 
     Examples:
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0)
     0
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15, 0, 4)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15)
     4
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5)
     1
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6)
+    -1
+    >>> binary_search_by_recursion([], 1)
     -1
     """
+    _check_sorted(sorted_collection)
     if right < 0:
         right = len(sorted_collection) - 1
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    if right < left:
+    return _binary_search_recursive(sorted_collection, item, left, right)
+
+
+def _binary_search_recursive(col: Sequence[T], item: T, left: int, right: int) -> int:
+    """Internal recursive helper — no validation overhead."""
+    if left > right:
         return -1
-
-    midpoint = left + (right - left) // 2
-
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
-    else:
-        return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
+    mid = left + (right - left) // 2
+    current = col[mid]
+    if current == item:
+        return mid
+    if item < current:
+        return _binary_search_recursive(col, item, left, mid - 1)
+    return _binary_search_recursive(col, item, mid + 1, right)
 
 
-def exponential_search(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of an exponential search algorithm in Python
-    Resources used:
-    https://en.wikipedia.org/wiki/Exponential_search
+# ---------------------------------------------------------------------------
+# Exponential search
+# ---------------------------------------------------------------------------
 
-    Be careful collection must be ascending sorted otherwise, result will be
-    unpredictable
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+def exponential_search(sorted_collection: Sequence[T], item: T) -> int:
+    """Exponential search — efficient when the target is near the start.
 
-    the order of this algorithm is O(lg I) where I is index position of item if exist
+    Complexity: O(log i) where *i* is the index of *item*.
+    Reference: https://en.wikipedia.org/wiki/Exponential_search
+
+    IMPROVEMENT: removed dead ``if last_result is None`` guard (the callee
+    never returns ``None``); validation is now done once up-front.
+
+    :param sorted_collection: ascending-sorted sequence
+    :param item: value to find
+    :return: index of *item*, or ``-1`` if not found
 
     Examples:
     >>> exponential_search([0, 5, 7, 10, 15], 0)
@@ -380,55 +365,63 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> exponential_search([], 1)
+    -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    bound = 1
-    while bound < len(sorted_collection) and sorted_collection[bound] < item:
-        bound *= 2
-    left = bound // 2
-    right = min(bound, len(sorted_collection) - 1)
-    last_result = binary_search_by_recursion(
-        sorted_collection=sorted_collection, item=item, left=left, right=right
-    )
-    if last_result is None:
+    _check_sorted(sorted_collection)
+    n = len(sorted_collection)
+    if n == 0:
         return -1
-    return last_result
+
+    bound = 1
+    while bound < n and sorted_collection[bound] < item:
+        bound *= 2
+
+    left = bound // 2
+    right = min(bound, n - 1)
+    # Use the internal helper to avoid re-validating the (already-checked) collection.
+    return _binary_search_recursive(sorted_collection, item, left, right)
 
 
-searches = (  # Fastest to slowest...
+# ---------------------------------------------------------------------------
+# Benchmark / manual testing
+# ---------------------------------------------------------------------------
+
+searches = (  # Fastest to slowest…
     binary_search_std_lib,
     binary_search,
     exponential_search,
     binary_search_by_recursion,
 )
 
-
 if __name__ == "__main__":
     import doctest
     import timeit
 
     doctest.testmod()
-    for search in searches:
-        name = f"{search.__name__:>26}"
-        print(f"{name}: {search([0, 5, 7, 10, 15], 10) = }")  # type: ignore[operator]
 
-    print("\nBenchmarks...")
-    setup = "collection = range(1000)"
+    print("Spot-check results:")
+    for search in searches:
+        name = f"{search.__name__:>30}"
+        print(f"  {name}: {search([0, 5, 7, 10, 15], 10) = }")
+
+    print("\nBenchmarks (5 000 iterations on range(1000), target=500)…")
+    setup = "collection = list(range(1000))"
     for search in searches:
         name = search.__name__
-        print(
-            f"{name:>26}:",
-            timeit.timeit(
-                f"{name}(collection, 500)", setup=setup, number=5_000, globals=globals()
-            ),
+        elapsed = timeit.timeit(
+            f"{name}(collection, 500)",
+            setup=setup,
+            number=5_000,
+            globals=globals(),
         )
+        print(f"  {name:>30}: {elapsed:.4f}s")
 
     user_input = input("\nEnter numbers separated by comma: ").strip()
-    collection = sorted(int(item) for item in user_input.split(","))
-    target = int(input("Enter a single number to be found in the list: "))
-    result = binary_search(sorted_collection=collection, item=target)
+    collection = sorted(int(x) for x in user_input.split(","))
+    target = int(input("Enter a single number to find: "))
+    result = binary_search(collection, target)
     if result == -1:
         print(f"{target} was not found in {collection}.")
     else:
-        print(f"{target} was found at position {result} of {collection}.")
+        print(f"{target} was found at index {result} of {collection}.")
