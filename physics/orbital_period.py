@@ -46,6 +46,7 @@ def time_period_of_satellite(mass: float, radius: float, height: float) -> float
         raise ValueError("Height must be a non-negative value")
 
     import math
+
     return round(2 * math.pi * ((radius + height) ** 3 / (6.674e-11 * mass)) ** 0.5, 2)
 
 
@@ -53,4 +54,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
