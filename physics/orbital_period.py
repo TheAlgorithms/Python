@@ -4,7 +4,7 @@ complete one full orbit around a celestial body.
 
 T = 2π * sqrt((R + h)^3 / (G * M))
 
-G is the Universal Gravitational Constant and equals 6.674 × 10^-11 N m²/kg²
+G is the Universal Gravitational Constant and equals 6.674 X 10^-11 N m²/kg²
 M is the mass of the celestial body (kg)
 R is the radius of the celestial body (m)
 h is the height of the satellite above the surface (m)
@@ -53,3 +53,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    
