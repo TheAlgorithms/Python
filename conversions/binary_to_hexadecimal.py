@@ -27,7 +27,7 @@ def bin_to_hexadecimal(binary_str: str) -> str:
 
     if not binary_str or not all(char in "01" for char in binary_str):
         raise ValueError("Non-binary value was passed to the function")
-
+    # Uses built-in int() for binary parsing and hex() for conversion
     hex_str = "0x" + hex(int(binary_str, 2))[2:]
     if hex_str == "0x0":
         is_negative = False
