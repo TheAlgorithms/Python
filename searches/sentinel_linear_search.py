@@ -1,6 +1,6 @@
 """
 Sentinel Linear Search Algorithm
-A variation of linear search that reduces comparisons.
+A variation of linear search that reduces comparisons per iteration.
 Reference: https://en.wikipedia.org/wiki/Linear_search#With_a_sentinel
 """
 
@@ -27,6 +27,7 @@ def sentinel_linear_search(arr: list[int], target: int) -> int:
     while arr[i] != target:
         i += 1
 
+    # Restore the original last element to prevent mutation of the input array
     arr[n - 1] = last
 
     if i < n - 1 or arr[n - 1] == target:
@@ -36,5 +37,5 @@ def sentinel_linear_search(arr: list[int], target: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
+    print(sentinel_linear_search([1, 2, 3, 4, 5], 3))
