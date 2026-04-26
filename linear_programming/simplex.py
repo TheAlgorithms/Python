@@ -1,15 +1,22 @@
-from typing import Any
+from typing import Dict
 import numpy as np
 
 
 class Tableau:
-    """Operate on simplex tableaus"""
+    """
+    Simplex algorithm implementation using tableau form.
+
+    Solves linear programming problems of the form:
+    maximize c^T x subject to Ax <= b and x >= 0
+    """
 
     maxiter = 100
 
     def __init__(
         self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int
     ) -> None:
+        tableau = tableau.astype("float64")
+
         if tableau.dtype != "float64":
             raise TypeError("Tableau must have type float64")
 
@@ -17,9 +24,7 @@ class Tableau:
             raise ValueError("RHS must be > 0")
 
         if n_vars < 2 or n_artificial_vars < 0:
-            raise ValueError(
-                "number of (artificial) variables must be a natural number"
-            )
+            raise ValueError("Invalid number of variables")
 
         self.tableau = tableau
         self.n_rows, n_cols = tableau.shape
@@ -40,20 +45,22 @@ class Tableau:
 
     def generate_col_titles(self) -> list[str]:
         string_starts = ["x", "s"]
-        titles = []
+        sizes = [self.n_vars, self.n_slack]
+
+        titles: list[str] = []
 
         for i in range(2):
-            for j in range((self.n_vars, self.n_slack)[i]):
+            for j in range(sizes[i]):
                 titles.append(string_starts[i] + str(j + 1))
 
         titles.append("RHS")
         return titles
 
-    def find_pivot(self) -> tuple[Any, Any]:
+    def find_pivot(self) -> tuple[int, int]:
         objective = self.objectives[-1]
 
         sign = (objective == "min") - (objective == "max")
-        col_idx = np.argmax(sign * self.tableau[0, :-1])
+        col_idx = int(np.argmax(sign * self.tableau[0, :-1]))
 
         if sign * self.tableau[0, col_idx] <= 0:
             self.stop_iter = True
@@ -65,27 +72,24 @@ class Tableau:
         divisor = self.tableau[s, col_idx]
 
         nans = np.full(self.n_rows - self.n_stages, np.nan)
-        quotients = np.divide(dividend, divisor, out=nans, where=divisor > 0)
 
-        row_idx = np.nanargmin(quotients) + self.n_stages
+        quotients = np.divide(
+            dividend, divisor, out=nans, where=divisor > 0
+        )
+
+        row_idx = int(np.nanargmin(quotients) + self.n_stages)
         return row_idx, col_idx
 
-    # 🔥 OPTIMIZED PIVOT (major speed improvement)
     def pivot(self, row_idx: int, col_idx: int) -> np.ndarray:
         tableau = self.tableau
 
         piv_row = tableau[row_idx].copy()
-        piv_val = piv_row[col_idx]
+        piv_row /= piv_row[col_idx]
 
-        # normalize pivot row
-        piv_row /= piv_val
-
-        # vectorized elimination (FAST)
         tableau -= tableau[:, col_idx][:, None] * piv_row
-
         tableau[row_idx] = piv_row
-        self.tableau = tableau
 
+        self.tableau = tableau
         return tableau
 
     def change_stage(self) -> np.ndarray:
@@ -106,12 +110,21 @@ class Tableau:
 
         return self.tableau
 
-    def run_simplex(self) -> dict[Any, Any]:
-        """Run simplex algorithm until optimal solution is found."""
+    def run_simplex(self) -> Dict[str, float]:
+        """
+        Run simplex algorithm until optimal solution is found.
 
-        maxiter = Tableau.maxiter
+        >>> t = Tableau(np.array([
+        ... [-1, -1, 0, 0, 0],
+        ... [1, 3, 1, 0, 4],
+        ... [3, 1, 0, 1, 4]
+        ... ], dtype="float64"), 2, 0)
+        >>> result = t.run_simplex()
+        >>> result["P"]
+        2.0
+        """
 
-        for iteration in range(maxiter):
+        for iteration in range(Tableau.maxiter):
 
             if not self.objectives:
                 return self.interpret_tableau()
@@ -123,32 +136,28 @@ class Tableau:
             else:
                 self.tableau = self.pivot(row_idx, col_idx)
 
-        #  FIXED: no silent failure anymore
         raise ValueError(
-            "Simplex algorithm failed to converge.\n"
-            f"- Iterations performed: {maxiter}\n"
-            f"- Remaining objectives: {self.objectives}\n"
-            "Possible causes:\n"
-            "- Cycling (degeneracy)\n"
-            "- Unbounded solution\n"
-            "- Ill-conditioned input"
+            "Simplex did not converge.\n"
+            f"- Iterations: {Tableau.maxiter}\n"
+            f"- Remaining objectives: {self.objectives}"
         )
 
-    def interpret_tableau(self) -> dict[str, float]:
-        output_dict = {"P": abs(self.tableau[0, -1])}
+    def interpret_tableau(self) -> Dict[str, float]:
+        output: Dict[str, float] = {
+            "P": float(abs(self.tableau[0, -1]))
+        }
 
         for i in range(self.n_vars):
-            nonzero = np.nonzero(self.tableau[:, i])
-            if len(nonzero[0]) == 0:
-                continue
+            nonzero = np.nonzero(self.tableau[:, i])[0]
 
-            r = nonzero[0][0]
-            val = self.tableau[r, i]
+            if len(nonzero) == 1:
+                row = nonzero[0]
+                if self.tableau[row, i] == 1:
+                    output[self.col_titles[i]] = float(
+                        self.tableau[row, -1]
+                    )
 
-            if len(nonzero[0]) == 1 and val == 1:
-                output_dict[self.col_titles[i]] = self.tableau[r, -1]
-
-        return output_dict
+        return output
 
 
 if __name__ == "__main__":
