@@ -5,7 +5,6 @@ import numpy as np
 class Tableau:
     """Operate on simplex tableaus"""
 
-    # Max iteration number to prevent cycling
     maxiter = 100
 
     def __init__(
@@ -29,7 +28,6 @@ class Tableau:
         self.n_artificial_vars = n_artificial_vars
 
         self.n_stages = (self.n_artificial_vars > 0) + 1
-
         self.n_slack = n_cols - self.n_vars - self.n_artificial_vars - 1
 
         self.objectives = ["max"]
@@ -38,19 +36,16 @@ class Tableau:
 
         self.col_titles = self.generate_col_titles()
 
-        self.row_idx = None
-        self.col_idx = None
-
         self.stop_iter = False
 
     def generate_col_titles(self) -> list[str]:
-        args = (self.n_vars, self.n_slack)
-
         string_starts = ["x", "s"]
         titles = []
+
         for i in range(2):
-            for j in range(args[i]):
+            for j in range((self.n_vars, self.n_slack)[i]):
                 titles.append(string_starts[i] + str(j + 1))
+
         titles.append("RHS")
         return titles
 
@@ -75,16 +70,23 @@ class Tableau:
         row_idx = np.nanargmin(quotients) + self.n_stages
         return row_idx, col_idx
 
+    # 🔥 OPTIMIZED PIVOT (major speed improvement)
     def pivot(self, row_idx: int, col_idx: int) -> np.ndarray:
-        piv_row = self.tableau[row_idx].copy()
+        tableau = self.tableau
+
+        piv_row = tableau[row_idx].copy()
         piv_val = piv_row[col_idx]
 
-        piv_row *= 1 / piv_val
+        # normalize pivot row
+        piv_row /= piv_val
 
-        for idx, coeff in enumerate(self.tableau[:, col_idx]):
-            self.tableau[idx] += -coeff * piv_row
-        self.tableau[row_idx] = piv_row
-        return self.tableau
+        # vectorized elimination (FAST)
+        tableau -= tableau[:, col_idx][:, None] * piv_row
+
+        tableau[row_idx] = piv_row
+        self.tableau = tableau
+
+        return tableau
 
     def change_stage(self) -> np.ndarray:
         self.objectives.pop()
@@ -101,12 +103,15 @@ class Tableau:
         self.n_rows -= 1
         self.n_artificial_vars = 0
         self.stop_iter = False
+
         return self.tableau
 
     def run_simplex(self) -> dict[Any, Any]:
         """Run simplex algorithm until optimal solution is found."""
 
-        for iteration in range(Tableau.maxiter):
+        maxiter = Tableau.maxiter
+
+        for iteration in range(maxiter):
 
             if not self.objectives:
                 return self.interpret_tableau()
@@ -118,16 +123,15 @@ class Tableau:
             else:
                 self.tableau = self.pivot(row_idx, col_idx)
 
-        #  FIX: raise error instead of returning {}
+        #  FIXED: no silent failure anymore
         raise ValueError(
             "Simplex algorithm failed to converge.\n"
-            f"- Iterations performed: {iteration + 1}\n"
-            f"- Max iterations allowed: {Tableau.maxiter}\n"
+            f"- Iterations performed: {maxiter}\n"
             f"- Remaining objectives: {self.objectives}\n"
             "Possible causes:\n"
-            "- Cycling due to degeneracy\n"
-            "- Unbounded feasible region\n"
-            "- Ill-formed or poorly scaled input\n"
+            "- Cycling (degeneracy)\n"
+            "- Unbounded solution\n"
+            "- Ill-conditioned input"
         )
 
     def interpret_tableau(self) -> dict[str, float]:
@@ -135,17 +139,14 @@ class Tableau:
 
         for i in range(self.n_vars):
             nonzero = np.nonzero(self.tableau[:, i])
-            n_nonzero = len(nonzero[0])
-
-            if n_nonzero == 0:
+            if len(nonzero[0]) == 0:
                 continue
 
-            nonzero_rowidx = nonzero[0][0]
-            nonzero_val = self.tableau[nonzero_rowidx, i]
+            r = nonzero[0][0]
+            val = self.tableau[r, i]
 
-            if n_nonzero == 1 and nonzero_val == 1:
-                rhs_val = self.tableau[nonzero_rowidx, -1]
-                output_dict[self.col_titles[i]] = rhs_val
+            if len(nonzero[0]) == 1 and val == 1:
+                output_dict[self.col_titles[i]] = self.tableau[r, -1]
 
         return output_dict
 
