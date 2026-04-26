@@ -18,29 +18,70 @@ Refer - https://www.geeksforgeeks.org/logic-gates/
 
 def and_gate(input_1: int, input_2: int) -> int:
     """
-    Calculate AND of the input values
+    Calculate AND of two binary input values.
 
     >>> and_gate(0, 0)
     0
     >>> and_gate(0, 1)
     0
-    >>> and_gate(1, 0)
-    0
     >>> and_gate(1, 1)
     1
+    >>> and_gate(2, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Both inputs must be 0 or 1
+    >>> and_gate(0, "1")
+    Traceback (most recent call last):
+        ...
+    TypeError: Both inputs must be integers
     """
-    return int(input_1 and input_2)
+    # Type validation
+    if not isinstance(input_1, int) or not isinstance(input_2, int):
+        raise TypeError("Both inputs must be integers")
+
+    # Value validation
+    if input_1 not in (0, 1) or input_2 not in (0, 1):
+        raise ValueError("Both inputs must be 0 or 1")
+
+    return input_1 & input_2
 
 
 def n_input_and_gate(inputs: list[int]) -> int:
     """
-    Calculate AND of a list of input values
+    Calculate AND of a list of binary input values.
 
-    >>> n_input_and_gate([1, 0, 1, 1, 0])
-    0
     >>> n_input_and_gate([1, 1, 1, 1, 1])
     1
+    >>> n_input_and_gate([1, 0, 1, 1, 0])
+    0
+    >>> n_input_and_gate([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list cannot be empty
+    >>> n_input_and_gate([1, 2, 1])
+    Traceback (most recent call last):
+        ...
+    ValueError: All inputs in the list must be 0 or 1
+    >>> n_input_and_gate([1, "1"])
+    Traceback (most recent call last):
+        ...
+    TypeError: All inputs in the list must be integers
     """
+    # Type validation for the list itself
+    if not isinstance(inputs, list):
+        raise TypeError("Input must be a list")
+
+    # Edge case validation for an empty list
+    if not inputs:
+        raise ValueError("Input list cannot be empty")
+
+    # Type and value validation for items within the list
+    for item in inputs:
+        if not isinstance(item, int):
+            raise TypeError("All inputs in the list must be integers")
+        if item not in (0, 1):
+            raise ValueError("All inputs in the list must be 0 or 1")
+
     return int(all(inputs))
 
 
