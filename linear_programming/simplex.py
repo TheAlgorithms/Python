@@ -107,7 +107,6 @@ class Tableau:
         """Run simplex algorithm until optimal solution is found."""
 
         for iteration in range(Tableau.maxiter):
-
             if not self.objectives:
                 return self.interpret_tableau()
 
@@ -152,4 +151,5 @@ class Tableau:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
