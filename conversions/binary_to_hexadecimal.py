@@ -29,6 +29,8 @@ def bin_to_hexadecimal(binary_str: str) -> str:
         raise ValueError("Non-binary value was passed to the function")
 
     hex_str = "0x" + hex(int(binary_str, 2))[2:]
+    if hex_str == "0x0":
+        is_negative = False
     return "-" + hex_str if is_negative else hex_str
 
 
