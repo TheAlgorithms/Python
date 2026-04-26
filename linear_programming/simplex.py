@@ -73,9 +73,7 @@ class Tableau:
 
         nans = np.full(self.n_rows - self.n_stages, np.nan)
 
-        quotients = np.divide(
-            dividend, divisor, out=nans, where=divisor > 0
-        )
+        quotients = np.divide(dividend, divisor, out=nans, where=divisor > 0)
 
         row_idx = int(np.nanargmin(quotients) + self.n_stages)
         return row_idx, col_idx
@@ -125,7 +123,6 @@ class Tableau:
         """
 
         for iteration in range(Tableau.maxiter):
-
             if not self.objectives:
                 return self.interpret_tableau()
 
@@ -143,9 +140,7 @@ class Tableau:
         )
 
     def interpret_tableau(self) -> Dict[str, float]:
-        output: Dict[str, float] = {
-            "P": float(abs(self.tableau[0, -1]))
-        }
+        output: Dict[str, float] = {"P": float(abs(self.tableau[0, -1]))}
 
         for i in range(self.n_vars):
             nonzero = np.nonzero(self.tableau[:, i])[0]
@@ -153,13 +148,12 @@ class Tableau:
             if len(nonzero) == 1:
                 row = nonzero[0]
                 if self.tableau[row, i] == 1:
-                    output[self.col_titles[i]] = float(
-                        self.tableau[row, -1]
-                    )
+                    output[self.col_titles[i]] = float(self.tableau[row, -1])
 
         return output
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
