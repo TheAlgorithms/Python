@@ -37,5 +37,6 @@ def sentinel_linear_search(arr: list[int], target: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(sentinel_linear_search([1, 2, 3, 4, 5], 3))
