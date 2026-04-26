@@ -40,6 +40,7 @@ def binary_search_on_answer(
 
     return answer
 
+
 # Doctests-1. Doctests for binary_search_on_answer
 
 """
@@ -71,6 +72,7 @@ Examples:
 
 # Example1: minimum capacity to ship
 
+
 def min_capacity_to_ship(weights: list[int], days: int) -> int:
     """
     Find minimum capacity to ship packages within given days.
@@ -92,6 +94,7 @@ def min_capacity_to_ship(weights: list[int], days: int) -> int:
         return days_used <= days
 
     return binary_search_on_answer(max(weights), sum(weights), can_ship)
+
 
 # Doctest-2. Doctests for min_capacity_to_ship
 
