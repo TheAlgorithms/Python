@@ -27,12 +27,12 @@ def load_data() -> list[list[str]]:
 
 # ---------- Helpers ----------
 
-def get_support(itemset, transactions):
+def get_support(itemset: frozenset, transactions: list[set]):
     """Compute support count of an itemset efficiently."""
     return sum(1 for t in transactions if itemset.issubset(t))
 
 
-def generate_candidates(prev_frequent, k):
+def generate_candidates(prev_frequent: set[frozenset], k: int):
     """
     Generate candidate itemsets of size k from frequent itemsets of size k-1.
     """
@@ -48,7 +48,7 @@ def generate_candidates(prev_frequent, k):
     return candidates
 
 
-def has_infrequent_subset(candidate, prev_frequent):
+def has_infrequent_subset(candidate: frozenset, prev_frequent: set[frozenset]):
     """
     Apriori pruning: all (k-1)-subsets must be frequent.
     """
