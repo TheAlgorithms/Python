@@ -302,7 +302,13 @@ class Tableau:
                 self.tableau = self.change_stage()
             else:
                 self.tableau = self.pivot(row_idx, col_idx)
-        return {}
+
+        max_iterations = Tableau.maxiter
+        raise ValueError(
+            "Simplex did not converge within "
+            + str(max_iterations)
+            + " iterations. The problem may be cycling or unbounded."
+        )
 
     def interpret_tableau(self) -> dict[str, float]:
         """Given the final tableau, add the corresponding values of the basic
