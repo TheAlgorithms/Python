@@ -27,12 +27,13 @@ def load_data() -> list[list[str]]:
 
 # ---------- Helpers ----------
 
-def get_support(itemset: frozenset, transactions: list[set]):
+
+def get_support(itemset: frozenset, transactions: list[set]) -> int:
     """Compute support count of an itemset efficiently."""
     return sum(1 for t in transactions if itemset.issubset(t))
 
 
-def generate_candidates(prev_frequent: set[frozenset], k: int):
+def generate_candidates(prev_frequent: set[frozenset], k: int) -> set[frozenset]:
     """
     Generate candidate itemsets of size k from frequent itemsets of size k-1.
     """
@@ -48,7 +49,7 @@ def generate_candidates(prev_frequent: set[frozenset], k: int):
     return candidates
 
 
-def has_infrequent_subset(candidate: frozenset, prev_frequent: set[frozenset]):
+def has_infrequent_subset(candidate: frozenset, prev_frequent: set[frozenset]) -> bool:
     """
     Apriori pruning: all (k-1)-subsets must be frequent.
     """
@@ -60,7 +61,8 @@ def has_infrequent_subset(candidate: frozenset, prev_frequent: set[frozenset]):
 
 # ---------- Main Apriori ----------
 
-def apriori(data: list[list[str]], min_support: int):
+
+def apriori(data: list[list[str]], min_support: int) -> list[tuple[frozenset, int]]:
     transactions = [set(t) for t in data]
 
     # 1. initial 1-itemsets
@@ -70,14 +72,11 @@ def apriori(data: list[list[str]], min_support: int):
             item_counts[frozenset([item])] += 1
 
     frequent = {
-        itemset for itemset, count in item_counts.items()
-        if count >= min_support
+        itemset for itemset, count in item_counts.items() if count >= min_support
     }
 
     all_frequents = [
-        (next(iter(i)), c)
-        for i, c in item_counts.items()
-        if c >= min_support
+        (next(iter(i)), c) for i, c in item_counts.items() if c >= min_support
     ]
 
     k = 2
@@ -87,10 +86,7 @@ def apriori(data: list[list[str]], min_support: int):
         candidates = generate_candidates(frequent, k)
 
         # 3. prune
-        candidates = {
-            c for c in candidates
-            if not has_infrequent_subset(c, frequent)
-        }
+        candidates = {c for c in candidates if not has_infrequent_subset(c, frequent)}
 
         # 4. count support
         candidate_counts = defaultdict(int)
@@ -100,10 +96,7 @@ def apriori(data: list[list[str]], min_support: int):
                     candidate_counts[c] += 1
 
         # 5. filter frequent
-        frequent = {
-            c for c, count in candidate_counts.items()
-            if count >= min_support
-        }
+        frequent = {c for c, count in candidate_counts.items() if count >= min_support}
 
         all_frequents.extend(
             (sorted(c), count)
