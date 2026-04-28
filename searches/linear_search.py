@@ -35,9 +35,7 @@ def linear_search[T](sequence: Sequence[T], target: T) -> int:
     return -1
 
 
-def rec_linear_search[T](
-    sequence: Sequence[T], low: int, high: int, target: T
-) -> int:
+def rec_linear_search[T](sequence: Sequence[T], low: int, high: int, target: T) -> int:
     """
     A pure Python implementation of a recursive linear search algorithm
 
