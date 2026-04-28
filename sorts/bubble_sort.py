@@ -8,6 +8,15 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     comparable items inside
     :return: the same collection ordered in ascending order
 
+    Time Complexity:
+    Best Case: O(n)
+    Average Case: O(n^2)
+    Worst Case: O(n^2)
+
+    Space Complexity: O(1)
+
+    Stable: Yes
+
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
@@ -65,6 +74,15 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
+
+    Time Complexity:
+    Best Case: O(n)
+    Average Case: O(n^2)
+    Worst Case: O(n^2)
+
+    Space Complexity: O(n)
+
+    Stable: Yes
 
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
