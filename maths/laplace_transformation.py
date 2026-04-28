@@ -14,13 +14,16 @@ def laplace_transform(
     """
     Calculate the numerical Laplace Transform of a function given its values over time.
 
+    This implementation supports only real-valued, non-negative Laplace
+    parameters ``s``.
+
     Args:
         function_values: A numpy array of the function values f(t).
-        s_value: The complex frequency parameter 's' (modeled here as a float).
+        s_value: The real-valued Laplace parameter ``s``. Must be non-negative.
         delta_t: The time step between samples.
 
     Returns:
-        The approximate value of the Laplace transform at s_value.
+        The approximate real-valued value of the Laplace transform at s_value.
 
     Example: For f(t) = 1, the Laplace transform L{1} = 1/s.
     If s = 2, L{1} should be 0.5.
