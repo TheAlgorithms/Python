@@ -32,12 +32,3 @@ def shell_sort(collection: list[int]) -> list[int]:
             collection[j] = insert_value
 
     return collection
-
-
-if __name__ == "__main__":
-    from doctest import testmod
-
-    testmod()
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(shell_sort(unsorted))
