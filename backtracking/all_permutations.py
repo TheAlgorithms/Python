@@ -78,7 +78,11 @@ def create_state_space_tree(
 remove the comment to take an input from the user
 
 print("Enter the elements")
-sequence = list(map(int, input().split()))
+MAX_SEQUENCE_LENGTH = 8
+user_input = list(map(int, input().split()))
+if len(user_input) > MAX_SEQUENCE_LENGTH:
+    raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
+sequence = user_input
 """
 
 sequence: list[int | str] = [3, 1, 2, 4]
