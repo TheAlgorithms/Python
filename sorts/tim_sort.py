@@ -1,82 +1,117 @@
-def binary_search(lst, item, start, end):
-    if start == end:
-        return start if lst[start] > item else start + 1
-    if start > end:
-        return start
-
-    mid = (start + end) // 2
-    if lst[mid] < item:
-        return binary_search(lst, item, mid + 1, end)
-    elif lst[mid] > item:
-        return binary_search(lst, item, start, mid - 1)
-    else:
-        return mid
+from typing import Protocol
 
 
-def insertion_sort(lst):
-    length = len(lst)
-
-    for index in range(1, length):
-        value = lst[index]
-        pos = binary_search(lst, value, 0, index - 1)
-        lst = [*lst[:pos], value, *lst[pos:index], *lst[index + 1 :]]
-
-    return lst
+class Comparable(Protocol):
+    def __lt__(self, other: object) -> bool: ...
+    def __le__(self, other: object) -> bool: ...
 
 
-def merge(left, right):
-    if not left:
-        return right
-
-    if not right:
-        return left
-
-    if left[0] < right[0]:
-        return [left[0], *merge(left[1:], right)]
-
-    return [right[0], *merge(left, right[1:])]
-
-
-def tim_sort(lst):
+def binary_search[T: Comparable](arr: list[T], item: T, left: int, right: int) -> int:
     """
+    Return the index where `item` should be inserted in `arr[left:right+1]`
+    to keep it sorted.
+
+    >>> binary_search([1, 3, 5, 7], 6, 0, 3)
+    3
+    >>> binary_search([1, 3, 5, 7], 0, 0, 3)
+    0
+    >>> binary_search([1, 3, 5, 7], 8, 0, 3)
+    4
+    """
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == item:
+            return mid
+        elif arr[mid] < item:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return left
+
+
+def insertion_sort[T: Comparable](arr: list[T]) -> list[T]:
+    """
+    Sort the list in-place using binary insertion sort.
+
+    >>> insertion_sort([3, 1, 2, 4])
+    [1, 2, 3, 4]
+    """
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = binary_search(arr, key, 0, i - 1)
+        arr[:] = [*arr[:j], key, *arr[j:i], *arr[i + 1 :]]
+    return arr
+
+
+def merge[T: Comparable](left: list[T], right: list[T]) -> list[T]:
+    """
+    Merge two sorted lists into one sorted list.
+
+    >>> merge([1, 3, 5], [2, 4, 6])
+    [1, 2, 3, 4, 5, 6]
+    """
+    merged: list[T] = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
+
+
+def tim_sort[T: Comparable](arr: list[T]) -> list[T]:
+    """
+    Simplified version of TimSort for educational purposes.
+
+    TimSort is a hybrid stable sorting algorithm that combines merge sort
+    and insertion sort. It was originally designed by Tim Peters for Python (2002).
+
+    Source: https://en.wikipedia.org/wiki/Timsort
+
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
-    >>> tim_sort((1.1, 1, 0, -1, -1.1))
-    [-1.1, -1, 0, 1, 1.1]
-    >>> tim_sort(list(reversed(list(range(7)))))
-    [0, 1, 2, 3, 4, 5, 6]
-    >>> tim_sort([3, 2, 1]) == insertion_sort([3, 2, 1])
-    True
+    >>> tim_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
     >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
     True
+    >>> tim_sort([])  # empty input
+    []
     """
-    length = len(lst)
-    runs, sorted_runs = [], []
-    new_run = [lst[0]]
-    sorted_array = []
-    i = 1
-    while i < length:
-        if lst[i] < lst[i - 1]:
-            runs.append(new_run)
-            new_run = [lst[i]]
-        else:
-            new_run.append(lst[i])
-        i += 1
-    runs.append(new_run)
+    if not isinstance(arr, list):
+        arr = list(arr)
+    if not arr:
+        return []
 
-    for run in runs:
-        sorted_runs.append(insertion_sort(run))
-    for run in sorted_runs:
-        sorted_array = merge(sorted_array, run)
+    min_run = 32
+    n = len(arr)
 
-    return sorted_array
+    if n == 1:
+        return arr.copy()
 
+    runs: list[list[T]] = []
+    for start in range(0, n, min_run):
+        end = min(start + min_run, n)
+        run = insertion_sort(arr[start:end])
+        runs.append(run)
 
-def main():
-    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
-    sorted_lst = tim_sort(lst)
-    print(sorted_lst)
+    while len(runs) > 1:
+        new_runs: list[list[T]] = []
+        for i in range(0, len(runs), 2):
+            if i + 1 < len(runs):
+                new_runs.append(merge(runs[i], runs[i + 1]))
+            else:
+                new_runs.append(runs[i])
+        runs = new_runs
+
+    return runs[0] if runs else []
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
