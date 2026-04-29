@@ -8,12 +8,37 @@ from time import time
 
 class DirectedGraph:
     def __init__(self):
+        """
+        Initialize an empty directed graph.
+
+        Example:
+        >>> g = DirectedGraph()
+        >>> g.graph
+        {}
+        """
         self.graph = {}
 
     # adding vertices and edges
     # adding the weight is optional
     # handles repetition
     def add_pair(self, u, v, w=1):
+        """
+        Add a directed edge with an optional weight.
+
+        Args:
+            u: Starting node.
+            v: Destination node.
+            w: Weight (default is 1).
+
+        Example:
+        >>> g = DirectedGraph()
+        >>> g.add_pair(1, 2)
+        >>> g.graph
+        {1: [[1, 2]], 2: []}
+        >>> g.add_pair(2, 3, 5)
+        >>> g.graph
+        {1: [[1, 2]], 2: [[5, 3]], 3: []}
+        """
         if self.graph.get(u):
             if self.graph[u].count([w, v]) == 0:
                 self.graph[u].append([w, v])
@@ -27,6 +52,21 @@ class DirectedGraph:
 
     # handles if the input does not exist
     def remove_pair(self, u, v):
+        """
+        Remove a directed edge from u to v.
+
+        Args:
+            u: Starting node.
+            v: Destination node.
+
+        Example:
+        >>> g = DirectedGraph()
+        >>> g.add_pair(1, 2)
+        >>> g.add_pair(1, 3)
+        >>> g.remove_pair(1, 2)
+        >>> g.graph
+        {1: [[1, 3]], 2: [], 3: []}
+        """
         if self.graph.get(u):
             for _ in self.graph[u]:
                 if _[1] == v:
@@ -487,3 +527,9 @@ class Graph:
         self.bfs(s)
         end = time()
         return end - begin
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod(verbose=True)
