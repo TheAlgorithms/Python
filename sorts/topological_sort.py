@@ -25,8 +25,8 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
         # if neighbor not in visited, visit
         if neighbor not in visited:
             sort = topological_sort(neighbor, visited, sort)
-    # if all neighbors visited add current to sort
-    sort.append(current)
+    # if all neighbors visited add current before its descendants
+    sort.insert(0, current)
     # if all vertices haven't been visited select a new one to visit
     if len(visited) != len(vertices):
         for vertice in vertices:
