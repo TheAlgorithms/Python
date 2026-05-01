@@ -3,9 +3,9 @@ from typing import Any
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python.
-    Bubble sort repeatedly steps through the list, compares adjacent elements, and swaps them 
-    if they are in the wrong order. This process is repeated until the list is sorted. 
-    
+    Bubble sort repeatedly steps through the list, compares adjacent elements, and swaps them
+    if they are in the wrong order. This process is repeated until the list is sorted.
+
     Time COmplexity:
         Worst Case: O(n^2)
         Average Case: O(n^2)
