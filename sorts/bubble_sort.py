@@ -3,14 +3,14 @@ from typing import Any
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python.
-    Bubble sort repeatedly steps through the list, compares adjacent 
-    elements, and swaps them if they are in the wrong order. 
-    This process is repeated until the list is sorted. 
-    
+    Bubble sort repeatedly steps through the list, compares adjacent
+    elements, and swaps them if they are in the wrong order.
+    This process is repeated until the list is sorted.
+
     Time Complexity:
         Worst Case: O(n^2)
         Average Case: O(n^2)
-        Best Case: O(n) (When the list is already sorted and 
+        Best Case: O(n) (When the list is already sorted and
         optimized with early stopping)
 
     Space Complexity:
@@ -77,7 +77,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     Time Complexity:
         Worst Case: O(n^2)
         Average Case: O(n^2)
-        Best Case: O(n^2) (no early stopping 
+        Best Case: O(n^2) (no early stopping
         optimization like iterative version)
 
     Space Complexity:
