@@ -34,6 +34,10 @@ def classify_severity(content: str) -> str:
 def classify_priority(severity: str) -> str:
     """
     Maps the technical severity level to a business priority level.
+    >>> classify_priority("S1")
+    'P1'
+    >>> classify_priority("S4")
+    'P4'
     """
     priority_map = {
         "S1": "P1",
