@@ -19,6 +19,10 @@ def classify_severity(content: str) -> str:
     """
     Classifies bug severity based on specific keywords found in the content.
     Returns S1 (Critical) through S4 (Minor).
+    >>> classify_severity("The application had a fatal crash on startup.")
+    'S1'
+    >>> classify_severity("The UI is a bit slow today.")
+    'S3' 
     """
     content = content.lower()
 
