@@ -19,7 +19,9 @@ def generate_all_permutations(sequence: list[int | str]) -> None:
     ValueError: Input sequence too long (max 8 elements).
     """
     if len(sequence) > MAX_SEQUENCE_LENGTH:
-        raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
+        raise ValueError(
+            f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements)."
+        )
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
