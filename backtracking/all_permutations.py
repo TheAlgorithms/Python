@@ -8,8 +8,18 @@ where n denotes the length of the given sequence.
 
 from __future__ import annotations
 
+MAX_SEQUENCE_LENGTH = 8
+
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
+    """
+    >>> generate_all_permutations([1] * 9)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input sequence too long (max 8 elements).
+    """
+    if len(sequence) > MAX_SEQUENCE_LENGTH:
+        raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
@@ -78,11 +88,11 @@ def create_state_space_tree(
 remove the comment to take an input from the user
 
 print("Enter the elements")
-MAX_SEQUENCE_LENGTH = 8
-user_input = list(map(int, input().split()))
-if len(user_input) > MAX_SEQUENCE_LENGTH:
+raw = input().split()
+if len(raw) > MAX_SEQUENCE_LENGTH:
     raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
-sequence = user_input
+sequence: list[int | str] = raw
+generate_all_permutations(sequence)
 """
 
 sequence: list[int | str] = [3, 1, 2, 4]
