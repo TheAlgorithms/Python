@@ -6,7 +6,7 @@ keywords, and generates a summarized triage report in Markdown format.
 
 import glob
 import os
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Configuration: Adjust these paths based on your local environment
