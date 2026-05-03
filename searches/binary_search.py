@@ -198,7 +198,9 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     -1
     """
     if any(a > b for a, b in pairwise(sorted_collection)):
-        raise ValueError("Input list must be sorted in ascending order for binary search to work in ascending order")
+        raise ValueError(
+            "Input list must be sorted in ascending order for binary search to work in ascending order"
+        )
     left = 0
     right = len(sorted_collection) - 1
 
@@ -235,7 +237,9 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
     -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("Input list must be sorted in ascending order for binary search to work")
+        raise ValueError(
+            "Input list must be sorted in ascending order for binary search to work"
+        )
     index = bisect.bisect_left(sorted_collection, item)
     if index != len(sorted_collection) and sorted_collection[index] == item:
         return index
@@ -269,7 +273,9 @@ def binary_search_with_duplicates(sorted_collection: list[int], item: int) -> li
     []
     """
     if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("Input list must be sorted in ascending order for binary search to work")
+        raise ValueError(
+            "Input list must be sorted in ascending order for binary search to work"
+        )
 
     def lower_bound(sorted_collection: list[int], item: int) -> int:
         """
@@ -343,7 +349,9 @@ def binary_search_by_recursion(
     if right < 0:
         right = len(sorted_collection) - 1
     if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("Input list must be sorted in ascending order for binary search to work")
+        raise ValueError(
+            "Input list must be sorted in ascending order for binary search to work"
+        )
     if right < left:
         return -1
 
@@ -382,7 +390,9 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("Input list must be sorted in ascending order for binary search to work")
+        raise ValueError(
+            "Input list must be sorted in ascending order for binary search to work"
+        )
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
