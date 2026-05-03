@@ -391,8 +391,10 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError(
-            "Input list must be sorted in ascending order for binary search to work"
+            "Input list must be sorted in ascending order"
+            "for binary search to work"
         )
+        
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
