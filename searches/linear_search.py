@@ -9,7 +9,10 @@ python3 linear_search.py
 """
 
 
-def linear_search(sequence: list, target: int) -> int:
+from typing import Any
+
+
+def linear_search(sequence: list[Any], target: Any) -> int:
     """A pure Python implementation of a linear search algorithm
 
     :param sequence: a collection with comparable items (sorting is not required for
@@ -33,7 +36,7 @@ def linear_search(sequence: list, target: int) -> int:
     return -1
 
 
-def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
+def rec_linear_search(sequence: list[Any], low: int, high: int, target: Any) -> int:
     """
     A pure Python implementation of a recursive linear search algorithm
 
