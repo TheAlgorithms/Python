@@ -8,7 +8,6 @@ For manual testing run:
 python3 linear_search.py
 """
 
-
 from typing import Any
 
 
