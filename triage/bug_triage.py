@@ -87,10 +87,10 @@ def generate_report(bugs: list[dict]) -> None:
         return
 
     date = datetime.now(UTC).strftime("%Y-%m-%d")
-    
+
     if not os.path.exists(OUTPUT_PATH):
         os.makedirs(OUTPUT_PATH)
-        
+
     output_file = os.path.join(OUTPUT_PATH, f"bug-triage-{date}.md")
 
     p1 = [b for b in bugs if b["priority"] == "P1"]
