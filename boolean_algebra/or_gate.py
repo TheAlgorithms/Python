@@ -1,7 +1,7 @@
 """
 An OR Gate is a logic gate in boolean algebra which results to 0 (False) if both the
 inputs are 0, and 1 (True) otherwise.
-Following is the truth table of an AND Gate:
+Following is the truth table of an OR Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |
     ------------------------------
