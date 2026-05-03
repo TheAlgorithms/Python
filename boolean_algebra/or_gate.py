@@ -29,6 +29,19 @@ def or_gate(input_1: int, input_2: int) -> int:
     return int((input_1, input_2).count(1) != 0)
 
 
+def n_input_or_gate(inputs: list[int]) -> int:
+    """
+    Calculate OR of a list of input values
+    >>> n_input_or_gate([0, 0, 0, 0, 0])
+    0
+    >>> n_input_or_gate([0, 1, 0, 0, 0])
+    1
+    >>> n_input_or_gate([1, 1, 1, 1, 1])
+    1
+    """
+    return int(any(inputs))
+
+
 if __name__ == "__main__":
     import doctest
 
