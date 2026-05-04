@@ -42,6 +42,10 @@ def n_input_nand_gate(inputs: list[int]) -> int:
     >>> n_input_nand_gate([1, 0, 0, 0, 0])
     1
     """
+
+    if len(inputs) > 2:
+        raise ValueError("Input list must contain at most two elements")
+
     return int(not all(inputs))
 
 
