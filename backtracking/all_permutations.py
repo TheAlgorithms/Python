@@ -93,7 +93,13 @@ print("Enter the elements")
 raw = input().split()
 if len(raw) > MAX_SEQUENCE_LENGTH:
     raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
-sequence: list[int | str] = raw
+# Try to convert each token to int; keep as str if conversion is not possible
+sequence: list[int | str] = []
+for token in raw:
+    try:
+        sequence.append(int(token))
+    except ValueError:
+        sequence.append(token)
 generate_all_permutations(sequence)
 """
 
