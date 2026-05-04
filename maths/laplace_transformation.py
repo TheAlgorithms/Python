@@ -54,10 +54,14 @@ def laplace_transform(
     if function_values.size == 0:
         raise ValueError("function_values array cannot be empty.")
     if s_value < 0:
-        raise ValueError(f"s_value must be non-negative for this implementation, got{s_value}.")
+        raise ValueError(
+            f"s_value must be non-negative for this implementation, got{s_value}."
+        )
 
     # Time vector corresponding to the function values
-    time_vector = np.linspace(0, (len(function_values) - 1) * delta_t, len(function_values))
+    time_vector = np.linspace(
+        0, (len(function_values) - 1) * delta_t, len(function_values)
+    )
 
     # The integrand: f(t) * e^(-s*t)
     integrand = function_values * np.exp(-s_value * time_vector)
