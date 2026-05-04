@@ -1,5 +1,4 @@
 """
-
 Laplace Transform — Numerical Implementation.
 
 Computes the numerical Laplace Transform using the trapezoidal
@@ -7,8 +6,6 @@ integration rule. Supports real-valued, non-negative Laplace
 parameters only.
 
 Reference: https://en.wikipedia.org/wiki/Laplace_transform
-
-
 """
 
 import numpy as np
@@ -76,3 +73,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
