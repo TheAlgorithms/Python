@@ -23,10 +23,11 @@ import numpy as np
 from numpy import ndarray
 
 
-def time_func(func, *args, **kwargs):
+def time_func(func, *args, **kwargs) -> object:
     """
     Times the execution of a function with parameters
     """
+    
     start = time()
     output = func(*args, **kwargs)
     end = time()
