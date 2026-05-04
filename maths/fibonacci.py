@@ -22,8 +22,9 @@ from time import time
 import numpy as np
 from numpy import ndarray
 
+from typing import Any
 
-def time_func(func, *args, **kwargs) -> object:
+def time_func(func, *args, **kwargs) -> Any:
     """
     Times the execution of a function with parameters
     """
