@@ -8,14 +8,6 @@ For manual testing run:
 python3 linear_search.py
 """
 
-
-def linear_search(sequence: list, target: int) -> int:
-    """... existing docstring ..."""
-
-    if not sequence:
-        return -1
-
-
 def linear_search(sequence: list, target: int) -> int:
     """A pure Python implementation of a linear search algorithm
 
@@ -29,6 +21,9 @@ def linear_search(sequence: list, target: int) -> int:
     >>> linear_search([0, 5, 7, 10, 15], 6)
     -1
     """
+    if not sequence:
+        return -1
+
     for index, item in enumerate(sequence):
         if item == target:
             return index
