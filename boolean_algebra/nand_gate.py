@@ -30,6 +30,21 @@ def nand_gate(input_1: int, input_2: int) -> int:
     return int(not (input_1 and input_2))
 
 
+def n_input_nand_gate(inputs: list[int]) -> int:
+    """
+    Calculate NAND of a list of input values
+    >>> n_input_nand_gate([1, 0, 1, 1, 0])
+    1
+    >>> n_input_nand_gate([1, 1, 1, 1, 1])
+    0
+    >>> n_input_nand_gate([0, 0, 0, 0, 0])
+    1
+    >>> n_input_nand_gate([1, 0, 0, 0, 0])
+    1
+    """
+    return int(not all(inputs))
+
+
 if __name__ == "__main__":
     import doctest
 
