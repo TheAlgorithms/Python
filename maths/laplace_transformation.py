@@ -50,9 +50,9 @@ def laplace_transform(
         raise ValueError("delta_t must be a positive value.")
     if function_values.size == 0:
         raise ValueError("function_values array cannot be empty.")
-   if s_value < 0:
-    error_msg = f"s_value must be non-negative for this implementation, got {s_value}."
-    raise ValueError(error_msg)
+    if s_value < 0:
+        error_msg = f"s_value must be non-negative for this implementation, got {s_value}."
+        raise ValueError(error_msg)
 
     # Time vector corresponding to the function values
     time_vector = np.linspace(
