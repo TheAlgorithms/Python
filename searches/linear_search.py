@@ -7,6 +7,8 @@ python3 -m doctest -v linear_search.py
 For manual testing run:
 python3 linear_search.py
 """
+
+
 def linear_search(sequence: list, target: int) -> int:
     """... existing docstring ..."""
 
