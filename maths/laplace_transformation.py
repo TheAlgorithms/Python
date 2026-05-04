@@ -1,7 +1,13 @@
 """
-This module provides a numerical implementation of the Laplace Transform.
 
-https://en.wikipedia.org/wiki/Laplace_transform
+Laplace Transform — Numerical Implementation.
+
+Computes the numerical Laplace Transform using the trapezoidal
+integration rule. Supports real-valued, non-negative Laplace
+parameters only.
+
+Reference: https://en.wikipedia.org/wiki/Laplace_transform
+
 
 """
 
@@ -47,9 +53,11 @@ def laplace_transform(
         raise ValueError("delta_t must be a positive value.")
     if function_values.size == 0:
         raise ValueError("function_values array cannot be empty.")
+    if s_value < 0:
+        raise ValueError(f"s_value must be non-negative for this implementation, got{s_value}.")
 
     # Time vector corresponding to the function values
-    time_vector = np.arange(len(function_values)) * delta_t
+    time_vector = np.linspace(0, (len(function_values) - 1) * delta_t, len(function_values))
 
     # The integrand: f(t) * e^(-s*t)
     integrand = function_values * np.exp(-s_value * time_vector)
