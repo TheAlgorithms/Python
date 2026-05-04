@@ -38,8 +38,16 @@ def n_input_or_gate(inputs: list[int]) -> int:
     1
     >>> n_input_or_gate([1, 1, 1, 1, 1])
     1
+
+    >>> n_input_or_gate([0, 1])
+    1
+
+    >>> n_input_or_gate([1])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
     """
-    if len(inputs) > 1:
+    if len(inputs) < 2:
         raise ValueError("Input list must contain at least two elements")
 
     return int(any(inputs))
