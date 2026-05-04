@@ -24,11 +24,12 @@ from numpy import ndarray
 
 from typing import Any
 
+
 def time_func(func, *args, **kwargs) -> Any:
     """
     Times the execution of a function with parameters
     """
-    
+
     start = time()
     output = func(*args, **kwargs)
     end = time()
