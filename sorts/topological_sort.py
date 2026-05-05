@@ -21,7 +21,10 @@ def _visit(
     post_order: list[str],
     graph: dict[str, list[str]],
 ) -> None:
-    """Visit all descendants of the current vertex using DFS."""
+    """Visit descendants of ``current``.
+
+    Appends to ``visited`` and ``post_order`` in place.
+    """
     visited.append(current)
     for neighbor in graph[current]:
         if neighbor not in visited:
@@ -32,7 +35,7 @@ def _visit(
 def topological_sort(
     start: str,
     visited: list[str],
-    sort: list[str],
+    order: list[str],
     graph: dict[str, list[str]] | None = None,
     vertices_list: list[str] | None = None,
 ) -> list[str]:
@@ -52,13 +55,14 @@ def topological_sort(
     if vertices_list is None:
         vertices_list = list(graph)
 
-    _visit(start, visited, sort, graph)
+    _visit(start, visited, order, graph)
     if len(visited) != len(vertices_list):
         for vertice in vertices_list:
             if vertice not in visited:
-                _visit(vertice, visited, sort, graph)
-    sort.reverse()
-    return sort
+                _visit(vertice, visited, order, graph)
+    # DFS post-order is reverse topological order, so reverse once at the end.
+    order.reverse()
+    return order
 
 
 if __name__ == "__main__":
