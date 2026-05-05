@@ -31,7 +31,10 @@ def or_gate(input_1: int, input_2: int) -> int:
 
 def n_input_or_gate(inputs: list[int]) -> int:
     """
-    Calculate OR of a list of input values
+    Generalization of or_gate() to support n inputs.
+    Calculate OR of a list of input values.
+    Returns 1 if any input is 1, 0 otherwise.
+
     >>> n_input_or_gate([0, 0, 0, 0, 0])
     0
     >>> n_input_or_gate([0, 1, 0, 0, 0])
@@ -42,13 +45,27 @@ def n_input_or_gate(inputs: list[int]) -> int:
     >>> n_input_or_gate([0, 1])
     1
 
+    >>> n_input_or_gate([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list cannot be empty
+
     >>> n_input_or_gate([1])
     Traceback (most recent call last):
         ...
     ValueError: Input list must contain at least two elements
+
+    >>> n_input_or_gate([2, 1])
+    Traceback (most recent call last):
+        ...
+    ValueError: All inputs must be 0 or 1
     """
+    if len(inputs) == 0:
+        raise ValueError("Input list cannot be empty")
     if len(inputs) < 2:
         raise ValueError("Input list must contain at least two elements")
+    if not all(i in (0, 1) for i in inputs):
+        raise ValueError("All inputs must be 0 or 1")
 
     return int(any(inputs))
 
