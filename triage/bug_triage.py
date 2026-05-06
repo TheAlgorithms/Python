@@ -70,13 +70,15 @@ def read_bugs() -> list[dict]:
             severity = classify_severity(content)
             priority = classify_priority(severity)
 
-            bugs.append({
-                "id": f"BUG-{i+1:03}",
-                "file": file_path,
-                "severity": severity,
-                "priority": priority,
-                "summary": content.strip().split("\n")[0][:80]
-            })
+            bugs.append(
+                {
+                    "id": f"BUG-{i + 1:03}",
+                    "file": file_path,
+                    "severity": severity,
+                    "priority": priority,
+                    "summary": content.strip().split("\n")[0][:80],
+                }
+            )
         except OSError as e:
             logger.warning("Could not read file %s: %s", file_path, e)
 
@@ -119,7 +121,7 @@ def generate_report(bugs: list[dict]) -> None:
         f"| P3       | {len(p3)} |",
         f"| P4       | {len(p4)} |",
         "\n---\n",
-        "## P1 Bugs (Critical)"
+        "## P1 Bugs (Critical)",
     ]
 
     for b in p1:
@@ -141,6 +143,7 @@ def generate_report(bugs: list[dict]) -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     extracted_bugs = read_bugs()
     generate_report(extracted_bugs)
