@@ -5,7 +5,9 @@ keywords, and generates a summarized triage report in Markdown format.
 """
 
 import glob
+import logging
 import os
+from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -13,6 +15,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 BUG_PATH = str(BASE_DIR / "production" / "qa" / "bugs" / "*.md")
 OUTPUT_PATH = str(BASE_DIR / "production" / "qa")
+
+SEVERITY_KEYWORDS: dict[str, list[str]] = {
+    "S1": ["crash", "data loss", "cannot start", "fatal"],
+    "S2": ["broken", "not working", "fail"],
+    "S3": ["slow", "incorrect", "glitch"],
+}
+
+logger = logging.getLogger(__name__)
 
 
 def classify_severity(content: str) -> str:
@@ -25,12 +35,9 @@ def classify_severity(content: str) -> str:
     'S3'
     """
     content = content.lower()
-    if any(k in content for k in ["crash", "data loss", "cannot start", "fatal"]):
-        return "S1"
-    if any(k in content for k in ["broken", "not working", "fail"]):
-        return "S2"
-    if any(k in content for k in ["slow", "incorrect", "glitch"]):
-        return "S3"
+    for severity, keywords in SEVERITY_KEYWORDS.items():
+        if any(k in content for k in keywords):
+            return severity
     return "S4"
 
 
@@ -71,7 +78,7 @@ def read_bugs() -> list[dict]:
                 "summary": content.strip().split("\n")[0][:80]
             })
         except OSError as e:
-            print(f"⚠️ Could not read file {file_path}: {e}")
+            logger.warning("Could not read file %s: %s", file_path, e)
 
     return bugs
 
@@ -93,10 +100,11 @@ def generate_report(bugs: list[dict]) -> None:
 
     output_file = os.path.join(OUTPUT_PATH, f"bug-triage-{date}.md")
 
-    p1 = [b for b in bugs if b["priority"] == "P1"]
-    p2 = [b for b in bugs if b["priority"] == "P2"]
-    p3 = [b for b in bugs if b["priority"] == "P3"]
-    p4 = [b for b in bugs if b["priority"] == "P4"]
+    grouped: defaultdict[str, list[dict]] = defaultdict(list)
+    for b in bugs:
+        grouped[b["priority"]].append(b)
+
+    p1, p2, p3, p4 = grouped["P1"], grouped["P2"], grouped["P3"], grouped["P4"]
 
     report_content = [
         "# Bug Triage Report",
