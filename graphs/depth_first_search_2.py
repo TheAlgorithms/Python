@@ -71,14 +71,12 @@ class Graph:
         0 1 2 3
         """
         # visited array for storing already visited nodes
-        visited = [False] * len(self.vertex)
+        visited = {v: False for v in self.vertex}
+        for vertex in self.vertex:
+            if not visited[vertex]:
+                self.dfs_recursive(vertex, visited)
 
-        # call the recursive helper function
-        for i in range(len(self.vertex)):
-            if not visited[i]:
-                self.dfs_recursive(i, visited)
-
-    def dfs_recursive(self, start_vertex: int, visited: list) -> None:
+    def dfs_recursive(self, start_vertex: int, visited: dict) -> None:
         """
         Perform a recursive depth-first search (DFS) traversal on the graph.
 
@@ -93,7 +91,7 @@ class Graph:
         >>> g.add_edge(2, 0)
         >>> g.add_edge(2, 3)
         >>> g.add_edge(3, 3)
-        >>> visited = [False] * len(g.vertex)
+        >>> visited = {v: False for v in g.vertex}
         >>> g.dfs_recursive(0, visited)
         0 1 2 3
         """
@@ -103,10 +101,10 @@ class Graph:
         print(start_vertex, end="")
 
         # Recur for all the vertices that are adjacent to this node
-        for i in self.vertex:
-            if not visited[i]:
+        for neighbor in self.vertex[start_vertex]:
+            if not visited[neighbor]:
                 print(" ", end="")
-                self.dfs_recursive(i, visited)
+                self.dfs_recursive(neighbor, visited)
 
 
 if __name__ == "__main__":
