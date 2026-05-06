@@ -64,13 +64,11 @@ def int_to_roman(number: int) -> str:
     TypeError: int_to_roman only accepts integers, got bool
     """
     if not isinstance(number, int) or isinstance(number, bool):
-        raise TypeError(
-            f"int_to_roman only accepts integers, got {type(number).__name__}"
-        )
+        msg = f"int_to_roman only accepts integers, got {type(number).__name__}"
+        raise TypeError(msg)
     if not 1 <= number <= 3999:
-        raise ValueError(
-            f"int_to_roman only accepts integers in the range 1 to 3999, got {number}"
-        )
+        msg = f"int_to_roman only accepts integers in the range 1 to 3999, got {number}"
+        raise ValueError(msg)
     result = []
     for arabic, roman in ROMAN:
         (factor, number) = divmod(number, arabic)
