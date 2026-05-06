@@ -1,5 +1,8 @@
 def is_alternate_harmonic_series(series: list) -> bool:
     """
+    Web Biblography
+    https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)
+
     checking whether the input series is alternate harmonic series or not
     >>> is_alternate_harmonic_series([1, -1/2, 1/3, -1/4, 1/5])
     True
