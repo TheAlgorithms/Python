@@ -1,5 +1,5 @@
 """Alternating Harmonic Series Checker"""
-
+# https://en.wikipedia.org/wiki/Alternating_harmonic_series
 
 def is_alternate_harmonic_series(series: list) -> bool:
     """
