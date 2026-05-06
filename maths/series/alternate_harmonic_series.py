@@ -35,7 +35,7 @@ def is_alternate_harmonic_series(series: list) -> bool:
         raise ValueError("Input list must be a non empty list")
     if len(series) == 1 and series[0] != 0:
         return True
-    receprocal= []
+    receprocal = []
     series_len = len(series)
     for i in range(series_len):
         if series[i] == 0:
@@ -43,9 +43,13 @@ def is_alternate_harmonic_series(series: list) -> bool:
         receprocal.append(1 / series[i])
     common_diff = abs(receprocal[1]) - abs(receprocal[0])
     for index in range(2, series_len):
-        if abs(receprocal[index]) - abs(receprocal[index - 1]) != common_diff or receprocal[index]*receprocal[index-1] >= 0:
+        if (
+            abs(receprocal[index]) - abs(receprocal[index - 1]) != common_diff
+            or receprocal[index] * receprocal[index - 1] >= 0
+        ):
             return False
     return True
+
 
 if __name__ == "__main__":
     import doctest
