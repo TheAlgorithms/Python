@@ -13,12 +13,13 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 # dependencies = [
 #     "httpx",
 #     "numpy",
+#     "matplotlib",
 # ]
 # ///
 
 import httpx
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 def collect_dataset():
     """Collect dataset of CSGO
@@ -102,12 +103,17 @@ def run_linear_regression(data_x, data_y):
 
     theta = np.zeros((1, no_features))
 
+    err = []
+
     for i in range(iterations):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print(f"At Iteration {i + 1} - Error is {error:.5f}")
+        err.append(error)
+        
+        if i % 1000 == 0:
+            print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
-    return theta
+    return theta, err
 
 
 def mean_absolute_error(predicted_y, original_y):
@@ -125,6 +131,45 @@ def mean_absolute_error(predicted_y, original_y):
     return total / len(original_y)
 
 
+
+# visulization 
+def plot_regression(data_x, data_y, theta):
+    """
+    Plot regression line with dataset points
+    """
+
+    x = np.array(data_x[:, 1]).flatten()
+    y = np.array(data_y).flatten()
+
+    predictions = theta[0, 0] + theta[0, 1] * x
+
+    plt.scatter(x, y)
+
+    plt.plot(x, predictions)
+
+    plt.xlabel("ADR")
+    plt.ylabel("Rating")
+
+    plt.title("Linear Regression Best Fit")
+
+    plt.show()
+
+
+def plot_loss(err):
+    """
+    Plot training loss curve
+    """
+
+    plt.plot(err)
+
+    plt.xlabel("Iterations")
+    plt.ylabel("Loss")
+
+    plt.title("Training Loss Curve")
+
+    plt.show()
+
+
 def main():
     """Driver function"""
     data = collect_dataset()
@@ -133,7 +178,11 @@ def main():
     data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
 
-    theta = run_linear_regression(data_x, data_y)
+    theta,err = run_linear_regression(data_x, data_y)
+
+    plot_regression(data_x, data_y, theta)
+    plt_loss(err)
+
     len_result = theta.shape[1]
     print("Resultant Feature vector : ")
     for i in range(len_result):
@@ -145,3 +194,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
+
+
+
+
