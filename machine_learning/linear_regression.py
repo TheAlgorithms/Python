@@ -21,6 +21,7 @@ import httpx
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -109,7 +110,7 @@ def run_linear_regression(data_x, data_y):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
         err.append(error)
-        
+
         if i % 1000 == 0:
             print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
@@ -131,8 +132,7 @@ def mean_absolute_error(predicted_y, original_y):
     return total / len(original_y)
 
 
-
-# visulization 
+# visulization
 def plot_regression(data_x, data_y, theta):
     """
     Plot regression line with dataset points
@@ -178,7 +178,7 @@ def main():
     data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
 
-    theta,err = run_linear_regression(data_x, data_y)
+    theta, err = run_linear_regression(data_x, data_y)
 
     plot_regression(data_x, data_y, theta)
     plt_loss(err)
@@ -194,7 +194,3 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
-
-
-
-
