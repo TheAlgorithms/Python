@@ -1,5 +1,5 @@
 """
-In linear algebra, a QR decomposition, also known as a QR factorization 
+In linear algebra, a QR decomposition, also known as a QR factorization
 or Q factorization,
 is a decomposition of a matrix a into a product a = QR
 of an orthonormal matrix Q and an upper triangular matrix R.
@@ -14,6 +14,7 @@ Reference: https://en.wikipedia.org/wiki/QR_decomposition
 from __future__ import annotations
 import numpy as np
 from scipy.linalg import qr
+
 
 def qr_decomposition(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -57,17 +58,12 @@ def qr_decomposition(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     ValueError: row size should be greater than column size
     """
 
-
     rows, columns = np.shape(a)
     if rows < columns:
-        msg = (
-            "row size should be greater than column size"
-        )
+        msg = "row size should be greater than column size"
         raise ValueError(msg)
     if rows < 2 or columns < 2:
-        msg = (
-            "row size and column size should be greater than 2"
-        )
+        msg = "row size and column size should be greater than 2"
         raise ValueError(msg)
     # Perform QR decomposition with pivoting
     # Q: Orthogonal matrix
@@ -79,13 +75,12 @@ def qr_decomposition(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     # Note: The bottom row of R is all zeros because the matrix is rank-deficient.
     # Verification: a[:, P] should equal Q @ R
     ap = a[:, p]
-    if(np.allclose(ap, q @ r)):
-        return np.round(q,2), np.round(r,2)
+    if np.allclose(ap, q @ r):
+        return np.round(q, 2), np.round(r, 2)
     else:
-        msg = (
-            "No matrix found which decompose given matrix"
-        )
+        msg = "No matrix found which decompose given matrix"
         raise ValueError(msg)
+
 
 if __name__ == "__main__":
     import doctest
