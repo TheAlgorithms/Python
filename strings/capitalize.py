@@ -16,7 +16,7 @@ def capitalize(sentence: str) -> str:
 
     # Capitalize the first character if it's a lowercase letter
     # Concatenate the capitalized character with the rest of the string
-    # Return "" in case of empty string
+    # Slicing keeps this safe for empty strings.
     return sentence[:1].upper() + sentence[1:]
 
 
