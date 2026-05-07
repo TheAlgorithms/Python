@@ -132,7 +132,7 @@ def mean_absolute_error(predicted_y, original_y):
     return total / len(original_y)
 
 
-# visulization
+# visualization
 def plot_regression(data_x, data_y, theta):
     """
     Plot regression line with dataset points
