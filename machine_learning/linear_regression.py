@@ -17,8 +17,8 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 # ]
 # ///
 
-import matplotlib.pyplot as plt
 import httpx
+import matplotlib.pyplot as plt
 import numpy as np
 
 
