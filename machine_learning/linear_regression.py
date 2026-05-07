@@ -17,9 +17,9 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 # ]
 # ///
 
+import matplotlib.pyplot as plt
 import httpx
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def collect_dataset():
@@ -181,7 +181,7 @@ def main():
     theta, err = run_linear_regression(data_x, data_y)
 
     plot_regression(data_x, data_y, theta)
-    plt_loss(err)
+    plot_loss(err)
 
     len_result = theta.shape[1]
     print("Resultant Feature vector : ")
