@@ -1,34 +1,36 @@
-def split(string: str, separator: str = " ") -> list:
+def split(string: str, separator: str = " ") -> list[str]:
     """
-    Will split the string up into all the values separated by the separator
-    (defaults to spaces)
+    Split string into values separated by separator.
 
-    >>> split("apple#banana#cherry#orange",separator='#')
+    >>> split("apple#banana#cherry#orange", separator="#")
     ['apple', 'banana', 'cherry', 'orange']
 
     >>> split("Hello there")
     ['Hello', 'there']
 
-    >>> split("11/22/63",separator = '/')
+    >>> split("11/22/63", separator="/")
     ['11', '22', '63']
 
-    >>> split("12:43:39",separator = ":")
+    >>> split("12:43:39", separator=":")
     ['12', '43', '39']
 
-    >>> split(";abbb;;c;", separator=';')
+    >>> split(";abbb;;c;", separator=";")
     ['', 'abbb', '', 'c', '']
     """
 
-    split_words = []
+    if len(separator) != 1:
+        raise ValueError("separator must be exactly one character")
 
-    last_index = 0
+    parts: list[str] = []
+    start = 0
+
     for index, char in enumerate(string):
         if char == separator:
-            split_words.append(string[last_index:index])
-            last_index = index + 1
-        if index + 1 == len(string):
-            split_words.append(string[last_index : index + 1])
-    return split_words
+            parts.append(string[start:index])
+            start = index + 1
+
+    parts.append(string[start:])
+    return parts
 
 
 if __name__ == "__main__":
