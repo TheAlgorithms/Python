@@ -37,7 +37,7 @@ def is_spy_number(number: int) -> bool:
         digit_sum += digit
         digit_mul *= digit
         number //= 10
-    return True if digit_sum == digit_mul else False
+    return digit_sum == digit_mul
 
 
 if __name__ == "__main__":
