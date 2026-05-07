@@ -1,7 +1,7 @@
 """
 In linear algebra, a QR decomposition, also known as a QR factorization 
 or Q factorization,
-is a decomposition of a matrix a into a product a = QR
+is a decomposition of a matrix a into a product matrix_a = QR
 of an orthonormal matrix Q and an upper triangular matrix R.
 QR decomposition is often used to solve the linear least squares (LLS) problem
 and is the basis for a particular eigenvalue algorithm, the QR algorithm.
@@ -15,50 +15,50 @@ from __future__ import annotations
 import numpy as np
 from scipy.linalg import qr
 
-def qr_decomposition(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Perform QR decomposition on a given matrix and raises an error if in
     m×n matrix a if m is smaller than n or m,n is less than 2
 
-    >>> a = np.array([[1, 2, 3], [4, 5, 9], [7, 8, 15]])
-    >>> q,r = qr_decomposition(a)
-    >>> q
+    >>> matrix_a = np.array([[1, 2, 3], [4, 5, 9], [7, 8, 15]])
+    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> matrix_q
     array([[-0.17,  0.9 ,  0.41],
            [-0.51,  0.28, -0.82],
            [-0.85, -0.35,  0.41]])
-    >>> r
+    >>> matrix_r
     array([[-17.75,  -9.63,  -8.11],
            [  0.  ,   0.41,  -0.41],
            [  0.  ,   0.  ,   0.  ]])
-    >>> a = np.array([[1, 2], [4, 5], [7, 8]])
-    >>> q,r = qr_decomposition(a)
-    >>> q
+    >>> matrix_a = np.array([[1, 2], [4, 5], [7, 8]])
+    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> matrix_q
     array([[-0.21,  0.89,  0.41],
            [-0.52,  0.25, -0.82],
            [-0.83, -0.38,  0.41]])
-    >>> r
+    >>> matrix_r
     array([[-9.64, -8.09],
            [ 0.  , -0.76],
            [ 0.  ,  0.  ]])
-    >>> a = np.array([[1, 2, 3], [4, 5, 6]])
-    >>> q,r = qr_decomposition(a)
+    >>> matrix_a = np.array([[1, 2, 3], [4, 5, 6]])
+    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size should be greater than column size
-    >>> a = np.array([[1], [4]])
-    >>> q,r = qr_decomposition(a)
+    >>> matrix_a = np.array([[1], [4]])
+    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size and column size should be greater than 2
-    >>> a = np.array([[1,4]])
-    >>> q,r = qr_decomposition(a)
+    >>> matrix_a = np.array([[1,4]])
+    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size should be greater than column size
     """
 
 
-    rows, columns = np.shape(a)
+    rows, columns = np.shape(matrix_a)
     if rows < columns:
         msg = (
             "row size should be greater than column size"
@@ -70,17 +70,17 @@ def qr_decomposition(a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         )
         raise ValueError(msg)
     # Perform QR decomposition with pivoting
-    # Q: Orthogonal matrix
-    # R: Upper triangular matrix
-    # P: Pivot indices (permutation vector)
+    # matrix_q: Orthogonal matrix
+    # matrix_v: Upper triangular matrix
+    # pivot: Pivot indices (permutation vector)
 
-    q, r, p = qr(a, pivoting=True)
+    matrix_q, matrix_r, pivot = qr(matrix_a, pivoting=True)
 
-    # Note: The bottom row of R is all zeros because the matrix is rank-deficient.
-    # Verification: a[:, P] should equal Q @ R
-    ap = a[:, p]
-    if(np.allclose(ap, q @ r)):
-        return np.round(q,2), np.round(r,2)
+    # Note: The bottom row of matrix_r is all zeros because the matrix is rank-deficient.
+    # Verification: matrix_a[:, pivot] should equal matrix_q @ matrix_r
+    permute_matrix = matrix_a[:, pivot]
+    if(np.allclose(permute_matrix, matrix_q @ matrix_r)):
+        return np.round(matrix_q,2), np.round(matrix_r,2)
     else:
         msg = (
             "No matrix found which decompose given matrix"
