@@ -6,9 +6,8 @@ QR decomposition is often used to solve the linear least squares (LLS) problem
 and is the basis for a particular eigenvalue algorithm, the QR algorithm.
 This algorithm will simply attempt to perform QR decomposition on any square matrix.
 Reference: https://en.wikipedia.org/wiki/QR_decomposition"""
-from __future__ import annotations
-from scipy.linalg import qr
 import numpy as np
+from scipy.linalg import qr
 
 def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
