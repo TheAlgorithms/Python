@@ -10,15 +10,14 @@ This algorithm will simply attempt to perform QR decomposition on any square mat
 
 Reference: https://en.wikipedia.org/wiki/QR_decomposition
 """
-
-from __future__ import annotations
 import numpy as np
+from __future__ import annotations
 from scipy.linalg import qr
 
 def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Perform QR decomposition on a given matrix and raises an error if in
-    m×n matrix a if m is smaller than n or m,n is less than 2
+    rowXcolumn matrix a if row is smaller than column or row,column is less than 2
 
     >>> matrix_a = np.array([[1, 2, 3], [4, 5, 9], [7, 8, 15]])
     >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
@@ -71,12 +70,11 @@ def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         raise ValueError(msg)
     # Perform QR decomposition with pivoting
     # matrix_q: Orthogonal matrix
-    # matrix_v: Upper triangular matrix
+    # matrix_r: Upper triangular matrix
     # pivot: Pivot indices (permutation vector)
 
     matrix_q, matrix_r, pivot = qr(matrix_a, pivoting=True)
 
-    # Note: The bottom row of matrix_r is all zeros because the matrix is rank-deficient.
     # Verification: matrix_a[:, pivot] should equal matrix_q @ matrix_r
     permute_matrix = matrix_a[:, pivot]
     if(np.allclose(permute_matrix, matrix_q @ matrix_r)):
