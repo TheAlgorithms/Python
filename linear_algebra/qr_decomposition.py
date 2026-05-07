@@ -14,6 +14,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.linalg import qr
 
+
 def qr_decomposition(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Perform QR decomposition on a given matrix and raises an error if in
@@ -56,17 +57,12 @@ def qr_decomposition(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     ValueError: row size should be greater than column size
     """
 
-
     rows, columns = np.shape(A)
     if rows < columns:
-        msg = (
-            "row size should be greater than column size"
-        )
+        msg = "row size should be greater than column size"
         raise ValueError(msg)
     if rows < 2 or columns < 2:
-        msg = (
-            "row size and column size should be greater than 2"
-        )
+        msg = "row size and column size should be greater than 2"
         raise ValueError(msg)
     # Perform QR decomposition with pivoting
     # Q: Orthogonal matrix
@@ -78,13 +74,12 @@ def qr_decomposition(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     # Note: The bottom row of R is all zeros because the matrix is rank-deficient.
     # Verification: A[:, P] should equal Q @ R
     AP = A[:, P]
-    if(np.allclose(AP, Q @ R)):
-        return np.round(Q,2), np.round(R,2)
+    if np.allclose(AP, Q @ R):
+        return np.round(Q, 2), np.round(R, 2)
     else:
-        msg = (
-            "No matrix found which decompose given matrix"
-        )
+        msg = "No matrix found which decompose given matrix"
         raise ValueError(msg)
+
 
 if __name__ == "__main__":
     import doctest
