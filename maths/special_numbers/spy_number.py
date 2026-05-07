@@ -6,6 +6,8 @@
 Examples of Spy Numbers: 22,123,1124,...
 https://www.scribd.com/document/895653665/Interesting-Number-Programs
 """
+
+
 def is_spy_number(number: int) -> bool:
     """
     This functions takes an integer number as input.
