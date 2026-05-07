@@ -1,18 +1,14 @@
-"""
-In linear algebra, a QR decomposition, also known as a QR factorization 
+"""In linear algebra, a QR decomposition, also known as a QR factorization
 or Q factorization,
 is a decomposition of a matrix a into a product matrix_a = QR
 of an orthonormal matrix Q and an upper triangular matrix R.
 QR decomposition is often used to solve the linear least squares (LLS) problem
 and is the basis for a particular eigenvalue algorithm, the QR algorithm.
-
 This algorithm will simply attempt to perform QR decomposition on any square matrix.
-
-Reference: https://en.wikipedia.org/wiki/QR_decomposition
-"""
-import numpy as np
+Reference: https://en.wikipedia.org/wiki/QR_decomposition"""
 from __future__ import annotations
 from scipy.linalg import qr
+import numpy as np
 
 def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
