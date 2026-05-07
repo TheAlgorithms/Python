@@ -6,8 +6,10 @@ QR decomposition is often used to solve the linear least squares (LLS) problem
 and is the basis for a particular eigenvalue algorithm, the QR algorithm.
 This algorithm will simply attempt to perform QR decomposition on any square matrix.
 Reference: https://en.wikipedia.org/wiki/QR_decomposition"""
+
 import numpy as np
 from scipy.linalg import qr
+
 
 def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
@@ -51,17 +53,12 @@ def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     ValueError: row size should be greater than column size
     """
 
-
     rows, columns = np.shape(matrix_a)
     if rows < columns:
-        msg = (
-            "row size should be greater than column size"
-        )
+        msg = "row size should be greater than column size"
         raise ValueError(msg)
     if rows < 2 or columns < 2:
-        msg = (
-            "row size and column size should be greater than 2"
-        )
+        msg = "row size and column size should be greater than 2"
         raise ValueError(msg)
     # Perform QR decomposition with pivoting
     # matrix_q: Orthogonal matrix
@@ -72,13 +69,12 @@ def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
     # Verification: matrix_a[:, pivot] should equal matrix_q @ matrix_r
     permute_matrix = matrix_a[:, pivot]
-    if(np.allclose(permute_matrix, matrix_q @ matrix_r)):
-        return np.round(matrix_q,2), np.round(matrix_r,2)
+    if np.allclose(permute_matrix, matrix_q @ matrix_r):
+        return np.round(matrix_q, 2), np.round(matrix_r, 2)
     else:
-        msg = (
-            "No matrix found which decompose given matrix"
-        )
+        msg = "No matrix found which decompose given matrix"
         raise ValueError(msg)
+
 
 if __name__ == "__main__":
     import doctest
