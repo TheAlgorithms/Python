@@ -49,7 +49,7 @@ def generate_neighbours(path):
 
     dict_of_neighbours = {}
 
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         for line in f:
             if line.split()[0] not in dict_of_neighbours:
                 _list = []
@@ -88,7 +88,7 @@ def generate_first_solution(path, dict_of_neighbours):
         will travel, if he follows the path in first_solution.
     """
 
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         start_node = f.read(1)
     end_node = start_node
 

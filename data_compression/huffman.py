@@ -26,7 +26,7 @@ def parse_file(file_path: str) -> list[Letter]:
     frequencies, then convert the dict into a list of Letters.
     """
     chars: dict[str, int] = {}
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         while True:
             c = f.read(1)
             if not c:
@@ -78,7 +78,7 @@ def huffman(file_path: str) -> None:
         k: v for letter in traverse_tree(root, "") for k, v in letter.bitstring.items()
     }
     print(f"Huffman Coding  of {file_path}: ")
-    with open(file_path) as f:
+    with open(file_path, encoding="utf-8") as f:
         while True:
             c = f.read(1)
             if not c:

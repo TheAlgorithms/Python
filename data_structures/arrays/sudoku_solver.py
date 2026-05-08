@@ -206,7 +206,7 @@ def solved(values):
 
 def from_file(filename, sep="\n"):
     "Parse a file into a list of strings, separated by sep."
-    with open(filename) as file:
+    with open(filename, encoding="utf-8") as file:
         return file.read().strip().split(sep)
 
 

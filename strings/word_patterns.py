@@ -46,7 +46,7 @@ if __name__ == "__main__":
     import time
 
     start_time = time.time()
-    with open("dictionary.txt") as in_file:
+    with open("dictionary.txt", encoding="utf-8") as in_file:
         word_list = in_file.read().splitlines()
 
     all_patterns: dict = {}

@@ -7,7 +7,7 @@ LETTERS_AND_SPACE = ascii_letters + " \t\n"
 def load_dictionary() -> dict[str, None]:
     path = os.path.split(os.path.realpath(__file__))
     english_words: dict[str, None] = {}
-    with open(path[0] + "/dictionary.txt") as dictionary_file:
+    with open(path[0] + "/dictionary.txt", encoding="utf-8") as dictionary_file:
         for word in dictionary_file.read().split("\n"):
             english_words[word] = None
     return english_words
