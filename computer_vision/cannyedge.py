@@ -1,5 +1,5 @@
 """
-Canny Edge Detector - It is used to identify edges in images. 
+Canny Edge Detector - It is used to identify edges in images.
 Implementation of the Canny Edge Detection algorithm using NumPy.
 
 https://en.wikipedia.org/wiki/Canny_edge_detector
@@ -16,8 +16,8 @@ def grayscale(image: np.ndarray) -> np.ndarray:
     To convert RGB -> grayscale using luminance weights.
     """
     return np.dot(image[..., :3], [0.299, 0.587, 0.114]).astype(np.uint8)
-    #gray = 0.299R+0.587G+0.114B
-    #np.uint8 = converts values to 8-bit integers(0-255)
+    # gray = 0.299R+0.587G+0.114B
+    # np.uint8 = converts values to 8-bit integers(0-255)
 
 
 def gaussian_kernel(kernel_size: int = 5, sigma: float = 1.4) -> np.ndarray:
@@ -28,15 +28,13 @@ def gaussian_kernel(kernel_size: int = 5, sigma: float = 1.4) -> np.ndarray:
     """
     if kernel_size % 2 == 0:
         raise ValueError("kernel's size must be odd")
-        #as we need a center
+        # as we need a center
 
     center = kernel_size // 2
 
     x, y = np.mgrid[-center : center + 1, -center : center + 1]
-    #assigns weights, center gets largest while farther pixels get smaller values.
-    kernel = (1 / (2 * pi * sigma**2)) * np.exp(
-        -((x**2 + y**2) / (2 * sigma**2))
-    )
+    # assigns weights, center gets largest while farther pixels get smaller values.
+    kernel = (1 / (2 * pi * sigma**2)) * np.exp(-((x**2 + y**2) / (2 * sigma**2)))
 
     return kernel / kernel.sum()
 
@@ -54,19 +52,25 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     padding = kernel_size // 2
 
     padded_image = np.pad(image, padding, mode="constant")
-    #convolution near borders needs neighbors
+    # convolution near borders needs neighbors
     output = np.zeros_like(image, dtype=np.float64)
 
     for row in range(image_height):
         for column in range(image_width):
-            region = padded_image[row : row + kernel_size,column : column + kernel_size]
+            region = padded_image[
+                row : row + kernel_size, column : column + kernel_size
+            ]
 
             output[row, column] = np.sum(region * kernel)
-            #multiply and add
+            # multiply and add
     return output
 
 
-def gaussian_blur(image: np.ndarray,kernel_size: int = 5,sigma: float = 1.4,) -> np.ndarray:
+def gaussian_blur(
+    image: np.ndarray,
+    kernel_size: int = 5,
+    sigma: float = 1.4,
+) -> np.ndarray:
     """
     Blurring image using Gaussian filter.
 
@@ -107,16 +111,19 @@ def sobel_gradients(image: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     gradient_x = convolve(image, sobel_x)
     gradient_y = convolve(image, sobel_y)
 
-    gradient_magnitude = np.hypot(gradient_x, gradient_y)#edge strength
+    gradient_magnitude = np.hypot(gradient_x, gradient_y)  # edge strength
 
     gradient_magnitude = (gradient_magnitude / gradient_magnitude.max()) * 255
-    #normalize values to 0-255
+    # normalize values to 0-255
     gradient_direction = np.arctan2(gradient_y, gradient_x)
-    #computes edge direction angle, just tan^-1(Gy/Gx)
+    # computes edge direction angle, just tan^-1(Gy/Gx)
     return gradient_magnitude, gradient_direction
 
 
-def non_maximum_suppression(magnitude: np.ndarray,direction: np.ndarray,) -> np.ndarray:
+def non_maximum_suppression(
+    magnitude: np.ndarray,
+    direction: np.ndarray,
+) -> np.ndarray:
     """
     Suppress non-maximum gradient values.
 
@@ -139,7 +146,7 @@ def non_maximum_suppression(magnitude: np.ndarray,direction: np.ndarray,) -> np.
 
             current_angle = angle[row, column]
 
-            if (0 <= current_angle < 22.5 or 157.5 <= current_angle <= 180):
+            if 0 <= current_angle < 22.5 or 157.5 <= current_angle <= 180:
                 neighbor_1 = magnitude[row, column + 1]
                 neighbor_2 = magnitude[row, column - 1]
 
@@ -155,13 +162,20 @@ def non_maximum_suppression(magnitude: np.ndarray,direction: np.ndarray,) -> np.
                 neighbor_1 = magnitude[row - 1, column - 1]
                 neighbor_2 = magnitude[row + 1, column + 1]
 
-            if (magnitude[row, column] >= neighbor_1 and magnitude[row, column] >= neighbor_2):
+            if (
+                magnitude[row, column] >= neighbor_1
+                and magnitude[row, column] >= neighbor_2
+            ):
                 suppressed[row, column] = magnitude[row, column]
 
     return suppressed
 
 
-def double_threshold(image: np.ndarray,low_threshold_ratio: float = 0.05,high_threshold_ratio: float = 0.15,) -> tuple[np.ndarray, int, int]:
+def double_threshold(
+    image: np.ndarray,
+    low_threshold_ratio: float = 0.05,
+    high_threshold_ratio: float = 0.15,
+) -> tuple[np.ndarray, int, int]:
     """
     Apply double thresholding.
     To separate strong edges from weak edges.
@@ -196,7 +210,11 @@ def double_threshold(image: np.ndarray,low_threshold_ratio: float = 0.05,high_th
     return result, weak, strong
 
 
-def hysteresis(image: np.ndarray,weak: int,strong: int = 255,) -> np.ndarray:
+def hysteresis(
+    image: np.ndarray,
+    weak: int,
+    strong: int = 255,
+) -> np.ndarray:
     """
     Track edges using hysteresis.
 
@@ -230,7 +248,13 @@ class CannyEdgeDetector:
     Canny Edge Detector implementation.
     """
 
-    def __init__(self,kernel_size: int = 5,sigma: float = 1.4,low_threshold_ratio: float = 0.05,high_threshold_ratio: float = 0.15,) -> None:
+    def __init__(
+        self,
+        kernel_size: int = 5,
+        sigma: float = 1.4,
+        low_threshold_ratio: float = 0.05,
+        high_threshold_ratio: float = 0.15,
+    ) -> None:
         self.kernel_size = kernel_size
         self.sigma = sigma
         self.low_threshold_ratio = low_threshold_ratio
@@ -259,9 +283,7 @@ class CannyEdgeDetector:
             self.sigma,
         )
 
-        gradient_magnitude, gradient_direction = sobel_gradients(
-            blurred_image
-        )
+        gradient_magnitude, gradient_direction = sobel_gradients(blurred_image)
 
         suppressed_image = non_maximum_suppression(
             gradient_magnitude,
