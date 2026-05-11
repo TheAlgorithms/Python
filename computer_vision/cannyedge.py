@@ -14,6 +14,9 @@ import numpy as np
 def grayscale(image: np.ndarray) -> np.ndarray:
     """
     To convert RGB -> grayscale using luminance weights.
+    >>> image = np.array([[[255, 255, 255]]], dtype=np.uint8)
+    >>> grayscale(image)
+    array([[255]], dtype=uint8)
     """
     return np.dot(image[..., :3], [0.299, 0.587, 0.114]).astype(np.uint8)
     #gray = 0.299R+0.587G+0.114B
@@ -24,7 +27,8 @@ def gaussian_kernel(kernel_size: int = 5, sigma: float = 1.4) -> np.ndarray:
     """
     To generate a Gaussian kernel.
     A typical 5*5 sized matrix with standard deviation as 1.4
-    - gaussian_kernel(3).shape - (3, 3)
+    >>> gaussian_kernel(3).shape
+    (3, 3)
     """
     if kernel_size % 2 == 0:
         raise ValueError("kernel's size must be odd")
@@ -45,9 +49,10 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     """
     Apply convolution to image.
 
-    - image = np.ones((5, 5))
-    - kernel = np.ones((3, 3))
-    - convolve(image, kernel).shape -> (5, 5)
+    >>> image = np.ones((5, 5))
+    >>> kernel = np.ones((3, 3))
+    >>> convolve(image, kernel).shape
+    (5, 5)
     """
     image_height, image_width = image.shape
     kernel_size = kernel.shape[0]
@@ -70,8 +75,8 @@ def gaussian_blur(image: np.ndarray,kernel_size: int = 5,sigma: float = 1.4,) ->
     """
     Blurring image using Gaussian filter.
 
-    - image = np.ones((5, 5))
-    - gaussian_blur(image).shape
+    >>> image = np.ones((5, 5))
+    >>> gaussian_blur(image).shape
     (5, 5)
     """
     kernel = gaussian_kernel(kernel_size, sigma)
@@ -83,9 +88,9 @@ def sobel_gradients(image: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     Calculate Sobel gradients.
 
-    - image = np.ones((5, 5))
-    - magnitude, direction = sobel_gradients(image)
-    - magnitude.shape
+    >>> image = np.ones((5, 5))
+    >>> magnitude, direction = sobel_gradients(image)
+    >>> magnitude.shape
     (5, 5)
     """
     sobel_x = np.array(
@@ -120,9 +125,9 @@ def non_maximum_suppression(magnitude: np.ndarray,direction: np.ndarray,) -> np.
     """
     Suppress non-maximum gradient values.
 
-    - image = np.ones((5, 5))
-    - direction = np.zeros((5, 5))
-    - non_maximum_suppression(image, direction).shape
+    >>> image = np.ones((5, 5))
+    >>> direction = np.zeros((5, 5))
+    >>> non_maximum_suppression(image, direction).shape
     (5, 5)
     """
     image_height, image_width = magnitude.shape
@@ -165,9 +170,10 @@ def double_threshold(image: np.ndarray,low_threshold_ratio: float = 0.05,high_th
     """
     Apply double thresholding.
     To separate strong edges from weak edges.
-    - image = np.array([[100, 200]])
-    - thresholded, weak, strong = double_threshold(image)
-    - thresholded.shape -> (1, 2)
+    >>> image = np.array([[100, 200]])
+    >>> thresholded, weak, strong = double_threshold(image)
+    >>> thresholded.shape
+    (1, 2)
     """
     if low_threshold_ratio >= high_threshold_ratio:
         raise ValueError(
@@ -200,8 +206,9 @@ def hysteresis(image: np.ndarray,weak: int,strong: int = 255,) -> np.ndarray:
     """
     Track edges using hysteresis.
 
-    - image = np.array([[255, 75]])
-    - hysteresis(image, 75).shape -> (1, 2)
+    >>> image = np.array([[255, 75]])
+    >>> hysteresis(image, 75).shape
+    (1, 2)
     """
     image_height, image_width = image.shape
 
@@ -245,6 +252,9 @@ class CannyEdgeDetector:
 
         Returns:
             Edge detected image
+        >>> detector = CannyEdgeDetector()  # doctest: +SKIP
+        >>> detector.detect("test.jpg").ndim  # doctest: +SKIP
+        2
         """
         image = cv2.imread(image_path)
 
