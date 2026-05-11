@@ -1,5 +1,6 @@
 """
-Canny Edge Detector - It is used to identify edges in images. 
+Canny Edge Detector
+It is used to identify edges in images. 
 Implementation of the Canny Edge Detection algorithm using NumPy.
 
 https://en.wikipedia.org/wiki/Canny_edge_detector
@@ -252,6 +253,7 @@ class CannyEdgeDetector:
 
         Returns:
             Edge detected image
+            
         >>> detector = CannyEdgeDetector()  # doctest: +SKIP
         >>> detector.detect("test.jpg").ndim  # doctest: +SKIP
         2
@@ -296,6 +298,6 @@ class CannyEdgeDetector:
 if __name__ == "__main__":
     detector = CannyEdgeDetector()
 
-    detected_edges = detector.detect("Screenshot 2026-05-11 065624.png")
+    detected_edges = detector.detect("path_to_img.png")
 
     cv2.imwrite("canny_edges.jpg", detected_edges)
