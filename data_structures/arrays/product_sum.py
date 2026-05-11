@@ -25,7 +25,7 @@ def product_sum(arr: list[int | list], depth: int) -> int:
     Recursively calculates the product sum of an array.
 
     The product sum of an array is defined as the sum of its elements multiplied by
-    their respective depths.  If an element is a list, its product sum is calculated
+    their respective depths. If an element is a list, its product sum is calculated
     recursively by multiplying the sum of its elements with its depth plus one.
 
     Args:
