@@ -72,10 +72,10 @@ class NaiveBayesTextClassifier:
         ...
         ValueError: training data must not be empty.
         """
-        if len(texts) != len(labels):
-            raise ValueError("texts and labels must have the same length.")
         if not texts:
             raise ValueError("training data must not be empty.")
+        if len(texts) != len(labels):
+            raise ValueError("texts and labels must have the same length.")
 
         self.classes_ = sorted(set(labels))
         self.vocabulary_.clear()
@@ -113,6 +113,11 @@ class NaiveBayesTextClassifier:
         1.0
         >>> probs['spam'] > probs['ham']
         True
+
+        An empty input text has no tokens, so predictions fall back to class priors.
+        >>> empty_probs = model.predict_proba("")
+        >>> round(empty_probs['spam'], 3), round(empty_probs['ham'], 3)
+        (0.5, 0.5)
 
         >>> NaiveBayesTextClassifier().predict_proba("hello")
         Traceback (most recent call last):
@@ -159,7 +164,7 @@ class NaiveBayesTextClassifier:
         'ham'
         """
         probabilities = self.predict_proba(text)
-        return max(probabilities, key=probabilities.get)
+        return max(probabilities, key=lambda label: probabilities[label])
 
 
 def build_toy_dataset() -> tuple[list[str], list[str]]:
@@ -188,3 +193,10 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    sample_texts, sample_labels = build_toy_dataset()
+    classifier = NaiveBayesTextClassifier(alpha=1.0)
+    classifier.fit(sample_texts, sample_labels)
+
+    print("Prediction:",classifier.predict("cheap prizes available now"))
+    print("Prediction:",classifier.predict("team meeting about project timeline"))
