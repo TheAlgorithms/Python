@@ -141,8 +141,7 @@ class NaiveBayesTextClassifier:
 
         max_log = max(log_posteriors.values())
         exp_scores = {
-            label: exp(score - max_log)
-            for label, score in log_posteriors.items()
+            label: exp(score - max_log) for label, score in log_posteriors.items()
         }
         normalizer = sum(exp_scores.values())
         return {label: score / normalizer for label, score in exp_scores.items()}
