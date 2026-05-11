@@ -198,5 +198,5 @@ if __name__ == "__main__":
     classifier = NaiveBayesTextClassifier(alpha=1.0)
     classifier.fit(sample_texts, sample_labels)
 
-    print("Prediction:",classifier.predict("cheap prizes available now"))
-    print("Prediction:",classifier.predict("team meeting about project timeline"))
+    print("Prediction:", classifier.predict("cheap prizes available now"))
+    print("Prediction:", classifier.predict("team meeting about project timeline"))
