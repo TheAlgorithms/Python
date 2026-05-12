@@ -432,3 +432,4 @@ if __name__ == "__main__":
         print(f"{target} was not found in {collection}.")
     else:
         print(f"{target} was found at position {result} of {collection}.")
+`n# Note: Binary search requires the array to be sorted before execution.
