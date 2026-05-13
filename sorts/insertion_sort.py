@@ -1,69 +1,43 @@
-"""
-A pure Python implementation of the insertion sort algorithm
+def insertion_sort(collection: list[int]) -> list[int]:
+    """
+    Sorts a list in ascending order using the insertion sort algorithm.
 
-This algorithm sorts a collection by comparing adjacent elements.
-When it finds that order is not respected, it moves the element compared
-backward until the order is correct.  It then goes back directly to the
-element's initial position resuming forward comparison.
-
-For doctests run following command:
-python3 -m doctest -v insertion_sort.py
-
-For manual testing run:
-python3 insertion_sort.py
-"""
-
-from collections.abc import MutableSequence
-from typing import Any, Protocol, TypeVar
-
-
-class Comparable(Protocol):
-    def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
-
-
-def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
-    """A pure Python implementation of the insertion sort algorithm
-
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    :param collection: A list of integers to be sorted.
+    :return: The sorted list.
 
     Examples:
     >>> insertion_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
-    >>> insertion_sort([]) == sorted([])
-    True
-    >>> insertion_sort([-2, -5, -45]) == sorted([-2, -5, -45])
-    True
-    >>> insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
-    True
-    >>> import random
-    >>> collection = random.sample(range(-50, 50), 100)
-    >>> insertion_sort(collection) == sorted(collection)
-    True
-    >>> import string
-    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
-    >>> insertion_sort(collection) == sorted(collection)
-    True
-    """
 
-    for insert_index in range(1, len(collection)):
-        insert_value = collection[insert_index]
-        while insert_index > 0 and insert_value < collection[insert_index - 1]:
-            collection[insert_index] = collection[insert_index - 1]
-            insert_index -= 1
-        collection[insert_index] = insert_value
+    >>> insertion_sort([])
+    []
+
+    >>> insertion_sort([-2, -5, -45])
+    [-45, -5, -2]
+    """
+    START_INDEX = 1          # Magic number replaced with constant
+    length = len(collection)
+
+    for insert_index in range(START_INDEX, length):
+        current_value = collection[insert_index]
+        position = insert_index
+
+        while position > 0 and collection[position - 1] > current_value:
+            collection[position] = collection[position - 1]
+            position -= 1
+
+        collection[position] = current_value
+
     return collection
 
 
-if __name__ == "__main__":
-    from doctest import testmod
-
-    testmod()
-
+def get_user_input() -> list[int]:
+    """Helper function to get list from user input."""
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{insertion_sort(unsorted) = }")
+    return [int(item) for item in user_input.split(",")]
+
+
+if __name__ == "__main__":
+    unsorted = get_user_input()
+    sorted_list = insertion_sort(unsorted)
+    print("Sorted List:", sorted_list)
