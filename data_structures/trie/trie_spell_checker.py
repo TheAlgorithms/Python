@@ -47,7 +47,7 @@ class Trie:
         >>> trie.insert("world")
         >>> trie.search("world")
         True
-        >>> trie.search("worl")
+        >>> trie.search("wor")  # codespell:ignore
         False
         """
         node = self.root
