@@ -15,7 +15,7 @@ def insertion_sort(collection: list[int]) -> list[int]:
     >>> insertion_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    START_INDEX = 1          # Magic number replaced with constant
+    START_INDEX = 1  # Magic number replaced with constant
     length = len(collection)
 
     for insert_index in range(START_INDEX, length):
