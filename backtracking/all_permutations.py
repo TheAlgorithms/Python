@@ -13,6 +13,18 @@ MAX_SEQUENCE_LENGTH = 8
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
     """
+    Generate and print all permutations of the given sequence.
+
+    Raises ValueError if the sequence exceeds MAX_SEQUENCE_LENGTH elements
+    to prevent excessive CPU/memory usage (permutation count is O(n!)).
+
+    >>> generate_all_permutations([1, 2, 3])
+    [1, 2, 3]
+    [1, 3, 2]
+    [2, 1, 3]
+    [2, 3, 1]
+    [3, 1, 2]
+    [3, 2, 1]
     >>> generate_all_permutations([1] * 9)
     Traceback (most recent call last):
         ...
@@ -36,54 +48,39 @@ def create_state_space_tree(
     We know that each state has exactly len(sequence) - index children.
     It terminates when it reaches the end of the given sequence.
 
-    :param sequence: The input sequence for which permutations are generated.
-    :param current_sequence: The current permutation being built.
-    :param index: The current index in the sequence.
-    :param index_used: list to track which elements are used in permutation.
-
-    Example 1:
-    >>> sequence = [1, 2, 3]
-    >>> current_sequence = []
-    >>> index_used = [False, False, False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
+    >>> create_state_space_tree([1, 2, 3], [], 0, [0, 0, 0])
     [1, 2, 3]
     [1, 3, 2]
     [2, 1, 3]
     [2, 3, 1]
     [3, 1, 2]
     [3, 2, 1]
-
-    Example 2:
-    >>> sequence = ["A", "B", "C"]
-    >>> current_sequence = []
-    >>> index_used = [False, False, False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
-    ['A', 'B', 'C']
-    ['A', 'C', 'B']
-    ['B', 'A', 'C']
-    ['B', 'C', 'A']
-    ['C', 'A', 'B']
-    ['C', 'B', 'A']
-
-    Example 3:
-    >>> sequence = [1]
-    >>> current_sequence = []
-    >>> index_used = [False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
-    [1]
+    >>> create_state_space_tree(["a", "b", "c"], [], 0, [0, 0, 0])
+    ['a', 'b', 'c']
+    ['a', 'c', 'b']
+    ['b', 'a', 'c']
+    ['b', 'c', 'a']
+    ['c', 'a', 'b']
+    ['c', 'b', 'a']
+    >>> create_state_space_tree([2, 2, 2], [], 0, [0, 0, 0])
+    [2, 2, 2]
+    [2, 2, 2]
+    [2, 2, 2]
+    [2, 2, 2]
+    [2, 2, 2]
+    [2, 2, 2]
     """
-
     if index == len(sequence):
         print(current_sequence)
         return
 
     for i in range(len(sequence)):
-        if not index_used[i]:
+        if index_used[i] == 0:
             current_sequence.append(sequence[i])
-            index_used[i] = True
+            index_used[i] = 1
             create_state_space_tree(sequence, current_sequence, index + 1, index_used)
             current_sequence.pop()
-            index_used[i] = False
+            index_used[i] = 0
 
 
 """
@@ -93,7 +90,8 @@ print("Enter the elements")
 raw = input().split()
 if len(raw) > MAX_SEQUENCE_LENGTH:
     raise ValueError(f"Input sequence too long (max {MAX_SEQUENCE_LENGTH} elements).")
-# Try to convert each token to int; keep as str if conversion is not possible
+# Try to convert each token to int; keep as str if conversion is not possible.
+# This supports both integer and string elements, matching the function's type hints.
 sequence: list[int | str] = []
 for token in raw:
     try:
@@ -105,6 +103,3 @@ generate_all_permutations(sequence)
 
 sequence: list[int | str] = [3, 1, 2, 4]
 generate_all_permutations(sequence)
-
-sequence_2: list[int | str] = ["A", "B", "C"]
-generate_all_permutations(sequence_2)
