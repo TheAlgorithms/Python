@@ -90,12 +90,9 @@ if __name__ == "__main__":
     unittest.main()
 
 
-
-
-
-
 def test_large_prime(self):
     assert is_prime(999983)
+
 
 def test_large_non_prime(self):
     assert not is_prime(999999)
