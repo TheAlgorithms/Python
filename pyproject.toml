@@ -37,7 +37,6 @@ test = [
   "pytest>=8.4.1",
   "pytest-cov>=6",
 ]
-
 docs = [
   "myst-parser>=4",
   "sphinx-autoapi>=3.4",
@@ -50,7 +49,6 @@ euler-validate = [
 
 [tool.ruff]
 target-version = "py314"
-
 output-format = "full"
 lint.select = [
   # https://beta.ruff.rs/docs/rules
@@ -128,7 +126,6 @@ lint.ignore = [
   "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
   "UP037",   # FIX ME
 ]
-
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
   "BLE001",
 ]
@@ -150,37 +147,43 @@ lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
 lint.per-file-ignores."sorts/external_sort.py" = [
   "SIM115",
 ]
-lint.mccabe.max-complexity = 17 # default: 10
+lint.mccabe.max-complexity = 17  # default: 10
 lint.pylint.allow-magic-value-types = [
   "float",
   "int",
   "str",
 ]
-lint.pylint.max-args = 10 # default: 5
-lint.pylint.max-branches = 20 # default: 12
-lint.pylint.max-returns = 8 # default: 6
-lint.pylint.max-statements = 88 # default: 50
+lint.pylint.max-args = 10  # default: 5
+lint.pylint.max-branches = 20  # default: 12
+lint.pylint.max-returns = 8  # default: 6
+lint.pylint.max-statements = 88  # default: 50
 
 [tool.codespell]
 ignore-words-list = "3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
-skip = "./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
+skip = """\
+  ./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictio\
+  nary.txt,strings/words.txt\
+  """
 
-[tool.pytest.ini_options]
-markers = [
+[tool.mypy]
+python_version = "3.14"
+
+[tool.pytest]
+ini_options.markers = [
   "mat_ops: mark a test as utilizing matrix operations.",
 ]
-addopts = [
+ini_options.addopts = [
   "--durations=10",
   "--doctest-modules",
   "--showlocals",
 ]
 
-[tool.coverage.report]
-omit = [
+[tool.coverage]
+report.omit = [
   ".env/*",
   "project_euler/*",
 ]
-sort = "Cover"
+report.sort = "Cover"
 
 [tool.sphinx-pyproject]
 copyright = "2014, TheAlgorithms"
@@ -261,7 +264,6 @@ myst_fence_as_directive = [
   "include",
 ]
 templates_path = [ "_templates" ]
-[tool.sphinx-pyproject.source_suffix]
-".rst" = "restructuredtext"
+source_suffix.".rst" = "restructuredtext"
 # ".txt" = "markdown"
-".md" = "markdown"
+source_suffix.".md" = "markdown"
