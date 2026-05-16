@@ -1,4 +1,4 @@
-from data_structures.linked_list import singly_linked_list
+from data_structures.linked_list.singly_linked_list import Node as SinglyNode
 
 """
 https://en.wikipedia.org/wiki/Doubly_linked_list
@@ -189,7 +189,7 @@ class DoublyLinkedList:
         """
         return len(self) == 0
 
-    def doubly_to_singly(self) -> singly_linked_list.Node | None:
+    def doubly_to_singly(self) -> SinglyNode | None:
         """
         Convert this doubly linked list into a singly linked list.
 
@@ -198,7 +198,7 @@ class DoublyLinkedList:
 
         Returns
         -------
-        singly_linked_list.Node | None
+        SinglyNode | None
             The head node of the newly created singly linked list.
 
         Example
@@ -220,11 +220,11 @@ class DoublyLinkedList:
             return None
 
         doubly_current: Node | None = self.head.next
-        new_head = singly_linked_list.Node(self.head.data)
+        new_head = SinglyNode(self.head.data)
         singly_current = new_head
 
         while doubly_current:
-            singly_current.next_node = singly_linked_list.Node(doubly_current.data)
+            singly_current.next_node = SinglyNode(doubly_current.data)
             singly_current = singly_current.next_node
             doubly_current = doubly_current.next
 
@@ -275,7 +275,7 @@ def test_doubly_linked_list() -> None:
     head = dll.doubly_to_singly()
 
     assert head is not None
-    s_head = head  # type: singly_linked_list.Node
+    s_head = head  # type: SinglyNode
 
     assert s_head.data == 1
 
