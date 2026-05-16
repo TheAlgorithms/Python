@@ -1,0 +1,51 @@
+on:
+  pull_request:
+    # Run only if a file is changed within the project_euler directory and related files
+    paths:
+      - "project_euler/**"
+      - ".github/workflows/project_euler.yml"
+      - "scripts/validate_solutions.py"
+  schedule:
+    - cron: "0 0 * * *" # Run everyday
+
+name: "Project Euler"
+
+jobs:
+  project-euler:
+    runs-on: ubuntu-latest
+    steps:
+      - run:
+          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+          libharfbuzz-dev libfribidi-dev libxcb1-dev
+          libxml2-dev libxslt-dev
+          libhdf5-dev
+          libopenblas-dev
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+          allow-prereleases: true
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+  validate-solutions:
+    runs-on: ubuntu-latest
+    steps:
+      - run:
+          sudo apt-get update && sudo apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+          zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+          libharfbuzz-dev libfribidi-dev libxcb1-dev
+          libxml2-dev libxslt-dev
+          libhdf5-dev
+          libopenblas-dev
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+          allow-prereleases: true
+      - run: uv sync --group=euler-validate --group=test
+      - run: uv run pytest scripts/validate_solutions.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
