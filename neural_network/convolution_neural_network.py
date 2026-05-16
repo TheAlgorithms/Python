@@ -317,7 +317,7 @@ class CNN:
         print((" - - Shape: Test_Data  ", np.shape(datas_test)))
         for p in range(len(datas_test)):
             data_test = np.asmatrix(datas_test[p])
-            data_focus1, data_conved1 = self.convolute(
+            _data_focus1, data_conved1 = self.convolute(
                 data_test,
                 self.conv1,
                 self.w_conv1,
@@ -339,7 +339,7 @@ class CNN:
     def convolution(self, data):
         # return the data of image after convoluting process so we can check it out
         data_test = np.asmatrix(data)
-        data_focus1, data_conved1 = self.convolute(
+        _data_focus1, data_conved1 = self.convolute(
             data_test,
             self.conv1,
             self.w_conv1,

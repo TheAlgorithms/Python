@@ -1,10 +1,18 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "httpx",
+# ]
+# ///
+
 import json
 import os
 import re
 import sys
 import urllib.request
 
-import requests
+import httpx
 from bs4 import BeautifulSoup
 
 headers = {
@@ -39,7 +47,7 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
         "ijn": "0",
     }
 
-    html = requests.get(
+    html = httpx.get(
         "https://www.google.com/search", params=params, headers=headers, timeout=10
     )
     soup = BeautifulSoup(html.text, "html.parser")

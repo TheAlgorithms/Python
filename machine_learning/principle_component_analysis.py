@@ -65,7 +65,7 @@ def main() -> None:
     """
     Driver function to execute PCA and display results.
     """
-    data_x, data_y = collect_dataset()
+    data_x, _data_y = collect_dataset()
 
     # Number of principal components to retain
     n_components = 2

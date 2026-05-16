@@ -56,7 +56,7 @@ def binary_insertion_sort(collection: list) -> list:
     return collection
 
 
-if __name__ == "__main":
+if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     try:
         unsorted = [int(item) for item in user_input.split(",")]

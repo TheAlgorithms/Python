@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "fake-useragent",
+#     "httpx",
+# ]
+# ///
+
 from __future__ import annotations
 
 import json
 
-import requests
+import httpx
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
@@ -39,11 +49,11 @@ class InstagramUser:
         """
         Return a dict of user information
         """
-        html = requests.get(self.url, headers=headers, timeout=10).text
+        html = httpx.get(self.url, headers=headers, timeout=10).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])
-        except (json.decoder.JSONDecodeError, KeyError):
+        except json.decoder.JSONDecodeError, KeyError:
             return extract_user_profile(scripts[3])
 
     def __repr__(self) -> str:

@@ -18,12 +18,19 @@ with your token::
 export USER_TOKEN=""
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx",
+# ]
+# ///
+
 from __future__ import annotations
 
 import os
 from typing import Any
 
-import requests
+import httpx
 
 BASE_URL = "https://api.github.com"
 
@@ -36,13 +43,13 @@ USER_TOKEN = os.environ.get("USER_TOKEN", "")
 
 def fetch_github_info(auth_token: str) -> dict[Any, Any]:
     """
-    Fetch GitHub info of a user using the requests module
+    Fetch GitHub info of a user using the httpx module
     """
     headers = {
         "Authorization": f"token {auth_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers, timeout=10).json()
+    return httpx.get(AUTHENTICATED_USER_ENDPOINT, headers=headers, timeout=10).json()
 
 
 if __name__ == "__main__":  # pragma: no cover
