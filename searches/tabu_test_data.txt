@@ -1,0 +1,10 @@
+a b 20
+a c 18
+a d 22
+a e 26
+b c 10
+b d 11
+b e 12
+c d 23
+c e 24
+d e 40

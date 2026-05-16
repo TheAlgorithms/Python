@@ -1,0 +1,41 @@
+name: "build"
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *" # Run everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get update && sudo apt-get install -y libhdf5-dev
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.14
+          allow-prereleases: true
+      - run: uv sync --group=test
+      - name: Run tests
+        # TODO: #8818 Re-enable quantum tests
+        run: uv run --with=pytest-run-parallel pytest
+          --iterations=8 --parallel-threads=auto
+          --ignore=computer_vision/cnn_classification.py
+          --ignore=docs/conf.py
+          --ignore=dynamic_programming/k_means_clustering_tensorflow.py
+          --ignore=machine_learning/local_weighted_learning/local_weighted_learning.py
+          --ignore=machine_learning/lstm/lstm_prediction.py
+          --ignore=neural_network/input_data.py
+          --ignore=project_euler/
+          --ignore=quantum/q_fourier_transform.py
+          --ignore=scripts/validate_solutions.py
+          --ignore=web_programming/current_stock_price.py
+          --ignore=web_programming/fetch_anime_and_play.py
+          --cov-report=term-missing:skip-covered
+          --cov=. .
+      - if: ${{ success() }}
+        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

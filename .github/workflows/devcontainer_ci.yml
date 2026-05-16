@@ -1,0 +1,19 @@
+name: Test DevContainer Build
+
+on:
+  push:
+    paths:
+      - ".devcontainer/**"
+  pull_request:
+    paths:
+      - ".devcontainer/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: devcontainers/ci@v0.3
+        with:
+          push: never
+          runCmd: "true"
