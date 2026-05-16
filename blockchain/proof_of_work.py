@@ -145,9 +145,7 @@ def mine_block(
     hash_value = calculate_hash(index, timestamp, data, previous_hash, nonce)
     while not hash_value.startswith(prefix):
         nonce += 1
-        hash_value = calculate_hash(
-            index, timestamp, data, previous_hash, nonce
-        )
+        hash_value = calculate_hash(index, timestamp, data, previous_hash, nonce)
     return Block(index, timestamp, data, previous_hash, nonce, hash_value)
 
 
@@ -245,14 +243,12 @@ class Blockchain:
     def to_json(self) -> str:
         """Serialise the entire blockchain to a JSON string.
 
-    >>> chain = Blockchain(difficulty=1)
-    >>> _ = chain.add_block("data")
-    >>> isinstance(chain.to_json(), str)
-    True
+        >>> chain = Blockchain(difficulty=1)
+        >>> _ = chain.add_block("data")
+        >>> isinstance(chain.to_json(), str)
+        True
         """
-        return json.dumps(
-            [block.to_dict() for block in self.chain], indent=2
-        )
+        return json.dumps([block.to_dict() for block in self.chain], indent=2)
 
 
 if __name__ == "__main__":
