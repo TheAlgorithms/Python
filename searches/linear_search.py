@@ -8,12 +8,15 @@ For manual testing run:
 python3 linear_search.py
 """
 
-from typing import Sequence, TypeVar
+from collections.abc import Sequence
+from typing import Any, Protocol
 
-T = TypeVar("T")
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
 
 
-def linear_search(sequence: Sequence[T], target: T) -> int:
+def linear_search[T: Comparable](sequence: Sequence[T], target: T) -> int:
     """A pure Python implementation of a linear search algorithm
 
     :param sequence: a collection with comparable items (sorting is not required for
@@ -37,7 +40,9 @@ def linear_search(sequence: Sequence[T], target: T) -> int:
     return -1
 
 
-def rec_linear_search(sequence: Sequence[T], low: int, high: int, target: T) -> int:
+def rec_linear_search[T: Comparable](
+    sequence: Sequence[T], low: int, high: int, target: T
+) -> int:
     """
     A pure Python implementation of a recursive linear search algorithm
 
