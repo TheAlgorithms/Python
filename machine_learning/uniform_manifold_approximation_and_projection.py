@@ -125,12 +125,23 @@ def find_nearest_neighbors(distance_matrix: ndarray, n_neighbors: int) -> ndarra
                  Row i contains the indices of point i's k nearest neighbours
                  (not including itself).
 
+    Raises:
+        ValueError: If `n_neighbors` is less than 1 or greater than the
+            maximum number of non-self neighbours available, `n_samples - 1`.
+
     >>> dist = np.array([[0., 1., 2.], [1., 0., 3.], [2., 3., 0.]])
     >>> nn = find_nearest_neighbors(dist, n_neighbors=1)
     >>> nn.tolist()
     [[1], [0], [0]]
     """
     n_samples = distance_matrix.shape[0]
+    max_neighbors = n_samples - 1
+    if not 1 <= n_neighbors <= max_neighbors:
+        raise ValueError(
+            f"n_neighbors must be between 1 and {max_neighbors} for a "
+            f"distance matrix with {n_samples} samples; got {n_neighbors}."
+        )
+
     neighbor_indices = np.zeros((n_samples, n_neighbors), dtype=int)
 
     for i in range(n_samples):
