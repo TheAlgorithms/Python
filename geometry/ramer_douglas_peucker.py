@@ -74,11 +74,6 @@ def _perpendicular_distance(
     return numerator / denominator
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
-
-
 def ramer_douglas_peucker(
     points: Sequence[tuple[float, float]],
     epsilon: float,
