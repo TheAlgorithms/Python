@@ -14,9 +14,12 @@ Reference: https://en.wikipedia.org/wiki/LU_decomposition
 """
 
 
+Matrix = list[list[float]]
+
+
 def lu_decomposition(
-    matrix: list[list[float]],
-) -> tuple[list[list[float]], list[list[float]]]:
+    matrix: Matrix,
+) -> tuple[Matrix, Matrix]:
     """Perform LU decomposition on a square matrix.
 
     Decomposes the input matrix A into L (lower triangular) and U (upper
@@ -44,8 +47,13 @@ def lu_decomposition(
             encountered (matrix is singular or requires pivoting).
 
     Examples:
-        >>> lu_decomposition([[2, 1, 1], [4, 3, 3], [8, 7, 9]])
-        ([[1.0, 0.0, 0.0], [2.0, 1.0, 0.0], [4.0, 3.0, 1.0]], [[2.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 2.0]])
+        >>> l, u = lu_decomposition(
+        ...     [[2, 1, 1], [4, 3, 3], [8, 7, 9]]
+        ... )  # doctest: +NORMALIZE_WHITESPACE
+        >>> l
+        [[1.0, 0.0, 0.0], [2.0, 1.0, 0.0], [4.0, 3.0, 1.0]]
+        >>> u
+        [[2.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 2.0]]
 
         >>> lu_decomposition([[1, 2], [3, 4]])
         ([[1.0, 0.0], [3.0, 1.0]], [[1.0, 2.0], [0.0, -2.0]])
@@ -56,10 +64,10 @@ def lu_decomposition(
         >>> lu_decomposition([[1, 0], [0, 1]])
         ([[1.0, 0.0], [0.0, 1.0]], [[1.0, 0.0], [0.0, 1.0]])
 
-        >>> lu_decomposition([[0, 1], [1, 0]])
+        >>> lu_decomposition([[0, 1], [1, 0]])  # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
-        ValueError: Zero pivot encountered. Matrix may be singular or require partial pivoting.
+        ValueError: Zero pivot encountered...
 
         >>> lu_decomposition([[1, 2, 3], [4, 5, 6]])
         Traceback (most recent call last):
@@ -92,13 +100,14 @@ def lu_decomposition(
         # Check for zero pivot
         if upper[k][k] == 0:
             raise ValueError(
-                "Zero pivot encountered. Matrix may be singular or require partial pivoting."
+                "Zero pivot encountered. "
+                "Matrix may be singular or require pivoting."
             )
 
         # Compute the k-th column of L
         for i in range(k + 1, n):
             sum_val = sum(lower[i][s] * upper[s][k] for s in range(k))
-            lower[i][k] = (matrix[i][k] - sum_val) / upper[k][k]
+            lower[i][k] = (a[i][k] - sum_val) / upper[k][k]
 
     return lower, upper
 
