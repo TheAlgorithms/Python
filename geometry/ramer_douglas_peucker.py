@@ -23,10 +23,6 @@ from __future__ import annotations
 import math
 from collections.abc import Sequence
 
-# ---------------------------------------------------------------------------
-# Internal helpers
-# ---------------------------------------------------------------------------
-
 
 def _euclidean_distance(
     point_1: tuple[float, float], point_2: tuple[float, float]
