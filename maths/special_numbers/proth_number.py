@@ -59,6 +59,50 @@ def proth(number: int) -> int:
     return proth_list[number - 1]
 
 
+def is_proth_number(number: int) -> bool:
+    """
+    :param number: positive integer number
+    :return: true if number is a Proth number, false otherwise
+    >>> is_proth_number(1)
+    False
+    >>> is_proth_number(2)
+    False
+    >>> is_proth_number(3)
+    True
+    >>> is_proth_number(4)
+    False
+    >>> is_proth_number(5)
+    True
+    >>> is_proth_number(34)
+    False
+    >>> is_proth_number(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input value of [number=-1] must be > 0
+    >>> is_proth_number(6.0)
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value of [number=6.0] must be an integer
+    """
+    if not isinstance(number, int):
+        message = f"Input value of [{number=}] must be an integer"
+        raise TypeError(message)
+
+    if number <= 0:
+        message = f"Input value of [{number=}] must be > 0"
+        raise ValueError(message)
+
+    if number == 1:
+        return False
+
+    number -= 1
+    n = 0
+    while number % 2 == 0:
+        n += 1
+        number //= 2
+    return number < 2**n
+
+
 if __name__ == "__main__":
     import doctest
 
@@ -73,3 +117,9 @@ if __name__ == "__main__":
             continue
 
         print(f"The {number}th Proth number: {value}")
+
+    for number in [1, 2, 3, 4, 5, 9, 13, 49, 57, 193, 241, 163, 201]:
+        if is_proth_number(number):
+            print(f"{number} is a Proth number")
+        else:
+            print(f"{number} is not a Proth number")

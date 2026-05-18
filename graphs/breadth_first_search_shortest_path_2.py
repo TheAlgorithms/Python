@@ -1,9 +1,11 @@
-"""Breadth-first search shortest path implementations.
+"""Breadth-first search the shortest path implementations.
 doctest:
-python -m doctest -v bfs_shortest_path.py
+python -m doctest -v breadth_first_search_shortest_path_2.py
 Manual test:
-python bfs_shortest_path.py
+python breadth_first_search_shortest_path_2.py
 """
+
+from collections import deque
 
 demo_graph = {
     "A": ["B", "C", "E"],
@@ -17,7 +19,7 @@ demo_graph = {
 
 
 def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
-    """Find shortest path between `start` and `goal` nodes.
+    """Find the shortest path between `start` and `goal` nodes.
     Args:
         graph (dict): node/list of neighboring nodes key/value pairs.
         start: start node.
@@ -36,7 +38,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     # keep track of explored nodes
     explored = set()
     # keep track of all the paths to be checked
-    queue = [[start]]
+    queue = deque([[start]])
 
     # return path if start is goal
     if start == goal:
@@ -45,7 +47,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     # keeps looping until all possible paths have been checked
     while queue:
         # pop the first path from the queue
-        path = queue.pop(0)
+        path = queue.popleft()
         # get the last node from the path
         node = path[-1]
         if node not in explored:
@@ -68,13 +70,13 @@ def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
 
 
 def bfs_shortest_path_distance(graph: dict, start, target) -> int:
-    """Find shortest path distance between `start` and `target` nodes.
+    """Find the shortest path distance between `start` and `target` nodes.
     Args:
         graph: node/list of neighboring nodes key/value pairs.
         start: node to start search from.
         target: node to search for.
     Returns:
-        Number of edges in shortest path between `start` and `target` nodes.
+        Number of edges in the shortest path between `start` and `target` nodes.
         -1 if no path exists.
     Example:
         >>> bfs_shortest_path_distance(demo_graph, "G", "D")
@@ -88,12 +90,12 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
         return -1
     if start == target:
         return 0
-    queue = [start]
+    queue = deque([start])
     visited = set(start)
     # Keep tab on distances from `start` node.
     dist = {start: 0, target: -1}
     while queue:
-        node = queue.pop(0)
+        node = queue.popleft()
         if node == target:
             dist[target] = (
                 dist[node] if dist[target] == -1 else min(dist[target], dist[node])
