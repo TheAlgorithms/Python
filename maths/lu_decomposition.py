@@ -14,7 +14,9 @@ Reference: https://en.wikipedia.org/wiki/LU_decomposition
 """
 
 
-def lu_decomposition(matrix: list[list[float]]) -> tuple[list[list[float]], list[list[float]]]:
+def lu_decomposition(
+    matrix: list[list[float]],
+) -> tuple[list[list[float]], list[list[float]]]:
     """Perform LU decomposition on a square matrix.
 
     Decomposes the input matrix A into L (lower triangular) and U (upper
