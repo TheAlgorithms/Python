@@ -22,7 +22,9 @@ References:
 from __future__ import annotations
 
 
-def lagrange_interpolation(x_points: list[float], y_points: list[float], x: float) -> float:
+def lagrange_interpolation(
+    x_points: list[float], y_points: list[float], x: float
+) -> float:
     """
     Estimate f(x) using the Lagrange interpolating polynomial through the
     given data points (x_points[i], y_points[i]).
