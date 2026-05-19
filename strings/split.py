@@ -20,7 +20,7 @@ def split(string: str, separator: str = " ") -> list:
     """
 
     split_words = []
-    if(len(separator)>1):
+    if len(separator) > 1:
         raise ValueError("Separator must be a single character")
 
     last_index = 0
