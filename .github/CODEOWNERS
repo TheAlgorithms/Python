@@ -1,0 +1,86 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+
+# More details are here: https://help.github.com/articles/about-codeowners/
+
+# The '*' pattern is global owners.
+
+# Order is important. The last matching pattern has the most precedence.
+
+/.*  @cclauss
+
+# /backtracking/
+
+# /bit_manipulation/
+
+# /blockchain/
+
+# /boolean_algebra/
+
+# /cellular_automata/
+
+# /ciphers/
+
+# /compression/
+
+# /computer_vision/
+
+# /conversions/
+
+# /data_structures/
+
+# /digital_image_processing/
+
+# /divide_and_conquer/
+
+# /dynamic_programming/
+
+# /file_transfer/
+
+# /fuzzy_logic/
+
+# /genetic_algorithm/
+
+# /geodesy/
+
+# /graphics/
+
+# /graphs/
+
+# /greedy_method/
+
+# /hashes/
+
+# /images/
+
+# /linear_algebra/
+
+# /machine_learning/
+
+# /maths/
+
+# /matrix/
+
+# /networking_flow/
+
+# /neural_network/
+
+# /other/
+
+# /project_euler/
+
+# /quantum/
+
+# /scheduling/
+
+# /scripts/
+
+# /searches/
+
+# /sorts/
+
+# /strings/
+
+# /traversals/
+
+/web_programming/  @cclauss
