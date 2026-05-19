@@ -13,7 +13,6 @@ This decomposition is useful for:
 Reference: https://en.wikipedia.org/wiki/LU_decomposition
 """
 
-
 Matrix = list[list[float]]
 
 
@@ -100,8 +99,7 @@ def lu_decomposition(
         # Check for zero pivot
         if upper[k][k] == 0:
             raise ValueError(
-                "Zero pivot encountered. "
-                "Matrix may be singular or require pivoting."
+                "Zero pivot encountered. Matrix may be singular or require pivoting."
             )
 
         # Compute the k-th column of L
