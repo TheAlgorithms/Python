@@ -21,7 +21,7 @@ def split(string: str, separator: str = " ") -> list:
 
     split_words = []
     if(len(separator)>1):
-        raise ValueError("Separator must be a single character!")
+        raise ValueError("Separator is for single character only")
 
     last_index = 0
     for index, char in enumerate(string):
