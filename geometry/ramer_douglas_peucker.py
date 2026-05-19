@@ -1,5 +1,5 @@
 """
-Ramer–Douglas–Peucker polyline simplification algorithm.
+Ramer-Douglas-Peucker polyline simplification algorithm.
 
 Given a sequence of 2-D points and a tolerance epsilon, the algorithm
 reduces the number of points while preserving the overall shape of the curve.
@@ -43,7 +43,7 @@ def _perpendicular_distance(
     When the projection falls outside the segment, the distance to the nearest
     endpoint is returned instead (projection clamped to [0, 1]).
 
-    This is the correct distance measure for the Ramer–Douglas–Peucker
+    This is the correct distance measure for the Ramer-Douglas-Peucker
     algorithm: using the infinite-line distance can incorrectly discard points
     whose projection lies beyond a segment endpoint.
 
@@ -80,7 +80,7 @@ def ramer_douglas_peucker(
     pts: list[tuple[float, float]],
     epsilon: float,
 ) -> list[tuple[float, float]]:
-    """Simplify a polyline using the Ramer–Douglas–Peucker algorithm.
+    """Simplify a polyline using the Ramer-Douglas-Peucker algorithm.
 
     Given a sequence of 2-D points and a maximum allowable deviation
     *epsilon* (>= 0), returns a simplified list of points such that no
@@ -117,10 +117,10 @@ def ramer_douglas_peucker(
     [(0.0, 0.0)]
     >>> ramer_douglas_peucker([(0.0, 0.0), (1.0, 0.0)], epsilon=1.0)
     [(0.0, 0.0), (1.0, 0.0)]
-    >>> # middle point is within epsilon – it is discarded
+    >>> # middle point is within epsilon - it is discarded
     >>> ramer_douglas_peucker([(0.0, 0.0), (1.0, 0.1), (2.0, 0.0)], epsilon=0.5)
     [(0.0, 0.0), (2.0, 0.0)]
-    >>> # middle point exceeds epsilon – it is kept
+    >>> # middle point exceeds epsilon - it is kept
     >>> ramer_douglas_peucker([(0.0, 0.0), (1.0, 1.0), (2.0, 0.0)], epsilon=0.5)
     [(0.0, 0.0), (1.0, 1.0), (2.0, 0.0)]
     >>> ramer_douglas_peucker([(0.0, 0.0), (1.0, 0.5), (2.0, 0.0)], epsilon=-1.0)
