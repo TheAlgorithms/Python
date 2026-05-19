@@ -1,12 +1,10 @@
 """
 Tree_sort algorithm.
-
 Build a Binary Search Tree and then iterate thru it to get a sorted list.
 """
-
 from __future__ import annotations
 
-from collections.abc import Iterator
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 
 
@@ -38,8 +36,7 @@ class Node:
             else:
                 self.right.insert(val)
 
-
-def tree_sort(arr: list[int]) -> tuple[int, ...]:
+def tree_sort(arr: Iterable[int]) -> tuple[int, ...]:
     """
     >>> tree_sort([])
     ()
@@ -54,8 +51,8 @@ def tree_sort(arr: list[int]) -> tuple[int, ...]:
     >>> tree_sort([5, 6, 1, -1, 4, 37, 2, 7])
     (-1, 1, 2, 4, 5, 6, 7, 37)
 
-    # >>> tree_sort(range(10, -10, -1)) == tuple(sorted(range(10, -10, -1)))
-    # True
+    >>> tree_sort(range(10, -10, -1)) == tuple(sorted(range(10, -10, -1)))
+    True
     """
     if len(arr) == 0:
         return tuple(arr)
