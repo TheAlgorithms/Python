@@ -76,6 +76,9 @@ def johnson(graph: adjacency) -> dict[Node, dict[Node, float]]:
     """
     Compute all-pairs shortest paths using Johnson's algorithm.
 
+    Reference:
+        https://en.wikipedia.org/wiki/Johnson%27s_algorithm
+
     Args:
         graph: adjacency list {u: [(v, weight), ...], ...}
 
