@@ -2,6 +2,7 @@
 Tree_sort algorithm.
 Build a Binary Search Tree and then iterate thru it to get a sorted list.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
@@ -35,6 +36,7 @@ class Node:
                 self.right = Node(val)
             else:
                 self.right.insert(val)
+
 
 def tree_sort(arr: Iterable[int]) -> tuple[int, ...]:
     """
