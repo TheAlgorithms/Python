@@ -47,6 +47,24 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     >>> collection_arg = random.choices(string.ascii_letters + string.digits, k=100)
     >>> bubble_sort_iterative(collection_arg) == sorted(collection_arg)
     True
+
+    Pure implementation of bubble sort algorithm in Python
+    :param collection:....
+    :return:...
+
+    Time Complexity:
+        Best Case: O(n)
+              Occurs when the list is already sorted.
+              The algorithm stops early because no swaps occur.
+
+        Average Case: O(n²)
+              Happens for randomly ordered elements.
+
+        Worst Case: O(n²)
+              Occurs when the list is sorted in reverse order.
+
+    Space Complexity:O(1)
+              Sorting is done in-place using constant extra memory.
     """
     length = len(collection)
     for i in reversed(range(length)):
