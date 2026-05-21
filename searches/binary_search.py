@@ -176,6 +176,7 @@ def insort_right(
     """
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
+
 def binary_search(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python
 
@@ -233,7 +234,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1    
+    return -1
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
