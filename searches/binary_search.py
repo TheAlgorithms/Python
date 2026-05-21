@@ -176,7 +176,6 @@ def insort_right(
     """
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
-
 def binary_search(sorted_collection: list[int], item: int) -> int:
     """Pure implementation of a binary search algorithm in Python
 
@@ -186,6 +185,29 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :return: index of the found item or -1 if the item is not found
+
+    Time Complexity:
+        Best Case: O(1)
+              The item is found at the middle index in the first comparison.
+
+        Average Case: O(log n)
+              Search space is reduced by half in each iteration.
+
+        Worst Case: O(log n)
+              The item is at the end or not present in the collection.
+
+    Space Complexity: O(1)
+            - Uses constant extra memory.
+    Args:
+        sorted_collection (list[int]):
+            Ascending sorted collection of comparable items.
+
+        item (int):
+            Item value to search.
+    Returns:
+        int:
+            Index of the found item,
+            or -1 if the item is not found.
 
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
@@ -211,7 +233,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
             right = midpoint - 1
         else:
             left = midpoint + 1
-    return -1
+    return -1    
 
 
 def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
