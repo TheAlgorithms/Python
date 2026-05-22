@@ -25,6 +25,6 @@ if __name__ == "__main__":
     neg = convert_to_negative(img)
 
     # show result image
-    imshow("negative of original image", img)
+    imshow("negative of original image", neg)
     waitKey(0)
     destroyAllWindows()
