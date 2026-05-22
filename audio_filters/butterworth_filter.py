@@ -10,6 +10,43 @@ Alternatively you can use scipy.signal.butter, which should yield the same resul
 """
 
 
+def _validate_filter_inputs(
+    frequency: int,
+    samplerate: int,
+    q_factor: float,
+) -> None:
+    """
+    Validate common biquad filter inputs.
+
+    >>> _validate_filter_inputs(0, 48000, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: frequency must be greater than 0 and less than half the samplerate
+    >>> _validate_filter_inputs(24000, 48000, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: frequency must be greater than 0 and less than half the samplerate
+    >>> _validate_filter_inputs(1000, 0, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: samplerate must be greater than 0
+    >>> _validate_filter_inputs(1000, 48000, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: q_factor must be greater than 0
+    """
+    if samplerate <= 0:
+        raise ValueError("samplerate must be greater than 0")
+
+    if frequency <= 0 or frequency >= samplerate / 2:
+        raise ValueError(
+            "frequency must be greater than 0 and less than half the samplerate"
+        )
+
+    if q_factor <= 0:
+        raise ValueError("q_factor must be greater than 0")
+
+
 def make_lowpass(
     frequency: int,
     samplerate: int,
@@ -23,6 +60,8 @@ def make_lowpass(
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.004277569313094809,
      0.008555138626189618, 0.004277569313094809]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -53,6 +92,8 @@ def make_highpass(
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.9957224306869052,
      -1.9914448613738105, 0.9957224306869052]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -83,6 +124,8 @@ def make_bandpass(
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.06526309611002579,
      0, -0.06526309611002579]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -114,6 +157,8 @@ def make_allpass(
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.9077040443587427,
      -1.9828897227476208, 1.0922959556412573]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -142,6 +187,8 @@ def make_peak(
     [1.0653405327119334, -1.9828897227476208, 0.9346594672880666, 1.1303715025601122,
      -1.9828897227476208, 0.8696284974398878]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -174,6 +221,8 @@ def make_lowshelf(
     [3.0409336710888786, -5.608870992220748, 2.602157875636628, 3.139954022810743,
      -5.591841778072785, 2.5201667380627257]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
@@ -211,6 +260,8 @@ def make_highshelf(
     [2.2229172136088806, -3.9587208137297303, 1.7841414181566304, 4.295432981120543,
      -7.922740859457287, 3.6756456963725253]
     """
+    _validate_filter_inputs(frequency, samplerate, q_factor)
+
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
     _cos = cos(w0)
