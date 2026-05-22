@@ -165,12 +165,12 @@ if __name__ == "__main__":
 
     # Example usage
     message = "Hello, World!"
-    secret_key = "mysecretkey"
+    key = "mysecretkey"
 
     print(f"Original : {message}")
-    encrypted = encrypt(message, secret_key)
+    encrypted = encrypt(message, key)
     print(f"Encrypted: {encrypted}")
-    decrypted = decrypt(encrypted, secret_key)
+    decrypted = decrypt(encrypted, key)
     print(f"Decrypted: {decrypted}")
-    assert decrypted == message, "Decryption failed — output does not match original."
+    assert decrypted == message, "Decryption failed - output does not match original."
     print("Encrypt -> Decrypt round-trip successful.")
