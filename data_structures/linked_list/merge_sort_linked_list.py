@@ -14,6 +14,20 @@ def split_middle(node: Node) -> tuple[Node | None, Node | None]:
     Returns a tuple containing:
     - the node before the middle
     - the middle node
+
+    >>> head = Node(1)
+    >>> head.next_node = Node(2)
+    >>> head.next_node.next_node = Node(3)
+    >>> head.next_node.next_node.next_node = Node(4)
+    >>> previous, middle = split_middle(head)
+    >>> previous is not None
+    True
+    >>> middle is not None
+    True
+    >>> previous.data
+    2
+    >>> middle.data
+    3
     """
     fast = slow = node
     previous: Node | None = None
@@ -29,6 +43,30 @@ def split_middle(node: Node) -> tuple[Node | None, Node | None]:
 def sort_list(head: Node | None) -> Node | None:
     """
     Sort a linked list using merge sort.
+
+    >>> head = Node(4)
+    >>> head.next_node = Node(2)
+    >>> head.next_node.next_node = Node(1)
+    >>> head.next_node.next_node.next_node = Node(3)
+    >>> sorted_head = sort_list(head)
+    >>> sorted_head is not None
+    True
+    >>> sorted_head.data
+    1
+    >>> sorted_head.next_node is not None
+    True
+    >>> sorted_head.next_node.data
+    2
+    >>> sorted_head.next_node.next_node is not None
+    True
+    >>> sorted_head.next_node.next_node.data
+    3
+    >>> sorted_head.next_node.next_node.next_node is not None
+    True
+    >>> sorted_head.next_node.next_node.next_node.data
+    4
+    >>> sort_list(None) is None
+    True
     """
     if head is None:
         return head
@@ -73,3 +111,33 @@ def sort_list(head: Node | None) -> Node | None:
         current = current.next_node
 
     return dummy_head.next_node
+
+
+def test_merge_sort() -> None:
+    """
+    >>> test_merge_sort()
+    """
+    head = Node(4)
+    head.next_node = Node(2)
+    head.next_node.next_node = Node(5)
+    head.next_node.next_node.next_node = Node(1)
+    head.next_node.next_node.next_node.next_node = Node(3)
+
+    sorted_head = sort_list(head)
+
+    assert sorted_head is not None
+    assert sorted_head.data == 1
+    assert sorted_head.next_node is not None
+    assert sorted_head.next_node.data == 2
+    assert sorted_head.next_node.next_node is not None
+    assert sorted_head.next_node.next_node.data == 3
+    assert sorted_head.next_node.next_node.next_node is not None
+    assert sorted_head.next_node.next_node.next_node.data == 4
+    assert sorted_head.next_node.next_node.next_node.next_node is not None
+    assert sorted_head.next_node.next_node.next_node.next_node.data == 5
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
