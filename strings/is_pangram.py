@@ -18,6 +18,8 @@ def is_pangram(
     False
     >>> is_pangram("The quick brown fox jumps over the la_y dog")
     False
+    >>> is_pangram("abcdefghijklmnopqrstuvwxy\\u00e9")
+    False
     >>> is_pangram()
     True
     """
@@ -44,15 +46,16 @@ def is_pangram_faster(
     True
     >>> is_pangram_faster("The quick brown fox jumps over the la_y dog")
     False
+    >>> is_pangram_faster("abcdefghijklmnopqrstuvwxy\\u00e9")
+    False
     >>> is_pangram_faster()
     True
     """
     flag = [False] * 26
     for char in input_str:
-        if char.islower():
-            flag[ord(char) - 97] = True
-        elif char.isupper():
-            flag[ord(char) - 65] = True
+        lower_char = char.lower()
+        if "a" <= lower_char <= "z":
+            flag[ord(lower_char) - 97] = True
     return all(flag)
 
 
@@ -68,10 +71,12 @@ def is_pangram_fastest(
     True
     >>> is_pangram_fastest("The quick brown fox jumps over the la_y dog")
     False
+    >>> is_pangram_fastest("abcdefghijklmnopqrstuvwxy\\u00e9")
+    False
     >>> is_pangram_fastest()
     True
     """
-    return len({char for char in input_str.lower() if char.isalpha()}) == 26
+    return len({char for char in input_str.lower() if "a" <= char <= "z"}) == 26
 
 
 def benchmark() -> None:
