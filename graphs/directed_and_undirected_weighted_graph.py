@@ -268,7 +268,34 @@ class Graph:
     # adding vertices and edges
     # adding the weight is optional
     # handles repetition
-    def add_pair(self, u, v, w=1):
+    def add_pair(self, u, v, w=1) -> None:
+        """
+        Adds an edge between u and v with an optional weight w to an undirected graph
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.graph[1]
+        [[1, 2]]
+        >>> g.graph[2]
+        [[1, 1]]
+        >>> g.add_pair(1,2) # testing for duplicates
+        >>> g.graph[1]
+        [[1, 2]]
+        >>> g.add_pair(2,1) # reverse order, should not add a duplicate
+        >>> g.graph[2]
+        [[1, 1]]
+        >>> g.add_pair(1,3,5)
+        >>> g.graph[1]
+        [[1, 2], [5, 3]]
+        >>> g.graph[3]
+        [[5, 1]]
+        >>> g.add_pair(4,4) # test for self loop
+        >>> g.graph[4]
+        [[1, 4]]
+        >>> g.add_pair(1,2,3) # previously added nodes, different weight
+        >>> g.graph[1]
+        [[1, 2], [5, 3], [3, 2]]
+        """
         # check if the u exists
         if self.graph.get(u):
             # if there already is a edge
@@ -287,7 +314,36 @@ class Graph:
             self.graph[v] = [[w, u]]
 
     # handles if the input does not exist
-    def remove_pair(self, u, v):
+    def remove_pair(self, u, v) -> None:
+        """
+        Removes the edge between u and v in an undirected graph, if it exists
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.add_pair(1,3,5)
+        >>> g.graph[1]
+        [[1, 2], [5, 3]]
+        >>> g.remove_pair(1, 2)
+        >>> g.graph[1]
+        [[5, 3]]
+        >>> g.graph[2]
+        []
+        >>> g.remove_pair(1,4) # node 4 does not exist
+        >>> g.remove_pair(10, 11) # neither exists
+        >>> g.add_pair(5,5)
+        >>> g.graph[5]
+        [[1, 5]]
+        >>> g.remove_pair(5,5)
+        >>> g.graph[5]
+        []
+        >>> g.add_pair(6,7,2)
+        >>> g.add_pair(6,7,3)
+        >>> g.graph[6]
+        [[2, 7], [3, 7]]
+        >>> g.remove_pair(6,7)
+        >>> g.graph[6]
+        [[3, 7]]
+        """
         if self.graph.get(u):
             for _ in self.graph[u]:
                 if _[1] == v:
@@ -299,7 +355,32 @@ class Graph:
                     self.graph[v].remove(_)
 
     # if no destination is meant the default value is -1
-    def dfs(self, s=-2, d=-1):
+    def dfs(self, s=-2, d=-1) -> list[int]:
+        """
+        Performs a depth-first search starting from node s.
+        If destination d is given, stops when d is found
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.add_pair(2,3)
+        >>> g.dfs(1)
+        [1, 2, 3]
+        >>> g.dfs(1,3)
+        [1, 2, 3]
+        >>> g.dfs(1,4)  # 4 not in graph
+        [1, 2, 3]
+        >>> g.dfs(1,1)  # start equals dest
+        []
+        >>> g2 = Graph()
+        >>> g2.add_pair(10,20)
+        >>> g2.add_pair(20,30)
+        >>> g2.dfs()  # default start
+        [10, 20, 30]
+        >>> g2.add_pair(30,40)
+        >>> g2.add_pair(40, 50)
+        >>> g2.dfs(d=40)  # checking if destination works properly
+        [10, 20, 30, 40]
+        """
         if s == d:
             return []
         stack = []
@@ -349,8 +430,36 @@ class Graph:
                 if n != i:
                     self.add_pair(i, n, 1)
 
-    def bfs(self, s=-2):
-        d = deque()
+    def bfs(self, s=-2) -> list[int]:
+        """
+        Performs breadth-first search starting from node s.
+        If s is not given, starts from the first node in the graph
+
+        Returns:
+            list of nodes found after performing breadth-first search
+
+        >>> g = Graph()
+        >>> g.add_pair(1,2)
+        >>> g.add_pair(1,3)
+        >>> g.add_pair(2,4)
+        >>> g.add_pair(3,5)
+        >>> g.bfs(1)
+        [1, 2, 3, 4, 5]
+        >>> g.bfs(2)
+        [2, 1, 4, 3, 5]
+        >>> g.bfs(4)  # leaf node test
+        [4, 2, 1, 3, 5]
+        >>> g.bfs(10)  # nonexistent node
+        Traceback (most recent call last):
+            ...
+        KeyError: 10
+        >>> g2 = Graph()
+        >>> g2.add_pair(10,20)
+        >>> g2.add_pair(20,30)
+        >>> g2.bfs()
+        [10, 20, 30]
+        """
+        d: deque = deque()
         visited = []
         if s == -2:
             s = next(iter(self.graph))
@@ -421,14 +530,52 @@ class Graph:
             if len(stack) == 0:
                 return list(anticipating_nodes)
 
-    def has_cycle(self):
+    def has_cycle(self) -> bool:
+        """
+        Detects whether the undirected graph contains a cycle.
+
+        Note:
+        - This function assumes the graph is connected and only traverses from the
+          first node found in the graph.
+        - It does not detect cycles that exist in disconnected components.
+        - It also does not detect self-loops
+        (e.g., an edge from a node to itself like 1-1).
+
+        Returns:
+            bool: True if a cycle is detected in the connected component starting
+            from the first node; False otherwise.
+
+        >>> g = Graph()
+        >>> g.add_pair(1, 2)
+        >>> g.add_pair(2, 3)
+        >>> g.has_cycle()
+        False
+        >>> g2 = Graph()
+        >>> g2.add_pair(1, 2)
+        >>> g2.add_pair(2, 3)
+        >>> g2.add_pair(3, 1)  # creates a cycle
+        >>> g2.has_cycle()
+        True
+        >>> g3 = Graph()
+        >>> g3.add_pair(1, 1)  # self-loop
+        >>> g3.has_cycle()  # Self-loops are not detected by this method
+        False
+        >>> g4 = Graph()
+        >>> g4.add_pair(1, 2)
+        >>> g4.add_pair(3, 4)
+        >>> g4.add_pair(4, 5)
+        >>> g4.add_pair(5, 3)  # cycle in disconnected component
+        >>> g4.has_cycle()  # Only checks the component reachable from the first node 1
+        False
+        """
+
         stack = []
         visited = []
         s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         parent = -2
-        indirect_parents = []
+        indirect_parents: list[int] = []
         ss = s
         on_the_way_back = False
         anticipating_nodes = set()
