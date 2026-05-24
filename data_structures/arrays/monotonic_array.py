@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/monotonic-array/
 def is_monotonic(nums: list[int]) -> bool:
     """
-    Check if a list is monotonic.
+    Check if a list is monotonic(moving in ascending or decending order)
 
     >>> is_monotonic([1, 2, 2, 3])
     True
