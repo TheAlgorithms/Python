@@ -49,6 +49,19 @@ class SVC:
     Traceback (most recent call last):
         ...
     ValueError: gamma must be > 0
+
+    >>> SVC(kernel="polynomial")
+    Traceback (most recent call last):
+        ...
+    ValueError: polynomial kernel requires degree
+    >>> SVC(kernel="polynomial",degree=None)
+    Traceback (most recent call last):
+        ...
+    ValueError: degree must be float or int
+    >>> SVC(kernel="polynomial",degree=-1.0)
+    Traceback (most recent call last):
+        ...
+    ValueError: degree must be > 0
     """
 
     def __init__(
@@ -57,9 +70,13 @@ class SVC:
         regularization: float = np.inf,
         kernel: str = "linear",
         gamma: float = 0.0,
+        degree: float = 0.0,
+        coef0: float = 0.0,
     ) -> None:
         self.regularization = regularization
         self.gamma = gamma
+        self.degree = degree
+        self.coef0 = coef0
         if kernel == "linear":
             self.kernel = self.__linear
         elif kernel == "rbf":
@@ -73,6 +90,14 @@ class SVC:
             # in the future, there could be a default value like in sklearn
             # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
             # previously it was 1/(n_features)
+        elif kernel == "polynomial":
+            if self.degree == 0:
+                raise ValueError("polynomial kernel requires degree")
+            if not isinstance(self.degree, (float, int)):
+                raise ValueError("degree must be float or int")
+            if not self.degree > 0:
+                raise ValueError("degree must be > 0")
+            self.kernel = self.__polynomial
         else:
             msg = f"Unknown kernel: {kernel}"
             raise ValueError(msg)
@@ -97,6 +122,22 @@ class SVC:
             float: exp(-(gamma * norm_squared(vector1 - vector2)))
         """
         return np.exp(-(self.gamma * norm_squared(vector1 - vector2)))
+
+    def __polynomial(self, vector1: ndarray, vector2: ndarray) -> float:
+        """
+        Polynomial kernel: (x . y + coef0)^degree
+
+        Note: for more information see:
+            https://en.wikipedia.org/wiki/Polynomial_kernel
+
+        Args:
+            vector1 (ndarray): first vector
+            vector2 (ndarray): second vector
+
+        Returns:
+            float: (vector1 . vector2 + coef0)^degree
+        """
+        return (np.dot(vector1, vector2) + self.coef0) ** self.degree
 
     def fit(self, observations: list[ndarray], classes: ndarray) -> None:
         """
