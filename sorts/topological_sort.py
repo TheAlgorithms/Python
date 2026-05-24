@@ -16,7 +16,12 @@ vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
-    """Perform topological sort on a directed acyclic graph."""
+    """
+    Perform topological sort on a directed acyclic graph.
+
+    >>> topological_sort("a", [], [])
+    ['a', 'b', 'e', 'd', 'c']
+    """
     current = start
     # add current to visited
     visited.append(current)
@@ -25,8 +30,8 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
         # if neighbor not in visited, visit
         if neighbor not in visited:
             sort = topological_sort(neighbor, visited, sort)
-    # if all neighbors visited add current to sort
-    sort.append(current)
+    # if all neighbors visited add current before its neighbors in sort
+    sort.insert(0, current)
     # if all vertices haven't been visited select a new one to visit
     if len(visited) != len(vertices):
         for vertice in vertices:
