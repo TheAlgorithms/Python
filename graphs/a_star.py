@@ -13,9 +13,9 @@ Space Complexity: O(V) to store the graph structures and priority queue.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 import heapq
 import math
-from typing import Callable
 
 
 # ==========================================
@@ -145,7 +145,6 @@ def a_star_adjacency_list(
                 if neighbor not in [item[1] for item in open_set]:
                     heapq.heappush(open_set, (f_score, neighbor))
     return None
-
 
 
 if __name__ == "__main__":
