@@ -147,6 +147,7 @@ def a_star_adjacency_list(
     return None
 
 
+
 if __name__ == "__main__":
     import doctest
 
