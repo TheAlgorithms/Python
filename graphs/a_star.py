@@ -6,18 +6,16 @@ path between a start node and a goal node in a weighted graph. It balances
 the actual distance from the start (g-score) and the estimated distance to
 the goal (h-score) using the formula: f(n) = g(n) + h(n).
 
-Time Complexity: O(E log V) where E is the number of edges and V is the 
+Time Complexity: O(E log V) where E is the number of edges and V is the
                  number of vertices.
 Space Complexity: O(V) to store the graph structures and priority queue.
 """
-
 
 from __future__ import annotations
 
 import heapq
 import math
 from collections.abc import Callable
-
 
 # ==========================================
 # 1. Heuristic Functions
@@ -48,7 +46,9 @@ def a_star_grid(
     grid: list[list[float]],
     start: tuple[int, int],
     end: tuple[int, int],
-    heuristic_func: Callable[[tuple[float, float], tuple[float, float]], float] = manhattan_distance,
+    heuristic_func: Callable[
+        [tuple[float, float], tuple[float, float]], float
+    ] = manhattan_distance,
 ) -> list[tuple[int, int]] | None:
     """
     Perform A* search on a 2D weighted grid using heapq.
