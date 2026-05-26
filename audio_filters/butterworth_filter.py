@@ -1,6 +1,7 @@
 from math import cos, sin, sqrt, tau
 
 from audio_filters.iir_filter import IIRFilter
+# Audio filter functions for signal processing
 
 """
 Create 2nd-order IIR filters with Butterworth design.
