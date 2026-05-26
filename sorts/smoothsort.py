@@ -160,7 +160,7 @@ def smoothsort(seq: list[int]) -> list[int]:
     heap_sizes: list[int] = []
 
     # ------------------------------------------------------------------
-    # Phase 1 – Build the Leonardo heap forest over seq[0..n-1].
+    # Phase 1 : Build the Leonardo heap forest over seq[0..n-1].
     # ------------------------------------------------------------------
     for i in range(n):
         # If the two rightmost trees have consecutive orders, merge them.
@@ -175,7 +175,7 @@ def smoothsort(seq: list[int]) -> list[int]:
         _trinkle(seq, i, heap_sizes, len(heap_sizes) - 1)
 
     # ------------------------------------------------------------------
-    # Phase 2 – Extract maximum elements right-to-left.
+    # Phase 2 : Extract maximum elements right-to-left.
     # ------------------------------------------------------------------
     for i in range(n - 1, -1, -1):
         order = heap_sizes.pop()
