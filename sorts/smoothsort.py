@@ -10,7 +10,6 @@ Reference:
     https://www.cs.utexas.edu/~EWD/ewd07xx/EWD796a.PDF
 """
 
-
 # Precomputed Leonardo numbers: L(0)=1, L(1)=1, L(k)=L(k-1)+L(k-2)+1.
 # 46 values comfortably cover all practical list sizes.
 _LEONARDO: list[int] = [1, 1]
@@ -57,8 +56,8 @@ def _sift(seq: list[int], root: int, order: int) -> None:
         [3, 1, 9, 5, 8]
     """
     while order > 1:
-        right = root - 1                             # right child root
-        left = root - 1 - _LEONARDO[order - 2]      # left child root
+        right = root - 1  # right child root
+        left = root - 1 - _LEONARDO[order - 2]  # left child root
 
         if seq[left] >= seq[right] and seq[left] > seq[root]:
             seq[root], seq[left] = seq[left], seq[root]
@@ -165,10 +164,7 @@ def smoothsort(seq: list[int]) -> list[int]:
     # ------------------------------------------------------------------
     for i in range(n):
         # If the two rightmost trees have consecutive orders, merge them.
-        if (
-            len(heap_sizes) >= 2
-            and heap_sizes[-2] == heap_sizes[-1] + 1
-        ):
+        if len(heap_sizes) >= 2 and heap_sizes[-2] == heap_sizes[-1] + 1:
             heap_sizes.pop()
             heap_sizes[-1] += 1
         elif heap_sizes and heap_sizes[-1] == 1:
