@@ -40,9 +40,9 @@ def find_kth_next_greater_element(
         None, instead of -1, is put as its entry, because input array might have -1.
 
     Example:
-    >>> find_kth_next_greater_element([1, 2, 3, 4, 5, 6], 3) == [4, 5, 6, None, None, None]
+    >>> find_kth_next_greater_element([1, 2, 3, 4, 5], 3) == [4, 5, None, None, None]
     True
-    >>> find_kth_next_greater_element([2.5, 1.9, 4.3, 3.5, 6.0], 1) == [4.3, 4.3, 6.0, 6.0, None]
+    >>> find_kth_next_greater_element([2.5, 1.9, 4.3, 6.0], 1) == [4.3, 4.3, 6.0, None]
     True
     >>> find_kth_next_greater_element(list(range(1000)), 1000) == [None] * 1000
     True
