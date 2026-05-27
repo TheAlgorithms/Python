@@ -1,18 +1,22 @@
 # 文件名：data_structures/binary_tree/splay_tree.py
 from __future__ import annotations
 
+
 class Node:
     """Splay树节点类"""
+
     def __init__(self, key: int):
         self.key = key
         self.left: Node | None = None
         self.right: Node | None = None
+
 
 class SplayTree:
     """
     伸展树（Splay Tree）实现
     特性：每次访问节点后，将该节点旋转到根位置，优化局部性访问性能
     """
+
     def __init__(self):
         self.root: Node | None = None
 
@@ -151,13 +155,16 @@ class SplayTree:
             return -1
         return 1 + max(self.get_height(root.left), self.get_height(root.right))
 
-    def print_tree(self, root: Node | None, indent: str = "", last: bool = True) -> None:
+    def print_tree(
+        self, root: Node | None, indent: str = "", last: bool = True
+    ) -> None:
         """可视化打印树结构"""
         if root:
             print(indent + ("└── " if last else "├── ") + str(root.key))
             indent += "    " if last else "│   "
             self.print_tree(root.left, indent, False)
             self.print_tree(root.right, indent, True)
+
 
 # 测试用例
 if __name__ == "__main__":
