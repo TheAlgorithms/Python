@@ -21,17 +21,17 @@ def hamming_encode(data_str: str) -> str:
     data = [int(x) for x in data_str]
     r = calculate_parity_bits(data)
     m = len(data)
-    
+
     # Initialize code word with placeholders (0)
     code = [0] * (m + r)
-    
+
     # Place data bits into non-parity positions
     j = 0
     for i in range(1, len(code) + 1):
         if (i & (i - 1)) != 0:  # Not a power of 2
             code[i - 1] = data[j]
             j += 1
-            
+
     # Calculate parity bits using XOR logic
     for i in range(r):
         parity_pos = 2**i
@@ -40,7 +40,7 @@ def hamming_encode(data_str: str) -> str:
             if j & parity_pos and j != parity_pos:
                 parity_val ^= code[j - 1]
         code[parity_pos - 1] = parity_val
-        
+
     return "".join(map(str, code))
 
 
@@ -55,12 +55,12 @@ def hamming_decode_and_correct(code_str: str) -> tuple[str, int]:
     """
     code = [int(x) for x in code_str]
     n = len(code)
-    
+
     # Determine number of parity bits r
     r = 0
     while (2**r) <= n:
         r += 1
-        
+
     error_pos = 0
     # Check each parity bit syndrome
     for i in range(r):
@@ -71,20 +71,21 @@ def hamming_decode_and_correct(code_str: str) -> tuple[str, int]:
                 parity_sum ^= code[j - 1]
         if parity_sum != 0:
             error_pos += parity_pos
-            
+
     # Correct the error if detected
     if error_pos > 0:
         code[error_pos - 1] ^= 1  # Flip the corrupted bit
-        
+
     # Extract original data bits
     original_data = []
     for i in range(1, n + 1):
         if (i & (i - 1)) != 0:
             original_data.append(code[i - 1])
-            
+
     return "".join(map(str, original_data)), error_pos
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
