@@ -38,11 +38,7 @@ OUTCOMES = {
 
 @pytest.mark.parametrize(
     "player_choice, computer_choice",
-    [
-        (p, c)
-        for p in VALID_CHOICES
-        for c in VALID_CHOICES
-    ],
+    [(p, c) for p in VALID_CHOICES for c in VALID_CHOICES],
 )
 def test_all_outcomes(player_choice: str, computer_choice: str, monkeypatch) -> None:
     """
@@ -102,6 +98,7 @@ def test_invalid_input_returns_error(invalid_input: str) -> None:
 # ---------------------------------------------------------------------------
 # Tests for main() interactive loop
 # ---------------------------------------------------------------------------
+
 
 def test_main_quit_immediately(monkeypatch, capsys) -> None:
     """Typing 'quit' right away exits the loop with a goodbye message."""

@@ -27,8 +27,8 @@ VALID_CHOICES = ("Snake", "Water", "Gun")
 
 WIN_CONDITIONS = {
     "Snake": "Water",  # Snake drinks Water
-    "Water": "Gun",    # Water damages Gun
-    "Gun": "Snake",    # Gun kills Snake
+    "Water": "Gun",  # Water damages Gun
+    "Gun": "Snake",  # Gun kills Snake
 }
 
 
