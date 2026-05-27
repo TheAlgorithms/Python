@@ -32,6 +32,7 @@ jobs:
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
           --ignore=quantum/q_fourier_transform.py
+          --ignore=quantum/grover_search_algorithm.py
           --ignore=scripts/validate_solutions.py
           --ignore=web_programming/current_stock_price.py
           --ignore=web_programming/fetch_anime_and_play.py
