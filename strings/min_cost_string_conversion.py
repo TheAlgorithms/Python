@@ -85,6 +85,8 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> y = len(ops[0]) - 1
     >>> assemble_transformation(ops, x, y)
     ['Cc', 'Rau', 'Ct']
+    >>> assemble_transformation(ops, x, y-1)
+    ['Cc', 'Da', 'Rtu']
 
     >>> ops1 = [['0']]
     >>> x1 = len(ops1) - 1

@@ -11,6 +11,13 @@ from typing import Any
 
 
 def fisher_yates_shuffle(data: list) -> list[Any]:
+    """
+    >>> import random
+    >>> from unittest.mock import patch
+    >>> with patch('random.randint', side_effect=[0, 3, 1, 2, 2, 0, 3, 1]):
+    ...     fisher_yates_shuffle(["python", "says", "hello", "!"])
+    ['says', 'python', '!', 'hello']
+    """
     for _ in range(len(data)):
         a = random.randint(0, len(data) - 1)
         b = random.randint(0, len(data) - 1)
