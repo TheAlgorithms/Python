@@ -1,4 +1,6 @@
-def calculate_parity_bits(data_bits: list[int]) -> int:
+from typing import List, Tuple
+
+def calculate_parity_bits(data_bits: List[int]) -> int:
     """
     Calculates the number of redundant parity bits needed for Hamming Code.
     >>> calculate_parity_bits([1, 0, 1, 1])
@@ -44,7 +46,7 @@ def hamming_encode(data_str: str) -> str:
     return "".join(map(str, code))
 
 
-def hamming_decode_and_correct(code_str: str) -> tuple[str, int]:
+def hamming_decode_and_correct(code_str: str) -> Tuple[str, int]:
     """
     Decodes the Hamming code, detects, and automatically corrects a single-bit error.
     Returns a tuple of (corrected_data_bits_string, error_position).
