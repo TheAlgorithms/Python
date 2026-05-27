@@ -285,6 +285,15 @@ class Tableau:
         ... [1, 0, 0, 0, 0, 0, -1, 0, 1, 2.0]
         ... ]), 2, 2).run_simplex().items()} # doctest: +ELLIPSIS
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
+
+        >>> original_maxiter = Tableau.maxiter
+        >>> Tableau.maxiter = 0
+        >>> Tableau(np.array([[-1, -1, 0, 0, 0], [1, 3, 1, 0, 4],
+        ... [3, 1, 0, 1, 4.0]]), 2, 0).run_simplex()
+        Traceback (most recent call last):
+        ...
+        ValueError: No convergence within 0 iterations; may be cycling/unbounded.
+        >>> Tableau.maxiter = original_maxiter
         """
         # Stop simplex algorithm from cycling.
         for _ in range(Tableau.maxiter):
@@ -302,7 +311,11 @@ class Tableau:
                 self.tableau = self.change_stage()
             else:
                 self.tableau = self.pivot(row_idx, col_idx)
-        return {}
+        msg = (
+            f"No convergence within {Tableau.maxiter} iterations; "
+            "may be cycling/unbounded."
+        )
+        raise ValueError(msg)
 
     def interpret_tableau(self) -> dict[str, float]:
         """Given the final tableau, add the corresponding values of the basic
