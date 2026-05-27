@@ -30,7 +30,7 @@ Reference:
 
 import os
 import sys
-import urllib.request
+import requests
 
 import numpy as np
 import pandas as pd
@@ -451,12 +451,12 @@ def test_cancer_data():
     print("Hello!\nStart test SVM using the SMO algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancer_data.csv"):
-        request = urllib.request.Request(  # noqa: S310
+        response = requests.get(
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
-        response = urllib.request.urlopen(request)  # noqa: S310
-        content = response.read().decode("utf-8")
+        response.raise_for_status()  # Raise an exception for bad status codes
+        content = response.text
         with open(r"cancer_data.csv", "w") as f:
             f.write(content)
 
