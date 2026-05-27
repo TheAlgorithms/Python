@@ -12,18 +12,13 @@ python3 linear_search.py
 def linear_search(sequence: list, target: int) -> int:
     """A pure Python implementation of a linear search algorithm
 
-    :param sequence: a collection with comparable items (sorting is not required for
-        linear search)
-    :param target: item value to search
-    :return: index of found item or -1 if item is not found
+    :param sequence: a collection with comparable items (No sorting required)
+    :param target: Value to search for
+    :return: index of target if found, else -1
 
     Examples:
     >>> linear_search([0, 5, 7, 10, 15], 0)
     0
-    >>> linear_search([0, 5, 7, 10, 15], 15)
-    4
-    >>> linear_search([0, 5, 7, 10, 15], 5)
-    1
     >>> linear_search([0, 5, 7, 10, 15], 6)
     -1
     """
@@ -35,14 +30,13 @@ def linear_search(sequence: list, target: int) -> int:
 
 def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     """
-    A pure Python implementation of a recursive linear search algorithm
+    Recursive linear search algorithm
 
-    :param sequence: a collection with comparable items (as sorted items not required
-        in Linear Search)
-    :param low: Lower bound of the array
-    :param high: Higher bound of the array
-    :param target: The element to be found
-    :return: Index of the key or -1 if key not found
+    :param sequence: Collection of comparable items (no sorting required)
+    :param low: Lower index bound
+    :param high: Higher index bound
+    :param target: Value to search for
+    :return: Index of the target if found, else -1
 
     Examples:
     >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 0)
@@ -55,7 +49,7 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     -1
     """
     if not (0 <= high < len(sequence) and 0 <= low < len(sequence)):
-        raise Exception("Invalid upper or lower bound!")
+        raise ValueError("Invalid upper or lower bound!")
     if high < low:
         return -1
     if sequence[low] == target:
