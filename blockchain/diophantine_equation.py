@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
@@ -99,6 +98,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
 
     return (d, x, y)
 
+
+# This is very efficient
 
 if __name__ == "__main__":
     from doctest import testmod
