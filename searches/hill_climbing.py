@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/Hill_climbing
 import math
+from collections.abc import Callable
 
 
 class SearchProblem:
@@ -8,7 +9,13 @@ class SearchProblem:
     The interface will be illustrated using the example of mathematical function.
     """
 
-    def __init__(self, x: int, y: int, step_size: int, function_to_optimize):
+    def __init__(
+        self,
+        x: int,
+        y: int,
+        step_size: int,
+        function_to_optimize: Callable[[int, int], int | float],
+    ) -> None:
         """
         The constructor of the search problem.
 
@@ -22,7 +29,7 @@ class SearchProblem:
         self.step_size = step_size
         self.function = function_to_optimize
 
-    def score(self) -> int:
+    def score(self) -> int | float:
         """
         Returns the output of the function called with current x and y coordinates.
         >>> def test_function(x, y):
@@ -34,7 +41,7 @@ class SearchProblem:
         """
         return self.function(self.x, self.y)
 
-    def get_neighbors(self):
+    def get_neighbors(self) -> list["SearchProblem"]:
         """
         Returns a list of coordinates of neighbors adjacent to the current coordinates.
 
@@ -58,13 +65,13 @@ class SearchProblem:
             )
         ]
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         hash the string representation of the current search state.
         """
         return hash(str(self))
 
-    def __eq__(self, obj):
+    def __eq__(self, obj: object) -> bool:
         """
         Check if the 2 objects are equal.
         """
@@ -72,7 +79,7 @@ class SearchProblem:
             return hash(str(self)) == hash(str(obj))
         return False
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         string representation of the current search state.
         >>> str(SearchProblem(0, 0, 1, None))
@@ -84,7 +91,7 @@ class SearchProblem:
 
 
 def hill_climbing(
-    search_prob,
+    search_prob: SearchProblem,
     find_max: bool = True,
     max_x: float = math.inf,
     min_x: float = -math.inf,
