@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+
 def calculate_parity_bits(data_bits: List[int]) -> int:
     """
     Calculates the number of redundant parity bits needed for Hamming Code.
