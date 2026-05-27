@@ -1,7 +1,7 @@
 """
 A NOT Gate is a logic gate in boolean algebra which results to 0 (False) if the
 input is high, and 1 (True) if the input is low.
-Following is the truth table of a XOR Gate:
+Following is the truth table of a NOT Gate:
     ------------------------------
     | Input   |  Output |
     ------------------------------
