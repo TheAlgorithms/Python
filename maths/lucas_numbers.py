@@ -1,4 +1,4 @@
-def lucas_number(n: int) -> int:
+def lucas_number(input_index: int) -> int:
     """
     Returns the n-th Lucas number using an iterative approach.
     The Lucas numbers are an integer sequence where each term is the sum of the
@@ -17,18 +17,18 @@ def lucas_number(n: int) -> int:
     >>> lucas_number(-3)
     Traceback (most recent call last):
         ...
-    ValueError: n must be a non-negative integer.
+    ValueError: input_index must be a non-negative integer.
     """
-    if n < 0:
-        raise ValueError("n must be a non-negative integer.")
+    if input_index < 0:
+        raise ValueError("input_index must be a non-negative integer.")
 
-    if n == 0:
+    if input_index == 0:
         return 2
-    if n == 1:
+    if input_index == 1:
         return 1
 
     a, b = 2, 1
-    for _ in range(2, n + 1):
+    for _ in range(2, input_index + 1):
         a, b = b, a + b
     return b
 
