@@ -30,7 +30,9 @@ def solution() -> int:
     >>> solution()
     40730
     """
-    limit = 7 * factorial(9) + 1
+    # The upper bound is 1,499,999, as shown in this proof:
+    # https://rosettacode.org/wiki/Talk:Factorions
+    limit = 1_499_999
     return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
 
 
