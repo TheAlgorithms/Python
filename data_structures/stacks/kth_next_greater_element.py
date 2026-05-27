@@ -1,8 +1,6 @@
 """
-Author  : Yuan Jack Yao
-Date    : May 27, 2026
-
 Implement the function to find the kth Next Greatest Element (NGE), if it exists, for all elements.
+Idea comes from my blog: https://starsexpress.github.io/SkyHorse/docs/stack/2454_hard/second_next_greater
 """
 
 from __future__ import annotations
@@ -18,7 +16,6 @@ def find_kth_next_greater_element(
 ) -> list[int | float | None]:
     """
     Efficient general method to seek the kth NGE for all elements.
-
     Approach is entirely based on k stacks, which are actually very easy to understand.
     These k stacks symbolize how many NGEs an element has already found.
 
