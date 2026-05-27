@@ -6,13 +6,22 @@ def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float
 ) -> float:
     """
-    This function can calculate the unknown resistance in an wheatstone network,
-    given that the three other resistances in the network are known.
-    The formula to calculate the same is:
+     Wheatstone Bridge is an electrical circuit used to accurately measure
+    an unknown resistance by balancing two legs of a bridge circuit.
 
-    ---------------
-    |Rx=(R2/R1)*R3|
-    ---------------
+    The bridge is said to be balanced when no current flows
+    through the galvanometer connected between the midpoints
+     of the two voltage dividers.
+      Balance condition:
+       R1 / R2 = R3 / R4
+
+      Applications:
+      - Measurement of unknown resistance
+      - Strain gauge circuits
+      - Sensor calibration
+    This function can calculate the unknown resistance in an wheatstone
+    network, given that the three other resistances
+    in the network are known.
 
     Usage examples:
     >>> wheatstone_solver(resistance_1=2, resistance_2=4, resistance_3=5)
