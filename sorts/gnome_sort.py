@@ -10,6 +10,16 @@ python3 -m doctest -v gnome_sort.py
 
 For manual testing run:
 python3 gnome_sort.py
+Gnome Sort Algorithm implementation in Python.
+
+Gnome sort (also called Stupid Sort) works by comparing the current element
+with the previous one. If they are in the wrong order, it swaps them and
+moves one step back. Otherwise it moves one step forward.
+
+Time Complexity:  O(n^2) in the worst case
+Space Complexity: O(1)
+
+Reference: https://en.wikipedia.org/wiki/Gnome_sort
 """
 
 
