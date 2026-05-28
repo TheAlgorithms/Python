@@ -32,6 +32,26 @@ def lamberts_ellipsoidal_distance(
     Returns:
         geographical distance between two points in metres
 
+    >>> lamberts_ellipsoidal_distance(100, 0, 0, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Latitude must be between -90 and 90 degrees
+
+    >>> lamberts_ellipsoidal_distance(0, 0, -100, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Latitude must be between -90 and 90 degrees
+
+    >>> lamberts_ellipsoidal_distance(0, 200, 0, 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Longitude must be between -180 and 180 degrees
+
+    >>> lamberts_ellipsoidal_distance(0, 0, 0, -200)
+    Traceback (most recent call last):
+    ...
+    ValueError: Longitude must be between -180 and 180 degrees
+
     >>> from collections import namedtuple
     >>> point_2d = namedtuple("point_2d", "lat lon")
     >>> SAN_FRANCISCO = point_2d(37.774856, -122.424227)
@@ -45,6 +65,14 @@ def lamberts_ellipsoidal_distance(
     >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *VENICE):0,.0f} meters"
     '9,737,326 meters'
     """
+
+    # Validate latitude values
+    if not -90 <= lat1 <= 90 or not -90 <= lat2 <= 90:
+        raise ValueError("Latitude must be between -90 and 90 degrees")
+
+    # Validate longitude values
+    if not -180 <= lon1 <= 180 or not -180 <= lon2 <= 180:
+        raise ValueError("Longitude must be between -180 and 180 degrees")
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
