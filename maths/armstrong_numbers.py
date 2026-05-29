@@ -22,7 +22,7 @@ def is_armstrong(number: int) -> bool:
     """
     if not isinstance(number, int) or number < 0:
         raise ValueError("is_armstrong() only accepts non-negative integers")
-    
+
     digits = str(number)
     power = len(digits)
     return sum(int(d) ** power for d in digits) == number
@@ -40,4 +40,5 @@ def get_armstrongs_up_to(limit: int) -> list[int]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
