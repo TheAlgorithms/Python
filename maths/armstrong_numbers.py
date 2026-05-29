@@ -1,4 +1,4 @@
-"""Armstrong Numbers - checking if a number equals sum of its digits raised to power of digit count."""
+"""Armstrong Numbers."""
 
 
 def is_armstrong(number: int) -> bool:
@@ -10,7 +10,7 @@ def is_armstrong(number: int) -> bool:
     >>> is_armstrong(1)
     True
     >>> is_armstrong(153)
-    True
+    True 
     >>> is_armstrong(370)
     True
     >>> is_armstrong(9474)
