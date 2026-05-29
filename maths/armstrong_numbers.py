@@ -10,7 +10,7 @@ def is_armstrong(number: int) -> bool:
     >>> is_armstrong(1)
     True
     >>> is_armstrong(153)
-    True 
+    True
     >>> is_armstrong(370)
     True
     >>> is_armstrong(9474)
