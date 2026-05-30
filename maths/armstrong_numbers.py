@@ -10,7 +10,7 @@ def is_armstrong(number: int) -> bool:
     >>> is_armstrong(1)
     True
     >>> is_armstrong(153)
-    True 
+    True  
     >>> is_armstrong(370)
     True
     >>> is_armstrong(9474)
@@ -19,6 +19,9 @@ def is_armstrong(number: int) -> bool:
     False
     >>> is_armstrong(25)
     False
+    
+    References:
+    - https://en.wikipedia.org/wiki/Narcissistic_number
     """
     if not isinstance(number, int) or number < 0:
         raise ValueError("is_armstrong() only accepts non-negative integers")
