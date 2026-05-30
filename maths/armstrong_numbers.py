@@ -19,7 +19,7 @@ def is_armstrong(number: int) -> bool:
     False
     >>> is_armstrong(25)
     False
-    
+
     References:
     - https://en.wikipedia.org/wiki/Narcissistic_number
     """
