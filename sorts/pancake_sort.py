@@ -8,8 +8,10 @@ For manual testing run:
 python pancake_sort.py
 """
 
+from typing import List
 
-def pancake_sort(arr):
+
+def pancake_sort(arr: List[int]) -> List[int]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
     :return: Collection ordered in ascending order of items
