@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 import math
+
 
 def cosine_similarity(vector_a: list[float], vector_b: list[float]) -> float:
     """
@@ -18,7 +21,7 @@ def cosine_similarity(vector_a: list[float], vector_b: list[float]) -> float:
         raise ValueError("Vectors must be of the same length")
 
     dot_product = sum(a * b for a, b in zip(vector_a, vector_b))
-    
+
     magnitude_a = math.sqrt(sum(a * a for a in vector_a))
     magnitude_b = math.sqrt(sum(b * b for b in vector_b))
 
@@ -27,6 +30,8 @@ def cosine_similarity(vector_a: list[float], vector_b: list[float]) -> float:
 
     return dot_product / (magnitude_a * magnitude_b)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
