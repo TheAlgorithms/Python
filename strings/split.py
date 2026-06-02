@@ -21,16 +21,16 @@ def split(string: str, separator: str = " ") -> list:
 
     split_words = []
     last_index = 0
-    
+
     # Single-pass scan using string slicing for optimal memory and speed
     for index, char in enumerate(string):
         if char == separator:
             split_words.append(string[last_index:index])
             last_index = index + 1
-            
+
     # Append the remaining trailing substring after the last separator
     split_words.append(string[last_index:])
-    
+
     return split_words
 
 
