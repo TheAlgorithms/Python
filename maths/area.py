@@ -580,4 +580,4 @@ if __name__ == "__main__":
     print(f"Torus: {surface_area_torus(20, 10) = }")
     print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
     print(f"Square: {area_reg_polygon(4, 10) = }")
-    print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")
+    print(f"Regular Pentagon: {area_reg_polygon(5, 10) = }")
