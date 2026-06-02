@@ -3,11 +3,11 @@ def rotate_array(arr: list[int], steps: int) -> list[int]:
     Rotates a list to the right by steps positions.
 
     Parameters:
-    arr (List[int]): The list of integers to rotate.
+    arr (list[int]): The list of integers to rotate.
     steps (int): Number of positions to rotate. Can be negative for left rotation.
 
     Returns:
-    List[int]: Rotated list.
+    list[int]: Rotated list.
 
     Examples:
     >>> rotate_array([1, 2, 3, 4, 5], 2)
