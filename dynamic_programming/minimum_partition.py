@@ -2,8 +2,10 @@
 Partition a set into two subsets such that the difference of subset sums is minimum
 """
 
+from collections.abc import Iterable
 
-def find_min(numbers: list[int]) -> int:
+
+def find_min(numbers: Iterable[int]) -> int:
     """
     >>> find_min([1, 2, 3, 4, 5])
     1
@@ -21,8 +23,6 @@ def find_min(numbers: list[int]) -> int:
     0
     >>> find_min([-1, -5, 5, 1])
     0
-    >>> find_min([-1, -5, 5, 1])
-    0
     >>> find_min([9, 9, 9, 9, 9])
     9
     >>> find_min([1, 5, 10, 3])
@@ -32,42 +32,20 @@ def find_min(numbers: list[int]) -> int:
     >>> find_min(range(10, 0, -1))
     1
     >>> find_min([-1])
-    Traceback (most recent call last):
-        --
-    IndexError: list assignment index out of range
+    1
     >>> find_min([0, 0, 0, 1, 2, -4])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
+    1
     >>> find_min([-1, -5, -10, -3])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
+    1
     """
-    n = len(numbers)
-    s = sum(numbers)
+    total_sum = 0
+    reachable_sums = {0}
 
-    dp = [[False for x in range(s + 1)] for y in range(n + 1)]
+    for number in numbers:
+        total_sum += number
+        reachable_sums |= {reachable_sum + number for reachable_sum in reachable_sums}
 
-    for i in range(n + 1):
-        dp[i][0] = True
-
-    for i in range(1, s + 1):
-        dp[0][i] = False
-
-    for i in range(1, n + 1):
-        for j in range(1, s + 1):
-            dp[i][j] = dp[i - 1][j]
-
-            if numbers[i - 1] <= j:
-                dp[i][j] = dp[i][j] or dp[i - 1][j - numbers[i - 1]]
-
-    for j in range(int(s / 2), -1, -1):
-        if dp[n][j] is True:
-            diff = s - 2 * j
-            break
-
-    return diff
+    return min(abs(total_sum - 2 * reachable_sum) for reachable_sum in reachable_sums)
 
 
 if __name__ == "__main__":
