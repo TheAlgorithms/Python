@@ -176,6 +176,7 @@ if __name__ == "__main__":
     # Check for doctests
     if len(sys.argv) > 1 and sys.argv[1] == "--test":
         import doctest
+
         doctest.testmod()
         sys.exit(0)
 
@@ -195,7 +196,9 @@ if __name__ == "__main__":
             if not key_str:
                 print("Key cannot be empty!")
                 continue
-            encrypted_bytes = encrypt(plain_str.encode("utf-8"), key_str.encode("utf-8"))
+            encrypted_bytes = encrypt(
+                plain_str.encode("utf-8"), key_str.encode("utf-8")
+            )
             print(f"Ciphertext (Hex): {encrypted_bytes.hex()}")
         elif choice == "2":
             hex_str = input("Enter hex ciphertext to decrypt: ")
@@ -206,9 +209,7 @@ if __name__ == "__main__":
             try:
                 cipher_bytes = bytes.fromhex(hex_str)
                 decrypted_bytes = decrypt(cipher_bytes, key_str.encode("utf-8"))
-                decrypted_text = decrypted_bytes.decode(
-                    "utf-8", errors="replace"
-                )
+                decrypted_text = decrypted_bytes.decode("utf-8", errors="replace")
                 print(f"Decrypted text: {decrypted_text}")
             except ValueError as e:
                 print(f"Invalid input: {e}")
