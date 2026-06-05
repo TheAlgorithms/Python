@@ -1,3 +1,39 @@
+"""
+RC4 (Rivest Cipher 4) Stream Cipher Algorithm
+=============================================
+
+RC4 is a symmetric stream cipher designed by Ron Rivest in 1987 for RSA Security.
+It is famous for its simplicity and speed in software. It operates on bytes,
+encrypting and decrypting data one byte at a time by XORing the plaintext with
+a pseudorandom keystream.
+
+How it works:
+-------------
+1. Key Scheduling Algorithm (KSA):
+   Initializes and permutes a 256-byte state array (the S-box) based on the secret key.
+2. Pseudo-Random Generation Algorithm (PRGA):
+   Generates a continuous sequence of pseudorandom bytes (the keystream)
+   from the S-box.
+   With each byte generated, the state array is mutated to ensure unpredictability.
+3. Encryption/Decryption:
+   The plaintext is XORed byte-by-byte with the keystream to produce the ciphertext.
+   Since XOR is its own inverse, decryption uses the exact same process (XORing
+   the ciphertext with the same keystream).
+
+Security Status:
+----------------
+WARNING: RC4 is cryptographically broken and insecure.
+It suffers from significant keystream biases, particularly in the initial bytes.
+If the same key is reused, or if an attacker captures enough ciphertext, they
+can reconstruct the plaintext or the key. The use of RC4 is prohibited in modern
+protocols (such as TLS via RFC 7465). It is implemented here strictly for
+educational purposes.
+
+Further reading:
+----------------
+* https://en.wikipedia.org/wiki/RC4
+"""
+
 from collections.abc import Generator
 
 
