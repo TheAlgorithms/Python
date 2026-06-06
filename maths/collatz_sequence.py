@@ -23,11 +23,11 @@ def collatz_sequence(n: int) -> Generator[int]:
     >>> tuple(collatz_sequence(2.1))
     Traceback (most recent call last):
         ...
-    Exception: Sequence only defined for positive integers
+    TypeError: Sequence only defined for integers
     >>> tuple(collatz_sequence(0))
     Traceback (most recent call last):
         ...
-    Exception: Sequence only defined for positive integers
+    ValueError: Sequence only defined for positive integers
     >>> tuple(collatz_sequence(4))
     (4, 2, 1)
     >>> tuple(collatz_sequence(11))
@@ -44,8 +44,10 @@ def collatz_sequence(n: int) -> Generator[int]:
     (43, 130, 65, 196, 98, 49, 148, 74, 37, 112, 56, 28, 14, 7, 22, 11, 34, 17, 52, 26,
     13, 40, 20, 10, 5, 16, 8, 4, 2, 1)
     """
-    if not isinstance(n, int) or n < 1:
-        raise Exception("Sequence only defined for positive integers")
+    if not isinstance(n, int):
+        raise TypeError("Sequence only defined for integers")
+    if n < 1:
+        raise ValueError("Sequence only defined for positive integers")
 
     yield n
     while n != 1:
