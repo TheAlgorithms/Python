@@ -5,7 +5,7 @@ from random import random
 
 class Node:
     """
-    Treap's node
+    Treap's nodeh
     Treap is a binary tree by value and heap by priority
     """
 
@@ -41,7 +41,7 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     """
     if root is None or root.value is None:  # None tree is split into 2 Nones
         return None, None
-    elif value < root.value:
+    elif value <= root.value:
         """
         Right tree's root will be current node.
         Now we split(with the same value) current node's left son
