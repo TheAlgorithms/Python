@@ -5,7 +5,7 @@ from random import random
 
 class Node:
     """
-    Treap's nodeh
+    Treap's node
     Treap is a binary tree by value and heap by priority
     """
 
