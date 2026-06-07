@@ -59,11 +59,11 @@ def catalan_numbers(upper_limit: int) -> "list[int]":
 
 if __name__ == "__main__":
     print("\n********* Catalan Numbers Using Dynamic Programming ************\n")
-    print("\n*** Enter -1 at any time to quit ***")
+    print("\n*** Enter negative int at any time to quit ***")
     print("\nEnter the upper limit (≥ 0) for the Catalan number sequence: ", end="")
     try:
         while True:
-            N = int(input().strip())
+            N = int(input("Enter: ")).strip()
             if N < 0:
                 print("\n********* Goodbye!! ************")
                 break
