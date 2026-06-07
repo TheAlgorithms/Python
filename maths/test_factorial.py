@@ -33,5 +33,11 @@ def test_negative_number(function):
         function(-3)
 
 
+@pytest.mark.parametrize("function", [factorial, factorial_recursive])
+def test_float_number(function):
+    with pytest.raises(ValueError):
+        function(1.5)
+
+
 if __name__ == "__main__":
     pytest.main(["-v", __file__])
