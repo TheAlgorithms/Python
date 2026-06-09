@@ -1,15 +1,15 @@
 """
-Finding collision types and final velocities is key in physics.
+Collision types and final velocities are central to physics.
 This module computes final velocities for inelastic and elastic collisions.
-It also identifies the collision type from initial and final velocities.
+It also classifies the collision type from initial and final velocities.
 
 Description: Collisions happen when two masses interact head-on.
 There are two types: inelastic and elastic. In inelastic collisions, the
 masses stick together and share one final velocity. In elastic collisions,
-momentum and kinetic energy stay conserved, and the masses rebound.
-Momentum is mass times velocity, and kinetic energy is 1/2 mv^2.
-The type of collision can be found by comparing the system's initial and
-final momentum and kinetic energy.
+momentum and kinetic energy are conserved, and masses rebound.
+Momentum is mass times velocity; kinetic energy is 1/2 mv^2.
+The collision type comes from comparing initial and final momentum and
+kinetic energy of the system.
 
 Reference: https://en.wikipedia.org/wiki/Collision
 """
@@ -118,7 +118,7 @@ def type_collision(
 
     if kinetic_final == kinetic_initial and momentum_initial == momentum_final:
         return 'Perfectly Elastic Collision'
-    elif not(kinetic_final == kinetic_initial) and momentum_initial == momentum_final:
+    elif kinetic_final != kinetic_initial and momentum_initial == momentum_final:
         return 'Perfectly Inelastic Collision'
     else:
         return "Inelastic Collision"
