@@ -2,6 +2,28 @@ from typing import Any
 
 
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+    """>>> binary_search([1, 3, 5], 4, 0, 2)
+    2
+    >>> binary_search([1, 3, 5], 0, 0, 2)
+    0
+    >>> binary_search([1, 3, 5], 6, 0, 2)
+    3
+
+    Find the insertion index for ``item`` in a sorted sublist.
+
+    It performs a recursive binary search on ``lst`` between indices
+    ``start`` and ``end`` (inclusive) and returns the index showing
+    where to insert the item so the list stays sorted.
+
+    Args:
+        lst: A list of comparable items (the sublist from ``start`` to  ``end`` must already be sorted).
+        item: The value to locate an insertion index for.
+        start: Left-most index of the sorted sublist to search.
+        end: Right-most index of the sorted sublist to search.
+
+    Returns:
+        The index at which ``item`` should be inserted.
+    """
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,6 +39,21 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
+    """>>> insertion_sort([3, 2, 1])
+    [1, 2, 3]
+
+    Return a sorted copy of ``lst`` using insertion sort.
+
+    Uses ``binary_search`` to find where to insert each item. The
+    input list is not modified; a new sorted list is returned.
+
+    Args:
+        lst: The list to sort. A new list is returned; the input list is
+            not modified in-place.
+
+    Returns:
+        A new list containing the elements of ``lst`` in ascending order.
+    """
     length = len(lst)
 
     for index in range(1, length):
@@ -28,6 +65,19 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
+    """>>> merge([1, 4], [2, 3])
+    [1, 2, 3, 4]
+
+    Merge two sorted lists and return a new sorted list.
+
+    Args:
+        left: A list sorted in ascending order.
+        right: A list sorted in ascending order.
+
+    Returns:
+        A new list containing all elements from ``left`` and ``right`` in
+        ascending order.
+    """
     if not left:
         return right
 
@@ -52,6 +102,9 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     True
     >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
     True
+
+    Sort and return the input using a TimSort-like approach: detect
+    runs, sort each run with insertion sort, then merge the runs.
     """
     length = len(lst)
     runs, sorted_runs = [], []
