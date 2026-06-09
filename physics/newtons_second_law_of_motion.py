@@ -70,6 +70,8 @@ def newtons_second_law_of_motion(mass: float, acceleration: float) -> float:
     100
     >>> newtons_second_law_of_motion(2.0, 1)
     2.0
+    >>> newtons_second_law_of_motion(None, 10)
+    -0.0
     """
     force = 0.0
     try:
