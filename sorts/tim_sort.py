@@ -101,7 +101,7 @@ def main():
     Run a simple demonstration of the Tim Sort algorithm.
     """
 
-    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
+    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7, -3]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
 
