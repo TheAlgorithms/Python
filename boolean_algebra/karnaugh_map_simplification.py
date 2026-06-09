@@ -3,6 +3,12 @@ https://en.wikipedia.org/wiki/Karnaugh_map
 https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebraic-simplification-technique
 """
 
+# Changes I can make - 
+# 1. Make a function for three and four variable kmap
+# 2. Make truly simplified expressions
+
+# Approach - Either store every possible box and brute force or make general expression and then simplify
+
 
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
