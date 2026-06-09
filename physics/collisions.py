@@ -1,13 +1,15 @@
 """
-Finding the type of collision and calculating final velocities after collisions are fundamental concepts in physics.
-This module provides functions to compute the final velocities of two masses after both inelastic and elastic collisions,
-as well as a function to determine the type of collision based on initial and final velocities.
+Finding collision types and final velocities is key in physics.
+This module computes final velocities for inelastic and elastic collisions.
+It also identifies the collision type from initial and final velocities.
 
-Description: Collisions in physics refers to the interaction between two masses when they collide head-on. There are 2 types of
-collisions: inelastic and elastic. In an inelastic collision, the two masses stick together and move with a common velocity
-after the collision. In an elastic collision, both momentum and kinetic energy are conserved, and the masses bounce off each other without sticking together.
-Momentum is the product of mass and velocity, while kinetic energy is given by the formula (1/2) * mass * velocity^2.
-The type of collision can be determined by comparing the initial and final momentum and kinetic energy of the system.
+Description: Collisions happen when two masses interact head-on.
+There are two types: inelastic and elastic. In inelastic collisions, the
+masses stick together and share one final velocity. In elastic collisions,
+momentum and kinetic energy stay conserved, and the masses rebound.
+Momentum is mass times velocity, and kinetic energy is 1/2 mv^2.
+The type of collision can be found by comparing the system's initial and
+final momentum and kinetic energy.
 
 Reference: https://en.wikipedia.org/wiki/Collision
 """
@@ -47,7 +49,7 @@ def elastic_collisions(
 ) -> str:
     """Calculate final velocities after a perfectly elastic collision.
 
-    This assumes the collision is head-on and conserves both momentum and kinetic energy.
+    The collision is head-on and conserves both momentum and kinetic energy.
 
     Parameters:
         mass1: Mass of the first object.
@@ -115,11 +117,11 @@ def type_collision(
     kinetic_final = 0.5 * ((mass1 * velocity_final1**2) + (mass2 * velocity_final2**2))
 
     if kinetic_final == kinetic_initial and momentum_initial == momentum_final:
-        return f"Perfectly Elastic Collision"
-    elif not (kinetic_final == kinetic_initial) and momentum_initial == momentum_final:
-        return f"Perfectly Inelastic Collision"
+        return 'Perfectly Elastic Collision'
+    elif not(kinetic_final == kinetic_initial) and momentum_initial == momentum_final:
+        return 'Perfectly Inelastic Collision'
     else:
-        return f"Inelastic Collision"
+        return 'Inelastic Collision'
 
 
 if __name__ == "__main__":
