@@ -117,16 +117,13 @@ def type_collision(
     kinetic_final = 0.5 * ((mass1 * velocity_final1**2) + (mass2 * velocity_final2**2))
 
     if kinetic_final == kinetic_initial and momentum_initial == momentum_final:
-        return 'Perfectly Elastic Collision'
-    elif kinetic_final != kinetic_initial and momentum_initial == momentum_final:
-        return 'Perfectly Inelastic Collision'
+        return f'Perfectly Elastic Collision'
+    elif not(kinetic_final == kinetic_initial) and momentum_initial == momentum_final:
+        return f'Perfectly Inelastic Collision'
     else:
         return "Inelastic Collision"
 
 
 if __name__ == "__main__":
     import doctest
-
-
     doctest.testmod()
-
