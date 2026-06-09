@@ -16,7 +16,8 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
     where to insert the item so the list stays sorted.
 
     Args:
-        lst: A list of comparable items (the sublist from ``start`` to  ``end`` must already be sorted).
+        lst: A list of comparable items.
+             The sublist from ``start`` to ``end`` must already be sorted.
         item: The value to locate an insertion index for.
         start: Left-most index of the sorted sublist to search.
         end: Right-most index of the sorted sublist to search.
