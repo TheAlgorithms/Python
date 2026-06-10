@@ -42,7 +42,7 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
         if kmap[0][i] and kmap[1][i]:
             simplified_f.append("B" if i else "B'")
 
-    # 1 sized boxes - There are 4
+    # 1 sized boxes - There are 4 (check individual boxes)
     if not (simplified_f):
         for a, row in enumerate(kmap):
             for b, item in enumerate(row):
