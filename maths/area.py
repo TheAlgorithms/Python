@@ -50,6 +50,10 @@ def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
     Traceback (most recent call last):
         ...
     ValueError: surface_area_cuboid() only accepts non-negative values
+    >>> surface_area_cuboid(1, -1, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cuboid() only accepts non-negative values
     """
     if length < 0 or breadth < 0 or height < 0:
         raise ValueError("surface_area_cuboid() only accepts non-negative values")
@@ -540,13 +544,33 @@ length of a side
         ...
     ValueError: area_reg_polygon() only accepts integers greater than or equal to \
 three as number of sides
+    >>> area_reg_polygon(True, 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    >>> area_reg_polygon(3.0, 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
     """
-    if not isinstance(sides, int) or sides < 3:
+    # bool is a subclass of int in Python, so we must reject it explicitly.
+    # Without this, area_reg_polygon(True, 5) would silently pass the
+    # isinstance(sides, int) check (because True IS an int) and compute
+    # cot(pi/1) for a "1-sided regular polygon", which is geometrically
+    # meaningless but mathematically defined. A count of polygon sides
+    # should never be a bool.
+    if (
+        not isinstance(sides, int)
+        or isinstance(sides, bool)
+        or sides < 3
+    ):
         raise ValueError(
             "area_reg_polygon() only accepts integers greater than or \
 equal to three as number of sides"
         )
-    elif length < 0:
+    if length < 0:
         raise ValueError(
             "area_reg_polygon() only accepts non-negative values as \
 length of a side"
