@@ -24,6 +24,10 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
     Returns:
         The index at which ``item`` should be inserted.
+
+    Complexity:
+        Time: ``O(log n)`` for the searched sublist.
+        Space: ``O(log n)`` due to recursion depth.
     """
     if start == end:
         return start if lst[start] > item else start + 1
@@ -54,6 +58,11 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
     Returns:
         A new list containing the elements of ``lst`` in ascending order.
+
+    Complexity:
+        Time: ``O(n^2)`` in the worst case because each insertion may
+            shift many elements.
+        Space: ``O(n)`` for the reconstructed list copies.
     """
     length = len(lst)
 
@@ -78,6 +87,10 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
     Returns:
         A new list containing all elements from ``left`` and ``right`` in
         ascending order.
+
+    Complexity:
+        Time: ``O(n + m)`` where ``n`` and ``m`` are the input lengths.
+        Space: ``O(n + m)`` because recursive slicing creates new lists.
     """
     if not left:
         return right
@@ -106,6 +119,10 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
 
     Sort and return the input using a TimSort-like approach: detect
     runs, sort each run with insertion sort, then merge the runs.
+
+    Complexity:
+        Time: ``O(n log n)`` in the common case.
+        Space: ``O(n)`` for the extra lists used during sorting.
     """
     length = len(lst)
     runs, sorted_runs = [], []
