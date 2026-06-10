@@ -10,6 +10,7 @@ https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebra
 # Approach - Either store every possible box and brute force or make general expression and then simplify
 
 
+
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
     Simplify the Karnaugh map.
@@ -27,13 +28,21 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
     "A'B + AB' + AB"
     """
     simplified_f = []
-    for a, row in enumerate(kmap):
-        for b, item in enumerate(row):
-            if item:
-                term = ("A" if a else "A'") + ("B" if b else "B'")
-                simplified_f.append(term)
-    return " + ".join(simplified_f)
+    # 4 sized boxes - There is only 1
+    if kmap[0][0] + kmap[0][1] + kmap[1][0] + kmap[1][1] == 4:
+        return "1"
 
+    # 2 sized boxes - There are 4 (2 vertical and 2 horizontal)
+    # check horizontal
+    for i in range(2):
+        if kmap[i][0] + kmap[i][1] == 2:
+            simplified_f.append(("A" if i else "A'"))
+    # check vertical
+    for i in range(2):
+        if kmap[0][i] + kmap[1][i] == 2:
+            simplified_f.append(("B" if i else "B'"))
+    
+    return " + ".join(simplified_f)
 
 def main() -> None:
     """
@@ -43,7 +52,7 @@ def main() -> None:
     [0, 1]
     [1, 1]
     Simplified Expression:
-    A'B + AB' + AB
+    A + B
     """
     kmap = [[0, 1], [1, 1]]
 
