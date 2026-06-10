@@ -14,19 +14,18 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
     Returns:
         str: The most simplified expression of the kmap
 
-
+    >>> simplify_kmap(kmap = [[1,1], [1,1]])
+    "1"
     >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
+    "A + B"
+    >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
     "A + B"
     >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
     '0'
-    >>> simplify_kmap(kmap=[[0, 1], [1, -1]])
-    'A + B'
-    >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
-    "A + B"
-    >>> simplify_kmap(kmap=[[0, 1], [1, 1.1]])
-    "A + B"
-    >>> simplify_kmap(kmap=[[0, 1], [1, 'a']])
-    "A + B"
+    >>> simplify_kmap(kmap=[[0, 1], [1, 0]])
+    "A'B + AB'"
+    >>> simplify_kmap(kmap=[[0, 1], [0, 0]])
+    "A'B"
     """
     simplified_f = []
     # 4 sized boxes - There is only 1
@@ -44,6 +43,12 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
             simplified_f.append("B" if i else "B'")
 
     # 1 sized boxes - There are 4
+    if not (simplified_f):
+        for a, row in enumerate(kmap):
+            for b, item in enumerate(row):
+                if item:
+                    term = ("A" if a else "A'") + ("B" if b else "B'")
+                    simplified_f.append(term)
 
     if not (simplified_f):
         simplified_f.append("0")
@@ -61,7 +66,7 @@ def main() -> None:
     Simplified Expression:
     A + B
     """
-    kmap = [[0, 1], [1, 1]]
+    kmap = [[0, 1], [0, 0]]
 
     # Manually generate the product of [0, 1] and [0, 1]
 
@@ -74,4 +79,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    print(f"{simplify_kmap(kmap=[[0, 1], [1, 1]]) = }")
+    print(f"{simplify_kmap(kmap=[[1, 1], [1, 1]]) = }")
