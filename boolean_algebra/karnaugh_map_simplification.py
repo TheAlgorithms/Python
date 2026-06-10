@@ -3,46 +3,53 @@ https://en.wikipedia.org/wiki/Karnaugh_map
 https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebraic-simplification-technique
 """
 
-# Changes I can make - 
-# 1. Make a function for three and four variable kmap
-# 2. Make truly simplified expressions
-
-# Approach - Either store every possible box and brute force or make general expression and then simplify
-
-
 
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
-    Simplify the Karnaugh map.
+    Simplify a 2 variable Karnaugh map.
+
+    Args:
+        kmap (List[List[]]): The kmap as a 2D array
+
+    Returns:
+        str: The most simplified expression of the kmap
+
+
     >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
-    "A'B + AB' + AB"
+    "A + B"
     >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
-    ''
+    '0'
     >>> simplify_kmap(kmap=[[0, 1], [1, -1]])
-    "A'B + AB' + AB"
+    'A + B'
     >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
-    "A'B + AB' + AB"
+    "A + B"
     >>> simplify_kmap(kmap=[[0, 1], [1, 1.1]])
-    "A'B + AB' + AB"
+    "A + B"
     >>> simplify_kmap(kmap=[[0, 1], [1, 'a']])
-    "A'B + AB' + AB"
+    "A + B"
     """
     simplified_f = []
     # 4 sized boxes - There is only 1
-    if kmap[0][0] + kmap[0][1] + kmap[1][0] + kmap[1][1] == 4:
+    if kmap[0][0] and kmap[0][1] and kmap[1][0] and kmap[1][1]:
         return "1"
 
     # 2 sized boxes - There are 4 (2 vertical and 2 horizontal)
     # check horizontal
     for i in range(2):
-        if kmap[i][0] + kmap[i][1] == 2:
-            simplified_f.append(("A" if i else "A'"))
+        if kmap[i][0] and kmap[i][1]:
+            simplified_f.append("A" if i else "A'")
     # check vertical
     for i in range(2):
-        if kmap[0][i] + kmap[1][i] == 2:
-            simplified_f.append(("B" if i else "B'"))
-    
+        if kmap[0][i] and kmap[1][i]:
+            simplified_f.append("B" if i else "B'")
+
+    # 1 sized boxes - There are 4
+
+    if not (simplified_f):
+        simplified_f.append("0")
+
     return " + ".join(simplified_f)
+
 
 def main() -> None:
     """
