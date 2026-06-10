@@ -1,7 +1,6 @@
 ### Describe your change:
 
 
-
 * [ ] Add an algorithm?
 * [ ] Fix a bug or typo in an existing algorithm?
 * [ ] Add or change doctests? -- Note: Please avoid changing both code and tests in a single pull request.
