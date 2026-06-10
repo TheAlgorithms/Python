@@ -2,6 +2,10 @@ from typing import Any
 
 
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+    """
+    Find the index where an item should be inserted in a sorted list
+    """
+
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,6 +21,10 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
+
+    """
+    Sort a list using insertion sort and binary search
+    """
     length = len(lst)
 
     for index in range(1, length):
@@ -28,6 +36,10 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
+
+    """
+    Merge two sorted lists into one sorted list
+    """
     if not left:
         return right
 
