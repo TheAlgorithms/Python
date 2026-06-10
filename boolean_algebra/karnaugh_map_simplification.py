@@ -15,11 +15,11 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
         str: The most simplified expression of the kmap
 
     >>> simplify_kmap(kmap = [[1,1], [1,1]])
-    "1"
+    '1'
     >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
-    "A + B"
+    'A + B'
     >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
-    "A + B"
+    'A + B'
     >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
     '0'
     >>> simplify_kmap(kmap=[[0, 1], [1, 0]])
@@ -66,7 +66,7 @@ def main() -> None:
     Simplified Expression:
     A + B
     """
-    kmap = [[0, 1], [0, 0]]
+    kmap = [[0, 1], [1, 1]]
 
     # Manually generate the product of [0, 1] and [0, 1]
 
