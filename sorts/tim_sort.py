@@ -21,7 +21,6 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
-
     """
     Sort a list using insertion sort and binary search
     """
@@ -36,7 +35,6 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
-
     """
     Merge two sorted lists into one sorted list
     """
