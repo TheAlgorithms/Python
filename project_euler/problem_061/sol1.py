@@ -60,8 +60,15 @@ def fill_triangle(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def triangle(n: int) -> int:
-        return n * (n + 1) // 2
+    def triangle(num: int) -> int:
+        """
+        Gives the Nth triangle number.
+        >>> triangle(2)
+        3
+        >>> triangle(5)
+        15
+        """
+        return num * (num + 1) // 2
 
     st, end = int_range
     arr = []
@@ -89,8 +96,15 @@ def fill_square(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def square(n: int) -> int:
-        return n**2
+    def square(num: int) -> int:
+        """
+        Gives the Nth square number.
+        >>> square(2)
+        4
+        >>> square(5)
+        25
+        """
+        return num**2
 
     st, end = int_range
     arr = []
@@ -118,8 +132,15 @@ def fill_pentagonal(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def pentagon(n: int) -> int:
-        return n * (3 * n - 1) // 2
+    def pentagon(num: int) -> int:
+        """
+        Gives the Nth pentagon number.
+        >>> pentagon(2)
+        5
+        >>> pentagon(5)
+        35
+        """
+        return num * (3 * num - 1) // 2
 
     st, end = int_range
     arr = []
@@ -147,8 +168,15 @@ def fill_hexagonal(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def hexagon(n: int) -> int:
-        return n * (2 * n - 1)
+    def hexagon(num: int) -> int:
+        """
+        Gives the Nth hexagon number.
+        >>> hexagon(2)
+        6
+        >>> hexagon(5)
+        45
+        """
+        return num * (2 * num - 1)
 
     st, end = int_range
     arr = []
@@ -176,8 +204,15 @@ def fill_heptagonal(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def heptagon(n: int) -> int:
-        return n * (5 * n - 3) // 2
+    def heptagon(num: int) -> int:
+        """
+        Gives the Nth heptagon number.
+        >>> heptagon(2)
+        7
+        >>> heptagon(5)
+        55
+        """
+        return num * (5 * num - 3) // 2
 
     st, end = int_range
     arr = []
@@ -206,8 +241,15 @@ def fill_octagonal(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
 
     """
 
-    def octagon(n: int) -> int:
-        return n * (3 * n - 2)
+    def octagon(num: int) -> int:
+        """
+        Gives the Nth octagon number.
+        >>> octagon(2)
+        8
+        >>> octagon(5)
+        65
+        """
+        return num * (3 * num - 2)
 
     st, end = int_range
     arr = []
@@ -224,7 +266,7 @@ def fill_octagonal(int_range: tuple[int, int] = (1000, 9999)) -> list[int]:
     return arr
 
 
-def check_cyclic(x: int, y: int) -> bool:
+def check_cyclic(num1: int, num2: int) -> bool:
     """
     This function checks if two 4 digit numbers are cyclic.
     For this problem we are only concerned with 4 digit numbers.
@@ -240,12 +282,12 @@ def check_cyclic(x: int, y: int) -> bool:
 
     """
 
-    if x < 1000 or y < 1000:
+    if num1 < 1000 or num2 < 1000:
         raise ValueError("Both integers must be greater than 999")
-    if x > 9999 or y > 9999:
+    if num1 > 9999 or num2 > 9999:
         raise ValueError("Both integers must be less than 10000")
 
-    return (x % 100) == (y // 100)
+    return (num1 % 100) == (num2 // 100)
 
 
 def solution() -> int:
