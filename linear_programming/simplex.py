@@ -304,7 +304,8 @@ class Tableau:
                 self.tableau = self.pivot(row_idx, col_idx)
         raise ValueError(
             f"Simplex did not converge within {Tableau.maxiter} iterations. "
-             "The problem may be cycling or unbounded.")
+            "The problem may be cycling or unbounded."
+        )
 
     def interpret_tableau(self) -> dict[str, float]:
         """Given the final tableau, add the corresponding values of the basic
