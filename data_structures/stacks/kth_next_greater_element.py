@@ -1,7 +1,5 @@
 """
 Implement the function to find kth Next Greatest Element (NGE) for all elements.
-Idea comes from my blog:
-https://starsexpress.github.io/SkyHorse/docs/stack/2454_hard/second_next_greater
 """
 
 test_k = 10
@@ -21,7 +19,7 @@ def find_kth_next_greater_element(
     it means that this element has found its (j - 1)th NGE, now looking for jth NGE.
 
     By processing stacks from higher to lower ordinals, we can always ensure that
-    each stack secures decreasing monotonicity in terms of element value.
+    each stack stays monotonically non-increasing in terms of element value.
 
     Time complexity: O(kn) where n is the length of input array.
     However, if k >= n, all elements won't find their respective kth NGE.
@@ -33,7 +31,7 @@ def find_kth_next_greater_element(
         array (list[int | float]): A list for which the kth NGE is computed.
                                    A mix of integers and floats in list is allowed.
 
-        kth_ord (int): Ordinal of the NGE to find. k must be a positive integer.
+        kth_ord (int): Ordinal of the NGE to find. kth_ord must be a positive integer.
 
     Returns:
         A list containing each element's kth NGE. If an element can't find its kth NGE,
@@ -44,20 +42,24 @@ def find_kth_next_greater_element(
     True
     >>> find_kth_next_greater_element([2.5, 1.9, 4.3, 6.0], 1) == [4.3, 4.3, 6.0, None]
     True
+    >>> find_kth_next_greater_element([1, 2, 3], 0)
+    Traceback (most recent call last):
+         ...
+    ValueError: kth_ord must be a positive integer.
     >>> find_kth_next_greater_element(list(range(1000)), 1000) == [None] * 1000
     True
     >>> find_kth_next_greater_element(test_array, test_k) == expected_answers
     True
     """
     if not isinstance(kth_ord, int) or kth_ord < 1:
-        raise ValueError("k must be a positive integer.")
+        raise ValueError("kth_ord must be a positive integer.")
 
     kth_next_greater_elements: list[int | float | None] = [None] * len(array)
     if kth_ord >= len(array):  # Trivial cases: nobody can have kth NGE.
         return kth_next_greater_elements
 
     # For 1 <= j <= k, the jth stack is at the jth idx of stacks list.
-    # stacks[0]: a transporter that transfer entries between stacks.
+    # stacks[0]: a transporter that transfers entries between stacks.
     # Each stack's entry is a tuple of (element, idx).
     stacks: list[list[tuple[int | float, int]]] = [[] for _ in range(kth_ord + 1)]
 
