@@ -118,7 +118,7 @@ def type_collision(
 
     if kinetic_final == kinetic_initial and momentum_initial == momentum_final:
         return 'Perfectly Elastic Collision'
-    elif not(kinetic_final == kinetic_initial) and momentum_initial == momentum_final:
+    elif kinetic_final != kinetic_initial and momentum_initial == momentum_final:
         return 'Perfectly Inelastic Collision'
     else:
         return "Inelastic Collision"
