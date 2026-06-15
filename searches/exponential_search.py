@@ -81,10 +81,19 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> exponential_search([], 1)
+    -1
+    >>> exponential_search([1, 1], -1)
+    -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
 
+    if not sorted_collection:
+        return -1
+
+    if sorted_collection[0] > item:
+        return -1
     if sorted_collection[0] == item:
         return 0
 
