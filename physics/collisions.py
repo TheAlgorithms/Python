@@ -31,6 +31,10 @@ def inelastic_collisions(
     Returns:
         The final combined velocity of the two objects.
 
+    Complexity:
+        Time Complexity: O(1) - Constant execution time for basic arithmetic.
+        Space Complexity: O(1) - Constant memory allocation.
+
     Examples:
         >>> inelastic_collisions(2.0, 3.0, 5.0, 6.0)
         5.6
@@ -59,6 +63,10 @@ def elastic_collisions(
 
     Returns:
         A formatted string containing the final velocities of both objects.
+
+    Complexity:
+        Time Complexity: O(1) - Constant execution time for basic math loops.
+        Space Complexity: O(1) - Constant memory allocation for fixed-size lists.
 
     Examples:
         >>> elastic_collisions(1.0, 2.0, -3.0, -1.0)
@@ -100,6 +108,10 @@ def type_collision(
 
     Returns:
         A string describing the collision type.
+
+    Complexity:
+        Time Complexity: O(1) - Constant execution time for evaluation logic.
+        Space Complexity: O(1) - Constant memory allocation.
 
     Examples:
         >>> type_collision(1.0, 1.0, 2.0, 3.0, 2.0, 3.0)

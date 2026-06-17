@@ -31,22 +31,35 @@ Reference : "https://en.m.wikipedia.org/wiki/Gravitational_energy"
 
 
 def gravitational_potential_energy(mass: float, height: float) -> float:
-    # function will accept mass and height as parameters and return potential energy
     """
-    >>> gravitational_potential_energy(10,10)
-    980.665
-    >>> gravitational_potential_energy(0,5)
-    0.0
-    >>> gravitational_potential_energy(8,0)
-    0.0
-    >>> gravitational_potential_energy(10,5)
-    490.3325
-    >>> gravitational_potential_energy(0,0)
-    0.0
-    >>> gravitational_potential_energy(2,8)
-    156.9064
-    >>> gravitational_potential_energy(20,100)
-    19613.3
+    Function calculates the gravitational potential energy of an object.
+
+    Parameters:
+        mass: Mass of the object
+        height: Height the object is at
+
+    Returns:
+        The value of energy in Joules
+    
+    Complexity:
+        Time Complexity: O(1) - Constant execution time for evaluation logic.
+        Space Complexity: O(1) - Constant memory allocation.   
+
+    Examples:
+        >>> gravitational_potential_energy(10,10)
+        980.665
+        >>> gravitational_potential_energy(0,5)
+        0.0
+        >>> gravitational_potential_energy(8,0)
+        0.0
+        >>> gravitational_potential_energy(10,5)
+        490.3325
+        >>> gravitational_potential_energy(0,0)
+        0.0
+        >>> gravitational_potential_energy(2,8)
+        156.9064
+        >>> gravitational_potential_energy(20,100)
+        19613.3
     """
     if mass < 0:
         # handling of negative values of mass
@@ -57,24 +70,41 @@ def gravitational_potential_energy(mass: float, height: float) -> float:
         
     return mass * g * height
 
-def spring_potential_energy(spring_constant: float, displacement: float):
-    #Function will except the spring constant and the displacemnt of the spring from equilibrium 
+def spring_potential_energy(spr_con: float, dspl: float) -> float:
     """
-    >>> spring_potential_energy(100,2)
-    200
-    >>> gravitational_potential_energy(10,0.5)
-    1.25
-    >>> spring_potential_energy(8,0)
-    0.0
+    Function calculates the spring potential energy of an object.
+
+    Parameters:
+        spr_con: The spring constant of a spring
+        dspl: The length of the displacement of the spring
+
+    Returns:
+        The value of energy in Joules
+    
+    Complexity:
+        Time Complexity: O(1) - Constant execution time for evaluation logic.
+        Space Complexity: O(1) - Constant memory allocation.   
+
+    Examples:
+        >>> spring_potential_energy(100,2)
+        200.0
+        >>> spring_potential_energy(10,0.5)
+        1.25
+        >>> spring_potential_energy(8,0)
+        0.0
+        >>> spring_potential_energy(14.6,8)
+        467.2
+        >>> spring_potential_energy(17,4.5)
+        172.125
     """
-    if spring_constant < 0  :
+    if spr_con < 0  :
         raise ValueError("The values for spring_constant cannot be negative")
     
-    return 0.5 * spring_constant * (displacement ** 2)
+    return 0.5 * spr_con * (dspl ** 2)
 
 
 
 if __name__ == "__main__":
     from doctest import testmod
-
+    print(spring_potential_energy(17,4.5))
     testmod(name="gravitational_potential_energy")
