@@ -7,6 +7,9 @@ PPMA (Prediction by Partial Matching) is a statistical data compression techniqu
     - it was first introduced by Clearly and Witten in 1984 in article
         'Data Compression Using Adaptive Coding and PartialString Matching'
     - unfortunately article is not available online for free
+    - https://en.wikipedia.org/wiki/Prediction_by_partial_matching
+    - https://www.mbit.edu.in/wp-content/uploads/2020/05/data_compression.pdf
+        (chapter 6.3)
 
 Output is divided into 2 parts:
     - readable_output: list of dictionaries with information about the symbol, context,
