@@ -30,7 +30,7 @@ class PPMA:
     Core class for PPM compression algorithm containing compression and decompression.
     """
 
-    def __init__(self, max_order: int = 2, alphabet_size: int = 256):
+    def __init__(self, max_order: int = 2, alphabet_size: int = 256) -> None:
         self.max_order = max_order
         self.alphabet_size = alphabet_size
         self.history = ""
