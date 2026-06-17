@@ -54,11 +54,12 @@ def gravitational_potential_energy(mass: float, height: float) -> float:
     if height < 0:
         # handling of negative values of height
         raise ValueError("The height above the ground cannot be negative")
-        
+
     return mass * g * height
 
+
 def spring_potential_energy(spring_constant: float, displacement: float):
-    #Function will except the spring constant and the displacemnt of the spring from equilibrium 
+    # Function will except the spring constant and the displacemnt of the spring from equilibrium
     """
     >>> spring_potential_energy(100,2)
     200
@@ -67,11 +68,10 @@ def spring_potential_energy(spring_constant: float, displacement: float):
     >>> spring_potential_energy(8,0)
     0.0
     """
-    if spring_constant < 0  :
+    if spring_constant < 0:
         raise ValueError("The values for spring_constant cannot be negative")
-    
-    return 0.5 * spring_constant * (displacement ** 2)
 
+    return 0.5 * spring_constant * (displacement**2)
 
 
 if __name__ == "__main__":
