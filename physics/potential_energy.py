@@ -67,7 +67,7 @@ def gravitational_potential_energy(mass: float, height: float) -> float:
     if height < 0:
         # handling of negative values of height
         raise ValueError("The height above the ground cannot be negative")
-        
+
     return mass * g * height
 
 def spring_potential_energy(spr_con: float, dspl: float) -> float:
