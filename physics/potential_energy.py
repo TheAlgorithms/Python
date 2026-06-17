@@ -40,10 +40,10 @@ def gravitational_potential_energy(mass: float, height: float) -> float:
 
     Returns:
         The value of energy in Joules
-    
+
     Complexity:
         Time Complexity: O(1) - Constant execution time for evaluation logic.
-        Space Complexity: O(1) - Constant memory allocation.   
+        Space Complexity: O(1) - Constant memory allocation.
 
     Examples:
         >>> gravitational_potential_energy(10,10)
@@ -70,6 +70,7 @@ def gravitational_potential_energy(mass: float, height: float) -> float:
 
     return mass * g * height
 
+
 def spring_potential_energy(spr_con: float, dspl: float) -> float:
     """
     Function calculates the spring potential energy of an object.
@@ -80,10 +81,10 @@ def spring_potential_energy(spr_con: float, dspl: float) -> float:
 
     Returns:
         The value of energy in Joules
-    
+
     Complexity:
         Time Complexity: O(1) - Constant execution time for evaluation logic.
-        Space Complexity: O(1) - Constant memory allocation.   
+        Space Complexity: O(1) - Constant memory allocation.
 
     Examples:
         >>> spring_potential_energy(100,2)
@@ -97,14 +98,14 @@ def spring_potential_energy(spr_con: float, dspl: float) -> float:
         >>> spring_potential_energy(17,4.5)
         172.125
     """
-    if spr_con < 0  :
+    if spr_con < 0:
         raise ValueError("The values for spring_constant cannot be negative")
-    
-    return 0.5 * spr_con * (dspl ** 2)
 
+    return 0.5 * spr_con * (dspl**2)
 
 
 if __name__ == "__main__":
     from doctest import testmod
-    print(spring_potential_energy(17,4.5))
+
+    print(spring_potential_energy(17, 4.5))
     testmod(name="gravitational_potential_energy")
