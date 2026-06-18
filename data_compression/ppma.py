@@ -238,10 +238,85 @@ class PPMA:
         )
 
 
+# Tests to prove correctness of implementation
+def test_ppma_encode():
+    """
+    Simple test for encode function of PPMA.
+    """
+    ppma = PPMA(max_order=2)
+    encoded = ppma.encode_text("ABBAABA")
+    assert encoded["ranges"] == [
+        (0, 1, 1),
+        (0, 1, 1),
+        (0, 1, 1),
+        (65, 66, 256),
+        (0, 1, 1),
+        (0, 1, 1),
+        (1, 2, 2),
+        (66, 67, 256),
+        (0, 1, 1),
+        (0, 1, 1),
+        (1, 2, 3),
+        (0, 1, 1),
+        (1, 2, 2),
+        (0, 1, 4),
+        (0, 1, 1),
+        (1, 2, 2),
+        (0, 2, 5),
+        (0, 1, 1),
+        (1, 2, 3),
+        (1, 2, 2),
+        (0, 1, 3),
+    ]
+
+
+def test_ppma_decode():
+    """
+    Simple test for decode function of PPMA.
+    """
+    ppma = PPMA(max_order=2)
+    decoded = ppma.decode_text(
+        [
+            (0, 1, 1),
+            (0, 1, 1),
+            (0, 1, 1),
+            (65, 66, 256),
+            (0, 1, 1),
+            (0, 1, 1),
+            (1, 2, 2),
+            (66, 67, 256),
+            (0, 1, 1),
+            (0, 1, 1),
+            (1, 2, 3),
+            (0, 1, 1),
+            (1, 2, 2),
+            (0, 1, 4),
+            (0, 1, 1),
+            (1, 2, 2),
+            (0, 2, 5),
+            (0, 1, 1),
+            (1, 2, 3),
+            (1, 2, 2),
+            (0, 1, 3),
+        ]
+    )
+    assert decoded == "ABBAABA"
+
+
+def test_ppma_circular():
+    """
+    Test for circular context in PPMA.
+    """
+    ppma = PPMA(max_order=2)
+    encoded = ppma.encode_text("ABBAABA")
+    decoded = ppma.decode_text(encoded["ranges"])
+    assert decoded == "ABBAABA"
+
+
 if __name__ == "__main__":
     # Example usage
     ppma = PPMA(max_order=2)
-    text = "ABABAB"
+    text = "ABBAABA"
     encoded = ppma.encode_text(text)
 
     print("Encoded output:")
