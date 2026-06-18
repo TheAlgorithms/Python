@@ -66,7 +66,7 @@ def pull():
     x ^= y >> 13
     y ^= x << 17
     x ^= y >> 5
-    return x 0xFFFFFFFF
+    return x & 0xFFFFFFFF
 
 
 def reset():
