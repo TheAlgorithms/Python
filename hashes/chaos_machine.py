@@ -14,7 +14,7 @@ machine_time = 0
 
 
 def push(seed):
-    global buffer_space, params_space, machine_time, K, m, t
+    global buffer_space, params_space, machine_time
 
     # Choosing Dynamical Systems (All)
     for key, value in enumerate(buffer_space):
@@ -40,14 +40,7 @@ def push(seed):
 
 
 def pull():
-    global buffer_space, params_space, machine_time, K, m, t
-
-    # PRNG (Xorshift by George Marsaglia)
-    def xorshift(x, y):
-        x ^= y >> 13
-        y ^= x << 17
-        x ^= y >> 5
-        return x
+    global buffer_space, params_space, machine_time
 
     # Choosing Dynamical Systems (Increment)
     key = machine_time % m
@@ -69,11 +62,15 @@ def pull():
     # Machine Time
     machine_time += 1
 
-    return xorshift(x, y) % 0xFFFFFFFF
+    # PRNG (Xorshift by George Marsaglia)
+    x ^= y >> 13
+    y ^= x << 17
+    x ^= y >> 5
+    return x 0xFFFFFFFF
 
 
 def reset():
-    global buffer_space, params_space, machine_time, K, m, t
+    global buffer_space, params_space, machine_time
 
     buffer_space = K
     params_space = [0] * m
@@ -95,7 +92,7 @@ if __name__ == "__main__":
     inp = ""
 
     # Pulling Data (Output)
-    while inp in ("e", "E"):
+    while inp not in ("e", "E"):
         print(f"{format(pull(), '#04x')}")
         print(buffer_space)
         print(params_space)
