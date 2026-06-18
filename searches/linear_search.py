@@ -7,7 +7,9 @@ python3 -m doctest -v linear_search.py
 For manual testing run:
 python3 linear_search.py
 """
-from typing import Any  
+
+from typing import Any
+
 
 def linear_search(sequence: list[Any], target: Any) -> int:
     """A pure Python implementation of a linear search algorithm
