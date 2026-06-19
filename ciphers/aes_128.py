@@ -1,9 +1,11 @@
 """
 Advanced Encryption Standard (AES) - 128 bit
 
-AES is a symmetric block cipher chosen by the U.S. government to protect classified information.
-AES is implemented in software and hardware throughout the world to encrypt sensitive data.
-This implementation provides the core AES-128 block encryption algorithm (operating on 16-byte blocks).
+AES is a symmetric block cipher chosen by the U.S. government to
+protect classified information. AES is implemented in software
+and hardware throughout the world to encrypt sensitive data.
+This implementation provides the core AES-128 block encryption
+algorithm (operating on 16-byte blocks).
 
 Reference: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 """
@@ -275,6 +277,11 @@ RCON = (0x00, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1B, 0x36)
 def sub_bytes(state: list[int]) -> None:
     """
     Applies the AES S-Box substitution to each byte in the state.
+
+    >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    >>> sub_bytes(state)
+    >>> state[:4]
+    [99, 124, 119, 123]
     """
     for i in range(16):
         state[i] = S_BOX[state[i]]
@@ -283,6 +290,11 @@ def sub_bytes(state: list[int]) -> None:
 def shift_rows(state: list[int]) -> None:
     """
     Shifts the rows of the 4x4 state matrix.
+
+    >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    >>> shift_rows(state)
+    >>> state
+    [0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, 1, 6, 11]
     """
     # Row 0: unchanged
     # Row 1: shifted left by 1
@@ -293,25 +305,39 @@ def shift_rows(state: list[int]) -> None:
     state[3], state[7], state[11], state[15] = state[15], state[3], state[7], state[11]
 
 
+<<<<<<< HEAD
 def galois_multiply(a: int, b: int) -> int:
+=======
+def galois_multiply(multiplicand: int, multiplier: int) -> int:
+>>>>>>> b42bd6a1 (Fix line length formatting issues for ruff)
     """
     Multiplies two numbers in the GF(2^8) Galois field.
+
+    >>> galois_multiply(2, 3)
+    6
+    >>> galois_multiply(87, 19)
+    254
     """
     p = 0
     for _ in range(8):
-        if b & 1:
-            p ^= a
-        hi_bit_set = a & 0x80
-        a <<= 1
+        if multiplier & 1:
+            p ^= multiplicand
+        hi_bit_set = multiplicand & 0x80
+        multiplicand <<= 1
         if hi_bit_set:
-            a ^= 0x11B  # x^8 + x^4 + x^3 + x + 1
-        b >>= 1
+            multiplicand ^= 0x11B  # x^8 + x^4 + x^3 + x + 1
+        multiplier >>= 1
     return p % 256
 
 
 def mix_columns(state: list[int]) -> None:
     """
     Mixes the columns of the state matrix to provide diffusion.
+
+    >>> state = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    >>> mix_columns(state)
+    >>> state
+    [2, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     """
     for i in range(4):
         col = state[i * 4 : (i + 1) * 4]
@@ -332,6 +358,12 @@ def mix_columns(state: list[int]) -> None:
 def add_round_key(state: list[int], round_key: list[int]) -> None:
     """
     XORs the state matrix with the current round key.
+
+    >>> state = [0] * 16
+    >>> round_key = [1] * 16
+    >>> add_round_key(state, round_key)
+    >>> state
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     """
     for i in range(16):
         state[i] ^= round_key[i]
@@ -340,6 +372,10 @@ def add_round_key(state: list[int], round_key: list[int]) -> None:
 def key_expansion(key: bytes) -> list[int]:
     """
     Expands a 16-byte key into 11 round keys (176 bytes total).
+
+    >>> key = bytes([0] * 16)
+    >>> len(key_expansion(key))
+    176
     """
     key_schedule = list(key)
     for i in range(4, 44):
