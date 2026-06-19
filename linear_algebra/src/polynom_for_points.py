@@ -12,27 +12,31 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
         ...
     ValueError: The program cannot work out a fitting polynomial.
     >>> points_to_polynomial([[1, 0], [2, 0], [3, 0]])
-    'f(x)=x^2*0.0+x^1*-0.0+x^0*0.0'
+    'f(x)=x^2*0.0+x^1*0.0+x^0*0.0'
     >>> points_to_polynomial([[1, 1], [2, 1], [3, 1]])
-    'f(x)=x^2*0.0+x^1*-0.0+x^0*1.0'
+    'f(x)=x^2*0.0+x^1*0.0+x^0*1.0'
     >>> points_to_polynomial([[1, 3], [2, 3], [3, 3]])
-    'f(x)=x^2*0.0+x^1*-0.0+x^0*3.0'
+    'f(x)=x^2*0.0+x^1*0.0+x^0*3.0'
     >>> points_to_polynomial([[1, 1], [2, 2], [3, 3]])
-    'f(x)=x^2*0.0+x^1*1.0+x^0*0.0'
+    'f(x)=x^2*4.9343245538895844e-17+x^1*1.0+x^0*0.0'
     >>> points_to_polynomial([[1, 1], [2, 4], [3, 9]])
-    'f(x)=x^2*1.0+x^1*-0.0+x^0*0.0'
+    'f(x)=x^2*1.0+x^1*0.0+x^0*0.0'
     >>> points_to_polynomial([[1, 3], [2, 6], [3, 11]])
-    'f(x)=x^2*1.0+x^1*-0.0+x^0*2.0'
+    'f(x)=x^2*0.9999999999999996+x^1*9.992007221626407e-16+x^0*1.9999999999999993'
     >>> points_to_polynomial([[1, -3], [2, -6], [3, -11]])
-    'f(x)=x^2*-1.0+x^1*-0.0+x^0*-2.0'
+    'f(x)=x^2*-0.9999999999999996+x^1*-9.992007221626407e-16+x^0*-1.9999999999999993'
     >>> points_to_polynomial([[1, 5], [2, 2], [3, 9]])
-    'f(x)=x^2*5.0+x^1*-18.0+x^0*18.0'
+    'f(x)=x^2*5.0+x^1*-18.000000000000004+x^0*18.000000000000004'
     >>> points_to_polynomial([[1, 1], [1, 2], [1, 3]])
     'x=1'
     >>> points_to_polynomial([[1, 1], [2, 2], [2, 2]])
     Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
+    >>> points_to_polynomial([[0, 1], [1, 2], [2, 5]])
+    'f(x)=x^2*1.0+x^1*0.0+x^0*1.0'
+    >>> points_to_polynomial([[0, 0], [1, 1], [2, 4]])
+    'f(x)=x^2*1.0+x^1*0.0+x^0*0.0'
     """
     if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
         raise ValueError("The program cannot work out a fitting polynomial.")
@@ -62,6 +66,12 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
 
     for count in range(x):
+        
+        # Partial pivoting: swap in the row with the largest absolute pivot value
+        max_row = max(range(count, x), key=lambda r: abs(matrix[r][count]))
+        matrix[count], matrix[max_row] = matrix[max_row], matrix[count]
+        vector[count], vector[max_row] = vector[max_row], vector[count]
+        
         for number in range(x):
             if count == number:
                 continue
