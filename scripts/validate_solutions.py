@@ -49,9 +49,27 @@ def all_solution_file_paths() -> list[pathlib.Path]:
 
 
 def get_files_url() -> str:
-    """Return the pull request number which triggered this action."""
-    with open(os.environ["GITHUB_EVENT_PATH"]) as file:
-        event = json.load(file)
+    """
+    Return the pull request files URL from the GitHub event file.
+
+    Example:
+    >>> import os, json, tempfile
+    >>> data = {"pull_request": {"url": "https://github.com/example/repo/pull/42"}}
+    >>> with tempfile.NamedTemporaryFile("w", delete=False) as f:
+    ...     json.dump(data, f)
+    ...     os.environ["GITHUB_EVENT_PATH"] = f.name
+    >>> get_files_url()
+    'https://github.com/example/repo/pull/42/files'
+    >>> os.unlink(f.name)
+
+    Raises:
+        KeyError: if 'pull_request' or 'url' keys are missing in the event file.
+        FileNotFoundError: if GITHUB_EVENT_PATH is missing.
+    """
+    import os, json
+
+    with open(os.environ["GITHUB_EVENT_PATH"]) as f:
+        event = json.load(f)
     return event["pull_request"]["url"] + "/files"
 
 
