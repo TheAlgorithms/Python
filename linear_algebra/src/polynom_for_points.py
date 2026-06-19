@@ -66,12 +66,11 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
 
     for count in range(x):
-        
         # Partial pivoting: swap in the row with the largest absolute pivot value
         max_row = max(range(count, x), key=lambda r: abs(matrix[r][count]))
         matrix[count], matrix[max_row] = matrix[max_row], matrix[count]
         vector[count], vector[max_row] = vector[max_row], vector[count]
-        
+
         for number in range(x):
             if count == number:
                 continue
