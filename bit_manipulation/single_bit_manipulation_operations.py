@@ -94,6 +94,32 @@ def get_bit(number: int, position: int) -> int:
     return int((number & (1 << position)) != 0)
 
 
+def clear_least_significant_set_bit(number: int) -> int:
+    """
+    Clear the least significant set bit.
+
+    Details: perform bitwise operation for the given number X.
+    Where X is in bits, and the least significant set, i.e., the rightmost 1,
+    is cleared.
+
+    >>> clear_least_significant_set_bit(0b1101) # 0b1100
+    12
+    >>> clear_least_significant_set_bit(0b1111) # 0b1110
+    14
+    >>> clear_least_significant_set_bit(0b1100) # 0b1000
+    8
+    >>> clear_least_significant_set_bit(0b0) # 0b0
+    0
+    >>> clear_least_significant_set_bit(0b1) # 0b0
+    0
+    >>> clear_least_significant_set_bit(-5) # -6 -> Handling the negative numbers
+    -6
+    >>> clear_least_significant_set_bit(-6) # -8 -> Handling the negative even numbers
+    -8
+    """
+    return number & (number - 1)
+
+
 if __name__ == "__main__":
     import doctest
 
