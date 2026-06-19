@@ -81,9 +81,7 @@ class PushRelabel:
                 self.excess[source] -= cap
 
         # Process vertices with excess
-        active = [
-            v for v in range(n) if v not in (source, sink) and self.excess[v] > 0
-        ]
+        active = [v for v in range(n) if v not in (source, sink) and self.excess[v] > 0]
 
         while active:
             u = active.pop()

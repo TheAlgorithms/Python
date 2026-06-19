@@ -33,7 +33,7 @@ class MaxBipartiteIndependentSet:
         Returns:
             Tuple of (left_independent_set, right_independent_set)
 
-               """
+        """
         # Find maximum matching using Hopcroft-Karp
         pair_u, pair_v = self._hopcroft_karp()
 
