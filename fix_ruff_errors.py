@@ -11,8 +11,8 @@ def fix_floyd_warshall():
     p = Path("graphs/floyd_warshall.py")
     text = p.read_text()
     text = text.replace(
-        'current = next_node[current][end]  # type: ignore',
-        'current = next_node[current][end]  # type: ignore[assignment]'
+        "current = next_node[current][end]  # type: ignore",
+        "current = next_node[current][end]  # type: ignore[assignment]",
     )
     p.write_text(text)
     print("fixed graphs/floyd_warshall.py")
@@ -22,8 +22,7 @@ def fix_ford_fulkerson():
     p = Path("graphs/ford_fulkerson.py")
     text = p.read_text()
     text = text.replace(
-        'u = parent[s]  # type: ignore',
-        'u = parent[s]  # type: ignore[assignment]'
+        "u = parent[s]  # type: ignore", "u = parent[s]  # type: ignore[assignment]"
     )
     p.write_text(text)
     print("fixed graphs/ford_fulkerson.py")
@@ -54,15 +53,15 @@ def fix_hopcroft_karp():
     text = text.replace(
         'self.dist[u] = float("inf")  # type: ignore',
         'self.dist[u] = float("inf")  # type: ignore[assignment]',
-        1
+        1,
     )
     text = text.replace(
         'if pair_v is not None and self.dist[pair_v] == float("inf"):  # type: ignore',
-        'if pair_v is not None and self.dist[pair_v] == float("inf"):  # type: ignore[operator]'
+        'if pair_v is not None and self.dist[pair_v] == float("inf"):  # type: ignore[operator]',
     )
     text = text.replace(
         'self.dist[u] = float("inf")  # type: ignore',
-        'self.dist[u] = float("inf")  # type: ignore[assignment]'
+        'self.dist[u] = float("inf")  # type: ignore[assignment]',
     )
 
     old = """                if self.pair_u[u] is None:
@@ -90,25 +89,25 @@ def fix_max_bipartite_independent_set():
     text = p.read_text()
 
     text = text.replace(
-        '# Minimum vertex cover = (U - Z) \u222a (V \u2229 Z)',
-        '# Minimum vertex cover = (U - Z) union (V intersect Z)'
+        "# Minimum vertex cover = (U - Z) \u222a (V \u2229 Z)",
+        "# Minimum vertex cover = (U - Z) union (V intersect Z)",
     )
     text = text.replace(
-        '# Maximum independent set = Z \u222a (V - Z) = complement of min vertex cover',
-        '# Maximum independent set = Z union (V - Z) = complement of min vertex cover'
+        "# Maximum independent set = Z \u222a (V - Z) = complement of min vertex cover",
+        "# Maximum independent set = Z union (V - Z) = complement of min vertex cover",
     )
     text = text.replace(
         'dist[u] = float("inf")  # type: ignore',
         'dist[u] = float("inf")  # type: ignore[assignment]',
-        1
+        1,
     )
     text = text.replace(
         'if pu is not None and dist[pu] == float("inf"):  # type: ignore',
-        'if pu is not None and dist[pu] == float("inf"):  # type: ignore[operator]'
+        'if pu is not None and dist[pu] == float("inf"):  # type: ignore[operator]',
     )
     text = text.replace(
         'dist[u] = float("inf")  # type: ignore',
-        'dist[u] = float("inf")  # type: ignore[assignment]'
+        'dist[u] = float("inf")  # type: ignore[assignment]',
     )
 
     p.write_text(text)
@@ -119,8 +118,8 @@ def fix_push_relabel():
     p = Path("graphs/push_relabel.py")
     text = p.read_text()
 
-    old = 'v for v in range(n) if v != source and v != sink and self.excess[v] > 0'
-    new = 'v for v in range(n) if v not in (source, sink) and self.excess[v] > 0'
+    old = "v for v in range(n) if v != source and v != sink and self.excess[v] > 0"
+    new = "v for v in range(n) if v not in (source, sink) and self.excess[v] > 0"
     text = text.replace(old, new)
 
     old = """                    if (
@@ -143,13 +142,10 @@ def fix_test_graph_algorithms():
     text = p.read_text()
 
     text = text.replace(
-        'dist, next_node = floyd_warshall(graph)',
-        '_dist, next_node = floyd_warshall(graph)'
+        "dist, next_node = floyd_warshall(graph)",
+        "_dist, next_node = floyd_warshall(graph)",
     )
-    text = text.replace(
-        'result = hk.max_matching()',
-        'hk.max_matching()'
-    )
+    text = text.replace("result = hk.max_matching()", "hk.max_matching()")
 
     p.write_text(text)
     print("fixed graphs/tests/test_graph_algorithms.py")
