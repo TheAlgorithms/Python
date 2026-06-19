@@ -91,10 +91,7 @@ class PushRelabel:
             pushed = False
             for v in range(n):
                 if self.push(u, v):
-                    if (
-                        v not in (source, sink)
-                        and self.excess[v] == self.excess[u] + 1
-                    ):
+                    if v not in (source, sink) and self.excess[v] > 0:
                         active.append(v)
                     pushed = True
                     if self.excess[u] == 0:

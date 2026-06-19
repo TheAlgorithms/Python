@@ -67,7 +67,7 @@ class TestJohnsonsAlgorithm:
             4: [],
         }
         dist = johnsons_algorithm(graph, 5)
-        assert dist[0][4] == -1  # 0->1->3->4 = -5+3+2 = 0, wait let me check
+        assert dist[0][4] == 0  # 0->1->3->4 = -5+3+2 = 0, wait let me check
         # Actually: 0->1 (-5), 1->2 (4), 2->4 (1) = 0, or 0->1->3->4 = 0
 
     def test_negative_cycle(self):
