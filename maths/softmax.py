@@ -1,56 +1,96 @@
-"""
-This script demonstrates the implementation of the Softmax function.
-
-Its a function that takes as input a vector of K real numbers, and normalizes
-it into a probability distribution consisting of K probabilities proportional
-to the exponentials of the input numbers. After softmax, the elements of the
-vector always sum up to 1.
-
-Script inspired from its corresponding Wikipedia article
-https://en.wikipedia.org/wiki/Softmax_function
-"""
-
 import numpy as np
 
 
-def softmax(vector):
+def softmax(vector: np.ndarray | list | tuple, axis: int | None = -1) -> np.ndarray:
     """
-    Implements the softmax function
+    Compute the softmax of `vector` along `axis` in a numerically-stable way.
 
-    Parameters:
-        vector (np.array,list,tuple): A  numpy array of shape (1,n)
-        consisting of real values or a similar list,tuple
+    Parameters
+    ----------
+    vector : array_like (np.ndarray, list, or tuple)
+        Input data (vector, matrix, tensor). Will be converted to float ndarray.
+    axis : int or None, optional
+        Axis along which to compute softmax. If None, compute softmax over
+        the flattened array (single distribution). Default is -1 (last axis).
 
+    Returns
+    -------
+    np.ndarray
+        Same shape as `vector`, with softmax applied along `axis`. Probabilities
+        sum to 1 along `axis` (or to 1 overall if axis is None).
 
-    Returns:
-        softmax_vec (np.array): The input numpy array  after applying
-        softmax.
-
-    The softmax vector adds up to one. We need to ceil to mitigate for
-    precision
-    >>> float(np.ceil(np.sum(softmax([1,2,3,4]))))
-    1.0
-
-    >>> vec = np.array([5,5])
-    >>> softmax(vec)
-    array([0.5, 0.5])
-
-    >>> softmax([0])
-    array([1.])
+    Raises
+    ------
+    ValueError
+        If input is empty or cannot be converted to a float ndarray.
     """
+    try:
+        vector = np.asarray(vector, dtype=float)
+    except TypeError as e:
+        msg = f"Could not convert input to float ndarray: {e}"
+        raise ValueError(msg)
 
-    # Calculate e^x for each x in your vector where e is Euler's
-    # number (approximately 2.718)
-    exponent_vector = np.exp(vector)
+    if vector.size == 0:
+        raise ValueError("softmax input must be non-empty")
 
-    # Add up the all the exponentials
-    sum_of_exponents = np.sum(exponent_vector)
+    if axis is None:
+        # flatten to single distribution
+        vector_max = np.max(vector)
+        e_vector = np.exp(vector - vector_max)
+        return e_vector / e_vector.sum()
 
-    # Divide every exponent by the sum of all exponents
-    softmax_vector = exponent_vector / sum_of_exponents
+    # subtract max along axis with keepdims for numerical stability/broadcasting
+    vector_max = np.max(vector, axis=axis, keepdims=True)
+    e_vector = np.exp(vector - vector_max)
+    denom = e_vector.sum(axis=axis, keepdims=True)
+    return e_vector / denom
 
-    return softmax_vector
+
+def _test_softmax():
+    import numpy.testing as npt
+
+    # Typical 1D input
+    result = softmax([1, 2, 3])
+    npt.assert_almost_equal(result.sum(), 1)
+
+    # Typical 2D, axis=-1
+    result = softmax([[1, 2, 3], [4, 5, 6]])
+    npt.assert_almost_equal(result.sum(axis=-1).tolist(), [1, 1])
+
+    # Scalar input
+    result = softmax([0])
+    npt.assert_almost_equal(result, [1.0])
+
+    # Identical values
+    result = softmax([5, 5])
+    npt.assert_almost_equal(result, [0.5, 0.5])
+
+    # Large values for numeric stability
+    result = softmax([1000, 1001])
+    npt.assert_almost_equal(result.sum(), 1)
+
+    # axis=None flatten
+    data = np.array([[1, 2], [3, 4]])
+    flat_result = softmax(data, axis=None)
+    npt.assert_almost_equal(flat_result.sum(), 1)
+
+    # Empty input error
+    try:
+        softmax([])
+        raise AssertionError("Expected ValueError for empty input")
+    except ValueError:
+        pass
+
+    print("All tests passed.")
 
 
 if __name__ == "__main__":
-    print(softmax((0,)))
+    print("Softmax demonstration:")
+
+    print("softmax((0,)) =", softmax((0,)))
+
+    print("softmax([1, 2, 3]) =", softmax([1, 2, 3]))
+
+    print("softmax([[1, 2, 3], [4, 5, 6]]) =", softmax([[1, 2, 3], [4, 5, 6]]))
+
+    _test_softmax()
