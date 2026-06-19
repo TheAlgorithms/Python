@@ -148,12 +148,14 @@ def bfs(g, s):
 
 def dijk(g, s):
     """
-    dijk({1: [(2, 7), (3, 9), (6, 14)],
-        2: [(1, 7), (3, 10), (4, 15)],
-        3: [(1, 9), (2, 10), (4, 11), (6, 2)],
-        4: [(2, 15), (3, 11), (5, 6)],
-        5: [(4, 6), (6, 9)],
-        6: [(1, 14), (3, 2), (5, 9)]}, 1)
+    >>> dijk({
+    ...     1: [(2, 7), (3, 9), (6, 14)],
+    ...     2: [(1, 7), (3, 10), (4, 15)],
+    ...     3: [(1, 9), (2, 10), (4, 11), (6, 2)],
+    ...     4: [(2, 15), (3, 11), (5, 6)],
+    ...     5: [(4, 6), (6, 9)],
+    ...     6: [(1, 14), (3, 2), (5, 9)]
+    ... }, 1)
     7
     9
     11
@@ -165,7 +167,7 @@ def dijk(g, s):
         if len(known) == len(g) - 1:
             break
         mini = 100000
-        for key, value in dist:
+        for key, value in dist.items():
             if key not in known and value < mini:
                 mini = value
                 u = key
@@ -187,6 +189,15 @@ def dijk(g, s):
 
 
 def topo(g, ind=None, q=None):
+    """
+    Perform a topological sort on a directed acyclic graph.
+
+    >>> topo({1: [2, 3], 2: [4], 3: [4], 4: []})
+    1
+    2
+    3
+    4
+    """
     if q is None:
         q = [1]
     if ind is None:
@@ -256,16 +267,35 @@ def adjm():
 """
 
 
-def floy(a_and_n):
+def floyd_warshall(a_and_n):
+    """
+    Floyd-Warshall algorithm to compute all-pairs shortest paths.
+
+    Parameters:
+        a_and_n (tuple): A tuple (a, n) where
+            a is an N x N adjacency matrix (list of lists),
+            n is the number of nodes.
+
+    Example:
+    >>> floyd_warshall(([
+    ...     [0, 5, float('inf')],
+    ...     [50, 0, 10],
+    ...     [float('inf'), float('inf'), 0]
+    ... ], 3))
+    [[0, 5, 15], [50, 0, 10], [inf, inf, 0]]
+    """
+
     (a, n) = a_and_n
-    dist = list(a)
+    dist = [row[:] for row in a]  # create a deep copy of matrix a
     path = [[0] * n for i in range(n)]
+
     for k in range(n):
         for i in range(n):
             for j in range(n):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
-                    path[i][k] = k
+                    path[i][k] = k  # possible error
+
     print(dist)
 
 
