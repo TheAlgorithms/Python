@@ -57,7 +57,7 @@ def dijkstra(
     predecessors[source] = None
 
     while queue:
-        (dist, (x, y)) = heappop(queue)
+        dist, (x, y) = heappop(queue)
         if (x, y) in visited:
             continue
         visited.add((x, y))

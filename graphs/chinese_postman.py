@@ -9,9 +9,6 @@ Time Complexity: O(V³) for Floyd-Warshall + O(2^k * k²) for matching
 Space Complexity: O(V²)
 """
 
-from typing import List, Tuple, Dict, Set
-import itertools
-
 
 class ChinesePostman:
     """
@@ -20,7 +17,7 @@ class ChinesePostman:
 
     def __init__(self, n: int):
         self.n = n
-        self.adj: List[List[Tuple[int, int]]] = [[] for _ in range(n)]
+        self.adj: list[list[tuple[int, int]]] = [[] for _ in range(n)]
         self.total_weight = 0
 
     def add_edge(self, u: int, v: int, w: int) -> None:
@@ -29,7 +26,7 @@ class ChinesePostman:
         self.adj[v].append((u, w))
         self.total_weight += w
 
-    def _floyd_warshall(self) -> List[List[float]]:
+    def _floyd_warshall(self) -> list[list[float]]:
         """All-pairs shortest paths."""
         n = self.n
         dist = [[float("inf")] * n for _ in range(n)]
@@ -44,12 +41,11 @@ class ChinesePostman:
         for k in range(n):
             for i in range(n):
                 for j in range(n):
-                    if dist[i][k] + dist[k][j] < dist[i][j]:
-                        dist[i][j] = dist[i][k] + dist[k][j]
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
         return dist
 
-    def _find_odd_degree_vertices(self) -> List[int]:
+    def _find_odd_degree_vertices(self) -> list[int]:
         """Find vertices with odd degree."""
         odd = []
         for u in range(self.n):
@@ -58,7 +54,7 @@ class ChinesePostman:
         return odd
 
     def _min_weight_perfect_matching(
-        self, odd_vertices: List[int], dist: List[List[float]]
+        self, odd_vertices: list[int], dist: list[list[float]]
     ) -> float:
         """
         Find minimum weight perfect matching on odd degree vertices.
@@ -69,7 +65,7 @@ class ChinesePostman:
             return 0
 
         # Dynamic programming: dp[mask] = min cost to match vertices in mask
-        dp: Dict[int, float] = {0: 0}
+        dp: dict[int, float] = {0: 0}
 
         for mask in range(1 << k):
             if bin(mask).count("1") % 2 == 1:
@@ -97,7 +93,7 @@ class ChinesePostman:
         full_mask = (1 << k) - 1
         return dp.get(full_mask, 0)
 
-    def solve(self) -> Tuple[float, List[int]]:
+    def solve(self) -> tuple[float, list[int]]:
         """
         Solve Chinese Postman Problem.
 
@@ -137,16 +133,14 @@ class ChinesePostman:
         return float(self.total_weight + matching_cost), circuit
 
     def _add_matching_edges(
-        self, odd_vertices: List[int], dist: List[List[float]]
+        self, odd_vertices: list[int], dist: list[list[float]]
     ) -> None:
         """Duplicate edges based on minimum matching (simplified)."""
         # In practice, reconstruct path and add edges
         # For this implementation, we assume edges can be duplicated
-        pass
 
-    def _find_eulerian_circuit(self) -> List[int]:
+    def _find_eulerian_circuit(self) -> list[int]:
         """Find Eulerian circuit using Hierholzer's algorithm."""
-        n = self.n
         adj_copy = [list(neighbors) for neighbors in self.adj]
         circuit = []
         stack = [0]
@@ -168,8 +162,8 @@ class ChinesePostman:
 
 
 def chinese_postman(
-    n: int, edges: List[Tuple[int, int, int]]
-) -> Tuple[float, List[int]]:
+    n: int, edges: list[tuple[int, int, int]]
+) -> tuple[float, list[int]]:
     """
     Convenience function for Chinese Postman.
 

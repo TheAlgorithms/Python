@@ -3,22 +3,23 @@ Comprehensive tests for graph algorithms.
 Run with: pytest tests/test_graph_algorithms.py -v
 """
 
+import os
+import sys
+
+import pytest
+
+from graphs.chinese_postman import ChinesePostman
+from graphs.floyd_warshall import floyd_warshall, reconstruct_path
+from graphs.ford_fulkerson import FordFulkerson
+from graphs.heavy_light_decomposition import HeavyLightDecomposition
+from graphs.hopcroft_karp import HopcroftKarp
+from graphs.johnsons_algorithm import johnsons_algorithm
 from graphs.max_bipartite_independent_set import (
     MaxBipartiteIndependentSet,
-    max_bipartite_independent_set,
 )
-from graphs.heavy_light_decomposition import HeavyLightDecomposition
-from graphs.traveling_salesman import TravelingSalesman, held_karp
-from graphs.chinese_postman import ChinesePostman, chinese_postman
-from graphs.two_sat import TwoSAT, solve_2sat
 from graphs.push_relabel import PushRelabel
-from graphs.ford_fulkerson import FordFulkerson, ford_fulkerson
-from graphs.hopcroft_karp import HopcroftKarp, hopcroft_karp
-from graphs.johnsons_algorithm import johnsons_algorithm
-from graphs.floyd_warshall import floyd_warshall, reconstruct_path
-import pytest
-import sys
-import os
+from graphs.traveling_salesman import TravelingSalesman, held_karp
+from graphs.two_sat import TwoSAT, solve_2sat
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -49,7 +50,7 @@ class TestFloydWarshall:
             [5, float("inf"), 0, 1],
             [2, float("inf"), float("inf"), 0],
         ]
-        dist, next_node = floyd_warshall(graph)
+        _dist, next_node = floyd_warshall(graph)
         path = reconstruct_path(next_node, 0, 3)
         assert path == [0, 1, 2, 3]
 
@@ -344,7 +345,7 @@ class TestPerformance:
             hk.add_edge(random.randint(0, n - 1), random.randint(0, m - 1))
 
         start = time.perf_counter()
-        result = hk.max_matching()
+        hk.max_matching()
         elapsed = time.perf_counter() - start
 
         assert elapsed < 2.0

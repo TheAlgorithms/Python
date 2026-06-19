@@ -9,12 +9,11 @@ Space Complexity: O(V²)
 """
 
 import heapq
-from typing import List, Tuple, Dict, Optional
 
 
 def bellman_ford(
-    graph: Dict[int, List[Tuple[int, int]]], source: int, n: int
-) -> Tuple[List[float], bool]:
+    graph: dict[int, list[tuple[int, int]]], source: int, n: int
+) -> tuple[list[float], bool]:
     """
     Bellman-Ford to detect negative cycles and compute potentials.
 
@@ -49,8 +48,8 @@ def bellman_ford(
 
 
 def dijkstra_with_potential(
-    graph: Dict[int, List[Tuple[int, int]]], source: int, n: int, potential: List[float]
-) -> List[float]:
+    graph: dict[int, list[tuple[int, int]]], source: int, n: int, potential: list[float]
+) -> list[float]:
     """
     Dijkstra with reweighted edges using Johnson's potential.
     """
@@ -79,8 +78,8 @@ def dijkstra_with_potential(
 
 
 def johnsons_algorithm(
-    graph: Dict[int, List[Tuple[int, int]]], n: int
-) -> List[List[float]]:
+    graph: dict[int, list[tuple[int, int]]], n: int
+) -> list[list[float]]:
     """
     Johnson's algorithm for all-pairs shortest paths.
 

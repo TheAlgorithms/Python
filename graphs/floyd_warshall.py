@@ -8,12 +8,10 @@ Time Complexity: O(V³)
 Space Complexity: O(V²)
 """
 
-from typing import List, Tuple, Optional
-
 
 def floyd_warshall(
-    graph: List[List[float]],
-) -> Tuple[List[List[float]], List[List[Optional[int]]]]:
+    graph: list[list[float]],
+) -> tuple[list[list[float]], list[list[int | None]]]:
     """
     Compute all-pairs shortest paths using Floyd-Warshall algorithm.
 
@@ -61,8 +59,8 @@ def floyd_warshall(
 
 
 def reconstruct_path(
-    next_node: List[List[Optional[int]]], start: int, end: int
-) -> Optional[List[int]]:
+    next_node: list[list[int | None]], start: int, end: int
+) -> list[int] | None:
     """
     Reconstruct shortest path from start to end using next_node matrix.
 
@@ -75,13 +73,13 @@ def reconstruct_path(
     current = start
 
     while current != end:
-        current = next_node[current][end]  # type: ignore
+        current = next_node[current][end]
         path.append(current)
 
     return path
 
 
-def floyd_warshall_optimized(graph: List[List[float]]) -> List[List[float]]:
+def floyd_warshall_optimized(graph: list[list[float]]) -> list[list[float]]:
     """
     Space-optimized version using only distance matrix.
     Use when path reconstruction is not needed.
@@ -100,8 +98,7 @@ def floyd_warshall_optimized(graph: List[List[float]]) -> List[List[float]]:
                 if dist[k][j] == float("inf"):
                     continue
                 new_dist = dist[i][k] + dist[k][j]
-                if new_dist < dist[i][j]:
-                    dist[i][j] = new_dist
+                dist[i][j] = min(dist[i][j], new_dist)
 
     return dist
 

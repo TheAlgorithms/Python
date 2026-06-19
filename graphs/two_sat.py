@@ -8,7 +8,6 @@ Time Complexity: O(V + E) = O(n) where n is number of variables
 Space Complexity: O(V + E)
 """
 
-from typing import List, Tuple, Optional
 from collections import defaultdict
 
 
@@ -23,8 +22,8 @@ class TwoSAT:
 
     def __init__(self, n: int):
         self.n = n  # Number of variables
-        self.graph: defaultdict[int, List[int]] = defaultdict(list)
-        self.rev_graph: defaultdict[int, List[int]] = defaultdict(list)
+        self.graph: defaultdict[int, list[int]] = defaultdict(list)
+        self.rev_graph: defaultdict[int, list[int]] = defaultdict(list)
 
     def _var(self, i: int, val: bool) -> int:
         """Get literal index: 2*i for False, 2*i+1 for True."""
@@ -58,7 +57,7 @@ class TwoSAT:
         """Add constraint: NOT ((x_i = val_i) AND (x_j = val_j))."""
         self.add_or(i, not val_i, j, not val_j)
 
-    def solve(self) -> Optional[List[bool]]:
+    def solve(self) -> list[bool] | None:
         """
         Solve the 2-SAT problem.
 
@@ -120,9 +119,7 @@ class TwoSAT:
         return assignment
 
 
-def solve_2sat(
-    n: int, clauses: List[Tuple[int, bool, int, bool]]
-) -> Optional[List[bool]]:
+def solve_2sat(n: int, clauses: list[tuple[int, bool, int, bool]]) -> list[bool] | None:
     """
     Convenience function for 2-SAT.
 

@@ -8,8 +8,6 @@ Time Complexity: O(V²√E) or O(V³) for basic implementation
 Space Complexity: O(V²)
 """
 
-from typing import List, Optional
-
 
 class PushRelabel:
     """
@@ -18,8 +16,8 @@ class PushRelabel:
 
     def __init__(self, n: int):
         self.n = n
-        self.capacity: List[List[int]] = [[0] * n for _ in range(n)]
-        self.flow: List[List[int]] = [[0] * n for _ in range(n)]
+        self.capacity: list[list[int]] = [[0] * n for _ in range(n)]
+        self.flow: list[list[int]] = [[0] * n for _ in range(n)]
         self.height = [0] * n
         self.excess = [0] * n
 
@@ -84,7 +82,7 @@ class PushRelabel:
 
         # Process vertices with excess
         active = [
-            v for v in range(n) if v != source and v != sink and self.excess[v] > 0
+            v for v in range(n) if v not in (source, sink) and self.excess[v] > 0
         ]
 
         while active:
@@ -94,8 +92,7 @@ class PushRelabel:
             for v in range(n):
                 if self.push(u, v):
                     if (
-                        v != source
-                        and v != sink
+                        v not in (source, sink)
                         and self.excess[v] == self.excess[u] + 1
                     ):
                         active.append(v)

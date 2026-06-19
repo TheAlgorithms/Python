@@ -8,7 +8,6 @@ Time Complexity: O(VE²)
 Space Complexity: O(V²)
 """
 
-from typing import List, Tuple, Optional
 from collections import deque
 
 
@@ -20,21 +19,21 @@ class FordFulkerson:
     def __init__(self, n: int):
         self.n = n
         # Residual graph as adjacency matrix
-        self.capacity: List[List[int]] = [[0] * n for _ in range(n)]
-        self.flow: List[List[int]] = [[0] * n for _ in range(n)]
+        self.capacity: list[list[int]] = [[0] * n for _ in range(n)]
+        self.flow: list[list[int]] = [[0] * n for _ in range(n)]
 
     def add_edge(self, u: int, v: int, cap: int) -> None:
         """Add directed edge with capacity."""
         self.capacity[u][v] += cap
 
-    def bfs(self, source: int, sink: int) -> Tuple[bool, List[Optional[int]]]:
+    def bfs(self, source: int, sink: int) -> tuple[bool, list[int | None]]:
         """
         Find shortest augmenting path using BFS.
 
         Returns:
             Tuple of (found_path, parent_array)
         """
-        parent: List[Optional[int]] = [None] * self.n
+        parent: list[int | None] = [None] * self.n
         parent[source] = -1
         queue = deque([source])
 
@@ -75,7 +74,7 @@ class FordFulkerson:
             path_flow = float("inf")
             s = sink
             while s != source:
-                u = parent[s]  # type: ignore
+                u = parent[s]  # type: ignore[assignment]
                 residual = self.capacity[u][s] - self.flow[u][s]
                 path_flow = min(path_flow, residual)
                 s = u
@@ -83,7 +82,7 @@ class FordFulkerson:
             # Update flow along path
             s = sink
             while s != source:
-                u = parent[s]  # type: ignore
+                u = parent[s]  # type: ignore[assignment]
                 self.flow[u][s] += path_flow
                 self.flow[s][u] -= path_flow  # Reverse edge
                 s = u
@@ -92,7 +91,7 @@ class FordFulkerson:
 
         return total_flow
 
-    def get_flow_edges(self) -> List[Tuple[int, int, int]]:
+    def get_flow_edges(self) -> list[tuple[int, int, int]]:
         """
         Get edges with positive flow.
         """
@@ -104,7 +103,7 @@ class FordFulkerson:
         return edges
 
 
-def ford_fulkerson(capacity: List[List[int]], source: int, sink: int) -> int:
+def ford_fulkerson(capacity: list[list[int]], source: int, sink: int) -> int:
     """
     Convenience function for Ford-Fulkerson.
 

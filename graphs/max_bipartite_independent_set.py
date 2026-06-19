@@ -8,7 +8,6 @@ Time Complexity: O(E√V) using Hopcroft-Karp for matching
 Space Complexity: O(V + E)
 """
 
-from typing import List, Tuple, Set, Optional
 from collections import deque
 
 
@@ -21,13 +20,13 @@ class MaxBipartiteIndependentSet:
         self.n_left = n_left
         self.n_right = n_right
         self.n = n_left + n_right
-        self.adj: List[List[int]] = [[] for _ in range(n_left)]
+        self.adj: list[list[int]] = [[] for _ in range(n_left)]
 
     def add_edge(self, u: int, v: int) -> None:
         """Add edge from left u to right v."""
         self.adj[u].append(v)
 
-    def solve(self) -> Tuple[Set[int], Set[int]]:
+    def solve(self) -> tuple[set[int], set[int]]:
         """
         Find maximum independent set.
 
@@ -51,17 +50,17 @@ class MaxBipartiteIndependentSet:
         # Z = vertices reachable from free vertices in U via alternating paths
         z_u, z_v = self._find_z_set(pair_u, pair_v)
 
-        # Minimum vertex cover = (U - Z) ∪ (V ∩ Z)
-        # Maximum independent set = Z ∪ (V - Z) = complement of min vertex cover
+        # Minimum vertex cover = (U - Z) union (V intersect Z)
+        # Maximum independent set = Z union (V - Z) = complement of min vertex cover
         left_mis = z_u
         right_mis = set(range(self.n_right)) - z_v
 
         return left_mis, right_mis
 
-    def _hopcroft_karp(self) -> Tuple[List[Optional[int]], List[Optional[int]]]:
+    def _hopcroft_karp(self) -> tuple[list[int | None], list[int | None]]:
         """Hopcroft-Karp algorithm for maximum matching."""
-        pair_u: List[Optional[int]] = [None] * self.n_left
-        pair_v: List[Optional[int]] = [None] * self.n_right
+        pair_u: list[int | None] = [None] * self.n_left
+        pair_v: list[int | None] = [None] * self.n_right
         dist = [0] * self.n_left
 
         def bfs() -> bool:
@@ -71,14 +70,14 @@ class MaxBipartiteIndependentSet:
                     dist[u] = 0
                     queue.append(u)
                 else:
-                    dist[u] = float("inf")  # type: ignore
+                    dist[u] = float("inf")  # type: ignore[assignment][assignment]
 
             found = False
             while queue:
                 u = queue.popleft()
                 for v in self.adj[u]:
                     pu = pair_v[v]
-                    if pu is not None and dist[pu] == float("inf"):  # type: ignore
+                    if pu is not None and dist[pu] == float("inf"):  # type: ignore[operator]
                         dist[pu] = dist[u] + 1
                         queue.append(pu)
                     elif pu is None:
@@ -92,7 +91,7 @@ class MaxBipartiteIndependentSet:
                     pair_u[u] = v
                     pair_v[v] = u
                     return True
-            dist[u] = float("inf")  # type: ignore
+            dist[u] = float("inf")  # type: ignore[assignment]
             return False
 
         while bfs():
@@ -103,11 +102,11 @@ class MaxBipartiteIndependentSet:
         return pair_u, pair_v
 
     def _find_z_set(
-        self, pair_u: List[Optional[int]], pair_v: List[Optional[int]]
-    ) -> Tuple[Set[int], Set[int]]:
+        self, pair_u: list[int | None], pair_v: list[int | None]
+    ) -> tuple[set[int], set[int]]:
         """Find Z set for Konig's theorem (vertices reachable from free U vertices)."""
-        z_u: Set[int] = set()
-        z_v: Set[int] = set()
+        z_u: set[int] = set()
+        z_v: set[int] = set()
 
         # BFS from free vertices in U
         queue = deque()
@@ -136,8 +135,8 @@ class MaxBipartiteIndependentSet:
 
 
 def max_bipartite_independent_set(
-    n_left: int, n_right: int, edges: List[Tuple[int, int]]
-) -> Tuple[Set[int], Set[int]]:
+    n_left: int, n_right: int, edges: list[tuple[int, int]]
+) -> tuple[set[int], set[int]]:
     """
     Convenience function.
 

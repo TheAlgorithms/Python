@@ -8,7 +8,6 @@ Time Complexity: O(E√V)
 Space Complexity: O(V)
 """
 
-from typing import List, Dict, Set, Optional
 from collections import deque
 
 
@@ -22,10 +21,10 @@ class HopcroftKarp:
     def __init__(self, n_left: int, n_right: int):
         self.n = n_left
         self.m = n_right
-        self.graph: Dict[int, List[int]] = {u: [] for u in range(n_left)}
-        self.pair_u: List[Optional[int]] = [None] * n_left
-        self.pair_v: List[Optional[int]] = [None] * n_right
-        self.dist: List[int] = [0] * n_left
+        self.graph: dict[int, list[int]] = {u: [] for u in range(n_left)}
+        self.pair_u: list[int | None] = [None] * n_left
+        self.pair_v: list[int | None] = [None] * n_right
+        self.dist: list[int] = [0] * n_left
 
     def add_edge(self, u: int, v: int) -> None:
         """Add edge from left partition u to right partition v."""
@@ -43,7 +42,7 @@ class HopcroftKarp:
                 self.dist[u] = 0
                 queue.append(u)
             else:
-                self.dist[u] = float("inf")  # type: ignore
+                self.dist[u] = float("inf")  # type: ignore[assignment][assignment]
 
         found_augmenting = False
 
@@ -52,7 +51,7 @@ class HopcroftKarp:
 
             for v in self.graph[u]:
                 pair_v = self.pair_v[v]
-                if pair_v is not None and self.dist[pair_v] == float("inf"):  # type: ignore
+                if pair_v is not None and self.dist[pair_v] == float("inf"):  # type: ignore[operator]
                     self.dist[pair_v] = self.dist[u] + 1
                     queue.append(pair_v)
                 elif pair_v is None:
@@ -73,7 +72,7 @@ class HopcroftKarp:
                 self.pair_v[v] = u
                 return True
 
-        self.dist[u] = float("inf")  # type: ignore
+        self.dist[u] = float("inf")  # type: ignore[assignment]
         return False
 
     def max_matching(self) -> int:
@@ -99,20 +98,19 @@ class HopcroftKarp:
 
         while self.bfs():
             for u in range(self.n):
-                if self.pair_u[u] is None:
-                    if self.dfs(u):
-                        matching += 1
+                if self.pair_u[u] is None and self.dfs(u):
+                    matching += 1
 
         return matching
 
-    def get_matching(self) -> Dict[int, int]:
+    def get_matching(self) -> dict[int, int]:
         """
         Get the actual matching pairs {u: v}.
         """
         return {u: v for u, v in enumerate(self.pair_u) if v is not None}
 
 
-def hopcroft_karp(graph: Dict[int, List[int]], n_left: int, n_right: int) -> int:
+def hopcroft_karp(graph: dict[int, list[int]], n_left: int, n_right: int) -> int:
     """
     Convenience function for Hopcroft-Karp algorithm.
 
@@ -137,8 +135,8 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Benchmark vs naive augmenting path
-    import time
     import random
+    import time
 
     def benchmark():
         n = 500
@@ -153,7 +151,8 @@ if __name__ == "__main__":
         result = hk.max_matching()
         elapsed = time.perf_counter() - start
         print(
-            f"Hopcroft-Karp: {n}x{m}, {edges} edges, matching={result}, time={elapsed:.3f}s"
+            f"Hopcroft-Karp: {n}x{m}, {edges} edges, "
+            f"matching={result}, time={elapsed:.3f}s"
         )
 
     benchmark()

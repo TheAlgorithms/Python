@@ -10,9 +10,6 @@ Space Complexity: O(n * 2ⁿ)
 Note: Practical only for n <= 20-25
 """
 
-from typing import List, Tuple, Optional
-import sys
-
 
 class TravelingSalesman:
     """
@@ -21,13 +18,13 @@ class TravelingSalesman:
 
     def __init__(self, n: int):
         self.n = n
-        self.dist: List[List[float]] = [[float("inf")] * n for _ in range(n)]
+        self.dist: list[list[float]] = [[float("inf")] * n for _ in range(n)]
 
     def add_edge(self, u: int, v: int, w: float) -> None:
         """Add directed edge."""
         self.dist[u][v] = min(self.dist[u][v], w)
 
-    def solve(self, start: int = 0) -> Tuple[float, List[int]]:
+    def solve(self, start: int = 0) -> tuple[float, list[int]]:
         """
         Solve TSP starting from given vertex.
 
@@ -58,8 +55,8 @@ class TravelingSalesman:
 
         # dp[mask][i] = min cost to visit vertices in mask, ending at i
         # mask is bitmask of visited vertices (bit j set if vertex j visited)
-        dp: List[List[float]] = [[float("inf")] * n for _ in range(1 << n)]
-        parent: List[List[Optional[int]]] = [[None] * n for _ in range(1 << n)]
+        dp: list[list[float]] = [[float("inf")] * n for _ in range(1 << n)]
+        parent: list[list[int | None]] = [[None] * n for _ in range(1 << n)]
 
         # Base case: start at start vertex
         dp[1 << start][start] = 0
@@ -118,8 +115,8 @@ class TravelingSalesman:
 
 
 def held_karp(
-    dist_matrix: List[List[float]], start: int = 0
-) -> Tuple[float, List[int]]:
+    dist_matrix: list[list[float]], start: int = 0
+) -> tuple[float, list[int]]:
     """
     Convenience function for TSP using Held-Karp.
 
