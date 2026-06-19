@@ -1,121 +1,127 @@
 """
-Assumption:
-    - The values to compress are assumed to be comparable,
-      values can be sorted and compared with '<' and '>' operators.
+Coordinate Compression Utility
+------------------------------
+
+Fix for Issue #13226: Handles missing or invalid values (None, NaN)
+to ensure consistent compression behavior.
+
+This module provides a `CoordinateCompressor` class that safely compresses
+and decompresses values from a list by mapping each unique valid value
+to a unique integer index.
+
+Invalid or non-comparable values (like None or NaN) are ignored during
+compression mapping and return -1 when compressed.
 """
+
+from __future__ import annotations
+
+import math
+from typing import Any
 
 
 class CoordinateCompressor:
     """
-    A class for coordinate compression.
+    CoordinateCompressor compresses comparable values to integer ranks.
 
-    This class allows you to compress and decompress a list of values.
-
-    Mapping:
-    In addition to compression and decompression, this class maintains a mapping
-    between original values and their compressed counterparts using two data
-    structures: a dictionary `coordinate_map` and a list `reverse_map`:
-    - `coordinate_map`: A dictionary that maps original values to their compressed
-      coordinates. Keys are original values, and values are compressed coordinates.
-    - `reverse_map`: A list used for reverse mapping, where each index corresponds
-      to a compressed coordinate, and the value at that index is the original value.
-
-    Example of mapping:
-    Original: 10, Compressed: 0
-    Original: 52, Compressed: 1
-    Original: 83, Compressed: 2
-    Original: 100, Compressed: 3
-
-    This mapping allows for efficient compression and decompression of values within
-    the list.
+    Example:
+    >>> arr = [100, 10, 52, 83]
+    >>> cc = CoordinateCompressor(arr)
+    >>> cc.compress(100)
+    3
+    >>> cc.compress(52)
+    1
+    >>> cc.decompress(1)
+    52
+    >>> cc.compress(None)
+    -1
     """
 
-    def __init__(self, arr: list[int | float | str]) -> None:
+    def __init__(self, arr: list[Any]) -> None:
         """
         Initialize the CoordinateCompressor with a list.
 
         Args:
-        arr: The list of values to be compressed.
+            arr: The list of values to be compressed.
 
-        >>> arr = [100, 10, 52, 83]
+        Invalid or missing values (None, NaN) are skipped when building
+        the mapping, ensuring consistent compression behavior.
+
+        >>> arr = [100, None, 52, 83, float("nan")]
         >>> cc = CoordinateCompressor(arr)
         >>> cc.compress(100)
-        3
-        >>> cc.compress(52)
-        1
-        >>> cc.decompress(1)
-        52
-        """
-
-        # A dictionary to store compressed coordinates
-        self.coordinate_map: dict[int | float | str, int] = {}
-
-        # A list to store reverse mapping
-        self.reverse_map: list[int | float | str] = [-1] * len(arr)
-
-        self.arr = sorted(arr)  # The input list
-        self.n = len(arr)  # The length of the input list
-        self.compress_coordinates()
-
-    def compress_coordinates(self) -> None:
-        """
-        Compress the coordinates in the input list.
-
-        >>> arr = [100, 10, 52, 83]
-        >>> cc = CoordinateCompressor(arr)
-        >>> cc.coordinate_map[83]
         2
-        >>> cc.coordinate_map[80]  # Value not in the original list
-        Traceback (most recent call last):
-            ...
-        KeyError: 80
-        >>> cc.reverse_map[2]
-        83
-        """
-        key = 0
-        for val in self.arr:
-            if val not in self.coordinate_map:
-                self.coordinate_map[val] = key
-                self.reverse_map[key] = val
-                key += 1
-
-    def compress(self, original: float | str) -> int:
-        """
-        Compress a single value.
-
-        Args:
-        original: The value to compress.
-
-        Returns:
-        The compressed integer, or -1 if not found in the original list.
-
-        >>> arr = [100, 10, 52, 83]
-        >>> cc = CoordinateCompressor(arr)
-        >>> cc.compress(100)
-        3
-        >>> cc.compress(7)  # Value not in the original list
+        >>> cc.compress(None)
+        -1
+        >>> cc.compress(float("nan"))
         -1
         """
-        return self.coordinate_map.get(original, -1)
+        # Store the original list
+        self.original = list(arr)
 
-    def decompress(self, num: int) -> int | float | str:
+        # Filter valid (comparable) values — ignore None and NaN
+        valid_values = [
+            x
+            for x in arr
+            if x is not None and not (isinstance(x, float) and math.isnan(x))
+        ]
+
+        # Sort and remove duplicates using dict.fromkeys for stable order
+        unique_sorted = sorted(dict.fromkeys(valid_values))
+
+        # Create mappings
+        self.coordinate_map: dict[Any, int] = {
+            v: i for i, v in enumerate(unique_sorted)
+        }
+        self.reverse_map: list[Any] = unique_sorted.copy()
+
+        # Track invalid values (for reference, not essential)
+        self.invalid_values: list[Any] = [
+            x for x in arr if x is None or (isinstance(x, float) and math.isnan(x))
+        ]
+
+    def compress(self, original: Any) -> int:
         """
-        Decompress a single integer.
-
-        Args:
-        num: The compressed integer to decompress.
+        Compress a single value to its coordinate index.
 
         Returns:
-        The original value.
+            int: The compressed index, or -1 if invalid or not found.
+
+        >>> arr = [100, 10, 52, 83]
+        >>> cc = CoordinateCompressor(arr)
+        >>> cc.compress(10)
+        0
+        >>> cc.compress(7)
+        -1
+        >>> cc.compress(None)
+        -1
+        """
+        # Handle invalid or missing values
+        if original is None:
+            return -1
+        if isinstance(original, float) and math.isnan(original):
+            return -1
+        return self.coordinate_map.get(original, -1)
+
+    def decompress(self, num: int) -> Any:
+        """
+        Decompress an integer coordinate back to its original value.
+
+        Args:
+            num: Compressed index to decompress.
+
+        Returns:
+            The original value for valid indices, otherwise -1.
 
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
         >>> cc.decompress(0)
         10
-        >>> cc.decompress(5)  # Compressed coordinate out of range
+        >>> cc.decompress(5)
         -1
         """
-        return self.reverse_map[num] if 0 <= num < len(self.reverse_map) else -1
+        if 0 <= num < len(self.reverse_map):
+            return self.reverse_map[num]
+        return -1
 
 
 if __name__ == "__main__":
@@ -123,10 +129,15 @@ if __name__ == "__main__":
 
     testmod()
 
-    arr: list[int | float | str] = [100, 10, 52, 83]
+    arr: list[Any] = [100, 10, 52, 83, None, float("nan")]
     cc = CoordinateCompressor(arr)
 
+    print("Coordinate Compression Demo:\n")
     for original in arr:
         compressed = cc.compress(original)
         decompressed = cc.decompress(compressed)
-        print(f"Original: {decompressed}, Compressed: {compressed}")
+        print(
+            f"Original: {original!r:>6} | "
+            f"Compressed: {compressed:>2} | "
+            f"Decompressed: {decompressed!r}"
+        )
