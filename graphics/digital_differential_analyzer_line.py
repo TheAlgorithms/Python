@@ -7,6 +7,13 @@ def digital_differential_analyzer_line(
     """
     Draws a line between two points using the DDA algorithm.
 
+    This algorithm works by calculating the dx (change in x) and dy;(change in y) and then iteratively
+    steps along the dominant axis,incrementing the other axis by a fractional amount (the slope).
+    It is notable for its simplicity but also for its main disadvantage:
+    it relies on floating-point arithmetic at every step, which is computationally slow.
+    It is generally outperformed by Bresenham's algorithm, which achieves
+    the same result using only integer-based math.
+
     Args:
     - p1: Coordinates of the starting point.
     - p2: Coordinates of the ending point.
