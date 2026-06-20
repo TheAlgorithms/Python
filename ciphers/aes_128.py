@@ -278,11 +278,16 @@ def sub_bytes(state: list[int]) -> None:
     """
     Applies the AES S-Box substitution to each byte in the state.
 
-    >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    >>> sub_bytes(state)
-    >>> state[:4]
-    [99, 124, 119, 123]
+    Args:
+        state: A list of 16 integers representing the state matrix.
+
+    Examples:
+        >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        >>> sub_bytes(state)
+        >>> state[:4]
+        [99, 124, 119, 123]
     """
+
     for i in range(16):
         state[i] = S_BOX[state[i]]
 
@@ -291,10 +296,14 @@ def shift_rows(state: list[int]) -> None:
     """
     Shifts the rows of the 4x4 state matrix.
 
-    >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    >>> shift_rows(state)
-    >>> state
-    [0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, 1, 6, 11]
+    Args:
+        state: A list of 16 integers representing the state matrix.
+
+    Examples:
+        >>> state = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        >>> shift_rows(state)
+        >>> state
+        [0, 5, 10, 15, 4, 9, 14, 3, 8, 13, 2, 7, 12, 1, 6, 11]
     """
     # Row 0: unchanged
     # Row 1: shifted left by 1
@@ -309,10 +318,18 @@ def galois_multiply(multiplicand: int, multiplier: int) -> int:
     """
     Multiplies two numbers in the GF(2^8) Galois field.
 
-    >>> galois_multiply(2, 3)
-    6
-    >>> galois_multiply(87, 19)
-    254
+    Args:
+        multiplicand: The first integer to multiply.
+        multiplier: The second integer to multiply.
+
+    Returns:
+        The product of the two numbers in the Galois field.
+
+    Examples:
+        >>> galois_multiply(2, 3)
+        6
+        >>> galois_multiply(87, 19)
+        254
     """
     p = 0
     for _ in range(8):
@@ -330,10 +347,14 @@ def mix_columns(state: list[int]) -> None:
     """
     Mixes the columns of the state matrix to provide diffusion.
 
-    >>> state = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    >>> mix_columns(state)
-    >>> state
-    [2, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    Args:
+        state: A list of 16 integers representing the state matrix.
+
+    Examples:
+        >>> state = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        >>> mix_columns(state)
+        >>> state
+        [2, 1, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     """
     for i in range(4):
         col = state[i * 4 : (i + 1) * 4]
@@ -355,11 +376,16 @@ def add_round_key(state: list[int], round_key: list[int]) -> None:
     """
     XORs the state matrix with the current round key.
 
-    >>> state = [0] * 16
-    >>> round_key = [1] * 16
-    >>> add_round_key(state, round_key)
-    >>> state
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    Args:
+        state: A list of 16 integers representing the state matrix.
+        round_key: A list of 16 integers representing the round key.
+
+    Examples:
+        >>> state = [0] * 16
+        >>> round_key = [1] * 16
+        >>> add_round_key(state, round_key)
+        >>> state
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     """
     for i in range(16):
         state[i] ^= round_key[i]
@@ -369,9 +395,16 @@ def key_expansion(key: bytes) -> list[int]:
     """
     Expands a 16-byte key into 11 round keys (176 bytes total).
 
-    >>> key = bytes([0] * 16)
-    >>> len(key_expansion(key))
-    176
+    Args:
+        key: Exactly 16 bytes of encryption key.
+
+    Returns:
+        A list of 176 integers representing the expanded key schedule.
+
+    Examples:
+        >>> key = bytes([0] * 16)
+        >>> len(key_expansion(key))
+        176
     """
     key_schedule = list(key)
     for i in range(4, 44):
