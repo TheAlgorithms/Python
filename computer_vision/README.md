@@ -1,10 +1,16 @@
 # Computer Vision
+Computer vision is an interdisciplinary field focused on enabling computers to gain high-level understanding from images and video—automatically extracting, analyzing, and interpreting visual information to produce outputs such as labels, measurements, 3D structure, or decisions.
 
-Computer vision is a field of computer science that works on enabling computers to see, identify and process images in the same way that human does, and provide appropriate output.
+​
 
-It is like imparting human intelligence and instincts to a computer.
-Image processing and computer vision are a little different from each other. Image processing means applying some algorithms for transforming image from one form to the other like smoothing, contrasting, stretching, etc.
+In practice, computer vision methods combine geometry, physics, statistics, and machine learning to connect pixel data to semantic concepts like objects, actions, and scenes.
 
-While computer vision comes from modelling image processing using the techniques of machine learning, computer vision applies machine learning to recognize patterns for interpretation of images (much like the process of visual reasoning of human vision).
+​
 
-* <https://en.wikipedia.org/wiki/Computer_vision>
+## Image processing vs. computer vision
+
+Image processing primarily transforms images (e.g., denoising, contrast enhancement, geometric warping) where the output is another image.
+
+​
+
+Computer vision uses images/video as input but often outputs information about the scene (e.g., detections, segmentation masks, pose estimates, tracking results, or a decision), which may then drive downstream behavior in a larger system.
