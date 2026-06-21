@@ -57,7 +57,7 @@ class FuzzySet:
 
     # Union Operations
     >>> siya.union(sheru)
-    FuzzySet(name='Siya U Sheru', left_boundary=0.4, peak=0.7, right_boundary=1.0)
+    FuzzySet(name='Siya U Sheru', left_boundary=0.4, peak=1, right_boundary=0.7)
     """
 
     name: str
@@ -147,13 +147,13 @@ class FuzzySet:
             FuzzySet: A new fuzzy set representing the union.
 
         >>> FuzzySet("a", 0.1, 0.2, 0.3).union(FuzzySet("b", 0.4, 0.5, 0.6))
-        FuzzySet(name='a U b', left_boundary=0.1, peak=0.6, right_boundary=0.35)
+        FuzzySet(name='a U b', left_boundary=0.1, peak=0.5, right_boundary=0.6)
         """
         return FuzzySet(
             f"{self.name} U {other.name}",
             min(self.left_boundary, other.left_boundary),
+            max(self.peak, other.peak),
             max(self.right_boundary, other.right_boundary),
-            (self.peak + other.peak) / 2,
         )
 
     def plot(self):
