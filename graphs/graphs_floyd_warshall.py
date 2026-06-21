@@ -18,32 +18,55 @@ def _print_dist(dist, v):
 
 def floyd_warshall(graph, v):
     """
-    :param graph: 2D array calculated from weight[edge[i, j]]
+    Computes the shortest paths in a weighted graph.
+
+    :param graph: 2D list where each element represents the weight from i to j.
     :type graph: List[List[float]]
-    :param v: number of vertices
+    :param v: Number of vertices in the graph.
     :type v: int
-    :return: shortest distance between all vertex pairs
-    distance[u][v] will contain the shortest distance from vertex u to v.
+    :return: A tuple containing the distances matrix and number of vertices.
 
-    1. For all edges from v to n, distance[i][j] = weight(edge(i, j)).
-    3. The algorithm then performs distance[i][j] = min(distance[i][j], distance[i][k] +
-        distance[k][j]) for each possible pair i, j of vertices.
-    4. The above is repeated for each vertex k in the graph.
-    5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is
-        updated to the next vertex[i][k].
+    Example:
+    >>> v = 3
+    >>> inf = float('inf')
+    >>> graph = [
+    ...     [0, 1, inf],
+    ...     [inf, 0, 1],
+    ...     [1, inf, 0]
+    ... ]
+    >>> dist, _ = floyd_warshall(graph, v)  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    <BLANKLINE>
+    The shortest path matrix using Floyd Warshall algorithm
+    <BLANKLINE>
+    0   1   2
+    2   0   1
+    1   2   0
+    >>> [int(x) if x != inf else 'INF' for row in dist for x in row]
+    [0, 1, 2, 2, 0, 1, 1, 2, 0]
+
+    Handling a graph with no edges:
+    >>> v = 3
+    >>> graph = [[inf]*3 for _ in range(3)]
+    >>> for i in range(3): graph[i][i] = 0
+    >>> dist, _ = floyd_warshall(graph, v)  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    <BLANKLINE>
+    The shortest path matrix using Floyd Warshall algorithm
+    <BLANKLINE>
+    0   INF     INF
+    INF 0       INF
+    INF INF     0
+    >>> [int(x) if x != inf else 'INF' for row in dist for x in row]
+    [0, 'INF', 'INF', 'INF', 0, 'INF', 'INF', 'INF', 0]
+
     """
-
     dist = [[float("inf") for _ in range(v)] for _ in range(v)]
 
     for i in range(v):
         for j in range(v):
             dist[i][j] = graph[i][j]
 
-            # check vertex k against all other vertices (i, j)
     for k in range(v):
-        # looping through rows of graph array
         for i in range(v):
-            # looping through columns of graph array
             for j in range(v):
                 if (
                     dist[i][k] != float("inf")
@@ -57,6 +80,9 @@ def floyd_warshall(graph, v):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     v = int(input("Enter number of vertices: "))
     e = int(input("Enter number of edges: "))
 
