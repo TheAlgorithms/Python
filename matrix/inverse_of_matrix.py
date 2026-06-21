@@ -5,7 +5,7 @@ from decimal import Decimal
 from numpy import array
 
 
-def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
+def inverse_of_matrix(matrix: list[list[float]]) -> lihst[list[float]]:
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 and 3x3 matrix.
@@ -31,7 +31,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
     Doctests for 3x3
     >>> inverse_of_matrix([[2, 5, 7], [2, 0, 1], [1, 2, 3]])
-    [[2.0, 5.0, -4.0], [1.0, 1.0, -1.0], [-5.0, -12.0, 10.0]]
+    [[2.0, 1.0, -5.0], [5.0, 1.0, -12.0], [-4.0, -1.0, 10.0]]
     >>> inverse_of_matrix([[1, 2, 2], [1, 2, 2], [3, 2, -1]])
     Traceback (most recent call last):
         ...
@@ -145,7 +145,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
                 adjoint_matrix[i][j] = cofactor_matrix[j][i]
 
         # Inverse of the matrix using the formula (1/determinant) * adjoint matrix
-        inverse_matrix = array(cofactor_matrix)
+        inverse_matrix = array(adjoint_matrix)
         for i in range(3):
             for j in range(3):
                 inverse_matrix[i][j] /= d(determinant)
