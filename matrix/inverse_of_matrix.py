@@ -5,7 +5,7 @@ from decimal import Decimal
 from numpy import array
 
 
-def inverse_of_matrix(matrix: list[list[float]]) -> lihst[list[float]]:
+def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 and 3x3 matrix.
