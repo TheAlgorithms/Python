@@ -39,6 +39,18 @@ def build_tree(letters: list[Letter]) -> Letter | TreeNode:
     """
     Run through the list of Letters and build the min heap
     for the Huffman Tree.
+
+    >>> letters = [
+    ...     Letter('a', 5),
+    ...     Letter('b', 9),
+    ...     Letter('c', 12),
+    ...     Letter('d', 13)
+    ... ]
+    >>> root = build_tree(letters)
+    >>> isinstance(root, TreeNode)
+    True
+    >>> root.freq
+    39
     """
     response: list[Letter | TreeNode] = list(letters)
     while len(response) > 1:
@@ -55,6 +67,16 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
     """
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring dictionary, and return the list of Letters
+
+    >>> letters = [Letter('a', 2), Letter('b', 3), Letter('c', 4)]
+    >>> root = build_tree(letters)
+    >>> result = traverse_tree(root, "")
+    >>> sorted([l.letter for l in result])
+    ['a', 'b', 'c']
+    >>> all(l.bitstring[l.letter] for l in result)
+    True
+    >>> sum(l.freq for l in result)
+    9
     """
     if isinstance(root, Letter):
         root.bitstring[root.letter] = bitstring
