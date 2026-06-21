@@ -13,6 +13,8 @@ simpson_integration() takes function,lower_limit=a,upper_limit=b,precision and
 returns the integration of function in given limit.
 """
 
+from collections.abc import Callable
+
 # constants
 # the more the number of steps the more accurate
 N_STEPS = 1000
@@ -34,7 +36,7 @@ xn = b
 """
 
 
-def simpson_integration(function, a: float, b: float, precision: int = 4) -> float:
+def simpson_integration(function: Callable, a: float, b: float, precision: int = 4) -> float:
     """
     Args:
         function : the function which's integration is desired
@@ -46,11 +48,11 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
         result : the value of the approximated integration of function in range a to b
 
     Raises:
-        AssertionError: function is not callable
-        AssertionError: a is not float or integer
-        AssertionError: function should return float or integer
-        AssertionError: b is not float or integer
-        AssertionError: precision is not positive integer
+        TypeError: function is not callable
+        TypeError: a is not float or integer
+        TypeError: function should return float or integer
+        TypeError: b is not float or integer
+        ValueError: precision is not positive integer
 
     >>> simpson_integration(lambda x : x*x,1,2,3)
     2.333
@@ -58,21 +60,21 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     >>> simpson_integration(lambda x : x*x,'wrong_input',2,3)
     Traceback (most recent call last):
         ...
-    AssertionError: a should be float or integer your input : wrong_input
+    TypeError: a should be float or integer your input : wrong_input
 
     >>> simpson_integration(lambda x : x*x,1,'wrong_input',3)
     Traceback (most recent call last):
         ...
-    AssertionError: b should be float or integer your input : wrong_input
+    TypeError: b should be float or integer your input : wrong_input
 
     >>> simpson_integration(lambda x : x*x,1,2,'wrong_input')
     Traceback (most recent call last):
         ...
-    AssertionError: precision should be positive integer your input : wrong_input
+    ValueError: precision should be positive integer your input : wrong_input
     >>> simpson_integration('wrong_input',2,3,4)
     Traceback (most recent call last):
         ...
-    AssertionError: the function(object) passed should be callable your input : ...
+    TypeError: the function(object) passed should be callable your input : wrong_input
 
     >>> simpson_integration(lambda x : x*x,3.45,3.2,1)
     -2.8
@@ -80,26 +82,31 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     >>> simpson_integration(lambda x : x*x,3.45,3.2,0)
     Traceback (most recent call last):
         ...
-    AssertionError: precision should be positive integer your input : 0
+    ValueError: precision should be positive integer your input : 0
 
     >>> simpson_integration(lambda x : x*x,3.45,3.2,-1)
     Traceback (most recent call last):
         ...
-    AssertionError: precision should be positive integer your input : -1
+    ValueError: precision should be positive integer your input : -1
 
     """
-    assert callable(function), (
-        f"the function(object) passed should be callable your input : {function}"
-    )
-    assert isinstance(a, (float, int)), f"a should be float or integer your input : {a}"
-    assert isinstance(function(a), (float, int)), (
-        "the function should return integer or float return type of your function, "
-        f"{type(a)}"
-    )
-    assert isinstance(b, (float, int)), f"b should be float or integer your input : {b}"
-    assert isinstance(precision, int) and precision > 0, (
-        f"precision should be positive integer your input : {precision}"
-    )
+    if not callable(function):
+        raise TypeError(
+            f"the function(object) passed should be callable your input : {function}"
+        )
+    if not isinstance(a, (float, int)):
+        raise TypeError(f"a should be float or integer your input : {a}")
+    if not isinstance(function(a), (float, int)):
+        raise TypeError(
+            "the function should return integer or float return type of your function, "
+            f"{type(function(a))}"
+        )
+    if not isinstance(b, (float, int)):
+        raise TypeError(f"b should be float or integer your input : {b}")
+    if not isinstance(precision, int) or precision <= 0:
+        raise ValueError(
+            f"precision should be positive integer your input : {precision}"
+        )
 
     # just applying the formula of simpson for approximate integration written in
     # mentioned article in first comment of this file and above this function
