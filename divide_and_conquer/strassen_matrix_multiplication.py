@@ -49,18 +49,20 @@ def split_matrix(a: list) -> tuple[list, list, list, list]:
     if len(a) % 2 != 0 or len(a[0]) % 2 != 0:
         raise Exception("Odd matrices are not supported!")
 
-    matrix_length = len(a)
-    mid = matrix_length // 2
+    def extract_submatrix(rows, cols):
+        return [[a[i][j] for j in cols] for i in rows]
 
-    top_right = [[a[i][j] for j in range(mid, matrix_length)] for i in range(mid)]
-    bot_right = [
-        [a[i][j] for j in range(mid, matrix_length)] for i in range(mid, matrix_length)
-    ]
+    mid = len(a) // 2
 
-    top_left = [[a[i][j] for j in range(mid)] for i in range(mid)]
-    bot_left = [[a[i][j] for j in range(mid)] for i in range(mid, matrix_length)]
+    rows_top, rows_bot = range(mid), range(mid, len(a))
+    cols_left, cols_right = range(mid), range(mid, len(a))
 
-    return top_left, top_right, bot_left, bot_right
+    return (
+        extract_submatrix(rows_top, cols_left),  # Top-left
+        extract_submatrix(rows_top, cols_right),  # Top-right
+        extract_submatrix(rows_bot, cols_left),  # Bottom-left
+        extract_submatrix(rows_bot, cols_right),  # Bottom-right
+    )
 
 
 def matrix_dimensions(matrix: list) -> tuple[int, int]:
