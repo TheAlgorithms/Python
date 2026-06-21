@@ -80,10 +80,7 @@ def decode(code: str) -> str:
 
     """
     code = code[6:-6]
-    if len(code) >= 3:
-        code = code[-1] + code[:-1]
-    else:
-        code = code[::-1]
+    code = code[-1] + code[:-1] if len(code) >= 3 else code[::-1]
     return code
 
 
