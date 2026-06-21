@@ -13,7 +13,7 @@ def random_chars() -> str:
     >>> random_chars()
     'ZoX'
     """
-    return ''.join(random.choices(string.ascii_letters, k=3))
+    return "".join(random.choices(string.ascii_letters, k=3))
 
 
 def random_digits() -> str:
@@ -25,7 +25,7 @@ def random_digits() -> str:
     >>> random_digits()
     '638'
     """
-    return ''.join(random.choices(string.digits, k=3))
+    return "".join(random.choices(string.digits, k=3))
 
 
 def encode(code: str) -> str:
@@ -47,10 +47,14 @@ def encode(code: str) -> str:
     """
     if len(code) >= 3:
         code = code[1:] + code[0]
-        code = random_chars() + random_digits() + code + random_digits() + random_chars()
+        code = (
+            random_chars() + random_digits() + code + random_digits() + random_chars()
+        )
     else:
         code = code[::-1]
-        code = random_chars() + random_digits() + code + random_digits() + random_chars()
+        code = (
+            random_chars() + random_digits() + code + random_digits() + random_chars()
+        )
     return code
 
 
