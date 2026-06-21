@@ -17,7 +17,9 @@ def binary_count_trailing_zeros(a: int) -> int:
     >>> binary_count_trailing_zeros(4294967296)
     32
     >>> binary_count_trailing_zeros(0)
-    0
+    Traceback (most recent call last):
+        ...
+    ValueError: Trailing zeros undefined for zero
     >>> binary_count_trailing_zeros(-10)
     Traceback (most recent call last):
         ...
@@ -29,13 +31,18 @@ def binary_count_trailing_zeros(a: int) -> int:
     >>> binary_count_trailing_zeros("0")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: Input value must be a 'int' type
     """
+    if not isinstance(a, int):
+        raise TypeError("Input value must be a 'int' type")
+
     if a < 0:
         raise ValueError("Input value must be a positive integer")
-    elif isinstance(a, float):
-        raise TypeError("Input value must be a 'int' type")
-    return 0 if (a == 0) else int(log2(a & -a))
+
+    if a == 0:
+        raise ValueError("Trailing zeros undefined for zero")
+
+    return int(log2(a & -a))
 
 
 if __name__ == "__main__":
