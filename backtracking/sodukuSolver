@@ -1,0 +1,76 @@
+class Solution(object):
+    def solveSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: None Do not return anything, modify board in-place instead.
+        """
+        # Helper functions for bit manipulation
+        def char_to_index(ch):
+            return ord(ch) - ord('1')
+
+        def index_to_char(index):
+            return chr(index + ord('1'))
+
+        # Initialize bitmasks for rows, columns, and boxes
+        rows = [0] * 9
+        cols = [0] * 9
+        boxes = [0] * 9
+
+        # Populate bitmasks with initial board values
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != '.':
+                    num = char_to_index(board[r][c])
+                    bit = 1 << num
+                    rows[r] |= bit
+                    cols[c] |= bit
+                    boxes[(r // 3) * 3 + (c // 3)] |= bit
+
+        # Check if placing a number is valid
+        def is_valid(row, col, num):
+            bit = 1 << num
+            box_index = (row // 3) * 3 + (col // 3)
+            return not (rows[row] & bit or cols[col] & bit or boxes[box_index] & bit)
+
+        # Forward Checking to find the most constrained cell
+        def select_cell():
+            min_possibilities = float('inf')
+            cell = None
+            for row in range(9):
+                for col in range(9):
+                    if board[row][col] == '.':
+                        possibilities = 0
+                        for num in range(9):
+                            if is_valid(row, col, num):
+                                possibilities += 1
+                        if possibilities < min_possibilities:
+                            min_possibilities = possibilities
+                            cell = (row, col)
+            return cell
+
+        # Recursive function to solve the board
+        def solve():
+            cell = select_cell()
+            if cell is None:
+                return True  # All cells are filled
+
+            row, col = cell
+            for num in range(9):
+                if is_valid(row, col, num):
+                    bit = 1 << num
+                    board[row][col] = index_to_char(num)
+                    rows[row] |= bit
+                    cols[col] |= bit
+                    boxes[(row // 3) * 3 + (col // 3)] |= bit
+
+                    if solve():
+                        return True
+
+                    board[row][col] = '.'
+                    rows[row] &= ~bit
+                    cols[col] &= ~bit
+                    boxes[(row // 3) * 3 + (col // 3)] &= ~bit
+
+            return False
+
+        solve()
