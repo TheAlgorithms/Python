@@ -37,6 +37,7 @@
   * [Binary Twos Complement](bit_manipulation/binary_twos_complement.py)
   * [Binary Xor Operator](bit_manipulation/binary_xor_operator.py)
   * [Bitwise Addition Recursive](bit_manipulation/bitwise_addition_recursive.py)
+  * [Binary Parity Pattern](bit_manipulation/binary_parity_pattern.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Excess 3 Code](bit_manipulation/excess_3_code.py)
