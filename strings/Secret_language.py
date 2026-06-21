@@ -17,7 +17,7 @@ def random_digits() -> str:
     
     return ''.join(random.choices(string.digits, k=3))
 
-def encode(code) -> str:
+def encode(code: str) -> str:
     '''
     Encodes the code by shifting the first character to the end of the original string,
     and adding the 3 random_characters + 3 random-digits + original string(code) +  3 random-digits + 3 random_characters.
@@ -31,7 +31,7 @@ def encode(code) -> str:
         code = random_chars() + random_digits() + code + random_digits() + random_chars()
     return code
 
-def decode(code) -> str:
+def decode(code: str) -> str:
     '''
     decodes the encoded string by removing the randomly added characters and reversing the shift
     
