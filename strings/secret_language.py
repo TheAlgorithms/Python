@@ -83,4 +83,4 @@ if __name__ == "__main__":
     decoded = decode(encoded)
     print(f"Original → {code}")
     print(f"Encoded  → {encoded}")
-    print(f"Decoded  → {decoded}")v
+    print(f"Decoded  → {decoded}")
