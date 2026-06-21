@@ -5,21 +5,21 @@ import string
 
 
 def random_chars() -> str:
-    '''
+    """
     Generate a random string of 3 ASCII letters.
 
     >>> import random
     >>> len(random_chars()) == 3
     True
-    
-    
+
+
     >>> all(c in string.ascii_letters for c in random_chars())
     True
-    
-    
-    
-    '''
-    return ''.join(random.choices(string.ascii_letters, k=3))
+
+
+
+    """
+    return "".join(random.choices(string.ascii_letters, k=3))
 
 
 def random_digits() -> str:
@@ -28,13 +28,13 @@ def random_digits() -> str:
 
     >>> len(random_digits()) == 3
     True
-    
-    
-    
+
+
+
     >>> all(c in string.digits for c in random_digits())
     True
     """
-    return ''.join(random.choices(string.digits, k=3))
+    return "".join(random.choices(string.digits, k=3))
 
 
 def encode(code: str) -> str:
@@ -48,15 +48,19 @@ def encode(code: str) -> str:
     True
     >>> len(encode('hi')) == len('hi') + 12
     True
-    
-    
+
+
     """
     if len(code) >= 3:
         code = code[1:] + code[0]
-        code = random_chars() + random_digits() + code + random_digits() + random_chars()
+        code = (
+            random_chars() + random_digits() + code + random_digits() + random_chars()
+        )
     else:
         code = code[::-1]
-        code = random_chars() + random_digits() + code + random_digits() + random_chars()
+        code = (
+            random_chars() + random_digits() + code + random_digits() + random_chars()
+        )
     return code
 
 
@@ -71,9 +75,9 @@ def decode(code: str) -> str:
     'hi'
     >>> decode(encode('python'))
     'python'
-    
-    
-    
+
+
+
     """
     code = code[6:-6]
     if len(code) >= 3:
