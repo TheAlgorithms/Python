@@ -2,7 +2,8 @@
 
 """
 Pure Python implementations of binary search algorithms
-
+The collection must be sorted in ascending order; otherwise, the result will be
+unpredictable.
 For doctests run the following command:
 python3 -m doctest -v binary_search.py
 
