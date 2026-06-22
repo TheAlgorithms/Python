@@ -14,7 +14,15 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     10
     >>> least_common_multiple_slow(12, 76)
     228
+    >>> least_common_multiple_slow(0, 5)
+    0
+    >>> least_common_multiple_slow(5, 0)
+    0
+    >>> least_common_multiple_slow(0, 0)
+    0
     """
+    if first_num == 0 or second_num == 0:
+        return 0
     max_num = first_num if first_num >= second_num else second_num
     common_mult = max_num
     while (common_mult % first_num > 0) or (common_mult % second_num > 0):
@@ -30,7 +38,15 @@ def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     10
     >>> least_common_multiple_fast(12,76)
     228
+    >>> least_common_multiple_fast(0, 5)
+    0
+    >>> least_common_multiple_fast(5, 0)
+    0
+    >>> least_common_multiple_fast(0, 0)
+    0
     """
+    if first_num == 0 or second_num == 0:
+        return 0
     return first_num // greatest_common_divisor(first_num, second_num) * second_num
 
 
