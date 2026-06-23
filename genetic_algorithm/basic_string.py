@@ -54,7 +54,9 @@ def mutate(child: str, genes: list[str]) -> str:
     """
     child_list = list(child)
     if random.uniform(0, 1) < MUTATION_PROBABILITY:
-        random.randint(0, len(child)-1) = random.choice(genes)
+        random_index = random.randint(0, len(child)-1)
+        child_list[random_index] = random.choice(genes)
+        
     return "".join(child_list)
 
 
