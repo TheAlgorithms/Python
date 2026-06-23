@@ -171,17 +171,14 @@ def dbscan(
         while seeds:
             current_point = seeds.pop()
 
-            if labels[current_point] == -1:
-                # was noise — reassign as border point of this cluster
-                labels[current_point] = current_cluster_id
-
-            already_in_another = (
+            # skip points already claimed by a different cluster
+            if (
                 labels[current_point] != -1
                 and labels[current_point] != current_cluster_id
-            )
-            if already_in_another:
-                continue  # already in another cluster
+            ):
+                continue
 
+            # assign noise points and unvisited points to this cluster
             labels[current_point] = current_cluster_id
             current_neighbors = get_neighbors(data, current_point, epsilon)
 
