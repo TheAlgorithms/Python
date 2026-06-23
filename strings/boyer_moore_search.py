@@ -86,15 +86,15 @@ class BoyerMooreSearch:
         """
 
         positions = []
-        for i in range(self.textLen - self.patLen + 1):
+        i = 0
+        while i <= self.textLen - self.patLen:
             mismatch_index = self.mismatch_in_text(i)
             if mismatch_index == -1:
                 positions.append(i)
+                i += 1
             else:
                 match_index = self.match_in_pattern(self.text[mismatch_index])
-                i = (
-                    mismatch_index - match_index
-                )  # shifting index lgtm [py/multiple-definition]
+                i = max(i + 1, mismatch_index - match_index)
         return positions
 
 
