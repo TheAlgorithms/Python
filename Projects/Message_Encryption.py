@@ -1,6 +1,7 @@
 import random as ra
 import string as str
 
+
 def options():
     while True:
         print("========== Welcome To Message Encryption ==========")
@@ -8,7 +9,7 @@ def options():
         print("\t'2' For Decode")
         try:
             opt = int(input("Enter: "))
-            if opt not in ("1","2",1,2):
+            if opt not in ("1", "2", 1, 2):
                 print("Choose Number Between '1','2'")
             if opt == 1:
                 encrypt()
@@ -17,20 +18,21 @@ def options():
         except ValueError:
             print("Enter Numbers Only")
 
+
 def encrypt():
     x = input("Enter Your Message :")
 
-    if len(x)<=3:
+    if len(x) <= 3:
         encrypt_key = input("Enter Your Key '1','4','7' :")
 
-        with open("User_Key.txt","a+") as f:
+        with open("User_Key.txt", "a+") as f:
             f.write(f"{encrypt_key},{x}\n")
         print(f"Successfully Encrypted: {x[::-1]}")
 
     encrypt_key = input("Enter Your Key '1','4','7' :")
-    
-    with open("User_Key.txt","a") as f:
-            f.write(f"{encrypt_key},{x}\n")
+
+    with open("User_Key.txt", "a") as f:
+        f.write(f"{encrypt_key},{x}\n")
     shift = x[1:] + x[0]
     prefix = "".join(ra.choice(str.ascii_letters) for _ in range(3))
     suffix = "".join(ra.choice(str.ascii_letters) for _ in range(3))
@@ -38,6 +40,7 @@ def encrypt():
     message = message.strip()
     print(f"Successfully Encrypted: {message}")
     return encrypt_key
+
 
 def decode():
     with open("User_Key.txt", "r") as f:
@@ -61,5 +64,6 @@ def decode():
 
         if not found:
             print("Didn't Match :/")
+
 
 options()
