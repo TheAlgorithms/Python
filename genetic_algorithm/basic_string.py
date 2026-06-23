@@ -54,7 +54,9 @@ def mutate(child: str, genes: list[str]) -> str:
     """
     child_list = list(child)
     if random.uniform(0, 1) < MUTATION_PROBABILITY:
-        child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
+        random_index = random.randint(0, len(child) - 1)
+        child_list[random_index] = random.choice(genes)
+
     return "".join(child_list)
 
 
@@ -175,7 +177,9 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
 
         # Flush the old population, keeping some of the best evolutions.
         # Keeping this avoid regression of evolution.
-        population_best = population[: int(N_POPULATION / 3)]
+        population_best = [
+            item[0] for item in population_score[: int(N_POPULATION / 3)]
+        ]
         population.clear()
         population.extend(population_best)
         # Normalize population score to be between 0 and 1.
