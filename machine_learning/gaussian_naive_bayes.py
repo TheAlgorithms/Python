@@ -154,8 +154,7 @@ def train(
         priors[class_label] = math.log(len(class_samples) / n_samples)
         # transpose to get per-feature lists
         features_by_column = [
-            [row[col] for row in class_samples]
-            for col in range(len(class_samples[0]))
+            [row[col] for row in class_samples] for col in range(len(class_samples[0]))
         ]
         summaries[class_label] = [
             compute_mean_variance(column) for column in features_by_column
@@ -194,10 +193,7 @@ def gaussian_log_probability(x: float, mean: float, variance: float) -> float:
     """
     if variance <= 0:
         raise ValueError("Variance must be positive.")
-    return (
-        -0.5 * math.log(2 * math.pi * variance)
-        - 0.5 * ((x - mean) ** 2 / variance)
-    )
+    return -0.5 * math.log(2 * math.pi * variance) - 0.5 * ((x - mean) ** 2 / variance)
 
 
 def predict_single(
@@ -229,9 +225,7 @@ def predict_single(
 
     for class_label, feature_summaries in summaries.items():
         score = priors[class_label]
-        for feature_value, (mean, variance) in zip(
-            feature_vector, feature_summaries
-        ):
+        for feature_value, (mean, variance) in zip(feature_vector, feature_summaries):
             score += gaussian_log_probability(feature_value, mean, variance)
         if score > best_score:
             best_score = score
@@ -308,9 +302,7 @@ def accuracy(predictions: list[int], actual: list[int]) -> float:
     if not predictions:
         raise ValueError("Inputs must not be empty.")
     if len(predictions) != len(actual):
-        raise ValueError(
-            "Predictions and actual labels must have the same length."
-        )
+        raise ValueError("Predictions and actual labels must have the same length.")
     correct = sum(p == a for p, a in zip(predictions, actual))
     return correct / len(actual)
 
