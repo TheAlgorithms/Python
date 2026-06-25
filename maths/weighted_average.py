@@ -28,7 +28,7 @@ def weighted_average(values: list[float], weights: list[float]) -> float:
         ...
     ValueError: Sum of weights cannot be zero
     """
-    if not values and not weights:
+    if not values :
         raise ValueError("Inputs cannot be empty")
     if len(values) != len(weights):
         raise ValueError("Values and weights must have the same length")
