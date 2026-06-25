@@ -75,8 +75,11 @@ class TestLeastCommonMultiple(unittest.TestCase):
         (12, 25),
         (10, 25),
         (6, 9),
+        (0, 5),
+        (5, 0),
+        (0, 0),
     )
-    expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18)
+    expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18, 0, 0, 0)
 
     def test_lcm_function(self):
         for i, (first_num, second_num) in enumerate(self.test_inputs):
