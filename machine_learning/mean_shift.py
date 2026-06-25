@@ -66,9 +66,7 @@ def get_points_within_bandwidth(
     >>> get_points_within_bandwidth(data, [0.0, 0.0], 10.0)
     [[0.0, 0.0], [0.5, 0.5], [5.0, 5.0]]
     """
-    return [
-        point for point in data if euclidean_distance(point, center) <= bandwidth
-    ]
+    return [point for point in data if euclidean_distance(point, center) <= bandwidth]
 
 
 def compute_mean(points: list[list[float]]) -> list[float]:
@@ -144,8 +142,7 @@ def merge_centroids(
     merged: list[list[float]] = []
     for centroid in centroids:
         if all(
-            euclidean_distance(centroid, existing) >= bandwidth
-            for existing in merged
+            euclidean_distance(centroid, existing) >= bandwidth for existing in merged
         ):
             merged.append(centroid)
     return merged
