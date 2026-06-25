@@ -67,7 +67,9 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
 
         return pharmacy_price_list
 
-    except httpx.HTTPError, ValueError:
+    except httpx.HTTPError:
+        return None
+    except ValueError:
         return None
 
 
