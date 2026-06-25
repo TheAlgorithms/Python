@@ -244,7 +244,9 @@ def mean_shift(
     labels = [
         min(
             range(len(centroids)),
-            key=lambda centroid_index: euclidean_distance(point, centroids[centroid_index]),
+            key=lambda centroid_index: euclidean_distance(
+                point, centroids[centroid_index]
+            ),
         )
         for point in data
     ]
