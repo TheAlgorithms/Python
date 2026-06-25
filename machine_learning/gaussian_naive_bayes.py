@@ -153,9 +153,7 @@ def train(
     for class_label, class_samples in separated.items():
         priors[class_label] = math.log(len(class_samples) / n_samples)
         # transpose to get per-feature lists
-        features_by_column = [
-            [row[col] for row in class_samples] for col in range(len(class_samples[0]))
-        ]
+        features_by_column = [list(col) for col in zip(*class_samples)]
         summaries[class_label] = [
             compute_mean_variance(column) for column in features_by_column
         ]
