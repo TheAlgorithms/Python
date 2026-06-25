@@ -53,7 +53,9 @@ class InstagramUser:
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])
-        except json.decoder.JSONDecodeError, KeyError:
+        except json.decoder.JSONDecodeError:
+            return extract_user_profile(scripts[3])
+        except KeyError:
             return extract_user_profile(scripts[3])
 
     def __repr__(self) -> str:
