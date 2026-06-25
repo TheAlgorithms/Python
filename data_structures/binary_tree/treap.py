@@ -106,16 +106,16 @@ def erase(root: Node | None, value: int) -> Node | None:
     return merge(left, right)
 
 
-def inorder(root: Node | None) -> None:
+def inorder(root: Node | None) -> str:
     """
-    Just recursive print of a tree
+    Returns a comma-separated string of tree values in sorted order.
+
+        >>> inorder(None)
+        ''
     """
-    if not root:  # None
-        return
-    else:
-        inorder(root.left)
-        print(root.value, end=",")
-        inorder(root.right)
+    if root is None:
+        return ""
+    return inorder(root.left) + str(root.value) + "," + inorder(root.right)
 
 
 def interact_treap(root: Node | None, args: str) -> Node | None:
@@ -126,19 +126,19 @@ def interact_treap(root: Node | None, args: str) -> Node | None:
 
         >>> root = interact_treap(None, "+1")
         >>> inorder(root)
-        1,
+        '1,'
         >>> root = interact_treap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
         >>> inorder(root)
-        0,1,2,3,4,5,16,17,19,
+        '0,1,2,3,4,5,16,17,19,'
         >>> root = interact_treap(root, "+4 +4 +4")
         >>> inorder(root)
-        0,1,2,3,4,4,4,4,5,16,17,19,
+        '0,1,2,3,4,4,4,4,5,16,17,19,'
         >>> root = interact_treap(root, "-0")
         >>> inorder(root)
-        1,2,3,4,4,4,4,5,16,17,19,
+        '1,2,3,4,4,4,4,5,16,17,19,'
         >>> root = interact_treap(root, "-4")
         >>> inorder(root)
-        1,2,3,5,16,17,19,
+        '1,2,3,5,16,17,19,'
         >>> root = interact_treap(root, "=0")
         Unknown command
     """
