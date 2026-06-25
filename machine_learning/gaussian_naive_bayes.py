@@ -21,7 +21,7 @@ Bayes' theorem:
 Gaussian PDF:
     P(x | mean, var) = exp(-0.5 * ((x - mean)^2 / var)) / sqrt(2 * pi * var)
 
-Time Complexity:  O(n * k * d) for training, O(k * d) for prediction
+Time Complexity:  O(n * d) for training, O(k * d) per sample for prediction
                   where n = samples, k = classes, d = features
 
 References:
