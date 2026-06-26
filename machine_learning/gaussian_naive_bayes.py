@@ -193,9 +193,8 @@ def gaussian_log_probability(
     """
     if variance <= 0:
         raise ValueError("Variance must be positive.")
-    return (
-        -0.5 * math.log(2 * math.pi * variance)
-        - 0.5 * ((feature_value - mean) ** 2 / variance)
+    return -0.5 * math.log(2 * math.pi * variance) - 0.5 * (
+        (feature_value - mean) ** 2 / variance
     )
 
 
@@ -228,9 +227,7 @@ def predict_single(
 
     for class_label, feature_summaries in summaries.items():
         score = priors[class_label]
-        for feature_value, (mean, variance) in zip(
-            feature_vector, feature_summaries
-        ):
+        for feature_value, (mean, variance) in zip(feature_vector, feature_summaries):
             score += gaussian_log_probability(feature_value, mean, variance)
         if score > best_score:
             best_score = score
@@ -307,9 +304,7 @@ def accuracy(predictions: list[int], actual: list[int]) -> float:
     if not predictions:
         raise ValueError("Inputs must not be empty.")
     if len(predictions) != len(actual):
-        raise ValueError(
-            "Predictions and actual labels must have the same length."
-        )
+        raise ValueError("Predictions and actual labels must have the same length.")
     correct = sum(p == a for p, a in zip(predictions, actual))
     return correct / len(actual)
 
