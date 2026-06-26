@@ -10,8 +10,10 @@ For manual testing run:
 python sentinel_linear_search.py
 """
 
+from __future__ import annotations
 
-def sentinel_linear_search(sequence, target):
+
+def sentinel_linear_search(sequence: list[int], target: int) -> int | None:
     """Pure implementation of sentinel linear search algorithm in Python
 
     :param sequence: some sequence with comparable items
