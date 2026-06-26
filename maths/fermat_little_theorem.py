@@ -4,8 +4,17 @@
 # Here we assume that p is a prime number, b divides a, and p doesn't divide b
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_little_theorem
 
-
 def binary_exponentiation(a: int, n: float, mod: int) -> int:
+    """
+    Compute (a^n) % mod using binary exponentiation.
+
+    >>> binary_exponentiation(2, 5, 13)
+    6
+    >>> binary_exponentiation(3, 4, 5)
+    1
+    >>> binary_exponentiation(10, 0, 7)
+    1
+    """
     if n == 0:
         return 1
 
