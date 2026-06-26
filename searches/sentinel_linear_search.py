@@ -9,6 +9,7 @@ python3 -m doctest -v sentinel_linear_search.py
 For manual testing run:
 python sentinel_linear_search.py
 """
+
 from __future__ import annotations
 
 
