@@ -51,7 +51,7 @@ class CoordinateCompressor:
         self.coordinate_map: dict[int | float | str, int] = {}
 
         # A list to store reverse mapping
-        self.reverse_map: list[int | float | str] = [-1] * len(arr)
+        self.reverse_map: list[int | float | str] = []
 
         self.arr = sorted(arr)  # The input list
         self.n = len(arr)  # The length of the input list
@@ -72,12 +72,9 @@ class CoordinateCompressor:
         >>> cc.reverse_map[2]
         83
         """
-        key = 0
-        for val in self.arr:
-            if val not in self.coordinate_map:
-                self.coordinate_map[val] = key
-                self.reverse_map[key] = val
-                key += 1
+        unique_arr = sorted(set(self.arr))
+        self.coordinate_map = {val: i for i, val in enumerate(unique_arr)}
+        self.reverse_map = unique_arr
 
     def compress(self, original: float | str) -> int:
         """
@@ -87,16 +84,24 @@ class CoordinateCompressor:
         original: The value to compress.
 
         Returns:
-        The compressed integer, or -1 if not found in the original list.
+        The compressed integer.
+
+        Raises:
+        ValueError: If the value is not in the original list.
 
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
         >>> cc.compress(100)
         3
         >>> cc.compress(7)  # Value not in the original list
-        -1
+        Traceback (most recent call last):
+            ...
+        ValueError: 7 is not in the original list.
         """
-        return self.coordinate_map.get(original, -1)
+        if original not in self.coordinate_map:
+            msg = f"{original} is not in the original list."
+            raise ValueError(msg)
+        return self.coordinate_map[original]
 
     def decompress(self, num: int) -> int | float | str:
         """
@@ -108,14 +113,22 @@ class CoordinateCompressor:
         Returns:
         The original value.
 
+        Raises:
+        ValueError: If the compressed coordinate is out of range.
+
         >>> arr = [100, 10, 52, 83]
         >>> cc = CoordinateCompressor(arr)
         >>> cc.decompress(0)
         10
         >>> cc.decompress(5)  # Compressed coordinate out of range
-        -1
+        Traceback (most recent call last):
+            ...
+        ValueError: Compressed coordinate 5 is out of range.
         """
-        return self.reverse_map[num] if 0 <= num < len(self.reverse_map) else -1
+        if not (0 <= num < len(self.reverse_map)):
+            msg = f"Compressed coordinate {num} is out of range."
+            raise ValueError(msg)
+        return self.reverse_map[num]
 
 
 if __name__ == "__main__":
