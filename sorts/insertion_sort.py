@@ -30,7 +30,7 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
-    
+
     Time Complexity:
         Best Case: O(n)
         Average Case: O(n²)
