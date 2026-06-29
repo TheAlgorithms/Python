@@ -19,16 +19,14 @@ def excel_title_to_column(column_title: str) -> int:
     >>> excel_title_to_column("")
     Traceback (most recent call last):
         ...
-    ValueError: Column title must be a non-empty string containing only alphabetic characters.
+    ValueError: Column title must contain only alphabetic characters.
     >>> excel_title_to_column("A1")
     Traceback (most recent call last):
         ...
-    ValueError: Column title must be a non-empty string containing only alphabetic characters.
+    ValueError: Column title must contain only alphabetic characters.
     """
     if not column_title or not column_title.isalpha():
-        raise ValueError(
-            "Column title must be a non-empty string containing only alphabetic characters."
-        )
+        raise ValueError("Column title must contain only alphabetic characters.")
 
     column_title = column_title.upper()
     answer = 0
