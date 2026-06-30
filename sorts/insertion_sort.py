@@ -14,6 +14,7 @@ python3 insertion_sort.py
 """
 
 from __future__ import annotations
+
 from collections.abc import MutableSequence
 from typing import Any, Protocol, TypeVar
 

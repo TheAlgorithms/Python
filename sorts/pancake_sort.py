@@ -9,6 +9,7 @@ python pancake_sort.py
 """
 
 from __future__ import annotations
+
 from collections.abc import MutableSequence
 
 
@@ -41,5 +42,4 @@ def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
