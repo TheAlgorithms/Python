@@ -10,6 +10,7 @@ python pancake_sort.py
 
 from collections.abc import MutableSequence
 
+
 def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
