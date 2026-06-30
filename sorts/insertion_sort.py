@@ -13,6 +13,7 @@ For manual testing run:
 python3 insertion_sort.py
 """
 
+from __future__ import annotations
 from collections.abc import MutableSequence
 from typing import Any, Protocol, TypeVar
 
@@ -48,6 +49,9 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
     >>> insertion_sort(collection) == sorted(collection)
     True
+    
+    Time Complexity: (O(n^2))
+    Space Complexity:(O(n))
     """
 
     for insert_index in range(1, len(collection)):
@@ -63,7 +67,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{insertion_sort(unsorted) = }")
