@@ -23,7 +23,7 @@ def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
-    
+
     Time Complexity: O(n^2)
     Space Complexity: O(n)
     """
@@ -38,6 +38,8 @@ def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
         cur -= 1
     return arr
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -49,7 +49,7 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
     >>> insertion_sort(collection) == sorted(collection)
     True
-    
+
     Time Complexity: (O(n^2))
     Space Complexity:(O(n))
     """
