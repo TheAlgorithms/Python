@@ -9,6 +9,8 @@ python pancake_sort.py
 """
 
 from __future__ import annotations
+
+
 def pancake_sort(arr):
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
@@ -20,8 +22,8 @@ def pancake_sort(arr):
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
-    
-    Time Complexity: (O(n^2)) 
+
+    Time Complexity: (O(n^2))
     Space Complexity: (O(n))
     """
     cur = len(arr)
@@ -35,6 +37,8 @@ def pancake_sort(arr):
         cur -= 1
     return arr
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
