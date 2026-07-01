@@ -8,11 +8,15 @@ For manual testing run:
 python pancake_sort.py
 """
 
+from __future__ import annotations
 
-def pancake_sort(arr):
+from collections.abc import MutableSequence
+
+
+def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
     """Sort Array with Pancake Sort.
-    :param arr: Collection containing comparable items
-    :return: Collection ordered in ascending order of items
+    :param arr: Mutable sequence containing comparable items.
+    :return: The same sequence sorted in ascending order.
     Examples:
     >>> pancake_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -20,6 +24,12 @@ def pancake_sort(arr):
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    Time Complexity:
+    O(n^2)
+
+    Space Complexity:
+    O(n)
     """
     cur = len(arr)
     while cur > 1:
@@ -34,6 +44,6 @@ def pancake_sort(arr):
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(pancake_sort(unsorted))
+    import doctest
+
+    doctest.testmod()
