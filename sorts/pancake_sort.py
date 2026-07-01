@@ -45,5 +45,4 @@ def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
