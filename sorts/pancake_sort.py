@@ -15,8 +15,8 @@ from collections.abc import MutableSequence
 
 def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
     """Sort Array with Pancake Sort.
-    :param arr: Collection containing comparable items
-    :return: Collection ordered in ascending order of items
+    :param arr: Mutable sequence containing comparable items.
+    :return: The same sequence sorted in ascending order.
     Examples:
     >>> pancake_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -25,8 +25,11 @@ def pancake_sort(arr: MutableSequence[int]) -> MutableSequence[int]:
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
 
-    Time Complexity: O(n^2)
-    Space Complexity: O(n)
+    Time Complexity:
+    O(n^2)
+
+    Space Complexity:
+    O(n)
     """
     cur = len(arr)
     while cur > 1:
