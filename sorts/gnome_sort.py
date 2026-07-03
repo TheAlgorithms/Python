@@ -11,7 +11,6 @@ python3 -m doctest -v gnome_sort.py
 For manual testing run:
 python3 gnome_sort.py
 """
-from doctest import testmod
 
 
 def gnome_sort(lst: list) -> list:
