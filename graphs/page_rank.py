@@ -31,22 +31,29 @@ class Node:
         return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
 
 
-def page_rank(nodes, limit=3, d=0.85):
-    ranks = {}
-    for node in nodes:
-        ranks[node.name] = 1
+def page_rank(nodes, max_iter=100, d=0.85, tol=1e-8):
+    n = len(nodes)
+    ranks = {node.name: 1.0 / n for node in nodes}
 
     outbounds = {}
     for node in nodes:
         outbounds[node.name] = len(node.outbound)
 
-    for i in range(limit):
-        print(f"======= Iteration {i + 1} =======")
-        for _, node in enumerate(nodes):
-            ranks[node.name] = (1 - d) + d * sum(
-                ranks[ib] / outbounds[ib] for ib in node.inbound
+    for _ in range(max_iter):
+        dangling_sum = sum(
+            ranks[node.name] for node in nodes if outbounds[node.name] == 0
+        )
+        new_ranks = {}
+        for node in nodes:
+            new_ranks[node.name] = (1 - d) / n + d * (
+                sum(ranks[ib] / outbounds[ib] for ib in node.inbound)
+                + dangling_sum / n
             )
-        print(ranks)
+        if sum(abs(new_ranks[k] - ranks[k]) for k in ranks) < tol:
+            ranks = new_ranks
+            break
+        ranks = new_ranks
+    return ranks
 
 
 def main():
@@ -65,6 +72,10 @@ def main():
         print(node)
 
     page_rank(nodes)
+
+    ranks = page_rank(nodes)
+    print("======= Ranks =======")
+    print(ranks)
 
 
 if __name__ == "__main__":
