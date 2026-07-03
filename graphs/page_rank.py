@@ -46,8 +46,7 @@ def page_rank(nodes, max_iter=100, d=0.85, tol=1e-8):
         new_ranks = {}
         for node in nodes:
             new_ranks[node.name] = (1 - d) / n + d * (
-                sum(ranks[ib] / outbounds[ib] for ib in node.inbound)
-                + dangling_sum / n
+                sum(ranks[ib] / outbounds[ib] for ib in node.inbound) + dangling_sum / n
             )
         if sum(abs(new_ranks[k] - ranks[k]) for k in ranks) < tol:
             ranks = new_ranks
