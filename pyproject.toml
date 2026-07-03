@@ -169,13 +169,13 @@ skip = """\
 python_version = "3.14"
 
 [tool.pytest]
-ini_options.markers = [
-  "mat_ops: mark a test as utilizing matrix operations.",
-]
 ini_options.addopts = [
   "--durations=10",
   "--doctest-modules",
   "--showlocals",
+]
+ini_options.markers = [
+  "mat_ops: mark a test as utilizing matrix operations.",
 ]
 
 [tool.coverage]
