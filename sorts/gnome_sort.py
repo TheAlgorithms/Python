@@ -11,6 +11,7 @@ python3 -m doctest -v gnome_sort.py
 For manual testing run:
 python3 gnome_sort.py
 """
+from doctest import testmod
 
 
 def gnome_sort(lst: list) -> list:
@@ -51,6 +52,10 @@ def gnome_sort(lst: list) -> list:
 
 
 if __name__ == "__main__":
+    import doctest
+    
+    doctest.testmod()
+    
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(gnome_sort(unsorted))
