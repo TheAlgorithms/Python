@@ -19,11 +19,10 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
     """
     Find the insertion position of an item in a sorted list.
 
-    :param lst: A sorted list of comparable items.
-    :param item: The item to insert.
-    :param start: The starting index of the search range.
-    :param end: The ending index of the search range.
-    :return: The index where the item should be inserted.
+    >>> binary_search([1, 3, 5, 7], 4, 0, 3)
+    2
+    >>> binary_search([1, 3, 5, 7], 8, 0, 3)
+    4
     """
     if start == end:
         return start if lst[start] > item else start + 1
@@ -43,8 +42,10 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
     """
     Sort a list using the insertion sort algorithm.
 
-    :param lst: A list of comparable items.
-    :return: The sorted list.
+    >>> insertion_sort([3, 2, 1])
+    [1, 2, 3]
+    >>> insertion_sort([1])
+    [1]
     """
     length = len(lst)
 
@@ -60,9 +61,12 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
     """
     Merge two sorted lists into a single sorted list.
 
-    :param left: The left sorted list.
-    :param right: The right sorted list.
-    :return: A merged sorted list.
+    >>> merge([1, 3, 5], [2, 4, 6])
+    [1, 2, 3, 4, 5, 6]
+    >>> merge([], [1, 2])
+    [1, 2]
+    >>> merge([1, 2], [])
+    [1, 2]
     """
     if not left:
         return right
@@ -121,4 +125,8 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    
     main()
