@@ -30,7 +30,7 @@
     <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" height="20" alt="pre-commit">
   </a>
   <a href="https://docs.astral.sh/ruff/formatter/">
-    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: black">
+    <img src="https://img.shields.io/static/v1?label=code%20style&message=ruff&color=black&style=flat-square" height="20" alt="code style: ruff">
   </a>
 
 <!-- Short description: -->
