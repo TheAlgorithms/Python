@@ -42,15 +42,14 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     """
 
     # validate first
-    n = len(nums)   
+    n = len(nums)
 
-    if  n != len(set(nums)):
-            raise ValueError(f"All numbers must be unique, got {nums}")
-    
+    if n != len(set(nums)):
+        raise ValueError(f"All numbers must be unique, got {nums}")
+
     for num in nums:
         if num < 1 or num > n:
-            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")      
-        
+            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")
 
     # and then sort
     index = 0
