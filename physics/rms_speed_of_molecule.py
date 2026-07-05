@@ -50,4 +50,4 @@ if __name__ == "__main__":
     vrms = rms_speed_of_molecule(temperature, molar_mass)
     print(f"Vrms of Nitrogen gas at 300 K is {vrms} m/s")
 
-#asdasd
+# asdasd
