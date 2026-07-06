@@ -94,7 +94,9 @@ if __name__ == "__main__":
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
     # training_set.class_indices
-    if result[0][0] == 0:
+    # The sigmoid output is a probability in the range [0, 1].
+    # Use a threshold of 0.5 to convert the probability into a binary prediction.
+    if result[0][0] < 0.5:
         prediction = "Normal"
-    if result[0][0] == 1:
+    else:
         prediction = "Abnormality detected"
