@@ -265,5 +265,5 @@ myst_fence_as_directive = [
 ]
 templates_path = [ "_templates" ]
 source_suffix.".rst" = "restructuredtext"
-# ".txt" = "markdown"
 source_suffix.".md" = "markdown"
+# ".txt" = "markdown"
