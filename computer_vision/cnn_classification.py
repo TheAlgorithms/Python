@@ -96,7 +96,4 @@ if __name__ == "__main__":
     # training_set.class_indices
     # The sigmoid output is a probability in the range [0, 1].
     # Use a threshold of 0.5 to convert the probability into a binary prediction.
-    if result[0][0] < 0.5:
-        prediction = "Normal"
-    else:
-        prediction = "Abnormality detected"
+    prediction = "Normal" if result[0][0] < 0.5 else "Abnormality detected"
