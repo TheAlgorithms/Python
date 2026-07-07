@@ -81,6 +81,26 @@ def is_palindrome_slice(s: str) -> bool:
     return s == s[::-1]
 
 
+def is_palindrome_ignore_case_and_spaces(s: str) -> bool:
+    """
+    Return True if s is a palindrome, ignoring case and spaces.
+    Otherwise return False.
+
+    >>> is_palindrome_ignore_case_and_spaces("A man a plan a canal Panama")
+    True
+    >>> is_palindrome_ignore_case_and_spaces("Was it a car or a cat I saw?")
+    False
+    >>> is_palindrome_ignore_case_and_spaces("Hello World")
+    False
+    >>> is_palindrome_ignore_case_and_spaces("Never Odd or Even")
+    True
+    >>> is_palindrome_ignore_case_and_spaces("")
+    True
+    """
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+
+
 def benchmark_function(name: str) -> None:
     stmt = f"all({name}(key) == value for key, value in test_data.items())"
     setup = f"from __main__ import test_data, {name}"
@@ -93,6 +113,7 @@ if __name__ == "__main__":
     for key, value in test_data.items():
         assert is_palindrome(key) == is_palindrome_recursive(key)
         assert is_palindrome(key) == is_palindrome_slice(key)
+        assert is_palindrome(key) == is_palindrome_ignore_case_and_spaces(key)
         print(f"{key:21} {value}")
     print("a man a plan a canal panama")
 
@@ -104,3 +125,5 @@ if __name__ == "__main__":
     benchmark_function("is_palindrome_recursive")
     # finished 500,000 runs in 2.08679 seconds
     benchmark_function("is_palindrome_traversal")
+    # finished 500,000 runs in 0.99769 seconds
+    benchmark_function("is_palindrome_ignore_case_and_spaces")
