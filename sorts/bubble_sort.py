@@ -2,7 +2,16 @@ from typing import Any
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
-    """Pure implementation of bubble sort algorithm in Python
+    """Sort a collection using the iterative bubble sort algorithm.
+
+    Bubble sort repeatedly compares neighboring elements and swaps them when
+    they are in the wrong order.  Each pass moves the next largest element
+    toward the end of the collection, and the process stops early if a pass
+    finishes without any swaps.
+
+    Time complexity: O(n) in the best case when the collection is already
+    sorted, and O(n^2) on average and in the worst case.
+    Space complexity: O(1), because the collection is sorted in place.
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -61,7 +70,16 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
-    """It is similar iterative bubble sort but recursive.
+    """Sort a collection using the recursive bubble sort algorithm.
+
+    This version performs one bubble sort pass by comparing adjacent elements
+    and swapping them when needed.  If that pass makes any swaps, the function
+    calls itself to keep bubbling larger values toward the end until the
+    collection is sorted.
+
+    Time complexity: O(n) in the best case when no swaps are needed, and
+    O(n^2) on average and in the worst case.
+    Space complexity: O(n) in the worst case because of the recursive calls.
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
