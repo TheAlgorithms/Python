@@ -83,13 +83,13 @@ def is_palindrome_slice(s: str) -> bool:
 
 def is_palindrome_ignore_case_and_spaces(s: str) -> bool:
     """
-    Return True if s is a palindrome, ignoring case and spaces.
+    Return True if s is a palindrome, ignoring case, spaces, and punctuation.
     Otherwise return False.
 
     >>> is_palindrome_ignore_case_and_spaces("A man a plan a canal Panama")
     True
     >>> is_palindrome_ignore_case_and_spaces("Was it a car or a cat I saw?")
-    False
+    True
     >>> is_palindrome_ignore_case_and_spaces("Hello World")
     False
     >>> is_palindrome_ignore_case_and_spaces("Never Odd or Even")
@@ -97,8 +97,17 @@ def is_palindrome_ignore_case_and_spaces(s: str) -> bool:
     >>> is_palindrome_ignore_case_and_spaces("")
     True
     """
-    s = s.lower().replace(" ", "")
+    s = "".join(char.lower() for char in s if char.isalnum())
     return s == s[::-1]
+
+
+test_data_ignore_case_and_spaces = {
+    "A man a plan a canal Panama": True,
+    "Was it a car or a cat I saw?": True,
+    "Hello World": False,
+    "Never Odd or Even": True,
+    "": True,
+}
 
 
 def benchmark_function(name: str) -> None:
@@ -113,17 +122,18 @@ if __name__ == "__main__":
     for key, value in test_data.items():
         assert is_palindrome(key) == is_palindrome_recursive(key)
         assert is_palindrome(key) == is_palindrome_slice(key)
-        assert is_palindrome(key) == is_palindrome_ignore_case_and_spaces(key)
         print(f"{key:21} {value}")
+    for key, value in test_data_ignore_case_and_spaces.items():
+        assert is_palindrome_ignore_case_and_spaces(key) == value
     print("a man a plan a canal panama")
 
-    # finished 500,000 runs in 0.46793 seconds
+    # finished 500,000 runs in 1.90863 seconds
     benchmark_function("is_palindrome_slice")
-    # finished 500,000 runs in 0.85234 seconds
+    # finished 500,000 runs in 2.80057 seconds
     benchmark_function("is_palindrome")
-    # finished 500,000 runs in 1.32028 seconds
+    # finished 500,000 runs in 4.50983 seconds
     benchmark_function("is_palindrome_recursive")
-    # finished 500,000 runs in 2.08679 seconds
+    # finished 500,000 runs in 6.81874 seconds
     benchmark_function("is_palindrome_traversal")
-    # finished 500,000 runs in 0.99769 seconds
+    # finished 500,000 runs in 10.64074 seconds
     benchmark_function("is_palindrome_ignore_case_and_spaces")
