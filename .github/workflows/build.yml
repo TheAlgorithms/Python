@@ -39,3 +39,35 @@ jobs:
           --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
+
+  claude-autofix:
+    needs: build
+    if: failure()
+    uses: evan-m-jackson/claude-pipelines/.github/workflows/claude-autofix-on-failure.yml@main
+    with:
+      setup_command: >-
+        sudo apt-get update -qq &&
+        sudo apt-get install -y libhdf5-dev &&
+        curl -LsSf https://astral.sh/uv/install.sh | sh &&
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH" &&
+        "$HOME/.local/bin/uv" sync --group=test
+      test_command: >-
+        uv run --with=pytest-run-parallel pytest
+        --iterations=8 --parallel-threads=auto
+        --ignore=computer_vision/cnn_classification.py
+        --ignore=docs/conf.py
+        --ignore=dynamic_programming/k_means_clustering_tensorflow.py
+        --ignore=machine_learning/local_weighted_learning/local_weighted_learning.py
+        --ignore=machine_learning/lstm/lstm_prediction.py
+        --ignore=neural_network/input_data.py
+        --ignore=project_euler/
+        --ignore=quantum/q_fourier_transform.py
+        --ignore=scripts/validate_solutions.py
+        --ignore=web_programming/current_stock_price.py
+        --ignore=web_programming/fetch_anime_and_play.py
+        --cov-report=term-missing:skip-covered
+        --cov=. .
+      model: claude-sonnet-4-6
+      min_confidence: medium
+    secrets:
+      anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
