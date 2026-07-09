@@ -21,8 +21,25 @@ def decode(encoded: list[int]) -> str:
     """
     >>> decode([13, 25, 14, 1, 13, 5])
     'myname'
+
+    >>> decode([0, 1, 2])
+    Traceback (most recent call last):
+        ...
+    ValueError: 0 is not a valid A1Z26 code (must be 1-26)
+
+    >>> decode([26, 27, 28])
+    Traceback (most recent call last):
+        ...
+    ValueError: 27 is not a valid A1Z26 code (must be 1-26)
     """
-    return "".join(chr(elem + 96) for elem in encoded)
+    out = []
+    for code in encoded:
+        if not isinstance(code, int) or isinstance(code, bool) or not 1 <= code <= 26:
+            raise ValueError(
+                f"{code} is not a valid A1Z26 code (must be 1-26)"
+            )
+        out.append(chr(code + 96))
+    return "".join(out)
 
 
 def main() -> None:
