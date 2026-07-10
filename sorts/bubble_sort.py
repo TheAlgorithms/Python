@@ -2,7 +2,26 @@ from typing import Any
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
-    """Pure implementation of bubble sort algorithm in Python
+    """Pure implementation of the iterative bubble sort algorithm in Python.
+
+    Bubble sort is a simple comparison-based sorting algorithm that repeatedly
+    steps through the collection, comparing each pair of adjacent elements and
+    swapping them when they are in the wrong order (i.e. when the left element
+    is greater than the right one). With each full pass the largest unsorted
+    element "bubbles up" to its correct position at the end of the collection,
+    so the next pass only needs to consider the remaining unsorted portion.
+
+    This implementation also keeps track of whether any swap occurred during a
+    pass. If a pass completes with no swaps, the collection is already sorted
+    and the algorithm terminates early, avoiding unnecessary work.
+
+    Time complexity:
+        - Best case:    O(n)      (collection already sorted, one pass,
+                                 no swaps -> early termination)
+        - Average case: O(n^2)
+        - Worst case:   O(n^2)
+    Space complexity:   O(1)      (sorts in place, constant extra memory)
+    Stable:             True      (equal elements keep their relative order)
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -61,7 +80,26 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
-    """It is similar iterative bubble sort but recursive.
+    """Recursive variant of the bubble sort algorithm.
+
+    This version follows the same principle as the iterative bubble sort: it
+    repeatedly compares adjacent elements and swaps them when they are out of
+    order so that the largest unsorted element rises to the end of the
+    collection. Instead of using an explicit loop, it performs a single pass
+    over the collection and then recurses on the (partially sorted) collection
+    until a full pass completes with no swaps.
+
+    Because it recurses once per pass, the recursion depth grows with the
+    number of elements, which makes it less memory efficient than the
+    iterative version (each call adds a frame to the call stack). For large
+    inputs this can hit Python's recursion limit.
+
+    Time complexity:
+        - Best case:    O(n)      (already sorted, one pass, no swaps)
+        - Average case: O(n^2)
+        - Worst case:   O(n^2)
+    Space complexity:   O(n)      (call stack depth proportional to n passes)
+    Stable:             True
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
