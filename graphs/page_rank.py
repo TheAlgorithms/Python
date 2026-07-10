@@ -31,22 +31,45 @@ class Node:
         return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
 
 
-def page_rank(nodes, limit=3, d=0.85):
-    ranks = {}
-    for node in nodes:
-        ranks[node.name] = 1
+def page_rank(nodes, limit=100, d=0.85, tol=1e-6):
+    """Compute PageRank for ``nodes`` and return the final rank mapping.
 
-    outbounds = {}
-    for node in nodes:
-        outbounds[node.name] = len(node.outbound)
+    The implementation follows the standard formulation: ranks are
+    initialised to ``1 / len(nodes)`` so they form a probability
+    distribution summing to 1.0, dangling nodes (nodes with no
+    outbound edges) have their rank redistributed evenly across every
+    node at each step, and the iteration stops as soon as the L1
+    difference between successive rank vectors falls below ``tol``
+    (default ``1e-6``) — so ``limit`` is an upper bound, not a fixed
+    iteration count.
+    """
+    n = len(nodes)
+    if n == 0:
+        return {}
 
-    for i in range(limit):
-        print(f"======= Iteration {i + 1} =======")
-        for _, node in enumerate(nodes):
-            ranks[node.name] = (1 - d) + d * sum(
-                ranks[ib] / outbounds[ib] for ib in node.inbound
+    ranks = {node.name: 1.0 / n for node in nodes}
+    outbounds = {node.name: len(node.outbound) for node in nodes}
+
+    for _ in range(limit):
+        dangling_sum = sum(
+            ranks[node.name] for node in nodes if outbounds[node.name] == 0
+        )
+        new_ranks = {}
+        for node in nodes:
+            inbound_share = sum(
+                ranks[ib] / outbounds[ib]
+                for ib in node.inbound
+                if outbounds[ib] > 0
             )
-        print(ranks)
+            new_ranks[node.name] = (1 - d) / n + d * (
+                inbound_share + dangling_sum / n
+            )
+        if sum(abs(new_ranks[k] - ranks[k]) for k in ranks) < tol:
+            ranks = new_ranks
+            break
+        ranks = new_ranks
+
+    return ranks
 
 
 def main():
@@ -64,7 +87,8 @@ def main():
     for node in nodes:
         print(node)
 
-    page_rank(nodes)
+    print("======= PageRank =======")
+    print(page_rank(nodes))
 
 
 if __name__ == "__main__":
