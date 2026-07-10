@@ -29,6 +29,31 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     [1, 2, 3, 4, 5]
     """
 
+    # The Cyclic Sort algorithm only works on a permutation of 1..n.
+    # The previous implementation blindly computed correct_index = nums[index] - 1
+    # and indexed into nums[correct_index] without checking that nums[index]
+    # was in range, which on a non-permutation input (a duplicate, a number
+    # outside 1..n, a non-integer) would either loop forever, return a
+    # silently-wrong result, or raise an unhelpful IndexError from a later
+    # position in the list. Reject invalid input up front so the algorithm
+    # only ever runs on a permutation it can actually sort.
+    n = len(nums)
+    seen: set[int] = set()
+    for value in nums:
+        if not isinstance(value, int) or isinstance(value, bool):
+            raise TypeError(
+                f"cyclic_sort requires a list of ints, got {type(value).__name__}"
+            )
+        if not 1 <= value <= n:
+            raise ValueError(
+                f"all values must be in the range 1..{n}, got {value}"
+            )
+        if value in seen:
+            raise ValueError(
+                f"all values must be unique, got duplicate {value}"
+            )
+        seen.add(value)
+
     # Perform cyclic sort
     index = 0
     while index < len(nums):
