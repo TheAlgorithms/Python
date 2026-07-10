@@ -1,12 +1,13 @@
 import csv
+import os
 
 import tweepy
 
-# Twitter API credentials
-consumer_key = ""
-consumer_secret = ""
-access_key = ""
-access_secret = ""
+# Twitter API credentials — loaded from environment variables, never hardcoded
+consumer_key = os.environ.get("TWITTER_CONSUMER_KEY", "")
+consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET", "")
+access_key = os.environ.get("TWITTER_ACCESS_KEY", "")
+access_secret = os.environ.get("TWITTER_ACCESS_SECRET", "")
 
 
 def get_all_tweets(screen_name: str) -> None:
