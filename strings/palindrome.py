@@ -127,13 +127,13 @@ if __name__ == "__main__":
         assert is_palindrome_ignore_case_and_spaces(key) == value
     print("a man a plan a canal panama")
 
-    # finished 500,000 runs in 1.90863 seconds
+    # finished 500,000 runs in 0.46793 seconds
     benchmark_function("is_palindrome_slice")
-    # finished 500,000 runs in 2.80057 seconds
+    # finished 500,000 runs in 0.85234 seconds
     benchmark_function("is_palindrome")
-    # finished 500,000 runs in 4.50983 seconds
+    # finished 500,000 runs in 1.32028 seconds
     benchmark_function("is_palindrome_recursive")
-    # finished 500,000 runs in 6.81874 seconds
+    # finished 500,000 runs in 2.08679 seconds
     benchmark_function("is_palindrome_traversal")
-    # finished 500,000 runs in 10.64074 seconds
+    # finished 500,000 runs in 4.27493 seconds
     benchmark_function("is_palindrome_ignore_case_and_spaces")
