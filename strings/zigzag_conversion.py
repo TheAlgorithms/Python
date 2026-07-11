@@ -38,7 +38,10 @@ def zigzag_convert(s: str, num_rows: int) -> str:
         rows[current_row].append(char)
         if current_row == 0 or current_row == num_rows - 1:
             going_down = not going_down
-        current_row += 1 if going_down else -1
+        if going_down:
+            current_row += 1
+        else:
+            current_row -= 1
 
     return "".join("".join(row) for row in rows)
 
