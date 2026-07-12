@@ -27,11 +27,26 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
-    """
+    >>> cyclic_sort([1, 2, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be in range 1 and 3, got 5.
 
+    >>> cyclic_sort([7, 3, 2, 3, 54, 5, 4])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be unique, got [7, 3, 2, 3, 54, 5, 4].
+    """
+    # Reject invalid input to prevent infinite loops and invalid indexing.
+    n = len(nums)
+    if len(set(nums)) != n:
+        raise ValueError(f"All numbers must be unique, got {nums}.")
+    for num in nums:
+        if not 1 <= num <= n:
+            raise ValueError(f"All numbers must be in range 1 and {n}, got {num}.")
     # Perform cyclic sort
     index = 0
-    while index < len(nums):
+    while index < n:
         # Calculate the correct index for the current element
         correct_index = nums[index] - 1
         # If the current element is not at its correct position,
