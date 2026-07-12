@@ -40,11 +40,11 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     # Reject invalid input to prevent infinite loops and invalid indexing.
     n = len(nums)
     if len(set(nums)) != n:
-        err=f"All numbers must be unique, got {nums}."
+        err = f"All numbers must be unique, got {nums}."
         raise ValueError(err)
     for num in nums:
         if not 1 <= num <= n:
-            err=f"All numbers must be in range 1 to {n}, got {num}."
+            err = f"All numbers must be in range 1 to {n}, got {num}."
             raise ValueError(err)
     # Perform cyclic sort
     index = 0
