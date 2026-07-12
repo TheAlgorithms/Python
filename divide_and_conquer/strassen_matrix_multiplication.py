@@ -75,7 +75,7 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
     Algorithm. It only supports square matrices of any size that is a power of 2.
- 
+
     Strassen's algorithm reduces the number of recursive multiplications needed to
     multiply two n x n matrices from the 8 required by the naive divide-and-conquer
     approach down to 7, at the cost of a few extra matrix additions/subtractions
@@ -83,7 +83,7 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     (n/2) x (n/2) quadrants, 7 products of quadrant combinations are computed
     recursively, and those products are combined with additions/subtractions to
     form the four quadrants of the result.
- 
+
     Time complexity: O(n^log2(7)) ~= O(n^2.807), an improvement over the O(n^3) of
     the standard/naive matrix multiplication algorithm.
     Space complexity: O(n^2) for storing the intermediate quadrant matrices, plus
@@ -125,7 +125,7 @@ def strassen(matrix1: list, matrix2: list) -> list:
     until they are square matrices whose dimension is a power of 2 (required
     by the divide-and-conquer recursion in actual_strassen), performs the
     multiplication, then trims the padding back off the result.
- 
+
     >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
     [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
     >>> strassen([[3,7,5,6,9],[1,5,3,7,8],[1,4,4,5,7]], [[2,4],[5,2],[1,7],[5,5],[7,8]])
