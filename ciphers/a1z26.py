@@ -13,7 +13,17 @@ def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
+    >>> encode("Hello")
+    Traceback (most recent call last):
+        ...
+    ValueError: plain must contain only lowercase letters a-z
+    >>> encode("hi there")
+    Traceback (most recent call last):
+        ...
+    ValueError: plain must contain only lowercase letters a-z
     """
+    if not plain or not all("a" <= elem <= "z" for elem in plain):
+        raise ValueError("plain must contain only lowercase letters a-z")
     return [ord(elem) - 96 for elem in plain]
 
 
