@@ -17,7 +17,9 @@ def binary_count_trailing_zeros(a: int) -> int:
     >>> binary_count_trailing_zeros(4294967296)
     32
     >>> binary_count_trailing_zeros(0)
-    0
+    Traceback (most recent call last):
+        ...
+    ValueError: Input value must be a positive integer
     >>> binary_count_trailing_zeros(-10)
     Traceback (most recent call last):
         ...
@@ -31,11 +33,11 @@ def binary_count_trailing_zeros(a: int) -> int:
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
-    if a < 0:
-        raise ValueError("Input value must be a positive integer")
-    elif isinstance(a, float):
+    if isinstance(a, float):
         raise TypeError("Input value must be a 'int' type")
-    return 0 if (a == 0) else int(log2(a & -a))
+    if a < 0 or a == 0:
+        raise ValueError("Input value must be a positive integer")
+    return int(log2(a & -a))
 
 
 if __name__ == "__main__":
