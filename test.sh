@@ -29,9 +29,9 @@ fi
 
 case "$MODE" in
   base)
-    pytest tests --ignore=tests/test_binary_search_duplicates.py --junitxml="$OUTPUT_PATH"
+    pytest tests --ignore=tests/test_binary_search_leftmost.py --junitxml="$OUTPUT_PATH"
     ;;
   new)
-    pytest tests/test_binary_search_duplicates.py --junitxml="$OUTPUT_PATH"
+    pytest tests/test_binary_search_leftmost.py --junitxml="$OUTPUT_PATH"
     ;;
 esac
