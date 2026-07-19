@@ -5,7 +5,6 @@ cd /app
 OUTPUT_PATH=""
 MODE=""
 
-# Parse arguments: --output_path <path> then mode
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --output_path)

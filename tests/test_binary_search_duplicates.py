@@ -1,4 +1,4 @@
-from simple_binary_search import binary_search
+from searches.simple_binary_search import binary_search
 
 
 def test_binary_search_leftmost_duplicate():
@@ -15,3 +15,4 @@ def test_binary_search_not_found():
 
 def test_binary_search_single_element():
     assert binary_search([5], 5) == 0
+
