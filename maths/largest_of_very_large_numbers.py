@@ -17,6 +17,8 @@ def res(x, y):
     ...
     ValueError: expected a positive input
     """
+    if x < 0:
+        raise ValueError("expected a positive input")
     if 0 not in (x, y):
         # We use the relation x^y = y*log10(x), where 10 is the base.
         return y * math.log10(x)
