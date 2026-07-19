@@ -13,7 +13,19 @@ def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
+    >>> encode("")
+    Traceback (most recent call last):
+    ...
+    ValueError: input cannot be empty
+    >>> encode("Hello")
+    Traceback (most recent call last):
+    ...
+    ValueError: input must contain only lowercase letters a-z
     """
+    if not plain:
+        raise ValueError("input cannot be empty")
+    if not plain.islower() or not plain.isalpha():
+        raise ValueError("input must contain only lowercase letters a-z")
     return [ord(elem) - 96 for elem in plain]
 
 
