@@ -27,7 +27,23 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
+    >>> cyclic_sort([1, 2, 2])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be unique, got [1, 2, 2]
+    >>> cyclic_sort([1, 2, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be in range 1 to 3, got 5
     """
+    if len(set(nums)) != len(nums):
+        msg = f"All numbers must be unique, got {nums}"
+        raise ValueError(msg)
+    n = len(nums)
+    for num in nums:
+        if num < 1 or num > n:
+            msg = f"All numbers must be in range 1 to {n}, got {num}"
+            raise ValueError(msg)
 
     # Perform cyclic sort
     index = 0
