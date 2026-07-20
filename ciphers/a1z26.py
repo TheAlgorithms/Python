@@ -13,7 +13,13 @@ def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
+    >>> encode("MyName")
+    Traceback (most recent call last):
+    ...
+    ValueError: only lowercase letters are allowed
     """
+    if plain and not plain.islower():
+        raise ValueError("only lowercase letters are allowed")
     return [ord(elem) - 96 for elem in plain]
 
 
