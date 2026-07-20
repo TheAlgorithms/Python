@@ -17,21 +17,19 @@ def split(string: str, separator: str = " ") -> list:
 
     >>> split(";abbb;;c;", separator=';')
     ['', 'abbb', '', 'c', '']
+
+    >>> split("a--b--c", separator="--")
+    Traceback (most recent call last):
+    ...
+    ValueError: separator must be a single character
     """
-
-    split_words = []
-
-    last_index = 0
-    for index, char in enumerate(string):
-        if char == separator:
-            split_words.append(string[last_index:index])
-            last_index = index + 1
-        if index + 1 == len(string):
-            split_words.append(string[last_index : index + 1])
-    return split_words
+    if len(separator) != 1:
+        raise ValueError("separator must be a single character")
+    return string.split(separator)
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
+
