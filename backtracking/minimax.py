@@ -57,6 +57,10 @@ def minimax(
     if len(scores) == 0:
         raise ValueError("Scores cannot be empty")
 
+    # Validate that scores length is a power of 2
+    if len(scores) & (len(scores) - 1) != 0:
+        raise ValueError("Number of scores must be a power of 2")
+
     # Base case: If the current depth equals the height of the tree,
     # return the score of the current node.
     if depth == height:
