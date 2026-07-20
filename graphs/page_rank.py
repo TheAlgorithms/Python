@@ -62,7 +62,9 @@ def page_rank(nodes, limit=3, d=0.85):
         for node in nodes:
             outbound_count = outbounds[node.name]
             if outbound_count == 0:
-                ranks[node.name] = (1 - d) + d * sum(ranks[ib] for ib in node.inbound) / n
+                ranks[node.name] = (1 - d) + d * sum(
+                    ranks[ib] for ib in node.inbound
+                ) / n
             else:
                 ranks[node.name] = (1 - d) + d * sum(
                     ranks[ib] / outbounds[ib] for ib in node.inbound
