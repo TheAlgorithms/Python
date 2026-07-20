@@ -2,7 +2,9 @@ from typing import Any
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
-    """Pure implementation of bubble sort algorithm in Python
+    """Bubble sort algorithm that iteratively steps through the list,
+    compares adjacent elements, and swaps them if they are in the wrong
+    order. The process is repeated until the list is sorted.
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -61,7 +63,10 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
-    """It is similar iterative bubble sort but recursive.
+    """Bubble sort algorithm that recursively steps through the list,
+    compares adjacent elements, and swaps them if they are in the wrong
+    order. Each recursion performs one full pass, bubbling the largest
+    element to its correct position, then recurses on the remaining list.
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
