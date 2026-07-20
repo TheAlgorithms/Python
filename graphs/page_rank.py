@@ -32,21 +32,43 @@ class Node:
 
 
 def page_rank(nodes, limit=3, d=0.85):
+    """
+    Calculate PageRank for a directed graph.
+
+    >>> nodes = [Node('A'), Node('B'), Node('C')]
+    >>> nodes[0].add_outbound('B')
+    >>> nodes[0].add_outbound('C')
+    >>> nodes[1].add_outbound('C')
+    >>> nodes[2].add_outbound('A')
+    >>> ranks = page_rank(nodes, limit=100)
+    >>> round(ranks['A'], 4)
+    0.15
+    >>> round(ranks['B'], 4)
+    0.15
+    >>> round(ranks['C'], 4)
+    0.15
+    """
+    n = len(nodes)
     ranks = {}
     for node in nodes:
-        ranks[node.name] = 1
+        ranks[node.name] = 1 / n  # Initialize to 1/n, not 1
 
     outbounds = {}
     for node in nodes:
         outbounds[node.name] = len(node.outbound)
 
     for i in range(limit):
-        print(f"======= Iteration {i + 1} =======")
-        for _, node in enumerate(nodes):
-            ranks[node.name] = (1 - d) + d * sum(
-                ranks[ib] / outbounds[ib] for ib in node.inbound
-            )
-        print(ranks)
+        # Handle dangling nodes (nodes with no outbound links)
+        for node in nodes:
+            outbound_count = outbounds[node.name]
+            if outbound_count == 0:
+                ranks[node.name] = (1 - d) + d * sum(ranks[ib] for ib in node.inbound) / n
+            else:
+                ranks[node.name] = (1 - d) + d * sum(
+                    ranks[ib] / outbounds[ib] for ib in node.inbound
+                )
+
+    return ranks
 
 
 def main():
