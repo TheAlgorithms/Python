@@ -4,6 +4,10 @@ from typing import Any
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
+    Time Complexity: O(n^2) - worst and average case
+    Time Complexity: O(n) - best case (already sorted, early exit via swapped flag)
+    Space Complexity: O(1) - sorts in place, no extra memory used
+
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered in ascending order
@@ -62,6 +66,9 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     """It is similar iterative bubble sort but recursive.
+    Time Complexity: O(n^2) - worst and average case
+    Time Complexity: O(n) - best case (already sorted)
+    Space Complexity: O(n) - recursive call stack uses extra memory
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
