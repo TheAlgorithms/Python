@@ -17,7 +17,7 @@ from collections.abc import Iterable, Sequence
 
 def _token_hash(token: str, seed: int, permutation: int) -> int:
     """Return a deterministic 64-bit hash for one token and permutation."""
-    payload = f"{seed}:{permutation}:{token}".encode("utf-8")
+    payload = f"{seed}:{permutation}:{token}".encode()
     return int.from_bytes(hashlib.blake2b(payload, digest_size=8).digest(), "big")
 
 
