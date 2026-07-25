@@ -71,10 +71,18 @@ def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     >>> data = [9, 2, 7, 1, 5]
     >>> bucket_sort(data) == sorted(data)
     True
+    >>> data = [12, 7 , 22, 11, 4]
+    >>> bucket_sort(data, 2.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: bucket_count must be an integer
     """
 
     if len(my_list) == 0 or bucket_count <= 0:
         return []
+
+    if not isinstance(bucket_count, int):
+        raise TypeError("bucket_count must be an integer")
 
     min_value, max_value = min(my_list), max(my_list)
     if min_value == max_value:
