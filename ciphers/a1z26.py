@@ -8,12 +8,33 @@ http://bestcodes.weebly.com/a1z26.html
 
 from __future__ import annotations
 
+import string
+
 
 def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
+
+    >>> encode("")
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must contain only lowercase letters a-z.
+
+    >>> encode("HELLO")
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must contain only lowercase letters a-z.
+
+    >>> encode("hi there")
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must contain only lowercase letters a-z.
     """
+
+    if not plain or any(ch not in string.ascii_lowercase for ch in plain):
+        raise ValueError("Input must contain only lowercase letters a-z.")
+
     return [ord(elem) - 96 for elem in plain]
 
 
