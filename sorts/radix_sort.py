@@ -19,9 +19,17 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     True
     >>> radix_sort(list(range(14,-1,-1))) == sorted(range(15))
     True
-    >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
+    >>> radix_sort([1, 100, 10, 1000]) == sorted([1, 100, 10, 1000])
     True
+    >>> radix_sort([1, 3, -2, 4])
+    Traceback (most recent call last):
+        ...
+    ValueError: radix_sort() only accepts non-negative integers
     """
+    if any(i < 0 for i in list_of_ints):
+        raise ValueError("radix_sort() only accepts non-negative integers")
+    if not list_of_ints:
+        return []
     placement = 1
     max_digit = max(list_of_ints)
     while placement <= max_digit:
