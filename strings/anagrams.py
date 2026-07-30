@@ -26,9 +26,9 @@ def anagram(my_word: str) -> list[str]:
     """
     An anagram is a word or phrase formed by rearranging the letters of a different
     word or phrase, typically using all the original letters exactly once.
-    
+
     Return every anagram of the given word from the dictionary.
-    
+
 
     >>> anagram('test')
     ['sett', 'stet', 'test']
