@@ -451,7 +451,7 @@ def test_cancer_data():
     print("Hello!\nStart test SVM using the SMO algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancer_data.csv"):
-        request = urllib.request.Request( 
+        request = urllib.request.Request(
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
