@@ -25,14 +25,14 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.25.1
+    rev: v2.26.0
     hooks:
       - id: pyproject-fmt
 
