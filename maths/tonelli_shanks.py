@@ -84,8 +84,8 @@ def tonelli_shanks(residue: int, prime: int) -> int:
 
     symbol = legendre_symbol(residue, prime)
     if symbol != 1:
-        raise ValueError(f"{residue} is not a quadratic residue modulo {prime}")
-
+        message = f"{residue} is not a quadratic residue modulo {prime}"
+        raise ValueError(message)
     # Fast path: prime ≡ 3 (mod 4)
     if prime % 4 == 3:
         root = pow(residue, (prime + 1) // 4, prime)
@@ -118,8 +118,8 @@ def tonelli_shanks(residue: int, prime: int) -> int:
                 least_i = candidate_i
                 break
         else:
-            raise ValueError(f"{residue} is not a quadratic residue modulo {prime}")
-
+            message = f"{residue} is not a quadratic residue modulo {prime}"
+            raise ValueError(message)
         modular_b = pow(modular_c, 1 << (remaining_s - least_i - 1), prime)
         modular_r = (modular_r * modular_b) % prime
         modular_c = pow(modular_b, 2, prime)
