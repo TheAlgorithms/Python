@@ -80,7 +80,8 @@ def baby_step_giant_step(base: int, target: int, modulus: int) -> int:
             return giant_index * step_count + baby_steps[gamma]
         gamma = (gamma * giant_factor) % modulus
 
-    raise ValueError(f"no discrete logarithm for {target} base {base} modulo {modulus}")
+    message = f"no discrete logarithm for {target} base {base} modulo {modulus}"
+    raise ValueError(message)
 
 
 if __name__ == "__main__":
