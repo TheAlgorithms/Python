@@ -14,6 +14,10 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     Examples:
     >>> radix_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
+    >>> radix_sort([2, 4, -2, 1, 3])
+    Traceback (most recent call last):
+    ...
+    ValueError: Negative numbers are not supported.
 
     >>> radix_sort(list(range(15))) == sorted(range(15))
     True
@@ -29,6 +33,9 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
         buckets: list[list] = [[] for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
+            # check for negative numbers
+            if i < 0:
+                raise ValueError("Negative numbers are not supported.")
             tmp = int((i / placement) % RADIX)
             buckets[tmp].append(i)
         # put each buckets' contents into list_of_ints
