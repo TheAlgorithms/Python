@@ -61,8 +61,8 @@ def baby_step_giant_step(base: int, target: int, modulus: int) -> int:
     if base == 0:
         if target == 0:
             return 1
-        raise ValueError(f"no discrete logarithm for {target} base 0 modulo {modulus}")
-
+        message = f"no discrete logarithm for {target} base 0 modulo {modulus}"
+        raise ValueError(message)
     # Baby steps: store base^j for j = 0 .. m-1
     step_count = ceil(isqrt(modulus - 1))
     baby_steps: dict[int, int] = {}
