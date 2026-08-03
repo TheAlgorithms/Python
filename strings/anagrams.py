@@ -24,8 +24,11 @@ def signature(word: str) -> str:
 
 def anagram(my_word: str) -> list[str]:
     """
-    Return every anagram of the given word from the dictionary.
+    An anagram is a word or phrase formed by rearranging the letters of a
+    different word or phrase, typically using all the original letters exactly
+    once.
 
+    Return every anagram of the given word from the dictionary.
     >>> anagram('test')
     ['sett', 'stet', 'test']
     >>> anagram('this is a test')
