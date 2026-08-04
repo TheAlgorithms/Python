@@ -72,6 +72,12 @@ That's it! The plugin will run every time you commit any changes. If there are a
 ```bash
 pre-commit run --all-files --show-diff-on-failure
 ```
+### Skipping Pre-commit Hooks for Exploratory Changes
+
+When you're making local experimental changes and don't want pre-commit hooks to run, you can bypass them using:
+
+```bash
+git commit --no-verify -m "Exploratory: Testing XYZ"
 
 #### Coding Style
 
