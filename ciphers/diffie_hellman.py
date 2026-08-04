@@ -1,11 +1,20 @@
-from binascii import hexlify
-from hashlib import sha256
-from os import urandom
+"""
+Diffie-Hellman is a cryptographic protocol that allows two parties to
+securely share a secret over an insecure channel without needing a previously
+shared key.
 
-# RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
-# Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
+Its strength is based on the difficulty of solving the discrete logarithm.
 
-primes = {
+https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
+"""
+
+import random
+
+"""
+RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
+Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
+"""
+GROUPS = {
     # 1536-bit
     5: {
         "prime": int(
@@ -181,50 +190,34 @@ primes = {
 
 class DiffieHellman:
     """
-    Class to represent the Diffie-Hellman key exchange protocol
+    Class to represent one party in the Diffie-Hellman key exchange protocol
 
+    Current minimum recommendation is 2048 bit
+    >>> group = GROUPS[14]
+    >>> prime, generator = group['prime'], group['generator']
+    >>> alice = DiffieHellman(prime, generator)
 
-    >>> alice = DiffieHellman()
-    >>> bob = DiffieHellman()
+    Both parties should agree on the same public parameters
+    >>> bob = DiffieHellman(alice.prime, alice.generator)
 
-    >>> alice_private = alice.get_private_key()
-    >>> alice_public = alice.generate_public_key()
+    Alice sends Bob its public key,
+    >>> bob_shared = bob.generate_shared_key(alice.public_key)
 
-    >>> bob_private = bob.get_private_key()
-    >>> bob_public = bob.generate_public_key()
+    and the same vice versa:
+    >>> alice_shared = alice.generate_shared_key(bob.public_key)
 
-    >>> # generating shared key using the DH object
-    >>> alice_shared = alice.generate_shared_key(bob_public)
-    >>> bob_shared = bob.generate_shared_key(alice_public)
-
-    >>> assert alice_shared == bob_shared
-
-    >>> # generating shared key using static methods
-    >>> alice_shared = DiffieHellman.generate_shared_key_static(
-    ...     alice_private, bob_public
-    ... )
-    >>> bob_shared = DiffieHellman.generate_shared_key_static(
-    ...     bob_private, alice_public
-    ... )
-
-    >>> assert alice_shared == bob_shared
+    >>> alice_shared == bob_shared
+    True
     """
 
-    # Current minimum recommendation is 2048 bit (group 14)
-    def __init__(self, group: int = 14) -> None:
-        if group not in primes:
-            raise ValueError("Unsupported Group")
-        self.prime = primes[group]["prime"]
-        self.generator = primes[group]["generator"]
+    def __init__(self, prime: int, generator: int) -> None:
+        self.prime = prime
+        self.generator = generator
+        self.__private_key = random.getrandbits(256)
 
-        self.__private_key = int(hexlify(urandom(32)), base=16)
-
-    def get_private_key(self) -> str:
-        return hex(self.__private_key)[2:]
-
-    def generate_public_key(self) -> str:
-        public_key = pow(self.generator, self.__private_key, self.prime)
-        return hex(public_key)[2:]
+    @property
+    def public_key(self) -> int:
+        return pow(self.generator, self.__private_key, self.prime)
 
     def is_valid_public_key(self, key: int) -> bool:
         # check if the other public key is valid based on NIST SP800-56
@@ -233,32 +226,10 @@ class DiffieHellman:
             and pow(key, (self.prime - 1) // 2, self.prime) == 1
         )
 
-    def generate_shared_key(self, other_key_str: str) -> str:
-        other_key = int(other_key_str, base=16)
+    def generate_shared_key(self, other_key: int) -> int:
         if not self.is_valid_public_key(other_key):
             raise ValueError("Invalid public key")
-        shared_key = pow(other_key, self.__private_key, self.prime)
-        return sha256(str(shared_key).encode()).hexdigest()
-
-    @staticmethod
-    def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
-        # check if the other public key is valid based on NIST SP800-56
-        return (
-            2 <= remote_public_key_str <= prime - 2
-            and pow(remote_public_key_str, (prime - 1) // 2, prime) == 1
-        )
-
-    @staticmethod
-    def generate_shared_key_static(
-        local_private_key_str: str, remote_public_key_str: str, group: int = 14
-    ) -> str:
-        local_private_key = int(local_private_key_str, base=16)
-        remote_public_key = int(remote_public_key_str, base=16)
-        prime = primes[group]["prime"]
-        if not DiffieHellman.is_valid_public_key_static(remote_public_key, prime):
-            raise ValueError("Invalid public key")
-        shared_key = pow(remote_public_key, local_private_key, prime)
-        return sha256(str(shared_key).encode()).hexdigest()
+        return pow(other_key, self.__private_key, self.prime)
 
 
 if __name__ == "__main__":
