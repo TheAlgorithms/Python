@@ -46,6 +46,10 @@ def minimax(
     Traceback (most recent call last):
         ...
     ValueError: Scores cannot be empty
+    >>> minimax(0, 0, True, [1, 2, 3], 1.58)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number of scores must be a power of 2
     >>> scores = [3, 5, 2, 9, 12, 5, 23, 23]
     >>> height = math.log(len(scores), 2)
     >>> minimax(0, 0, True, scores, height)
@@ -56,6 +60,8 @@ def minimax(
         raise ValueError("Depth cannot be less than 0")
     if len(scores) == 0:
         raise ValueError("Scores cannot be empty")
+    if not (len(scores) & (len(scores) - 1) == 0):
+        raise ValueError("Number of scores must be a power of 2")
 
     # Base case: If the current depth equals the height of the tree,
     # return the score of the current node.
