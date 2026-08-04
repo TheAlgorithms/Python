@@ -34,14 +34,16 @@
   </a>
 
 <!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education 📚</h3>
+  <h3>A collection of algorithms implemented in Python for educational purposes 📚</h3>
 </div>
 
-Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
+These implementations are intended for learning purposes.
+They may not be as efficient as the Python standard library alternatives, so use them with discretion.
 
 ## 🚀 Getting Started
 
-📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+📋 Please read our [Contribution Guidelines](CONTRIBUTING.md) before contributing.
+This ensures your pull requests follow the project’s conventions.
 
 ## 🌐 Community Channels
 
