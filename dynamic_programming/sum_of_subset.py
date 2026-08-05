@@ -21,10 +21,18 @@ def is_sum_subset(arr: list[int], required_sum: int) -> bool:
 
     for i in range(1, arr_len + 1):
         for j in range(1, required_sum + 1):
-            if arr[i - 1] > j:
+            current_item_value = arr[i - 1]
+
+            # current_item_value is greater than j
+            if current_item_value > j:
                 subset[i][j] = subset[i - 1][j]
-            if arr[i - 1] <= j:
-                subset[i][j] = subset[i - 1][j] or subset[i - 1][j - arr[i - 1]]
+            # replace an 'if' in an 'else' to make the fluxe more clean
+            else:
+                without_current_item = subset[i - 1][j]
+
+                sum_required_if_item_taken = j - current_item_value
+                without_current_item = subset[i - 1][sum_required_if_item_taken]
+                subset[i][j] = without_current_item or without_current_item
 
     return subset[arr_len][required_sum]
 
