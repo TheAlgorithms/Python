@@ -43,6 +43,30 @@ Implementations are for learning purposes only. They may be less efficient than 
 
 📋 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
+## 📃Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [License](#license)
+
+## 🧑‍💻 Installation
+```bash
+git clone https://github.com/username/Python
+cd python
+```
+## 📖 Usage
+python alogorithm_name.py
+
+## 🌟Features
+- <a href="https://github.com/TheAlgorithms/Algorithms-Explanation/tree/master/en/Searching">Searching Algorithm</a>
+
+- <a href="https://github.com/TheAlgorithms/Algorithms-Explanation/tree/master/en/Sorting">Sorting Algorithm</a>
+
+- <a href="https://github.com/TheAlgorithms/Algorithms-Explanation/tree/master/en/Data%20Structures">Data Structures</a>
+
+## ⚖️license Section
+MIT License - see [License File](LICENSE.md) for details.
+
 ## 🌐 Community Channels
 
 We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
