@@ -88,6 +88,41 @@ def exits_word(
     return False
 
 
+def get_word_path(board: list[list[str]], word: str) -> list[tuple[int, int]] | None:
+    rows, cols = len(board), len(board[0])
+
+    def backtrack(r, c, index, path, visited):
+        if board[r][c] != word[index]:
+            return None
+
+        path.append((r, c))
+        visited.add((r, c))
+
+        if index == len(word) - 1:
+            return path.copy()
+
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in visited:
+                result = backtrack(nr, nc, index + 1, path, visited)
+                if result:
+                    return result
+
+        path.pop()
+        visited.remove((r, c))
+        return None
+
+    for i in range(rows):
+        for j in range(cols):
+            result = backtrack(i, j, 0, [], set())
+            if result:
+                return result
+
+    return None
+
+
 def word_exists(board: list[list[str]], word: str) -> bool:
     """
     >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
