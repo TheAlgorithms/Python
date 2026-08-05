@@ -23,9 +23,9 @@ def lin_search(left: int, right: int, array: list[int], target: int) -> int:
     Parameters
     ----------
     left : int
-        left index bound.
+        left index bound (inclusive).
     right : int
-        right index bound.
+        right index bound (exclusive).
     array : List[int]
         List of elements to be searched on
     target : int
@@ -82,16 +82,24 @@ def ite_ternary_search(array: list[int], target: int) -> int:
     -1
     >>> ite_ternary_search([.1, .4 , -.1], .1)
     0
+    >>> large_list = list(range(100))
+    >>> all(ite_ternary_search(large_list, n) == n for n in large_list)
+    True
+    >>> ite_ternary_search(large_list, 100)
+    -1
     """
 
     left = 0
     right = len(array)
-    while left <= right:
+    while left < right:
         if right - left < precision:
             return lin_search(left, right, array, target)
 
-        one_third = (left + right) // 3 + 1
-        two_third = 2 * (left + right) // 3 + 1
+        # The search space is array[left:right], so both pivots have to stay
+        # inside that half-open range.
+        third = (right - left) // 3
+        one_third = left + third
+        two_third = left + 2 * third
 
         if array[one_third] == target:
             return one_third
@@ -99,13 +107,13 @@ def ite_ternary_search(array: list[int], target: int) -> int:
             return two_third
 
         elif target < array[one_third]:
-            right = one_third - 1
+            right = one_third
         elif array[two_third] < target:
             left = two_third + 1
 
         else:
             left = one_third + 1
-            right = two_third - 1
+            right = two_third
     return -1
 
 
@@ -133,12 +141,21 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
     -1
     >>> rec_ternary_search(0, 3, [.1, .4 , -.1], .1)
     0
+    >>> large_list = list(range(100))
+    >>> all(rec_ternary_search(0, 100, large_list, n) == n for n in large_list)
+    True
+    >>> rec_ternary_search(0, 100, large_list, 100)
+    -1
     """
     if left < right:
         if right - left < precision:
             return lin_search(left, right, array, target)
-        one_third = (left + right) // 3 + 1
-        two_third = 2 * (left + right) // 3 + 1
+
+        # The search space is array[left:right], so both pivots have to stay
+        # inside that half-open range.
+        third = (right - left) // 3
+        one_third = left + third
+        two_third = left + 2 * third
 
         if array[one_third] == target:
             return one_third
@@ -146,11 +163,11 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
             return two_third
 
         elif target < array[one_third]:
-            return rec_ternary_search(left, one_third - 1, array, target)
+            return rec_ternary_search(left, one_third, array, target)
         elif array[two_third] < target:
             return rec_ternary_search(two_third + 1, right, array, target)
         else:
-            return rec_ternary_search(one_third + 1, two_third - 1, array, target)
+            return rec_ternary_search(one_third + 1, two_third, array, target)
     else:
         return -1
 
@@ -165,7 +182,7 @@ if __name__ == "__main__":
     assert collection == sorted(collection), f"List must be ordered.\n{collection}."
     target = int(input("Enter the number to be found in the list:\n").strip())
     result1 = ite_ternary_search(collection, target)
-    result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
+    result2 = rec_ternary_search(0, len(collection), collection, target)
     if result2 != -1:
         print(f"Iterative search: {target} found at positions: {result1}")
         print(f"Recursive search: {target} found at positions: {result2}")
