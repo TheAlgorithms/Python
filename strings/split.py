@@ -17,7 +17,13 @@ def split(string: str, separator: str = " ") -> list:
 
     >>> split(";abbb;;c;", separator=';')
     ['', 'abbb', '', 'c', '']
+    >>> split("a--b--c", separator="--")
+    Traceback (most recent call last):
+        ...
+    ValueError: Multi-character separators are not supported
     """
+    if len(separator) > 1:
+        raise ValueError("Multi-character separators are not supported")
 
     split_words = []
 
