@@ -50,3 +50,20 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+## 🧩 Usage Example
+
+Here’s how you can clone this repository and run algorithms locally:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/TheAlgorithms/Python.git
+   cd Python
+2. **Run an algorithm**
+python3 path/to/algorithm.py
+3. **Use the interactive Python shell**
+  python3
+>>> from algorithms.category import algorithm_name
+>>> algorithm_name(arguments)
+4. **Run doctests to verify correctness**
+  python3 -m doctest -v path/to/algorithm.py
+
