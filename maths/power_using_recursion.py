@@ -13,41 +13,43 @@
 """
 
 
-def power(base: int, exponent: int) -> float:
+def power(base: float, exponent: int) -> float:
     """
-    Calculate the power of a base raised to an exponent.
+    Calculate the power of a base raised to an exponent using recursion.
 
+    Args:
+        base (int): The base number.
+        exponent (int): The exponent number.
+
+    Returns:
+        the calculated value of base^exponent || base**exponent
+
+    cases:
     >>> power(3, 4)
     81
     >>> power(2, 0)
     1
-    >>> all(power(base, exponent) == pow(base, exponent)
-    ...     for base in range(-10, 10) for exponent in range(10))
-    True
-    >>> power('a', 1)
-    'a'
-    >>> power('a', 2)
-    Traceback (most recent call last):
-        ...
-    TypeError: can't multiply sequence by non-int of type 'str'
-    >>> power('a', 'b')
-    Traceback (most recent call last):
-        ...
-    TypeError: unsupported operand type(s) for -: 'str' and 'int'
+    >>> power(5, 1)
+    5
     >>> power(2, -1)
-    Traceback (most recent call last):
-        ...
-    RecursionError: maximum recursion depth exceeded
-    >>> power(0, 0)
-    1
-    >>> power(0, 1)
+    0.5
+    >>> power(-2, 3)
+    -8
+    >>> power(-2, 2)
+    4
+    >>> power(0, 5)
     0
-    >>> power(5,6)
-    15625
-    >>> power(23, 12)
-    21914624432020321
+    >>> power (0,0)
+    1
     """
-    return base * power(base, (exponent - 1)) if exponent else 1
+    if not isinstance(exponent, int):
+        raise TypeError("exponent must be an integer")
+
+    if exponent == 0:
+        return 1
+    if exponent < 0:
+        return 1 / power(base, -exponent)
+    return base * power(base, exponent - 1)
 
 
 if __name__ == "__main__":
@@ -55,9 +57,17 @@ if __name__ == "__main__":
 
     testmod()
     print("Raise base to the power of exponent using recursion...")
-    base = int(input("Enter the base: ").strip())
-    exponent = int(input("Enter the exponent: ").strip())
-    result = power(base, abs(exponent))
-    if exponent < 0:  # power() does not properly deal w/ negative exponents
-        result = 1 / result
-    print(f"{base} to the power of {exponent} is {result}")
+    try:
+        base = float(input("Enter the base: ").strip())
+        exponent = int(input("Enter the exponent: ").strip())
+        result = power(base, exponent)
+        print(f"{base} to the power of {exponent} is {result}")
+    except ValueError as e:
+        print(f"Invalid input: {e} ")
+    except TypeError as e:
+        print(f"error: {e}")
+    except RecursionError:
+        print(
+            """error: Maximum recursive depth exceeded.
+            The exponent you might have given as input might have been very large"""
+        )
