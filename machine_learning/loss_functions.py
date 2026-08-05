@@ -629,13 +629,15 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
     return np.mean(loss)
 
 
-def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def kullback_leibler_divergence(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-10
+) -> float:
     """
     Calculate the Kullback-Leibler divergence (KL divergence) loss between true labels
     and predicted probabilities.
 
-    KL divergence loss quantifies dissimilarity between true labels and predicted
-    probabilities. It's often used in training generative models.
+    KL divergence loss quantifies the dissimilarity between true labels and predicted
+    probabilities. It is often used in training generative models.
 
     KL = Σ(y_true * ln(y_true / y_pred))
 
@@ -649,6 +651,7 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     >>> predicted_probs = np.array([0.3, 0.3, 0.4])
     >>> float(kullback_leibler_divergence(true_labels, predicted_probs))
     0.030478754035472025
+
     >>> true_labels = np.array([0.2, 0.3, 0.5])
     >>> predicted_probs = np.array([0.3, 0.3, 0.4, 0.5])
     >>> kullback_leibler_divergence(true_labels, predicted_probs)
@@ -659,7 +662,13 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
 
-    kl_loss = y_true * np.log(y_true / y_pred)
+    # negligible epsilon to avoid issues with log(0) or division by zero
+    epsilon = 1e-10
+    y_pred = np.clip(y_pred, epsilon, None)
+
+    # calculate KL divergence only where y_true is not zero
+    kl_loss = np.where(y_true != 0, y_true * np.log(y_true / y_pred), 0.0)
+
     return np.sum(kl_loss)
 
 
