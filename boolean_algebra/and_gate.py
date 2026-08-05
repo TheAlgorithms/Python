@@ -29,6 +29,8 @@ def and_gate(input_1: int, input_2: int) -> int:
     >>> and_gate(1, 1)
     1
     """
+    if input_1 not in (0, 1) or input_2 not in (0, 1):
+        raise ValueError("Inputs must be 0 or 1")
     return int(input_1 and input_2)
 
 
@@ -41,6 +43,10 @@ def n_input_and_gate(inputs: list[int]) -> int:
     >>> n_input_and_gate([1, 1, 1, 1, 1])
     1
     """
+    if not inputs:
+        raise ValueError("Input list cannot be empty")
+    if any(x not in (0, 1) for x in inputs):
+        raise ValueError("All inputs must be 0 or 1")
     return int(all(inputs))
 
 
@@ -48,3 +54,18 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    print("\n--- N-Input AND Gate Simulator ---")
+    try:
+        n = int(input("Enter the number of inputs: "))
+        inputs = []
+        for i in range(n):
+            val = int(input(f"Enter input {i + 1} (0 or 1): "))
+            if val not in (0, 1):
+                raise ValueError("Inputs must be 0 or 1")
+            inputs.append(val)
+
+        result = n_input_and_gate(inputs)
+        print(f"Inputs: {inputs}")
+        print(f"AND Gate Output: {result}")
+    except ValueError as e:
+        print("Error:", e)
