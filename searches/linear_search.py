@@ -55,7 +55,7 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     -1
     """
     if not (0 <= high < len(sequence) and 0 <= low < len(sequence)):
-        raise Exception("Invalid upper or lower bound!")
+        raise ValueError("Invalid upper or lower bound!")
     if high < low:
         return -1
     if sequence[low] == target:
