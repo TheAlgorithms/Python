@@ -33,6 +33,22 @@ class Angle:
         if not isinstance(self.degrees, (int, float)) or not 0 <= self.degrees <= 360:
             raise TypeError("degrees must be a numeric value between 0 and 360.")
 
+    def to_radians(self) -> float:
+        """
+        >>> Angle(90).to_radians()
+        1.5707963267948966
+        """
+        return math.radians(self.degrees)
+
+    @classmethod
+    def from_radians(cls, radians: float) -> Angle:
+        """
+        >>> Angle.from_radians(math.pi / 2)
+        Angle(degrees=90.0)
+        """
+        degrees = math.degrees(radians) % 360  # Normalize to 0-360
+        return cls(degrees)
+
 
 @dataclass
 class Side:
@@ -102,10 +118,29 @@ class Ellipse:
     @property
     def perimeter(self) -> float:
         """
-        >>> Ellipse(5, 10).perimeter
-        47.12388980384689
+        >>> round(Ellipse(5, 10).perimeter, 10)
+        48.4422410807
         """
-        return math.pi * (self.major_radius + self.minor_radius)
+        a, b = (
+            max(self.major_radius, self.minor_radius),
+            min(self.major_radius, self.minor_radius),
+        )
+        h = ((a - b) ** 2) / ((a + b) ** 2)
+        return math.pi * (a + b) * (1 + 3 * h / (10 + math.sqrt(4 - 3 * h)))
+
+    @property
+    def eccentricity(self) -> float:
+        """
+        >>> Ellipse(5, 10).eccentricity
+        0.8660254037844386
+        >>> Circle(5).eccentricity
+        0.0
+        """
+        a, b = (
+            max(self.major_radius, self.minor_radius),
+            min(self.major_radius, self.minor_radius),
+        )
+        return math.sqrt(1 - (b / a) ** 2)
 
 
 class Circle(Ellipse):
@@ -193,9 +228,14 @@ class Polygon:
 
     def add_side(self, side: Side) -> Self:
         """
-        >>> Polygon().add_side(Side(5))
-        Polygon(sides=[Side(length=5, angle=Angle(degrees=90), next_side=None)])
+        >>> polygon = Polygon()
+        >>> _ = polygon.add_side(Side(5, Angle(90)))
+        >>> _ = polygon.add_side(Side(10, Angle(90)))
+        >>> polygon.sides[0].next_side == polygon.sides[1]
+        True
         """
+        if self.sides:
+            self.sides[-1].next_side = side
         self.sides.append(side)
         return self
 
@@ -222,6 +262,64 @@ class Polygon:
         self.sides[index] = side
         return self
 
+    def get_vertices(self) -> list[tuple[float, float]]:
+        """
+        >>> rect = Rectangle(5, 10)
+        >>> vertices = rect.get_vertices()
+        >>> len(vertices)
+        5
+        >>> vertices[0]
+        (0.0, 0.0)
+        >>> vertices[1]
+        (5.0, 0.0)
+        """
+        if not self.sides:
+            return []
+        vertices = [(0.0, 0.0)]
+        x, y = 0.0, 0.0
+        direction = 0.0  # Initial direction in radians
+
+        for side in self.sides:
+            x += side.length * math.cos(direction)
+            y += side.length * math.sin(direction)
+            vertices.append((x, y))
+            # Turn by exterior angle (180 - interior)
+            turn = math.pi - side.angle.to_radians()
+            direction += turn
+
+        # Check closure (tolerance for float precision)
+        if (
+            math.hypot(
+                vertices[-1][0] - vertices[0][0], vertices[-1][1] - vertices[0][1]
+            )
+            > 1e-6
+        ):
+            raise ValueError("Polygon does not close back to starting point")
+        return vertices
+
+    def perimeter(self) -> float:
+        """
+        >>> Rectangle(5, 10).perimeter()
+        30
+        """
+        return sum(side.length for side in self.sides)
+
+    def area(self) -> float:
+        """
+        >>> Rectangle(5, 10).area()
+        50
+        """
+        vertices = self.get_vertices()
+        if len(vertices) < 3:
+            return 0.0
+        n = len(vertices)
+        a = 0.0
+        for i in range(n):
+            j = (i + 1) % n
+            a += vertices[i][0] * vertices[j][1]
+            a -= vertices[j][0] * vertices[i][1]
+        return abs(a) / 2.0
+
 
 class Rectangle(Polygon):
     """
@@ -246,14 +344,21 @@ class Rectangle(Polygon):
 
     def post_init(self) -> None:
         """
-        >>> Rectangle(5, 10)  # doctest: +NORMALIZE_WHITESPACE
-        Rectangle(sides=[Side(length=5, angle=Angle(degrees=90), next_side=None),
-        Side(length=10, angle=Angle(degrees=90), next_side=None)])
+        >>> rect = Rectangle(5, 10)
+        >>> len(rect.sides)
+        4
+        >>> rect.sides[0].length
+        5
         """
         self.short_side = Side(self.short_side_length)
         self.long_side = Side(self.long_side_length)
+        self.short_side_2 = Side(self.short_side_length)
+        self.long_side_2 = Side(self.long_side_length)
+
         super().add_side(self.short_side)
         super().add_side(self.long_side)
+        super().add_side(self.short_side_2)
+        super().add_side(self.long_side_2)
 
     def perimeter(self) -> float:
         return (self.short_side.length + self.long_side.length) * 2
@@ -282,6 +387,96 @@ class Square(Rectangle):
 
     def area(self) -> float:
         return super().area()
+
+
+class Triangle(Polygon):
+    """
+    A geometric triangle on a 2D surface.
+
+    >>> tri = Triangle(3, 4, 5)
+    >>> tri.perimeter()
+    12
+    >>> tri.area()
+    6.0
+    >>> Triangle(1, 2, 10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Sides must satisfy triangle inequality
+    >>> Triangle(3, 4, 5, Angle(90), Angle(90), Angle(90))
+    Traceback (most recent call last):
+        ...
+    ValueError: Triangle angles must sum to 180 degrees
+    """
+
+    def __init__(
+        self,
+        side_a: float,
+        side_b: float,
+        side_c: float,
+        angle_a: Angle | None = None,
+        angle_b: Angle | None = None,
+        angle_c: Angle | None = None,
+    ) -> None:
+        super().__init__()
+
+        # validate triangle inequality
+        if not (
+            side_a + side_b > side_c
+            and side_a + side_c > side_b
+            and side_b + side_c > side_a
+        ):
+            raise ValueError("Sides must satisfy triangle inequality")
+
+        self.side_a = side_a
+        self.side_b = side_b
+        self.side_c = side_c
+
+        # calculate angles using cosines if not provided
+        if angle_a is None:
+            cos_a = (side_b**2 + side_c**2 - side_a**2) / (2 * side_b * side_c)
+            angle_a = Angle.from_radians(math.acos(max(-1, min(1, cos_a))))
+
+        if angle_b is None:
+            cos_b = (side_a**2 + side_c**2 - side_b**2) / (2 * side_a * side_c)
+            angle_b = Angle.from_radians(math.acos(max(-1, min(1, cos_b))))
+
+        if angle_c is None:
+            cos_c = (side_a**2 + side_b**2 - side_c**2) / (2 * side_a * side_b)
+            angle_c = Angle.from_radians(math.acos(max(-1, min(1, cos_c))))
+
+        # validate angle sum
+        angle_sum = angle_a.degrees + angle_b.degrees + angle_c.degrees
+        if abs(angle_sum - 180) > 0.01:
+            raise ValueError("Triangle angles must sum to 180 degrees")
+
+        self.angle_a = angle_a
+        self.angle_b = angle_b
+        self.angle_c = angle_c
+
+        # add sides with their corresponding angles
+        self.add_side(Side(side_a, angle_a))
+        self.add_side(Side(side_b, angle_b))
+        self.add_side(Side(side_c, angle_c))
+
+    def perimeter(self) -> float:
+        """
+        >>> Triangle(3, 4, 5).perimeter()
+        12
+        """
+        return self.side_a + self.side_b + self.side_c
+
+    def area(self) -> float:
+        """
+        Calculate area using Heron's formula.
+
+        >>> Triangle(3, 4, 5).area()
+        6.0
+        >>> round(Triangle(5, 5, 5).area(), 2)
+        10.83
+        """
+        s = self.perimeter() / 2  # semi-perimeter
+        area = math.sqrt(s * (s - self.side_a) * (s - self.side_b) * (s - self.side_c))
+        return area
 
 
 if __name__ == "__main__":
