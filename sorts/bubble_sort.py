@@ -1,4 +1,7 @@
 from typing import Any
+# Bubble Sort algorithm
+# Time Complexity: O(n^2)
+# Space Complexity: O(1)
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
