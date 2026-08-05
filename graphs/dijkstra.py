@@ -48,7 +48,7 @@ def dijkstra(graph, start, end):
     heap = [(0, start)]  # cost from start node,end node
     visited = set()
     while heap:
-        (cost, u) = heapq.heappop(heap)
+        cost, u = heapq.heappop(heap)
         if u in visited:
             continue
         visited.add(u)

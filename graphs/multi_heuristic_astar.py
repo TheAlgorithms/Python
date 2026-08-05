@@ -28,10 +28,10 @@ class PriorityQueue:
             # update
             # print("update", item)
             temp = []
-            (pri, x) = heapq.heappop(self.elements)
+            pri, x = heapq.heappop(self.elements)
             while x != item:
                 temp.append((pri, x))
-                (pri, x) = heapq.heappop(self.elements)
+                pri, x = heapq.heappop(self.elements)
             temp.append((priority, item))
             for pro, xxx in temp:
                 heapq.heappush(self.elements, (pro, xxx))
@@ -40,10 +40,10 @@ class PriorityQueue:
         if item in self.set:
             self.set.remove(item)
             temp = []
-            (pro, x) = heapq.heappop(self.elements)
+            pro, x = heapq.heappop(self.elements)
             while x != item:
                 temp.append((pro, x))
-                (pro, x) = heapq.heappop(self.elements)
+                pro, x = heapq.heappop(self.elements)
             for prito, yyy in temp:
                 heapq.heappush(self.elements, (prito, yyy))
 
@@ -51,7 +51,7 @@ class PriorityQueue:
         return self.elements[0][1]
 
     def get(self):
-        (priority, item) = heapq.heappop(self.elements)
+        priority, item = heapq.heappop(self.elements)
         self.set.remove(item)
         return (priority, item)
 
@@ -92,7 +92,7 @@ def do_something(back_pointer, goal, start):
     grid[0][(n - 1)] = "-"
     x = back_pointer[goal]
     while x != start:
-        (x_c, y_c) = x
+        x_c, y_c = x
         # print(x)
         grid[(n - 1) - y_c][x_c] = "-"
         x = back_pointer[x]
@@ -140,7 +140,7 @@ def expand_state(
         open_list[itera].remove_element(s)
     # print("s", s)
     # print("j", j)
-    (x, y) = s
+    x, y = s
     left = (x - 1, y)
     right = (x + 1, y)
     up = (x, y + 1)

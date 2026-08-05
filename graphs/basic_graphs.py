@@ -257,7 +257,7 @@ def adjm():
 
 
 def floy(a_and_n):
-    (a, n) = a_and_n
+    a, n = a_and_n
     dist = list(a)
     path = [[0] * n for i in range(n)]
     for k in range(n):
@@ -351,7 +351,7 @@ def krusk(e_and_n):
     """
     Sort edges on the basis of distance
     """
-    (e, n) = e_and_n
+    e, n = e_and_n
     e.sort(reverse=True, key=lambda x: x[2])
     s = [{i} for i in range(1, n + 1)]
     while True:
