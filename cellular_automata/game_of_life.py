@@ -28,6 +28,7 @@ Game-Of-Life Rules:
  comes a live cell, as if by reproduction.
 """
 
+import doctest
 import random
 import sys
 
@@ -42,6 +43,28 @@ random.shuffle(choice)
 
 
 def create_canvas(size: int) -> list[list[bool]]:
+    """
+    For creating a nested list of boolean values,
+    based on the size parameter provided
+
+    Args:
+        size: integer
+
+    Returns:
+        A nested list of boolean values
+
+    Examples:
+        >>> create_canvas(1)
+        [[False]]
+        >>> create_canvas(2)
+        [[False, False], [False, False]]
+        >>> create_canvas(3)
+        [[False, False, False], [False, False, False], [False, False, False]]
+        >>> create_canvas(0)
+        []
+        >>> create_canvas(-1)
+        []
+    """
     canvas = [[False for i in range(size)] for j in range(size)]
     return canvas
 
@@ -56,13 +79,37 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
     """
     This function runs the rules of game through all points, and changes their
     status accordingly.(in the same canvas)
-    @Args:
-    --
-    canvas : canvas of population to run the rules on.
 
-    @returns:
-    --
-    canvas of population after one step
+    Args:
+        canvas : canvas of population to run the rules on.
+
+    Returns:
+        canvas of population after one step
+
+    Example #1:
+        >>> canvas=[[False, False, False], [False, False, False], [False, False, False]]
+        >>> run(canvas)
+        [[False, False, False], [False, False, False], [False, False, False]]
+
+    Example #2:
+        >>> canvas=[[True, False, False], [True, False, False], [False, False, False]]
+        >>> run(canvas)
+        [[False, False, False], [False, False, False], [False, False, False]]
+
+    Example #3:
+        >>> canvas=[[True, True, True], [True, False, False], [False, False, False]]
+        >>> run(canvas)
+        [[False, False, False], [False, False, False], [False, False, False]]
+
+    Example #4:
+        >>> canvas=[[True, False, False], [False, False, True], [False, True, False]]
+        >>> run(canvas)
+        [[False, False, False], [False, True, False], [False, False, False]]
+
+    Example #5:
+        >>> canvas=[[True, True, True], [True, True, True], [True, True, True]]
+        >>> run(canvas)
+        [[False, False, False], [False, False, False], [False, False, True]]
     """
     current_canvas = np.array(canvas)
     next_gen_canvas = np.array(create_canvas(current_canvas.shape[0]))
@@ -76,6 +123,66 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
 
 
 def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
+    """
+    Update canvas provided
+
+    Args:
+        pt: boolean
+        neighbours: canvas
+
+    Returns:
+        Updated canvas
+
+    Example #1:
+    Tests pt = True, and alive < 2; expected 'alive' count = 0
+        >>> pt=True
+        >>> canvas=[[False, False, False], [False, False, False], [False, False, False]]
+        >>> __judge_point(pt, canvas)
+        False
+
+    Example #2:
+    Tests pt = True, and alive < 2; expected 'alive' count = 1
+        >>> pt=True
+        >>> canvas=[[True, False, False], [True, False, False], [False, False, False]]
+        >>> __judge_point(pt, canvas)
+        False
+
+    Example #3:
+    Tests pt = True, and alive 'in' 2
+        >>> pt=True
+        >>> canvas=[[True, True, True], [False, False, False], [False, False, False]]
+        >>> __judge_point(pt, canvas)
+        True
+
+    Example #4:
+    Tests pt = True, and alive 'in' 3
+        >>> pt=True
+        >>> canvas=[[True, True, True], [True, False, False], [False, False, False]]
+        >>> __judge_point(pt, canvas)
+        True
+
+    Example #5:
+    Tests pt = True, and alive > 3; expected 'alive' count = 4
+        >>> pt=True
+        >>> canvas=[[True, True, True], [True, False, False], [False, False, True]]
+        >>> __judge_point(pt, canvas)
+        False
+
+    Example #6:
+    Tests pt = False, and alive == 3
+        >>> pt=False
+        >>> canvas=[[True, False, False], [False, False, True], [False, True, False]]
+        >>> __judge_point(pt, canvas)
+        True
+
+    Example #7:
+    Tests pt = False, and alive != 3; expected 'alive' count = 0
+        >>> pt=False
+        >>> canvas=[[False, False, False], [False, False, False], [False, False, False]]
+        >>> __judge_point(pt, canvas)
+        False
+    """
+
     dead = 0
     alive = 0
     # finding dead or alive neighbours count.
@@ -111,6 +218,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         raise Exception(usage_doc)
 
+    doctest.testmod()
     canvas_size = int(sys.argv[1])
     # main working structure of this module.
     c = create_canvas(canvas_size)
