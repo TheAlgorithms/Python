@@ -2,6 +2,18 @@ from typing import Any
 
 
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+    """Find the insertion position for *item* in a sorted sublist using binary search.
+
+    Returns the index where *item* should be inserted to maintain sorted order
+    in ``lst[start:end+1]``.
+
+    >>> binary_search([1, 3, 5, 7], 4, 0, 3)
+    2
+    >>> binary_search([1, 3, 5, 7], 0, 0, 3)
+    0
+    >>> binary_search([1, 3, 5, 7], 8, 0, 3)
+    4
+    """
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,6 +29,16 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
+    """Sort a list using binary insertion sort.
+
+    For each element, use :func:`binary_search` to find its correct position
+    in the already-sorted prefix, then insert it there.
+
+    >>> insertion_sort([3, 1, 2])
+    [1, 2, 3]
+    >>> insertion_sort([5, 9, 10, 3, -4])
+    [-4, 3, 5, 9, 10]
+    """
     length = len(lst)
 
     for index in range(1, length):
@@ -28,6 +50,15 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
+    """Merge two sorted lists into a single sorted list.
+
+    >>> merge([1, 3, 5], [2, 4, 6])
+    [1, 2, 3, 4, 5, 6]
+    >>> merge([], [1, 2])
+    [1, 2]
+    >>> merge([1, 2], [])
+    [1, 2]
+    """
     if not left:
         return right
 
@@ -76,6 +107,7 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
 
 
 def main():
+    """Run a demo of Timsort on a sample list and print the result."""
     lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
