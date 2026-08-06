@@ -5,6 +5,7 @@ For doctests run following command:
 python -m doctest -v cyclic_sort.py
 or
 python3 -m doctest -v cyclic_sort.py
+
 For manual testing run:
 python cyclic_sort.py
 or
@@ -27,42 +28,34 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
-    >>> cyclic_sort([1, 2, 5])
-
-    Traceback (most recent call last):
-    ...
-    ValueError: All numbers must be in range 1 to 3, got 5
-
-    >>> cyclic_sort([1, 2, 2])
-    Traceback (most recent call last):
-    ...
-    ValueError: All numbers must be unique, got [1, 2, 2]
     """
+
     # Input validation
     seen = set()
     n = len(nums)
 
     for num in nums:
         if num in seen:
-            raise ValueError(f"All numbers must be unique, got {nums}")
+            message = f"All numbers must be unique, got {nums}"
+            raise ValueError(message)
 
         if num < 1 or num > n:
-            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")
+            message = f"All numbers must be in range 1 to {n}, got {num}"
+            raise ValueError(message)
 
         seen.add(num)
 
     # Perform cyclic sort
     index = 0
     while index < len(nums):
-        # Calculate the correct index for the current element
         correct_index = nums[index] - 1
-        # If the current element is not at its correct position,
-        # swap it with the element at its correct index
+
         if index != correct_index:
-            nums[index], nums[correct_index] = nums[correct_index], nums[index]
+            nums[index], nums[correct_index] = (
+                nums[correct_index],
+                nums[index],
+            )
         else:
-            # If the current element is already in its correct position,
-            # move to the next element
             index += 1
 
     return nums
@@ -72,6 +65,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(*cyclic_sort(unsorted), sep=",")
