@@ -28,7 +28,7 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
     >>> cyclic_sort([1, 2, 5])
-    
+
     Traceback (most recent call last):
     ...
     ValueError: All numbers must be in range 1 to 3, got 5
@@ -47,12 +47,9 @@ def cyclic_sort(nums: list[int]) -> list[int]:
             raise ValueError(f"All numbers must be unique, got {nums}")
 
         if num < 1 or num > n:
-            raise ValueError(
-                f"All numbers must be in range 1 to {n}, got {num}"
-            )
+            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")
 
         seen.add(num)
-
 
     # Perform cyclic sort
     index = 0
@@ -73,7 +70,6 @@ def cyclic_sort(nums: list[int]) -> list[int]:
 
 if __name__ == "__main__":
     import doctest
-
 
     doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
