@@ -23,7 +23,9 @@ References:
 """
 
 
-def classical_hamiltonian(mass: float, velocity: float, potential_energy: float) -> float:
+def classical_hamiltonian(
+    mass: float, velocity: float, potential_energy: float
+) -> float:
     """
     Compute the classical Hamiltonian H = T + V for a particle,
     where T = 0.5 * m * v^2 is the kinetic energy.
@@ -94,4 +96,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    
