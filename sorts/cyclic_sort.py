@@ -28,6 +28,16 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
+    
+    >>> cyclic_sort([1, 2, 2])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be unique, got 2
+
+    >>> cyclic_sort([1, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be in range 1 to 2, got 5
     """
 
     # Input validation
@@ -36,7 +46,7 @@ def cyclic_sort(nums: list[int]) -> list[int]:
 
     for num in nums:
         if num in seen:
-            message = f"All numbers must be unique, got {nums}"
+            message = f"All numbers must be unique, got {num}"
             raise ValueError(message)
 
         if num < 1 or num > n:
@@ -51,10 +61,8 @@ def cyclic_sort(nums: list[int]) -> list[int]:
         correct_index = nums[index] - 1
 
         if index != correct_index:
-            nums[index], nums[correct_index] = (
-                nums[correct_index],
-                nums[index],
-            )
+           nums[index], nums[correct_index] = nums[correct_index], nums[index]
+           
         else:
             index += 1
 
