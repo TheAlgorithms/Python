@@ -5,6 +5,8 @@ def harmonic_mean(numbers: list[int | float]) -> float:
     """
     Return the harmonic mean of a sequence of numbers.
 
+    Reference: https://en.wikipedia.org/wiki/Harmonic_mean
+
     >>> harmonic_mean([1, 2, 4])
     1.7142857142857142
     >>> harmonic_mean([2, 2, 2])
