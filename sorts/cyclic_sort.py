@@ -28,7 +28,7 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
-    
+
     >>> cyclic_sort([1, 2, 2])
     Traceback (most recent call last):
     ...
@@ -61,8 +61,8 @@ def cyclic_sort(nums: list[int]) -> list[int]:
         correct_index = nums[index] - 1
 
         if index != correct_index:
-           nums[index], nums[correct_index] = nums[correct_index], nums[index]
-           
+            nums[index], nums[correct_index] = nums[correct_index], nums[index]
+
         else:
             index += 1
 
