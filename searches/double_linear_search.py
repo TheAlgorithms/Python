@@ -1,7 +1,7 @@
 """
 Recursive Double Linear Search Algorithm
 
-Searches for a target element in a list 
+Searches for a target element in a list
 by recursively checking both ends simultaneously.
 """
 
