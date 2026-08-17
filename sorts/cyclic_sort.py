@@ -57,9 +57,7 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     # Check if all numbers are in range 1 to n
     for num in nums:
         if num < 1 or num > n:
-            raise ValueError(
-                f"All numbers must be in range 1 to {n}, got {num}"
-            )
+            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")
 
     # Perform cyclic sort
     index = 0
