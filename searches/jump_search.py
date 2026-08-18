@@ -10,17 +10,14 @@ https://en.wikipedia.org/wiki/Jump_search
 
 import math
 from collections.abc import Sequence
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def jump_search(arr: Sequence[T], item: T) -> int:
+def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
     """
     Python implementation of the jump search algorithm.
     Return the index if the `item` is found, otherwise return -1.
