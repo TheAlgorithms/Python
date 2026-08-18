@@ -10,10 +10,9 @@ Source:
 
 def sumset(set_a: set, set_b: set) -> set:
     """
-    :param first set: a set of numbers
-    :param second set: a set of numbers
-    :return: the nth number in Sylvester's sequence
-
+    :param set_a: a set of numbers
+    :param set_b: a set of numbers
+    :return: the sumset of set_a and set_b (all pairwise sums a + b)
     >>> sumset({1, 2, 3}, {4, 5, 6})
     {5, 6, 7, 8, 9}
 
@@ -24,6 +23,8 @@ def sumset(set_a: set, set_b: set) -> set:
     Traceback (most recent call last):
     ...
     AssertionError: The input value of [set_b=3] is not a set
+    >>> sumset(set(), {1, 2, 3})
+    set()
     """
     assert isinstance(set_a, set), f"The input value of [set_a={set_a}] is not a set"
     assert isinstance(set_b, set), f"The input value of [set_b={set_b}] is not a set"
