@@ -48,7 +48,9 @@ def geodetic_to_ecef(
     return x, y, z
 
 
-def ecef_to_geodetic(x_ecef: float, y_ecef: float, z_ecef: float) -> tuple[float, float, float]:
+def ecef_to_geodetic(
+    x_ecef: float, y_ecef: float, z_ecef: float
+) -> tuple[float, float, float]:
     """
     Converts Earth-Centered, Earth-Fixed (ECEF) coordinates to
     Geodetic coordinates (Latitude, Longitude, Altitude) using Bowring's method.
