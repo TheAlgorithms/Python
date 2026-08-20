@@ -17,7 +17,9 @@ WGS84_E_SQ = 1.0 - (WGS84_B**2 / WGS84_A**2)  # First eccentricity squared
 WGS84_EP_SQ = (WGS84_A**2 - WGS84_B**2) / WGS84_B**2  # Second eccentricity squared
 
 
-def geodetic_to_ecef(lat_deg: float, lon_deg: float, alt_m: float) -> tuple[float, float, float]:
+def geodetic_to_ecef(
+    lat_deg: float, lon_deg: float, alt_m: float
+) -> tuple[float, float, float]:
     """
     Converts Geodetic coordinates (Latitude, Longitude, Altitude) to
     Earth-Centered, Earth-Fixed (ECEF) Cartesian coordinates.
@@ -164,9 +166,7 @@ def calculate_target_coordinates(
     target_z = radar_z + dz
 
     # Step 5: Convert Target ECEF back to Geodetic coordinates
-    target_lat, target_lon, target_alt = ecef_to_geodetic(
-        target_x, target_y, target_z
-    )
+    target_lat, target_lon, target_alt = ecef_to_geodetic(target_x, target_y, target_z)
 
     return target_lat, target_lon, target_alt
 
@@ -175,4 +175,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
