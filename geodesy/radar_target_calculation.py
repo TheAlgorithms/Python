@@ -48,7 +48,7 @@ def geodetic_to_ecef(
     return x, y, z
 
 
-def ecef_to_geodetic(x: float, y: float, z: float) -> tuple[float, float, float]:
+def ecef_to_geodetic(x_ecef: float, y_ecef: float, z_ecef: float) -> tuple[float, float, float]:
     """
     Converts Earth-Centered, Earth-Fixed (ECEF) coordinates to
     Geodetic coordinates (Latitude, Longitude, Altitude) using Bowring's method.
@@ -60,24 +60,24 @@ def ecef_to_geodetic(x: float, y: float, z: float) -> tuple[float, float, float]
     >>> round(lat, 2), round(lon, 2), round(alt, 2)
     (90.0, 0.0, 0.0)
     """
-    p = math.sqrt(x**2 + y**2)
+    p = math.sqrt(x_ecef**2 + y_ecef**2)
 
     # Handle the special case where the point is exactly at the poles
     if p == 0:
         lon_deg = 0.0
-        lat_deg = 90.0 if z > 0 else -90.0
-        alt_m = abs(z) - WGS84_B
+        lat_deg = 90.0 if z_ecef > 0 else -90.0
+        alt_m = abs(z_ecef) - WGS84_B
         return lat_deg, lon_deg, alt_m
 
-    theta = math.atan2(z * WGS84_A, p * WGS84_B)
+    theta = math.atan2(z_ecef * WGS84_A, p * WGS84_B)
 
     sin_theta = math.sin(theta)
     cos_theta = math.cos(theta)
 
     # Calculate exact latitude and longitude
-    lon_rad = math.atan2(y, x)
+    lon_rad = math.atan2(y_ecef, x_ecef)
     lat_rad = math.atan2(
-        z + WGS84_EP_SQ * WGS84_B * sin_theta**3,
+        z_ecef + WGS84_EP_SQ * WGS84_B * sin_theta**3,
         p - WGS84_E_SQ * WGS84_A * cos_theta**3,
     )
 
@@ -92,7 +92,7 @@ def ecef_to_geodetic(x: float, y: float, z: float) -> tuple[float, float, float]
 
 
 def enu_to_ecef(
-    e: float, n: float, u: float, ref_lat_deg: float, ref_lon_deg: float
+    east: float, north: float, up: float, ref_lat_deg: float, ref_lon_deg: float
 ) -> tuple[float, float, float]:
     """
     Rotates East-North-Up (ENU) offset coordinates to ECEF offset coordinates,
@@ -111,9 +111,9 @@ def enu_to_ecef(
     cos_lon = math.cos(lon_rad)
 
     # Rotation matrix components for ENU to ECEF
-    dx = -sin_lon * e - sin_lat * cos_lon * n + cos_lat * cos_lon * u
-    dy = cos_lon * e - sin_lat * sin_lon * n + cos_lat * sin_lon * u
-    dz = cos_lat * n + sin_lat * u
+    dx = -sin_lon * east - sin_lat * cos_lon * north + cos_lat * cos_lon * up
+    dy = cos_lon * east - sin_lat * sin_lon * north + cos_lat * sin_lon * up
+    dz = cos_lat * north + sin_lat * up
 
     return dx, dy, dz
 
@@ -151,15 +151,15 @@ def calculate_target_coordinates(
 
     # Standard spherical to cartesian for ENU
     # North is aligned with 0 degrees Azimuth, East is 90 degrees
-    e = range_m * math.cos(el_rad) * math.sin(az_rad)
-    n = range_m * math.cos(el_rad) * math.cos(az_rad)
-    u = range_m * math.sin(el_rad)
+    east = range_m * math.cos(el_rad) * math.sin(az_rad)
+    north = range_m * math.cos(el_rad) * math.cos(az_rad)
+    up = range_m * math.sin(el_rad)
 
     # Step 2: Get absolute ECEF position of the Radar
     radar_x, radar_y, radar_z = geodetic_to_ecef(radar_lat, radar_lon, radar_alt)
 
     # Step 3: Convert the Local ENU offsets to ECEF offsets
-    dx, dy, dz = enu_to_ecef(e, n, u, radar_lat, radar_lon)
+    dx, dy, dz = enu_to_ecef(east, north, up, radar_lat, radar_lon)
 
     # Step 4: Add offsets to the Radar's ECEF coordinates to find Target ECEF
     target_x = radar_x + dx
