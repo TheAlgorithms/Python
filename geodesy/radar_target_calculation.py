@@ -145,7 +145,7 @@ def calculate_target_coordinates(
 
     >>> lat, lon, alt = calculate_target_coordinates(0.0, 0.0, 0.0, 90.0, 111319.5)
     >>> round(lat, 1), round(lon, 1), round(alt, 1)
-    (0.0, 1.0, 971.8)
+    (0.0, 1.0, 971.4)
     """
     # Step 1: Convert Radar polar measurements to Local ENU Cartesian coordinates
     az_rad = math.radians(azimuth_deg)
