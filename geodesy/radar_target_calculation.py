@@ -2,6 +2,10 @@
 This module provides functions to convert between Geodetic coordinates and
 Earth-Centered, Earth-Fixed (ECEF) Cartesian coordinates, as well as calculating
 target coordinates based on radar measurements.
+
+Reference:
+- https://en.wikipedia.org/wiki/Geographic_coordinate_conversion
+- https://en.wikipedia.org/wiki/Local_tangent_plane_coordinates
 """
 
 import math
