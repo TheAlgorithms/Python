@@ -135,7 +135,8 @@ def calculate_target_coordinates(
     radar_alt (float): Radar altitude above sea level in meters
     azimuth_deg (float): True bearing to the target (0 is North, 90 is East)
     range_m (float): Direct line-of-sight distance to the target in meters
-    elevation_deg (float): Antenna elevation angle in degrees (default 0 for surface ships)
+    elevation_deg (float): Antenna elevation angle in degrees
+        (default 0 for surface ships)
 
     Returns:
     tuple: (Target Latitude, Target Longitude, Target Altitude)
