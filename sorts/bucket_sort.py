@@ -71,8 +71,13 @@ def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     >>> data = [9, 2, 7, 1, 5]
     >>> bucket_sort(data) == sorted(data)
     True
+    >>> bucket_sort(data, 3.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: bucket_count must be an integer
     """
-
+    if type(bucket_count) != int:
+        raise TypeError("bucket_count must be an integer")
     if len(my_list) == 0 or bucket_count <= 0:
         return []
 
