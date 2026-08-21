@@ -76,7 +76,7 @@ def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     ...
     TypeError: bucket_count must be an integer
     """
-    if type(bucket_count) != int:
+    if type(bucket_count) is not int:
         raise TypeError("bucket_count must be an integer")
     if len(my_list) == 0 or bucket_count <= 0:
         return []
