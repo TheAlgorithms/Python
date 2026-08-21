@@ -29,6 +29,11 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     [1, 2, 3, 4, 5]
     """
 
+    if len(nums) != len(set(nums)):
+        raise ValueError(f"All numbers must be unique, got {nums}")
+    if nums and (min(nums) < 1 or max(nums) > len(nums)):
+        raise ValueError(f"All numbers must be in range 1 to {len(nums)}, got {nums}")
+
     # Perform cyclic sort
     index = 0
     while index < len(nums):
