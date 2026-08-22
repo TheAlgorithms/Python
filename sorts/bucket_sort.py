@@ -86,8 +86,8 @@ def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     bucket_size = (max_value - min_value) / bucket_count
     buckets: list[list] = [[] for _ in range(bucket_count)]
     for val in my_list:
-            index = min(int((val - min_value) / bucket_size), bucket_count - 1)
-            buckets[index].append(val)
+        index = min(int((val - min_value) / bucket_size), bucket_count - 1)
+        buckets[index].append(val)
     return [val for bucket in buckets for val in sorted(bucket)]
 
 
