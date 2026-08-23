@@ -183,4 +183,3 @@ if __name__ == "__main__":
         print(f"Recursive search: {target} found at positions: {result2}")
     else:
         print("Not found")
-
