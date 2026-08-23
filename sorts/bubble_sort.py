@@ -136,13 +136,12 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
 
 
 if __name__ == "__main__":
-    
     # added inputs by Srivii aug2026
     user_input = input("Enter numbers separated by spaces: ")
     collection = [float(x) for x in user_input.split()]
-    print( ">>>>> Bubble Sort Iterative ..... ")
+    print(">>>>> Bubble Sort Iterative ..... ")
     print(bubble_sort_iterative(collection))
-    print( ">>>>> Bubble Sort RECURSIVE ..... ")
+    print(">>>>> Bubble Sort RECURSIVE ..... ")
     print(bubble_sort_recursive(collection))
 
     import doctest
