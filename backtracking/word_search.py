@@ -66,10 +66,10 @@ def exits_word(
     if word_index == len(word) - 1:
         return True
 
-    traverts_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+    traverse_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
     len_board = len(board)
     len_board_column = len(board[0])
-    for direction in traverts_directions:
+    for direction in traverse_directions:
         next_i = row + direction[0]
         next_j = column + direction[1]
         if not (0 <= next_i < len_board and 0 <= next_j < len_board_column):
