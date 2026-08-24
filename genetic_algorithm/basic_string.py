@@ -28,7 +28,7 @@ def evaluate(item: str, main_target: str) -> tuple[str, float]:
     >>> evaluate("Helxo Worlx", "Hello World")
     ('Helxo Worlx', 9.0)
     """
-    score = len([g for position, g in enumerate(item) if g == main_target[position]])
+    score = sum(1 for g, t in zip(item, main_target) if g == t)
     return (item, float(score))
 
 
