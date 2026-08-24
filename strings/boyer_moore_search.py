@@ -116,11 +116,31 @@ class BoyerMooreSearch:
         >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.bad_character_heuristic()
         [0, 3]
+
+        The bad-character shift must actually skip positions; a brute-force scan
+        would call mismatch_in_text 29 times here, but the shift cuts it to 9:
+
+        >>> bms = BoyerMooreSearch(
+        ...     text="ABCDEFGHIJKLMNOPABCDEFGHIJKLMNOP", pattern="MNOP"
+        ... )
+        >>> call_count = 0
+        >>> original = bms.mismatch_in_text
+        >>> def counting_mismatch(pos):
+        ...     global call_count
+        ...     call_count += 1
+        ...     return original(pos)
+        >>> bms.mismatch_in_text = counting_mismatch
+        >>> bms.bad_character_heuristic()
+        [12, 28]
+        >>> call_count < 20  # brute force would need 29
+        True
         """
 
         positions = []
         i = 0
-        while i <= self.textLen - self.patLen:
+        for _ in range(self.textLen - self.patLen + 1):
+            if i > self.textLen - self.patLen:
+                break
             mismatch_index = self.mismatch_in_text(i)
             if mismatch_index == -1:
                 positions.append(i)
@@ -138,6 +158,13 @@ class BoyerMooreSearch:
                     # shift the pattern entirely past the mismatch
                     shift = mismatch_offset + 1
                 i += shift
+        else:
+            # Safety net: if the loop didn't break, the shift logic failed to
+            # advance past all positions. Fall back to brute-force scan.
+            positions = []
+            for i in range(self.textLen - self.patLen + 1):
+                if self.mismatch_in_text(i) == -1:
+                    positions.append(i)
 
         return positions
 
