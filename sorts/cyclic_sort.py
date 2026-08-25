@@ -52,12 +52,14 @@ def cyclic_sort(nums: list[int]) -> list[int]:
 
     # Check for duplicates
     if len(set(nums)) != n:
-        raise ValueError(f"All numbers must be unique, got {nums}")
+        msg = f"All numbers must be unique, got {nums}"
+        raise ValueError(msg)
 
     # Check if all numbers are in range 1 to n
     for num in nums:
         if num < 1 or num > n:
-            raise ValueError(f"All numbers must be in range 1 to {n}, got {num}")
+            msg = f"All numbers must be in range 1 to {n}, got {num}"
+            raise ValueError(msg)
 
     # Perform cyclic sort
     index = 0
