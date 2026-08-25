@@ -47,6 +47,10 @@ def fwht_xor(sequence: list[int], inverse: bool = False) -> list[int]:
         half_block *= 2
 
     if inverse:
+        if any(element % sequence_length != 0 for element in result):
+            raise ValueError(
+                "Inverse XOR transform requires all elements to be divisible by the sequence length."
+            )
         result = [element // sequence_length for element in result]
     return result
 
