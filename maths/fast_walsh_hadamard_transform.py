@@ -27,6 +27,10 @@ def fwht_xor(sequence: list[int], inverse: bool = False) -> list[int]:
     Traceback (most recent call last):
         ...
     ValueError: Length of sequence must be a positive power of 2.
+    >>> fwht_xor([1, 2, 3, 5], inverse=True)
+    Traceback (most recent call last):
+        ...
+    ValueError: Inverse XOR transform requires elements divisible by sequence length.
     """
     sequence_length = len(sequence)
     if sequence_length == 0 or (sequence_length & (sequence_length - 1)) != 0:
@@ -49,7 +53,7 @@ def fwht_xor(sequence: list[int], inverse: bool = False) -> list[int]:
     if inverse:
         if any(element % sequence_length != 0 for element in result):
             raise ValueError(
-                "Inverse XOR transform requires all elements to be divisible by the sequence length."
+                "Inverse XOR transform requires elements divisible by sequence length."
             )
         result = [element // sequence_length for element in result]
     return result
