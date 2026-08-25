@@ -62,32 +62,35 @@ class SuffixAutomaton:
         curr = len(self.states)
         self.states.append(State(length=self.states[self.last].length + 1))
 
-        p = self.last
-        while p != -1 and char not in self.states[p].next:
-            self.states[p].next[char] = curr
-            p = self.states[p].link
+        prev_state = self.last
+        while prev_state != -1 and char not in self.states[prev_state].next:
+            self.states[prev_state].next[char] = curr
+            prev_state = self.states[prev_state].link
 
-        if p == -1:
+        if prev_state == -1:
             self.states[curr].link = 0
         else:
-            q = self.states[p].next[char]
-            if self.states[p].length + 1 == self.states[q].length:
-                self.states[curr].link = q
+            next_state = self.states[prev_state].next[char]
+            if self.states[prev_state].length + 1 == self.states[next_state].length:
+                self.states[curr].link = next_state
             else:
                 clone = len(self.states)
                 self.states.append(
                     State(
-                        length=self.states[p].length + 1,
-                        link=self.states[q].link,
+                        length=self.states[prev_state].length + 1,
+                        link=self.states[next_state].link,
                     )
                 )
-                self.states[clone].next = dict(self.states[q].next)
+                self.states[clone].next = dict(self.states[next_state].next)
 
-                while p != -1 and self.states[p].next.get(char) == q:
-                    self.states[p].next[char] = clone
-                    p = self.states[p].link
+                while (
+                    prev_state != -1
+                    and self.states[prev_state].next.get(char) == next_state
+                ):
+                    self.states[prev_state].next[char] = clone
+                    prev_state = self.states[prev_state].link
 
-                self.states[q].link = clone
+                self.states[next_state].link = clone
                 self.states[curr].link = clone
 
         self.last = curr
@@ -120,8 +123,8 @@ class SuffixAutomaton:
         4
         """
         total = 0
-        for i in range(1, len(self.states)):
-            total += self.states[i].length - self.states[self.states[i].link].length
+        for state in self.states[1:]:
+            total += state.length - self.states[state.link].length
         return total
 
     def count_occurrences(self, pattern: str) -> int:
@@ -148,7 +151,7 @@ class SuffixAutomaton:
         occurrences = [0] * len(self.states)
         order = sorted(
             range(len(self.states)),
-            key=lambda i: self.states[i].length,
+            key=lambda state_index: self.states[state_index].length,
             reverse=True,
         )
 
@@ -159,9 +162,9 @@ class SuffixAutomaton:
             occurrences[temp_last] = 1
 
         # Push endpos sizes up the suffix link tree
-        for u in order:
-            if self.states[u].link != -1:
-                occurrences[self.states[u].link] += occurrences[u]
+        for state_index in order:
+            if self.states[state_index].link != -1:
+                occurrences[self.states[state_index].link] += occurrences[state_index]
 
         return occurrences[curr]
 
