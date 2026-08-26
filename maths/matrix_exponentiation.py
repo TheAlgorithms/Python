@@ -5,8 +5,6 @@ https://zobayer.blogspot.com/2010/11/matrix-exponentiation.html
 https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 """
 
-from __future__ import annotations
-
 import timeit
 
 
