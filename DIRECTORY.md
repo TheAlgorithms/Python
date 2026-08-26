@@ -471,6 +471,8 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
     * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
@@ -523,6 +525,7 @@
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
+  * [Johnson](graphs/johnson.py)
   * [Kahns Algorithm Long](graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](graphs/kahns_algorithm_topo.py)
   * [Karger](graphs/karger.py)
@@ -543,6 +546,7 @@
   * [Strongly Connected Components](graphs/strongly_connected_components.py)
   * [Tarjans Scc](graphs/tarjans_scc.py)
   * Tests
+    * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
