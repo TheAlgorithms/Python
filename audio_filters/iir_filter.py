@@ -51,8 +51,26 @@ class IIRFilter:
         ...                                          fs=48000)
         >>> filt = IIRFilter(2)
         >>> filt.set_coefficients(a_coeffs, b_coeffs)
+
+        The leading :math:`a_0` coefficient may be omitted and defaults to 1.0:
+
+        >>> filt = IIRFilter(2)
+        >>> filt.set_coefficients([-1.9, 0.9], [1.0, -2.0, 1.0])
+        >>> filt.a_coeffs
+        [1.0, -1.9, 0.9]
+
+        Passing the wrong number of coefficients raises a ``ValueError``:
+
+        >>> IIRFilter(2).set_coefficients([1.0, 2.0, 3.0, 4.0], [1.0, 2.0, 3.0])
+        Traceback (most recent call last):
+            ...
+        ValueError: Expected a_coeffs to have 3 elements for 2-order filter, got 4
+        >>> IIRFilter(2).set_coefficients([1.0, 2.0, 3.0], [1.0, 2.0])
+        Traceback (most recent call last):
+            ...
+        ValueError: Expected b_coeffs to have 3 elements for 2-order filter, got 2
         """
-        if len(a_coeffs) < self.order:
+        if len(a_coeffs) < self.order + 1:
             a_coeffs = [1.0, *a_coeffs]
 
         if len(a_coeffs) != self.order + 1:
@@ -65,7 +83,7 @@ class IIRFilter:
         if len(b_coeffs) != self.order + 1:
             msg = (
                 f"Expected b_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
+                f"for {self.order}-order filter, got {len(b_coeffs)}"
             )
             raise ValueError(msg)
 
