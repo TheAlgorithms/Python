@@ -69,8 +69,19 @@ class IIRFilter:
         Traceback (most recent call last):
             ...
         ValueError: Expected b_coeffs to have 3 elements for 2-order filter, got 2
+
+        A genuinely too-short ``a_coeffs`` is reported with its real length
+        rather than after the optional ``a_0`` has been filled in:
+
+        >>> IIRFilter(2).set_coefficients([1.0], [1.0, 2.0, 3.0])
+        Traceback (most recent call last):
+            ...
+        ValueError: Expected a_coeffs to have 3 elements for 2-order filter, got 1
         """
-        if len(a_coeffs) < self.order + 1:
+        if len(a_coeffs) == self.order:
+            # The leading a_0 coefficient is optional; default it to 1.0.
+            # Only a single missing coefficient is filled in this way, so that
+            # genuinely too-short inputs are reported with their real length.
             a_coeffs = [1.0, *a_coeffs]
 
         if len(a_coeffs) != self.order + 1:
