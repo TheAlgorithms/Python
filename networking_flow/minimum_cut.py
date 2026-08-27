@@ -1,4 +1,16 @@
-# Minimum cut on Ford_Fulkerson algorithm.
+"""
+Minimum cut of a flow network via the Ford-Fulkerson algorithm.
+
+The max-flow min-cut theorem says the value of a maximum flow from the source to
+the sink equals the total capacity of the edges in a minimum s-t cut -- the
+cheapest set of edges whose removal disconnects the sink from the source.  This
+module finds those cut edges: it runs Ford-Fulkerson to build the residual
+graph, then reports every original edge that goes from a vertex still reachable
+from the source to a vertex that is not.
+
+Reference: https://en.wikipedia.org/wiki/Minimum_cut
+See also: https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem
+"""
 
 test_graph = [
     [0, 16, 13, 0, 0, 0],
@@ -10,8 +22,16 @@ test_graph = [
 ]
 
 
-def bfs(graph, s, t, parent):
-    # Return True if there is node that has not iterated.
+def bfs(graph: list[list[int]], s: int, t: int, parent: list[int]) -> bool:
+    """
+    Return True if the sink ``t`` is reachable from the source ``s`` in the
+    residual ``graph``, recording the traversal tree in ``parent``.
+
+    >>> bfs(test_graph, 0, 5, [-1] * 6)
+    True
+    >>> bfs([[0, 0], [0, 0]], 0, 1, [-1, -1])
+    False
+    """
     visited = [False] * len(graph)
     queue = [s]
     visited[s] = True
@@ -27,40 +47,55 @@ def bfs(graph, s, t, parent):
     return visited[t]
 
 
-def mincut(graph, source, sink):
-    """This array is filled by BFS and to store path
+def mincut(graph: list[list[int]], source: int, sink: int) -> list[tuple[int, int]]:
+    """
+    Return the edges of a minimum s-t cut as ``(from, to)`` tuples.
+
+    The input ``graph`` is an adjacency matrix of capacities and is left
+    unchanged (the algorithm works on an internal copy).
+
     >>> mincut(test_graph, source=0, sink=5)
     [(1, 3), (4, 3), (4, 5)]
+
+    The capacities of the cut edges sum to the maximum flow (23 here):
+
+    >>> sum(test_graph[u][v] for u, v in mincut(test_graph, 0, 5))
+    23
+
+    A single saturated edge is its own minimum cut:
+
+    >>> mincut([[0, 7], [0, 0]], source=0, sink=1)
+    [(0, 1)]
     """
-    parent = [-1] * (len(graph))
-    max_flow = 0
+    residual = [row[:] for row in graph]  # work on a copy; keep the input intact
+    parent = [-1] * (len(residual))
     res = []
-    temp = [i[:] for i in graph]  # Record original cut, copy.
-    while bfs(graph, source, sink, parent):
-        path_flow = float("Inf")
+    while bfs(residual, source, sink, parent):
+        path_flow = float("inf")
         s = sink
 
         while s != source:
-            # Find the minimum value in select path
-            path_flow = min(path_flow, graph[parent[s]][s])
+            # Find the minimum residual capacity along the augmenting path.
+            path_flow = min(path_flow, residual[parent[s]][s])
             s = parent[s]
 
-        max_flow += path_flow
         v = sink
-
         while v != source:
             u = parent[v]
-            graph[u][v] -= path_flow
-            graph[v][u] += path_flow
+            residual[u][v] -= path_flow
+            residual[v][u] += path_flow
             v = parent[v]
 
     for i in range(len(graph)):
         for j in range(len(graph[0])):
-            if graph[i][j] == 0 and temp[i][j] > 0:
+            if graph[i][j] > 0 and residual[i][j] == 0:
                 res.append((i, j))
 
     return res
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
     print(mincut(test_graph, source=0, sink=5))
