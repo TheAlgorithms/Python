@@ -18,8 +18,6 @@ and is efficient on sparse graphs.
 Reference: https://en.wikipedia.org/wiki/Dinic%27s_algorithm
 """
 
-from __future__ import annotations
-
 from collections import deque
 
 
@@ -60,7 +58,7 @@ class Dinic:
         if vertices <= 0:
             raise ValueError("number of vertices must be positive")
         self.size = vertices
-        # graph[u] holds indices into self.edges for edges leaving u.
+        # graph[vertex] holds indices into self.edges for edges leaving that vertex.
         self.graph: list[list[int]] = [[] for _ in range(vertices)]
         # Each edge is stored as [destination, residual_capacity].
         # Edge i and its reverse edge i ^ 1 are always created together.
@@ -96,29 +94,29 @@ class Dinic:
         level[source] = 0
         queue = deque([source])
         while queue:
-            u = queue.popleft()
-            for edge_index in self.graph[u]:
+            vertex = queue.popleft()
+            for edge_index in self.graph[vertex]:
                 destination, residual = self.edges[edge_index]
                 if residual > 0 and level[destination] == -1:
-                    level[destination] = level[u] + 1
+                    level[destination] = level[vertex] + 1
                     queue.append(destination)
         return level
 
     def _send_flow(
         self,
-        u: int,
+        vertex: int,
         pushed: int,
         sink: int,
         level: list[int],
         progress: list[int],
     ) -> int:
         """Depth-first search that pushes a blocking flow along the level graph."""
-        if u == sink:
+        if vertex == sink:
             return pushed
-        while progress[u] < len(self.graph[u]):
-            edge_index = self.graph[u][progress[u]]
+        while progress[vertex] < len(self.graph[vertex]):
+            edge_index = self.graph[vertex][progress[vertex]]
             destination, residual = self.edges[edge_index]
-            if residual > 0 and level[destination] == level[u] + 1:
+            if residual > 0 and level[destination] == level[vertex] + 1:
                 flow = self._send_flow(
                     destination, min(pushed, residual), sink, level, progress
                 )
@@ -126,7 +124,7 @@ class Dinic:
                     self.edges[edge_index][1] -= flow
                     self.edges[edge_index ^ 1][1] += flow
                     return flow
-            progress[u] += 1
+            progress[vertex] += 1
         return 0
 
     def max_flow(self, source: int, sink: int) -> int:

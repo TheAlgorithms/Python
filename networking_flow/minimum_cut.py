@@ -22,9 +22,9 @@ test_graph = [
 ]
 
 
-def bfs(graph: list[list[int]], s: int, t: int, parent: list[int]) -> bool:
+def bfs(graph: list[list[int]], source: int, sink: int, parent: list[int]) -> bool:
     """
-    Return True if the sink ``t`` is reachable from the source ``s`` in the
+    Return True if the ``sink`` is reachable from the ``source`` in the
     residual ``graph``, recording the traversal tree in ``parent``.
 
     >>> bfs(test_graph, 0, 5, [-1] * 6)
@@ -33,18 +33,18 @@ def bfs(graph: list[list[int]], s: int, t: int, parent: list[int]) -> bool:
     False
     """
     visited = [False] * len(graph)
-    queue = [s]
-    visited[s] = True
+    queue = [source]
+    visited[source] = True
 
     while queue:
-        u = queue.pop(0)
-        for ind in range(len(graph[u])):
-            if visited[ind] is False and graph[u][ind] > 0:
-                queue.append(ind)
-                visited[ind] = True
-                parent[ind] = u
+        node = queue.pop(0)
+        for neighbor in range(len(graph[node])):
+            if visited[neighbor] is False and graph[node][neighbor] > 0:
+                queue.append(neighbor)
+                visited[neighbor] = True
+                parent[neighbor] = node
 
-    return visited[t]
+    return visited[sink]
 
 
 def mincut(graph: list[list[int]], source: int, sink: int) -> list[tuple[int, int]]:

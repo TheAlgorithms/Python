@@ -1,8 +1,8 @@
 # Networking Flow
 
 This directory collects algorithms for the **maximum-flow problem**: given a
-directed graph whose edges have capacities, a *source* `s`, and a *sink* `t`,
-how much flow can be pushed from `s` to `t` without exceeding any edge's
+directed graph whose edges have capacities, a `source`, and a `sink`, how
+much flow can be pushed from `source` to `sink` without exceeding any edge's
 capacity?
 
 Maximum flow turns up all over the place — routing traffic through a network,
