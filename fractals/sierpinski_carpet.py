@@ -121,10 +121,10 @@ def count_filled_cells(depth: int) -> int:
     return 8**depth
 
 
-def main() -> None:
-    for line in generate_carpet(3):
-        print(line)
-
-
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
+
+    for carpet_line in generate_carpet(3):
+        print(carpet_line)

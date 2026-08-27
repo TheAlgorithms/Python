@@ -127,21 +127,21 @@ def generate_fern(
     return points
 
 
-def main() -> None:
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     try:
         import matplotlib.pyplot as plt
     except ImportError:
         print("matplotlib is required to plot the fern (pip install matplotlib).")
-        return
-    points = generate_fern(100_000, seed=0)
-    xs = [x for x, _ in points]
-    ys = [y for _, y in points]
-    plt.figure(figsize=(4, 8))
-    plt.scatter(xs, ys, s=0.2, color="forestgreen")
-    plt.axis("off")
-    plt.title("Barnsley fern")
-    plt.show()
-
-
-if __name__ == "__main__":
-    main()
+    else:
+        fern_points = generate_fern(100_000, seed=0)
+        xs = [x for x, _ in fern_points]
+        ys = [y for _, y in fern_points]
+        plt.figure(figsize=(4, 8))
+        plt.scatter(xs, ys, s=0.2, color="forestgreen")
+        plt.axis("off")
+        plt.title("Barnsley fern")
+        plt.show()
