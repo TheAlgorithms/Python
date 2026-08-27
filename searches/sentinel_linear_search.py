@@ -31,6 +31,9 @@ def sentinel_linear_search(sequence, target):
     >>> sentinel_linear_search([0, 5, 7, 10, 15], 6)
 
     """
+    if not sequence:
+        return None
+
     sequence.append(target)
 
     index = 0
