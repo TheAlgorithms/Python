@@ -17,7 +17,7 @@ jobs:
           cache-dependency-glob: uv.lock
       - uses: actions/setup-python@v7
         with:
-          python-version: 3.14
+          python-version-file: pyproject.toml
           allow-prereleases: true
       - run: uv sync --group=test
       - name: Run tests
