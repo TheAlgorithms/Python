@@ -32,14 +32,6 @@ dependencies = [
 ]
 
 [dependency-groups]
-# opencv-python has no free-threaded (cp314t) wheel yet and fails to build from
-# source under 3.14t (CMake), which blocks `uv sync` for every job. Keep it in an
-# optional group so the free-threaded CI can install everything else and actually
-# run pytest-run-parallel on the pure-Python algorithms. Re-fold into core deps
-# once a cp314t wheel ships (upstream: opencv/opencv#27933).
-cv = [
-  "opencv-python>=4.10.0.84",
-]
 test = [
   "pytest>=8.4.1",
   "pytest-cov>=6",
@@ -48,6 +40,14 @@ docs = [
   "myst-parser>=4",
   "sphinx>=8.2",
   "sphinx-autoapi>=3.4",
+]
+# opencv-python has no free-threaded (cp314t) wheel yet and fails to build from
+# source under 3.14t (CMake), which blocks `uv sync` for every job. Keep it in an
+# optional group so the free-threaded CI can install everything else and actually
+# run pytest-run-parallel on the pure-Python algorithms. Re-fold into core deps
+# once a cp314t wheel ships (upstream: opencv/opencv#27933).
+cv = [
+  "opencv-python>=4.10.0.84",
 ]
 euler-validate = [
   "httpx>=0.28.1",
