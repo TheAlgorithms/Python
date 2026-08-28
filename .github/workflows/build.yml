@@ -25,8 +25,13 @@ jobs:
         # files that import cv2. Pure-Python algorithms in computer_vision/ and
         # data_compression/ still run; digital_image_processing/ is almost entirely
         # cv2-based so it is skipped as a tree. Re-enable when a cp314t wheel ships.
+        # --ignore-gil-enabled: some compiled deps (sklearn, xgboost, ...) don't
+        # yet ship the Py_mod_gil slot, so importing them re-enables the GIL under
+        # 3.14t. That's an upstream-wheel gap, not our code; the flag lets the suite
+        # run anyway and pytest-run-parallel still reports which tests are not
+        # thread-safe. Drop the flag once the scientific stack ships free-threaded wheels.
         run: uv run --with=pytest-run-parallel pytest
-          --iterations=8 --parallel-threads=auto
+          --iterations=8 --parallel-threads=auto --ignore-gil-enabled
           --ignore=computer_vision/cnn_classification.py
           --ignore=computer_vision/flip_augmentation.py
           --ignore=computer_vision/harris_corner.py
