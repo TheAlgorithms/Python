@@ -11,7 +11,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v7
         with:
-          python-version-file: pyproject.toml
+          python-version: 3.14t
           allow-prereleases: true
       - name: Write DIRECTORY.md
         run: |

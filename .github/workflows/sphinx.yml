@@ -36,7 +36,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
         with:
-          python-version-file: pyproject.toml
+          python-version: 3.14t
           allow-prereleases: true
       - run: uv sync --group=docs
       - uses: actions/configure-pages@v6
