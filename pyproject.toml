@@ -28,7 +28,6 @@ dependencies = [
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
   "tweepy>=4.14",
-  "typing-extensions>=4.12.2",
   "xgboost>=2.1.3",
 ]
 

@@ -1155,7 +1155,6 @@ dependencies = [
     { name = "statsmodels" },
     { name = "sympy" },
     { name = "tweepy" },
-    { name = "typing-extensions" },
     { name = "xgboost" },
 ]
 
@@ -1193,7 +1192,6 @@ requires-dist = [
     { name = "statsmodels", specifier = ">=0.14.4" },
     { name = "sympy", specifier = ">=1.13.3" },
     { name = "tweepy", specifier = ">=4.14" },
-    { name = "typing-extensions", specifier = ">=4.12.2" },
     { name = "xgboost", specifier = ">=2.1.3" },
 ]
 
