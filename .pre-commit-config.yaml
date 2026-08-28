@@ -18,17 +18,6 @@ repos:
     hooks:
       - id: auto-walrus
 
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.7
-    hooks:
-      - id: uv-lock
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.1
-    hooks:
-      - id: ruff-check
-      - id: ruff-format
-
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
     hooks:
@@ -36,8 +25,14 @@ repos:
         additional_dependencies:
           - tomli
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.5
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.26.0
+    rev: v2.28.1
     hooks:
       - id: pyproject-fmt
 
@@ -49,8 +44,13 @@ repos:
         language: script
         pass_filenames: false
 
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.7
+    hooks:
+      - id: uv-lock
+
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.25
+    rev: "0.26"
     hooks:
       - id: validate-pyproject
 
