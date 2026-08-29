@@ -1,6 +1,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -451,9 +452,11 @@
   * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
+  * [Barnsley Fern](fractals/barnsley_fern.py)
   * [Julia Sets](fractals/julia_sets.py)
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
+  * [Sierpinski Carpet](fractals/sierpinski_carpet.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
   * [Vicsek](fractals/vicsek.py)
 
@@ -843,8 +846,10 @@
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
+  * [Dinic](networking_flow/dinic.py)
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
   * [Minimum Cut](networking_flow/minimum_cut.py)
+  * [Push Relabel](networking_flow/push_relabel.py)
 
 ## Neural Network
   * Activation Functions
