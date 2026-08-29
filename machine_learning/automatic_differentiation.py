@@ -12,10 +12,9 @@ from __future__ import annotations
 from collections import defaultdict
 from enum import Enum
 from types import TracebackType
-from typing import Any
+from typing import Any, Self
 
 import numpy as np
-from typing_extensions import Self  # noqa: UP035
 
 
 class OpType(Enum):
