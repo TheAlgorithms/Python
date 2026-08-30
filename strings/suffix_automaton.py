@@ -131,7 +131,7 @@ class SuffixAutomaton:
 
     def count_occurrences(self, pattern: str) -> int:
         """
-        Count occurrences of pattern as a substring in the text in O(N + |pattern|) time.
+        Count occurrences of pattern as a substring in the text in O(N + |pattern|) time
 
         >>> sam = SuffixAutomaton("banana")
         >>> sam.count_occurrences("an")
