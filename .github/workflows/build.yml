@@ -27,7 +27,6 @@ jobs:
           --ignore=computer_vision/cnn_classification.py
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
-          --ignore=machine_learning/local_weighted_learning/local_weighted_learning.py
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
