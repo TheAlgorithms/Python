@@ -1,27 +1,34 @@
 """
-Build the quantum fourier transform (qft) for a desire
-number of quantum bits using Qiskit framework. This
-experiment run in IBM Q simulator with 10000 shots.
-This circuit can be use as a building block to design
-the Shor's algorithm in quantum computing. As well as,
-quantum phase estimation among others.
-.
+Build the quantum Fourier transform (QFT) for a desired
+number of qubits using the Qiskit framework.
+
+This circuit can be used as a building block to design
+Shor's algorithm in quantum computing, as well as
+quantum phase estimation, among others.
+
+The circuit is simulated with Qiskit's built-in, pure-Python
+``BasicSimulator`` (no compiled ``qiskit-aer`` backend required),
+so it runs anywhere Qiskit itself installs.
+
 References:
 https://en.wikipedia.org/wiki/Quantum_Fourier_transform
-https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
+https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.library.QFT
 """
 
 import math
 
 import numpy as np
 import qiskit
-from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister, transpile
+from qiskit.providers.basic_provider import BasicSimulator
 
 
 def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
     """
-    # >>> quantum_fourier_transform(2)
-    # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
+    Build and simulate the quantum Fourier transform applied to the all-zero
+    state ``|0...0>``.  The QFT maps ``|0...0>`` to a uniform superposition, so
+    every computational-basis outcome is (up to shot noise) equally likely.
+
     # quantum circuit for number_of_qubits = 3:
                                                ┌───┐
     qr_0: ──────■──────────────────────■───────┤ H ├─X─
@@ -31,13 +38,20 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     qr_2: ┤ H ├─■────────■───────────────────────────X─
           └───┘
     cr: 3/═════════════════════════════════════════════
-    Args:
-        n : number of qubits
-    Returns:
-        qiskit.result.counts.Counts: distribute counts.
 
-    >>> quantum_fourier_transform(2)
-    {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
+    Args:
+        number_of_qubits : number of qubits
+
+    Returns:
+        qiskit.result.counts.Counts: measurement counts over 10000 shots.
+
+    The simulation is seeded, so the set of observed outcomes is reproducible:
+
+    >>> counts = quantum_fourier_transform(2)
+    >>> sorted(counts)
+    ['00', '01', '10', '11']
+    >>> sum(counts.values())
+    10000
     >>> quantum_fourier_transform(-1)
     Traceback (most recent call last):
         ...
@@ -82,9 +96,12 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
 
     # measure all the qubits
     quantum_circuit.measure(qr, cr)
-    # simulate with 10000 shots
-    backend = Aer.get_backend("qasm_simulator")
-    job = execute(quantum_circuit, backend, shots=10000)
+
+    # simulate with 10000 shots on the pure-Python BasicSimulator; seed the run
+    # so the observed outcomes are reproducible for the doctest above.
+    backend = BasicSimulator()
+    transpiled_circuit = transpile(quantum_circuit, backend)
+    job = backend.run(transpiled_circuit, shots=10000, seed_simulator=42)
 
     return job.result().get_counts(quantum_circuit)
 
