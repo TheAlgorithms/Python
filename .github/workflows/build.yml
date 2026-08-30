@@ -21,7 +21,6 @@ jobs:
           allow-prereleases: true
       - run: uv sync --group=test
       - name: Run tests
-        # TODO: #8818 Re-enable quantum tests
         run: uv run --with=pytest-run-parallel pytest
           --iterations=8 --parallel-threads=auto
           --ignore=computer_vision/cnn_classification.py
@@ -30,7 +29,6 @@ jobs:
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
-          --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
           --ignore=web_programming/current_stock_price.py
           --ignore=web_programming/fetch_anime_and_play.py
