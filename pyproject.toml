@@ -184,4 +184,3 @@ report.omit = [
   "project_euler/*",
 ]
 report.sort = "Cover"
-
