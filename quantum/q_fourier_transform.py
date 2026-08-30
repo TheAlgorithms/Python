@@ -43,7 +43,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
         number_of_qubits : number of qubits
 
     Returns:
-        qiskit.result.counts.Counts: measurement counts over 10000 shots.
+        qiskit.result.counts.Counts: measurement counts over 10,000 shots.
 
     The simulation is seeded, so the set of observed outcomes is reproducible:
 
