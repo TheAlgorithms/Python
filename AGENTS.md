@@ -22,8 +22,8 @@ rather than maximally optimized. Every change goes through CI and the
 
 ## Code conventions (enforced by CI)
 
-- **Formatting & linting:** `ruff` (`ruff check .` and `ruff format .`).
-  Run `pre-commit run --all-files` locally to catch everything CI will.
+- **Formatting & linting:** `ruff` (`uvx ruff check .` and `uvx ruff format .`).
+  Run `uvx pre-commit run --all-files` locally to catch everything CI will.
 - **Type hints:** annotate every function parameter and return value with
   [type hints](https://docs.python.org/3/library/typing.html).
 - **Doctests:** every function needs at least one
@@ -37,11 +37,17 @@ rather than maximally optimized. Every change goes through CI and the
 
 ## Running the suite locally
 
+This project is managed with [`uv`](https://docs.astral.sh/uv/) — there is no
+`requirements.txt`. Dependencies live in `pyproject.toml`/`uv.lock`, and `uvx`
+runs a tool in a throwaway environment without polluting yours:
+
 ```bash
-python -m pip install -r requirements.txt
-pre-commit run --all-files          # ruff, formatting, hooks
-python -m pytest your_module/your_file.py --doctest-modules
+uvx pre-commit run --all-files                       # ruff, formatting, hooks
+uvx pytest your_module/your_file.py --doctest-modules
 ```
+
+(`uv run pytest ...` works too if you'd rather use the project's locked
+environment.)
 
 Some directories are intentionally skipped in CI (`--ignore` entries in
 `.github/workflows/build.yml`), usually because a heavy dependency lacks a
