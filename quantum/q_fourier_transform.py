@@ -101,7 +101,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     # so the observed outcomes are reproducible for the doctest above.
     backend = BasicSimulator()
     transpiled_circuit = transpile(quantum_circuit, backend)
-    job = backend.run(transpiled_circuit, shots=10000, seed_simulator=42)
+    job = backend.run(transpiled_circuit, shots=10_000, seed_simulator=42)
 
     return job.result().get_counts(quantum_circuit)
 
