@@ -9,7 +9,7 @@ python pancake_sort.py
 """
 
 
-def pancake_sort(arr: list[int]) -> list[int]:
+def pancake_sort[T: (int, float)](arr: list[T]) -> list[T]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
     :return: Collection ordered in ascending order of items
