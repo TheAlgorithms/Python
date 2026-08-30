@@ -8,16 +8,18 @@ A Suffix Automaton is the minimal Deterministic Finite Automaton (DFA) that reco
 all suffixes (and substrings) of a given string in O(N) time and O(N) space.
 """
 
+from dataclasses import dataclass, field
 
+
+@dataclass
 class State:
     """
     State (node) in a Suffix Automaton.
     """
 
-    def __init__(self, length: int = 0, link: int = -1) -> None:
-        self.length: int = length
-        self.link: int = link
-        self.next: dict[str, int] = {}
+    length: int = 0
+    link: int = -1
+    next: dict[str, int] = field(default_factory=dict)
 
 
 class SuffixAutomaton:
@@ -129,7 +131,7 @@ class SuffixAutomaton:
 
     def count_occurrences(self, pattern: str) -> int:
         """
-        Count occurrences of pattern as a substring in the text in O(|pattern|) time.
+        Count occurrences of pattern as a substring in the text in O(N + |pattern|) time.
 
         >>> sam = SuffixAutomaton("banana")
         >>> sam.count_occurrences("an")
