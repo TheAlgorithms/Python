@@ -1377,6 +1377,7 @@
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
+  * [Suffix Automaton](strings/suffix_automaton.py)
   * [Text Justification](strings/text_justification.py)
   * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
