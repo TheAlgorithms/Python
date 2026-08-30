@@ -9,7 +9,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "beautifulsoup4>=4.15", 
+  "beautifulsoup4>=4.15",
   "cython>=3.1.2",
   "fake-useragent>=1.5.1",
   "httpx>=0.28.1",
