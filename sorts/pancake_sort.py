@@ -13,6 +13,7 @@ from typing import TypeVar
 
 T = TypeVar("T")
 
+
 def pancake_sort(arr: Sequence[T]) -> list[T]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
