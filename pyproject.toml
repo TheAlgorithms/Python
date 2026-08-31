@@ -63,7 +63,7 @@ quantum = [
 ]
 # waiting on scikit-learn/scikit-learn-release#8
 scikit-learn = [
-  "scikit-learn>=1.9.0",
+  "scikit-learn>=1.9",
 ]
 
 [tool.ruff]
