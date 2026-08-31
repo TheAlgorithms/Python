@@ -27,6 +27,9 @@ T = TypeVar("T", bound=Comparable)
 def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
     """A pure Python implementation of the insertion sort algorithm
 
+    Time Complexity: O(n^2) worst case, O(n) best case (already sorted)
+    Space Complexity: O(1) auxiliary
+
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
