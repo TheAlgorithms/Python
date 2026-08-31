@@ -48,6 +48,10 @@ docs = [
 cv = [
   "opencv-python>=4.10.0.84",
 ]
+euler-validate = [
+  "httpx>=0.28.1",
+  "numpy>=2.1.3",
+]
 # qiskit does not yet run on free-threaded CPython: its compiled core re-enables
 # the GIL under 3.14t and the team is still scoping free-threading support
 # (upstream: Qiskit/qiskit#16893). Keep it in an optional group so the
@@ -56,10 +60,6 @@ cv = [
 # deps once qiskit supports free-threading.
 quantum = [
   "qiskit>=2",
-]
-euler-validate = [
-  "httpx>=0.28.1",
-  "numpy>=2.1.3",
 ]
 
 [tool.ruff]
