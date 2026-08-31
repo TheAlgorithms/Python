@@ -9,7 +9,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "beautifulsoup4>=4.12.3",
+  "beautifulsoup4>=4.15",
   "cython>=3.1.2",
   "fake-useragent>=1.5.1",
   "httpx>=0.28.1",
@@ -21,6 +21,7 @@ dependencies = [
   "opencv-python>=4.10.0.84",
   "pandas>=2.2.3",
   "pillow>=11.3",
+  "qiskit>=2",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
   "scipy>=1.16.2",
