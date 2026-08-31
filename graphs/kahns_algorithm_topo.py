@@ -23,24 +23,27 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     >>> topological_sort(graph_with_cycle)
     """
 
-    indegree = [0] * len(graph)
-    queue = []
+    from collections import deque
+
+    # Use dict for indegree to support sparse/non-contiguous vertex IDs
+    indegree: dict[int, int] = {v: 0 for v in graph}
+    queue: deque[int] = deque()
     topo_order = []
     processed_vertices_count = 0
 
     # Calculate the indegree of each vertex
     for values in graph.values():
         for i in values:
-            indegree[i] += 1
+            indegree[i] = indegree.get(i, 0) + 1
 
     # Add all vertices with 0 indegree to the queue
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
+    for v, deg in indegree.items():
+        if deg == 0:
+            queue.append(v)
 
     # Perform BFS
     while queue:
-        vertex = queue.pop(0)
+        vertex = queue.popleft()
         processed_vertices_count += 1
         topo_order.append(vertex)
 
