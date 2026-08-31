@@ -25,7 +25,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: 3.14t
+          python-version-file: .python-version
           allow-prereleases: true
       - run: uv sync --group=euler-validate --group=test
       - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
@@ -43,7 +43,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: 3.14t
+          python-version-file: .python-version
           allow-prereleases: true
       - run: uv sync --group=euler-validate --group=test
       - run: uv run pytest scripts/validate_solutions.py
