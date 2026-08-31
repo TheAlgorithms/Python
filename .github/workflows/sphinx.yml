@@ -26,6 +26,8 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v7
+      # keras needs hdf5 on pre-prelease Python.
+      - run: sudo apt-get update -qq && sudo apt-get install --yes libhdf5-dev
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
         with:

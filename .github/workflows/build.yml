@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # keras needs hdf5 on pre-prelease Python.
+      - run: sudo apt-get update -qq && sudo apt-get install --yes libhdf5-dev
       - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
