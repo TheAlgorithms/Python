@@ -30,6 +30,8 @@ jobs:
         # 3.14t. That's an upstream-wheel gap, not our code; the flag lets the suite
         # run anyway and pytest-run-parallel still reports which tests are not
         # thread-safe. Drop the flag once the scientific stack ships free-threaded wheels.
+        # qiskit is likewise gated out of the 3.14t deps (Qiskit/qiskit#16893), so the
+        # single file that imports it (quantum/q_fourier_transform.py) is skipped too.
         run: uv run --with=pytest-run-parallel pytest
           --iterations=8 --parallel-threads=auto --ignore-gil-enabled
           --ignore=computer_vision/cnn_classification.py
@@ -43,6 +45,7 @@ jobs:
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
+          --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
           --ignore=web_programming/current_stock_price.py
           --ignore=web_programming/fetch_anime_and_play.py
