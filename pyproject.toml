@@ -22,8 +22,8 @@ dependencies = [
   "pandas>=2.3.3",
   "pillow>=11.3",
   "rich>=13.9.4",
-  "scikit-learn>=1.5.2",
-  "scipy>=1.16.2",
+  "scikit-learn @ https://github.com/scikit-learn/scikit-learn.git",
+  "scipy>=1.18.1",
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
   "tweepy>=4.14",
@@ -61,6 +61,10 @@ euler-validate = [
 # deps once qiskit supports free-threading.
 quantum = [
   "qiskit>=2",
+]
+# waiting on scikit-learn/scikit-learn-release#8
+scikit-learn = [
+  "scikit-learn>=1.9",
 ]
 
 [tool.ruff]
