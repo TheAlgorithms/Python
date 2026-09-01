@@ -7,6 +7,7 @@ requires-python = ">=3.14"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Free Threading :: 2 - Beta",
 ]
 dependencies = [
   "beautifulsoup4>=4.15",
@@ -18,10 +19,8 @@ dependencies = [
   "lxml>=6",
   "matplotlib>=3.9.3",
   "numpy>=2.1.3",
-  "opencv-python>=4.10.0.84",
   "pandas>=2.3.3",
   "pillow>=11.3",
-  "qiskit>=2",
   "rich>=13.9.4",
   "scikit-learn>=1.5.2",
   "scipy>=1.16.2",
@@ -42,9 +41,26 @@ docs = [
   "sphinx>=8.2",
   "sphinx-autoapi>=3.4",
 ]
+# opencv-python has no free-threaded (cp314t) wheel yet and fails to build from
+# source under 3.14t (CMake), which blocks `uv sync` for every job. Keep it in an
+# optional group so the free-threaded CI can install everything else and actually
+# run pytest-run-parallel on the pure-Python algorithms. Re-fold into core deps
+# once a cp314t wheel ships (upstream: opencv/opencv#27933).
+cv = [
+  "opencv-python>=4.10.0.84",
+]
 euler-validate = [
   "httpx>=0.28.1",
   "numpy>=2.1.3",
+]
+# qiskit does not yet run on free-threaded CPython: its compiled core re-enables
+# the GIL under 3.14t and the team is still scoping free-threading support
+# (upstream: Qiskit/qiskit#16893). Keep it in an optional group so the
+# free-threaded CI can install everything else; only quantum/q_fourier_transform.py
+# imports it, and that file is ignored in the 3.14t test run. Re-fold into core
+# deps once qiskit supports free-threading.
+quantum = [
+  "qiskit>=2",
 ]
 
 [tool.ruff]
