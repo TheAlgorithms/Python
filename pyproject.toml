@@ -7,7 +7,6 @@ requires-python = ">=3.14"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.14",
-  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Free Threading :: 2 - Beta",
 ]
 dependencies = [
