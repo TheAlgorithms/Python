@@ -20,6 +20,12 @@ jobs:
         with:
           python-version-file: .python-version
           allow-prereleases: true
+      # keras needs hdf5 on pre-prelease Python.
+      - run: |
+          if [ "$(python -c 'import sys; print(sys.version_info.releaselevel)')" != "final" ]; then
+            sudo apt-get update -qq
+            sudo apt-get install --yes libhdf5-dev
+          fi
       - run: uv sync --group=test
       - name: Run tests
         # opencv-python is gated out on 3.14t (no cp314t wheel yet), so skip the
