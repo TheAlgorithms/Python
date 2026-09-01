@@ -22,6 +22,7 @@ dependencies = [
   "pandas>=2.3.3",
   "pillow>=11.3",
   "rich>=13.9.4",
+  "git+https://github.com/scikit-learn/scikit-learn.git",
   "scipy>=1.18.1",
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
