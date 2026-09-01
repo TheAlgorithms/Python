@@ -44,11 +44,11 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     seen: set[int] = set()
     for num in nums:
         if num < 1 or num > length:
-            raise ValueError(
-                f"All numbers must be in range 1 to {length}, got {num}"
-            )
+            msg = f"All numbers must be in range 1 to {length}, got {num}"
+            raise ValueError(msg)
         if num in seen:
-            raise ValueError(f"All numbers must be unique, got {nums}")
+            msg = f"All numbers must be unique, got {nums}"
+            raise ValueError(msg)
         seen.add(num)
 
     # Perform cyclic sort
