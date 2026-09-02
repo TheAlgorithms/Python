@@ -108,7 +108,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The following are considered to be bad and may be requested to be improved:
 
   ```python
-  x = x + 2	# increased by 2
+  x = x + 2  # increased by 2
   ```
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
@@ -148,7 +148,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The use of the Python built-in `input()` function is __not__ encouraged:
 
   ```python
-  input('Enter your input:')
+  input("Enter your input:")
   # Or even worse...
   input = eval(input("Enter your input: "))
   ```
