@@ -25,7 +25,6 @@ jobs:
   build_docs:
     runs-on: ubuntu-24.04-arm
     steps:
-      - run: sudo apt-get update && sudo apt-get install --yes libhdf5-dev
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7

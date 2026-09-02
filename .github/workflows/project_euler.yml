@@ -14,7 +14,6 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get update && sudo apt-get install --yes libhdf5-dev
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
@@ -26,7 +25,6 @@ jobs:
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get update && sudo apt-get install --yes libhdf5-dev
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - uses: actions/setup-python@v7
