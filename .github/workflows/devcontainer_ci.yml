@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: devcontainers/ci@v0.3
+      - uses: devcontainers/ci@v0.89.0
         with:
           push: never
           runCmd: "true"
