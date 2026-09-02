@@ -124,7 +124,7 @@ def _construct_points(
             else:
                 try:
                     points.append(Point(p[0], p[1]))
-                except (IndexError, TypeError):
+                except IndexError, TypeError:
                     print(
                         f"Ignoring deformed point {p}. All points"
                         " must have at least 2 coordinates."

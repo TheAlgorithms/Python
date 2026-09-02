@@ -108,7 +108,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The following are considered to be bad and may be requested to be improved:
 
   ```python
-  x = x + 2	# increased by 2
+  x = x + 2  # increased by 2
   ```
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
@@ -148,7 +148,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The use of the Python built-in `input()` function is __not__ encouraged:
 
   ```python
-  input('Enter your input:')
+  input("Enter your input:")
   # Or even worse...
   input = eval(input("Enter your input: "))
   ```
@@ -159,7 +159,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
 
-  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
+  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](https://mypy-lang.org) so run that locally before making your submission.
 
   ```python
   def sum_ab(a: int, b: int) -> int:
