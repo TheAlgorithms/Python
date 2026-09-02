@@ -15,7 +15,7 @@
 	// cannot be selected via the tag alone -- but the repo's `.python-version`
 	// pins 3.14t, and `uv run`/`uv sync` in the container honor it, so uv gives
 	// contributors free-threaded 3.14t regardless of the base tag.
-	"image": "mcr.microsoft.com/devcontainers/python:3.14-trixie",
+	"image": "mcr.microsoft.com/devcontainers/python:latest",
 
 	// Install the tools post_install and CI expect (pre-commit + ruff), plus uv
 	// for the free-threaded workflow above, then run the existing setup script.
