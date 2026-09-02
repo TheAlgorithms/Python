@@ -22,6 +22,10 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
     """
+
+    if any(i < 0 for i in list_of_ints):
+        raise ValueError("radix_sort only supports non-negative integers")
+
     placement = 1
     max_digit = max(list_of_ints)
     while placement <= max_digit:
