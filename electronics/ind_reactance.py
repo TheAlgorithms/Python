@@ -1,6 +1,4 @@
 # https://en.wikipedia.org/wiki/Electrical_reactance#Inductive_reactance
-from __future__ import annotations
-
 from math import pi
 
 

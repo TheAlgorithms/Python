@@ -7,8 +7,6 @@ called 'Window sliding technique' where the nested loops can be converted to a s
 loop to reduce time complexity.
 """
 
-from __future__ import annotations
-
 
 def max_sum_in_array(array: list[int], k: int) -> int:
     """

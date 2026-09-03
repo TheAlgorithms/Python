@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 def knuth_morris_pratt(text: str, pattern: str) -> int:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text

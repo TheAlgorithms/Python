@@ -1,7 +1,5 @@
 """Non recursive implementation of a DFS algorithm."""
 
-from __future__ import annotations
-
 
 def depth_first_search(graph: dict, start: str) -> set[str]:
     """Depth First Search on Graph

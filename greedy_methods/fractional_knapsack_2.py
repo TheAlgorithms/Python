@@ -2,8 +2,6 @@
 # https://www.guru99.com/fractional-knapsack-problem-greedy.html
 # https://medium.com/walkinthecode/greedy-algorithm-fractional-knapsack-problem-9aba1daecc93
 
-from __future__ import annotations
-
 
 def fractional_knapsack(
     value: list[int], weight: list[int], capacity: int

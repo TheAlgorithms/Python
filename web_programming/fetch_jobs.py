@@ -3,14 +3,12 @@ Scraping jobs given job title and location from indeed website
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "beautifulsoup4",
 #     "httpx",
 # ]
 # ///
-
-from __future__ import annotations
 
 from collections.abc import Generator
 

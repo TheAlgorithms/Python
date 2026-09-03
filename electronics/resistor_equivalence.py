@@ -1,7 +1,5 @@
 # https://byjus.com/equivalent-resistance-formula/
 
-from __future__ import annotations
-
 
 def resistor_parallel(resistors: list[float]) -> float:
     """

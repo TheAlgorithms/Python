@@ -11,8 +11,6 @@ For manual testing run:
 python3 merge_insertion_sort.py
 """
 
-from __future__ import annotations
-
 
 def binary_search_insertion(sorted_list, item):
     """

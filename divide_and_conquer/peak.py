@@ -8,8 +8,6 @@ to find the maximum of the array.
 Addison Wesley 2006: Chapter 5 Solved Exercise 1)
 """
 
-from __future__ import annotations
-
 
 def peak(lst: list[int]) -> int:
     """

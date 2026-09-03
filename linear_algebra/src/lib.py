@@ -19,8 +19,6 @@ Overview:
 - function random_matrix(W, H, a, b)
 """
 
-from __future__ import annotations
-
 import math
 import random
 from collections.abc import Collection

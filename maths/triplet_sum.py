@@ -4,8 +4,6 @@ we are required to find a triplet from the array such that it's sum is equal to
 the target.
 """
 
-from __future__ import annotations
-
 from itertools import permutations
 from random import randint
 from timeit import repeat

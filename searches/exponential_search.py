@@ -13,8 +13,6 @@ For manual testing run:
 python3 exponential_search.py
 """
 
-from __future__ import annotations
-
 
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int = 0, right: int = -1

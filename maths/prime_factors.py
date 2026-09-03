@@ -2,8 +2,6 @@
 python/black : True
 """
 
-from __future__ import annotations
-
 
 def prime_factors(n: int) -> list[int]:
     """

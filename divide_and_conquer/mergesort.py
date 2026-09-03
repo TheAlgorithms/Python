@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def merge(left_half: list, right_half: list) -> list:
     """Helper function for mergesort.

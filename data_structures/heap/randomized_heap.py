@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from __future__ import annotations
-
 import random
 from collections.abc import Iterable
 from typing import Any, TypeVar

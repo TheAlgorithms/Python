@@ -4,7 +4,7 @@ This works for some of us but fails for others.
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 #     "rich",

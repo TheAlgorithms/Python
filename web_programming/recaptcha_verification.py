@@ -33,8 +33,9 @@ recaptcha verification.
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
+#     "django",
 #     "httpx",
 # ]
 # ///

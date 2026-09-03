@@ -28,8 +28,6 @@ References:
 - https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """
 
-from __future__ import annotations
-
 
 def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     """

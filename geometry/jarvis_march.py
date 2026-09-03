@@ -19,8 +19,6 @@ REFERENCES:
        https://www.geeksforgeeks.org/convex-hull-set-1-jarviss-algorithm-or-wrapping/
 """
 
-from __future__ import annotations
-
 
 class Point:
     """Represents a 2D point with x and y coordinates."""

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
@@ -33,7 +33,7 @@ def random_anime_character() -> tuple[str, str, str]:
     soup = BeautifulSoup(
         httpx.get(URL, headers=headers, timeout=10).text, "html.parser"
     )
-    title = soup.find("meta", attrs={"property": "og:title"}).attrs["content"]
+    title = str(soup.find("meta", attrs={"property": "og:title"}).attrs["content"])
     image_url = soup.find("meta", attrs={"property": "og:image"}).attrs["content"]
     description = soup.find("p", id="description").get_text()
     _, image_extension = os.path.splitext(os.path.basename(image_url))

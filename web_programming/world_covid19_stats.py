@@ -6,7 +6,7 @@ This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "beautifulsoup4",
 #     "httpx",

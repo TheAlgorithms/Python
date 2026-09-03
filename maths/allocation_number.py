@@ -6,8 +6,6 @@ For example:
         requests.get(url,headers={'Range':f'bytes={i}'})
 """
 
-from __future__ import annotations
-
 
 def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     """

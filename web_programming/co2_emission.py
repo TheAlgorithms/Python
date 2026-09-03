@@ -3,7 +3,7 @@ Get CO2 emission data from the UK CarbonIntensity API
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]

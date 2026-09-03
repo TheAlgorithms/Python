@@ -12,8 +12,6 @@ https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 # @Email:  silentcat@protonmail.com
 # @Last modified by:   pikulet
 # @Last modified time: 2020-10-02
-from __future__ import annotations
-
 import sys
 
 

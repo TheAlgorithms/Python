@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def dfs(u):
     global graph, reversed_graph, scc, component, visit, stack

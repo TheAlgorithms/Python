@@ -19,8 +19,6 @@ Source :
 - Newton (1687) "Philosophiæ Naturalis Principia Mathematica"
 """
 
-from __future__ import annotations
-
 # Define the Gravitational Constant G and the function
 GRAVITATIONAL_CONSTANT = 6.6743e-11  # unit of G : m^3 * kg^-1 * s^-2
 

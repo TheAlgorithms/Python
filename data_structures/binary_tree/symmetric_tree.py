@@ -5,8 +5,6 @@ Given the root of a binary tree, check whether it is a mirror of itself
 Leetcode reference: https://leetcode.com/problems/symmetric-tree/
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 
 

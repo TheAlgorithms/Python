@@ -36,8 +36,6 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 [1, 2, 3]
 """
 
-from __future__ import annotations
-
 from collections.abc import Callable
 from typing import Any, TypeVar
 

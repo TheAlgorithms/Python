@@ -1,7 +1,5 @@
 # An OOP approach to representing and manipulating matrices
 
-from __future__ import annotations
-
 
 class Matrix:
     """

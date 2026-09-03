@@ -5,8 +5,6 @@ Discussion in stackoverflow:
 https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array
 """
 
-from __future__ import annotations
-
 
 def make_matrix(row_size: int = 4) -> list[list[int]]:
     """

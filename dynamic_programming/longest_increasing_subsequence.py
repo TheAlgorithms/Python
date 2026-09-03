@@ -13,8 +13,6 @@ Example:
     ``[10, 22, 33, 41, 60, 80]`` as output
 """
 
-from __future__ import annotations
-
 
 def longest_subsequence(array: list[int]) -> list[int]:  # This function is recursive
     """

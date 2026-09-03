@@ -76,8 +76,6 @@ for another one or vice versa.
 
 """
 
-from __future__ import annotations
-
 
 def depth_first_search(
     possible_board: list[int],

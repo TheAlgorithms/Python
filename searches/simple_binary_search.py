@@ -8,8 +8,6 @@ For manual testing run:
 python3 simple_binary_search.py
 """
 
-from __future__ import annotations
-
 
 def binary_search(a_list: list[int], item: int) -> bool:
     """

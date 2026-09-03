@@ -7,8 +7,6 @@ along the path equals target.
 Leetcode reference: https://leetcode.com/problems/path-sum-iii/
 """
 
-from __future__ import annotations
-
 
 class Node:
     """

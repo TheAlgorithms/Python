@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def stable_matching(
     donor_pref: list[list[int]], recipient_pref: list[list[int]]

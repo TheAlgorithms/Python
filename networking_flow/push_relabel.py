@@ -16,8 +16,6 @@ the augmenting-path methods on dense graphs.
 Reference: https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm
 """
 
-from __future__ import annotations
-
 
 class PushRelabel:
     """

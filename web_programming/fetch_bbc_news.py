@@ -1,7 +1,7 @@
 # Created by sarathkaul on 12/11/19
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]

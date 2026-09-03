@@ -9,7 +9,7 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 #     "numpy",

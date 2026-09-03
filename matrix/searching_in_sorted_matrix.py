@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def search_in_a_sorted_matrix(mat: list[list[int]], m: int, n: int, key: float) -> None:
     """

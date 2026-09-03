@@ -2,8 +2,6 @@
 from a given source node to a target node in an unweighted graph.
 """
 
-from __future__ import annotations
-
 graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],

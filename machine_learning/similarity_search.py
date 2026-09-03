@@ -8,8 +8,6 @@ returns a list containing two data for each vector:
     2. distance between the vector and the nearest vector (float)
 """
 
-from __future__ import annotations
-
 import math
 
 import numpy as np

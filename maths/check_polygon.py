@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def check_polygon(nums: list[float]) -> bool:
     """

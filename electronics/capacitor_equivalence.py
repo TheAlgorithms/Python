@@ -1,7 +1,5 @@
 # https://farside.ph.utexas.edu/teaching/316/lectures/node46.html
 
-from __future__ import annotations
-
 
 def capacitor_parallel(capacitors: list[float]) -> float:
     """

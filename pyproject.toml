@@ -35,6 +35,7 @@ dependencies = [
 test = [
   "pytest>=8.4.1",
   "pytest-cov>=6",
+  "ty",
 ]
 docs = [
   "myst-parser>=4",
@@ -65,9 +66,8 @@ quantum = [
 
 [tool.ruff]
 target-version = "py314"
-output-format = "full"
 lint.select = [
-  # https://beta.ruff.rs/docs/rules
+  # https://docs.astral.sh/ruff/rules
   "A",     # flake8-builtins
   "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
@@ -175,7 +175,9 @@ lint.pylint.max-returns = 8  # default: 6
 lint.pylint.max-statements = 88  # default: 50
 
 [tool.codespell]
-ignore-words-list = "3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
+ignore-words-list = """\
+  3rt,abd,aer,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar\
+  """
 skip = """\
   ./.*,*.json,*.lock,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictio\
   nary.txt,strings/words.txt\
@@ -183,6 +185,23 @@ skip = """\
 
 [tool.mypy]
 python_version = "3.14"
+
+[tool.ty]
+rules.call-non-callable = "ignore"
+rules.deprecated = "ignore"
+rules.invalid-argument-type = "ignore"
+rules.invalid-assignment = "ignore"
+rules.invalid-parameter-default = "ignore"
+rules.invalid-return-type = "ignore"
+rules.invalid-type-arguments = "ignore"
+rules.invalid-type-form = "ignore"
+rules.no-matching-overload = "ignore"
+rules.not-iterable = "ignore"
+rules.not-subscriptable = "ignore"
+rules.parameter-already-assigned = "ignore"
+rules.unresolved-attribute = "ignore"
+rules.unresolved-import = "ignore"
+rules.unsupported-operator = "ignore"
 
 [tool.pytest]
 ini_options.addopts = [

@@ -16,8 +16,6 @@ Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
 
-from __future__ import annotations
-
 
 def prime_sieve(limit: int) -> list[int]:
     """

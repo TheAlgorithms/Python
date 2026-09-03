@@ -2,8 +2,6 @@
 This is pure Python implementation of tree traversal algorithms
 """
 
-from __future__ import annotations
-
 import queue
 
 

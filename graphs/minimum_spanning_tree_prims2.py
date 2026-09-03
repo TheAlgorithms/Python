@@ -7,8 +7,6 @@ at a time, from an arbitrary starting vertex, at each step adding the cheapest p
 connection from the tree to another vertex.
 """
 
-from __future__ import annotations
-
 from sys import maxsize
 from typing import TypeVar
 

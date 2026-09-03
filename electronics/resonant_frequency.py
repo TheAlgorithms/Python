@@ -8,8 +8,6 @@ tuning fork, storing energy oscillating at the circuit's resonant frequency.
 Source: https://en.wikipedia.org/wiki/LC_circuit
 """
 
-from __future__ import annotations
-
 from math import pi, sqrt
 
 

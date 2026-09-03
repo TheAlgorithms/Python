@@ -2,8 +2,6 @@
 https://en.wikipedia.org/wiki/Knapsack_problem
 """
 
-from __future__ import annotations
-
 from functools import lru_cache
 
 

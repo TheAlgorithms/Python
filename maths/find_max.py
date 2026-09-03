@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def find_max_iterative(nums: list[int | float]) -> int | float:
     """

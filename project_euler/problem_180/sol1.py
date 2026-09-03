@@ -45,8 +45,6 @@ Reference:
 https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 """
 
-from __future__ import annotations
-
 from fractions import Fraction
 from math import gcd, sqrt
 

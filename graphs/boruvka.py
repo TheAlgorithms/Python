@@ -25,8 +25,6 @@ times, it is a bit simpler to code.
 Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 

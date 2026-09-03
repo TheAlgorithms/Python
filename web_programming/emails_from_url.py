@@ -1,13 +1,11 @@
 """Get the site emails from URL."""
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]
 # ///
-
-from __future__ import annotations
 
 __author__ = "Muhammad Umer Farooq"
 __license__ = "MIT"

@@ -4,8 +4,6 @@ ruleset number
 https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 """
 
-from __future__ import annotations
-
 from PIL import Image
 
 # Define the first generation of cells

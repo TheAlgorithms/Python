@@ -2,8 +2,6 @@
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
-from __future__ import annotations
-
 import time
 from math import sqrt
 

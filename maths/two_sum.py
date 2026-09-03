@@ -12,8 +12,6 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 """
 
-from __future__ import annotations
-
 
 def two_sum(nums: list[int], target: int) -> list[int]:
     """

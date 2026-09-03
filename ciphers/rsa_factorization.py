@@ -10,8 +10,6 @@ public key e.
 large number can take minutes to factor, therefore are not included in doctest.
 """
 
-from __future__ import annotations
-
 import math
 import random
 

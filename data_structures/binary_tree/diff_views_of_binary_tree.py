@@ -6,8 +6,6 @@ Problem: Given root of a binary tree, return the:
 4. binary-tree-bottom-side-view
 """
 
-from __future__ import annotations
-
 from collections import defaultdict
 from dataclasses import dataclass
 

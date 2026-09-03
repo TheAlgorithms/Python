@@ -13,8 +13,6 @@ Example:
     ``[10, 22, 33, 50, 60, 80]`` as output
 """
 
-from __future__ import annotations
-
 import copy
 
 

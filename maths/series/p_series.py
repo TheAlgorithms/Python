@@ -9,8 +9,6 @@ For manual testing run:
 python3 p_series.py
 """
 
-from __future__ import annotations
-
 
 def p_series(nth_term: float | str, power: float | str) -> list[str]:
     """

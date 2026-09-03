@@ -4,8 +4,6 @@ of the values of its left and right subtrees?
 https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-sumtree
 """
 
-from __future__ import annotations
-
 from collections.abc import Iterator
 from dataclasses import dataclass
 

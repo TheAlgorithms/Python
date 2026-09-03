@@ -6,8 +6,6 @@
 #  addressing bugs/corrections to this file.
 #  Thank you!
 
-from __future__ import annotations
-
 
 class KDNode:
     """

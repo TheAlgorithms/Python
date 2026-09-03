@@ -6,8 +6,6 @@ its submasks. The mask s is submask of m if only bits that were included in
 bitmask are set
 """
 
-from __future__ import annotations
-
 
 def list_of_submasks(mask: int) -> list[int]:
     """

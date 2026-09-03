@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 class Graph:
     def __init__(self, vertices: int) -> None:

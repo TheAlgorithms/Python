@@ -1,7 +1,5 @@
 # Video Explanation: https://www.youtube.com/watch?v=6w60Zi1NtL8&feature=emb_logo
 
-from __future__ import annotations
-
 
 def maximum_non_adjacent_sum(nums: list[int]) -> int:
     """

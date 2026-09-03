@@ -1,5 +1,5 @@
 # https://beta.ruff.rs
-name: ruff
+name: ruff_and_ty
 on:
   push:
     branches:
@@ -8,9 +8,11 @@ on:
     branches:
       - master
 jobs:
-  ruff:
+  ruff_and_ty:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
-      - run: uvx ruff check --output-format=github .
+      - run: uvx ruff check --output-format=github
+      - run: uv sync --group=test
+      - run: uv run --with=ty ty check --output-format=github

@@ -6,8 +6,6 @@ https://www.dcode.fr/letter-number-cipher
 http://bestcodes.weebly.com/a1z26.html
 """
 
-from __future__ import annotations
-
 
 def encode(plain: str) -> list[int]:
     """

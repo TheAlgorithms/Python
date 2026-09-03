@@ -1,7 +1,5 @@
 # Youtube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
 
-from __future__ import annotations
-
 
 def minimum_cost_path(matrix: list[list[int]]) -> int:
     """

@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
     Calculate the frequency and/or duty cycle of an astable 555 timer.
     * https://en.wikipedia.org/wiki/555_timer_IC#Astable

@@ -4,8 +4,6 @@ By @Shreya123714
 https://en.wikipedia.org/wiki/Fuzzy_set
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt

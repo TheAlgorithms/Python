@@ -16,8 +16,6 @@ before deciding whether allocation should be allowed to continue.
 | (https://rosettacode.org/wiki/Banker%27s_algorithm)
 """
 
-from __future__ import annotations
-
 import numpy as np
 
 test_claim_vector = [8, 5, 9, 7]

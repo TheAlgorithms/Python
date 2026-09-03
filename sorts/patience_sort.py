@@ -1,9 +1,3 @@
-from __future__ import annotations
-
-from bisect import bisect_left
-from functools import total_ordering
-from heapq import merge
-
 """
 A pure Python implementation of the patience sort algorithm
 
@@ -17,6 +11,9 @@ python3 -m doctest -v patience_sort.py
 For manual testing run:
 python3 patience_sort.py
 """
+from bisect import bisect_left
+from functools import total_ordering
+from heapq import merge
 
 
 @total_ordering

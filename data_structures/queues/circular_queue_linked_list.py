@@ -1,8 +1,6 @@
 # Implementation of Circular Queue using linked lists
 # https://en.wikipedia.org/wiki/Circular_buffer
 
-from __future__ import annotations
-
 from typing import Any
 
 

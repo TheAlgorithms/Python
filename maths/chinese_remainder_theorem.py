@@ -12,8 +12,6 @@ Algorithm :
 2. Take n = ra*by + rb*ax
 """
 
-from __future__ import annotations
-
 
 # Extended Euclid
 def extended_euclid(a: int, b: int) -> tuple[int, int]:

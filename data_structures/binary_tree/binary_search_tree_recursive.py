@@ -8,8 +8,6 @@ To run an example:
 python binary_search_tree_recursive.py
 """
 
-from __future__ import annotations
-
 import unittest
 from collections.abc import Iterator
 

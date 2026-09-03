@@ -38,8 +38,6 @@ a has 3 digits, etc...
                               = 1002003 * a
 """
 
-from __future__ import annotations
-
 
 def is_9_pandigital(n: int) -> bool:
     """

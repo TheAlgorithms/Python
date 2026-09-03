@@ -11,8 +11,6 @@ doctest provider: Bruno Simas Hadlich (https://github.com/brunohadlich)
 Also thanks to Dmitry (https://github.com/LizardWizzard) for finding the problem
 """
 
-from __future__ import annotations
-
 import math
 
 

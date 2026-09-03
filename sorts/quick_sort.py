@@ -8,8 +8,6 @@ For manual testing run:
 python3 quick_sort.py
 """
 
-from __future__ import annotations
-
 from random import randrange
 
 

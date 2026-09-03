@@ -45,8 +45,6 @@ Reference: https://en.wikipedia.org/wiki/Triangular_number
            https://en.wikipedia.org/wiki/Quadratic_formula
 """
 
-from __future__ import annotations
-
 from math import ceil, floor, sqrt
 
 

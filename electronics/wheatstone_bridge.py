@@ -1,6 +1,4 @@
 # https://en.wikipedia.org/wiki/Wheatstone_bridge
-from __future__ import annotations
-
 
 def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float

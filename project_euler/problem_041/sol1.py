@@ -11,8 +11,6 @@ So we will check only 7 digit pandigital numbers to obtain the largest possible
 pandigital prime.
 """
 
-from __future__ import annotations
-
 import math
 from itertools import permutations
 

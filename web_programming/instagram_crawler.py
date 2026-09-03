@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
 #     "httpx",
 # ]
 # ///
-
-from __future__ import annotations
 
 import json
 

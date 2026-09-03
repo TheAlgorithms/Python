@@ -37,8 +37,6 @@ Runtime: O(n)
 Space: O(1)
 """
 
-from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import NamedTuple
 

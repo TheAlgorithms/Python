@@ -6,8 +6,6 @@ Nodes contain data and also may link to other nodes:
     - Last node: points to null
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 

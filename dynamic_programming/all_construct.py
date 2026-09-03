@@ -3,8 +3,6 @@ Program to list all the ways a target string can be
 constructed from the given list of substrings
 """
 
-from __future__ import annotations
-
 
 def all_construct(target: str, word_bank: list[str] | None = None) -> list[list[str]]:
     """

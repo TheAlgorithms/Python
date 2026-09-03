@@ -1,12 +1,9 @@
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]
 # ///
-
-from __future__ import annotations
-
 import httpx
 
 valid_terms = set(
@@ -42,7 +39,7 @@ def get_subreddit_data(
     )
     response.raise_for_status()
     if response.status_code == 429:
-        raise httpx.HTTPError(response=response)
+        raise httpx.HTTPError(response.reason_phrase)
 
     data = response.json()
     if not wanted_data:

@@ -4,7 +4,7 @@ using title and year of publication, and volume and pages of journal.
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "beautifulsoup4",
 #     "httpx",

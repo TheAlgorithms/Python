@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import annotations
-
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,

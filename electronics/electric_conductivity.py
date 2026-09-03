@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 ELECTRON_CHARGE = 1.6021e-19  # units = C
 
 

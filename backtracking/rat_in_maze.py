@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def solve_maze(
     maze: list[list[int]],

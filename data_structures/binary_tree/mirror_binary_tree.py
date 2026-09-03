@@ -4,8 +4,6 @@ Given the root of a binary tree, mirror the tree, and return its root.
 Leetcode problem reference: https://leetcode.com/problems/mirror-binary-tree/
 """
 
-from __future__ import annotations
-
 from collections.abc import Iterator
 from dataclasses import dataclass
 

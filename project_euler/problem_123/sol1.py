@@ -38,8 +38,6 @@ So it could be simplified as,
     r = 2   when n is even.
 """
 
-from __future__ import annotations
-
 from collections.abc import Generator
 
 

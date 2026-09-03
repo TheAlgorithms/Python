@@ -13,8 +13,6 @@ What is the first value which can be written as the sum of primes in over
 five thousand different ways?
 """
 
-from __future__ import annotations
-
 from functools import lru_cache
 from math import ceil
 

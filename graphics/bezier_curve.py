@@ -1,7 +1,5 @@
 # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
-from __future__ import annotations
-
 from scipy.special import comb
 
 

@@ -8,8 +8,6 @@ Script inspired by this Wikipedia article:
 https://en.wikipedia.org/wiki/Interquartile_range
 """
 
-from __future__ import annotations
-
 
 def find_median(nums: list[int | float]) -> float:
     """

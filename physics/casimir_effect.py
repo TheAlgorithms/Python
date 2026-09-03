@@ -35,8 +35,6 @@ Source :
   London-van der Waals Forces", Physical Review, vol. 73, Issue 4, pp. 360-372
 """
 
-from __future__ import annotations
-
 from math import pi
 
 # Define the Reduced Planck Constant ℏ (H bar), speed of light C, value of

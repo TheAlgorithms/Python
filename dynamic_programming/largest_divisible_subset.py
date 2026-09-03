@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def largest_divisible_subset(items: list[int]) -> list[int]:
     """

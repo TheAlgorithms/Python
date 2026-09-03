@@ -19,13 +19,11 @@ export USER_TOKEN=""
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]
 # ///
-
-from __future__ import annotations
 
 import os
 from typing import Any

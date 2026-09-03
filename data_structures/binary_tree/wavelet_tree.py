@@ -8,8 +8,6 @@ such as the with segment trees or fenwick trees. You can read more about them he
 3. https://www.youtube.com/watch?v=CybAgVF-MMc&t=1178s
 """
 
-from __future__ import annotations
-
 test_array = [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
 
 

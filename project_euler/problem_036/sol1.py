@@ -15,8 +15,6 @@ base 10 and base 2.
 leading zeros.)
 """
 
-from __future__ import annotations
-
 
 def is_palindrome(n: int | str) -> bool:
     """

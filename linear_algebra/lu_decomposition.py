@@ -17,8 +17,6 @@ matrix and raise an error if no such decomposition exists.
 Reference: https://en.wikipedia.org/wiki/LU_decomposition
 """
 
-from __future__ import annotations
-
 import numpy as np
 
 

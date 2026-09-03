@@ -2,8 +2,6 @@
 Convert International System of Units (SI) and Binary prefixes
 """
 
-from __future__ import annotations
-
 from enum import Enum
 
 

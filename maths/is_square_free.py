@@ -4,8 +4,6 @@ psf/black : True
 ruff : True
 """
 
-from __future__ import annotations
-
 
 def is_square_free(factors: list[int]) -> bool:
     """

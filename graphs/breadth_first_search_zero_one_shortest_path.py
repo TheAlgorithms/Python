@@ -4,8 +4,6 @@ Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra
 Link: https://codeforces.com/blog/entry/22276
 """
 
-from __future__ import annotations
-
 from collections import deque
 from collections.abc import Iterator
 from dataclasses import dataclass

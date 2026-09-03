@@ -12,8 +12,6 @@ hailstone sequence.
 Reference: https://en.wikipedia.org/wiki/Collatz_conjecture
 """
 
-from __future__ import annotations
-
 from collections.abc import Generator
 
 

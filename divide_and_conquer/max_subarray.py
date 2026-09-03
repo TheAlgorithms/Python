@@ -7,8 +7,6 @@ maximum sum within a given array of numbers. For example, given the array
 This divide-and-conquer algorithm finds the maximum subarray in O(n log n) time.
 """
 
-from __future__ import annotations
-
 import time
 from collections.abc import Sequence
 from random import randint

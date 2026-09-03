@@ -6,8 +6,6 @@ both nodes to the new value of the merged node. Otherwise, the NOT null node
 will be used as the node of new tree.
 """
 
-from __future__ import annotations
-
 
 class Node:
     """

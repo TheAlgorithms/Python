@@ -11,8 +11,6 @@ Author: Arunkumar A
 Date: 04/09/2023
 """
 
-from __future__ import annotations
-
 
 class TreeNode:
     """

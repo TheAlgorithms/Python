@@ -5,8 +5,6 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 Author: D4rkia
 """
 
-from __future__ import annotations
-
 import random
 
 # Maximum size of the population.  Bigger could be faster but is more memory expensive.

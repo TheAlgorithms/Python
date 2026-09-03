@@ -1,8 +1,6 @@
 # https://en.wikipedia.org/wiki/Lowest_common_ancestor
 # https://en.wikipedia.org/wiki/Breadth-first_search
 
-from __future__ import annotations
-
 from queue import Queue
 
 

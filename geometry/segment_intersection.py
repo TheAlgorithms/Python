@@ -9,8 +9,6 @@ Reference:
     - https://en.wikipedia.org/wiki/Orientation_(geometry)
 """
 
-from __future__ import annotations
-
 from typing import NamedTuple
 
 

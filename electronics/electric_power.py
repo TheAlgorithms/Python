@@ -1,6 +1,4 @@
 # https://en.m.wikipedia.org/wiki/Electric_power
-from __future__ import annotations
-
 from typing import NamedTuple
 
 

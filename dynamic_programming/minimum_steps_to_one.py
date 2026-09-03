@@ -22,8 +22,6 @@ Example 3: n = 6
 Result: 2 step
 """
 
-from __future__ import annotations
-
 __author__ = "Alexander Joslin"
 
 

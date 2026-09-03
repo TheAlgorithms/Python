@@ -1,8 +1,6 @@
 # A complete working Python program to demonstrate all
 # stack operations using a doubly linked list
 
-from __future__ import annotations
-
 from typing import TypeVar
 
 T = TypeVar("T")

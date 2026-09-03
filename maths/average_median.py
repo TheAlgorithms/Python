@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def median(nums: list) -> int | float:
     """

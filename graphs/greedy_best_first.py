@@ -2,8 +2,6 @@
 https://en.wikipedia.org/wiki/Best-first_search#Greedy_BFS
 """
 
-from __future__ import annotations
-
 Path = list[tuple[int, int]]
 
 # 0's are free path whereas 1's are obstacles

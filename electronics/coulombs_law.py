@@ -1,7 +1,5 @@
 # https://en.wikipedia.org/wiki/Coulomb%27s_law
 
-from __future__ import annotations
-
 COULOMBS_CONSTANT = 8.988e9  # units = N * m^s * C^-2
 
 

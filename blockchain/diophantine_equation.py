@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from maths.greatest_common_divisor import greatest_common_divisor
 
 

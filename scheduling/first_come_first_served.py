@@ -2,8 +2,6 @@
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
-from __future__ import annotations
-
 
 def calculate_waiting_times(duration_times: list[int]) -> list[int]:
     """

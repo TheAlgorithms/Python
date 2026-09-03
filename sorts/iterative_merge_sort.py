@@ -9,8 +9,6 @@ For manual testing run:
 python3 iterative_merge_sort.py
 """
 
-from __future__ import annotations
-
 
 def merge(input_list: list, low: int, mid: int, high: int) -> list:
     """

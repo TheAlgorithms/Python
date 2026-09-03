@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 def modular_division(a: int, b: int, n: int) -> int:
     """

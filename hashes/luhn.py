@@ -1,7 +1,5 @@
 """Luhn Algorithm"""
 
-from __future__ import annotations
-
 
 def is_luhn(string: str) -> bool:
     """

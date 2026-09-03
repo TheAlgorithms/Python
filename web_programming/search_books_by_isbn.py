@@ -5,7 +5,7 @@ ISBN: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 """
 
 # /// script
-# requires-python = ">=3.13"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx",
 # ]

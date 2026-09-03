@@ -2,8 +2,6 @@
 Checks if a system of forces is in static equilibrium.
 """
 
-from __future__ import annotations
-
 from numpy import array, cos, float64, radians, sin
 from numpy.typing import NDArray
 
