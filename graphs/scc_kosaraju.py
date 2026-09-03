@@ -1,4 +1,3 @@
-
 def dfs(u):
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:

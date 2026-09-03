@@ -1,4 +1,3 @@
-
 class Graph:
     def __init__(self, vertices: int) -> None:
         """

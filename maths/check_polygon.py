@@ -1,4 +1,3 @@
-
 def check_polygon(nums: list[float]) -> bool:
     """
     Takes list of possible side lengths and determines whether a

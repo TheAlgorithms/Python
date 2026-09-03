@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/Ohm%27s_law
 
+
 def ohms_law(voltage: float, current: float, resistance: float) -> dict[str, float]:
     """
     Apply Ohm's Law, on any two given electrical values, which can be voltage, current,

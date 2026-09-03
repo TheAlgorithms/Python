@@ -1,4 +1,3 @@
-
 def find_min_iterative(nums: list[int | float]) -> int | float:
     """
     Find Minimum Number in a List

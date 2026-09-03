@@ -1,4 +1,3 @@
-
 def solve_maze(
     maze: list[list[int]],
     source_row: int,

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
     cipher_alphabet: list[str] | None = None,

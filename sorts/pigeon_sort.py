@@ -10,6 +10,7 @@ For manual testing run:
 python pigeon_sort.py
 """
 
+
 def pigeon_sort(array: list[int]) -> list[int]:
     """
     Implementation of pigeon hole sort algorithm

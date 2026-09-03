@@ -1,4 +1,3 @@
-
 def median(nums: list) -> int | float:
     """
     Find median of a list of numbers.

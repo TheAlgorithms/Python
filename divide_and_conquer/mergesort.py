@@ -1,4 +1,3 @@
-
 def merge(left_half: list, right_half: list) -> list:
     """Helper function for mergesort.
 

@@ -11,6 +11,7 @@ python3 -m doctest -v patience_sort.py
 For manual testing run:
 python3 patience_sort.py
 """
+
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge

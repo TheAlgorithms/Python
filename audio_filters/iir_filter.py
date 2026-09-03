@@ -1,4 +1,3 @@
-
 class IIRFilter:
     r"""
     N-Order IIR filter

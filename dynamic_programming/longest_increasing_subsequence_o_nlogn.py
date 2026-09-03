@@ -5,6 +5,7 @@
 #           O(NLogN) Where N is the Number of elements in the list
 #############################
 
+
 def ceil_index(v, left, right, key):
     while right - left > 1:
         middle = (left + right) // 2

@@ -1,23 +1,23 @@
 """
-    Calculate the frequency and/or duty cycle of an astable 555 timer.
-    * https://en.wikipedia.org/wiki/555_timer_IC#Astable
+Calculate the frequency and/or duty cycle of an astable 555 timer.
+* https://en.wikipedia.org/wiki/555_timer_IC#Astable
 
-    These functions take in the value of the external resistances (in ohms)
-    and capacitance (in Microfarad), and calculates the following:
+These functions take in the value of the external resistances (in ohms)
+and capacitance (in Microfarad), and calculates the following:
 
-    -------------------------------------
-    | Freq = 1.44 /[( R1+ 2 x R2) x C1] |               ... in Hz
-    -------------------------------------
-    where Freq is the frequency,
-          R1 is the first resistance in ohms,
-          R2 is the second resistance in ohms,
-          C1 is the capacitance in Microfarads.
+-------------------------------------
+| Freq = 1.44 /[( R1+ 2 x R2) x C1] |               ... in Hz
+-------------------------------------
+where Freq is the frequency,
+      R1 is the first resistance in ohms,
+      R2 is the second resistance in ohms,
+      C1 is the capacitance in Microfarads.
 
-    ------------------------------------------------
-    | Duty Cycle = (R1 + R2) / (R1 + 2 x R2) x 100 |    ... in %
-    ------------------------------------------------
-    where R1 is the first resistance in ohms,
-          R2 is the second resistance in ohms.
+------------------------------------------------
+| Duty Cycle = (R1 + R2) / (R1 + 2 x R2) x 100 |    ... in %
+------------------------------------------------
+where R1 is the first resistance in ohms,
+      R2 is the second resistance in ohms.
 """
 
 

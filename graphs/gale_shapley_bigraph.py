@@ -1,4 +1,3 @@
-
 def stable_matching(
     donor_pref: list[list[int]], recipient_pref: list[list[int]]
 ) -> list[int]:

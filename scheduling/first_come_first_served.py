@@ -3,6 +3,7 @@
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
 
+
 def calculate_waiting_times(duration_times: list[int]) -> list[int]:
     """
     This function calculates the waiting time of some processes that have a

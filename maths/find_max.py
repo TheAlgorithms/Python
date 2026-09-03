@@ -1,4 +1,3 @@
-
 def find_max_iterative(nums: list[int | float]) -> int | float:
     """
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):

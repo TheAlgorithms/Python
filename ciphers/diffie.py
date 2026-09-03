@@ -1,4 +1,3 @@
-
 def find_primitive(modulus: int) -> int | None:
     """
     Find a primitive root modulo modulus, if one exists.

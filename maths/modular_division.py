@@ -1,4 +1,3 @@
-
 def modular_division(a: int, b: int, n: int) -> int:
     """
     Modular Division :
