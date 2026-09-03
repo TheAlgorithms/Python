@@ -16,16 +16,17 @@ suggest the fix — never just "rejected".
 - [ ] The change adds, fixes, or documents **one algorithm** — not multiple, and
       not both code and doctest changes in the same PR.
 - [ ] It is a genuine algorithm or data structure (see the *What is an Algorithm?*
-      section), not a script, snippet, how-to-use for an existing API, or exercise dump.
+      section), not a script, snippet, how-to-use for an existing API, or exercise
+      dump.
 - [ ] It is **not already in the repository** (search the existing directories).
 - [ ] **No earlier open PR** already does the same thing — link it if one exists.
 - [ ] Properly attributed — no plagiarism; prior sources credited.
 
 ### 2. Coding Style
 
-- [ ] `from __future__ import annotations` is not needed because this repo only uses on
+- [ ] `from __future__ import annotations` is not needed because this repo only uses
       the latest version of CPython.
-- [ ] - [ ] File and directory names are lowercase, use underscores, and land inside an
+- [ ] File and directory names are lowercase, use underscores, and land inside an
       existing directory.
 - [ ] Public functions/classes have **type hints**.
 - [ ] Public functions have **doctests that actually pass**.
