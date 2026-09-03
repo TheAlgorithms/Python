@@ -76,7 +76,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 64. [ ] #14979 enhancement, awaiting reviews
 65. [ ] #14975 enhancement, awaiting reviews, tests are failing
 66. [ ] #14974 enhancement, awaiting reviews, tests are failing
-67. [ ] #14973 awaiting reviews, tests are failing, require tests
+67. [x] #14973 closed by close_pull_requests_with_require_tests.sh
 68. [ ] #14972 enhancement, awaiting reviews, tests are failing
 69. [ ] #14967 enhancement, awaiting reviews
 70. [ ] #14939 enhancement, awaiting reviews
@@ -158,7 +158,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 146. [ ] #14738 enhancement, awaiting reviews
 147. [ ] #14736 awaiting reviews
 148. [ ] #14733 awaiting reviews
-149. [ ] #14732 awaiting reviews, require tests, require descriptive names
+149. [x] #14732 closed by close_pull_requests_with_require_tests.sh
 150. [ ] #14731 awaiting reviews, tests are failing
 151. [ ] #14729 enhancement, awaiting reviews
 152. [ ] #14728 awaiting reviews
@@ -213,7 +213,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 201. [ ] #14607 enhancement, awaiting reviews
 202. [ ] #14602 awaiting reviews
 203. [ ] #14594 awaiting reviews, tests are failing, documentation
-204. [ ] #14582 awaiting reviews, require tests
+204. [x] #14582 closed by close_pull_requests_with_require_tests.sh
 205. [ ] #14581 enhancement, awaiting reviews
 206. [ ] #14579 enhancement, awaiting reviews
 207. [ ] #14574 enhancement, awaiting reviews
@@ -242,7 +242,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 230. [ ] #14486 awaiting reviews, tests are failing
 231. [ ] #14482 awaiting reviews
 232. [ ] #14480 enhancement, awaiting reviews, tests are failing
-233. [ ] #14478 awaiting reviews, require tests
+233. [x] #14478 closed by close_pull_requests_with_require_tests.sh
 234. [ ] #14477 enhancement, awaiting reviews
 235. [ ] #14472 enhancement, awaiting reviews
 236. [ ] #14468 enhancement, awaiting reviews, tests are failing
@@ -263,19 +263,19 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 251. [ ] #14363 enhancement, awaiting reviews
 252. [ ] #14360 awaiting reviews
 253. [ ] #14357 awaiting reviews
-254. [ ] #14352 awaiting reviews, require tests
+254. [x] #14352 closed by close_pull_requests_with_require_tests.sh
 255. [ ] #14351 enhancement, awaiting reviews
 256. [ ] #14346 no labels
-257. [ ] #14342 enhancement, awaiting reviews, tests are failing, require tests, require descriptive names
+257. [x] #14342 closed by close_pull_requests_with_require_tests.sh
 258. [ ] #14336 awaiting reviews, tests are failing
 259. [ ] #14332 awaiting reviews, tests are failing
 260. [ ] #14331 awaiting reviews, tests are failing
 261. [ ] #14321 awaiting reviews, tests are failing, require descriptive names
 262. [x] #14316 closed by close_pull_requests_with_require_type_hints.sh
-263. [ ] #14314 awaiting reviews, tests are failing, require tests, require descriptive names
+263. [x] #14314 closed by close_pull_requests_with_require_tests.sh
 264. [ ] #14307 enhancement, awaiting reviews
 265. [ ] #14304 awaiting reviews, tests are failing
-266. [ ] #14303 awaiting reviews, require tests
+266. [x] #14303 closed by close_pull_requests_with_require_tests.sh
 267. [ ] #14300 enhancement, awaiting reviews, tests are failing
 268. [ ] #14297 awaiting reviews, tests are failing
 269. [ ] #14291 enhancement, awaiting reviews
@@ -327,7 +327,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 315. [x] #14090 closed by close_pull_requests_with_require_type_hints.sh
 316. [ ] #14089 no labels
 317. [ ] #14088 tests are failing
-318. [ ] #14086 awaiting reviews, require tests
+318. [x] #14086 closed by close_pull_requests_with_require_tests.sh
 319. [ ] #14085 awaiting reviews, tests are failing
 320. [ ] #14082 awaiting reviews, tests are failing, require descriptive names
 321. [ ] #14080 awaiting reviews, tests are failing
@@ -341,7 +341,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 329. [ ] #14052 awaiting reviews
 330. [ ] #14051 no labels
 331. [ ] #14048 awaiting reviews
-332. [ ] #14045 awaiting reviews, require tests
+332. [x] #14045 closed by close_pull_requests_with_require_tests.sh
 333. [ ] #14041 awaiting reviews
 334. [ ] #14040 awaiting reviews, tests are failing
 335. [ ] #14038 awaiting reviews
@@ -354,18 +354,18 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 342. [ ] #14030 awaiting reviews
 343. [ ] #14029 no labels
 344. [ ] #14028 awaiting reviews, require descriptive names
-345. [ ] #14027 awaiting reviews, require tests
+345. [x] #14027 closed by close_pull_requests_with_require_tests.sh
 346. [ ] #14026 awaiting reviews
 347. [ ] #14023 no labels
 348. [ ] #14022 awaiting reviews, require descriptive names
 349. [ ] #14021 enhancement, awaiting reviews
-350. [ ] #14019 awaiting reviews, tests are failing, require tests
+350. [x] #14019 closed by close_pull_requests_with_require_tests.sh
 351. [ ] #14016 awaiting reviews
 352. [ ] #14015 awaiting reviews
 353. [x] #14014 closed by close_pull_requests_with_require_type_hints.sh
 354. [ ] #14009 awaiting reviews
 355. [ ] #14008 awaiting reviews
-356. [ ] #14004 awaiting reviews, require tests, require descriptive names
+356. [x] #14004 closed by close_pull_requests_with_require_tests.sh
 357. [ ] #14001 awaiting reviews
 358. [ ] #14000 awaiting reviews, tests are failing
 359. [ ] #13994 no labels
@@ -416,7 +416,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 404. [ ] #13891 enhancement, awaiting reviews
 405. [ ] #13888 no labels
 406. [ ] #13884 awaiting reviews, documentation
-407. [ ] #13883 awaiting reviews, require tests, documentation, require descriptive names
+407. [x] #13883 closed by close_pull_requests_with_require_tests.sh
 408. [ ] #13882 awaiting reviews
 409. [ ] #13880 no labels
 410. [ ] #13879 enhancement, awaiting reviews, tests are failing
@@ -437,8 +437,8 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 425. [ ] #13826 awaiting reviews
 426. [ ] #13825 no labels
 427. [ ] #13824 no labels
-428. [ ] #13823 awaiting reviews, require tests, require descriptive names
-429. [ ] #13822 awaiting reviews, tests are failing, require tests
+428. [x] #13823 closed by close_pull_requests_with_require_tests.sh
+429. [x] #13822 closed by close_pull_requests_with_require_tests.sh
 430. [ ] #13818 no labels
 431. [ ] #13816 tests are failing
 432. [ ] #13815 awaiting reviews
@@ -453,11 +453,11 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 441. [ ] #13791 no labels
 442. [ ] #13790 tests are failing
 443. [ ] #13789 tests are failing
-444. [ ] #13781 awaiting reviews, require tests, require descriptive names
-445. [ ] #13774 awaiting reviews, require tests
+444. [x] #13781 closed by close_pull_requests_with_require_tests.sh
+445. [x] #13774 closed by close_pull_requests_with_require_tests.sh
 446. [x] #13773 closed by close_pull_requests_with_require_type_hints.sh
 447. [ ] #13772 awaiting reviews, require descriptive names
-448. [ ] #13761 awaiting reviews, require tests
+448. [x] #13761 closed by close_pull_requests_with_require_tests.sh
 449. [ ] #13758 awaiting reviews
 450. [ ] #13754 awaiting reviews
 451. [ ] #13753 awaiting reviews
@@ -467,7 +467,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 455. [ ] #13746 tests are failing
 456. [ ] #13745 tests are failing
 457. [ ] #13744 awaiting reviews
-458. [ ] #13742 awaiting reviews, tests are failing, require tests
+458. [x] #13742 closed by close_pull_requests_with_require_tests.sh
 459. [ ] #13738 no labels
 460. [ ] #13737 awaiting reviews
 461. [ ] #13734 awaiting reviews
@@ -476,7 +476,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 464. [ ] #13726 awaiting reviews, documentation
 465. [ ] #13718 awaiting reviews
 466. [ ] #13716 enhancement, awaiting reviews
-467. [ ] #13712 awaiting reviews, tests are failing, require tests
+467. [x] #13712 closed by close_pull_requests_with_require_tests.sh
 468. [ ] #13707 awaiting reviews
 469. [ ] #13701 no labels
 470. [ ] #13699 awaiting reviews
@@ -493,7 +493,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 481. [ ] #13671 awaiting reviews, tests are failing
 482. [ ] #13661 awaiting reviews
 483. [x] #13658 closed by close_pull_requests_with_require_type_hints.sh
-484. [ ] #13655 awaiting reviews, tests are failing, require tests, require descriptive names
+484. [x] #13655 closed by close_pull_requests_with_require_tests.sh
 485. [ ] #13653 enhancement, awaiting reviews, tests are failing
 486. [ ] #13648 no labels
 487. [ ] #13647 no labels
@@ -517,7 +517,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 505. [ ] #13604 awaiting reviews, documentation
 506. [ ] #13603 awaiting reviews
 507. [ ] #13601 enhancement, awaiting reviews
-508. [ ] #13600 awaiting reviews, tests are failing, require tests
+508. [x] #13600 closed by close_pull_requests_with_require_tests.sh
 509. [ ] #13597 enhancement, awaiting reviews
 510. [ ] #13595 awaiting reviews, tests are failing
 511. [ ] #13593 awaiting reviews
@@ -542,7 +542,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 530. [ ] #13528 awaiting reviews
 531. [ ] #13527 awaiting reviews
 532. [ ] #13526 awaiting reviews, tests are failing
-533. [ ] #13523 awaiting reviews, require tests, require descriptive names
+533. [x] #13523 closed by close_pull_requests_with_require_tests.sh
 534. [ ] #13522 awaiting reviews
 535. [ ] #13520 awaiting reviews, tests are failing
 536. [ ] #13519 awaiting reviews, documentation
@@ -936,6 +936,6 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 | `close_pull_requests_with_awaiting_changes.sh` | 0 |
 | `close_pull_requests_with_failing_tests.sh` | 0 |
 | `close_pull_requests_with_require_descriptive_names.sh` | 0 |
-| `close_pull_requests_with_require_tests.sh` | 0 |
+| `close_pull_requests_with_require_tests.sh` | 24 |
 | `close_pull_requests_with_require_type_hints.sh` | 15 |
-| **Total** | **15** |
+| **Total** | **39** |
