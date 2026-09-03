@@ -40,9 +40,9 @@ def get_subreddit_data(
         headers={"User-agent": "A random string"},
         timeout=10,
     )
+    # raise_for_status() already raises httpx.HTTPStatusError for any 4xx/5xx
+    # response (including 429), so no extra status check is needed here.
     response.raise_for_status()
-    if response.status_code == 429:
-        raise httpx.HTTPError(response=response)
 
     data = response.json()
     if not wanted_data:
