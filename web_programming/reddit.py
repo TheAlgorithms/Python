@@ -23,7 +23,10 @@ total_awards_received ups upvote_ratio url user_reports""".split()
 
 
 def get_subreddit_data(
-    subreddit: str, limit: int = 1, age: Literal["new", "top", "hot"] = "new", wanted_data: list | None = None
+    subreddit: str,
+    limit: int = 1,
+    age: Literal["new", "top", "hot"] = "new",
+    wanted_data: list | None = None,
 ) -> dict:
     """
     subreddit : Subreddit to query
