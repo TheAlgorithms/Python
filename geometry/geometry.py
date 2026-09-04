@@ -284,5 +284,64 @@ class Square(Rectangle):
         return super().area()
 
 
+class Triangle(Polygon):
+    """
+    A geometric triangle on a 2D surface.
+
+    >>> triangle = Triangle(3, 4, 5)
+    >>> triangle.perimeter()
+    12
+    >>> triangle.area()
+    6.0
+    >>> Triangle(-3, 4, 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: length must be a positive numeric value.
+    >>> Triangle(1, 2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: side lengths do not form a valid triangle.
+    """
+
+    def __init__(
+        self, side_a_length: float, side_b_length: float, side_c_length: float
+    ) -> None:
+        super().__init__()
+        self.side_a_length = side_a_length
+        self.side_b_length = side_b_length
+        self.side_c_length = side_c_length
+        self.post_init()
+
+    def post_init(self) -> None:
+        self.side_a = Side(self.side_a_length)
+        self.side_b = Side(self.side_b_length)
+        self.side_c = Side(self.side_c_length)
+
+        if not self._is_valid_triangle(
+            self.side_a.length, self.side_b.length, self.side_c.length
+        ):
+            raise ValueError("side lengths do not form a valid triangle.")
+
+        super().add_side(self.side_a)
+        super().add_side(self.side_b)
+        super().add_side(self.side_c)
+
+    @staticmethod
+    def _is_valid_triangle(a: float, b: float, c: float) -> bool:
+        return a + b > c and a + c > b and b + c > a
+
+    def perimeter(self) -> float:
+        return self.side_a.length + self.side_b.length + self.side_c.length
+
+    def area(self) -> float:
+        s = self.perimeter() * 0.5
+        return math.sqrt(
+            s
+            * (s - self.side_a.length)
+            * (s - self.side_b.length)
+            * (s - self.side_c.length)
+        )
+
+
 if __name__ == "__main__":
     __import__("doctest").testmod()
