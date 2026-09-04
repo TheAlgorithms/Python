@@ -21,7 +21,6 @@ def num_digits(n: int) -> int:
         ...
     TypeError: Input must be an integer
     """
-
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
 
@@ -50,22 +49,21 @@ def num_digits_fast(n: int) -> int:
     1
     >>> num_digits_fast(-123456)
     6
-    >>> num_digits('123')  # Raises a TypeError for non-integer input
+    >>> num_digits_fast('123')  # Raises a TypeError for non-integer input
     Traceback (most recent call last):
         ...
     TypeError: Input must be an integer
     """
-
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
 
-    return 1 if n == 0 else math.floor(math.log(abs(n), 10) + 1)
+    return 1 if n == 0 else math.floor(math.log10(abs(n)) + 1)
 
 
 def num_digits_faster(n: int) -> int:
     """
     Find the number of digits in a number.
-    abs() is used for negative numbers
+    abs() is used for negative numbers.
 
     >>> num_digits_faster(12345)
     5
@@ -77,12 +75,11 @@ def num_digits_faster(n: int) -> int:
     1
     >>> num_digits_faster(-123456)
     6
-    >>> num_digits('123')  # Raises a TypeError for non-integer input
+    >>> num_digits_faster('123')  # Raises a TypeError for non-integer input
     Traceback (most recent call last):
         ...
     TypeError: Input must be an integer
     """
-
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
 
@@ -91,14 +88,14 @@ def num_digits_faster(n: int) -> int:
 
 def benchmark() -> None:
     """
-    Benchmark multiple functions, with three different length int values.
+    Benchmark multiple functions with three different integer sizes.
     """
     from collections.abc import Callable
 
     def benchmark_a_function(func: Callable, value: int) -> None:
         call = f"{func.__name__}({value})"
         timing = timeit(f"__main__.{call}", setup="import __main__")
-        print(f"{call}: {func(value)} -- {timing} seconds")
+        print(f"{call}: {func(value)} -- {timing:.6f} seconds")
 
     for value in (262144, 1125899906842624, 1267650600228229401496703205376):
         for func in (num_digits, num_digits_fast, num_digits_faster):
