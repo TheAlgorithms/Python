@@ -37,6 +37,44 @@ def bin_to_decimal(bin_string: str) -> int:
     return -decimal_number if is_negative else decimal_number
 
 
+def bcd_to_gray(bcd):
+    """
+    Convert a Binary-Coded Decimal (BCD) number to Gray code.
+
+    Args:
+    bcd (int): The BCD number (0-9).
+
+    Returns:
+    str: The Gray code representation of the BCD number.
+
+    Raises:
+    ValueError: If the input is not a valid BCD number (0-9).
+    """
+
+    # Check if the input is a valid BCD (0-9)
+    if bcd < 0 or bcd > 9:
+        raise ValueError("Input must be a BCD number between 0 and 9.")
+
+    # Convert BCD to binary
+    binary = format(bcd, "04b")  # 4-bit binary representation
+
+    # Convert binary to Gray code
+    gray = binary[0]  # The most significant bit remains the same
+    for i in range(1, len(binary)):
+        # XOR the current bit with the previous bit
+        gray += str(int(binary[i]) ^ int(binary[i - 1]))
+
+    return gray
+
+
+# Example usage
+if __name__ == "__main__":
+    bcd_values = range(10)  # BCD values from 0 to 9
+    for bcd in bcd_values:
+        gray_code = bcd_to_gray(bcd)
+        print(f"BCD: {bcd} -> Gray Code: {gray_code}")
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
