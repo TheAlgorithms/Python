@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import NamedTuple
 
 
@@ -11,7 +9,7 @@ class Result(NamedTuple):
 def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     """
     This function can calculate the maximum load current(Im)
-    in a half wave rectifier circuit.
+    in a half-wave rectifier circuit.
     Im = maximum load current
     rf = Forward Resistance of Diode
     rs = Transformer secondary winding resistance
@@ -29,7 +27,7 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     >>> max_load_current(rf=0 , rs=0 , rl=0 , vm=15 )
     Traceback (most recent call last):
         ...
-    ValueError: At least one Resistance must be non zero
+    ValueError: At least one Resistance must be non-zero
     """
     if (rf, rs, rl).count(0) == 3:
         raise ValueError("At least one Resistance must be non zero")
@@ -44,9 +42,9 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
 def dc_current(im: float) -> tuple:
     """
     This function can calculate the Average DC Current(Idc) in a circuit.
-    In all cases negative sign shows
+    In all cases, a negative sign shows
     the opposite direction of current or voltage.
-    Idc = average dc current
+    Idc = average direct current (DC)
     im = maximum current or peak current
     cases:
     >>> dc_current(im=2)
@@ -60,9 +58,9 @@ def dc_current(im: float) -> tuple:
 def dc_voltage(vm: float) -> tuple:
     """
     This function can calculate the Average DC Voltage(Vdc) in a circuit.
-    In all cases negative sign shows
+    In all cases, a negative sign shows
     the opposite direction of current or voltage.
-    Vdc = average dc current
+    Vdc = average direct current (DC)
     vm = maximum voltage or peak voltage
     cases:
     >>> dc_voltage(vm=2)
@@ -76,7 +74,7 @@ def dc_voltage(vm: float) -> tuple:
 def max_current(vm: float, rl: float) -> tuple:
     """
     This function can calculate the maximum current(Im) in a circuit.
-    In all cases negative sign shows the
+    In all cases, a negative sign shows the
     opposite direction of current or voltage.
     vm = maximum voltage or peak voltage
     rl = load resistance
@@ -86,7 +84,7 @@ def max_current(vm: float, rl: float) -> tuple:
     >>> max_current(vm=2, rl=-5)
     Traceback (most recent call last):
         ...
-    ValueError: Resistance cannot be negative and equal to zero
+    ValueError: Resistance cannot be negative or equal to zero
 
     """
     if rl <= 0:
@@ -97,8 +95,8 @@ def max_current(vm: float, rl: float) -> tuple:
 
 def rms_current(im: float) -> tuple:
     """
-    This function calculate the RMS(Root Mean Square) value of current(Irms).
-    In all cases negative sign shows
+    This function calculates the RMS(Root Mean Square) value of current(Irms).
+    In all cases, a negative sign shows
     the opposite direction of current or voltage.
     Irms = Root Mean Square Value of current
     im = maximum current or peak current
@@ -113,8 +111,8 @@ def rms_current(im: float) -> tuple:
 
 def rms_voltage(vm: float) -> tuple:
     """
-    This function calculate the RMS(Root Mean Square) value of voltage(Vrms).
-    In all cases negative sign shows
+    This function calculates the RMS(Root Mean Square) value of voltage(Vrms).
+    In all cases, a negative sign shows
     the opposite direction of current or voltage.
     Vrms = Root Mean Square Value of voltage
     vm = maximum voltage or peak voltage
