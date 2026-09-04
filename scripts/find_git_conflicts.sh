@@ -34,7 +34,11 @@ if [[ "$DRY_RUN" != "1" ]]; then
 fi
 
 # First pass: one bulk call. Fast, but mergeable is often UNKNOWN.
-mapfile -t rows < <(
+# First pass: one bulk call. Fast, but mergeable is often UNKNOWN.
+rows=()
+while IFS= read -r row; do
+    rows+=("$row")
+done < <(
     gh pr list --repo "$REPO" --state open --limit 5000 \
         --json number,mergeable --jq '.[] | "\(.number)\t\(.mergeable)"'
 )
