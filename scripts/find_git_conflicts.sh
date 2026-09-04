@@ -56,7 +56,7 @@ for row in "${rows[@]}"; do
 done
 
 # Second pass: re-query only the UNKNOWN PRs until GitHub finishes computing.
-for pr in "${unknown[@]}"; do
+for pr in ${unknown[@]+"${unknown[@]}"}; do
     mergeable="UNKNOWN"
     for _ in 1 2 3; do
         mergeable=$(gh pr view "$pr" --repo "$REPO" --json mergeable --jq '.mergeable')
