@@ -12,13 +12,11 @@ For example, for n = "9875" and k = 4, the concatenated number is:
 super_digit(9875987598759875), which can be reduced by summing its digits.
 """
 
-from __future__ import annotations
-
 
 def super_digit(n_str: str, repetitions: int) -> int:
     """
     Computes the super digit of a number formed by concatenating
-    n_str repetitions times.
+    n_str repeated times.
 
     Parameters:
     n_str (str): The string representation of the integer.
