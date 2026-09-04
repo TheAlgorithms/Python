@@ -1,7 +1,29 @@
+"""
+A pure Python implementation of the Tim Sort algorithm.
+
+For doctests run following command:
+python -m doctest -v tim_sort.py
+or
+python3 -m doctest -v tim_sort.py
+
+For manual testing run:
+python tim_sort.py
+or
+python3 tim_sort.py
+"""
+
 from typing import Any
 
 
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+    """
+    Find the insertion position of an item in a sorted list.
+
+    >>> binary_search([1, 3, 5, 7], 4, 0, 3)
+    2
+    >>> binary_search([1, 3, 5, 7], 8, 0, 3)
+    4
+    """
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,6 +39,16 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
+    """
+    Sort a list using the insertion sort algorithm.
+
+    >>> insertion_sort([3, 2, 1])
+    [1, 2, 3]
+    >>> insertion_sort([1])
+    [1]
+    >>> insertion_sort([])
+    []
+    """
     length = len(lst)
 
     for index in range(1, length):
@@ -28,6 +60,16 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
+    """
+    Merge two sorted lists into a single sorted list.
+
+    >>> merge([1, 3, 5], [2, 4, 6])
+    [1, 2, 3, 4, 5, 6]
+    >>> merge([], [1, 2])
+    [1, 2]
+    >>> merge([1, 2], [])
+    [1, 2]
+    """
     if not left:
         return right
 
@@ -76,6 +118,9 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
 
 
 def main():
+    """
+    Run a simple example of the Tim Sort algorithm.
+    """
     lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
