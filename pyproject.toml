@@ -184,11 +184,11 @@ skip = """\
 [tool.mypy]
 python_version = "3.14"
 
-[tool.ty.environment]
+[tool.ty]
 # Type-check against a regular (GIL) 3.14 interpreter. Pinning this keeps ty's
 # assumptions consistent with the CI job in .github/workflows/ty.yml, where the
 # free-threaded 3.14t test venv would otherwise leave several stubs unresolved.
-python-version = "3.14"
+environment.python-version = "3.14"
 
 [tool.pytest]
 ini_options.addopts = [
@@ -206,4 +206,3 @@ report.omit = [
   "project_euler/*",
 ]
 report.sort = "Cover"
-
