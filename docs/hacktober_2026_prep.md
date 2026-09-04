@@ -1827,3 +1827,46 @@ Modifies no algorithm directories:
 
 Modifies DIRECTORY.md:
 1. [ ] #13239
+
+## Creates a new root directory
+
+_As requested by @cclauss on #15184: open PRs that add a **new top-level directory** to the repository (a directory that does not exist on `master`). These need a maintainer decision on whether the new category belongs in the collection before the code review matters, so they are grouped separately from the by-directory listing above. Each PR was confirmed to add at least one file under a top-level path that is absent from `master`._
+
+Total PRs that create a new root directory: 13
+
+compression:
+1. [ ] #11842
+2. [ ] #12392
+
+control_algorithms:
+1. [ ] #12648
+
+cpu_scheduling_algorithms:
+1. [ ] #12140
+
+full_wave_rectifier:
+1. [ ] #9896
+
+half_wave_rectifier:
+1. [ ] #9388
+
+haversine_calculation:
+1. [ ] #13119
+
+height_tree:
+1. [ ] #13172
+
+operating_system:
+1. [ ] #11574
+
+os_py:
+1. [ ] #13924
+
+recursions:
+1. [ ] #12141
+
+tests:
+1. [ ] #13231
+
+triage:
+1. [ ] #14611
