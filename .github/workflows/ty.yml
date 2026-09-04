@@ -31,9 +31,12 @@ jobs:
       # test matrix uses lacks wheels for several of them. ty itself is pulled in
       # ephemerally with `--with` so it needn't be added to the lockfile.
       - run: uv sync --python 3.14
-      # `|| true` keeps the check green while ty is advisory: with
-      # --output-format=github, ty still emits ::error annotations that render
-      # inline on the PR diff, so findings stay visible without a red X on every
-      # commit. Drop the `|| true` (and continue-on-error above) to make ty a
-      # required gate once the [tool.ty] baseline is clean.
-      - run: uv run --with ty ty check --output-format=github || true
+      # `continue-on-error: true` (above) already makes this job non-blocking, so
+      # we keep ty's *real* exit status here rather than swallowing it with
+      # `|| true`. That way the ty step turns red exactly when a non-ignored rule
+      # fires and green when the [tool.ty] baseline is clean -- so you can see at
+      # a glance whether the rule-ignores are doing their job -- while the job as
+      # a whole still never blocks a merge. With --output-format=github, ty also
+      # emits ::error annotations that render inline on the diff. Drop
+      # `continue-on-error` above to promote ty to a required gate.
+      - run: uv run --with ty ty check --output-format=github
