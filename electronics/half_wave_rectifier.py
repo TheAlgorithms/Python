@@ -88,7 +88,7 @@ def max_current(vm: float, rl: float) -> tuple:
 
     """
     if rl <= 0:
-        raise ValueError("Resistance cannot be negative and equal to zero")
+        raise ValueError("Resistance cannot be negative or equal to zero")
     else:
         return Result("Max_current_Im", vm / rl)
 
