@@ -67,7 +67,7 @@ for pr in ${unknown[@]+"${unknown[@]}"}; do
 done
 
 # Label the conflicting PRs.
-for pr in "${conflicting[@]}"; do
+for pr in ${conflicting[@]+"${conflicting[@]}"}; do
     echo "PR #$pr has conflicts."
     if [[ "$DRY_RUN" != "1" ]]; then
         gh pr edit "$pr" --repo "$REPO" --add-label "$LABEL"
