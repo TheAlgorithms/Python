@@ -30,7 +30,7 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     ValueError: At least one Resistance must be non-zero
     """
     if (rf, rs, rl).count(0) == 3:
-        raise ValueError("At least one Resistance must be non zero")
+        raise ValueError("At least one Resistance must be non-zero")
     elif rf < 0 or rs < 0 or rl < 0:
         raise ValueError("Resistance cannot be negative")
     elif vm == 0:
