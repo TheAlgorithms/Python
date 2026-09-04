@@ -14,21 +14,23 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v7
         with:
-          python-version: 3.x
+          python-version-file: .python-version
+          allow-prereleases: true
       - run: uv sync --group=euler-validate --group=test
       - run: uv run pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: astral-sh/setup-uv@v6
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v7
         with:
-          python-version: 3.x
+          python-version-file: .python-version
+          allow-prereleases: true
       - run: uv sync --group=euler-validate --group=test
       - run: uv run pytest scripts/validate_solutions.py
         env:

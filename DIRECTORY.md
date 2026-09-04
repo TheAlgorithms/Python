@@ -1,6 +1,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -195,6 +196,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Rotate Array](data_structures/arrays/rotate_array.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
@@ -397,6 +399,7 @@
   * [Minimum Squares To Represent A Number](dynamic_programming/minimum_squares_to_represent_a_number.py)
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
+  * [Narcissistic Number](dynamic_programming/narcissistic_number.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Range Sum Query](dynamic_programming/range_sum_query.py)
@@ -449,14 +452,17 @@
   * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
+  * [Barnsley Fern](fractals/barnsley_fern.py)
   * [Julia Sets](fractals/julia_sets.py)
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
+  * [Sierpinski Carpet](fractals/sierpinski_carpet.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
   * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+  * [Fuzzy Set Operations](fuzzy_logic/fuzzy_set_operations.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
@@ -467,6 +473,13 @@
 
 ## Geometry
   * [Geometry](geometry/geometry.py)
+  * [Graham Scan](geometry/graham_scan.py)
+  * [Jarvis March](geometry/jarvis_march.py)
+  * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Segment Intersection](geometry/segment_intersection.py)
+  * Tests
+    * [Test Graham Scan](geometry/tests/test_graham_scan.py)
+    * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
 
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
@@ -516,6 +529,7 @@
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
+  * [Johnson](graphs/johnson.py)
   * [Kahns Algorithm Long](graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](graphs/kahns_algorithm_topo.py)
   * [Karger](graphs/karger.py)
@@ -536,6 +550,7 @@
   * [Strongly Connected Components](graphs/strongly_connected_components.py)
   * [Tarjans Scc](graphs/tarjans_scc.py)
   * Tests
+    * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
@@ -623,6 +638,7 @@
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
+  * [T Stochastic Neighbour Embedding](machine_learning/t_stochastic_neighbour_embedding.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
@@ -831,8 +847,10 @@
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
+  * [Dinic](networking_flow/dinic.py)
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
   * [Minimum Cut](networking_flow/minimum_cut.py)
+  * [Push Relabel](networking_flow/push_relabel.py)
 
 ## Neural Network
   * Activation Functions
@@ -878,6 +896,7 @@
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
+  * [Sliding Window Maximum](other/sliding_window_maximum.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
   * [Word Search](other/word_search.py)
 
@@ -977,6 +996,7 @@
     * [Sol2](project_euler/problem_014/sol2.py)
   * Problem 015
     * [Sol1](project_euler/problem_015/sol1.py)
+    * [Sol2](project_euler/problem_015/sol2.py)
   * Problem 016
     * [Sol1](project_euler/problem_016/sol1.py)
     * [Sol2](project_euler/problem_016/sol2.py)
@@ -1358,6 +1378,7 @@
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
+  * [Suffix Automaton](strings/suffix_automaton.py)
   * [Text Justification](strings/text_justification.py)
   * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
