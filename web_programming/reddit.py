@@ -5,7 +5,7 @@
 # ]
 # ///
 
-from __future__ import annotations
+from typing import Literal
 
 import httpx
 
@@ -23,7 +23,10 @@ total_awards_received ups upvote_ratio url user_reports""".split()
 
 
 def get_subreddit_data(
-    subreddit: str, limit: int = 1, age: str = "new", wanted_data: list | None = None
+    subreddit: str,
+    limit: int = 1,
+    age: Literal["new", "top", "hot"] = "new",
+    wanted_data: list | None = None,
 ) -> dict:
     """
     subreddit : Subreddit to query
@@ -35,16 +38,17 @@ def get_subreddit_data(
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
         msg = f"Invalid search term: {invalid_search_terms}"
         raise ValueError(msg)
-    response = httpx.get(
-        f"https://www.reddit.com/r/{subreddit}/{age}.json?limit={limit}",
-        headers={"User-agent": "A random string"},
-        timeout=10,
+    # raise_for_status() already raises httpx.HTTPStatusError for any 4xx/5xx
+    # response (including 429), so no extra status check is needed here.
+    data = (
+        httpx.get(
+            f"https://www.reddit.com/r/{subreddit}/{age}.json?limit={limit}",
+            headers={"User-agent": "A random string"},
+            timeout=10,
+        )
+        .raise_for_status()
+        .json()
     )
-    response.raise_for_status()
-    if response.status_code == 429:
-        raise httpx.HTTPError(response=response)
-
-    data = response.json()
     if not wanted_data:
         return {id_: data["data"]["children"][id_] for id_ in range(limit)}
 

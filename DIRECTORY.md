@@ -1,6 +1,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -451,14 +452,17 @@
   * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
+  * [Barnsley Fern](fractals/barnsley_fern.py)
   * [Julia Sets](fractals/julia_sets.py)
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
+  * [Sierpinski Carpet](fractals/sierpinski_carpet.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
   * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+  * [Fuzzy Set Operations](fuzzy_logic/fuzzy_set_operations.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
@@ -471,6 +475,8 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
     * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
@@ -523,6 +529,7 @@
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
+  * [Johnson](graphs/johnson.py)
   * [Kahns Algorithm Long](graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](graphs/kahns_algorithm_topo.py)
   * [Karger](graphs/karger.py)
@@ -543,6 +550,7 @@
   * [Strongly Connected Components](graphs/strongly_connected_components.py)
   * [Tarjans Scc](graphs/tarjans_scc.py)
   * Tests
+    * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
@@ -839,8 +847,10 @@
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
+  * [Dinic](networking_flow/dinic.py)
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
   * [Minimum Cut](networking_flow/minimum_cut.py)
+  * [Push Relabel](networking_flow/push_relabel.py)
 
 ## Neural Network
   * Activation Functions
@@ -1368,6 +1378,7 @@
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
+  * [Suffix Automaton](strings/suffix_automaton.py)
   * [Text Justification](strings/text_justification.py)
   * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
