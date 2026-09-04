@@ -1,5 +1,8 @@
 ci:
   autoupdate_schedule: monthly
+  # uv-lock resolves dependencies from PyPI, but pre-commit.ci runs hooks with no
+  # network access, so it fails there. Skip it on pre-commit.ci; it still runs locally.
+  skip: [uv-lock]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -18,21 +21,21 @@ repos:
     hooks:
       - id: auto-walrus
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.9
-    hooks:
-      - id: ruff-check
-      - id: ruff-format
-
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.5
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.21.0
+    rev: v2.28.1
     hooks:
       - id: pyproject-fmt
 
@@ -44,8 +47,13 @@ repos:
         language: script
         pass_filenames: false
 
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.7
+    hooks:
+      - id: uv-lock
+
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.25
+    rev: "0.26"
     hooks:
       - id: validate-pyproject
 
