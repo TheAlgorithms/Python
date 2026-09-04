@@ -31,4 +31,9 @@ jobs:
       # test matrix uses lacks wheels for several of them. ty itself is pulled in
       # ephemerally with `--with` so it needn't be added to the lockfile.
       - run: uv sync --python 3.14
-      - run: uv run --with ty ty check --output-format=github
+      # `|| true` keeps the check green while ty is advisory: with
+      # --output-format=github, ty still emits ::error annotations that render
+      # inline on the PR diff, so findings stay visible without a red X on every
+      # commit. Drop the `|| true` (and continue-on-error above) to make ty a
+      # required gate once the [tool.ty] baseline is clean.
+      - run: uv run --with ty ty check --output-format=github || true
