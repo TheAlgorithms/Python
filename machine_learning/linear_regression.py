@@ -1,3 +1,33 @@
+import httpx
+import numpy as np
+
+"""
+Linear Regression Algorithm - Predictive Analysis (Enhanced Documentation)
+
+This file implements linear regression using gradient descent to predict
+values based on a dataset. The example dataset here is from CSGO (ADR vs Rating).
+
+Purpose:
+- Demonstrates basic linear regression with a small dataset.
+- Shows how to collect data from an online source.
+- Illustrates calculation of errors (sum of squares and mean absolute error).
+- Provides a step-by-step gradient descent implementation.
+
+Audience:
+- Beginners learning machine learning algorithms.
+- Students who want to understand linear regression implementation in Python.
+
+Dependencies:
+- Python >= 3.13
+- httpx
+- numpy
+
+Notes:
+- The algorithm iteratively updates feature weights to minimize error.
+- Output includes the feature vector representing the best-fit line.
+- Designed for educational purposes; can be adapted for other datasets.
+"""
+
 """
 Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
@@ -15,9 +45,6 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 #     "numpy",
 # ]
 # ///
-
-import httpx
-import numpy as np
 
 
 def collect_dataset():
