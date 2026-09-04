@@ -1,9 +1,7 @@
-from __future__ import annotations
-
 import sys
 from collections import defaultdict
 
-# Description for the ppm algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
+# Description for the PPM algorithm can be found at https://en.wikipedia.org/wiki/Prediction_by_partial_matching
 
 
 class PPMNode:
