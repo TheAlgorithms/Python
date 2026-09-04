@@ -16,8 +16,15 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     Space complexity: O(1) auxiliary (sorts in place).
 
     :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
+        comparable items inside
     :return: the same collection ordered in ascending order
+
+    Time Complexity:
+        - Worst Case: O(n^2)
+        - Average Case: O(n^2)
+        - Best Case: O(n)
+
+    Space Complexity: O(1) auxiliary space
 
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
@@ -88,6 +95,13 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
+
+    Time Complexity:
+        - Worst Case: O(n^2)
+        - Average Case: O(n^2)
+        - Best Case: O(n)
+
+    Space Complexity: O(n) auxiliary stack space due to recursion
 
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
