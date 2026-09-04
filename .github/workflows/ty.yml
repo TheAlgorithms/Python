@@ -22,6 +22,8 @@ jobs:
       # resolve. The free-threaded 3.14t venv used by the test matrix does not
       # resolve several typed dependencies, which made ty skip its own config.
       # - run: uv sync --python 3.14 --group=test
+      - run: uv venv
+      - run: source .venv/bin/activate
       - run: uv pip install ".[test]"
       - run: ty check --output-format=github
       # - run: uv run --python 3.14 --with=ty==0.0.78 ty check --output-format=github
