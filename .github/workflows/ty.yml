@@ -1,0 +1,25 @@
+# https://docs.astral.sh/ty/
+name: ty
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  ty:
+    runs-on: ubuntu-latest
+    # Informational only: ty is not yet a required gate. This job surfaces
+    # type-check findings in the logs so they can be triaged into gradual
+    # [tool.ty] rules without blocking merges. Flip `continue-on-error` to
+    # false once the baseline is clean.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v7
+      # Type-check on a regular (GIL) 3.14 interpreter so third-party stubs
+      # resolve. The free-threaded 3.14t venv used by the test matrix does not
+      # resolve several typed dependencies, which made ty skip its own config.
+      - run: uv sync --python 3.14 --group=test
+      - run: uv run --python 3.14 --with=ty==0.0.78 ty check --output-format=github
