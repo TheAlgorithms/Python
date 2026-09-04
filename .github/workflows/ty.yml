@@ -18,12 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
-      # Type-check on a regular (GIL) 3.14 interpreter so third-party stubs
-      # resolve. The free-threaded 3.14t venv used by the test matrix does not
-      # resolve several typed dependencies, which made ty skip its own config.
-      # - run: uv sync --python 3.14 --group=test
-      - run: uv venv
-      - run: source .venv/bin/activate
-      - run: uv pip install ".[test]"
-      - run: ty check --output-format=github
-      # - run: uv run --python 3.14 --with=ty==0.0.78 ty check --output-format=github
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      # Mirror the `build` job: `uv sync` installs the dependencies without
+      # building this flat-layout repo as a wheel. pyproject.toml has no
+      # [build-system], so uv treats the project as virtual and installs only
+      # its dependencies -- no "Multiple top-level packages discovered in a
+      # flat-layout" error and no need for a src-layout. (`uv pip install .`
+      # would force that wheel build and fail.) Pin a regular GIL 3.14 so typed
+      # third-party dependencies resolve; the free-threaded 3.14t interpreter the
+      # test matrix uses lacks wheels for several of them. ty itself is pulled in
+      # ephemerally with `--with` so it needn't be added to the lockfile.
+      - run: uv sync --python 3.14
+      - run: uv run --with ty ty check --output-format=github
