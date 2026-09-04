@@ -2,6 +2,13 @@ from typing import Any
 
 
 def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+    """
+    Return the index where ``item`` should be inserted in a sorted list.
+
+    Uses binary search to locate the insertion position between
+    ``start`` and ``end`` while maintaining sorted order.
+    """
+
     if start == end:
         return start if lst[start] > item else start + 1
     if start > end:
@@ -17,6 +24,13 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
 
 
 def insertion_sort(lst: list[Any]) -> list[Any]:
+    """
+    Sort a list using the insertion sort algorithm.
+
+    Each element is inserted into its correct position in the already
+    sorted portion of the list using binary search.
+    """
+
     length = len(lst)
 
     for index in range(1, length):
@@ -28,6 +42,13 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
 
 
 def merge(left: list[Any], right: list[Any]) -> list[Any]:
+    """
+    Merge two sorted lists into a single sorted list.
+
+    Recursively combines elements from both input lists while
+    preserving sorted order.
+    """
+
     if not left:
         return right
 
@@ -76,7 +97,11 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
 
 
 def main():
-    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
+    """
+    Run a simple demonstration of the Tim Sort algorithm.
+    """
+
+    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7, -3]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
 
