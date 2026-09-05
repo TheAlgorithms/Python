@@ -663,6 +663,40 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     return np.sum(kl_loss)
 
 
+def mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+        Calculate the Mean Absolute Percentage Error (MAPE) between y_true and y_pred.
+    MAPE is calculated by dividing the absolute error by the absolute value of
+        the actual measurement and then averaging.
+        SMAPE = (1/n) * Σ( |y_true - y_pred| / |y_true|)
+        Reference:
+        https://en.wikipedia.org/wiki/Mean_absolute_percentage_error
+        Parameters:
+        - y_true: The true values (ground truth)
+        - y_pred: The predicted values
+        - epsilon: Small constant to avoid division by zero
+        >>> true_values = np.array([100, 200, 300, 400])
+        >>> predicted_values = np.array([110, 190, 310, 420])
+        >>> float(symmetric_mean_absolute_percentage_error(true_values, predicted_values))
+        0.058333333333333334
+        >>> true_labels = np.array([100, 200, 300])
+        >>> predicted_probs = np.array([110, 190, 310, 420])
+        >>> symmetric_mean_absolute_percentage_error(true_labels, predicted_probs)
+        Traceback (most recent call last):
+            ...
+        ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    denominator = np.where(np.abs(y_true) == 0, epsilon, np.abs(y_true))
+
+    mape_loss = np.abs(y_true - y_pred) / denominator
+    return np.mean(mape_loss)
+
+
 if __name__ == "__main__":
     import doctest
 
