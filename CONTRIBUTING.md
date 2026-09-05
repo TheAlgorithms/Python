@@ -23,7 +23,7 @@ __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, then click on the ___details___ button to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, then click on the ___details___ button to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page, and a community member will try to help.
 
 #### Issues
 
@@ -46,7 +46,7 @@ An Algorithm is one or more functions (or classes) that:
 * return one or more outputs,
 * have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
 
-Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
+Algorithms should be packaged in a way that makes it easy for readers to put them into larger programs.
 
 Algorithms should:
 * have intuitive class and function names that make their purpose clear to readers
@@ -58,7 +58,7 @@ Algorithms should:
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
 
-Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
 #### Pre-commit plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
@@ -67,7 +67,7 @@ Use [pre-commit](https://pre-commit.com/#installation) to automatically format y
 python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
-That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+That's it! The plugin will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
 
 ```bash
 pre-commit run --all-files --show-diff-on-failure
@@ -79,13 +79,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Please write in free-threaded Python 3.14t+. For instance: `print()` is a function in Python 3, so `print "Hello"` will *not* work, but `print("Hello")` will.
 - Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
-  - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
+  - Single-letter variable names are *old school*, so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
 
-- Please consider running [__ruff format__](https://docs.astral.sh/ruff/formatter/) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://peps.python.org/pep-0008/). To use it,
+- Please consider running [__ruff format__](https://docs.astral.sh/ruff/formatter/) on your Python file(s) before submitting your pull request.  This is not yet a requirement, but it does make your code more readable and automatically aligns it with much of [PEP 8](https://peps.python.org/pep-0008/). To use it,
 
   ```bash
   python3 -m pip install ruff  # only required the first time
@@ -103,7 +103,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - More on docstrings and comments:
 
-  If you used a Wikipedia article or some other source material to create your algorithm, please add the URL in a docstring or comment to help your reader.
+  If you used a Wikipedia article or other source material to create your algorithm, please add the URL in a docstring or comment to help your reader.
 
   The following are considered to be bad and may be requested to be improved:
 
@@ -111,9 +111,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
   x = x + 2  # increased by 2
   ```
 
-  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
+  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on, or below a line of code, as long as you are consistent within the same piece of code.
 
-  We encourage you to put docstrings inside your functions but please pay attention to the indentation of docstrings. The following is a good example:
+  We encourage you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
 
   ```python
   def sum_ab(a, b):
@@ -139,7 +139,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
       return a + b
   ```
 
-  These doctests will be run by pytest as part of our automated testing so please try to run your doctests locally and make sure that they are found and pass:
+  These doctests will be run by pytest as part of our automated testing, so please try to run your doctests locally and make sure that they are found and pass:
 
   ```bash
   python3 -m doctest -v my_submission.py
@@ -161,6 +161,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our CI runs [ty](https://docs.astral.sh/ty/) as an informational check that does not block merges yet, so you may want to run it locally before making your submission.
 
+  ```bash
+  python3 -m pip install ty  # only required the first time
+  ty check my_file_path.py
+  ```
+
   ```python
   def sum_ab(a: int, b: int) -> int:
       return a + b
@@ -176,12 +181,12 @@ We want your work to be readable by others; therefore, we encourage you to note 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
 - The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
-- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
+- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in the future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
-- If you have modified/added code work, make sure the code compiles before submitting.
+- If you have modified/added code, make sure the code compiles before submitting.
 - If you have modified/added documentation work, ensure your language is concise and contains no grammar errors.
-- Do not update the README.md or DIRECTORY.md file which will be periodically autogenerated by our GitHub Actions processes.
+- Do not update the README.md or DIRECTORY.md file, which will be periodically autogenerated by our GitHub Actions processes.
 - Add a corresponding explanation to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
 - Our CI runs [__ty__](https://docs.astral.sh/ty/) on every pull request as an informational check that does not block merges yet, so we encourage you to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where `ty` recommends to do so.
 
