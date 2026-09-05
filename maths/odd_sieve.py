@@ -33,7 +33,7 @@ def odd_sieve(num: int) -> list[int]:
                 0, ceil((num - i_squared) / (i << 1))
             )
 
-    return [2] + list(compress(range(3, num, 2), sieve))
+    return [2, *list(compress(range(3, num, 2), sieve))]
 
 
 if __name__ == "__main__":

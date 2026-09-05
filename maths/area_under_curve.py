@@ -1,6 +1,7 @@
 """
 Approximates the area under the curve using the trapezoidal rule
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable

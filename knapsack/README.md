@@ -1,4 +1,4 @@
-# A naive recursive implementation of 0-1 Knapsack Problem
+# A recursive implementation of 0-N Knapsack Problem
 
 This overview is taken from:
 

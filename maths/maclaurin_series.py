@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 """
+
 from math import factorial, pi
 
 

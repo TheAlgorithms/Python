@@ -22,12 +22,12 @@ def test_prim_successful_result():
         [1, 7, 11],
     ]
 
-    adjancency = defaultdict(list)
+    adjacency = defaultdict(list)
     for node1, node2, cost in edges:
-        adjancency[node1].append([node2, cost])
-        adjancency[node2].append([node1, cost])
+        adjacency[node1].append([node2, cost])
+        adjacency[node2].append([node1, cost])
 
-    result = mst(adjancency)
+    result = mst(adjacency)
 
     expected = [
         [7, 6, 1],

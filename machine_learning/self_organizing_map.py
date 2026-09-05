@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Self-organizing_map
 """
+
 import math
 
 

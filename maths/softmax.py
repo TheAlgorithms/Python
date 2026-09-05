@@ -28,7 +28,7 @@ def softmax(vector):
 
     The softmax vector adds up to one. We need to ceil to mitigate for
     precision
-    >>> np.ceil(np.sum(softmax([1,2,3,4])))
+    >>> float(np.ceil(np.sum(softmax([1,2,3,4]))))
     1.0
 
     >>> vec = np.array([5,5])

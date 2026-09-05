@@ -1,8 +1,8 @@
 """
-    Modular Exponential.
-    Modular exponentiation is a type of exponentiation performed over a modulus.
-    For more explanation, please check
-    https://en.wikipedia.org/wiki/Modular_exponentiation
+Modular Exponential.
+Modular exponentiation is a type of exponentiation performed over a modulus.
+For more explanation, please check
+https://en.wikipedia.org/wiki/Modular_exponentiation
 """
 
 """Calculate Modular Exponential."""

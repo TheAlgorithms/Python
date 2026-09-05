@@ -6,19 +6,26 @@ For more details and premium features visit:
     https://zenquotes.io/
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx2",
+# ]
+# ///
+
 import pprint
 
-import requests
+import httpx2
 
 API_ENDPOINT_URL = "https://zenquotes.io/api"
 
 
 def quote_of_the_day() -> list:
-    return requests.get(API_ENDPOINT_URL + "/today").json()
+    return httpx2.get(API_ENDPOINT_URL + "/today", timeout=10).json()
 
 
 def random_quotes() -> list:
-    return requests.get(API_ENDPOINT_URL + "/random").json()
+    return httpx2.get(API_ENDPOINT_URL + "/random", timeout=10).json()
 
 
 if __name__ == "__main__":

@@ -1,15 +1,25 @@
 {
 	"name": "Python 3",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": "..",
-		"args": {
-			// Update 'VARIANT' to pick a Python version: 3, 3.11, 3.10, 3.9, 3.8
-			// Append -bullseye or -buster to pin to an OS version.
-			// Use -bullseye variants on local on arm64/Apple Silicon.
-			"VARIANT": "3.12-bookworm",
-		}
-	},
+
+	// Use a prebuilt dev container image instead of building from a local
+	// Dockerfile. The repo migrated its dependencies to pyproject.toml, so the
+	// old Dockerfile's `COPY requirements.txt` step no longer had a file to copy
+	// and the image build failed. The upstream images already ship Python + a
+	// full toolchain, so pulling one is both faster and less to maintain.
+	//
+	// This repo tracks the latest-and-greatest CPython on the newest stable
+	// Debian. Images are published per CPython minor version on Debian 13
+	// "Trixie" (3.11-trixie ... 3.14-trixie); bump this to the newest available
+	// when a new stable CPython ships.
+	// NOTE: these images do not publish free-threaded (`t`) variants, so 3.14t
+	// cannot be selected via the tag alone -- but the repo's `.python-version`
+	// pins 3.14t, and `uv run`/`uv sync` in the container honor it, so uv gives
+	// contributors free-threaded 3.14t regardless of the base tag.
+	"image": "mcr.microsoft.com/devcontainers/python:latest",
+
+	// Install the tools post_install and CI expect (pre-commit + ruff), plus uv
+	// for the free-threaded workflow above, then run the existing setup script.
+	"postCreateCommand": "pipx install pre-commit ruff uv && zsh .devcontainer/post_install",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -18,24 +28,29 @@
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
 				"python.defaultInterpreterPath": "/usr/local/bin/python",
-				"python.linting.enabled": true,
-				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy"
+				// Formatting/linting is handled by Ruff (matches pre-commit and CI).
+				"editor.formatOnSave": true,
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit",
+						"source.organizeImports": "explicit"
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh"
 			},
 
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff"
 			]
 		}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"

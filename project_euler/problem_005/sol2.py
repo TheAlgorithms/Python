@@ -1,3 +1,5 @@
+from maths.greatest_common_divisor import greatest_common_divisor
+
 """
 Project Euler Problem 5: https://projecteuler.net/problem=5
 
@@ -14,23 +16,6 @@ References:
     - https://en.wikipedia.org/wiki/Euclidean_algorithm
     - https://en.wikipedia.org/wiki/Least_common_multiple
 """
-
-
-def greatest_common_divisor(x: int, y: int) -> int:
-    """
-    Euclidean Greatest Common Divisor algorithm
-
-    >>> greatest_common_divisor(0, 0)
-    0
-    >>> greatest_common_divisor(23, 42)
-    1
-    >>> greatest_common_divisor(15, 33)
-    3
-    >>> greatest_common_divisor(12345, 67890)
-    15
-    """
-
-    return x if y == 0 else greatest_common_divisor(y, x % y)
 
 
 def lcm(x: int, y: int) -> int:

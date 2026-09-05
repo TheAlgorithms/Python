@@ -26,7 +26,7 @@ def explicit_euler(
     ...     return y
     >>> y0 = 1
     >>> y = explicit_euler(f, y0, 0.0, 0.01, 5)
-    >>> y[-1]
+    >>> float(y[-1])
     144.77277243257308
     """
     n = int(np.ceil((x_end - x0) / step_size))

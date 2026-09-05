@@ -1,4 +1,4 @@
-""" Problem Statement (Digit Fifth Powers): https://projecteuler.net/problem=30
+"""Problem Statement (Digit Fifth Powers): https://projecteuler.net/problem=30
 
 Surprisingly there are only three numbers that can be written as the sum of fourth
 powers of their digits:
@@ -20,7 +20,6 @@ and also 59049 * 3 = 177147 (which exceeds the criteria of number being 3 digit)
 So, number > 999
 and hence a number between 1000 and 1000000
 """
-
 
 DIGITS_FIFTH_POWER = {str(digit): digit**5 for digit in range(10)}
 

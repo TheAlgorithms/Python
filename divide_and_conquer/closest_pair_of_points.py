@@ -54,8 +54,7 @@ def dis_between_closest_pair(points, points_counts, min_dis=float("inf")):
     for i in range(points_counts - 1):
         for j in range(i + 1, points_counts):
             current_dis = euclidean_distance_sqr(points[i], points[j])
-            if current_dis < min_dis:
-                min_dis = current_dis
+            min_dis = min(min_dis, current_dis)
     return min_dis
 
 
@@ -76,8 +75,7 @@ def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
     for i in range(min(6, points_counts - 1), points_counts):
         for j in range(max(0, i - 6), i):
             current_dis = euclidean_distance_sqr(points[i], points[j])
-            if current_dis < min_dis:
-                min_dis = current_dis
+            min_dis = min(min_dis, current_dis)
     return min_dis
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    module to operations with prime numbers
+module to operations with prime numbers
 """
 
 import math
@@ -32,9 +32,9 @@ def is_prime(number: int) -> bool:
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and positive"
+    assert isinstance(number, int) and (number >= 0), (
+        "'number' must been an int and positive"
+    )
 
     if 1 < number < 4:
         # 2 and 3 are primes

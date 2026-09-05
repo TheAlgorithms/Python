@@ -158,7 +158,7 @@ if __name__ == "__main__":
     # G_b2 = np.random.normal(size=(784),scale=(1. / np.sqrt(784 / 2.)))      *0.002
     G_b7 = np.zeros(784)
 
-    # 3. For Adam Optimzier
+    # 3. For Adam Optimizer
     v1, m1 = 0, 0
     v2, m2 = 0, 0
     v3, m3 = 0, 0

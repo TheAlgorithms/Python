@@ -66,7 +66,6 @@ Solution:
 
 """
 
-
 from math import sqrt
 
 

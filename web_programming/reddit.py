@@ -1,6 +1,13 @@
-from __future__ import annotations
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx2",
+# ]
+# ///
 
-import requests
+from typing import Literal
+
+import httpx2
 
 valid_terms = set(
     """approved_at_utc approved_by author_flair_background_color
@@ -16,7 +23,10 @@ total_awards_received ups upvote_ratio url user_reports""".split()
 
 
 def get_subreddit_data(
-    subreddit: str, limit: int = 1, age: str = "new", wanted_data: list | None = None
+    subreddit: str,
+    limit: int = 1,
+    age: Literal["new", "top", "hot"] = "new",
+    wanted_data: list | None = None,
 ) -> dict:
     """
     subreddit : Subreddit to query
@@ -28,14 +38,17 @@ def get_subreddit_data(
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
         msg = f"Invalid search term: {invalid_search_terms}"
         raise ValueError(msg)
-    response = requests.get(
-        f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
-        headers={"User-agent": "A random string"},
+    # raise_for_status() already raises httpx2.HTTPStatusError for any 4xx/5xx
+    # response (including 429), so no extra status check is needed here.
+    data = (
+        httpx2.get(
+            f"https://www.reddit.com/r/{subreddit}/{age}.json?limit={limit}",
+            headers={"User-agent": "A random string"},
+            timeout=10,
+        )
+        .raise_for_status()
+        .json()
     )
-    if response.status_code == 429:
-        raise requests.HTTPError(response=response)
-
-    data = response.json()
     if not wanted_data:
         return {id_: data["data"]["children"][id_] for id_ in range(limit)}
 

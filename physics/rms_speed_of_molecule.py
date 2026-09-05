@@ -20,7 +20,6 @@ zero; as this value is unhelpful, the average of velocities can be determined us
 alternative method.
 """
 
-
 UNIVERSAL_GAS_CONSTANT = 8.3144598
 
 

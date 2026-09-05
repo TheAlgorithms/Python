@@ -8,11 +8,15 @@ See: https://en.wikipedia.org/wiki/Rank_(linear_algebra)
 def rank_of_matrix(matrix: list[list[int | float]]) -> int:
     """
     Finds the rank of a matrix.
+
     Args:
-        matrix: The matrix as a list of lists.
+        `matrix`: The matrix as a list of lists.
+
     Returns:
         The rank of the matrix.
+
     Example:
+
     >>> matrix1 = [[1, 2, 3],
     ...            [4, 5, 6],
     ...            [7, 8, 9]]

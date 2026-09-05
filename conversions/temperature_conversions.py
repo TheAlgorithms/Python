@@ -1,4 +1,4 @@
-""" Convert between different units of temperature """
+"""Convert between different units of temperature"""
 
 
 def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:

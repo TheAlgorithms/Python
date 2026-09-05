@@ -6,7 +6,7 @@ or centre of curvature.
 The unit of centripetal force is newton.
 
 The centripetal force is always directed perpendicular to the
-direction of the object’s displacement. Using Newton’s second
+direction of the object's displacement. Using Newton's second
 law of motion, it is found that the centripetal force of an object
 moving in a circular path always acts towards the centre of the circle.
 The Centripetal Force Formula is given as the product of mass (in kg)

@@ -2,16 +2,18 @@
 Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William Pugh
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
+
 from __future__ import annotations
 
+from itertools import pairwise
 from random import random
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
 
 
-class Node(Generic[KT, VT]):
+class Node[KT, VT]:
     def __init__(self, key: KT | str = "root", value: VT | None = None):
         self.key = key
         self.value = value
@@ -47,7 +49,7 @@ class Node(Generic[KT, VT]):
         return len(self.forward)
 
 
-class SkipList(Generic[KT, VT]):
+class SkipList[KT, VT]:
     def __init__(self, p: float = 0.5, max_level: int = 16):
         self.head: Node[KT, VT] = Node[KT, VT]()
         self.level = 0
@@ -388,7 +390,7 @@ def test_delete_doesnt_leave_dead_nodes():
 
 def test_iter_always_yields_sorted_values():
     def is_sorted(lst):
-        return all(next_item >= item for item, next_item in zip(lst, lst[1:]))
+        return all(next_item >= item for item, next_item in pairwise(lst))
 
     skip_list = SkipList()
     for i in range(10):

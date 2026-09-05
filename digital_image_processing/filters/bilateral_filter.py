@@ -9,6 +9,7 @@ Inputs:
 Output:
     img:A 2d zero padded image with values in between 0 and 1
 """
+
 import math
 import sys
 

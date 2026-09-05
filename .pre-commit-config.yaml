@@ -1,6 +1,12 @@
+ci:
+  autoupdate_schedule: monthly
+  # uv-lock resolves dependencies from PyPI, but pre-commit.ci runs hooks with no
+  # network access, so it fails there. Skip it on pre-commit.ci; it still runs locally.
+  skip: [uv-lock]
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-toml
@@ -11,29 +17,25 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/MarcoGorelli/auto-walrus
-    rev: v0.2.2
+    rev: 0.4.1
     hooks:
-    -   id: auto-walrus
-
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.292
-    hooks:
-      - id: ruff
-
-  - repo: https://github.com/psf/black
-    rev: 23.9.1
-    hooks:
-      - id: black
+      - id: auto-walrus
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.4.3
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.5
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "1.2.0"
+    rev: v2.28.1
     hooks:
       - id: pyproject-fmt
 
@@ -45,17 +47,28 @@ repos:
         language: script
         pass_filenames: false
 
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.7
+    hooks:
+      - id: uv-lock
+
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.14
+    rev: "0.26"
     hooks:
       - id: validate-pyproject
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #  rev: v1.20.0
+  #  hooks:
+  #    - id: mypy
+  #      args:
+  #        - --explicit-package-bases
+  #        - --ignore-missing-imports
+  #        - --install-types
+  #        - --non-interactive
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
     hooks:
-      - id: mypy
-        args:
-          - --ignore-missing-imports
-          - --install-types # See mirrors-mypy README.md
-          - --non-interactive
-        additional_dependencies: [types-requests]
+      - id: prettier
+        types_or: [toml, yaml]

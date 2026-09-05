@@ -37,7 +37,7 @@ def solution(n: int = 1001) -> int:
     """
     total = 1
 
-    for i in range(1, int(ceil(n / 2.0))):
+    for i in range(1, ceil(n / 2.0)):
         odd = 2 * i + 1
         even = 2 * i
         total = total + 4 * odd**2 - 6 * even

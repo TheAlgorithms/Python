@@ -63,8 +63,7 @@ def largest_product(grid):
             max_product = max(
                 vert_product, horz_product, lr_diag_product, rl_diag_product
             )
-            if max_product > largest:
-                largest = max_product
+            largest = max(largest, max_product)
 
     return largest
 

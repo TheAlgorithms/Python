@@ -47,8 +47,18 @@ def combination_sum(candidates: list, target: int) -> list:
     >>> combination_sum([-8, 2.3, 0], 1)
     Traceback (most recent call last):
         ...
-    RecursionError: maximum recursion depth exceeded
+    ValueError: All elements in candidates must be non-negative
+    >>> combination_sum([], 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Candidates list should not be empty
     """
+    if not candidates:
+        raise ValueError("Candidates list should not be empty")
+
+    if any(x < 0 for x in candidates):
+        raise ValueError("All elements in candidates must be non-negative")
+
     path = []  # type: list[int]
     answer = []  # type: list[int]
     backtrack(candidates, path, answer, target, 0)

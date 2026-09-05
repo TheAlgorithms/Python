@@ -4,52 +4,76 @@
 # Function to print upper half of diamond (pyramid)
 def floyd(n):
     """
-        Parameters:
-    n : size of pattern
+    Print the upper half of a diamond pattern with '*' characters.
+
+    Args:
+        n (int): Size of the pattern.
+
+    Examples:
+        >>> floyd(3)
+        '  * \\n * * \\n* * * \\n'
+
+        >>> floyd(5)
+        '    * \\n   * * \\n  * * * \\n * * * * \\n* * * * * \\n'
     """
+    result = ""
     for i in range(n):
         for _ in range(n - i - 1):  # printing spaces
-            print(" ", end="")
+            result += " "
         for _ in range(i + 1):  # printing stars
-            print("* ", end="")
-        print()
+            result += "* "
+        result += "\n"
+    return result
 
 
 # Function to print lower half of diamond (pyramid)
 def reverse_floyd(n):
     """
-        Parameters:
-    n : size of pattern
+    Print the lower half of a diamond pattern with '*' characters.
+
+    Args:
+        n (int): Size of the pattern.
+
+    Examples:
+        >>> reverse_floyd(3)
+        '* * * \\n * * \\n  * \\n   '
+
+        >>> reverse_floyd(5)
+        '* * * * * \\n * * * * \\n  * * * \\n   * * \\n    * \\n     '
     """
+    result = ""
     for i in range(n, 0, -1):
         for _ in range(i, 0, -1):  # printing stars
-            print("* ", end="")
-        print()
+            result += "* "
+        result += "\n"
         for _ in range(n - i + 1, 0, -1):  # printing spaces
-            print(" ", end="")
+            result += " "
+    return result
 
 
 # Function to print complete diamond pattern of "*"
 def pretty_print(n):
     """
-        Parameters:
-    n : size of pattern
+    Print a complete diamond pattern with '*' characters.
+
+    Args:
+        n (int): Size of the pattern.
+
+    Examples:
+        >>> pretty_print(0)
+        '       ...       ....        nothing printing :('
+
+        >>> pretty_print(3)
+        '  * \\n * * \\n* * * \\n* * * \\n * * \\n  * \\n   '
     """
     if n <= 0:
-        print("       ...       ....        nothing printing :(")
-        return
-    floyd(n)  # upper half
-    reverse_floyd(n)  # lower half
+        return "       ...       ....        nothing printing :("
+    upper_half = floyd(n)  # upper half
+    lower_half = reverse_floyd(n)  # lower half
+    return upper_half + lower_half
 
 
 if __name__ == "__main__":
-    print(r"| /\ | |- |  |-  |--| |\  /| |-")
-    print(r"|/  \| |- |_ |_  |__| | \/ | |_")
-    K = 1
-    while K:
-        user_number = int(input("enter the number and , and see the magic : "))
-        print()
-        pretty_print(user_number)
-        K = int(input("press 0 to exit... and 1 to continue..."))
+    import doctest
 
-    print("Good Bye...")
+    doctest.testmod()

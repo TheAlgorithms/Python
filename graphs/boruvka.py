@@ -1,29 +1,30 @@
 """Borůvka's algorithm.
 
-    Determines the minimum spanning tree (MST) of a graph using the Borůvka's algorithm.
-    Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a
-    connected graph, or a minimum spanning forest if a graph that is not connected.
+Determines the minimum spanning tree (MST) of a graph using the Borůvka's algorithm.
+Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a
+connected graph, or a minimum spanning forest if a graph that is not connected.
 
-    The time complexity of this algorithm is O(ELogV), where E represents the number
-    of edges, while V represents the number of nodes.
-    O(number_of_edges Log number_of_nodes)
+The time complexity of this algorithm is O(ELogV), where E represents the number
+of edges, while V represents the number of nodes.
+O(number_of_edges Log number_of_nodes)
 
-    The space complexity of this algorithm is O(V + E), since we have to keep a couple
-    of lists whose sizes are equal to the number of nodes, as well as keep all the
-    edges of a graph inside of the data structure itself.
+The space complexity of this algorithm is O(V + E), since we have to keep a couple
+of lists whose sizes are equal to the number of nodes, as well as keep all the
+edges of a graph inside of the data structure itself.
 
-    Borůvka's algorithm gives us pretty much the same result as other MST Algorithms -
-    they all find the minimum spanning tree, and the time complexity is approximately
-    the same.
+Borůvka's algorithm gives us pretty much the same result as other MST Algorithms -
+they all find the minimum spanning tree, and the time complexity is approximately
+the same.
 
-    One advantage that Borůvka's algorithm has compared to the alternatives is that it
-    doesn't need to presort the edges or maintain a priority queue in order to find the
-    minimum spanning tree.
-    Even though that doesn't help its complexity, since it still passes the edges logE
-    times, it is a bit simpler to code.
+One advantage that Borůvka's algorithm has compared to the alternatives is that it
+doesn't need to presort the edges or maintain a priority queue in order to find the
+minimum spanning tree.
+Even though that doesn't help its complexity, since it still passes the edges logE
+times, it is a bit simpler to code.
 
-    Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
+Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 """
+
 from __future__ import annotations
 
 from typing import Any

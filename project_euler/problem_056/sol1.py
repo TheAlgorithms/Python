@@ -30,9 +30,7 @@ def solution(a: int = 100, b: int = 100) -> int:
     # RETURN the MAXIMUM from the list of SUMs of the list of INT converted from STR of
     # BASE raised to the POWER
     return max(
-        sum(int(x) for x in str(base**power))
-        for base in range(a)
-        for power in range(b)
+        sum(int(x) for x in str(base**power)) for base in range(a) for power in range(b)
     )
 
 

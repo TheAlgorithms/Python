@@ -2,6 +2,7 @@
 Find the area of various geometric shapes
 Wikipedia reference: https://en.wikipedia.org/wiki/Area
 """
+
 from math import pi, sqrt, tan
 
 
@@ -550,7 +551,6 @@ equal to three as number of sides"
             "area_reg_polygon() only accepts non-negative values as \
 length of a side"
         )
-    return (sides * length**2) / (4 * tan(pi / sides))
     return (sides * length**2) / (4 * tan(pi / sides))
 
 

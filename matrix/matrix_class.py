@@ -260,7 +260,7 @@ class Matrix:
         if position is None:
             self.rows.append(row)
         else:
-            self.rows = self.rows[0:position] + [row] + self.rows[position:]
+            self.rows = [*self.rows[0:position], row, *self.rows[position:]]
 
     def add_column(self, column: list[int], position: int | None = None) -> None:
         type_error = TypeError(
@@ -279,7 +279,7 @@ class Matrix:
             self.rows = [self.rows[i] + [column[i]] for i in range(self.num_rows)]
         else:
             self.rows = [
-                self.rows[i][0:position] + [column[i]] + self.rows[i][position:]
+                [*self.rows[i][0:position], column[i], *self.rows[i][position:]]
                 for i in range(self.num_rows)
             ]
 

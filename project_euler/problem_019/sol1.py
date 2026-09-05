@@ -46,10 +46,9 @@ def solution():
             elif day > 29 and month == 2:
                 month += 1
                 day = day - 29
-        else:
-            if day > days_per_month[month - 1]:
-                month += 1
-                day = day - days_per_month[month - 2]
+        elif day > days_per_month[month - 1]:
+            month += 1
+            day = day - days_per_month[month - 2]
 
         if month > 12:
             year += 1

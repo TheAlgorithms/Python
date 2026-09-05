@@ -7,6 +7,7 @@ The function takes the list of numeric values as input and returns the IQR.
 Script inspired by this Wikipedia article:
 https://en.wikipedia.org/wiki/Interquartile_range
 """
+
 from __future__ import annotations
 
 

@@ -9,6 +9,7 @@ subarray sum problem in O(n) time and O(1) space.
 
 Reference: https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
+
 from collections.abc import Sequence
 
 

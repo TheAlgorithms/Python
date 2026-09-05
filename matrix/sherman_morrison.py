@@ -65,7 +65,7 @@ class Matrix:
         >>> a.validate_indices((0, 0))
         True
         """
-        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):
+        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):  # noqa: SIM114
             return False
         elif not (0 <= loc[0] < self.row and 0 <= loc[1] < self.column):
             return False
@@ -114,7 +114,8 @@ class Matrix:
 
         # Validation
         assert isinstance(another, Matrix)
-        assert self.row == another.row and self.column == another.column
+        assert self.row == another.row
+        assert self.column == another.column
 
         # Add
         result = Matrix(self.row, self.column)
@@ -225,7 +226,8 @@ class Matrix:
         """
 
         # Size validation
-        assert isinstance(u, Matrix) and isinstance(v, Matrix)
+        assert isinstance(u, Matrix)
+        assert isinstance(v, Matrix)
         assert self.row == self.column == u.row == v.row  # u, v should be column vector
         assert u.column == v.column == 1  # u, v should be column vector
 
