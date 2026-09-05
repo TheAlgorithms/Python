@@ -34,6 +34,21 @@ def md_prefix(indent: int) -> str:
     return f"{indent * '  '}*" if indent else "\n##"
 
 
+def md_anchor(heading: str) -> str:
+    """
+    GitHub-style anchor slug for a section heading, so the table of contents
+    can link to it.
+
+    >>> md_anchor("Audio Filters")
+    'audio-filters'
+    >>> md_anchor("Bit Manipulation")
+    'bit-manipulation'
+    >>> md_anchor("Computer Vision")
+    'computer-vision'
+    """
+    return heading.strip().lower().replace(" ", "-")
+
+
 def print_path(old_path: str, new_path: str) -> str:
     old_parts = old_path.split(os.sep)
     for i, new_part in enumerate(new_path.split(os.sep)):
@@ -43,8 +58,22 @@ def print_path(old_path: str, new_path: str) -> str:
 
 
 def print_directory_md(top_dir: str = ".") -> None:
+    filepaths = sorted(good_file_paths(top_dir))
+
+    # Top-level sections, in the order they appear, for the table of contents.
+    sections = list(
+        dict.fromkeys(
+            fp.split(os.sep)[0].replace("_", " ").title()
+            for fp in filepaths
+            if os.sep in fp
+        )
+    )
+    print("## Table of Contents")
+    for section in sections:
+        print(f"* [{section}](#{md_anchor(section)})")
+
     old_path = ""
-    for filepath in sorted(good_file_paths(top_dir)):
+    for filepath in filepaths:
         filepath, filename = os.path.split(filepath)
         if filepath != old_path:
             old_path = print_path(old_path, filepath)
