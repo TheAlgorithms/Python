@@ -252,7 +252,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
 num = TypeVar("num")
 
 
-def valid_input[num](
+def valid_input(
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
