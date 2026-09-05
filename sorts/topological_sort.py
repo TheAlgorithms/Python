@@ -16,7 +16,12 @@ vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
-    """Perform topological sort on a directed acyclic graph."""
+    """
+    Perform topological sort on a directed acyclic graph.
+
+    >>> topological_sort('a', [], [])
+    ['c', 'd', 'e', 'b', 'a']
+    """
     current = start
     # add current to visited
     visited.append(current)
