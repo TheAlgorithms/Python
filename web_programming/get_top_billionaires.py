@@ -6,14 +6,14 @@ This works for some of us but fails for others.
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 #     "rich",
 # ]
 # ///
 
 from datetime import UTC, date, datetime
 
-import httpx
+import httpx2
 from rich import box
 from rich import console as rich_console
 from rich import table as rich_table
@@ -65,7 +65,7 @@ def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
     Returns:
         List of top 10 realtime billionaires data.
     """
-    response_json = httpx.get(API_URL, timeout=10).json()
+    response_json = httpx2.get(API_URL, timeout=10).json()
     return [
         {
             "Name": person["personName"],
