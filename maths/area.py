@@ -604,7 +604,6 @@ equal to three as number of sides"
 length of a side"
         )
     return (sides * length**2) / (4 * tan(pi / sides))
-    return (sides * length**2) / (4 * tan(pi / sides))
 
 
 def surface_area_reg_prism(sides: int, edge: float, height: float) -> float:

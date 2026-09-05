@@ -3,7 +3,7 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
@@ -20,7 +20,7 @@ import re
 from html.parser import HTMLParser
 from urllib import parse
 
-import httpx
+import httpx2
 
 
 class Parser(HTMLParser):
@@ -79,7 +79,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
 
     try:
         # Open URL
-        r = httpx.get(url, timeout=10, follow_redirects=True)
+        r = httpx2.get(url, timeout=10, follow_redirects=True)
 
         # pass the raw HTML to the parser to get links
         parser.feed(r.text)
@@ -96,7 +96,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
                 else:
                     link = parse.urljoin(f"https://{domain}", link)
             try:
-                read = httpx.get(link, timeout=10, follow_redirects=True)
+                read = httpx2.get(link, timeout=10, follow_redirects=True)
                 # Get the valid email.
                 emails = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
                 # If not in list then append it.
