@@ -1,11 +1,10 @@
 """Implementation of GradientBoostingRegressor in sklearn using the
-   boston dataset which is very popular for regression problem to
-   predict house price.
+   California housing dataset which is a popular alternative for regression problems.
 """
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.datasets import load_boston
+from sklearn.datasets import fetch_california_housing
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
@@ -14,20 +13,20 @@ from sklearn.model_selection import train_test_split
 def main():
 
     # loading the dataset from the sklearn
-    df = load_boston()
+    df = fetch_california_housing()
     print(df.keys())
     # now let construct a data frame
-    df_boston = pd.DataFrame(df.data, columns=df.feature_names)
+    df_california = pd.DataFrame(df.data, columns=df.feature_names)
     # let add the target to the dataframe
-    df_boston["Price"] = df.target
+    df_california["Target"] = df.target
     # print the first five rows using the head function
-    print(df_boston.head())
+    print(df_california.head())
     # Summary statistics
-    print(df_boston.describe().T)
+    print(df_california.describe().T)
     # Feature selection
 
-    x = df_boston.iloc[:, :-1]
-    y = df_boston.iloc[:, -1]  # target variable
+    x = df_california.iloc[:, :-1]
+    y = df_california.iloc[:, -1]  # target variable
     # split the data with 75% train and 25% test sets.
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, random_state=0, test_size=0.25
