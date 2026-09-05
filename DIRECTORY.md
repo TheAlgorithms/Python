@@ -1,6 +1,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -74,6 +75,7 @@
 
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
+  * [Elementary Cellular Automaton](cellular_automata/elementary_cellular_automaton.py)
   * [Game Of Life](cellular_automata/game_of_life.py)
   * [Langtons Ant](cellular_automata/langtons_ant.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
@@ -293,6 +295,7 @@
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
+    * [Kth Next Greater Element](data_structures/stacks/kth_next_greater_element.py)
     * [Largest Rectangle Histogram](data_structures/stacks/largest_rectangle_histogram.py)
     * [Lexicographical Numbers](data_structures/stacks/lexicographical_numbers.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
@@ -425,6 +428,8 @@
   * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
   * [Electrical Impedance](electronics/electrical_impedance.py)
+  * [Full Wave Rectifier](electronics/full_wave_rectifier.py)
+  * [Half Wave Rectifier](electronics/half_wave_rectifier.py)
   * [Ic 555 Timer](electronics/ic_555_timer.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
@@ -444,21 +449,26 @@
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
+  * [Kelly Criterion](financial/kelly_criterion.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
+  * [Sharpe Ratio](financial/sharpe_ratio.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
   * [Straight Line Depreciation](financial/straight_line_depreciation.py)
   * [Time And Half Pay](financial/time_and_half_pay.py)
 
 ## Fractals
+  * [Barnsley Fern](fractals/barnsley_fern.py)
   * [Julia Sets](fractals/julia_sets.py)
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
+  * [Sierpinski Carpet](fractals/sierpinski_carpet.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
   * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+  * [Fuzzy Set Operations](fuzzy_logic/fuzzy_set_operations.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
@@ -762,6 +772,7 @@
   * [Quadratic Equations Complex Numbers](maths/quadratic_equations_complex_numbers.py)
   * [Radians](maths/radians.py)
   * [Radix2 Fft](maths/radix2_fft.py)
+  * [Recursive Digit Sum](maths/recursive_digit_sum.py)
   * [Remove Digit](maths/remove_digit.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
@@ -791,6 +802,8 @@
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
+    * [Kaprekar Constant](maths/special_numbers/kaprekar_constant.py)
+    * [Kaprekar Number](maths/special_numbers/kaprekar_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
     * [Perfect Number](maths/special_numbers/perfect_number.py)
     * [Polygonal Numbers](maths/special_numbers/polygonal_numbers.py)
@@ -843,8 +856,10 @@
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
+  * [Dinic](networking_flow/dinic.py)
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
   * [Minimum Cut](networking_flow/minimum_cut.py)
+  * [Push Relabel](networking_flow/push_relabel.py)
 
 ## Neural Network
   * Activation Functions
@@ -1244,6 +1259,7 @@
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
 
 ## Scheduling
+  * [Cpuschedulingalgorithms](scheduling/cpuschedulingalgorithms.py)
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
   * [Job Sequence With Deadline](scheduling/job_sequence_with_deadline.py)
@@ -1337,6 +1353,7 @@
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
   * [Count Vowels](strings/count_vowels.py)
+  * [Count Vowels Consonants](strings/count_vowels_consonants.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Damerau Levenshtein Distance](strings/damerau_levenshtein_distance.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
@@ -1372,6 +1389,7 @@
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
+  * [Suffix Automaton](strings/suffix_automaton.py)
   * [Text Justification](strings/text_justification.py)
   * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
@@ -1381,6 +1399,9 @@
   * [Word Occurrence](strings/word_occurrence.py)
   * [Word Patterns](strings/word_patterns.py)
   * [Z Function](strings/z_function.py)
+
+## Tests
+  * [Test Sorts](tests/test_sorts.py)
 
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
