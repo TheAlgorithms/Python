@@ -23,8 +23,10 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     >>> topological_sort(graph_with_cycle)
     """
 
+    from collections import deque
+
     indegree = [0] * len(graph)
-    queue = []
+    queue = deque()
     topo_order = []
     processed_vertices_count = 0
 
@@ -40,7 +42,7 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
 
     # Perform BFS
     while queue:
-        vertex = queue.pop(0)
+        vertex = queue.popleft()
         processed_vertices_count += 1
         topo_order.append(vertex)
 
