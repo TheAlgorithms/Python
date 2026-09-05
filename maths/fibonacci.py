@@ -91,15 +91,15 @@ def fib_iterative(n: int) -> list[int]:
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
+    >>> fib_recursive(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_recursive(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_recursive(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_recursive(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_recursive(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
@@ -119,7 +119,7 @@ def fib_recursive(n: int) -> list[int]:
         >>> fib_recursive_term(-1)
         Traceback (most recent call last):
             ...
-        Exception: n is negative
+        ValueError: n is negative
         """
         if i < 0:
             raise ValueError("n is negative")
@@ -135,15 +135,15 @@ def fib_recursive(n: int) -> list[int]:
 def fib_recursive_cached(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
+    >>> fib_recursive_cached(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_recursive_cached(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_recursive_cached(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_recursive_cached(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_recursive_cached(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
@@ -176,7 +176,7 @@ def fib_memoization(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5]
     >>> fib_memoization(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_memoization(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
