@@ -1255,6 +1255,7 @@
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
 
 ## Scheduling
+  * [Cpuschedulingalgorithms](scheduling/cpuschedulingalgorithms.py)
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
   * [Job Sequence With Deadline](scheduling/job_sequence_with_deadline.py)
