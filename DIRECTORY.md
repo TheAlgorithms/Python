@@ -75,6 +75,7 @@
 
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
+  * [Elementary Cellular Automaton](cellular_automata/elementary_cellular_automaton.py)
   * [Game Of Life](cellular_automata/game_of_life.py)
   * [Langtons Ant](cellular_automata/langtons_ant.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
@@ -294,6 +295,7 @@
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
+    * [Kth Next Greater Element](data_structures/stacks/kth_next_greater_element.py)
     * [Largest Rectangle Histogram](data_structures/stacks/largest_rectangle_histogram.py)
     * [Lexicographical Numbers](data_structures/stacks/lexicographical_numbers.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
@@ -426,6 +428,8 @@
   * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
   * [Electrical Impedance](electronics/electrical_impedance.py)
+  * [Full Wave Rectifier](electronics/full_wave_rectifier.py)
+  * [Half Wave Rectifier](electronics/half_wave_rectifier.py)
   * [Ic 555 Timer](electronics/ic_555_timer.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
@@ -766,6 +770,7 @@
   * [Quadratic Equations Complex Numbers](maths/quadratic_equations_complex_numbers.py)
   * [Radians](maths/radians.py)
   * [Radix2 Fft](maths/radix2_fft.py)
+  * [Recursive Digit Sum](maths/recursive_digit_sum.py)
   * [Remove Digit](maths/remove_digit.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
@@ -1388,6 +1393,9 @@
   * [Word Occurrence](strings/word_occurrence.py)
   * [Word Patterns](strings/word_patterns.py)
   * [Z Function](strings/z_function.py)
+
+## Tests
+  * [Test Sorts](tests/test_sorts.py)
 
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
