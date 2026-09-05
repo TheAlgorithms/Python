@@ -19,6 +19,7 @@ def cyclic_sort(nums: list[int]) -> list[int]:
 
     :param nums: List of n integers from 1 to n to be sorted.
     :return: The same list sorted in ascending order.
+    :raises ValueError: If nums contains non-integer or negative values.
 
     Time complexity: O(n), where n is the number of integers in the list.
 
@@ -27,7 +28,14 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
+    >>> cyclic_sort([3, 5, -2, 1, 4])
+    Traceback (most recent call last):
+        ...
+    ValueError: All values must be positive integers
     """
+
+    if any(not isinstance(x, int) or x <= 0 for x in nums):
+        raise ValueError("All values must be positive integers")
 
     # Perform cyclic sort
     index = 0
