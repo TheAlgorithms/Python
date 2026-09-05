@@ -9,25 +9,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get update && sudo apt-get install -y libhdf5-dev
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
           cache-dependency-glob: uv.lock
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
-          python-version: 3.14
+          python-version-file: .python-version
           allow-prereleases: true
       - run: uv sync --group=test
       - name: Run tests
-        # TODO: #8818 Re-enable quantum tests
+        # opencv-python is gated out on 3.14t (no cp314t wheel yet), so skip the
+        # files that import cv2. Pure-Python algorithms in computer_vision/ and
+        # data_compression/ still run; digital_image_processing/ is almost entirely
+        # cv2-based so it is skipped as a tree. Re-enable when a cp314t wheel ships.
+        # --ignore-gil-enabled: some compiled deps (sklearn, xgboost, ...) don't
+        # yet ship the Py_mod_gil slot, so importing them re-enables the GIL under
+        # 3.14t. That's an upstream-wheel gap, not our code; the flag lets the suite
+        # run anyway and pytest-run-parallel still reports which tests are not
+        # thread-safe. Drop the flag once the scientific stack ships free-threaded wheels.
+        # qiskit is likewise gated out of the 3.14t deps (Qiskit/qiskit#16893), so the
+        # single file that imports it (quantum/q_fourier_transform.py) is skipped too.
         run: uv run --with=pytest-run-parallel pytest
-          --iterations=8 --parallel-threads=auto
+          --iterations=8 --parallel-threads=auto --ignore-gil-enabled
           --ignore=computer_vision/cnn_classification.py
+          --ignore=computer_vision/flip_augmentation.py
+          --ignore=computer_vision/harris_corner.py
+          --ignore=computer_vision/mosaic_augmentation.py
+          --ignore=data_compression/peak_signal_to_noise_ratio.py
+          --ignore=digital_image_processing/
           --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
-          --ignore=machine_learning/local_weighted_learning/local_weighted_learning.py
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
