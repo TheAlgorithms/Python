@@ -1,4 +1,4 @@
-def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
+def search(list_data: list[int], key: int, left: int = 0, right: int = 0) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
