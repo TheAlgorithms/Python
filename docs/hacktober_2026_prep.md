@@ -206,7 +206,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 194. [x] #14617 closed by close_pull_requests_with_failing_tests.sh
 195. [x] #14616 closed by close_pull_requests_with_failing_tests.sh
 196. [ ] #14613 enhancement, awaiting reviews
-197. [ ] #14611 awaiting reviews
+197. [x] #14611 closed
 198. [ ] #14610 enhancement, awaiting reviews
 199. [ ] #14609 enhancement, awaiting reviews
 200. [ ] #14608 enhancement, awaiting reviews
@@ -397,7 +397,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 385. [ ] #13938 no labels
 386. [x] #13935 closed by close_pull_requests_with_failing_tests.sh
 387. [ ] #13934 no labels
-388. [ ] #13924 awaiting reviews
+388. [x] #13924 closed
 389. [x] #13916 closed by close_pull_requests_with_failing_tests.sh
 390. [ ] #13915 enhancement, awaiting reviews
 391. [x] #13912 closed by close_pull_requests_with_require_descriptive_names.sh
@@ -611,7 +611,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 599. [ ] #13239 awaiting reviews
 600. [ ] #13236 enhancement, awaiting reviews
 601. [ ] #13234 awaiting reviews
-602. [ ] #13231 awaiting reviews
+602. [x] #13231 merged
 603. [ ] #13221 awaiting reviews
 604. [ ] #13219 awaiting reviews
 605. [ ] #13217 enhancement, awaiting reviews
@@ -625,7 +625,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 613. [ ] #13183 awaiting reviews
 614. [ ] #13178 awaiting reviews, documentation
 615. [ ] #13176 awaiting reviews
-616. [ ] #13172 awaiting reviews
+616. [x] #13172 closed
 617. [ ] #13164 awaiting reviews
 618. [ ] #13162 no labels
 619. [ ] #13157 awaiting reviews
@@ -642,7 +642,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 630. [ ] #13129 awaiting reviews
 631. [ ] #13128 enhancement, awaiting reviews
 632. [ ] #13121 no labels
-633. [ ] #13119 awaiting reviews
+633. [x] #13119 closed
 634. [ ] #13118 enhancement, awaiting reviews
 635. [ ] #13114 awaiting reviews
 636. [ ] #13113 awaiting reviews
@@ -771,8 +771,8 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 759. [ ] #12188 awaiting reviews
 760. [ ] #12186 awaiting reviews
 761. [ ] #12171 awaiting reviews
-762. [ ] #12141 awaiting reviews
-763. [ ] #12140 awaiting reviews
+762. [x] #12141 merged
+763. [x] #12140 closed
 764. [ ] #12133 awaiting reviews
 765. [ ] #12129 no labels
 766. [ ] #12125 enhancement, awaiting reviews
@@ -850,7 +850,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 838. [ ] #11589 enhancement, awaiting reviews
 839. [ ] #11581 awaiting reviews
 840. [ ] #11580 awaiting reviews
-841. [ ] #11574 no labels
+841. [x] #11574 closed
 842. [ ] #11567 awaiting reviews
 843. [ ] #11566 no labels
 844. [ ] #11556 awaiting reviews
@@ -915,7 +915,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 903. [ ] #9917 awaiting reviews
 904. [ ] #9914 awaiting reviews
 905. [ ] #9902 awaiting reviews
-906. [ ] #9896 awaiting reviews
+906. [x] #9896 merged
 907. [ ] #9880 awaiting reviews
 908. [ ] #9688 awaiting reviews
 909. [ ] #9686 awaiting reviews
@@ -927,7 +927,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 915. [ ] #9535 awaiting reviews
 916. [ ] #9416 awaiting reviews
 917. [ ] #9414 awaiting reviews
-918. [ ] #9388 awaiting reviews
+918. [x] #9388 merged
 
 ## Closed totals
 
@@ -1071,7 +1071,7 @@ conversions:
 21. [ ] #14879
 
 cpu_scheduling_algorithms:
-1. [ ] #12140
+1. [x] #12140 closed
 
 data_compression:
 1. [ ] #14555
@@ -1195,7 +1195,7 @@ fractals:
 1. [ ] #12091
 
 full_wave_rectifier:
-1. [ ] #9896
+1. [x] #9896 merged
 
 genetic_algorithm:
 1. [ ] #9577
@@ -1264,7 +1264,7 @@ greedy_methods:
 5. [ ] #14436
 
 half_wave_rectifier:
-1. [ ] #9388
+1. [x] #9388 merged
 
 hashes:
 1. [ ] #10017
@@ -1280,10 +1280,10 @@ hashes:
 11. [ ] #14814
 
 haversine_calculation:
-1. [ ] #13119
+1. [x] #13119 closed
 
 height_tree:
-1. [ ] #13172
+1. [x] #13172 closed
 
 knapsack:
 1. [ ] #10180
@@ -1496,10 +1496,10 @@ neural_network:
 8. [ ] #13718
 
 operating_system:
-1. [ ] #11574
+1. [x] #11574 closed
 
 os_py:
-1. [ ] #13924
+1. [x] #13924 closed
 
 other:
 1. [ ] #11882
@@ -1563,7 +1563,7 @@ quantum:
 3. [ ] #13033
 
 recursions:
-1. [ ] #12141
+1. [x] #12141 merged
 
 scheduling:
 1. [ ] #13896
@@ -1720,10 +1720,10 @@ strings:
 45. [ ] #15053
 
 tests:
-1. [ ] #13231
+1. [x] #13231 merged
 
 triage:
-1. [ ] #14611
+1. [x] #14611 closed
 
 web_programming:
 1. [ ] #11193
@@ -1842,31 +1842,31 @@ control_algorithms:
 1. [ ] #12648
 
 cpu_scheduling_algorithms:
-1. [ ] #12140
+1. [x] #12140 closed
 
 full_wave_rectifier:
-1. [ ] #9896
+1. [x] #9896 merged
 
 half_wave_rectifier:
-1. [ ] #9388
+1. [x] #9388 merged
 
 haversine_calculation:
-1. [ ] #13119
+1. [x] #13119 closed
 
 height_tree:
-1. [ ] #13172
+1. [x] #13172 closed
 
 operating_system:
-1. [ ] #11574
+1. [x] #11574 closed
 
 os_py:
-1. [ ] #13924
+1. [x] #13924 closed
 
 recursions:
-1. [ ] #12141
+1. [x] #12141 merged
 
 tests:
-1. [ ] #13231
+1. [x] #13231 merged
 
 triage:
-1. [ ] #14611
+1. [x] #14611 closed
