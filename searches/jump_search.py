@@ -33,7 +33,12 @@ def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
     10
     >>> jump_search(["aa", "bb", "cc", "dd", "ee", "ff"], "ee")
     4
+    >>> jump_search([], 5)
+    -1
     """
+
+    if not arr:
+        return -1
 
     arr_size = len(arr)
     block_size = int(math.sqrt(arr_size))
