@@ -5,7 +5,7 @@ after providing the drug name and zipcode.
 
 """
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.wellrx.com/prescriptions/{}/{}/?freshSearch=true"
@@ -40,7 +40,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
             return None
 
         request_url = BASE_URL.format(drug_name, zip_code)
-        response = httpx.get(request_url, timeout=10).raise_for_status()
+        response = httpx2.get(request_url, timeout=10).raise_for_status()
 
         # Scrape the data using bs4
         soup = BeautifulSoup(response.text, "html.parser")
@@ -67,7 +67,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
 
         return pharmacy_price_list
 
-    except httpx.HTTPError, ValueError:
+    except httpx2.HTTPError, ValueError:
         return None
 
 

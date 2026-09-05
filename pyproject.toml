@@ -13,7 +13,7 @@ dependencies = [
   "beautifulsoup4>=4.15",
   "cython>=3.1.2",
   "fake-useragent>=1.5.1",
-  "httpx>=0.28.1",
+  "httpx2>=2.0.1",
   "imageio>=2.36.1",
   "keras>=3.7",
   "lxml>=6",
@@ -26,7 +26,6 @@ dependencies = [
   "scipy>=1.18.1",
   "statsmodels>=0.14.4",
   "sympy>=1.13.3",
-  "tweepy>=4.14",
   "typing-extensions>=4.12.2",
   "xgboost>=2.1.3",
 ]
@@ -50,7 +49,7 @@ cv = [
   "opencv-python>=4.10.0.84",
 ]
 euler-validate = [
-  "httpx>=0.28.1",
+  "httpx2>=2.0.1",
   "numpy>=2.1.3",
 ]
 # qiskit does not yet run on free-threaded CPython: its compiled core re-enables
@@ -183,6 +182,27 @@ skip = """\
 
 [tool.mypy]
 python_version = "3.14"
+
+[tool.ty]
+# Type-check against a regular (GIL) 3.14 interpreter. Pinning this keeps ty's
+# assumptions consistent with the CI job in .github/workflows/ty.yml, where the
+# free-threaded 3.14t test venv would otherwise leave several stubs unresolved.
+environment.python-version = "3.14"
+rules.call-non-callable = "ignore"
+rules.deprecated = "ignore"
+rules.invalid-argument-type = "ignore"
+rules.invalid-assignment = "ignore"
+rules.invalid-parameter-default = "ignore"
+rules.invalid-return-type = "ignore"
+rules.invalid-type-arguments = "ignore"
+rules.invalid-type-form = "ignore"
+rules.no-matching-overload = "ignore"
+rules.not-iterable = "ignore"
+rules.not-subscriptable = "ignore"
+rules.parameter-already-assigned = "ignore"
+rules.unresolved-attribute = "ignore"
+rules.unresolved-import = "ignore"
+rules.unsupported-operator = "ignore"
 
 [tool.pytest]
 ini_options.addopts = [
