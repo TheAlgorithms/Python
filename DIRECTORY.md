@@ -1351,6 +1351,7 @@
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
   * [Count Vowels](strings/count_vowels.py)
+  * [Count Vowels Consonants](strings/count_vowels_consonants.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Damerau Levenshtein Distance](strings/damerau_levenshtein_distance.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
