@@ -19,6 +19,8 @@ def cyclic_sort(nums: list[int]) -> list[int]:
 
     :param nums: List of n integers from 1 to n to be sorted.
     :return: The same list sorted in ascending order.
+    :raises ValueError: If input contains duplicate numbers.
+    :raises ValueError: If input contains numbers outside range 1 to n.
 
     Time complexity: O(n), where n is the number of integers in the list.
 
@@ -27,7 +29,37 @@ def cyclic_sort(nums: list[int]) -> list[int]:
     []
     >>> cyclic_sort([3, 5, 2, 1, 4])
     [1, 2, 3, 4, 5]
+    >>> cyclic_sort([1])
+    [1]
+    >>> cyclic_sort([2, 1])
+    [1, 2]
+
+    >>> cyclic_sort([7, 3, 2, 3, 54, 5, 4])
+    Traceback (most recent call last):
+        ...
+    ValueError: All numbers must be unique, got [7, 3, 2, 3, 54, 5, 4]
+
+    >>> cyclic_sort([1, 2, 5])
+    Traceback (most recent call last):
+        ...
+    ValueError: All numbers must be in range 1 to 3, got 5
     """
+    n = len(nums)
+
+    # Empty list is already sorted
+    if n == 0:
+        return nums
+
+    # Check for duplicates
+    if len(set(nums)) != n:
+        msg = f"All numbers must be unique, got {nums}"
+        raise ValueError(msg)
+
+    # Check if all numbers are in range 1 to n
+    for num in nums:
+        if num < 1 or num > n:
+            msg = f"All numbers must be in range 1 to {n}, got {num}"
+            raise ValueError(msg)
 
     # Perform cyclic sort
     index = 0
