@@ -195,7 +195,7 @@ def main() -> None:
                     print(f"Reached 6174 in {iterations} iteration(s)!")
         else:
             print("Number must be between 0 and 9999")
-    except (ValueError, EOFError):
+    except ValueError, EOFError:
         print("Invalid input or no input provided")
 
 
