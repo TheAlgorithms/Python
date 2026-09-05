@@ -259,6 +259,7 @@ def post_order_iter(node: TreeNode) -> None:
 
 
 def prompt(s: str = "", width=50, char="*") -> str:
+    """Return a prompt string padded to the specified width."""
     if not s:
         return "\n" + width * char
     left, extra = divmod(width - len(s) - 2, 2)
