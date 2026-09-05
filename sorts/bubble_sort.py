@@ -2,11 +2,22 @@ from typing import Any
 
 
 def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
-    """Pure implementation of bubble sort algorithm in Python
+    """Pure implementation of the bubble sort algorithm in Python (iterative).
+
+    Bubble sort works by repeatedly stepping through the collection,
+    comparing each pair of adjacent elements and swapping them if they
+    are in the wrong order. This process repeats, with each full pass
+    "bubbling" the next-largest unsorted element into its correct
+    position at the end of the collection, until a full pass completes
+    with no swaps, at which point the collection is sorted.
+
+    Time complexity: O(n) best case (already sorted, thanks to the
+    early-exit optimization), O(n^2) average and worst case.
+    Space complexity: O(1) auxiliary (sorts in place).
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
-    :return: the same collection ordered by ascending
+    :return: the same collection ordered in ascending order
 
     Examples:
     >>> bubble_sort_iterative([0, 5, 2, 3, 2])
@@ -17,6 +28,12 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     [-45, -5, -2]
     >>> bubble_sort_iterative([-23, 0, 6, -4, 34])
     [-23, -4, 0, 6, 34]
+    >>> bubble_sort_iterative([1, 2, 3, 4])
+    [1, 2, 3, 4]
+    >>> bubble_sort_iterative([3, 3, 3, 3])
+    [3, 3, 3, 3]
+    >>> bubble_sort_iterative([56])
+    [56]
     >>> bubble_sort_iterative([0, 5, 2, 3, 2]) == sorted([0, 5, 2, 3, 2])
     True
     >>> bubble_sort_iterative([]) == sorted([])
@@ -55,7 +72,19 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
 
 
 def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
-    """It is similar iterative bubble sort but recursive.
+    """Pure implementation of the bubble sort algorithm in Python (recursive).
+
+    Functionally identical to the iterative version: each call makes a
+    single pass through the collection, comparing adjacent elements and
+    swapping any pair that is out of order. If any swap occurred during
+    the pass, the function calls itself again on the (partially sorted)
+    collection; once a pass completes with no swaps, the collection is
+    sorted and the recursion stops.
+
+    Time complexity: O(n) best case (already sorted), O(n^2) average and
+    worst case.
+    Space complexity: O(1) auxiliary for the sort itself (sorts in place),
+    though the recursion adds O(n) call-stack frames in the worst case.
 
     :param collection: mutable ordered sequence of elements
     :return: the same list in ascending order
@@ -63,7 +92,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     Examples:
     >>> bubble_sort_recursive([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
-    >>> bubble_sort_iterative([])
+    >>> bubble_sort_recursive([])
     []
     >>> bubble_sort_recursive([-2, -45, -5])
     [-45, -5, -2]
