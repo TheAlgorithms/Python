@@ -1,13 +1,13 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 from typing import Literal
 
-import httpx
+import httpx2
 
 valid_terms = set(
     """approved_at_utc approved_by author_flair_background_color
@@ -38,10 +38,10 @@ def get_subreddit_data(
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
         msg = f"Invalid search term: {invalid_search_terms}"
         raise ValueError(msg)
-    # raise_for_status() already raises httpx.HTTPStatusError for any 4xx/5xx
+    # raise_for_status() already raises httpx2.HTTPStatusError for any 4xx/5xx
     # response (including 429), so no extra status check is needed here.
     data = (
-        httpx.get(
+        httpx2.get(
             f"https://www.reddit.com/r/{subreddit}/{age}.json?limit={limit}",
             headers={"User-agent": "A random string"},
             timeout=10,
