@@ -34,7 +34,7 @@ class Node:
 def page_rank(nodes, limit=3, d=0.85):
     ranks = {}
     for node in nodes:
-        ranks[node.name] = 1
+        ranks[node.name] = 1 / len(nodes)
 
     outbounds = {}
     for node in nodes:
