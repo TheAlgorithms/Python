@@ -800,6 +800,8 @@
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
+    * [Kaprekar Constant](maths/special_numbers/kaprekar_constant.py)
+    * [Kaprekar Number](maths/special_numbers/kaprekar_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
     * [Perfect Number](maths/special_numbers/perfect_number.py)
     * [Polygonal Numbers](maths/special_numbers/polygonal_numbers.py)
