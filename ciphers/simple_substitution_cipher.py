@@ -22,6 +22,16 @@ def main() -> None:
 
 
 def check_valid_key(key: str) -> None:
+    """
+    Check if the key is valid (contains all 26 letters of the alphabet exactly once).
+    Exits the program if the key is invalid.
+
+    >>> check_valid_key('LFWOAYUISVKMNXPBDCRJTQEGHZ')
+    >>> check_valid_key('INVALIDKEY')
+    Traceback (most recent call last):
+        ...
+    SystemExit: Error in the key or symbol set.
+    """
     key_list = list(key)
     letters_list = list(LETTERS)
     key_list.sort()
@@ -69,6 +79,13 @@ def translate_message(key: str, message: str, mode: str) -> str:
 
 
 def get_random_key() -> str:
+    """
+    Generate a random substitution cipher key.
+
+    >>> random.seed(0)
+    >>> get_random_key()
+    'OAXSGFHKWUECVDRLTJZPQIBNYM'
+    """
     key = list(LETTERS)
     random.shuffle(key)
     return "".join(key)
