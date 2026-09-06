@@ -22,6 +22,7 @@ def wrapper(y):
     """
     return list(y)
 
+
 if __name__ == "__main__":
     import doctest
 
