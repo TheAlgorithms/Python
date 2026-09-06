@@ -7,9 +7,11 @@ clear, kind, tested, type-hinted, mergeable contribution.
 
 ## How to run this skill
 
-Make sure that the local `master` branch is synced with `upstream/master` and
-then create a new branch for the pull request.  Pull request changes must not
-be on the `master` branch.
+Make sure that the local `master` branch is synced with `upstream/master` before
+creating a new pull request.
+
+Create a new clearly named branch for the pull request.  Pull request changes must
+not be made or submitted on the `master` branch.
 
 Never modify the `uv.lock` file because the `algorithms-keeper` bot will close
 the pull request as invalid.  Even a repo maintainer cannot undo this.
