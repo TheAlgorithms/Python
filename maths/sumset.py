@@ -10,9 +10,9 @@ Source:
 
 def sumset(set_a: set, set_b: set) -> set:
     """
-    :param first set: a set of numbers
-    :param second set: a set of numbers
-    :return: the nth number in Sylvester's sequence
+    :param set_a: a set of numbers
+    :param set_b: a set of numbers
+    :return: the sumset of set_a and set_b (all pairwise sums a + b)
 
     >>> sumset({1, 2, 3}, {4, 5, 6})
     {5, 6, 7, 8, 9}
