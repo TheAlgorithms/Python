@@ -1328,6 +1328,7 @@
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
   * [Exponential Search](searches/exponential_search.py)
   * [Fibonacci Search](searches/fibonacci_search.py)
+  * [Floyds Cycle Finding](searches/floyds_cycle_finding.py)
   * [Hill Climbing](searches/hill_climbing.py)
   * [Interpolation Search](searches/interpolation_search.py)
   * [Jump Search](searches/jump_search.py)
