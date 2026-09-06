@@ -87,7 +87,7 @@ def solution(nth: int = 10001) -> int:
 
     try:
         nth = int(nth)
-    except (TypeError, ValueError):
+    except TypeError, ValueError:
         raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
         raise ValueError("Parameter nth must be greater than or equal to one.")

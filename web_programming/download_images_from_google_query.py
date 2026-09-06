@@ -2,7 +2,7 @@
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
@@ -12,7 +12,7 @@ import re
 import sys
 import urllib.request
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 headers = {
@@ -47,7 +47,7 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
         "ijn": "0",
     }
 
-    html = httpx.get(
+    html = httpx2.get(
         "https://www.google.com/search", params=params, headers=headers, timeout=10
     )
     soup = BeautifulSoup(html.text, "html.parser")
@@ -88,8 +88,11 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
         opener.addheaders = [
             (
                 "User-Agent",
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                " (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
+                (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                    " (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36"
+                    " Edge/18.19582"
+                ),
             )
         ]
         urllib.request.install_opener(opener)
