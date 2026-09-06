@@ -1323,6 +1323,7 @@
 
 ## [Searches](searches)
   * [Binary Search](searches/binary_search.py)
+  * [Binary Search Recursion](searches/binary_search_recursion.py)
   * [Binary Tree Traversal](searches/binary_tree_traversal.py)
   * [Double Linear Search](searches/double_linear_search.py)
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
