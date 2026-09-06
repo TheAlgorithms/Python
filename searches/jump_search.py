@@ -39,7 +39,6 @@ def jump_search[T: Comparable](arr: Sequence[T], item: T) -> int:
     if not arr:
         return -1
     arr_size = len(arr)
-
     block_size = int(math.sqrt(arr_size))
 
     prev = 0
