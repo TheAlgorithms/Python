@@ -67,8 +67,6 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
         """
         if visited[node] == -1:
             visited[node] = color
-            if node not in graph:
-                return True
             for neighbor in graph[node]:
                 if not depth_first_search(neighbor, 1 - color):
                     return False
@@ -140,8 +138,6 @@ def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
             visited[node] = 0
             while queue:
                 curr_node = queue.popleft()
-                if curr_node not in graph:
-                    continue
                 for neighbor in graph[curr_node]:
                     if visited[neighbor] == -1:
                         visited[neighbor] = 1 - visited[curr_node]
