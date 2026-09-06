@@ -79,7 +79,7 @@ class Dataloader:
         return paired_data
 
     def get_inout_dim(self) -> tuple[int, int]:
-        train_data, train_labels, test_data, test_labels = self.get_train_test_data()
+        train_data, train_labels, _test_data, _test_labels = self.get_train_test_data()
         in_dim = train_data[0].shape[0]
         out_dim = len(train_labels)
         return in_dim, out_dim
