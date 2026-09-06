@@ -53,7 +53,14 @@ def print_path(old_path: str, new_path: str) -> str:
     old_parts = old_path.split(os.sep)
     for i, new_part in enumerate(new_path.split(os.sep)):
         if (i + 1 > len(old_parts) or old_parts[i] != new_part) and new_part:
-            print(f"{md_prefix(i)} {new_part.replace('_', ' ').title()}")
+            title = new_part.replace("_", " ").title()
+            if i == 0:
+                # Link each top-level section heading to its algorithm
+                # directory, so readers can click the title and jump straight
+                # to the folder (no leading pound sign, unlike the ToC links).
+                print(f"{md_prefix(i)} [{title}]({new_part})")
+            else:
+                print(f"{md_prefix(i)} {title}")
     return new_path
 
 
@@ -69,8 +76,10 @@ def print_directory_md(top_dir: str = ".") -> None:
         )
     )
     print("## Table of Contents")
-    for section in sections:
-        print(f"* [{section}](#{md_anchor(section)})")
+    for index, section in enumerate(sections, start=1):
+        # Numbered list so the final number is the total count of algorithm
+        # folders, visible at a glance.
+        print(f"{index}. [{section}](#{md_anchor(section)})")
 
     old_path = ""
     for filepath in filepaths:
