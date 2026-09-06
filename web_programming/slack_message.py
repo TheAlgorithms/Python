@@ -3,16 +3,16 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 
 def send_slack_message(message_body: str, slack_url: str) -> None:
     headers = {"Content-Type": "application/json"}
-    response = httpx.post(
+    response = httpx2.post(
         slack_url, json={"text": message_body}, headers=headers, timeout=10
     )
     if response.status_code != 200:

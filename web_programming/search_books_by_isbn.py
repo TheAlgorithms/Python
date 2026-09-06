@@ -7,13 +7,13 @@ ISBN: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 from json import JSONDecodeError
 
-import httpx
+import httpx2
 
 
 def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
@@ -32,7 +32,7 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     if new_olid.count("/") != 1:
         msg = f"{olid} is not a valid Open Library olid"
         raise ValueError(msg)
-    return httpx.get(
+    return httpx2.get(
         f"https://openlibrary.org/{new_olid}.json", timeout=10, follow_redirects=True
     ).json()
 
