@@ -1872,3 +1872,189 @@ tests:
 
 triage:
 1. [x] #14611 closed
+
+## Open issues
+
+Snapshot taken: **2026-09-06** -- **144** open issues (**21** `bug`, **82** `enhancement`, **23** `awaiting triage`, **2** `help wanted`; issues can carry more than one label).
+
+Same notation as the PR tracker: `<index>. [ ] #<id> <labels>`, checked off (`[x]`) once the issue is closed or resolved. See **[Triage recommendations](#triage-recommendations)** below for a first pass at which of these we can close.
+
+1. [ ] #15199 no labels
+2. [ ] #15187 no labels
+3. [ ] #15085 bug
+4. [ ] #15081 no labels
+5. [ ] #15075 bug
+6. [ ] #15071 bug
+7. [ ] #15002 bug
+8. [ ] #14998 awaiting triage
+9. [ ] #14971 awaiting triage
+10. [ ] #14970 enhancement
+11. [ ] #14950 bug
+12. [ ] #14898 bug
+13. [ ] #14887 no labels
+14. [ ] #14886 no labels
+15. [ ] #14885 no labels
+16. [ ] #14881 awaiting triage
+17. [ ] #14866 awaiting triage
+18. [ ] #14844 no labels
+19. [ ] #14834 no labels
+20. [ ] #14817 no labels
+21. [ ] #14813 no labels
+22. [ ] #14773 awaiting triage
+23. [ ] #14675 no labels
+24. [ ] #14649 bug
+25. [ ] #14606 enhancement
+26. [ ] #14593 enhancement
+27. [ ] #14592 enhancement
+28. [ ] #14591 enhancement
+29. [ ] #14584 bug
+30. [ ] #14577 enhancement
+31. [ ] #14500 enhancement
+32. [ ] #14479 no labels
+33. [ ] #14464 enhancement
+34. [ ] #14425 awaiting triage
+35. [ ] #14084 enhancement
+36. [ ] #13999 enhancement
+37. [ ] #13919 enhancement
+38. [ ] #13918 enhancement
+39. [ ] #13917 enhancement
+40. [ ] #13905 enhancement
+41. [ ] #13904 awaiting triage
+42. [ ] #13861 enhancement
+43. [ ] #13845 enhancement
+44. [ ] #13844 enhancement
+45. [ ] #13840 bug
+46. [ ] #13760 awaiting triage
+47. [ ] #13662 enhancement
+48. [ ] #13656 enhancement
+49. [ ] #13643 enhancement
+50. [ ] #13612 enhancement
+51. [ ] #13569 enhancement
+52. [ ] #13546 enhancement
+53. [ ] #13537 enhancement
+54. [ ] #13516 enhancement
+55. [ ] #13513 enhancement
+56. [ ] #13509 bug
+57. [ ] #13508 enhancement
+58. [ ] #13501 awaiting triage
+59. [ ] #13499 enhancement
+60. [ ] #13488 enhancement
+61. [ ] #13445 enhancement
+62. [ ] #13432 enhancement
+63. [ ] #13400 enhancement
+64. [ ] #13396 enhancement
+65. [ ] #13379 enhancement
+66. [ ] #13372 enhancement
+67. [ ] #13358 enhancement
+68. [ ] #13326 enhancement
+69. [ ] #13311 enhancement
+70. [ ] #13304 awaiting triage
+71. [ ] #13235 enhancement
+72. [ ] #13226 bug
+73. [ ] #13205 enhancement
+74. [ ] #13203 enhancement
+75. [ ] #13171 enhancement
+76. [ ] #13116 enhancement
+77. [ ] #13031 awaiting triage
+78. [ ] #13029 enhancement
+79. [ ] #13010 enhancement
+80. [ ] #13008 awaiting triage
+81. [ ] #12987 no labels
+82. [ ] #12970 enhancement
+83. [ ] #12949 bug
+84. [ ] #12943 awaiting triage
+85. [ ] #12939 enhancement
+86. [ ] #12867 no labels
+87. [ ] #12826 enhancement
+88. [ ] #12775 awaiting triage
+89. [ ] #12714 no labels
+90. [ ] #12622 enhancement
+91. [ ] #12569 enhancement
+92. [ ] #12513 awaiting triage
+93. [ ] #12496 enhancement
+94. [ ] #12495 awaiting triage
+95. [ ] #12322 enhancement
+96. [ ] #12321 enhancement
+97. [ ] #12318 enhancement
+98. [ ] #12306 enhancement
+99. [ ] #12233 bug
+100. [ ] #12218 enhancement
+101. [ ] #12192 bug
+102. [ ] #12142 enhancement
+103. [ ] #12128 enhancement
+104. [ ] #12127 awaiting triage
+105. [ ] #12124 enhancement
+106. [ ] #12108 enhancement
+107. [ ] #12107 enhancement
+108. [ ] #12069 enhancement
+109. [ ] #12064 enhancement
+110. [ ] #12043 enhancement
+111. [ ] #11972 enhancement
+112. [ ] #11947 enhancement
+113. [ ] #11938 enhancement
+114. [ ] #11894 awaiting triage
+115. [ ] #11871 enhancement
+116. [ ] #11844 enhancement
+117. [ ] #11841 awaiting triage
+118. [ ] #11837 enhancement
+119. [ ] #11812 bug
+120. [ ] #11756 enhancement
+121. [ ] #11578 enhancement
+122. [ ] #11534 awaiting triage
+123. [ ] #11517 enhancement
+124. [ ] #11316 bug
+125. [ ] #11308 bug
+126. [ ] #11225 awaiting triage
+127. [ ] #10941 bug
+128. [ ] #10837 enhancement
+129. [ ] #10713 enhancement
+130. [ ] #10703 enhancement
+131. [ ] #10634 bug
+132. [ ] #10563 bug
+133. [ ] #8990 awaiting triage
+134. [ ] #8847 enhancement
+135. [ ] #8818 bug
+136. [ ] #8785 awaiting triage
+137. [ ] #8780 enhancement
+138. [ ] #8083 enhancement
+139. [ ] #8070 enhancement
+140. [ ] #8067 enhancement, help wanted
+141. [ ] #7968 enhancement
+142. [ ] #7854 no labels
+143. [ ] #6252 no labels
+144. [ ] #6216 help wanted
+
+### Triage recommendations
+
+A first pass at *which open issues we can close*, ordered by confidence. Grouped so a maintainer can act on a whole bucket at once. I verified each claim against the current `master` tree before listing it; where a claim depends on something I can't see (e.g. a rebuilt container), it's marked **verify**.
+
+**A. Close now — not a real issue / spam**
+
+- **#15002 "Sin gravedad"** — spam. Body is an advertising link to an adult cam site, reports "Python 5.0", and attaches a video. No algorithmic content. Close and, if possible, report the author.
+
+**B. Close now — obsolete (target no longer in the tree)**
+
+- **#13226 "Inconsistent behavior for missing values in `coordinate_compression.py`"** — the file `data_structures/coordinate_compression.py` no longer exists on `master`; the module the bug is about has been removed. Nothing left to fix.
+
+**C. Close as fixed/duplicate once the linked PR merges**
+
+- **#15085 "[BUG] `jump_search` raises `IndexError` for empty list input"** — still reproduces on `master`, but a fix is already in the review queue: **#14807** (canonical `jump_search([]) -> -1` guard + doctest, which I've approved) with **#15101** as a duplicate of it. Close #15085 as fixed the moment #14807 merges; no separate fix PR is needed.
+
+**D. Stale feature requests with no implementation ("please add algorithm X", ≥1 year, no PR)**
+
+These are standing "it would be nice to have …" requests that never produced a PR. They're not bugs and nothing in the tree depends on them; leaving them open makes the issue list look busier than the actual work. Recommend closing with a friendly "we'd still welcome a PR for this — closing to keep the tracker actionable; comment and we'll reopen" note. Candidates (all `enhancement`, 600–1500 days old, zero linked PR):
+
+- #8067 XGBoost classification/regression · #8083 caching algorithms · #11517 sliding window · #11578 genetic algorithm for function optimization · #11837 LZ78 compression · #11844 transposition cipher · #11938 travelling salesman · #11947 wildcard matching with FFT · #11972 Grover's search (Qiskit) · #12043 Edmonds' Blossom · #12064 elliptic-curve crypto · #12069 LSTM · #12107 hollow-diamond pattern · #12108 ridge regression · #12124 adaptive/"stalin" merge sort · #12128 TSP in graphs · #12218 set-matrix-zero · #12318 Shor's algorithm · #12321 ART1 net · #12322 RBFNN · #12496 "addition of AI algorithms" · #12569 collision detection · #12622 PID/ADRC · #12939 transitive closure
+
+**E. Likely already resolved — verify then close**
+
+- **#10941 "Container build failed in codespaces"** and **#11812 "DevContainer setup fails"** — a working `.devcontainer/` (Dockerfile + `devcontainer.json` + `post_install`) is present and current on `master`; both reports predate it. **Verify** a fresh Codespace build is green, then close.
+- **#11841 "computer_vision README.md link not working"** and **#11225 "Misformatted/linked wiki entry in python sorting"** — small doc-link reports; **verify** the referenced link resolves today and close if fixed.
+
+**F. Keep open — real, reproducible, and good contributor material**
+
+Confirmed still-live on `master` and each is a tidy, well-scoped fix (good `good first issue` candidates), so these should stay open:
+
+- #14950 `radix_sort` doesn't raise on negative input (verified: silently mis-sorts) · #14898 `cyclic_sort` infinite loop on invalid input · #14649 `split` wrong result for multi-character separators · #15071 Kahn's topo-sort `pop(0)`/sparse-id bug · #15075 `matrix_exponentiation` self-referential annotation `NameError` · #14584 `run_simplex()` returns `{}` instead of raising · #12192 topological sort returns reversed list · #12233 avoid `log(0)` in KL divergence.
+
+I can take a second pass through the remaining `awaiting triage` items (relabel or route) once the buckets above are actioned — just say the word.
