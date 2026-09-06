@@ -16,9 +16,8 @@ not be made or submitted on the `master` branch.
 Never modify the `uv.lock` file because the `algorithms-keeper` bot will close
 the pull request as invalid.  Even a repo maintainer cannot undo this.
 
-Always have one checked Markdown checkbox in the pull request commit body, or the
-`algorithms-keeper` bot will close the pull request as invalid.  Any repo
-maintainer can undo this if you @mention them on the closed pull request.
+Always check at least one Markdown checkbox in the pull request description (the "Describe your change" section), or the
+`algorithms-keeper` bot will close the pull request as invalid.  Any repo maintainer can undo this if you @mention them on the closed pull request.
 
 ### 1. Before contributing / Is this an algorithm?
 
