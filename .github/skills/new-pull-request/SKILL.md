@@ -13,8 +13,10 @@ creating a new pull request.
 Create a new clearly named branch for the pull request.  Pull request changes must
 not be made or submitted on the `master` branch.
 
-Never modify the `uv.lock` file because the `algorithms-keeper` bot will close
-the pull request as invalid.  Even a repo maintainer cannot undo this.
+Never hand-edit or revert the `uv.lock` file. If you add a legitimate
+dependency, let the `uv-lock` pre-commit hook regenerate it — do not touch it by
+hand. A hand-modified `uv.lock` makes the `algorithms-keeper` bot close the pull
+request as invalid, and even a repo maintainer cannot undo that.
 
 Always check at least one Markdown checkbox in the pull request description (the "Describe your change" section), or the
 `algorithms-keeper` bot will close the pull request as invalid.  Any repo maintainer can undo this if you @mention them on the closed pull request.
@@ -40,6 +42,8 @@ Always check at least one Markdown checkbox in the pull request description (the
 - [ ] Public functions have **doctests that actually pass**.
 - [ ] Descriptive variable and function names (no single letters where a word helps).
 - [ ] Code is formatted and lint-clean (`ruff`, `pre-commit`).
+- [ ] `DIRECTORY.md` and `README.md` are **not hand-edited** — the
+      `algorithms-keeper` bot regenerates them automatically after merge.
 
 ### 3. Other Requirements for Submissions
 
