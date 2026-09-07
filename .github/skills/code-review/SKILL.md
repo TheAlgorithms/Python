@@ -47,8 +47,9 @@ that works, in this order:
 3. If neither passes, or the unsafe fix would change behavior, describe the
    remaining rule violations and the manual change the author needs to make.
 
-Always quote the exact rule code(s) `ruff` reports (e.g. `UP047`, `RUF100`) so the
-author knows what is being flagged, and paste the concrete command you ran.
+Always quote the exact rule code(s) `ruff` reports (e.g., `ruff rule UP047`,
+`ruff rule RUF100`) so the author can run those commands to read the rules being
+flagged. Also, paste the concrete command you ran.
 
 ### 3. Other Requirements for Submissions
 
