@@ -29,13 +29,13 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.5
+    rev: v0.16.6
     hooks:
       - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.28.1
+    rev: v2.29.3
     hooks:
       - id: pyproject-fmt
 
@@ -48,7 +48,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.7
+    rev: 0.12.10
     hooks:
       - id: uv-lock
 
