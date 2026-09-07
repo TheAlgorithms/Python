@@ -270,7 +270,10 @@ class GradientTracker:
                 # of variables with respect to the target
                 dparam_doutput = self.derivative(param, operation)
                 dparam_dtarget = dparam_doutput * partial_deriv[operation.output]
-                partial_deriv[param] = partial_deriv.get(param, np.zeros_like(dparam_dtarget)) + dparam_dtarget
+                partial_deriv[param] = (
+                    partial_deriv.get(param, np.zeros_like(dparam_dtarget))
+                    + dparam_dtarget
+                )
 
                 if param.result_of and param.result_of != OpType.NOOP:
                     operation_queue.append(param.result_of)
