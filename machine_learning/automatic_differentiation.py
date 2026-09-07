@@ -9,7 +9,6 @@ Email: smrtpoojan@gmail.com
 
 from __future__ import annotations
 
-from collections import defaultdict
 from enum import Enum
 from types import TracebackType
 from typing import Any, Self
