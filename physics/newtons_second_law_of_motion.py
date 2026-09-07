@@ -64,19 +64,22 @@ Output::
 
 def newtons_second_law_of_motion(mass: float, acceleration: float) -> float:
     """
-    Calculates force from `mass` and `acceleration`
+    Calculates force from `mass` and `acceleration`.
+    Raises ValueError if mass is negative.
 
     >>> newtons_second_law_of_motion(10, 10)
     100
     >>> newtons_second_law_of_motion(2.0, 1)
     2.0
+    >>> newtons_second_law_of_motion(-5.0, 10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Mass cannot be negative
     """
-    force = 0.0
-    try:
-        force = mass * acceleration
-    except Exception:
-        return -0.0
-    return force
+    if mass < 0:
+        raise ValueError("Mass cannot be negative")
+    
+    return mass * acceleration
 
 
 if __name__ == "__main__":
