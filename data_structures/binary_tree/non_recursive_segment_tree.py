@@ -39,7 +39,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, TypeVar, cast
+from typing import TypeVar, cast
 
 T = TypeVar("T")
 
