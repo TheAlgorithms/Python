@@ -258,7 +258,9 @@ class GradientTracker:
         """
 
         # partial derivatives with respect to target
-        partial_deriv: defaultdict[Variable, np.ndarray] = defaultdict(lambda: np.array(0))
+        partial_deriv: defaultdict[Variable, np.ndarray] = defaultdict(
+            lambda: np.array(0)
+        )
         partial_deriv[target] = np.ones_like(target.to_ndarray())
 
         # iterating through each operations in the computation graph

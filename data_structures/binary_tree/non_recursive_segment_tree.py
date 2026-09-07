@@ -59,7 +59,7 @@ class SegmentTree[T]:
         """
 
         self.N: int = len(arr)
-        self.st: list[T] = [cast(T,None) for _ in range(self.N)] + arr
+        self.st: list[T] = [cast(T, None) for _ in range(self.N)] + arr
         self.fn = fnc
         self.build()
 

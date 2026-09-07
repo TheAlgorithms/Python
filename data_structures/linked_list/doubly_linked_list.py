@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Doubly_linked_list
 """
+
 from __future__ import annotations
 
 from typing import Any
