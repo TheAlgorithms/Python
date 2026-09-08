@@ -113,11 +113,22 @@ async def _search_count(
 async def pr_state(
     client: httpx2.AsyncClient, sem: asyncio.Semaphore, number: int
 ) -> str | None:
-    """Return ``"merged"`` / ``"closed"`` for a resolved PR, else ``None``."""
-    body, _ = await _request(client, sem, f"{API}/repos/{REPO}/pulls/{number}")
+    """Return ``"merged"`` / ``"closed"`` for a resolved row, else ``None``.
+
+    Uses the unified ``/issues/{number}`` endpoint, which resolves for both
+    pull requests *and* issues. The tracker's "Open issues" section lists
+    issue numbers, and ``/pulls/{issue}`` 404s on those, so querying
+    ``/issues`` keeps a single issue row from crashing the whole run. A row is
+    "merged" only when it is a PR whose ``pull_request.merged_at`` is set; any
+    other closed row is "closed".
+    """
+    body, _ = await _request(client, sem, f"{API}/repos/{REPO}/issues/{number}")
     if body.get("state") == "open":  # type: ignore[union-attr]
         return None
-    return "merged" if body.get("merged_at") else "closed"  # type: ignore[union-attr]
+    pr = body.get("pull_request")  # type: ignore[union-attr]
+    if pr and pr.get("merged_at"):
+        return "merged"
+    return "closed"
 
 
 async def top_awaiting_directories(
