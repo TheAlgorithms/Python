@@ -3,11 +3,12 @@
 
 def fizz_buzz(number: int, iterations: int) -> str:
     """
-    Plays FizzBuzz.
-    Prints Fizz if number is a multiple of 3.
-    Prints Buzz if its a multiple of 5.
-    Prints FizzBuzz if its a multiple of both 3 and 5 or 15.
-    Else Prints The Number Itself.
+    | Plays FizzBuzz.
+    | Prints Fizz if number is a multiple of ``3``.
+    | Prints Buzz if its a multiple of ``5``.
+    | Prints FizzBuzz if its a multiple of both ``3`` and ``5`` or ``15``.
+    | Else Prints The Number Itself.
+
     >>> fizz_buzz(1,7)
     '1 2 Fizz 4 Buzz Fizz 7 '
     >>> fizz_buzz(1,0)

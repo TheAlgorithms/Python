@@ -1,5 +1,5 @@
 #!/bin/python3
-# ruff: noqa
+# ruff: noqa: PLC3002
 """
 Quine:
 
