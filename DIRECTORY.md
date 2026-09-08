@@ -868,6 +868,7 @@
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
   * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
+  * [Sum Of Squares](maths/sum_of_squares.py)
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
