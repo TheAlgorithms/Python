@@ -874,6 +874,7 @@
   * [Test Factorial](maths/test_factorial.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Three Sum](maths/three_sum.py)
+  * [Trailing Zeroes](maths/trailing_zeroes.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
   * [Triplet Sum](maths/triplet_sum.py)
   * [Twin Prime](maths/twin_prime.py)
