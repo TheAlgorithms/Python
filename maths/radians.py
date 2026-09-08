@@ -3,7 +3,7 @@ from math import pi
 
 def radians(degree: float) -> float:
     """
-    Coverts the given angle from degrees to radians
+    Converts the given angle from degrees to radians
     https://en.wikipedia.org/wiki/Radian
 
     >>> radians(180)
@@ -16,7 +16,7 @@ def radians(degree: float) -> float:
     1.9167205845401725
 
     >>> from math import radians as math_radians
-    >>> all(abs(radians(i)-math_radians(i)) <= 0.00000001  for i in range(-2, 361))
+    >>> all(abs(radians(i) - math_radians(i)) <= 1e-8 for i in range(-2, 361))
     True
     """
 

@@ -29,6 +29,7 @@ RULE 5: When the entire infix expression has been scanned, the value left on
 
 NOTE:   It only works with whole numbers.
 """
+
 __author__ = "Alexander Joslin"
 
 import operator as op

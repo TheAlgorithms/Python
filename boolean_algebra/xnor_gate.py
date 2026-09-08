@@ -31,18 +31,7 @@ def xnor_gate(input_1: int, input_2: int) -> int:
     return 1 if input_1 == input_2 else 0
 
 
-def test_xnor_gate() -> None:
-    """
-    Tests the xnor_gate function
-    """
-    assert xnor_gate(0, 0) == 1
-    assert xnor_gate(0, 1) == 0
-    assert xnor_gate(1, 0) == 0
-    assert xnor_gate(1, 1) == 1
-
-
 if __name__ == "__main__":
-    print(xnor_gate(0, 0))
-    print(xnor_gate(0, 1))
-    print(xnor_gate(1, 0))
-    print(xnor_gate(1, 1))
+    import doctest
+
+    doctest.testmod()

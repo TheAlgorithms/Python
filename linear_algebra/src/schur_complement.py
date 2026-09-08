@@ -1,6 +1,7 @@
 import unittest
 
 import numpy as np
+import pytest
 
 
 def schur_complement(
@@ -11,13 +12,14 @@ def schur_complement(
 ) -> np.ndarray:
     """
     Schur complement of a symmetric matrix X given as a 2x2 block matrix
-    consisting of matrices A, B and C.
-    Matrix A must be quadratic and non-singular.
-    In case A is singular, a pseudo-inverse may be provided using
-    the pseudo_inv argument.
+    consisting of matrices `A`, `B` and `C`.
+    Matrix `A` must be quadratic and non-singular.
+    In case `A` is singular, a pseudo-inverse may be provided using
+    the `pseudo_inv` argument.
 
-    Link to Wiki: https://en.wikipedia.org/wiki/Schur_complement
-    See also Convex Optimization – Boyd and Vandenberghe, A.5.5
+    | Link to Wiki: https://en.wikipedia.org/wiki/Schur_complement
+    | See also Convex Optimization - Boyd and Vandenberghe, A.5.5
+
     >>> import numpy as np
     >>> a = np.array([[1, 2], [2, 1]])
     >>> b = np.array([[0, 3], [3, 0]])
@@ -70,14 +72,14 @@ class TestSchurComplement(unittest.TestCase):
         det_a = np.linalg.det(a)
         det_s = np.linalg.det(s)
 
-        self.assertAlmostEqual(det_x, det_a * det_s)
+        assert np.is_close(det_x, det_a * det_s)
 
     def test_improper_a_b_dimensions(self) -> None:
         a = np.array([[1, 2, 1], [2, 1, 2], [3, 2, 4]])
         b = np.array([[0, 3], [3, 0], [2, 3]])
         c = np.array([[2, 1], [6, 3]])
 
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             schur_complement(a, b, c)
 
     def test_improper_b_c_dimensions(self) -> None:
@@ -85,7 +87,7 @@ class TestSchurComplement(unittest.TestCase):
         b = np.array([[0, 3], [3, 0], [2, 3]])
         c = np.array([[2, 1, 3], [6, 3, 5]])
 
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             schur_complement(a, b, c)
 
 

@@ -8,6 +8,7 @@ in their paper Pessimal Algorithms and Simplexity Analysis
 
 Source: https://en.wikipedia.org/wiki/Slowsort
 """
+
 from __future__ import annotations
 
 

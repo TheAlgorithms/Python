@@ -6,6 +6,7 @@ the digital sums of the first one hundred decimal digits for all the irrational
 square roots.
 Time: 5 October 2020, 18:30
 """
+
 import decimal
 
 
