@@ -724,6 +724,7 @@
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
   * [Continued Fraction](maths/continued_fraction.py)
+  * [Convolve 1D](maths/convolve_1d.py)
   * [Decimal Isolate](maths/decimal_isolate.py)
   * [Decimal To Fraction](maths/decimal_to_fraction.py)
   * [Derangement](maths/derangement.py)
