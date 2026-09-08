@@ -43,4 +43,6 @@ if __name__ == "__main__":
     testmod()
     array = [randint(-1000, 1000) for i in range(100)]
     k = randint(0, 110)
-    print(f"The maximum sum of {k} consecutive elements is {max_sum_in_array(array,k)}")
+    print(
+        f"The maximum sum of {k} consecutive elements is {max_sum_in_array(array, k)}"
+    )
