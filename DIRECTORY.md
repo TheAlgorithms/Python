@@ -835,6 +835,7 @@
     * [Harmonic](maths/series/harmonic.py)
     * [Harmonic Series](maths/series/harmonic_series.py)
     * [Hexagonal Numbers](maths/series/hexagonal_numbers.py)
+    * [Logarithmic Series](maths/series/logarithmic_series.py)
     * [P Series](maths/series/p_series.py)
   * [Sieve Of Eratosthenes](maths/sieve_of_eratosthenes.py)
   * [Sigmoid](maths/sigmoid.py)
