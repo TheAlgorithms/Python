@@ -729,6 +729,7 @@
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial](maths/double_factorial.py)
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
+  * [Ear Clipping Polygon Triangulation](maths/ear_clipping_polygon_triangulation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
   * [Euler Method](maths/euler_method.py)
@@ -876,6 +877,7 @@
   * [Two Pointer](maths/two_pointer.py)
   * [Two Sum](maths/two_sum.py)
   * [Volume](maths/volume.py)
+  * [Weighted Average](maths/weighted_average.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## [Matrix](matrix)
