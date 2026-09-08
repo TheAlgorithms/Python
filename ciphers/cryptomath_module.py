@@ -1,11 +1,8 @@
-def gcd(a: int, b: int) -> int:
-    while a != 0:
-        a, b = b % a, a
-    return b
+from maths.greatest_common_divisor import gcd_by_iterative
 
 
 def find_mod_inverse(a: int, m: int) -> int:
-    if gcd(a, m) != 1:
+    if gcd_by_iterative(a, m) != 1:
         msg = f"mod inverse of {a!r} and {m!r} does not exist"
         raise ValueError(msg)
     u1, u2, u3 = 1, 0, a

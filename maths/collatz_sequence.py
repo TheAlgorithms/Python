@@ -17,7 +17,7 @@ from __future__ import annotations
 from collections.abc import Generator
 
 
-def collatz_sequence(n: int) -> Generator[int, None, None]:
+def collatz_sequence(n: int) -> Generator[int]:
     """
     Generate the Collatz sequence starting at n.
     >>> tuple(collatz_sequence(2.1))

@@ -1,12 +1,15 @@
 """
-    Perceptron
-    w = w + N * (d(k) - y) * x(k)
+Perceptron
+w = w + N * (d(k) - y) * x(k)
 
-    Using perceptron network for oil analysis, with Measuring of 3 parameters
-    that represent chemical characteristics we can classify the oil, in p1 or p2
-    p1 = -1
-    p2 = 1
+Using perceptron network for oil analysis, with Measuring of 3 parameters
+that represent chemical characteristics we can classify the oil, in p1 or p2
+p1 = -1
+p2 = 1
+
+Reference: https://en.wikipedia.org/wiki/Perceptron
 """
+
 import random
 
 
@@ -18,6 +21,7 @@ class Perceptron:
         learning_rate: float = 0.01,
         epoch_number: int = 1000,
         bias: float = -1,
+        seed: int | None = 0,
     ) -> None:
         """
         Initializes a Perceptron network for oil analysis
@@ -26,6 +30,8 @@ class Perceptron:
         :param learning_rate: learning rate used in optimizing.
         :param epoch_number: number of epochs to train network on.
         :param bias: bias value for the network.
+        :param seed: seed for the (internal) random number generator so that
+            training is reproducible; pass ``None`` for non-deterministic weights.
 
         >>> p = Perceptron([], (0, 1, 2))
         Traceback (most recent call last):
@@ -54,29 +60,36 @@ class Perceptron:
         self.number_sample = len(sample)
         self.col_sample = len(sample[0])  # number of columns in dataset
         self.weight: list = []
+        # A dedicated RNG instance keeps training reproducible without touching
+        # the global ``random`` state (which other code/tests may rely on).
+        self._rng = random.Random(seed)
 
-    def training(self) -> None:
+    def training(self) -> int:
         """
-        Trains perceptron for epochs <= given number of epochs
-        :return: None
+        Trains the perceptron until it stops misclassifying the training data
+        or the maximum number of epochs (``epoch_number``) is reached, whichever
+        comes first. The epoch cap guarantees termination even if the data is
+        not linearly separable.
+
+        :return: the number of epochs the network was trained for.
+
         >>> data = [[2.0149, 0.6192, 10.9263]]
         >>> targets = [-1]
-        >>> perceptron = Perceptron(data,targets)
-        >>> perceptron.training() # doctest: +ELLIPSIS
-        ('\\nEpoch:\\n', ...)
-        ...
+        >>> perceptron = Perceptron(data, targets)
+        >>> perceptron.training()
+        5
         """
         for sample in self.sample:
             sample.insert(0, self.bias)
 
         for _ in range(self.col_sample):
-            self.weight.append(random.random())
+            self.weight.append(self._rng.random())
 
         self.weight.insert(0, self.bias)
 
         epoch_count = 0
 
-        while True:
+        while epoch_count < self.epoch_number:
             has_misclassified = False
             for i in range(self.number_sample):
                 u = 0
@@ -92,28 +105,28 @@ class Perceptron:
                             * self.sample[i][j]
                         )
                     has_misclassified = True
-            # print('Epoch: \n',epoch_count)
             epoch_count = epoch_count + 1
-            # if you want control the epoch or just by error
+            # stop early once every sample is classified correctly
             if not has_misclassified:
-                print(("\nEpoch:\n", epoch_count))
-                print("------------------------\n")
-                # if epoch_count > self.epoch_number or not error:
                 break
 
-    def sort(self, sample: list[float]) -> None:
+        return epoch_count
+
+    def sort(self, sample: list[float]) -> int:
         """
+        Classifies a single observation as P1 (-1) or P2 (1). The network must
+        be trained first.
+
         :param sample: example row to classify as P1 or P2
-        :return: None
+        :return: -1 if the sample is classified as P1, otherwise 1
+
         >>> data = [[2.0149, 0.6192, 10.9263]]
         >>> targets = [-1]
-        >>> perceptron = Perceptron(data,targets)
-        >>> perceptron.training() # doctest: +ELLIPSIS
-        ('\\nEpoch:\\n', ...)
-        ...
-        >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
-        ('Sample: ', ...)
-        classification: P...
+        >>> perceptron = Perceptron(data, targets)
+        >>> perceptron.training()
+        5
+        >>> perceptron.sort([2.0149, 0.6192, 10.9263])
+        -1
         """
         if len(self.sample) == 0:
             raise ValueError("Sample data can not be empty")
@@ -122,23 +135,16 @@ class Perceptron:
         for i in range(self.col_sample + 1):
             u = u + self.weight[i] * sample[i]
 
-        y = self.sign(u)
-
-        if y == -1:
-            print(("Sample: ", sample))
-            print("classification: P1")
-        else:
-            print(("Sample: ", sample))
-            print("classification: P2")
+        return self.sign(u)
 
     def sign(self, u: float) -> int:
         """
         threshold function for classification
         :param u: input number
-        :return: 1 if the input is greater than 0, otherwise -1
-        >>> data = [[0],[-0.5],[0.5]]
-        >>> targets = [1,-1,1]
-        >>> perceptron = Perceptron(data,targets)
+        :return: 1 if the input is greater than or equal to 0, otherwise -1
+        >>> data = [[0], [-0.5], [0.5]]
+        >>> targets = [1, -1, 1]
+        >>> perceptron = Perceptron(data, targets)
         >>> perceptron.sign(0)
         1
         >>> perceptron.sign(-0.5)
@@ -224,8 +230,8 @@ if __name__ == "__main__":
     network = Perceptron(
         sample=samples, target=target, learning_rate=0.01, epoch_number=1000, bias=-1
     )
-    network.training()
-    print("Finished training perceptron")
+    epochs = network.training()
+    print(f"Finished training perceptron in {epochs} epoch(s)")
     print("Enter values to predict or q to exit")
     while True:
         sample: list = []
@@ -235,4 +241,6 @@ if __name__ == "__main__":
                 break
             observation = float(user_input)
             sample.insert(i, observation)
-        network.sort(sample)
+        classification = network.sort(sample)
+        label = "P1" if classification == -1 else "P2"
+        print(f"Sample: {sample} classification: {label}")
