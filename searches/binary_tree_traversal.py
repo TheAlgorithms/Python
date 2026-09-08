@@ -259,7 +259,17 @@ def post_order_iter(node: TreeNode) -> None:
 
 
 def prompt(s: str = "", width=50, char="*") -> str:
-    """Return a prompt string padded to the specified width."""
+    """Return a prompt string padded to the specified width.
+
+    >>> [prompt("Python", width=width) for width in range(8, 13)]
+    [' Python ', ' Python *', '* Python *', '* Python **', '** Python **']
+
+    >>> prompt("Python", char=chr(0x1F40D))
+    '🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍 Python 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍'
+
+    >>> prompt("Python", -200)
+    ' Python '
+    """
     if not s:
         return "\n" + width * char
     left, extra = divmod(width - len(s) - 2, 2)
