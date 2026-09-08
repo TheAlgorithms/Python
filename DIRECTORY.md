@@ -724,6 +724,7 @@
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
   * [Continued Fraction](maths/continued_fraction.py)
+  * [Convolve 1D](maths/convolve_1d.py)
   * [Decimal Isolate](maths/decimal_isolate.py)
   * [Decimal To Fraction](maths/decimal_to_fraction.py)
   * [Dodecahedron](maths/dodecahedron.py)
@@ -876,6 +877,7 @@
   * [Two Pointer](maths/two_pointer.py)
   * [Two Sum](maths/two_sum.py)
   * [Volume](maths/volume.py)
+  * [Weighted Average](maths/weighted_average.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## [Matrix](matrix)
