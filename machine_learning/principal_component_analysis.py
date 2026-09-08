@@ -1,17 +1,18 @@
 """
-    Principal Component Analysis (PCA) is an unsupervised learning
-    algorithm that is used for the dimensionality reduction in machine
-    learning. It  is a statistical procedure that uses an orthogonal
-    transformation to convert a set of observations of possibly correlated
-    variables into a set of values of linearly uncorrelated variables called
-    principal components.
+Principal Component Analysis (PCA) is an unsupervised learning
+algorithm that is used for the dimensionality reduction in machine
+learning. It  is a statistical procedure that uses an orthogonal
+transformation to convert a set of observations of possibly correlated
+variables into a set of values of linearly uncorrelated variables called
+principal components.
 
-    Data: The data used for PCA is a set of 500 data points, each with 4
-    features. The data is assumed to be in normal form.
+Data: The data used for PCA is a set of 500 data points, each with 4
+features. The data is assumed to be in normal form.
 
-    Reference: https://en.wikipedia.org/wiki/Principal_component_analysis
+Reference: https://en.wikipedia.org/wiki/Principal_component_analysis
 
 """
+
 import numpy as np
 
 
