@@ -8,6 +8,7 @@ making it more secure than substitution ciphers.
 
 http://practicalcryptography.com/ciphers/fractionated-morse-cipher/
 """
+
 import string
 
 MORSE_CODE_DICT = {

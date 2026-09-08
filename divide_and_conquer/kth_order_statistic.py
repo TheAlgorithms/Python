@@ -8,6 +8,7 @@ This is a divide and conquer algorithm that can find a solution in O(n) time.
 For more information of this algorithm:
 https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/08/Small08.pdf
 """
+
 from __future__ import annotations
 
 from random import choice

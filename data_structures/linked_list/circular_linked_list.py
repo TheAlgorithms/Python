@@ -1,27 +1,20 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
+from dataclasses import dataclass
 from typing import Any
 
 
+@dataclass
 class Node:
-    def __init__(self, data: Any):
-        """
-        Initialize a new Node with the given data.
-        Args:
-            data: The data to be stored in the node.
-        """
-        self.data: Any = data
-        self.next: Node | None = None  # Reference to the next node
+    data: Any
+    next_node: Node | None = None
 
 
+@dataclass
 class CircularLinkedList:
-    def __init__(self) -> None:
-        """
-        Initialize an empty Circular Linked List.
-        """
-        self.head: Node | None = None  # Reference to the head (first node)
-        self.tail: Node | None = None  # Reference to the tail (last node)
+    head: Node | None = None  # Reference to the head (first node)
+    tail: Node | None = None  # Reference to the tail (last node)
 
     def __iter__(self) -> Iterator[Any]:
         """
@@ -32,7 +25,7 @@ class CircularLinkedList:
         node = self.head
         while node:
             yield node.data
-            node = node.next
+            node = node.next_node
             if node == self.head:
                 break
 
@@ -76,20 +69,20 @@ class CircularLinkedList:
             raise IndexError("list index out of range.")
         new_node: Node = Node(data)
         if self.head is None:
-            new_node.next = new_node  # First node points to itself
+            new_node.next_node = new_node  # First node points to itself
             self.tail = self.head = new_node
         elif index == 0:  # Insert at the head
-            new_node.next = self.head
+            new_node.next_node = self.head
             assert self.tail is not None  # List is not empty, tail exists
-            self.head = self.tail.next = new_node
+            self.head = self.tail.next_node = new_node
         else:
             temp: Node | None = self.head
             for _ in range(index - 1):
                 assert temp is not None
-                temp = temp.next
+                temp = temp.next_node
             assert temp is not None
-            new_node.next = temp.next
-            temp.next = new_node
+            new_node.next_node = temp.next_node
+            temp.next_node = new_node
             if index == len(self) - 1:  # Insert at the tail
                 self.tail = new_node
 
@@ -130,18 +123,18 @@ class CircularLinkedList:
         if self.head == self.tail:  # Just one node
             self.head = self.tail = None
         elif index == 0:  # Delete head node
-            assert self.tail.next is not None
-            self.tail.next = self.tail.next.next
-            self.head = self.head.next
+            assert self.tail.next_node is not None
+            self.tail.next_node = self.tail.next_node.next_node
+            self.head = self.head.next_node
         else:
             temp: Node | None = self.head
             for _ in range(index - 1):
                 assert temp is not None
-                temp = temp.next
+                temp = temp.next_node
             assert temp is not None
-            assert temp.next is not None
-            delete_node = temp.next
-            temp.next = temp.next.next
+            assert temp.next_node is not None
+            delete_node = temp.next_node
+            temp.next_node = temp.next_node.next_node
             if index == len(self) - 1:  # Delete at tail
                 self.tail = temp
         return delete_node.data

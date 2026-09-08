@@ -12,6 +12,7 @@ reason, A* is known as an algorithm with brains.
 
 https://en.wikipedia.org/wiki/A*_search_algorithm
 """
+
 import numpy as np
 
 
@@ -57,7 +58,7 @@ class Gridworld:
     def show(self):
         print(self.w)
 
-    def get_neigbours(self, cell):
+    def get_neighbours(self, cell):
         """
         Return the neighbours of cell
         """
@@ -110,7 +111,7 @@ def astar(world, start, goal):
         _closed.append(_open.pop(min_f))
         if current == goal:
             break
-        for n in world.get_neigbours(current):
+        for n in world.get_neighbours(current):
             for c in _closed:
                 if c == n:
                     continue

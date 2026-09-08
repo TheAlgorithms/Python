@@ -2,10 +2,10 @@
 
 """
 
-A Framework of Back Propagation Neural Network（BP） model
+A Framework of Back Propagation Neural Network (BP) model
 
 Easy to use:
-    * add many layers as you want ！！！
+    * add many layers as you want ! ! !
     * clearly see how the loss decreasing
 Easy to expand:
     * more activation functions
@@ -17,6 +17,7 @@ Github : https://github.com/RiptideBo
 Date: 2017.11.23
 
 """
+
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -50,8 +51,9 @@ class DenseLayer:
         self.is_input_layer = is_input_layer
 
     def initializer(self, back_units):
-        self.weight = np.asmatrix(np.random.normal(0, 0.5, (self.units, back_units)))
-        self.bias = np.asmatrix(np.random.normal(0, 0.5, self.units)).T
+        rng = np.random.default_rng()
+        self.weight = np.asmatrix(rng.normal(0, 0.5, (self.units, back_units)))
+        self.bias = np.asmatrix(rng.normal(0, 0.5, self.units)).T
         if self.activation is None:
             self.activation = sigmoid
 
@@ -173,7 +175,8 @@ class BPNN:
 
 
 def example():
-    x = np.random.randn(10, 10)
+    rng = np.random.default_rng()
+    x = rng.normal(size=(10, 10))
     y = np.asarray(
         [
             [0.8, 0.4],
