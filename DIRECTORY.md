@@ -765,6 +765,7 @@
   * [Kth Lexicographic Permutation](maths/kth_lexicographic_permutation.py)
   * [Largest Of Very Large Numbers](maths/largest_of_very_large_numbers.py)
   * [Least Common Multiple](maths/least_common_multiple.py)
+  * [Line Intersection](maths/line_intersection.py)
   * [Line Length](maths/line_length.py)
   * [Liouville Lambda](maths/liouville_lambda.py)
   * [Lucas Lehmer Primality Test](maths/lucas_lehmer_primality_test.py)
