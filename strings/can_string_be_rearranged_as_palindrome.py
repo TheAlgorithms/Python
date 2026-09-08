@@ -72,9 +72,7 @@ def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
     for character_count in character_freq_dict.values():
         if character_count % 2:
             odd_char += 1
-    if odd_char > 1:
-        return False
-    return True
+    return not odd_char > 1
 
 
 def benchmark(input_str: str = "") -> None:

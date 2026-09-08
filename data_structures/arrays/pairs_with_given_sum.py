@@ -6,6 +6,7 @@ elements whose sum is equal to req_sum.
 
 https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/0
 """
+
 from itertools import combinations
 
 

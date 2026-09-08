@@ -1,4 +1,4 @@
-""" Multiply two numbers using Karatsuba algorithm """
+"""Multiply two numbers using Karatsuba algorithm"""
 
 
 def karatsuba(a: int, b: int) -> int:

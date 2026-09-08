@@ -10,6 +10,7 @@ python3 -m doctest -v fibonacci_search.py
 For manual testing run:
 python3 fibonacci_search.py
 """
+
 from functools import lru_cache
 
 
@@ -122,8 +123,7 @@ def fibonacci_search(arr: list, val: int) -> int:
         elif val > item_k_1:
             offset += fibonacci(fibb_k - 1)
             fibb_k -= 2
-    else:
-        return -1
+    return -1
 
 
 if __name__ == "__main__":

@@ -8,10 +8,10 @@ pipe. Reynolds number is defined by the ratio of inertial forces to that of
 viscous forces.
 
 R = Inertial Forces / Viscous Forces
-R = (ρ * V * D)/μ
+R = (p * V * D)/μ
 
 where :
-ρ = Density of fluid (in Kg/m^3)
+p = Density of fluid (in Kg/m^3)
 D = Diameter of pipe through which fluid flows (in m)
 V = Velocity of flow of the fluid (in m/s)
 μ = Viscosity of the fluid (in Ns/m^2)
