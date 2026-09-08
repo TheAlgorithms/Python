@@ -3,7 +3,8 @@ Sieve of Atkin algorithm for finding all prime numbers up to a given limit.
 
 The Sieve of Atkin is a modern variant of the ancient Sieve of Eratosthenes
 that is optimized for finding primes. It has better theoretical asymptotic
-complexity, especially for large ranges.
+complexity, especially for large ranges.  This is the basic, non-segmented
+form.
 
 Time Complexity: O(n / log log n)
 Space Complexity: O(n)
