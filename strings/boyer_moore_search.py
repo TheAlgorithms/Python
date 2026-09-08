@@ -11,23 +11,31 @@ If the mismatched character does not occur to the left in Pattern,
 a shift is proposed that moves the entirety of Pattern past
 the point of mismatch in the text.
 
-If there no mismatch then the pattern matches with text block.
+If there is no mismatch then the pattern matches with text block.
 
 Time Complexity : O(n/m)
     n=length of main string
     m=length of pattern string
 """
 
-from __future__ import annotations
-
 
 class BoyerMooreSearch:
+    """
+    Example usage:
+
+        bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
+        positions = bms.bad_character_heuristic()
+
+    where 'positions' contain the locations where the pattern was matched.
+    """
+
     def __init__(self, text: str, pattern: str):
         self.text, self.pattern = text, pattern
         self.textLen, self.patLen = len(text), len(pattern)
 
     def match_in_pattern(self, char: str) -> int:
-        """finds the index of char in pattern in reverse order
+        """
+        Finds the index of char in pattern in reverse order.
 
         Parameters :
             char (chr): character to be searched
@@ -35,6 +43,10 @@ class BoyerMooreSearch:
         Returns :
             i (int): index of char from last in pattern
             -1 (int): if char is not found in pattern
+
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
+        >>> bms.match_in_pattern("B")
+        1
         """
 
         for i in range(self.patLen - 1, -1, -1):
@@ -44,8 +56,8 @@ class BoyerMooreSearch:
 
     def mismatch_in_text(self, current_pos: int) -> int:
         """
-        find the index of mis-matched character in text when compared with pattern
-        from last
+        Find the index of mis-matched character in text when compared with pattern
+        from last.
 
         Parameters :
             current_pos (int): current index position of text
@@ -53,6 +65,10 @@ class BoyerMooreSearch:
         Returns :
             i (int): index of mismatched char from last in text
             -1 (int): if there is no mismatch between pattern and text block
+
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
+        >>> bms.mismatch_in_text(2)
+        3
         """
 
         for i in range(self.patLen - 1, -1, -1):
@@ -61,7 +77,14 @@ class BoyerMooreSearch:
         return -1
 
     def bad_character_heuristic(self) -> list[int]:
-        # searches pattern in text and returns index positions
+        """
+        Finds the positions of the pattern location.
+
+        >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
+        >>> bms.bad_character_heuristic()
+        [0, 3]
+        """
+
         positions = []
         for i in range(self.textLen - self.patLen + 1):
             mismatch_index = self.mismatch_in_text(i)
@@ -75,13 +98,7 @@ class BoyerMooreSearch:
         return positions
 
 
-text = "ABAABA"
-pattern = "AB"
-bms = BoyerMooreSearch(text, pattern)
-positions = bms.bad_character_heuristic()
+if __name__ == "__main__":
+    import doctest
 
-if len(positions) == 0:
-    print("No match found")
-else:
-    print("Pattern found in following positions: ")
-    print(positions)
+    doctest.testmod()
