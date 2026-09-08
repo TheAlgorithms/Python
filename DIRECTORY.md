@@ -879,6 +879,7 @@
   * [Two Pointer](maths/two_pointer.py)
   * [Two Sum](maths/two_sum.py)
   * [Volume](maths/volume.py)
+  * [Weddles Rule](maths/weddles_rule.py)
   * [Weighted Average](maths/weighted_average.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
