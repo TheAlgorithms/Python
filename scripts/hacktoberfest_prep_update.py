@@ -19,17 +19,13 @@ It only uses the standard library and the ``GITHUB_TOKEN`` provided by the
 Actions runner, so there is nothing to install.
 """
 
-from __future__ import annotations
-
 import datetime as dt
-import json
 import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
+
+import httpx2
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "TheAlgorithms/Python")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -45,7 +41,7 @@ ROW_RE = re.compile(
 STATS_HEADER = "## Automated statistics"
 
 
-def _request(url: str) -> tuple[dict | list, dict]:
+def _request(url: str, params: dict | None = None) -> tuple[dict | list, dict]:
     """GET ``url`` and return ``(json_body, headers)``, retrying on 403/rate limit."""
     headers = {
         "Accept": "application/vnd.github+json",
@@ -55,29 +51,26 @@ def _request(url: str) -> tuple[dict | list, dict]:
     if TOKEN:
         headers["Authorization"] = f"Bearer {TOKEN}"
     for attempt in range(4):
-        req = urllib.request.Request(url, headers=headers)  # noqa: S310
-        try:
-            with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
-                return json.load(resp), dict(resp.headers)
-        except urllib.error.HTTPError as exc:
-            remaining = exc.headers.get("X-RateLimit-Remaining")
-            if exc.code in (403, 429) and remaining == "0":
-                reset = int(exc.headers.get("X-RateLimit-Reset", "0"))
-                wait = max(1, reset - int(time.time())) + 1
-                print(f"Rate limited; sleeping {wait}s", file=sys.stderr)
-                time.sleep(min(wait, 90))
-                continue
-            if exc.code >= 500 and attempt < 3:
-                time.sleep(2 * (attempt + 1))
-                continue
-            raise
+        resp = httpx2.get(url, params=params, headers=headers, timeout=30)
+        if resp.is_success:
+            return resp.json(), dict(resp.headers)
+        remaining = resp.headers.get("X-RateLimit-Remaining")
+        if resp.status_code in (403, 429) and remaining == "0":
+            reset = int(resp.headers.get("X-RateLimit-Reset", "0"))
+            wait = max(1, reset - int(time.time())) + 1
+            print(f"Rate limited; sleeping {wait}s", file=sys.stderr)
+            time.sleep(min(wait, 90))
+            continue
+        if resp.status_code >= 500 and attempt < 3:
+            time.sleep(2 * (attempt + 1))
+            continue
+        resp.raise_for_status()
     msg = f"giving up on {url}"
     raise RuntimeError(msg)
 
 
 def _search_count(query: str) -> int:
-    url = f"{API}/search/issues?q={urllib.parse.quote(query)}&per_page=1"
-    body, _ = _request(url)
+    body, _ = _request(f"{API}/search/issues", {"q": query, "per_page": 1})
     return int(body.get("total_count", 0))  # type: ignore[union-attr]
 
 
@@ -98,17 +91,18 @@ def top_awaiting_directories(
     page = 1
     scanned = 0
     while scanned < max_prs:
-        url = (
-            f"{API}/search/issues?q={urllib.parse.quote(query)}"
-            f"&per_page=100&page={page}"
+        body, _ = _request(
+            f"{API}/search/issues",
+            {"q": query, "per_page": 100, "page": page},
         )
-        body, _ = _request(url)
         items = body.get("items", [])  # type: ignore[union-attr]
         if not items:
             break
         for item in items:
             number = item["number"]
-            files, _ = _request(f"{API}/repos/{REPO}/pulls/{number}/files?per_page=100")
+            files, _ = _request(
+                f"{API}/repos/{REPO}/pulls/{number}/files", {"per_page": 100}
+            )
             dirs = set()
             for changed in files:  # type: ignore[union-attr]
                 parts = changed["filename"].split("/")

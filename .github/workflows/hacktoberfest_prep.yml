@@ -24,6 +24,8 @@ jobs:
         with:
           python-version-file: .python-version
           allow-prereleases: true
+      - name: Install dependencies
+        run: python -m pip install --upgrade "httpx2>=2.0.1"
       - name: Update the tracker
         id: update
         env:
