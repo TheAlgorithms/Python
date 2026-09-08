@@ -42,9 +42,9 @@ def cholesky_decomposition(matrix: np.ndarray) -> np.ndarray:
     True
     """
 
-    assert (
-        matrix.shape[0] == matrix.shape[1]
-    ), f"Input matrix is not square, {matrix.shape=}"
+    assert matrix.shape[0] == matrix.shape[1], (
+        f"Input matrix is not square, {matrix.shape=}"
+    )
     assert np.allclose(matrix, matrix.T), "Input matrix must be symmetric"
 
     n = matrix.shape[0]
@@ -82,12 +82,12 @@ def solve_cholesky(
     True
     """
 
-    assert (
-        lower_triangle.shape[0] == lower_triangle.shape[1]
-    ), f"Matrix L is not square, {lower_triangle.shape=}"
-    assert np.allclose(
-        np.tril(lower_triangle), lower_triangle
-    ), "Matrix L is not lower triangular"
+    assert lower_triangle.shape[0] == lower_triangle.shape[1], (
+        f"Matrix L is not square, {lower_triangle.shape=}"
+    )
+    assert np.allclose(np.tril(lower_triangle), lower_triangle), (
+        "Matrix L is not lower triangular"
+    )
 
     # Handle vector case by reshaping to matrix and then flattening again
     if len(right_hand_side.shape) == 1:
