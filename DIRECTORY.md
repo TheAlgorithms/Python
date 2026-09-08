@@ -517,6 +517,7 @@
   * [Fuzzy Set Operations](fuzzy_logic/fuzzy_set_operations.py)
 
 ## [Genetic Algorithm](genetic_algorithm)
+  * [Basic Number](genetic_algorithm/basic_number.py)
   * [Basic String](genetic_algorithm/basic_string.py)
 
 ## [Geodesy](geodesy)
@@ -876,6 +877,7 @@
   * [Test Factorial](maths/test_factorial.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Three Sum](maths/three_sum.py)
+  * [Tonelli Shanks](maths/tonelli_shanks.py)
   * [Trailing Zeroes](maths/trailing_zeroes.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
   * [Triplet Sum](maths/triplet_sum.py)
