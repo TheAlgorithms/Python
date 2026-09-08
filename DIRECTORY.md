@@ -726,6 +726,7 @@
   * [Continued Fraction](maths/continued_fraction.py)
   * [Decimal Isolate](maths/decimal_isolate.py)
   * [Decimal To Fraction](maths/decimal_to_fraction.py)
+  * [Derangement](maths/derangement.py)
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial](maths/double_factorial.py)
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
@@ -876,6 +877,7 @@
   * [Two Pointer](maths/two_pointer.py)
   * [Two Sum](maths/two_sum.py)
   * [Volume](maths/volume.py)
+  * [Weighted Average](maths/weighted_average.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## [Matrix](matrix)
