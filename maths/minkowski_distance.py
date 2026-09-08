@@ -19,7 +19,7 @@ def minkowski_distance(
     >>> minkowski_distance([1.0, 2.0, 3.0, 4.0], [5.0, 6.0, 7.0, 8.0], 2)
     8.0
     >>> import numpy as np
-    >>> np.isclose(5.0, minkowski_distance([5.0], [0.0], 3))
+    >>> bool(np.isclose(5.0, minkowski_distance([5.0], [0.0], 3)))
     True
     >>> minkowski_distance([1.0], [2.0], -1)
     Traceback (most recent call last):

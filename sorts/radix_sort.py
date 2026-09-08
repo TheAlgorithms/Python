@@ -3,6 +3,7 @@ This is a pure Python implementation of the radix sort algorithm
 
 Source: https://en.wikipedia.org/wiki/Radix_sort
 """
+
 from __future__ import annotations
 
 RADIX = 10

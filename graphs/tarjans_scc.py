@@ -103,4 +103,4 @@ if __name__ == "__main__":
     edges = list(zip(source, target))
     g = create_graph(n_vertices, edges)
 
-    assert [[5], [6], [4], [3, 2, 1, 0]] == tarjan(g)
+    assert tarjan(g) == [[5], [6], [4], [3, 2, 1, 0]]

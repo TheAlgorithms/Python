@@ -2,6 +2,7 @@
 Implementing Secant method in Python
 Author: dimgrichr
 """
+
 from math import exp
 
 

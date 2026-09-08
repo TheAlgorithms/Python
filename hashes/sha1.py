@@ -25,6 +25,7 @@ the final hash.
 
 Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 """
+
 import argparse
 import hashlib  # hashlib is only used inside the Test class
 import struct
