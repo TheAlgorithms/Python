@@ -110,9 +110,7 @@ def construct_tree() -> TreeNode:
 if __name__ == "__main__":
     import doctest
 
-    tree = GetMaxPathSum(construct_tree())
-    max_sum = tree.max_path_sum()
-
-    print("Given example output: ", max_sum)
-
     doctest.testmod()
+
+    tree = GetMaxPathSum(construct_tree())
+    print(f"{tree.max_path_sum() = }")
