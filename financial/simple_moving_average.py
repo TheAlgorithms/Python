@@ -6,6 +6,7 @@ and identify trends.
 
 Reference: https://en.wikipedia.org/wiki/Moving_average
 """
+
 from collections.abc import Sequence
 
 

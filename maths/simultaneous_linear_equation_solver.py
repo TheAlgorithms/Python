@@ -2,10 +2,10 @@
 https://en.wikipedia.org/wiki/Augmented_matrix
 
 This algorithm solves simultaneous linear equations of the form
-λa + λb + λc + λd + ... = γ as [λ, λ, λ, λ, ..., γ]
-Where λ & γ are individual coefficients, the no. of equations = no. of coefficients - 1
+λa + λb + λc + λd + ... = y as [λ, λ, λ, λ, ..., y]
+Where λ & y are individual coefficients, the no. of equations = no. of coefficients - 1
 
-Note in order to work there must exist 1 equation where all instances of λ and γ != 0
+Note in order to work there must exist 1 equation where all instances of λ and y != 0
 """
 
 

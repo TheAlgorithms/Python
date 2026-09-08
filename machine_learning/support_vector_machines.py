@@ -14,11 +14,11 @@ def norm_squared(vector: ndarray) -> float:
     Returns:
         float: squared second norm of vector
 
-    >>> norm_squared([1, 2])
+    >>> int(norm_squared([1, 2]))
     5
-    >>> norm_squared(np.asarray([1, 2]))
+    >>> int(norm_squared(np.asarray([1, 2])))
     5
-    >>> norm_squared([0, 0])
+    >>> int(norm_squared([0, 0]))
     0
     """
     return np.dot(vector, vector)

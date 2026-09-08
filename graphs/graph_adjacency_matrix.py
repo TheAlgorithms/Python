@@ -15,19 +15,20 @@ Potential Future Ideas:
 - Make edge weights and vertex values customizable to store whatever the client wants
 - Support multigraph functionality if the client wants it
 """
+
 from __future__ import annotations
 
 import random
 import unittest
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 import pytest
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyMatrix(Generic[T]):
+class GraphAdjacencyMatrix[T]:
     def __init__(
         self, vertices: list[T], edges: list[list[T]], directed: bool = True
     ) -> None:
@@ -155,9 +156,11 @@ class GraphAdjacencyMatrix(Generic[T]):
         self.vertex_to_index.pop(vertex)
 
         # decrement indices for vertices shifted by the deleted vertex in the adj matrix
-        for vertex in self.vertex_to_index:
-            if self.vertex_to_index[vertex] >= start_index:
-                self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
+        for inner_vertex in self.vertex_to_index:
+            if self.vertex_to_index[inner_vertex] >= start_index:
+                self.vertex_to_index[inner_vertex] = (
+                    self.vertex_to_index[inner_vertex] - 1
+                )
 
     def contains_vertex(self, vertex: T) -> bool:
         """
@@ -466,7 +469,7 @@ class TestGraphMatrix(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -520,7 +523,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
@@ -534,7 +537,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for i in range(101):
@@ -548,7 +551,7 @@ class TestGraphMatrix(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -587,7 +590,7 @@ class TestGraphMatrix(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:

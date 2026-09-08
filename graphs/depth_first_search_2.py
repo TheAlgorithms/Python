@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-""" Author: OMKAR PATHAK """
+"""Author: OMKAR PATHAK"""
 
 
 class Graph:

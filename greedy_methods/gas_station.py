@@ -23,6 +23,7 @@ If the net gain ever goes below 0 while iterating through the stations,
 start checking from the next station.
 
 """
+
 from dataclasses import dataclass
 
 

@@ -8,6 +8,7 @@ Armstrong numbers are also called Narcissistic numbers and Pluperfect numbers.
 
 On-Line Encyclopedia of Integer Sequences entry: https://oeis.org/A005188
 """
+
 PASSING = (1, 153, 370, 371, 1634, 24678051, 115132219018763992565095597973971522401)
 FAILING: tuple = (-153, -1, 0, 1.2, 200, "A", [], {}, None)
 
@@ -42,9 +43,9 @@ def armstrong_number(n: int) -> bool:
 def pluperfect_number(n: int) -> bool:
     """Return True if n is a pluperfect number or False if it is not
 
-    >>> all(armstrong_number(n) for n in PASSING)
+    >>> all(pluperfect_number(n) for n in PASSING)
     True
-    >>> any(armstrong_number(n) for n in FAILING)
+    >>> any(pluperfect_number(n) for n in FAILING)
     False
     """
     if not isinstance(n, int) or n < 1:
@@ -69,9 +70,9 @@ def pluperfect_number(n: int) -> bool:
 def narcissistic_number(n: int) -> bool:
     """Return True if n is a narcissistic number or False if it is not.
 
-    >>> all(armstrong_number(n) for n in PASSING)
+    >>> all(narcissistic_number(n) for n in PASSING)
     True
-    >>> any(armstrong_number(n) for n in FAILING)
+    >>> any(narcissistic_number(n) for n in FAILING)
     False
     """
     if not isinstance(n, int) or n < 1:

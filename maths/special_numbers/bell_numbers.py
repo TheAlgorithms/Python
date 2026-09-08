@@ -21,6 +21,10 @@ def bell_numbers(max_set_length: int) -> list[int]:
         list: A list of Bell numbers for sets of lengths from 0 to max_set_length.
 
     Examples:
+    >>> bell_numbers(-2)
+    Traceback (most recent call last):
+        ...
+    ValueError: max_set_length must be non-negative
     >>> bell_numbers(0)
     [1]
     >>> bell_numbers(1)
@@ -61,8 +65,7 @@ def _binomial_coefficient(total_elements: int, elements_to_choose: int) -> int:
     if elements_to_choose in {0, total_elements}:
         return 1
 
-    if elements_to_choose > total_elements - elements_to_choose:
-        elements_to_choose = total_elements - elements_to_choose
+    elements_to_choose = min(elements_to_choose, total_elements - elements_to_choose)
 
     coefficient = 1
     for i in range(elements_to_choose):
