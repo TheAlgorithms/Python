@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   hacktoberfest-prep:
@@ -57,13 +58,30 @@ jobs:
           if git diff --quiet -- docs/hacktober_2026_prep.md; then
             echo "No changes to docs/hacktober_2026_prep.md."
           fi
-      - name: Commit any changes
+      # `master` is a protected branch: direct pushes are rejected with
+      # `GH006: Protected branch update failed ... Changes must be made through
+      # a pull request`. So instead of committing straight to master, persist
+      # the refreshed tracker by opening — or updating in place — a single
+      # rolling pull request. Re-runs reuse the same branch, so at most one
+      # open PR exists at any time.
+      - name: Open or update the tracker pull request
         if: github.event_name != 'push' && github.event_name != 'pull_request'
-        run: |
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add docs/hacktober_2026_prep.md
-          git commit -m "chore: refresh Hacktoberfest 2026 prep tracker" || echo "No changes to commit"
-          git push || echo "Nothing to push"
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: docs/hacktober_2026_prep.md
+          branch: chore/hacktoberfest-2026-prep-refresh
+          delete-branch: true
+          commit-message: "chore: refresh Hacktoberfest 2026 prep tracker"
+          title: "chore: refresh Hacktoberfest 2026 prep tracker"
+          body: |
+            Automated daily refresh of the Hacktoberfest 2026 open-PR cleanup
+            tracker (`docs/hacktober_2026_prep.md`): ticks off any tracked pull
+            request that has since been merged/closed and rewrites the
+            **Automated statistics** section.
+
+            This PR is updated in place by the `hacktoberfest_prep` workflow, so
+            it always reflects the latest scheduled run. Merge it whenever you
+            want to capture the current snapshot; a fresh one opens on the next
+            run if there are new changes.
       - name: Propagate the script's exit code
         run: exit ${{ steps.update.outputs.exit_code }}
