@@ -52,7 +52,11 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     True
     >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
     True
+    >>> tim_sort([])
+    []
     """
+    if not lst:
+        return []
     length = len(lst)
     runs, sorted_runs = [], []
     new_run = [lst[0]]

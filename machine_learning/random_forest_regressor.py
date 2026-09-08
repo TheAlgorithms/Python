@@ -1,24 +1,28 @@
 # Random Forest Regressor Example
-from sklearn.datasets import load_boston
+
+from sklearn.datasets import load_diabetes
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 
 
 def main():
-
     """
     Random Forest Regressor Example using sklearn function.
-    Boston house price dataset is used to demonstrate the algorithm.
-    """
+    The diabetes dataset is used to demonstrate the algorithm.
 
-    # Load Boston house price dataset
-    boston = load_boston()
-    print(boston.keys())
+    Note: this example previously used the Boston house-price dataset,
+    which was removed from scikit-learn (>=1.2) for ethical reasons.
+    ``load_diabetes`` is a drop-in bundled alternative that ships with
+    scikit-learn, so the example runs offline.
+    """
+    # Load the diabetes dataset
+    diabetes = load_diabetes()
+    print(diabetes.keys())
 
     # Split dataset into train and test data
-    x = boston["data"]  # features
-    y = boston["target"]
+    x = diabetes["data"]  # features
+    y = diabetes["target"]
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.3, random_state=1
     )
