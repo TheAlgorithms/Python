@@ -1,6 +1,7 @@
 """
 Algorithm that merges two sorted linked lists into one sorted linked list.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator

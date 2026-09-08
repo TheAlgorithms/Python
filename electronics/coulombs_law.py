@@ -20,8 +20,8 @@ def couloumbs_law(
 
     Reference
     ----------
-    Coulomb (1785) "Premier mémoire sur l’électricité et le magnétisme,"
-    Histoire de l’Académie Royale des Sciences, pp. 569–577.
+    Coulomb (1785) "Premier mémoire sur l'électricité et le magnétisme,"
+    Histoire de l'Académie Royale des Sciences, pp. 569-577.
 
     Parameters
     ----------

@@ -12,13 +12,13 @@ two inertial reference frames and X' moves in the x direction with velocity v
 with respect to X, then the Lorentz transformation from X to X' is X' = BX,
 where
 
-    | γ  -γβ  0  0|
-B = |-γβ  γ   0  0|
+    | y  -γβ  0  0|
+B = |-γβ  y   0  0|
     | 0   0   1  0|
     | 0   0   0  1|
 
 is the matrix describing the Lorentz boost between X and X',
-γ = 1 / √(1 - v²/c²) is the Lorentz factor, and β = v/c is the velocity as
+y = 1 / √(1 - v²/c²) is the Lorentz factor, and β = v/c is the velocity as
 a fraction of c.
 
 Reference: https://en.wikipedia.org/wiki/Lorentz_transformation
@@ -63,7 +63,7 @@ def beta(velocity: float) -> float:
 
 def gamma(velocity: float) -> float:
     """
-    Calculate the Lorentz factor γ = 1 / √(1 - v²/c²) for a given velocity
+    Calculate the Lorentz factor y = 1 / √(1 - v²/c²) for a given velocity
     >>> gamma(4)
     1.0000000000000002
     >>> gamma(1e5)
@@ -90,12 +90,12 @@ def transformation_matrix(velocity: float) -> np.ndarray:
     """
     Calculate the Lorentz transformation matrix for movement in the x direction:
 
-    | γ  -γβ  0  0|
-    |-γβ  γ   0  0|
+    | y  -γβ  0  0|
+    |-γβ  y   0  0|
     | 0   0   1  0|
     | 0   0   0  1|
 
-    where γ is the Lorentz factor and β is the velocity as a fraction of c
+    where y is the Lorentz factor and β is the velocity as a fraction of c
     >>> transformation_matrix(29979245)
     array([[ 1.00503781, -0.10050378,  0.        ,  0.        ],
            [-0.10050378,  1.00503781,  0.        ,  0.        ],

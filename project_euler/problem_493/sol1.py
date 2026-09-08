@@ -9,7 +9,7 @@ Give your answer with nine digits after the decimal point (a.bcdefghij).
 
 This combinatorial problem can be solved by decomposing the problem into the
 following steps:
-1. Calculate the total number of possible picking cominations
+1. Calculate the total number of possible picking combinations
 [combinations := binom_coeff(70, 20)]
 2. Calculate the number of combinations with one colour missing
 [missing := binom_coeff(60, 20)]
