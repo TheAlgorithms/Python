@@ -6,6 +6,14 @@
 name: hacktoberfest_prep
 
 on:
+  push:
+    paths:
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
+  pull_request:
+    paths:
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
   schedule:
     - cron: "50 11 * * *" # 11:50 UTC every day
   workflow_dispatch: # allow a manual run while testing
@@ -37,7 +45,20 @@ jobs:
           set +e
           python scripts/hacktoberfest_prep_update.py
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+      # Dry run on push / pull_request: show the diff the script produced but
+      # do NOT commit or push. This lets a PR prove the tracker still gathers
+      # its data and rewrites docs/hacktober_2026_prep.md correctly without
+      # leaving a permanent commit. Only the schedule/manual runs persist.
+      - name: Show changes (dry run)
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: |
+          echo "Dry run (${{ github.event_name }}): showing git diff, not committing."
+          git --no-pager diff -- docs/hacktober_2026_prep.md
+          if git diff --quiet -- docs/hacktober_2026_prep.md; then
+            echo "No changes to docs/hacktober_2026_prep.md."
+          fi
       - name: Commit any changes
+        if: github.event_name != 'push' && github.event_name != 'pull_request'
         run: |
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
