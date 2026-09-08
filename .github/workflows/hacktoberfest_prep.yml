@@ -8,12 +8,12 @@ name: hacktoberfest_prep
 on:
   push:
     paths:
-      - '.github/workflows/hacktoberfest_prep.yml'
-      - 'scripts/hacktoberfest_prep_update.py'
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
   pull_request:
     paths:
-      - '.github/workflows/hacktoberfest_prep.yml'
-      - 'scripts/hacktoberfest_prep_update.py'
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
   schedule:
     - cron: "50 11 * * *" # 11:50 UTC every day
   workflow_dispatch: # allow a manual run while testing
