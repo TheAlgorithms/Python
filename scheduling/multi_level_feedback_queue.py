@@ -100,7 +100,7 @@ class MLFQ:
         >>> P4 = Process("P4", 0, 24)
         >>> mlfq = MLFQ(3, [17, 25], deque([P1, P2, P3, P4]), 0)
         >>> _ = mlfq.multi_level_feedback_queue()
-        >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
+        >>> mlfq.calculate_completion_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
         completion_times = []
@@ -255,7 +255,7 @@ class MLFQ:
 
         #  all queues except last one have round_robin algorithm
         for i in range(self.number_of_queues - 1):
-            finished, self.ready_queue = self.round_robin(
+            _finished, self.ready_queue = self.round_robin(
                 self.ready_queue, self.time_slices[i]
             )
         #  the last queue has first_come_first_served algorithm

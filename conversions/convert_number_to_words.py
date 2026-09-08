@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import ClassVar, Literal
+from typing import Literal
 
 
 class NumberingSystem(Enum):
@@ -54,7 +54,7 @@ class NumberingSystem(Enum):
 
 
 class NumberWords(Enum):
-    ONES: ClassVar[dict[int, str]] = {
+    ONES = {  # noqa: RUF012
         0: "",
         1: "one",
         2: "two",
@@ -67,7 +67,7 @@ class NumberWords(Enum):
         9: "nine",
     }
 
-    TEENS: ClassVar[dict[int, str]] = {
+    TEENS = {  # noqa: RUF012
         0: "ten",
         1: "eleven",
         2: "twelve",
@@ -80,7 +80,7 @@ class NumberWords(Enum):
         9: "nineteen",
     }
 
-    TENS: ClassVar[dict[int, str]] = {
+    TENS = {  # noqa: RUF012
         2: "twenty",
         3: "thirty",
         4: "forty",
