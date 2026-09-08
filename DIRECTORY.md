@@ -797,6 +797,7 @@
     * [Square Root](maths/numerical_analysis/square_root.py)
     * [Weierstrass Method](maths/numerical_analysis/weierstrass_method.py)
   * [Odd Sieve](maths/odd_sieve.py)
+  * [Pell Number](maths/pell_number.py)
   * [Perfect Cube](maths/perfect_cube.py)
   * [Perfect Number](maths/perfect_number.py)
   * [Perfect Square](maths/perfect_square.py)
@@ -876,6 +877,7 @@
   * [Two Pointer](maths/two_pointer.py)
   * [Two Sum](maths/two_sum.py)
   * [Volume](maths/volume.py)
+  * [Weighted Average](maths/weighted_average.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## [Matrix](matrix)
