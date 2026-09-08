@@ -149,7 +149,6 @@ def build_stats_block() -> str:
     open_prs = _search_count(f"repo:{REPO} is:pr is:open")
     awaiting = _search_count(f'repo:{REPO} is:pr is:open label:"{AWAITING_LABEL}"')
     today = dt.datetime.now(dt.UTC).date().isoformat()
-    top_dirs = top_awaiting_directories()
 
     lines = [
         STATS_HEADER,
@@ -165,7 +164,7 @@ def build_stats_block() -> str:
         f"`{AWAITING_LABEL}`):",
         "",
     ]
-    if top_dirs:
+    if top_dirs := top_awaiting_directories():
         for rank, (directory, count) in enumerate(top_dirs, start=1):
             plural = "PR" if count == 1 else "PRs"
             lines.append(f"{rank}. `{directory}/` — {count} awaiting-reviews {plural}")
