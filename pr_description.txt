@@ -1,3 +1,0 @@
-## Summary
-This PR adds an implementation of the **Sieve of Atkin** algorithm to the maths directory...
-
