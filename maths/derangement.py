@@ -24,9 +24,7 @@ def derangement(objects: int) -> int:
         raise ValueError("k must be a non-negative integer. Retry")
 
     # Base cases
-    if objects == 0:
-        return 0
-    if objects == 1:
+    if objects in (0, 1):
         return 0
 
     # Initialize the derangement counts
