@@ -1,14 +1,11 @@
 """
-This is a pure Python implementation of the binary insertion sort algorithm
+A variant of insertion sort that may yield in better performance if the
+cost of comparisons exceeds the cost of swaps.
 
-For doctests run following command:
-python -m doctest -v binary_insertion_sort.py
-or
-python3 -m doctest -v binary_insertion_sort.py
-
-For manual testing run:
-python binary_insertion_sort.py
+https://en.wikipedia.org/wiki/Insertion_sort#Variants
 """
+
+from bisect import bisect
 
 
 def binary_insertion_sort(collection: list) -> list:
@@ -41,18 +38,10 @@ def binary_insertion_sort(collection: list) -> list:
     n = len(collection)
     for i in range(1, n):
         value_to_insert = collection[i]
-        low = 0
-        high = i - 1
-
-        while low <= high:
-            mid = (low + high) // 2
-            if value_to_insert < collection[mid]:
-                high = mid - 1
-            else:
-                low = mid + 1
-        for j in range(i, low, -1):
+        insertion_pos = bisect(collection[:i], value_to_insert)
+        for j in range(i, insertion_pos, -1):
             collection[j] = collection[j - 1]
-        collection[low] = value_to_insert
+        collection[insertion_pos] = value_to_insert
     return collection
 
 
