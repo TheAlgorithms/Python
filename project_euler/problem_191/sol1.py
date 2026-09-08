@@ -25,7 +25,6 @@ References:
       https://projecteuler.net/problem=191
 """
 
-
 cache: dict[tuple[int, int, int], int] = {}
 
 

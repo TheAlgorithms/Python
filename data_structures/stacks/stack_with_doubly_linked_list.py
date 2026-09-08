@@ -3,19 +3,19 @@
 
 from __future__ import annotations
 
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class Node(Generic[T]):
+class Node[T]:
     def __init__(self, data: T):
         self.data = data  # Assign data
         self.next: Node[T] | None = None  # Initialize next as null
         self.prev: Node[T] | None = None  # Initialize prev as null
 
 
-class Stack(Generic[T]):
+class Stack[T]:
     """
     >>> stack = Stack()
     >>> stack.is_empty()

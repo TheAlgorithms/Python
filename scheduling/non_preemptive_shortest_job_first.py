@@ -5,7 +5,6 @@ https://www.guru99.com/shortest-job-first-sjf-scheduling.html
 https://en.wikipedia.org/wiki/Shortest_job_next
 """
 
-
 from __future__ import annotations
 
 from statistics import mean

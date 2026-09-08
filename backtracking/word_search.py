@@ -98,13 +98,7 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     False
     >>> word_exists([["A"]], "A")
     True
-    >>> word_exists([["A","A","A","A","A","A"],
-    ...              ["A","A","A","A","A","A"],
-    ...              ["A","A","A","A","A","A"],
-    ...              ["A","A","A","A","A","A"],
-    ...              ["A","A","A","A","A","B"],
-    ...              ["A","A","A","A","B","A"]],
-    ...             "AAAAAAAAAAAAABB")
+    >>> word_exists([["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB")
     False
     >>> word_exists([["A"]], 123)
     Traceback (most recent call last):
