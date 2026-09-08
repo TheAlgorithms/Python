@@ -264,8 +264,11 @@ def prompt(s: str = "", width=50, char="*") -> str:
     >>> [prompt("Python", width=width) for width in range(8, 13)]
     [' Python ', ' Python *', '* Python *', '* Python **', '** Python **']
 
-    >>> prompt("Python", char=chr(0x1F40D))
-    '🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍 Python 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍'
+    >>> prompt("Python", width=40, char=chr(0x1F40D))
+    '🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍 Python 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍'
+
+    >>> len(prompt("Python"))
+    50
 
     >>> prompt("Python", -200)
     ' Python '
