@@ -41,6 +41,11 @@ Always check at least one Markdown checkbox in the pull request description (the
 - [ ] Public functions/classes have **type hints**.
 - [ ] Public functions have **doctests that actually pass**.
 - [ ] Descriptive variable and function names (no single letters where a word helps).
+- [ ] For a simple class that is mostly a bundle of fields, **consider**
+      `from typing import NamedTuple` or `from dataclasses import dataclass`
+      instead of a hand-written `__init__`/`__repr__`/`__eq__`. These are
+      underutilized tools that make simple classes shorter and clearer — use
+      them where they genuinely simplify the code, not everywhere.
 - [ ] Code is formatted and lint-clean (`ruff`, `pre-commit`).
 - [ ] `DIRECTORY.md` and `README.md` are **not hand-edited** — the
       `algorithms-keeper` bot regenerates them automatically after merge.

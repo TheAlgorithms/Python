@@ -33,6 +33,14 @@ suggest the fix — never just "rejected".
 - [ ] Descriptive variable and function names (no single letters where a word helps).
 - [ ] Code is formatted and lint-clean (`ruff`, `pre-commit`).
 
+> **Optional hint:** When a PR hand-writes a simple class that is mostly a
+> bundle of fields (a manual `__init__` plus `__repr__`/`__eq__`), it is worth
+> **suggesting** `from typing import NamedTuple` or
+> `from dataclasses import dataclass` where they would simplify the code. These
+> are underutilized tools that our contributors would benefit from using where
+> they make sense. Offer it as an optional improvement, not a blocker — do not
+> request changes solely because a class was written the longhand way.
+
 #### When a PR fails `ruff check`
 
 Don't just report the failure — try the mechanical fixes and recommend the one
