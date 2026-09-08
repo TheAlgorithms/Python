@@ -147,39 +147,39 @@ def generate_random_hands(number_of_hands: int = 100):
     return (generate_random_hand() for _ in range(number_of_hands))
 
 
-@pytest.mark.parametrize("hand, expected", TEST_FLUSH)
+@pytest.mark.parametrize(("hand", "expected"), TEST_FLUSH)
 def test_hand_is_flush(hand, expected):
     assert PokerHand(hand)._is_flush() == expected
 
 
-@pytest.mark.parametrize("hand, expected", TEST_STRAIGHT)
+@pytest.mark.parametrize(("hand", "expected"), TEST_STRAIGHT)
 def test_hand_is_straight(hand, expected):
     assert PokerHand(hand)._is_straight() == expected
 
 
-@pytest.mark.parametrize("hand, expected, card_values", TEST_FIVE_HIGH_STRAIGHT)
+@pytest.mark.parametrize(("hand", "expected", "card_values"), TEST_FIVE_HIGH_STRAIGHT)
 def test_hand_is_five_high_straight(hand, expected, card_values):
     player = PokerHand(hand)
     assert player._is_five_high_straight() == expected
     assert player._card_values == card_values
 
 
-@pytest.mark.parametrize("hand, expected", TEST_KIND)
+@pytest.mark.parametrize(("hand", "expected"), TEST_KIND)
 def test_hand_is_same_kind(hand, expected):
     assert PokerHand(hand)._is_same_kind() == expected
 
 
-@pytest.mark.parametrize("hand, expected", TEST_TYPES)
+@pytest.mark.parametrize(("hand", "expected"), TEST_TYPES)
 def test_hand_values(hand, expected):
     assert PokerHand(hand)._hand_type == expected
 
 
-@pytest.mark.parametrize("hand, other, expected", TEST_COMPARE)
+@pytest.mark.parametrize(("hand", "other", "expected"), TEST_COMPARE)
 def test_compare_simple(hand, other, expected):
     assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
 
-@pytest.mark.parametrize("hand, other, expected", generate_random_hands())
+@pytest.mark.parametrize(("hand", "other", "expected"), generate_random_hands())
 def test_compare_random(hand, other, expected):
     assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
