@@ -153,15 +153,19 @@ def build_stats_block() -> str:
     lines = [
         STATS_HEADER,
         "",
-        f"_Generated automatically by "
-        f"`scripts/hacktoberfest_prep_update.py` on {today} (UTC)._",
+        (
+            f"_Generated automatically by "
+            f"`scripts/hacktoberfest_prep_update.py` on {today} (UTC)._"
+        ),
         "",
         f"- **Open issues:** {open_issues}",
         f"- **Open pull requests:** {open_prs}",
         f"- **Open PRs labelled `{AWAITING_LABEL}`:** {awaiting}",
         "",
-        "**Top three directories to work on** (most open pull requests labelled "
-        f"`{AWAITING_LABEL}`):",
+        (
+            "**Top three directories to work on** (most open pull requests "
+            f"labelled `{AWAITING_LABEL}`):"
+        ),
         "",
     ]
     if top_dirs := top_awaiting_directories():
