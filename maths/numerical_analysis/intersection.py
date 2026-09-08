@@ -42,6 +42,11 @@ def intersection(function: Callable[[float], float], x0: float, x1: float) -> fl
 
 
 def f(x: float) -> float:
+    """
+    function is f(x) = x^3 - 2x - 5
+    >>> f(2)
+    -1.0
+    """
     return math.pow(x, 3) - (2 * x) - 5
 
 

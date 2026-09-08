@@ -6,12 +6,12 @@
 from __future__ import annotations
 
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class GraphAdjacencyList[T]:
     """
     Adjacency List type Graph Data Structure that accounts for directed and undirected
     Graphs.  Initialize graph object indicating whether it's directed or undirected.
