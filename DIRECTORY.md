@@ -720,6 +720,7 @@
   * [Chebyshev Distance](maths/chebyshev_distance.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chinese Remainder Theorem](maths/chinese_remainder_theorem.py)
+  * [Cholesky Decomposition](maths/cholesky_decomposition.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
