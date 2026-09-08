@@ -1,0 +1,46 @@
+# Daily refresh of the Hacktoberfest 2026 open-PR cleanup tracker.
+# Ticks off any tracked pull request that has since been merged/closed, and
+# rewrites the "Automated statistics" section (open issue/PR counts + the top
+# three `awaiting reviews` directories). The job fails on purpose once
+# Hacktoberfest 2026 has begun (>= 2026-10-01), which is the signal to retire it.
+name: hacktoberfest_prep
+
+on:
+  schedule:
+    - cron: "50 11 * * *" # 11:50 UTC every day
+  workflow_dispatch: # allow a manual run while testing
+
+permissions:
+  contents: write
+
+jobs:
+  hacktoberfest-prep:
+    # No point running on forks — this pushes to the repo's own docs file.
+    if: github.repository == 'TheAlgorithms/Python'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version-file: .python-version
+          allow-prereleases: true
+      - name: Update the tracker
+        id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        # Don't let the intentional post-Oct-1 failure stop the commit step;
+        # capture the exit code and re-raise it after pushing any changes.
+        run: |
+          set +e
+          python scripts/hacktoberfest_prep_update.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+      - name: Commit any changes
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add docs/hacktober_2026_prep.md
+          git commit -m "chore: refresh Hacktoberfest 2026 prep tracker" || echo "No changes to commit"
+          git push || echo "Nothing to push"
+      - name: Propagate the script's exit code
+        run: exit ${{ steps.update.outputs.exit_code }}
