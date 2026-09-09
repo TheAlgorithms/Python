@@ -2063,9 +2063,12 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 _Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-09 (UTC)._
 
-- **Open issues:** 621
+- **Open issues:** 107
 - **Open pull requests:** 621
 - **Open PRs labelled `awaiting reviews`:** 458
+- **Days until Hacktoberfest (2026-10-01):** 22
+- **Issues to close per day to clear the backlog:** 5 per day (over 22 days)
+- **Pull requests to merge or close per day to clear the backlog:** 29 per day (over 22 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
