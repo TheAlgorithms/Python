@@ -1,7 +1,12 @@
-from typing import Any
+
+from typing import Protocol
 
 
-def double_sort(collection: list[Any]) -> list[Any]:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def double_sort[T: Comparable](collection: list[T]) -> list[T]:
     """This sorting algorithm sorts an array using the principle of bubble sort,
     but does it both from left to right and right to left.
     Hence, it's called "Double sort"
@@ -16,7 +21,12 @@ def double_sort(collection: list[Any]) -> list[Any]:
     [-6, -5, -4, -3, -2, -1]
     >>> double_sort([-3, 10, 16, -42, 29]) == sorted([-3, 10, 16, -42, 29])
     True
-    """
+
+    >>> double_sort(["d", "a", "c", "b"])
+    ['a', 'b', 'c', 'd']
+    >>> double_sort([2.5, -1.0, 0.0])
+    [-1.0, 0.0, 2.5]
+"""
     no_of_elements = len(collection)
     for _ in range(
         int(((no_of_elements - 1) / 2) + 1)
