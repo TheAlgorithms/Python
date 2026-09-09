@@ -50,9 +50,7 @@ def circle_sort[T: Comparable](
     if len(collection) < 2:
         return collection
 
-    def circle_sort_util(
-        collection: MutableSequence[T], low: int, high: int
-    ) -> bool:
+    def circle_sort_util(collection: MutableSequence[T], low: int, high: int) -> bool:
         """
         >>> arr = [5,4,3,2,1]
         >>> circle_sort_util(arr, 0, 2)
