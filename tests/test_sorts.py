@@ -17,6 +17,12 @@ on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
+from sorts.cocktail_shaker_sort import cocktail_shaker_sort
+from sorts.comb_sort import comb_sort
+from sorts.cycle_sort import cycle_sort
+from sorts.double_sort import double_sort
+from sorts.exchange_sort import exchange_sort
+from sorts.gnome_sort import gnome_sort
 from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
@@ -48,6 +54,12 @@ def test_heap_sort():
 
 SORTS = (
     binary_insertion_sort,
+    cocktail_shaker_sort,
+    comb_sort,
+    cycle_sort,
+    double_sort,
+    exchange_sort,
+    gnome_sort,
     bubble_sort_iterative,
     circle_sort,
     cocktail_shaker_sort,
@@ -95,6 +107,12 @@ def test_sort_matches_builtin(sort, case):
         binary_insertion_sort,
         bubble_sort_iterative,
         bubble_sort_recursive,
+        cocktail_shaker_sort,
+        comb_sort,
+        cycle_sort,
+        double_sort,
+        exchange_sort,
+        gnome_sort,
         insertion_sort,
     ],
     ids=lambda f: f.__name__,
