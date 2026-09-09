@@ -8,6 +8,7 @@ python3 -m doctest -v merge_sort.py
 For manual testing run:
 python merge_sort.py
 """
+
 from typing import Protocol, TypeVar
 
 # CHANGED: Added Comparable Protocol.
@@ -15,8 +16,10 @@ from typing import Protocol, TypeVar
 # support any type of item that can be compared using the < operator,
 # not only integers.
 
+
 class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
+
 
 # CHANGED: Added a TypeVar bounded to Comparable.
 # WHY: This preserves the input element type while ensuring that the
