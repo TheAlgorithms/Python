@@ -9,14 +9,11 @@ python3 circle_sort.py
 """
 
 from collections.abc import MutableSequence
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def circle_sort[T: Comparable](
