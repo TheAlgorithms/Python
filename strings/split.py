@@ -16,6 +16,9 @@ def split(string: str, separator: str = " ") -> list[str]:
 
     >>> split(";abbb;;c;", separator=";")
     ['', 'abbb', '', 'c', '']
+
+    >>> split("--a--b--c--", separator="--")
+    ['', 'a', 'b', 'c', '']
     """
 
     if len(separator) != 1:
