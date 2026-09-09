@@ -95,7 +95,10 @@ def test_sort_matches_builtin(sort, case):
         binary_insertion_sort,
         bubble_sort_iterative,
         bubble_sort_recursive,
+        circle_sort,
         insertion_sort,
+        merge_sort,
+        selection_sort,
     ],
     ids=lambda f: f.__name__,
 )
