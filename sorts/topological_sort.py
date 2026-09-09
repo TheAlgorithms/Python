@@ -36,7 +36,7 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
     >>> topological_sort"a", [], "c")
     Traceback (most recent call last):
         ...
-    ValueError: visited must be a list"    
+    ValueError: visited must be a list"
     """
     if not isinstance(visited, list):
         raise ValueError("visited must be a list")
