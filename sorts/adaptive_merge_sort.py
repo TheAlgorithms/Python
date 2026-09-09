@@ -49,7 +49,7 @@ def merge(array: list, aux: list, low: int, mid: int, high: int) -> None:
     for k in range(low, high + 1):
         array[k] = aux[k]
 
-    print(f"After merge: {array[low:high + 1]}")
+    print(f"After merge: {array[low : high + 1]}")
 
 
 # Example usage
