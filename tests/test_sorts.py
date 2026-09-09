@@ -92,3 +92,8 @@ def test_sort_matches_builtin(sort, case):
 def test_binary_insertion_sort_rejects_non_comparable_items():
     with pytest.raises(TypeError):
         binary_insertion_sort([1, "a"])
+
+
+def test_circle_sort_rejects_non_comparable_items():
+    with pytest.raises(TypeError):
+        circle_sort([1, "a"])
