@@ -89,16 +89,16 @@ def test_sort_matches_builtin(sort, case):
     assert list(sort(list(case))) == sorted(case)
 
 
-def test_binary_insertion_sort_rejects_non_comparable_items():
-    with pytest.raises(TypeError):
-        binary_insertion_sort([1, "a"])
-
-
 @pytest.mark.parametrize(
     "sort",
-    [bubble_sort_iterative, bubble_sort_recursive],
+    [
+        binary_insertion_sort,
+        bubble_sort_iterative,
+        bubble_sort_recursive,
+        insertion_sort
+    ],
     ids=lambda f: f.__name__,
 )
-def test_bubble_sort_rejects_non_comparable_items(sort):
+def test_sort_rejects_non_comparable_items(sort):
     with pytest.raises(TypeError):
         sort([1, "a"])
