@@ -17,7 +17,7 @@ on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
-from sorts.bubble_sort import bubble_sort_iterative
+from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
 from sorts.comb_sort import comb_sort
@@ -87,3 +87,18 @@ CASES = (
 def test_sort_matches_builtin(sort, case):
     """Each sort must reproduce the ordering of the built-in ``sorted``."""
     assert list(sort(list(case))) == sorted(case)
+
+
+@pytest.mark.parametrize(
+    "sort",
+    [
+        binary_insertion_sort,
+        bubble_sort_iterative,
+        bubble_sort_recursive,
+        insertion_sort,
+    ],
+    ids=lambda f: f.__name__,
+)
+def test_sort_rejects_non_comparable_items(sort):
+    with pytest.raises(TypeError):
+        sort([1, "a"])
