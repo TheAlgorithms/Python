@@ -36,6 +36,24 @@ def selection_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     >>> selection_sort([5, 4, 3, 2, 1])
     [1, 2, 3, 4, 5]
 
+    >>> selection_sort([1, 2, 3, 4, 5])
+    [1, 2, 3, 4, 5]
+
+    >>> selection_sort([3, 3, 3, 3])
+    [3, 3, 3, 3]
+
+    >>> selection_sort([0])
+    [0]
+
+    >>> selection_sort([2, -3, 0, 5, -1])
+    [-3, -1, 0, 2, 5]
+
+    >>> selection_sort([0, 5, 3, 2, 2]) == sorted([0, 5, 3, 2, 2])
+    True
+
+    >>> selection_sort([-2, -5, -45]) == sorted([-2, -5, -45])
+    True
+
     >>> selection_sort(["d", "a", "c", "b"])
     ['a', 'b', 'c', 'd']
 
