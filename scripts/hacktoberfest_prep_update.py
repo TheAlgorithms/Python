@@ -137,6 +137,53 @@ async def _search_count(
     return int(body.get("total_count", 0))  # type: ignore[union-attr]
 
 
+# GitHub's ``/search/issues`` ``is:issue`` / ``is:pr`` qualifiers have proven
+# unreliable — some runs return the pull-request pool for *both* queries, so the
+# "Open issues" line reported the PR count. The counts below avoid search
+# entirely: the repository endpoint's ``open_issues_count`` is issues + PRs, and
+# the open-PR total comes from the ``Link: rel="last"`` page number of the pulls
+# listing. Open issues is then their difference — deterministic and self-checking.
+_LAST_PAGE_RE = re.compile(r'[?&]page=(\d+)>;\s*rel="last"')
+
+
+async def _last_page_count(
+    client: httpx2.AsyncClient,
+    sem: asyncio.Semaphore,
+    url: str,
+    params: dict | None = None,
+) -> int:
+    """Total items in a paginated listing, read from its ``Link`` header.
+
+    Requests one item per page so the ``rel="last"`` page number *is* the count.
+    Falls back to the length of the single returned page when there is no
+    ``Link`` header (0 or 1 items).
+    """
+    query = {"per_page": 1, **(params or {})}
+    body, headers = await _request(client, sem, url, query)
+    link = headers.get("link") or headers.get("Link") or ""
+    if match := _LAST_PAGE_RE.search(link):
+        return int(match.group(1))
+    return len(body) if isinstance(body, list) else 0
+
+
+async def open_issue_and_pr_counts(
+    client: httpx2.AsyncClient, sem: asyncio.Semaphore
+) -> tuple[int, int]:
+    """Return ``(open_issues, open_prs)`` without the flaky search qualifiers.
+
+    ``open_issues_count`` from the repo endpoint counts issues *and* pull
+    requests; subtracting the pull-request total leaves genuine issues.
+    """
+    repo, open_prs = await asyncio.gather(
+        _request(client, sem, f"{API}/repos/{REPO}"),
+        _last_page_count(client, sem, f"{API}/repos/{REPO}/pulls", {"state": "open"}),
+    )
+    repo_body, _ = repo
+    total = int(repo_body.get("open_issues_count", 0))  # type: ignore[union-attr]
+    open_issues = max(total - open_prs, 0)
+    return open_issues, open_prs
+
+
 async def pr_state(
     client: httpx2.AsyncClient, sem: asyncio.Semaphore, number: int
 ) -> str | None:
@@ -280,27 +327,55 @@ async def build_stats_block(client: httpx2.AsyncClient, sem: asyncio.Semaphore) 
         except BestEffortError:
             return None
 
-    open_issues, open_prs, awaiting = await asyncio.gather(
-        _count_or_none(f"repo:{REPO} is:issue is:open"),
-        _count_or_none(f"repo:{REPO} is:pr is:open"),
+    async def _counts_or_none() -> tuple[int | None, int | None]:
+        try:
+            return await open_issue_and_pr_counts(client, sem)
+        except BestEffortError:
+            return None, None
+
+    (open_issues, open_prs), awaiting = await asyncio.gather(
+        _counts_or_none(),
         _count_or_none(awaiting_query),
     )
-    today = dt.datetime.now(dt.UTC).date().isoformat()
+    today = dt.datetime.now(dt.UTC).date()
+    today_iso = today.isoformat()
 
     def _fmt(value: int | None) -> str:
         return str(value) if value is not None else "unavailable (rate limited)"
+
+    # Hacktoberfest countdown: how much daily throughput clears the backlog by
+    # 2026-10-01. ``days_left`` is inclusive of today so the target date itself
+    # is not counted as a working day (avoids a divide-by-zero on the last day).
+    days_left = max((HACKTOBERFEST_START - today).days, 0)
+
+    def _per_day(count: int | None) -> str:
+        if count is None:
+            return "unavailable (rate limited)"
+        if days_left <= 0:
+            return "Hacktoberfest has started"
+        # Round up: finishing a day early beats finishing a day late.
+        return f"{-(-count // days_left)} per day (over {days_left} days)"
 
     lines = [
         STATS_HEADER,
         "",
         (
             f"_Generated automatically by "
-            f"`scripts/hacktoberfest_prep_update.py` on {today} (UTC)._"
+            f"`scripts/hacktoberfest_prep_update.py` on {today_iso} (UTC)._"
         ),
         "",
         f"- **Open issues:** {_fmt(open_issues)}",
         f"- **Open pull requests:** {_fmt(open_prs)}",
         f"- **Open PRs labelled `{AWAITING_LABEL}`:** {_fmt(awaiting)}",
+        (
+            f"- **Days until Hacktoberfest ({HACKTOBERFEST_START.isoformat()}):** "
+            f"{days_left}"
+        ),
+        f"- **Issues to close per day to clear the backlog:** {_per_day(open_issues)}",
+        (
+            "- **Pull requests to merge or close per day to clear the backlog:** "
+            f"{_per_day(open_prs)}"
+        ),
         "",
         (
             "**Top three directories to work on** (most open pull requests "
