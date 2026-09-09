@@ -1,7 +1,14 @@
-from typing import Any
+from typing import Protocol, TypeVar
 
 
-def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def bubble_sort_iterative(collection: list[T]) -> list[T]:
     """Pure implementation of the bubble sort algorithm in Python (iterative).
 
     Bubble sort works by repeatedly stepping through the collection,
@@ -50,6 +57,10 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     >>> bubble_sort_iterative([1, 3.3, 5, 7.7, 2, 4.4, 6])
     [1, 2, 3.3, 4.4, 5, 6, 7.7]
+    >>> bubble_sort_iterative([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> import random
     >>> collection_arg = random.sample(range(-50, 50), 100)
     >>> bubble_sort_iterative(collection_arg) == sorted(collection_arg)
@@ -63,7 +74,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     for i in reversed(range(length)):
         swapped = False
         for j in range(i):
-            if collection[j] > collection[j + 1]:
+            if collection[j + 1] < collection[j]:
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
         if not swapped:
@@ -71,7 +82,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     return collection
 
 
-def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
+def bubble_sort_recursive(collection: list[T]) -> list[T]:
     """Pure implementation of the bubble sort algorithm in Python (recursive).
 
     Functionally identical to the iterative version: each call makes a
@@ -114,6 +125,10 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     >>> bubble_sort_recursive([1, 3.3, 5, 7.7, 2, 4.4, 6])
     [1, 2, 3.3, 4.4, 5, 6, 7.7]
+    >>> bubble_sort_recursive([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> bubble_sort_recursive(['a', 'Z', 'B', 'C', 'A', 'c'])
     ['A', 'B', 'C', 'Z', 'a', 'c']
     >>> import random
@@ -128,7 +143,7 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     length = len(collection)
     swapped = False
     for i in range(length - 1):
-        if collection[i] > collection[i + 1]:
+        if collection[i + 1] < collection[i]:
             collection[i], collection[i + 1] = collection[i + 1], collection[i]
             swapped = True
 
