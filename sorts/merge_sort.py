@@ -8,6 +8,7 @@ python3 -m doctest -v merge_sort.py
 For manual testing run:
 python merge_sort.py
 """
+
 from typing import Protocol
 
 
