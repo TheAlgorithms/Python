@@ -3,7 +3,8 @@
 https://en.wikipedia.org/wiki/Topological_sorting
 https://en.wikipedia.org/wiki/Directed_acyclic_graph
 
-Note: topological_sort() sorts a directed acyclic graph so topological_sort(2, 1, 3) should fail.
+Note: topological_sort() sorts a directed acyclic graph so topological_sort(2, 1, 3)
+    should fail.
 """
 
 #     a
@@ -33,15 +34,15 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
         ...
     ValueError: visited must be a list"
 
-    >>> topological_sort"a", [], "c")
+    >>> topological_sort("a", [], "c")
     Traceback (most recent call last):
         ...
-    ValueError: visited must be a list"
+    ValueError: sort must be a list"
     """
     if not isinstance(visited, list):
         raise ValueError("visited must be a list")
-    if not isinstance(current, list):
-        raise ValueError("current must be a list")
+    if not isinstance(sort, list):
+        raise ValueError("sort must be a list")
     current = start
     # add current to visited
     visited.append(current)
