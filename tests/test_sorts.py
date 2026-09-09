@@ -87,3 +87,8 @@ CASES = (
 def test_sort_matches_builtin(sort, case):
     """Each sort must reproduce the ordering of the built-in ``sorted``."""
     assert list(sort(list(case))) == sorted(case)
+
+
+def test_binary_insertion_sort_rejects_non_comparable_items():
+    with pytest.raises(TypeError):
+        binary_insertion_sort([1, "a"])
