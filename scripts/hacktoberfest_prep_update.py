@@ -43,16 +43,30 @@ TRACKER = "docs/hacktober_2026_prep.md"
 AWAITING_LABEL = "awaiting reviews"
 HACKTOBERFEST_START = dt.date(2026, 10, 1)
 
-# How many API requests to keep in flight at once. GitHub's authenticated
-# primary limit is 5000/hour, but bursts of concurrent requests can trip the
-# secondary limits, so keep this modest.
-CONCURRENCY = 8
+# How many API requests to keep in flight at once. A user token's primary
+# limit is 5000/hour, but the ``GITHUB_TOKEN`` the runner hands us is capped at
+# 1000/hour *per repository* and shared across every concurrent workflow run, so
+# several dry runs in the same hour can exhaust it between them. Bursts of
+# concurrent requests can also trip the secondary limits. Keep this modest and
+# let the callers degrade gracefully when a request can't be satisfied (see
+# ``BestEffortError``) rather than failing the whole job.
+CONCURRENCY = 5
 
 # A tracked row looks like: ``12. [ ] #15144 awaiting reviews``
 ROW_RE = re.compile(
     r"^(?P<idx>\d+)\.\s+\[(?P<mark>[ x])\]\s+#(?P<pr>\d+)\b(?P<rest>.*)$"
 )
 STATS_HEADER = "## Automated statistics"
+
+
+class BestEffortError(RuntimeError):
+    """A row/statistic could not be fetched (e.g. rate limited).
+
+    Raised by :func:`_request` once every retry is exhausted. The refresh is
+    best-effort: callers catch this so an unreachable API degrades the tracker
+    (keep the old value / omit a stat) instead of failing the whole job. The
+    only intentional non-zero exit is the post-Oct-1 retirement.
+    """
 
 
 def _log(message: str) -> None:
@@ -86,19 +100,32 @@ async def _request(
             resp = await client.get(url, params=params)
             if resp.is_success:
                 return resp.json(), dict(resp.headers)
-            remaining = resp.headers.get("X-RateLimit-Remaining")
-            if resp.status_code in (403, 429) and remaining == "0":
-                reset = int(resp.headers.get("X-RateLimit-Reset", "0"))
-                wait = max(1, reset - int(time.time())) + 1
-                _log(f"Rate limited on {url}; sleeping {min(wait, 90)}s")
-                await asyncio.sleep(min(wait, 90))
-                continue
+            # Both primary ("remaining == 0") and secondary/abuse rate limits
+            # come back as 403/429. Primary limits advertise a reset epoch;
+            # secondary limits instead send a ``Retry-After`` (seconds) and may
+            # still report a non-zero remaining, so honour either signal.
+            if resp.status_code in (403, 429):
+                remaining = resp.headers.get("X-RateLimit-Remaining")
+                retry_after = resp.headers.get("Retry-After")
+                if retry_after is not None:
+                    wait = int(retry_after) + 1
+                elif remaining == "0":
+                    reset = int(resp.headers.get("X-RateLimit-Reset", "0"))
+                    wait = max(1, reset - int(time.time())) + 1
+                else:
+                    wait = 0
+                if wait and attempt < 3:
+                    _log(f"Rate limited on {url}; sleeping {min(wait, 90)}s")
+                    await asyncio.sleep(min(wait, 90))
+                    continue
             if resp.status_code >= 500 and attempt < 3:
                 await asyncio.sleep(2 * (attempt + 1))
                 continue
             resp.raise_for_status()
-        msg = f"giving up on {url}"
-        raise RuntimeError(msg)
+        # Exhausted every retry (typically the shared per-repo budget ran dry).
+        # Signal the callers to degrade rather than crash the whole run.
+        msg = f"giving up on {url} after repeated rate limiting"
+        raise BestEffortError(msg)
 
 
 async def _search_count(
@@ -135,7 +162,7 @@ async def top_awaiting_directories(
     client: httpx2.AsyncClient,
     sem: asyncio.Semaphore,
     limit: int = 3,
-    max_prs: int = 400,
+    max_prs: int = 120,
 ) -> list[tuple[str, int]]:
     """Count open ``awaiting reviews`` PRs by the top-level directory they touch."""
     query = f'repo:{REPO} is:pr is:open label:"{AWAITING_LABEL}"'
@@ -176,12 +203,22 @@ async def top_awaiting_directories(
             _log(f"  ...scanned {done}/{total} PR(s)")
         return dirs
 
-    results = await asyncio.gather(*(dirs_for(n) for n in numbers))
+    results = await asyncio.gather(
+        *(dirs_for(n) for n in numbers), return_exceptions=True
+    )
 
     counts: dict[str, int] = {}
+    skipped = 0
     for dirs in results:
+        if isinstance(dirs, BestEffortError):
+            skipped += 1
+            continue
+        if isinstance(dirs, BaseException):
+            raise dirs
         for directory in dirs:
             counts[directory] = counts.get(directory, 0) + 1
+    if skipped:
+        _log(f"  ...{skipped} PR(s) skipped (API unavailable); ranking partial.")
     ranked = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
     return ranked[:limit]
 
@@ -199,12 +236,23 @@ async def refresh_checkboxes(
     ]
     if pending:
         _log(f"Checking {len(pending)} open tracker row(s) for resolution...")
-    states = dict(
-        zip(
-            pending,
-            await asyncio.gather(*(pr_state(client, sem, n) for n in pending)),
-        )
+    # ``return_exceptions`` keeps one rate-limited row from cancelling the rest:
+    # a row we couldn't resolve is simply left unchanged (treated as ``None``).
+    resolved = await asyncio.gather(
+        *(pr_state(client, sem, n) for n in pending), return_exceptions=True
     )
+    states: dict[int, str | None] = {}
+    unresolved = 0
+    for number, result in zip(pending, resolved):
+        if isinstance(result, BestEffortError):
+            unresolved += 1
+            states[number] = None
+        elif isinstance(result, BaseException):
+            raise result
+        else:
+            states[number] = result
+    if unresolved:
+        _log(f"  ...{unresolved} row(s) left unchanged (API unavailable).")
 
     updated = 0
     out: list[str] = []
@@ -225,12 +273,22 @@ async def refresh_checkboxes(
 async def build_stats_block(client: httpx2.AsyncClient, sem: asyncio.Semaphore) -> str:
     _log("Collecting open issue/PR counts...")
     awaiting_query = f'repo:{REPO} is:pr is:open label:"{AWAITING_LABEL}"'
+
+    async def _count_or_none(query: str) -> int | None:
+        try:
+            return await _search_count(client, sem, query)
+        except BestEffortError:
+            return None
+
     open_issues, open_prs, awaiting = await asyncio.gather(
-        _search_count(client, sem, f"repo:{REPO} is:issue is:open"),
-        _search_count(client, sem, f"repo:{REPO} is:pr is:open"),
-        _search_count(client, sem, awaiting_query),
+        _count_or_none(f"repo:{REPO} is:issue is:open"),
+        _count_or_none(f"repo:{REPO} is:pr is:open"),
+        _count_or_none(awaiting_query),
     )
     today = dt.datetime.now(dt.UTC).date().isoformat()
+
+    def _fmt(value: int | None) -> str:
+        return str(value) if value is not None else "unavailable (rate limited)"
 
     lines = [
         STATS_HEADER,
@@ -240,9 +298,9 @@ async def build_stats_block(client: httpx2.AsyncClient, sem: asyncio.Semaphore) 
             f"`scripts/hacktoberfest_prep_update.py` on {today} (UTC)._"
         ),
         "",
-        f"- **Open issues:** {open_issues}",
-        f"- **Open pull requests:** {open_prs}",
-        f"- **Open PRs labelled `{AWAITING_LABEL}`:** {awaiting}",
+        f"- **Open issues:** {_fmt(open_issues)}",
+        f"- **Open pull requests:** {_fmt(open_prs)}",
+        f"- **Open PRs labelled `{AWAITING_LABEL}`:** {_fmt(awaiting)}",
         "",
         (
             "**Top three directories to work on** (most open pull requests "
@@ -250,12 +308,20 @@ async def build_stats_block(client: httpx2.AsyncClient, sem: asyncio.Semaphore) 
         ),
         "",
     ]
-    if top_dirs := await top_awaiting_directories(client, sem):
-        for rank, (directory, count) in enumerate(top_dirs, start=1):
-            plural = "PR" if count == 1 else "PRs"
-            lines.append(f"{rank}. `{directory}/` — {count} awaiting-reviews {plural}")
+    try:
+        top_dirs = await top_awaiting_directories(client, sem)
+    except BestEffortError:
+        top_dirs = []
+        lines.append("_Directory ranking unavailable this run (rate limited)._")
     else:
-        lines.append("_No open `awaiting reviews` pull requests found._")
+        if top_dirs:
+            for rank, (directory, count) in enumerate(top_dirs, start=1):
+                plural = "PR" if count == 1 else "PRs"
+                lines.append(
+                    f"{rank}. `{directory}/` — {count} awaiting-reviews {plural}"
+                )
+        else:
+            lines.append("_No open `awaiting reviews` pull requests found._")
     lines.append("")
     return "\n".join(lines)
 
