@@ -20,7 +20,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def binary_insertion_sort(collection: list[T]) -> list[T]:
+def binary_insertion_sort[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sorts a list using the binary insertion sort algorithm.
 
