@@ -106,6 +106,15 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
 
 def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     """
+    Sort and return the input using a TimSort-like approach: detect
+    runs, sort each run with insertion sort, then merge the runs.
+
+    Complexity:
+        Time: ``O(n log n)`` in the common case.
+        Space: ``O(n)`` for the extra lists used during sorting.
+
+    >>> tim_sort([])
+    []
     >>> tim_sort("Python")
     ['P', 'h', 'n', 'o', 't', 'y']
     >>> tim_sort((1.1, 1, 0, -1, -1.1))
@@ -117,13 +126,9 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
     True
 
-    Sort and return the input using a TimSort-like approach: detect
-    runs, sort each run with insertion sort, then merge the runs.
-
-    Complexity:
-        Time: ``O(n log n)`` in the common case.
-        Space: ``O(n)`` for the extra lists used during sorting.
     """
+    if not lst:
+        return []
     length = len(lst)
     runs, sorted_runs = [], []
     new_run = [lst[0]]
