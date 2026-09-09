@@ -19,7 +19,13 @@ hand. A hand-modified `uv.lock` makes the `algorithms-keeper` bot close the pull
 request as invalid, and even a repo maintainer cannot undo that.
 
 Always check at least one Markdown checkbox in the pull request description (the "Describe your change" section), or the
-`algorithms-keeper` bot will close the pull request as invalid — and it does this *before* a human reads the PR, so a genuinely good change gets closed for a formatting reason. This applies to **every** pull request, including CI, docs, and tooling changes that are not algorithms: tick the boxes that genuinely apply so the body is never submitted with all boxes empty. Any repo maintainer can undo this if you @mention them on the closed pull request, but re-opening is often unreliable, so it is far better to get it right the first time.
+`algorithms-keeper` bot will close the pull request as invalid — and it does
+this *before* a human reads the PR, so a genuinely good change gets closed for a
+formatting reason. This applies to **every** pull request, including CI, docs,
+and tooling changes that are not algorithms: tick the boxes that genuinely apply
+so the body is never submitted with all boxes empty. Any repo maintainer can
+undo this if you @mention them on the closed pull request, but re-opening is
+often unreliable, so it is far better to get it right the first time.
 
 ### 1. Before contributing / Is this an algorithm?
 
