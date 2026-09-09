@@ -2,7 +2,6 @@ rules:
   excessive-permissions:
     disable: true
   unpinned-uses:
-    disable: true
-    # config:
-    #   policies:
-    #     actions/*: ref-pin
+    config:
+      policies:
+        "*": ref-pin
