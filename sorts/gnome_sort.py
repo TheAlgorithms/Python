@@ -43,7 +43,7 @@ def gnome_sort[T: Comparable](lst: list[T]) -> list[T]:
     ['a', 'b', 'c', 'd']
     >>> gnome_sort([2.5, -1.0, 0.0])
     [-1.0, 0.0, 2.5]
-"""
+    """
     if len(lst) <= 1:
         return lst
 
