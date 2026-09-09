@@ -96,7 +96,7 @@ def test_binary_insertion_sort_rejects_non_comparable_items():
 
 @pytest.mark.parametrize(
     "sort",
-    (bubble_sort_iterative, bubble_sort_recursive),
+    [bubble_sort_iterative, bubble_sort_recursive],
     ids=lambda f: f.__name__,
 )
 def test_bubble_sort_rejects_non_comparable_items(sort):
