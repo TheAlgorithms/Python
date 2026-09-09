@@ -29,6 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version-file: .python-version
@@ -96,4 +98,6 @@ jobs:
             echo "Open tracker PR already exists; force-push updated it in place."
           fi
       - name: Propagate the script's exit code
-        run: exit ${{ steps.update.outputs.exit_code }}
+        env:
+          UPDATE_EXIT_CODE: ${{ steps.update.outputs.exit_code }}
+        run: exit ${UPDATE_EXIT_CODE}

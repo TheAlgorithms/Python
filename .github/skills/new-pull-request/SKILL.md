@@ -10,7 +10,7 @@ clear, kind, tested, type-hinted, mergeable contribution.
 Make sure that the local `master` branch is synced with `upstream/master` before
 creating a new pull request.
 
-Create a new clearly named branch for the pull request.  Pull request changes must
+Create a new clearly named branch for the pull request. Pull request changes must
 not be made or submitted on the `master` branch.
 
 Never hand-edit or revert the `uv.lock` file. If you add a legitimate
@@ -19,7 +19,7 @@ hand. A hand-modified `uv.lock` makes the `algorithms-keeper` bot close the pull
 request as invalid, and even a repo maintainer cannot undo that.
 
 Always check at least one Markdown checkbox in the pull request description (the "Describe your change" section), or the
-`algorithms-keeper` bot will close the pull request as invalid.  Any repo maintainer can undo this if you @mention them on the closed pull request.
+`algorithms-keeper` bot will close the pull request as invalid. Any repo maintainer can undo this if you @mention them on the closed pull request.
 
 ### 1. Before contributing / Is this an algorithm?
 
