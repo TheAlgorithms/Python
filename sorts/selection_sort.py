@@ -1,12 +1,9 @@
 from collections.abc import MutableSequence
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def selection_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
