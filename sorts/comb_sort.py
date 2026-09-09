@@ -43,7 +43,7 @@ def comb_sort[T: Comparable](data: list[T]) -> list[T]:
     ['a', 'b', 'c', 'd']
     >>> comb_sort([2.5, -1.0, 0.0])
     [-1.0, 0.0, 2.5]
-"""
+    """
     shrink_factor = 1.3
     gap = len(data)
     completed = False
