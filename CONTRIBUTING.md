@@ -45,12 +45,12 @@ GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/is
 #### What is an Algorithm?
 
 An algorithm is one or more functions (or classes) that:
-* take one or more inputs,
-* perform some internal calculations or data manipulations,
-* return one or more outputs,
-* have minimal side effects (e.g., `print()`, `plot()`, `read()`, `write()`).
-An Algorithm is one or more functions (or classes) that:
 
+- take one or more inputs,
+- perform some internal calculations or data manipulations,
+- return one or more outputs,
+- have minimal side effects (e.g., `print()`, `plot()`, `read()`, `write()`).
+An Algorithm is one or more functions (or classes) that:
 - take one or more inputs,
 - perform some internal calculations or data manipulations,
 - return one or more outputs,
@@ -59,14 +59,15 @@ An Algorithm is one or more functions (or classes) that:
 Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
 Algorithms should:
-* have intuitive class and function names that make their purpose clear to readers,
-* use Python naming conventions and intuitive variable names to ease comprehension,
-* be flexible to take different input values,
-* have Python type hints for their input parameters and return values,
-* raise Python exceptions (`ValueError`, etc.) on erroneous input values,
-* have docstrings with clear explanations and/or URLs to source materials,
-* contain doctests that test both valid and erroneous input values,
-* return all calculation results instead of printing or plotting them.
+
+- have intuitive class and function names that make their purpose clear to readers,
+- use Python naming conventions and intuitive variable names to ease comprehension,
+- be flexible to take different input values,
+- have Python type hints for their input parameters and return values,
+- raise Python exceptions (`ValueError`, etc.) on erroneous input values,
+- have docstrings with clear explanations and/or URLs to source materials,
+- contain doctests that test both valid and erroneous input values,
+- return all calculation results instead of printing or plotting them.
 
 Algorithms in this repo should not be simple how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. These calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
@@ -92,6 +93,7 @@ Use [pre-commit](https://pre-commit.com/#installation) to automatically format y
 python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
+
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
 
 That's it! The plugin will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
@@ -99,6 +101,7 @@ That's it! The plugin will run every time you commit any changes. If any errors 
 ```bash
 pre-commit run --all-files --show-diff-on-failure
 ```
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
@@ -125,6 +128,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m pip install ruff  # only required the first time
   ruff check
   ```
+
 - Original code submission require docstrings or comments to describe your work.
 
 - Original code submissions require docstrings or comments to describe your work.
