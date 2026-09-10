@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
 
-class DisjointSetTreeNode(Generic[T]):
+class DisjointSetTreeNode[T]:
     # Disjoint Set Node to store the parent and rank
     def __init__(self, data: T) -> None:
         self.data = data
@@ -13,7 +13,7 @@ class DisjointSetTreeNode(Generic[T]):
         self.rank = 0
 
 
-class DisjointSetTree(Generic[T]):
+class DisjointSetTree[T]:
     # Disjoint Set DataStructure
     def __init__(self) -> None:
         # map from node name to the node object
@@ -46,7 +46,7 @@ class DisjointSetTree(Generic[T]):
         self.link(self.find_set(data1), self.find_set(data2))
 
 
-class GraphUndirectedWeighted(Generic[T]):
+class GraphUndirectedWeighted[T]:
     def __init__(self) -> None:
         # connections: map from the node to the neighbouring nodes (with weights)
         self.connections: dict[T, dict[T, int]] = {}

@@ -185,7 +185,7 @@ def solution(n: int = 10**15) -> int:
     i = 1
     dn = 0
     while True:
-        diff, terms_jumped = next_term(digits, 20, i + dn, n)
+        _diff, terms_jumped = next_term(digits, 20, i + dn, n)
         dn += terms_jumped
         if dn == n - i:
             break

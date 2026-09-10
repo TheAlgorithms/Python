@@ -33,7 +33,9 @@ def jaro_winkler(str1: str, str2: str) -> float:
             right = int(min(i + limit + 1, len(_str2)))
             if char in _str2[left:right]:
                 matched.append(char)
-                _str2 = f"{_str2[0:_str2.index(char)]} {_str2[_str2.index(char) + 1:]}"
+                _str2 = (
+                    f"{_str2[0 : _str2.index(char)]} {_str2[_str2.index(char) + 1 :]}"
+                )
 
         return "".join(matched)
 
