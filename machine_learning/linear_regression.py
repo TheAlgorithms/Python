@@ -11,12 +11,12 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 #     "numpy",
 # ]
 # ///
 
-import httpx
+import httpx2
 import numpy as np
 
 
@@ -25,7 +25,7 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    response = httpx.get(
+    response = httpx2.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
