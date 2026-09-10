@@ -1,8 +1,8 @@
-# Contributing guidelines
+# Contributing Guidelines
 
-## Before contributing
+## Before Contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before submitting your pull requests, please ensure that you __read the whole guidelines__. If you have any doubts about the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community on [Gitter](https://gitter.im/TheAlgorithms/community).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before submitting your pull requests, please ensure that you __read the entire guidelines__. If you have any doubts about the contributing guide, please feel free to [state them clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community on [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -10,18 +10,18 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 
 We are delighted that you are considering implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. By being one of our contributors, you agree and confirm that:
 
-- You did your work - no plagiarism allowed.
+- You did your work — no plagiarism allowed.
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged.
+- Your work will be distributed under the [MIT License](LICENSE.md) once your pull request is merged.
 - Your submitted work fulfills or mostly fulfills our styles and standards.
 
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity, but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementations__ are welcome! For example, new solutions for a problem, different representations for a graph data structure, or algorithm designs with different complexities. However, __identical implementations__ of an existing one are not allowed. Please check whether the solution is already implemented before submitting your pull request.
 
 __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 ### Contribution
 
-We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
+We appreciate any contribution — from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
 Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy. After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.
 
@@ -29,7 +29,7 @@ If those tests fail, then click on the ___details___ button to read through the 
 
 #### Issues
 
-If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__ so please do not ask for permission to work on an issue.
+If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__, so please do not ask for permission to work on an issue.
 
 __Do not__ create an issue to contribute an algorithm. Please submit a pull request instead.
 
@@ -44,16 +44,35 @@ GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/is
 
 #### What is an Algorithm?
 
-An Algorithm is one or more functions (or classes) that:
+An algorithm is one or more functions (or classes) that:
 
+- take one or more inputs,
+- perform some internal calculations or data manipulations,
+- return one or more outputs,
+- have minimal side effects (e.g., `print()`, `plot()`, `read()`, `write()`).
+An Algorithm is one or more functions (or classes) that:
 - take one or more inputs,
 - perform some internal calculations or data manipulations,
 - return one or more outputs,
 - have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
 
-Algorithms should be packaged in a way that makes it easy for readers to put them into larger programs.
+Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
 Algorithms should:
+
+- have intuitive class and function names that make their purpose clear to readers,
+- use Python naming conventions and intuitive variable names to ease comprehension,
+- be flexible to take different input values,
+- have Python type hints for their input parameters and return values,
+- raise Python exceptions (`ValueError`, etc.) on erroneous input values,
+- have docstrings with clear explanations and/or URLs to source materials,
+- contain doctests that test both valid and erroneous input values,
+- return all calculation results instead of printing or plotting them.
+
+Algorithms in this repo should not be simple how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values.
+These calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
+
+#### Pre-Commit Plugin
 
 - have intuitive class and function names that make their purpose clear to readers
 - use Python naming conventions and intuitive variable names to ease comprehension
@@ -67,7 +86,7 @@ Algorithms should:
 Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values.
 Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
-#### Pre-commit plugin
+#### Pre-commit
 
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
@@ -76,7 +95,7 @@ python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 
-That's it! The plugin will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+That's it! Pre-commit will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
 
 ```bash
 pre-commit run --all-files --show-diff-on-failure
@@ -118,12 +137,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The following are considered to be bad and may be requested to be improved:
 
   ```python
-  x = x + 2  # increased by 2
+  x += 2  # increased by 2
   ```
 
-  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on, or below a line of code, as long as you are consistent within the same piece of code.
+  This is too trivial. Comments should not merely repeat what the code already says. Comments should explain ___why___ we are doing things. Comments on the same line as code should never cause the line to wrap (> 88 characters per line).
+Comments which are not on the same line as code should appear ___before___ the code they describe. "First tell the reader ___why___ with comments and then show them ___how___ with code."
 
-  We encourage you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
+  We require you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
 
   ```python
   def sum_ab(a, b):
