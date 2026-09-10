@@ -21,6 +21,7 @@ import gzip
 import os
 import typing
 import urllib
+import urllib.request
 
 import numpy as np
 from tensorflow.python.framework import dtypes, random_seed

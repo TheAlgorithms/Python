@@ -222,6 +222,7 @@ class BinomialHeap:
             if val < self.min_node.val:
                 self.min_node = new_node
             # Put new_node as a bottom_root in heap
+            assert self.bottom_root is not None
             self.bottom_root.left = new_node
             new_node.parent = self.bottom_root
             self.bottom_root = new_node
@@ -283,6 +284,7 @@ class BinomialHeap:
 
             # Update bottom root
             self.bottom_root = self.bottom_root.parent
+            assert self.bottom_root is not None
             self.bottom_root.left = None
 
             # Update min_node

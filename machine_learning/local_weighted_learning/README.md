@@ -1,9 +1,10 @@
 # Locally Weighted Linear Regression
+
 It is a non-parametric ML algorithm that does not learn on a fixed set of parameters such as **linear regression**. \
 So, here comes a question of what is *linear regression*? \
 **Linear regression** is a supervised learning algorithm used for computing linear relationships between input (X) and output (Y). \
 
-### Terminology Involved
+## Terminology Involved
 
 number_of_features(i) = Number of features involved. \
 number_of_training_examples(m) = Number of training examples. \
@@ -17,7 +18,7 @@ Training phase: Compute \theta to minimize the cost. \
 J($\theta$) = $\sum_{i=1}^m$ (($\theta$)$^T$ $x^i$ - $y^i$)$^2$
 
 Predict output: for given query point x, \
- return:  ($\theta$)$^T$ x
+ return: ($\theta$)$^T$ x
 
 <img src="https://miro.medium.com/max/700/1*FZsLp8yTULf77qrp0Qd91g.png" alt="Linear Regression">
 
