@@ -2,11 +2,11 @@
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 
@@ -15,7 +15,7 @@ def horoscope(zodiac_sign: int, day: str) -> str:
         "https://www.horoscope.com/us/horoscopes/general/"
         f"horoscope-general-daily-{day}.aspx?sign={zodiac_sign}"
     )
-    soup = BeautifulSoup(httpx.get(url, timeout=10).content, "html.parser")
+    soup = BeautifulSoup(httpx2.get(url, timeout=10).content, "html.parser")
     return soup.find("div", class_="main-horoscope").p.text
 
 
