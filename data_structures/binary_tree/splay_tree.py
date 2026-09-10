@@ -14,18 +14,24 @@ Reference: https://en.wikipedia.org/wiki/Splay_tree
 from __future__ import annotations
 
 from collections.abc import Iterator
+from dataclasses import dataclass, field
 
 
+@dataclass
 class Node:
-    """A single node of a splay tree."""
+    """
+    A single node of a splay tree.
 
-    def __init__(self, key: int) -> None:
-        self.key = key
-        self.left: Node | None = None
-        self.right: Node | None = None
+    The ``left`` and ``right`` children are excluded from ``repr`` so that a
+    node prints compactly instead of recursively dumping the whole subtree.
 
-    def __repr__(self) -> str:
-        return f"Node({self.key})"
+    >>> Node(10)
+    Node(key=10)
+    """
+
+    key: int
+    left: Node | None = field(default=None, repr=False)
+    right: Node | None = field(default=None, repr=False)
 
 
 class SplayTree:
