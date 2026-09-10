@@ -14,6 +14,9 @@ out (e.g. ``counting_sort``/``radix_sort``/``pigeon_sort`` are integer-only,
 on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
 """
 
+from dataclasses import dataclass
+from typing import NamedTuple
+
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
@@ -69,6 +72,20 @@ SORTS = (
     strand_sort,
 )
 
+
+@dataclass(order=True)
+class Person:
+    name: str = "Bob"
+    age: int = 37
+    cost: float = 0.0
+
+
+class Dog(NamedTuple):
+    name: str = "Fido"
+    age: int = 5
+    weight: float = 15.5
+
+
 CASES = (
     [],
     [1],
@@ -79,6 +96,8 @@ CASES = (
     [5, 4, 3, 2, 1],
     [1, 2, 3, 4, 5],
     [-2, -2, 0, 0, 7, 7],
+    [Person(cost=100.0), Person(cost=-100.0), Person(name="Al")],
+    [Dog(weight=15.5), Dog(weight=15.1), Dog(name="Buddy")],
 )
 
 
