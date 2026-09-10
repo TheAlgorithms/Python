@@ -86,7 +86,7 @@ These calculations or manipulations can use data types, classes, or functions of
 Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values.
 Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
-#### Pre-commit plugin
+#### Pre-commit
 
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
@@ -95,9 +95,7 @@ python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 
-That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
-
-That's it! The plugin will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+That's it! Pre-commit will run every time you commit any changes. If any errors are found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
 
 ```bash
 pre-commit run --all-files --show-diff-on-failure
@@ -130,8 +128,6 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ruff check
   ```
 
-- Original code submission require docstrings or comments to describe your work.
-
 - Original code submissions require docstrings or comments to describe your work.
 
 - More on docstrings and comments:
@@ -141,12 +137,12 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The following are considered to be bad and may be requested to be improved:
 
   ```python
-  x = x + 2  # increased by 2
+  x += 2  # increased by 2
   ```
 
-  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on, or below a line of code, as long as you are consistent within the same piece of code.
+  This is too trivial. Comments should not merely repeat what the code already says. Comments should explain ___why___ we are doing things.  Comments on the same line as code should never cause the line to wrap (> 88 characters per line).  Comments which are not on the same line as code should appear ___before___ the code they describe.  "First tell the reader ___why___ with comments and then show them ___how___ with code."
 
-  We encourage you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
+  We require you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
 
   ```python
   def sum_ab(a, b):
