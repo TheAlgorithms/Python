@@ -1,10 +1,9 @@
-import unittest
-
 """
 A Radix Tree is a data structure that represents a space-optimized
-trie (prefix tree) in whicheach node that is the only child is merged
+trie (prefix tree) in which each node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
+import unittest
 
 
 class RadixNode:
@@ -64,7 +63,7 @@ class RadixNode:
         -- A   (leaf)
         --- A   (leaf)
         """
-        ## Handle the Case where word is empty by using an if branch
+        ## Handle the Case where the word is empty by using an if branch
         if word == "":
             self.is_leaf = True
             return
@@ -87,11 +86,11 @@ class RadixNode:
             )
 
             # Case 3: The node prefix is equal to the matching
-            # Solution: We insert remaining word on the next node
+            # Solution: We insert the remaining word on the next node
             if remaining_prefix == "":
                 self.nodes[matching_string[0]].insert(remaining_word)
 
-            # Case 4: The word is greater equal to the matching
+            # Case 4: The word is greater than or equal to the matching
             # Solution: Create a node in between both nodes, change
             # prefixes and add the new node for the remaining word
             else:
@@ -107,7 +106,7 @@ class RadixNode:
                     self.nodes[matching_string[0]].insert(remaining_word)
 
     def find(self, word: str) -> bool:
-        """Returns if the word is on the tree
+        """Returns whether the word is on the tree
 
         Args:
             word (str): word to check
@@ -198,11 +197,6 @@ class RadixNode:
             value.print_tree(height + 1)
 
 
-## write unit test for the code using unittest library with
-## logic similar to test_trie() function
-## and call it from main()
-
-
 class TestRadixNode(unittest.TestCase):
     def test_trie(self) -> None:
         words = "banana bananas bandana band apple all beast".split()
@@ -220,7 +214,7 @@ class TestRadixNode(unittest.TestCase):
 
     def test_trie_2(self) -> None:
         """
-        now add a new test case which inserts
+        Now add a new test case that inserts
         foobbb, fooaaa, foo in the given order and checks
         for different assertions
         """
@@ -236,4 +230,7 @@ class TestRadixNode(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     unittest.main()
