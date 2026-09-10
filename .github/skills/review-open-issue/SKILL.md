@@ -61,7 +61,7 @@ one-line rationale and the exact autoclose line. Two formatting rules matter a l
 to human maintainers scanning the thread:
 
 - **Start every line that references an issue or PR with a Markdown list marker
-  (`- ` or `* `).** GitHub-flavored Markdown only autolinks `#NNNNN` inside a list,
+  (`-` or `* `).** GitHub-flavored Markdown only autolinks `#NNNNN` inside a list,
   and those autolinks are colored — **purple = merged, red = closed, green = open** —
   so the maintainer can see merge/close progress at a glance. A bare `#14813` at the
   start of a line does not autolink.
