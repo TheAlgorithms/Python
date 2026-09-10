@@ -666,6 +666,7 @@
   * [Astar](machine_learning/astar.py)
   * [Automatic Differentiation](machine_learning/automatic_differentiation.py)
   * [Data Transformations](machine_learning/data_transformations.py)
+  * [Dbscan](machine_learning/dbscan.py)
   * [Decision Tree](machine_learning/decision_tree.py)
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
   * Forecasting
