@@ -140,7 +140,8 @@ We want your work to be readable by others; therefore, we encourage you to note 
   x += 2  # increased by 2
   ```
 
-  This is too trivial. Comments should not merely repeat what the code already says. Comments should explain ___why___ we are doing things. Comments on the same line as code should never cause the line to wrap (> 88 characters per line). Comments which are not on the same line as code should appear ___before___ the code they describe. "First tell the reader ___why___ with comments and then show them ___how___ with code."
+  This is too trivial. Comments should not merely repeat what the code already says. Comments should explain ___why___ we are doing things. Comments on the same line as code should never cause the line to wrap (> 88 characters per line).
+Comments which are not on the same line as code should appear ___before___ the code they describe. "First tell the reader ___why___ with comments and then show them ___how___ with code."
 
   We require you to put docstrings inside your functions, but please pay attention to the indentation of docstrings. The following is a good example:
 
