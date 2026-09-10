@@ -78,7 +78,8 @@ class BezierCurve:
         t: parameter between 0 and 1
         Returns the (dx, dy) vector representing the direction of the curve at t.
         """
-        assert 0 <= t <= 1, "Time t must be between 0 and 1."
+        if not 0 <= t <= 1:
+            raise ValueError("Time t must be between 0 and 1.")
 
         n = self.degree
         dx = 0.0
