@@ -1,3 +1,5 @@
+# https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+
 import matplotlib.pyplot as plt
 
 
@@ -5,13 +7,11 @@ def digital_differential_analyzer_line(
     p1: tuple[int, int], p2: tuple[int, int]
 ) -> list[tuple[int, int]]:
     """
-
     Digital Differential Analyzer (DDA) Line Drawing Algorithm.
 
-    This algorithm draws a straight line between two points by calculating
-    the difference in x (dx) and y (dy) coordinates and incrementally stepping
-    through the dominant axis while updating the other axis using fractional
-    increments.
+    Draw a straight line between two points by calculating the difference in
+    x (dx) and y (dy) coordinates and incrementally stepping through the
+    dominant axis while updating the other axis using fractional increments.
 
     One of the main disadvantages of the DDA algorithm is its reliance on
     floating-point arithmetic, which can introduce rounding errors at each step.
@@ -21,20 +21,14 @@ def digital_differential_analyzer_line(
     Despite this, DDA is useful for educational purposes as it is simple
     to understand and demonstrates the basic idea of incremental line generation.
 
-    References:
-    - https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+    Args:
+      - p1: Coordinates of the starting point.
+      - p2: Coordinates of the ending point.
+    Returns:
+      - List of coordinate points that form the line.
 
-
-
-
-        Args:
-        - p1: Coordinates of the starting point.
-        - p2: Coordinates of the ending point.
-        Returns:
-        - List of coordinate points that form the line.
-
-        >>> digital_differential_analyzer_line((1, 1), (4, 4))
-        [(2, 2), (3, 3), (4, 4)]
+    >>> digital_differential_analyzer_line((1, 1), (4, 4))
+    [(2, 2), (3, 3), (4, 4)]
     """
     x1, y1 = p1
     x2, y2 = p2
