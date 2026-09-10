@@ -1,14 +1,12 @@
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
 
-
-def bubble_sort_iterative(collection: list[T]) -> list[T]:
+def bubble_sort_iterative[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of the bubble sort algorithm in Python (iterative).
 
     Bubble sort works by repeatedly stepping through the collection,
@@ -82,7 +80,7 @@ def bubble_sort_iterative(collection: list[T]) -> list[T]:
     return collection
 
 
-def bubble_sort_recursive(collection: list[T]) -> list[T]:
+def bubble_sort_recursive[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of the bubble sort algorithm in Python (recursive).
 
     Functionally identical to the iterative version: each call makes a
