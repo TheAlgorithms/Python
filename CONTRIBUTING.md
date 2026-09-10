@@ -49,7 +49,7 @@ An algorithm is one or more functions (or classes) that:
 - take one or more inputs,
 - perform some internal calculations or data manipulations,
 - return one or more outputs,
-- have minimal side effects (e.g. `print()`, `plot()`, `read()`, `write()`).
+- have minimal side effects (e.g., `print()`, `plot()`, `read()`, `write()`).
 
 Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
