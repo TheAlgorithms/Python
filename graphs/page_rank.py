@@ -70,8 +70,6 @@ def main():
     for node in nodes:
         print(node)
 
-    page_rank(nodes)
-
     ranks = page_rank(nodes)
     print("======= Ranks =======")
     print(ranks)
