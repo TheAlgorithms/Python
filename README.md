@@ -70,6 +70,7 @@ This repository includes implementations of algorithms across multiple categorie
 - **And many more!**
 
 All implementations include:
+
 - Clear documentation and explanations
 - Type hints for better code readability
 - Doctests for validation
@@ -80,12 +81,14 @@ All implementations include:
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/TheAlgorithms/Python.git
    cd Python
    ```
 
 2. **Set up a virtual environment (recommended)**
+
    ```bash
    python -m venv venv
 
@@ -97,6 +100,7 @@ All implementations include:
    ```
 
 3. **Install dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -106,11 +110,13 @@ All implementations include:
 Each algorithm is self-contained in its own file. You can run any algorithm directly or import it into your own projects.
 
 **Example 1: Running an algorithm directly**
+
 ```bash
 python sorts/quick_sort.py
 ```
 
 **Example 2: Importing and using an algorithm**
+
 ```python
 from sorts.quick_sort import quick_sort
 
@@ -121,6 +127,7 @@ print(sorted_numbers)  # Output: [11, 12, 22, 25, 34, 64, 90]
 ```
 
 **Example 3: Running doctests**
+
 ```bash
 python -m doctest -v sorts/bubble_sort.py
 ```
@@ -144,6 +151,7 @@ We welcome contributions from the community! Before contributing:
 5. 🎯 Make sure all tests pass before submitting
 
 **Quick Start for Contributors:**
+
 ```bash
 # Install pre-commit hooks
 pip install pre-commit
@@ -158,6 +166,7 @@ ruff check
 ```
 
 Contributions that are most welcome:
+
 - New algorithm implementations
 - Improvements to existing algorithms
 - Better documentation and explanations
