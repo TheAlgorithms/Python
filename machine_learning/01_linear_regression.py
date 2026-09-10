@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # -------------------- Naive Linear Regression --------------------
 def naive_linear_regression(X, y, learning_rate=0.01, epochs=1000):
     """
@@ -27,6 +28,7 @@ def naive_linear_regression(X, y, learning_rate=0.01, epochs=1000):
             theta[j][0] -= learning_rate * grad / m
     return theta
 
+
 # -------------------- Vectorized Linear Regression --------------------
 def vectorized_linear_regression(X, y, learning_rate=0.01, epochs=1000):
     """
@@ -41,11 +43,12 @@ def vectorized_linear_regression(X, y, learning_rate=0.01, epochs=1000):
         theta -= learning_rate * gradient
     return theta
 
+
 # -------------------- Test Both Implementations --------------------
 if __name__ == "__main__":
     # Sample dataset
     X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]])
-    y = np.dot(X, np.array([[1],[2]])) + 3  # y = 1*x1 + 2*x2 + 3
+    y = np.dot(X, np.array([[1], [2]])) + 3  # y = 1*x1 + 2*x2 + 3
 
     theta_naive = naive_linear_regression(X, y)
     theta_vec = vectorized_linear_regression(X, y)
