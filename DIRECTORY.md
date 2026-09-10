@@ -278,6 +278,7 @@
     * [Segment Tree](data_structures/binary_tree/segment_tree.py)
     * [Segment Tree Other](data_structures/binary_tree/segment_tree_other.py)
     * [Serialize Deserialize Binary Tree](data_structures/binary_tree/serialize_deserialize_binary_tree.py)
+    * [Splay Tree](data_structures/binary_tree/splay_tree.py)
     * [Symmetric Tree](data_structures/binary_tree/symmetric_tree.py)
     * [Treap](data_structures/binary_tree/treap.py)
     * [Wavelet Tree](data_structures/binary_tree/wavelet_tree.py)
