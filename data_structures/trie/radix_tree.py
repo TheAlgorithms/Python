@@ -198,6 +198,21 @@ class RadixNode:
             value.print_tree(height + 1)
 
 
+def test_trie() -> None:
+    words = "banana bananas bandana band apple all beast".split()
+    root = RadixNode()
+    root.insert_many(words)
+
+    assert all(root.find(word) for word in words)
+    assert not root.find("bandanas")
+    assert not root.find("apps")
+    root.delete("all")
+    assert not root.find("all")
+    root.delete("banana")
+    assert not root.find("banana")
+    assert root.find("bananas")
+
+
 class TestRadixNode(unittest.TestCase):
     def test_trie(self) -> None:
         words = "banana bananas bandana band apple all beast".split()
