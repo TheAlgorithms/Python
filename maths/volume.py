@@ -510,6 +510,32 @@ def vol_torus(torus_radius: float, tube_radius: float) -> float:
     return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
 
 
+def vol_octahedron(oct_side: float) -> float:
+    """
+    | Calculate the Volume of an Octahedron.
+    | Wikipedia reference: https://en.wikipedia.org/wiki/Regular_octahedron
+
+    >>> from math import isclose
+    >>> isclose(vol_octahedron(2.5), 7.36569563735987)
+    True
+    >>> isclose(vol_octahedron(10), 471.40452079103168)
+    True
+    >>> isclose(vol_octahedron(5), 58.92556509887896)
+    True
+    >>> isclose(vol_octahedron(3.5), 20.21146882891548)
+    True
+    >>> vol_octahedron(0)
+    0.0
+    >>> vol_octahedron(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: vol_octahedron() only accepts non-negative values
+    """
+    if oct_side < 0:
+        raise ValueError("vol_octahedron() only accepts non-negative values")
+    return oct_side**3 * 2**0.5 / 3
+
+
 def vol_icosahedron(tri_side: float) -> float:
     """
     | Calculate the Volume of an Icosahedron.
@@ -555,11 +581,12 @@ def main():
     print(f"Torus: {vol_torus(2, 2) = }")  # ~= 157.9
     print(f"Conical Frustum: {vol_conical_frustum(2, 2, 4) = }")  # ~= 58.6
     print(f"Spherical cap: {vol_spherical_cap(1, 2) = }")  # ~= 5.24
-    print(f"Spheres intersetion: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
+    print(f"Spheres intersection: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
     print(f"Spheres union: {vol_spheres_union(2, 2, 1) = }")  # ~= 45.81
     print(
         f"Hollow Circular Cylinder: {vol_hollow_circular_cylinder(1, 2, 3) = }"
     )  # ~= 28.3
+    print(f"Octahedron: {vol_octahedron(2.5) = }")  # ~=7.37
     print(f"Icosahedron: {vol_icosahedron(2.5) = }")  # ~=34.09
 
 
