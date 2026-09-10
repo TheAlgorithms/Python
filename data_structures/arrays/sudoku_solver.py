@@ -9,7 +9,22 @@ import time
 
 
 def cross(items_a, items_b):
-    "Cross product of elements in A and elements in B."
+    """
+    Cross product of elements in A and elements in B.
+
+    >>> cross('AB', '12')
+    ['A1', 'A2', 'B1', 'B2']
+    >>> cross('ABC', '123')
+    ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+    >>> cross('ABC', '1234')
+    ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4']
+    >>> cross('', '12')
+    []
+    >>> cross('A', '')
+    []
+    >>> cross('', '')
+    []
+    """
     return [a + b for a in items_a for b in items_b]
 
 
@@ -23,11 +38,11 @@ unitlist = (
     + [cross(rs, cs) for rs in ("ABC", "DEF", "GHI") for cs in ("123", "456", "789")]
 )
 units = {s: [u for u in unitlist if s in u] for s in squares}
-peers = {s: set(sum(units[s], [])) - {s} for s in squares}  # noqa: RUF017
+peers = {s: {x for u in units[s] for x in u} - {s} for s in squares}
 
 
 def test():
-    "A set of unit tests."
+    """A set of unit tests."""
     assert len(squares) == 81
     assert len(unitlist) == 27
     assert all(len(units[s]) == 3 for s in squares)
@@ -47,10 +62,12 @@ def test():
 
 
 def parse_grid(grid):
-    """Convert grid to a dict of possible values, {square: digits}, or
-    return False if a contradiction is detected."""
+    """
+    Convert grid to a dict of possible values, {square: digits}, or
+    return False if a contradiction is detected.
+    """
     ## To start, every square can be any digit; then assign values from the grid.
-    values = {s: digits for s in squares}
+    values = dict.fromkeys(squares, digits)
     for s, d in grid_values(grid).items():
         if d in digits and not assign(values, s, d):
             return False  ## (Fail if we can't assign d to square s.)
@@ -58,15 +75,19 @@ def parse_grid(grid):
 
 
 def grid_values(grid):
-    "Convert grid into a dict of {square: char} with '0' or '.' for empties."
+    """
+    Convert grid into a dict of {square: char} with '0' or '.' for empties.
+    """
     chars = [c for c in grid if c in digits or c in "0."]
     assert len(chars) == 81
     return dict(zip(squares, chars))
 
 
 def assign(values, s, d):
-    """Eliminate all the other values (except d) from values[s] and propagate.
-    Return values, except return False if a contradiction is detected."""
+    """
+    Eliminate all the other values (except d) from values[s] and propagate.
+    Return values, except return False if a contradiction is detected.
+    """
     other_values = values[s].replace(d, "")
     if all(eliminate(values, s, d2) for d2 in other_values):
         return values
@@ -75,8 +96,10 @@ def assign(values, s, d):
 
 
 def eliminate(values, s, d):
-    """Eliminate d from values[s]; propagate when values or places <= 2.
-    Return values, except return False if a contradiction is detected."""
+    """
+    Eliminate d from values[s]; propagate when values or places <= 2.
+    Return values, except return False if a contradiction is detected.
+    """
     if d not in values[s]:
         return values  ## Already eliminated
     values[s] = values[s].replace(d, "")
@@ -99,7 +122,9 @@ def eliminate(values, s, d):
 
 
 def display(values):
-    "Display these values as a 2-D grid."
+    """
+    Display these values as a 2-D grid.
+    """
     width = 1 + max(len(values[s]) for s in squares)
     line = "+".join(["-" * (width * 3)] * 3)
     for r in rows:
@@ -114,11 +139,14 @@ def display(values):
 
 
 def solve(grid):
+    """
+    Solve the grid.
+    """
     return search(parse_grid(grid))
 
 
 def some(seq):
-    "Return some element of seq that is true."
+    """Return some element of seq that is true."""
     for e in seq:
         if e:
             return e
@@ -126,20 +154,24 @@ def some(seq):
 
 
 def search(values):
-    "Using depth-first search and propagation, try all possible values."
+    """
+    Using depth-first search and propagation, try all possible values.
+    """
     if values is False:
         return False  ## Failed earlier
     if all(len(values[s]) == 1 for s in squares):
         return values  ## Solved!
     ## Chose the unfilled square s with the fewest possibilities
-    n, s = min((len(values[s]), s) for s in squares if len(values[s]) > 1)
+    _n, s = min((len(values[s]), s) for s in squares if len(values[s]) > 1)
     return some(search(assign(values.copy(), s, d)) for d in values[s])
 
 
 def solve_all(grids, name="", showif=0.0):
-    """Attempt to solve a sequence of grids. Report results.
+    """
+    Attempt to solve a sequence of grids. Report results.
     When showif is a number of seconds, display puzzles that take longer.
-    When showif is None, don't display any puzzles."""
+    When showif is None, don't display any puzzles.
+    """
 
     def time_solve(grid):
         start = time.monotonic()
@@ -156,13 +188,15 @@ def solve_all(grids, name="", showif=0.0):
     times, results = zip(*[time_solve(grid) for grid in grids])
     if (n := len(grids)) > 1:
         print(
-            "Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)."
+            "Solved %d of %d %s puzzles (avg %.2f secs (%d Hz), max %.2f secs)."  # noqa: UP031
             % (sum(results), n, name, sum(times) / n, n / sum(times), max(times))
         )
 
 
 def solved(values):
-    "A puzzle is solved if each unit is a permutation of the digits 1 to 9."
+    """
+    A puzzle is solved if each unit is a permutation of the digits 1 to 9.
+    """
 
     def unitsolved(unit):
         return {values[s] for s in unit} == set(digits)
@@ -172,14 +206,17 @@ def solved(values):
 
 def from_file(filename, sep="\n"):
     "Parse a file into a list of strings, separated by sep."
-    return open(filename).read().strip().split(sep)  # noqa: SIM115
+    with open(filename) as file:
+        return file.read().strip().split(sep)
 
 
 def random_puzzle(assignments=17):
-    """Make a random puzzle with N or more assignments. Restart on contradictions.
+    """
+    Make a random puzzle with N or more assignments. Restart on contradictions.
     Note the resulting puzzle is not guaranteed to be solvable, but empirically
-    about 99.8% of them are solvable. Some have multiple solutions."""
-    values = {s: digits for s in squares}
+    about 99.8% of them are solvable. Some have multiple solutions.
+    """
+    values = dict.fromkeys(squares, digits)
     for s in shuffled(squares):
         if not assign(values, s, random.choice(values[s])):
             break
@@ -190,7 +227,9 @@ def random_puzzle(assignments=17):
 
 
 def shuffled(seq):
-    "Return a randomly shuffled copy of the input sequence."
+    """
+    Return a randomly shuffled copy of the input sequence.
+    """
     seq = list(seq)
     random.shuffle(seq)
     return seq

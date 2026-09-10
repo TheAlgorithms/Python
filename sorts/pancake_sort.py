@@ -8,8 +8,13 @@ For manual testing run:
 python pancake_sort.py
 """
 
+from collections.abc import Sequence
+from typing import TypeVar
 
-def pancake_sort(arr):
+T = TypeVar("T")
+
+
+def pancake_sort[T](arr: Sequence[T]) -> list[T]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
     :return: Collection ordered in ascending order of items
