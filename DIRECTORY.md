@@ -188,6 +188,7 @@
   * [Mean Threshold](computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](computer_vision/mosaic_augmentation.py)
   * [Pooling Functions](computer_vision/pooling_functions.py)
+  * [Vision Transformer](computer_vision/vision_transformer.py)
 
 ## [Conversions](conversions)
   * [Astronomical Length Scale Conversion](conversions/astronomical_length_scale_conversion.py)
