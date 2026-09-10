@@ -1,33 +1,37 @@
 """Implementation of GradientBoostingRegressor in sklearn using the
-   boston dataset which is very popular for regression problem to
-   predict house price.
+diabetes dataset, a popular regression problem used to predict
+disease progression one year after baseline.
+
+Note: this example previously used the Boston house-price dataset,
+which was removed from scikit-learn (>=1.2) for ethical reasons.
+``load_diabetes`` is a drop-in bundled alternative that ships with
+scikit-learn, so the example runs offline.
 """
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.datasets import load_boston
+from sklearn.datasets import load_diabetes
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
 
 def main():
-
-    # loading the dataset from the sklearn
-    df = load_boston()
+    # loading the dataset from sklearn
+    df = load_diabetes()
     print(df.keys())
-    # now let construct a data frame
-    df_boston = pd.DataFrame(df.data, columns=df.feature_names)
-    # let add the target to the dataframe
-    df_boston["Price"] = df.target
+    # now let's construct a data frame
+    df_data = pd.DataFrame(df.data, columns=df.feature_names)
+    # let's add the target to the dataframe
+    df_data["Target"] = df.target
     # print the first five rows using the head function
-    print(df_boston.head())
+    print(df_data.head())
     # Summary statistics
-    print(df_boston.describe().T)
+    print(df_data.describe().T)
     # Feature selection
 
-    x = df_boston.iloc[:, :-1]
-    y = df_boston.iloc[:, -1]  # target variable
+    x = df_data.iloc[:, :-1]
+    y = df_data.iloc[:, -1]  # target variable
     # split the data with 75% train and 25% test sets.
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, random_state=0, test_size=0.25
@@ -43,7 +47,7 @@ def main():
     test_score = model.score(x_test, y_test).round(3)
     print("Training score of GradientBoosting is :", training_score)
     print("The test score of GradientBoosting is :", test_score)
-    # Let us evaluation the model by finding the errors
+    # Let us evaluate the model by finding the errors
     y_pred = model.predict(x_test)
 
     # The mean squared error
@@ -52,7 +56,7 @@ def main():
     print(f"Test Variance score: {r2_score(y_test, y_pred):.2f}")
 
     # So let's run the model against the test data
-    fig, ax = plt.subplots()
+    _fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred, edgecolors=(0, 0, 0))
     ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "k--", lw=4)
     ax.set_xlabel("Actual")
