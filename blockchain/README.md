@@ -4,9 +4,9 @@ A Blockchain is a type of **distributed ledger** technology (DLT) that consists 
 
 Let's break down the terminologies in the above definition. We find below terminologies,
 
-- Digital Ledger Technology (DLT)
-- Blocks
-- Cryptography
+* Digital Ledger Technology (DLT)
+* Blocks
+* Cryptography
 
 ## Digital Ledger Technology
 
@@ -20,7 +20,8 @@ Suppose that there is an organization that has 4 branches whose data are stored 
 
 Now let's assume every branch has a copy of the ledger and then once anything is added to the ledger by any branch it is gonna automatically reflect in all other ledgers available in other branches. This is done using a peer-to-peer network.
 
-This means that even if information is tampered with in one branch we can find out. If one branch is hacked we can be alerted, so we can safeguard other branches. Now, assume these branches as computers or nodes and the ledger is a transaction record or digital receipt. If one ledger is hacked in a node we can detect since there will be a mismatch in comparison with other node information. So this is the concept of Digital Ledger Technology.
+This means that even if information is tampered with in one branch we can find out. If one branch is hacked we can be alerted, so we can safeguard other branches. Now, assume these branches as computers or nodes and the ledger is a transaction record or digital receipt.
+If one ledger is hacked in a node we can detect since there will be a mismatch in comparison with other node information. So this is the concept of Digital Ledger Technology.
 
 *Is it required for all nodes to have access to all information in other nodes? Wouldn't this require enormous storage space in each node?*
 
@@ -39,6 +40,7 @@ So, in general, blockchain technology is a distributed record holder that record
 An asset could be tangible (such as a house, car, cash, or land) or intangible (such as a business) (intellectual property, patents, copyrights, branding). A blockchain network can track and sell almost anything of value, lowering risk and costs for everyone involved.
 
 So this is all about the introduction to blockchain technology. To learn more about the topic refer below links....
+
 * <https://en.wikipedia.org/wiki/Blockchain>
 * <https://en.wikipedia.org/wiki/Chinese_remainder_theorem>
 * <https://en.wikipedia.org/wiki/Diophantine_equation>
