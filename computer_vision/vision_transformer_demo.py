@@ -12,7 +12,7 @@ Requirements:
     - torch
     - transformers
     - Pillow (PIL)
-    - httpx (already in repo dependencies)
+    - httpx2 (already in repo dependencies)
 
 Resources:
     - Paper: https://arxiv.org/abs/2010.11929
@@ -40,7 +40,7 @@ from pathlib import Path
 from typing import Any
 
 try:
-    import httpx
+    import httpx2
     import torch
     from PIL import Image
     from transformers import ViTForImageClassification, ViTImageProcessor
@@ -79,17 +79,17 @@ def load_image(image_source: str | Path, timeout: int = 10) -> Image.Image:
         ("http://", "https://")
     ):
         try:
-            with httpx.Client(timeout=timeout) as client:
+            with httpx2.Client(timeout=timeout) as client:
                 response = client.get(str(image_source))
                 response.raise_for_status()
                 return Image.open(BytesIO(response.content)).convert("RGB")
-        except httpx.TimeoutException:
+        except httpx2.TimeoutException:
             msg = (
                 f"Request timed out after {timeout} seconds. "
                 "Try increasing the timeout parameter."
             )
             raise TimeoutError(msg)
-        except httpx.HTTPError as e:
+        except httpx2.HTTPError as e:
             msg = f"Failed to download image from URL: {e}"
             raise ConnectionError(msg) from e
     else:
