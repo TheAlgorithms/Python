@@ -3,6 +3,7 @@ A Radix Tree is a data structure that represents a space-optimized
 trie (prefix tree) in which each node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
+
 import unittest
 
 
