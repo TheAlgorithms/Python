@@ -156,7 +156,13 @@ def get_word_path(board: list[list[str]], word: str) -> list[tuple[int, int]] | 
     validate_board_and_word(board, word)
     rows, cols = len(board), len(board[0])
 
-    def backtrack(r: int, c: int, index: int, path: list[tuple[int, int]], visited: set[tuple[int, int]]) -> list[tuple[int, int]] | None:
+    def backtrack(
+        r: int,
+        c: int,
+        index: int,
+        path: list[tuple[int, int]],
+        visited: set[tuple[int, int]],
+    ) -> list[tuple[int, int]] | None:
         if board[r][c] != word[index]:
             return None
 
