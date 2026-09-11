@@ -9,6 +9,8 @@ def balanced_parentheses(parentheses: str) -> bool:
     True
     >>> balanced_parentheses("[(])")
     False
+    >>> balanced_parentheses("1+2*3-4")
+    True
     >>> balanced_parentheses("{}")
     True
     >>> balanced_parentheses("))((")
