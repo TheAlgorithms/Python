@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Strassen_algorithm
 """
+
 from __future__ import annotations
 
 import math
