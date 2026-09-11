@@ -12,6 +12,30 @@ from timeit import repeat
 
 
 def make_dataset() -> tuple[list[int], int]:
+    """
+    Generates a random dataset.
+
+    Returns a tuple where:
+    - The first element is a list of 10 integers, each between -1000 and 1000.
+    - The second element is a single integer between -5000 and 5000.
+
+    Example usage (outputs will vary because of randomness):
+    >>> arr, r = make_dataset()
+    >>> isinstance(arr, list)
+    True
+    >>> len(arr)
+    10
+    >>> all(isinstance(x, int) for x in arr)
+    True
+    >>> isinstance(r, int)
+    True
+    >>> -1000 <= min(arr) <= 1000
+    True
+    >>> -1000 <= max(arr) <= 1000
+    True
+    >>> -5000 <= r <= 5000
+    True
+    """
     arr = [randint(-1000, 1000) for i in range(10)]
     r = randint(-5000, 5000)
     return (arr, r)
