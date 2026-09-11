@@ -523,6 +523,7 @@
 
 ## [Genetic Algorithm](genetic_algorithm)
   * [Basic String](genetic_algorithm/basic_string.py)
+  * [Knapsack](genetic_algorithm/knapsack.py)
 
 ## [Geodesy](geodesy)
   * [Haversine Distance](geodesy/haversine_distance.py)
