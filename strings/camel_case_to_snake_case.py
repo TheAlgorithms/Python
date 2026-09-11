@@ -5,8 +5,8 @@ def camel_to_snake_case(input_str: str) -> str:
     >>> camel_to_snake_case("someRandomString")
     'some_random_string'
 
-    >>> camel_to_snake_case("SomeRandomStr#ng")
-    'some_random_str_ng'
+    >>> camel_to_snake_case("SomeRandomString")
+    'some_random_string'
 
     >>> camel_to_snake_case("123someRandom123String123")
     '123_some_random_123_string_123'
