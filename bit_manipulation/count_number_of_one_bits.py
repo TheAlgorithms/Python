@@ -20,6 +20,8 @@ def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: the value of input must not be negative
+    >>> get_set_bits_count_using_brian_kernighans_algorithm(1023)
+    10
     """
     if number < 0:
         raise ValueError("the value of input must not be negative")
@@ -49,6 +51,8 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: the value of input must not be negative
+    >>> get_set_bits_count_using_modulo_operator(1024)
+    1
     """
     if number < 0:
         raise ValueError("the value of input must not be negative")
