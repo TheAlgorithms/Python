@@ -949,6 +949,7 @@
   * Optimizers
     * [Adagrad](neural_network/optimizers/adagrad.py)
     * [Adam Optimizer](neural_network/optimizers/adam_optimizer.py)
+    * [Momentum Sgd](neural_network/optimizers/momentum_sgd.py)
     * [Muon Optimizer](neural_network/optimizers/muon_optimizer.py)
     * [Nesterov Accelerated Sgd](neural_network/optimizers/nesterov_accelerated_sgd.py)
   * [Perceptron](neural_network/perceptron.py)
