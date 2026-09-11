@@ -235,6 +235,7 @@
 
 ## [Data Structures](data_structures)
   * Arrays
+    * [Dutch National Flag Sort](data_structures/arrays/dutch_national_flag_sort.py)
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
@@ -533,7 +534,9 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Monotone Chain](geometry/monotone_chain.py)
   * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Rotating Calipers](geometry/rotating_calipers.py)
   * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
