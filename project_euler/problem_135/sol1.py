@@ -35,11 +35,13 @@ def solution(limit: int = 1000000) -> int:
     frequency = [0] * limit
     for first_term in range(1, limit):
         for n in range(first_term, limit, first_term):
-            common_difference = first_term + n / first_term
+            # n is generated as a multiple of first_term, so keep this path
+            # entirely integral instead of creating a float for every pair.
+            common_difference = first_term + n // first_term
             if common_difference % 4:  # d must be divisible by 4
                 continue
             else:
-                common_difference /= 4
+                common_difference //= 4
                 if (
                     first_term > common_difference
                     and first_term < 4 * common_difference
