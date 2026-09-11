@@ -1,6 +1,7 @@
 """
 This is pure Python implementation of tree traversal algorithms
 """
+
 from __future__ import annotations
 
 import queue
@@ -35,7 +36,7 @@ def build_tree() -> TreeNode:
         right_node = TreeNode(int(check))
         node_found.right = right_node
         q.put(right_node)
-    raise
+    raise ValueError("Something went wrong")
 
 
 def pre_order(node: TreeNode) -> None:
@@ -163,8 +164,8 @@ def level_order_actual(node: TreeNode) -> None:
             if node_dequeued.right:
                 list_.append(node_dequeued.right)
         print()
-        for node in list_:
-            q.put(node)
+        for inner_node in list_:
+            q.put(inner_node)
 
 
 # iteration version
@@ -258,6 +259,20 @@ def post_order_iter(node: TreeNode) -> None:
 
 
 def prompt(s: str = "", width=50, char="*") -> str:
+    """Return a prompt string padded to the specified width.
+
+    >>> [prompt("Python", width=width) for width in range(8, 13)]
+    [' Python ', ' Python *', '* Python *', '* Python **', '** Python **']
+
+    >>> prompt("Python", width=40, char=chr(0x1F40D))
+    '🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍 Python 🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍🐍'
+
+    >>> len(prompt("Python"))
+    50
+
+    >>> prompt("Python", -200)
+    ' Python '
+    """
     if not s:
         return "\n" + width * char
     left, extra = divmod(width - len(s) - 2, 2)

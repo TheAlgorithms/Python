@@ -8,6 +8,7 @@ The gamma function is defined for all complex numbers except
 the non-positive integers
 Python's Standard Library math.gamma() function overflows around gamma(171.624).
 """
+
 import math
 
 from numpy import inf
