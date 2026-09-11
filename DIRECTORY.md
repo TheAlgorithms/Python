@@ -533,7 +533,9 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Monotone Chain](geometry/monotone_chain.py)
   * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Rotating Calipers](geometry/rotating_calipers.py)
   * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
@@ -701,6 +703,7 @@
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [T Stochastic Neighbour Embedding](machine_learning/t_stochastic_neighbour_embedding.py)
+  * [Test Machine Learning Algorithms](machine_learning/test_machine_learning_algorithms.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## [Maths](maths)
