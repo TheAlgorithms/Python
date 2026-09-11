@@ -1,159 +1,260 @@
-#!/usr/bin/python
-
-# Logistic Regression from scratch
-
-# In[62]:
-
-# In[63]:
-
-# importing all the required libraries
-
+#!/usr/bin/python3
 """
-Implementing logistic regression for classification problem
-Helpful resources:
-Coursera ML course
-https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
+Implementing Logistic Regression (Binary, One-vs-Rest, and Softmax Multi-class)
+from scratch using NumPy.
+
+References:
+- Wikipedia: https://en.wikipedia.org/wiki/Logistic_regression
+- Coursera Machine Learning Course by Andrew Ng
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
-from sklearn import datasets
-
-# get_ipython().run_line_magic('matplotlib', 'inline')
-
-
-# In[67]:
-
-# sigmoid function or logistic function is used as a hypothesis function in
-# classification problems
 
 
 def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     """
-    Also known as Logistic Function.
+    Also known as the Logistic Function.
 
                 1
-    f(x) =   -------
-              1 + e⁻ˣ
+    f(z) =  -------
+              1 + e⁻ᶻ
 
-    The sigmoid function approaches a value of 1 as its input 'x' becomes
-    increasing positive. Opposite for negative values.
+    The sigmoid function approaches a value of 1 as its input 'z' becomes
+    increasingly positive, and approaches 0 as it becomes negative.
 
-    Reference: https://en.wikipedia.org/wiki/Sigmoid_function
-
-    @param z:  input to the function
-    @returns: returns value in the range 0 to 1
+    @param z: Input scalar or array to the function.
+    @returns: Value(s) restricted in the range 0 to 1.
 
     Examples:
     >>> float(sigmoid_function(4))
     0.9820137900379085
     >>> sigmoid_function(np.array([-3, 3]))
     array([0.04742587, 0.95257413])
-    >>> sigmoid_function(np.array([-3, 3, 1]))
-    array([0.04742587, 0.95257413, 0.73105858])
-    >>> sigmoid_function(np.array([-0.01, -2, -1.9]))
-    array([0.49750002, 0.11920292, 0.13010847])
-    >>> sigmoid_function(np.array([-1.3, 5.3, 12]))
-    array([0.21416502, 0.9950332 , 0.99999386])
-    >>> sigmoid_function(np.array([0.01, 0.02, 4.1]))
-    array([0.50249998, 0.50499983, 0.9836975 ])
-    >>> sigmoid_function(np.array([0.8]))
-    array([0.68997448])
     """
-    return 1 / (1 + np.exp(-z))
+    z_clipped = np.clip(z, -500, 500)  # Safe protection against exponent overflow
+    return 1 / (1 + np.exp(-z_clipped))
 
 
-def cost_function(h: np.ndarray, y: np.ndarray) -> float:
+class LogisticRegression:
     """
-    Cost function quantifies the error between predicted and expected values.
-    The cost function used in Logistic Regression is called Log Loss
-    or Cross Entropy Function.
-
-    J(θ) = (1/m) * Σ [ -y * log(hθ(x)) - (1 - y) * log(1 - hθ(x)) ]
-
-    Where:
-       - J(θ) is the cost that we want to minimize during training
-       - m is the number of training examples
-       - Σ represents the summation over all training examples
-       - y is the actual binary label (0 or 1) for a given example
-       - hθ(x) is the predicted probability that x belongs to the positive class
-
-    @param h: the output of sigmoid function. It is the estimated probability
-    that the input example 'x' belongs to the positive class
-
-    @param y: the actual binary label associated with input example 'x'
+    A robust Logistic Regression classifier supporting Binary, One-vs-Rest (OVR),
+    and Softmax Multi-class classification using Mini-batch Gradient Descent.
 
     Examples:
-    >>> estimations = sigmoid_function(np.array([0.3, -4.3, 8.1]))
-    >>> cost_function(h=estimations,y=np.array([1, 0, 1]))
-    0.18937868932131605
-    >>> estimations = sigmoid_function(np.array([4, 3, 1]))
-    >>> cost_function(h=estimations,y=np.array([1, 0, 0]))
-    1.459999655669926
-    >>> estimations = sigmoid_function(np.array([4, -3, -1]))
-    >>> cost_function(h=estimations,y=np.array([1,0,0]))
-    0.1266663223365915
-    >>> estimations = sigmoid_function(0)
-    >>> cost_function(h=estimations,y=np.array([1]))
-    0.6931471805599453
-
-    References:
-       - https://en.wikipedia.org/wiki/Logistic_regression
+    >>> clf = LogisticRegression(learning_rate=0.1, n_epochs=5, multi_class='binary')
+    >>> mock_features = np.array([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0]])
+    >>> mock_targets = np.array([0, 0, 1, 1])
+    >>> _ = clf.fit(mock_features, mock_targets)
+    >>> len(clf.predict(mock_features))
+    4
     """
-    return float((-y * np.log(h) - (1 - y) * np.log(1 - h)).mean())
 
+    def __init__(
+        self,
+        learning_rate: float = 0.02,
+        n_epochs: int = 200,
+        multi_class: str = "binary",
+    ) -> None:
+        self.learning_rate = learning_rate
+        self.epochs = n_epochs
+        self.weights: np.ndarray | None = None
+        self.bias: float | np.ndarray | None = None
+        self.multiclass = multi_class
+        self.loss_history: list[float] = []
+        self.classifiers: list["LogisticRegression"] | None = None
 
-def log_likelihood(x, y, weights):
-    scores = np.dot(x, weights)
-    return np.sum(y * scores - np.log(1 + np.exp(scores)))
+        if self.multiclass not in ["binary", "ovr", "softmax"]:
+            raise ValueError(
+                "Incorrect class selection. Choose 'binary', 'ovr', or 'softmax'."
+            )
 
+    def _softmax(self, z: np.ndarray) -> np.ndarray:
+        """Compute the softmax scaling values for each row of the matrix array."""
+        exp_z = np.exp(z - np.max(z, axis=1, keepdims=True))
+        return exp_z / np.sum(exp_z, axis=1, keepdims=True)
 
-# here alpha is the learning rate, X is the feature matrix,y is the target matrix
-def logistic_reg(alpha, x, y, max_iterations=70000):
-    theta = np.zeros(x.shape[1])
+    def _one_hot_encode(self, targets: np.ndarray, num_classes: int) -> np.ndarray:
+        """Transform numerical class vectors to a structural binary matrix."""
+        y_hot_encode = np.zeros((len(targets), num_classes))
+        y_hot_encode[np.arange(len(targets)), targets] = 1
+        return y_hot_encode
 
-    for iterations in range(max_iterations):
-        z = np.dot(x, theta)
-        h = sigmoid_function(z)
-        gradient = np.dot(x.T, h - y) / y.size
-        theta = theta - alpha * gradient  # updating the weights
-        z = np.dot(x, theta)
-        h = sigmoid_function(z)
-        j = cost_function(h, y)
-        if iterations % 100 == 0:
-            print(f"loss: {j} \t")  # printing the loss after every 100 iterations
-    return theta
+    def _softmax_loss(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        """Compute categorical cross-entropy loss metrics."""
+        return float(-np.sum(y_true * np.log(y_pred)) / len(y_true))
 
+    def _compute_loss(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        """Compute binary cross-entropy log loss metrics."""
+        return float(
+            -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
+        )
 
-# In[68]:
+    def fit(self, features: np.ndarray, targets: np.ndarray) -> "LogisticRegression":
+        """Fit the model weights according to the specified multi_class parameters."""
+        samples, total_features = features.shape
+        batch_size = 32
+        rng = np.random.default_rng()
+
+        if self.multiclass == "binary":
+            targets_reshaped = targets.reshape(-1, 1)
+            self.weights = rng.standard_normal((total_features, 1)) * 0.01
+            self.bias = 0.0
+
+            for _ in range(self.epochs):
+                indices = rng.permutation(samples)
+                x_shuffled = features[indices]
+                y_shuffled = targets_reshaped[indices]
+
+                num_batches = (samples + batch_size - 1) // batch_size
+                converged = False
+
+                for i in range(num_batches):
+                    start_idx = i * batch_size
+                    end_idx = min((i + 1) * batch_size, samples)
+
+                    x_batch = x_shuffled[start_idx:end_idx, :]
+                    y_batch = y_shuffled[start_idx:end_idx, :]
+
+                    z = x_batch @ self.weights + self.bias
+                    y_pred = np.clip(sigmoid_function(z), 1e-15, 1 - 1e-15)
+
+                    loss = self._compute_loss(y_batch, y_pred)
+                    self.loss_history.append(loss)
+
+                    if (
+                        len(self.loss_history) > 2
+                        and abs(self.loss_history[-1] - self.loss_history[-2]) < 1e-6
+                    ):
+                        converged = True
+                        break
+
+                    up_bias = self.learning_rate * np.mean(y_pred - y_batch)
+                    up_weights = (
+                        self.learning_rate
+                        * (x_batch.T @ (y_pred - y_batch))
+                        / len(y_batch)
+                    )
+
+                    self.bias -= up_bias
+                    self.weights -= up_weights
+
+                if converged:
+                    break
+            return self
+
+        elif self.multiclass == "ovr":
+            self.classifiers = []
+            for class_label in np.unique(targets):
+                y_bin = np.where(targets == class_label, 1, 0)
+                clf = LogisticRegression(
+                    learning_rate=self.learning_rate,
+                    n_epochs=self.epochs,
+                    multi_class="binary",
+                )
+                clf.fit(features, y_bin)
+                self.classifiers.append(clf)
+            return self
+
+        elif self.multiclass == "softmax":
+            num_classes = len(np.unique(targets))
+            self.weights = rng.standard_normal((total_features, num_classes)) * 0.01
+            self.bias = np.zeros((1, num_classes))
+            y_hot_encode = self._one_hot_encode(targets, num_classes)
+
+            for _ in range(self.epochs):
+                indices = rng.permutation(samples)
+                x_shuffled = features[indices]
+                y_shuffled = y_hot_encode[indices]
+
+                num_batches = (samples + batch_size - 1) // batch_size
+                converged = False
+
+                for i in range(num_batches):
+                    start_idx = i * batch_size
+                    end_idx = min((i + 1) * batch_size, samples)
+
+                    x_batch = x_shuffled[start_idx:end_idx, :]
+                    y_batch = y_shuffled[start_idx:end_idx, :]
+
+                    z = x_batch @ self.weights + self.bias
+                    y_pred = np.clip(self._softmax(z), 1e-15, 1 - 1e-15)
+
+                    loss = self._softmax_loss(y_batch, y_pred)
+                    self.loss_history.append(loss)
+
+                    if (
+                        len(self.loss_history) > 2
+                        and abs(self.loss_history[-1] - self.loss_history[-2]) < 1e-6
+                    ):
+                        converged = True
+                        break
+
+                    up_bias = self.learning_rate * np.mean(
+                        y_pred - y_batch, axis=0, keepdims=True
+                    )
+                    up_weights = (
+                        self.learning_rate
+                        * (x_batch.T @ (y_pred - y_batch))
+                        / len(y_batch)
+                    )
+
+                    self.bias -= up_bias
+                    self.weights -= up_weights
+
+                if converged:
+                    break
+            return self
+
+        return self
+
+    def predict_proba(self, features: np.ndarray) -> np.ndarray:
+        """
+        Return the calculated matrix vector distributions representing
+        class probabilities.
+        """
+        if self.multiclass == "binary":
+            if self.weights is None or self.bias is None:
+                raise ValueError("Model must be fitted before calling predict_proba.")
+            z = features @ self.weights + self.bias
+            return np.asarray(sigmoid_function(z))
+        elif self.multiclass == "ovr":
+            if self.classifiers is None:
+                raise ValueError("Model must be fitted before calling predict_proba.")
+            probs = np.column_stack(
+                [clf.predict_proba(features) for clf in self.classifiers]
+            )
+            return probs
+        elif self.multiclass == "softmax":
+            if self.weights is None or self.bias is None:
+                raise ValueError("Model must be fitted before calling predict_proba.")
+            z = features @ self.weights + self.bias
+            return self._softmax(z)
+
+        return np.array([])
+
+    def predict(self, features: np.ndarray) -> np.ndarray:
+        """Return clear label classifications vector maps across test arrays."""
+        if self.multiclass == "binary":
+            return (self.predict_proba(features) >= 0.5).astype(int).flatten()
+        elif self.multiclass in ["ovr", "softmax"]:
+            return np.argmax(self.predict_proba(features), axis=1)
+
+        return np.array([])
+
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
-    iris = datasets.load_iris()
-    x = iris.data[:, :2]
-    y = (iris.target != 0) * 1
+    # Pure NumPy execution logic to ensure external packages like
+    # sklearn aren't dependencies
+    rng_test = np.random.default_rng(seed=42)
+    sample_features = rng_test.standard_normal((100, 4))
+    sample_targets = rng_test.choice([0, 1, 2], size=100)
 
-    alpha = 0.1
-    theta = logistic_reg(alpha, x, y, max_iterations=70000)
-    print("theta: ", theta)  # printing the theta i.e our weights vector
+    model = LogisticRegression(learning_rate=0.05, n_epochs=50, multi_class="softmax")
+    model.fit(sample_features, sample_targets)
+    predictions = model.predict(sample_features)
 
-    def predict_prob(x):
-        return sigmoid_function(
-            np.dot(x, theta)
-        )  # predicting the value of probability from the logistic regression algorithm
-
-    plt.figure(figsize=(10, 6))
-    plt.scatter(x[y == 0][:, 0], x[y == 0][:, 1], color="b", label="0")
-    plt.scatter(x[y == 1][:, 0], x[y == 1][:, 1], color="r", label="1")
-    (x1_min, x1_max) = (x[:, 0].min(), x[:, 0].max())
-    (x2_min, x2_max) = (x[:, 1].min(), x[:, 1].max())
-    (xx1, xx2) = np.meshgrid(np.linspace(x1_min, x1_max), np.linspace(x2_min, x2_max))
-    grid = np.c_[xx1.ravel(), xx2.ravel()]
-    probs = predict_prob(grid).reshape(xx1.shape)
-    plt.contour(xx1, xx2, probs, [0.5], linewidths=1, colors="black")
-
-    plt.legend()
-    plt.show()
+    print(f"Successfully tracked execution array shape output: {predictions.shape}")
