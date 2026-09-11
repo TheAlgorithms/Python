@@ -65,4 +65,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
     n = int(input("Enter a positive integer: ").strip() or 0)
-    print(f"factorial{n} is {factorial(n)}")
+    print(f"factorial of {n} = {factorial(n)}")
