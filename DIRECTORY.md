@@ -987,6 +987,7 @@
   * [Doppler Frequency](physics/doppler_frequency.py)
   * [Escape Velocity](physics/escape_velocity.py)
   * [Grahams Law](physics/grahams_law.py)
+  * [Hamiltonian](physics/hamiltonian.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
   * [Ideal Gas Law](physics/ideal_gas_law.py)
