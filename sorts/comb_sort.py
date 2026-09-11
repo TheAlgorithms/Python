@@ -30,15 +30,19 @@ def comb_sort(data: list) -> list:
     []
     >>> comb_sort([99, 45, -7, 8, 2, 0, -15, 3])
     [-15, -7, 0, 2, 3, 8, 45, 99]
+    >>> comb_sort([2, 0, 3, 4, 5, 6, 1])
+    [0, 1, 2, 3, 4, 5, 6]
     """
     shrink_factor = 1.3
     gap = len(data)
     completed = False
 
     while not completed:
-        # Update the gap value for a next comb
-        gap = int(gap / shrink_factor)
-        if gap <= 1:
+        # Update the gap value for a next comb.  The gap is never allowed to drop
+        # below 1: a gap of 0 compares each element with itself, so no swap can
+        # ever happen and the loop would exit while the data is still unsorted.
+        gap = max(int(gap / shrink_factor), 1)
+        if gap == 1:
             completed = True
 
         index = 0

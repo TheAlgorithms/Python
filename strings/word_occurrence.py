@@ -3,12 +3,12 @@
 from collections import defaultdict
 
 
-def word_occurrence(sentence: str) -> dict:
+def word_occurrence(sentence: str) -> defaultdict[str, int]:
     """
     >>> from collections import Counter
     >>> SENTENCE = "a b A b c b d b d e f e g e h e i e j e 0"
-    >>> occurence_dict = word_occurrence(SENTENCE)
-    >>> all(occurence_dict[word] == count for word, count
+    >>> occurrence_dict = word_occurrence(SENTENCE)
+    >>> all(occurrence_dict[word] == count for word, count
     ...     in Counter(SENTENCE.split()).items())
     True
     >>> dict(word_occurrence("Two  spaces"))

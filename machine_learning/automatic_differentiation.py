@@ -9,13 +9,11 @@ Email: smrtpoojan@gmail.com
 
 from __future__ import annotations
 
-from collections import defaultdict
 from enum import Enum
 from types import TracebackType
-from typing import Any
+from typing import Any, Self
 
 import numpy as np
-from typing_extensions import Self  # noqa: UP035
 
 
 class OpType(Enum):
@@ -259,7 +257,7 @@ class GradientTracker:
         """
 
         # partial derivatives with respect to target
-        partial_deriv = defaultdict(lambda: 0)
+        partial_deriv: dict[Variable, np.ndarray] = {}
         partial_deriv[target] = np.ones_like(target.to_ndarray())
 
         # iterating through each operations in the computation graph
@@ -271,7 +269,10 @@ class GradientTracker:
                 # of variables with respect to the target
                 dparam_doutput = self.derivative(param, operation)
                 dparam_dtarget = dparam_doutput * partial_deriv[operation.output]
-                partial_deriv[param] += dparam_dtarget
+                partial_deriv[param] = (
+                    partial_deriv.get(param, np.zeros_like(dparam_dtarget))
+                    + dparam_dtarget
+                )
 
                 if param.result_of and param.result_of != OpType.NOOP:
                     operation_queue.append(param.result_of)
