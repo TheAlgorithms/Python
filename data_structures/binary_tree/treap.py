@@ -41,7 +41,7 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     """
     if root is None or root.value is None:  # None tree is split into 2 Nones
         return None, None
-    elif value < root.value:
+    elif value <= root.value:
         """
         Right tree's root will be current node.
         Now we split(with the same value) current node's left son
@@ -101,8 +101,8 @@ def erase(root: Node | None, value: int) -> Node | None:
     Split all nodes with values greater into right.
     Merge left, right
     """
-    left, right = split(root, value - 1)
-    _, right = split(right, value)
+    left, right = split(root, value)
+    _, right = split(right, value + 1)
     return merge(left, right)
 
 

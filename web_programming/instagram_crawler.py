@@ -5,7 +5,7 @@
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import json
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
@@ -49,7 +49,7 @@ class InstagramUser:
         """
         Return a dict of user information
         """
-        html = httpx.get(self.url, headers=headers, timeout=10).text
+        html = httpx2.get(self.url, headers=headers, timeout=10).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])

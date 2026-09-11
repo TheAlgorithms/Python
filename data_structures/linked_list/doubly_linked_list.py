@@ -2,12 +2,16 @@
 https://en.wikipedia.org/wiki/Doubly_linked_list
 """
 
+from __future__ import annotations
+
+from typing import Any
+
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: Any):
         self.data = data
-        self.previous = None
-        self.next = None
+        self.previous: Node | None = None
+        self.next: Node | None = None
 
     def __str__(self):
         return f"{self.data}"
@@ -15,8 +19,8 @@ class Node:
 
 class DoublyLinkedList:
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.head: Node | None = None
+        self.tail: Node | None = None
 
     def __iter__(self):
         """
@@ -93,13 +97,18 @@ class DoublyLinkedList:
             new_node.next = self.head
             self.head = new_node
         elif index == length:
+            assert self.tail is not None
             self.tail.next = new_node
+            assert self.tail is not None
             new_node.previous = self.tail
             self.tail = new_node
         else:
             temp = self.head
+            assert temp is not None
             for _ in range(index):
                 temp = temp.next
+                assert temp is not None
+            assert temp.previous is not None
             temp.previous.next = new_node
             new_node.previous = temp.previous
             new_node.next = temp
@@ -141,23 +150,32 @@ class DoublyLinkedList:
         if length == 1:
             self.head = self.tail = None
         elif index == 0:
+            assert self.head is not None
             self.head = self.head.next
+            assert self.head is not None
             self.head.previous = None
         elif index == length - 1:
+            assert self.tail is not None
             delete_node = self.tail
             self.tail = self.tail.previous
+            assert self.tail is not None
             self.tail.next = None
         else:
             temp = self.head
+            assert temp is not None
             for _ in range(index):
                 temp = temp.next
+                assert temp is not None
             delete_node = temp
+            assert temp.next is not None
+            assert temp.previous is not None
             temp.next.previous = temp.previous
             temp.previous.next = temp.next
         return delete_node.data
 
     def delete(self, data) -> str:
         current = self.head
+        assert current is not None
 
         while current.data != data:  # Find the position to delete
             if current.next:
@@ -172,6 +190,8 @@ class DoublyLinkedList:
             self.delete_tail()
 
         else:  # Before: 1 <--> 2(current) <--> 3
+            assert current.previous is not None
+            assert current.next is not None
             current.previous.next = current.next  # 1 --> 3
             current.next.previous = current.previous  # 1 <--> 3
         return data

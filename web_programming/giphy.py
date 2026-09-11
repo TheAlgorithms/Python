@@ -3,11 +3,11 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 giphy_api_key = "YOUR API KEY"
 # Can be fetched from https://developers.giphy.com/dashboard/
@@ -19,7 +19,7 @@ def get_gifs(query: str, api_key: str = giphy_api_key) -> list:
     """
     formatted_query = "+".join(query.split())
     url = f"https://api.giphy.com/v1/gifs/search?q={formatted_query}&api_key={api_key}"
-    gifs = httpx.get(url, timeout=10).json()["data"]
+    gifs = httpx2.get(url, timeout=10).json()["data"]
     return [gif["url"] for gif in gifs]
 
 
