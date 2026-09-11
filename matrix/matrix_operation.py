@@ -138,6 +138,19 @@ def determinant(matrix: list[list[int]]) -> Any:
     )
 
 
+def permanent(matrix: list[list[int]]) -> Any:
+    """
+    >>> permanent([[1, 2], [3, 4]])
+    10
+    >>> permanent([[1.5, 2.5], [3, 4]])
+    13.5
+    """
+    if len(matrix) == 1:
+        return matrix[0][0]
+
+    return sum(x * permanent(minor(matrix, 0, i)) for i, x in enumerate(matrix[0]))
+
+
 def inverse(matrix: list[list[int]]) -> list[list[float]] | None:
     """
     >>> inverse([[1, 2], [3, 4]])
@@ -193,6 +206,7 @@ def main() -> None:
     print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
     print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")
+    print(f"Permanent of {matrix_b} = {permanent(matrix_b)} \n")
     print(f"Inverse of {matrix_d} = {inverse(matrix_d)}\n")
 
 
