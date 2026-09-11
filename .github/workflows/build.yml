@@ -20,7 +20,7 @@ jobs:
         with:
           python-version-file: .python-version
           allow-prereleases: true
-      # keras needs hdf5 on pre-prelease Python.
+      # keras needs hdf5 on pre-release Python.
       - run: |
           if [ "$(python -c 'import sys; print(sys.version_info.releaselevel)')" != "final" ]; then
             sudo apt-get update -qq
