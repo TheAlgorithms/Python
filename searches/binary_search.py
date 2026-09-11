@@ -187,6 +187,29 @@ def binary_search(sorted_collection: list[int], item: int) -> int:
     :param item: item value to search
     :return: index of the found item or -1 if the item is not found
 
+    Time Complexity:
+        Best Case: O(1)
+              The item is found at the middle index in the first comparison.
+
+        Average Case: O(log n)
+              Search space is reduced by half in each iteration.
+
+        Worst Case: O(log n)
+              The item is at the end or not present in the collection.
+
+    Space Complexity: O(1)
+            - Uses constant extra memory.
+    Args:
+        sorted_collection (list[int]):
+            Ascending sorted collection of comparable items.
+
+        item (int):
+            Item value to search.
+    Returns:
+        int:
+            Index of the found item,
+            or -1 if the item is not found.
+
     Examples:
     >>> binary_search([0, 5, 7, 10, 15], 0)
     0
