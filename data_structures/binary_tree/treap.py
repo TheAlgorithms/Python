@@ -101,8 +101,8 @@ def erase(root: Node | None, value: int) -> Node | None:
     Split all nodes with values greater into right.
     Merge left, right
     """
-    left, right = split(root, value - 1)
-    _, right = split(right, value)
+    left, right = split(root, value)
+    _, right = split(right, value + 1)
     return merge(left, right)
 
 
