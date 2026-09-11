@@ -12,8 +12,14 @@ For manual testing run:
 python3 gnome_sort.py
 """
 
+from typing import Protocol
 
-def gnome_sort(lst: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def gnome_sort[T: Comparable](lst: list[T]) -> list[T]:
     """
     Pure implementation of the gnome sort algorithm in Python
 
@@ -39,7 +45,7 @@ def gnome_sort(lst: list) -> list:
     i = 1
 
     while i < len(lst):
-        if lst[i - 1] <= lst[i]:
+        if not lst[i] < lst[i - 1]:
             i += 1
         else:
             lst[i - 1], lst[i] = lst[i], lst[i - 1]
