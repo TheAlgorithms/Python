@@ -161,6 +161,190 @@ def linear_discriminant_analysis(
         raise AssertionError
 
 
+def t_distributed_stochastic_neighbor_embedding(
+    features: np.ndarray,
+    dimensions: int = 2,
+    perplexity: float = 30.0,
+    learning_rate: float = 200.0,
+    max_iterations: int = 1000,
+    random_state: int = 42,
+) -> np.ndarray:
+    """
+    t-Distributed Stochastic Neighbor Embedding (t-SNE) algorithm for
+    dimensionality reduction.
+
+    t-SNE is a machine learning algorithm for visualization developed by
+    Laurens van der Maaten and Geoffrey Hinton. It is a nonlinear
+    dimensionality reduction technique particularly well suited for the
+    visualization of high-dimensional datasets.
+
+    For more details, see:
+    https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding
+    Original paper:
+    https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
+
+    Parameters:
+        * features: Input data matrix where each column represents a data point
+        * dimensions: Number of dimensions for the output (typically 2 or 3)
+        * perplexity: Controls the effective number of neighbors (typically 5-50)
+        * learning_rate: Learning rate for gradient descent
+        * max_iterations: Maximum number of optimization iterations
+        * random_state: Random seed for reproducible results
+
+    Returns:
+        * projected_data: Low-dimensional representation of the input data
+
+    >>> # Test with simple 3D to 2D reduction
+    >>> features = np.array([[1, 2], [3, 4], [5, 6], [7, 8]], dtype=float).T
+    >>> result = t_distributed_stochastic_neighbor_embedding(
+    ...     features, dimensions=2, max_iterations=10
+    ... )
+    >>> result.shape
+    (2, 4)
+
+    >>> # Test with invalid dimensions
+    >>> try:
+    ...     t_distributed_stochastic_neighbor_embedding(features, dimensions=0)
+    ... except ValueError as e:
+    ...     print("ValueError raised for invalid dimensions")
+    ValueError raised for invalid dimensions
+    """
+
+    if not isinstance(features, np.ndarray) or features.size == 0:
+        raise ValueError("Features must be a non-empty numpy array")
+
+    if dimensions <= 0:
+        raise ValueError("Dimensions must be a positive integer")
+
+    if perplexity <= 0:
+        raise ValueError("Perplexity must be positive")
+
+    if learning_rate <= 0:
+        raise ValueError("Learning rate must be positive")
+
+    if max_iterations <= 0:
+        raise ValueError("Max iterations must be positive")
+
+    rng = np.random.default_rng(random_state)
+    _, num_samples = features.shape
+
+    if num_samples < dimensions + 1:
+        min_samples = dimensions + 1
+        msg = (
+            f"Need at least {min_samples} samples for t-SNE with {dimensions} "
+            f"dimensions, but got {num_samples} samples"
+        )
+        raise ValueError(msg)
+
+    # Compute pairwise squared Euclidean distances
+    def compute_pairwise_distances(data: np.ndarray) -> np.ndarray:
+        """Compute pairwise squared Euclidean distances."""
+        sum_data = np.sum(np.square(data), axis=0)
+        distances = sum_data + sum_data[:, np.newaxis] - 2 * np.dot(data.T, data)
+        return np.maximum(distances, 0)  # Ensure non-negative
+
+    # Compute perplexity-based probabilities using binary search
+    def compute_conditional_probabilities(
+        distances: np.ndarray, target_perplexity: float
+    ) -> np.ndarray:
+        """Compute conditional probabilities with target perplexity."""
+        num_points = distances.shape[0]
+        probabilities = np.zeros((num_points, num_points))
+
+        for i in range(num_points):
+            # Binary search for optimal sigma
+            beta_min, beta_max = -np.inf, np.inf
+            beta = 1.0
+
+            for _ in range(50):  # Max iterations for binary search
+                # Compute probabilities
+                exp_distances = np.exp(-distances[i] * beta)
+                exp_distances[i] = 0  # Set self-similarity to 0
+                sum_exp = np.sum(exp_distances)
+
+                if sum_exp == 0:
+                    probabilities[i] = 0
+                    break
+
+                current_probabilities = exp_distances / sum_exp
+
+                # Compute perplexity
+                entropy = -np.sum(
+                    current_probabilities * np.log2(current_probabilities + 1e-12)
+                )
+                current_perplexity = 2**entropy
+
+                # Check if we're close enough
+                if abs(current_perplexity - target_perplexity) < 1e-5:
+                    probabilities[i] = current_probabilities
+                    break
+
+                # Adjust beta
+                if current_perplexity > target_perplexity:
+                    beta_min = beta
+                    beta = beta * 2 if beta_max == np.inf else (beta + beta_max) / 2
+                else:
+                    beta_max = beta
+                    beta = beta / 2 if beta_min == -np.inf else (beta + beta_min) / 2
+            else:
+                probabilities[i] = current_probabilities
+
+        return probabilities
+
+    # Compute high-dimensional probabilities
+    distances = compute_pairwise_distances(features)
+    conditional_probs = compute_conditional_probabilities(distances, perplexity)
+
+    # Symmetrize probabilities
+    high_dim_probs = (conditional_probs + conditional_probs.T) / (2 * num_samples)
+    high_dim_probs = np.maximum(high_dim_probs, 1e-12)
+
+    # Initialize low-dimensional embedding
+    projected_data = rng.normal(0, 1e-4, (dimensions, num_samples))
+
+    # Gradient descent optimization
+    momentum = np.zeros_like(projected_data)
+
+    for _ in range(max_iterations):
+        # Compute low-dimensional probabilities (Student-t distribution)
+        low_dim_distances = compute_pairwise_distances(projected_data)
+        low_dim_probs_denom = 1 + low_dim_distances
+        low_dim_probs_denom[np.diag_indices_from(low_dim_probs_denom)] = np.inf
+
+        low_dim_probs = 1 / low_dim_probs_denom
+        np.fill_diagonal(low_dim_probs, 0)
+        sum_low_dim = np.sum(low_dim_probs)
+
+        if sum_low_dim == 0:
+            low_dim_probs = np.ones_like(low_dim_probs) / (
+                num_samples * (num_samples - 1)
+            )
+        else:
+            low_dim_probs = low_dim_probs / sum_low_dim
+
+        low_dim_probs = np.maximum(low_dim_probs, 1e-12)
+
+        # Compute gradient
+        prob_diff = high_dim_probs - low_dim_probs
+        gradient = np.zeros_like(projected_data)
+
+        for i in range(num_samples):
+            diff = projected_data[:, i : i + 1] - projected_data
+            gradient[:, i] = np.sum(
+                (prob_diff[i] * (1 / low_dim_probs_denom[i])).reshape(1, -1) * diff,
+                axis=1,
+            )
+
+        gradient *= 4  # Factor from t-SNE gradient derivation
+
+        # Update with momentum
+        momentum = 0.5 * momentum - learning_rate * gradient
+        projected_data += momentum
+
+    logging.info("t-SNE computation completed")
+    return projected_data
+
+
 def test_linear_discriminant_analysis() -> None:
     # Create dummy dataset with 2 classes and 3 features
     features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
@@ -190,6 +374,35 @@ def test_principal_component_analysis() -> None:
         if not np.allclose(expected_output, output):
             raise AssertionError
         assert error_info.type is AssertionError
+
+
+def test_t_distributed_stochastic_neighbor_embedding() -> None:
+    """Test t-SNE algorithm with various input conditions."""
+    # Test with valid input
+    features = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], dtype=float)
+    dimensions = 2
+    max_iterations = 10
+    result = t_distributed_stochastic_neighbor_embedding(
+        features, dimensions=dimensions, max_iterations=max_iterations
+    )
+
+    # Check the shape of the result
+    assert result.shape == (2, 4), f"Expected shape (2, 4), got {result.shape}"
+
+    # Test with empty array
+    try:
+        empty_features = np.array([])
+        t_distributed_stochastic_neighbor_embedding(empty_features)
+        raise AssertionError("Should raise ValueError for empty array")
+    except ValueError:
+        pass
+
+    # Test with invalid dimensions
+    try:
+        t_distributed_stochastic_neighbor_embedding(features, dimensions=0)
+        raise AssertionError("Should raise ValueError for invalid dimensions")
+    except ValueError:
+        pass
 
 
 if __name__ == "__main__":
