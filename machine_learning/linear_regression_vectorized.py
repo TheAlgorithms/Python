@@ -1,15 +1,7 @@
-import httpx
-import numpy as np
-
 """
 Vectorized Linear Regression using Gradient Descent
 
 Author: Somrita Banerjee (mailto:somritabanerjee126@gmail.com)
-
-Requirements:
-- Python >= 3.13
-- numpy
-- httpx
 
 Dataset used: CSGO dataset (ADR vs Rating)
 
@@ -20,16 +12,19 @@ https://en.wikipedia.org/wiki/Linear_regression
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 #     "numpy",
 # ]
 # ///
+
+import httpx2
+import numpy as np
 
 
 def collect_dataset() -> np.ndarray:
     """Collect dataset of CSGO (ADR vs Rating).
 
-    :return: dataset as numpy array
+    :return: dataset as a NumPy array
 
     >>> ds = collect_dataset()
     >>> isinstance(ds, np.ndarray)
@@ -37,7 +32,7 @@ def collect_dataset() -> np.ndarray:
     >>> ds.shape[1] >= 2
     True
     """
-    response = httpx.get(
+    response = httpx2.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
@@ -98,10 +93,6 @@ def mean_absolute_error(predicted_y: np.ndarray, original_y: np.ndarray) -> floa
 
 
 def main() -> None:
-    """Driver function.
-
-    >>> main()  # doctest: +SKIP
-    """
     dataset = collect_dataset()
 
     m = dataset.shape[0]
