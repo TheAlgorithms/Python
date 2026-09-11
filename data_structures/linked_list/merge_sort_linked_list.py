@@ -1,15 +1,42 @@
+from collections.abc import Iterable
+from dataclasses import dataclass
+
+
+@dataclass(order=True)
 class Node:
     """
     A class representing a node in a linked list.
 
     Attributes:
-        data (int): The data stored in the node.
-        next (Node | None): A reference to the next node in the linked list.
+        data: The data stored in the node.
+        next: A reference to the next node in the linked list.
     """
 
-    def __init__(self, data: int) -> None:
-        self.data = data
-        self.next: Node | None = None
+    data: int
+    next: Node | None = None
+
+
+def iter_linked_list(head: Node | None) -> Iterable[Node]:
+    """
+    Iterate over the nodes of a linked list.
+
+    Parameters:
+        head: The head node of the linked list.
+
+    Yields:
+        Each node in the linked list, one by one.
+
+    Example:
+    >>> head = Node(3, Node(1, Node(2)))
+    >>> head  # dataclasses provide a nice .__repr__().
+    Node(data=3, next=Node(data=1, next=Node(data=2, next=None)))
+    >>> tuple(iter_linked_list(head))
+    (3, 1, 2)
+    """
+    current = head
+    while current:
+        yield current.data
+        current = current.next
 
 
 def get_middle(head: Node | None) -> Node | None:
@@ -47,32 +74,6 @@ def get_middle(head: Node | None) -> Node | None:
     return slow
 
 
-def print_linked_list(head: Node | None) -> None:
-    """
-    Print the linked list in a single line.
-
-    Parameters:
-        head: The head node of the linked list.
-
-    Example:
-    >>> head = Node(1)
-    >>> head.next = Node(2)
-    >>> head.next.next = Node(3)
-    >>> print_linked_list(head)
-    1 2 3
-    """
-
-    current = head
-    first = True  # To avoid printing space before the first element
-    while current:
-        if not first:
-            print(" ", end="")
-        print(current.data, end="")
-        first = False
-        current = current.next
-    print()
-
-
 def merge(left: Node | None, right: Node | None) -> Node | None:
     """
     Merge two sorted linked lists into one sorted linked list.
@@ -87,11 +88,15 @@ def merge(left: Node | None, right: Node | None) -> Node | None:
     Example:
     >>> left = Node(1)
     >>> left.next = Node(3)
+    >>> tuple(iter_linked_list(left))
+    (1, 3)
     >>> right = Node(2)
     >>> right.next = Node(4)
+    >>> tuple(iter_linked_list(right))
+    (2, 4)
     >>> merged = merge(left, right)
-    >>> print_linked_list(merged)
-    1 2 3 4
+    >>> tuple(iter_linked_list(merged))
+    (1, 2, 3, 4)
     """
 
     if left is None:
@@ -99,7 +104,7 @@ def merge(left: Node | None, right: Node | None) -> Node | None:
     if right is None:
         return left
 
-    if left.data <= right.data:
+    if left <= right:
         result = left
         result.next = merge(left.next, right)
     else:
@@ -124,9 +129,11 @@ def merge_sort_linked_list(head: Node | None) -> Node | None:
     >>> head.next = Node(2)
     >>> head.next.next = Node(1)
     >>> head.next.next.next = Node(3)
+    >>> tuple(iter_linked_list(head))
+    (4, 2, 1, 3)
     >>> sorted_head = merge_sort_linked_list(head)
-    >>> print_linked_list(sorted_head)
-    1 2 3 4
+    >>> tuple(iter_linked_list(sorted_head))
+    (1, 2, 3, 4)
     """
 
     # Base Case: 0 or 1 node
