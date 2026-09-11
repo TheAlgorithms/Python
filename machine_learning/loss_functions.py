@@ -250,6 +250,60 @@ def categorical_focal_cross_entropy(
     return np.mean(cfce_loss)
 
 
+def gaussian_negative_log_likelihood_loss(
+    y_true: np.ndarray,
+    expectation_pred: np.ndarray,
+    var_pred: np.ndarray,
+    eps: float = 1e-6,
+) -> float:
+    """
+    Calculate the negative log likelihood (NLL) loss between true labels and predicted
+    Gaussian distributions.
+
+    NLL = -Σ(ln(1/(σ√(2π))) - 0.5 * ((y_true - μ)/σ)^2)
+
+    Reference: https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss.html
+
+    Parameters:
+    - y_true: True labels
+    - expectation_pred: Predicted expectation (μ) of the Gaussian distribution
+    - var_pred: Predicted variance (σ^2) of the Gaussian distribution
+    - eps: Small constant to avoid numerical instability
+
+    Examples:
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> expectation = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> variance = np.array([0.1, 0.2, 0.3, 0.4, 0.5])
+    >>> loss = gaussian_negative_log_likelihood_loss(true_labels, expectation, variance)
+    >>> np.isclose(loss, -0.60621)
+    True
+
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> expectation = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> variance = np.array([0.1, 0.2, 0.3, 0.4])
+    >>> gaussian_negative_log_likelihood_loss(true_labels, expectation, variance)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+
+    if (
+        len(y_true) != len(expectation_pred)
+        or len(y_true) != len(var_pred)
+        or len(expectation_pred) != len(var_pred)
+    ):
+        raise ValueError("Input arrays must have the same length.")
+
+    # The constant term `0.5 * np.log(2 * np.pi)` is ignored since it doesn't affect the
+    # optimization. PyTorch also ignores this term by default.
+    # See https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss.html
+    loss_var = 0.5 * (np.log(np.maximum(var_pred, eps)))
+    loss_exp = 0.5 * (np.square(y_true - expectation_pred) / np.maximum(var_pred, eps))
+    loss = loss_var + loss_exp
+
+    return np.mean(loss)
+
+
 def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the mean hinge loss for between true labels and predicted probabilities
