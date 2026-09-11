@@ -25,6 +25,7 @@ class Point(NamedTuple):
     >>> Point(1.5, -2.0)
     Point(x=1.5, y=-2.0)
     """
+
     x: float
     y: float
 
