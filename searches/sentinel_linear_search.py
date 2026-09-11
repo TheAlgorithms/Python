@@ -1,58 +1,42 @@
 """
-This is pure Python implementation of sentinel linear search algorithm
-
-For doctests run following command:
-python -m doctest -v sentinel_linear_search.py
-or
-python3 -m doctest -v sentinel_linear_search.py
-
-For manual testing run:
-python sentinel_linear_search.py
+Sentinel Linear Search Algorithm
+A variation of linear search that reduces comparisons per iteration.
+Reference: https://en.wikipedia.org/wiki/Linear_search#With_a_sentinel
 """
 
 
-def sentinel_linear_search(sequence, target):
-    """Pure implementation of sentinel linear search algorithm in Python
-
-    :param sequence: some sequence with comparable items
-    :param target: item value to search
-    :return: index of found item or None if item is not found
-
-    Examples:
-    >>> sentinel_linear_search([0, 5, 7, 10, 15], 0)
-    0
-
-    >>> sentinel_linear_search([0, 5, 7, 10, 15], 15)
-    4
-
-    >>> sentinel_linear_search([0, 5, 7, 10, 15], 5)
-    1
-
-    >>> sentinel_linear_search([0, 5, 7, 10, 15], 6)
-
+def sentinel_linear_search(arr: list[int], target: int) -> int:
     """
-    sequence.append(target)
+    Search for target using sentinel method, return index or -1 if not found.
 
-    index = 0
-    while sequence[index] != target:
-        index += 1
+    >>> sentinel_linear_search([1, 2, 3, 4, 5], 3)
+    2
+    >>> sentinel_linear_search([1, 2, 3, 4, 5], 6)
+    -1
+    >>> sentinel_linear_search([], 1)
+    -1
+    """
+    n = len(arr)
+    if n == 0:
+        return -1
 
-    sequence.pop()
+    last = arr[n - 1]
+    arr[n - 1] = target
+    i = 0
 
-    if index == len(sequence):
-        return None
+    while arr[i] != target:
+        i += 1
 
-    return index
+    # Restore the original last element to prevent mutation of the input array
+    arr[n - 1] = last
+
+    if i < n - 1 or arr[n - 1] == target:
+        return i
+    return -1
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by comma:\n").strip()
-    sequence = [int(item) for item in user_input.split(",")]
+    import doctest
 
-    target_input = input("Enter a single number to be found in the list:\n")
-    target = int(target_input)
-    result = sentinel_linear_search(sequence, target)
-    if result is not None:
-        print(f"{target} found at positions: {result}")
-    else:
-        print("Not found")
+    doctest.testmod()
+    print(sentinel_linear_search([1, 2, 3, 4, 5], 3))
