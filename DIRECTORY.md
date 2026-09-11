@@ -251,6 +251,7 @@
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
+    * [Binary-Tree-Deletion](data_structures/binary_tree/binary-tree-deletion.py)
     * [Binary Search Tree](data_structures/binary_tree/binary_search_tree.py)
     * [Binary Search Tree Recursive](data_structures/binary_tree/binary_search_tree_recursive.py)
     * [Binary Tree Maximum Path Sum](data_structures/binary_tree/binary_tree_maximum_path_sum.py)
