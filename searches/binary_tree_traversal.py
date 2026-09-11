@@ -15,6 +15,10 @@ class TreeNode:
 
 
 def build_tree() -> TreeNode:
+    """
+    Builds a binary tree by receiving input and returns the root node of the tree.
+    Stops and returns the tree once 'N' is entered.
+    """
     print("\n********Press N to stop entering at any point of time********\n")
     check = input("Enter the value of the root node: ").strip().lower()
     q: queue.Queue = queue.Queue()
