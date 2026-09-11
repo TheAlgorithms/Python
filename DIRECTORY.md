@@ -674,6 +674,7 @@
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
+  * [Federated Averaging](machine_learning/federated_averaging.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
   * [Frequent Pattern Growth](machine_learning/frequent_pattern_growth.py)
@@ -682,6 +683,7 @@
   * [Gradient Boosting Regressor](machine_learning/gradient_boosting_regressor.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
+  * [K Medoids](machine_learning/k_medoids.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
   * [Linear Discriminant Analysis](machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](machine_learning/linear_regression.py)
