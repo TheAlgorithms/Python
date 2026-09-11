@@ -1,14 +1,40 @@
 def print_dist(dist, v):
-    print("\nVertex Distance")
+    """
+    Print vertex distances.
+    >>> print_dist([0.0, 5.0, 8.0, 9.0], 4)
+    Vertex Distance
+    0    0
+    1    5
+    2    8
+    3    9
+    >>> print_dist([0.0, float('inf')], 2)
+    Vertex Distance
+    0    0
+    1    INF
+    >>> print_dist([0.0], 1)
+    Vertex Distance
+    0    0
+    """
+    print("Vertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
-            print(i, "\t", int(dist[i]), end="\t")
+            print(i, "  ", int(dist[i]))
         else:
-            print(i, "\t", "INF", end="\t")
-        print()
+            print(i, "  ", "INF")
 
 
 def min_dist(mdist, vset, v):
+    """
+    Finds the vertex with minimum distance that hasn't been visited yet.
+    >>> min_dist([0, 4, 2, float('inf')], [True, False, False, False], 4)
+    2
+    >>> min_dist([0, 4, 2, 1], [True, False, True, False], 4)
+    3
+    >>> min_dist([0, 4, 2, 1], [True, True, True, True], 4)
+    -1
+    >>> min_dist([float('inf'), float('inf')], [False, False], 2)
+    -1
+    """
     min_val = float("inf")
     min_ind = -1
     for i in range(v):
@@ -19,6 +45,32 @@ def min_dist(mdist, vset, v):
 
 
 def dijkstra(graph, v, src):
+    """
+    Runs Dijkstra's algorithm and prints distances.
+    >>> g = [
+    ...     [0.0, 5.0, float('inf'), 10.0],
+    ...     [float('inf'), 0.0, 3.0, float('inf')],
+    ...     [float('inf'), float('inf'), 0.0, 1.0],
+    ...     [float('inf'), float('inf'), float('inf'), 0.0],
+    ... ]
+    >>> dijkstra(g, 4, 0)
+    Vertex Distance
+    0    0
+    1    5
+    2    8
+    3    9
+    >>> g2 = [
+    ...     [0.0, float('inf')],
+    ...     [float('inf'), 0.0],
+    ... ]
+    >>> dijkstra(g2, 2, 0)
+    Vertex Distance
+    0    0
+    1    INF
+    >>> dijkstra([[0.0]], 1, 0)
+    Vertex Distance
+    0    0
+    """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
@@ -35,7 +87,7 @@ def dijkstra(graph, v, src):
             ):
                 mdist[i] = mdist[u] + graph[u][i]
 
-    print_dist(mdist, i)
+    print_dist(mdist, v)
 
 
 if __name__ == "__main__":
