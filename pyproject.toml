@@ -7,6 +7,7 @@ requires-python = ">=3.14"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Free Threading :: 2 - Beta",
 ]
 dependencies = [
@@ -192,7 +193,6 @@ environment.python-version = "3.14"
 rules.call-non-callable = "ignore"
 rules.deprecated = "ignore"
 rules.invalid-argument-type = "ignore"
-rules.invalid-assignment = "ignore"
 rules.invalid-parameter-default = "ignore"
 rules.invalid-return-type = "ignore"
 rules.invalid-type-arguments = "ignore"
@@ -221,3 +221,14 @@ report.omit = [
   "project_euler/*",
 ]
 report.sort = "Cover"
+
+[tool.rumdl]
+disable = [
+  # "MD013",
+  "MD033",
+  "MD036",
+  "MD041",
+]
+exclude = [ "DIRECTORY.md", "docs/hacktober_2026_prep.md" ]
+flavor = "gfm"
+line-length = 350

@@ -71,7 +71,7 @@ def mincut(graph: list[list[int]], source: int, sink: int) -> list[tuple[int, in
     parent = [-1] * (len(residual))
     res = []
     while bfs(residual, source, sink, parent):
-        path_flow = float("inf")
+        path_flow = max(max(row) for row in residual)
         s = sink
 
         while s != source:
