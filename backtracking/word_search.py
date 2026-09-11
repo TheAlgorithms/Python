@@ -25,7 +25,7 @@ Word:
 Result:
 True
 
-Implementation notes: Use backtracking approach.
+Implementation notes: Use a backtracking approach.
 At each point, check all neighbors to try to find the next letter of the word.
 
 leetcode: https://leetcode.com/problems/word-search/
@@ -53,7 +53,7 @@ def exits_word(
     visited_points_set: set[int],
 ) -> bool:
     """
-    Return True if it's possible to search the word suffix
+    Return True if it's possible to search for the word suffix
     starting from the word_index.
 
     >>> exits_word([["A"]], "B", 0, 0, 0, set())
@@ -88,10 +88,75 @@ def exits_word(
     return False
 
 
+def validate_board_and_word(board: list[list[str]], word: str) -> None:
+    """
+    >>> board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+    >>> validate_board_and_word(board, "ABCCED")
+    >>> validate_board_and_word(board, "SEE")
+    >>> validate_board_and_word(board, "ABCB")
+    >>> validate_board_and_word([["A"]], "A")
+    >>> validate_board_and_word([["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB")
+    >>> validate_board_and_word([["A"]], 123)
+    Traceback (most recent call last):
+        ...
+    ValueError: The word parameter should be a string of length greater than 0.
+    >>> validate_board_and_word([["A"]], "")
+    Traceback (most recent call last):
+        ...
+    ValueError: The word parameter should be a string of length greater than 0.
+    >>> validate_board_and_word([[]], "AB")
+    Traceback (most recent call last):
+        ...
+    ValueError: The board should be a non-empty matrix of single-character strings.
+    >>> validate_board_and_word([], "AB")
+    Traceback (most recent call last):
+        ...
+    ValueError: The board should be a non-empty matrix of single-character strings.
+    >>> validate_board_and_word([["A"], [21]], "AB")
+    Traceback (most recent call last):
+        ...
+    ValueError: The board should be a non-empty matrix of single-character strings.
+    """
+
+    # Validate board
+    msg = "The board should be a non-empty matrix of single-character strings."
+    if not board or not isinstance(board, list):
+        raise ValueError(msg)
+
+    for row in board:
+        if not row or not isinstance(row, list):
+            raise ValueError(msg)
+
+        for item in row:
+            if not item or not isinstance(item, str):
+                raise ValueError(msg)
+
+    # Validate word
+    if not isinstance(word, str) or len(word) == 0:
+        msg = "The word parameter should be a string of length greater than 0."
+        raise ValueError(msg)
+
+
 def get_word_path(board: list[list[str]], word: str) -> list[tuple[int, int]] | None:
+    """
+    Return the path of the word in the board if it exists; otherwise, return None.
+
+    >>> board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+    >>> get_word_path(board, "ABCCED")
+    [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 1)]
+    >>> get_word_path(board, "SEE")
+    [(1, 3), (2, 3), (2, 2)]
+    >>> get_word_path(board, "ABCB") is None
+    True
+    >>> get_word_path([["A"]], 123)
+    Traceback (most recent call last):
+        ...
+    ValueError: The word parameter should be a string of length greater than 0.
+    """
+    validate_board_and_word(board, word)
     rows, cols = len(board), len(board[0])
 
-    def backtrack(r, c, index, path, visited):
+    def backtrack(r: int, c: int, index: int, path: list[tuple[int, int]], visited: set[tuple[int, int]]) -> list[tuple[int, int]] | None:
         if board[r][c] != word[index]:
             return None
 
@@ -125,11 +190,12 @@ def get_word_path(board: list[list[str]], word: str) -> list[tuple[int, int]] | 
 
 def word_exists(board: list[list[str]], word: str) -> bool:
     """
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
+    >>> board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+    >>> word_exists(board, "ABCCED")
     True
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")
+    >>> word_exists(board, "SEE")
     True
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")
+    >>> word_exists(board, "ABCB")
     False
     >>> word_exists([["A"]], "A")
     True
@@ -146,40 +212,18 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     >>> word_exists([[]], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
+    ValueError: The board should be a non-empty matrix of single-character strings.
     >>> word_exists([], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
+    ValueError: The board should be a non-empty matrix of single-character strings.
     >>> word_exists([["A"], [21]], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
+    ValueError: The board should be a non-empty matrix of single-character strings.
     """
-
-    # Validate board
-    board_error_message = (
-        "The board should be a non empty matrix of single chars strings."
-    )
-
+    validate_board_and_word(board, word)
     len_board = len(board)
-    if not isinstance(board, list) or len(board) == 0:
-        raise ValueError(board_error_message)
-
-    for row in board:
-        if not isinstance(row, list) or len(row) == 0:
-            raise ValueError(board_error_message)
-
-        for item in row:
-            if not isinstance(item, str) or len(item) != 1:
-                raise ValueError(board_error_message)
-
-    # Validate word
-    if not isinstance(word, str) or len(word) == 0:
-        raise ValueError(
-            "The word parameter should be a string of length greater than 0."
-        )
-
     len_board_column = len(board[0])
     for i in range(len_board):
         for j in range(len_board_column):
