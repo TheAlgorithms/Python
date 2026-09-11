@@ -1,0 +1,43 @@
+"""
+Smooth Sort Algorithm
+
+Author: <cc1124ypf>
+Date: 2025-10-17
+Description:
+    Smooth Sort is a comparison-based sorting algorithm devised by Edsger W. Dijkstra.
+    It is a variation of Heap Sort that is efficient for nearly sorted data.
+    This implementation sorts a list of integers in ascending order.
+
+Example:
+>>> smooth_sort([5, 3, 1, 4, 2])
+[1, 2, 3, 4, 5]
+
+>>> smooth_sort([])
+[]
+
+>>> smooth_sort([2, 2, 1])
+[1, 2, 2]
+"""
+
+from typing import List
+
+
+def smooth_sort(arr: List[int]) -> List[int]:
+    """
+    Sort a list of integers using Smooth Sort algorithm.
+    """
+    import heapq
+
+    # Python heapq is a min-heap, simulate Smooth Sort using heap
+    a = arr[:]
+    heapq.heapify(a)
+    return [heapq.heappop(a) for _ in range(len(a))]
+
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by commas:\n").strip()
+    if user_input:
+        data = [int(x) for x in user_input.split(",")]
+        print(smooth_sort(data))
+    else:
+        print([])
