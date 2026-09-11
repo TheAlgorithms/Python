@@ -35,7 +35,7 @@ def digits_fifth_powers_sum(number: int) -> int:
 def solution() -> int:
     return sum(
         number
-        for number in range(1000, 1000000)
+        for number in range(10, 354295)
         if number == digits_fifth_powers_sum(number)
     )
 
