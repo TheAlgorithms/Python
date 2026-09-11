@@ -15,8 +15,21 @@ distance between any pair of points) of a set of 2D points in O(n log n) time
 from __future__ import annotations
 
 import math
+from typing import NamedTuple
 
-Point = tuple[float, float]
+
+class Point(NamedTuple):
+    """
+    A 2D point with real-valued coordinates.
+
+    >>> Point(0.0, 0.0)
+    Point(x=0.0, y=0.0)
+    >>> Point(1.5, -2.0)
+    Point(x=1.5, y=-2.0)
+    """
+
+    x: float
+    y: float
 
 
 def cross_product(origin: Point, point_a: Point, point_b: Point) -> float:
@@ -29,30 +42,30 @@ def cross_product(origin: Point, point_a: Point, point_b: Point) -> float:
         < 0 : Clockwise turn (right turn)
         = 0 : Collinear points
 
-    >>> cross_product((0.0, 0.0), (1.0, 0.0), (1.0, 1.0))
+    >>> cross_product(Point(0.0, 0.0), Point(1.0, 0.0), Point(1.0, 1.0))
     1.0
-    >>> cross_product((0.0, 0.0), (1.0, 1.0), (1.0, 0.0))
+    >>> cross_product(Point(0.0, 0.0), Point(1.0, 1.0), Point(1.0, 0.0))
     -1.0
-    >>> cross_product((0.0, 0.0), (1.0, 1.0), (2.0, 2.0))
+    >>> cross_product(Point(0.0, 0.0), Point(1.0, 1.0), Point(2.0, 2.0))
     0.0
     """
-    return (point_a[0] - origin[0]) * (point_b[1] - origin[1]) - (
-        point_a[1] - origin[1]
-    ) * (point_b[0] - origin[0])
+    return (point_a.x - origin.x) * (point_b.y - origin.y) - (point_a.y - origin.y) * (
+        point_b.x - origin.x
+    )
 
 
 def distance_squared(point_a: Point, point_b: Point) -> float:
     """
     Compute the squared Euclidean distance between point_a and point_b.
 
-    >>> distance_squared((0.0, 0.0), (3.0, 4.0))
+    >>> distance_squared(Point(0.0, 0.0), Point(3.0, 4.0))
     25.0
-    >>> distance_squared((1.0, 1.0), (1.0, 1.0))
+    >>> distance_squared(Point(1.0, 1.0), Point(1.0, 1.0))
     0.0
-    >>> distance_squared((-1.0, -1.0), (2.0, 3.0))
+    >>> distance_squared(Point(-1.0, -1.0), Point(2.0, 3.0))
     25.0
     """
-    return (point_a[0] - point_b[0]) ** 2 + (point_a[1] - point_b[1]) ** 2
+    return (point_a.x - point_b.x) ** 2 + (point_a.y - point_b.y) ** 2
 
 
 def convex_hull(points: list[Point]) -> list[Point]:
@@ -63,14 +76,20 @@ def convex_hull(points: list[Point]) -> list[Point]:
     Time Complexity: O(n log n) where n is the number of points.
     Space Complexity: O(n)
 
-    >>> convex_hull([(0.0, 0.0), (1.0, 1.0)])
-    [(0.0, 0.0), (1.0, 1.0)]
-    >>> convex_hull([(0.0, 0.0), (3.0, 0.0), (3.0, 3.0), (0.0, 3.0), (1.0, 1.0)])
-    [(0.0, 0.0), (3.0, 0.0), (3.0, 3.0), (0.0, 3.0)]
-    >>> convex_hull([(0.0, 0.0), (1.0, 1.0), (2.0, 2.0)])
-    [(0.0, 0.0), (2.0, 2.0)]
-    >>> convex_hull([(1.0, 1.0)])
-    [(1.0, 1.0)]
+    >>> convex_hull([Point(0.0, 0.0), Point(1.0, 1.0)])
+    [Point(x=0.0, y=0.0), Point(x=1.0, y=1.0)]
+    >>> convex_hull([
+    ...     Point(0.0, 0.0),
+    ...     Point(3.0, 0.0),
+    ...     Point(3.0, 3.0),
+    ...     Point(0.0, 3.0),
+    ...     Point(1.0, 1.0),
+    ... ])
+    [Point(x=0.0, y=0.0), Point(x=3.0, y=0.0), Point(x=3.0, y=3.0), Point(x=0.0, y=3.0)]
+    >>> convex_hull([Point(0.0, 0.0), Point(1.0, 1.0), Point(2.0, 2.0)])
+    [Point(x=0.0, y=0.0), Point(x=2.0, y=2.0)]
+    >>> convex_hull([Point(1.0, 1.0)])
+    [Point(x=1.0, y=1.0)]
     """
     unique_points = sorted(set(points))
     if len(unique_points) <= 1:
@@ -109,24 +128,34 @@ def rotating_calipers(points: list[Point]) -> tuple[float, tuple[Point, Point]]:
     Raises:
         ValueError: If fewer than 2 points are provided.
 
-    >>> points = [(0.0, 0.0), (3.0, 0.0), (3.0, 4.0), (0.0, 4.0)]
+    >>> points = [
+    ...     Point(0.0, 0.0),
+    ...     Point(3.0, 0.0),
+    ...     Point(3.0, 4.0),
+    ...     Point(0.0, 4.0),
+    ... ]
     >>> max_dist, pair = rotating_calipers(points)
     >>> max_dist
     5.0
     >>> pair in [
-    ...     ((0.0, 0.0), (3.0, 4.0)),
-    ...     ((3.0, 4.0), (0.0, 0.0)),
-    ...     ((3.0, 0.0), (0.0, 4.0)),
-    ...     ((0.0, 4.0), (3.0, 0.0)),
+    ...     (Point(0.0, 0.0), Point(3.0, 4.0)),
+    ...     (Point(3.0, 4.0), Point(0.0, 0.0)),
+    ...     (Point(3.0, 0.0), Point(0.0, 4.0)),
+    ...     (Point(0.0, 4.0), Point(3.0, 0.0)),
     ... ]
     True
-    >>> rotating_calipers([(0.0, 0.0), (0.0, 5.0)])
-    (5.0, ((0.0, 0.0), (0.0, 5.0)))
-    >>> rotating_calipers([(1.0, 1.0), (1.0, 1.0)])
-    (0.0, ((1.0, 1.0), (1.0, 1.0)))
-    >>> rotating_calipers([(0.0, 0.0), (1.0, 1.0), (2.0, 2.0), (3.0, 3.0)])[0]
+    >>> rotating_calipers([Point(0.0, 0.0), Point(0.0, 5.0)])
+    (5.0, (Point(x=0.0, y=0.0), Point(x=0.0, y=5.0)))
+    >>> rotating_calipers([Point(1.0, 1.0), Point(1.0, 1.0)])
+    (0.0, (Point(x=1.0, y=1.0), Point(x=1.0, y=1.0)))
+    >>> rotating_calipers([
+    ...     Point(0.0, 0.0),
+    ...     Point(1.0, 1.0),
+    ...     Point(2.0, 2.0),
+    ...     Point(3.0, 3.0),
+    ... ])[0]
     4.242640687119285
-    >>> rotating_calipers([(1.0, 1.0)])
+    >>> rotating_calipers([Point(1.0, 1.0)])
     Traceback (most recent call last):
         ...
     ValueError: At least 2 points are required to compute polygon diameter.
@@ -140,7 +169,7 @@ def rotating_calipers(points: list[Point]) -> tuple[float, tuple[Point, Point]]:
     if hull_size == 1:
         return 0.0, (hull[0], hull[0])
     if hull_size == 2:
-        return math.hypot(hull[0][0] - hull[1][0], hull[0][1] - hull[1][1]), (
+        return math.hypot(hull[0].x - hull[1].x, hull[0].y - hull[1].y), (
             hull[0],
             hull[1],
         )
