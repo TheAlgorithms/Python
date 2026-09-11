@@ -533,7 +533,9 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Monotone Chain](geometry/monotone_chain.py)
   * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Rotating Calipers](geometry/rotating_calipers.py)
   * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
@@ -944,6 +946,8 @@
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Input Data](neural_network/input_data.py)
+  * Optimizers
+    * [Momentum Sgd](neural_network/optimizers/momentum_sgd.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
   * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
