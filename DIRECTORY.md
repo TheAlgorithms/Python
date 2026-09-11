@@ -483,6 +483,7 @@
   * [Ic 555 Timer](electronics/ic_555_timer.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
+  * [Power Factor Correction](electronics/power_factor_correction.py)
   * [Real And Reactive Power](electronics/real_and_reactive_power.py)
   * [Resistor Color Code](electronics/resistor_color_code.py)
   * [Resistor Equivalence](electronics/resistor_equivalence.py)
