@@ -689,6 +689,7 @@
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
+  * [Multinomial Naive Bayes Classifier](machine_learning/multinomial_naive_bayes_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Principle Component Analysis](machine_learning/principle_component_analysis.py)
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
