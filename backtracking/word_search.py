@@ -95,7 +95,9 @@ def validate_board_and_word(board: list[list[str]], word: str) -> None:
     >>> validate_board_and_word(board, "SEE")
     >>> validate_board_and_word(board, "ABCB")
     >>> validate_board_and_word([["A"]], "A")
-    >>> validate_board_and_word([["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB")
+    >>> validate_board_and_word(
+    ...    [["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB"
+    ... )
     >>> validate_board_and_word([["A"]], 123)
     Traceback (most recent call last):
         ...
