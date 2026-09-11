@@ -947,9 +947,9 @@
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Input Data](neural_network/input_data.py)
   * Optimizers
-    * [Momentum Sgd](neural_network/optimizers/momentum_sgd.py)
     * [Adagrad](neural_network/optimizers/adagrad.py)
     * [Adam Optimizer](neural_network/optimizers/adam_optimizer.py)
+    * [Momentum Sgd](neural_network/optimizers/momentum_sgd.py)
     * [Muon Optimizer](neural_network/optimizers/muon_optimizer.py)
     * [Nesterov Accelerated Sgd](neural_network/optimizers/nesterov_accelerated_sgd.py)
   * [Perceptron](neural_network/perceptron.py)
