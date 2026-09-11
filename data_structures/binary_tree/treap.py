@@ -65,7 +65,7 @@ def merge(left: Node | None, right: Node | None) -> Node | None:
     """
     if (not left) or (not right):  # If one node is None, return the other
         return left or right
-    elif left.prior < right.prior:
+    elif left.prior > right.prior:
         """
         Left will be root because it has more priority
         Now we need to merge left's right son and right tree
