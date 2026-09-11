@@ -533,7 +533,9 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
+  * [Monotone Chain](geometry/monotone_chain.py)
   * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
+  * [Rotating Calipers](geometry/rotating_calipers.py)
   * [Segment Intersection](geometry/segment_intersection.py)
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
@@ -735,6 +737,7 @@
   * [Decimal Isolate](maths/decimal_isolate.py)
   * [Decimal To Fraction](maths/decimal_to_fraction.py)
   * [Derangement](maths/derangement.py)
+  * [Division](maths/division.py)
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial](maths/double_factorial.py)
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
