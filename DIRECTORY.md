@@ -331,6 +331,7 @@
     * [Rotate To The Right](data_structures/linked_list/rotate_to_the_right.py)
     * [Singly Linked List](data_structures/linked_list/singly_linked_list.py)
     * [Skip List](data_structures/linked_list/skip_list.py)
+    * [Sorted Linked List](data_structures/linked_list/sorted_linked_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
   * Queues
     * [Circular Queue](data_structures/queues/circular_queue.py)
@@ -987,6 +988,7 @@
   * [Doppler Frequency](physics/doppler_frequency.py)
   * [Escape Velocity](physics/escape_velocity.py)
   * [Grahams Law](physics/grahams_law.py)
+  * [Hamiltonian](physics/hamiltonian.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
   * [Ideal Gas Law](physics/ideal_gas_law.py)
