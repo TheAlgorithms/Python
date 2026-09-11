@@ -1,3 +1,6 @@
+"""
+https://en.wikipedia.org/wiki/Strassen_algorithm
+"""
 from __future__ import annotations
 
 import math
@@ -32,7 +35,7 @@ def matrix_subtraction(matrix_a: list, matrix_b: list):
 
 def split_matrix(a: list) -> tuple[list, list, list, list]:
     """
-    Given an even length matrix, returns the top_left, top_right, bot_left, bot_right
+    Given an even-length matrix, returns the top_left, top_right, bot_left, bot_right
     quadrant.
 
     >>> split_matrix([[4,3,2,4],[2,3,1,1],[6,5,4,3],[8,4,1,6]])
@@ -80,7 +83,7 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     multiply two n x n matrices from the 8 required by the naive divide-and-conquer
     approach down to 7, at the cost of a few extra matrix additions/subtractions
     (which are cheaper, O(n^2), operations). Each matrix is split into four
-    (n/2) x (n/2) quadrants, 7 products of quadrant combinations are computed
+    (n/2) x (n/2) quadrants; 7 products of quadrant combinations are computed
     recursively, and those products are combined with additions/subtractions to
     form the four quadrants of the result.
 
