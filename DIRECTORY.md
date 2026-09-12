@@ -454,6 +454,7 @@
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
   * [Narcissistic Number](dynamic_programming/narcissistic_number.py)
+  * [Needleman Wunsch](dynamic_programming/needleman_wunsch.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Range Sum Query](dynamic_programming/range_sum_query.py)
