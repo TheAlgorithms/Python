@@ -14,7 +14,7 @@ VT = TypeVar("VT")
 
 
 class Node[KT, VT]:
-    def __init__(self, key: KT | str = "root", value: VT | None = None):
+    def __init__(self, key: KT | str = "root", value: VT | None = None) -> None:
         self.key = key
         self.value = value
         self.forward: list[Node[KT, VT]] = []
@@ -50,7 +50,7 @@ class Node[KT, VT]:
 
 
 class SkipList[KT, VT]:
-    def __init__(self, p: float = 0.5, max_level: int = 16):
+    def __init__(self, p: float = 0.5, max_level: int = 16) -> None:
         self.head: Node[KT, VT] = Node[KT, VT]()
         self.level = 0
         self.p = p

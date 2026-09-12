@@ -23,11 +23,11 @@ from random import randint
 class Node:
     """Binary Search Tree Node"""
 
-    def __init__(self, key, freq):
+    def __init__(self, key, freq) -> None:
         self.key = key
         self.freq = freq
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         >>> str(Node(1, 2))
         'Node(key=1, freq=2)'

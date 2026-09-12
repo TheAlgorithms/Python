@@ -10,7 +10,7 @@ import sys
 
 class PriorityQueue:
     # Based on Min Heap
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Priority queue class constructor method.
 
@@ -211,7 +211,7 @@ class PriorityQueue:
 
 
 class Graph:
-    def __init__(self, num):
+    def __init__(self, num) -> None:
         """
         Graph class constructor
 

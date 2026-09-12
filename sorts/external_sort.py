@@ -10,7 +10,7 @@ import os
 class FileSplitter:
     BLOCK_FILENAME_FORMAT = "block_{0}.dat"
 
-    def __init__(self, filename):
+    def __init__(self, filename) -> None:
         self.filename = filename
         self.block_filenames = []
 
@@ -57,7 +57,7 @@ class NWayMerge:
 
 
 class FilesArray:
-    def __init__(self, files):
+    def __init__(self, files) -> None:
         self.files = files
         self.empty = set()
         self.num_buffers = len(files)
@@ -87,7 +87,7 @@ class FilesArray:
 
 
 class FileMerger:
-    def __init__(self, merge_strategy):
+    def __init__(self, merge_strategy) -> None:
         self.merge_strategy = merge_strategy
 
     def merge(self, filenames, outfilename, buffer_size):
@@ -107,7 +107,7 @@ class FileMerger:
 
 
 class ExternalSort:
-    def __init__(self, block_size):
+    def __init__(self, block_size) -> None:
         self.block_size = block_size
 
     def sort(self, filename, sort_key=None):

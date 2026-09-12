@@ -22,7 +22,7 @@ class Edge:
 class AdjacencyList:
     """Graph adjacency list."""
 
-    def __init__(self, size: int):
+    def __init__(self, size: int) -> None:
         self._graph: list[list[Edge]] = [[] for _ in range(size)]
         self._size = size
 

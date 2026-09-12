@@ -24,7 +24,7 @@ class Cell:
     g, h, f: Parameters used when calling our heuristic function.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.position = (0, 0)
         self.parent = None
         self.g = 0
@@ -50,7 +50,7 @@ class Gridworld:
     world_size: create a numpy array with the given world_size default is 5.
     """
 
-    def __init__(self, world_size=(5, 5)):
+    def __init__(self, world_size=(5, 5)) -> None:
         self.w = np.zeros(world_size)
         self.world_x_limit = world_size[0]
         self.world_y_limit = world_size[1]

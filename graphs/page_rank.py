@@ -16,7 +16,7 @@ graph = [[0, 1, 1], [0, 0, 1], [1, 0, 0]]
 
 
 class Node:
-    def __init__(self, name):
+    def __init__(self, name) -> None:
         self.name = name
         self.inbound = []
         self.outbound = []
@@ -27,7 +27,7 @@ class Node:
     def add_outbound(self, node):
         self.outbound.append(node)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
 
 

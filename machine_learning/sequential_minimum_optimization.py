@@ -54,7 +54,7 @@ class SmoSVM:
         b=0.0,
         tolerance=0.001,
         auto_norm=True,
-    ):
+    ) -> None:
         self._init = True
         self._auto_norm = auto_norm
         self._c = np.float64(cost)
@@ -402,7 +402,7 @@ class SmoSVM:
 
 
 class Kernel:
-    def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0):
+    def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0) -> None:
         self.degree = np.float64(degree)
         self.coef0 = np.float64(coef0)
         self.gamma = np.float64(gamma)
@@ -430,7 +430,7 @@ class Kernel:
     def __call__(self, v1, v2):
         return self._kernel(v1, v2)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self._kernel_name
 
 

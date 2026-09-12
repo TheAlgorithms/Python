@@ -38,7 +38,7 @@ class SHA1Hash:
     '872af2d8ac3d8695387e7c804bf0e02c18df9e6e'
     """
 
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         """
         Initiates the variables data and h. h is a list of 5 8-digit hexadecimal
         numbers corresponding to

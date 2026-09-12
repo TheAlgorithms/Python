@@ -4,11 +4,11 @@ from typing import Any
 
 
 class Queue:
-    def __init__(self):
+    def __init__(self) -> None:
         self.stack = []
         self.length = 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         printed = "<" + str(self.stack)[1:-1] + ">"
         return printed
 

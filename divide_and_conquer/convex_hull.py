@@ -45,7 +45,7 @@ class Point:
     ValueError: could not convert string to float: 'pi'
     """
 
-    def __init__(self, x, y):
+    def __init__(self, x, y) -> None:
         self.x, self.y = float(x), float(y)
 
     def __eq__(self, other):
@@ -78,7 +78,7 @@ class Point:
             return self.y <= other.y
         return False
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
 
     def __hash__(self):

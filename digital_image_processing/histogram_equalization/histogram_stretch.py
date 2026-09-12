@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 
 class ConstantStretch:
-    def __init__(self):
+    def __init__(self) -> None:
         self.img = ""
         self.original_image = ""
         self.last_list = []

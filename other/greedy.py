@@ -1,10 +1,10 @@
 class Things:
-    def __init__(self, name, value, weight):
+    def __init__(self, name, value, weight) -> None:
         self.name = name
         self.value = value
         self.weight = weight
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.name}, {self.value}, {self.weight})"
 
     def get_value(self):

@@ -38,7 +38,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Create and initialize LinkedList class instance.
         >>> linked_list = LinkedList()

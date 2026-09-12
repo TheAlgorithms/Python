@@ -7,7 +7,7 @@ from time import time
 
 
 class DirectedGraph:
-    def __init__(self):
+    def __init__(self) -> None:
         self.graph = {}
 
     # adding vertices and edges
@@ -262,7 +262,7 @@ class DirectedGraph:
 
 
 class Graph:
-    def __init__(self):
+    def __init__(self) -> None:
         self.graph = {}
 
     # adding vertices and edges

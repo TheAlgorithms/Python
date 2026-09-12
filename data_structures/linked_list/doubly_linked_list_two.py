@@ -26,7 +26,7 @@ class Node[DataType]:
 
 
 class LinkedListIterator:
-    def __init__(self, head):
+    def __init__(self, head) -> None:
         self.current = head
 
     def __iter__(self):
@@ -46,7 +46,7 @@ class LinkedList:
     head: Node | None = None  # First node in list
     tail: Node | None = None  # Last node in list
 
-    def __str__(self):
+    def __str__(self) -> str:
         current = self.head
         nodes = []
         while current is not None:
@@ -54,7 +54,7 @@ class LinkedList:
             current = current.next
         return " ".join(str(node) for node in nodes)
 
-    def __contains__(self, value: DataType):
+    def __contains__(self, value: DataType) -> bool:
         current = self.head
         while current:
             if current.data == value:

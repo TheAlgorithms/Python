@@ -3,7 +3,7 @@ from collections import defaultdict
 
 
 class Heap:
-    def __init__(self):
+    def __init__(self) -> None:
         self.node_position = []
 
     def get_position(self, vertex):
