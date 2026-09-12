@@ -615,6 +615,7 @@
     * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
+  * [Travelling Salesman Problem](graphs/travelling_salesman_problem.py)
 
 ## [Greedy Methods](greedy_methods)
   * [Best Time To Buy And Sell Stock](greedy_methods/best_time_to_buy_and_sell_stock.py)
@@ -1494,8 +1495,6 @@
 
 ## [Tests](tests)
   * [Test Sorts](tests/test_sorts.py)
-
-## [Travelling Salesman Problem](/travelling_salesman_problem.py)
 
 ## [Web Programming](web_programming)
   * [Co2 Emission](web_programming/co2_emission.py)
