@@ -21,9 +21,9 @@ def exchange_sort[T: Comparable](numbers: list[T]) -> list[T]:
     []
     >>> exchange_sort(["c", "a", "b"])
     ['a', 'b', 'c']
-    >>> exchange_sort([2.5, -1.0, 0.0])
-    [-1.0, 0.0, 2.5]
-    >>> exchange_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    >>> exchange_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> exchange_sort([1, "a"])
     Traceback (most recent call last):
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
