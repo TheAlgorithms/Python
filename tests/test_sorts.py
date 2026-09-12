@@ -121,6 +121,7 @@ def test_sort_matches_builtin(sort, case):
         insertion_sort,
         merge_sort,
         selection_sort,
+        shell_sort,
     ],
     ids=lambda f: f.__name__,
 )
