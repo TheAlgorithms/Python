@@ -40,7 +40,9 @@ def comb_sort[T: Comparable](data: list[T]) -> list[T]:
     [0, 1, 2, 3, 4, 5, 6]
     >>> comb_sort(["c", "a", "b"])
     ['a', 'b', 'c']
-    >>> comb_sort([2.5, -1.0, 0.0])
+    >>> comb_sort("cab")
+    ['a', 'b', 'c']
+    >>> comb_sort([2.5, -1, 0.0])
     [-1.0, 0.0, 2.5]
     >>> comb_sort([1, "a"])
     Traceback (most recent call last):
