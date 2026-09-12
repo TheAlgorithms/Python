@@ -2,10 +2,16 @@
 A pure Python implementation of the heap sort algorithm.
 """
 
+from typing import Protocol
 
-def heapify(unsorted: list[int], index: int, heap_size: int) -> None:
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def heapify[T: Comparable](unsorted: list[T], index: int, heap_size: int) -> None:
     """
-    :param unsorted: unsorted list containing integers numbers
+    :param unsorted: unsorted list containing comparable items
     :param index: index
     :param heap_size: size of the heap
     :return: None
@@ -20,10 +26,11 @@ def heapify(unsorted: list[int], index: int, heap_size: int) -> None:
     largest = index
     left_index = 2 * index + 1
     right_index = 2 * index + 2
-    if left_index < heap_size and unsorted[left_index] > unsorted[largest]:
+
+    if left_index < heap_size and unsorted[largest] < unsorted[left_index]:
         largest = left_index
 
-    if right_index < heap_size and unsorted[right_index] > unsorted[largest]:
+    if right_index < heap_size and unsorted[largest] < unsorted[right_index]:
         largest = right_index
 
     if largest != index:
@@ -31,11 +38,11 @@ def heapify(unsorted: list[int], index: int, heap_size: int) -> None:
         heapify(unsorted, largest, heap_size)
 
 
-def heap_sort(unsorted: list[int]) -> list[int]:
+def heap_sort[T: Comparable](unsorted: list[T]) -> list[T]:
     """
-    A pure Python implementation of the heap sort algorithm
+    A pure Python implementation of the heap sort algorithm.
 
-    :param collection: a mutable ordered collection of heterogeneous comparable items
+    :param unsorted: a mutable collection of comparable items
     :return: the same collection ordered by ascending
 
     Examples:
@@ -47,13 +54,24 @@ def heap_sort(unsorted: list[int]) -> list[int]:
     [-45, -5, -2]
     >>> heap_sort([3, 7, 9, 28, 123, -5, 8, -30, -200, 0, 4])
     [-200, -30, -5, 0, 3, 4, 7, 8, 9, 28, 123]
+    >>> heap_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+    >>> heap_sort([3.14, 1.5, 2.7])
+    [1.5, 2.7, 3.14]
+    >>> heap_sort([1, "two"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     n = len(unsorted)
+
     for i in range(n // 2 - 1, -1, -1):
         heapify(unsorted, i, n)
+
     for i in range(n - 1, 0, -1):
         unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
         heapify(unsorted, 0, i)
+
     return unsorted
 
 
