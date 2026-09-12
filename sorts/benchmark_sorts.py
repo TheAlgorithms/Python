@@ -1,3 +1,5 @@
+#!/usr/bin/env -S uv run --script
+
 """
 Benchmark several sorting algorithms on the same random datasets.
 
@@ -5,8 +7,8 @@ This is a *reference* benchmark, not a rigorous one: it times each algorithm on 
 few shared, randomly generated integer datasets and prints a small comparison
 table.  It exists so that visitors can see the practical cost of the different
 strategies in this directory side by side, without embedding timing code inside
-the individual algorithm modules (which keeps those files clean, import-cheap and
-focused on being readable reference implementations).
+the individual algorithm modules (which keeps those files clean, import-cheap,
+and focused on being readable reference implementations).
 
 Run it from the repository root:
 
@@ -16,13 +18,12 @@ The individual algorithms are imported from their own modules, so this file neve
 re-implements a sort.
 """
 
-from __future__ import annotations
-
 import random
 import sys
 from collections.abc import Callable, Sequence
 from itertools import pairwise
 from timeit import timeit
+from typing import Protocol
 
 from sorts.bubble_sort import bubble_sort_iterative
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
@@ -73,25 +74,46 @@ def all_sorts_agree(data: list[int]) -> bool:
     Each algorithm is given a fresh copy of the data (some sort in place), and its
     result is checked against Python's built-in ``sorted`` as the ground truth.
 
-    >>> all_sorts_agree([5, 1, 4, 2, 8, 0, 2])
+    >>> all_sorts_agree([5, 1, 4.2, 2, 8.5, 0, 2])
     True
     >>> all_sorts_agree([])
     True
     >>> all_sorts_agree([42])
+    True
+    >>> all_sorts_agree(list(range(5, -6, -1)))
+    True
+    >>> all_sorts_agree(list("Python"))
     True
     """
     expected = sorted(data)
     return all(list(sort_fn(data.copy())) == expected for sort_fn in SORTS.values())
 
 
-def benchmark(data: list[int], number: int = 1) -> dict[str, float]:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def benchmark[T: Comparable](data: list[T], number: int = 1) -> dict[str, float]:
     """
     Time every algorithm in ``SORTS`` on a copy of ``data``.
 
     Returns a mapping of algorithm name to the elapsed seconds for ``number``
     repetitions.  Each timed call receives its own fresh copy so in-place sorts do
     not hand an already-sorted list to the next repetition.
+
+    >>> benchmark([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Please provide a non-empty dataset
+    >>> benchmark([1], number=0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number of repetitions must be positive
     """
+    if not data:
+        raise ValueError("Please provide a non-empty dataset")
+    if number <= 0:
+        raise ValueError("Number of repetitions must be positive")
     timings: dict[str, float] = {}
     for name, sort_fn in SORTS.items():
         timings[name] = timeit(lambda fn=sort_fn: fn(data.copy()), number=number)
@@ -100,7 +122,7 @@ def benchmark(data: list[int], number: int = 1) -> dict[str, float]:
 
 def main() -> None:
     # A couple of the imported algorithms (e.g. tim_sort) merge recursively, so
-    # give them head-room to sort the largest dataset without hitting the limit.
+    # give them headroom to sort the largest dataset without hitting the limit.
     sys.setrecursionlimit(10_000)
     sizes = (100, 1_000, 3_000)
     random.seed(0)
