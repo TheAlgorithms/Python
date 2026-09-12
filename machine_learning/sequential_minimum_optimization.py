@@ -419,7 +419,7 @@ class Kernel:
     def _rbf(self, v1, v2):
         return np.exp(-1 * (self.gamma * np.linalg.norm(v1 - v2) ** 2))
 
-    def _check(self):
+    def _check(self) -> None:
         if self._kernel == self._rbf and self.gamma < 0:
             raise ValueError("gamma value must be non-negative")
 
@@ -435,7 +435,7 @@ class Kernel:
 
 
 def count_time(func):
-    def call_func(*args, **kwargs):
+    def call_func(*args, **kwargs) -> None:
         import time
 
         start_time = time.time()

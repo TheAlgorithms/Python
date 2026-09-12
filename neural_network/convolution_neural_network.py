@@ -295,7 +295,7 @@ class CNN:
             mse = error_count / patterns
             all_mse.append(mse)
 
-        def draw_error():
+        def draw_error() -> None:
             yplot = [error_accuracy for i in range(int(n_repeat * 1.2))]
             plt.plot(all_mse, "+-")
             plt.plot(yplot, "r--")

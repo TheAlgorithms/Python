@@ -19,7 +19,7 @@ class _DoublyLinkedBase:
             self._data = element
             self._next = link_n
 
-        def has_next_and_prev(self):
+        def has_next_and_prev(self) -> str:
             return (
                 f" Prev -> {self._prev is not None}, Next -> {self._next is not None}"
             )

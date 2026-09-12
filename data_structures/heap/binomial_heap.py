@@ -373,7 +373,7 @@ class BinomialHeap:
         self.__traversal(top_root, heap_pre_order)
         return heap_pre_order
 
-    def __traversal(self, curr_node, preorder, level=0):
+    def __traversal(self, curr_node, preorder, level=0) -> None:
         """
         Pre-order traversal of nodes
         """

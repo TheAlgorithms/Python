@@ -174,7 +174,7 @@ def bottom_up_cut_rod(n: int, prices: list):
     return max_rev[n]
 
 
-def _enforce_args(n: int, prices: list):
+def _enforce_args(n: int, prices: list) -> None:
     """
     Basic checks on the arguments to the rod-cutting algorithms
 

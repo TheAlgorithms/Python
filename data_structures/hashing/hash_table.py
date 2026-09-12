@@ -80,7 +80,7 @@ class HashTable:
         """
         return key % self.size_table
 
-    def _step_by_step(self, step_ord):
+    def _step_by_step(self, step_ord) -> None:
         print(f"step {step_ord}")
         print(list(range(len(self.values))))
         print(self.values)
@@ -130,7 +130,7 @@ class HashTable:
             self._step_by_step(i)
             i += 1
 
-    def _set_value(self, key, data):
+    def _set_value(self, key, data) -> None:
         """
         _set_value functions allows to update value at a particular hash
 

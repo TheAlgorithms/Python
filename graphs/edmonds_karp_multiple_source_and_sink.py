@@ -9,7 +9,7 @@ class FlowNetwork:
         self.maximum_flow_algorithm = None
 
     # make only one source and one sink
-    def _normalize_graph(self, sources, sinks):
+    def _normalize_graph(self, sources, sinks) -> None:
         if sources is int:
             sources = [sources]
         if sinks is int:
@@ -74,7 +74,7 @@ class FlowNetworkAlgorithmExecutor:
             self.executed = True
 
     # You should override it
-    def _algorithm(self):
+    def _algorithm(self) -> None:
         pass
 
 
@@ -100,7 +100,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         self.heights = [0] * self.verticies_count
         self.excesses = [0] * self.verticies_count
 
-    def _algorithm(self):
+    def _algorithm(self) -> None:
         self.heights[self.source_index] = self.verticies_count
 
         # push some substance to graph
