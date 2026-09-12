@@ -22,7 +22,7 @@ def euclidean_distance(point1: list[float], point2: list[float]) -> float:
     0.0
     >>> euclidean_distance([1, 1], ['a', 1])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Invalid input: Points must be numerical coordinates
     """
     try:
@@ -42,17 +42,17 @@ def validate_graph(graph_points: dict[str, list[float]]) -> None:
     >>> validate_graph({"A": [10, 20], "B": [30, 21], "C": [15, 35]})  # Valid graph
     >>> validate_graph({"A": [10, 20], "B": [30, "invalid"], "C": [15, 35]})
     Traceback (most recent call last):
-    ...
+        ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
 
     >>> validate_graph([10, 20])  # Invalid input type
     Traceback (most recent call last):
-    ...
+        ...
     InvalidGraphError: Graph must be a dictionary with node names and coordinates
 
     >>> validate_graph({"A": [10, 20], "B": [30, 21], "C": [15]})  # Missing coordinate
     Traceback (most recent call last):
-    ...
+        ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
     """
     if not isinstance(graph_points, dict):
