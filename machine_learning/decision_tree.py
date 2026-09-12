@@ -42,7 +42,7 @@ class DecisionTree:
 
         return np.mean((labels - prediction) ** 2)
 
-    def train(self, x, y):
+    def train(self, x, y) -> None:
         """
         train:
         @param x: a one-dimensional numpy array
@@ -173,7 +173,7 @@ class TestDecisionTree:
         return float(squared_error_sum / labels.size)
 
 
-def main():
+def main() -> None:
     """
     In this demonstration we're generating a sample data set from the sin function in
     numpy.  We then train a decision tree on the data set and use the decision tree to

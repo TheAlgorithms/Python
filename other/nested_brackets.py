@@ -61,7 +61,7 @@ def is_balanced(s: str) -> bool:
     return not stack  # stack should be empty
 
 
-def main():
+def main() -> None:
     s = input("Enter sequence of brackets: ")
     print(f"'{s}' is {'' if is_balanced(s) else 'not '}balanced.")
 

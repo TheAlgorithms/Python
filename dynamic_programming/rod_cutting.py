@@ -197,7 +197,7 @@ def _enforce_args(n: int, prices: list):
         raise ValueError(msg)
 
 
-def main():
+def main() -> None:
     prices = [6, 10, 12, 15, 20, 23]
     n = len(prices)
 

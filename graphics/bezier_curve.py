@@ -92,7 +92,7 @@ class BezierCurve:
             dy += coeff * delta_y * n
         return (dx, dy)
 
-    def plot_curve(self, step_size: float = 0.01):
+    def plot_curve(self, step_size: float = 0.01) -> None:
         """
         Plots the Bezier curve using matplotlib plotting capabilities.
             step_size: defines the step(s) at which to evaluate the Bezier curve.

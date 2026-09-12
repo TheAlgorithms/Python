@@ -53,7 +53,7 @@ class FlowNetwork:
         self.maximum_flow_algorithm.execute()
         return self.maximum_flow_algorithm.getMaximumFlow()
 
-    def set_maximum_flow_algorithm(self, algorithm):
+    def set_maximum_flow_algorithm(self, algorithm) -> None:
         self.maximum_flow_algorithm = algorithm(self)
 
 
@@ -68,7 +68,7 @@ class FlowNetworkAlgorithmExecutor:
         self.graph = flow_network.graph
         self.executed = False
 
-    def execute(self):
+    def execute(self) -> None:
         if not self.executed:
             self._algorithm()
             self.executed = True
@@ -132,7 +132,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
 
         self.maximum_flow = sum(self.preflow[self.source_index])
 
-    def process_vertex(self, vertex_index):
+    def process_vertex(self, vertex_index) -> None:
         while self.excesses[vertex_index] > 0:
             for neighbour_index in range(self.verticies_count):
                 # if it's neighbour and current vertex is higher
@@ -146,7 +146,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
 
             self.relabel(vertex_index)
 
-    def push(self, from_index, to_index):
+    def push(self, from_index, to_index) -> None:
         preflow_delta = min(
             self.excesses[from_index],
             self.graph[from_index][to_index] - self.preflow[from_index][to_index],
@@ -156,7 +156,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         self.excesses[from_index] -= preflow_delta
         self.excesses[to_index] += preflow_delta
 
-    def relabel(self, vertex_index):
+    def relabel(self, vertex_index) -> None:
         min_height = None
         for to_index in range(self.verticies_count):
             if (

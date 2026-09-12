@@ -156,7 +156,7 @@ class FuzzySet:
             max(self.right_boundary, other.right_boundary),
         )
 
-    def plot(self):
+    def plot(self) -> None:
         """
         Plot the membership function of the fuzzy set.
         """

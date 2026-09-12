@@ -52,7 +52,7 @@ class CNN:
         self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
         self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
-    def save_model(self, save_path):
+    def save_model(self, save_path) -> None:
         # save model dict with pickle
         model_dic = {
             "num_bp1": self.num_bp1,

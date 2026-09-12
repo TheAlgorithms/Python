@@ -21,10 +21,10 @@ class Node:
         self.inbound = []
         self.outbound = []
 
-    def add_inbound(self, node):
+    def add_inbound(self, node) -> None:
         self.inbound.append(node)
 
-    def add_outbound(self, node):
+    def add_outbound(self, node) -> None:
         self.outbound.append(node)
 
     def __repr__(self):
@@ -55,7 +55,7 @@ def page_rank(nodes, max_iter=100, d=0.85, tol=1e-8):
     return ranks
 
 
-def main():
+def main() -> None:
     names = list(input("Enter Names of the Nodes: ").split())
 
     nodes = [Node(name) for name in names]
