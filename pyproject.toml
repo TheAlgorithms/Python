@@ -97,6 +97,7 @@ lint.select = [
   "PL",    # Pylint
   "PT",    # flake8-pytest-style
   "PYI",   # flake8-pyi
+  "RET",   # flake8-return
   "RSE",   # flake8-raise
   "RUF",   # Ruff-specific rules
   "S",     # flake8-bandit
@@ -114,7 +115,6 @@ lint.select = [
   # "FBT",  # flake8-boolean-trap  # FIX ME
   # "PTH",  # flake8-use-pathlib  # FIX ME
   # "Q",    # flake8-quotes
-  # "RET",  # flake8-return  # FIX ME?
   # "T20",  # flake8-print
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
@@ -144,6 +144,8 @@ lint.ignore = [
   "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",   # Assertion should be broken down into multiple parts
   "PT028",   # pytest-parameter-with-default-argument
+  "RET504",  # unnecessary-assign -- FIX ME
+  "RET505",  # superfluous-else-return -- FIX ME
   "S101",    # Use of `assert` detected -- DO NOT FIX
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
