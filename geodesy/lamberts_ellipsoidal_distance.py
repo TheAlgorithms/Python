@@ -15,8 +15,7 @@ def lamberts_ellipsoidal_distance(
     two points on the surface of Earth given longitudes and latitudes
     https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
 
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute the central angle,
-        sigma
+    NOTE: Uses geodesy/haversine_distance.py to compute the central angle, sigma.
 
     Representing the Earth as an ellipsoid allows us to approximate distances between
     points on the surface much better than a sphere. Ellipsoidal formulas treat the
