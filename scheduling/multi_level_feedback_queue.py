@@ -100,7 +100,7 @@ class MLFQ:
         >>> P4 = Process("P4", 0, 24)
         >>> mlfq = MLFQ(3, [17, 25], deque([P1, P2, P3, P4]), 0)
         >>> _ = mlfq.multi_level_feedback_queue()
-        >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
+        >>> mlfq.calculate_completion_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
         completion_times = []

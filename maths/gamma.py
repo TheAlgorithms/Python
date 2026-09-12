@@ -96,9 +96,9 @@ def gamma_recursive(num: float) -> float:
         raise ValueError("math domain error")
     if num > 171.5:
         raise OverflowError("math range error")
-    elif num - int(num) not in (0, 0.5):
+    if num - int(num) not in (0, 0.5):
         raise NotImplementedError("num must be an integer or a half-integer")
-    elif num == 0.5:
+    if num == 0.5:
         return math.sqrt(math.pi)
     else:
         return 1.0 if num == 1 else (num - 1) * gamma_recursive(num - 1)

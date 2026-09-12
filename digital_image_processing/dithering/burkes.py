@@ -16,7 +16,7 @@ class Burkes:
         * This implementation get RGB image and converts it to greyscale in runtime.
     """
 
-    def __init__(self, input_img, threshold: int):
+    def __init__(self, input_img, threshold: int) -> None:
         self.min_threshold = 0
         # max greyscale value for #FFFFFF
         self.max_threshold = int(self.get_greyscale(255, 255, 255))

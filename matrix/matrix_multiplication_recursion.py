@@ -135,7 +135,7 @@ def matrix_multiply_recursive(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
         True
         """
         if i_loop >= len(matrix_a):
-            return
+            return None
         if j_loop >= len(matrix_b[0]):
             return multiply(i_loop + 1, 0, 0, matrix_a, matrix_b, result)
         if k_loop >= len(matrix_b):

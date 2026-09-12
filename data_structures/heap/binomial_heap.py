@@ -12,7 +12,7 @@ class Node:
         - link to left, right and parent nodes
     """
 
-    def __init__(self, val):
+    def __init__(self, val) -> None:
         self.val = val
         # Number of nodes in left subtree
         self.left_tree_size = 0
@@ -123,7 +123,7 @@ class BinomialHeap:
     [17, 20, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 34]
     """
 
-    def __init__(self, bottom_root=None, min_node=None, heap_size=0):
+    def __init__(self, bottom_root=None, min_node=None, heap_size=0) -> None:
         self.size = heap_size
         self.bottom_root = bottom_root
         self.min_node = min_node
@@ -203,7 +203,7 @@ class BinomialHeap:
         # Return the merged heap
         return self
 
-    def insert(self, val):
+    def insert(self, val) -> None:
         """
         insert a value in the heap
         """
@@ -222,6 +222,7 @@ class BinomialHeap:
             if val < self.min_node.val:
                 self.min_node = new_node
             # Put new_node as a bottom_root in heap
+            assert self.bottom_root is not None
             self.bottom_root.left = new_node
             new_node.parent = self.bottom_root
             self.bottom_root = new_node
@@ -283,6 +284,7 @@ class BinomialHeap:
 
             # Update bottom root
             self.bottom_root = self.bottom_root.parent
+            assert self.bottom_root is not None
             self.bottom_root.left = None
 
             # Update min_node
@@ -371,7 +373,7 @@ class BinomialHeap:
         self.__traversal(top_root, heap_pre_order)
         return heap_pre_order
 
-    def __traversal(self, curr_node, preorder, level=0):
+    def __traversal(self, curr_node, preorder, level=0) -> None:
         """
         Pre-order traversal of nodes
         """
@@ -382,7 +384,7 @@ class BinomialHeap:
         else:
             preorder.append(("#", level))
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Overwriting str for a pre-order print of nodes in heap;
         Performance is poor, so use only for small examples

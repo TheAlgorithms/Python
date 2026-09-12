@@ -21,7 +21,7 @@ from __future__ import annotations
 
 
 class XORCipher:
-    def __init__(self, key: int = 0):
+    def __init__(self, key: int = 0) -> None:
         """
         simple constructor that receives a key or uses
         default key = 0
