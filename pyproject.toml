@@ -66,8 +66,9 @@ quantum = [
 target-version = "py314"
 output-format = "full"
 lint.select = [
-  # https://beta.ruff.rs/docs/rules
+  # https://docs.astral.sh/ruff/rules
   "A",     # flake8-builtins
+  "ANN",   # flake8-annotations
   "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
   "B",     # flake8-bugbear
@@ -107,7 +108,6 @@ lint.select = [
   "UP",    # pyupgrade
   "W",     # pycodestyle
   "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations -- FIX ME?
   # "COM",  # flake8-commas -- DO NOT FIX
   # "D",    # pydocstyle -- FIX ME?
   # "ERA",  # eradicate -- DO NOT FIX
@@ -121,6 +121,15 @@ lint.select = [
 ]
 lint.ignore = [
   # `ruff rule S101` for a description of that rule
+  "ANN001",  # missing-type-function-argument
+  "ANN002",  # missing-type-args
+  "ANN003",  # missing-type-kwargs
+  "ANN201",  # missing-return-type-undocumented-public-function
+  "ANN202",  # missing-return-type-private-function
+  "ANN204",  # missing-return-type-special-method
+  "ANN205",  # missing-return-type-static-method
+  "ANN206",  # missing-return-type-class-method
+  "ANN401",  # any-type
   "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
   "EM101",   # Exception must not use a string literal, assign to a variable first
