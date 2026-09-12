@@ -187,6 +187,7 @@
   * [Intensity Based Segmentation](computer_vision/intensity_based_segmentation.py)
   * [Mean Threshold](computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](computer_vision/mosaic_augmentation.py)
+  * [Otsu Threshold](computer_vision/otsu_threshold.py)
   * [Pooling Functions](computer_vision/pooling_functions.py)
   * [Vision Transformer](computer_vision/vision_transformer.py)
 
@@ -454,6 +455,7 @@
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
   * [Narcissistic Number](dynamic_programming/narcissistic_number.py)
+  * [Needleman Wunsch](dynamic_programming/needleman_wunsch.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Range Sum Query](dynamic_programming/range_sum_query.py)
@@ -613,6 +615,7 @@
     * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
+  * [Travelling Salesman Problem](graphs/travelling_salesman_problem.py)
 
 ## [Greedy Methods](greedy_methods)
   * [Best Time To Buy And Sell Stock](greedy_methods/best_time_to_buy_and_sell_stock.py)
