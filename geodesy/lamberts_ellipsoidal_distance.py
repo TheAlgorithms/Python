@@ -12,18 +12,18 @@ def lamberts_ellipsoidal_distance(
 ) -> float:
     """
     Calculate the shortest distance along the surface of an ellipsoid between
-    two points on the surface of earth given longitudes and latitudes
+    two points on the surface of Earth given longitudes and latitudes
     https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
 
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
+    NOTE: This algorithm uses geodesy/haversine_distance.py to compute the central angle,
         sigma
 
-    Representing the earth as an ellipsoid allows us to approximate distances between
+    Representing the Earth as an ellipsoid allows us to approximate distances between
     points on the surface much better than a sphere. Ellipsoidal formulas treat the
-    Earth as an oblate ellipsoid which means accounting for the flattening that happens
+    Earth as an oblate ellipsoid, which means accounting for the flattening that happens
     at the North and South poles. Lambert's formulae provide accuracy on the order of
-    10 meteres over thousands of kilometeres. Other methods can provide
-    millimeter-level accuracy but this is a simpler method to calculate long range
+    10 meters over thousands of kilometers. Other methods can provide
+    millimeter-level accuracy, but this is a simpler method to calculate long-range
     distances without increasing computational intensity.
 
     Args:
@@ -95,8 +95,8 @@ def lamberts_ellipsoidal_distance(
     # Intermediate X value
     # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
     x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
-    x_demonimator = cos(sigma / 2) ** 2
-    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
+    x_denominator = cos(sigma / 2) ** 2
+    x_value = (sigma - sin(sigma)) * (x_numerator / x_denominator)
 
     # Intermediate Y value
     # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
