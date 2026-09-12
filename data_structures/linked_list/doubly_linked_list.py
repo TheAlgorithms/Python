@@ -196,7 +196,7 @@ class DoublyLinkedList:
             current.next.previous = current.previous  # 1 <--> 3
         return data
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.is_empty()
