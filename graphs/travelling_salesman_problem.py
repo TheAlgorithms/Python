@@ -88,7 +88,7 @@ def travelling_salesman_brute_force(
 
     nodes = list(graph_points.keys())  # Extracting the node names (keys)
 
-    # There shoukd be atleast 2 nodes for a valid TSP
+    # There should be at least 2 nodes for a valid TSP
     if len(nodes) < 2:
         raise InvalidGraphError("Graph must have at least two nodes")
 
@@ -134,7 +134,7 @@ def travelling_salesman_dynamic_programming(
 
     n = len(graph_points)  # Extracting the node names (keys)
 
-    # There shoukd be atleast 2 nodes for a valid TSP
+    # There should be at least 2 nodes for a valid TSP
     if n < 2:
         raise InvalidGraphError("Graph must have at least two nodes")
 
