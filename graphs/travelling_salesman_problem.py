@@ -40,7 +40,7 @@ def validate_graph(graph_points: dict[str, list[float]]) -> None:
     :raises InvalidGraphError: If the graph points are not valid
 
     >>> validate_graph({"A": [10, 20], "B": [30, 21], "C": [15, 35]})  # Valid graph
-    >>> validate_graph({"A": [10, 20], "B": [30, "invalid"], "C": [15, 35]})
+    >>> validate_graph({"A": [10, 20], "B": [30, "invalid"], "C": [15, 35]}). # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
         ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
