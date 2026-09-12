@@ -23,7 +23,9 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
         (10, 10.0, 3, -2, KDNode),  # Depth = -2, 3D points
     ],
 )
-def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_result):
+def test_build_kdtree(
+    num_points, cube_size, num_dimensions, depth, expected_result
+) -> None:
     """
     Test that KD-Tree is built correctly.
 
@@ -58,7 +60,7 @@ def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_res
         )
 
 
-def test_nearest_neighbour_search():
+def test_nearest_neighbour_search() -> None:
     """
     Test the nearest neighbor search function.
     """
@@ -85,7 +87,7 @@ def test_nearest_neighbour_search():
     assert nodes_visited >= 0
 
 
-def test_edge_cases():
+def test_edge_cases() -> None:
     """
     Test edge cases such as an empty KD-Tree.
     """

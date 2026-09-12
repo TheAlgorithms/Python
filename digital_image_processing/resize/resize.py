@@ -27,7 +27,7 @@ class NearestNeighbour:
             np.ones((self.dst_h, self.dst_w, 3), np.uint8) * 255
         )
 
-    def process(self):
+    def process(self) -> None:
         for i in range(self.dst_h):
             for j in range(self.dst_w):
                 self.output[i][j] = self.img[self.get_y(i)][self.get_x(j)]

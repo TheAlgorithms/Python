@@ -109,7 +109,9 @@ class IndexCalculation:
     ) -> None:
         self.set_matricies(red=red, green=green, blue=blue, red_edge=red_edge, nir=nir)
 
-    def set_matricies(self, red=None, green=None, blue=None, red_edge=None, nir=None):
+    def set_matricies(
+        self, red=None, green=None, blue=None, red_edge=None, nir=None
+    ) -> bool:
         if red is not None:
             self.red = red
         if green is not None:

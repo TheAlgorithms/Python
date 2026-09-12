@@ -75,7 +75,7 @@ class SmoSVM:
         self.choose_alpha = self._choose_alphas()
 
     # Calculate alphas using SMO algorithm
-    def fit(self):
+    def fit(self) -> None:
         k = self._k
         state = None
         while True:
@@ -419,7 +419,7 @@ class Kernel:
     def _rbf(self, v1, v2):
         return np.exp(-1 * (self.gamma * np.linalg.norm(v1 - v2) ** 2))
 
-    def _check(self):
+    def _check(self) -> None:
         if self._kernel == self._rbf and self.gamma < 0:
             raise ValueError("gamma value must be non-negative")
 
@@ -435,7 +435,7 @@ class Kernel:
 
 
 def count_time(func):
-    def call_func(*args, **kwargs):
+    def call_func(*args, **kwargs) -> None:
         import time
 
         start_time = time.time()
@@ -447,7 +447,7 @@ def count_time(func):
 
 
 @count_time
-def test_cancer_data():
+def test_cancer_data() -> None:
     print("Hello!\nStart test SVM using the SMO algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancer_data.csv"):
@@ -502,7 +502,7 @@ def test_cancer_data():
     print(f"Rough Accuracy: {score / test_tags.shape[0]}")
 
 
-def test_demonstration():
+def test_demonstration() -> None:
     # change stdout
     print("\nStarting plot, please wait!")
     sys.stdout = open(os.devnull, "w")
@@ -524,7 +524,7 @@ def test_demonstration():
     print("Plot done!")
 
 
-def test_linear_kernel(ax, cost):
+def test_linear_kernel(ax, cost) -> None:
     train_x, train_y = make_blobs(
         n_samples=500, centers=2, n_features=2, random_state=1
     )
@@ -544,7 +544,7 @@ def test_linear_kernel(ax, cost):
     plot_partition_boundary(mysvm, train_data, ax=ax)
 
 
-def test_rbf_kernel(ax, cost):
+def test_rbf_kernel(ax, cost) -> None:
     train_x, train_y = make_circles(
         n_samples=500, noise=0.1, factor=0.1, random_state=1
     )
@@ -566,7 +566,7 @@ def test_rbf_kernel(ax, cost):
 
 def plot_partition_boundary(
     model, train_data, ax, resolution=100, colors=("b", "k", "r")
-):
+) -> None:
     """
     We cannot get the optimal w of our kernel SVM model, which is different from a
     linear SVM.  For this reason, we generate randomly distributed points with high

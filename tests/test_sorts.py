@@ -41,7 +41,7 @@ from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 
 
-def test_heap_sort():
+def test_heap_sort() -> None:
     assert heap_sort([]) == []
     assert heap_sort([1]) == [1]
     assert heap_sort([5, 2, 5, 1]) == [1, 2, 5, 5]
@@ -103,7 +103,7 @@ CASES = (
 
 @pytest.mark.parametrize("sort", SORTS, ids=lambda f: f.__name__)
 @pytest.mark.parametrize("case", CASES, ids=repr)
-def test_sort_matches_builtin(sort, case):
+def test_sort_matches_builtin(sort, case) -> None:
     """Each sort must reproduce the ordering of the built-in ``sorted``."""
     assert list(sort(list(case))) == sorted(case)
 
@@ -125,6 +125,6 @@ def test_sort_matches_builtin(sort, case):
     ],
     ids=lambda f: f.__name__,
 )
-def test_sort_rejects_non_comparable_items(sort):
+def test_sort_rejects_non_comparable_items(sort) -> None:
     with pytest.raises(TypeError):
         sort([1, "a"])

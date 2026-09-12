@@ -476,7 +476,7 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
     return sorted(convex_hull[1:] if len(convex_hull) > 3 else convex_hull)
 
 
-def main():
+def main() -> None:
     points = [
         (0, 3),
         (2, 2),

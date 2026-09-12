@@ -39,7 +39,7 @@ class Cell:
     def __eq__(self, cell):
         return self.position == cell.position
 
-    def showcell(self):
+    def showcell(self) -> None:
         print(self.position)
 
 
@@ -55,7 +55,7 @@ class Gridworld:
         self.world_x_limit = world_size[0]
         self.world_y_limit = world_size[1]
 
-    def show(self):
+    def show(self) -> None:
         print(self.w)
 
     def get_neighbours(self, cell):

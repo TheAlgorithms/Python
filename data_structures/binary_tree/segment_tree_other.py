@@ -133,7 +133,7 @@ class SegmentTree:
         if self.collection:
             self.root = self._build_tree(0, len(collection) - 1)
 
-    def update(self, i, val):
+    def update(self, i, val) -> None:
         """
         Update an element in log(N) time
         :param i: position to be update
@@ -173,7 +173,7 @@ class SegmentTree:
         right = self._build_tree(mid + 1, end)
         return SegmentTreeNode(start, end, self.fn(left.val, right.val), left, right)
 
-    def _update_tree(self, node, i, val):
+    def _update_tree(self, node, i, val) -> None:
         if node.start == i and node.end == i:
             node.val = val
             return

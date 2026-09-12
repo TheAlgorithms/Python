@@ -127,7 +127,7 @@ def print_all() -> None:
         print(edge_list)
 
 
-def create_edge(nodes, graph, cluster, c1):
+def create_edge(nodes, graph, cluster, c1) -> None:
     """
     create edge between the nodes
     """
@@ -169,7 +169,7 @@ def construct_graph(cluster, nodes):
     return graph
 
 
-def my_dfs(graph, start, end, path=None):
+def my_dfs(graph, start, end, path=None) -> None:
     """
     find different DFS walk from given node to Header node
     """
@@ -181,7 +181,7 @@ def my_dfs(graph, start, end, path=None):
             my_dfs(graph, tuple(node), end, path)
 
 
-def find_freq_subgraph_given_support(s, cluster, graph):
+def find_freq_subgraph_given_support(s, cluster, graph) -> None:
     """
     find edges of multiple frequent subgraphs
     """
@@ -206,7 +206,7 @@ def freq_subgraphs_edge_list(paths):
     return freq_sub_el
 
 
-def preprocess(edge_array):
+def preprocess(edge_array) -> None:
     """
     Preprocess the edge array
     >>> preprocess([['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'bh-e12',

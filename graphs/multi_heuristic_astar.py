@@ -20,7 +20,7 @@ class PriorityQueue:
     def empty(self):
         return len(self.elements) == 0
 
-    def put(self, item, priority):
+    def put(self, item, priority) -> None:
         if item not in self.set:
             heapq.heappush(self.elements, (priority, item))
             self.set.add(item)
@@ -36,7 +36,7 @@ class PriorityQueue:
             for pro, xxx in temp:
                 heapq.heappush(self.elements, (pro, xxx))
 
-    def remove_element(self, item):
+    def remove_element(self, item) -> None:
         if item in self.set:
             self.set.remove(item)
             temp = []
@@ -78,7 +78,7 @@ def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
     return ans
 
 
-def do_something(back_pointer, goal, start):
+def do_something(back_pointer, goal, start) -> None:
     grid = np.char.chararray((n, n))
     for i in range(n):
         for j in range(n):
@@ -120,7 +120,7 @@ def do_something(back_pointer, goal, start):
     sys.exit()
 
 
-def valid(p: TPos):
+def valid(p: TPos) -> bool:
     if p[0] < 0 or p[0] > n - 1:
         return False
     return not (p[1] < 0 or p[1] > n - 1)
@@ -135,7 +135,7 @@ def expand_state(
     close_list_inad,
     open_list,
     back_pointer,
-):
+) -> None:
     for itera in range(n_heuristic):
         open_list[itera].remove_element(s)
     # print("s", s)
@@ -233,7 +233,7 @@ goal = (n - 1, n - 1)
 t = 1
 
 
-def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
+def multi_a_star(start: TPos, goal: TPos, n_heuristic: int) -> None:
     g_function = {start: 0, goal: float("inf")}
     back_pointer = {start: -1, goal: -1}
     open_list = []

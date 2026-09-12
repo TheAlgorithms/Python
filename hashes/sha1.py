@@ -130,12 +130,12 @@ class SHA1Hash:
         return ("{:08x}" * 5).format(*self.h)
 
 
-def test_sha1_hash():
+def test_sha1_hash() -> None:
     msg = b"Test String"
     assert SHA1Hash(msg).final_hash() == hashlib.sha1(msg).hexdigest()  # noqa: S324
 
 
-def main():
+def main() -> None:
     """
     Provides option 'string' or 'file' to take input and prints the calculated SHA1
     hash. unittest.main() has been commented out because we probably don't want to run

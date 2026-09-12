@@ -57,13 +57,13 @@ class DoublyLinkedList:
         """
         return sum(1 for _ in self)
 
-    def insert_at_head(self, data):
+    def insert_at_head(self, data) -> None:
         self.insert_at_nth(0, data)
 
-    def insert_at_tail(self, data):
+    def insert_at_tail(self, data) -> None:
         self.insert_at_nth(len(self), data)
 
-    def insert_at_nth(self, index: int, data):
+    def insert_at_nth(self, index: int, data) -> None:
         """
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.insert_at_nth(-1, 666)

@@ -176,7 +176,7 @@ class ElementPriorityQueue:
         return str(self.queue)
 
 
-def fixed_priority_queue():
+def fixed_priority_queue() -> None:
     fpq = FixedPriorityQueue()
     fpq.enqueue(0, 10)
     fpq.enqueue(1, 70)
@@ -201,7 +201,7 @@ def fixed_priority_queue():
     print(fpq.dequeue())
 
 
-def element_priority_queue():
+def element_priority_queue() -> None:
     epq = ElementPriorityQueue()
     epq.enqueue(10)
     epq.enqueue(70)
