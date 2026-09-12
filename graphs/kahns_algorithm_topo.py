@@ -65,38 +65,72 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     return topo_order  # valid topological ordering
 
 
+def _topological_sort_list_queue(graph: dict[int, list[int]]) -> list[int] | None:
+    """
+    Pre-optimization implementation of Kahn's topological sort using list.pop(0).
+
+    Used as a baseline for benchmark comparison against deque.popleft().
+    """
+    indegree = [0] * len(graph)
+    queue = []
+    topo_order = []
+    processed_vertices_count = 0
+
+    for values in graph.values():
+        for i in values:
+            indegree[i] += 1
+
+    for i in range(len(indegree)):
+        if indegree[i] == 0:
+            queue.append(i)
+
+    while queue:
+        vertex = queue.pop(0)
+        processed_vertices_count += 1
+        topo_order.append(vertex)
+
+        for neighbor in graph[vertex]:
+            indegree[neighbor] -= 1
+            if indegree[neighbor] == 0:
+                queue.append(neighbor)
+
+    if processed_vertices_count != len(graph):
+        return None
+    return topo_order
+
+
 def benchmark() -> None:
     """
-    Benchmark comparing list.pop(0) vs collections.deque.popleft().
+    Benchmark comparing topological_sort() (using deque.popleft) against
+    the pre-optimization baseline _topological_sort_list_queue() (using list.pop(0)).
 
-    Demonstrates the performance difference between O(n) list.pop(0)
-    and O(1) deque.popleft() operations for Kahn's algorithm queue.
+    Demonstrates the performance improvement of O(1) queue operations in Kahn's algorithm
+    on a graph with a large number of zero-indegree vertices.
     """
     from timeit import timeit
 
-    size = 50_000
+    num_sources = 30_000
+    graph = {i: [num_sources] for i in range(num_sources)}
+    graph[num_sources] = []
+
+    # Verify correctness: both implementations produce valid topological sorts
+    old_result = _topological_sort_list_queue(graph)
+    new_result = topological_sort(graph)
+    assert old_result is not None and new_result is not None
+    assert len(old_result) == len(new_result) == num_sources + 1
+    assert set(old_result) == set(new_result)
+
     runs = 5
+    old_time = timeit(lambda: _topological_sort_list_queue(graph), number=runs)
+    new_time = timeit(lambda: topological_sort(graph), number=runs)
 
-    def use_list() -> None:
-        queue = list(range(size))
-        while queue:
-            queue.pop(0)
-
-    def use_deque() -> None:
-        queue = deque(range(size))
-        while queue:
-            queue.popleft()
-
-    list_time = timeit(use_list, number=runs)
-    deque_time = timeit(use_deque, number=runs)
-
-    print(f"Benchmark results for queue size of {size} over {runs} runs:")
-    print(f"list.pop(0):     {list_time:.5f} seconds")
-    print(f"deque.popleft(): {deque_time:.5f} seconds")
-    if deque_time > 0:
-        print(
-            f"deque.popleft() is {list_time / deque_time:.2f}x faster than list.pop(0)"
-        )
+    print(
+        f"Benchmark results for topological_sort with {num_sources} vertices over {runs} runs:"
+    )
+    print(f"Pre-optimization (list.pop(0)): {old_time:.5f} seconds")
+    print(f"Current (deque.popleft):       {new_time:.5f} seconds")
+    if new_time > 0:
+        print(f"Speedup ratio:                 {old_time / new_time:.2f}x faster")
 
 
 if __name__ == "__main__":
