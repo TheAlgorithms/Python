@@ -82,7 +82,7 @@ def travelling_salesman_brute_force(
 
     >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
     >>> travelling_salesman_brute_force(graph)
-    (['A', 'C', 'B', 'A'], 56.35465722402587)
+    (['A', 'B', 'C', 'A'], 56.35465722402588)
     """
     validate_graph(graph_points)
 
