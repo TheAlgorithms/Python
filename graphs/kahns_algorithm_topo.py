@@ -65,7 +65,42 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     return topo_order  # valid topological ordering
 
 
+def benchmark() -> None:
+    """
+    Benchmark comparing list.pop(0) vs collections.deque.popleft().
+
+    Demonstrates the performance difference between O(n) list.pop(0)
+    and O(1) deque.popleft() operations for Kahn's algorithm queue.
+    """
+    from timeit import timeit
+
+    size = 50_000
+    runs = 5
+
+    def use_list() -> None:
+        queue = list(range(size))
+        while queue:
+            queue.pop(0)
+
+    def use_deque() -> None:
+        queue = deque(range(size))
+        while queue:
+            queue.popleft()
+
+    list_time = timeit(use_list, number=runs)
+    deque_time = timeit(use_deque, number=runs)
+
+    print(f"Benchmark results for queue size of {size} over {runs} runs:")
+    print(f"list.pop(0):     {list_time:.5f} seconds")
+    print(f"deque.popleft(): {deque_time:.5f} seconds")
+    if deque_time > 0:
+        print(
+            f"deque.popleft() is {list_time / deque_time:.2f}x faster than list.pop(0)"
+        )
+
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    benchmark()
