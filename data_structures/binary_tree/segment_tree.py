@@ -2,7 +2,7 @@ import math
 
 
 class SegmentTree:
-    def __init__(self, a):
+    def __init__(self, a) -> None:
         self.A = a
         self.N = len(self.A)
         self.st = [0] * (

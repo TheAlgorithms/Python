@@ -10,7 +10,7 @@ class NearestNeighbour:
     Source: https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation
     """
 
-    def __init__(self, img, dst_width: int, dst_height: int):
+    def __init__(self, img, dst_width: int, dst_height: int) -> None:
         if dst_width < 0 or dst_height < 0:
             raise ValueError("Destination width/height should be > 0")
 

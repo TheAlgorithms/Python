@@ -2,7 +2,7 @@ import math
 
 
 class Graph:
-    def __init__(self, n=0):  # a graph with Node 0,1,...,N-1
+    def __init__(self, n=0) -> None:  # a graph with Node 0,1,...,N-1
         self.n = n
         self.w = [
             [math.inf for j in range(n)] for i in range(n)

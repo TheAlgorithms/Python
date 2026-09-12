@@ -2,7 +2,7 @@ INF = float("inf")
 
 
 class Dinic:
-    def __init__(self, n):
+    def __init__(self, n) -> None:
         self.lvl = [0] * n
         self.ptr = [0] * n
         self.q = [0] * n

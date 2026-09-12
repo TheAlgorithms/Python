@@ -21,7 +21,7 @@ class DoubleHash(HashTable):
     Hash Table example with open addressing and Double Hash
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
     def __hash_function_2(self, value, data):

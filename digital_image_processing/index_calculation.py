@@ -104,7 +104,9 @@ class IndexCalculation:
         #RGBIndex = ["GLI", "CI", "Hue", "I", "NGRDI", "RI", "S", "IF"]
     """
 
-    def __init__(self, red=None, green=None, blue=None, red_edge=None, nir=None):
+    def __init__(
+        self, red=None, green=None, blue=None, red_edge=None, nir=None
+    ) -> None:
         self.set_matricies(red=red, green=green, blue=blue, red_edge=red_edge, nir=nir)
 
     def set_matricies(self, red=None, green=None, blue=None, red_edge=None, nir=None):

@@ -66,7 +66,7 @@ class FixedPriorityQueue:
     Priority 2: []
     """  # noqa: E501
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.queues = [
             [],
             [],
@@ -146,7 +146,7 @@ class ElementPriorityQueue:
     []
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.queue = []
 
     def enqueue(self, data: int) -> None:

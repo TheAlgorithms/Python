@@ -21,7 +21,7 @@ class Direction(Enum):
     straight = 2
     right = 3
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}.{self.name}"
 
 

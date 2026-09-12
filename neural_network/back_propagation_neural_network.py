@@ -33,7 +33,7 @@ class DenseLayer:
 
     def __init__(
         self, units, activation=None, learning_rate=None, is_input_layer=False
-    ):
+    ) -> None:
         """
         common connected layer of bp network
         :param units: numbers of neural units
@@ -101,7 +101,7 @@ class BPNN:
     Back Propagation Neural Network model
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.layers = []
         self.train_mse = []
         self.fig_loss = plt.figure()

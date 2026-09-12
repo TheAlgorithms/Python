@@ -13,7 +13,7 @@ from collections.abc import Iterator
 class Vertex:
     """Class Vertex."""
 
-    def __init__(self, id_):
+    def __init__(self, id_) -> None:
         """
         Arguments:
             id - input an id to identify the vertex
@@ -31,7 +31,7 @@ class Vertex:
         """Comparison rule to < operator."""
         return self.key < other.key
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return the vertex id."""
         return self.id
 

@@ -8,7 +8,7 @@ import numpy as np
 
 
 class DecisionTree:
-    def __init__(self, depth=5, min_leaf_size=5):
+    def __init__(self, depth=5, min_leaf_size=5) -> None:
         self.depth = depth
         self.decision_boundary = 0
         self.left = None

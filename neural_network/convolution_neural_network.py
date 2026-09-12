@@ -23,7 +23,7 @@ from matplotlib import pyplot as plt
 class CNN:
     def __init__(
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
-    ):
+    ) -> None:
         """
         :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size

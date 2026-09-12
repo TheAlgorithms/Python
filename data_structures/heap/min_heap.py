@@ -3,11 +3,11 @@
 
 
 class Node:
-    def __init__(self, name, val):
+    def __init__(self, name, val) -> None:
         self.name = name
         self.val = val
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__}({self.name}, {self.val})"
 
     def __lt__(self, other):
@@ -31,7 +31,7 @@ class MinHeap:
     -17
     """
 
-    def __init__(self, array):
+    def __init__(self, array) -> None:
         self.idx_of_element = {}
         self.heap_dict = {}
         self.heap = self.build_heap(array)

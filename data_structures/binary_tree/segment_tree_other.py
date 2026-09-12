@@ -9,7 +9,7 @@ from queue import Queue
 
 
 class SegmentTreeNode:
-    def __init__(self, start, end, val, left=None, right=None):
+    def __init__(self, start, end, val, left=None, right=None) -> None:
         self.start = start
         self.end = end
         self.val = val
@@ -17,7 +17,7 @@ class SegmentTreeNode:
         self.left = left
         self.right = right
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"SegmentTreeNode(start={self.start}, end={self.end}, val={self.val})"
 
 
@@ -127,7 +127,7 @@ class SegmentTree:
     >>>
     """
 
-    def __init__(self, collection: Sequence, function):
+    def __init__(self, collection: Sequence, function) -> None:
         self.collection = collection
         self.fn = function
         if self.collection:

@@ -7,7 +7,7 @@ TPos = tuple[int, int]
 
 
 class PriorityQueue:
-    def __init__(self):
+    def __init__(self) -> None:
         self.elements = []
         self.set = set()
 
