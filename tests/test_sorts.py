@@ -117,6 +117,7 @@ def test_sort_matches_builtin(sort, case) -> None:
         circle_sort,
         cocktail_shaker_sort,
         comb_sort,
+        exchange_sort,
         gnome_sort,
         insertion_sort,
         merge_sort,
