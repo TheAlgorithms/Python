@@ -146,7 +146,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
     return heterogeneity
 
 
-def plot_heterogeneity(heterogeneity, k):
+def plot_heterogeneity(heterogeneity, k) -> None:
     plt.figure(figsize=(7, 4))
     plt.plot(heterogeneity, linewidth=4)
     plt.xlabel("# Iterations")
@@ -156,7 +156,7 @@ def plot_heterogeneity(heterogeneity, k):
     plt.show()
 
 
-def plot_kmeans(data, centroids, cluster_assignment):
+def plot_kmeans(data, centroids, cluster_assignment) -> None:
     ax = plt.axes(projection="3d")
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
     ax.scatter(

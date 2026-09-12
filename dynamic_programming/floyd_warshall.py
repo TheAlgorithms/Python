@@ -11,7 +11,7 @@ class Graph:
             [math.inf for j in range(n)] for i in range(n)
         ]  # dp[i][j] stores minimum distance from i to j
 
-    def add_edge(self, u, v, w):
+    def add_edge(self, u, v, w) -> None:
         """
         Adds a directed edge from node u
         to node v with weight w.
@@ -23,7 +23,7 @@ class Graph:
         """
         self.dp[u][v] = w
 
-    def floyd_warshall(self):
+    def floyd_warshall(self) -> None:
         """
         Computes the shortest paths between all pairs of
         nodes using the Floyd-Warshall algorithm.

@@ -8,7 +8,7 @@ class Graph:
         self.num_edges = 0
         self.adjacency = {}
 
-    def add_vertex(self, vertex):
+    def add_vertex(self, vertex) -> None:
         """
         Adds a vertex to the graph
 
@@ -17,7 +17,7 @@ class Graph:
             self.adjacency[vertex] = {}
             self.num_vertices += 1
 
-    def add_edge(self, head, tail, weight):
+    def add_edge(self, head, tail, weight) -> None:
         """
         Adds an edge to the graph
 
@@ -32,7 +32,7 @@ class Graph:
         self.adjacency[head][tail] = weight
         self.adjacency[tail][head] = weight
 
-    def distinct_weight(self):
+    def distinct_weight(self) -> None:
         """
         For Boruvks's algorithm the weights should be distinct
         Converts the weights to be distinct

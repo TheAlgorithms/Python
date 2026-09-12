@@ -13,7 +13,7 @@ class DirectedGraph:
     # adding vertices and edges
     # adding the weight is optional
     # handles repetition
-    def add_pair(self, u, v, w=1):
+    def add_pair(self, u, v, w=1) -> None:
         if self.graph.get(u):
             if self.graph[u].count([w, v]) == 0:
                 self.graph[u].append([w, v])
@@ -26,7 +26,7 @@ class DirectedGraph:
         return list(self.graph)
 
     # handles if the input does not exist
-    def remove_pair(self, u, v):
+    def remove_pair(self, u, v) -> None:
         if self.graph.get(u):
             for _ in self.graph[u]:
                 if _[1] == v:
@@ -73,7 +73,7 @@ class DirectedGraph:
 
     # c is the count of nodes you want and if you leave it or pass -1 to the function
     # the count will be random from 10 to 10000
-    def fill_graph_randomly(self, c=-1):
+    def fill_graph_randomly(self, c=-1) -> None:
         if c == -1:
             c = floor(random() * 10000) + 10
         for i in range(c):
@@ -195,7 +195,7 @@ class DirectedGraph:
             if len(stack) == 0:
                 return list(anticipating_nodes)
 
-    def has_cycle(self):
+    def has_cycle(self) -> bool | None:
         stack = []
         visited = []
         s = next(iter(self.graph))
@@ -266,7 +266,7 @@ class Graph:
     # adding vertices and edges
     # adding the weight is optional
     # handles repetition
-    def add_pair(self, u, v, w=1):
+    def add_pair(self, u, v, w=1) -> None:
         # check if the u exists
         if self.graph.get(u):
             # if there already is a edge
@@ -285,7 +285,7 @@ class Graph:
             self.graph[v] = [[w, u]]
 
     # handles if the input does not exist
-    def remove_pair(self, u, v):
+    def remove_pair(self, u, v) -> None:
         if self.graph.get(u):
             for _ in self.graph[u]:
                 if _[1] == v:
@@ -337,7 +337,7 @@ class Graph:
 
     # c is the count of nodes you want and if you leave it or pass -1 to the function
     # the count will be random from 10 to 10000
-    def fill_graph_randomly(self, c=-1):
+    def fill_graph_randomly(self, c=-1) -> None:
         if c == -1:
             c = floor(random() * 10000) + 10
         for i in range(c):
@@ -418,7 +418,7 @@ class Graph:
             if len(stack) == 0:
                 return list(anticipating_nodes)
 
-    def has_cycle(self):
+    def has_cycle(self) -> bool | None:
         stack = []
         visited = []
         s = next(iter(self.graph))

@@ -132,7 +132,7 @@ def get_cost_derivative(index):
     return cost_derivative_value
 
 
-def run_gradient_descent():
+def run_gradient_descent() -> None:
     global parameter_vector
     # Tune these values to set a tolerance value for predicted output
     absolute_error_limit = 0.000002
@@ -157,7 +157,7 @@ def run_gradient_descent():
     print(("Number of iterations:", j))
 
 
-def test_gradient_descent():
+def test_gradient_descent() -> None:
     for i in range(len(test_data)):
         print(("Actual output value:", output(i, "test")))
         print(("Hypothesis output:", calculate_hypothesis_value(i, "test")))

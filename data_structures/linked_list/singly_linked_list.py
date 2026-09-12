@@ -498,7 +498,7 @@ def test_singly_linked_list_2() -> None:
     )
 
 
-def main():
+def main() -> None:
     from doctest import testmod
 
     testmod()

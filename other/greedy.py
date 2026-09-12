@@ -39,7 +39,7 @@ def greedy(item, max_cost, key_func):
     return (result, total_value)
 
 
-def test_greedy():
+def test_greedy() -> None:
     """
     >>> food = ["Burger", "Pizza", "Coca Cola", "Rice",
     ...         "Sambhar", "Chicken", "Fries", "Milk"]
