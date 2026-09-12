@@ -25,8 +25,7 @@ class Signal:
         for i in self.signal:
             if not isinstance(i, (float, int)):
                 raise TypeError("vector must be a list of numeric values.")
-            else:
-                self.n += 1
+            self.n += 1
 
 
 @dataclass

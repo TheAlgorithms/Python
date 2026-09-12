@@ -74,8 +74,7 @@ class DoubleHash(HashTable):
             )
             if new_key is None:
                 break
-            else:
-                i += 1
+            i += 1
 
         return new_key
 

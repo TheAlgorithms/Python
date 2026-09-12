@@ -35,10 +35,9 @@ class LinkedListIterator:
     def __next__(self):
         if not self.current:
             raise StopIteration
-        else:
-            value = self.current.data
-            self.current = self.current.next
-            return value
+        value = self.current.data
+        self.current = self.current.next
+        return value
 
 
 @dataclass

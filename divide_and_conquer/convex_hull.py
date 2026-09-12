@@ -451,11 +451,10 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
         if det > 0:
             convex_hull.insert(0, points[i])
             break
-        elif det < 0:
+        if det < 0:
             convex_hull.append(points[i])
             break
-        else:
-            convex_hull[1] = points[i]
+        convex_hull[1] = points[i]
     i += 1
 
     for j in range(i, n):

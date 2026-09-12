@@ -105,17 +105,14 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
+            if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
-            elif len(x[i:]) < self.min_leaf_size:
-                continue
-            else:
-                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
-                error = error_left + error_right
-                if error < min_error:
-                    best_split = i
-                    min_error = error
+            error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
+            error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
+            error = error_left + error_right
+            if error < min_error:
+                best_split = i
+                min_error = error
 
         if best_split != 0:
             left_x = x[:best_split]

@@ -171,9 +171,8 @@ class DirectedGraph:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
-                            else:
-                                anticipating_nodes.add(stack[len_stack])
-                                len_stack -= 1
+                            anticipating_nodes.add(stack[len_stack])
+                            len_stack -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -224,8 +223,7 @@ class DirectedGraph:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
-                            else:
-                                return True
+                            return True
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -396,9 +394,8 @@ class Graph:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
-                            else:
-                                anticipating_nodes.add(stack[len_stack])
-                                len_stack -= 1
+                            anticipating_nodes.add(stack[len_stack])
+                            len_stack -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -449,8 +446,7 @@ class Graph:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
-                            else:
-                                return True
+                            return True
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
