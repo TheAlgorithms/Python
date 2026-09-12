@@ -1,4 +1,11 @@
-def exchange_sort(numbers: list[int]) -> list[int]:
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def exchange_sort[T: Comparable](numbers: list[T]) -> list[T]:
     """
     Uses exchange sort to sort a list of numbers.
     Source: https://en.wikipedia.org/wiki/Sorting_algorithm#Exchange_sort
@@ -12,6 +19,14 @@ def exchange_sort(numbers: list[int]) -> list[int]:
     [-2, 0, 3, 5, 10]
     >>> exchange_sort([])
     []
+    >>> exchange_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> exchange_sort([2.5, -1.0, 0.0])
+    [-1.0, 0.0, 2.5]
+    >>> exchange_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     numbers_length = len(numbers)
     for i in range(numbers_length):
