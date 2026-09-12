@@ -1372,6 +1372,7 @@
 ## [Sorts](sorts)
   * [Adaptive Merge Sort](sorts/adaptive_merge_sort.py)
   * [Bead Sort](sorts/bead_sort.py)
+  * [Benchmark Sorts](sorts/benchmark_sorts.py)
   * [Binary Insertion Sort](sorts/binary_insertion_sort.py)
   * [Bitonic Sort](sorts/bitonic_sort.py)
   * [Bogo Sort](sorts/bogo_sort.py)
