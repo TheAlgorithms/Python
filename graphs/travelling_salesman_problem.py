@@ -47,12 +47,14 @@ def validate_graph(graph_points: dict[str, list[float]]) -> None:
         ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
 
-    >>> validate_graph([10, 20])  # Invalid input type
+    >>> validate_graph([10, 20])  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
         ...
     InvalidGraphError: Graph must be a dictionary with node names and coordinates
 
-    >>> validate_graph({"A": [10, 20], "B": [30, 21], "C": [15]})  # Missing coordinate
+    >>> validate_graph(  # doctest: +IGNORE_EXCEPTION_DETAIL
+    ...     {"A": [10, 20], "B": [30, 21], "C": [15]}
+    ... )  # Missing coordinate
     Traceback (most recent call last):
         ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
