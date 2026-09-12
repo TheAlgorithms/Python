@@ -61,7 +61,7 @@ class Node:
         goal_y: int,
         g_cost: float,
         parent: Node | None,
-    ):
+    ) -> None:
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.pos = (pos_y, pos_x)
@@ -106,7 +106,7 @@ class GreedyBestFirst:
 
     def __init__(
         self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]
-    ):
+    ) -> None:
         self.grid = grid
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)

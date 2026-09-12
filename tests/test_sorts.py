@@ -14,10 +14,13 @@ out (e.g. ``counting_sort``/``radix_sort``/``pigeon_sort`` are integer-only,
 on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
 """
 
+from dataclasses import dataclass
+from typing import NamedTuple
+
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
-from sorts.bubble_sort import bubble_sort_iterative
+from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
 from sorts.comb_sort import comb_sort
@@ -38,7 +41,7 @@ from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 
 
-def test_heap_sort():
+def test_heap_sort() -> None:
     assert heap_sort([]) == []
     assert heap_sort([1]) == [1]
     assert heap_sort([5, 2, 5, 1]) == [1, 2, 5, 5]
@@ -69,6 +72,20 @@ SORTS = (
     strand_sort,
 )
 
+
+@dataclass(order=True)
+class Person:
+    name: str = "Bob"
+    age: int = 37
+    cost: float = 0.0
+
+
+class Dog(NamedTuple):
+    name: str = "Fido"
+    age: int = 5
+    weight: float = 15.5
+
+
 CASES = (
     [],
     [1],
@@ -79,16 +96,35 @@ CASES = (
     [5, 4, 3, 2, 1],
     [1, 2, 3, 4, 5],
     [-2, -2, 0, 0, 7, 7],
+    [Person(cost=100.0), Person(cost=-100.0), Person(name="Al")],
+    [Dog(weight=15.5), Dog(weight=15.1), Dog(name="Buddy")],
 )
 
 
 @pytest.mark.parametrize("sort", SORTS, ids=lambda f: f.__name__)
 @pytest.mark.parametrize("case", CASES, ids=repr)
-def test_sort_matches_builtin(sort, case):
+def test_sort_matches_builtin(sort, case) -> None:
     """Each sort must reproduce the ordering of the built-in ``sorted``."""
     assert list(sort(list(case))) == sorted(case)
 
 
-def test_binary_insertion_sort_rejects_non_comparable_items():
+@pytest.mark.parametrize(
+    "sort",
+    [
+        binary_insertion_sort,
+        bubble_sort_iterative,
+        bubble_sort_recursive,
+        circle_sort,
+        cocktail_shaker_sort,
+        comb_sort,
+        exchange_sort,
+        gnome_sort,
+        insertion_sort,
+        merge_sort,
+        selection_sort,
+    ],
+    ids=lambda f: f.__name__,
+)
+def test_sort_rejects_non_comparable_items(sort) -> None:
     with pytest.raises(TypeError):
-        binary_insertion_sort([1, "a"])
+        sort([1, "a"])

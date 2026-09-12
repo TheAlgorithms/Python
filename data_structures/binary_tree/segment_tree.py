@@ -2,7 +2,7 @@ import math
 
 
 class SegmentTree:
-    def __init__(self, a):
+    def __init__(self, a) -> None:
         self.A = a
         self.N = len(self.A)
         self.st = [0] * (
@@ -35,7 +35,7 @@ class SegmentTree:
         """
         return idx * 2 + 1
 
-    def build(self, idx, left, right):
+    def build(self, idx, left, right) -> None:
         if left == right:
             self.st[idx] = self.A[left]
         else:
@@ -56,7 +56,7 @@ class SegmentTree:
         """
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
 
-    def update_recursive(self, idx, left, right, a, b, val):
+    def update_recursive(self, idx, left, right, a, b, val) -> bool:
         """
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
@@ -96,7 +96,7 @@ class SegmentTree:
         q2 = self.query_recursive(self.right(idx), mid + 1, right, a, b)
         return max(q1, q2)
 
-    def show_data(self):
+    def show_data(self) -> None:
         show_list = []
         for i in range(1, self.N + 1):
             show_list += [self.query(i, i)]

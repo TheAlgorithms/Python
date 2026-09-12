@@ -4,7 +4,7 @@
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
-    def __init__(self, n: int):
+    def __init__(self, n: int) -> None:
         self.n = n
         self.array = [None] * self.n
         self.front = 0  # index of the first element

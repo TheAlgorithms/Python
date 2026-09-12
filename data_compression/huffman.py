@@ -4,7 +4,7 @@ import sys
 
 
 class Letter:
-    def __init__(self, letter: str, freq: int):
+    def __init__(self, letter: str, freq: int) -> None:
         self.letter: str = letter
         self.freq: int = freq
         self.bitstring: dict[str, str] = {}
@@ -14,7 +14,9 @@ class Letter:
 
 
 class TreeNode:
-    def __init__(self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode):
+    def __init__(
+        self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode
+    ) -> None:
         self.freq: int = freq
         self.left: Letter | TreeNode = left
         self.right: Letter | TreeNode = right

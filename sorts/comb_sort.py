@@ -18,8 +18,14 @@ For manual testing run:
 python comb_sort.py
 """
 
+from typing import Any, Protocol
 
-def comb_sort(data: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def comb_sort[T: Comparable](data: list[T]) -> list[T]:
     """Pure implementation of comb sort algorithm in Python
     :param data: mutable collection with comparable items
     :return: the same collection in ascending order
@@ -32,6 +38,14 @@ def comb_sort(data: list) -> list:
     [-15, -7, 0, 2, 3, 8, 45, 99]
     >>> comb_sort([2, 0, 3, 4, 5, 6, 1])
     [0, 1, 2, 3, 4, 5, 6]
+    >>> comb_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> comb_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> comb_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     shrink_factor = 1.3
     gap = len(data)
@@ -47,7 +61,7 @@ def comb_sort(data: list) -> list:
 
         index = 0
         while index + gap < len(data):
-            if data[index] > data[index + gap]:
+            if data[index + gap] < data[index]:
                 # Swap values
                 data[index], data[index + gap] = data[index + gap], data[index]
                 completed = False

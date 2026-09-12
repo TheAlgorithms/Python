@@ -34,7 +34,7 @@ def matrix_chain_order(array: list[int]) -> tuple[list[list[int]], list[list[int
     return matrix, sol
 
 
-def print_optimal_solution(optimal_solution: list[list[int]], i: int, j: int):
+def print_optimal_solution(optimal_solution: list[list[int]], i: int, j: int) -> None:
     """
     Print order of matrix with Ai as Matrix.
     """
@@ -48,7 +48,7 @@ def print_optimal_solution(optimal_solution: list[list[int]], i: int, j: int):
         print(")", end=" ")
 
 
-def main():
+def main() -> None:
     """
     Size of matrix created from array [30, 35, 15, 5, 10, 20, 25] will be:
     30*35 35*15 15*5 5*10 10*20 20*25

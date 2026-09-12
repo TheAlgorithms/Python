@@ -23,7 +23,7 @@ from matplotlib import pyplot as plt
 class CNN:
     def __init__(
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
-    ):
+    ) -> None:
         """
         :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size
@@ -52,7 +52,7 @@ class CNN:
         self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
         self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
-    def save_model(self, save_path):
+    def save_model(self, save_path) -> None:
         # save model dict with pickle
         model_dic = {
             "num_bp1": self.num_bp1,
@@ -295,7 +295,7 @@ class CNN:
             mse = error_count / patterns
             all_mse.append(mse)
 
-        def draw_error():
+        def draw_error() -> None:
             yplot = [error_accuracy for i in range(int(n_repeat * 1.2))]
             plt.plot(all_mse, "+-")
             plt.plot(yplot, "r--")

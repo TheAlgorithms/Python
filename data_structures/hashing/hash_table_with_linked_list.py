@@ -4,10 +4,10 @@ from .hash_table import HashTable
 
 
 class HashTableWithLinkedList(HashTable):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-    def _set_value(self, key, data):
+    def _set_value(self, key, data) -> None:
         self.values[key] = deque() if self.values[key] is None else self.values[key]
         self.values[key].appendleft(data)
         self._keys[key] = self.values[key]

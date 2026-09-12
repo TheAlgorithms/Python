@@ -16,7 +16,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
 
-def main():
+def main() -> None:
     # loading the dataset from sklearn
     df = load_diabetes()
     print(df.keys())
