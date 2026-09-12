@@ -116,6 +116,7 @@ def test_sort_matches_builtin(sort, case):
         bubble_sort_recursive,
         circle_sort,
         cocktail_shaker_sort,
+        comb_sort,
         gnome_sort,
         insertion_sort,
         merge_sort,
