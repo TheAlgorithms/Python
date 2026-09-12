@@ -43,9 +43,9 @@ def armstrong_number(n: int) -> bool:
 def pluperfect_number(n: int) -> bool:
     """Return True if n is a pluperfect number or False if it is not
 
-    >>> all(armstrong_number(n) for n in PASSING)
+    >>> all(pluperfect_number(n) for n in PASSING)
     True
-    >>> any(armstrong_number(n) for n in FAILING)
+    >>> any(pluperfect_number(n) for n in FAILING)
     False
     """
     if not isinstance(n, int) or n < 1:
@@ -70,9 +70,9 @@ def pluperfect_number(n: int) -> bool:
 def narcissistic_number(n: int) -> bool:
     """Return True if n is a narcissistic number or False if it is not.
 
-    >>> all(armstrong_number(n) for n in PASSING)
+    >>> all(narcissistic_number(n) for n in PASSING)
     True
-    >>> any(armstrong_number(n) for n in FAILING)
+    >>> any(narcissistic_number(n) for n in FAILING)
     False
     """
     if not isinstance(n, int) or n < 1:

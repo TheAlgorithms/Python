@@ -37,7 +37,13 @@ Usage:
             heterogeneity,
             k
         )
-  5. Transfers Dataframe into excel format it must have feature called
+  5. Plot the labeled 3D data points with centroids.
+        plot_kmeans(
+            X,
+            centroids,
+            cluster_assignment
+        )
+  6. Transfers Dataframe into excel format it must have feature called
       'Clust' with k means clustering numbers in it.
 """
 
@@ -75,6 +81,13 @@ def centroid_pairwise_dist(x, centroids):
 
 
 def assign_clusters(data, centroids):
+    """Assign each data point to the index of its nearest centroid.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> centroids = np.array([[0.0, 0.0], [10.0, 10.0]])
+    >>> assign_clusters(data, centroids).tolist()
+    [0, 0, 1, 1]
+    """
     # Compute distances between each data point and the set of centroids:
     # Fill in the blank (RHS only)
     distances_from_centroids = centroid_pairwise_dist(data, centroids)
@@ -87,6 +100,13 @@ def assign_clusters(data, centroids):
 
 
 def revise_centroids(data, k, cluster_assignment):
+    """Recompute each centroid as the mean of the points assigned to it.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> assignment = np.array([0, 0, 1, 1])
+    >>> revise_centroids(data, 2, assignment).tolist()
+    [[0.0, 0.5], [10.0, 10.5]]
+    """
     new_centroids = []
     for i in range(k):
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
@@ -100,6 +120,16 @@ def revise_centroids(data, k, cluster_assignment):
 
 
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
+    """Sum of squared distances from each point to its assigned centroid.
+
+    This is the objective k-means minimises; lower is a tighter clustering.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> centroids = np.array([[0.0, 0.5], [10.0, 10.5]])
+    >>> assignment = np.array([0, 0, 1, 1])
+    >>> float(compute_heterogeneity(data, 2, centroids, assignment))
+    1.0
+    """
     heterogeneity = 0.0
     for i in range(k):
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
@@ -126,6 +156,19 @@ def plot_heterogeneity(heterogeneity, k):
     plt.show()
 
 
+def plot_kmeans(data, centroids, cluster_assignment):
+    ax = plt.axes(projection="3d")
+    ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
+    ax.scatter(
+        centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x"
+    )
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+    ax.set_title("3D K-Means Clustering Visualization")
+    plt.show()
+
+
 def kmeans(
     data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False
 ):
@@ -135,7 +178,16 @@ def kmeans(
                           as function of iterations
                           if None, do not store the history.
     verbose: if True, print how many data points changed their cluster labels in
-                          each iteration"""
+                          each iteration
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> initial_centroids = np.array([[0.0, 0.0], [10.0, 10.0]])
+    >>> centroids, assignment = kmeans(data, 2, initial_centroids, maxiter=10)
+    >>> centroids.tolist()
+    [[0.0, 0.5], [10.0, 10.5]]
+    >>> assignment.tolist()
+    [0, 0, 1, 1]
+    """
     centroids = initial_centroids[:]
     prev_cluster_assignment = None
 
@@ -193,6 +245,7 @@ if False:  # change to true to run this test case.
         verbose=True,
     )
     plot_heterogeneity(heterogeneity, k)
+    plot_kmeans(dataset["data"], centroids, cluster_assignment)
 
 
 def report_generator(

@@ -52,45 +52,33 @@ class PriorityQueue:
 
         >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(5, 'A'), (10, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B'), (15, 'C')]
+        [(5, 'B'), (10, 'A'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (15, 'B'), (5, 'C')]
+        [(5, 'C'), (15, 'B'), (10, 'A')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
         >>> priority_queue_test.cur_size = len(priority_queue_test.array)
         >>> priority_queue_test.pos = {'A': 0, 'B': 1}
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B')]
+        [(5, 'B'), (10, 'A')]
         """
         lc = self.left(idx)
         rc = self.right(idx)
-        if lc < self.cur_size and self.array(lc)[0] < self.array[idx][0]:
+        if lc < self.cur_size and self.array[lc][0] < self.array[idx][0]:
             smallest = lc
         else:
             smallest = idx
-        if rc < self.cur_size and self.array(rc)[0] < self.array[smallest][0]:
+        if rc < self.cur_size and self.array[rc][0] < self.array[smallest][0]:
             smallest = rc
         if smallest != idx:
             self.swap(idx, smallest)
@@ -130,12 +118,12 @@ class PriorityQueue:
         >>> priority_queue_test.extract_min()
         'C'
         >>> priority_queue_test.array[0]
-        (15, 'B')
+        (10, 'A')
         """
         min_node = self.array[0][1]
         self.array[0] = self.array[self.cur_size - 1]
         self.cur_size -= 1
-        self.min_heapify(1)
+        self.min_heapify(0)
         del self.pos[min_node]
         return min_node
 
