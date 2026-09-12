@@ -39,19 +39,19 @@ class MinHeap:
     def __getitem__(self, key):
         return self.get_value(key)
 
-    def get_parent_idx(self, idx):
+    def get_parent_idx(self, idx) -> int:
         return (idx - 1) // 2
 
-    def get_left_child_idx(self, idx):
+    def get_left_child_idx(self, idx) -> int:
         return idx * 2 + 1
 
-    def get_right_child_idx(self, idx):
+    def get_right_child_idx(self, idx) -> int:
         return idx * 2 + 2
 
     def get_value(self, key):
         return self.heap_dict[key]
 
-    def build_heap(self, array):
+    def build_heap(self, array) -> list:
         last_idx = len(array) - 1
         start_from = self.get_parent_idx(last_idx)
 
@@ -120,7 +120,7 @@ class MinHeap:
         self.heap_dict[node.name] = node.val
         self.sift_up(len(self.heap) - 1)
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return len(self.heap) == 0
 
     def decrease_key(self, node, new_value) -> None:
