@@ -121,6 +121,7 @@ def test_sort_matches_builtin(sort, case) -> None:
         gnome_sort,
         insertion_sort,
         merge_sort,
+        odd_even_sort,
         selection_sort,
     ],
     ids=lambda f: f.__name__,
