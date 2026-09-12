@@ -104,8 +104,8 @@ def benchmark() -> None:
     Benchmark comparing topological_sort() (using deque.popleft) against
     the pre-optimization baseline _topological_sort_list_queue() (using list.pop(0)).
 
-    Demonstrates the performance improvement of O(1) queue operations in Kahn's algorithm
-    on a graph with a large number of zero-indegree vertices.
+    Demonstrates the performance improvement of O(1) queue operations in
+    Kahn's algorithm on a graph with a large number of zero-indegree vertices.
     """
     from timeit import timeit
 
@@ -125,7 +125,8 @@ def benchmark() -> None:
     new_time = timeit(lambda: topological_sort(graph), number=runs)
 
     print(
-        f"Benchmark results for topological_sort with {num_sources} vertices over {runs} runs:"
+        f"Benchmark results for topological_sort with {num_sources} vertices "
+        f"over {runs} runs:"
     )
     print(f"Pre-optimization (list.pop(0)): {old_time:.5f} seconds")
     print(f"Current (deque.popleft):       {new_time:.5f} seconds")
