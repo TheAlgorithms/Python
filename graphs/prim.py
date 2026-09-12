@@ -35,16 +35,16 @@ class Vertex:
         """Return the vertex id."""
         return self.id
 
-    def add_neighbor(self, vertex):
+    def add_neighbor(self, vertex) -> None:
         """Add a pointer to a vertex at neighbor's list."""
         self.neighbors.append(vertex)
 
-    def add_edge(self, vertex, weight):
+    def add_edge(self, vertex, weight) -> None:
         """Destination vertex and weight."""
         self.edges[vertex.id] = weight
 
 
-def connect(graph, a, b, edge):
+def connect(graph, a, b, edge) -> None:
     # add the neighbors:
     graph[a - 1].add_neighbor(graph[b - 1])
     graph[b - 1].add_neighbor(graph[a - 1])

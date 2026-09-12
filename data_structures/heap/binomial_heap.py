@@ -203,7 +203,7 @@ class BinomialHeap:
         # Return the merged heap
         return self
 
-    def insert(self, val):
+    def insert(self, val) -> None:
         """
         insert a value in the heap
         """

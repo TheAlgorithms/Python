@@ -133,7 +133,7 @@ class SegmentTree:
         if self.collection:
             self.root = self._build_tree(0, len(collection) - 1)
 
-    def update(self, i, val):
+    def update(self, i, val) -> None:
         """
         Update an element in log(N) time
         :param i: position to be update

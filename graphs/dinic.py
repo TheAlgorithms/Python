@@ -14,7 +14,7 @@ class Dinic:
     through that edge ...
     """
 
-    def add_edge(self, a, b, c, rcap=0):
+    def add_edge(self, a, b, c, rcap=0) -> None:
         self.adj[a].append([b, len(self.adj[b]), c, 0])
         self.adj[b].append([a, len(self.adj[a]) - 1, rcap, 0])
 

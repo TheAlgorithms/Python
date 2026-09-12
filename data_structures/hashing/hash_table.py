@@ -85,7 +85,7 @@ class HashTable:
         print(list(range(len(self.values))))
         print(self.values)
 
-    def bulk_insert(self, values):
+    def bulk_insert(self, values) -> None:
         """
         bulk_insert is used for entering more than one element at a time
         in the HashTable.
@@ -236,7 +236,7 @@ class HashTable:
 
         return new_key
 
-    def rehashing(self):
+    def rehashing(self) -> None:
         survivor_values = [value for value in self.values if value is not None]
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
@@ -244,7 +244,7 @@ class HashTable:
         for value in survivor_values:
             self.insert_data(value)
 
-    def insert_data(self, data):
+    def insert_data(self, data) -> None:
         """
         insert_data is used for inserting a single element at a time in the HashTable.
 

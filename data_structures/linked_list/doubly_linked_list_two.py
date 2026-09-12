@@ -138,7 +138,7 @@ class LinkedList:
             node = node.next
         raise Exception("Node not found")
 
-    def delete_value(self, value):
+    def delete_value(self, value) -> None:
         if (node := self.get_node(value)) is not None:
             if node == self.head:
                 self.head = self.head.next

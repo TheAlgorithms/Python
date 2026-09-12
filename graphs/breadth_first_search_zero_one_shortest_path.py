@@ -34,7 +34,7 @@ class AdjacencyList:
     def size(self):
         return self._size
 
-    def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
+    def add_edge(self, from_vertex: int, to_vertex: int, weight: int) -> None:
         """
         >>> g = AdjacencyList(2)
         >>> g.add_edge(0, 1, 0)

@@ -566,7 +566,7 @@ def vol_icosahedron(tri_side: float) -> float:
     return tri_side**3 * (3 + 5**0.5) * 5 / 12
 
 
-def main():
+def main() -> None:
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
     print(f"Cube: {vol_cube(2) = }")  # = 8
