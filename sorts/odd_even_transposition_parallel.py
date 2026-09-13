@@ -38,7 +38,7 @@ def oe_process(
     rr_cv,
     result_pipe,
     multiprocessing_context,
-):
+) -> None:
     process_lock = multiprocessing_context.Lock()
 
     # we perform n swaps since after n swaps we know we are sorted
@@ -179,7 +179,7 @@ def odd_even_transposition(arr):
 
 
 # creates a reverse sorted list and sorts it
-def main():
+def main() -> None:
     arr = list(range(10, 0, -1))
     print("Initial List")
     print(*arr)

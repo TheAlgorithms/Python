@@ -3,12 +3,12 @@ class Graph:
     Data structure to store graphs (based on adjacency lists)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
 
-    def add_vertex(self, vertex):
+    def add_vertex(self, vertex) -> None:
         """
         Adds a vertex to the graph
 
@@ -17,7 +17,7 @@ class Graph:
             self.adjacency[vertex] = {}
             self.num_vertices += 1
 
-    def add_edge(self, head, tail, weight):
+    def add_edge(self, head, tail, weight) -> None:
         """
         Adds an edge to the graph
 
@@ -32,7 +32,7 @@ class Graph:
         self.adjacency[head][tail] = weight
         self.adjacency[tail][head] = weight
 
-    def distinct_weight(self):
+    def distinct_weight(self) -> None:
         """
         For Boruvks's algorithm the weights should be distinct
         Converts the weights to be distinct
@@ -54,7 +54,7 @@ class Graph:
             self.adjacency[head][tail] = weight
             self.adjacency[tail][head] = weight
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Returns string representation of the graph
         """
@@ -103,11 +103,11 @@ class Graph:
         Disjoint set Union and Find for Boruvka's algorithm
         """
 
-        def __init__(self):
+        def __init__(self) -> None:
             self.parent = {}
             self.rank = {}
 
-        def __len__(self):
+        def __len__(self) -> int:
             return len(self.parent)
 
         def make_set(self, item):

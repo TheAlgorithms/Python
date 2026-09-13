@@ -4,7 +4,7 @@
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
-    def __init__(self, n: int):
+    def __init__(self, n: int) -> None:
         self.n = n
         self.array = [None] * self.n
         self.front = 0  # index of the first element
@@ -17,7 +17,7 @@ class CircularQueue:
         >>> len(cq)
         0
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> cq.array
         ['A', None, None, None, None]
         >>> len(cq)
@@ -47,21 +47,28 @@ class CircularQueue:
         """
         return False if self.is_empty() else self.array[self.front]
 
-    def enqueue(self, data):
+    def enqueue(self, data) -> "CircularQueue":
         """
         This function inserts an element at the end of the queue using self.rear value
         as an index.
+
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> (cq.size, cq.first())
         (1, 'A')
         >>> cq.enqueue("B")  # doctest: +ELLIPSIS
-        <data_structures.queues.circular_queue.CircularQueue object at ...
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
         >>> cq.array
         ['A', 'B', None, None, None]
         >>> (cq.size, cq.first())
         (2, 'A')
+        >>> cq.enqueue("C").enqueue("D").enqueue("E")  # doctest: +ELLIPSIS
+        <data_structures.queues.circular_queue.CircularQueue object at ...>
+        >>> cq.enqueue("F")
+        Traceback (most recent call last):
+           ...
+        Exception: QUEUE IS FULL
         """
         if self.size >= self.n:
             raise Exception("QUEUE IS FULL")
@@ -75,6 +82,7 @@ class CircularQueue:
         """
         This function removes an element from the queue using on self.front value as an
         index and returns it
+
         >>> cq = CircularQueue(5)
         >>> cq.dequeue()
         Traceback (most recent call last):

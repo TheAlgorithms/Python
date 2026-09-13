@@ -22,7 +22,7 @@ class HashTable:
         self.__aux_list: list = []
         self._keys: dict = {}
 
-    def keys(self):
+    def keys(self) -> dict:
         """
         The keys function returns a dictionary containing the key value pairs.
         key being the index number in hash table and value being the data value.
@@ -48,12 +48,12 @@ class HashTable:
         """
         return self._keys
 
-    def balanced_factor(self):
+    def balanced_factor(self) -> float:
         return sum(1 for slot in self.values if slot is not None) / (
             self.size_table * self.charge_factor
         )
 
-    def hash_function(self, key):
+    def hash_function(self, key) -> int:
         """
         Generates hash for the given key value
 
@@ -80,12 +80,12 @@ class HashTable:
         """
         return key % self.size_table
 
-    def _step_by_step(self, step_ord):
+    def _step_by_step(self, step_ord) -> None:
         print(f"step {step_ord}")
         print(list(range(len(self.values))))
         print(self.values)
 
-    def bulk_insert(self, values):
+    def bulk_insert(self, values) -> None:
         """
         bulk_insert is used for entering more than one element at a time
         in the HashTable.
@@ -130,7 +130,7 @@ class HashTable:
             self._step_by_step(i)
             i += 1
 
-    def _set_value(self, key, data):
+    def _set_value(self, key, data) -> None:
         """
         _set_value functions allows to update value at a particular hash
 
@@ -236,7 +236,7 @@ class HashTable:
 
         return new_key
 
-    def rehashing(self):
+    def rehashing(self) -> None:
         survivor_values = [value for value in self.values if value is not None]
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
@@ -244,7 +244,7 @@ class HashTable:
         for value in survivor_values:
             self.insert_data(value)
 
-    def insert_data(self, data):
+    def insert_data(self, data) -> None:
         """
         insert_data is used for inserting a single element at a time in the HashTable.
 

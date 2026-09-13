@@ -10,12 +10,14 @@
 """
 
 from dataclasses import dataclass
-from typing import Self
+from typing import Self, TypeVar
+
+DataType = TypeVar("DataType")
 
 
 @dataclass
-class Node:
-    data: int
+class Node[DataType]:
+    data: DataType
     previous: Self | None = None
     next: Self | None = None
 
@@ -24,7 +26,7 @@ class Node:
 
 
 class LinkedListIterator:
-    def __init__(self, head):
+    def __init__(self, head) -> None:
         self.current = head
 
     def __iter__(self):
@@ -33,10 +35,9 @@ class LinkedListIterator:
     def __next__(self):
         if not self.current:
             raise StopIteration
-        else:
-            value = self.current.data
-            self.current = self.current.next
-            return value
+        value = self.current.data
+        self.current = self.current.next
+        return value
 
 
 @dataclass
@@ -44,7 +45,7 @@ class LinkedList:
     head: Node | None = None  # First node in list
     tail: Node | None = None  # Last node in list
 
-    def __str__(self):
+    def __str__(self) -> str:
         current = self.head
         nodes = []
         while current is not None:
@@ -52,7 +53,7 @@ class LinkedList:
             current = current.next
         return " ".join(str(node) for node in nodes)
 
-    def __contains__(self, value: int):
+    def __contains__(self, value: DataType) -> bool:
         current = self.head
         while current:
             if current.data == value:
@@ -87,7 +88,7 @@ class LinkedList:
         else:
             self.insert_after_node(self.tail, node)
 
-    def insert(self, value: int) -> None:
+    def insert(self, value: DataType) -> None:
         node = Node(value)
         if self.head is None:
             self.set_head(node)
@@ -116,7 +117,7 @@ class LinkedList:
 
         node.next = node_to_insert
 
-    def insert_at_position(self, position: int, value: int) -> None:
+    def insert_at_position(self, position: int, value: DataType) -> None:
         current_position = 1
         new_node = Node(value)
         node = self.head
@@ -128,7 +129,7 @@ class LinkedList:
             node = node.next
         self.set_tail(new_node)
 
-    def get_node(self, item: int) -> Node:
+    def get_node(self, item: DataType) -> Node:
         node = self.head
         while node:
             if node.data == item:
@@ -136,7 +137,7 @@ class LinkedList:
             node = node.next
         raise Exception("Node not found")
 
-    def delete_value(self, value):
+    def delete_value(self, value) -> None:
         if (node := self.get_node(value)) is not None:
             if node == self.head:
                 self.head = self.head.next
@@ -157,7 +158,7 @@ class LinkedList:
         node.next = None
         node.previous = None
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self.head is None
 
 
