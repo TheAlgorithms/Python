@@ -97,9 +97,12 @@
   * [Is Power Of Two](bit_manipulation/is_power_of_two.py)
   * [Largest Pow Of Two Le Num](bit_manipulation/largest_pow_of_two_le_num.py)
   * [Missing Number](bit_manipulation/missing_number.py)
+  * [Next Power Of Two](bit_manipulation/next_power_of_two.py)
   * [Numbers Different Signs](bit_manipulation/numbers_different_signs.py)
+  * [Parity](bit_manipulation/parity.py)
   * [Power Of 4](bit_manipulation/power_of_4.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
+  * [Rotate Bits](bit_manipulation/rotate_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
 
