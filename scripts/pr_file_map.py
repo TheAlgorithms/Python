@@ -54,7 +54,9 @@ def check_gh_auth() -> None:
 
 
 def get_open_prs() -> list[dict]:
-    raw = run_gh(["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"])
+    raw = run_gh(
+        ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
+    )
     return json.loads(raw)
 
 
