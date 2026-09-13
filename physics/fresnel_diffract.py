@@ -76,7 +76,7 @@ def fresnel_diffract(
         >>> import numpy as np
         >>> wf0 = np.ones((64, 64))
         >>> wfz = fresnel_diffract(wf0, 1, 1, 1)
-        >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
+        >>> bool(np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2)))
         True
 
         # Test that propagation distance of 0 returns the contact image
