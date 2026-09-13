@@ -83,9 +83,6 @@ def main() -> None:
     prs = get_open_prs()
     pr_count = len(prs)
     print(f"PR count from get_open_prs(): {pr_count}", file=sys.stderr)
-    if not prs:
-        print("No open pull requests found.")
-        return
 
     file_to_prs: dict[str, list[int]] = defaultdict(list)
     file_count = 0
