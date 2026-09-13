@@ -21,12 +21,12 @@ where c is the speed of light in vacuum and
 
     y = 1 / sqrt(1 - v^2 / c^2)
 
-is the Lorentz factor. At speeds much smaller than c, this expression reduces to the
+is the Lorentz factor. At speeds much lower than c, this expression reduces to the
 classical formula K ≈ (1/2) m v^2, so the relativistic result agrees with Newtonian
-kinetic energy in the low velocity limit.The standard unit of kinetic energy is the
+kinetic energy in the low-velocity limit. The standard unit of kinetic energy is the
 joule, while the English unit of kinetic energy is the foot-pound.
 
-Reference : https://en.wikipedia.org/wiki/Kinetic_energy
+Reference: https://en.wikipedia.org/wiki/Kinetic_energy
 """
 
 from math import sqrt
@@ -56,9 +56,8 @@ def relativistic_kinetic_energy(mass: float, velocity: float) -> float:
 
     if mass < 0:
         raise ValueError("The mass of a body cannot be negative")
-    else:
-        gamma = 1 / sqrt(1 - (velocity**2 / c**2))
-        return (gamma - 1) * mass * c**2
+    gamma = 1 / sqrt(1 - (velocity**2 / c**2))
+    return (gamma - 1) * mass * c**2
 
 
 if __name__ == "__main__":
