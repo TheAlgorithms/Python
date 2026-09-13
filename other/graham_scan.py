@@ -21,7 +21,7 @@ class Direction(Enum):
     straight = 2
     right = 3
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}.{self.name}"
 
 
@@ -162,7 +162,7 @@ def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
                     # Because if the straight line keeps as straight,
                     # we want to know if this straight line is towards left.
                     break
-                elif current_direction == Direction.right:
+                if current_direction == Direction.right:
                     # If the straight line is towards right,
                     # every previous points on that straight line is not convex hull.
                     stack.pop()

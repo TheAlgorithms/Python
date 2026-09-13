@@ -100,7 +100,7 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
     return optimal_val, example_optional_set
 
 
-def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
+def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set) -> None:
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights

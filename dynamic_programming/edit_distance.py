@@ -18,7 +18,7 @@ class EditDistance:
     editDistanceResult  = solver.solve(firstString, secondString)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.word1 = ""
         self.word2 = ""
         self.dp = []
