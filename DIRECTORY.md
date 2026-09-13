@@ -425,6 +425,7 @@
   * [Climbing Stairs](dynamic_programming/climbing_stairs.py)
   * [Combination Sum Iv](dynamic_programming/combination_sum_iv.py)
   * [Edit Distance](dynamic_programming/edit_distance.py)
+  * [Egg Dropping](dynamic_programming/egg_dropping.py)
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
@@ -542,6 +543,7 @@
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
     * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
+  * [Triangle](geometry/triangle.py)
 
 ## [Graphics](graphics)
   * [Bezier Curve](graphics/bezier_curve.py)
@@ -591,6 +593,7 @@
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
+  * [Hopcroft Karp](graphs/hopcroft_karp.py)
   * [Johnson](graphs/johnson.py)
   * [Kahns Algorithm Long](graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](graphs/kahns_algorithm_topo.py)
