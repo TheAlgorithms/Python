@@ -425,6 +425,7 @@
   * [Climbing Stairs](dynamic_programming/climbing_stairs.py)
   * [Combination Sum Iv](dynamic_programming/combination_sum_iv.py)
   * [Edit Distance](dynamic_programming/edit_distance.py)
+  * [Egg Dropping](dynamic_programming/egg_dropping.py)
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
@@ -690,7 +691,6 @@
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
   * [Linear Discriminant Analysis](machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](machine_learning/linear_regression.py)
-  * [Ridge Regression](machine_learning/ridge_regression.py)
   * [Linear Regression Vectorized](machine_learning/linear_regression_vectorized.py)
   * Local Weighted Learning
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
@@ -704,12 +704,16 @@
   * [Principle Component Analysis](machine_learning/principle_component_analysis.py)
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
+  * [Ridge Regression](machine_learning/ridge_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [T Stochastic Neighbour Embedding](machine_learning/t_stochastic_neighbour_embedding.py)
+  * Tests
+    * [Conftest](machine_learning/tests/conftest.py)
+    * [Test Ridge Regression](machine_learning/tests/test_ridge_regression.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## [Maths](maths)
