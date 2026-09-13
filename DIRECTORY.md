@@ -1017,6 +1017,7 @@
   * [Escape Velocity](physics/escape_velocity.py)
   * [Faraday Lenz Law](physics/faraday_lenz_law.py)
   * [First Law Of Thermodynamics](physics/first_law_of_thermodynamics.py)
+  * [Fresnel Diffract](physics/fresnel_diffract.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Hamiltonian](physics/hamiltonian.py)
   * [Hookes Law](physics/hookes_law.py)
