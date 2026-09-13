@@ -9,7 +9,7 @@ T = TypeVar("T")
 
 
 class Node[T]:
-    def __init__(self, data: T):
+    def __init__(self, data: T) -> None:
         self.data = data
         self.next: Node[T] | None = None
 

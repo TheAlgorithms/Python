@@ -26,7 +26,7 @@ def lucas_lehmer_test(p: int) -> bool:
 
     if p < 2:
         raise ValueError("p should not be less than 2!")
-    elif p == 2:
+    if p == 2:
         return True
 
     s = 4

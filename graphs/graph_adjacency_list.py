@@ -488,7 +488,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             for edge in edges:
                 if len(more_random_edges) == len(random_edges):
                     break
-                elif edge not in more_random_edges and edge not in random_edges:
+                if edge not in more_random_edges and edge not in random_edges:
                     more_random_edges.append(edge)
 
         for i, _ in enumerate(random_edges):
@@ -564,7 +564,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             for edge in edges:
                 if len(more_random_edges) == len(random_edges):
                     break
-                elif edge not in more_random_edges and edge not in random_edges:
+                if edge not in more_random_edges and edge not in random_edges:
                     more_random_edges.append(edge)
 
         for edge in more_random_edges:

@@ -56,7 +56,7 @@ def collatz_sequence(n: int) -> Generator[int]:
         yield n
 
 
-def main():
+def main() -> None:
     n = int(input("Your number: "))
     sequence = tuple(collatz_sequence(n))
     print(sequence)

@@ -14,24 +14,24 @@ class _DoublyLinkedBase:
     class _Node:
         __slots__ = "_data", "_next", "_prev"
 
-        def __init__(self, link_p, element, link_n):
+        def __init__(self, link_p, element, link_n) -> None:
             self._prev = link_p
             self._data = element
             self._next = link_n
 
-        def has_next_and_prev(self):
+        def has_next_and_prev(self) -> str:
             return (
                 f" Prev -> {self._prev is not None}, Next -> {self._next is not None}"
             )
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._header = self._Node(None, None, None)
         self._trailer = self._Node(None, None, None)
         self._header._next = self._trailer
         self._trailer._prev = self._header
         self._size = 0
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self._size
 
     def is_empty(self):
