@@ -77,6 +77,10 @@ def bucket_sort(
     >>> data = [9, 2, 7, 1, 5]
     >>> bucket_sort(data) == sorted(data)
     True
+    >>> bucket_sort(data, 3.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: bucket_count must be an integer
     """
 
     if not isinstance(bucket_count, int):
