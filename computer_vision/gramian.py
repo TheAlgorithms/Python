@@ -1,6 +1,8 @@
 """
 Image style reconstruction with Gram matrices.
 
+https://en.wikipedia.org/wiki/Gram_matrix
+https://en.wikipedia.org/wiki/Neural_style_transfer
 https://arxiv.org/pdf/1603.08155#page=7&zoom=auto,-294,3
 """
 
