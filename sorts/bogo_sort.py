@@ -16,7 +16,7 @@ python bogo_sort.py
 import random
 
 
-def bogo_sort(collection):
+def bogo_sort(collection: list) -> list:
     """Pure implementation of the bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -30,7 +30,7 @@ def bogo_sort(collection):
     [-45, -5, -2]
     """
 
-    def is_sorted(collection):
+    def is_sorted(collection: list) -> bool:
         for i in range(len(collection) - 1):
             if collection[i] > collection[i + 1]:
                 return False

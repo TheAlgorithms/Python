@@ -1,0 +1,7 @@
+rules:
+  excessive-permissions:
+    disable: true
+  unpinned-uses:
+    config:
+      policies:
+        "*": ref-pin
