@@ -31,13 +31,15 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     comparable items inside
     :return: the same collection ordered by ascending
 
-    Time Complexity:
-        Best Case: O(n)
-        Average Case: O(n²)
-        Worst Case: O(n²)
+    Complexity Analysis:
+        Time Complexity:
+            - Best Case: O(n) when the collection is already sorted
+            - Average Case: O(n^2)
+            - Worst Case: O(n^2) when the collection is sorted in reverse order
 
-    Space Complexity:
-        O(1) - sorts in place
+        Space Complexity:
+            - O(1) because the algorithm sorts the collection in place and
+              uses only a constant amount of additional memory
 
     Examples:
     >>> insertion_sort([0, 5, 3, 2, 2])
