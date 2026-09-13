@@ -126,7 +126,7 @@ def main() -> None:
     else:
         print("_None._")
 
-    print("\n## `{missing_count}` files not present in the working directory\n")
+    print(f"\n## `{missing_count}` files not present in the working directory\n")
     if missing:
         for path in sorted(missing):
             pr_list = " ".join(f"#{n}" for n in missing[path])
