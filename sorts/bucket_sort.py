@@ -88,7 +88,6 @@ def bucket_sort(
 
     if not isinstance(bucket_count, (bool, int)):
         raise TypeError("bucket_count must be an integer")
-
     if not my_list or bucket_count <= 0:
         return []
 
