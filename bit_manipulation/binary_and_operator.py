@@ -68,7 +68,7 @@ def binary_and(a: int, b: int) -> str:
     >>> binary_and(10, "1")
     Traceback (most recent call last):
         ...
-    TypeError: both inputs must be integers
+    TypeError: inputs must be integers
     """
     if not isinstance(a, int) or not isinstance(b, int):
         raise TypeError("inputs must be integers")
