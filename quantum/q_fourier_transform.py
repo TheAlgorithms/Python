@@ -14,6 +14,7 @@ References:
 https://en.wikipedia.org/wiki/Quantum_Fourier_transform
 https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.library.QFT
 """
+
 import math
 
 import numpy as np
@@ -66,7 +67,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     >>> quantum_fourier_transform(0.5)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits must be exact integer.
+    ValueError: number of qubits must be an exact integer.
 
     >>> result = quantum_fourier_transform(2)
     >>> 2350<=result['10']<=2600
@@ -128,3 +129,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    print("Total count for quantum Fourier transform state is:")
+    print(f"{quantum_fourier_transform(3) = }")
