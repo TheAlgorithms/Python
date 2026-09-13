@@ -116,6 +116,8 @@ def main() -> None:
     print(f"- Number of files: `{file_count}`")
     print(f"- Existing files: `{existing_count}`")
     print(f"- Missing files: `{missing_count}`\n")
+    if pr_count == 0:
+        print("No open pull requests found.\n")
 
     print("## Existing files\n")
     if existing:
