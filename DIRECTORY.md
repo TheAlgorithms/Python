@@ -1025,6 +1025,7 @@
   * [In Static Equilibrium](physics/in_static_equilibrium.py)
   * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lens Formulae](physics/lens_formulae.py)
+  * [Light Aberration](physics/light_aberration.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [Magnetic Flux](physics/magnetic_flux.py)
   * [Malus Law](physics/malus_law.py)
