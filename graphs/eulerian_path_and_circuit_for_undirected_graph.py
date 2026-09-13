@@ -32,7 +32,7 @@ def check_circuit_or_path(graph, max_node):
     return 3, odd_node
 
 
-def check_euler(graph, max_node):
+def check_euler(graph, max_node) -> None:
     visited_edge = [[False for _ in range(max_node + 1)] for _ in range(max_node + 1)]
     check, odd_node = check_circuit_or_path(graph, max_node)
     if check == 3:
@@ -49,7 +49,7 @@ def check_euler(graph, max_node):
     print(path)
 
 
-def main():
+def main() -> None:
     g1 = {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}
     g2 = {1: [2, 3, 4, 5], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [1, 4]}
     g3 = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2], 4: [1, 2, 5], 5: [4]}
