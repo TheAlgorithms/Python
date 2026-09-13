@@ -11,15 +11,13 @@ Example:
 >>> xor_list.to_list()
 [10, 20, 30]
 """
+from dataclasses import dataclass
 
-# Note: 'from typing import Optional' is removed as we use the modern '|' syntax.
 
-
+@dataclass
 class Node:
-    def __init__(self, value: int) -> None:
-        """Initializes a Node with a value and a null pointer."""
-        self.value = value
-        self.both: int = 0  # XOR of prev and next node IDs
+    value: int
+    both: int = 0  # XOR of prev and next node IDs
 
 
 class XORLinkedList:
