@@ -7,7 +7,7 @@ code = []
 gear_one_pos = gear_two_pos = gear_three_pos = 0
 
 
-def rotator():
+def rotator() -> None:
     global gear_one_pos
     global gear_two_pos
     global gear_three_pos
@@ -27,7 +27,7 @@ def rotator():
             gear_three_pos += 1
 
 
-def engine(input_character):
+def engine(input_character) -> None:
     target = alphabets.index(input_character)
     target = gear_one[target]
     target = gear_two[target]

@@ -44,13 +44,13 @@ def electric_conductivity(
     """
     if (conductivity, electron_conc, mobility).count(0) != 1:
         raise ValueError("You cannot supply more or less than 2 values")
-    elif conductivity < 0:
+    if conductivity < 0:
         raise ValueError("Conductivity cannot be negative")
-    elif electron_conc < 0:
+    if electron_conc < 0:
         raise ValueError("Electron concentration cannot be negative")
-    elif mobility < 0:
+    if mobility < 0:
         raise ValueError("mobility cannot be negative")
-    elif conductivity == 0:
+    if conductivity == 0:
         return (
             "conductivity",
             mobility * electron_conc * ELECTRON_CHARGE,

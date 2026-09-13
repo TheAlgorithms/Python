@@ -60,7 +60,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
     return abs(x)
 
 
-def main():
+def main() -> None:
     """
     Call Greatest Common Divisor function.
     """
