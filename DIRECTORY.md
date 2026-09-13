@@ -659,6 +659,7 @@
     * [Test Knapsack](knapsack/tests/test_knapsack.py)
 
 ## [Linear Algebra](linear_algebra)
+  * [Gauss Jordan](linear_algebra/gauss_jordan.py)
   * [Gaussian Elimination](linear_algebra/gaussian_elimination.py)
   * [Jacobi Iteration Method](linear_algebra/jacobi_iteration_method.py)
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
