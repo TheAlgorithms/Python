@@ -22,18 +22,25 @@ def binary_and(a: int, b: int) -> str:
     >>> binary_and(0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of both inputs must be positive
+    ValueError: the value of both inputs must be non-negative
     >>> binary_and(0, 1.1)
     Traceback (most recent call last):
         ...
-    ValueError: Unknown format code 'b' for object of type 'float'
+    TypeError: both inputs must be integers
     >>> binary_and("0", "1")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: both inputs must be integers
+    >>> binary_and(10, "1")
+    Traceback (most recent call last):
+        ...
+    TypeError: both inputs must be integers
     """
+    if type(a) is not int or type(b) is not int:
+        raise TypeError("both inputs must be integers")
+
     if a < 0 or b < 0:
-        raise ValueError("the value of both inputs must be positive")
+        raise ValueError("the value of both inputs must be non-negative")
 
     a_binary = format(a, "b")
     b_binary = format(b, "b")
