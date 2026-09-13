@@ -72,6 +72,7 @@ def estimate_pi(number_of_simulations: int, seed: int | None = None) -> float:
 
 if __name__ == "__main__":
     import doctest
+    from math import pi
 
     doctest.testmod()
     prompt = "Please enter the desired number of Monte Carlo simulations: "
