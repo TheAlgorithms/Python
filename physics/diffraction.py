@@ -94,7 +94,7 @@ def intensity_double_slit(path_diff: int = 0, intensity_max: str | float = "I0")
     r_val = (
         str(4 * intensity_max * (math.cos(path_diff / 2)) ** 2)
         if (type(intensity_max) is float or type(intensity_max) is int)
-        else f"{4*(math.cos(path_diff/2)**2)} I0"
+        else f"{4 * (math.cos(path_diff / 2) ** 2)} I0"
     )
     return r_val
 
