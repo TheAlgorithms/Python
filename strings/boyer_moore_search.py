@@ -32,7 +32,7 @@ class BoyerMooreSearch:
     where 'positions' contain the locations where the pattern was matched.
     """
 
-    def __init__(self, text: str, pattern: str):
+    def __init__(self, text: str, pattern: str) -> None:
         self.text, self.pattern = text, pattern
         self.textLen, self.patLen = len(text), len(pattern)
 

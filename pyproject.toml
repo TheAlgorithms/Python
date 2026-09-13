@@ -66,8 +66,9 @@ quantum = [
 target-version = "py314"
 output-format = "full"
 lint.select = [
-  # https://beta.ruff.rs/docs/rules
+  # https://docs.astral.sh/ruff/rules
   "A",     # flake8-builtins
+  "ANN",   # flake8-annotations
   "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
   "B",     # flake8-bugbear
@@ -96,6 +97,7 @@ lint.select = [
   "PL",    # Pylint
   "PT",    # flake8-pytest-style
   "PYI",   # flake8-pyi
+  "RET",   # flake8-return
   "RSE",   # flake8-raise
   "RUF",   # Ruff-specific rules
   "S",     # flake8-bandit
@@ -107,20 +109,27 @@ lint.select = [
   "UP",    # pyupgrade
   "W",     # pycodestyle
   "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations -- FIX ME?
   # "COM",  # flake8-commas -- DO NOT FIX
   # "D",    # pydocstyle -- FIX ME?
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
   # "PTH",  # flake8-use-pathlib  # FIX ME
   # "Q",    # flake8-quotes
-  # "RET",  # flake8-return  # FIX ME?
   # "T20",  # flake8-print
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
 ]
 lint.ignore = [
   # `ruff rule S101` for a description of that rule
+  "ANN001",  # missing-type-function-argument
+  "ANN002",  # missing-type-args
+  "ANN003",  # missing-type-kwargs
+  "ANN201",  # missing-return-type-undocumented-public-function
+  "ANN202",  # missing-return-type-private-function
+  "ANN204",  # missing-return-type-special-method
+  "ANN205",  # missing-return-type-static-method
+  "ANN206",  # missing-return-type-class-method
+  "ANN401",  # any-type
   "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
   "EM101",   # Exception must not use a string literal, assign to a variable first
@@ -135,6 +144,8 @@ lint.ignore = [
   "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",   # Assertion should be broken down into multiple parts
   "PT028",   # pytest-parameter-with-default-argument
+  "RET504",  # unnecessary-assign -- FIX ME
+  "RET505",  # superfluous-else-return -- FIX ME
   "S101",    # Use of `assert` detected -- DO NOT FIX
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX

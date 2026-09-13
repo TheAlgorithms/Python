@@ -122,7 +122,7 @@ def mean_absolute_error(predicted_y, original_y):
     return total / len(original_y)
 
 
-def main():
+def main() -> None:
     """Driver function"""
     data = collect_dataset()
 

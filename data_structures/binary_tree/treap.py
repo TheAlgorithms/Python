@@ -9,7 +9,7 @@ class Node:
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int | None = None):
+    def __init__(self, value: int | None = None) -> None:
         self.value = value
         self.prior = random()
         self.left: Node | None = None

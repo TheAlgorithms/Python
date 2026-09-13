@@ -34,13 +34,13 @@ repos:
       - id: pyproject-fmt
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.6
+    rev: v0.16.7
     hooks:
       - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.2.69
+    rev: v0.2.73
     hooks:
       - id: rumdl-fmt
       - id: rumdl
@@ -55,7 +55,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.11
+    rev: 0.12.13
     hooks:
       - id: uv-lock
 
