@@ -17,7 +17,7 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
 # Importing packages
-from math import radians as angle_to_radians
+from math import radians as deg_to_rad
 from math import sin
 
 # Acceleration Constant on Earth (unit m/s^2)
@@ -31,10 +31,10 @@ def check_args(init_velocity: float, angle: float) -> None:
 
     # Ensure valid instance
     if not isinstance(init_velocity, (int, float)):
-        raise TypeError("Invalid velocity. Should be a positive number.")
+        raise TypeError("Invalid velocity. Should be an integer or float.")
 
     if not isinstance(angle, (int, float)):
-        raise TypeError("Invalid angle. Range is 1-90 degrees.")
+        raise TypeError("Invalid angle. Should be an integer or float.")
 
     # Ensure valid angle
     if angle > 90 or angle < 1:
@@ -71,7 +71,7 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     ValueError: Invalid angle. Range is 1-90 degrees.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(2 * angle)
+    radians = deg_to_rad(2 * angle)
     return round(init_velocity**2 * sin(radians) / g, 2)
 
 
@@ -94,14 +94,14 @@ def max_height(init_velocity: float, angle: float) -> float:
     >>> max_height("a", 20)
     Traceback (most recent call last):
         ...
-    TypeError: Invalid velocity. Should be a positive number.
+    TypeError: Invalid velocity. Should be an integer or float.
     >>> horizontal_distance(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(angle)
+    radians = deg_to_rad(angle)
     return round(init_velocity**2 * sin(radians) ** 2 / (2 * g), 2)
 
 
@@ -128,10 +128,10 @@ def total_time(init_velocity: float, angle: float) -> float:
     >>> total_time(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(angle)
+    radians = deg_to_rad(angle)
     return round(2 * init_velocity * sin(radians) / g, 2)
 
 

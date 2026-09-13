@@ -134,10 +134,10 @@ def _plugboard(pbstring: str) -> dict[str, str]:
     if not isinstance(pbstring, str):
         msg = f"Plugboard setting isn't type string ({type(pbstring)})"
         raise TypeError(msg)
-    elif len(pbstring) % 2 != 0:
+    if len(pbstring) % 2 != 0:
         msg = f"Odd number of symbols ({len(pbstring)})"
         raise Exception(msg)
-    elif pbstring == "":
+    if pbstring == "":
         return {}
 
     pbstring.replace(" ", "")
@@ -148,11 +148,10 @@ def _plugboard(pbstring: str) -> dict[str, str]:
         if i not in abc:
             msg = f"'{i}' not in list of symbols"
             raise Exception(msg)
-        elif i in tmppbl:
+        if i in tmppbl:
             msg = f"Duplicate symbol ({i})"
             raise Exception(msg)
-        else:
-            tmppbl.add(i)
+        tmppbl.add(i)
     del tmppbl
 
     # Created the dictionary
