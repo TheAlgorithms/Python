@@ -1,4 +1,5 @@
 # https://en.wikipedia.org/wiki/Gaussian_elimination
+# https://en.wikipedia.org/wiki/Row_echelon_form
 
 import numpy as np
 
