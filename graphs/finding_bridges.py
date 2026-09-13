@@ -77,7 +77,7 @@ def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
     low = [0] * n
     visited = [False] * n
 
-    def dfs(at, parent, bridges, id_):
+    def dfs(at, parent, bridges, id_) -> None:
         visited[at] = True
         low[at] = id_
         id_ += 1

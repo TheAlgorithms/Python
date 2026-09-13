@@ -29,12 +29,19 @@ def is_prime(number: int) -> bool:
     True
     >>> is_prime(67483)
     False
+    >>> is_prime(16.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: is_prime() only accepts positive integers
+    >>> is_prime(-4)
+    Traceback (most recent call last):
+        ...
+    ValueError: is_prime() only accepts positive integers
     """
 
     # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and positive"
+    if not isinstance(number, int) or not number >= 0:
+        raise ValueError("is_prime() only accepts positive integers")
 
     if 1 < number < 4:
         # 2 and 3 are primes
@@ -51,7 +58,7 @@ def is_prime(number: int) -> bool:
 
 
 class Test(unittest.TestCase):
-    def test_primes(self):
+    def test_primes(self) -> None:
         assert is_prime(2)
         assert is_prime(3)
         assert is_prime(5)
@@ -63,15 +70,15 @@ class Test(unittest.TestCase):
         assert is_prime(23)
         assert is_prime(29)
 
-    def test_not_primes(self):
-        with pytest.raises(AssertionError):
+    def test_not_primes(self) -> None:
+        with pytest.raises(ValueError):
             is_prime(-19)
-        assert not is_prime(
-            0
-        ), "Zero doesn't have any positive factors, primes must have exactly two."
-        assert not is_prime(
-            1
-        ), "One only has 1 positive factor, primes must have exactly two."
+        assert not is_prime(0), (
+            "Zero doesn't have any positive factors, primes must have exactly two."
+        )
+        assert not is_prime(1), (
+            "One only has 1 positive factor, primes must have exactly two."
+        )
         assert not is_prime(2 * 2)
         assert not is_prime(2 * 3)
         assert not is_prime(3 * 3)

@@ -1,4 +1,5 @@
-""" Luhn Algorithm """
+"""Luhn Algorithm"""
+
 from __future__ import annotations
 
 

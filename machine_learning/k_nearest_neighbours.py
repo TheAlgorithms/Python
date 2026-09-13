@@ -42,7 +42,7 @@ class KNN:
         >>> KNN._euclidean_distance(np.array([1, 2, 3]), np.array([1, 8, 11]))
         10.0
         """
-        return np.linalg.norm(a - b)
+        return float(np.linalg.norm(a - b))
 
     def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
         """

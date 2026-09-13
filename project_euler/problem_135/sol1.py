@@ -3,9 +3,9 @@ Project Euler Problem 135: https://projecteuler.net/problem=135
 
 Given the positive integers, x, y, and z, are consecutive terms of an arithmetic
 progression, the least value of the positive integer, n, for which the equation,
-x2 − y2 − z2 = n, has exactly two solutions is n = 27:
+x2 - y2 - z2 = n, has exactly two solutions is n = 27:
 
-342 − 272 − 202 = 122 − 92 − 62 = 27
+342 - 272 - 202 = 122 - 92 - 62 = 27
 
 It turns out that n = 1155 is the least value which has exactly ten solutions.
 
@@ -38,13 +38,11 @@ def solution(limit: int = 1000000) -> int:
             common_difference = first_term + n / first_term
             if common_difference % 4:  # d must be divisible by 4
                 continue
-            else:
-                common_difference /= 4
-                if (
-                    first_term > common_difference
-                    and first_term < 4 * common_difference
-                ):  # since x, y, z are positive integers
-                    frequency[n] += 1  # so z > 0, a > d and 4d < a
+            common_difference /= 4
+            if (
+                first_term > common_difference and first_term < 4 * common_difference
+            ):  # since x, y, z are positive integers
+                frequency[n] += 1  # so z > 0, a > d and 4d < a
 
     count = sum(1 for x in frequency[1:limit] if x == 10)
 

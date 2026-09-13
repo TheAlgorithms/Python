@@ -1,12 +1,12 @@
 """
-    Calculate the exponential moving average (EMA) on the series of stock prices.
-    Wikipedia Reference: https://en.wikipedia.org/wiki/Exponential_smoothing
-    https://www.investopedia.com/terms/e/ema.asp#toc-what-is-an-exponential
-    -moving-average-ema
+Calculate the exponential moving average (EMA) on the series of stock prices.
+Wikipedia Reference: https://en.wikipedia.org/wiki/Exponential_smoothing
+https://www.investopedia.com/terms/e/ema.asp#toc-what-is-an-exponential
+-moving-average-ema
 
-    Exponential moving average is used in finance to analyze changes stock prices.
-    EMA is used in conjunction with Simple moving average (SMA), EMA reacts to the
-    changes in the value quicker than SMA, which is one of the advantages of using EMA.
+Exponential moving average is used in finance to analyze changes stock prices.
+EMA is used in conjunction with Simple moving average (SMA), EMA reacts to the
+changes in the value quicker than SMA, which is one of the advantages of using EMA.
 """
 
 from collections.abc import Iterator

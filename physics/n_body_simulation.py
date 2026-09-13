@@ -11,7 +11,6 @@ goes to infinity).
 (See also http://www.shodor.org/refdesk/Resources/Algorithms/EulersMethod/ )
 """
 
-
 from __future__ import annotations
 
 import random
@@ -165,9 +164,7 @@ class BodySystem:
 
                     # Calculation of the distance using Pythagoras's theorem
                     # Extra factor due to the softening technique
-                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (
-                        1 / 2
-                    )
+                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (1 / 2)
 
                     # Newton's law of universal gravitation.
                     force_x += (
@@ -242,7 +239,7 @@ def plot(
         ax.add_patch(patch)
 
     # Function called at each step of the animation
-    def update(frame: int) -> list[plt.Circle]:
+    def update(frame: int) -> list[plt.Circle]:  # noqa: ARG001
         update_step(body_system, DELTA_TIME, patches)
         return patches
 

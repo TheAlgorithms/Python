@@ -31,7 +31,7 @@ This effect is used in polarimetry to measure the optical activity of a sample.
 Real polarizers are also not perfect blockers of the polarization orthogonal to
 their polarization axis; the ratio of the transmission of the unwanted component
 to the wanted component is called the extinction ratio, and varies from around
-1:500 for Polaroid to about 1:106 for Glan–Taylor prism polarizers.
+1:500 for Polaroid to about 1:106 for Glan-Taylor prism polarizers.
 
 Reference : "https://en.wikipedia.org/wiki/Polarizer#Malus's_law_and_other_properties"
 """

@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import random
 from collections.abc import Iterable
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 T = TypeVar("T", bound=bool)
 
 
-class RandomizedHeapNode(Generic[T]):
+class RandomizedHeapNode[T: bool]:
     """
     One node of the randomized heap. Contains the value and references to
     two children.
@@ -22,14 +22,40 @@ class RandomizedHeapNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> rhn = RandomizedHeapNode(10)
+        >>> rhn.value
+        10
+        >>> rhn = RandomizedHeapNode(-10)
+        >>> rhn.value
+        -10
+        """
         return self._value
 
     @staticmethod
     def merge(
         root1: RandomizedHeapNode[T] | None, root2: RandomizedHeapNode[T] | None
     ) -> RandomizedHeapNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+
+        >>> rhn1 = RandomizedHeapNode(10)
+        >>> rhn2 = RandomizedHeapNode(20)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(20)
+        >>> rhn2 = RandomizedHeapNode(10)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(5)
+        >>> rhn2 = RandomizedHeapNode(0)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        0
+        """
         if not root1:
             return root2
 
@@ -47,7 +73,7 @@ class RandomizedHeapNode(Generic[T]):
         return root1
 
 
-class RandomizedHeap(Generic[T]):
+class RandomizedHeap[T: bool]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the

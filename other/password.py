@@ -51,18 +51,6 @@ def random(chars_incl: str, i: int) -> str:
     return "".join(secrets.choice(chars_incl) for _ in range(i))
 
 
-def random_number(chars_incl, i):
-    pass  # Put your code here...
-
-
-def random_letters(chars_incl, i):
-    pass  # Put your code here...
-
-
-def random_characters(chars_incl, i):
-    pass  # Put your code here...
-
-
 def is_strong_password(password: str, min_length: int = 8) -> bool:
     """
     This will check whether a given password is strong or not. The password must be at
@@ -92,7 +80,7 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     return upper and lower and num and spec_char
 
 
-def main():
+def main() -> None:
     length = int(input("Please indicate the max length of your password: ").strip())
     chars_incl = input(
         "Please indicate the characters that must be in your password: "

@@ -1,4 +1,4 @@
-""" Convert Base 10 (Decimal) Values to Hexadecimal Representations """
+"""Convert Base 10 (Decimal) Values to Hexadecimal Representations"""
 
 # set decimal value for each hexadecimal digit
 values = {

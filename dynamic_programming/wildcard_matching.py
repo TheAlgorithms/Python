@@ -1,62 +1,68 @@
 """
-Given two strings, an input string and a pattern,
-this program checks if the input string matches the pattern.
+Author  : ilyas dahhou
+Date    : Oct 7, 2023
 
-Example :
-input_string = "baaabab"
-pattern = "*****ba*****ab"
-Output: True
+Task:
+Given an input string and a pattern, implement wildcard pattern matching with support
+for '?' and '*' where:
+'?' matches any single character.
+'*' matches any sequence of characters (including the empty sequence).
+The matching should cover the entire input string (not partial).
 
-This problem can be solved using the concept of "DYNAMIC PROGRAMMING".
+Runtime complexity: O(m * n)
 
-We create a 2D boolean matrix, where each entry match_matrix[i][j] is True
-if the first i characters in input_string match the first j characters
-of pattern. We initialize the first row and first column based on specific
-rules, then fill up the rest of the matrix using a bottom-up dynamic
-programming approach.
-
-The amount of match that will be determined is equal to match_matrix[n][m]
-where n and m are lengths of the input_string and pattern respectively.
-
+The implementation was tested on the
+leetcode: https://leetcode.com/problems/wildcard-matching/
 """
 
 
-def is_pattern_match(input_string: str, pattern: str) -> bool:
+def is_match(string: str, pattern: str) -> bool:
     """
-    >>> is_pattern_match('baaabab','*****ba*****ba')
+    >>> is_match("", "")
+    True
+    >>> is_match("aa", "a")
     False
-    >>> is_pattern_match('baaabab','*****ba*****ab')
+    >>> is_match("abc", "abc")
     True
-    >>> is_pattern_match('aa','*')
+    >>> is_match("abc", "*c")
+    True
+    >>> is_match("abc", "a*")
+    True
+    >>> is_match("abc", "*a*")
+    True
+    >>> is_match("abc", "?b?")
+    True
+    >>> is_match("abc", "*?")
+    True
+    >>> is_match("abc", "a*d")
+    False
+    >>> is_match("abc", "a*c?")
+    False
+    >>> is_match('baaabab','*****ba*****ba')
+    False
+    >>> is_match('baaabab','*****ba*****ab')
+    True
+    >>> is_match('aa','*')
     True
     """
-
-    input_length = len(input_string)
-    pattern_length = len(pattern)
-
-    match_matrix = [[False] * (pattern_length + 1) for _ in range(input_length + 1)]
-
-    match_matrix[0][0] = True
-
-    for j in range(1, pattern_length + 1):
-        if pattern[j - 1] == "*":
-            match_matrix[0][j] = match_matrix[0][j - 1]
-
-    for i in range(1, input_length + 1):
-        for j in range(1, pattern_length + 1):
-            if pattern[j - 1] in ("?", input_string[i - 1]):
-                match_matrix[i][j] = match_matrix[i - 1][j - 1]
+    dp = [[False] * (len(pattern) + 1) for _ in string + "1"]
+    dp[0][0] = True
+    # Fill in the first row
+    for j, char in enumerate(pattern, 1):
+        if char == "*":
+            dp[0][j] = dp[0][j - 1]
+    # Fill in the rest of the DP table
+    for i, s_char in enumerate(string, 1):
+        for j, p_char in enumerate(pattern, 1):
+            if p_char in (s_char, "?"):
+                dp[i][j] = dp[i - 1][j - 1]
             elif pattern[j - 1] == "*":
-                match_matrix[i][j] = match_matrix[i - 1][j] or match_matrix[i][j - 1]
-            else:
-                match_matrix[i][j] = False
-
-    return match_matrix[input_length][pattern_length]
+                dp[i][j] = dp[i - 1][j] or dp[i][j - 1]
+    return dp[len(string)][len(pattern)]
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    print(f"{is_pattern_match('baaabab','*****ba*****ab')}")
+    print(f"{is_match('baaabab','*****ba*****ab') = }")

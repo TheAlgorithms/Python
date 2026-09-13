@@ -2,7 +2,8 @@
 Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis
 function.
 """
-import numpy
+
+import numpy as np
 
 # List of input, output pairs
 train_data = (
@@ -23,6 +24,9 @@ def _error(example_no, data_set="train"):
     :param data_set: train data or test data
     :param example_no: example number whose error has to be checked
     :return: error in example pointed by example number.
+
+    >>> _error(0)  # hypothesis 39 minus train output 15
+    24
     """
     return calculate_hypothesis_value(example_no, data_set) - output(
         example_no, data_set
@@ -37,6 +41,9 @@ def _hypothesis_value(data_input_tuple):
     Note that there is an 'biased input' whose value is fixed as 1.
     It is not explicitly mentioned in input data.. But, ML hypothesis functions use it.
     So, we have to take care of it separately. Line 36 takes care of it.
+
+    >>> _hypothesis_value((5, 2, 3))  # 5*4 + 2*1 + 3*5 + bias 2
+    39
     """
     hyp_val = 0
     for i in range(len(parameter_vector) - 1):
@@ -50,6 +57,13 @@ def output(example_no, data_set):
     :param data_set: test data or train data
     :param example_no: example whose output is to be fetched
     :return: output for that example
+
+    >>> output(0, "train")
+    15
+    >>> output(1, "test")
+    150
+    >>> output(0, "unknown") is None
+    True
     """
     if data_set == "train":
         return train_data[example_no][1]
@@ -64,6 +78,13 @@ def calculate_hypothesis_value(example_no, data_set):
     :param data_set: test data or train_data
     :param example_no: example whose hypothesis value is to be calculated
     :return: hypothesis value for that example
+
+    >>> calculate_hypothesis_value(0, "train")
+    39
+    >>> calculate_hypothesis_value(0, "test")
+    2149
+    >>> calculate_hypothesis_value(0, "unknown") is None
+    True
     """
     if data_set == "train":
         return _hypothesis_value(train_data[example_no][0])
@@ -80,6 +101,11 @@ def summation_of_cost_derivative(index, end=m):
     :return: Returns the summation of cost derivative
     Note: If index is -1, this means we are calculating summation wrt to biased
         parameter.
+
+    >>> summation_of_cost_derivative(-1)  # sum of errors over all examples
+    243
+    >>> summation_of_cost_derivative(0)
+    2234
     """
     summation_value = 0
     for i in range(end):
@@ -96,12 +122,17 @@ def get_cost_derivative(index):
     :return: derivative wrt to that index
     Note: If index is -1, this means we are calculating summation wrt to biased
         parameter.
+
+    >>> get_cost_derivative(-1)  # 243 / 5 examples
+    48.6
+    >>> get_cost_derivative(0)  # 2234 / 5 examples
+    446.8
     """
     cost_derivative_value = summation_of_cost_derivative(index, m) / m
     return cost_derivative_value
 
 
-def run_gradient_descent():
+def run_gradient_descent() -> None:
     global parameter_vector
     # Tune these values to set a tolerance value for predicted output
     absolute_error_limit = 0.000002
@@ -115,7 +146,7 @@ def run_gradient_descent():
             temp_parameter_vector[i] = (
                 parameter_vector[i] - LEARNING_RATE * cost_derivative
             )
-        if numpy.allclose(
+        if np.allclose(
             parameter_vector,
             temp_parameter_vector,
             atol=absolute_error_limit,
@@ -126,7 +157,7 @@ def run_gradient_descent():
     print(("Number of iterations:", j))
 
 
-def test_gradient_descent():
+def test_gradient_descent() -> None:
     for i in range(len(test_data)):
         print(("Actual output value:", output(i, "test")))
         print(("Hypothesis output:", calculate_hypothesis_value(i, "test")))
