@@ -11,6 +11,7 @@ Example:
 >>> xor_list.to_list()
 [10, 20, 30]
 """
+
 from dataclasses import dataclass
 
 
