@@ -5,6 +5,7 @@ import sys
 def minimum_squares_to_represent_a_number(number: int) -> int:
     """
     Count the number of minimum squares to represent a number
+
     >>> minimum_squares_to_represent_a_number(25)
     1
     >>> minimum_squares_to_represent_a_number(37)
