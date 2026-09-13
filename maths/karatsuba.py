@@ -1,7 +1,7 @@
-""" Multiply two numbers using Karatsuba algorithm """
+"""Multiply two numbers using Karatsuba algorithm"""
 
 
-def karatsuba(a, b):
+def karatsuba(a: int, b: int) -> int:
     """
     >>> karatsuba(15463, 23489) == 15463 * 23489
     True
@@ -24,7 +24,7 @@ def karatsuba(a, b):
     return (z * 10 ** (2 * m2)) + ((y - z - x) * 10 ** (m2)) + (x)
 
 
-def main():
+def main() -> None:
     print(karatsuba(15463, 23489))
 
 

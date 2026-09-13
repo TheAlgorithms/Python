@@ -1,5 +1,5 @@
 """
-This is a pure Python implementation of the merge-insertion sort algorithm
+This is a pure Python implementation of the Graham scan algorithm
 Source: https://en.wikipedia.org/wiki/Graham_scan
 
 For doctests run following command:
@@ -21,7 +21,7 @@ class Direction(Enum):
     straight = 2
     right = 3
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}.{self.name}"
 
 
@@ -142,8 +142,8 @@ def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
     stack.append(sorted_points[0])
     stack.append(sorted_points[1])
     stack.append(sorted_points[2])
-    # In any ways, the first 3 points line are towards left.
-    # Because we sort them the angle from minx, miny.
+    # The first 3 points lines are towards the left because we sort them by their angle
+    # from minx, miny.
     current_direction = Direction.left
 
     for i in range(3, len(sorted_points)):
@@ -162,9 +162,9 @@ def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
                     # Because if the straight line keeps as straight,
                     # we want to know if this straight line is towards left.
                     break
-                elif current_direction == Direction.right:
+                if current_direction == Direction.right:
                     # If the straight line is towards right,
-                    # every previous points on those straigh line is not convex hull.
+                    # every previous points on that straight line is not convex hull.
                     stack.pop()
             if next_direction == Direction.right:
                 stack.pop()

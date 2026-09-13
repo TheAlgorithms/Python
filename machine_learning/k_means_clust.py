@@ -37,9 +37,16 @@ Usage:
             heterogeneity,
             k
         )
-  5. Transfers Dataframe into excel format it must have feature called
+  5. Plot the labeled 3D data points with centroids.
+        plot_kmeans(
+            X,
+            centroids,
+            cluster_assignment
+        )
+  6. Transfers Dataframe into excel format it must have feature called
       'Clust' with k means clustering numbers in it.
 """
+
 import warnings
 
 import numpy as np
@@ -54,12 +61,12 @@ TAG = "K-MEANS-CLUST/ "
 
 def get_initial_centroids(data, k, seed=None):
     """Randomly choose k data points as initial centroids"""
-    if seed is not None:  # useful for obtaining consistent results
-        np.random.seed(seed)
+    # useful for obtaining consistent results
+    rng = np.random.default_rng(seed)
     n = data.shape[0]  # number of data points
 
     # Pick K indices from range [0, N).
-    rand_indices = np.random.randint(0, n, k)
+    rand_indices = rng.integers(0, n, k)
 
     # Keep centroids as dense format, as many entries will be nonzero due to averaging.
     # As long as at least one document in a cluster contains a word,
@@ -74,6 +81,13 @@ def centroid_pairwise_dist(x, centroids):
 
 
 def assign_clusters(data, centroids):
+    """Assign each data point to the index of its nearest centroid.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> centroids = np.array([[0.0, 0.0], [10.0, 10.0]])
+    >>> assign_clusters(data, centroids).tolist()
+    [0, 0, 1, 1]
+    """
     # Compute distances between each data point and the set of centroids:
     # Fill in the blank (RHS only)
     distances_from_centroids = centroid_pairwise_dist(data, centroids)
@@ -86,6 +100,13 @@ def assign_clusters(data, centroids):
 
 
 def revise_centroids(data, k, cluster_assignment):
+    """Recompute each centroid as the mean of the points assigned to it.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> assignment = np.array([0, 0, 1, 1])
+    >>> revise_centroids(data, 2, assignment).tolist()
+    [[0.0, 0.5], [10.0, 10.5]]
+    """
     new_centroids = []
     for i in range(k):
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
@@ -99,6 +120,16 @@ def revise_centroids(data, k, cluster_assignment):
 
 
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
+    """Sum of squared distances from each point to its assigned centroid.
+
+    This is the objective k-means minimises; lower is a tighter clustering.
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> centroids = np.array([[0.0, 0.5], [10.0, 10.5]])
+    >>> assignment = np.array([0, 0, 1, 1])
+    >>> float(compute_heterogeneity(data, 2, centroids, assignment))
+    1.0
+    """
     heterogeneity = 0.0
     for i in range(k):
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
@@ -115,7 +146,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
     return heterogeneity
 
 
-def plot_heterogeneity(heterogeneity, k):
+def plot_heterogeneity(heterogeneity, k) -> None:
     plt.figure(figsize=(7, 4))
     plt.plot(heterogeneity, linewidth=4)
     plt.xlabel("# Iterations")
@@ -125,16 +156,38 @@ def plot_heterogeneity(heterogeneity, k):
     plt.show()
 
 
+def plot_kmeans(data, centroids, cluster_assignment) -> None:
+    ax = plt.axes(projection="3d")
+    ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
+    ax.scatter(
+        centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x"
+    )
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+    ax.set_title("3D K-Means Clustering Visualization")
+    plt.show()
+
+
 def kmeans(
     data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False
 ):
-    """This function runs k-means on given data and initial set of centroids.
+    """Runs k-means on given data and initial set of centroids.
     maxiter: maximum number of iterations to run.(default=500)
     record_heterogeneity: (optional) a list, to store the history of heterogeneity
                           as function of iterations
                           if None, do not store the history.
     verbose: if True, print how many data points changed their cluster labels in
-                          each iteration"""
+                          each iteration
+
+    >>> data = np.array([[0.0, 0.0], [0.0, 1.0], [10.0, 10.0], [10.0, 11.0]])
+    >>> initial_centroids = np.array([[0.0, 0.0], [10.0, 10.0]])
+    >>> centroids, assignment = kmeans(data, 2, initial_centroids, maxiter=10)
+    >>> centroids.tolist()
+    [[0.0, 0.5], [10.0, 10.5]]
+    >>> assignment.tolist()
+    [0, 0, 1, 1]
+    """
     centroids = initial_centroids[:]
     prev_cluster_assignment = None
 
@@ -192,23 +245,24 @@ if False:  # change to true to run this test case.
         verbose=True,
     )
     plot_heterogeneity(heterogeneity, k)
+    plot_kmeans(dataset["data"], centroids, cluster_assignment)
 
 
 def report_generator(
-    df: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
+    predicted: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
 ) -> pd.DataFrame:
     """
-    Generates a clustering report. This function takes 2 arguments as input:
-        df - dataframe with predicted cluster column
+    Generate a clustering report given these two arguments:
+        predicted - dataframe with predicted cluster column
         fill_missing_report - dictionary of rules on how we are going to fill in missing
         values for final generated report (not included in modelling);
-    >>> data = pd.DataFrame()
-    >>> data['numbers'] = [1, 2, 3]
-    >>> data['col1'] = [0.5, 2.5, 4.5]
-    >>> data['col2'] = [100, 200, 300]
-    >>> data['col3'] = [10, 20, 30]
-    >>> data['Cluster'] = [1, 1, 2]
-    >>> report_generator(data, ['col1', 'col2'], 0)
+    >>> predicted = pd.DataFrame()
+    >>> predicted['numbers'] = [1, 2, 3]
+    >>> predicted['col1'] = [0.5, 2.5, 4.5]
+    >>> predicted['col2'] = [100, 200, 300]
+    >>> predicted['col3'] = [10, 20, 30]
+    >>> predicted['Cluster'] = [1, 1, 2]
+    >>> report_generator(predicted, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
     1    % of Customers  ClusterProportion  False    0.666667    0.333333
@@ -226,18 +280,18 @@ def report_generator(
     """
     # Fill missing values with given rules
     if fill_missing_report:
-        df = df.fillna(value=fill_missing_report)
-    df["dummy"] = 1
-    numeric_cols = df.select_dtypes(np.number).columns
+        predicted = predicted.fillna(value=fill_missing_report)
+    predicted["dummy"] = 1
+    numeric_cols = predicted.select_dtypes(np.number).columns
     report = (
-        df.groupby(["Cluster"])[  # construct report dataframe
+        predicted.groupby(["Cluster"])[  # construct report dataframe
             numeric_cols
         ]  # group by cluster number
         .agg(
             [
-                ("sum", np.sum),
+                ("sum", "sum"),
                 ("mean_with_zeros", lambda x: np.mean(np.nan_to_num(x))),
-                ("mean_without_zeros", lambda x: x.replace(0, np.NaN).mean()),
+                ("mean_without_zeros", lambda x: x.replace(0, np.nan).mean()),
                 (
                     "mean_25-75",
                     lambda x: np.mean(
@@ -248,7 +302,7 @@ def report_generator(
                         )
                     ),
                 ),
-                ("mean_with_na", np.mean),
+                ("mean_with_na", "mean"),
                 ("min", lambda x: x.min()),
                 ("5%", lambda x: x.quantile(0.05)),
                 ("25%", lambda x: x.quantile(0.25)),
@@ -267,46 +321,43 @@ def report_generator(
         .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
     )  # rename columns
     # calculate the size of cluster(count of clientID's)
+    # avoid SettingWithCopyWarning
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ].copy()  # avoid SettingWithCopyWarning
-    clustersize.Type = (
-        "ClusterSize"  # rename created cluster df to match report column names
-    )
+    ].copy()
+    # rename created predicted cluster to match report column names
+    clustersize.Type = "ClusterSize"
     clustersize.Features = "# of Customers"
+    # calculating the proportion of cluster
     clusterproportion = pd.DataFrame(
-        clustersize.iloc[:, 2:].values
-        / clustersize.iloc[:, 2:].values.sum()  # calculating the proportion of cluster
+        clustersize.iloc[:, 2:].to_numpy() / clustersize.iloc[:, 2:].to_numpy().sum()
     )
-    clusterproportion[
-        "Type"
-    ] = "% of Customers"  # rename created cluster df to match report column names
+    # rename created predicted cluster to match report column names
+    clusterproportion["Type"] = "% of Customers"
     clusterproportion["Features"] = "ClusterProportion"
     cols = clusterproportion.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     clusterproportion = clusterproportion[cols]  # rearrange columns to match report
     clusterproportion.columns = report.columns
+    # generating dataframe with count of nan values
     a = pd.DataFrame(
         abs(
-            report[report["Type"] == "count"].iloc[:, 2:].values
-            - clustersize.iloc[:, 2:].values
+            report[report["Type"] == "count"].iloc[:, 2:].to_numpy()
+            - clustersize.iloc[:, 2:].to_numpy()
         )
-    )  # generating df with count of nan values
+    )
     a["Features"] = 0
     a["Type"] = "# of nan"
-    a.Features = report[
-        report["Type"] == "count"
-    ].Features.tolist()  # filling values in order to match report
+    # filling values in order to match report
+    a.Features = report[report["Type"] == "count"].Features.tolist()
     cols = a.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     a = a[cols]  # rearrange columns to match report
     a.columns = report.columns  # rename columns to match report
-    report = report.drop(
-        report[report.Type == "count"].index
-    )  # drop count values except for cluster size
-    report = pd.concat(
-        [report, a, clustersize, clusterproportion], axis=0
-    )  # concat report with cluster size and nan values
+    # drop count values except for cluster size
+    report = report.drop(report[report.Type == "count"].index)
+    # concat report with cluster size and nan values
+    report = pd.concat([report, a, clustersize, clusterproportion], axis=0)
     report["Mark"] = report["Features"].isin(clustering_variables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]

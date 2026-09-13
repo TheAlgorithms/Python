@@ -147,44 +147,44 @@ def generate_random_hands(number_of_hands: int = 100):
     return (generate_random_hand() for _ in range(number_of_hands))
 
 
-@pytest.mark.parametrize("hand, expected", TEST_FLUSH)
-def test_hand_is_flush(hand, expected):
+@pytest.mark.parametrize(("hand", "expected"), TEST_FLUSH)
+def test_hand_is_flush(hand, expected) -> None:
     assert PokerHand(hand)._is_flush() == expected
 
 
-@pytest.mark.parametrize("hand, expected", TEST_STRAIGHT)
-def test_hand_is_straight(hand, expected):
+@pytest.mark.parametrize(("hand", "expected"), TEST_STRAIGHT)
+def test_hand_is_straight(hand, expected) -> None:
     assert PokerHand(hand)._is_straight() == expected
 
 
-@pytest.mark.parametrize("hand, expected, card_values", TEST_FIVE_HIGH_STRAIGHT)
-def test_hand_is_five_high_straight(hand, expected, card_values):
+@pytest.mark.parametrize(("hand", "expected", "card_values"), TEST_FIVE_HIGH_STRAIGHT)
+def test_hand_is_five_high_straight(hand, expected, card_values) -> None:
     player = PokerHand(hand)
     assert player._is_five_high_straight() == expected
     assert player._card_values == card_values
 
 
-@pytest.mark.parametrize("hand, expected", TEST_KIND)
-def test_hand_is_same_kind(hand, expected):
+@pytest.mark.parametrize(("hand", "expected"), TEST_KIND)
+def test_hand_is_same_kind(hand, expected) -> None:
     assert PokerHand(hand)._is_same_kind() == expected
 
 
-@pytest.mark.parametrize("hand, expected", TEST_TYPES)
-def test_hand_values(hand, expected):
+@pytest.mark.parametrize(("hand", "expected"), TEST_TYPES)
+def test_hand_values(hand, expected) -> None:
     assert PokerHand(hand)._hand_type == expected
 
 
-@pytest.mark.parametrize("hand, other, expected", TEST_COMPARE)
-def test_compare_simple(hand, other, expected):
+@pytest.mark.parametrize(("hand", "other", "expected"), TEST_COMPARE)
+def test_compare_simple(hand, other, expected) -> None:
     assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
 
-@pytest.mark.parametrize("hand, other, expected", generate_random_hands())
-def test_compare_random(hand, other, expected):
+@pytest.mark.parametrize(("hand", "other", "expected"), generate_random_hands())
+def test_compare_random(hand, other, expected) -> None:
     assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
 
-def test_hand_sorted():
+def test_hand_sorted() -> None:
     poker_hands = [PokerHand(hand) for hand in SORTED_HANDS]
     list_copy = poker_hands.copy()
     shuffle(list_copy)
@@ -193,14 +193,14 @@ def test_hand_sorted():
         assert hand == poker_hands[index]
 
 
-def test_custom_sort_five_high_straight():
+def test_custom_sort_five_high_straight() -> None:
     # Test that five high straights are compared correctly.
     pokerhands = [PokerHand("2D AC 3H 4H 5S"), PokerHand("2S 3H 4H 5S 6C")]
     pokerhands.sort(reverse=True)
     assert pokerhands[0].__str__() == "2S 3H 4H 5S 6C"
 
 
-def test_multiple_calls_five_high_straight():
+def test_multiple_calls_five_high_straight() -> None:
     # Multiple calls to five_high_straight function should still return True
     # and shouldn't mutate the list in every call other than the first.
     pokerhand = PokerHand("2C 4S AS 3D 5C")
@@ -211,7 +211,7 @@ def test_multiple_calls_five_high_straight():
         assert pokerhand._card_values == expected_card_values
 
 
-def test_euler_project():
+def test_euler_project() -> None:
     # Problem number 54 from Project Euler
     # Testing from poker_hands.txt file
     answer = 0

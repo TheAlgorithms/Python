@@ -1,6 +1,8 @@
 import unittest
 from timeit import timeit
 
+from maths.greatest_common_divisor import greatest_common_divisor
+
 
 def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     """
@@ -20,26 +22,6 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     return common_mult
 
 
-def greatest_common_divisor(a: int, b: int) -> int:
-    """
-    Calculate Greatest Common Divisor (GCD).
-    see greatest_common_divisor.py
-    >>> greatest_common_divisor(24, 40)
-    8
-    >>> greatest_common_divisor(1, 1)
-    1
-    >>> greatest_common_divisor(1, 800)
-    1
-    >>> greatest_common_divisor(11, 37)
-    1
-    >>> greatest_common_divisor(3, 5)
-    1
-    >>> greatest_common_divisor(16, 4)
-    4
-    """
-    return b if a == 0 else greatest_common_divisor(b % a, a)
-
-
 def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     """
     Find the least common multiple of two numbers.
@@ -52,7 +34,7 @@ def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     return first_num // greatest_common_divisor(first_num, second_num) * second_num
 
 
-def benchmark():
+def benchmark() -> None:
     setup = (
         "from __main__ import least_common_multiple_slow, least_common_multiple_fast"
     )
@@ -80,13 +62,13 @@ class TestLeastCommonMultiple(unittest.TestCase):
     )
     expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18)
 
-    def test_lcm_function(self):
+    def test_lcm_function(self) -> None:
         for i, (first_num, second_num) in enumerate(self.test_inputs):
             slow_result = least_common_multiple_slow(first_num, second_num)
             fast_result = least_common_multiple_fast(first_num, second_num)
             with self.subTest(i=i):
-                self.assertEqual(slow_result, self.expected_results[i])
-                self.assertEqual(fast_result, self.expected_results[i])
+                assert slow_result == self.expected_results[i]
+                assert fast_result == self.expected_results[i]
 
 
 if __name__ == "__main__":

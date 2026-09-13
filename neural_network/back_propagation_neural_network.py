@@ -2,10 +2,10 @@
 
 """
 
-A Framework of Back Propagation Neural Network（BP） model
+A Framework of Back Propagation Neural Network (BP) model
 
 Easy to use:
-    * add many layers as you want ！！！
+    * add many layers as you want ! ! !
     * clearly see how the loss decreasing
 Easy to expand:
     * more activation functions
@@ -17,6 +17,7 @@ Github : https://github.com/RiptideBo
 Date: 2017.11.23
 
 """
+
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -32,7 +33,7 @@ class DenseLayer:
 
     def __init__(
         self, units, activation=None, learning_rate=None, is_input_layer=False
-    ):
+    ) -> None:
         """
         common connected layer of bp network
         :param units: numbers of neural units
@@ -49,9 +50,10 @@ class DenseLayer:
         self.learn_rate = learning_rate
         self.is_input_layer = is_input_layer
 
-    def initializer(self, back_units):
-        self.weight = np.asmatrix(np.random.normal(0, 0.5, (self.units, back_units)))
-        self.bias = np.asmatrix(np.random.normal(0, 0.5, self.units)).T
+    def initializer(self, back_units) -> None:
+        rng = np.random.default_rng()
+        self.weight = np.asmatrix(rng.normal(0, 0.5, (self.units, back_units)))
+        self.bias = np.asmatrix(rng.normal(0, 0.5, self.units)).T
         if self.activation is None:
             self.activation = sigmoid
 
@@ -99,23 +101,23 @@ class BPNN:
     Back Propagation Neural Network model
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.layers = []
         self.train_mse = []
         self.fig_loss = plt.figure()
         self.ax_loss = self.fig_loss.add_subplot(1, 1, 1)
 
-    def add_layer(self, layer):
+    def add_layer(self, layer) -> None:
         self.layers.append(layer)
 
-    def build(self):
+    def build(self) -> None:
         for i, layer in enumerate(self.layers[:]):
             if i < 1:
                 layer.is_input_layer = True
             else:
                 layer.initializer(self.layers[i - 1].units)
 
-    def summary(self):
+    def summary(self) -> None:
         for i, layer in enumerate(self.layers[:]):
             print(f"------- layer {i} -------")
             print("weight.shape ", np.shape(layer.weight))
@@ -161,7 +163,7 @@ class BPNN:
         # vector (shape is the same as _ydata.shape)
         return self.loss, self.loss_gradient
 
-    def plot_loss(self):
+    def plot_loss(self) -> None:
         if self.ax_loss.lines:
             self.ax_loss.lines.remove(self.ax_loss.lines[0])
         self.ax_loss.plot(self.train_mse, "r-")
@@ -172,8 +174,9 @@ class BPNN:
         plt.pause(0.1)
 
 
-def example():
-    x = np.random.randn(10, 10)
+def example() -> None:
+    rng = np.random.default_rng()
+    x = rng.normal(size=(10, 10))
     y = np.asarray(
         [
             [0.8, 0.4],

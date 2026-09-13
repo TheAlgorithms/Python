@@ -31,7 +31,7 @@ def median(nums: list) -> int | float:
     )
 
 
-def main():
+def main() -> None:
     import doctest
 
     doctest.testmod()

@@ -2,7 +2,7 @@ INF = float("inf")
 
 
 class Dinic:
-    def __init__(self, n):
+    def __init__(self, n) -> None:
         self.lvl = [0] * n
         self.ptr = [0] * n
         self.q = [0] * n
@@ -14,7 +14,7 @@ class Dinic:
     through that edge ...
     """
 
-    def add_edge(self, a, b, c, rcap=0):
+    def add_edge(self, a, b, c, rcap=0) -> None:
         self.adj[a].append([b, len(self.adj[b]), c, 0])
         self.adj[b].append([a, len(self.adj[a]) - 1, rcap, 0])
 
@@ -37,7 +37,7 @@ class Dinic:
     # Here we calculate the flow that reaches the sink
     def max_flow(self, source, sink):
         flow, self.q[0] = 0, source
-        for l in range(31):  # noqa: E741  l = 30 maybe faster for random data
+        for l in range(31):  # l = 30 maybe faster for random data  # noqa: E741
             while True:
                 self.lvl, self.ptr = [0] * len(self.q), [0] * len(self.q)
                 qi, qe, self.lvl[source] = 0, 1, 1
