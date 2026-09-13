@@ -66,9 +66,8 @@ class Triangle:
         if self.v1 in (self.v2, self.v3):
             raise TypeError("All 3 arguments should be unique")
         # Check for linearity
-        if self.v1.x == self.v2.x:
-            if self.v3.y == self.v2.y:
-                raise TypeError("One or more arguments are redundant")
+        if self.v1.x == self.v2.x and self.v3.y == self.v2.y:
+            raise TypeError("One or more arguments are redundant")
         m = (self.v1.y - self.v2.y) / (self.v1.x - self.v2.x)
         yb = self.v1.y - m * self.v1.x
         if self.v3.y == m * self.v3.x + yb:
