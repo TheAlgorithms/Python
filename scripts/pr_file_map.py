@@ -114,13 +114,11 @@ def main() -> None:
     print(f"- Generated (UTC): `{datetime.now(UTC).isoformat()}`")
     print(f"- Number of PRs: `{pr_count}`")
     print(f"- Number of files: `{file_count}`")
-    print(f"- Existing files: `{existing_count}`")
-    print(f"- Missing files: `{missing_count}`\n")
     if pr_count == 0:
         print("No open pull requests found.")
         return
 
-    print("## Existing files\n")
+    print(f"## `{existing_count}` existing files\n")
     if existing:
         for path in sorted(existing):
             pr_list = " ".join(f"#{n}" for n in existing[path])
@@ -128,7 +126,7 @@ def main() -> None:
     else:
         print("_None._")
 
-    print("\n## Files not present in the working directory\n")
+    print("\n## `{missing_count}` files not present in the working directory\n")
     if missing:
         for path in sorted(missing):
             pr_list = " ".join(f"#{n}" for n in missing[path])
