@@ -13,7 +13,7 @@ from collections import defaultdict
 
 
 class AssignmentUsingBitmask:
-    def __init__(self, task_performed, total):
+    def __init__(self, task_performed, total) -> None:
         self.total_tasks = total  # total no of tasks (N)
 
         # DP table will have a dimension of (2^M)*N

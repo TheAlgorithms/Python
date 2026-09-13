@@ -31,9 +31,9 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     """
     if (rf, rs, rl).count(0) == 3:
         raise ValueError("At least one Resistance must be non-zero")
-    elif rf < 0 or rs < 0 or rl < 0:
+    if rf < 0 or rs < 0 or rl < 0:
         raise ValueError("Resistance cannot be negative")
-    elif vm == 0:
+    if vm == 0:
         return Result("max_load_current", vm / (rf + rs + rl))
     else:
         return Result("max_load_current", vm / (rf + rs + rl))
@@ -89,8 +89,7 @@ def max_current(vm: float, rl: float) -> tuple:
     """
     if rl <= 0:
         raise ValueError("Resistance cannot be negative or equal to zero")
-    else:
-        return Result("Max_current_Im", vm / rl)
+    return Result("Max_current_Im", vm / rl)
 
 
 def rms_current(im: float) -> tuple:

@@ -8,17 +8,17 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data: Any):
+    def __init__(self, data: Any) -> None:
         self.data = data
         self.previous: Node | None = None
         self.next: Node | None = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.data}"
 
 
 class DoublyLinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head: Node | None = None
         self.tail: Node | None = None
 
@@ -36,7 +36,7 @@ class DoublyLinkedList:
             yield node.data
             node = node.next
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.insert_at_tail('a')
@@ -47,7 +47,7 @@ class DoublyLinkedList:
         """
         return "->".join([str(item) for item in self])
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         >>> linked_list = DoublyLinkedList()
         >>> for i in range(0, 5):
@@ -57,13 +57,13 @@ class DoublyLinkedList:
         """
         return sum(1 for _ in self)
 
-    def insert_at_head(self, data):
+    def insert_at_head(self, data) -> None:
         self.insert_at_nth(0, data)
 
-    def insert_at_tail(self, data):
+    def insert_at_tail(self, data) -> None:
         self.insert_at_nth(len(self), data)
 
-    def insert_at_nth(self, index: int, data):
+    def insert_at_nth(self, index: int, data) -> None:
         """
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.insert_at_nth(-1, 666)
@@ -196,7 +196,7 @@ class DoublyLinkedList:
             current.next.previous = current.previous  # 1 <--> 3
         return data
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.is_empty()

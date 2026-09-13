@@ -31,8 +31,7 @@ def wheatstone_solver(
 
     if resistance_1 <= 0 or resistance_2 <= 0 or resistance_3 <= 0:
         raise ValueError("All resistance values must be positive")
-    else:
-        return float((resistance_2 / resistance_1) * resistance_3)
+    return float((resistance_2 / resistance_1) * resistance_3)
 
 
 if __name__ == "__main__":
