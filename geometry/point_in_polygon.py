@@ -39,14 +39,25 @@ class Point(NamedTuple):
 
 
 def is_point_on_segment(
-    point: Point, seg_start: Point, seg_end: Point, tolerance: float = 1e-9
+    point: Point, seg_start: Point, seg_end: Point, tolerance: float = 0.0
 ) -> bool:
     """
     Determine whether a point lies on the line segment between seg_start and seg_end.
 
     The check verifies that:
-    1. The point is collinear with the segment endpoints (cross product is near zero).
-    2. The point lies within the bounding box of the segment.
+    1. The point is collinear with the segment endpoints
+       (cross product within tolerance).
+    2. The point lies within the bounding box of the segment (within tolerance).
+
+    Parameters:
+        point: The query Point.
+        seg_start: The start Point of the line segment.
+        seg_end: The end Point of the line segment.
+        tolerance: Non-negative tolerance for collinearity and bounding box
+            checks (default 0.0 for exact mathematical boundary testing).
+
+    Raises:
+        ValueError: If tolerance is negative.
 
     >>> is_point_on_segment(Point(1.0, 1.0), Point(0.0, 0.0), Point(2.0, 2.0))
     True
@@ -60,7 +71,20 @@ def is_point_on_segment(
     False
     >>> is_point_on_segment(Point(2.0, 0.0), Point(0.0, 0.0), Point(4.0, 0.0))
     True
+    >>> is_point_on_segment(Point(2.0, 1e-10), Point(0.0, 0.0), Point(4.0, 0.0))
+    False
+    >>> is_point_on_segment(
+    ...     Point(2.0, 1e-10), Point(0.0, 0.0), Point(4.0, 0.0), tolerance=1e-9
+    ... )
+    True
+    >>> is_point_on_segment(Point(0.0, 0.0), Point(0.0, 0.0), Point(1.0, 1.0), -1.0)
+    Traceback (most recent call last):
+        ...
+    ValueError: tolerance must be non-negative.
     """
+    if tolerance < 0.0:
+        raise ValueError("tolerance must be non-negative.")
+
     # Cross product of vector (seg_start -> seg_end) and (seg_start -> point)
     cross_product = (seg_end.x - seg_start.x) * (point.y - seg_start.y) - (
         seg_end.y - seg_start.y
@@ -83,7 +107,10 @@ def is_point_on_segment(
 
 
 def point_in_polygon(
-    point: Point, polygon: list[Point], include_boundary: bool = True
+    point: Point,
+    polygon: list[Point],
+    include_boundary: bool = True,
+    tolerance: float = 0.0,
 ) -> bool:
     """
     Determine whether a 2D point lies inside an arbitrary polygon using ray casting.
@@ -94,13 +121,15 @@ def point_in_polygon(
             in cyclic order (clockwise or counter-clockwise). Must have >= 3 vertices.
         include_boundary: Whether points on the boundary (edges or vertices)
             are considered inside (default True).
+        tolerance: Non-negative tolerance for boundary testing (default 0.0
+            for exact mathematical boundary testing).
 
     Returns:
         True if the point is inside (or on the boundary if include_boundary=True),
         False otherwise.
 
     Raises:
-        ValueError: If the polygon has fewer than 3 vertices.
+        ValueError: If the polygon has fewer than 3 vertices or tolerance is negative.
 
     Examples:
     >>> square = [Point(0.0, 0.0), Point(4.0, 0.0), Point(4.0, 4.0), Point(0.0, 4.0)]
@@ -113,7 +142,7 @@ def point_in_polygon(
     >>> point_in_polygon(Point(2.0, 5.0), square)
     False
 
-    Boundary tests:
+    Boundary tests (exact boundary testing with tolerance=0.0):
     >>> point_in_polygon(Point(0.0, 2.0), square, include_boundary=True)
     True
     >>> point_in_polygon(Point(0.0, 2.0), square, include_boundary=False)
@@ -126,6 +155,14 @@ def point_in_polygon(
     True
     >>> point_in_polygon(Point(2.0, 0.0), square, include_boundary=False)
     False
+
+    Points very close to boundary:
+    >>> point_in_polygon(Point(2.0, -1e-10), square)
+    False
+    >>> point_in_polygon(Point(2.0, 1e-10), square, include_boundary=False)
+    True
+    >>> point_in_polygon(Point(2.0, -1e-10), square, tolerance=1e-9)
+    True
 
     Concave (arrowhead) polygon:
     >>> arrowhead = [Point(0.0, 0.0), Point(5.0, 2.0), Point(0.0, 4.0), Point(2.0, 2.0)]
@@ -143,14 +180,20 @@ def point_in_polygon(
     >>> point_in_polygon(Point(-3.0, 0.0), triangle)
     False
 
-    Invalid input (fewer than 3 vertices):
+    Invalid input (fewer than 3 vertices or negative tolerance):
     >>> point_in_polygon(Point(0.0, 0.0), [Point(0.0, 0.0), Point(1.0, 1.0)])
     Traceback (most recent call last):
         ...
     ValueError: A polygon must have at least 3 vertices.
+    >>> point_in_polygon(Point(0.0, 0.0), square, tolerance=-1.0)
+    Traceback (most recent call last):
+        ...
+    ValueError: tolerance must be non-negative.
     """
     if len(polygon) < 3:
         raise ValueError("A polygon must have at least 3 vertices.")
+    if tolerance < 0.0:
+        raise ValueError("tolerance must be non-negative.")
 
     num_vertices = len(polygon)
 
@@ -158,7 +201,7 @@ def point_in_polygon(
     for vertex_index in range(num_vertices):
         edge_start = polygon[vertex_index]
         edge_end = polygon[(vertex_index + 1) % num_vertices]
-        if is_point_on_segment(point, edge_start, edge_end):
+        if is_point_on_segment(point, edge_start, edge_end, tolerance=tolerance):
             return include_boundary
 
     # Ray casting: cast a horizontal ray from point towards positive x-infinity
