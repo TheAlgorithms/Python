@@ -88,6 +88,7 @@ True
 >>> not t
 True
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
@@ -182,14 +183,12 @@ class BinarySearchTree:
                     if parent_node.left is None:
                         parent_node.left = new_node  # We insert the new node in a leaf
                         break
-                    else:
-                        parent_node = parent_node.left
+                    parent_node = parent_node.left
+                elif parent_node.right is None:
+                    parent_node.right = new_node
+                    break
                 else:
-                    if parent_node.right is None:
-                        parent_node.right = new_node
-                        break
-                    else:
-                        parent_node = parent_node.right
+                    parent_node = parent_node.right
             new_node.parent = parent_node
 
     def insert(self, *values) -> Self:
@@ -224,12 +223,11 @@ class BinarySearchTree:
 
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
-        else:
-            node = self.root
-            # use lazy evaluation here to avoid NoneType Attribute error
-            while node is not None and node.value is not value:
-                node = node.left if value < node.value else node.right
-            return node
+        node = self.root
+        # use lazy evaluation here to avoid NoneType Attribute error
+        while node is not None and node.value is not value:
+            node = node.left if value < node.value else node.right
+        return node
 
     def get_max(self, node: Node | None = None) -> Node | None:
         """
@@ -294,9 +292,9 @@ class BinarySearchTree:
             predecessor = self.get_max(
                 node.left
             )  # Gets the max value of the left branch
-            self.remove(predecessor.value)  # type: ignore
+            self.remove(predecessor.value)  # type: ignore[union-attr]
             node.value = (
-                predecessor.value  # type: ignore
+                predecessor.value  # type: ignore[union-attr]
             )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node: Node | None) -> Iterable:
@@ -336,7 +334,7 @@ def inorder(curr_node: Node | None) -> list[Node]:
     """
     node_list = []
     if curr_node is not None:
-        node_list = inorder(curr_node.left) + [curr_node] + inorder(curr_node.right)
+        node_list = [*inorder(curr_node.left), curr_node, *inorder(curr_node.right)]
     return node_list
 
 

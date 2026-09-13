@@ -1,11 +1,11 @@
 # floyd_warshall.py
 """
-    The problem is to find the shortest distance between all pairs of vertices in a
-    weighted directed graph that can have negative edge weights.
+The problem is to find the shortest distance between all pairs of vertices in a
+weighted directed graph that can have negative edge weights.
 """
 
 
-def _print_dist(dist, v):
+def _print_dist(dist, v) -> None:
     print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
     for i in range(v):
         for j in range(v):

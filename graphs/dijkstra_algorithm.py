@@ -10,7 +10,7 @@ import sys
 
 class PriorityQueue:
     # Based on Min Heap
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Priority queue class constructor method.
 
@@ -41,7 +41,7 @@ class PriorityQueue:
         """
         return self.cur_size == 0
 
-    def min_heapify(self, idx):
+    def min_heapify(self, idx) -> None:
         """
         Sorts the queue array so that the minimum element is root.
 
@@ -52,51 +52,39 @@ class PriorityQueue:
 
         >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(5, 'A'), (10, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B'), (15, 'C')]
+        [(5, 'B'), (10, 'A'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (15, 'B'), (5, 'C')]
+        [(5, 'C'), (15, 'B'), (10, 'A')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
         >>> priority_queue_test.cur_size = len(priority_queue_test.array)
         >>> priority_queue_test.pos = {'A': 0, 'B': 1}
         >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B')]
+        [(5, 'B'), (10, 'A')]
         """
         lc = self.left(idx)
         rc = self.right(idx)
-        if lc < self.cur_size and self.array(lc)[0] < self.array[idx][0]:
+        if lc < self.cur_size and self.array[lc][0] < self.array[idx][0]:
             smallest = lc
         else:
             smallest = idx
-        if rc < self.cur_size and self.array(rc)[0] < self.array[smallest][0]:
+        if rc < self.cur_size and self.array[rc][0] < self.array[smallest][0]:
             smallest = rc
         if smallest != idx:
             self.swap(idx, smallest)
             self.min_heapify(smallest)
 
-    def insert(self, tup):
+    def insert(self, tup) -> None:
         """
         Inserts a node into the Priority Queue.
 
@@ -130,12 +118,12 @@ class PriorityQueue:
         >>> priority_queue_test.extract_min()
         'C'
         >>> priority_queue_test.array[0]
-        (15, 'B')
+        (10, 'A')
         """
         min_node = self.array[0][1]
         self.array[0] = self.array[self.cur_size - 1]
         self.cur_size -= 1
-        self.min_heapify(1)
+        self.min_heapify(0)
         del self.pos[min_node]
         return min_node
 
@@ -180,7 +168,7 @@ class PriorityQueue:
         """
         return math.floor(i / 2)
 
-    def swap(self, i, j):
+    def swap(self, i, j) -> None:
         """
         Swaps array elements at indices i and j, update the pos{}
 
@@ -201,7 +189,7 @@ class PriorityQueue:
         self.array[i] = self.array[j]
         self.array[j] = temp
 
-    def decrease_key(self, tup, new_d):
+    def decrease_key(self, tup, new_d) -> None:
         """
         Decrease the key value for a given tuple, assuming the new_d is at most old_d.
 
@@ -215,7 +203,7 @@ class PriorityQueue:
         [(5, 'A'), (15, 'B')]
         """
         idx = self.pos[tup[1]]
-        # assuming the new_d is atmost old_d
+        # assuming the new_d is at most old_d
         self.array[idx] = (new_d, tup[1])
         while idx > 0 and self.array[self.par(idx)][0] > self.array[idx][0]:
             self.swap(idx, self.par(idx))
@@ -223,7 +211,7 @@ class PriorityQueue:
 
 
 class Graph:
-    def __init__(self, num):
+    def __init__(self, num) -> None:
         """
         Graph class constructor
 
@@ -244,7 +232,7 @@ class Graph:
         self.dist = [0] * self.num_nodes
         self.par = [-1] * self.num_nodes  # To store the path
 
-    def add_edge(self, u, v, w):
+    def add_edge(self, u, v, w) -> None:
         """
         Add edge going from node u to v and v to u with weight w: u (w)-> v, v (w) -> u
 
@@ -267,7 +255,7 @@ class Graph:
         else:
             self.adjList[v] = [(u, w)]
 
-    def show_graph(self):
+    def show_graph(self) -> None:
         """
         Show the graph: u -> v(w)
 
@@ -286,7 +274,7 @@ class Graph:
         for u in self.adjList:
             print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]))
 
-    def dijkstra(self, src):
+    def dijkstra(self, src) -> None:
         """
         Dijkstra algorithm
 
@@ -389,7 +377,7 @@ class Graph:
         # Show the shortest distances from src
         self.show_distances(src)
 
-    def show_distances(self, src):
+    def show_distances(self, src) -> None:
         """
         Show the distances from src to all other nodes in a graph
 
@@ -403,7 +391,7 @@ class Graph:
         for u in range(self.num_nodes):
             print(f"Node {u} has distance: {self.dist[u]}")
 
-    def show_path(self, src, dest):
+    def show_path(self, src, dest) -> None:
         """
         Shows the shortest path from src to dest.
         WARNING: Use it *after* calling dijkstra.

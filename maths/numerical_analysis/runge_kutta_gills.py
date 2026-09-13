@@ -4,6 +4,7 @@ Use the Runge-Kutta-Gill's method of order 4 to solve Ordinary Differential Equa
 https://www.geeksforgeeks.org/gills-4th-order-method-to-solve-differential-equations/
 Author : Ravi Kumar
 """
+
 from collections.abc import Callable
 from math import sqrt
 
@@ -33,7 +34,7 @@ def runge_kutta_gills(
     >>> def f(x, y):
     ...     return (x-y)/2
     >>> y = runge_kutta_gills(f, 0, 3, 0.2, 5)
-    >>> y[-1]
+    >>> float(y[-1])
     3.4104259225717537
 
     >>> def f(x,y):

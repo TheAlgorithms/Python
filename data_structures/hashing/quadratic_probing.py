@@ -8,10 +8,10 @@ class QuadraticProbing(HashTable):
     Basic Hash Table example with open addressing using Quadratic Probing
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-    def _collision_resolution(self, key, data=None):
+    def _collision_resolution(self, key, data=None):  # noqa: ARG002
         """
         Quadratic probing is an open addressing scheme used for resolving
         collisions in hash table.

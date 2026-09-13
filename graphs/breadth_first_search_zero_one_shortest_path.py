@@ -3,6 +3,7 @@ Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra
 0-1-graph is the weighted graph with the weights equal to 0 or 1.
 Link: https://codeforces.com/blog/entry/22276
 """
+
 from __future__ import annotations
 
 from collections import deque
@@ -21,7 +22,7 @@ class Edge:
 class AdjacencyList:
     """Graph adjacency list."""
 
-    def __init__(self, size: int):
+    def __init__(self, size: int) -> None:
         self._graph: list[list[Edge]] = [[] for _ in range(size)]
         self._size = size
 
@@ -33,7 +34,7 @@ class AdjacencyList:
     def size(self):
         return self._size
 
-    def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
+    def add_edge(self, from_vertex: int, to_vertex: int, weight: int) -> None:
         """
         >>> g = AdjacencyList(2)
         >>> g.add_edge(0, 1, 0)

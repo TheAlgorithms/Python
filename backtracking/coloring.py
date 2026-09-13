@@ -1,9 +1,9 @@
 """
-    Graph Coloring also called "m coloring problem"
-    consists of coloring a given graph with at most m colors
-    such that no adjacent vertices are assigned the same color
+Graph Coloring also called "m coloring problem"
+consists of coloring a given graph with at most m colors
+such that no adjacent vertices are assigned the same color
 
-    Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
+Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
 
 
@@ -104,6 +104,14 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
     >>> max_colors = 2
     >>> color(graph, max_colors)
     []
+    >>> color([], 2)  # empty graph
+    []
+    >>> color([[0]], 1)  # single node, 1 color
+    [0]
+    >>> color([[0, 1], [1, 0]], 1)  # 2 nodes, 1 color (impossible)
+    []
+    >>> color([[0, 1], [1, 0]], 2)  # 2 nodes, 2 colors (possible)
+    [0, 1]
     """
     colored_vertices = [-1] * len(graph)
 

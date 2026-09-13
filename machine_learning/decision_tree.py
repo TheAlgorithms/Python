@@ -3,11 +3,12 @@ Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
+
 import numpy as np
 
 
 class DecisionTree:
-    def __init__(self, depth=5, min_leaf_size=5):
+    def __init__(self, depth=5, min_leaf_size=5) -> None:
         self.depth = depth
         self.decision_boundary = 0
         self.left = None
@@ -25,15 +26,15 @@ class DecisionTree:
         >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
         >>> test_prediction = float(6)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = float(2)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         """
         if labels.ndim != 1:
@@ -41,7 +42,7 @@ class DecisionTree:
 
         return np.mean((labels - prediction) ** 2)
 
-    def train(self, x, y):
+    def train(self, x, y) -> None:
         """
         train:
         @param x: a one-dimensional numpy array
@@ -104,17 +105,14 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
-            elif len(x[i:]) < self.min_leaf_size:
-                continue
-            else:
-                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
-                error = error_left + error_right
-                if error < min_error:
-                    best_split = i
-                    min_error = error
+            error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
+            error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
+            error = error_left + error_right
+            if error < min_error:
+                best_split = i
+                min_error = error
 
         if best_split != 0:
             left_x = x[:best_split]
@@ -145,14 +143,13 @@ class DecisionTree:
         """
         if self.prediction is not None:
             return self.prediction
-        elif self.left or self.right is not None:
+        elif self.left is not None and self.right is not None:
             if x >= self.decision_boundary:
                 return self.right.predict(x)
             else:
                 return self.left.predict(x)
         else:
-            print("Error: Decision tree not yet trained")
-            return None
+            raise ValueError("Decision tree not yet trained")
 
 
 class TestDecisionTree:
@@ -173,7 +170,7 @@ class TestDecisionTree:
         return float(squared_error_sum / labels.size)
 
 
-def main():
+def main() -> None:
     """
     In this demonstration we're generating a sample data set from the sin function in
     numpy.  We then train a decision tree on the data set and use the decision tree to
@@ -186,7 +183,8 @@ def main():
     tree = DecisionTree(depth=10, min_leaf_size=10)
     tree.train(x, y)
 
-    test_cases = (np.random.rand(10) * 2) - 1
+    rng = np.random.default_rng()
+    test_cases = (rng.random(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
     avg_error = np.mean((predictions - test_cases) ** 2)
 
@@ -199,4 +197,4 @@ if __name__ == "__main__":
     main()
     import doctest
 
-    doctest.testmod(name="mean_squarred_error", verbose=True)
+    doctest.testmod(name="mean_squared_error", verbose=True)

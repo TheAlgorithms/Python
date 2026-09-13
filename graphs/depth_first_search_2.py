@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-""" Author: OMKAR PATHAK """
+"""Author: OMKAR PATHAK"""
 
 
 class Graph:
-    def __init__(self):
+    def __init__(self) -> None:
         self.vertex = {}
 
     # for printing the Graph vertices

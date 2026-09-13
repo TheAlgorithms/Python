@@ -6,6 +6,7 @@ Description:
     (1) Start with initial flow as 0
     (2) Choose the augmenting path from source to sink and add the path to flow
 """
+
 graph = [
     [0, 16, 13, 0, 0, 0],
     [0, 0, 10, 12, 0, 0],

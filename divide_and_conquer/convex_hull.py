@@ -12,6 +12,7 @@ There are other several other algorithms for the convex hull problem
 which have not been implemented here, yet.
 
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -44,7 +45,7 @@ class Point:
     ValueError: could not convert string to float: 'pi'
     """
 
-    def __init__(self, x, y):
+    def __init__(self, x, y) -> None:
         self.x, self.y = float(x), float(y)
 
     def __eq__(self, other):
@@ -77,7 +78,7 @@ class Point:
             return self.y <= other.y
         return False
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
 
     def __hash__(self):
@@ -123,7 +124,7 @@ def _construct_points(
             else:
                 try:
                     points.append(Point(p[0], p[1]))
-                except (IndexError, TypeError):
+                except IndexError, TypeError:
                     print(
                         f"Ignoring deformed point {p}. All points"
                         " must have at least 2 coordinates."
@@ -273,14 +274,13 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
                         points_left_of_ij = True
                     elif det_k < 0:
                         points_right_of_ij = True
-                    else:
-                        # point[i], point[j], point[k] all lie on a straight line
-                        # if point[k] is to the left of point[i] or it's to the
-                        # right of point[j], then point[i], point[j] cannot be
-                        # part of the convex hull of A
-                        if points[k] < points[i] or points[k] > points[j]:
-                            ij_part_of_convex_hull = False
-                            break
+                    # point[i], point[j], point[k] all lie on a straight line
+                    # if point[k] is to the left of point[i] or it's to the
+                    # right of point[j], then point[i], point[j] cannot be
+                    # part of the convex hull of A
+                    elif points[k] < points[i] or points[k] > points[j]:
+                        ij_part_of_convex_hull = False
+                        break
 
                 if points_left_of_ij and points_right_of_ij:
                     ij_part_of_convex_hull = False
@@ -451,11 +451,10 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
         if det > 0:
             convex_hull.insert(0, points[i])
             break
-        elif det < 0:
+        if det < 0:
             convex_hull.append(points[i])
             break
-        else:
-            convex_hull[1] = points[i]
+        convex_hull[1] = points[i]
     i += 1
 
     for j in range(i, n):
@@ -477,7 +476,7 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
     return sorted(convex_hull[1:] if len(convex_hull) > 3 else convex_hull)
 
 
-def main():
+def main() -> None:
     points = [
         (0, 3),
         (2, 2),
