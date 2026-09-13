@@ -1,7 +1,8 @@
 """
 XOR Linked List implementation
-A memory-efficient doubly linked list using XOR of node addresses.
-Each node stores one pointer that is the XOR of previous and next node addresses.
+A memory-efficient doubly linked list that uses the XOR of node addresses.
+Each node stores one pointer that is the XOR of the previous and next node addresses.
+https://en.wikipedia.org/wiki/XOR_linked_list
 Example:
 >>> xor_list = XORLinkedList()
 >>> xor_list.insert(10)
@@ -18,7 +19,7 @@ class Node:
     def __init__(self, value: int) -> None:
         """Initializes a Node with a value and a null pointer."""
         self.value = value
-        self.both: int = 0  # XOR of prev and next node ids
+        self.both: int = 0  # XOR of prev and next node IDs
 
 
 class XORLinkedList:
