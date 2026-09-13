@@ -4,6 +4,8 @@ Functions useful for doing molecular chemistry:
 * moles_to_pressure
 * moles_to_volume
 * pressure_and_volume_to_temperature
+* mass_to_moles
+* moles_to_molecules
 """
 
 
@@ -83,6 +85,44 @@ def pressure_and_volume_to_temperature(
       60
     """
     return round(float((pressure * volume) / (0.0821 * moles)))
+
+
+def mass_to_moles(mass: float, molar_mass: float) -> float:
+    """
+    Convert mass of a substance to moles.
+      Mass is taken in grams.
+      Molar mass is taken in grams per mole (g/mol).
+
+      Wikipedia reference: https://en.wikipedia.org/wiki/Mole_(unit)
+
+      >>> mass_to_moles(36.03, 18.015)
+      2.0
+      >>> mass_to_moles(11.0, 44.01)
+      0.25
+    """
+    if molar_mass <= 0:
+        raise ValueError("Molar mass must be greater than zero.")
+    if mass < 0:
+        raise ValueError("Mass cannot be negative.")
+
+    return round(float(mass / molar_mass), 2)
+
+
+def moles_to_molecules(moles: float) -> float:
+    """
+    Convert moles of a substance to total molecules using Avogadro's constant.
+
+      Wikipedia reference: https://en.wikipedia.org/wiki/Avogadro_constant
+
+      >>> moles_to_molecules(2)
+      1.2044e+24
+      >>> moles_to_molecules(0.5)
+      3.011e+23
+    """
+    if moles < 0:
+        raise ValueError("Moles cannot be negative.")
+
+    return float(f"{moles * 6.022e23:.4e}")
 
 
 if __name__ == "__main__":
