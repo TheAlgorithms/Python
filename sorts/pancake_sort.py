@@ -45,3 +45,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(f"{pancake_sort(unsorted) = }")
