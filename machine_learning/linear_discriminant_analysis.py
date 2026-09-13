@@ -280,7 +280,7 @@ def valid_input[num](
 
 
 # Main Function
-def main():
+def main() -> None:
     """This function starts execution phase"""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
