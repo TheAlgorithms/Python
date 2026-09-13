@@ -66,5 +66,5 @@ if __name__ == "__main__":
                 )
                 print(egg_dropping(eggs, floors))
                 print("Try another combination of eggs and floors: ", end="")
-    except (NameError, ValueError):
+    except NameError, ValueError:
         print("\n********* Invalid input, goodbye! ************\n")
