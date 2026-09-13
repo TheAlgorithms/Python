@@ -4,7 +4,7 @@ Title: Fresnel Diffraction for Coherent and Monochromatic
 
 Fresnel Diffraction describes the behavior of a wave field as it
 moves through free space or interacts with an object under the
-small angle approximation. It is particularly useful for near
+small-angle approximation. It is particularly useful for near
 field diffraction.
 
 The following algorithm is an adaptation of the 'transfer function'
@@ -35,7 +35,7 @@ def fresnel_diffract(
     Fresnel Diffraction of 1D or 2D Wave Fields.
 
     This function calculates the Fresnel diffraction of a
-    given wave field, suitable for near field diffraction. The
+    given wave field, suitable for near-field diffraction. The
     wave field is assumed to be coherent and monochromatic.
 
     Args:
@@ -71,7 +71,7 @@ def fresnel_diffract(
         >>> import numpy as np
         >>> wf0 = np.ones(64)
         >>> wfz = fresnel_diffract(wf0, 1, 1, 1)
-        >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
+        >>> bool(np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2)))
         True
         >>> import numpy as np
         >>> wf0 = np.ones((64, 64))
@@ -123,7 +123,7 @@ def _fresnel_diffract_2d(
         >>> import numpy as np
         >>> wf0 = np.ones((64, 64))
         >>> wfz = _fresnel_diffract_2d(wf0, 1, 1, 1)
-        >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
+        >>> bool(np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2)))
         True
 
         # Test that propagation distance of 0 returns the contact image
@@ -183,7 +183,7 @@ def _fresnel_diffract_1d(
         >>> import numpy as np
         >>> wf0 = np.ones(64)
         >>> wfz = _fresnel_diffract_1d(wf0, 1, 1, 1)
-        >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
+        >>> bool(np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2)))
         True
 
         # Test that propagation distance of 0 returns the contact image
