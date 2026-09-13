@@ -181,6 +181,7 @@
 ## [Computer Vision](computer_vision)
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
+  * [Gramian](computer_vision/gramian.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
   * [Horn Schunck](computer_vision/horn_schunck.py)
@@ -231,6 +232,7 @@
   * [Lempel Ziv](data_compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](data_compression/lempel_ziv_decompress.py)
   * [Lz77](data_compression/lz77.py)
+  * [Move To Front](data_compression/move_to_front.py)
   * [Peak Signal To Noise Ratio](data_compression/peak_signal_to_noise_ratio.py)
   * [Run Length Encoding](data_compression/run_length_encoding.py)
 
@@ -324,9 +326,11 @@
     * [From Sequence](data_structures/linked_list/from_sequence.py)
     * [Has Loop](data_structures/linked_list/has_loop.py)
     * [Is Palindrome](data_structures/linked_list/is_palindrome.py)
+    * [Kth Element From End](data_structures/linked_list/kth_element_from_end.py)
     * [Merge Sort Linked List](data_structures/linked_list/merge_sort_linked_list.py)
     * [Merge Two Lists](data_structures/linked_list/merge_two_lists.py)
     * [Middle Element Of Linked List](data_structures/linked_list/middle_element_of_linked_list.py)
+    * [Partition Linked List](data_structures/linked_list/partition_linked_list.py)
     * [Print Reverse](data_structures/linked_list/print_reverse.py)
     * [Reverse K Group](data_structures/linked_list/reverse_k_group.py)
     * [Rotate To The Right](data_structures/linked_list/rotate_to_the_right.py)
@@ -334,6 +338,7 @@
     * [Skip List](data_structures/linked_list/skip_list.py)
     * [Sorted Linked List](data_structures/linked_list/sorted_linked_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
+    * [Xor Linked List](data_structures/linked_list/xor_linked_list.py)
   * Queues
     * [Circular Queue](data_structures/queues/circular_queue.py)
     * [Circular Queue Linked List](data_structures/queues/circular_queue_linked_list.py)
@@ -425,6 +430,7 @@
   * [Climbing Stairs](dynamic_programming/climbing_stairs.py)
   * [Combination Sum Iv](dynamic_programming/combination_sum_iv.py)
   * [Edit Distance](dynamic_programming/edit_distance.py)
+  * [Egg Dropping](dynamic_programming/egg_dropping.py)
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
@@ -542,6 +548,7 @@
   * Tests
     * [Test Graham Scan](geometry/tests/test_graham_scan.py)
     * [Test Jarvis March](geometry/tests/test_jarvis_march.py)
+  * [Triangle](geometry/triangle.py)
 
 ## [Graphics](graphics)
   * [Bezier Curve](graphics/bezier_curve.py)
@@ -591,6 +598,7 @@
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
+  * [Hopcroft Karp](graphs/hopcroft_karp.py)
   * [Johnson](graphs/johnson.py)
   * [Kahns Algorithm Long](graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](graphs/kahns_algorithm_topo.py)
@@ -651,6 +659,7 @@
     * [Test Knapsack](knapsack/tests/test_knapsack.py)
 
 ## [Linear Algebra](linear_algebra)
+  * [Gauss Jordan](linear_algebra/gauss_jordan.py)
   * [Gaussian Elimination](linear_algebra/gaussian_elimination.py)
   * [Jacobi Iteration Method](linear_algebra/jacobi_iteration_method.py)
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
