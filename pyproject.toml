@@ -242,3 +242,4 @@ disable = [
 exclude = [ "DIRECTORY.md", "docs/hacktober_2026_prep.md" ]
 flavor = "gfm"
 line-length = 350
+per-file-ignores."index.md" = [ "MD040" ]
