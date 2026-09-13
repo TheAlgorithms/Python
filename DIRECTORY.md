@@ -1018,6 +1018,7 @@
   * [First Law Of Thermodynamics](physics/first_law_of_thermodynamics.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Hamiltonian](physics/hamiltonian.py)
+  * [Hookes Law](physics/hookes_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
   * [Ideal Gas Law](physics/ideal_gas_law.py)
