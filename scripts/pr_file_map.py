@@ -28,8 +28,8 @@ from collections import defaultdict
 
 def run_gh(args: list[str]) -> str:
     try:
-        result = subprocess.run(
-            ["gh", *args],
+        result = subprocess.run(  # noqa: S603
+            ["gh", *args],  # noqa: S607
             capture_output=True,
             text=True,
             check=True,
@@ -44,7 +44,7 @@ def run_gh(args: list[str]) -> str:
 def check_gh_auth() -> None:
     try:
         subprocess.run(
-            ["gh", "auth", "status"],
+            ["gh", "auth", "status"],  # noqa: S607
             capture_output=True,
             text=True,
             check=True,
