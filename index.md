@@ -1,5 +1,6 @@
 # TheAlgorithms/Python
-```{toctree}
+
+```text {toctree}
 :maxdepth: 2
 :caption: index.md
 

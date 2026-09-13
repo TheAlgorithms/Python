@@ -31,7 +31,9 @@ Source: https://en.wikipedia.org/wiki/Bucket_sort
 from __future__ import annotations
 
 
-def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
+def bucket_sort(
+    my_list: list[int | float], bucket_count: int = 10
+) -> list[int | float]:
     """
     >>> data = [-1, 2, -5, 0]
     >>> bucket_sort(data) == sorted(data)
@@ -68,18 +70,26 @@ def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     TypeError: bucket_count must be an integer
     >>> bucket_sort([1]) == [1]
     True
+    >>> bucket_sort([1, 2, 3], 2.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: bucket_count must be an integer
     >>> data = [-1.1, -1.5, -3.4, 2.5, 3.6, -3.3]
     >>> bucket_sort(data) == sorted(data)
     True
     >>> data = [9, 2, 7, 1, 5]
     >>> bucket_sort(data) == sorted(data)
     True
+    >>> bucket_sort(data, 3.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: bucket_count must be an integer
     """
 
-    if not isinstance(bucket_count, int) or isinstance(bucket_count, bool):
+    if not isinstance(bucket_count, (bool, int)):
         raise TypeError("bucket_count must be an integer")
 
-    if len(my_list) == 0 or bucket_count <= 0:
+    if not my_list or bucket_count <= 0:
         return []
 
     min_value, max_value = min(my_list), max(my_list)
