@@ -11,17 +11,14 @@ python3 quick_sort.py
 from __future__ import annotations
 
 from random import randrange
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def quick_sort(collection: list[T]) -> list[T]:
+def quick_sort[T: Comparable](collection: list[T]) -> list[T]:
     """A pure Python implementation of quicksort algorithm.
 
     :param collection: a mutable collection of comparable items
@@ -43,7 +40,6 @@ def quick_sort(collection: list[T]) -> list[T]:
     >>> quick_sort(["z", "a", "m"]) == sorted(["z", "a", "m"])
     True
     """
-    # Base case: if the collection has 0 or 1 elements, it is already sorted
     if len(collection) < 2:
         return collection
     pivot_index = randrange(len(collection))
