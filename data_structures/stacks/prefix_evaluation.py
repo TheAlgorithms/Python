@@ -11,7 +11,7 @@ operators = {
 }
 
 
-def is_operand(c):
+def is_operand(c) -> bool:
     """
     Return True if the given char c is an operand, e.g. it is a number
 
@@ -23,7 +23,7 @@ def is_operand(c):
     return c.isdigit()
 
 
-def evaluate(expression):
+def evaluate(expression) -> float:
     """
     Evaluate a given expression in prefix notation.
     Asserts that the given expression is valid.
@@ -55,7 +55,7 @@ def evaluate(expression):
     return stack.pop()
 
 
-def evaluate_recursive(expression: list[str]):
+def evaluate_recursive(expression: list[str]) -> float:
     """
     Alternative recursive implementation
 
