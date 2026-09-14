@@ -72,11 +72,11 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
 
 def detect_high_low_threshold(
     image_shape, destination, threshold_low, threshold_high, weak, strong
-):
+) -> None:
     """
-    High-Low threshold detection. If an edge pixel’s gradient value is higher
+    High-Low threshold detection. If an edge pixel's gradient value is higher
     than the high threshold value, it is marked as a strong edge pixel. If an
-    edge pixel’s gradient value is smaller than the high threshold value and
+    edge pixel's gradient value is smaller than the high threshold value and
     larger than the low threshold value, it is marked as a weak edge pixel. If
     an edge pixel's value is smaller than the low threshold value, it will be
     suppressed.
@@ -91,7 +91,7 @@ def detect_high_low_threshold(
                 destination[row, col] = weak
 
 
-def track_edge(image_shape, destination, weak, strong):
+def track_edge(image_shape, destination, weak, strong) -> None:
     """
     Edge tracking. Usually a weak edge pixel caused from true edges will be connected
     to a strong edge pixel while noise responses are unconnected. As long as there is

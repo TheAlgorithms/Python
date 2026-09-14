@@ -3,26 +3,25 @@ from collections import defaultdict
 
 
 class Heap:
-    def __init__(self):
+    def __init__(self) -> None:
         self.node_position = []
 
     def get_position(self, vertex):
         return self.node_position[vertex]
 
-    def set_position(self, vertex, pos):
+    def set_position(self, vertex, pos) -> None:
         self.node_position[vertex] = pos
 
-    def top_to_bottom(self, heap, start, size, positions):
+    def top_to_bottom(self, heap, start, size, positions) -> None:
         if start > size // 2 - 1:
             return
         else:
-            if 2 * start + 2 >= size:
+            if 2 * start + 2 >= size:  # noqa: SIM114
+                smallest_child = 2 * start + 1
+            elif heap[2 * start + 1] < heap[2 * start + 2]:
                 smallest_child = 2 * start + 1
             else:
-                if heap[2 * start + 1] < heap[2 * start + 2]:
-                    smallest_child = 2 * start + 1
-                else:
-                    smallest_child = 2 * start + 2
+                smallest_child = 2 * start + 2
             if heap[smallest_child] < heap[start]:
                 temp, temp1 = heap[smallest_child], positions[smallest_child]
                 heap[smallest_child], positions[smallest_child] = (
@@ -40,7 +39,7 @@ class Heap:
                 self.top_to_bottom(heap, smallest_child, size, positions)
 
     # Update function if value of any node in min-heap decreases
-    def bottom_to_top(self, val, index, heap, position):
+    def bottom_to_top(self, val, index, heap, position) -> None:
         temp = position[index]
 
         while index != 0:
@@ -61,7 +60,7 @@ class Heap:
             position[0] = temp
             self.set_position(temp, 0)
 
-    def heapify(self, heap, positions):
+    def heapify(self, heap, positions) -> None:
         start = len(heap) // 2 - 1
         for i in range(start, -1, -1):
             self.top_to_bottom(heap, i, len(heap), positions)

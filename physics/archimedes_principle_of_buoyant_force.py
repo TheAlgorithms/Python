@@ -3,11 +3,10 @@ Calculate the buoyant force of any body completely or partially submerged in a s
 fluid.  This principle was discovered by the Greek mathematician Archimedes.
 
 Equation for calculating buoyant force:
-Fb = ρ * V * g
+Fb = p * V * g
 
 https://en.wikipedia.org/wiki/Archimedes%27_principle
 """
-
 
 # Acceleration Constant on Earth (unit m/s^2)
 g = 9.80665  # Also available in scipy.constants.g

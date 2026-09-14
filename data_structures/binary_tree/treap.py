@@ -9,7 +9,7 @@ class Node:
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int | None = None):
+    def __init__(self, value: int | None = None) -> None:
         self.value = value
         self.prior = random()
         self.left: Node | None = None
@@ -39,26 +39,23 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     Left tree contains all values less than split value.
     Right tree contains all values greater or equal, than split value
     """
-    if root is None:  # None tree is split into 2 Nones
+    if root is None or root.value is None:  # None tree is split into 2 Nones
         return None, None
-    elif root.value is None:
-        return None, None
+    elif value <= root.value:
+        """
+        Right tree's root will be current node.
+        Now we split(with the same value) current node's left son
+        Left tree: left part of that split
+        Right tree's left son: right part of that split
+        """
+        left, root.left = split(root.left, value)
+        return left, root
     else:
-        if value < root.value:
-            """
-            Right tree's root will be current node.
-            Now we split(with the same value) current node's left son
-            Left tree: left part of that split
-            Right tree's left son: right part of that split
-            """
-            left, root.left = split(root.left, value)
-            return left, root
-        else:
-            """
-            Just symmetric to previous case
-            """
-            root.right, right = split(root.right, value)
-            return root, right
+        """
+        Just symmetric to previous case
+        """
+        root.right, right = split(root.right, value)
+        return root, right
 
 
 def merge(left: Node | None, right: Node | None) -> Node | None:
@@ -68,7 +65,7 @@ def merge(left: Node | None, right: Node | None) -> Node | None:
     """
     if (not left) or (not right):  # If one node is None, return the other
         return left or right
-    elif left.prior < right.prior:
+    elif left.prior > right.prior:
         """
         Left will be root because it has more priority
         Now we need to merge left's right son and right tree
@@ -104,8 +101,8 @@ def erase(root: Node | None, value: int) -> Node | None:
     Split all nodes with values greater into right.
     Merge left, right
     """
-    left, right = split(root, value - 1)
-    _, right = split(right, value)
+    left, right = split(root, value)
+    _, right = split(right, value + 1)
     return merge(left, right)
 
 

@@ -1,10 +1,11 @@
 """
 A recursive implementation of the insertion sort algorithm
 """
+
 from __future__ import annotations
 
 
-def rec_insertion_sort(collection: list, n: int):
+def rec_insertion_sort(collection: list, n: int) -> None:
     """
     Given a collection of numbers and its length, sorts the collections
     in ascending order
@@ -35,7 +36,7 @@ def rec_insertion_sort(collection: list, n: int):
     rec_insertion_sort(collection, n - 1)
 
 
-def insert_next(collection: list, index: int):
+def insert_next(collection: list, index: int) -> None:
     """
     Inserts the '(index-1)th' element into place
 
