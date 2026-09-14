@@ -68,20 +68,15 @@ def find_pattern(pattern: str, input_str: str) -> int:
     4
     >>> find_pattern("xz", "zxxzxxz")
     2
+    >>> find_pattern("aa", "a")
+    0
     """
-    answer = 0
+    pattern_length = len(pattern)
     # concatenate 'pattern' and 'input_str' and call z_function
     # with concatenated string
     z_result = z_function(pattern + input_str)
 
-    for val in z_result:
-        # if value is greater then length of the pattern string
-        # that means this index is starting position of substring
-        # which is equal to pattern string
-        if val >= len(pattern):
-            answer += 1
-
-    return answer
+    return sum(value >= pattern_length for value in z_result[pattern_length:])
 
 
 if __name__ == "__main__":
