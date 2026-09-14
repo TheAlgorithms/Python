@@ -2,6 +2,8 @@ def is_disarium(num: int) -> bool:
     """
     Check if a number is Disarium.
 
+    https://rosettacode.org/wiki/Disarium_numbers
+
     >>> is_disarium(89)
     True
     >>> is_disarium(75)
