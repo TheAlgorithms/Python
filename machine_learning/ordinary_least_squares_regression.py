@@ -32,7 +32,7 @@ def ols_regression(x_point: np.ndarray, y_point: np.ndarray) -> tuple:
     >>> x = np.array([1, 2, 3, 4, 5])
     >>> y = np.array([2, 4, 6, 8, 10])
     >>> a, b = ols_regression(x, y)
-    >>> a  # Intercept should be 0.0
+    >>> float(a)  # Intercept should be 0.0
     0.0
     >>> round(b, 2)  # Slope should be 2.0
     2.0
