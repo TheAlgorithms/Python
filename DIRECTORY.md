@@ -862,6 +862,7 @@
   * [Radix2 Fft](maths/radix2_fft.py)
   * [Recursive Digit Sum](maths/recursive_digit_sum.py)
   * [Remove Digit](maths/remove_digit.py)
+  * [Reverse Factorial Recursive](maths/reverse_factorial_recursive.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
     * [Arithmetic](maths/series/arithmetic.py)
