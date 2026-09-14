@@ -76,7 +76,7 @@ if __name__ == "__main__":
 """
 
 
-def dfs(g, s):
+def dfs(g, s) -> None:
     """
     >>> dfs({1: [2, 3], 2: [4, 5], 3: [], 4: [], 5: []}, 1)
     1
@@ -111,7 +111,7 @@ def dfs(g, s):
 """
 
 
-def bfs(g, s):
+def bfs(g, s) -> None:
     """
     >>> bfs({1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [], 5: [8], 6: [], 7: [], 8: []}, 1)
     1
@@ -146,7 +146,7 @@ def bfs(g, s):
 """
 
 
-def dijk(g, s):
+def dijk(g, s) -> None:
     """
     dijk({1: [(2, 7), (3, 9), (6, 14)],
         2: [(1, 7), (3, 10), (4, 15)],
@@ -186,7 +186,7 @@ def dijk(g, s):
 """
 
 
-def topo(g, ind=None, q=None):
+def topo(g, ind=None, q=None) -> None:
     if q is None:
         q = [1]
     if ind is None:
@@ -256,7 +256,7 @@ def adjm():
 """
 
 
-def floy(a_and_n):
+def floy(a_and_n) -> None:
     (a, n) = a_and_n
     dist = list(a)
     path = [[0] * n for i in range(n)]
@@ -347,7 +347,7 @@ def edglist():
 """
 
 
-def krusk(e_and_n):
+def krusk(e_and_n) -> None:
     """
     Sort edges on the basis of distance
     """
