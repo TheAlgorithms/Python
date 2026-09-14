@@ -132,7 +132,7 @@ class _DataSet:
         dtype=dtypes.float32,
         reshape=True,
         seed=None,
-    ):
+    ) -> None:
         """Construct a _DataSet.
 
         one_hot arg is used only if fake_data is true.  `dtype` can be either

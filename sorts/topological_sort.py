@@ -1,4 +1,4 @@
-"""Topological Sort.
+"""Topological Sort on Directed Acyclic Graph(DAG)
 
 https://en.wikipedia.org/wiki/Topological_sorting
 https://en.wikipedia.org/wiki/Directed_acyclic_graph
@@ -9,9 +9,10 @@ Note: topological_sort() sorts a directed acyclic graph so topological_sort(2, 1
 
 #     a
 #    / \
-#   b  c
+#   b   c
 #  / \
-# d  e
+# d   e
+
 edges: dict[str, list[str]] = {
     "a": ["c", "b"],
     "b": ["d", "e"],
@@ -19,9 +20,11 @@ edges: dict[str, list[str]] = {
     "d": [],
     "e": [],
 }
+
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 
+# Perform topological sort on a DAG starting from the specified node
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     """
     Perform topological sort on a directed acyclic graph.
@@ -44,24 +47,34 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
     if not isinstance(sort, list):
         raise ValueError("sort must be a list")
     current = start
-    # add current to visited
+    # Mark the current node as visited
     visited.append(current)
+    # List of all neighbors of current node
     neighbors = edges[current]
+
+    # Traverse all neighbors of the current node
     for neighbor in neighbors:
-        # if neighbor not in visited, visit
+        # Recursively visit each unvisited neighbor
         if neighbor not in visited:
             sort = topological_sort(neighbor, visited, sort)
-    # if all neighbors visited add current to sort
+
+    # After visiting all neighbors, add the current node to the sorted list
     sort.append(current)
-    # if all vertices haven't been visited select a new one to visit
+
+    # If there are some nodes that were not visited (disconnected components)
     if len(visited) != len(vertices):
-        for vertice in vertices:
-            if vertice not in visited:
-                sort = topological_sort(vertice, visited, sort)
-    # return sort
+        for vertex in vertices:
+            if vertex not in visited:
+                sort = topological_sort(vertex, visited, sort)
+
+    # Return sorted list
     return sort
 
 
 if __name__ == "__main__":
+    # Topological Sorting from node "a" (Returns the order in bottom up approach)
     sort = topological_sort("a", [], [])
+
+    # Reversing the list to get the correct topological order (Top down approach)
+    sort.reverse()
     print(sort)

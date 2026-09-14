@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 
 
-def main():
+def main() -> None:
     """
     Random Forest Regressor Example using sklearn function.
     The diabetes dataset is used to demonstrate the algorithm.
