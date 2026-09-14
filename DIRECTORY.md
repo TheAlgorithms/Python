@@ -822,6 +822,7 @@
     * [Bisection](maths/numerical_analysis/bisection.py)
     * [Bisection 2](maths/numerical_analysis/bisection_2.py)
     * [Brent Method](maths/numerical_analysis/brent_method.py)
+    * [Gauss Seidel Method](maths/numerical_analysis/gauss_seidel_method.py)
     * [Integration By Simpson Approx](maths/numerical_analysis/integration_by_simpson_approx.py)
     * [Intersection](maths/numerical_analysis/intersection.py)
     * [Nevilles Method](maths/numerical_analysis/nevilles_method.py)
