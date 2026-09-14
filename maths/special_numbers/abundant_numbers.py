@@ -3,13 +3,15 @@ A number n is said to be an Abundant number if
 the sum of its proper divisors is greater than the number itself.
 
 Examples of Abundant Numbers: 12, 18, 20, 24, 30, 36, 40, 42, 48, 54, ...
+
+https://en.wikipedia.org/wiki/Abundant_number
 """
 
 
 def is_abundant_number(number: int) -> bool:
     """
     This function takes an integer number as input.
-    Returns True if the number is an abundant number.
+    Returns True if the number is abundant.
 
     >>> is_abundant_number(-1)
     False
