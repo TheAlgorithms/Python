@@ -2,17 +2,14 @@
 https://en.wikipedia.org/wiki/Shellsort#Pseudocode
 """
 
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def shell_sort(collection: list[T]) -> list[T]:
+def shell_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of shell sort algorithm in Python.
 
     :param collection:  Some mutable ordered collection with heterogeneous
