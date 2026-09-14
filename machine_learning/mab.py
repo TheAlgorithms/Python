@@ -9,7 +9,7 @@ The MAB problem can be described as follows:
 - There are N arms, each with a different probability of giving a reward.
 - The agent must learn to choose the best arm to pull in order to maximize its reward.
 
-Here there are 3 optimising strategies have been implemented:
+Here 3 optimising strategies have been implemented:
 - Epsilon-Greedy
 - Upper Confidence Bound (UCB)
 - Thompson Sampling
@@ -41,6 +41,11 @@ class Bandit:
 
         Args:
             probabilities: List of probabilities for each arm.
+
+        Example:
+            >>> bandit = Bandit([0.1, 0.5, 0.9])
+            >>> bandit.num_arms
+            3
         """
         self.probabilities = probabilities
         self.num_arms = len(probabilities)
@@ -127,7 +132,7 @@ class EpsilonGreedy(Strategy):
         rng = np.random.default_rng()
 
         if rng.random() < self.epsilon:
-            return rng.integers(self.num_arms)
+            return int(rng.integers(self.num_arms))
         else:
             return int(np.argmax(self.values))
 
@@ -274,7 +279,7 @@ class ThompsonSampling(Strategy):
 # Random strategy (full exploration)
 class RandomStrategy(Strategy):
     """
-    A class for choosing totally random at each round to give
+    A class for choosing an arm uniformly at random at each round to give
     a better comparison with the other optimised strategies.
     """
 
@@ -297,10 +302,10 @@ class RandomStrategy(Strategy):
         Example:
             >>> strategy = RandomStrategy(num_arms=3)
             >>> 0 <= strategy.select_arm() < 3
-            np.True_
+            True
         """
         rng = np.random.default_rng()
-        return rng.integers(self.num_arms)
+        return int(rng.integers(self.num_arms))
 
     def update(self, arm_index: int, reward: int) -> None:
         """
@@ -371,7 +376,62 @@ class GreedyStrategy(Strategy):
 
 def test_mab_strategies() -> None:
     """
-    Test the MAB strategies.
+    Deterministic behavioural tests for the MAB strategies.
+
+    These checks feed each strategy a fixed sequence of rewards and assert
+    on the resulting internal state and arm selection, so a regression in
+    the update/select logic will fail the suite instead of only being
+    visible in the (stochastic) plotted demo.
+    """
+    num_arms = 3
+
+    # After repeatedly rewarding arm 2, a purely greedy strategy must
+    # settle on arm 2.
+    greedy = GreedyStrategy(num_arms=num_arms)
+    for _ in range(10):
+        greedy.update(2, 1)
+    greedy.update(0, 0)
+    greedy.update(1, 0)
+    assert greedy.select_arm() == 2
+
+    # Epsilon-Greedy with epsilon=0 behaves like the greedy strategy.
+    epsilon_greedy = EpsilonGreedy(epsilon=0.0, num_arms=num_arms)
+    for _ in range(10):
+        epsilon_greedy.update(1, 1)
+    epsilon_greedy.update(0, 0)
+    epsilon_greedy.update(2, 0)
+    assert epsilon_greedy.select_arm() == 1
+
+    # UCB must exhaustively try every arm once before repeating any of them.
+    ucb = UCB(num_arms=num_arms)
+    first_round_arms = set()
+    for _ in range(num_arms):
+        arm = ucb.select_arm()
+        first_round_arms.add(arm)
+        ucb.update(arm, 1)
+    assert first_round_arms == set(range(num_arms))
+
+    # Thompson Sampling should heavily favor an arm with only successes
+    # over arms with only failures.
+    thompson = ThompsonSampling(num_arms=num_arms)
+    for _ in range(20):
+        thompson.update(0, 1)
+        thompson.update(1, 0)
+        thompson.update(2, 0)
+    selections = [thompson.select_arm() for _ in range(50)]
+    assert selections.count(0) > len(selections) // 2
+
+    # RandomStrategy.update is a no-op and select_arm always returns a
+    # valid arm index.
+    random_strategy = RandomStrategy(num_arms=num_arms)
+    random_strategy.update(0, 1)
+    assert 0 <= random_strategy.select_arm() < num_arms
+
+
+def demo_mab_strategies() -> None:
+    """
+    Run a stochastic simulation of the MAB strategies and plot their
+    cumulative reward over time for visual comparison.
     """
     # Simulation
     num_arms = 4
@@ -418,3 +478,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
     test_mab_strategies()
+    demo_mab_strategies()
