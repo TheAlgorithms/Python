@@ -760,6 +760,7 @@
   * [Decimal To Fraction](maths/decimal_to_fraction.py)
   * [Derangement](maths/derangement.py)
   * [Digital Root](maths/digital_root.py)
+  * [Disarium](maths/disarium.py)
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial](maths/double_factorial.py)
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
