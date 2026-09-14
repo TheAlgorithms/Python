@@ -51,7 +51,24 @@ _HEX_DIGITS = set("0123456789abcdefABCDEF")
 
 
 def _is_valid_group(group: str) -> bool:
-    """Return True iff group is 1-4 hex digits."""
+    """Return True iff group is 1-4 hex digits.
+    Args:
+        group (str): The hex group to validate.
+
+    Returns:
+        bool: True if the group is 1-4 hex digits, False otherwise.
+
+    Examples:
+
+    >>> _is_valid_group("1")
+    True
+    >>> _is_valid_group("abcd")
+    True
+    >>> _is_valid_group("12345")  # too long
+    False
+    >>> _is_valid_group("g")  # non-hex character
+    False
+    """
     return 1 <= len(group) <= 4 and all(ch in _HEX_DIGITS for ch in group)
 
 
@@ -102,6 +119,9 @@ def is_ipv6_address_valid(address: str) -> bool:
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
     ip = input().strip()
     valid_or_invalid = "valid" if is_ipv6_address_valid(ip) else "invalid"
     print(f"{ip} is a {valid_or_invalid} IPv6 address.")
