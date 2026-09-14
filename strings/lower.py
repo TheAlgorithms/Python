@@ -18,15 +18,16 @@ def lower(word: str) -> str:
     >>> lower("whAT")
     'what'
     """
-    result = []
+    start = ASCII_UPPERCASE_START
+    end = ASCII_UPPERCASE_END
+    offset = ASCII_CASE_OFFSET
 
-    for char in word:
-        code = ord(char)
-        if ASCII_UPPERCASE_START <= code <= ASCII_UPPERCASE_END:
-            char = chr(code + ASCII_CASE_OFFSET)
-        result.append(char)
-
-    return "".join(result)
+    return "".join(
+        [
+            chr(code + offset) if start <= (code := ord(char)) <= end else char
+            for char in word
+        ]
+    )
 
 
 if __name__ == "__main__":

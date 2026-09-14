@@ -67,7 +67,26 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     >>> quantum_fourier_transform(0.5)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits must be exact integer.
+    ValueError: number of qubits must be an exact integer.
+
+    >>> result = quantum_fourier_transform(2)
+    >>> 2350<=result['10']<=2600
+    True
+    >>> 2350<=result['00']<=2600
+    True
+    >>> 2350<=result['11']<=2600
+    True
+    >>> 2350<=result['01']<=2600
+    True
+    >>> res = quantum_fourier_transform(3)
+    >>> 1150<=res['000']<=1350 and 1150<=res['001']<=1350
+    True
+    >>> 1150<=res['010']<=1350 and 1150<=res['100']<=1350
+    True
+    >>> 1150<=res['101']<=1350 and 1150<=res['110']<=1350
+    True
+    >>> 1150<=res['011']<=1350 and 1150<=res['111']<=1350
+    True
     """
     if isinstance(number_of_qubits, str):
         raise TypeError("number of qubits must be a integer.")
@@ -107,7 +126,8 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
 
 
 if __name__ == "__main__":
-    print(
-        f"Total count for quantum fourier transform state is: \
-    {quantum_fourier_transform(3)}"
-    )
+    import doctest
+
+    doctest.testmod()
+    print("Total count for quantum Fourier transform state is:")
+    print(f"{quantum_fourier_transform(3) = }")
