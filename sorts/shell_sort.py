@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Shellsort#Pseudocode
 """
+
 from typing import Any, Protocol, TypeVar
 
 
@@ -9,6 +10,7 @@ class Comparable(Protocol):
 
 
 T = TypeVar("T", bound=Comparable)
+
 
 def shell_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of shell sort algorithm in Python
@@ -31,7 +33,7 @@ def shell_sort[T: Comparable](collection: list[T]) -> list[T]:
     ...
     TypeError: '>' not supported between instances of 'int' and 'str'
     """
-# Marcin Ciura's gap sequence
+    # Marcin Ciura's gap sequence
     gaps = [701, 301, 132, 57, 23, 10, 4, 1]
     for gap in gaps:
         for i in range(gap, len(collection)):
