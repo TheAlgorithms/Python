@@ -6,16 +6,23 @@ Lists all open pull requests in the current directory's git repo (via `gh`)
 and, for each file touched by any open PR, which PR number(s) touch it.
 
 Output is GitHub-flavored Markdown that includes this script's path, the
-current UTC datetime, and summary counts for open PRs, file entries, and
-existing/missing files. It then renders a sorted list of files that currently
-exist in the working directory, each with its modifying PR numbers, followed
-by a separate section for files referenced by open PRs but that do not exist
-in the working directory (e.g. deleted, renamed, or on a branch not checked
-out locally).
+current UTC datetime, and summary counts for open PRs, file touches, distinct
+files, and existing/missing files. It highlights files touched by more than one
+open PR first (the likely merge-conflict hot spots when landing PRs), then
+renders a sorted list of files that currently exist in the working directory,
+each with its modifying PR numbers, followed by a separate section for files
+referenced by open PRs but that do not exist in the working directory (e.g.
+deleted, renamed, or on a branch not checked out locally).
+
+Two file totals are reported because they answer different questions:
+  - "file touches" counts every (PR, file) pair, so a file edited by three open
+    PRs contributes three touches; and
+  - "distinct files" counts each touched path once.
+Only the distinct total equals `existing + missing`, since those are deduped.
 
 Run status is also written to stderr with:
   - Number of PRs from `get_open_prs()`
-  - Number of files from `get_pr_files()`
+  - Number of file touches from `get_pr_files()` and distinct files touched
   - Number of existing and missing files
 
 Requirements: gh (GitHub CLI), authenticated (`gh auth login`)
@@ -85,26 +92,36 @@ def main() -> None:
     print(f"PR count from get_open_prs(): {pr_count}", file=sys.stderr)
 
     file_to_prs: dict[str, list[int]] = defaultdict(list)
-    file_count = 0
+    touch_count = 0  # every (PR, file) pair; a file may be touched by many PRs
 
     for pr in prs:
         pr_number = pr["number"]
         pr_files = get_pr_files(pr_number)
-        file_count += len(pr_files)
+        touch_count += len(pr_files)
         for path in pr_files:
             file_to_prs[path].append(pr_number)
-    print(f"File count from get_pr_files(): {file_count}", file=sys.stderr)
+    distinct_count = len(file_to_prs)
+    print(
+        f"File touches from get_pr_files(): {touch_count} "
+        f"across {distinct_count} distinct files",
+        file=sys.stderr,
+    )
 
     existing: dict[str, list[int]] = {}
     missing: dict[str, list[int]] = {}
+    contested: dict[str, list[int]] = {}
 
     for path, pr_numbers in file_to_prs.items():
+        deduped = sorted(set(pr_numbers))
         target = existing if Path(path).exists() else missing
-        target[path] = sorted(set(pr_numbers))
+        target[path] = deduped
+        if len(deduped) > 1:
+            contested[path] = deduped
     existing_count = len(existing)
     missing_count = len(missing)
     print(
-        f"Existing files: {existing_count}, Missing files: {missing_count}",
+        f"Existing files: {existing_count}, Missing files: {missing_count}, "
+        f"Contested files: {len(contested)}",
         file=sys.stderr,
     )
 
@@ -113,12 +130,27 @@ def main() -> None:
     print(f"- Script: `{Path(__file__).resolve()}`")
     print(f"- Generated (UTC): `{datetime.now(UTC).isoformat()}`")
     print(f"- Number of PRs: `{pr_count}`")
-    print(f"- Number of files: `{file_count}`")
+    print(f"- File touches (PR x file): `{touch_count}`")
+    print(f"- Distinct files touched: `{distinct_count}`")
+    print(f"- Files touched by more than one PR: `{len(contested)}`")
     if pr_count == 0:
-        print("No open pull requests found.")
+        print("\nNo open pull requests found.")
         return
 
-    print(f"## `{existing_count}` existing files\n")
+    print(
+        f"\n## `{len(contested)}` files touched by more than one open PR "
+        "(possible merge conflicts)\n"
+    )
+    if contested:
+        print("Coordinate, rebase, or land these together to avoid conflicts.\n")
+        # Hot spots first: most-contested files, then alphabetical.
+        for path in sorted(contested, key=lambda p: (-len(contested[p]), p)):
+            pr_list = " ".join(f"#{n}" for n in contested[path])
+            print(f"- `{path}` ({len(contested[path])} PRs): {pr_list}")
+    else:
+        print("_None -- no open PRs overlap on the same file._")
+
+    print(f"\n## `{existing_count}` existing files\n")
     if existing:
         for path in sorted(existing):
             pr_list = " ".join(f"#{n}" for n in existing[path])
