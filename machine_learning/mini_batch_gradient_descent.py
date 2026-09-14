@@ -22,25 +22,17 @@ def mini_batch_gradient_descent(
 
     Parameters
     ----------
-    feature_matrix : np.ndarray
-        Feature matrix.
-    target_values : np.ndarray
-        Target values.
-    learning_rate : float
-        Learning rate.
-    batch_size : int
-        Size of mini-batches.
-    n_epochs : int
-        Number of training epochs.
-    random_seed : int | None
-        Random seed for reproducibility.
+    feature_matrix: Feature matrix.
+    target_values: Target values.
+    learning_rate: Learning rate.
+    batch_size: Size of mini-batches.
+    n_epochs: Number of training epochs.
+    random_seed: Random seed for reproducibility.
 
     Returns
     -------
-    weights : np.ndarray
-        Learned weights.
-    bias : float
-        Learned bias.
+    weights: Learned weights.
+    bias: Learned bias.
 
     Example
     -------
