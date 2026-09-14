@@ -34,7 +34,7 @@ def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     return first_num // greatest_common_divisor(first_num, second_num) * second_num
 
 
-def benchmark():
+def benchmark() -> None:
     setup = (
         "from __main__ import least_common_multiple_slow, least_common_multiple_fast"
     )
@@ -62,7 +62,7 @@ class TestLeastCommonMultiple(unittest.TestCase):
     )
     expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18)
 
-    def test_lcm_function(self):
+    def test_lcm_function(self) -> None:
         for i, (first_num, second_num) in enumerate(self.test_inputs):
             slow_result = least_common_multiple_slow(first_num, second_num)
             fast_result = least_common_multiple_fast(first_num, second_num)
