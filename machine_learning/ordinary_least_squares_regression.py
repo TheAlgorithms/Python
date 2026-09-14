@@ -7,7 +7,7 @@ It is the most commonly used regression method,
 and it is based on the principle of minimizing
 the sum of the squared residuals.
 
-Below is simple implementation of OLSR
+Below is a simple implementation of OLSR
 without using any external libraries.
 
 WIKI: https://en.wikipedia.org/wiki/Ordinary_least_squares
@@ -21,8 +21,8 @@ def ols_regression(x_point: np.ndarray, y_point: np.ndarray) -> tuple:
     Performs Ordinary Least Squares Regression (OLSR) on the given data.
 
     Args:
-        x (numpy.ndarray): The independent variable.
-        y (numpy.ndarray): The dependent variable.
+        x: The independent variable.
+        y: The dependent variable.
 
     Returns:
         a (float): The intercept of the regression line.
@@ -34,7 +34,7 @@ def ols_regression(x_point: np.ndarray, y_point: np.ndarray) -> tuple:
     >>> a, b = ols_regression(x, y)
     >>> float(a)  # Intercept should be 0.0
     0.0
-    >>> round(b, 2)  # Slope should be 2.0
+    >>> float(round(b, 2))  # Slope should be 2.0
     2.0
     """
 
