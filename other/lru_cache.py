@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
 
 
-class DoubleLinkedListNode(Generic[T, U]):
+class DoubleLinkedListNode[T, U]:
     """
     Double Linked List Node built specifically for LRU Cache
 
@@ -15,7 +15,7 @@ class DoubleLinkedListNode(Generic[T, U]):
     Node: key: 1, val: 1, has next: False, has prev: False
     """
 
-    def __init__(self, key: T | None, val: U | None):
+    def __init__(self, key: T | None, val: U | None) -> None:
         self.key = key
         self.val = val
         self.next: DoubleLinkedListNode[T, U] | None = None
@@ -28,7 +28,7 @@ class DoubleLinkedListNode(Generic[T, U]):
         )
 
 
-class DoubleLinkedList(Generic[T, U]):
+class DoubleLinkedList[T, U]:
     """
     Double Linked List built specifically for LRU Cache
 
@@ -143,7 +143,7 @@ class DoubleLinkedList(Generic[T, U]):
         return node
 
 
-class LRUCache(Generic[T, U]):
+class LRUCache[T, U]:
     """
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
@@ -209,7 +209,7 @@ class LRUCache(Generic[T, U]):
     CacheInfo(hits=194, misses=99, capacity=100, current size=99)
     """
 
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int) -> None:
         self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
         self.capacity = capacity
         self.num_keys = 0

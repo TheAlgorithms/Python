@@ -8,8 +8,16 @@ fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx2",
+#     "numpy",
+# ]
+# ///
+
+import httpx2
 import numpy as np
-import requests
 
 
 def collect_dataset():
@@ -17,7 +25,7 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    response = requests.get(
+    response = httpx2.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
@@ -59,25 +67,22 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     return theta
 
 
-def sum_of_square_error(data_x, data_y, len_data, theta):
+def sum_of_square_error(data_x, data_y, theta):
     """Return sum of square error for error calculation
     :param data_x    : contains our dataset
     :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
     :param theta     : contains the feature vector
     :return          : sum of square error computed from given feature's
 
     Example:
     >>> vc_x = np.array([[1.1], [2.1], [3.1]])
     >>> vc_y = np.array([1.2, 2.2, 3.2])
-    >>> round(sum_of_square_error(vc_x, vc_y, 3, np.array([1])),3)
-    np.float64(0.005)
+    >>> round(sum_of_square_error(vc_x, vc_y, np.array([1])), 3)
+    np.float64(0.03)
     """
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
-    sum_elem = np.sum(np.square(prod))
-    error = sum_elem / (2 * len_data)
-    return error
+    return np.sum(np.square(prod))
 
 
 def run_linear_regression(data_x, data_y):
@@ -96,7 +101,7 @@ def run_linear_regression(data_x, data_y):
 
     for i in range(iterations):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
-        error = sum_of_square_error(data_x, data_y, len_data, theta)
+        error = sum_of_square_error(data_x, data_y, theta)
         print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
     return theta
@@ -117,7 +122,7 @@ def mean_absolute_error(predicted_y, original_y):
     return total / len(original_y)
 
 
-def main():
+def main() -> None:
     """Driver function"""
     data = collect_dataset()
 

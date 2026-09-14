@@ -11,6 +11,19 @@ import time
 def cross(items_a, items_b):
     """
     Cross product of elements in A and elements in B.
+
+    >>> cross('AB', '12')
+    ['A1', 'A2', 'B1', 'B2']
+    >>> cross('ABC', '123')
+    ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+    >>> cross('ABC', '1234')
+    ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4']
+    >>> cross('', '12')
+    []
+    >>> cross('A', '')
+    []
+    >>> cross('', '')
+    []
     """
     return [a + b for a in items_a for b in items_b]
 
@@ -28,7 +41,7 @@ units = {s: [u for u in unitlist if s in u] for s in squares}
 peers = {s: {x for u in units[s] for x in u} - {s} for s in squares}
 
 
-def test():
+def test() -> None:
     """A set of unit tests."""
     assert len(squares) == 81
     assert len(unitlist) == 27
@@ -108,7 +121,7 @@ def eliminate(values, s, d):
     return values
 
 
-def display(values):
+def display(values) -> None:
     """
     Display these values as a 2-D grid.
     """
@@ -149,11 +162,11 @@ def search(values):
     if all(len(values[s]) == 1 for s in squares):
         return values  ## Solved!
     ## Chose the unfilled square s with the fewest possibilities
-    n, s = min((len(values[s]), s) for s in squares if len(values[s]) > 1)
+    _n, s = min((len(values[s]), s) for s in squares if len(values[s]) > 1)
     return some(search(assign(values.copy(), s, d)) for d in values[s])
 
 
-def solve_all(grids, name="", showif=0.0):
+def solve_all(grids, name="", showif=0.0) -> None:
     """
     Attempt to solve a sequence of grids. Report results.
     When showif is a number of seconds, display puzzles that take longer.
