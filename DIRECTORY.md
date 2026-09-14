@@ -815,6 +815,7 @@
   * [Modular Exponential](maths/modular_exponential.py)
   * [Monte Carlo](maths/monte_carlo.py)
   * [Monte Carlo Dice](maths/monte_carlo_dice.py)
+  * [Ncr Combinations](maths/ncr_combinations.py)
   * [Number Of Digits](maths/number_of_digits.py)
   * Numerical Analysis
     * [Adams Bashforth](maths/numerical_analysis/adams_bashforth.py)
