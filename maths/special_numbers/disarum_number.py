@@ -1,8 +1,10 @@
 """
-A number n is said to be a Disarium number if
-the sum of its digits powered to their respective positions equals the number itself.
+A number n is said to be a Disarium number if the sum of its digits raised to
+their respective positions equals the number itself.
 
 Examples of Disarium Numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598, ...
+
+https://rosettacode.org/wiki/Disarium_numbers
 """
 
 
