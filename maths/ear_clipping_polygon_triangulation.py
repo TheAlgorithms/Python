@@ -188,7 +188,7 @@ def is_point_inside_triangle(
 
 
 def triangulate_polygon(
-    coordinates: list[tuple[float, float]]
+    coordinates: list[tuple[float, float]],
 ) -> list[list[tuple[float, float]]]:
     """
     Triangulate a polygon and provide the points of the resulting triangles.
