@@ -1,5 +1,5 @@
 # Finding Articulation Points in Undirected Graph
-def compute_ap(graph):
+def compute_ap(graph) -> None:
     n = len(graph)
     out_edge_count = 0
     low = [0] * n
