@@ -3,6 +3,8 @@ A number n is said to be a Deficient number if
 the sum of its proper divisors is less than the number itself.
 
 Examples of Deficient Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, ...
+
+https://en.wikipedia.org/wiki/Deficient_number
 """
 
 
