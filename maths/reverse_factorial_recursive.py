@@ -9,15 +9,12 @@ def reverse_factorial_recursive(value: int, current_divisor: int = 1) -> int:
 
     Parameters
     ----------
-    value : int
-        The positive integer to test (candidate factorial value).
-    current_divisor : int, optional
-        The current divisor used while reducing `value` (default is 1).
+    value: The positive integer to test (candidate factorial value).
+    current_divisor: The current divisor used while reducing `value` (default is 1).
 
     Returns
     -------
-    int
-        The factorial root (x) if x! == value, otherwise -1.
+    The factorial root (x) if x! == value, otherwise -1.
 
     Examples
     --------
@@ -53,3 +50,9 @@ def reverse_factorial_recursive(value: int, current_divisor: int = 1) -> int:
         return -1
 
     return reverse_factorial_recursive(value // current_divisor, current_divisor + 1)
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
