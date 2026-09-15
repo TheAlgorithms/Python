@@ -400,7 +400,7 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
     """
     if side1 < 0 or side2 < 0 or side3 < 0:
         raise ValueError("area_triangle_three_sides() only accepts non-negative values")
-    elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
+    if side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
         raise ValueError("Given three sides do not form a triangle")
     semi_perimeter = (side1 + side2 + side3) / 2
     area = sqrt(
@@ -598,7 +598,7 @@ three as number of sides
             "area_reg_polygon() only accepts integers greater than or \
 equal to three as number of sides"
         )
-    elif length < 0:
+    if length < 0:
         raise ValueError(
             "area_reg_polygon() only accepts non-negative values as \
 length of a side"
@@ -642,7 +642,7 @@ to three as number of sides
             "surface_area_reg_prism() only accepts integers greater than or \
 equal to three as number of sides"
         )
-    elif edge < 0 or height < 0:
+    if edge < 0 or height < 0:
         raise ValueError(
             "surface_area_reg_prism() only accepts non-negative values as \
 length of an edge or height"
