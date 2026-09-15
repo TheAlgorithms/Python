@@ -10,7 +10,7 @@ class TestClass(unittest.TestCase):
     Test cases for knapsack
     """
 
-    def test_sorted(self):
+    def test_sorted(self) -> None:
         """
         kp.calc_profit takes the required argument (profit, weight, max_weight)
         and returns whether the answer matches to the expected ones
@@ -20,7 +20,7 @@ class TestClass(unittest.TestCase):
         max_weight = 100
         assert kp.calc_profit(profit, weight, max_weight) == 210
 
-    def test_negative_max_weight(self):
+    def test_negative_max_weight(self) -> None:
         """
         Returns ValueError for any negative max_weight value
         :return: ValueError
@@ -30,7 +30,7 @@ class TestClass(unittest.TestCase):
         # max_weight = -15
         pytest.raises(ValueError, match=r"max_weight must greater than zero.")
 
-    def test_negative_profit_value(self):
+    def test_negative_profit_value(self) -> None:
         """
         Returns ValueError for any negative profit value in the list
         :return: ValueError
@@ -40,7 +40,7 @@ class TestClass(unittest.TestCase):
         # max_weight = 15
         pytest.raises(ValueError, match=r"Weight can not be negative.")
 
-    def test_negative_weight_value(self):
+    def test_negative_weight_value(self) -> None:
         """
         Returns ValueError for any negative weight value in the list
         :return: ValueError
@@ -50,7 +50,7 @@ class TestClass(unittest.TestCase):
         # max_weight = 15
         pytest.raises(ValueError, match=r"Profit can not be negative.")
 
-    def test_null_max_weight(self):
+    def test_null_max_weight(self) -> None:
         """
         Returns ValueError for any zero max_weight value
         :return: ValueError
@@ -60,7 +60,7 @@ class TestClass(unittest.TestCase):
         # max_weight = null
         pytest.raises(ValueError, match=r"max_weight must greater than zero.")
 
-    def test_unequal_list_length(self):
+    def test_unequal_list_length(self) -> None:
         """
         Returns IndexError if length of lists (profit and weight) are unequal.
         :return: IndexError

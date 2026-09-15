@@ -35,11 +35,11 @@ recaptcha verification.
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 try:
     from django.contrib.auth import authenticate, login
@@ -63,7 +63,7 @@ def login_using_recaptcha(request):
     client_key = request.POST.get("g-recaptcha-response")
 
     # post recaptcha response to Google's recaptcha api
-    response = httpx.post(
+    response = httpx2.post(
         url, data={"secret": secret_key, "response": client_key}, timeout=10
     )
     # if the recaptcha api verified our keys
