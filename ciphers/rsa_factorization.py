@@ -3,8 +3,10 @@ An RSA prime factor algorithm.
 
 The program can efficiently factor RSA prime number given the private key d and
 public key e.
-Source: on page 3 of https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf
-More readable source: https://www.di-mgt.com.au/rsa_factorize_n.html
+
+| Source: on page ``3`` of https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf
+| More readable source: https://www.di-mgt.com.au/rsa_factorize_n.html
+
 large number can take minutes to factor, therefore are not included in doctest.
 """
 
@@ -17,13 +19,14 @@ import random
 def rsafactor(d: int, e: int, n: int) -> list[int]:
     """
     This function returns the factors of N, where p*q=N
-      Return: [p, q]
+
+    Return: [p, q]
 
     We call N the RSA modulus, e the encryption exponent, and d the decryption exponent.
     The pair (N, e) is the public key. As its name suggests, it is public and is used to
-        encrypt messages.
+    encrypt messages.
     The pair (N, d) is the secret key or private key and is known only to the recipient
-        of encrypted messages.
+    of encrypted messages.
 
     >>> rsafactor(3, 16971, 25777)
     [149, 173]

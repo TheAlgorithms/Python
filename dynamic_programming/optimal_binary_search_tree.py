@@ -23,11 +23,11 @@ from random import randint
 class Node:
     """Binary Search Tree Node"""
 
-    def __init__(self, key, freq):
+    def __init__(self, key, freq) -> None:
         self.key = key
         self.freq = freq
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         >>> str(Node(1, 2))
         'Node(key=1, freq=2)'
@@ -35,7 +35,7 @@ class Node:
         return f"Node(key={self.key}, freq={self.freq})"
 
 
-def print_binary_search_tree(root, key, i, j, parent, is_left):
+def print_binary_search_tree(root, key, i, j, parent, is_left) -> None:
     """
     Recursive function to print a BST from a root table.
 
@@ -65,7 +65,7 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
     print_binary_search_tree(root, key, node + 1, j, key[node], False)
 
 
-def find_optimal_binary_search_tree(nodes):
+def find_optimal_binary_search_tree(nodes) -> None:
     """
     This function calculates and prints the optimal binary search tree.
     The dynamic programming algorithm below runs in O(n^2) time.
@@ -134,7 +134,7 @@ def find_optimal_binary_search_tree(nodes):
     print_binary_search_tree(root, keys, 0, n - 1, -1, False)
 
 
-def main():
+def main() -> None:
     # A sample binary search tree
     nodes = [Node(i, randint(1, 50)) for i in range(10, 0, -1)]
     find_optimal_binary_search_tree(nodes)

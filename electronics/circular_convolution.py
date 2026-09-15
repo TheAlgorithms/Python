@@ -39,7 +39,7 @@ class CircularConvolution:
         Usage:
         >>> convolution = CircularConvolution()
         >>> convolution.circular_convolution()
-        [10, 10, 6, 14]
+        [10.0, 10.0, 6.0, 14.0]
 
         >>> convolution.first_signal = [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
         >>> convolution.second_signal = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
@@ -54,7 +54,7 @@ class CircularConvolution:
         >>> convolution.first_signal = [1, -1, 2, 3, -1]
         >>> convolution.second_signal = [1, 2, 3]
         >>> convolution.circular_convolution()
-        [8, -2, 3, 4, 11]
+        [8.0, -2.0, 3.0, 4.0, 11.0]
 
         """
 
@@ -91,7 +91,7 @@ class CircularConvolution:
         final_signal = np.matmul(np.transpose(matrix), np.transpose(self.first_signal))
 
         # rounding-off to two decimal places
-        return [round(i, 2) for i in final_signal]
+        return [float(round(i, 2)) for i in final_signal]
 
 
 if __name__ == "__main__":
