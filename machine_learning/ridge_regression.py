@@ -15,9 +15,7 @@ class RidgeRegression:
         self.alpha = alpha
         self.lambda_ = lambda_
         self.iterations = iterations
-        self.theta: np.ndarray | None = (
-            None  # Initialize as None, later will be ndarray
-        )
+        self.theta: np.ndarray | None = None
 
     def feature_scaling(
         self, features: np.ndarray
@@ -64,9 +62,8 @@ class RidgeRegression:
         >>> rr.theta is not None
         True
         """
-        features_scaled, mean, std = self.feature_scaling(
-            features
-        )  # Normalize features
+        # Normalize features
+        features_scaled, _mean, _std = self.feature_scaling(features)
         m, n = features_scaled.shape
         self.theta = np.zeros(n)  # Initialize weights to zeros
 
@@ -97,9 +94,8 @@ class RidgeRegression:
         if self.theta is None:
             raise ValueError("Model is not trained yet. Call the `fit` method first.")
 
-        features_scaled, _, _ = self.feature_scaling(
-            features
-        )  # Scale features using training data
+        # Scale features using training data
+        features_scaled, _mean, _std= self.feature_scaling(features)  
         return features_scaled.dot(self.theta)
 
     def compute_cost(self, features: np.ndarray, target: np.ndarray) -> float:
