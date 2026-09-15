@@ -17,10 +17,14 @@ For manual testing run:
 python reversort.py
 """
 
-from typing import Any
+from typing import Protocol
 
 
-def reversort(collection: list[Any]) -> list[Any]:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def reversort[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sort a list using the Reversort algorithm.
 
@@ -70,6 +74,10 @@ def reversort(collection: list[Any]) -> list[Any]:
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     >>> reversort([1, 3.3, 5, 7.7, 2, 4.4, 6])
     [1, 2, 3.3, 4.4, 5, 6, 7.7]
+    >>> reversort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> import random
     >>> collection_arg = random.sample(range(-50, 50), 100)
     >>> reversort(collection_arg) == sorted(collection_arg)
@@ -96,7 +104,7 @@ def reversort(collection: list[Any]) -> list[Any]:
     return arr
 
 
-def reversort_cost(collection: list[Any]) -> int:
+def reversort_cost[T: Comparable](collection: list[T]) -> int:
     """
     Calculate the cost of sorting using Reversort.
 
