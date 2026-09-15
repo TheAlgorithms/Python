@@ -43,7 +43,7 @@ def solution(limit: int = 1_000_000) -> int:
             ind = np.arange(2 * i, limit + 1, i)  # indexes for selection
             phi[ind] -= phi[ind] // i
 
-    return np.sum(phi[2 : limit + 1])
+    return int(np.sum(phi[2 : limit + 1]))
 
 
 if __name__ == "__main__":

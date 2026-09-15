@@ -1,14 +1,15 @@
 """
-    This is an implementation of Pigeon Hole Sort.
-    For doctests run following command:
+This is an implementation of Pigeon Hole Sort.
+For doctests run following command:
 
-    python3 -m doctest -v pigeon_sort.py
-    or
-    python -m doctest -v pigeon_sort.py
+python3 -m doctest -v pigeon_sort.py
+or
+python -m doctest -v pigeon_sort.py
 
-    For manual testing run:
-    python pigeon_sort.py
+For manual testing run:
+python pigeon_sort.py
 """
+
 from __future__ import annotations
 
 

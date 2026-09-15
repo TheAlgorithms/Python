@@ -13,7 +13,6 @@ def top_k_frequent_words(words, k_value):
     return [x[0] for x in Counter(words).most_common(k_value)]
 """
 
-
 from collections import Counter
 from functools import total_ordering
 

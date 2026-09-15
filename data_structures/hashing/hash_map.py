@@ -7,16 +7,17 @@ Another hash map implementation, with a good explanation.
 Modern Dictionaries by Raymond Hettinger
 https://www.youtube.com/watch?v=p33CVV29OG8
 """
+
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 KEY = TypeVar("KEY")
 VAL = TypeVar("VAL")
 
 
-@dataclass(frozen=True, slots=True)
-class _Item(Generic[KEY, VAL]):
+@dataclass(slots=True)
+class _Item[KEY, VAL]:
     key: KEY
     val: VAL
 
@@ -71,16 +72,17 @@ class HashMap(MutableMapping[KEY, VAL]):
 
         If bucket is empty or key is the same, does insert and return True.
 
-        If bucket has another key or deleted placeholder,
-        that means that we need to check next bucket.
+        If bucket has another key that means that we need to check next bucket.
         """
         stored = self._buckets[ind]
         if not stored:
+            # A falsy item means that bucket was never used (None)
+            # or was deleted (_deleted).
             self._buckets[ind] = _Item(key, val)
             self._len += 1
             return True
         elif stored.key == key:
-            self._buckets[ind] = _Item(key, val)
+            stored.val = val
             return True
         else:
             return False
@@ -227,6 +229,27 @@ class HashMap(MutableMapping[KEY, VAL]):
         Traceback (most recent call last):
         ...
         KeyError: 4
+
+        # Test resize down when sparse
+        ## Setup: resize up
+        >>> hm = HashMap(initial_block_size=100, capacity_factor=0.75)
+        >>> len(hm._buckets)
+        100
+        >>> for i in range(75):
+        ...     hm[i] = i
+        >>> len(hm._buckets)
+        100
+        >>> hm[75] = 75
+        >>> len(hm._buckets)
+        200
+
+        ## Resize down
+        >>> del hm[75]
+        >>> len(hm._buckets)
+        200
+        >>> del hm[74]
+        >>> len(hm._buckets)
+        100
         """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
@@ -242,6 +265,25 @@ class HashMap(MutableMapping[KEY, VAL]):
             self._size_down()
 
     def __getitem__(self, key: KEY) -> VAL:
+        """
+        Returns the item at the given key
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__getitem__(1)
+        10
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(10, -10)
+        >>> hm._add_item(20, -20)
+        >>> hm.__getitem__(20)
+        -20
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(-1, 10)
+        >>> hm.__getitem__(-1)
+        10
+        """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
             if item is None:
@@ -253,6 +295,20 @@ class HashMap(MutableMapping[KEY, VAL]):
         raise KeyError(key)
 
     def __len__(self) -> int:
+        """
+        Returns the number of items present in hashmap
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm.__len__()
+        3
+
+        >>> hm = HashMap(5)
+        >>> hm.__len__()
+        0
+        """
         return self._len
 
     def __iter__(self) -> Iterator[KEY]:
