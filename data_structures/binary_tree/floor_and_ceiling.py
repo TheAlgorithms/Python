@@ -9,6 +9,7 @@ https://bit.ly/46uB0a2
 Author : Arunkumar
 Date : 14th October 2023
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterator

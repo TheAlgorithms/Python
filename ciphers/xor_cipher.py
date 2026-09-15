@@ -1,26 +1,27 @@
 """
-        author: Christian Bender
-        date: 21.12.2017
-        class: XORCipher
+author: Christian Bender
+date: 21.12.2017
+class: XORCipher
 
-        This class implements the XOR-cipher algorithm and provides
-        some useful methods for encrypting and decrypting strings and
-        files.
+This class implements the XOR-cipher algorithm and provides
+some useful methods for encrypting and decrypting strings and
+files.
 
-        Overview about methods
+Overview about methods
 
-        - encrypt : list of char
-        - decrypt : list of char
-        - encrypt_string : str
-        - decrypt_string : str
-        - encrypt_file : boolean
-        - decrypt_file : boolean
+- encrypt : list of char
+- decrypt : list of char
+- encrypt_string : str
+- decrypt_string : str
+- encrypt_file : boolean
+- decrypt_file : boolean
 """
+
 from __future__ import annotations
 
 
 class XORCipher:
-    def __init__(self, key: int = 0):
+    def __init__(self, key: int = 0) -> None:
         """
         simple constructor that receives a key or uses
         default key = 0
