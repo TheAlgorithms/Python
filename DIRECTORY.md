@@ -1034,6 +1034,7 @@
   * [Center Of Mass](physics/center_of_mass.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Coulombs Law](physics/coulombs_law.py)
+  * [Diffraction](physics/diffraction.py)
   * [Doppler Frequency](physics/doppler_frequency.py)
   * [Escape Velocity](physics/escape_velocity.py)
   * [Faraday Lenz Law](physics/faraday_lenz_law.py)
