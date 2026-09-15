@@ -551,6 +551,7 @@
 ## [Geodesy](geodesy)
   * [Haversine Distance](geodesy/haversine_distance.py)
   * [Lamberts Ellipsoidal Distance](geodesy/lamberts_ellipsoidal_distance.py)
+  * [Radar Target Calculation](geodesy/radar_target_calculation.py)
 
 ## [Geometry](geometry)
   * [Geometry](geometry/geometry.py)
@@ -724,6 +725,7 @@
   * [Loss Functions](machine_learning/loss_functions.py)
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
+  * [Mab](machine_learning/mab.py)
   * [Mean Shift](machine_learning/mean_shift.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Mini Batch Gradient Descent](machine_learning/mini_batch_gradient_descent.py)
