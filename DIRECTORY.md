@@ -106,6 +106,7 @@
   * [Rotate Bits](bit_manipulation/rotate_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
+  * [Update Bit](bit_manipulation/update_bit.py)
 
 ## [Blockchain](blockchain)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
