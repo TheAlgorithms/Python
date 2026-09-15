@@ -1,19 +1,19 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 from datetime import UTC, datetime
 
-import httpx
+import httpx2
 
 
 def download_video(url: str) -> bytes:
     base_url = "https://downloadgram.net/wp-json/wppress/video-downloader/video?url="
-    video_url = httpx.get(base_url + url, timeout=10)
-    return httpx.get(video_url, timeout=10).content
+    video_url = httpx2.get(base_url + url, timeout=10)
+    return httpx2.get(video_url, timeout=10).content
 
 
 if __name__ == "__main__":

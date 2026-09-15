@@ -69,25 +69,22 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     return theta
 
 
-def sum_of_square_error(data_x, data_y, len_data, theta):
-    """Return the sum of square error for error calculation
+def sum_of_square_error(data_x, data_y, theta):
+    """Return sum of square error for error calculation
     :param data_x    : contains our dataset
     :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
     :param theta     : contains the feature vector
     :return          : sum of square error computed from given feature's
 
     Example:
     >>> vc_x = np.array([[1.1], [2.1], [3.1]])
     >>> vc_y = np.array([1.2, 2.2, 3.2])
-    >>> round(sum_of_square_error(vc_x, vc_y, 3, np.array([1])),3)
-    np.float64(0.005)
+    >>> round(sum_of_square_error(vc_x, vc_y, np.array([1])), 3)
+    np.float64(0.03)
     """
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
-    sum_elem = np.sum(np.square(prod))
-    error = sum_elem / (2 * len_data)
-    return error
+    return np.sum(np.square(prod))
 
 
 def run_linear_regression(data_x, data_y):
@@ -108,8 +105,8 @@ def run_linear_regression(data_x, data_y):
 
     for i in range(iterations):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
-        error = sum_of_square_error(data_x, data_y, len_data, theta)
-        err.append(error)
+        error = sum_of_square_error(data_x, data_y, theta)
+        print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
         if i % 1000 == 0:
             print(f"At Iteration {i + 1} - Error is {error:.5f}")
@@ -170,7 +167,7 @@ def plot_loss(err):
     plt.show()
 
 
-def main():
+def main() -> None:
     """Driver function"""
     data = collect_dataset()
 
