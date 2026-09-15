@@ -1,14 +1,14 @@
 def kaprekar_routine(number: int) -> int:
     """
-    Taking 4-digit numbers and finding how many steps to reach Kaprekar constant (6174) bro.
-    More info link for the bots bro: https://wikipedia.org
-
-    Keeping these here for the automatic test bots, don't mind me:
+    Find steps to Kaprekar constant (6174) bro.
+    Link: https://wikipedia.org
+    
     >>> kaprekar_routine(3524)
     3
     >>> kaprekar_routine(6174)
     0
     """
+
     # Checking if the number is 4 digits, throwing an error if not bro
     if not (1000 <= number <= 9999):
         raise ValueError("The number must be 4 digits bro!")
