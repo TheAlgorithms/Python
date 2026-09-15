@@ -6,8 +6,7 @@ from pathlib import Path
 
 
 def signature(word: str) -> str:
-    """
-    Return a word's frequency-based signature.
+    """Return a word's frequency-based signature.
 
     >>> signature("test")
     'e1s1t2'
@@ -23,14 +22,13 @@ def signature(word: str) -> str:
 
 
 def anagram(my_word: str) -> list[str]:
-    """
-    Return every anagram of the given word from the dictionary.
+    """Return every anagram of the given word from the dictionary.
 
-    >>> anagram('test')
+    >>> anagram("test")
     ['sett', 'stet', 'test']
-    >>> anagram('this is a test')
+    >>> anagram("this is a test")
     []
-    >>> anagram('final')
+    >>> anagram("final")
     ['final']
     """
     return word_by_signature[signature(my_word)]
@@ -39,13 +37,13 @@ def anagram(my_word: str) -> list[str]:
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
 word_list = sorted({word.strip().lower() for word in data.splitlines()})
 
-word_by_signature = collections.defaultdict(list)
+word_by_signature: dict[str, list[str]] = collections.defaultdict(list)
 for word in word_list:
     word_by_signature[signature(word)].append(word)
 
 if __name__ == "__main__":
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
-    with open("anagrams.txt", "w") as file:
+    with open("anagrams.txt", "w", encoding="utf-8") as file:
         file.write("all_anagrams = \n")
         file.write(pprint.pformat(all_anagrams))
