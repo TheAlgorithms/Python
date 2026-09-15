@@ -4,7 +4,6 @@ Finding the continuous fraction for a rational number using python
 https://en.wikipedia.org/wiki/Continued_fraction
 """
 
-
 from fractions import Fraction
 from math import floor
 

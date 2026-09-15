@@ -171,11 +171,9 @@ def is_palindrome_dict(head: ListNode | None) -> bool:
         if len(v) % 2 != 0:
             middle += 1
         else:
-            step = 0
-            for i in range(len(v)):
+            for step, i in enumerate(range(len(v))):
                 if v[i] + v[len(v) - 1 - step] != checksum:
                     return False
-                step += 1
         if middle > 1:
             return False
     return True
