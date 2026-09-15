@@ -64,11 +64,14 @@ def heap_sort[T: Comparable](unsorted: list[T]) -> list[T]:
     TypeError: ...
     """
     n = len(unsorted)
+
     for i in range(n // 2 - 1, -1, -1):
         heapify(unsorted, i, n)
+
     for i in range(n - 1, 0, -1):
         unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
         heapify(unsorted, 0, i)
+
     return unsorted
 
 
