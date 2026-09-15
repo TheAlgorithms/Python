@@ -25,6 +25,9 @@ def pancake_sort[T](arr: Sequence[T]) -> list[T]:
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    Time Complexity: (O(n^2))
+    Space Complexity: (O(n))
     """
     cur = len(arr)
     while cur > 1:
@@ -39,6 +42,9 @@ def pancake_sort[T](arr: Sequence[T]) -> list[T]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(pancake_sort(unsorted))
+    print(f"{pancake_sort(unsorted) = }")
