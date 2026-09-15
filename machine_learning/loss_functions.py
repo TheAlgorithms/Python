@@ -1,3 +1,5 @@
+# ruff: noqa: RUF002 -- ambiguous-unicode-character-docstring
+
 import numpy as np
 
 
@@ -327,7 +329,7 @@ def gaussian_negative_log_likelihood_loss(
     >>> expectation = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
     >>> variance = np.array([0.1, 0.2, 0.3, 0.4, 0.5])
     >>> loss = gaussian_negative_log_likelihood_loss(true_labels, expectation, variance)
-    >>> np.isclose(loss, -0.60621)
+    >>> bool(np.isclose(loss, -0.60621))
     True
 
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
