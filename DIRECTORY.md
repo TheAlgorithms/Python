@@ -108,6 +108,7 @@
 
 ## [Blockchain](blockchain)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
+  * [Pow Algorithm](blockchain/pow_algorithm.py)
 
 ## [Boolean Algebra](boolean_algebra)
   * [And Gate](boolean_algebra/and_gate.py)
