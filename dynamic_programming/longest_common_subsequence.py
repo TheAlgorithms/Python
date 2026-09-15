@@ -28,6 +28,24 @@ def longest_common_subsequence(x: str, y: str):
     (2, 'ph')
     >>> longest_common_subsequence("computer", "food")
     (1, 'o')
+    >>> longest_common_subsequence("", "abc")  # One string is empty
+    (0, '')
+    >>> longest_common_subsequence("abc", "")  # Other string is empty
+    (0, '')
+    >>> longest_common_subsequence("", "")  # Both strings are empty
+    (0, '')
+    >>> longest_common_subsequence("abc", "def")  # No common subsequence
+    (0, '')
+    >>> longest_common_subsequence("abc", "abc")  # Identical strings
+    (3, 'abc')
+    >>> longest_common_subsequence("a", "a")  # Single character match
+    (1, 'a')
+    >>> longest_common_subsequence("a", "b")  # Single character no match
+    (0, '')
+    >>> longest_common_subsequence("abcdef", "ace")  # Interleaved subsequence
+    (3, 'ace')
+    >>> longest_common_subsequence("ABCD", "ACBD")  # No repeated characters
+    (3, 'ABD')
     """
     # find the length of strings
 

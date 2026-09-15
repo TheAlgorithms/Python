@@ -75,8 +75,7 @@ def solution(n: str = N) -> int:
         product = 1
         for j in range(13):
             product *= int(n[i + j])
-        if product > largest_product:
-            largest_product = product
+        largest_product = max(largest_product, product)
     return largest_product
 
 

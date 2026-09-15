@@ -153,7 +153,7 @@ def cosine_similarity(input_a: np.ndarray, input_b: np.ndarray) -> float:
     >>> cosine_similarity(np.array([1, 2]), np.array([6, 32]))
     0.9615239476408232
     """
-    return np.dot(input_a, input_b) / (norm(input_a) * norm(input_b))
+    return float(np.dot(input_a, input_b) / (norm(input_a) * norm(input_b)))
 
 
 if __name__ == "__main__":

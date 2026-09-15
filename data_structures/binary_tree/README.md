@@ -36,7 +36,8 @@ Algorithm Pre-order
 
 Conclusion: This problem involves the classic recursive data structure (i.e. a binary tree), and the algorithm above demonstrates how a simplified solution can be reached by using a stack.
 
-If you look at the bigger picture, you'll find that the process of traversal is as followed. `Visit the left subtrees respectively from top to bottom, and visit the right subtrees respectively from bottom to top`. If we are to implement it from this perspective, things will be somewhat different. For the `top to bottom` part we can simply use recursion, and for the `bottom to top` part we can turn to stack.
+If you look at the bigger picture, you'll find that the process of traversal is as followed. `Visit the left subtrees respectively from top to bottom, and visit the right subtrees respectively from bottom to top`.
+If we are to implement it from this perspective, things will be somewhat different. For the `top to bottom` part we can simply use recursion, and for the `bottom to top` part we can turn to stack.
 
 ## In-order Traversal
 
@@ -50,7 +51,7 @@ Algorithm In-order
 
 2. If there is a left child node, push it into the stack. Repeat this process until a leaf node reached.
 
-    > At this point the root node and all the left nodes are in the stack.
+   > At this point the root node and all the left nodes are in the stack.
 
 3. Start popping nodes from the stack. If a node has a right child node, push the child node into the stack. Repeat step 2.
 
@@ -68,7 +69,8 @@ Record whether the current node has been visited. If 1) it's a leaf node or 2) b
 
 As for `1) it's a leaf node`, you can easily tell whether a node is a leaf if both its left and right are `null`.
 
-As for `2) both its left and right subtrees have been traversed`, we only need a variable to record whether a node has been visited or not. In the worst case, we need to record the status for every single node and the space complexity is `O(n)`. But if you come to think about it, as we are using a stack and start printing the result from the leaf nodes, it makes sense that we only record the status for the current node popping from the stack, reducing the space complexity to `O(1)`.
+As for `2) both its left and right subtrees have been traversed`, we only need a variable to record whether a node has been visited or not. In the worst case, we need to record the status for every single node and the space complexity is `O(n)`.
+But if you come to think about it, as we are using a stack and start printing the result from the leaf nodes, it makes sense that we only record the status for the current node popping from the stack, reducing the space complexity to `O(1)`.
 
 ## Level Order Traversal
 
