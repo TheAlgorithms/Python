@@ -698,7 +698,7 @@ def connectionist_temporal_classification_loss(
     >>> y_pred = np.array([[0.1, 0.6, 0.1, 0.2],
     ...                    [0.2, 0.1, 0.5, 0.2],
     ...                    [0.2, 0.1, 0.5, 0.2]])
-    >>> connectionist_temporal_classification_loss(y_true, y_pred)
+    >>> float(connectionist_temporal_classification_loss(y_true, y_pred))
     2.8134107167600364
 
     >>> y_true = np.array([1, 2, 3, 1])
