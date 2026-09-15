@@ -10,12 +10,22 @@ For manual testing run:
 python binary_insertion_sort.py
 """
 
+from typing import Protocol, TypeVar
 
-def binary_insertion_sort(collection: list) -> list:
-    """Pure implementation of the binary insertion sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def binary_insertion_sort[T: Comparable](collection: list[T]) -> list[T]:
+    """
+    Sorts a list using the binary insertion sort algorithm.
+
+    :param collection: A mutable ordered collection with comparable items.
+    :return: The same collection ordered in ascending order.
 
     Examples:
     >>> binary_insertion_sort([0, 4, 1234, 4, 1])
@@ -35,27 +45,35 @@ def binary_insertion_sort(collection: list) -> list:
     >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
     >>> binary_insertion_sort(collection) == sorted(collection)
     True
+    >>> binary_insertion_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
 
     n = len(collection)
     for i in range(1, n):
-        val = collection[i]
+        value_to_insert = collection[i]
         low = 0
         high = i - 1
 
         while low <= high:
             mid = (low + high) // 2
-            if val < collection[mid]:
+            if value_to_insert < collection[mid]:
                 high = mid - 1
             else:
                 low = mid + 1
         for j in range(i, low, -1):
             collection[j] = collection[j - 1]
-        collection[low] = val
+        collection[low] = value_to_insert
     return collection
 
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(binary_insertion_sort(unsorted))
+    try:
+        unsorted = [int(item) for item in user_input.split(",")]
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas.")
+        raise
+    print(f"{binary_insertion_sort(unsorted) = }")
