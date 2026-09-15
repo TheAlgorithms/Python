@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "fake-useragent",
+#     "httpx2",
+# ]
+# ///
+
 from __future__ import annotations
 
 import json
 
-import requests
+import httpx2
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
@@ -31,7 +41,7 @@ class InstagramUser:
     'Built for developers.'
     """
 
-    def __init__(self, username):
+    def __init__(self, username) -> None:
         self.url = f"https://www.instagram.com/{username}/"
         self.user_data = self.get_json()
 
@@ -39,11 +49,11 @@ class InstagramUser:
         """
         Return a dict of user information
         """
-        html = requests.get(self.url, headers=headers).text
+        html = httpx2.get(self.url, headers=headers, timeout=10).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])
-        except (json.decoder.JSONDecodeError, KeyError):
+        except json.decoder.JSONDecodeError, KeyError:
             return extract_user_profile(scripts[3])
 
     def __repr__(self) -> str:

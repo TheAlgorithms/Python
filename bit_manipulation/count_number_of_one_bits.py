@@ -20,6 +20,8 @@ def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: the value of input must not be negative
+    >>> get_set_bits_count_using_brian_kernighans_algorithm(1023)
+    10
     """
     if number < 0:
         raise ValueError("the value of input must not be negative")
@@ -49,6 +51,8 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: the value of input must not be negative
+    >>> get_set_bits_count_using_modulo_operator(1024)
+    1
     """
     if number < 0:
         raise ValueError("the value of input must not be negative")
@@ -70,11 +74,13 @@ def benchmark() -> None:
         setup = "import __main__ as z"
         print(f"Benchmark when {number = }:")
         print(f"{get_set_bits_count_using_modulo_operator(number) = }")
-        timing = timeit("z.get_set_bits_count_using_modulo_operator(25)", setup=setup)
+        timing = timeit(
+            f"z.get_set_bits_count_using_modulo_operator({number})", setup=setup
+        )
         print(f"timeit() runs in {timing} seconds")
         print(f"{get_set_bits_count_using_brian_kernighans_algorithm(number) = }")
         timing = timeit(
-            "z.get_set_bits_count_using_brian_kernighans_algorithm(25)",
+            f"z.get_set_bits_count_using_brian_kernighans_algorithm({number})",
             setup=setup,
         )
         print(f"timeit() runs in {timing} seconds")

@@ -39,8 +39,7 @@ def solution(n: int = 1000) -> int:
         c = n - a - b
         if c * c == (a * a + b * b):
             candidate = a * b * c
-            if candidate >= product:
-                product = candidate
+            product = max(product, candidate)
     return product
 
 

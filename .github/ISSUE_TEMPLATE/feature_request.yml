@@ -6,6 +6,7 @@ body:
     attributes:
       value: >
         Before requesting please search [existing issues](https://github.com/TheAlgorithms/Python/labels/enhancement).
+        Do not create issues to implement new algorithms as these will be closed.
         Usage questions such as "How do I...?"  belong on the
         [Discord](https://discord.gg/c7MnfGFGa6) and will be closed.
 
@@ -13,7 +14,6 @@ body:
     attributes:
       label: "Feature description"
       description: >
-        This could be new algorithms, data structures or improving any existing
-        implementations.
+        This could include new topics or improving any existing implementations.
     validations:
       required: true
