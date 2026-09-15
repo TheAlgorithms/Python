@@ -101,8 +101,7 @@ def git_root() -> Path | None:
 def script_display_path() -> Path:
     """This script's path relative to the git root (falls back to absolute)."""
     script_path = Path(__file__).resolve()
-    root = git_root()
-    if root is not None:
+    if (root := git_root()) is not None:
         try:
             return script_path.relative_to(root.resolve())
         except ValueError:
