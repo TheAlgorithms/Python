@@ -1,4 +1,4 @@
-"""
+"""(1-based)
 Convert a string of characters to a sequence of numbers
 corresponding to the character's position in the alphabet.
 
