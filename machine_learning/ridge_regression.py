@@ -27,7 +27,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-import httpx
+import httpx2
 import numpy as np
 
 
@@ -139,7 +139,7 @@ def mean_absolute_error(predicted: np.ndarray, actual: np.ndarray) -> float:
 
 def collect_dataset() -> np.matrix:
     """Fetch the ADR vs Rating CSV used in the repo's linear regression demo."""
-    response = httpx.get(
+    response = httpx2.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
