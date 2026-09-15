@@ -3,12 +3,12 @@ class Graph:
     Data structure to store graphs (based on adjacency lists)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
 
-    def add_vertex(self, vertex):
+    def add_vertex(self, vertex) -> None:
         """
         Adds a vertex to the graph
 
@@ -17,7 +17,7 @@ class Graph:
             self.adjacency[vertex] = {}
             self.num_vertices += 1
 
-    def add_edge(self, head, tail, weight):
+    def add_edge(self, head, tail, weight) -> None:
         """
         Adds an edge to the graph
 
@@ -32,7 +32,7 @@ class Graph:
         self.adjacency[head][tail] = weight
         self.adjacency[tail][head] = weight
 
-    def distinct_weight(self):
+    def distinct_weight(self) -> None:
         """
         For Boruvks's algorithm the weights should be distinct
         Converts the weights to be distinct
@@ -54,7 +54,7 @@ class Graph:
             self.adjacency[head][tail] = weight
             self.adjacency[tail][head] = weight
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Returns string representation of the graph
         """
@@ -103,11 +103,11 @@ class Graph:
         Disjoint set Union and Find for Boruvka's algorithm
         """
 
-        def __init__(self):
+        def __init__(self) -> None:
             self.parent = {}
             self.rank = {}
 
-        def __len__(self):
+        def __len__(self) -> int:
             return len(self.parent)
 
         def make_set(self, item):
@@ -185,12 +185,12 @@ class Graph:
 
                     if cheap_edge[set2] == -1 or cheap_edge[set2][2] > weight:
                         cheap_edge[set2] = [head, tail, weight]
-            for vertex in cheap_edge:
-                if cheap_edge[vertex] != -1:
-                    head, tail, weight = cheap_edge[vertex]
+            for head_tail_weight in cheap_edge.values():
+                if head_tail_weight != -1:
+                    head, tail, weight = head_tail_weight
                     if union_find.find(head) != union_find.find(tail):
                         union_find.union(head, tail)
-                        mst_edges.append(cheap_edge[vertex])
+                        mst_edges.append(head_tail_weight)
                         num_components = num_components - 1
         mst = Graph.build(edges=mst_edges)
         return mst
