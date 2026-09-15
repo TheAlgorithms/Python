@@ -1407,6 +1407,7 @@
 
 ## [Quantum](quantum)
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
+  * [Shor Algorithm](quantum/shor_algorithm.py)
 
 ## [Scheduling](scheduling)
   * [Cpuschedulingalgorithms](scheduling/cpuschedulingalgorithms.py)
