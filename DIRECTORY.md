@@ -736,6 +736,7 @@
   * [Q Learning](machine_learning/q_learning.py)
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
+  * [Ridge Regression](machine_learning/ridge_regression.py)
   * [Rmsprop](machine_learning/rmsprop.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
