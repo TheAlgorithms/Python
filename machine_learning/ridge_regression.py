@@ -95,7 +95,7 @@ class RidgeRegression:
             raise ValueError("Model is not trained yet. Call the `fit` method first.")
 
         # Scale features using training data
-        features_scaled, _mean, _std= self.feature_scaling(features)  
+        features_scaled, _mean, _std= self.feature_scaling(features)
         return features_scaled.dot(self.theta)
 
     def compute_cost(self, features: np.ndarray, target: np.ndarray) -> float:
@@ -118,9 +118,8 @@ class RidgeRegression:
         if self.theta is None:
             raise ValueError("Model is not trained yet. Call the `fit` method first.")
 
-        features_scaled, _, _ = self.feature_scaling(
-            features
-        )  # Scale features using training data
+        # Scale features using training data
+        features_scaled, _mean, _std = self.feature_scaling(features)
         m = len(target)
         predictions = features_scaled.dot(self.theta)
         cost = (1 / (2 * m)) * np.sum((predictions - target) ** 2) + (
