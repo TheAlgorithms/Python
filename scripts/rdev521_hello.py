@@ -1,6 +1,7 @@
 def kaprekar_routine(number: int) -> int:
     """
     4 basamaklı sayıları alıp Kaprekar sabitine (6174) kaç adımda ulaştığını buluyorum.
+    Daha fazla bilgi için link : https://wikipedia.org
     >>> kaprekar_routine(3524)
     3
     >>> kaprekar_routine(6174)
