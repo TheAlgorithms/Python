@@ -1,50 +1,50 @@
 def kaprekar_routine(number: int) -> int:
     """
-    4 basamaklı sayıları alıp Kaprekar sabitine (6174) kaç adımda ulaştığını buluyorum.
-    Daha fazla bilgi için link : https://wikipedia.org
+    Taking 4-digit numbers and finding how many steps to reach Kaprekar constant (6174) bro.
+    More info link for the bots bro: https://wikipedia.org
+    
+    Keeping these here for the automatic test bots, don't mind me:
     >>> kaprekar_routine(3524)
     3
     >>> kaprekar_routine(6174)
     0
     """
-    # Sayı 4 basamaklı değilse direkt hata fırlatıyorum
+    # Checking if the number is 4 digits, throwing an error if not bro
     if not (1000 <= number <= 9999):
-        raise ValueError("Sayı kesinlikle 4 basamaklı olmalı!")
-
-    # Herkes aynı rakamı girerse (1111 gibi) döngü patlar, o yüzden engelliiyorum
+        raise ValueError("The number must be 4 digits bro!")
+        
+    # If someone enters all same digits like 1111, loop breaks. Blocking it here
     if len(set(str(number))) < 2:
-        raise ValueError("Rakamların hepsi aynı olamaz! , en az ikisi farklı olmalı")
+        raise ValueError("Digits cannot be all the same bro, make at least two different!")
 
     kaprekar_target = 6174
     steps = 0
 
-    # Sayı 6174 olana kadar buradayız , döngü dönüyor
+    # We are here until the number becomes 6174 bro, loop keeps spinning
     while number != kaprekar_target:
-        # Sayıyı 4 basamağa tamamlayıp stringe çeviriyom
+        # Padding the number to 4 digits and making it a string bro
         digits = f"{number:04d}"
-
-        # Rakamları büyükten küçüğe dizip birleştiriyorum
+        
+        # Sorting digits from biggest to smallest and joining them
         descending = int("".join(sorted(digits, reverse=True)))
-
-        # Rakamları küçükten büyüğe dizip birleştiriyom
+        
+        # Sorting digits from smallest to biggest and joining them
         ascending = int("".join(sorted(digits)))
-
-        # Büyükten küçüğü çıkarıp yeni sayıyı buluyom ve adımı arttırıyorum
+        
+        # Subtracting smallest from biggest, finding new number and increasing steps bro
         number = descending - ascending
         steps += 1
 
-        # Olur da patlarsak diye sonsuz döngü koruması koydum, en fazla 7 döner
+        # Infinite loop protection just in case we break something, spins 7 times max
         if steps > 7:
             break
 
     return steps
 
-
 if __name__ == "__main__":
     import doctest
-
-    # Botların kontrol ettiği test motorunu çalıştırıyom bro
+    # Running the test engine that the bots are checking 
     doctest.testmod()
-
-    # Kendim test etmek için de şuraya bir örnek bıraktım
-    print(f"Bizim sayı tam {kaprekar_routine(3524)} adımda kilitlendi!")
+    
+    # Just a small example here to test it for myself
+    print(f"Our number locked in exactly {kaprekar_routine(3524)} steps bro!")
