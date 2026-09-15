@@ -719,6 +719,7 @@
   * [Mini Batch Gradient Descent](machine_learning/mini_batch_gradient_descent.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Naive Bayes Text Classification](machine_learning/naive_bayes_text_classification.py)
+  * [Ordinary Least Squares Regression](machine_learning/ordinary_least_squares_regression.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Principle Component Analysis](machine_learning/principle_component_analysis.py)
   * [Q Learning](machine_learning/q_learning.py)
