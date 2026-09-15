@@ -167,12 +167,12 @@ def sparse_categorical_cross_entropy(
 
     >>> true_labels = np.array([0, 1, 2])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
-    >>> sparse_categorical_cross_entropy(true_labels, pred_probs)
+    >>> float(sparse_categorical_cross_entropy(true_labels, pred_probs))
     0.567395975254385
 
     >>> true_labels = np.array([1, 2])
     >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
-    >>> sparse_categorical_cross_entropy(true_labels, pred_probs)
+    >>> float(sparse_categorical_cross_entropy(true_labels, pred_probs))
     2.353878387381596
 
     >>> true_labels = np.array([1, 5])
