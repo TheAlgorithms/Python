@@ -22,7 +22,17 @@ def add(first: int, second: int) -> int:
     >>> add(-321, 0)
     -321
     """
-    while second != 0:
+
+    """
+    Add two integers without using arithmetic operators.
+
+    This method uses bitwise operations:
+    - XOR (^) to add bits without carrying
+    - AND (&) to calculate carry bits
+    - Left shift (<<) to move the carry to the correct position
+    """
+
+    while second != 0:  # Continue until there is no carry left
         c = first & second
         first ^= second
         second = c << 1
