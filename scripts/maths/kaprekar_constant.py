@@ -2,7 +2,7 @@ def kaprekar_routine(number: int) -> int:
     """
     Find steps to Kaprekar constant (6174) bro.
     Link: https://wikipedia.org
-    
+
     >>> kaprekar_routine(3524)
     3
     >>> kaprekar_routine(6174)
