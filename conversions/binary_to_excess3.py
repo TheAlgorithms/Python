@@ -1,6 +1,7 @@
 def binary_to_excess3(binary_str: str) -> str:
     """
     Convert a binary number (as a string) to its Excess-3 code.
+    https://en.wikipedia.org/wiki/Excess-3
 
     Args:
         binary_str (str): Binary number as a string (e.g., "1010").
@@ -25,6 +26,9 @@ def binary_to_excess3(binary_str: str) -> str:
 
 
 if __name__ == "__main__":
+    from dostest import testmod
+
+    testmod()
     binary_input = input("Enter a 4-bit binary number: ")
     excess3_output = binary_to_excess3(binary_input)
     print(f"Excess-3 code of {binary_input} is: {excess3_output}")
