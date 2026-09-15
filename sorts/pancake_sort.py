@@ -1,4 +1,4 @@
-# sorts/pancake_sort.py   
+# sorts/pancake_sort.py
 """
 This is a pure Python implementation of the pancake sort algorithm
 For doctests run following command:
@@ -60,4 +60,3 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(f"{pancake_sort(unsorted) = }")
-
