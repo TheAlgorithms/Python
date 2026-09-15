@@ -14,13 +14,20 @@ python bogo_sort.py
 """
 
 import random
+from typing import Any, Protocol
 
 
-def bogo_sort(collection: list) -> list:
-    """Pure implementation of the bogosort algorithm in Python
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def bogo_sort[T: Comparable](collection: list[T]) -> list[T]:
+    """Pure implementation of the bogosort algorithm in Python.
+
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
+
     Examples:
     >>> bogo_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -28,13 +35,18 @@ def bogo_sort(collection: list) -> list:
     []
     >>> bogo_sort([-2, -5, -45])
     [-45, -5, -2]
+    >>> bogo_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> bogo_sort([2.5, -1.0, 0.0])
+    [-1.0, 0.0, 2.5]
+    >>> bogo_sort([0, 5, 3, 2, 2]) == sorted([0, 5, 3, 2, 2])
+    True
     """
 
-    def is_sorted(collection: list) -> bool:
-        for i in range(len(collection) - 1):
-            if collection[i] > collection[i + 1]:
-                return False
-        return True
+    def is_sorted(collection: list[T]) -> bool:
+        return all(
+            collection[i] <= collection[i + 1] for i in range(len(collection) - 1)
+        )
 
     while not is_sorted(collection):
         random.shuffle(collection)
