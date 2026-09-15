@@ -26,13 +26,17 @@ def find_max_iterative(nums: list[int | float]) -> int | float:
 
 
 # Divide and Conquer algorithm
+# Using Divide and Conquer approach:
+# 1. Divide the array into two halves
+# 2. Recursively find the maximum in each half
+# 3. Combine the results by comparing the two maximums
 def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | float:
     """
-    find max value in list
-    :param nums: contains elements
-    :param left: index of first element
-    :param right: index of last element
-    :return: max in nums
+    Find the maximum value in a list using Divide and Conquer approach
+    :param nums: list of numbers to search through
+    :param left: starting index of the current subarray (inclusive)
+    :param right: ending index of the current subarray (inclusive)
+    :return: maximum value found in the subarray nums[left:right+1]
 
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
     ...     find_max_recursive(nums, 0, len(nums) - 1) == max(nums)
@@ -69,7 +73,7 @@ def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | 
         raise IndexError("list index out of range")
     if left == right:
         return nums[left]
-    mid = (left + right) >> 1  # the middle
+    mid = (left + right) >> 1  # Equivalent to (left + right) // 2 - finds middle index
     left_max = find_max_recursive(nums, left, mid)  # find max in range[left, mid]
     right_max = find_max_recursive(
         nums, mid + 1, right
