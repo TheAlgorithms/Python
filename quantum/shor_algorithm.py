@@ -62,5 +62,6 @@ class Shor:
                         return p_value, q_value
 
 
-shor = Shor()
-print(shor.shor_algorithm(15))
+if __name__ == "__main__":
+    shor = Shor()
+    print(shor.shor_algorithm(15))
