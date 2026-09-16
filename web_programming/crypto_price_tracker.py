@@ -25,7 +25,7 @@ def crypto_price(coin: str = "bitcoin") -> float:
     try:
         json_response = httpx2.get(url, timeout=10).raise_for_status().json()
         return float(response.json().get(coin, {}).get("usd", 0.0))
-    except (httpx2.RequestError, ValueError, KeyError):
+    except httpx2.RequestError, ValueError, KeyError:
         return 0.0
     return float(json_response.get(coin, {}).get("usd", 0.0))
 
