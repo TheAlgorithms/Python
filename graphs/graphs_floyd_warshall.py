@@ -5,8 +5,8 @@ weighted directed graph that can have negative edge weights.
 """
 
 
-def _print_dist(dist, v):
-    print("The shortest path matrix using Floyd Warshall algorithm\n")
+def _print_dist(dist, v) -> None:
+    print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
     for i in range(v):
         for j in range(v):
             end_char = "" if j == v - 1 else "  "
