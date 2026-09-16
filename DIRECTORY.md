@@ -974,6 +974,7 @@
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
   * [Matrix Based Game](matrix/matrix_based_game.py)
   * [Matrix Class](matrix/matrix_class.py)
+  * [Matrix Diagonal Sum](matrix/matrix_diagonal_sum.py)
   * [Matrix Equalization](matrix/matrix_equalization.py)
   * [Matrix Multiplication Recursion](matrix/matrix_multiplication_recursion.py)
   * [Matrix Operation](matrix/matrix_operation.py)
