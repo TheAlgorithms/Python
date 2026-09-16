@@ -15,7 +15,7 @@ Source: https://en.wikipedia.org/wiki/Vicsek_fractal
 import turtle
 
 
-def draw_cross(x: float, y: float, length: float):
+def draw_cross(x: float, y: float, length: float) -> None:
     """
     Draw a cross at the specified position and with the specified length.
     """
@@ -34,7 +34,7 @@ def draw_cross(x: float, y: float, length: float):
     turtle.end_fill()
 
 
-def draw_fractal_recursive(x: float, y: float, length: float, depth: float):
+def draw_fractal_recursive(x: float, y: float, length: float, depth: float) -> None:
     """
     Recursively draw the Vicsek fractal at the specified position, with the
     specified length and depth.
@@ -50,11 +50,13 @@ def draw_fractal_recursive(x: float, y: float, length: float, depth: float):
     draw_fractal_recursive(x, y - length / 3, length / 3, depth - 1)
 
 
-def set_color(rgb: str):
+def set_color(rgb: str) -> None:
     turtle.color(rgb)
 
 
-def draw_vicsek_fractal(x: float, y: float, length: float, depth: float, color="blue"):
+def draw_vicsek_fractal(
+    x: float, y: float, length: float, depth: float, color="blue"
+) -> None:
     """
     Draw the Vicsek fractal at the specified position, with the specified
     length and depth.
@@ -66,7 +68,7 @@ def draw_vicsek_fractal(x: float, y: float, length: float, depth: float, color="
     turtle.Screen().update()
 
 
-def main():
+def main() -> None:
     draw_vicsek_fractal(0, 0, 800, 4)
 
     turtle.done()
