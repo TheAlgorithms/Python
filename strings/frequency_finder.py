@@ -36,9 +36,8 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def get_letter_count(message: str) -> dict[str, int]:
-    """get_letter_count() is a function that takes message as parameter which is
-    supposed to be the string. and it returns a dictionary where string is a key
-    and integer is a value."""
+    """get_letter_count() takes message as a parameter, which should be a string.
+    It returns a dictionary where the string is a key and an integer is a value."""
     letter_count = dict.fromkeys(string.ascii_uppercase, 0)
     for letter in message.upper():
         if letter in LETTERS:
@@ -48,7 +47,7 @@ def get_letter_count(message: str) -> dict[str, int]:
 
 
 def get_item_at_index_zero(x: tuple) -> str:
-    """It takes x as parameter which is tuple and returns a string."""
+    """Take a tuple x as a parameter and return a string."""
     return x[0]
 
 
