@@ -69,15 +69,13 @@ def check_validity(values: dict[str, float]) -> None:
     if len(values) != 3:
         msg = f"Invalid input expected {3} items, got {len(values)}"
         raise ValueError(msg)
-    else:
-        for value in values:
-            if value not in valid_variables:
-                msg = f"Invalid input {value} is not a valid variable"
-                raise ValueError(msg)
-            if values[value] <= 0:
-                msg = f"Invalid input {value} must be greater than 0"
-                raise ValueError(msg)
-        return
+    for value, val in values.items():
+        if value not in valid_variables:
+            msg = f"Invalid input {value} is not a valid variable"
+            raise ValueError(msg)
+        if val <= 0:
+            msg = f"Invalid input {value} must be greater than 0"
+            raise ValueError(msg)
 
 
 def find_target_variable(values: dict[str, float]) -> str:
