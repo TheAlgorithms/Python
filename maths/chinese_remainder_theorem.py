@@ -65,7 +65,7 @@ def invert_modulo(a: int, n: int) -> int:
     1
 
     """
-    (b, x) = extended_euclid(a, n)
+    (b, _x) = extended_euclid(a, n)
     if b < 0:
         b = (b % n + n) % n
     return b

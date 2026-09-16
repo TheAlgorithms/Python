@@ -78,8 +78,10 @@ class HillCipher:
         'T'
         >>> hill_cipher.replace_digits(26)
         '0'
+        >>> hill_cipher.replace_digits(26.1)
+        '0'
         """
-        return self.key_string[round(num)]
+        return self.key_string[int(num)]
 
     def check_determinant(self) -> None:
         """
