@@ -21,7 +21,7 @@ True
 class DLXNode:
     """Represents a node in the Dancing Links structure."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.left = self.right = self.up = self.down = self
         self.column = None
 
@@ -29,7 +29,7 @@ class DLXNode:
 class ColumnNode(DLXNode):
     """Represents a column header node, keeping track of its column size."""
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         super().__init__()
         self.name = name
         self.size = 0
@@ -38,7 +38,7 @@ class ColumnNode(DLXNode):
 class DancingLinks:
     """Dancing Links structure for solving the Exact Cover problem."""
 
-    def __init__(self, universe, subsets):
+    def __init__(self, universe: list[int], subsets: list[list[int]]) -> None:
         self.header = ColumnNode("header")
         self.columns = {}
         self.solution = []
@@ -78,7 +78,7 @@ class DancingLinks:
                     first_node.left.right = node
                     first_node.left = node
 
-    def _cover(self, col):
+    def _cover(self, col: ColumnNode) -> None:
         """Covers a column (removes it from the matrix)."""
         col.right.left = col.left
         col.left.right = col.right
@@ -92,7 +92,7 @@ class DancingLinks:
                 node = node.right
             row = row.down
 
-    def _uncover(self, col):
+    def _uncover(self, col: ColumnNode):
         """Uncovers a column (reverses _cover)."""
         row = col.up
         while row != col:
@@ -106,7 +106,7 @@ class DancingLinks:
         col.right.left = col
         col.left.right = col
 
-    def _choose_column(self):
+    def _choose_column(self) -> ColumnNode:
         """Select the column with the smallest size (heuristic)."""
         min_size = float("inf")
         chosen = None
@@ -118,7 +118,7 @@ class DancingLinks:
             col = col.right
         return chosen
 
-    def _search(self):
+    def _search(self) -> None:
         """Recursive Algorithm X search."""
         if self.header.right == self.header:
             # All columns covered -> valid solution
@@ -153,7 +153,7 @@ class DancingLinks:
 
         self._uncover(col)
 
-    def solve(self):
+    def solve(self) -> list:
         """Find all exact cover solutions."""
         self._search()
         return self.solutions
