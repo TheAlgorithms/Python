@@ -1,5 +1,7 @@
 """
 Implementation of the Dancing Links algorithm (Algorithm X) by Donald Knuth.
+https://en.wikipedia.org/wiki/Knuth's_Algorithm_X
+https://en.wikipedia.org/wiki/Dancing_links
 
 >>> universe = [1, 2, 3, 4, 5, 6, 7]
 >>> subsets = [
