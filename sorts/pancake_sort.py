@@ -8,8 +8,13 @@ For manual testing run:
 python pancake_sort.py
 """
 
+from collections.abc import Sequence
+from typing import TypeVar
 
-def pancake_sort(arr):
+T = TypeVar("T")
+
+
+def pancake_sort[T](arr: Sequence[T]) -> list[T]:
     """Sort Array with Pancake Sort.
     :param arr: Collection containing comparable items
     :return: Collection ordered in ascending order of items
@@ -20,6 +25,9 @@ def pancake_sort(arr):
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    Time Complexity: (O(n^2))
+    Space Complexity: (O(n))
     """
     cur = len(arr)
     while cur > 1:
@@ -34,6 +42,9 @@ def pancake_sort(arr):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(pancake_sort(unsorted))
+    print(f"{pancake_sort(unsorted) = }")
