@@ -1,4 +1,4 @@
-# https://en.wikipedia.org/wiki/Wheatstone_bridge
+# ruff: noqa: RUF002 -- ambiguous-unicode-character-docstring
 from __future__ import annotations
 
 
@@ -15,6 +15,7 @@ def wheatstone_solver(
     bridge are known. The bridge is said to be balanced when no current
     flows through the galvanometer connected between the midpoints of the
     two voltage dividers.
+    * # https://en.wikipedia.org/wiki/Wheatstone_bridge
 
     Circuit Diagram:
 
