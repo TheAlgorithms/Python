@@ -109,7 +109,7 @@ class Polynomial:
         for i in range(self.degree, -1, -1):
             if self.coefficients[i] == 0:
                 continue
-            elif self.coefficients[i] > 0:
+            if self.coefficients[i] > 0:
                 if polynomial:
                     polynomial += " + "
             else:
