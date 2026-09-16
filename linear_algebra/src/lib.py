@@ -116,15 +116,16 @@ class Vector:
         mul implements the scalar multiplication
         and the dot-product
         """
-        if isinstance(other, (float, int)):
-            ans = [c * other for c in self.__components]
-            return Vector(ans)
-        elif isinstance(other, Vector) and len(self) == len(other):
-            size = len(self)
-            prods = [self.__components[i] * other.component(i) for i in range(size)]
-            return sum(prods)
-        else:  # error case
-            raise Exception("invalid operand!")
+        match other:
+            case float() | int():
+                ans = [c * other for c in self.__components]
+                return Vector(ans)
+            case Vector() if len(self) == len(other):
+                size = len(self)
+                prods = [self.__components[i] * other.component(i) for i in range(size)]
+                return sum(prods)
+            case _:  # error case
+                raise Exception("invalid operand!")
 
     def copy(self) -> Vector:
         """
@@ -327,27 +328,28 @@ class Matrix:
         implements the matrix-vector multiplication.
         implements the matrix-scalar multiplication
         """
-        if isinstance(other, Vector):  # matrix-vector
-            if len(other) == self.__width:
-                ans = zero_vector(self.__height)
-                for i in range(self.__height):
-                    prods = [
-                        self.__matrix[i][j] * other.component(j)
-                        for j in range(self.__width)
-                    ]
-                    ans.change_component(i, sum(prods))
-                return ans
-            else:
-                raise Exception(
-                    "vector must have the same size as the "
-                    "number of columns of the matrix!"
-                )
-        elif isinstance(other, (int, float)):  # matrix-scalar
-            matrix = [
-                [self.__matrix[i][j] * other for j in range(self.__width)]
-                for i in range(self.__height)
-            ]
-            return Matrix(matrix, self.__width, self.__height)
+        match other:
+            case Vector():  # matrix-vector
+                if len(other) == self.__width:
+                    ans = zero_vector(self.__height)
+                    for i in range(self.__height):
+                        prods = [
+                            self.__matrix[i][j] * other.component(j)
+                            for j in range(self.__width)
+                        ]
+                        ans.change_component(i, sum(prods))
+                    return ans
+                else:
+                    raise Exception(
+                        "vector must have the same size as the "
+                        "number of columns of the matrix!"
+                    )
+            case int() | float():  # matrix-scalar
+                matrix = [
+                    [self.__matrix[i][j] * other for j in range(self.__width)]
+                    for i in range(self.__height)
+                ]
+                return Matrix(matrix, self.__width, self.__height)
         return None
 
     def height(self) -> int:
@@ -410,18 +412,19 @@ class Matrix:
             raise Exception("Matrix is not square")
         if self.__height < 1:
             raise Exception("Matrix has no element")
-        if self.__height == 1:
-            return self.__matrix[0][0]
-        elif self.__height == 2:
-            return (
-                self.__matrix[0][0] * self.__matrix[1][1]
-                - self.__matrix[0][1] * self.__matrix[1][0]
-            )
-        else:
-            cofactor_prods = [
-                self.__matrix[0][y] * self.cofactor(0, y) for y in range(self.__width)
-            ]
-            return sum(cofactor_prods)
+        match self.__height:
+            case 1:
+                return self.__matrix[0][0]
+            case 2:
+                return (
+                    self.__matrix[0][0] * self.__matrix[1][1]
+                    - self.__matrix[0][1] * self.__matrix[1][0]
+                )
+            case _:
+                cofactor_prods = [
+                    self.__matrix[0][y] * self.cofactor(0, y) for y in range(self.__width)
+                ]
+                return sum(cofactor_prods)
 
 
 def square_zero_matrix(n: int) -> Matrix:

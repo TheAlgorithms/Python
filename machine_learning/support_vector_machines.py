@@ -60,22 +60,23 @@ class SVC:
     ) -> None:
         self.regularization = regularization
         self.gamma = gamma
-        if kernel == "linear":
-            self.kernel = self.__linear
-        elif kernel == "rbf":
-            if self.gamma == 0:
-                raise ValueError("rbf kernel requires gamma")
-            if not isinstance(self.gamma, (float, int)):
-                raise ValueError("gamma must be float or int")
-            if not self.gamma > 0:
-                raise ValueError("gamma must be > 0")
-            self.kernel = self.__rbf
-            # in the future, there could be a default value like in sklearn
-            # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
-            # previously it was 1/(n_features)
-        else:
-            msg = f"Unknown kernel: {kernel}"
-            raise ValueError(msg)
+        match kernel:
+            case "linear":
+                self.kernel = self.__linear
+            case "rbf":
+                if self.gamma == 0:
+                    raise ValueError("rbf kernel requires gamma")
+                if not isinstance(self.gamma, (float, int)):
+                    raise ValueError("gamma must be float or int")
+                if not self.gamma > 0:
+                    raise ValueError("gamma must be > 0")
+                self.kernel = self.__rbf
+                # in the future, there could be a default value like in sklearn
+                # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
+                # previously it was 1/(n_features)
+            case _:
+                msg = f"Unknown kernel: {kernel}"
+                raise ValueError(msg)
 
     # kernels
     def __linear(self, vector1: ndarray, vector2: ndarray) -> float:

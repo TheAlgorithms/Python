@@ -117,46 +117,47 @@ def update_image_and_anno(
         path_list.append(path)
         img_annos = all_annos[index]
         img = cv2.imread(path)
-        if i == 0:  # top-left
-            img = cv2.resize(img, (divid_point_x, divid_point_y))
-            output_img[:divid_point_y, :divid_point_x, :] = img
-            for bbox in img_annos:
-                xmin = bbox[1] * scale_x
-                ymin = bbox[2] * scale_y
-                xmax = bbox[3] * scale_x
-                ymax = bbox[4] * scale_y
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        elif i == 1:  # top-right
-            img = cv2.resize(img, (output_size[1] - divid_point_x, divid_point_y))
-            output_img[:divid_point_y, divid_point_x : output_size[1], :] = img
-            for bbox in img_annos:
-                xmin = scale_x + bbox[1] * (1 - scale_x)
-                ymin = bbox[2] * scale_y
-                xmax = scale_x + bbox[3] * (1 - scale_x)
-                ymax = bbox[4] * scale_y
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        elif i == 2:  # bottom-left
-            img = cv2.resize(img, (divid_point_x, output_size[0] - divid_point_y))
-            output_img[divid_point_y : output_size[0], :divid_point_x, :] = img
-            for bbox in img_annos:
-                xmin = bbox[1] * scale_x
-                ymin = scale_y + bbox[2] * (1 - scale_y)
-                xmax = bbox[3] * scale_x
-                ymax = scale_y + bbox[4] * (1 - scale_y)
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        else:  # bottom-right
-            img = cv2.resize(
-                img, (output_size[1] - divid_point_x, output_size[0] - divid_point_y)
-            )
-            output_img[
-                divid_point_y : output_size[0], divid_point_x : output_size[1], :
-            ] = img
-            for bbox in img_annos:
-                xmin = scale_x + bbox[1] * (1 - scale_x)
-                ymin = scale_y + bbox[2] * (1 - scale_y)
-                xmax = scale_x + bbox[3] * (1 - scale_x)
-                ymax = scale_y + bbox[4] * (1 - scale_y)
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
+        match i:
+            case 0:  # top-left
+                img = cv2.resize(img, (divid_point_x, divid_point_y))
+                output_img[:divid_point_y, :divid_point_x, :] = img
+                for bbox in img_annos:
+                    xmin = bbox[1] * scale_x
+                    ymin = bbox[2] * scale_y
+                    xmax = bbox[3] * scale_x
+                    ymax = bbox[4] * scale_y
+                    new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
+            case 1:  # top-right
+                img = cv2.resize(img, (output_size[1] - divid_point_x, divid_point_y))
+                output_img[:divid_point_y, divid_point_x : output_size[1], :] = img
+                for bbox in img_annos:
+                    xmin = scale_x + bbox[1] * (1 - scale_x)
+                    ymin = bbox[2] * scale_y
+                    xmax = scale_x + bbox[3] * (1 - scale_x)
+                    ymax = bbox[4] * scale_y
+                    new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
+            case 2:  # bottom-left
+                img = cv2.resize(img, (divid_point_x, output_size[0] - divid_point_y))
+                output_img[divid_point_y : output_size[0], :divid_point_x, :] = img
+                for bbox in img_annos:
+                    xmin = bbox[1] * scale_x
+                    ymin = scale_y + bbox[2] * (1 - scale_y)
+                    xmax = bbox[3] * scale_x
+                    ymax = scale_y + bbox[4] * (1 - scale_y)
+                    new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
+            case _:  # bottom-right
+                img = cv2.resize(
+                    img, (output_size[1] - divid_point_x, output_size[0] - divid_point_y)
+                )
+                output_img[
+                    divid_point_y : output_size[0], divid_point_x : output_size[1], :
+                ] = img
+                for bbox in img_annos:
+                    xmin = scale_x + bbox[1] * (1 - scale_x)
+                    ymin = scale_y + bbox[2] * (1 - scale_y)
+                    xmax = scale_x + bbox[3] * (1 - scale_x)
+                    ymax = scale_y + bbox[4] * (1 - scale_y)
+                    new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
 
     # Remove bounding box small than scale of filter
     if filter_scale > 0:

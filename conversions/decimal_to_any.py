@@ -81,11 +81,12 @@ def decimal_to_any(num: int, base: int) -> str:
         new_value += actual_value
         div = num // base
         num = div
-        if div == 0:
-            return str(new_value[::-1])
-        elif div == 1:
-            new_value += str(div)
-            return str(new_value[::-1])
+        match div:
+            case 0:
+                return str(new_value[::-1])
+            case 1:
+                new_value += str(div)
+                return str(new_value[::-1])
 
     return new_value[::-1]
 

@@ -50,32 +50,33 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
     ValueError: Should be 'work', 'heat', or 'internal_energy_variation'.
     """
 
-    if argument_name == "work":
-        if argument_value == 0:
-            print("The system is isochoric (constant volume).")
-        elif argument_value > 0:
-            print("The system is expanding.")
-        elif argument_value < 0:
-            print("The system is compressing.")
+    match argument_name:
+        case "work":
+            if argument_value == 0:
+                print("The system is isochoric (constant volume).")
+            elif argument_value > 0:
+                print("The system is expanding.")
+            elif argument_value < 0:
+                print("The system is compressing.")
 
-    elif argument_name == "heat":
-        if argument_value == 0:
-            print("The system is adiabatic (no heat exchange).")
-        elif argument_value > 0:
-            print("The system is endothermic (absorbing heat).")
-        elif argument_value < 0:
-            print("The system is exothermic (releasing heat).")
+        case "heat":
+            if argument_value == 0:
+                print("The system is adiabatic (no heat exchange).")
+            elif argument_value > 0:
+                print("The system is endothermic (absorbing heat).")
+            elif argument_value < 0:
+                print("The system is exothermic (releasing heat).")
 
-    elif argument_name == "internal_energy_variation":
-        if argument_value == 0:
-            print("The system is isothermic (constant internal energy)")
-        elif argument_value > 0:
-            print("The internal energy of the system is increasing. It heating up.")
-        elif argument_value < 0:
-            print("The internal energy of the system is decreasing. It cooling down.")
+        case "internal_energy_variation":
+            if argument_value == 0:
+                print("The system is isothermic (constant internal energy)")
+            elif argument_value > 0:
+                print("The internal energy of the system is increasing. It heating up.")
+            elif argument_value < 0:
+                print("The internal energy of the system is decreasing. It cooling down.")
 
-    else:
-        raise ValueError("Should be 'work', 'heat', or 'internal_energy_variation'.")
+        case _:
+            raise ValueError("Should be 'work', 'heat', or 'internal_energy_variation'.")
 
 
 def work(heat: float, internal_energy_variation: float) -> float:

@@ -115,12 +115,13 @@ class Polynomial:
             else:
                 polynomial += " - "
 
-            if i == 0:
-                polynomial += str(abs(self.coefficients[i]))
-            elif i == 1:
-                polynomial += str(abs(self.coefficients[i])) + "x"
-            else:
-                polynomial += str(abs(self.coefficients[i])) + "x^" + str(i)
+            match i:
+                case 0:
+                    polynomial += str(abs(self.coefficients[i]))
+                case 1:
+                    polynomial += str(abs(self.coefficients[i])) + "x"
+                case _:
+                    polynomial += str(abs(self.coefficients[i])) + "x^" + str(i)
 
         return polynomial
 
