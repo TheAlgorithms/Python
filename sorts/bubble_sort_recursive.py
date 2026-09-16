@@ -1,6 +1,13 @@
-def bubble_sort_recursive(arr: list[int]) -> list[int]:
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def bubble_sort_recursive[T: Comparable](arr: list[T]) -> list[T]:
     """
-    Sorts a list of integers using the recursive Bubble Sort algorithm.
+    Sorts a collection of comparable items using the recursive Bubble Sort algorithm.
 
     >>> bubble_sort_recursive([5, 1, 4, 2, 8])
     [1, 2, 4, 5, 8]
@@ -12,6 +19,14 @@ def bubble_sort_recursive(arr: list[int]) -> list[int]:
     [1, 2, 3, 3]
     >>> bubble_sort_recursive([-1, 5, 0, -2])
     [-2, -1, 0, 5]
+    >>> bubble_sort_recursive(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> bubble_sort_recursive([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> bubble_sort_recursive([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '>' not supported between instances of 'int' and 'str'
     """
     n = len(arr)
     if n <= 1:
