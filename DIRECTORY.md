@@ -111,6 +111,7 @@
   * [Diophantine Equation](blockchain/diophantine_equation.py)
   * [Merkle Tree](blockchain/merkle_tree.py)
   * [Proof Of Stake](blockchain/proof_of_stake.py)
+  * [Proof Of Work](blockchain/proof_of_work.py)
   * [Simple Blockchain](blockchain/simple_blockchain.py)
   * [Simple Proof Of Work](blockchain/simple_proof_of_work.py)
 
