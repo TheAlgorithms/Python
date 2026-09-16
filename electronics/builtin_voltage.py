@@ -40,25 +40,24 @@ def builtin_voltage(
 
     if donor_conc <= 0:
         raise ValueError("Donor concentration should be positive")
-    elif acceptor_conc <= 0:
+    if acceptor_conc <= 0:
         raise ValueError("Acceptor concentration should be positive")
-    elif intrinsic_conc <= 0:
+    if intrinsic_conc <= 0:
         raise ValueError("Intrinsic concentration should be positive")
-    elif donor_conc <= intrinsic_conc:
+    if donor_conc <= intrinsic_conc:
         raise ValueError(
             "Donor concentration should be greater than intrinsic concentration"
         )
-    elif acceptor_conc <= intrinsic_conc:
+    if acceptor_conc <= intrinsic_conc:
         raise ValueError(
             "Acceptor concentration should be greater than intrinsic concentration"
         )
-    else:
-        return (
-            Boltzmann
-            * T
-            * log((donor_conc * acceptor_conc) / intrinsic_conc**2)
-            / physical_constants["electron volt"][0]
-        )
+    return (
+        Boltzmann
+        * T
+        * log((donor_conc * acceptor_conc) / intrinsic_conc**2)
+        / physical_constants["electron volt"][0]
+    )
 
 
 if __name__ == "__main__":

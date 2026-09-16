@@ -188,8 +188,7 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
         for j in range(cols - 1):
             if i == j:
                 continue
-            else:
-                total += table[i][j]
+            total += table[i][j]
 
         if table[i][i] <= total:
             raise ValueError("Coefficient matrix is not strictly diagonally dominant")

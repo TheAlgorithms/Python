@@ -107,7 +107,7 @@ class Matrix:
      [414. 513. 612. 640.]]
     """
 
-    def __init__(self, rows: list[list[int]]):
+    def __init__(self, rows: list[list[int]]) -> None:
         error = TypeError(
             "Matrices must be formed from a list of zero or more lists containing at "
             "least one and the same number of values, each of which must be of type "
