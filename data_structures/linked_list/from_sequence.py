@@ -5,11 +5,11 @@ print a string representation of it.
 
 
 class Node:
-    def __init__(self, data=None):
+    def __init__(self, data=None) -> None:
         self.data = data
         self.next = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Returns a visual representation of the node and all its following nodes."""
         string_rep = ""
         temp = self
