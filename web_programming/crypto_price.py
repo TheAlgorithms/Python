@@ -18,7 +18,11 @@ COINGECKO_URL = (
 
 def get_eth_price_usd() -> float:
     """Fetch the current ETH price in USD."""
-    return httpx2.get(COINGECKO_URL, timeout=10).raise_for_status().json()["ethereum"]["usd"]
+    return (
+        httpx2.get(COINGECKO_URL, timeout=10)
+        .raise_for_status()
+        .json()["ethereum"]["usd"]
+    )
 
 
 def eth_to_usd(eth_amount: float) -> float:
