@@ -1,27 +1,50 @@
-# https://en.wikipedia.org/wiki/Wheatstone_bridge
+# ruff: noqa: RUF002 -- ambiguous-unicode-character-docstring
 from __future__ import annotations
 
 
 def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float
 ) -> float:
-    """
+    r"""
+    Calculate the unknown resistance (Rx) in a Wheatstone bridge circuit.
+
     Wheatstone Bridge is an electrical circuit used to accurately measure
     an unknown resistance by balancing two legs of a bridge circuit.
 
-    The bridge is said to be balanced when no current flows
-    through the galvanometer connected between the midpoints
-     of the two voltage dividers.
-      Balance condition:
-       R1 / R2 = R3 / R4
+    This function calculates Rx when the three other resistances in the
+    bridge are known. The bridge is said to be balanced when no current
+    flows through the galvanometer connected between the midpoints of the
+    two voltage dividers.
+    * # https://en.wikipedia.org/wiki/Wheatstone_bridge
+
+    Circuit Diagram:
+
+         R1         R2
+      +--/\/\/--+--/\/\/--+
+      |         |         |
+     Vin       Vg        Vout
+      |         |         |
+      +--/\/\/--+--/\/\/--+
+         R3        Rx
+
+    Balance condition:
+      R1 / R2 = R3 / R4
+
+    This solver uses the balanced bridge formula:
+    Rx = (R2/R1) × R3
+
+    Args:
+        resistance_1 (R1): First known resistance
+        resistance_2 (R2): Second known resistance
+        resistance_3 (R3): Third known resistance
+
+    Returns:
+        float: The calculated unknown resistance (Rx)
 
       Applications:
       - Measurement of unknown resistance
       - Strain gauge circuits
       - Sensor calibration
-    This function can calculate the unknown resistance in a Wheatstone
-    network, given that the three other resistances
-    in the network are known.
 
     Usage examples:
     >>> wheatstone_solver(resistance_1=2, resistance_2=4, resistance_3=5)
