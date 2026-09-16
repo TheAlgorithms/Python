@@ -1,3 +1,10 @@
+"""
+Cryptographic mathematics module for modular arithmetic operations.
+
+This module provides utilities for cryptographic computations,
+particularly modular multiplicative inverse.
+"""
+
 from maths.greatest_common_divisor import gcd_by_iterative
 
 
@@ -43,8 +50,14 @@ def find_mod_inverse(a: int, m: int) -> int:
     1
     >>> find_mod_inverse(1, 5)
     1
+    >>> find_mod_inverse(2, 7)
+    4
+    >>> find_mod_inverse(3, 11)
+    4
     >>> find_mod_inverse(5, 11)
     9
+    >>> find_mod_inverse(5, 17)
+    7
     >>> find_mod_inverse(2, 4)
     Traceback (most recent call last):
         ...
