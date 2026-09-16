@@ -63,7 +63,7 @@ def int_to_roman(number: int) -> str:
         ...
     TypeError: int_to_roman only accepts integers, got bool
     """
-    if not isinstance(number, int) or isinstance(number, bool):
+    if not isinstance(number, (bool, int)):
         msg = f"int_to_roman only accepts integers, got {type(number).__name__}"
         raise TypeError(msg)
     if not 1 <= number <= 3999:
