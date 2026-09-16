@@ -1,4 +1,13 @@
-def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def quick_sort_3partition[T: Comparable](
+    sorting: list[T], left: int, right: int
+) -> None:
     """ "
     Python implementation of quick sort algorithm with 3-way partition.
     The idea of 3-way quick sort is based on "Dutch National Flag algorithm".
@@ -21,6 +30,10 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
     >>> quick_sort_3partition(array3, 0, 0)
     >>> array3
     []
+    >>> array4 = ["pear", "apple", "fig"]
+    >>> quick_sort_3partition(array4, 0, 2)
+    >>> array4
+    ['apple', 'fig', 'pear']
     """
     if right <= left:
         return
@@ -41,7 +54,9 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
     quick_sort_3partition(sorting, b + 1, right)
 
 
-def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
+def quick_sort_lomuto_partition[T: Comparable](
+    sorting: list[T], left: int, right: int
+) -> None:
     """
     A pure Python implementation of quick sort algorithm(in-place)
     with Lomuto partition scheme:
@@ -65,6 +80,10 @@ def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
     >>> quick_sort_lomuto_partition(nums3, 0, 3)
     >>> nums3
     [-4, -2, 0, 5]
+    >>> nums4 = ["pear", "apple", "fig"]
+    >>> quick_sort_lomuto_partition(nums4, 0, 2)
+    >>> nums4
+    ['apple', 'fig', 'pear']
     """
     if left < right:
         pivot_index = lomuto_partition(sorting, left, right)
@@ -72,11 +91,13 @@ def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
         quick_sort_lomuto_partition(sorting, pivot_index + 1, right)
 
 
-def lomuto_partition(sorting: list, left: int, right: int) -> int:
+def lomuto_partition[T: Comparable](sorting: list[T], left: int, right: int) -> int:
     """
     Example:
     >>> lomuto_partition([1,5,7,6], 0, 3)
     2
+    >>> lomuto_partition(["b", "a"], 0, 1)
+    0
     """
     pivot = sorting[right]
     store_index = left
@@ -88,7 +109,7 @@ def lomuto_partition(sorting: list, left: int, right: int) -> int:
     return store_index
 
 
-def three_way_radix_quicksort(sorting: list) -> list:
+def three_way_radix_quicksort[T: Comparable](sorting: list[T]) -> list[T]:
     """
     Three-way radix quicksort:
     https://en.wikipedia.org/wiki/Quicksort#Three-way_radix_quicksort
@@ -103,6 +124,8 @@ def three_way_radix_quicksort(sorting: list) -> list:
     [-5, -2, -2, 0, 1, 1]
     >>> three_way_radix_quicksort([1, 2, 5, 1, 2, 0, 0, 5, 2, -1])
     [-1, 0, 0, 1, 1, 2, 2, 2, 5, 5]
+    >>> three_way_radix_quicksort(["pear", "apple", "fig"])
+    ['apple', 'fig', 'pear']
     """
     if len(sorting) <= 1:
         return sorting
