@@ -422,7 +422,8 @@ class Matrix:
                 )
             case _:
                 cofactor_prods = [
-                    self.__matrix[0][y] * self.cofactor(0, y) for y in range(self.__width)
+                    self.__matrix[0][y] * self.cofactor(0, y)
+                    for y in range(self.__width)
                 ]
                 return sum(cofactor_prods)
 

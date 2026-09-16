@@ -81,14 +81,15 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
             # Calculate the inverse of the matrix
             return [
-                [(float(d(n)) / determinant) or 0.0 for n in row] for row in swapped_matrix
+                [(float(d(n)) / determinant) or 0.0 for n in row]
+                for row in swapped_matrix
             ]
-        case _ if ((
+        case _ if (
             len(matrix) == 3
             and len(matrix[0]) == 3
             and len(matrix[1]) == 3
             and len(matrix[2]) == 3
-        )):
+        ):
             # Calculate the determinant of the matrix using Sarrus rule
             determinant = float(
                 (
@@ -115,25 +116,29 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
                 d(matrix[1][2]) * d(matrix[2][1])
             )
             cofactor_matrix[0][1] = -(
-                (d(matrix[1][0]) * d(matrix[2][2])) - (d(matrix[1][2]) * d(matrix[2][0]))
+                (d(matrix[1][0]) * d(matrix[2][2]))
+                - (d(matrix[1][2]) * d(matrix[2][0]))
             )
             cofactor_matrix[0][2] = (d(matrix[1][0]) * d(matrix[2][1])) - (
                 d(matrix[1][1]) * d(matrix[2][0])
             )
             cofactor_matrix[1][0] = -(
-                (d(matrix[0][1]) * d(matrix[2][2])) - (d(matrix[0][2]) * d(matrix[2][1]))
+                (d(matrix[0][1]) * d(matrix[2][2]))
+                - (d(matrix[0][2]) * d(matrix[2][1]))
             )
             cofactor_matrix[1][1] = (d(matrix[0][0]) * d(matrix[2][2])) - (
                 d(matrix[0][2]) * d(matrix[2][0])
             )
             cofactor_matrix[1][2] = -(
-                (d(matrix[0][0]) * d(matrix[2][1])) - (d(matrix[0][1]) * d(matrix[2][0]))
+                (d(matrix[0][0]) * d(matrix[2][1]))
+                - (d(matrix[0][1]) * d(matrix[2][0]))
             )
             cofactor_matrix[2][0] = (d(matrix[0][1]) * d(matrix[1][2])) - (
                 d(matrix[0][2]) * d(matrix[1][1])
             )
             cofactor_matrix[2][1] = -(
-                (d(matrix[0][0]) * d(matrix[1][2])) - (d(matrix[0][2]) * d(matrix[1][0]))
+                (d(matrix[0][0]) * d(matrix[1][2]))
+                - (d(matrix[0][2]) * d(matrix[1][0]))
             )
             cofactor_matrix[2][2] = (d(matrix[0][0]) * d(matrix[1][1])) - (
                 d(matrix[0][1]) * d(matrix[1][0])

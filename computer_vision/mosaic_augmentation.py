@@ -147,7 +147,8 @@ def update_image_and_anno(
                     new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
             case _:  # bottom-right
                 img = cv2.resize(
-                    img, (output_size[1] - divid_point_x, output_size[0] - divid_point_y)
+                    img,
+                    (output_size[1] - divid_point_x, output_size[0] - divid_point_y),
                 )
                 output_img[
                     divid_point_y : output_size[0], divid_point_x : output_size[1], :

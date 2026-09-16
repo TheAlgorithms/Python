@@ -83,7 +83,9 @@ def jaccard_similarity(
                 return len(intersection) / (len(set_a) + len(set_b))
             else:
                 # Cast set_a to list because tuples cannot be mutated
-                union = list(set_a) + [element for element in set_b if element not in set_a]
+                union = list(set_a) + [
+                    element for element in set_b if element not in set_a
+                ]
                 return len(intersection) / len(union)
     raise ValueError(
         "Set a and b must either both be sets or be either a list or a tuple."

@@ -129,7 +129,9 @@ def main() -> None:
             message = input("\nEnter message: ")
             pubkey_filename = "rsa_pubkey.txt"
             print(f"Encrypting and writing to {filename}...")
-            encrypted_text = encrypt_and_write_to_file(filename, pubkey_filename, message)
+            encrypted_text = encrypt_and_write_to_file(
+                filename, pubkey_filename, message
+            )
 
             print("\nEncrypted text:")
             print(encrypted_text)

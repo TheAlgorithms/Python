@@ -73,10 +73,14 @@ def __categorize_system(argument_value: float, argument_name: str) -> None:
             elif argument_value > 0:
                 print("The internal energy of the system is increasing. It heating up.")
             elif argument_value < 0:
-                print("The internal energy of the system is decreasing. It cooling down.")
+                print(
+                    "The internal energy of the system is decreasing. It cooling down."
+                )
 
         case _:
-            raise ValueError("Should be 'work', 'heat', or 'internal_energy_variation'.")
+            raise ValueError(
+                "Should be 'work', 'heat', or 'internal_energy_variation'."
+            )
 
 
 def work(heat: float, internal_energy_variation: float) -> float:
