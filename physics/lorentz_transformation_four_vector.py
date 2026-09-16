@@ -54,7 +54,7 @@ def beta(velocity: float) -> float:
     """
     if velocity > c:
         raise ValueError("Speed must not exceed light speed 299,792,458 [m/s]!")
-    elif velocity < 1:
+    if velocity < 1:
         # Usually the speed should be much higher than 1 (c order of magnitude)
         raise ValueError("Speed must be greater than or equal to 1!")
 
