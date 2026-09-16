@@ -4,14 +4,23 @@ A pure Python implementation of the Reverse Selection Sort algorithm
 This algorithm progressively sorts the array by reversing subarrays
 
 For doctests run following command:
-python3 -m doctest -v reverse_selection_sort.py
+python3 -m doctest -v reverse_selection.py
 
 For manual testing run:
-python3 reverse_selection_sort.py
+python3 reverse_selection.py
 """
 
+from collections.abc import MutableSequence
+from typing import Any, Protocol
 
-def reverse_subarray(arr: list, start: int, end: int) -> None:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def reverse_subarray[T: Comparable](
+    arr: MutableSequence[T], start: int, end: int
+) -> None:
     """
     Reverse a subarray in-place.
 
@@ -41,7 +50,9 @@ def reverse_subarray(arr: list, start: int, end: int) -> None:
         end -= 1
 
 
-def reverse_selection_sort(collection: list) -> list:
+def reverse_selection_sort[T: Comparable](
+    collection: MutableSequence[T],
+) -> MutableSequence[T]:
     """
     A pure implementation of reverse selection sort algorithm in Python
 
@@ -64,6 +75,16 @@ def reverse_selection_sort(collection: list) -> list:
 
     >>> reverse_selection_sort([5, 4, 3, 2, 1])
     [1, 2, 3, 4, 5]
+
+    >>> reverse_selection_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+
+    >>> reverse_selection_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+
+    >>> reverse_selection_sort([1, "a"])
+    Traceback (most recent call last):
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     n = len(collection)
     for i in range(n - 1):
