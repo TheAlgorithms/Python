@@ -5,11 +5,11 @@ Convert ETH to USD using real-time price data from CoinGecko.
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 COINGECKO_URL = (
     "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
@@ -18,10 +18,7 @@ COINGECKO_URL = (
 
 def get_eth_price_usd() -> float:
     """Fetch the current ETH price in USD."""
-    response = httpx.get(COINGECKO_URL, timeout=10)
-    response.raise_for_status()
-    data = response.json()
-    return data["ethereum"]["usd"]
+    return httpx2.get(COINGECKO_URL, timeout=10).raise_for_status().json()["ethereum"]["usd"]
 
 
 def eth_to_usd(eth_amount: float) -> float:
