@@ -29,7 +29,7 @@ class BoyerMooreSearch:
         bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         positions = bms.bad_character_heuristic()
 
-    where 'positions' contain the locations where the pattern was matched.
+    where 'positions' contains the locations where the pattern was matched.
     """
 
     def __init__(self, text: str, pattern: str) -> None:
@@ -99,8 +99,7 @@ class BoyerMooreSearch:
         [0, 2]
 
         >>> bms = BoyerMooreSearch(text="", pattern="AB")
-        >>> bms.bad_character_heuristic() == None
-        True
+        >>> bms.bad_character_heuristic()
 
         >>> bms2 = BoyerMooreSearch(text="AAAAAA", pattern="AA")
         >>> bms2.bad_character_heuristic()
