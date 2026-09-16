@@ -41,6 +41,7 @@ from sorts.odd_even_transposition_single_threaded import odd_even_transposition
 from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
+from sorts.quick_sort_3_partition import three_way_radix_quicksort
 from sorts.recursive_insertion_sort import rec_insertion_sort
 from sorts.recursive_mergesort_array import merge
 from sorts.reversort import reversort
@@ -85,6 +86,7 @@ SORTS = (
     shrink_shell_sort,
     stooge_sort,
     strand_sort,
+    three_way_radix_quicksort,
 )
 
 
@@ -153,6 +155,7 @@ def test_rec_insertion_sort(case) -> None:
         selection_sort,
         shrink_shell_sort,
         strand_sort,
+        three_way_radix_quicksort,
     ],
     ids=lambda f: f.__name__,
 )
