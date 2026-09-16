@@ -24,6 +24,8 @@ def and_gate(input_1: int, input_2: int) -> int:
     0
     >>> and_gate(0, 1)
     0
+    >>> and_gate(1, 0)
+    0
     >>> and_gate(1, 1)
     1
     >>> and_gate(2, 1)
@@ -50,6 +52,8 @@ def n_input_and_gate(inputs: list[int]) -> int:
     """
     Calculate AND of a list of binary input values.
 
+    >>> n_input_and_gate([1, 0, 1, 1, 0])
+    0
     >>> n_input_and_gate([1, 1, 1, 1, 1])
     1
     >>> n_input_and_gate([1, 0, 1, 1, 0])
