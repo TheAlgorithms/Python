@@ -4,7 +4,7 @@ Checks if a system of forces is in static equilibrium.
 
 from __future__ import annotations
 
-from numpy import array, cos, cross, float64, radians, sin
+from numpy import array, cos, float64, radians, sin
 from numpy.typing import NDArray
 
 
@@ -51,7 +51,11 @@ def in_static_equilibrium(
     False
     """
     # summation of moments is zero
-    moments: NDArray[float64] = cross(location, forces)
+    # NumPy 2.x removed the 2-D cross product, so compute the scalar
+    # (z-axis) moment for each row directly: x_i * Fy_i - y_i * Fx_i.
+    moments: NDArray[float64] = (
+        location[:, 0] * forces[:, 1] - location[:, 1] * forces[:, 0]
+    )
     sum_moments: float = sum(moments)
     return bool(abs(sum_moments) < eps)
 
