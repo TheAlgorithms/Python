@@ -12,6 +12,9 @@ out (e.g. ``counting_sort``/``radix_sort``/``pigeon_sort`` are integer-only,
 ``bead_sort`` needs non-negative integers, ``dutch_national_flag_sort`` expects
 0/1/2, ``bitonic_sort`` needs a power-of-two length, ``topological_sort`` works
 on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
+``rec_insertion_sort`` is also left out of the battery: it sorts in place and
+returns ``None`` rather than the sorted collection, so it is exercised
+separately below.
 """
 
 from dataclasses import dataclass
@@ -67,7 +70,6 @@ SORTS = (
     odd_even_sort,
     patience_sort,
     quick_sort,
-    rec_insertion_sort,
     selection_sort,
     shell_sort,
     stooge_sort,
@@ -110,6 +112,14 @@ def test_sort_matches_builtin(sort, case) -> None:
     assert list(sort(list(case))) == sorted(case)
 
 
+@pytest.mark.parametrize("case", CASES, ids=repr)
+def test_rec_insertion_sort(case) -> None:
+    """``rec_insertion_sort`` sorts in place and returns ``None``."""
+    collection = list(case)
+    assert rec_insertion_sort(collection, len(collection)) is None
+    assert collection == sorted(case)
+
+
 @pytest.mark.parametrize(
     "sort",
     [
@@ -123,7 +133,6 @@ def test_sort_matches_builtin(sort, case) -> None:
         gnome_sort,
         insertion_sort,
         merge_sort,
-        rec_insertion_sort,
         selection_sort,
     ],
     ids=lambda f: f.__name__,
@@ -131,3 +140,8 @@ def test_sort_matches_builtin(sort, case) -> None:
 def test_sort_rejects_non_comparable_items(sort) -> None:
     with pytest.raises(TypeError):
         sort([1, "a"])
+
+
+def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
+    with pytest.raises(TypeError):
+        rec_insertion_sort([1, "a"], 2)
