@@ -445,6 +445,7 @@
   * [Climbing Stairs](dynamic_programming/climbing_stairs.py)
   * [Combination Sum Iv](dynamic_programming/combination_sum_iv.py)
   * [Edit Distance](dynamic_programming/edit_distance.py)
+  * [Egg Drop](dynamic_programming/egg_drop.py)
   * [Egg Dropping](dynamic_programming/egg_dropping.py)
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
