@@ -105,7 +105,7 @@ class BoyerMooreSearch:
         >>> bms2 = BoyerMooreSearch(text="AAAAAA", pattern="AA")
         >>> bms2.bad_character_heuristic()
         [0, 1, 2, 3, 4]
-        
+
         >>> bms3 = BoyerMooreSearch(text="ABCDEF", pattern="XY")
         >>> bms3.bad_character_heuristic()
         []
