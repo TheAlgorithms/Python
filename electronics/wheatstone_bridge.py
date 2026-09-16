@@ -5,7 +5,7 @@ from __future__ import annotations
 def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float
 ) -> float:
-    """
+    r"""
     Calculate the unknown resistance (Rx) in a Wheatstone bridge circuit.
 
     Wheatstone Bridge is an electrical circuit used to accurately measure
