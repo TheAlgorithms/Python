@@ -2,11 +2,11 @@
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 """
@@ -28,7 +28,7 @@ def stock_price(symbol: str = "AAPL") -> str:
     True
     """
     url = f"https://finance.yahoo.com/quote/{symbol}?p={symbol}"
-    yahoo_finance_source = httpx.get(
+    yahoo_finance_source = httpx2.get(
         url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10, follow_redirects=True
     ).text
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
