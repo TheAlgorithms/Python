@@ -179,7 +179,11 @@ def render_directory_section(
         f"### `{len(directory_only)}` PRs whose only overlap is "
         f"`{DIRECTORY_FILE}` (safe to accept both)\n"
     )
-    print("- " + ", ".join(f"#{n}" for n in directory_only) if directory_only else "_None._")
+    print(
+        "- " + ", ".join(f"#{n}" for n in directory_only)
+        if directory_only
+        else "_None._"
+    )
     print(
         f"\n### `{len(directory_plus_other)}` PRs that also overlap on other "
         "files (need a review or rebase)\n"
