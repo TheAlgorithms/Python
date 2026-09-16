@@ -1,20 +1,23 @@
 """
 Horizontal Projectile Motion problem in physics.
+
 This algorithm solves a specific problem in which
-the motion starts from the ground as can be seen below:
-      (v = 0)
-               *  *
-           *          *
-        *                *
-      *                    *
-    *                        *
-   *                          *
-GROUND                      GROUND
+the motion starts from the ground as can be seen below::
+
+          (v = 0)
+                   *  *
+               *          *
+            *                *
+          *                    *
+        *                        *
+       *                          *
+    GROUND                      GROUND
+
 For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
 # Importing packages
-from math import radians as angle_to_radians
+from math import radians as deg_to_rad
 from math import sin
 
 # Acceleration Constant on Earth (unit m/s^2)
@@ -28,10 +31,10 @@ def check_args(init_velocity: float, angle: float) -> None:
 
     # Ensure valid instance
     if not isinstance(init_velocity, (int, float)):
-        raise TypeError("Invalid velocity. Should be a positive number.")
+        raise TypeError("Invalid velocity. Should be an integer or float.")
 
     if not isinstance(angle, (int, float)):
-        raise TypeError("Invalid angle. Range is 1-90 degrees.")
+        raise TypeError("Invalid angle. Should be an integer or float.")
 
     # Ensure valid angle
     if angle > 90 or angle < 1:
@@ -43,14 +46,17 @@ def check_args(init_velocity: float, angle: float) -> None:
 
 
 def horizontal_distance(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns the horizontal distance that the object cover
+
     Formula:
-            v_0^2 * sin(2 * alpha)
-            ---------------------
-                   g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{v_0^2 \cdot \sin(2 \alpha)}{g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> horizontal_distance(30, 45)
     91.77
     >>> horizontal_distance(100, 78)
@@ -65,19 +71,22 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     ValueError: Invalid angle. Range is 1-90 degrees.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(2 * angle)
+    radians = deg_to_rad(2 * angle)
     return round(init_velocity**2 * sin(radians) / g, 2)
 
 
 def max_height(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns the maximum height that the object reach
+
     Formula:
-            v_0^2 * sin^2(alpha)
-            --------------------
-                   2g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{v_0^2 \cdot \sin^2 (\alpha)}{2 g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> max_height(30, 45)
     22.94
     >>> max_height(100, 78)
@@ -85,26 +94,29 @@ def max_height(init_velocity: float, angle: float) -> float:
     >>> max_height("a", 20)
     Traceback (most recent call last):
         ...
-    TypeError: Invalid velocity. Should be a positive number.
+    TypeError: Invalid velocity. Should be an integer or float.
     >>> horizontal_distance(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(angle)
+    radians = deg_to_rad(angle)
     return round(init_velocity**2 * sin(radians) ** 2 / (2 * g), 2)
 
 
 def total_time(init_velocity: float, angle: float) -> float:
-    """
+    r"""
     Returns total time of the motion
+
     Formula:
-            2 * v_0 * sin(alpha)
-            --------------------
-                   g
-    v_0 - initial velocity
-    alpha - angle
+        .. math::
+            \frac{2 v_0 \cdot \sin (\alpha)}{g}
+
+            v_0 - \text{initial velocity}
+
+            \alpha - \text{angle}
+
     >>> total_time(30, 45)
     4.33
     >>> total_time(100, 78)
@@ -116,15 +128,17 @@ def total_time(init_velocity: float, angle: float) -> float:
     >>> total_time(30, "b")
     Traceback (most recent call last):
         ...
-    TypeError: Invalid angle. Range is 1-90 degrees.
+    TypeError: Invalid angle. Should be an integer or float.
     """
     check_args(init_velocity, angle)
-    radians = angle_to_radians(angle)
+    radians = deg_to_rad(angle)
     return round(2 * init_velocity * sin(radians) / g, 2)
 
 
 def test_motion() -> None:
     """
+    Test motion
+
     >>> test_motion()
     """
     v0, angle = 25, 20
