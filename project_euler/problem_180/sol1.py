@@ -44,6 +44,7 @@ we get the right numerator and denominator.
 Reference:
 https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 """
+
 from __future__ import annotations
 
 from fractions import Fraction
