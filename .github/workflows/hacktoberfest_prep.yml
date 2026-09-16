@@ -80,6 +80,12 @@ jobs:
           fi
           git config --global user.name "$GITHUB_ACTOR"
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          # `actions/checkout` runs with `persist-credentials: false`, so git has
+          # no token to authenticate the push below (it fails with
+          # `fatal: could not read Username for 'https://github.com'`). Wire the
+          # bundled `gh` in as git's credential helper so `git push` reuses
+          # GH_TOKEN — no third-party action and no token baked into the remote URL.
+          gh auth setup-git
           git switch -c "$BRANCH"
           git add docs/hacktober_2026_prep.md
           git commit -m "chore: refresh Hacktoberfest 2026 prep tracker"

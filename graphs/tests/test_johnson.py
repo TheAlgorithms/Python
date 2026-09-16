@@ -5,7 +5,7 @@ import pytest
 from graphs.johnson import johnson
 
 
-def test_johnson_basic():
+def test_johnson_basic() -> None:
     g = {
         0: [(1, 3), (2, 8), (4, -4)],
         1: [(3, 1), (4, 7)],
@@ -18,7 +18,7 @@ def test_johnson_basic():
     assert math.isclose(dist[3][2], -5.0, abs_tol=1e-9)
 
 
-def test_johnson_negative_cycle():
+def test_johnson_negative_cycle() -> None:
     g2 = {0: [(1, 1)], 1: [(0, -3)]}
     with pytest.raises(ValueError):
         johnson(g2)
