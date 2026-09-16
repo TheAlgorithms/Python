@@ -1051,6 +1051,7 @@
   * [Altitude Pressure](physics/altitude_pressure.py)
   * [Archimedes Principle Of Buoyant Force](physics/archimedes_principle_of_buoyant_force.py)
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
+  * [Boyles Law](physics/boyles_law.py)
   * [Bragg Angle](physics/bragg_angle.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Center Of Mass](physics/center_of_mass.py)
