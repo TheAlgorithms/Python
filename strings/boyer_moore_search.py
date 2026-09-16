@@ -99,7 +99,7 @@ class BoyerMooreSearch:
         [0, 2]
 
         >>> bms = BoyerMooreSearch(text="", pattern="AB")
-        >>> bms.bad_character_heuristic() = None
+        >>> bms.bad_character_heuristic() == None
         True
 
         >>> bms2 = BoyerMooreSearch(text="AAAAAA", pattern="AA")
