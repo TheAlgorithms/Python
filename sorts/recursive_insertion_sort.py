@@ -15,50 +15,43 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def rec_insertion_sort[T: Comparable](
-    collection: MutableSequence[T], n: int | None = None
-) -> MutableSequence[T]:
+def rec_insertion_sort(collection: MutableSequence[T], n: int) -> None:
     """
-    Given a collection of comparable elements, sorts the collection in place
-    in ascending order and returns it.
+    Given a collection of comparable elements and its length, sorts the
+    collection in place in ascending order.
 
     :param collection: A mutable collection of comparable elements
-    :param n: The number of leading elements still to be placed. Defaults to
-        the full length of ``collection`` so the function can be called with
-        a single argument.
-    :return: the same collection ordered by ascending
+    :param n: The length of collection
 
     >>> col = [1, 2, 1]
-    >>> rec_insertion_sort(col)
-    [1, 1, 2]
+    >>> rec_insertion_sort(col, len(col))
     >>> col
     [1, 1, 2]
 
     >>> col = [2, 1, 0, -1, -2]
     >>> rec_insertion_sort(col, len(col))
+    >>> col
     [-2, -1, 0, 1, 2]
 
     >>> col = [1]
-    >>> rec_insertion_sort(col)
+    >>> rec_insertion_sort(col, len(col))
+    >>> col
     [1]
 
     >>> col = ['d', 'a', 'b', 'e', 'c']
-    >>> rec_insertion_sort(col) == sorted(col)
-    True
+    >>> rec_insertion_sort(col, len(col))
+    >>> col
+    ['a', 'b', 'c', 'd', 'e']
     """
-    if n is None:
-        n = len(collection)
-
     # Checks if the entire collection has been sorted
     if len(collection) <= 1 or n <= 1:
-        return collection
+        return
 
     insert_next(collection, n - 1)
     rec_insertion_sort(collection, n - 1)
-    return collection
 
 
-def insert_next[T: Comparable](collection: MutableSequence[T], index: int) -> None:
+def insert_next(collection: MutableSequence[T], index: int) -> None:
     """
     Inserts the '(index-1)th' element into place
 
@@ -93,5 +86,5 @@ def insert_next[T: Comparable](collection: MutableSequence[T], index: int) -> No
 if __name__ == "__main__":
     numbers = input("Enter integers separated by spaces: ")
     number_list: list[int] = [int(num) for num in numbers.split()]
-    rec_insertion_sort(number_list)
+    rec_insertion_sort(number_list, len(number_list))
     print(number_list)
