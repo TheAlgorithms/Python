@@ -335,7 +335,8 @@ class Matrix:
                 )
             case _:
                 raise TypeError(
-                    "A Matrix can only be multiplied by an int, float, or another matrix"
+                    "A Matrix can only be multiplied by an int, float, or another "
+                    "matrix"
                 )
 
     def __pow__(self, other: int) -> Matrix:
