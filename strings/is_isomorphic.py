@@ -1,7 +1,7 @@
 def is_isomorphic(s: str, t: str) -> bool:
     """
-    LeetCode No. 205 Isomorphic Strings
     Given two strings s and t, determine if they are isomorphic.
+    https://en.wikipedia.org/wiki/Isomorphism
     https://leetcode.com/problems/isomorphic-strings/description/
 
     Two strings s and t are isomorphic if the characters in s can be
