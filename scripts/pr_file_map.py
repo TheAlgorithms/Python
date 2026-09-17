@@ -52,7 +52,7 @@ from pathlib import Path
 DIRECTORY_FILE = "DIRECTORY.md"
 
 # Open PRs to skip in the report, e.g. [123, 456, 789] ignores #123, #456, #789.
-ignore_pull_request: list[int] = []
+ignore_pull_request: set[int] = {15105, 15142, 15356}
 
 
 def run_gh(args: list[str]) -> str:
@@ -114,7 +114,7 @@ def get_open_prs() -> list[dict]:
     raw = run_gh(
         ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
     )
-    ignore = set(ignore_pull_request)
+    ignore = ignore_pull_request
     return [pr for pr in json.loads(raw) if pr["number"] not in ignore]
 
 
@@ -199,12 +199,6 @@ def render_directory_section(
 
 
 def main() -> None:
-    # Reuse the shared progress() helper from other/cheap_progress.py. It lives at
-    # the repo root, which is not on sys.path when this script runs directly, so
-    # add the repo root before importing rather than duplicating the helper here.
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from other.cheap_progress import progress
-
     if shutil.which("gh") is None:
         sys.exit("Error: 'gh' (GitHub CLI) is not installed or not in PATH.")
 
@@ -218,7 +212,7 @@ def main() -> None:
     pr_to_files: dict[int, list[str]] = {}
     touch_count = 0  # every (PR, file) pair; a file may be touched by many PRs
 
-    for pr in progress(prs, desc="First pass"):
+    for pr in prs:
         pr_number = pr["number"]
         pr_files = get_pr_files(pr_number)
         pr_to_files[pr_number] = pr_files
@@ -240,7 +234,7 @@ def main() -> None:
     missing: dict[str, list[int]] = {}
     contested: dict[str, list[int]] = {}
 
-    for path, pr_numbers in progress(file_to_prs.items(), desc="Second pass"):
+    for path, pr_numbers in file_to_prs.items():
         deduped = sorted(set(pr_numbers))
         target = existing if Path(path).exists() else missing
         target[path] = deduped
