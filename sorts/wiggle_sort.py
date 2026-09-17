@@ -13,7 +13,7 @@ def wiggle_sort(nums: list) -> list:
     """
     Python implementation of wiggle sort.
     Reorders an array such that nums[0] <= nums[1] >= nums[2] <= nums[3]...
-    
+
     Example:
     >>> wiggle_sort([0, 5, 3, 2, 2])
     [0, 5, 2, 3, 2]
