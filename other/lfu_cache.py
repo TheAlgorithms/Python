@@ -16,7 +16,7 @@ class DoubleLinkedListNode[T, U]:
     Node: key: 1, val: 1, freq: 0, has next: False, has prev: False
     """
 
-    def __init__(self, key: T | None, val: U | None):
+    def __init__(self, key: T | None, val: U | None) -> None:
         self.key = key
         self.val = val
         self.freq: int = 0
@@ -196,7 +196,7 @@ class LFUCache[T, U]:
     CacheInfo(hits=196, misses=100, capacity=100, current_size=100)
     """
 
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int) -> None:
         self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
         self.capacity = capacity
         self.num_keys = 0

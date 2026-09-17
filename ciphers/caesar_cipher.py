@@ -35,6 +35,44 @@ def encrypt(text: str, shift: int) -> str:
     Returns:
         The encrypted text as a string.
 
+    The caesar cipher is named after Julius Caesar who used it when sending
+    secret military messages to his troops. This is a simple substitution cipher
+    where every character in the plain-text is shifted by a certain number known
+    as the "key" or "shift".
+
+    Example:
+    Say we have the following message:
+    ``Hello, captain``
+
+    And our alphabet is made up of lower and uppercase letters:
+    ``abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ``
+
+    And our shift is ``2``
+
+    We can then encode the message, one letter at a time. ``H`` would become ``J``,
+    since ``J`` is two letters away, and so on. If the shift is ever too large, or
+    our letter is at the end of the alphabet, we just start at the beginning
+    (``Z`` would shift to ``a`` then ``b`` and so on).
+
+    Our final message would be ``Jgnnq, ecrvckp``
+
+    Further reading
+    ===============
+
+    *   https://en.m.wikipedia.org/wiki/Caesar_cipher
+
+    Doctests
+    ========
+
+    >>> encrypt('The quick brown fox jumps over the lazy dog', 8)
+    'bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo'
+
+    >>> encrypt('A very large key', 8000)
+    's nWjq dSjYW cWq'
+
+    >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
+    'f qtbjwhfxj fqumfgjy'
+    
     >>> encrypt("abc", 1)
     'bcd'
     >>> encrypt("xyz", 3)

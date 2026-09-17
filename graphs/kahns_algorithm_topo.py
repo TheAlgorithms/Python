@@ -1,3 +1,6 @@
+from collections import deque
+
+
 def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     """
     Perform topological sorting of a Directed Acyclic Graph (DAG)
@@ -21,10 +24,17 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
 
     >>> graph_with_cycle = {0: [1], 1: [2], 2: [0]}
     >>> topological_sort(graph_with_cycle)
+
+    >>> sparse_graph = {10: [20], 20: []}
+    >>> topological_sort(sparse_graph)
+    [10, 20]
+
+    >>> sparse_cycle = {10: [20], 20: [10]}
+    >>> topological_sort(sparse_cycle)
     """
 
-    indegree = [0] * len(graph)
-    queue = []
+    indegree = dict.fromkeys(graph, 0)
+    queue: deque[int] = deque()
     topo_order = []
     processed_vertices_count = 0
 
@@ -34,13 +44,13 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
             indegree[i] += 1
 
     # Add all vertices with 0 indegree to the queue
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
+    for vertex, count in indegree.items():
+        if count == 0:
+            queue.append(vertex)
 
     # Perform BFS
     while queue:
-        vertex = queue.pop(0)
+        vertex = queue.popleft()
         processed_vertices_count += 1
         topo_order.append(vertex)
 
