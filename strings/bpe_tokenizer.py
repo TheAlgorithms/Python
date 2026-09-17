@@ -1,7 +1,9 @@
-"""Byte-Pair Encoding: Subword-based tokenization algorithm used
-by state-of-the-art language models.
+"""
+Byte-Pair Encoding: Subword-based tokenization algorithm used by
+state-of-the-art language models.
 
-Wikipedia: https://en.wikipedia.org/wiki/Byte_pair_encoding"""
+Wikipedia: https://en.wikipedia.org/wiki/Byte_pair_encoding
+"""
 
 import itertools
 from collections import OrderedDict
