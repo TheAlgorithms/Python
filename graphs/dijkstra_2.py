@@ -1,4 +1,4 @@
-def print_dist(dist, v):
+def print_dist(dist, v) -> None:
     print("\nVertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
@@ -18,7 +18,7 @@ def min_dist(mdist, vset, v):
     return min_ind
 
 
-def dijkstra(graph, v, src):
+def dijkstra(graph, v, src) -> None:
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
