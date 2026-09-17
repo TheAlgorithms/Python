@@ -5,7 +5,7 @@ from sys import stderr
 def progress[T](items: Iterable[T], desc: str = "", total: int = 0) -> Iterator[T]:
     """
     A simple progress iterator that yields items from the given iterable while
-    displaying a progress indicator in place on a single line of stderr.  The output is 
+    displaying a progress indicator in place on a single line of stderr.  The output is
     not written to stdout, so the output of the program remains clean (see doctests).
 
     for item in progress(range(1_000), desc="Processing"):
@@ -19,7 +19,7 @@ def progress[T](items: Iterable[T], desc: str = "", total: int = 0) -> Iterator[
 
     Yields:
         Iterator[T]: The items from the iterable, one by one.
-    
+
     >>> tuple(progress(range(5)))
     (0, 1, 2, 3, 4)
     >>> tuple(progress(range(5), desc="Processing", total=3))
