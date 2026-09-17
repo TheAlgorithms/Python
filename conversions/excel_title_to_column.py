@@ -26,7 +26,8 @@ def excel_title_to_column(column_title: str) -> int:
     ValueError: Column title must contain only alphabetic characters.
     """
     if not column_title or not column_title.isalpha():
-        raise ValueError("Column title must contain only alphabetic characters.")
+        msg = "Column title must contain only alphabetic characters."
+        raise ValueError(msg)
 
     column_title = column_title.upper()
     answer = 0
