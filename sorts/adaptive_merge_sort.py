@@ -11,8 +11,8 @@ def adaptive_merge_sort[T: Comparable](sequence: list[T]) -> list[T]:
 
     >>> adaptive_merge_sort([4, 3, 1, 2])
     [1, 2, 3, 4]
-    >>> adaptive_merge_sort(["banana", "apple", "cherry"])
-    ["apple", "banana", "cherry"]
+   >>> adaptive_merge_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
     >>> adaptive_merge_sort([1, "apple"])
     Traceback (most recent call last):
     TypeError: '<' not supported between instances of 'str' and 'int'
