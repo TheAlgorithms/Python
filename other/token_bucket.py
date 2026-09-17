@@ -94,7 +94,7 @@ if __name__ == "__main__":
     for i in range(total_requests):
         result = "pass" if bucket.allow_request() else "dropped"
         print(
-            f"Request {i+1}/{total_requests} \
-            timeline: {i*delay_in_seconds} seconds = {result}"
+            f"Request {i + 1}/{total_requests} \
+            timeline: {i * delay_in_seconds} seconds = {result}"
         )
         time.sleep(delay_in_seconds)
