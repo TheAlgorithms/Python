@@ -49,9 +49,10 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
-# Auto-generated index of the repo. Almost every PR touches it, so a merge
-# conflict here is expected and is resolved with "accept both" in the GitHub UI.
 DIRECTORY_FILE = "DIRECTORY.md"
+
+# Open PRs to skip in the report, e.g. [123, 456, 789] ignores #123, #456, #789.
+ignore_pull_request: list[int] = []
 
 
 def run_gh(args: list[str]) -> str:
@@ -113,7 +114,8 @@ def get_open_prs() -> list[dict]:
     raw = run_gh(
         ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
     )
-    return json.loads(raw)
+    ignore = set(ignore_pull_request)
+    return [pr for pr in json.loads(raw) if pr["number"] not in ignore]
 
 
 def get_pr_files(pr_number: int) -> list[str]:
@@ -197,6 +199,12 @@ def render_directory_section(
 
 
 def main() -> None:
+    # Reuse the shared progress() helper from other/cheap_progress.py. It lives at
+    # the repo root, which is not on sys.path when this script runs directly, so
+    # add the repo root before importing rather than duplicating the helper here.
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from other.cheap_progress import progress
+
     if shutil.which("gh") is None:
         sys.exit("Error: 'gh' (GitHub CLI) is not installed or not in PATH.")
 
@@ -210,7 +218,7 @@ def main() -> None:
     pr_to_files: dict[int, list[str]] = {}
     touch_count = 0  # every (PR, file) pair; a file may be touched by many PRs
 
-    for pr in prs:
+    for pr in progress(prs, desc="First pass"):
         pr_number = pr["number"]
         pr_files = get_pr_files(pr_number)
         pr_to_files[pr_number] = pr_files
@@ -232,7 +240,7 @@ def main() -> None:
     missing: dict[str, list[int]] = {}
     contested: dict[str, list[int]] = {}
 
-    for path, pr_numbers in file_to_prs.items():
+    for path, pr_numbers in progress(file_to_prs.items(), desc="Second pass"):
         deduped = sorted(set(pr_numbers))
         target = existing if Path(path).exists() else missing
         target[path] = deduped
@@ -255,9 +263,9 @@ def main() -> None:
     )
 
     # --- Render GitHub-flavored Markdown ---
-    print("# Open Pull Request File Map\n")
+    generated = f"{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}"
+    print(f"# Open Pull Request File Map: {generated}\n")
     print(f"- Script: `{script_display_path()}`")
-    print(f"- Generated: `{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}`")
     print(f"- Number of PRs: `{pr_count}`")
     print(f"- File touches (PR x file): `{touch_count}`")
     print(f"- Distinct files touched: `{distinct_count}`")
