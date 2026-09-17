@@ -1504,6 +1504,7 @@
   * [Smoothsort](sorts/smoothsort.py)
   * [Stalin Sort](sorts/stalin_sort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
+  * [Stopwatch Sort](sorts/stopwatch_sort.py)
   * [Strand Sort](sorts/strand_sort.py)
   * [Tim Sort](sorts/tim_sort.py)
   * [Topological Sort](sorts/topological_sort.py)
