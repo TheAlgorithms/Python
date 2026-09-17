@@ -6,7 +6,7 @@ class Comparable(Protocol):
 
 
 def adaptive_merge_sort[T: Comparable](sequence: list[T]) -> list[T]:
-   
+
     if len(sequence) < 2:
         return sequence
 
