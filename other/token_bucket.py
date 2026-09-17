@@ -1,12 +1,15 @@
-# Implementation of Token Bucket Algorithm
-# Token `rate` is added to the bucket every `frequency` in seconds.
-# The bucket can hold tokens up to `capacity` (full).
-# The bucket starts full.
-# Each request consume one token.
-# If a token arrives when the bucket is full, token is discarded.
-# If a request arrives when bucket is empty, request will be discarded.
-# If bucket has tokens available, requests will pass.
-# https://en.wikipedia.org/wiki/Token_bucket
+"""
+Implementation of the Token Bucket Algorithm
+Token `rate` is added to the bucket every `frequency` seconds.
+The bucket can hold tokens up to `capacity` (full).
+The bucket starts full.
+Each request consumes one token.
+If a token arrives when the bucket is full, the token is discarded.
+If a request arrives when the bucket is empty, it is discarded.
+If the bucket has tokens available, requests will pass.
+https://en.wikipedia.org/wiki/Token_bucket
+"""
+
 import threading
 import time
 
@@ -38,7 +41,7 @@ class TokenBucketRateLimiter:
         """
         Refill tokens only when a full minute has passed.
         >>> bucket = TokenBucketRateLimiter(1, 4, 60)
-        >>> bucket.tokens  # Initially has 4 token (rate)
+        >>> bucket.tokens  # Initially has a rate of 4 tokens
         4
         >>> bucket._add_tokens()
         >>> bucket.tokens  # Bucket already full
