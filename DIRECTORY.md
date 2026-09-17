@@ -1028,6 +1028,8 @@
   * [Activity Selection](other/activity_selection.py)
   * [Alternative List Arrange](other/alternative_list_arrange.py)
   * [Bankers Algorithm](other/bankers_algorithm.py)
+  * [Cheap Progress](other/cheap_progress.py)
+  * [Dancing Links](other/dancing_links.py)
   * [Davis Putnam Logemann Loveland](other/davis_putnam_logemann_loveland.py)
   * [Doomsday](other/doomsday.py)
   * [Fischer Yates Shuffle](other/fischer_yates_shuffle.py)
@@ -1051,6 +1053,7 @@
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
   * [Sliding Window Maximum](other/sliding_window_maximum.py)
+  * [Token Bucket](other/token_bucket.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
   * [Word Search](other/word_search.py)
 
