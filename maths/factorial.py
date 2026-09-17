@@ -5,7 +5,7 @@ Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 
 def factorial(number: int) -> int:
     """
-    Calculate the factorial of specified number (n!).
+    Calculate the factorial of the specified number.
 
     >>> import math
     >>> all(factorial(i) == math.factorial(i) for i in range(20))
@@ -61,10 +61,12 @@ def factorial_recursive(number: int) -> int:
         raise ValueError("factorial_recursive() only accepts integral values")
     if number < 0:
         raise ValueError("factorial_recursive() not defined for negative values")
-    return 1 if number in {0, 1} else number * factorial_recursive(n - 1)
+    return 1 if number in {0, 1} else number * factorial_recursive(number - 1)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    n = int(input("Enter a positive integer: ").strip() or 0)
+    print(f"{n = } {factorial(n) = } {factorial_recursive(n) = }")
