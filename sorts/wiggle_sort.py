@@ -20,9 +20,9 @@ def wiggle_sort(nums: list) -> list:
     >>> wiggle_sort([])
     []
     >>> wiggle_sort([-2, -5, -45])
-    [-45, -2, -5]
+    [-5, -2, -45]
     >>> wiggle_sort([-2.1, -5.68, -45.11])
-    [-45.11, -2.1, -5.68]
+    [-5.68, -2.1, -45.11]
     """
     for i in range(1, len(nums)):
         if (i % 2 == 1 and nums[i - 1] > nums[i]) or (
