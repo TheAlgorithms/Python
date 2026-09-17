@@ -72,7 +72,7 @@ def encrypt(text: str, shift: int) -> str:
 
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
-    
+
     >>> encrypt("abc", 1)
     'bcd'
     >>> encrypt("xyz", 3)
