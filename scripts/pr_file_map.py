@@ -49,9 +49,10 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
-# Auto-generated index of the repo. Almost every PR touches it, so a merge
-# conflict here is expected and is resolved with "accept both" in the GitHub UI.
 DIRECTORY_FILE = "DIRECTORY.md"
+
+# Open PRs to skip in the report, e.g. [123, 456, 789] ignores #123, #456, #789.
+ignore_pull_request: set[int] = {15105, 15142, 15356}
 
 
 def run_gh(args: list[str]) -> str:
@@ -113,7 +114,8 @@ def get_open_prs() -> list[dict]:
     raw = run_gh(
         ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
     )
-    return json.loads(raw)
+    ignore = ignore_pull_request
+    return [pr for pr in json.loads(raw) if pr["number"] not in ignore]
 
 
 def get_pr_files(pr_number: int) -> list[str]:
@@ -255,9 +257,9 @@ def main() -> None:
     )
 
     # --- Render GitHub-flavored Markdown ---
-    print("# Open Pull Request File Map\n")
+    generated = f"{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}"
+    print(f"# Open Pull Request File Map: {generated}\n")
     print(f"- Script: `{script_display_path()}`")
-    print(f"- Generated: `{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}`")
     print(f"- Number of PRs: `{pr_count}`")
     print(f"- File touches (PR x file): `{touch_count}`")
     print(f"- Distinct files touched: `{distinct_count}`")
