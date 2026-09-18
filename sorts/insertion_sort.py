@@ -50,6 +50,12 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     True
     >>> insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
     True
+    >>> values = [4, 2, 7, 1]
+    >>> result = insertion_sort(values)
+    >>> result is values
+    True
+    >>> values
+    [1, 2, 4, 7]
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
     >>> insertion_sort(collection) == sorted(collection)
