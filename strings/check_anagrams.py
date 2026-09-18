@@ -7,8 +7,15 @@ from collections import defaultdict
 
 def check_anagrams(first_str: str, second_str: str) -> bool:
     """
-    Two strings are anagrams if they are made up of the same letters but are
-    arranged differently (ignoring the case).
+    Check whether two strings are anagrams of each other.
+
+    Two strings are anagrams if they contain the same characters
+    with the same frequency, ignoring case and whitespace.
+
+    :param first_str: first input string
+    :param second_str: second input string
+    :return: True if strings are anagrams, False otherwise
+
     >>> check_anagrams('Silent', 'Listen')
     True
     >>> check_anagrams('This is a string', 'Is this a string')
