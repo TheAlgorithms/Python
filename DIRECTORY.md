@@ -220,6 +220,7 @@
   * [Energy Conversions](conversions/energy_conversions.py)
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
+  * [Hex To Rgb](conversions/hex_to_rgb.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Int To Negative Binary Base](conversions/int_to_negative_binary_base.py)
   * [Ipv4 Conversion](conversions/ipv4_conversion.py)
