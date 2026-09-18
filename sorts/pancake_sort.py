@@ -27,6 +27,9 @@ def pancake_sort[T: Comparable](arr: Sequence[T]) -> list[T]:
     inside
     :return: the same collection ordered by ascending
 
+    Time Complexity: (O(n^2))
+    Space Complexity: (O(n))
+
     Examples:
     >>> pancake_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -59,10 +62,9 @@ def pancake_sort[T: Comparable](arr: Sequence[T]) -> list[T]:
 
 
 if __name__ == "__main__":
-    from doctest import testmod
+    import doctest
 
-    testmod()
-
+    doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(pancake_sort(unsorted))
+    print(f"{pancake_sort(unsorted) = }")

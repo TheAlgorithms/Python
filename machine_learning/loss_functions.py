@@ -1,3 +1,5 @@
+# ruff: noqa: RUF002 -- ambiguous-unicode-character-docstring
+
 import numpy as np
 
 
@@ -148,6 +150,58 @@ def categorical_cross_entropy(
     return -np.sum(y_true * np.log(y_pred))
 
 
+def sparse_categorical_cross_entropy(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+    Calculate sparse categorical cross entropy (SCCE) loss between true class labels and
+    predicted class probabilities. SCCE is used in cases where the true class labels are
+    represented in a sparse matrix format.
+
+    SCCE = -Σ(ln(y_pred[i, y_true[i]]))
+
+    Reference: https://en.wikipedia.org/wiki/Cross_entropy
+
+    Parameters:
+    - y_true: True class labels containing class indices.
+    - y_pred: Predicted class probabilities.
+    - epsilon: Small constant to avoid numerical instability.
+
+    >>> true_labels = np.array([0, 1, 2])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> float(sparse_categorical_cross_entropy(true_labels, pred_probs))
+    0.567395975254385
+
+    >>> true_labels = np.array([1, 2])
+    >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
+    >>> float(sparse_categorical_cross_entropy(true_labels, pred_probs))
+    2.353878387381596
+
+    >>> true_labels = np.array([1, 5])
+    >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
+    >>> sparse_categorical_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Class labels in y_true are out of range.
+
+    >>> true_labels = np.array([1, 2])
+    >>> pred_probs = np.array([[0.05, 0.95, 0.1], [0.1, 0.8, 0.1]])
+    >>> sparse_categorical_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Predicted probabilities must sum to approximately 1.
+    """
+    if np.any(y_true >= y_pred.shape[1]) or np.any(y_true < 0):
+        raise ValueError("Class labels in y_true are out of range.")
+
+    if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
+        raise ValueError("Predicted probabilities must sum to approximately 1.")
+
+    y_pred = np.clip(y_pred, epsilon, 1)  # Clip predictions to avoid log(0)
+    log_preds = np.log(y_pred[np.arange(len(y_pred)), y_true])
+    return -np.sum(log_preds)
+
+
 def categorical_focal_cross_entropy(
     y_true: np.ndarray,
     y_pred: np.ndarray,
@@ -248,6 +302,60 @@ def categorical_focal_cross_entropy(
     )
 
     return np.mean(cfce_loss)
+
+
+def gaussian_negative_log_likelihood_loss(
+    y_true: np.ndarray,
+    expectation_pred: np.ndarray,
+    var_pred: np.ndarray,
+    eps: float = 1e-6,
+) -> float:
+    """
+    Calculate the negative log likelihood (NLL) loss between true labels and predicted
+    Gaussian distributions.
+
+    NLL = -Σ(ln(1/(σ√(2π))) - 0.5 * ((y_true - μ)/σ)^2)
+
+    Reference: https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss.html
+
+    Parameters:
+    - y_true: True labels
+    - expectation_pred: Predicted expectation (μ) of the Gaussian distribution
+    - var_pred: Predicted variance (σ^2) of the Gaussian distribution
+    - eps: Small constant to avoid numerical instability
+
+    Examples:
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> expectation = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> variance = np.array([0.1, 0.2, 0.3, 0.4, 0.5])
+    >>> loss = gaussian_negative_log_likelihood_loss(true_labels, expectation, variance)
+    >>> bool(np.isclose(loss, -0.60621))
+    True
+
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> expectation = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> variance = np.array([0.1, 0.2, 0.3, 0.4])
+    >>> gaussian_negative_log_likelihood_loss(true_labels, expectation, variance)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+
+    if (
+        len(y_true) != len(expectation_pred)
+        or len(y_true) != len(var_pred)
+        or len(expectation_pred) != len(var_pred)
+    ):
+        raise ValueError("Input arrays must have the same length.")
+
+    # The constant term `0.5 * np.log(2 * np.pi)` is ignored since it doesn't affect the
+    # optimization. PyTorch also ignores this term by default.
+    # See https://pytorch.org/docs/stable/generated/torch.nn.GaussianNLLLoss.html
+    loss_var = 0.5 * (np.log(np.maximum(var_pred, eps)))
+    loss_exp = 0.5 * (np.square(y_true - expectation_pred) / np.maximum(var_pred, eps))
+    loss = loss_var + loss_exp
+
+    return np.mean(loss)
 
 
 def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -669,6 +777,110 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     y_pred = y_pred[filter_array]
     kl_loss = y_true * np.log(y_true / y_pred)
     return np.sum(kl_loss)
+
+
+def connectionist_temporal_classification_loss(
+    y_true: np.ndarray, y_pred: np.ndarray, blank: int = 0
+):
+    """
+    Calculate the connectionist temporal classification (CTC) loss between the given
+    log probabilities and targets.
+
+    CTC loss is used in speech recognition, handwriting recognition and other sequence
+    problems. It's used to get around not knowing the alignment between the input and
+    the output.
+
+    References:
+    - https://en.wikipedia.org/wiki/Connectionist_temporal_classification
+    - https://pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html
+
+    Parameters:
+    - y_true: True labels (containing class indices).
+    - y_pred: Predicted class probabilities for each input timestep.
+    - blank: Index of the blank token, default: 0.
+
+    Returns:
+    - CTC loss between y_true and y_pred.
+
+    >>> y_true = np.array([1, 2, 3])
+    >>> y_pred = np.array([[0.1, 0.6, 0.1, 0.2],
+    ...                    [0.2, 0.1, 0.5, 0.2],
+    ...                    [0.2, 0.1, 0.5, 0.2]])
+    >>> float(connectionist_temporal_classification_loss(y_true, y_pred))
+    2.8134107167600364
+
+    >>> y_true = np.array([1, 2, 3, 1])
+    >>> y_pred = np.random.rand(3, 4)
+    >>> connectionist_temporal_classification_loss(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true cannot be longer than y_pred.
+
+    >>> y_true = np.array([[1, 2, 3]])
+    >>> y_pred = np.random.rand(3, 4)
+    >>> connectionist_temporal_classification_loss(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true should be an 1D array.
+
+    >>> y_true = np.array([1, 2, 3])
+    >>> y_pred = np.array([0.1, 0.6, 0.1, 0.2])
+    >>> connectionist_temporal_classification_loss(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_pred should be a 2D array.
+
+    >>> y_true = np.array([1, 2, 3])
+    >>> y_pred = np.array([[0.1, 0.6, 0.1], [0.2, 0.1, 0.5], [0.2, 0.1, 0.5]])
+    >>> connectionist_temporal_classification_loss(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: Class indices in y_true should be less than y_pred.shape[1].
+    """
+    if len(y_true) > len(y_pred):
+        raise ValueError("y_true cannot be longer than y_pred.")
+
+    if y_true.ndim != 1:
+        raise ValueError("y_true should be an 1D array.")
+
+    if y_pred.ndim != 2:
+        raise ValueError("y_pred should be a 2D array.")
+
+    if np.max(y_true) >= y_pred.shape[1]:
+        raise ValueError("Class indices in y_true should be less than y_pred.shape[1].")
+
+    log_probs = np.log(y_pred)
+    input_len = log_probs.shape[0]  # Input sequence length
+    target_len = len(y_true)  # Target sequence length
+    target_len_extended = 2 * target_len + 1  # Target sequence length with blanks
+
+    # Initialize blank and target sequences
+    extended_targets = np.full(target_len_extended, blank)
+    extended_targets[1::2] = y_true
+
+    # Initialize alpha (forward variable)
+    alpha = np.full((input_len, target_len_extended), -np.inf)
+    alpha[0, 0] = log_probs[0, blank]  # Starting with blank
+    if target_len_extended > 1:
+        alpha[0, 1] = log_probs[0, extended_targets[1]]
+
+    # Dynamic programming to calculate alpha
+    for t in range(1, input_len):
+        for s in range(target_len_extended):
+            current_label = extended_targets[s]
+            alpha[t, s] = alpha[t - 1, s]
+            if s > 0:
+                alpha[t, s] = np.logaddexp(alpha[t, s], alpha[t - 1, s - 1])
+            if s > 1 and current_label != extended_targets[s - 2]:
+                alpha[t, s] = np.logaddexp(alpha[t, s], alpha[t - 1, s - 2])
+            alpha[t, s] += log_probs[t, current_label]
+
+    # CTC loss is the negative log probability of the target sequence
+    loss = -np.logaddexp(
+        alpha[input_len - 1, target_len_extended - 1],
+        alpha[input_len - 1, target_len_extended - 2],
+    )
+    return loss
 
 
 def symmetric_mean_absolute_percentage_error(
