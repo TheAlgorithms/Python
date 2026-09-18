@@ -291,13 +291,14 @@ async def refresh_checkboxes(
     states: dict[int, str | None] = {}
     unresolved = 0
     for number, result in zip(pending, resolved):
-        if isinstance(result, BestEffortError):
-            unresolved += 1
-            states[number] = None
-        elif isinstance(result, BaseException):
-            raise result
-        else:
-            states[number] = result
+        match result:
+            case BestEffortError():
+                unresolved += 1
+                states[number] = None
+            case BaseException():
+                raise result
+            case _:
+                states[number] = result
     if unresolved:
         _log(f"  ...{unresolved} row(s) left unchanged (API unavailable).")
 

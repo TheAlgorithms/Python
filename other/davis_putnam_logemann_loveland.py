@@ -266,11 +266,12 @@ def find_unit_clauses(
         else:
             f_count, n_count = 0, 0
             for literal, value in clause.literals.items():
-                if value is False:
-                    f_count += 1
-                elif value is None:
-                    sym = literal
-                    n_count += 1
+                match value:
+                    case False:
+                        f_count += 1
+                    case None:
+                        sym = literal
+                        n_count += 1
             if f_count == len(clause) - 1 and n_count == 1:
                 unit_symbols.append(sym)
     assignment: dict[str, bool | None] = {}
@@ -305,11 +306,12 @@ def dpll_algorithm(
     check_clause_all_true = True
     for clause in clauses:
         clause_check = clause.evaluate(model)
-        if clause_check is False:
-            return False, None
-        elif clause_check is None:
-            check_clause_all_true = False
-            continue
+        match clause_check:
+            case False:
+                return False, None
+            case None:
+                check_clause_all_true = False
+                continue
 
     if check_clause_all_true:
         return True, model
