@@ -76,6 +76,7 @@
   * [Word Search](backtracking/word_search.py)
 
 ## [Bit Manipulation](bit_manipulation)
+  * [Binary Addition](bit_manipulation/binary_addition.py)
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
   * [Binary Coded Decimal](bit_manipulation/binary_coded_decimal.py)
   * [Binary Count Setbits](bit_manipulation/binary_count_setbits.py)
