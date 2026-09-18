@@ -1339,6 +1339,8 @@
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
     * [Sol1](project_euler/problem_109/sol1.py)
+  * Problem 111
+    * [Sol1](project_euler/problem_111/sol1.py)
   * Problem 112
     * [Sol1](project_euler/problem_112/sol1.py)
   * Problem 113
@@ -1361,6 +1363,8 @@
     * [Sol1](project_euler/problem_122/sol1.py)
   * Problem 123
     * [Sol1](project_euler/problem_123/sol1.py)
+  * Problem 124
+    * [Sol1](project_euler/problem_124/sol1.py)
   * Problem 125
     * [Sol1](project_euler/problem_125/sol1.py)
   * Problem 129
@@ -1371,6 +1375,12 @@
     * [Sol1](project_euler/problem_135/sol1.py)
   * Problem 136
     * [Sol1](project_euler/problem_136/sol1.py)
+  * Problem 137
+    * [Sol1](project_euler/problem_137/sol1.py)
+  * Problem 138
+    * [Sol1](project_euler/problem_138/sol1.py)
+  * Problem 142
+    * [Sol1](project_euler/problem_142/sol1.py)
   * Problem 144
     * [Sol1](project_euler/problem_144/sol1.py)
   * Problem 145
