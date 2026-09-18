@@ -7,12 +7,15 @@ https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort
 from collections.abc import MutableSequence
 from typing import Any, Protocol, TypeVar
 
+
 class Comparable(Protocol):
-    def __lt__(self, other:Any, /)->bool: ...
+    def __lt__(self, other: Any, /) -> bool: ...
+
 
 T = TypeVar("T", bound="Comparable")
 
-def odd_even_sort[T:Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
+
+def odd_even_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
     """
     Sort input with odd even sort.
 
