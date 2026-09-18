@@ -947,6 +947,7 @@
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
   * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
+  * [Sum Of Outcomes For Rolling N Sided Dice K Time](maths/sum_of_outcomes_for_rolling_n_sided_dice_k_time.py)
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
