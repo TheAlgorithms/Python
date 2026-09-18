@@ -15,7 +15,7 @@ files referenced by open PRs but that do not exist in the working directory (e.g
 deleted, renamed, or on a branch not checked out locally).
 
 `DIRECTORY.md` is treated specially and reported in its own section at the very
-bottom. It is auto-generated, so nearly every PR touches it and it would
+bottom. It is auto-generated, so nearly every PR touches it, and it would
 otherwise dominate the "possible merge conflicts" list and distract busy
 maintainers. A merge conflict caused only by `DIRECTORY.md` is trivial to clear:
 choose __accept both__ in the GitHub UI. The bottom section therefore separates
@@ -37,8 +37,8 @@ Run status is also written to stderr with:
 Requirements: gh (GitHub CLI), authenticated (`gh auth login`)
 
 Usage:
-    ./pr_file_map.py
-    ./pr_file_map.py > report.md
+    scripts/pr_file_map.py
+    scripts/pr_file_map.py > report.md
 """
 
 import json
@@ -49,9 +49,10 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
-# Auto-generated index of the repo. Almost every PR touches it, so a merge
-# conflict here is expected and is resolved with "accept both" in the GitHub UI.
 DIRECTORY_FILE = "DIRECTORY.md"
+
+# Open PRs to skip in the report, e.g. [123, 456, 789] ignores #123, #456, #789.
+ignore_pull_request: set[int] = {15105, 15142, 15356}
 
 
 def run_gh(args: list[str]) -> str:
@@ -101,7 +102,7 @@ def git_root() -> Path | None:
 def script_display_path() -> Path:
     """This script's path relative to the git root (falls back to absolute)."""
     script_path = Path(__file__).resolve()
-    if (root := git_root()) is not None:
+    if root := git_root():
         try:
             return script_path.relative_to(root.resolve())
         except ValueError:
@@ -113,7 +114,8 @@ def get_open_prs() -> list[dict]:
     raw = run_gh(
         ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
     )
-    return json.loads(raw)
+    ignore = ignore_pull_request
+    return [pr for pr in json.loads(raw) if pr["number"] not in ignore]
 
 
 def get_pr_files(pr_number: int) -> list[str]:
@@ -179,7 +181,11 @@ def render_directory_section(
         f"### `{len(directory_only)}` PRs whose only overlap is "
         f"`{DIRECTORY_FILE}` (safe to accept both)\n"
     )
-    print(" ".join(f"#{n}" for n in directory_only) if directory_only else "_None._")
+    print(
+        "- " + ", ".join(f"#{n}" for n in directory_only)
+        if directory_only
+        else "_None._"
+    )
     print(
         f"\n### `{len(directory_plus_other)}` PRs that also overlap on other "
         "files (need a review or rebase)\n"
@@ -251,9 +257,9 @@ def main() -> None:
     )
 
     # --- Render GitHub-flavored Markdown ---
-    print("# Open Pull Request File Map\n")
+    generated = f"{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}"
+    print(f"# Open Pull Request File Map: {generated}\n")
     print(f"- Script: `{script_display_path()}`")
-    print(f"- Generated (UTC): `{datetime.now(UTC).isoformat()}`")
     print(f"- Number of PRs: `{pr_count}`")
     print(f"- File touches (PR x file): `{touch_count}`")
     print(f"- Distinct files touched: `{distinct_count}`")
