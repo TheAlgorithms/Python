@@ -35,6 +35,7 @@ from sorts.gnome_sort import gnome_sort
 from sorts.heap_sort import heap_sort
 from sorts.insertion_sort import insertion_sort
 from sorts.iterative_merge_sort import iter_merge_sort
+from sorts.merge_insertion_sort import merge_insertion_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
 from sorts.odd_even_transposition_single_threaded import odd_even_transposition
@@ -73,6 +74,7 @@ SORTS = (
     insertion_sort,
     iter_merge_sort,
     merge,
+    merge_insertion_sort,
     merge_sort,
     odd_even_sort,
     odd_even_transposition,
@@ -145,6 +147,7 @@ def test_rec_insertion_sort(case) -> None:
         gnome_sort,
         insertion_sort,
         merge,
+        merge_insertion_sort,
         merge_sort,
         odd_even_sort,
         odd_even_transposition,
