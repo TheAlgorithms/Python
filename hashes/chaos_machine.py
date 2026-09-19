@@ -13,7 +13,7 @@ params_space: list[float] = []
 machine_time = 0
 
 
-def push(seed):
+def push(seed) -> None:
     global buffer_space, params_space, machine_time, K, m, t
 
     # Choosing Dynamical Systems (All)
@@ -72,7 +72,7 @@ def pull():
     return xorshift(x, y) % 0xFFFFFFFF
 
 
-def reset():
+def reset() -> None:
     global buffer_space, params_space, machine_time, K, m, t
 
     buffer_space = K

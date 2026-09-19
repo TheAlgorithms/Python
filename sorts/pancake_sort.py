@@ -1,6 +1,6 @@
 """Pancake Sort Algorithm Implementation.
 
-This module provides a pure Python implementation of the Pancake Sort algorithm.
+A pure Python implementation of the Pancake Sort algorithm.
 Pancake sort is a sorting algorithm that sorts an array by repeatedly flipping
 subsections of the array, similar to how you might sort a stack of pancakes
 by inserting a spatula and flipping the top portion.
@@ -20,42 +20,46 @@ For manual testing run:
     python pancake_sort.py
 """
 
-from typing import Any
+from collections.abc import Sequence
+from typing import Any, Protocol, TypeVar
 
 
-def pancake_sort(arr: list[Any]) -> list[Any]:
-    """Sort an array using the Pancake Sort algorithm.
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
 
-    Pancake sort works by finding the maximum unsorted element, flipping it to
-    the top of the array, then flipping the entire unsorted portion to move the
-    maximum to its correct position at the end.
 
-    Args:
-        arr: A list of comparable items to be sorted.
+T = TypeVar("T", bound=Comparable)
 
-    Returns:
-        The input list sorted in ascending order.
 
-    Time Complexity:
-        O(n^2) where n is the length of the array.
-        - We iterate n times (once for each position)
-        - Each iteration involves finding max O(n) and up to 2 flips O(n)
+def pancake_sort[T: Comparable](arr: Sequence[T]) -> list[T]:
+    """Sort Array with Pancake Sort.
 
-    Space Complexity:
-        O(1) - sorting is done in-place with only constant extra space.
+    :param arr: some ordered collection with heterogeneous comparable items
+    inside
+    :return: the same collection ordered by ascending
+
+    Time Complexity: (O(n^2))
+    Space Complexity: (O(n))
 
     Examples:
-        >>> pancake_sort([0, 5, 3, 2, 2])
-        [0, 2, 2, 3, 5]
-        >>> pancake_sort([])
-        []
-        >>> pancake_sort([-2, -5, -45])
-        [-45, -5, -2]
-        >>> pancake_sort([1])
-        [1]
-        >>> pancake_sort([3, 1, 4, 1, 5, 9, 2, 6])
-        [1, 1, 2, 3, 4, 5, 6, 9]
+    >>> pancake_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+    >>> pancake_sort([])
+    []
+    >>> pancake_sort([-2, -5, -45])
+    [-45, -5, -2]
+    >>> pancake_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    True
+    >>> import random
+    >>> collection = random.sample(range(-50, 50), 100)
+    >>> pancake_sort(collection) == sorted(collection)
+    True
+    >>> import string
+    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
+    >>> pancake_sort(collection) == sorted(collection)
+    True
     """
+    arr = list(arr)
     cur = len(arr)
     while cur > 1:
         # Find the index of maximum element in arr[0:cur]
@@ -75,8 +79,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    user_input = input("Enter numbers separated by comma: ").strip()
+    user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(f"Unsorted: {unsorted}")
-    print(f"Sorted: {pancake_sort(unsorted)}")
+    print(f"{unsorted = }, {pancake_sort(unsorted) = }")
