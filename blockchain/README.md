@@ -14,7 +14,8 @@ Let's break down the terminologies in the above definition. We find below termin
 
 ## Distributed Ledger Technology (DLT)
 
-First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information.
+First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence.
+These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information.
 However, this approach only serves as a hotbed for inefficiency and over-reliance on a sole entity.
 
 This is where Distributed Ledger Technology comes in. DLT represents a massive shift from centralised data management.
@@ -48,9 +49,11 @@ This is exactly how a Distributed Ledger works.
 
 ## Centralised vs. Distributed Management
 
-**Centralised approach:** Here, an organisation with 4 branches stores all its data in one central database. This database is managed by the Chief Administrator at the headquarters. Each branch needs approval from the Chief Administrator to view and access information. If a bad actor gains access to the central database, they can unduly alter all the data, and if the central database fails, all the branches lose their access to vital data.
+**Centralised approach:** Here, an organisation with 4 branches stores all its data in one central database. This database is managed by the Chief Administrator at the headquarters. Each branch needs approval from the Chief Administrator to view and access information.
+If a bad actor gains access to the central database, they can unduly alter all the data, and if the central database fails, all the branches lose their access to vital data.
 
-**Distributed approach:** In this case, each organisational branch maintains a complete **carbon copy** of the original ledger. For one branch to add information, all branches must reach a consensus. When one branch adds information, it's broadcast to the entire network and systematically synchronised across all other ledgers through a peer-to-peer network after verification.
+**Distributed approach:** In this case, each organisational branch maintains a complete **carbon copy** of the original ledger. For one branch to add information, all branches must reach a consensus.
+When one branch adds information, it's broadcast to the entire network and systematically synchronised across all other ledgers through a peer-to-peer network after verification.
 
 In summary, a distributed approach offers:
 
