@@ -3,12 +3,13 @@
 <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="700">
 </p>
 
-**Blockchain** is a type of **Distributed Ledger Technology (DLT)** that consists of a continuously growing list of records, known as **blocks**, that are securely linked together using **cryptography**. The Blockchain concept was introduced as the foremost foundation of **bitcoin** technology by Sakoshi Nakamoto in 2008. The infamous Nakamoto is an alias for the founder(s) who developed bitcoin, including the bitcoin white paper, as well as the original bitcoin reference implementation. Over time, blockchain technology has developed from a simple cryptocurrency implementation to a foundational technology for secure, transparent, and decentralised system architecture.
+A Blockchain is a type of **distributed ledger** technology (DLT) that consists of a growing list of records, called **blocks**, that are securely linked together using **cryptography**.
 
-Here are the key blockchain terminologies:
-- Distributed Ledger Technology (DLT)
-- Blocks
-- Cryptography
+Let's break down the terminologies in the above definition. We find below terminologies,
+
+* Digital Ledger Technology (DLT)
+* Blocks
+* Cryptography
 
 ## Distributed Ledger Technology (DLT)
 First of all, a **ledger** is a book or collection of accounts that keeps track of account transactions. Usually, ledgers are **centralised**, meaning that they're controlled by a sole influence. These ledgers are physical records maintained by banks, governments, and other establishments to track financial transactions, ownership records, and any other essential information.
@@ -56,6 +57,7 @@ In summary, a distributed approach offers:
 ## Blocks
 A **block** is a cluster of transactions grouped together with metadata in a structured manner.
 Imagine a block as a page in a digital ledger. This page consists of multiple transaction entries, including important information about when and how that page was created.
+Cryptography is the practice and study of secure communication techniques amid adversarial behavior. More broadly, cryptography is the creation and analysis of protocols that prevent third parties or the general public from accessing private messages.
 
 *Structure of a Block:*
 1. Block Header:

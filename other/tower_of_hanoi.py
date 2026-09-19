@@ -1,4 +1,4 @@
-def move_tower(height, from_pole, to_pole, with_pole):
+def move_tower(height, from_pole, to_pole, with_pole) -> None:
     """
     >>> move_tower(3, 'A', 'B', 'C')
     moving disk from A to B
@@ -15,11 +15,11 @@ def move_tower(height, from_pole, to_pole, with_pole):
         move_tower(height - 1, with_pole, to_pole, from_pole)
 
 
-def move_disk(fp, tp):
+def move_disk(fp, tp) -> None:
     print("moving disk from", fp, "to", tp)
 
 
-def main():
+def main() -> None:
     height = int(input("Height of hanoi: ").strip())
     move_tower(height, "A", "B", "C")
 
