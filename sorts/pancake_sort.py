@@ -64,13 +64,11 @@ def pancake_sort[T: Comparable](arr: Sequence[T]) -> list[T]:
     while cur > 1:
         # Find the index of maximum element in arr[0:cur]
         max_index = arr.index(max(arr[:cur]))
-
         # Move maximum element to end of current unsorted portion:
         # 1. Flip to bring max to the beginning
         arr[: max_index + 1] = reversed(arr[: max_index + 1])
         # 2. Flip to send max to position cur-1
         arr[:cur] = reversed(arr[:cur])
-
         cur -= 1
     return arr
 
