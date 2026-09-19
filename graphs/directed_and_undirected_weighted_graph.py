@@ -425,8 +425,7 @@ class Graph:
             s = stack.pop()
             if visited.count(s) == 1:
                 continue
-            else:
-                visited.append(s)
+            visited.append(s)
             # If reached d, return
             if s == d:
                 break
