@@ -2061,14 +2061,14 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 ## Automated statistics
 
-_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-18 (UTC)._
+_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-19 (UTC)._
 
 - **Open issues:** 8
 - **Open pull requests:** 293
 - **Open PRs labelled `awaiting reviews`:** 202
-- **Days until Hacktoberfest (2026-10-01):** 13
-- **Issues to close per day to clear the backlog:** 1 per day (over 13 days)
-- **Pull requests to merge or close per day to clear the backlog:** 23 per day (over 13 days)
+- **Days until Hacktoberfest (2026-10-01):** 12
+- **Issues to close per day to clear the backlog:** 1 per day (over 12 days)
+- **Pull requests to merge or close per day to clear the backlog:** 25 per day (over 12 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
