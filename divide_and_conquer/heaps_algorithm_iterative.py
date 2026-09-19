@@ -32,7 +32,7 @@ def heaps(arr: list) -> list:
 
     res = []
 
-    def generate(n: int, arr: list):
+    def generate(n: int, arr: list) -> None:
         c = [0] * n
         res.append(tuple(arr))
 
