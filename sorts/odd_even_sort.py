@@ -11,6 +11,7 @@ from typing import Any, Protocol
 class Comparable(Protocol):
     def __gt__(self, other: Any, /) -> bool: ...
 
+
 def odd_even_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
     """
     Sort input with odd even sort.
