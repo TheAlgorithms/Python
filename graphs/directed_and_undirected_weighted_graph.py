@@ -10,14 +10,13 @@ class DirectedGraph:
     def __init__(self) -> None:
         self.graph = {}
 
-
     def add_pair(self, u, v, w=1) -> None:
         """
         Adds a directed edge u->v with weight w.
         Add vertices and edges
         Add the weight is optional
         Handle repetition
-        
+
         >>> dg = DirectedGraph()
         >>> dg.add_pair(-1,2)
         >>> dg.add_pair(1,3,5)
