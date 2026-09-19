@@ -7,8 +7,10 @@ https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort
 from collections.abc import MutableSequence
 from typing import Any, Protocol
 
+
 class Comparable(Protocol):
     def __gt__(self, other: Any, /) -> bool: ...
+
 
 def odd_even_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
     """
