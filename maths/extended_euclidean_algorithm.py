@@ -71,7 +71,7 @@ def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:
     return old_coeff_a, old_coeff_b
 
 
-def main():
+def main() -> int:
     """Call Extended Euclidean Algorithm."""
     if len(sys.argv) < 3:
         print("2 integer arguments required")
