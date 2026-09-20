@@ -1012,6 +1012,7 @@
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Soboleva Modified Hyperbolic Tangent](neural_network/activation_functions/soboleva_modified_hyperbolic_tangent.py)
     * [Softplus](neural_network/activation_functions/softplus.py)
+    * [Softsign](neural_network/activation_functions/softsign.py)
     * [Squareplus](neural_network/activation_functions/squareplus.py)
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
