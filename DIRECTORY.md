@@ -155,6 +155,7 @@
   * [Columnar Transposition](ciphers/columnar_transposition.py)
   * [Cryptomath Module](ciphers/cryptomath_module.py)
   * [Decrypt Caesar With Chi Squared](ciphers/decrypt_caesar_with_chi_squared.py)
+  * [Des Ecb](ciphers/des_ecb.py)
   * [Deterministic Miller Rabin](ciphers/deterministic_miller_rabin.py)
   * [Diffie](ciphers/diffie.py)
   * [Diffie Hellman](ciphers/diffie_hellman.py)
