@@ -174,9 +174,9 @@ def test_blockchain() -> None:
     blockchain.chain[
         1
     ].transactions = "Transaction 1: Alice pays Bob 50 BTC"  # Tampering
-    assert (
-        not blockchain.is_chain_valid()
-    ), "Blockchain should be invalid due to tampering"
+    assert not blockchain.is_chain_valid(), (
+        "Blockchain should be invalid due to tampering"
+    )
 
     ## Test Case 5: Correct blockchain validation
     # This test checks if the blockchain becomes invalid after tampering and verifies
