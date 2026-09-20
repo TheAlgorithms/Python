@@ -105,13 +105,13 @@ def base64_decode(encoded_data: str) -> bytes:
 
     # Check if the encoded string contains non base64 characters
     if padding:
-        assert all(
-            char in B64_CHARSET for char in encoded_data[:-padding]
-        ), "Invalid base64 character(s) found."
+        assert all(char in B64_CHARSET for char in encoded_data[:-padding]), (
+            "Invalid base64 character(s) found."
+        )
     else:
-        assert all(
-            char in B64_CHARSET for char in encoded_data
-        ), "Invalid base64 character(s) found."
+        assert all(char in B64_CHARSET for char in encoded_data), (
+            "Invalid base64 character(s) found."
+        )
 
     # Check the padding
     assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding"
