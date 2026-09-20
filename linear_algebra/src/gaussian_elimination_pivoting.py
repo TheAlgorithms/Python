@@ -6,56 +6,50 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     Solve a linear system of equations using Gaussian elimination with partial pivoting
 
     Args:
-    - matrix: Coefficient matrix with the last column representing the constants.
+      - `matrix`: Coefficient matrix with the last column representing the constants.
 
     Returns:
-    - Solution vector.
+      - Solution vector.
 
     Raises:
-    - ValueError: If the matrix is not correct (i.e., singular).
+      - ``ValueError``: If the matrix is not correct (i.e., singular).
 
     https://courses.engr.illinois.edu/cs357/su2013/lect.htm Lecture 7
 
     Example:
+
     >>> A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]], dtype=float)
     >>> B = np.array([8, -11, -3], dtype=float)
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
-    >>> solve_linear_system(np.array([[0, 0], [0, 0]],  dtype=float))
-    array([nan, nan])
+    >>> solve_linear_system(np.array([[0, 0, 0]], dtype=float))
+    Traceback (most recent call last):
+        ...
+    ValueError: Matrix is not square
+    >>> solve_linear_system(np.array([[0, 0, 0], [0, 0, 0]], dtype=float))
+    Traceback (most recent call last):
+        ...
+    ValueError: Matrix is singular
     """
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
     num_of_columns = ab.shape[1] - 1
     x_lst: list[float] = []
 
-    # Lead element search
-    for column_num in range(num_of_rows):
-        for i in range(column_num, num_of_columns):
-            if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
-                ab[[column_num, i]] = ab[[i, column_num]]
-                if ab[column_num, column_num] == 0.0:
-                    raise ValueError("Matrix is not correct")
-            else:
-                pass
-        if column_num != 0:
-            for i in range(column_num, num_of_rows):
-                ab[i, :] -= (
-                    ab[i, column_num - 1]
-                    / ab[column_num - 1, column_num - 1]
-                    * ab[column_num - 1, :]
-                )
+    if num_of_rows != num_of_columns:
+        raise ValueError("Matrix is not square")
 
-    # Upper triangular matrix
     for column_num in range(num_of_rows):
+        # Lead element search
         for i in range(column_num, num_of_columns):
             if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
                 ab[[column_num, i]] = ab[[i, column_num]]
-                if ab[column_num, column_num] == 0.0:
-                    raise ValueError("Matrix is not correct")
-            else:
-                pass
+
+        # Upper triangular matrix
+        if abs(ab[column_num, column_num]) < 1e-8:
+            raise ValueError("Matrix is singular")
+
         if column_num != 0:
             for i in range(column_num, num_of_rows):
                 ab[i, :] -= (
