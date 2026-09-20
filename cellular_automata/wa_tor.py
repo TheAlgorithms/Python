@@ -1,9 +1,9 @@
 """
 Wa-Tor algorithm (1984)
 
-@ https://en.wikipedia.org/wiki/Wa-Tor
-@ https://beltoforion.de/en/wator/
-@ https://beltoforion.de/en/wator/images/wator_medium.webm
+| @ https://en.wikipedia.org/wiki/Wa-Tor
+| @ https://beltoforion.de/en/wator/
+| @ https://beltoforion.de/en/wator/images/wator_medium.webm
 
 This solution aims to completely remove any systematic approach
 to the Wa-Tor planet, and utilise fully random methods.
@@ -97,8 +97,8 @@ class WaTor:
 
     :attr time_passed: A function that is called every time
         time passes (a chronon) in order to visually display
-        the new Wa-Tor planet. The time_passed function can block
-        using time.sleep to slow the algorithm progression.
+        the new Wa-Tor planet. The `time_passed` function can block
+        using ``time.sleep`` to slow the algorithm progression.
 
     >>> wt = WaTor(10, 15)
     >>> wt.width
@@ -216,7 +216,7 @@ class WaTor:
         """
         Returns all the prey entities around (N, S, E, W) a predator entity.
 
-        Subtly different to the try_to_move_to_unoccupied square.
+        Subtly different to the `move_and_reproduce`.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.set_planet([
@@ -260,7 +260,7 @@ class WaTor:
         """
         Attempts to move to an unoccupied neighbouring square
         in either of the four directions (North, South, East, West).
-        If the move was successful and the remaining_reproduction time is
+        If the move was successful and the `remaining_reproduction_time` is
         equal to 0, then a new prey or predator can also be created
         in the previous square.
 
@@ -351,12 +351,12 @@ class WaTor:
         Performs the actions for a prey entity
 
         For prey the rules are:
-          1. At each chronon, a prey moves randomly to one of the adjacent unoccupied
-            squares. If there are no free squares, no movement takes place.
-          2. Once a prey has survived a certain number of chronons it may reproduce.
-            This is done as it moves to a neighbouring square,
-            leaving behind a new prey in its old position.
-            Its reproduction time is also reset to zero.
+            1. At each chronon, a prey moves randomly to one of the adjacent unoccupied
+               squares. If there are no free squares, no movement takes place.
+            2. Once a prey has survived a certain number of chronons it may reproduce.
+               This is done as it moves to a neighbouring square,
+               leaving behind a new prey in its old position.
+               Its reproduction time is also reset to zero.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> reproducable_entity = Entity(True, coords=(0, 1))
@@ -382,15 +382,15 @@ class WaTor:
         :param occupied_by_prey_coords: Move to this location if there is prey there
 
         For predators the rules are:
-          1. At each chronon, a predator moves randomly to an adjacent square occupied
-            by a prey. If there is none, the predator moves to a random adjacent
-            unoccupied square. If there are no free squares, no movement takes place.
-          2. At each chronon, each predator is deprived of a unit of energy.
-          3. Upon reaching zero energy, a predator dies.
-          4. If a predator moves to a square occupied by a prey,
-            it eats the prey and earns a certain amount of energy.
-          5. Once a predator has survived a certain number of chronons
-          it may reproduce in exactly the same way as the prey.
+            1. At each chronon, a predator moves randomly to an adjacent square occupied
+               by a prey. If there is none, the predator moves to a random adjacent
+               unoccupied square. If there are no free squares, no movement takes place.
+            2. At each chronon, each predator is deprived of a unit of energy.
+            3. Upon reaching zero energy, a predator dies.
+            4. If a predator moves to a square occupied by a prey,
+               it eats the prey and earns a certain amount of energy.
+            5. Once a predator has survived a certain number of chronons
+               it may reproduce in exactly the same way as the prey.
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.set_planet([[Entity(True, coords=(0, 0)), Entity(False, coords=(0, 1))]])
@@ -430,7 +430,7 @@ class WaTor:
 
     def run(self, *, iteration_count: int) -> None:
         """
-        Emulate time passing by looping iteration_count times
+        Emulate time passing by looping `iteration_count` times
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.run(iteration_count=PREDATOR_INITIAL_ENERGY_VALUE - 1)
@@ -484,11 +484,9 @@ def visualise(wt: WaTor, iter_number: int, *, colour: bool = True) -> None:
     an ascii code in terminal to clear and re-print
     the Wa-Tor planet at intervals.
 
-    Uses ascii colour codes to colourfully display
-    the predators and prey.
-
-    (0x60f197) Prey = #
-    (0xfffff) Predator = x
+    Uses ascii colour codes to colourfully display the predators and prey:
+        * (0x60f197) Prey = ``#``
+        * (0xfffff) Predator = ``x``
 
     >>> wt = WaTor(30, 30)
     >>> wt.set_planet([
