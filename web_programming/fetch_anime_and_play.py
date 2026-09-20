@@ -3,11 +3,11 @@
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup, NavigableString, Tag
 from fake_useragent import UserAgent
 
@@ -36,7 +36,7 @@ def search_scraper(anime_name: str) -> list:
     # concat the name to form the search url.
     search_url = f"{BASE_URL}/search?keyword={anime_name}"
 
-    response = httpx.get(
+    response = httpx2.get(
         search_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
     )  # request the url.
 
@@ -91,7 +91,7 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
     request_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = httpx.get(
+    response = httpx2.get(
         url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
@@ -142,7 +142,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     episode_page_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = httpx.get(
+    response = httpx2.get(
         url=episode_page_url, headers={"User-Agent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
