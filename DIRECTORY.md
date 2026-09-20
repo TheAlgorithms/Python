@@ -231,6 +231,7 @@
   * [Octal To Binary](conversions/octal_to_binary.py)
   * [Octal To Decimal](conversions/octal_to_decimal.py)
   * [Octal To Hexadecimal](conversions/octal_to_hexadecimal.py)
+  * [Ounces To Grams](conversions/ounces_to_grams.py)
   * [Prefix Conversions](conversions/prefix_conversions.py)
   * [Prefix Conversions String](conversions/prefix_conversions_string.py)
   * [Pressure Conversions](conversions/pressure_conversions.py)
