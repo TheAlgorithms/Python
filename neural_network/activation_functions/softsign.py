@@ -8,7 +8,7 @@ Softsign is a smooth activation function defined as:
 It maps input values into the range (-1, 1), similar to the hyperbolic tangent (tanh)
 function but with a polynomial decay instead of exponential.
 
-More about this function can be found in the article:
+https://en.wikipedia.org/wiki/Activation_function
 https://www.gabormelli.com/RKB/Softsign_Activation_Function
 """
 
