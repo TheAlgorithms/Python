@@ -1,13 +1,12 @@
+
+"""
+braikenridge_maclaurin_construction
+https://mathworld.wolfram.com/ConicSection.html
+5 Points define a conic section on a 2D normal orthogonal plane using this technique.
+"""
 from __future__ import annotations
-
 from dataclasses import dataclass, field
-
 from numpy import array, linalg
-
-# braikenridge_maclaurin_construction
-# https://mathworld.wolfram.com/ConicSection.html
-# 5 Points define a conic section on a 2D normal
-# orthogonal plane using this technique
 
 
 @dataclass
@@ -19,7 +18,6 @@ class Point:
 
     >>> Point(-1.0, 0.0)
     Point(x=-1.0, y=0.0)
-
     """
 
     x: float = 0.0
@@ -154,7 +152,7 @@ class BraikMac:
         return f"0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X {e:+.2} Y {f:+.2}"
 
 
-if __name__ == +__main__":
+if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
