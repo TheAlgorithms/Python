@@ -24,10 +24,10 @@ def get_valid_pos(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
     ]
     permissible_positions = []
 
-    for position in positions:
-        y_test, x_test = position
+    for inner_position in positions:
+        y_test, x_test = inner_position
         if 0 <= y_test < n and 0 <= x_test < n:
-            permissible_positions.append(position)
+            permissible_positions.append(inner_position)
 
     return permissible_positions
 
@@ -79,7 +79,7 @@ def open_knight_tour(n: int) -> list[list[int]]:
     >>> open_knight_tour(2)
     Traceback (most recent call last):
         ...
-    ValueError: Open Kight Tour cannot be performed on a board of size 2
+    ValueError: Open Knight Tour cannot be performed on a board of size 2
     """
 
     board = [[0 for i in range(n)] for j in range(n)]
@@ -91,7 +91,7 @@ def open_knight_tour(n: int) -> list[list[int]]:
                 return board
             board[i][j] = 0
 
-    msg = f"Open Kight Tour cannot be performed on a board of size {n}"
+    msg = f"Open Knight Tour cannot be performed on a board of size {n}"
     raise ValueError(msg)
 
 

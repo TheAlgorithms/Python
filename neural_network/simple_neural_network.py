@@ -1,6 +1,6 @@
 """
 Forward propagation explanation:
-https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
+https://en.wikipedia.org/wiki/Feedforward_neural_network
 """
 
 import math
@@ -28,7 +28,7 @@ INITIAL_VALUE = 0.02
 def forward_propagation(expected: int, number_propagations: int) -> float:
     """Return the value found after the forward propagation training.
 
-    >>> res = forward_propagation(32, 10000000)
+    >>> res = forward_propagation(32, 450_000)  # Was 10_000_000
     >>> res > 31 and res < 33
     True
 

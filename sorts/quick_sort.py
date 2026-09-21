@@ -7,16 +7,22 @@ python3 -m doctest -v quick_sort.py
 For manual testing run:
 python3 quick_sort.py
 """
+
 from __future__ import annotations
 
 from random import randrange
+from typing import Any, Protocol
 
 
-def quick_sort(collection: list) -> list:
-    """A pure Python implementation of quick sort algorithm
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def quick_sort[T: Comparable](collection: list[T]) -> list[T]:
+    """A pure Python implementation of quicksort algorithm.
 
     :param collection: a mutable collection of comparable items
-    :return: the same collection ordered by ascending
+    :return: the same collection ordered in ascending order
 
     Examples:
     >>> quick_sort([0, 5, 3, 2, 2])
@@ -25,21 +31,23 @@ def quick_sort(collection: list) -> list:
     []
     >>> quick_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
+    >>> quick_sort(["z", "a", "m", "b"])
+    ['a', 'b', 'm', 'z']
+    >>> quick_sort([3.14, -1.0, 2.71])
+    [-1.0, 2.71, 3.14]
+    >>> quick_sort([0, 5, 3, 2, 2]) == sorted([0, 5, 3, 2, 2])
+    True
+    >>> quick_sort(["z", "a", "m"]) == sorted(["z", "a", "m"])
+    True
     """
     if len(collection) < 2:
         return collection
-    pivot_index = randrange(len(collection))  # Use random element as pivot
+    pivot_index = randrange(len(collection))
     pivot = collection[pivot_index]
-    greater: list[int] = []  # All elements greater than pivot
-    lesser: list[int] = []  # All elements less than or equal to pivot
-
-    for element in collection[:pivot_index]:
-        (greater if element > pivot else lesser).append(element)
-
-    for element in collection[pivot_index + 1 :]:
-        (greater if element > pivot else lesser).append(element)
-
-    return [*quick_sort(lesser), pivot, *quick_sort(greater)]
+    lesser = [item for item in collection if item < pivot]
+    equal = [item for item in collection if item == pivot]
+    greater = [item for item in collection if item > pivot]
+    return [*quick_sort(lesser), *equal, *quick_sort(greater)]
 
 
 if __name__ == "__main__":
