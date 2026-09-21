@@ -146,14 +146,17 @@
   * [Baconian Cipher](ciphers/baconian_cipher.py)
   * [Base16](ciphers/base16.py)
   * [Base32](ciphers/base32.py)
+  * [Base58](ciphers/base58.py)
   * [Base64 Cipher](ciphers/base64_cipher.py)
   * [Base85](ciphers/base85.py)
   * [Beaufort Cipher](ciphers/beaufort_cipher.py)
   * [Bifid](ciphers/bifid.py)
   * [Brute Force Caesar Cipher](ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](ciphers/caesar_cipher.py)
+  * [Columnar Transposition](ciphers/columnar_transposition.py)
   * [Cryptomath Module](ciphers/cryptomath_module.py)
   * [Decrypt Caesar With Chi Squared](ciphers/decrypt_caesar_with_chi_squared.py)
+  * [Des Ecb](ciphers/des_ecb.py)
   * [Deterministic Miller Rabin](ciphers/deterministic_miller_rabin.py)
   * [Diffie](ciphers/diffie.py)
   * [Diffie Hellman](ciphers/diffie_hellman.py)
@@ -181,6 +184,7 @@
   * [Shuffled Shift Cipher](ciphers/shuffled_shift_cipher.py)
   * [Simple Keyword Cypher](ciphers/simple_keyword_cypher.py)
   * [Simple Substitution Cipher](ciphers/simple_substitution_cipher.py)
+  * [Skytale Cipher](ciphers/skytale_cipher.py)
   * [Transposition Cipher](ciphers/transposition_cipher.py)
   * [Transposition Cipher Encrypt Decrypt File](ciphers/transposition_cipher_encrypt_decrypt_file.py)
   * [Trifid Cipher](ciphers/trifid_cipher.py)
@@ -205,6 +209,8 @@
 
 ## [Conversions](conversions)
   * [Astronomical Length Scale Conversion](conversions/astronomical_length_scale_conversion.py)
+  * [Base64 To Binary](conversions/base64_to_binary.py)
+  * [Binary To Base64](conversions/binary_to_base64.py)
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Excess3](conversions/binary_to_excess3.py)
   * [Binary To Gray](conversions/binary_to_gray.py)
@@ -220,6 +226,7 @@
   * [Energy Conversions](conversions/energy_conversions.py)
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
+  * [Hex To Rgb](conversions/hex_to_rgb.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Int To Negative Binary Base](conversions/int_to_negative_binary_base.py)
   * [Ipv4 Conversion](conversions/ipv4_conversion.py)
@@ -262,6 +269,7 @@
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Monotonic Array](data_structures/arrays/monotonic_array.py)
     * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
+    * [Pairwise Iteration](data_structures/arrays/pairwise_iteration.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
@@ -349,6 +357,7 @@
     * [Middle Element Of Linked List](data_structures/linked_list/middle_element_of_linked_list.py)
     * [Partition Linked List](data_structures/linked_list/partition_linked_list.py)
     * [Print Reverse](data_structures/linked_list/print_reverse.py)
+    * [Remove Nth Node From End Of List](data_structures/linked_list/remove_nth_node_from_end_of_list.py)
     * [Reverse K Group](data_structures/linked_list/reverse_k_group.py)
     * [Rotate To The Right](data_structures/linked_list/rotate_to_the_right.py)
     * [Singly Linked List](data_structures/linked_list/singly_linked_list.py)
@@ -377,6 +386,7 @@
     * [Postfix Evaluation](data_structures/stacks/postfix_evaluation.py)
     * [Prefix Evaluation](data_structures/stacks/prefix_evaluation.py)
     * [Stack](data_structures/stacks/stack.py)
+    * [Stack Tracking Min Max](data_structures/stacks/stack_tracking_min_max.py)
     * [Stack Using Two Queues](data_structures/stacks/stack_using_two_queues.py)
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
@@ -510,10 +520,12 @@
   * [Ic 555 Timer](electronics/ic_555_timer.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
+  * [Power Factor Correction](electronics/power_factor_correction.py)
   * [Real And Reactive Power](electronics/real_and_reactive_power.py)
   * [Resistor Color Code](electronics/resistor_color_code.py)
   * [Resistor Equivalence](electronics/resistor_equivalence.py)
   * [Resonant Frequency](electronics/resonant_frequency.py)
+  * [Star Delta Conversions](electronics/star_delta_conversions.py)
   * [Wheatstone Bridge](electronics/wheatstone_bridge.py)
 
 ## [File Transfer](file_transfer)
@@ -527,6 +539,7 @@
   * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
   * [Kelly Criterion](financial/kelly_criterion.py)
+  * [Macaulay Duration](financial/macaulay_duration.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Sharpe Ratio](financial/sharpe_ratio.py)
@@ -655,6 +668,7 @@
   * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
+  * [Sliding Window](greedy_methods/sliding_window.py)
   * [Smallest Range](greedy_methods/smallest_range.py)
 
 ## [Hashes](hashes)
@@ -741,6 +755,7 @@
   * [Q Learning](machine_learning/q_learning.py)
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
+  * [Ridge Regression](machine_learning/ridge_regression.py)
   * [Rmsprop](machine_learning/rmsprop.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
@@ -927,6 +942,7 @@
     * [Catalan Number](maths/special_numbers/catalan_number.py)
     * [Deficient Numbers](maths/special_numbers/deficient_numbers.py)
     * [Disarum Number](maths/special_numbers/disarum_number.py)
+    * [Evil Number](maths/special_numbers/evil_number.py)
     * [Hamming Numbers](maths/special_numbers/hamming_numbers.py)
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
@@ -1009,6 +1025,7 @@
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Soboleva Modified Hyperbolic Tangent](neural_network/activation_functions/soboleva_modified_hyperbolic_tangent.py)
     * [Softplus](neural_network/activation_functions/softplus.py)
+    * [Softsign](neural_network/activation_functions/softsign.py)
     * [Squareplus](neural_network/activation_functions/squareplus.py)
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
@@ -1161,6 +1178,7 @@
     * [Sol2](project_euler/problem_012/sol2.py)
   * Problem 013
     * [Sol1](project_euler/problem_013/sol1.py)
+    * [Sol2](project_euler/problem_013/sol2.py)
   * Problem 014
     * [Sol1](project_euler/problem_014/sol1.py)
     * [Sol2](project_euler/problem_014/sol2.py)
@@ -1264,6 +1282,8 @@
     * [Sol1](project_euler/problem_058/sol1.py)
   * Problem 059
     * [Sol1](project_euler/problem_059/sol1.py)
+  * Problem 060
+    * [Sol1](project_euler/problem_060/sol1.py)
   * Problem 062
     * [Sol1](project_euler/problem_062/sol1.py)
   * Problem 063
@@ -1339,6 +1359,8 @@
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
     * [Sol1](project_euler/problem_109/sol1.py)
+  * Problem 111
+    * [Sol1](project_euler/problem_111/sol1.py)
   * Problem 112
     * [Sol1](project_euler/problem_112/sol1.py)
   * Problem 113
@@ -1361,6 +1383,8 @@
     * [Sol1](project_euler/problem_122/sol1.py)
   * Problem 123
     * [Sol1](project_euler/problem_123/sol1.py)
+  * Problem 124
+    * [Sol1](project_euler/problem_124/sol1.py)
   * Problem 125
     * [Sol1](project_euler/problem_125/sol1.py)
   * Problem 129
@@ -1371,6 +1395,12 @@
     * [Sol1](project_euler/problem_135/sol1.py)
   * Problem 136
     * [Sol1](project_euler/problem_136/sol1.py)
+  * Problem 137
+    * [Sol1](project_euler/problem_137/sol1.py)
+  * Problem 138
+    * [Sol1](project_euler/problem_138/sol1.py)
+  * Problem 142
+    * [Sol1](project_euler/problem_142/sol1.py)
   * Problem 144
     * [Sol1](project_euler/problem_144/sol1.py)
   * Problem 145
