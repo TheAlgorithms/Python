@@ -122,6 +122,7 @@ def test_sort_matches_builtin(sort, case) -> None:
         insertion_sort,
         merge_sort,
         selection_sort,
+        strand_sort,
     ],
     ids=lambda f: f.__name__,
 )
