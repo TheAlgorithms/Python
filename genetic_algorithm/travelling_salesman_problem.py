@@ -301,7 +301,7 @@ def crossing(
                     ):  # Exclude start and end points 0 when searching
                         if chrom_index == (crossover_segment[0] + segment_index):
                             continue
-                        elif (
+                        if (
                             chromosome[chrom_index]
                             == chromosome[crossover_segment[0] + segment_index]
                         ):
