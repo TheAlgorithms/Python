@@ -11,7 +11,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def strand_sort(
+def strand_sort[T](
     arr: list[T], reverse: bool = False, solution: list[T] | None = None
 ) -> list[T]:
     """
