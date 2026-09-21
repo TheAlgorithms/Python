@@ -593,6 +593,8 @@
 
 ## [Graphics](graphics)
   * [Bezier Curve](graphics/bezier_curve.py)
+  * [Bresenham Line Basic](graphics/bresenham_line_basic.py)
+  * [Bresenham Line Generalized](graphics/bresenham_line_generalized.py)
   * [Butterfly Pattern](graphics/butterfly_pattern.py)
   * [Digital Differential Analyzer Line](graphics/digital_differential_analyzer_line.py)
   * [Vector3 For 2D Rendering](graphics/vector3_for_2d_rendering.py)
