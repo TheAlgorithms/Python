@@ -1,52 +1,52 @@
 """
-    Linear Discriminant Analysis
+Linear Discriminant Analysis
 
 
 
-    Assumptions About Data :
-        1. The input variables has a gaussian distribution.
-        2. The variance calculated for each input variables by class grouping is the
-           same.
-        3. The mix of classes in your training set is representative of the problem.
+Assumptions About Data :
+    1. The input variables has a gaussian distribution.
+    2. The variance calculated for each input variables by class grouping is the
+       same.
+    3. The mix of classes in your training set is representative of the problem.
 
 
-    Learning The Model :
-        The LDA model requires the estimation of statistics from the training data :
-            1. Mean of each input value for each class.
-            2. Probability of an instance belong to each class.
-            3. Covariance for the input data for each class
+Learning The Model :
+    The LDA model requires the estimation of statistics from the training data :
+        1. Mean of each input value for each class.
+        2. Probability of an instance belong to each class.
+        3. Covariance for the input data for each class
 
-        Calculate the class means :
-            mean(x) = 1/n ( for i = 1 to i = n --> sum(xi))
+    Calculate the class means :
+        mean(x) = 1/n ( for i = 1 to i = n --> sum(xi))
 
-        Calculate the class probabilities :
-            P(y = 0) = count(y = 0) / (count(y = 0) + count(y = 1))
-            P(y = 1) = count(y = 1) / (count(y = 0) + count(y = 1))
+    Calculate the class probabilities :
+        P(y = 0) = count(y = 0) / (count(y = 0) + count(y = 1))
+        P(y = 1) = count(y = 1) / (count(y = 0) + count(y = 1))
 
-        Calculate the variance :
-            We can calculate the variance for dataset in two steps :
-                1. Calculate the squared difference for each input variable from the
-                   group mean.
-                2. Calculate the mean of the squared difference.
-                ------------------------------------------------
-                Squared_Difference = (x - mean(k)) ** 2
-                Variance = (1 / (count(x) - count(classes))) *
-                    (for i = 1 to i = n --> sum(Squared_Difference(xi)))
+    Calculate the variance :
+        We can calculate the variance for dataset in two steps :
+            1. Calculate the squared difference for each input variable from the
+               group mean.
+            2. Calculate the mean of the squared difference.
+            ------------------------------------------------
+            Squared_Difference = (x - mean(k)) ** 2
+            Variance = (1 / (count(x) - count(classes))) *
+                (for i = 1 to i = n --> sum(Squared_Difference(xi)))
 
-    Making Predictions :
-        discriminant(x) = x * (mean / variance) -
-            ((mean ** 2) / (2 * variance)) + Ln(probability)
-        ---------------------------------------------------------------------------
-        After calculating the discriminant value for each class, the class with the
-        largest discriminant value is taken as the prediction.
+Making Predictions :
+    discriminant(x) = x * (mean / variance) -
+        ((mean ** 2) / (2 * variance)) + Ln(probability)
+    ---------------------------------------------------------------------------
+    After calculating the discriminant value for each class, the class with the
+    largest discriminant value is taken as the prediction.
 
-    Author: @EverLookNeverSee
+Author: @EverLookNeverSee
 """
+
 from collections.abc import Callable
 from math import log
 from os import name, system
 from random import gauss, seed
-from typing import TypeVar
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -248,14 +248,11 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     return (correct / len(actual_y)) * 100
 
 
-num = TypeVar("num")
-
-
-def valid_input(
+def valid_input[num](
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
-    condition: Callable[[num], bool] = lambda x: True,
+    condition: Callable[[num], bool] = lambda _: True,
     default: str | None = None,
 ) -> num:
     """
@@ -283,7 +280,7 @@ def valid_input(
 
 
 # Main Function
-def main():
+def main() -> None:
     """This function starts execution phase"""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
@@ -314,14 +311,14 @@ def main():
 
         print("-" * 100)
 
-        # Trying to get number of instances in classes and theirs means to generate
+        # Trying to get number of instances in classes and their means to generate
         # dataset
         counts = []  # An empty list to store instance counts of classes in dataset
         for i in range(n_classes):
             user_count = valid_input(
                 input_type=int,
                 condition=lambda x: x > 0,
-                input_msg=(f"Enter The number of instances for class_{i+1}: "),
+                input_msg=(f"Enter The number of instances for class_{i + 1}: "),
                 err_msg="Number of instances should be positive!",
             )
             counts.append(user_count)
@@ -332,19 +329,19 @@ def main():
         for a in range(n_classes):
             user_mean = valid_input(
                 input_type=float,
-                input_msg=(f"Enter the value of mean for class_{a+1}: "),
+                input_msg=(f"Enter the value of mean for class_{a + 1}: "),
                 err_msg="This is an invalid value.",
             )
             user_means.append(user_mean)
         print("-" * 100)
 
         print("Standard deviation: ", std_dev)
-        # print out the number of instances in classes in separated line
+        # Print the number of instances in each class on separate lines.
         for i, count in enumerate(counts, 1):
             print(f"Number of instances in class_{i} is: {count}")
         print("-" * 100)
 
-        # print out mean values of classes separated line
+        # Print the mean value for each class on separate lines.
         for i, user_mean in enumerate(user_means, 1):
             print(f"Mean of class_{i} is: {user_mean}")
         print("-" * 100)
@@ -364,8 +361,7 @@ def main():
 
         # Calculating the value of actual mean for each class
         actual_means = [calculate_mean(counts[k], x[k]) for k in range(n_classes)]
-        # for loop iterates over number of elements in 'actual_means' list and print
-        # out them in separated line
+        # Iterate over 'actual_means' and print each value on a separate line.
         for i, actual_mean in enumerate(actual_means, 1):
             print(f"Actual(Real) mean of class_{i} is: {actual_mean}")
         print("-" * 100)
@@ -375,8 +371,7 @@ def main():
             calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
         ]
 
-        # for loop iterates over number of elements in 'probabilities' list and print
-        # out them in separated line
+        # Iterate over 'probabilities' and print each value on a separate line.
         for i, probability in enumerate(probabilities, 1):
             print(f"Probability of class_{i} is: {probability}")
         print("-" * 100)

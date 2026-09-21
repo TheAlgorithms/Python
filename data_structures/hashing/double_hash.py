@@ -11,6 +11,7 @@ Where hash1() and hash2() are hash functions and TABLE_SIZE is size of hash tabl
 
 Reference: https://en.wikipedia.org/wiki/Double_hashing
 """
+
 from .hash_table import HashTable
 from .number_theory.prime_numbers import is_prime, next_prime
 
@@ -20,7 +21,7 @@ class DoubleHash(HashTable):
     Hash Table example with open addressing and Double Hash
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
     def __hash_function_2(self, value, data):
@@ -73,8 +74,7 @@ class DoubleHash(HashTable):
             )
             if new_key is None:
                 break
-            else:
-                i += 1
+            i += 1
 
         return new_key
 

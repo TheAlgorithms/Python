@@ -1,4 +1,5 @@
 """Non recursive implementation of a DFS algorithm."""
+
 from __future__ import annotations
 
 

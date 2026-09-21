@@ -15,6 +15,7 @@ contains 21 terms, and is equal to 953.
 Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
+
 from __future__ import annotations
 
 
