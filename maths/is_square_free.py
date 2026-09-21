@@ -3,6 +3,7 @@ References: wikipedia:square free number
 psf/black : True
 ruff : True
 """
+
 from __future__ import annotations
 
 

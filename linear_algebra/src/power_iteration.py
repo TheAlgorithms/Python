@@ -78,7 +78,7 @@ def power_iteration(
     if is_complex:
         lambda_ = np.real(lambda_)
 
-    return lambda_, vector
+    return float(lambda_), vector
 
 
 def test_power_iteration() -> None:

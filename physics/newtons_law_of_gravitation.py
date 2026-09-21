@@ -3,7 +3,7 @@ Title : Finding the value of either Gravitational Force, one of the masses or di
 provided that the other three parameters are given.
 
 Description : Newton's Law of Universal Gravitation explains the presence of force of
-attraction between bodies having a definite mass situated at a distance.  It is usually
+attraction between bodies having a definite mass situated at a distance. It is usually
 stated as that, every particle attracts every other particle in the universe with a
 force that is directly proportional to the product of their masses and inversely
 proportional to the square of the distance between their centers. The publication of the

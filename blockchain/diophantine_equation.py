@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from maths.greatest_common_divisor import greatest_common_divisor
+
 
 def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
     diophantine equation a*x + b*y = c has a solution (where x and y are integers)
-    iff gcd(a,b) divides c.
+    iff greatest_common_divisor(a,b) divides c.
 
     GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
@@ -22,7 +24,7 @@ def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
 
     assert (
         c % greatest_common_divisor(a, b) == 0
-    )  # greatest_common_divisor(a,b) function implemented below
+    )  # greatest_common_divisor(a,b) is in maths directory
     (d, x, y) = extended_gcd(a, b)  # extended_gcd(a,b) function implemented below
     r = c / d
     return (r * x, r * y)
@@ -69,32 +71,6 @@ def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
         print(x, y)
 
 
-def greatest_common_divisor(a: int, b: int) -> int:
-    """
-    Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
-
-    Euclid's Algorithm
-
-    >>> greatest_common_divisor(7,5)
-    1
-
-    Note : In number theory, two integers a and b are said to be relatively prime,
-           mutually prime, or co-prime if the only positive integer (factor) that
-           divides both of them is 1  i.e., gcd(a,b) = 1.
-
-    >>> greatest_common_divisor(121, 11)
-    11
-
-    """
-    if a < b:
-        a, b = b, a
-
-    while a % b != 0:
-        a, b = b, a % b
-
-    return b
-
-
 def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     """
     Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers
@@ -107,7 +83,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     (1, -2, 3)
 
     """
-    assert a >= 0 and b >= 0
+    assert a >= 0
+    assert b >= 0
 
     if b == 0:
         d, x, y = a, 1, 0
@@ -116,10 +93,69 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
         x = q
         y = p - q * (a // b)
 
-    assert a % d == 0 and b % d == 0
+    assert a % d == 0
+    assert b % d == 0
     assert d == a * x + b * y
 
     return (d, x, y)
+
+
+def all_diophantine_solutions(
+    a: int,
+    b: int,
+    c: int,
+    n: int = 2,
+) -> list[tuple[int, int]]:
+    """
+    Return up to `n` integer solutions (x, y) to the linear Diophantine equation
+    a*x + b*y = c using the extended Euclidean algorithm.
+
+    Raises
+    ------
+    ValueError
+        If no integer solutions exist.
+
+    Time complexity
+    ---------------
+    O(log(max(|a|, |b|))) to compute a base solution using extended_gcd;
+    plus O(n) to enumerate `n` solutions.
+
+    Space complexity
+    ----------------
+    O(1) beyond the returned list.
+
+    Examples
+    --------
+    >>> all_diophantine_solutions(10, 6, 14, n=2)
+    [(-7, 14), (-4, 9)]
+    >>> all_diophantine_solutions(10, 6, 14, n=4)
+    [(-7, 14), (-4, 9), (-1, 4), (2, -1)]
+    >>> all_diophantine_solutions(3, 6, 10, n=1)
+    Traceback (most recent call last):
+    ...
+    ValueError: No integer solutions exist for a=3, b=6, c=10
+    """
+    if a == 0 and b == 0:
+        if c == 0:
+            # Infinite solutions; return one canonical solution.
+            return [(0, 0)][: min(1, n)]
+        raise ValueError("No integer solutions exist for a=0, b=0, c!=0")
+
+    g, xg, yg = extended_gcd(abs(a), abs(b))
+    if c % g != 0:
+        msg = f"No integer solutions exist for a={a}, b={b}, c={c}"
+        raise ValueError(msg)
+
+    # Scale a particular solution to ax + by = c
+    x0, y0 = xg * (c // g), yg * (c // g)
+    if a < 0:
+        x0 = -x0
+    if b < 0:
+        y0 = -y0
+
+    # General solution: x = x0 + t*(b/g), y = y0 - t*(a/g)
+    dx, dy = b // g, a // g
+    return [(x0 + t * dx, y0 - t * dy) for t in range(n)]
 
 
 if __name__ == "__main__":

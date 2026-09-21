@@ -24,14 +24,7 @@ def not_gate(input_1: int) -> int:
     return 1 if input_1 == 0 else 0
 
 
-def test_not_gate() -> None:
-    """
-    Tests the not_gate function
-    """
-    assert not_gate(0) == 1
-    assert not_gate(1) == 0
-
-
 if __name__ == "__main__":
-    print(not_gate(0))
-    print(not_gate(1))
+    import doctest
+
+    doctest.testmod()

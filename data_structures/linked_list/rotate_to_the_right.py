@@ -63,7 +63,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     while temp_node.next_node:
         temp_node = temp_node.next_node
 
-    temp_node.next_node = new_node  # type: ignore
+    temp_node.next_node = new_node
     return head
 
 
