@@ -25,6 +25,7 @@ Additionally, a few rules of thumb are:
     2. non-gaussian (non-normal) distributions work better with normalization
     3. If a column or list of values has extreme values / outliers, use standardization
 """
+
 from statistics import mean, stdev
 
 

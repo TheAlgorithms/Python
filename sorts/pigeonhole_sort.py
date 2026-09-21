@@ -3,14 +3,18 @@
 # Algorithm for the pigeonhole sorting
 
 
-def pigeonhole_sort(a):
+def pigeonhole_sort(a) -> None:
     """
     >>> a = [8, 3, 2, 7, 4, 6, 8]
     >>> b = sorted(a)  # a nondestructive sort
     >>> pigeonhole_sort(a)  # a destructive sort
     >>> a == b
     True
+
+    >>> pigeonhole_sort([])
     """
+    if not a:
+        return
     # size of range of values in the list (ie, number of pigeonholes we need)
 
     min_val = min(a)  # min() finds the minimum value
@@ -35,10 +39,10 @@ def pigeonhole_sort(a):
             i += 1
 
 
-def main():
+def main() -> None:
     a = [8, 3, 2, 7, 4, 6, 8]
     pigeonhole_sort(a)
-    print("Sorted order is:", " ".join(a))
+    print("Sorted order is:", *a)
 
 
 if __name__ == "__main__":

@@ -71,7 +71,7 @@ if __name__ == "__main__":
                 print(f"The Catalan numbers from 0 through {N} are:")
                 print(catalan_numbers(N))
                 print("Try another upper limit for the sequence: ", end="")
-    except (NameError, ValueError):
+    except NameError, ValueError:
         print("\n********* Invalid input, goodbye! ************\n")
 
     import doctest

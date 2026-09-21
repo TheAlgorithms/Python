@@ -65,16 +65,16 @@ _add_with_resize_down = [
 
 @pytest.mark.parametrize(
     "operations",
-    (
+    [
         pytest.param(_add_items, id="add items"),
         pytest.param(_overwrite_items, id="overwrite items"),
         pytest.param(_delete_items, id="delete items"),
         pytest.param(_access_absent_items, id="access absent items"),
         pytest.param(_add_with_resize_up, id="add with resize up"),
         pytest.param(_add_with_resize_down, id="add with resize down"),
-    ),
+    ],
 )
-def test_hash_map_is_the_same_as_dict(operations):
+def test_hash_map_is_the_same_as_dict(operations) -> None:
     my = HashMap(initial_block_size=4)
     py = {}
     for _, (fun, *args) in enumerate(operations):
@@ -87,7 +87,7 @@ def test_hash_map_is_the_same_as_dict(operations):
         assert set(my.items()) == set(py.items())
 
 
-def test_no_new_methods_was_added_to_api():
+def test_no_new_methods_was_added_to_api() -> None:
     def is_public(name: str) -> bool:
         return not name.startswith("_")
 
