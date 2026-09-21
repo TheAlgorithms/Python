@@ -9,7 +9,6 @@ More details and concepts about this can be found on:
 https://en.wikipedia.org/wiki/Solovay%E2%80%93Strassen_primality_test
 """
 
-
 import random
 
 

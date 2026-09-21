@@ -7,6 +7,7 @@ determine the order of character rearrangement.
 
 For more info: https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
 """
+
 import random
 
 

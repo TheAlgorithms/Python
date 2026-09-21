@@ -13,6 +13,7 @@ There are 120 reversible numbers below one-thousand.
 
 How many reversible numbers are there below one-billion (10^9)?
 """
+
 EVEN_DIGITS = [0, 2, 4, 6, 8]
 ODD_DIGITS = [1, 3, 5, 7, 9]
 
@@ -109,7 +110,7 @@ def reversible_numbers(
     if (length - 1) % 4 == 0:
         return 0
 
-    return slow_reversible_numbers(length, 0, [0] * length, length)
+    return slow_reversible_numbers(remaining_length, remainder, digits, length)
 
 
 def solution(max_power: int = 9) -> int:
