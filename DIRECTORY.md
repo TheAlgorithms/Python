@@ -365,13 +365,12 @@
     * [Sorted Linked List](data_structures/linked_list/sorted_linked_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
     * [Xor Linked List](data_structures/linked_list/xor_linked_list.py)
-  * Queue
-    * [Monotonic Queue](data_structures/queue/monotonic_queue.py)
   * Queues
     * [Circular Queue](data_structures/queues/circular_queue.py)
     * [Circular Queue Linked List](data_structures/queues/circular_queue_linked_list.py)
     * [Double Ended Queue](data_structures/queues/double_ended_queue.py)
     * [Linked Queue](data_structures/queues/linked_queue.py)
+    * [Monotonic Queue](data_structures/queues/monotonic_queue.py)
     * [Priority Queue Using List](data_structures/queues/priority_queue_using_list.py)
     * [Queue By List](data_structures/queues/queue_by_list.py)
     * [Queue By Two Stacks](data_structures/queues/queue_by_two_stacks.py)
