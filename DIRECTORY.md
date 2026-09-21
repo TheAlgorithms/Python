@@ -670,6 +670,7 @@
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Gas Station](greedy_methods/gas_station.py)
+  * [Minimize Deviation In Array](greedy_methods/minimize_deviation_in_array.py)
   * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
