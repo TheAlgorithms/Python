@@ -2,13 +2,13 @@
 Disjoint set.
 Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
+from dataclasses import dataclass
 
-
+@dataclass
 class Node:
-    def __init__(self, data: int) -> None:
-        self.data = data
-        self.rank: int
-        self.parent: Node
+    data: int
+    rank: int = 0
+    parent: Node | None = None
 
 
 def make_set(x: Node) -> None:
