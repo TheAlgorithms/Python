@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from collections.abc import Iterable
-from functools import total_ordering
 from typing import Protocol, TypeVar
 
 
@@ -15,7 +14,6 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-@total_ordering
 class Heap[T: Comparable]:
     """A Max Heap Implementation
 
