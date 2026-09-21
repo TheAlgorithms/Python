@@ -573,9 +573,8 @@
   * [Lamberts Ellipsoidal Distance](geodesy/lamberts_ellipsoidal_distance.py)
   * [Radar Target Calculation](geodesy/radar_target_calculation.py)
 
-## Geometry
-  * [Braik Mac Construction](geometry/braik_mac_construction.py)
 ## [Geometry](geometry)
+  * [Braik Mac Construction](geometry/braik_mac_construction.py)
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
