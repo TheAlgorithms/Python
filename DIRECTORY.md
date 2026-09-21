@@ -442,9 +442,12 @@
   * [Max Difference Pair](divide_and_conquer/max_difference_pair.py)
   * [Max Subarray](divide_and_conquer/max_subarray.py)
   * [Mergesort](divide_and_conquer/mergesort.py)
+  * [Minimum Element Of Array](divide_and_conquer/minimum_element_of_array.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
   * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
+  * Tests
+    * [Test Strassen Matrix Multiplication](divide_and_conquer/tests/test_strassen_matrix_multiplication.py)
 
 ## [Docs](docs)
   * [Conf](docs/conf.py)
