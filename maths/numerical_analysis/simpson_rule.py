@@ -70,7 +70,7 @@ def f(x):  # enter your function here
     return y
 
 
-def main():
+def main() -> None:
     a = 0.0  # Lower bound of integration
     b = 1.0  # Upper bound of integration
     steps = 10.0  # number of steps or resolution

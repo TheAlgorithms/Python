@@ -17,17 +17,31 @@ def split(string: str, separator: str = " ") -> list:
 
     >>> split(";abbb;;c;", separator=';')
     ['', 'abbb', '', 'c', '']
+
+    >>> split("a--b--c", separator="--")
+    ['a', 'b', 'c']
+
+    >>> split("apple##banana##cherry", separator="##")
+    ['apple', 'banana', 'cherry']
     """
 
     split_words = []
+    separator_length = len(separator)
+
+    if separator_length == 0:
+        return [string]
 
     last_index = 0
-    for index, char in enumerate(string):
-        if char == separator:
+    index = 0
+    while index < len(string):
+        if string[index : index + separator_length] == separator:
             split_words.append(string[last_index:index])
-            last_index = index + 1
-        if index + 1 == len(string):
-            split_words.append(string[last_index : index + 1])
+            last_index = index + separator_length
+            index += separator_length
+        else:
+            index += 1
+
+    split_words.append(string[last_index:])
     return split_words
 
 
