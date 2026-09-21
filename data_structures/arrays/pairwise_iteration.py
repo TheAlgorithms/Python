@@ -8,7 +8,7 @@ Currently, there are two different implementations.
 """
 
 from collections.abc import Iterable, Iterator
-from itertools import pairwise, tee
+from itertools import tee
 
 
 def pairwise_iteration_tee(iterable: Iterable) -> Iterator[tuple]:
@@ -48,14 +48,15 @@ def pairwise_iteration_tee(iterable: Iterable) -> Iterator[tuple]:
         >>> list(pairwise_iteration_tee(['a']))
         []
 
-        >>> all(pairwise_iteration_tee(test) == pairwise(test)
+        >>> from itertools import pairwise
+        >>> all(list(pairwise_iteration_tee(test)) == list(pairwise(test))
         ... for test in (
         ...     [1, 2, 3],
         ...     (4, 3, 5),
         ...     {'x':3, 'y':1, 'z':2, 'foo':4},
         ...     '2345',
-        ...     ['ATG','GCT','TGC','TAA']
-        ...     []
+        ...     ['ATG','GCT','TGC','TAA'],
+        ...     [],
         ... )
     """
     # Uses itertools.tee to create two independent iterators (a and b)
