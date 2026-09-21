@@ -23,7 +23,7 @@ def digital_differential_analyzer_line(
 
     This algorithm works by calculating the dx (change in x) and dy;(change in y) and
     then iteratively steps along the dominant axis, incrementing the other axis by a
-    fractional amount (the slope). 
+    fractional amount (the slope).
     It is notable for its simplicity but also for its main disadvantage:
     * it relies on floating-point arithmetic at every step, which is computationally
       slow.
