@@ -525,6 +525,7 @@
   * [Resistor Color Code](electronics/resistor_color_code.py)
   * [Resistor Equivalence](electronics/resistor_equivalence.py)
   * [Resonant Frequency](electronics/resonant_frequency.py)
+  * [Star Delta Conversions](electronics/star_delta_conversions.py)
   * [Wheatstone Bridge](electronics/wheatstone_bridge.py)
 
 ## [File Transfer](file_transfer)
