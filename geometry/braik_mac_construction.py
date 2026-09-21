@@ -5,7 +5,9 @@ https://mathworld.wolfram.com/ConicSection.html
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass, field
+
 from numpy import array, linalg
 
 
