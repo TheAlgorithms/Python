@@ -1,11 +1,11 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 # Put your API key(s) here
 OPENWEATHERMAP_API_KEY = ""
@@ -26,13 +26,13 @@ def current_weather(location: str) -> list[dict]:
     weather_data = []
     if OPENWEATHERMAP_API_KEY:
         params_openweathermap = {"q": location, "appid": OPENWEATHERMAP_API_KEY}
-        response_openweathermap = httpx.get(
+        response_openweathermap = httpx2.get(
             OPENWEATHERMAP_URL_BASE, params=params_openweathermap, timeout=10
         )
         weather_data.append({"OpenWeatherMap": response_openweathermap.json()})
     if WEATHERSTACK_API_KEY:
         params_weatherstack = {"query": location, "access_key": WEATHERSTACK_API_KEY}
-        response_weatherstack = httpx.get(
+        response_weatherstack = httpx2.get(
             WEATHERSTACK_URL_BASE, params=params_weatherstack, timeout=10
         )
         weather_data.append({"Weatherstack": response_weatherstack.json()})
