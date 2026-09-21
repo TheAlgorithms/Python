@@ -69,7 +69,7 @@ flagged. Also, paste the concrete command you ran.
 
 Emit exactly these headings so reviews are comparable and easy to automate:
 
-```
+```text
 ### Is this an algorithm? — <yes/no + one-line why>
 ### Duplicate / prior-art check — <#NNNN | none found>
 ### Coding style — <pass | issues: …>
