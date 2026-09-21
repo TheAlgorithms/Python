@@ -142,6 +142,7 @@ def test_rec_insertion_sort(case) -> None:
         pancake_sort,
         selection_sort,
         shrink_shell_sort,
+        strand_sort,
     ],
     ids=lambda f: f.__name__,
 )
