@@ -7,15 +7,15 @@ from typing import Protocol, TypeVar
 
 class Comparable(Protocol):
     @abstractmethod
-    def __lt__(self: T, other: T) -> bool:
+    def __lt__(self: T, other: T, /) -> bool:
         pass
 
     @abstractmethod
-    def __gt__(self: T, other: T) -> bool:
+    def __gt__(self: T, other: T, /) -> bool:
         pass
 
     @abstractmethod
-    def __eq__(self: T, other: object) -> bool:
+    def __eq__(self: T, other: object, /) -> bool:
         pass
 
 
