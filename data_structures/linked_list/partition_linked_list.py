@@ -103,9 +103,9 @@ class LinkedList:
 
     def partition_liked_list(self, value: int) -> None:
         """
-        Partition Linked List based on node elements in-order.
-        All nodes with elements less than value should occur in the left,
-        while those greater than to value, in the right.
+        Partition the linked list based on node elements in order.
+        All nodes with elements less than value should occur on the left,
+        while those greater than or equal to value should occur on the right.
 
         >>> linked_list = LinkedList()
         >>> linked_list.add(1)
@@ -156,7 +156,7 @@ class LinkedList:
         1
         """
         if self.head is None:
-            return None
+            return
 
         less_nodes, greater_nodes = Node(0), Node(0)
         current, current_less, current_greater = self.head, less_nodes, greater_nodes

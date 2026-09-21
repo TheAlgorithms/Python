@@ -36,11 +36,13 @@ from sorts.insertion_sort import insertion_sort
 from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
 from sorts.recursive_insertion_sort import rec_insertion_sort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
+from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 
@@ -68,10 +70,12 @@ SORTS = (
     iter_merge_sort,
     merge_sort,
     odd_even_sort,
+    pancake_sort,
     patience_sort,
     quick_sort,
     selection_sort,
     shell_sort,
+    shrink_shell_sort,
     stooge_sort,
     strand_sort,
 )
@@ -129,11 +133,14 @@ def test_rec_insertion_sort(case) -> None:
         circle_sort,
         cocktail_shaker_sort,
         comb_sort,
+        cycle_sort,
         exchange_sort,
         gnome_sort,
         insertion_sort,
         merge_sort,
+        pancake_sort,
         selection_sort,
+        shrink_shell_sort,
     ],
     ids=lambda f: f.__name__,
 )
