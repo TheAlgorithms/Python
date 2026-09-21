@@ -78,7 +78,23 @@ def print_matrix(matrix: list) -> None:
 def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
-    Algorithm. It only supports square matrices of any size that is a power of 2.
+    Algorithm.
+
+    Time complexity:
+        The recurrence is T(n) = 7 T(n/2) + \u0398(n^2), which solves to
+        T(n) = \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074}). This is asymptotically
+        faster than the naive \u0398(n^3) algorithm for sufficiently large n.
+
+    Space complexity:
+        Uses additional memory for temporary submatrices and padding; overall
+        space complexity is O(n^2).
+
+    Notes:
+        This function expects square matrices whose size is a power of two.
+        Matrices of other sizes are handled by `strassen` which pads to the
+        next power of two.
+
+    It only supports square matrices of any size that is a power of 2.
 
     Strassen's algorithm reduces the number of recursive multiplications needed to
     multiply two n x n matrices from the 8 required by the naive divide-and-conquer
@@ -123,12 +139,23 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
 
 def strassen(matrix1: list, matrix2: list) -> list:
     """
-    Multiplies two matrices using Strassen's algorithm, which runs in
+    Multiply two matrices using Strassen's divide-and-conquer algorithm.
+
+    Time complexity:
+        \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074})
+        (recurrence T(n) = 7 T(n/2) + \u0398(n^2)).
+
+    Space complexity:
+        O(n^2) due to padding and temporary matrices used during recursion.
+
+    Multiply two matrices using Strassen's algorithm, which runs in
     O(n^log2(7)) ~= O(n^2.807) time, compared to O(n^3) for naive matrix
     multiplication. This implementation pads both input matrices with zeros
     until they are square matrices whose dimension is a power of 2 (required
     by the divide-and-conquer recursion in actual_strassen), performs the
     multiplication, then trims the padding back off the result.
+
+    Examples:
 
     >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
     [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
