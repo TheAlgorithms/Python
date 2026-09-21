@@ -12,6 +12,9 @@ out (e.g. ``counting_sort``/``radix_sort``/``pigeon_sort`` are integer-only,
 ``bead_sort`` needs non-negative integers, ``dutch_national_flag_sort`` expects
 0/1/2, ``bitonic_sort`` needs a power-of-two length, ``topological_sort`` works
 on a graph, and ``stalin_sort``/``wiggle_sort`` deliberately do not fully sort).
+``rec_insertion_sort`` is also left out of the battery: it sorts in place and
+returns ``None`` rather than the sorted collection, so it is exercised
+separately below.
 """
 
 from dataclasses import dataclass
@@ -33,10 +36,13 @@ from sorts.insertion_sort import insertion_sort
 from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
+from sorts.recursive_insertion_sort import rec_insertion_sort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
+from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 
@@ -64,10 +70,12 @@ SORTS = (
     iter_merge_sort,
     merge_sort,
     odd_even_sort,
+    pancake_sort,
     patience_sort,
     quick_sort,
     selection_sort,
     shell_sort,
+    shrink_shell_sort,
     stooge_sort,
     strand_sort,
 )
@@ -108,6 +116,14 @@ def test_sort_matches_builtin(sort, case) -> None:
     assert list(sort(list(case))) == sorted(case)
 
 
+@pytest.mark.parametrize("case", CASES, ids=repr)
+def test_rec_insertion_sort(case) -> None:
+    """``rec_insertion_sort`` sorts in place and returns ``None``."""
+    collection = list(case)
+    assert rec_insertion_sort(collection, len(collection)) is None
+    assert collection == sorted(case)
+
+
 @pytest.mark.parametrize(
     "sort",
     [
@@ -117,11 +133,15 @@ def test_sort_matches_builtin(sort, case) -> None:
         circle_sort,
         cocktail_shaker_sort,
         comb_sort,
+        cycle_sort,
         exchange_sort,
         gnome_sort,
         insertion_sort,
         merge_sort,
+        odd_even_sort,
+        pancake_sort,
         selection_sort,
+        shrink_shell_sort,
         strand_sort,
     ],
     ids=lambda f: f.__name__,
@@ -129,3 +149,8 @@ def test_sort_matches_builtin(sort, case) -> None:
 def test_sort_rejects_non_comparable_items(sort) -> None:
     with pytest.raises(TypeError):
         sort([1, "a"])
+
+
+def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
+    with pytest.raises(TypeError):
+        rec_insertion_sort([1, "a"], 2)
