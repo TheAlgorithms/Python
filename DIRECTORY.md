@@ -446,6 +446,8 @@
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
   * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
+  * Tests
+    * [Test Strassen Matrix Multiplication](divide_and_conquer/tests/test_strassen_matrix_multiplication.py)
 
 ## [Docs](docs)
   * [Conf](docs/conf.py)
