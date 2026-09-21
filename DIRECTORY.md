@@ -210,6 +210,7 @@
 ## [Conversions](conversions)
   * [Astronomical Length Scale Conversion](conversions/astronomical_length_scale_conversion.py)
   * [Base64 To Binary](conversions/base64_to_binary.py)
+  * [Binary To Base64](conversions/binary_to_base64.py)
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Excess3](conversions/binary_to_excess3.py)
   * [Binary To Gray](conversions/binary_to_gray.py)
@@ -268,6 +269,7 @@
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Monotonic Array](data_structures/arrays/monotonic_array.py)
     * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
+    * [Pairwise Iteration](data_structures/arrays/pairwise_iteration.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
@@ -663,6 +665,7 @@
   * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
+  * [Sliding Window](greedy_methods/sliding_window.py)
   * [Smallest Range](greedy_methods/smallest_range.py)
 
 ## [Hashes](hashes)
