@@ -12,6 +12,7 @@ Constraints
 Note: The tree input will be such that it can always be decomposed into
 components containing an even number of nodes.
 """
+
 # pylint: disable=invalid-name
 from collections import defaultdict
 
@@ -29,7 +30,7 @@ def dfs(start: int) -> int:
     return ret
 
 
-def even_tree():
+def even_tree() -> None:
     """
     2 1
     3 1
