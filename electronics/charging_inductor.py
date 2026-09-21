@@ -25,6 +25,7 @@ when inductor is connected across 'AC' potential source. It starts to store the 
 in its 'magnetic field'.with the help 'RL-time-constant' we can find current at any time
 in inductor while it is charging.
 """
+
 from math import exp  # value of exp = 2.718281828459…
 
 

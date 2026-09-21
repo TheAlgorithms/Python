@@ -15,10 +15,9 @@ the boundary of the Mandelbrot set a fractal curve.
 (see also https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set )
 """
 
-
 import colorsys
 
-from PIL import Image  # type: ignore
+from PIL import Image
 
 
 def get_distance(x: float, y: float, max_step: int) -> float:
@@ -110,6 +109,7 @@ def get_image(
     """
     img = Image.new("RGB", (image_width, image_height))
     pixels = img.load()
+    assert pixels is not None
 
     # loop through the image-coordinates
     for image_x in range(image_width):

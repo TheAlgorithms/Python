@@ -33,7 +33,7 @@ def main(
     pheromone_evaporation: float,
     alpha: float,
     beta: float,
-    q: float,  # Pheromone system parameters Q，which is a constant
+    q: float,  # Pheromone system parameters Q, which is a constant
 ) -> tuple[list[int], float]:
     """
     Ant colony algorithm main function
@@ -117,7 +117,7 @@ def pheromone_update(
     cities: dict[int, list[int]],
     pheromone_evaporation: float,
     ants_route: list[list[int]],
-    q: float,  # Pheromone system parameters Q，which is a constant
+    q: float,  # Pheromone system parameters Q, which is a constant
     best_path: list[int],
     best_distance: float,
 ) -> tuple[list[list[float]], list[int], float]:
@@ -194,10 +194,8 @@ def city_select(
     IndexError: list index out of range
     """
     probabilities = []
-    for city in unvisited_cities:
-        city_distance = distance(
-            unvisited_cities[city], next(iter(current_city.values()))
-        )
+    for city, value in unvisited_cities.items():
+        city_distance = distance(value, next(iter(current_city.values())))
         probability = (pheromone[city][next(iter(current_city.keys()))] ** alpha) * (
             (1 / city_distance) ** beta
         )

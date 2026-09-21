@@ -24,6 +24,7 @@ python tabu_search.py -f your_file_name.txt -number_of_iterations_of_tabu_search
     -s size_of_tabu_search
 e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 """
+
 import argparse
 import copy
 
@@ -249,7 +250,7 @@ def tabu_search(
     return best_solution_ever, best_cost
 
 
-def main(args=None):
+def main(args=None) -> None:
     dict_of_neighbours = generate_neighbours(args.File)
 
     first_solution, distance_of_first_solution = generate_first_solution(

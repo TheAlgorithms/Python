@@ -12,6 +12,7 @@ Following is the truth table of a NOR Gate:
     Code provided by Akshaj Vishwanathan
 https://www.geeksforgeeks.org/logic-gates-in-python
 """
+
 from collections.abc import Callable
 
 
