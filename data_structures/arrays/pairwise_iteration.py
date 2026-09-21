@@ -57,7 +57,7 @@ def pairwise_iteration_tee(iterable: Iterable) -> Iterator[tuple]:
         ...     '2345',
         ...     ['ATG','GCT','TGC','TAA'],
         ...     [],
-        ... )
+        ... ))
     """
     # Uses itertools.tee to create two independent iterators (a and b)
     # from the iterable. This means we can use next() on each one
