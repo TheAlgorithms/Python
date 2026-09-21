@@ -10,6 +10,16 @@ from __future__ import annotations
 
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
+    """
+    Generate and print all possible permutations of the given sequence.
+
+    >>> generate_all_permutations([1, 2])
+    [1, 2]
+    [2, 1]
+    >>> generate_all_permutations(["A", "B"])
+    ['A', 'B']
+    ['B', 'A']
+    """
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
