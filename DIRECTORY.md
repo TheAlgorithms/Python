@@ -686,6 +686,7 @@
 ## [Hashes](hashes)
   * [Adler32](hashes/adler32.py)
   * [Chaos Machine](hashes/chaos_machine.py)
+  * [Crc32](hashes/crc32.py)
   * [Djb2](hashes/djb2.py)
   * [Elf](hashes/elf.py)
   * [Enigma Machine](hashes/enigma_machine.py)
