@@ -9,23 +9,23 @@ For more details and premium features visit:
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 import pprint
 
-import httpx
+import httpx2
 
 API_ENDPOINT_URL = "https://zenquotes.io/api"
 
 
 def quote_of_the_day() -> list:
-    return httpx.get(API_ENDPOINT_URL + "/today", timeout=10).json()
+    return httpx2.get(API_ENDPOINT_URL + "/today", timeout=10).json()
 
 
 def random_quotes() -> list:
-    return httpx.get(API_ENDPOINT_URL + "/random", timeout=10).json()
+    return httpx2.get(API_ENDPOINT_URL + "/random", timeout=10).json()
 
 
 if __name__ == "__main__":
