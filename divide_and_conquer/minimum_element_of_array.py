@@ -10,6 +10,7 @@ assuming that the elements are distinct.
 It returns the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+1.
 (From Introduction to Algorithms, Fourth Edition, Cormen, 2022: Chapter 9.2)
 """
+
 from __future__ import annotations
 
 import random
@@ -70,7 +71,7 @@ def selection_sort(
     Returns a list of sorted array elements using selection sort.
     Using selection to find a minimum is O(n) overkill vs. a linear scan — the
     value here is the DAC/partition demonstration.
-    
+
     Args:
         array: list of elements
         starting_index: starting index of the array
