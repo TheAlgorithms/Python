@@ -2,7 +2,7 @@ import math
 
 
 class SegmentTree:
-    def __init__(self, a):
+    def __init__(self, a) -> None:
         self.A = a
         self.N = len(self.A)
         self.st = [0] * (
@@ -11,7 +11,7 @@ class SegmentTree:
         if self.N:
             self.build(1, 0, self.N - 1)
 
-    def left(self, idx):
+    def left(self, idx) -> int:
         """
         Returns the left child index for a given index in a binary tree.
 
@@ -23,7 +23,7 @@ class SegmentTree:
         """
         return idx * 2
 
-    def right(self, idx):
+    def right(self, idx) -> int:
         """
         Returns the right child index for a given index in a binary tree.
 
@@ -35,7 +35,7 @@ class SegmentTree:
         """
         return idx * 2 + 1
 
-    def build(self, idx, left, right):
+    def build(self, idx, left, right) -> None:
         if left == right:
             self.st[idx] = self.A[left]
         else:
@@ -44,7 +44,7 @@ class SegmentTree:
             self.build(self.right(idx), mid + 1, right)
             self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
 
-    def update(self, a, b, val):
+    def update(self, a, b, val) -> bool:
         """
         Update the values in the segment tree in the range [a,b] with the given value.
 
@@ -56,7 +56,7 @@ class SegmentTree:
         """
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
 
-    def update_recursive(self, idx, left, right, a, b, val):
+    def update_recursive(self, idx, left, right, a, b, val) -> bool:
         """
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
@@ -71,7 +71,7 @@ class SegmentTree:
         self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
         return True
 
-    def query(self, a, b):
+    def query(self, a, b) -> float:
         """
         Query the maximum value in the range [a,b].
 
@@ -83,7 +83,7 @@ class SegmentTree:
         """
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
-    def query_recursive(self, idx, left, right, a, b):
+    def query_recursive(self, idx, left, right, a, b) -> float:
         """
         query(1, 1, N, a, b) for query max of [a,b]
         """
@@ -96,7 +96,7 @@ class SegmentTree:
         q2 = self.query_recursive(self.right(idx), mid + 1, right, a, b)
         return max(q1, q2)
 
-    def show_data(self):
+    def show_data(self) -> None:
         show_list = []
         for i in range(1, self.N + 1):
             show_list += [self.query(i, i)]

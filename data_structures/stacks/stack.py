@@ -22,7 +22,7 @@ class Stack[T]:
     https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     """
 
-    def __init__(self, limit: int = 10):
+    def __init__(self, limit: int = 10) -> None:
         self.stack: list[T] = []
         self.limit = limit
 
