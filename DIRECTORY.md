@@ -429,6 +429,7 @@
   * [Lamberts Ellipsoidal Distance](geodesy/lamberts_ellipsoidal_distance.py)
 
 ## Geometry
+  * [Braik Mac Construction](geometry/braik_mac_construction.py)
   * [Geometry](geometry/geometry.py)
 
 ## Graphics
