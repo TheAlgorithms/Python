@@ -541,6 +541,7 @@
 
 ## [Financial](financial)
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
+  * [Expected Shortfall](financial/expected_shortfall.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
   * [Kelly Criterion](financial/kelly_criterion.py)
@@ -551,6 +552,7 @@
   * [Simple Moving Average](financial/simple_moving_average.py)
   * [Straight Line Depreciation](financial/straight_line_depreciation.py)
   * [Time And Half Pay](financial/time_and_half_pay.py)
+  * [Value At Risk](financial/value_at_risk.py)
 
 ## [Fractals](fractals)
   * [Barnsley Fern](fractals/barnsley_fern.py)
