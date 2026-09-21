@@ -321,15 +321,22 @@ def crossing(
 
 def mutate(chromosome: list[int], mutation_probability: float) -> list[int]:
     """
-    Population variation
-    >>> mutate([0,1,0],mutation_probability=0)
+    Population variation: swap two interior cities (endpoints stay at 0).
+
+    >>> mutate([0, 1, 0], mutation_probability=0)  # no mutation -> unchanged
     [0, 1, 0]
-    >>> mutate([0,1,0],mutation_probability=1)
-    [0, 1, 0]
-    >>> mutate([],mutation_probability=1)
+    >>> import random
+    >>> random.seed(1)
+    >>> mutate([0, 1, 2, 3, 0], mutation_probability=1)  # swaps two interior cities
+    [0, 2, 1, 3, 0]
+
+    An empty chromosome has no interior cities to swap; match only the exception
+    type since the exact stdlib message changes across Python versions.
+
+    >>> mutate([], mutation_probability=1)  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
     ...
-    ValueError: empty range in randrange(1, -1)
+    ValueError
     """
     new_chromosome = copy.deepcopy(chromosome)
     if random.random() <= mutation_probability:
