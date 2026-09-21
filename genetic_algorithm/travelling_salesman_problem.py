@@ -186,7 +186,9 @@ def chose_ts(
     Traceback (most recent call last):
     ...
     IndexError: list index out of range
-    >>> chose_ts(fitness_matrix=[1], chromosomes=[0,1,0], population_size=2)
+    >>> import random
+    >>> random.seed(0)
+    >>> chose_ts(fitness_matrix=[1], chromosomes=[0, 1, 0], population_size=2)
     Traceback (most recent call last):
     ...
     IndexError: list index out of range
