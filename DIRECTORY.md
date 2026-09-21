@@ -365,6 +365,8 @@
     * [Sorted Linked List](data_structures/linked_list/sorted_linked_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
     * [Xor Linked List](data_structures/linked_list/xor_linked_list.py)
+  * Queue
+    * [Monotonic Queue](data_structures/queue/monotonic_queue.py)
   * Queues
     * [Circular Queue](data_structures/queues/circular_queue.py)
     * [Circular Queue Linked List](data_structures/queues/circular_queue_linked_list.py)
