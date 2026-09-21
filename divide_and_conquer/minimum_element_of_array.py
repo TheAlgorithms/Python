@@ -1,7 +1,7 @@
 """
 Return the minimum element of an array using the
 divide-and-conquer algorithm for selection sort.
-Like quick sort algorithm it partitions the input array recursively.
+Like quicksort, it partitions the input array recursively.
 But unlike quicksort,
 which recursively processes both sides of the partition,
 this algorithm works on only one side of the partition.
@@ -27,11 +27,9 @@ def partition(array: list, starting_index: int, ending_index: int) -> int:
     Returns:
         index of the pivot
 
-
     >>> arr = [-2, 3, -10, 11, 99, 100000, 100, -200]
     >>> partition(arr, 0, len(arr) - 1)
     0
-
     """
     pivot = array[ending_index]
     i = starting_index - 1
@@ -54,12 +52,10 @@ def randomized_partition(array: list, starting_index: int, ending_index: int) ->
     Returns:
         call to partition function
 
-
     >>> arr = [-2, 3, -10, 11, 99, 100000, 100, -200]
     >>> arr1 = randomized_partition(arr, 0, len(arr) - 1)
     >>> arr == arr1
     False
-
     """
 
     rand_idx = random.randint(starting_index, ending_index)
@@ -72,6 +68,9 @@ def selection_sort(
 ) -> list | None | Any:
     """
     Returns a list of sorted array elements using selection sort.
+    Using selection to find a minimum is O(n) overkill vs. a linear scan — the
+    value here is the DAC/partition demonstration.
+    
     Args:
         array: list of elements
         starting_index: starting index of the array
@@ -105,7 +104,7 @@ def selection_sort(
     []
     """
 
-    if array is None or len(array) == 0:
+    if not array:
         return array
 
     if starting_index == ending_index:
@@ -118,7 +117,7 @@ def selection_sort(
 
     if smallest_element == k:
         return array[q]  # the pivot value is the answer
-    elif smallest_element < k:
+    if smallest_element < k:
         return selection_sort(array, starting_index, q - 1, smallest_element)
     else:
         return selection_sort(array, q + 1, ending_index, smallest_element - k)
