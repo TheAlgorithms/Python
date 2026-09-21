@@ -1,6 +1,5 @@
 """Learn more about this algorithm: https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/"""
 
-
 from __future__ import annotations
 
 from dataclasses import dataclass
