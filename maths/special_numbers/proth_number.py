@@ -35,7 +35,7 @@ def proth(number: int) -> int:
     if number < 1:
         msg = f"Input value of [number={number}] must be > 0"
         raise ValueError(msg)
-    elif number == 1:
+    if number == 1:
         return 3
     elif number == 2:
         return 5

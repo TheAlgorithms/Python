@@ -1,12 +1,14 @@
-def reverse_words(input_str: str) -> str:
-    """
-    Reverses words in a given string
+def reverse_words(sentence: str) -> str:
+    """Reverse the order of words in a given string.
+
+    Extra whitespace between words is ignored.
+
     >>> reverse_words("I love Python")
     'Python love I'
     >>> reverse_words("I     Love          Python")
     'Python Love I'
     """
-    return " ".join(input_str.split()[::-1])
+    return " ".join(sentence.split()[::-1])
 
 
 if __name__ == "__main__":
