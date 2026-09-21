@@ -67,7 +67,7 @@ class BraikMac:
             raise TypeError("Array must be 5 point objects.")
 
     @property
-    def generate(self) -> None:
+    def generate(self) -> str:
         x1 = self.p_list[0].x
         y1 = self.p_list[0].y
         x2 = self.p_list[1].x
@@ -151,5 +151,10 @@ class BraikMac:
 
         f = -linalg.det(const_matrix)
 
-        s = f"0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X {e:+.2} Y {f:+.2}"
-        print(s)
+        return f"0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X {e:+.2} Y {f:+.2}"
+
+
+if __name__ == +__main__":
+    from doctest import testmod
+
+    testmod()
