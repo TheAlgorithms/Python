@@ -539,6 +539,7 @@
     * [Test Send File](file_transfer/tests/test_send_file.py)
 
 ## [Financial](financial)
+  * [Amortization Table](financial/amortization_table.py)
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
