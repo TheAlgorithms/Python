@@ -9,7 +9,7 @@ class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
 
 
-def bubble_sort_recursive[T: Comparable](arr: list[T]) -> list[T]:
+def bubble_sort_recursive[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sorts a list of comparable items using the recursive Bubble Sort algorithm.
 
@@ -32,20 +32,20 @@ def bubble_sort_recursive[T: Comparable](arr: list[T]) -> list[T]:
     ...
     TypeError: ...
     """
-    n = len(arr)
-    if n <= 1:
-        return arr
+    length = len(collection)
+    if length <= 1:
+        return collection
 
     swapped = False
-    for i in range(n - 1):
-        if arr[i + 1] < arr[i]:
-            arr[i], arr[i + 1] = arr[i + 1], arr[i]
+    for i in range(length - 1):
+        if collection[i + 1] < collection[i]:
+            collection[i], collection[i + 1] = collection[i + 1], collection[i]
             swapped = True
 
     if not swapped:
-        return arr
+        return collection
 
-    return [*bubble_sort_recursive(arr[:-1]), arr[-1]]
+    return [*bubble_sort_recursive(collection[:-1]), collection[-1]]
 
 
 if __name__ == "__main__":
