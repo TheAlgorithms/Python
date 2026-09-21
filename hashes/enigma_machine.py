@@ -5,7 +5,6 @@ Note:
     So multiple runs on the same runtime will carry junk and scramble the result!
 """
 
-
 alphabets = [chr(i) for i in range(32, 126)]
 gear_one = list(range(len(alphabets)))
 gear_two = list(range(len(alphabets)))
