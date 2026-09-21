@@ -691,6 +691,7 @@
 ## [Knapsack](knapsack)
   * [Greedy Knapsack](knapsack/greedy_knapsack.py)
   * [Knapsack](knapsack/knapsack.py)
+  * [Knapsack Memoization](knapsack/knapsack_memoization.py)
   * [Recursive Approach Knapsack](knapsack/recursive_approach_knapsack.py)
   * Tests
     * [Test Greedy Knapsack](knapsack/tests/test_greedy_knapsack.py)
