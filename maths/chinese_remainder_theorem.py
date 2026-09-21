@@ -11,6 +11,7 @@ Algorithm :
 1. Use extended euclid algorithm to find x,y such that a*x + b*y = 1
 2. Take n = ra*by + rb*ax
 """
+
 from __future__ import annotations
 
 
@@ -64,7 +65,7 @@ def invert_modulo(a: int, n: int) -> int:
     1
 
     """
-    (b, x) = extended_euclid(a, n)
+    (b, _x) = extended_euclid(a, n)
     if b < 0:
         b = (b % n + n) % n
     return b
