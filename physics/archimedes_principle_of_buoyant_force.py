@@ -3,7 +3,7 @@ Calculate the buoyant force of any body completely or partially submerged in a s
 fluid.  This principle was discovered by the Greek mathematician Archimedes.
 
 Equation for calculating buoyant force:
-Fb = ρ * V * g
+Fb = p * V * g
 
 https://en.wikipedia.org/wiki/Archimedes%27_principle
 """

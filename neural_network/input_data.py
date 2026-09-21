@@ -21,6 +21,7 @@ import gzip
 import os
 import typing
 import urllib
+import urllib.request
 
 import numpy as np
 from tensorflow.python.framework import dtypes, random_seed
@@ -61,9 +62,8 @@ def _extract_images(f):
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
         if magic != 2051:
-            raise ValueError(
-                "Invalid magic number %d in MNIST image file: %s" % (magic, f.name)
-            )
+            msg = f"Invalid magic number {magic} in MNIST image file: {f.name}"
+            raise ValueError(msg)
         num_images = _read32(bytestream)
         rows = _read32(bytestream)
         cols = _read32(bytestream)
@@ -102,9 +102,8 @@ def _extract_labels(f, one_hot=False, num_classes=10):
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
         if magic != 2049:
-            raise ValueError(
-                "Invalid magic number %d in MNIST label file: %s" % (magic, f.name)
-            )
+            msg = f"Invalid magic number {magic} in MNIST label file: {f.name}"
+            raise ValueError(msg)
         num_items = _read32(bytestream)
         buf = bytestream.read(num_items)
         labels = np.frombuffer(buf, dtype=np.uint8)
@@ -133,7 +132,7 @@ class _DataSet:
         dtype=dtypes.float32,
         reshape=True,
         seed=None,
-    ):
+    ) -> None:
         """Construct a _DataSet.
 
         one_hot arg is used only if fake_data is true.  `dtype` can be either
@@ -156,14 +155,15 @@ class _DataSet:
         self._rng = np.random.default_rng(seed1 if seed is None else seed2)
         dtype = dtypes.as_dtype(dtype).base_dtype
         if dtype not in (dtypes.uint8, dtypes.float32):
-            raise TypeError("Invalid image dtype %r, expected uint8 or float32" % dtype)
+            msg = f"Invalid image dtype {dtype!r}, expected uint8 or float32"
+            raise TypeError(msg)
         if fake_data:
             self._num_examples = 10000
             self.one_hot = one_hot
         else:
-            assert (
-                images.shape[0] == labels.shape[0]
-            ), f"images.shape: {images.shape} labels.shape: {labels.shape}"
+            assert images.shape[0] == labels.shape[0], (
+                f"images.shape: {images.shape} labels.shape: {labels.shape}"
+            )
             self._num_examples = images.shape[0]
 
             # Convert shape from [num examples, rows, columns, depth]

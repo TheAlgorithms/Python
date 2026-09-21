@@ -1,7 +1,7 @@
 """
 The Fibonacci sequence is defined by the recurrence relation:
 
-    Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+    Fn = Fn-1 + Fn-2, where F1 = 1 and F2 = 1.
 
 Hence the first 12 terms will be:
 
@@ -27,7 +27,7 @@ digits?
 from collections.abc import Generator
 
 
-def fibonacci_generator() -> Generator[int, None, None]:
+def fibonacci_generator() -> Generator[int]:
     """
     A generator that produces numbers in the Fibonacci sequence
 

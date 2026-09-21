@@ -44,11 +44,11 @@ def function(expansion, s0, s1, key, message):
     right = message[4:]
     temp = apply_table(right, expansion)
     temp = xor(temp, key)
-    l = apply_sbox(s0, temp[:4])
-    r = apply_sbox(s1, temp[4:])
-    l = "0" * (2 - len(l)) + l
-    r = "0" * (2 - len(r)) + r
-    temp = apply_table(l + r, p4_table)
+    left_bin_str = apply_sbox(s0, temp[:4])
+    right_bin_str = apply_sbox(s1, temp[4:])
+    left_bin_str = "0" * (2 - len(left_bin_str)) + left_bin_str
+    right_bin_str = "0" * (2 - len(right_bin_str)) + right_bin_str
+    temp = apply_table(left_bin_str + right_bin_str, p4_table)
     temp = xor(left, temp)
     return temp + right
 

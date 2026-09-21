@@ -13,7 +13,21 @@ from dataclasses import dataclass
 @dataclass
 class Node:
     """
-    A Node has data variable and pointers to Nodes to its left and right.
+    A Node represents an element of a binary tree, which contains:
+
+    Attributes:
+    data: The value stored in the node (int).
+    left: Pointer to the left child node (Node or None).
+    right: Pointer to the right child node (Node or None).
+
+    Example:
+    >>> node = Node(1, Node(2), Node(3))
+    >>> node.data
+    1
+    >>> node.left.data
+    2
+    >>> node.right.data
+    3
     """
 
     data: int
@@ -24,12 +38,25 @@ class Node:
 def make_symmetric_tree() -> Node:
     r"""
     Create a symmetric tree for testing.
+
     The tree looks like this:
            1
          /   \
         2     2
       / \    / \
      3   4   4  3
+
+    Returns:
+    Node: Root node of a symmetric tree.
+
+    Example:
+    >>> tree = make_symmetric_tree()
+    >>> tree.data
+    1
+    >>> tree.left.data == tree.right.data
+    True
+    >>> tree.left.left.data == tree.right.right.data
+    True
     """
     root = Node(1)
     root.left = Node(2)
@@ -43,13 +70,26 @@ def make_symmetric_tree() -> Node:
 
 def make_asymmetric_tree() -> Node:
     r"""
-    Create a asymmetric tree for testing.
+    Create an asymmetric tree for testing.
+
     The tree looks like this:
            1
          /   \
         2     2
       / \    / \
      3   4   3  4
+
+    Returns:
+    Node: Root node of an asymmetric tree.
+
+    Example:
+    >>> tree = make_asymmetric_tree()
+    >>> tree.data
+    1
+    >>> tree.left.data == tree.right.data
+    True
+    >>> tree.left.left.data == tree.right.right.data
+    False
     """
     root = Node(1)
     root.left = Node(2)
@@ -63,7 +103,15 @@ def make_asymmetric_tree() -> Node:
 
 def is_symmetric_tree(tree: Node) -> bool:
     """
-    Test cases for is_symmetric_tree function
+    Check if a binary tree is symmetric (i.e., a mirror of itself).
+
+    Parameters:
+    tree: The root node of the binary tree.
+
+    Returns:
+    bool: True if the tree is symmetric, False otherwise.
+
+    Example:
     >>> is_symmetric_tree(make_symmetric_tree())
     True
     >>> is_symmetric_tree(make_asymmetric_tree())
@@ -76,8 +124,17 @@ def is_symmetric_tree(tree: Node) -> bool:
 
 def is_mirror(left: Node | None, right: Node | None) -> bool:
     """
+    Check if two subtrees are mirror images of each other.
+
+    Parameters:
+    left: The root node of the left subtree.
+    right: The root node of the right subtree.
+
+    Returns:
+    bool: True if the two subtrees are mirrors of each other, False otherwise.
+
+    Example:
     >>> tree1 = make_symmetric_tree()
-    >>> tree1.right.right = Node(3)
     >>> is_mirror(tree1.left, tree1.right)
     True
     >>> tree2 = make_asymmetric_tree()
@@ -91,7 +148,7 @@ def is_mirror(left: Node | None, right: Node | None) -> bool:
         # One side is empty while the other is not, which is not symmetric.
         return False
     if left.data == right.data:
-        # The values match, so check the subtree
+        # The values match, so check the subtrees recursively.
         return is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
     return False
 

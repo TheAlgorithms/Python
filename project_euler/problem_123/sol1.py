@@ -4,7 +4,7 @@ Problem 123: https://projecteuler.net/problem=123
 Name: Prime square remainders
 
 Let pn be the nth prime: 2, 3, 5, 7, 11, ..., and
-let r be the remainder when (pn−1)^n + (pn+1)^n is divided by pn^2.
+let r be the remainder when (pn-1)^n + (pn+1)^n is divided by pn^2.
 
 For example, when n = 3, p3 = 5, and 43 + 63 = 280 ≡ 5 mod 25.
 The least value of n for which the remainder first exceeds 10^9 is 7037.
@@ -43,7 +43,7 @@ from __future__ import annotations
 from collections.abc import Generator
 
 
-def sieve() -> Generator[int, None, None]:
+def sieve() -> Generator[int]:
     """
     Returns a prime number generator using sieve method.
     >>> type(sieve())

@@ -32,7 +32,14 @@ Below a Django function for the views.py file contains a login form for demonstr
 recaptcha verification.
 """
 
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "httpx2",
+# ]
+# ///
+
+import httpx2
 
 try:
     from django.contrib.auth import authenticate, login
@@ -56,7 +63,9 @@ def login_using_recaptcha(request):
     client_key = request.POST.get("g-recaptcha-response")
 
     # post recaptcha response to Google's recaptcha api
-    response = requests.post(url, data={"secret": secret_key, "response": client_key})
+    response = httpx2.post(
+        url, data={"secret": secret_key, "response": client_key}, timeout=10
+    )
     # if the recaptcha api verified our keys
     if response.json().get("success", False):
         # authenticate the user

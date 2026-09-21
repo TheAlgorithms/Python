@@ -1,7 +1,7 @@
 """
-Given a partially filled 9×9 2D array, the objective is to fill a 9×9
+Given a partially filled 9x9 2D array, the objective is to fill a 9x9
 square grid with digits numbered 1 to 9, so that every row, column, and
-and each of the nine 3×3 sub-grids contains all of the digits.
+and each of the nine 3x3 sub-grids contains all of the digits.
 
 This can be solved using Backtracking and is similar to n-queens.
 We check to see if a cell is safe or not and recursively call the
