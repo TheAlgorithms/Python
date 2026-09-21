@@ -3,11 +3,11 @@
 
 
 class Node:
-    def __init__(self, name, val):
+    def __init__(self, name, val) -> None:
         self.name = name
         self.val = val
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__}({self.name}, {self.val})"
 
     def __lt__(self, other):
@@ -31,7 +31,7 @@ class MinHeap:
     -17
     """
 
-    def __init__(self, array):
+    def __init__(self, array) -> None:
         self.idx_of_element = {}
         self.heap_dict = {}
         self.heap = self.build_heap(array)
@@ -39,19 +39,19 @@ class MinHeap:
     def __getitem__(self, key):
         return self.get_value(key)
 
-    def get_parent_idx(self, idx):
+    def get_parent_idx(self, idx) -> int:
         return (idx - 1) // 2
 
-    def get_left_child_idx(self, idx):
+    def get_left_child_idx(self, idx) -> int:
         return idx * 2 + 1
 
-    def get_right_child_idx(self, idx):
+    def get_right_child_idx(self, idx) -> int:
         return idx * 2 + 2
 
     def get_value(self, key):
         return self.heap_dict[key]
 
-    def build_heap(self, array):
+    def build_heap(self, array) -> list:
         last_idx = len(array) - 1
         start_from = self.get_parent_idx(last_idx)
 
@@ -64,7 +64,7 @@ class MinHeap:
         return array
 
     # this is min-heapify method
-    def sift_down(self, idx, array):
+    def sift_down(self, idx, array) -> None:
         while True:
             left = self.get_left_child_idx(idx)
             right = self.get_right_child_idx(idx)
@@ -88,7 +88,7 @@ class MinHeap:
             else:
                 break
 
-    def sift_up(self, idx):
+    def sift_up(self, idx) -> None:
         p = self.get_parent_idx(idx)
         while p >= 0 and self.heap[p] > self.heap[idx]:
             self.heap[p], self.heap[idx] = self.heap[idx], self.heap[p]
@@ -114,16 +114,16 @@ class MinHeap:
         self.sift_down(0, self.heap)
         return x
 
-    def insert(self, node):
+    def insert(self, node) -> None:
         self.heap.append(node)
         self.idx_of_element[node] = len(self.heap) - 1
         self.heap_dict[node.name] = node.val
         self.sift_up(len(self.heap) - 1)
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return len(self.heap) == 0
 
-    def decrease_key(self, node, new_value):
+    def decrease_key(self, node, new_value) -> None:
         assert self.heap[self.idx_of_element[node]].val > new_value, (
             "newValue must be less that current value"
         )
