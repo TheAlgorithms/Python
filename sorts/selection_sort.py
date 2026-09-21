@@ -39,4 +39,4 @@ if __name__ == "__main__":
     doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(selection_sort(unsorted))
+    print(f"{unsorted = }, {selection_sort(unsorted) = }")
