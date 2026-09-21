@@ -17,7 +17,10 @@ from __future__ import annotations
 
 
 def binary_search_by_recursion(
-    sorted_collection: list[int], item: int, left: int = 0, right: int = -1
+    sorted_collection: list[int],
+    item: int,
+    left: int = 0,
+    right: int | None = None,
 ) -> int:
     """Pure implementation of binary search algorithm in Python using recursion
 
@@ -27,7 +30,7 @@ def binary_search_by_recursion(
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :param left: starting index for the search
-    :param right: ending index for the search
+    :param right: ending index for the search (defaults to the last index)
     :return: index of the found item or -1 if the item is not found
 
     Examples:
@@ -39,8 +42,12 @@ def binary_search_by_recursion(
     1
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], -1)
+    -1
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 16)
+    -1
     """
-    if right < 0:
+    if right is None:
         right = len(sorted_collection) - 1
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
@@ -80,6 +87,10 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     >>> exponential_search([0, 5, 7, 10, 15], 5)
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], -3)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], 20)
     -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
