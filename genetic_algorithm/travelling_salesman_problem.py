@@ -35,11 +35,23 @@ def main(
 ) -> tuple[list[int], float]:
     """
     Genetic algorithm main function
-    >>> main(cities=cities,population_size=100,iterations_num=100,
-    ... crossover_probability=0.6,mutation_probability=0.2)
-    ([0, 1, 2, 3, 4, 5, 6, 7, 0], 37.909778143828696)
-    >>> main(cities={0: [0, 0], 1: [2, 2]},population_size=10,iterations_num=10,
-    ... crossover_probability=0.6,mutation_probability=0.2)
+
+    The algorithm is stochastic, so seed ``random`` and assert invariants of the
+    returned tour rather than one exact ordering (not reproducible across
+    platforms / Python versions).
+
+    >>> import random
+    >>> random.seed(0)
+    >>> path, best = main(cities=cities, population_size=100, iterations_num=100,
+    ...     crossover_probability=0.6, mutation_probability=0.2)
+    >>> path[0] == 0 and path[-1] == 0  # starts and ends at the origin city
+    True
+    >>> sorted(path[:-1]) == sorted(cities)  # every city visited exactly once
+    True
+    >>> 37 <= best < 45  # converges close to the optimal round-trip (~37.9)
+    True
+    >>> main(cities={0: [0, 0], 1: [2, 2]}, population_size=10, iterations_num=10,
+    ...     crossover_probability=0.6, mutation_probability=0.2)
     ([0, 1, 0], 5.656854249492381)
     >>> main(cities={},population_size=10,iterations_num=10,
     ... crossover_probability=0.6,mutation_probability=0.2)
