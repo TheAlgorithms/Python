@@ -76,7 +76,7 @@ def is_prime(number: int) -> bool:
     if number <= 1:
         status = False
 
-    for divisor in range(2, int(round(sqrt(number))) + 1):
+    for divisor in range(2, round(sqrt(number)) + 1):
         # if 'number' divisible by 'divisor' then sets 'status'
         # of false and break up the loop.
         if number % divisor == 0:
