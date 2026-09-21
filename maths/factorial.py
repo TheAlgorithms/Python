@@ -1,14 +1,21 @@
-"""Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
+"""
+Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 """
 
 
 def factorial(number: int) -> int:
     """
-    Calculate the factorial of specified number (n!).
+    Calculate the factorial of the specified number.
 
     >>> import math
     >>> all(factorial(i) == math.factorial(i) for i in range(20))
     True
+    >>> factorial(0)
+    1
+    >>> factorial(1)
+    1
+    >>> factorial(5)
+    120
     >>> factorial(0.1)
     Traceback (most recent call last):
         ...
@@ -17,12 +24,6 @@ def factorial(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: factorial() not defined for negative values
-    >>> factorial(1)
-    1
-    >>> factorial(6)
-    720
-    >>> factorial(0)
-    1
     """
     if number != int(number):
         raise ValueError("factorial() only accepts integral values")
@@ -34,34 +35,38 @@ def factorial(number: int) -> int:
     return value
 
 
-def factorial_recursive(n: int) -> int:
+def factorial_recursive(number: int) -> int:
     """
-    Calculate the factorial of a positive integer
-    https://en.wikipedia.org/wiki/Factorial
+    Calculate the factorial of a number using recursion.
 
     >>> import math
-    >>> all(factorial(i) == math.factorial(i) for i in range(20))
+    >>> all(factorial_recursive(i) == math.factorial(i) for i in range(20))
     True
-    >>> factorial(0.1)
+    >>> factorial_recursive(0)
+    1
+    >>> factorial_recursive(1)
+    1
+    >>> factorial_recursive(5)
+    120
+    >>> factorial_recursive(0.1)
     Traceback (most recent call last):
         ...
-    ValueError: factorial() only accepts integral values
-    >>> factorial(-1)
+    ValueError: factorial_recursive() only accepts integral values
+    >>> factorial_recursive(-1)
     Traceback (most recent call last):
         ...
-    ValueError: factorial() not defined for negative values
+    ValueError: factorial_recursive() not defined for negative values
     """
-    if not isinstance(n, int):
-        raise ValueError("factorial() only accepts integral values")
-    if n < 0:
-        raise ValueError("factorial() not defined for negative values")
-    return 1 if n in {0, 1} else n * factorial(n - 1)
+    if not isinstance(number, int):
+        raise ValueError("factorial_recursive() only accepts integral values")
+    if number < 0:
+        raise ValueError("factorial_recursive() not defined for negative values")
+    return 1 if number in {0, 1} else number * factorial_recursive(number - 1)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
     n = int(input("Enter a positive integer: ").strip() or 0)
-    print(f"factorial{n} is {factorial(n)}")
+    print(f"{n = } {factorial(n) = } {factorial_recursive(n) = }")

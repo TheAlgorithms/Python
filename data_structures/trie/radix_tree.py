@@ -1,8 +1,10 @@
 """
 A Radix Tree is a data structure that represents a space-optimized
-trie (prefix tree) in whicheach node that is the only child is merged
+trie (prefix tree) in which each node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
+
+import unittest
 
 
 class RadixNode:
@@ -62,6 +64,11 @@ class RadixNode:
         -- A   (leaf)
         --- A   (leaf)
         """
+        ## Handle the Case where the word is empty by using an if branch
+        if word == "":
+            self.is_leaf = True
+            return
+
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
         if self.prefix == word and not self.is_leaf:
@@ -80,11 +87,11 @@ class RadixNode:
             )
 
             # Case 3: The node prefix is equal to the matching
-            # Solution: We insert remaining word on the next node
+            # Solution: We insert the remaining word on the next node
             if remaining_prefix == "":
                 self.nodes[matching_string[0]].insert(remaining_word)
 
-            # Case 4: The word is greater equal to the matching
+            # Case 4: The word is greater than or equal to the matching
             # Solution: Create a node in between both nodes, change
             # prefixes and add the new node for the remaining word
             else:
@@ -100,7 +107,7 @@ class RadixNode:
                     self.nodes[matching_string[0]].insert(remaining_word)
 
     def find(self, word: str) -> bool:
-        """Returns if the word is on the tree
+        """Returns whether the word is on the tree
 
         Args:
             word (str): word to check
@@ -115,7 +122,7 @@ class RadixNode:
         if not incoming_node:
             return False
         else:
-            matching_string, remaining_prefix, remaining_word = incoming_node.match(
+            _matching_string, remaining_prefix, remaining_word = incoming_node.match(
                 word
             )
             # If there is remaining prefix, the word can't be on the tree
@@ -144,7 +151,7 @@ class RadixNode:
         if not incoming_node:
             return False
         else:
-            matching_string, remaining_prefix, remaining_word = incoming_node.match(
+            _matching_string, remaining_prefix, remaining_word = incoming_node.match(
                 word
             )
             # If there is remaining prefix, the word can't be on the tree
@@ -153,31 +160,30 @@ class RadixNode:
             # We have word remaining so we check the next node
             elif remaining_word != "":
                 return incoming_node.delete(remaining_word)
+            # If it is not a leaf, we don't have to delete
+            elif not incoming_node.is_leaf:
+                return False
             else:
-                # If it is not a leaf, we don't have to delete
-                if not incoming_node.is_leaf:
-                    return False
+                # We delete the nodes if no edges go from it
+                if len(incoming_node.nodes) == 0:
+                    del self.nodes[word[0]]
+                    # We merge the current node with its only child
+                    if len(self.nodes) == 1 and not self.is_leaf:
+                        merging_node = next(iter(self.nodes.values()))
+                        self.is_leaf = merging_node.is_leaf
+                        self.prefix += merging_node.prefix
+                        self.nodes = merging_node.nodes
+                # If there is more than 1 edge, we just mark it as non-leaf
+                elif len(incoming_node.nodes) > 1:
+                    incoming_node.is_leaf = False
+                # If there is 1 edge, we merge it with its child
                 else:
-                    # We delete the nodes if no edges go from it
-                    if len(incoming_node.nodes) == 0:
-                        del self.nodes[word[0]]
-                        # We merge the current node with its only child
-                        if len(self.nodes) == 1 and not self.is_leaf:
-                            merging_node = next(iter(self.nodes.values()))
-                            self.is_leaf = merging_node.is_leaf
-                            self.prefix += merging_node.prefix
-                            self.nodes = merging_node.nodes
-                    # If there is more than 1 edge, we just mark it as non-leaf
-                    elif len(incoming_node.nodes) > 1:
-                        incoming_node.is_leaf = False
-                    # If there is 1 edge, we merge it with its child
-                    else:
-                        merging_node = next(iter(incoming_node.nodes.values()))
-                        incoming_node.is_leaf = merging_node.is_leaf
-                        incoming_node.prefix += merging_node.prefix
-                        incoming_node.nodes = merging_node.nodes
+                    merging_node = next(iter(incoming_node.nodes.values()))
+                    incoming_node.is_leaf = merging_node.is_leaf
+                    incoming_node.prefix += merging_node.prefix
+                    incoming_node.nodes = merging_node.nodes
 
-                    return True
+                return True
 
     def print_tree(self, height: int = 0) -> None:
         """Print the tree
@@ -192,7 +198,7 @@ class RadixNode:
             value.print_tree(height + 1)
 
 
-def test_trie() -> bool:
+def test_trie() -> None:
     words = "banana bananas bandana band apple all beast".split()
     root = RadixNode()
     root.insert_many(words)
@@ -206,25 +212,41 @@ def test_trie() -> bool:
     assert not root.find("banana")
     assert root.find("bananas")
 
-    return True
 
+class TestRadixNode(unittest.TestCase):
+    def test_trie(self) -> None:
+        words = "banana bananas bandana band apple all beast".split()
+        root = RadixNode()
+        root.insert_many(words)
 
-def pytests() -> None:
-    assert test_trie()
+        assert all(root.find(word) for word in words)
+        assert not root.find("bandanas")
+        assert not root.find("apps")
+        root.delete("all")
+        assert not root.find("all")
+        root.delete("banana")
+        assert not root.find("banana")
+        assert root.find("bananas")
 
+    def test_trie_2(self) -> None:
+        """
+        Now add a new test case that inserts
+        foobbb, fooaaa, foo in the given order and checks
+        for different assertions
+        """
+        words = "foobbb fooaaa foo".split()
+        root = RadixNode()
+        root.insert_many(words)
 
-def main() -> None:
-    """
-    >>> pytests()
-    """
-    root = RadixNode()
-    words = "banana bananas bandanas bandana band apple all beast".split()
-    root.insert_many(words)
-
-    print("Words:", words)
-    print("Tree:")
-    root.print_tree()
+        assert all(root.find(word) for word in words)
+        root.delete("foo")
+        assert not root.find("foo")
+        assert root.find("foobbb")
+        assert root.find("fooaaa")
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
+    unittest.main()

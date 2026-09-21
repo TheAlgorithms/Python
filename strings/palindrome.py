@@ -11,16 +11,18 @@ test_data = {
     "BB": True,
     "ABC": False,
     "amanaplanacanalpanama": True,  # "a man a plan a canal panama"
+    "abcdba": False,
+    "AB": False,
 }
 # Ensure our test data is valid
-assert all((key == key[::-1]) is value for key, value in test_data.items())
+assert all((key == key[::-1]) == value for key, value in test_data.items())
 
 
 def is_palindrome(s: str) -> bool:
     """
     Return True if s is a palindrome otherwise return False.
 
-    >>> all(is_palindrome(key) is value for key, value in test_data.items())
+    >>> all(is_palindrome(key) == value for key, value in test_data.items())
     True
     """
 
@@ -39,7 +41,7 @@ def is_palindrome_traversal(s: str) -> bool:
     """
     Return True if s is a palindrome otherwise return False.
 
-    >>> all(is_palindrome_traversal(key) is value for key, value in test_data.items())
+    >>> all(is_palindrome_traversal(key) == value for key, value in test_data.items())
     True
     """
     end = len(s) // 2
@@ -58,10 +60,10 @@ def is_palindrome_recursive(s: str) -> bool:
     """
     Return True if s is a palindrome otherwise return False.
 
-    >>> all(is_palindrome_recursive(key) is value for key, value in test_data.items())
+    >>> all(is_palindrome_recursive(key) == value for key, value in test_data.items())
     True
     """
-    if len(s) <= 2:
+    if len(s) <= 1:
         return True
     if s[0] == s[len(s) - 1]:
         return is_palindrome_recursive(s[1:-1])
@@ -73,14 +75,14 @@ def is_palindrome_slice(s: str) -> bool:
     """
     Return True if s is a palindrome otherwise return False.
 
-    >>> all(is_palindrome_slice(key) is value for key, value in test_data.items())
+    >>> all(is_palindrome_slice(key) == value for key, value in test_data.items())
     True
     """
     return s == s[::-1]
 
 
 def benchmark_function(name: str) -> None:
-    stmt = f"all({name}(key) is value for key, value in test_data.items())"
+    stmt = f"all({name}(key) == value for key, value in test_data.items())"
     setup = f"from __main__ import test_data, {name}"
     number = 500000
     result = timeit(stmt=stmt, setup=setup, number=number)
@@ -89,8 +91,8 @@ def benchmark_function(name: str) -> None:
 
 if __name__ == "__main__":
     for key, value in test_data.items():
-        assert is_palindrome(key) is is_palindrome_recursive(key)
-        assert is_palindrome(key) is is_palindrome_slice(key)
+        assert is_palindrome(key) == is_palindrome_recursive(key)
+        assert is_palindrome(key) == is_palindrome_slice(key)
         print(f"{key:21} {value}")
     print("a man a plan a canal panama")
 

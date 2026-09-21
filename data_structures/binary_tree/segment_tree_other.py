@@ -3,12 +3,13 @@ Segment_tree creates a segment tree with a given array and function,
 allowing queries to be done later in log(N) time
 function takes 2 values and returns a same type value
 """
+
 from collections.abc import Sequence
 from queue import Queue
 
 
 class SegmentTreeNode:
-    def __init__(self, start, end, val, left=None, right=None):
+    def __init__(self, start, end, val, left=None, right=None) -> None:
         self.start = start
         self.end = end
         self.val = val
@@ -16,7 +17,7 @@ class SegmentTreeNode:
         self.left = left
         self.right = right
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"SegmentTreeNode(start={self.start}, end={self.end}, val={self.val})"
 
 
@@ -126,13 +127,13 @@ class SegmentTree:
     >>>
     """
 
-    def __init__(self, collection: Sequence, function):
+    def __init__(self, collection: Sequence, function) -> None:
         self.collection = collection
         self.fn = function
         if self.collection:
             self.root = self._build_tree(0, len(collection) - 1)
 
-    def update(self, i, val):
+    def update(self, i, val) -> None:
         """
         Update an element in log(N) time
         :param i: position to be update
@@ -172,7 +173,7 @@ class SegmentTree:
         right = self._build_tree(mid + 1, end)
         return SegmentTreeNode(start, end, self.fn(left.val, right.val), left, right)
 
-    def _update_tree(self, node, i, val):
+    def _update_tree(self, node, i, val) -> None:
         if node.start == i and node.end == i:
             node.val = val
             return

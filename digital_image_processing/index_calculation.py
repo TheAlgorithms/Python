@@ -104,10 +104,14 @@ class IndexCalculation:
         #RGBIndex = ["GLI", "CI", "Hue", "I", "NGRDI", "RI", "S", "IF"]
     """
 
-    def __init__(self, red=None, green=None, blue=None, red_edge=None, nir=None):
+    def __init__(
+        self, red=None, green=None, blue=None, red_edge=None, nir=None
+    ) -> None:
         self.set_matricies(red=red, green=green, blue=blue, red_edge=red_edge, nir=nir)
 
-    def set_matricies(self, red=None, green=None, blue=None, red_edge=None, nir=None):
+    def set_matricies(
+        self, red=None, green=None, blue=None, red_edge=None, nir=None
+    ) -> bool:
         if red is not None:
             self.red = red
         if green is not None:
@@ -182,7 +186,7 @@ class IndexCalculation:
         Atmospherically Resistant Vegetation Index 2
         https://www.indexdatabase.de/db/i-single.php?id=396
         :return: index
-            −0.18+1.17*(self.nir−self.red)/(self.nir+self.red)
+            -0.18+1.17*(self.nir-self.red)/(self.nir+self.red)
         """
         return -0.18 + (1.17 * ((self.nir - self.red) / (self.nir + self.red)))
 

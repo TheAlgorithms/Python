@@ -1,5 +1,6 @@
 """For more information about the Binomial Distribution -
-    https://en.wikipedia.org/wiki/Binomial_distribution"""
+https://en.wikipedia.org/wiki/Binomial_distribution"""
+
 from math import factorial
 
 

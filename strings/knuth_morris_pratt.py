@@ -71,7 +71,8 @@ if __name__ == "__main__":
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    assert knuth_morris_pratt(text1, pattern) and knuth_morris_pratt(text2, pattern)
+    assert knuth_morris_pratt(text1, pattern)
+    assert knuth_morris_pratt(text2, pattern)
 
     # Test 2)
     pattern = "ABABX"
