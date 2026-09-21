@@ -1,6 +1,6 @@
 """
 Forward propagation explanation:
-https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
+https://en.wikipedia.org/wiki/Feedforward_neural_network
 """
 
 import math
