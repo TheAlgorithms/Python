@@ -3,7 +3,7 @@
 from collections import defaultdict
 
 
-def word_occurrence(sentence: str) -> dict:
+def word_occurrence(sentence: str) -> defaultdict[str, int]:
     """
     >>> from collections import Counter
     >>> SENTENCE = "a b A b c b d b d e f e g e h e i e j e 0"
