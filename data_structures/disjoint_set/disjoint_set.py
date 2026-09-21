@@ -2,7 +2,9 @@
 Disjoint set.
 Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
+
 from dataclasses import dataclass
+
 
 @dataclass
 class Node:
