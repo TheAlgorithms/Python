@@ -36,11 +36,11 @@ class Node[T: Comparable]:
                 self.left = Node(val)
             else:
                 self.left.insert(val)
-        elif val > self.val:
-            if self.right is None:
-                self.right = Node(val)
-            else:
-                self.right.insert(val)
+        # Equal values go to the right so that duplicates are kept.
+        elif self.right is None:
+            self.right = Node(val)
+        else:
+            self.right.insert(val)
 
 
 def tree_sort[T: Comparable](arr: Iterable[T]) -> tuple[T, ...]:
@@ -63,6 +63,10 @@ def tree_sort[T: Comparable](arr: Iterable[T]) -> tuple[T, ...]:
     ('a', 'b', 'c')
     >>> tree_sort([2.5, -1, 0.0])
     (-1, 0.0, 2.5)
+    >>> tree_sort([3, 1, 3, 2, 1])
+    (1, 1, 2, 3, 3)
+    >>> tree_sort([2, 2, 2])
+    (2, 2, 2)
     >>> tree_sort([1, "a"])
     Traceback (most recent call last):
         ...
