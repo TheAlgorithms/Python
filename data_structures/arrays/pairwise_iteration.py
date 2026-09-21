@@ -4,17 +4,17 @@ Date    : October 3, 2023
 
 Implementation of pairwise iteration algorithms, which can be useful in
 many domains.
-Currently there are two different implementations.
-
+Currently, there are two different implementations.
 """
 
 from collections.abc import Iterable, Iterator
-from itertools import tee
+from itertools import pairwise, tee
 
 
 def pairwise_iteration_tee(iterable: Iterable) -> Iterator[tuple]:
     """
-    Generate pairs of elements from an iterable.
+    Generate pairs of elements from an iterable just like:
+    https://docs.python.org/3/library/itertools.html#itertools.pairwise
 
     This function uses the `tee` function from the `itertools` module to
     create two independent iterators (`a` and `b`) from the input
@@ -47,6 +47,16 @@ def pairwise_iteration_tee(iterable: Iterable) -> Iterator[tuple]:
 
         >>> list(pairwise_iteration_tee(['a']))
         []
+
+        >>> all(pairwise_iteration_tee(test) == pairwise(test)
+        ... for test in (
+        ...     [1, 2, 3],
+        ...     (4, 3, 5),
+        ...     {'x':3, 'y':1, 'z':2, 'foo':4},
+        ...     '2345',
+        ...     ['ATG','GCT','TGC','TAA']
+        ...     []
+        ... )
     """
     # Uses itertools.tee to create two independent iterators (a and b)
     # from the iterable. This means we can use next() on each one
