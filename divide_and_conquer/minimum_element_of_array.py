@@ -14,7 +14,6 @@ It returns the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+
 from __future__ import annotations
 
 import random
-from typing import Any
 
 
 def partition(array: list, starting_index: int, ending_index: int) -> int:
@@ -66,7 +65,7 @@ def randomized_partition(array: list, starting_index: int, ending_index: int) ->
 
 def selection_sort(
     array: list, starting_index: int, ending_index: int, smallest_element: int
-) -> list | None | Any:
+) -> list | None:
     """
     Returns a list of sorted array elements using selection sort.
     Using selection to find a minimum is O(n) overkill vs. a linear scan — the
