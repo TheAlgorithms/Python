@@ -15,7 +15,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def rec_insertion_sort(collection: MutableSequence[T], n: int) -> None:
+def rec_insertion_sort[T](collection: MutableSequence[T], n: int) -> None:
     """
     Given a collection of comparable elements and its length, sorts the
     collection in place in ascending order.
@@ -51,7 +51,7 @@ def rec_insertion_sort(collection: MutableSequence[T], n: int) -> None:
     rec_insertion_sort(collection, n - 1)
 
 
-def insert_next(collection: MutableSequence[T], index: int) -> None:
+def insert_next[T](collection: MutableSequence[T], index: int) -> None:
     """
     Inserts the '(index-1)th' element into place
 
