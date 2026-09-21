@@ -138,6 +138,7 @@ def test_rec_insertion_sort(case) -> None:
         gnome_sort,
         insertion_sort,
         merge_sort,
+        odd_even_sort,
         pancake_sort,
         selection_sort,
         shrink_shell_sort,
