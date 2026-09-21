@@ -385,6 +385,7 @@
     * [Lexicographical Numbers](data_structures/stacks/lexicographical_numbers.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
     * [Postfix Evaluation](data_structures/stacks/postfix_evaluation.py)
+    * [Postfix To Infix Conversion](data_structures/stacks/postfix_to_infix_conversion.py)
     * [Prefix Evaluation](data_structures/stacks/prefix_evaluation.py)
     * [Stack](data_structures/stacks/stack.py)
     * [Stack Tracking Min Max](data_structures/stacks/stack_tracking_min_max.py)
