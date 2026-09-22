@@ -1,5 +1,5 @@
 """
-The algorithm finds the pattern in given text using following rule.
+Find the pattern in the given text using the following rule.
 
 The bad-character rule considers the mismatched character in Text.
 The next occurrence of that character to the left in Pattern is found,
@@ -11,11 +11,14 @@ If the mismatched character does not occur to the left in Pattern,
 a shift is proposed that moves the entirety of Pattern past
 the point of mismatch in the text.
 
-If there is no mismatch then the pattern matches with text block.
+If there is no mismatch, then the pattern matches the text block.
 
-Time Complexity : O(n/m)
+Time Complexity : O(n/m) average case with bad character heuristic
     n=length of main string
     m=length of pattern string
+
+Note: The bad character shift requires a while loop so positions are
+    actually skipped. A for loop ignores loop-variable reassignment.
 """
 
 
@@ -26,10 +29,10 @@ class BoyerMooreSearch:
         bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         positions = bms.bad_character_heuristic()
 
-    where 'positions' contain the locations where the pattern was matched.
+    where 'positions' contains the locations where the pattern was matched.
     """
 
-    def __init__(self, text: str, pattern: str):
+    def __init__(self, text: str, pattern: str) -> None:
         self.text, self.pattern = text, pattern
         self.textLen, self.patLen = len(text), len(pattern)
 
@@ -56,8 +59,8 @@ class BoyerMooreSearch:
 
     def mismatch_in_text(self, current_pos: int) -> int:
         """
-        Find the index of mis-matched character in text when compared with pattern
-        from last.
+        Find the index of the mismatched character in text when compared with pattern
+        from the last.
 
         Parameters :
             current_pos (int): current index position of text
@@ -78,23 +81,47 @@ class BoyerMooreSearch:
 
     def bad_character_heuristic(self) -> list[int]:
         """
-        Finds the positions of the pattern location.
+        Finds the positions of the pattern in text using the bad character
+        heuristic. A while loop is used so the shift actually skips
+        positions, achieving O(n/m) average performance instead of the
+        O(nm) brute-force that a for loop would produce.
 
         >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.bad_character_heuristic()
         [0, 3]
+
+        >>> bms = BoyerMooreSearch(text="AAAAA", pattern="AB")
+        >>> bms.bad_character_heuristic()
+        []
+
+        >>> bms = BoyerMooreSearch(text="ABABAB", pattern="ABA")
+        >>> bms.bad_character_heuristic()
+        [0, 2]
+
+        >>> bms = BoyerMooreSearch(text="", pattern="AB")
+        >>> bms.bad_character_heuristic()
+        []
+
+        >>> bms2 = BoyerMooreSearch(text="AAAAAA", pattern="AA")
+        >>> bms2.bad_character_heuristic()
+        [0, 1, 2, 3, 4]
+
+        >>> bms3 = BoyerMooreSearch(text="ABCDEF", pattern="XY")
+        >>> bms3.bad_character_heuristic()
+        []
         """
 
         positions = []
-        for i in range(self.textLen - self.patLen + 1):
+        i = 0
+        while i <= self.textLen - self.patLen:
             mismatch_index = self.mismatch_in_text(i)
             if mismatch_index == -1:
                 positions.append(i)
+                i += 1
             else:
                 match_index = self.match_in_pattern(self.text[mismatch_index])
-                i = (
-                    mismatch_index - match_index
-                )  # shifting index lgtm [py/multiple-definition]
+                # Use max to prevent shifting backwards
+                i = max(i + 1, mismatch_index - match_index)
         return positions
 
 
