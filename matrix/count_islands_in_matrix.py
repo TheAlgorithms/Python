@@ -13,10 +13,10 @@ class Matrix:  # Public class to implement a graph
         3
         >>> m.COL
         4
-        >>> m.graph
+        >>> m.graph  # doctest: +NORMALIZE_WHITESPACE
         [[True, False, False, False],
-        ...[True, False, True, False],
-        ...[False, False, True, True]]
+         [True, False, True, False],
+         [False, False, True, True]]
         """
         self.graph = graph
         self.ROW = len(graph)
@@ -57,10 +57,10 @@ class Matrix:  # Public class to implement a graph
         ...              [False, True, False],
         ...              [True, False, True]])
         >>> m.diffs(0, 0, visited)
-        >>> visited
+        >>> visited  # doctest: +NORMALIZE_WHITESPACE
         [[True, True, False],
-        ...[False, True, False],
-        ...[True, False, True]]
+         [False, True, False],
+         [True, False, True]]
         """
         row_nbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
         col_nbr = [-1, 0, 1, -1, 1, -1, 0, 1]
