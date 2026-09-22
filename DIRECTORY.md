@@ -403,6 +403,8 @@
   * Trie
     * [Radix Tree](data_structures/trie/radix_tree.py)
     * [Trie](data_structures/trie/trie.py)
+  * Two Pointer
+    * [Is Palindrome](data_structures/two_pointer/is_palindrome.py)
 
 ## [Digital Image Processing](digital_image_processing)
   * [Change Brightness](digital_image_processing/change_brightness.py)
