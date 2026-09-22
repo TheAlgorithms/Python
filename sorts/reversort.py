@@ -27,7 +27,7 @@ class Comparable(Protocol):
 T = TypeVar("T", bound=Comparable)
 
 
-def reversort(collection: list[T]) -> list[T]:
+def reversort[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sort a list using the Reversort algorithm.
 
@@ -107,7 +107,7 @@ def reversort(collection: list[T]) -> list[T]:
     return arr
 
 
-def reversort_cost(collection: list[T]) -> int:
+def reversort_cost[T: Comparable](collection: list[T]) -> int:
     """
     Calculate the cost of sorting using Reversort.
 
