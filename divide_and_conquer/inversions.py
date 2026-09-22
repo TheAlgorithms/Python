@@ -118,7 +118,7 @@ def _count_cross_inversions(p, q):
     return r, num_inversion
 
 
-def main():
+def main() -> None:
     arr_1 = [10, 2, 1, 5, 5, 2, 11]
 
     # this arr has 8 inversions:

@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 
 
 class HarrisCorner:
-    def __init__(self, k: float, window_size: int):
+    def __init__(self, k: float, window_size: int) -> None:
         """
         k : is an empirically determined constant in [0.04,0.06]
         window_size : neighbourhoods considered
