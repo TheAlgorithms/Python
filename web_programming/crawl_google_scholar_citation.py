@@ -3,7 +3,15 @@ Get the citation from google scholar
 using title and year of publication, and volume and pages of journal.
 """
 
-import requests
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "beautifulsoup4",
+#     "httpx2",
+# ]
+# ///
+
+import httpx2
 from bs4 import BeautifulSoup
 
 
@@ -21,7 +29,7 @@ def get_citation(base_url: str, params: dict) -> str:
     """
     # Send a GET request to the URL with the specified parameters
     soup = BeautifulSoup(
-        requests.get(base_url, params=params, timeout=10).content, "html.parser"
+        httpx2.get(base_url, params=params, timeout=10).content, "html.parser"
     )
 
     # Find the div element with class 'gs_ri' that contains citation information

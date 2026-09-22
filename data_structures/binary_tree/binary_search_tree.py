@@ -183,8 +183,7 @@ class BinarySearchTree:
                     if parent_node.left is None:
                         parent_node.left = new_node  # We insert the new node in a leaf
                         break
-                    else:
-                        parent_node = parent_node.left
+                    parent_node = parent_node.left
                 elif parent_node.right is None:
                     parent_node.right = new_node
                     break
@@ -224,12 +223,11 @@ class BinarySearchTree:
 
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
-        else:
-            node = self.root
-            # use lazy evaluation here to avoid NoneType Attribute error
-            while node is not None and node.value is not value:
-                node = node.left if value < node.value else node.right
-            return node
+        node = self.root
+        # use lazy evaluation here to avoid NoneType Attribute error
+        while node is not None and node.value is not value:
+            node = node.left if value < node.value else node.right
+        return node
 
     def get_max(self, node: Node | None = None) -> Node | None:
         """

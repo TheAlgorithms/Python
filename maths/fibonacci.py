@@ -7,6 +7,8 @@ the Binet's formula function because the Binet formula function  uses floats
 
 NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
+NOTE 3: the matrix function is the fastest and most memory efficient for large n
+
 
 See benchmark numbers in __main__ for performance comparisons/
 https://en.wikipedia.org/wiki/Fibonacci_number for more information
@@ -17,6 +19,9 @@ from collections.abc import Iterator
 from math import sqrt
 from time import time
 
+import numpy as np
+from numpy import ndarray
+
 
 def time_func(func, *args, **kwargs):
     """
@@ -24,11 +29,20 @@ def time_func(func, *args, **kwargs):
     """
     start = time()
     output = func(*args, **kwargs)
-    end = time()
-    if int(end - start) > 0:
-        print(f"{func.__name__} runtime: {(end - start):0.4f} s")
+    duration = time() - start
+
+    # Adjust the output unit based on the time taken
+    if duration >= 1:
+        unit = "s"
+        time_taken = duration
+    elif duration >= 0.001:
+        unit = "ms"
+        time_taken = duration * 1000
     else:
-        print(f"{func.__name__} runtime: {(end - start) * 1000:0.4f} ms")
+        unit = "µs"
+        time_taken = duration * 1_000_000
+
+    print(f"{func.__name__} runtime: {time_taken:0.4f} {unit}")
     return output
 
 
@@ -86,15 +100,15 @@ def fib_iterative(n: int) -> list[int]:
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
+    >>> fib_recursive(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_recursive(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_recursive(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_recursive(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_recursive(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
@@ -114,7 +128,7 @@ def fib_recursive(n: int) -> list[int]:
         >>> fib_recursive_term(-1)
         Traceback (most recent call last):
             ...
-        Exception: n is negative
+        ValueError: n is negative
         """
         if i < 0:
             raise ValueError("n is negative")
@@ -130,15 +144,15 @@ def fib_recursive(n: int) -> list[int]:
 def fib_recursive_cached(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
+    >>> fib_recursive_cached(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_recursive_cached(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_recursive_cached(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_recursive_cached(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_recursive_cached(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
@@ -171,14 +185,14 @@ def fib_memoization(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5]
     >>> fib_memoization(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_memoization(-1)
     Traceback (most recent call last):
         ...
     ValueError: n is negative
     """
     if n < 0:
         raise ValueError("n is negative")
-    # Cache must be outside recursuive function
+    # Cache must be outside recursive function
     # other it will reset every time it calls itself.
     cache: dict[int, int] = {0: 0, 1: 1, 2: 1}  # Prefilled cache
 
@@ -230,6 +244,88 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
+def matrix_pow_np(m: ndarray, power: int) -> ndarray:
+    """
+    Raises a matrix to the power of 'power' using binary exponentiation.
+
+    Args:
+        m: Matrix as a numpy array.
+        power: The power to which the matrix is to be raised.
+
+    Returns:
+        The matrix raised to the power.
+
+    Raises:
+        ValueError: If power is negative.
+
+    >>> m = np.array([[1, 1], [1, 0]], dtype=int)
+    >>> matrix_pow_np(m, 0)  # Identity matrix when raised to the power of 0
+    array([[1, 0],
+           [0, 1]])
+
+    >>> matrix_pow_np(m, 1)  # Same matrix when raised to the power of 1
+    array([[1, 1],
+           [1, 0]])
+
+    >>> matrix_pow_np(m, 5)
+    array([[8, 5],
+           [5, 3]])
+
+    >>> matrix_pow_np(m, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: power is negative
+    """
+    result = np.array([[1, 0], [0, 1]], dtype=int)  # Identity Matrix
+    base = m
+    if power < 0:  # Negative power is not allowed
+        raise ValueError("power is negative")
+    while power:
+        if power % 2 == 1:
+            result = np.dot(result, base)
+        base = np.dot(base, base)
+        power //= 2
+    return result
+
+
+def fib_matrix_np(n: int) -> int:
+    """
+    Calculates the n-th Fibonacci number using matrix exponentiation.
+    https://www.nayuki.io/page/fast-fibonacci-algorithms#:~:text=
+    Summary:%20The%20two%20fast%20Fibonacci%20algorithms%20are%20matrix
+
+    Args:
+        n: Fibonacci sequence index
+
+    Returns:
+        The n-th Fibonacci number.
+
+    Raises:
+        ValueError: If n is negative.
+
+    >>> fib_matrix_np(0)
+    0
+    >>> fib_matrix_np(1)
+    1
+    >>> fib_matrix_np(5)
+    5
+    >>> fib_matrix_np(10)
+    55
+    >>> fib_matrix_np(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n is negative
+    """
+    if n < 0:
+        raise ValueError("n is negative")
+    if n == 0:
+        return 0
+
+    m = np.array([[1, 1], [1, 0]], dtype=int)
+    result = matrix_pow_np(m, n - 1)
+    return int(result[0, 0])
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
@@ -242,3 +338,4 @@ if __name__ == "__main__":
     time_func(fib_memoization, num)  # 0.0100 ms
     time_func(fib_recursive_cached, num)  # 0.0153 ms
     time_func(fib_recursive, num)  # 257.0910 ms
+    time_func(fib_matrix_np, num)  # 0.0000 ms
