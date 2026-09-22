@@ -9,11 +9,11 @@ This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 
@@ -24,7 +24,7 @@ def world_covid19_stats(
     Return a dict of current worldwide COVID-19 statistics
     """
     soup = BeautifulSoup(
-        httpx.get(url, timeout=10, follow_redirects=True).text, "html.parser"
+        httpx2.get(url, timeout=10, follow_redirects=True).text, "html.parser"
     )
     keys = soup.find_all("h1")
     values = soup.find_all("div", {"class": "maincounter-number"})
