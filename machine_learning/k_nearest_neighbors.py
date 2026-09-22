@@ -1,5 +1,5 @@
 """
-k-Nearest Neighbours (kNN) is a simple non-parametric supervised learning
+k-Nearest Neighbors (kNN) is a simple non-parametric supervised learning
 algorithm used for classification. Given some labelled training data, a given
 point is classified using its k nearest neighbours according to some distance
 metric. The most commonly occurring label among the neighbours becomes the label
@@ -16,6 +16,7 @@ from collections import Counter
 from heapq import nsmallest
 
 import numpy as np
+from numpy.typing import NDArray
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
@@ -23,8 +24,8 @@ from sklearn.model_selection import train_test_split
 class KNN:
     def __init__(
         self,
-        train_data: np.ndarray[float],
-        train_target: np.ndarray[int],
+        train_data: NDArray[np.float64],
+        train_target: NDArray[np.int64],
         class_labels: list[str],
     ) -> None:
         """
@@ -34,7 +35,7 @@ class KNN:
         self.labels = class_labels
 
     @staticmethod
-    def _euclidean_distance(a: np.ndarray[float], b: np.ndarray[float]) -> float:
+    def _euclidean_distance(a: NDArray[np.float64], b: NDArray[np.float64]) -> float:
         """
         Calculate the Euclidean distance between two points
         >>> KNN._euclidean_distance(np.array([0, 0]), np.array([3, 4]))
@@ -44,7 +45,7 @@ class KNN:
         """
         return float(np.linalg.norm(a - b))
 
-    def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
+    def classify(self, pred_point: NDArray[np.float64], k: int = 5) -> str:
         """
         Classify a given point using the kNN algorithm
         >>> train_X = np.array(

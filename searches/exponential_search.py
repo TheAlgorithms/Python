@@ -17,7 +17,10 @@ from __future__ import annotations
 
 
 def binary_search_by_recursion(
-    sorted_collection: list[int], item: int, left: int = 0, right: int = -1
+    sorted_collection: list[int],
+    item: int,
+    left: int = 0,
+    right: int | None = None,
 ) -> int:
     """Pure implementation of the binary search algorithm in Python using recursion
 
@@ -27,7 +30,7 @@ def binary_search_by_recursion(
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :param left: starting index for the search
-    :param right: ending index for the search
+    :param right: ending index for the search (defaults to the last index)
     :return: index of the found item or -1 if the item is not found
 
     Examples:
@@ -39,22 +42,34 @@ def binary_search_by_recursion(
     1
     >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], -1)
+    -1
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 16)
+    -1
     """
-    if right < 0:
-        right = len(sorted_collection) - 1
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
-    if right < left:
-        return -1
+    if right is None:
+        right = len(sorted_collection) - 1
 
-    midpoint = left + (right - left) // 2
+    # Recursive core: ``left`` and ``right`` are always concrete indices here, so the
+    # window can only shrink. Keeping the recursion flat (no ``None`` sentinel, no
+    # re-expansion) is what prevents the runaway recursion when the item sits below
+    # ``sorted_collection[0]`` and ``right`` legitimately drops below ``left``.
+    def _search(left: int, right: int) -> int:
+        if right < left:
+            return -1
 
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
-    else:
-        return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
+        midpoint = left + (right - left) // 2
+
+        if sorted_collection[midpoint] == item:
+            return midpoint
+        elif sorted_collection[midpoint] > item:
+            return _search(left, midpoint - 1)
+        else:
+            return _search(midpoint + 1, right)
+
+    return _search(left, right)
 
 
 def exponential_search(sorted_collection: list[int], item: int) -> int:
@@ -81,12 +96,18 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
+    >>> exponential_search([0, 5, 7, 10, 15], -3)
+    -1
+    >>> exponential_search([0, 5, 7, 10, 15], 20)
+    -1
     >>> exponential_search([], 1)  # Empty array edge case
     -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
 
+    if not sorted_collection:
+        return -1
     if sorted_collection[0] == item:
         return 0
 
