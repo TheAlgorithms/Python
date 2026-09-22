@@ -685,6 +685,7 @@
 
 ## [Hashes](hashes)
   * [Adler32](hashes/adler32.py)
+  * [Array Pairs Divisibility](hashes/array_pairs_divisibility.py)
   * [Chaos Machine](hashes/chaos_machine.py)
   * [Crc32](hashes/crc32.py)
   * [Djb2](hashes/djb2.py)
