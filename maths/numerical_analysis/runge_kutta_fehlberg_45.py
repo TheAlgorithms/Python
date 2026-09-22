@@ -34,12 +34,12 @@ def runge_kutta_fehlberg_45(
     >>> def f(x, y):
     ...     return 1 + y**2
     >>> y = runge_kutta_fehlberg_45(f, 0, 0, 0.2, 1)
-    >>> y[1]
+    >>> float(y[1])
     0.2027100937470787
     >>> def f(x,y):
     ...     return x
     >>> y = runge_kutta_fehlberg_45(f, -1, 0, 0.2, 0)
-    >>> y[1]
+    >>> float(y[1])
     -0.18000000000000002
     >>> y = runge_kutta_fehlberg_45(5, 0, 0, 0.1, 1)
     Traceback (most recent call last):
