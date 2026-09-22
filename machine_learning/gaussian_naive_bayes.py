@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 
 
-def main():
+def main() -> None:
     """
     Gaussian Naive Bayes Example using sklearn function.
     Iris type dataset is used to demonstrate algorithm.

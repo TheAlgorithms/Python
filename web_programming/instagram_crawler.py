@@ -41,7 +41,7 @@ class InstagramUser:
     'Built for developers.'
     """
 
-    def __init__(self, username):
+    def __init__(self, username) -> None:
         self.url = f"https://www.instagram.com/{username}/"
         self.user_data = self.get_json()
 

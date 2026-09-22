@@ -82,7 +82,7 @@ def narcissistic_number(n: int) -> bool:
     return n == sum(int(i) ** expo for i in str(n))
 
 
-def main():
+def main() -> None:
     """
     Request that user input an integer and tell them if it is Armstrong number.
     """
