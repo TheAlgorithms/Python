@@ -8,14 +8,14 @@ information will include title, URL, price, ratings, and the discount available.
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 #     "pandas",
 # ]
 # ///
 
 from itertools import zip_longest
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
@@ -34,7 +34,7 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
         "Accept-Language": "en-US, en;q=0.5",
     }
     soup = BeautifulSoup(
-        httpx.get(url, headers=header, timeout=10).text, features="lxml"
+        httpx2.get(url, headers=header, timeout=10).text, features="lxml"
     )
     # Initialize a Pandas dataframe with the column titles
     data_frame = DataFrame(
