@@ -74,7 +74,6 @@
   * [Word Break](backtracking/word_break.py)
   * [Word Ladder](backtracking/word_ladder.py)
   * [Word Search](backtracking/word_search.py)
-  * [Weighted Job Scheduling](backtracking/weighted_job_scheduling.py)
 
 ## [Bit Manipulation](bit_manipulation)
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
@@ -506,6 +505,7 @@
   * [Trapped Water](dynamic_programming/trapped_water.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
+  * [Weighted Job Scheduling](dynamic_programming/weighted_job_scheduling.py)
   * [Wildcard Matching](dynamic_programming/wildcard_matching.py)
   * [Word Break](dynamic_programming/word_break.py)
 
@@ -1087,8 +1087,6 @@
   * [Token Bucket](other/token_bucket.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
   * [Word Search](other/word_search.py)
-  * [Weighted Job Scheduling](backtracking/weighted_job_scheduling.py)
-
 
 ## [Physics](physics)
   * [Altitude Pressure](physics/altitude_pressure.py)
