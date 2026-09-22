@@ -109,6 +109,7 @@ def get_image(
     """
     img = Image.new("RGB", (image_width, image_height))
     pixels = img.load()
+    assert pixels is not None
 
     # loop through the image-coordinates
     for image_x in range(image_width):
