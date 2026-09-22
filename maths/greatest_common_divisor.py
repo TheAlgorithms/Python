@@ -60,7 +60,7 @@ def gcd_by_iterative(x: int, y: int) -> int:
     return abs(x)
 
 
-def main():
+def main() -> None:
     """
     Call Greatest Common Divisor function.
     """
@@ -73,7 +73,7 @@ def main():
             f"{greatest_common_divisor(num_1, num_2)}"
         )
         print(f"By iterative gcd({num_1}, {num_2}) = {gcd_by_iterative(num_1, num_2)}")
-    except (IndexError, UnboundLocalError, ValueError):
+    except IndexError, UnboundLocalError, ValueError:
         print("Wrong input")
 
 
