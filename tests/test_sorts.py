@@ -23,6 +23,7 @@ from typing import NamedTuple
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
+from sorts.bogo_sort import bogo_sort
 from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
@@ -154,3 +155,11 @@ def test_sort_rejects_non_comparable_items(sort) -> None:
 def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
     with pytest.raises(TypeError):
         rec_insertion_sort([1, "a"], 2)
+
+
+def test_bogo_sort_comparable_items() -> None:
+    assert bogo_sort(["c", "a", "b"]) == ["a", "b", "c"]
+    assert bogo_sort([2.5, -1.0, 0.0]) == [-1.0, 0.0, 2.5]
+
+    with pytest.raises(TypeError):
+        bogo_sort([1, "a"])
