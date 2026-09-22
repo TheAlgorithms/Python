@@ -32,7 +32,7 @@ def modular_exponential(base: int, power: int, mod: int):
     return result
 
 
-def main():
+def main() -> None:
     """Call Modular Exponential Function."""
     print(modular_exponential(3, 200, 13))
 
