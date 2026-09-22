@@ -15,7 +15,7 @@ files referenced by open PRs but that do not exist in the working directory (e.g
 deleted, renamed, or on a branch not checked out locally).
 
 `DIRECTORY.md` is treated specially and reported in its own section at the very
-bottom. It is auto-generated, so nearly every PR touches it and it would
+bottom. It is auto-generated, so nearly every PR touches it, and it would
 otherwise dominate the "possible merge conflicts" list and distract busy
 maintainers. A merge conflict caused only by `DIRECTORY.md` is trivial to clear:
 choose __accept both__ in the GitHub UI. The bottom section therefore separates
@@ -31,17 +31,19 @@ Only the distinct total equals `existing + missing`, since those are deduped.
 
 Run status is also written to stderr with:
   - Number of PRs from `get_open_prs()`
-  - Number of file touches from `get_pr_files()` and distinct files touched
+  - Number of file touches from `get_pr_files_async()` and distinct files touched
   - Number of existing and missing files
 
 Requirements: gh (GitHub CLI), authenticated (`gh auth login`)
 
 Usage:
-    ./pr_file_map.py
-    ./pr_file_map.py > report.md
+    scripts/pr_file_map.py
+    scripts/pr_file_map.py > report.md
 """
 
+import asyncio
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -49,9 +51,16 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
-# Auto-generated index of the repo. Almost every PR touches it, so a merge
-# conflict here is expected and is resolved with "accept both" in the GitHub UI.
 DIRECTORY_FILE = "DIRECTORY.md"
+
+# How many `gh pr view` calls to run concurrently. The slow "first pass" is one
+# network round-trip per open PR, so it is I/O-bound and gains a lot from
+# concurrency; the cap keeps us polite to the GitHub API and avoids secondary
+# rate limits. Override with the PR_FILE_MAP_CONCURRENCY environment variable.
+DEFAULT_CONCURRENCY = 10
+
+# Open PRs to skip in the report, e.g. [123, 456, 789] ignores #123, #456, #789.
+ignore_pull_request: set[int] = {15105, 15142, 15356}
 
 
 def run_gh(args: list[str]) -> str:
@@ -101,7 +110,7 @@ def git_root() -> Path | None:
 def script_display_path() -> Path:
     """This script's path relative to the git root (falls back to absolute)."""
     script_path = Path(__file__).resolve()
-    if (root := git_root()) is not None:
+    if root := git_root():
         try:
             return script_path.relative_to(root.resolve())
         except ValueError:
@@ -113,13 +122,69 @@ def get_open_prs() -> list[dict]:
     raw = run_gh(
         ["pr", "list", "--state", "open", "--limit", "1000", "--json", "number,title"]
     )
-    return json.loads(raw)
+    ignore = ignore_pull_request
+    return [pr for pr in json.loads(raw) if pr["number"] not in ignore]
 
 
-def get_pr_files(pr_number: int) -> list[str]:
-    raw = run_gh(["pr", "view", str(pr_number), "--json", "files"])
+async def run_gh_async(args: list[str], semaphore: asyncio.Semaphore) -> str:
+    """Async counterpart of run_gh, throttled by a shared semaphore.
+
+    The semaphore bounds how many `gh` subprocesses run at once so we speed up
+    the many-round-trip "first pass" without flooding the GitHub API.
+    """
+    async with semaphore:
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                "gh",
+                *args,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+        except FileNotFoundError:
+            sys.exit("Error: 'gh' (GitHub CLI) is not installed or not in PATH.")
+        stdout, stderr = await proc.communicate()
+    if proc.returncode != 0:
+        sys.exit(f"Error running 'gh {' '.join(args)}':\n{stderr.decode().strip()}")
+    return stdout.decode()
+
+
+async def get_pr_files_async(pr_number: int, semaphore: asyncio.Semaphore) -> list[str]:
+    raw = await run_gh_async(
+        ["pr", "view", str(pr_number), "--json", "files"], semaphore
+    )
     data = json.loads(raw)
     return [f["path"] for f in data.get("files", [])]
+
+
+async def gather_pr_files(
+    pr_numbers: list[int], concurrency: int
+) -> dict[int, list[str]]:
+    """Fetch each PR's file list concurrently, capped at ``concurrency``.
+
+    Returns a ``{pr_number: [paths]}`` mapping keyed in the same order as
+    ``pr_numbers`` so downstream output stays deterministic.
+    """
+    semaphore = asyncio.Semaphore(concurrency)
+    results = await asyncio.gather(
+        *(get_pr_files_async(number, semaphore) for number in pr_numbers)
+    )
+    return dict(zip(pr_numbers, results))
+
+
+def resolve_concurrency() -> int:
+    """Read PR_FILE_MAP_CONCURRENCY (a positive int) or fall back to the default."""
+    raw = os.environ.get("PR_FILE_MAP_CONCURRENCY")
+    if raw is None:
+        return DEFAULT_CONCURRENCY
+    try:
+        value = int(raw)
+    except ValueError:
+        value = 0
+    if value < 1:
+        sys.exit(
+            f"Error: PR_FILE_MAP_CONCURRENCY must be a positive integer, got {raw!r}."
+        )
+    return value
 
 
 def split_directory_conflicts(
@@ -179,7 +244,11 @@ def render_directory_section(
         f"### `{len(directory_only)}` PRs whose only overlap is "
         f"`{DIRECTORY_FILE}` (safe to accept both)\n"
     )
-    print(" ".join(f"#{n}" for n in directory_only) if directory_only else "_None._")
+    print(
+        "- " + ", ".join(f"#{n}" for n in directory_only)
+        if directory_only
+        else "_None._"
+    )
     print(
         f"\n### `{len(directory_plus_other)}` PRs that also overlap on other "
         "files (need a review or rebase)\n"
@@ -203,19 +272,27 @@ def main() -> None:
     print(f"PR count from get_open_prs(): {pr_count}", file=sys.stderr)
 
     file_to_prs: dict[str, list[int]] = defaultdict(list)
-    pr_to_files: dict[int, list[str]] = {}
     touch_count = 0  # every (PR, file) pair; a file may be touched by many PRs
 
-    for pr in prs:
-        pr_number = pr["number"]
-        pr_files = get_pr_files(pr_number)
-        pr_to_files[pr_number] = pr_files
+    # First pass: one `gh pr view` per PR. This is the slow, network-bound part,
+    # so fetch them concurrently (bounded by resolve_concurrency()).
+    concurrency = resolve_concurrency()
+    pr_numbers = [pr["number"] for pr in prs]
+    print(
+        f"Fetching files for {pr_count} PRs "
+        f"(up to {concurrency} concurrent gh calls)...",
+        file=sys.stderr,
+    )
+    pr_to_files = asyncio.run(gather_pr_files(pr_numbers, concurrency))
+
+    for pr_number in pr_numbers:
+        pr_files = pr_to_files[pr_number]
         touch_count += len(pr_files)
         for path in pr_files:
             file_to_prs[path].append(pr_number)
     distinct_count = len(file_to_prs)
     print(
-        f"File touches from get_pr_files(): {touch_count} "
+        f"File touches from get_pr_files_async(): {touch_count} "
         f"across {distinct_count} distinct files",
         file=sys.stderr,
     )
@@ -251,9 +328,9 @@ def main() -> None:
     )
 
     # --- Render GitHub-flavored Markdown ---
-    print("# Open Pull Request File Map\n")
+    generated = f"{datetime.now(UTC):%d %b %Y at %H:%M} {UTC}"
+    print(f"# Open Pull Request File Map: {generated}\n")
     print(f"- Script: `{script_display_path()}`")
-    print(f"- Generated (UTC): `{datetime.now(UTC).isoformat()}`")
     print(f"- Number of PRs: `{pr_count}`")
     print(f"- File touches (PR x file): `{touch_count}`")
     print(f"- Distinct files touched: `{distinct_count}`")
