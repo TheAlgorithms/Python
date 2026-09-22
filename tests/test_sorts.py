@@ -22,8 +22,8 @@ from typing import NamedTuple
 
 import pytest
 
-from sorts.bogo_sort import bogo_sort
 from sorts.binary_insertion_sort import binary_insertion_sort
+from sorts.bogo_sort import bogo_sort
 from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
