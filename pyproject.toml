@@ -22,6 +22,7 @@ dependencies = [
   "numpy>=2.1.3",
   "pandas>=2.3.3",
   "pillow>=11.3",
+  "polars>=1.44.2",
   "rich>=13.9.4",
   "scikit-learn>=1.9.1",
   "scipy>=1.18.1",
