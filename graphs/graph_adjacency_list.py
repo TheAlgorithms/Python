@@ -21,14 +21,14 @@ from __future__ import annotations
 import random
 import unittest
 from pprint import pformat
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 import pytest
 
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class GraphAdjacencyList[T]:
     def __init__(
         self, vertices: list[T], edges: list[list[T]], directed: bool = True
     ) -> None:
@@ -61,6 +61,15 @@ class GraphAdjacencyList(Generic[T]):
         """
         Adds a vertex to the graph. If the given vertex already exists,
         a ValueError will be thrown.
+
+        >>> g = GraphAdjacencyList(vertices=[], edges=[], directed=False)
+        >>> g.add_vertex("A")
+        >>> g.adj_list
+        {'A': []}
+        >>> g.add_vertex("A")
+        Traceback (most recent call last):
+        ...
+        ValueError: Incorrect input: A is already in the graph.
         """
         if self.contains_vertex(vertex):
             msg = f"Incorrect input: {vertex} is already in the graph."
@@ -448,7 +457,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -479,7 +488,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             for edge in edges:
                 if len(more_random_edges) == len(random_edges):
                     break
-                elif edge not in more_random_edges and edge not in random_edges:
+                if edge not in more_random_edges and edge not in random_edges:
                     more_random_edges.append(edge)
 
         for i, _ in enumerate(random_edges):
@@ -502,7 +511,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
@@ -516,7 +525,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for i in range(101):
@@ -530,7 +539,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         (
             undirected_graph,
             directed_graph,
-            random_vertices,
+            _random_vertices,
             random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
@@ -555,7 +564,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             for edge in edges:
                 if len(more_random_edges) == len(random_edges):
                     break
-                elif edge not in more_random_edges and edge not in random_edges:
+                if edge not in more_random_edges and edge not in random_edges:
                     more_random_edges.append(edge)
 
         for edge in more_random_edges:
@@ -569,7 +578,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             undirected_graph,
             directed_graph,
             random_vertices,
-            random_edges,
+            _random_edges,
         ) = self.__generate_graphs(20, 0, 100, 4)
 
         for vertex in random_vertices:
