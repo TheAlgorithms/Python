@@ -46,10 +46,10 @@ def encrypt(plaintext: str, key: int) -> str:
     :return: Ciphertext string
     :raises ValueError: if key <= 0
     """
-    if key <= 0:
-        raise ValueError("Key must be a positive integer")
-    if key == 1 or len(plaintext) <= key:
-        return plaintext
+    if key < 2:
+        raise ValueError("Key must be greater than or equal to 2")
+    if len(plaintext) <= key:
+        raise ValueError("Key must be greater than the length of plaintext")
 
     # Read every key-th character starting from each row offset
     return "".join(plaintext[row::key] for row in range(key))
