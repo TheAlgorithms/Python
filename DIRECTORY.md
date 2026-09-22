@@ -582,7 +582,6 @@
   * [Geometry](geometry/geometry.py)
   * [Graham Scan](geometry/graham_scan.py)
   * [Jarvis March](geometry/jarvis_march.py)
-  * [Segment Intersection](geometry/segment_intersection.py)
   * [Monotone Chain](geometry/monotone_chain.py)
   * [Ramer Douglas Peucker](geometry/ramer_douglas_peucker.py)
   * [Rotating Calipers](geometry/rotating_calipers.py)
