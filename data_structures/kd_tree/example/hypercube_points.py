@@ -1,3 +1,11 @@
+#  Created by: Ramy-Badr-Ahmed (https://github.com/Ramy-Badr-Ahmed)
+#  in Pull Request: #11532
+#  https://github.com/TheAlgorithms/Python/pull/11532
+#
+#  Please mention me (@Ramy-Badr-Ahmed) in any issue or pull request
+#  addressing bugs/corrections to this file.
+#  Thank you!
+
 import numpy as np
 
 
