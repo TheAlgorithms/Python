@@ -31,7 +31,7 @@ def push(seed: float) -> None:
     Args:
         seed: A numeric seed to push into the machine.
     """
-    global buffer_space, params_space, machine_time, K, m, t
+    global buffer_space, params_space, machine_time
 
     # Choosing Dynamical Systems (All)
     for key, value in enumerate(buffer_space):
@@ -70,7 +70,7 @@ def pull() -> int:
     >>> 0 <= pull() <= 0xFFFFFFFF
     True
     """
-    global buffer_space, params_space, machine_time, K, m, t
+    global buffer_space, params_space, machine_time
 
     # PRNG (Xorshift by George Marsaglia)
     def xorshift(x: int, y: int) -> int:
@@ -99,12 +99,16 @@ def pull() -> int:
     # Machine Time
     machine_time += 1
 
-    return xorshift(x, y) % 0xFFFFFFFF
+    # PRNG (Xorshift by George Marsaglia)
+    x ^= y >> 13
+    y ^= x << 17
+    x ^= y >> 5
+    return x & 0xFFFFFFFF
 
 
 def reset() -> None:
     """Reset the chaos machine to its initial state."""
-    global buffer_space, params_space, machine_time, K, m, t
+    global buffer_space, params_space, machine_time
 
     buffer_space = K.copy()
     params_space = [0] * m
