@@ -121,7 +121,7 @@ class Ellipse:
         >>> Ellipse(5, 10).perimeter
         48.44210548835644
         >>> Ellipse(1, 10).perimeter
-        48.44210548835644        
+        48.44210548835644
         """
         a, b = self.major_radius, self.minor_radius
         # Use Ramanujan's first approximation for ellipse perimeter
