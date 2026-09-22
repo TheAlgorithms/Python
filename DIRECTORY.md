@@ -1606,6 +1606,7 @@
   * [Reverse Words](strings/reverse_words.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
+  * [String Is Valid Number](strings/string_is_valid_number.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
   * [Suffix Automaton](strings/suffix_automaton.py)
