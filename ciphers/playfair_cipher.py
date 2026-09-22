@@ -24,7 +24,7 @@ import string
 from collections.abc import Generator, Iterable
 
 
-def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, None]:
+def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...]]:
     it = iter(seq)
     while True:
         chunk = tuple(itertools.islice(it, size))
