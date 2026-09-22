@@ -43,6 +43,10 @@ def num_digits_fast(n: int) -> int:
     5
     >>> num_digits_fast(123)
     3
+    >>> num_digits_fast(1000)
+    4
+    >>> num_digits_fast(10**15)
+    16
     >>> num_digits_fast(0)
     1
     >>> num_digits_fast(-1)
@@ -56,7 +60,6 @@ def num_digits_fast(n: int) -> int:
     """
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
-
     return 1 if n == 0 else math.floor(math.log10(abs(n)) + 1)
 
 
