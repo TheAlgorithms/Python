@@ -1,6 +1,6 @@
 """
-Get the citation from google scholar
-using title and year of publication, and volume and pages of journal.
+Get the citation from Google Scholar using the title and year of publication, and the
+journal volume and pages.
 """
 
 # /// script
@@ -31,13 +31,10 @@ def get_citation(base_url: str, params: dict) -> str:
     soup = BeautifulSoup(
         httpx2.get(base_url, params=params, timeout=10).content, "html.parser"
     )
-
     # Find the div element with class 'gs_ri' that contains citation information
     div = soup.find("div", attrs={"class": "gs_ri"})
-
     # Find all links in the div and retrieve the third link (the citation count)
     anchors = div.find("div", attrs={"class": "gs_fl"}).find_all("a")
-
     return anchors[2].get_text()  # Return the text from the third link
 
 
@@ -54,6 +51,5 @@ if __name__ == "__main__":
         "year": 2018,
         "hl": "en",  # Language to be used (English)
     }
-
     # Call the get_citation function with the specified URL and parameters
     print(get_citation("https://scholar.google.com/scholar_lookup", params=params))
