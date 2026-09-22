@@ -38,13 +38,11 @@ def solution(limit: int = 1000000) -> int:
             common_difference = first_term + n / first_term
             if common_difference % 4:  # d must be divisible by 4
                 continue
-            else:
-                common_difference /= 4
-                if (
-                    first_term > common_difference
-                    and first_term < 4 * common_difference
-                ):  # since x, y, z are positive integers
-                    frequency[n] += 1  # so z > 0, a > d and 4d < a
+            common_difference /= 4
+            if (
+                first_term > common_difference and first_term < 4 * common_difference
+            ):  # since x, y, z are positive integers
+                frequency[n] += 1  # so z > 0, a > d and 4d < a
 
     count = sum(1 for x in frequency[1:limit] if x == 10)
 
