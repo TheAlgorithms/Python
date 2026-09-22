@@ -5,7 +5,7 @@ import httpx2
 from .fetch_github_info import AUTHENTICATED_USER_ENDPOINT, fetch_github_info
 
 
-def test_fetch_github_info(monkeypatch):
+def test_fetch_github_info(monkeypatch) -> None:
     class FakeResponse:
         def __init__(self, content) -> None:
             assert isinstance(content, (bytes, str))

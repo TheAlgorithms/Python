@@ -334,7 +334,10 @@ class CPUSchedulerGUI:
     def delete_process(self) -> None:
         """Deletes a selected process."""
         if sel := self.tree.selection():
-            pid = self.tree.item(sel[0])["values"][0]
+            values = self.tree.item(sel[0])["values"]
+            if not values:
+                return
+            pid = values[0]
             self.processes = [p for p in self.processes if p["pid"] != pid]
             self.tree.delete(sel[0])
 

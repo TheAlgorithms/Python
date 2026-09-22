@@ -33,6 +33,32 @@ suggest the fix — never just "rejected".
 - [ ] Descriptive variable and function names (no single letters where a word helps).
 - [ ] Code is formatted and lint-clean (`ruff`, `pre-commit`).
 
+> **Optional hint:** When a PR hand-writes a simple class that is mostly a
+> bundle of fields (a manual `__init__` plus `__repr__`/`__eq__`), it is worth
+> **suggesting** `from typing import NamedTuple` or
+> `from dataclasses import dataclass` where they would simplify the code. These
+> are underutilized tools that our contributors would benefit from using where
+> they make sense. Offer it as an optional improvement, not a blocker — do not
+> request changes solely because a class was written the longhand way.
+
+#### When a PR fails `ruff check`
+
+Don't just report the failure — try the mechanical fixes and recommend the one
+that works, in this order:
+
+1. Run `ruff check --fix file_path.py`. If that makes the file pass, recommend
+   that solution — these are the fixes `ruff` considers **safe**.
+2. If it still fails, run `ruff check --fix --unsafe-fixes file_path.py`. If that
+   makes the file pass **and** the resulting diff is genuinely safe (it preserves
+   behavior — review it, don't trust it blindly), recommend that solution and note
+   that it required `--unsafe-fixes`.
+3. If neither passes, or the unsafe fix would change behavior, describe the
+   remaining rule violations and the manual change the author needs to make.
+
+Always quote the exact rule code(s) `ruff` reports (e.g., `ruff rule UP047`,
+`ruff rule RUF100`) so the author can run those commands to read the rules being
+flagged. Also, paste the concrete command you ran.
+
 ### 3. Other Requirements for Submissions
 
 - [ ] At least one **Wikipedia (or equivalent) URL** documenting the algorithm.
@@ -43,7 +69,7 @@ suggest the fix — never just "rejected".
 
 Emit exactly these headings so reviews are comparable and easy to automate:
 
-```
+```text
 ### Is this an algorithm? — <yes/no + one-line why>
 ### Duplicate / prior-art check — <#NNNN | none found>
 ### Coding style — <pass | issues: …>

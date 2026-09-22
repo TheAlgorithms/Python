@@ -1,7 +1,7 @@
 from PIL import Image
 
 
-def change_brightness(img: Image, level: float) -> Image:
+def change_brightness(img: Image.Image, level: float) -> Image.Image:
     """
     Change the brightness of a PIL Image to a given level.
 
