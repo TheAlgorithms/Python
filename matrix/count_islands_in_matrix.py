@@ -1,8 +1,6 @@
 # An island in matrix is a group of linked areas, all having the same value.
 # This code counts number of islands in a given matrix, with including diagonal
 # connections.
-
-
 class Matrix:  # Public class to implement a graph
     def __init__(self, graph: list[list[bool]]) -> None:
         """
@@ -45,7 +43,7 @@ class Matrix:  # Public class to implement a graph
             0 <= i < self.ROW
             and 0 <= j < self.COL
             and not visited[i][j]
-            and self.graph[i][j]
+            and self.graph[i][j] == 1
         )
 
     def diffs(self, i: int, j: int, visited: list[list[bool]]) -> None:
