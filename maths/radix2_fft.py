@@ -49,7 +49,7 @@ class FFT:
     A*B = (-0-0j)*x^0 + (2+0j)*x^1 + (3-0j)*x^2 + (8-0j)*x^3 + (6+0j)*x^4 + (8+0j)*x^5
     """
 
-    def __init__(self, poly_a=None, poly_b=None):
+    def __init__(self, poly_a=None, poly_b=None) -> None:
         # Input as list
         self.polyA = list(poly_a or [0])[:]
         self.polyB = list(poly_b or [0])[:]
@@ -157,7 +157,7 @@ class FFT:
         return inverce_c
 
     # Overwrite __str__ for print(); Shows A, B and A*B
-    def __str__(self):
+    def __str__(self) -> str:
         a = "A = " + " + ".join(
             f"{coef}*x^{i}" for i, coef in enumerate(self.polyA[: self.len_A])
         )
