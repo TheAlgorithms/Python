@@ -17,14 +17,11 @@ For manual testing run:
 python reversort.py
 """
 
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def reversort[T: Comparable](collection: list[T]) -> list[T]:
