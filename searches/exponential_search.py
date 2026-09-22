@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
 """
-Pure Python implementation of exponential search algorithm
+Pure Python implementation of the exponential search algorithm
 
 For more information, see the Wikipedia page:
 https://en.wikipedia.org/wiki/Exponential_search
 
-For doctests run the following command:
+Run doctests with the following command:
 python3 -m doctest -v exponential_search.py
 
-For manual testing run:
+For manual testing, run:
 python3 exponential_search.py
 """
 
@@ -19,10 +19,10 @@ from __future__ import annotations
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int = 0, right: int = -1
 ) -> int:
-    """Pure implementation of binary search algorithm in Python using recursion
+    """Pure implementation of the binary search algorithm in Python using recursion
 
-    Be careful: the collection must be ascending sorted otherwise, the result will be
-    unpredictable.
+    Be careful: the collection must be ascendingly sorted; otherwise, the result will
+    be unpredictable.
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
@@ -63,14 +63,14 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     For more information, refer to:
     https://en.wikipedia.org/wiki/Exponential_search
 
-    Be careful: the collection must be ascending sorted, otherwise the result will be
-    unpredictable.
+    Be careful: the collection must be ascendingly sorted; otherwise the result will
+    be unpredictable.
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :return: index of the found item or -1 if the item is not found
 
-    The time complexity of this algorithm is O(log i) where i is the index of the item.
+    The time complexity of this algorithm is O(log i), where i is the index of the item.
 
     Examples:
     >>> exponential_search([0, 5, 7, 10, 15], 0)
@@ -81,9 +81,8 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     1
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
-
-        >>> exponential_search([], 1)  # Empty array edge case
-            -1
+    >>> exponential_search([], 1)  # Empty array edge case
+    -1
     """
     if list(sorted_collection) != sorted(sorted_collection):
         raise ValueError("sorted_collection must be sorted in ascending order")
