@@ -196,7 +196,7 @@ Comments which are not on the same line as code should appear ___before___ the c
       return a + b
   ```
 
-  [Install ty](https://docs.astral.sh/ty/installation/) and then pslease use the command `ty check` to test all files or `ty check path/to/file.py` to test a specific file.
+  [Install ty](https://docs.astral.sh/ty/installation/) and then please use the command `ty check` to test all files or `ty check path/to/file.py` to test a specific file.
 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 

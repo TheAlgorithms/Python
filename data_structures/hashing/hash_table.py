@@ -22,7 +22,7 @@ class HashTable:
         self.__aux_list: list = []
         self._keys: dict = {}
 
-    def keys(self):
+    def keys(self) -> dict:
         """
         The keys function returns a dictionary containing the key value pairs.
         key being the index number in hash table and value being the data value.
@@ -48,12 +48,12 @@ class HashTable:
         """
         return self._keys
 
-    def balanced_factor(self):
+    def balanced_factor(self) -> float:
         return sum(1 for slot in self.values if slot is not None) / (
             self.size_table * self.charge_factor
         )
 
-    def hash_function(self, key):
+    def hash_function(self, key) -> int:
         """
         Generates hash for the given key value
 

@@ -1,5 +1,5 @@
 """
-The algorithm finds the pattern in given text using following rule.
+Find the pattern in the given text using the following rule.
 
 The bad-character rule considers the mismatched character in Text.
 The next occurrence of that character to the left in Pattern is found,
@@ -11,7 +11,7 @@ If the mismatched character does not occur to the left in Pattern,
 a shift is proposed that moves the entirety of Pattern past
 the point of mismatch in the text.
 
-If there is no mismatch then the pattern matches with text block.
+If there is no mismatch, then the pattern matches the text block.
 
 Time Complexity : O(n/m) average case with bad character heuristic
     n=length of main string
@@ -29,7 +29,7 @@ class BoyerMooreSearch:
         bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         positions = bms.bad_character_heuristic()
 
-    where 'positions' contain the locations where the pattern was matched.
+    where 'positions' contains the locations where the pattern was matched.
     """
 
     def __init__(self, text: str, pattern: str) -> None:
@@ -59,8 +59,8 @@ class BoyerMooreSearch:
 
     def mismatch_in_text(self, current_pos: int) -> int:
         """
-        Find the index of mis-matched character in text when compared with pattern
-        from last.
+        Find the index of the mismatched character in text when compared with pattern
+        from the last.
 
         Parameters :
             current_pos (int): current index position of text
@@ -89,9 +89,23 @@ class BoyerMooreSearch:
         >>> bms = BoyerMooreSearch(text="ABAABA", pattern="AB")
         >>> bms.bad_character_heuristic()
         [0, 3]
+
+        >>> bms = BoyerMooreSearch(text="AAAAA", pattern="AB")
+        >>> bms.bad_character_heuristic()
+        []
+
+        >>> bms = BoyerMooreSearch(text="ABABAB", pattern="ABA")
+        >>> bms.bad_character_heuristic()
+        [0, 2]
+
+        >>> bms = BoyerMooreSearch(text="", pattern="AB")
+        >>> bms.bad_character_heuristic()
+        []
+
         >>> bms2 = BoyerMooreSearch(text="AAAAAA", pattern="AA")
         >>> bms2.bad_character_heuristic()
         [0, 1, 2, 3, 4]
+
         >>> bms3 = BoyerMooreSearch(text="ABCDEF", pattern="XY")
         >>> bms3.bad_character_heuristic()
         []

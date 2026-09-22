@@ -47,7 +47,7 @@ class CircularQueue:
         """
         return False if self.is_empty() else self.array[self.front]
 
-    def enqueue(self, data):
+    def enqueue(self, data) -> "CircularQueue":
         """
         This function inserts an element at the end of the queue using self.rear value
         as an index.

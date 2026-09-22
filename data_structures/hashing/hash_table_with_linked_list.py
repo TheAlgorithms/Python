@@ -12,7 +12,7 @@ class HashTableWithLinkedList(HashTable):
         self.values[key].appendleft(data)
         self._keys[key] = self.values[key]
 
-    def balanced_factor(self):
+    def balanced_factor(self) -> float:
         return (
             sum(self.charge_factor - len(slot) for slot in self.values)
             / self.size_table

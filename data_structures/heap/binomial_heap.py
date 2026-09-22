@@ -251,7 +251,7 @@ class BinomialHeap:
         """
         return self.min_node.val
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self.size == 0
 
     def delete_min(self):

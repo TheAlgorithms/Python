@@ -158,7 +158,7 @@ class LinkedList:
         node.next = None
         node.previous = None
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self.head is None
 
 

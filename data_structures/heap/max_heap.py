@@ -60,7 +60,7 @@ class BinaryHeap:
         return max_value
 
     @property
-    def get_list(self):
+    def get_list(self) -> list:
         return self.__heap[1:]
 
     def __len__(self) -> int:
