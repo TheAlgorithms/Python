@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Otsu%27s_method
 """
 
 
-def otsu_threshold(image: Image) -> Image:
+def otsu_threshold(image: Image.Image) -> Image.Image:
     """
     Applies Otsu's thresholding method to a grayscale image.
 
