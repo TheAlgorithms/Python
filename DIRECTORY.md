@@ -746,7 +746,6 @@
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Means Plus Plus](machine_learning/k_means_plus_plus.py)
-  * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
   * [K Medoids](machine_learning/k_medoids.py)
   * [K Nearest Neighbors](machine_learning/k_nearest_neighbors.py)
   * [Linear Discriminant Analysis](machine_learning/linear_discriminant_analysis.py)
