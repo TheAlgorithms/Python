@@ -17,10 +17,14 @@ def check_polygon(nums: list[float]) -> bool:
     >>> check_polygon([1, 4.3, 5.2, 12.2])
     False
     >>> nums = [3, 7, 13, 2]
-    >>> _ = check_polygon(nums) #   Run function, do not show answer in output
-    >>> nums #  Check numbers are not reordered
+    >>> _ = check_polygon(nums)
+    >>> nums
     [3, 7, 13, 2]
     >>> check_polygon([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Monogons and Digons are not polygons in the Euclidean space
+    >>> check_polygon([4, 5])
     Traceback (most recent call last):
         ...
     ValueError: Monogons and Digons are not polygons in the Euclidean space
@@ -29,13 +33,12 @@ def check_polygon(nums: list[float]) -> bool:
         ...
     ValueError: All values must be greater than 0
     """
-    if len(nums) < 2:
+    if len(nums) < 3:
         raise ValueError("Monogons and Digons are not polygons in the Euclidean space")
     if any(i <= 0 for i in nums):
         raise ValueError("All values must be greater than 0")
-    copy_nums = nums.copy()
-    copy_nums.sort()
-    return copy_nums[-1] < sum(copy_nums[:-1])
+    sorted_nums = sorted(nums)
+    return sorted_nums[-1] < sum(sorted_nums[:-1])
 
 
 if __name__ == "__main__":

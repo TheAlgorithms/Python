@@ -96,7 +96,7 @@ def solution(n: int = 600851475143) -> int:
             if is_prime(n // i):
                 max_number = n // i
                 break
-            elif is_prime(i):
+            if is_prime(i):
                 max_number = i
     return max_number
 

@@ -20,8 +20,14 @@ the number of comparisons that need to be made. By
 using a smaller gap, the list is sorted more quickly.
 """
 
+from typing import Protocol
 
-def shell_sort(collection: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def shell_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Implementation of shell sort algorithm in Python
     :param collection:  Some mutable ordered collection with heterogeneous
     comparable items inside
@@ -33,6 +39,14 @@ def shell_sort(collection: list) -> list:
     []
     >>> shell_sort([1])
     [1]
+    >>> shell_sort(["pear", "apple", "orange"])
+    ['apple', 'orange', 'pear']
+    >>> shell_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> shell_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: ...
     """
 
     # Choose an initial gap value
