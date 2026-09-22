@@ -1,23 +1,25 @@
 """
 Regex matching check if a text matches pattern or not.
 Pattern:
-    '.' Matches any single character.
-    '*' Matches zero or more of the preceding element.
+
+    1. ``.`` Matches any single character.
+    2. ``*`` Matches zero or more of the preceding element.
+
 More info:
     https://medium.com/trick-the-interviwer/regular-expression-matching-9972eb74c03
 """
 
 
 def recursive_match(text: str, pattern: str) -> bool:
-    """
+    r"""
     Recursive matching algorithm.
 
-    Time complexity: O(2 ^ (|text| + |pattern|))
-    Space complexity: Recursion depth is O(|text| + |pattern|).
+    | Time complexity: O(2^(\|text\| + \|pattern\|))
+    | Space complexity: Recursion depth is O(\|text\| + \|pattern\|).
 
     :param text: Text to match.
     :param pattern: Pattern to match.
-    :return: True if text matches pattern, False otherwise.
+    :return: ``True`` if `text` matches `pattern`, ``False`` otherwise.
 
     >>> recursive_match('abc', 'a.c')
     True
@@ -48,15 +50,15 @@ def recursive_match(text: str, pattern: str) -> bool:
 
 
 def dp_match(text: str, pattern: str) -> bool:
-    """
+    r"""
     Dynamic programming matching algorithm.
 
-    Time complexity: O(|text| * |pattern|)
-    Space complexity: O(|text| * |pattern|)
+    | Time complexity: O(\|text\| * \|pattern\|)
+    | Space complexity: O(\|text\| * \|pattern\|)
 
     :param text: Text to match.
     :param pattern: Pattern to match.
-    :return: True if text matches pattern, False otherwise.
+    :return: ``True`` if `text` matches `pattern`, ``False`` otherwise.
 
     >>> dp_match('abc', 'a.c')
     True

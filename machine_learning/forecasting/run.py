@@ -28,7 +28,7 @@ def linear_regression_prediction(
     input : training data (date, total_user, total_event) in list of float
     output : list of total user prediction in float
     >>> n = linear_regression_prediction([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
-    >>> abs(n - 5.0) < 1e-6  # Checking precision because of floating point errors
+    >>> bool(abs(n - 5.0) < 1e-6)  # Checking precision because of floating point errors
     True
     """
     x = np.array([[1, item, train_mtch[i]] for i, item in enumerate(train_dt)])
@@ -56,7 +56,7 @@ def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> 
     )
     model_fit = model.fit(disp=False, maxiter=600, method="nm")
     result = model_fit.predict(1, len(test_match), exog=[test_match])
-    return result[0]
+    return float(result[0])
 
 
 def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> float:
@@ -75,7 +75,7 @@ def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> f
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
-    return y_pred[0]
+    return float(y_pred[0])
 
 
 def interquartile_range_checker(train_user: list) -> float:
@@ -92,7 +92,7 @@ def interquartile_range_checker(train_user: list) -> float:
     q3 = np.percentile(train_user, 75)
     iqr = q3 - q1
     low_lim = q1 - (iqr * 0.1)
-    return low_lim
+    return float(low_lim)
 
 
 def data_safety_checker(list_vote: list, actual_result: float) -> bool:

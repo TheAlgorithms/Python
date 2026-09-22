@@ -107,7 +107,7 @@ class Matrix:
      [414. 513. 612. 640.]]
     """
 
-    def __init__(self, rows: list[list[int]]):
+    def __init__(self, rows: list[list[int]]) -> None:
         error = TypeError(
             "Matrices must be formed from a list of zero or more lists containing at "
             "least one and the same number of values, each of which must be of type "
@@ -204,9 +204,11 @@ class Matrix:
         return Matrix(
             [
                 [
-                    self.minors().rows[row][column]
-                    if (row + column) % 2 == 0
-                    else self.minors().rows[row][column] * -1
+                    (
+                        self.minors().rows[row][column]
+                        if (row + column) % 2 == 0
+                        else self.minors().rows[row][column] * -1
+                    )
                     for column in range(self.minors().num_columns)
                 ]
                 for row in range(self.minors().num_rows)
@@ -260,7 +262,7 @@ class Matrix:
         if position is None:
             self.rows.append(row)
         else:
-            self.rows = self.rows[0:position] + [row] + self.rows[position:]
+            self.rows = [*self.rows[0:position], row, *self.rows[position:]]
 
     def add_column(self, column: list[int], position: int | None = None) -> None:
         type_error = TypeError(
@@ -279,7 +281,7 @@ class Matrix:
             self.rows = [self.rows[i] + [column[i]] for i in range(self.num_rows)]
         else:
             self.rows = [
-                self.rows[i][0:position] + [column[i]] + self.rows[i][position:]
+                [*self.rows[i][0:position], column[i], *self.rows[i][position:]]
                 for i in range(self.num_rows)
             ]
 
