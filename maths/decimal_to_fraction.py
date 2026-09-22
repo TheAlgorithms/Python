@@ -16,6 +16,20 @@ def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
     >>> decimal_to_fraction("78td")
     Traceback (most recent call last):
     ValueError: Please enter a valid number
+    >>> decimal_to_fraction(0)
+    (0, 1)
+    >>> decimal_to_fraction(-2.5)
+    (-5, 2)
+    >>> decimal_to_fraction(0.125)
+    (1, 8)
+    >>> decimal_to_fraction(1000000.25)
+    (4000001, 4)
+    >>> decimal_to_fraction(1.3333)
+    (13333, 10000)
+    >>> decimal_to_fraction("1.23e2")
+    (123, 1)
+    >>> decimal_to_fraction("0.500")
+    (1, 2)
     """
     try:
         decimal = float(decimal)
@@ -34,8 +48,8 @@ def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
             if remainder == 0:
                 break
             dividend, divisor = divisor, remainder
-        numerator, denominator = numerator / divisor, denominator / divisor
-        return int(numerator), int(denominator)
+        numerator, denominator = numerator // divisor, denominator // divisor
+        return numerator, denominator
 
 
 if __name__ == "__main__":
