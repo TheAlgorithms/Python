@@ -29,11 +29,20 @@ def time_func(func, *args, **kwargs):
     """
     start = time()
     output = func(*args, **kwargs)
-    end = time()
-    if int(end - start) > 0:
-        print(f"{func.__name__} runtime: {(end - start):0.4f} s")
+    duration = time() - start
+
+    # Adjust the output unit based on the time taken
+    if duration >= 1:
+        unit = "s"
+        time_taken = duration
+    elif duration >= 0.001:
+        unit = "ms"
+        time_taken = duration * 1000
     else:
-        print(f"{func.__name__} runtime: {(end - start) * 1000:0.4f} ms")
+        unit = "µs"
+        time_taken = duration * 1_000_000
+
+    print(f"{func.__name__} runtime: {time_taken:0.4f} {unit}")
     return output
 
 

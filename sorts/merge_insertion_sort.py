@@ -27,7 +27,7 @@ def binary_search_insertion(sorted_list, item):
             if sorted_list[middle] < item:
                 left = middle + 1
             break
-        elif sorted_list[middle] < item:
+        if sorted_list[middle] < item:
             left = middle + 1
         else:
             right = middle - 1

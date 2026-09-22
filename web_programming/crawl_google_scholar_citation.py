@@ -7,11 +7,11 @@ using title and year of publication, and volume and pages of journal.
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 
@@ -20,7 +20,7 @@ def get_citation(base_url: str, params: dict) -> str:
     Return the citation number.
     """
     soup = BeautifulSoup(
-        httpx.get(base_url, params=params, timeout=10).content, "html.parser"
+        httpx2.get(base_url, params=params, timeout=10).content, "html.parser"
     )
     div = soup.find("div", attrs={"class": "gs_ri"})
     anchors = div.find("div", attrs={"class": "gs_fl"}).find_all("a")
