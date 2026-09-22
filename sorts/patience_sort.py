@@ -3,6 +3,7 @@ from __future__ import annotations
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge
+from typing import Any, Protocol, TypeVar
 
 """
 A pure Python implementation of the patience sort algorithm
@@ -19,6 +20,13 @@ python3 patience_sort.py
 """
 
 
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
 @total_ordering
 class Stack(list):
     def __lt__(self, other):
@@ -28,7 +36,7 @@ class Stack(list):
         return self[-1] == other[-1]
 
 
-def patience_sort(collection: list) -> list:
+def patience_sort[T: Comparable](collection: list[T]) -> list[T]:
     """A pure implementation of patience sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -44,6 +52,16 @@ def patience_sort(collection: list) -> list:
 
     >>> patience_sort([-3, -17, -48])
     [-48, -17, -3]
+
+    >>> patience_sort(["c", "a", "b"]) == ["a", "b", "c"]
+    True
+
+    >>> patience_sort([2.5, -1, 0.0]) == [-1, 0.0, 2.5]
+    True
+
+    >>> import pytest
+    >>> with pytest.raises(TypeError):
+    ...     patience_sort([1, "a"])
     """
     stacks: list[Stack] = []
     # sort into stacks

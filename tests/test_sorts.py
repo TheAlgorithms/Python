@@ -140,6 +140,7 @@ def test_rec_insertion_sort(case) -> None:
         merge_sort,
         odd_even_sort,
         pancake_sort,
+        patience_sort,
         selection_sort,
         shrink_shell_sort,
         strand_sort,
