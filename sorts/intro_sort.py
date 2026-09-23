@@ -2,12 +2,25 @@
 Introspective Sort is a hybrid sort (Quick Sort + Heap Sort + Insertion Sort)
 if the size of the list is under 16, use insertion sort
 https://en.wikipedia.org/wiki/Introsort
+
+For doctests run following command:
+python3 -m doctest -v intro_sort.py
+
+For manual testing run:
+python3 intro_sort.py
 """
 
 import math
+from typing import Any, Protocol
 
 
-def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def insertion_sort[T: Comparable](
+    array: list[T], start: int = 0, end: int = 0
+) -> list[T]:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> insertion_sort(array, 0, len(array))
@@ -24,6 +37,10 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     >>> array = [73.568, 73.56, -45.03, 1.7, 0, 89.45]
     >>> insertion_sort(array, 0, len(array))
     [-45.03, 0, 1.7, 73.56, 73.568, 89.45]
+    >>> insertion_sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     end = end or len(array)
     for i in range(start, end):
@@ -36,7 +53,9 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     return array
 
 
-def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
+def heapify[T: Comparable](
+    array: list[T], index: int, heap_size: int
+) -> None:  # Max Heap
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> heapify(array, len(array) // 2, len(array))
@@ -56,7 +75,7 @@ def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
         heapify(array, largest, heap_size)
 
 
-def heap_sort(array: list) -> list:
+def heap_sort[T: Comparable](array: list[T]) -> list[T]:
     """
     >>> heap_sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
@@ -66,6 +85,12 @@ def heap_sort(array: list) -> list:
     ['b', 'b', 'd', 'e', 'e', 'f', 'g', 'p', 's', 'u', 'v', 'x', 'z']
     >>> heap_sort([6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7])
     [-457.0, -45.54, 0, 1, 1.7, 2.879, 6.2, 11.7, 758.56, 8465.2]
+    >>> heap_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+    >>> heap_sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     n = len(array)
 
@@ -79,9 +104,9 @@ def heap_sort(array: list) -> list:
     return array
 
 
-def median_of_3(
-    array: list, first_index: int, middle_index: int, last_index: int
-) -> int:
+def median_of_3[T: Comparable](
+    array: list[T], first_index: int, middle_index: int, last_index: int
+) -> T:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> median_of_3(array, 0, ((len(array) - 0) // 2) + 1, len(array) - 1)
@@ -92,6 +117,12 @@ def median_of_3(
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 15, 14, 27, 79, 23, 45, 14, 16]
     >>> median_of_3(array, 0, ((len(array) - 0) // 2) + 1, len(array) - 1)
     14
+    >>> median_of_3(["b", "m", "z"], 0, 1, 2)
+    'm'
+    >>> median_of_3([1, "a", 2], 0, 1, 2)  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     if (array[first_index] > array[middle_index]) != (
         array[first_index] > array[last_index]
@@ -105,7 +136,7 @@ def median_of_3(
         return array[last_index]
 
 
-def partition(array: list, low: int, high: int, pivot: int) -> int:
+def partition[T: Comparable](array: list[T], low: int, high: int, pivot: T) -> int:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> partition(array, 0, len(array), 12)
@@ -119,6 +150,10 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
     >>> array = [6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7]
     >>> partition(array, 0, len(array), 2.879)
     6
+    >>> partition([1, "a", 2], 0, 3, 2)  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     i = low
     j = high
@@ -134,7 +169,7 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
         i += 1
 
 
-def sort(array: list) -> list:
+def sort[T: Comparable](array: list[T]) -> list[T]:
     """
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -155,6 +190,12 @@ def sort(array: list) -> list:
     [0.3, 1.0, 1.7, 2.1, 3.3]
     >>> sort(['d', 'a', 'b', 'e', 'c'])
     ['a', 'b', 'c', 'd', 'e']
+    >>> sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+    >>> sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     if len(array) == 0:
         return array
@@ -163,9 +204,9 @@ def sort(array: list) -> list:
     return intro_sort(array, 0, len(array), size_threshold, max_depth)
 
 
-def intro_sort(
-    array: list, start: int, end: int, size_threshold: int, max_depth: int
-) -> list:
+def intro_sort[T: Comparable](
+    array: list[T], start: int, end: int, size_threshold: int, max_depth: int
+) -> list[T]:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> max_depth = 2 * math.ceil(math.log2(len(array)))

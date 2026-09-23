@@ -17,6 +17,7 @@ returns ``None`` rather than the sorted collection, so it is exercised
 separately below.
 """
 
+import random
 from dataclasses import dataclass
 from typing import NamedTuple
 
@@ -34,6 +35,7 @@ from sorts.exchange_sort import exchange_sort
 from sorts.gnome_sort import gnome_sort
 from sorts.heap_sort import heap_sort
 from sorts.insertion_sort import insertion_sort
+from sorts.intro_sort import intro_sort, sort
 from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
@@ -57,6 +59,36 @@ def test_heap_sort() -> None:
     assert heap_sort([5, 2, 5, 1]) == [1, 2, 5, 5]
     assert heap_sort([1, 2, 3, 4]) == [1, 2, 3, 4]
     assert heap_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+
+
+def test_intro_sort_comparable_items() -> None:
+    """``intro_sort`` agrees with the built-in once it leaves the small-input
+    insertion-sort base case, and both of its remaining branches are reached.
+
+    Every case in the shared ``CASES`` battery is shorter than the 16-element
+    threshold, so the battery alone only ever exercises ``insertion_sort``.
+    The inputs below are large enough to take the quicksort branch, and the
+    last two force the heapsort branch by exhausting the recursion budget.
+    """
+    rng = random.Random(20260923)
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+    for size in (17, 32, 100, 500):
+        numbers = [rng.randint(-1000, 1000) for _ in range(size)]
+        assert sort(numbers) == sorted(numbers)
+
+        letters = rng.choices(alphabet, k=size)
+        assert sort(letters) == sorted(letters)
+
+    # a depth budget of 0 sends the algorithm straight to the heapsort branch
+    values = [rng.randint(-1000, 1000) for _ in range(50)]
+    assert intro_sort(list(values), 0, len(values), 1, 0) == sorted(values)
+
+    # a generous budget keeps it on the quicksort branch instead
+    assert intro_sort(list(values), 0, len(values), 1, 64) == sorted(values)
+
+    with pytest.raises(TypeError):
+        sort([1, "a"])
 
 
 SORTS = (
@@ -83,6 +115,7 @@ SORTS = (
     selection_sort,
     shell_sort,
     shrink_shell_sort,
+    sort,
     stooge_sort,
     strand_sort,
 )
@@ -152,6 +185,7 @@ def test_rec_insertion_sort(case) -> None:
         reversort,
         selection_sort,
         shrink_shell_sort,
+        sort,
         strand_sort,
     ],
     ids=lambda f: f.__name__,
