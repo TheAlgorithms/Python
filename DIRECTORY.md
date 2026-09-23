@@ -461,6 +461,7 @@
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
+  * [Ordinal Representation](genetic_algorithm/ordinal_representation.py)
 
 ## Geodesy
   * [Haversine Distance](geodesy/haversine_distance.py)
