@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 
 
 class ConstantStretch:
-    def __init__(self):
+    def __init__(self) -> None:
         self.img = ""
         self.original_image = ""
         self.last_list = []
@@ -24,7 +24,7 @@ class ConstantStretch:
         self.number_of_rows = 0
         self.number_of_cols = 0
 
-    def stretch(self, input_image):
+    def stretch(self, input_image) -> None:
         self.img = cv2.imread(input_image, 0)
         self.original_image = copy.deepcopy(self.img)
         x, _, _ = plt.hist(self.img.ravel(), 256, [0, 256], label="x")
@@ -46,10 +46,10 @@ class ConstantStretch:
                     self.img[j][i] = self.last_list[num]
         cv2.imwrite("output_data/output.jpg", self.img)
 
-    def plot_histogram(self):
+    def plot_histogram(self) -> None:
         plt.hist(self.img.ravel(), 256, [0, 256])
 
-    def show_image(self):
+    def show_image(self) -> None:
         cv2.imshow("Output-Image", self.img)
         cv2.imshow("Input-Image", self.original_image)
         cv2.waitKey(5000)
