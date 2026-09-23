@@ -11,7 +11,7 @@ def can_complete_circuit(gas_stations: list[GasStation]) -> int:
     Finds the starting station index to complete the circuit,
     or returns -1 if not possible.
     Args:
-      gas_stations (List[GasStation]): List of gas stations with gas and cost attributes.
+      gas_stations (List[GasStation]): List of gas stations with gas and cost.
     Returns:
       The index of the starting station, or -1 if no solution exists.
     Examples:
