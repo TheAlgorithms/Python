@@ -25,6 +25,8 @@ def xor_swap(a: int, b: int) -> tuple[int, int]:
     (1, -1)
     >>> xor_swap(123, 456)
     (456, 123)
+    >>> xor_swap(12345, 54321)
+    (54321, 12345)
     """
     a = a ^ b
     b = a ^ b
