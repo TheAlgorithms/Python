@@ -93,7 +93,7 @@ class PolynomialRegression:
         ...
         ValueError: Data must have dimensions N x 1
         """
-        rows, *remaining = data.shape
+        _rows, *remaining = data.shape
         if remaining:
             raise ValueError("Data must have dimensions N x 1")
 
