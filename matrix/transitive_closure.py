@@ -1,6 +1,11 @@
+"""
+https://en.wikipedia.org/wiki/Transitive_closure#In_graph_theory
+https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
+"""
+
 def transitive_closure(graph: list[list[int]]) -> list[list[int]]:
     """
-    Computes the transitive closure of a directed graph using the
+    Compute the transitive closure of a directed graph using the
     Floyd-Warshall algorithm.
 
     Args:
