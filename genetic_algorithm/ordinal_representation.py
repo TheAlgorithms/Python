@@ -4,6 +4,7 @@ Ordinal Representation of a Closed Tour
 
 Converts a path (e.g., a Hamiltonian tour) into its ordinal
 representation based on a fixed alphabetical node reference.
+
 """
 
 from collections.abc import Iterator
@@ -39,7 +40,15 @@ def ordinal_representation_closed(path: list[str], nodes: list[str]) -> Iterator
     >>> nodes = sorted(set(path))
     >>> list(ordinal_representation_closed(path, nodes))
     [1, 11, 6, 2, 4, 6, 4, 3, 4, 3, 1, 1]
+    >>> list(ordinal_representation_closed("ABC", "DCBA"))
+    Traceback (most recent call last):
+        ...
+    ValueError: path and nodes must contain the same values
     """
+    if set(path) != set(nodes):
+        msg = "path and nodes must contain the same values"
+        raise ValueError(msg)
+
     reference = nodes.copy()
     for city in path:
         yield (index := reference.index(city) + 1)  # 1-based index
