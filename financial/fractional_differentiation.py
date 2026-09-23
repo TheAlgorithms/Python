@@ -77,11 +77,18 @@ def fracdiff_fixedwindow(
         The price series to calculate the fractional differentiation.
     degree : float
         The degree of differentiation.
+    window_size : int
+        The number of past observations used to compute each value.
 
     Returns
     -------
     list[float]
         The fractional differentiated series.
+
+    Raises
+    ------
+    ValueError
+        If ``window_size`` is greater than the length of ``price_series``.
 
     Examples
     --------
@@ -89,7 +96,9 @@ def fracdiff_fixedwindow(
     >>> fracdiff_fixedwindow(price_series, 0.5, 3)
     [nan, nan, nan, 2.25, 2.625, 3.0, 3.375, 3.75, 4.125, 4.5]
     """
-    weights = calculate_weights(degree=degree, length=len(price_series))
+    if window_size > len(price_series):
+        raise ValueError("window_size cannot exceed the length of price_series")
+    weights = calculate_weights(degree=degree, length=window_size)
     frac_diff_series = [nan] * window_size
     for i in range(window_size, len(price_series)):
         frac_diff_series.append(
