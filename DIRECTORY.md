@@ -434,6 +434,7 @@
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
+  * [Ordinary Annuity Future Value](financial/ordinary_annuity_future_value.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
