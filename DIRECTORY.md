@@ -551,6 +551,7 @@
   * [Interest](financial/interest.py)
   * [Kelly Criterion](financial/kelly_criterion.py)
   * [Macaulay Duration](financial/macaulay_duration.py)
+  * [Ordinary Annuity Future Value](financial/ordinary_annuity_future_value.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Sharpe Ratio](financial/sharpe_ratio.py)
