@@ -1,8 +1,7 @@
 """
-Solution By: Reniz Shah
 Topic: Deterministic Finite Automaton (DFA)
 Given a string s, return whether s is a valid number or not
-Leetcode link: https://leetcode.com/problems/valid-number/description/
+LeetCode link: https://leetcode.com/problems/valid-number/description/
 """
 
 from enum import Enum
