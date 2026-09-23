@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 
+
+@dataclass
 class Node:
-    def __init__(self, value: int = 0) -> None:
-        self.value: int = value
-        self.left: Node | None = None
-        self.right: Node | None = None
+    value: int = value
+    left: Node | None = None
+    right: Node | None = None
 
 
 class PersistentSegmentTree:
@@ -56,7 +58,7 @@ class PersistentSegmentTree:
 
     def _update(self, node: Node, start: int, end: int, index: int, value: int) -> Node:
         """
-        Updates the node for the specified index and value and returns the new node.
+        Update the node for the specified index and value and return the new node.
 
         >>> pst = PersistentSegmentTree([1, 2, 3, 4])
         >>> old_root = pst.roots[0]
@@ -131,7 +133,7 @@ class PersistentSegmentTree:
 
 # Running the doctests
 if __name__ == "__main__":
-    import doctest
+    from doctest
 
     print("Running doctests...")
     result = doctest.testmod()
