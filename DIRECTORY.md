@@ -402,6 +402,7 @@
     * Tests
       * [Test Suffix Tree](data_structures/suffix_tree/tests/test_suffix_tree.py)
   * Trie
+    * [Binary Trie](data_structures/trie/binary_trie.py)
     * [Radix Tree](data_structures/trie/radix_tree.py)
     * [Trie](data_structures/trie/trie.py)
 
