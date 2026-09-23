@@ -640,6 +640,7 @@
   * [Gale Shapley Bigraph](graphs/gale_shapley_bigraph.py)
   * [Graph Adjacency List](graphs/graph_adjacency_list.py)
   * [Graph Adjacency Matrix](graphs/graph_adjacency_matrix.py)
+  * [Graph Centrality](graphs/graph_centrality.py)
   * [Graph List](graphs/graph_list.py)
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
