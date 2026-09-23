@@ -1,10 +1,10 @@
-import random
+from random import randrange
 
 
 def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
     """ "
-    Python implementation of quick sort algorithm with 3-way partition.
-    The idea of 3-way quick sort is based on "Dutch National Flag algorithm".
+    Python implementation of the quicksort algorithm with 3-way partition.
+    The idea of 3-way quicksort is based on "Dutch National Flag algorithm".
 
     :param sorting: sort list
     :param left: left endpoint of sorting
@@ -46,7 +46,7 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
 
 def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
     """
-    A pure Python implementation of quick sort algorithm(in-place)
+    A pure Python implementation of the quicksort algorithm(in-place)
     with Lomuto partition scheme:
     https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme
 
@@ -133,7 +133,7 @@ def hoare_partition_by_value(
                 |        |
               left      right
 
-        Where the middle values are [u]nknown, since they are not yet traversed.
+        Where the middle values are unknown (u), since they are not yet traversed.
         `left-1` points to the end of the left subarray.
         `right+1` points to the start of the right subarray.
         """
@@ -218,8 +218,7 @@ def quicksort_hoare(array: list, start: int = 0, end: int | None = None):
     if end + 1 - start <= 1:
         return
 
-    pivot_index = random.randrange(start, end)
-    pivot_index_final = hoare_partition_by_pivot(array, pivot_index, start, end)
+    pivot_index_final = hoare_partition_by_pivot(array, randrange(start, end), start, end)
     quicksort_hoare(array, start, pivot_index_final - 1)
     quicksort_hoare(array, pivot_index_final + 1, end)
 
