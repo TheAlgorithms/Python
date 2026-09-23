@@ -801,7 +801,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 787. [ ] #11924 no labels
 788. [x] #11919 closed
 789. [ ] #11918 awaiting reviews
-790. [ ] #11910 no labels
+790. [x] #11910 closed
 791. [ ] #11898 no labels
 792. [ ] #11897 awaiting reviews
 793. [x] #11886 closed
@@ -811,7 +811,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 797. [ ] #11875 no labels
 798. [x] #11872 closed
 799. [x] #11870 merged
-800. [ ] #11851 no labels
+800. [x] #11851 merged
 801. [x] #11848 merged
 802. [x] #11842 closed
 803. [x] #11834 merged
@@ -819,7 +819,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 805. [ ] #11826 awaiting reviews
 806. [ ] #11825 enhancement, awaiting reviews
 807. [x] #11823 merged
-808. [ ] #11822 awaiting reviews
+808. [x] #11822 merged
 809. [x] #11820 closed
 810. [x] #11809 merged
 811. [x] #11805 closed
@@ -1097,7 +1097,7 @@ data_structures:
 13. [x] #11566 closed
 14. [x] #11607 closed
 15. [x] #11695 merged
-16. [ ] #11822
+16. [x] #11822 merged
 17. [x] #11870 merged
 18. [x] #11886 closed
 19. [ ] #11918
@@ -1186,7 +1186,7 @@ electronics:
 financial:
 1. [x] #11368 closed
 2. [ ] #11826
-3. [ ] #11851
+3. [x] #11851 merged
 4. [ ] #12357
 5. [ ] #12358
 6. [ ] #13888
@@ -1612,7 +1612,7 @@ sorts:
 4. [x] #11725 closed
 5. [x] #11752 closed
 6. [x] #11809 merged
-7. [ ] #11910
+7. [x] #11910 closed
 8. [x] #11993 merged
 9. [x] #12012 closed
 10. [ ] #12100
@@ -2064,15 +2064,15 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 _Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-23 (UTC)._
 
 - **Open issues:** 9
-- **Open pull requests:** 156
-- **Open PRs labelled `awaiting reviews`:** 112
+- **Open pull requests:** 157
+- **Open PRs labelled `awaiting reviews`:** 109
 - **Days until Hacktoberfest (2026-10-01):** 8
 - **Issues to close per day to clear the backlog:** 2 per day (over 8 days)
 - **Pull requests to merge or close per day to clear the backlog:** 20 per day (over 8 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
-1. `data_structures/` — 20 awaiting-reviews PRs
-2. `maths/` — 13 awaiting-reviews PRs
+1. `data_structures/` — 19 awaiting-reviews PRs
+2. `maths/` — 14 awaiting-reviews PRs
 3. `dynamic_programming/` — 11 awaiting-reviews PRs
 
