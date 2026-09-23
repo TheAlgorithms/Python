@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge
@@ -17,7 +16,6 @@ python3 -m doctest -v patience_sort.py
 For manual testing run:
 python3 patience_sort.py
 """
-
 
 @total_ordering
 class Stack(list):
@@ -59,8 +57,17 @@ def patience_sort(collection: list) -> list:
     collection[:] = merge(*(reversed(stack) for stack in stacks))
     return collection
 
+def convert_item(item):
+    item = item.strip()
+    try:
+        return int(item)
+    except ValueError:
+        try:
+            return float(item)
+        except ValueError:
+            return item
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(patience_sort(unsorted))
+    unsorted = [convert_item(item) for item in user_input.split(",")]
+    print(unsorted)
