@@ -543,6 +543,7 @@
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Expected Shortfall](financial/expected_shortfall.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
+  * [Fractional Differentiation](financial/fractional_differentiation.py)
   * [Interest](financial/interest.py)
   * [Kelly Criterion](financial/kelly_criterion.py)
   * [Macaulay Duration](financial/macaulay_duration.py)
