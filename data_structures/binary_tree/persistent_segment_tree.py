@@ -74,7 +74,7 @@ class PersistentSegmentTree:
             return Node(value)
 
         mid = (start + end) // 2
-        new_node = Node()
+        new_node = Node(0)
 
         if index <= mid:
             new_node.left = self._update(node.left, start, mid, index, value)
