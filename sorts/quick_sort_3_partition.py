@@ -218,7 +218,9 @@ def quicksort_hoare(array: list, start: int = 0, end: int | None = None):
     if end + 1 - start <= 1:
         return
 
-    pivot_index_final = hoare_partition_by_pivot(array, randrange(start, end), start, end)
+    pivot_index_final = hoare_partition_by_pivot(
+        array, randrange(start, end), start, end
+    )
     quicksort_hoare(array, start, pivot_index_final - 1)
     quicksort_hoare(array, pivot_index_final + 1, end)
 
