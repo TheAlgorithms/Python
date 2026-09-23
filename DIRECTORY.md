@@ -304,6 +304,7 @@
     * [Mirror Binary Tree](data_structures/binary_tree/mirror_binary_tree.py)
     * [Non Recursive Segment Tree](data_structures/binary_tree/non_recursive_segment_tree.py)
     * [Number Of Possible Binary Trees](data_structures/binary_tree/number_of_possible_binary_trees.py)
+    * [Persistent Segment Tree](data_structures/binary_tree/persistent_segment_tree.py)
     * [Red Black Tree](data_structures/binary_tree/red_black_tree.py)
     * [Segment Tree](data_structures/binary_tree/segment_tree.py)
     * [Segment Tree Other](data_structures/binary_tree/segment_tree_other.py)
