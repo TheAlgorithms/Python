@@ -33,6 +33,58 @@ def imply_gate(input_1: int, input_2: int) -> int:
     return int(input_1 == 0 or input_2 == 1)
 
 
+def recursive_imply_list(input_list: list[int]) -> int:
+    """
+    Recursively calculates the implication of a list.
+    Strictly the implication is applied consecutively left to right:
+    ( (a -> b) -> c ) -> d ...
+
+    >>> recursive_imply_list([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
+    >>> recursive_imply_list([0])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
+    >>> recursive_imply_list([1])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input list must contain at least two elements
+    >>> recursive_imply_list([0, 0])
+    1
+    >>> recursive_imply_list([0, 1])
+    1
+    >>> recursive_imply_list([1, 0])
+    0
+    >>> recursive_imply_list([1, 1])
+    1
+    >>> recursive_imply_list([0, 0, 0])
+    0
+    >>> recursive_imply_list([0, 0, 1])
+    1
+    >>> recursive_imply_list([0, 1, 0])
+    0
+    >>> recursive_imply_list([0, 1, 1])
+    1
+    >>> recursive_imply_list([1, 0, 0])
+    1
+    >>> recursive_imply_list([1, 0, 1])
+    1
+    >>> recursive_imply_list([1, 1, 0])
+    0
+    >>> recursive_imply_list([1, 1, 1])
+    1
+    """
+    if len(input_list) < 2:
+        raise ValueError("Input list must contain at least two elements")
+    first_implication = imply_gate(input_list[0], input_list[1])
+    if len(input_list) == 2:
+        return first_implication
+    new_list = [first_implication, *input_list[2:]]
+    return recursive_imply_list(new_list)
+
+
 if __name__ == "__main__":
     import doctest
 
