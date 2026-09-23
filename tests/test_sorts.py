@@ -37,10 +37,13 @@ from sorts.insertion_sort import insertion_sort
 from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.odd_even_transposition_single_threaded import odd_even_transposition
 from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
 from sorts.recursive_insertion_sort import rec_insertion_sort
+from sorts.recursive_mergesort_array import merge
+from sorts.reversort import reversort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
@@ -69,11 +72,14 @@ SORTS = (
     heap_sort,
     insertion_sort,
     iter_merge_sort,
+    merge,
     merge_sort,
     odd_even_sort,
+    odd_even_transposition,
     pancake_sort,
     patience_sort,
     quick_sort,
+    reversort,
     selection_sort,
     shell_sort,
     shrink_shell_sort,
@@ -138,9 +144,12 @@ def test_rec_insertion_sort(case) -> None:
         exchange_sort,
         gnome_sort,
         insertion_sort,
+        merge,
         merge_sort,
         odd_even_sort,
+        odd_even_transposition,
         pancake_sort,
+        reversort,
         selection_sort,
         shrink_shell_sort,
         strand_sort,
