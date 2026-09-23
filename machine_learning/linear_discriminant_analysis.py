@@ -47,7 +47,6 @@ from collections.abc import Callable
 from math import log
 from os import name, system
 from random import gauss, seed
-from typing import TypeVar
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -249,10 +248,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     return (correct / len(actual_y)) * 100
 
 
-num = TypeVar("num")
-
-
-def valid_input(
+def valid_input[num](
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
@@ -284,7 +280,7 @@ def valid_input(
 
 
 # Main Function
-def main():
+def main() -> None:
     """This function starts execution phase"""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
@@ -315,14 +311,14 @@ def main():
 
         print("-" * 100)
 
-        # Trying to get number of instances in classes and theirs means to generate
+        # Trying to get number of instances in classes and their means to generate
         # dataset
         counts = []  # An empty list to store instance counts of classes in dataset
         for i in range(n_classes):
             user_count = valid_input(
                 input_type=int,
                 condition=lambda x: x > 0,
-                input_msg=(f"Enter The number of instances for class_{i+1}: "),
+                input_msg=(f"Enter The number of instances for class_{i + 1}: "),
                 err_msg="Number of instances should be positive!",
             )
             counts.append(user_count)
@@ -333,19 +329,19 @@ def main():
         for a in range(n_classes):
             user_mean = valid_input(
                 input_type=float,
-                input_msg=(f"Enter the value of mean for class_{a+1}: "),
+                input_msg=(f"Enter the value of mean for class_{a + 1}: "),
                 err_msg="This is an invalid value.",
             )
             user_means.append(user_mean)
         print("-" * 100)
 
         print("Standard deviation: ", std_dev)
-        # print out the number of instances in classes in separated line
+        # Print the number of instances in each class on separate lines.
         for i, count in enumerate(counts, 1):
             print(f"Number of instances in class_{i} is: {count}")
         print("-" * 100)
 
-        # print out mean values of classes separated line
+        # Print the mean value for each class on separate lines.
         for i, user_mean in enumerate(user_means, 1):
             print(f"Mean of class_{i} is: {user_mean}")
         print("-" * 100)
@@ -365,8 +361,7 @@ def main():
 
         # Calculating the value of actual mean for each class
         actual_means = [calculate_mean(counts[k], x[k]) for k in range(n_classes)]
-        # for loop iterates over number of elements in 'actual_means' list and print
-        # out them in separated line
+        # Iterate over 'actual_means' and print each value on a separate line.
         for i, actual_mean in enumerate(actual_means, 1):
             print(f"Actual(Real) mean of class_{i} is: {actual_mean}")
         print("-" * 100)
@@ -376,8 +371,7 @@ def main():
             calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
         ]
 
-        # for loop iterates over number of elements in 'probabilities' list and print
-        # out them in separated line
+        # Iterate over 'probabilities' and print each value on a separate line.
         for i, probability in enumerate(probabilities, 1):
             print(f"Probability of class_{i} is: {probability}")
         print("-" * 100)
