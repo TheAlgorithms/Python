@@ -885,6 +885,7 @@
     * [Nevilles Method](maths/numerical_analysis/nevilles_method.py)
     * [Newton Forward Interpolation](maths/numerical_analysis/newton_forward_interpolation.py)
     * [Newton Raphson](maths/numerical_analysis/newton_raphson.py)
+    * [Nth Root](maths/numerical_analysis/nth_root.py)
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
     * [Proper Fractions](maths/numerical_analysis/proper_fractions.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
