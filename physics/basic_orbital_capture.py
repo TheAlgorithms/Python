@@ -1,7 +1,3 @@
-from math import pow, sqrt
-
-from scipy.constants import G, c, pi
-
 """
 These two functions will return the radii of impact for a target object
 of mass M and radius R as well as it's effective cross sectional area sigma.
@@ -14,8 +10,11 @@ body in order to hit it, as  R_capture>R_target. Astronomers refer to the effect
 cross section for capture as sigma=π*R_capture**2.
 
 This algorithm does not account for an N-body problem.
-
 """
+
+from math import pow, sqrt  # noqa: A004
+
+from scipy.constants import G, c, pi
 
 
 def capture_radii(
