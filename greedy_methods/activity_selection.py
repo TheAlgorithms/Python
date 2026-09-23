@@ -35,7 +35,7 @@ def activity_selection(activities: list[tuple[int, int]]) -> list[tuple[int, int
     >>> activity_selection([(5, 9), (1, 2), (3, 4), (0, 6)])
     [(1, 2), (3, 4), (5, 9)]
 
-    >>> all(activity_selection == [] for x in ([], {}, None, False, 0, 0.0))
+    >>> all(activity_selection(x) == [] for x in ([], {}, None, False, 0, 0.0))
     True
     """
     if not activities:
