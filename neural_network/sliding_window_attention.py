@@ -68,7 +68,7 @@ class SlidingWindowAttention:
         >>> (output.sum() != 0).item()  # Check if output is non-zero
         True
         """
-        batch_size, seq_length, _ = input_tensor.shape
+        _batch_size, seq_length, _ = input_tensor.shape
         output = np.zeros_like(input_tensor)
 
         for i in range(seq_length):
