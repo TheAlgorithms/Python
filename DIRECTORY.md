@@ -966,6 +966,7 @@
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
+    * [Jacobsthal Number](maths/special_numbers/jacobsthal_number.py)
     * [Kaprekar Constant](maths/special_numbers/kaprekar_constant.py)
     * [Kaprekar Number](maths/special_numbers/kaprekar_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
@@ -1058,6 +1059,7 @@
     * [Nesterov Accelerated Sgd](neural_network/optimizers/nesterov_accelerated_sgd.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
+  * [Sliding Window Attention](neural_network/sliding_window_attention.py)
   * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
 
 ## [Other](other)
