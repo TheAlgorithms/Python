@@ -221,6 +221,10 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
     else:
         root.set_right(del_node(right_child, data))
 
+    # Re-fetch left_child and right_child references
+    left_child = root.get_left()
+    right_child = root.get_right()
+
     if get_height(right_child) - get_height(left_child) == 2:
         assert right_child is not None
         if get_height(right_child.get_right()) > get_height(right_child.get_left()):

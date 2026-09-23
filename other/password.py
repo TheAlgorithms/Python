@@ -80,7 +80,7 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     return upper and lower and num and spec_char
 
 
-def main():
+def main() -> None:
     length = int(input("Please indicate the max length of your password: ").strip())
     chars_incl = input(
         "Please indicate the characters that must be in your password: "

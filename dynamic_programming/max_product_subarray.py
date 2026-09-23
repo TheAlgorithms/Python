@@ -1,9 +1,10 @@
 def max_product_subarray(numbers: list[int]) -> int:
     """
     Returns the maximum product that can be obtained by multiplying a
-    contiguous subarray of the given integer list `nums`.
+    contiguous subarray of the given integer list `numbers`.
 
     Example:
+
     >>> max_product_subarray([2, 3, -2, 4])
     6
     >>> max_product_subarray((-2, 0, -1))

@@ -10,8 +10,17 @@ For manual testing run:
 python binary_insertion_sort.py
 """
 
+from typing import Protocol, TypeVar
 
-def binary_insertion_sort(collection: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def binary_insertion_sort[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sorts a list using the binary insertion sort algorithm.
 
@@ -36,6 +45,10 @@ def binary_insertion_sort(collection: list) -> list:
     >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
     >>> binary_insertion_sort(collection) == sorted(collection)
     True
+    >>> binary_insertion_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
 
     n = len(collection)
@@ -56,7 +69,7 @@ def binary_insertion_sort(collection: list) -> list:
     return collection
 
 
-if __name__ == "__main":
+if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     try:
         unsorted = [int(item) for item in user_input.split(",")]
