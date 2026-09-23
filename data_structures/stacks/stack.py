@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -13,7 +13,7 @@ class StackUnderflowError(BaseException):
     pass
 
 
-class Stack(Generic[T]):
+class Stack[T]:
     """A stack is an abstract data type that serves as a collection of
     elements with two principal operations: push() and pop(). push() adds an
     element to the top of the stack, and pop() removes an element from the top
@@ -22,7 +22,7 @@ class Stack(Generic[T]):
     https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     """
 
-    def __init__(self, limit: int = 10):
+    def __init__(self, limit: int = 10) -> None:
         self.stack: list[T] = []
         self.limit = limit
 

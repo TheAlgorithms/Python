@@ -1,6 +1,11 @@
+ASCII_UPPERCASE_START = ord("A")
+ASCII_UPPERCASE_END = ord("Z")
+ASCII_CASE_OFFSET = ord("a") - ord("A")
+
+
 def lower(word: str) -> str:
     """
-    Will convert the entire string to lowercase letters
+    Convert ASCII uppercase letters in a string to lowercase.
 
     >>> lower("wow")
     'wow'
@@ -13,11 +18,16 @@ def lower(word: str) -> str:
     >>> lower("whAT")
     'what'
     """
+    start = ASCII_UPPERCASE_START
+    end = ASCII_UPPERCASE_END
+    offset = ASCII_CASE_OFFSET
 
-    # Converting to ASCII value, obtaining the integer representation
-    # and checking to see if the character is a capital letter.
-    # If it is a capital letter, it is shifted by 32, making it a lowercase letter.
-    return "".join(chr(ord(char) + 32) if "A" <= char <= "Z" else char for char in word)
+    return "".join(
+        [
+            chr(code + offset) if start <= (code := ord(char)) <= end else char
+            for char in word
+        ]
+    )
 
 
 if __name__ == "__main__":
