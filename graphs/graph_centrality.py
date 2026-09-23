@@ -8,11 +8,11 @@ median node maximizes the sum of the reciprocals of the shortest-path distances 
 other reachable nodes (harmonic closeness centrality).
 
 Problem Description:
-Given a weighted graph G = (V, E), where V is the set of vertices and E is the set of
+Given a weighted graph G = (V, E), where V is the set of vertices, and E is the set of
 edges with positive weights representing distances between nodes, determine:
 
-- Central Node: The node with minimal eccentricity. Eccentricity of a node v is defined
-  as the greatest distance between v and any other node reachable from v.
+- Central Node: The node with minimal eccentricity. The eccentricity of a node v is
+  defined as the greatest distance between v and any other node reachable from v.
 
 - Median Node: The node with maximal harmonic closeness centrality. The harmonic
   closeness centrality of a node v is the sum of the reciprocals of the shortest-path
@@ -43,6 +43,7 @@ Select:
     - Median Node: node with maximal closeness.
 
 References:
+- https://en.wikipedia.org/wiki/Centrality
 - Floyd-Warshall Algorithm: https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
 - Closeness Centrality: https://en.wikipedia.org/wiki/Closeness_centrality
 
@@ -379,14 +380,7 @@ def test_large_fully_connected_graph() -> None:
     """
 
 
-def main() -> None:
-    """
-    Main driver function for testing the implementation with doctests.
-    """
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
-if __name__ == "__main__":
-    main()
