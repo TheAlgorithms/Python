@@ -1604,6 +1604,7 @@
   * [Lower](strings/lower.py)
   * [Manacher](strings/manacher.py)
   * [Min Cost String Conversion](strings/min_cost_string_conversion.py)
+  * [Min Window Substring](strings/min_window_substring.py)
   * [Naive String Search](strings/naive_string_search.py)
   * [Ngram](strings/ngram.py)
   * [Palindrome](strings/palindrome.py)
