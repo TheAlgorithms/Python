@@ -1592,6 +1592,7 @@
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
   * [Largest Smallest Words](strings/largest_smallest_words.py)
   * [Levenshtein Distance](strings/levenshtein_distance.py)
+  * [Longest Word In Sentence](strings/longest_word_in_sentence.py)
   * [Lower](strings/lower.py)
   * [Manacher](strings/manacher.py)
   * [Min Cost String Conversion](strings/min_cost_string_conversion.py)
