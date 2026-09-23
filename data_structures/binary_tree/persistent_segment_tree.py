@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    value: int = value
+    value: int
     left: Node | None = None
     right: Node | None = None
 
