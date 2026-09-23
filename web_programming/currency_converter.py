@@ -6,13 +6,13 @@ https://www.amdoren.com
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 import os
 
-import httpx
+import httpx2
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 
@@ -183,7 +183,7 @@ def convert_currency(
     params = locals()
     # from is a reserved keyword
     params["from"] = params.pop("from_")
-    res = httpx.get(URL_BASE, params=params, timeout=10).json()
+    res = httpx2.get(URL_BASE, params=params, timeout=10).json()
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 
