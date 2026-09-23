@@ -9,11 +9,11 @@ maximizes the maximum shortest-path distance to all other reachable nodes
 all other reachable nodes (farness).
 
 Problem Description:
-Given a weighted graph G = (V, E), where V is the set of vertices and E is the set of
-edges with positive weights representing distances between nodes, determine:
+Given a weighted graph G = (V, E), where V is the set of vertices, and E is the set
+of edges with positive weights representing distances between nodes, determine:
 
-- Peripheral Node: The node with maximal eccentricity. Eccentricity of a node v is
-  defined as the greatest distance between v and any other node reachable from v.
+- Peripheral Node: The node with maximal eccentricity. The eccentricity of a node v
+  is defined as the greatest distance between v and any other node reachable from v.
 
 - Far Node: The node with maximal farness. Farness of a node v is the sum of the
   shortest-path distances from v to all other reachable nodes.
@@ -387,14 +387,7 @@ def test_large_fully_connected_graph() -> None:
     """
 
 
-def main() -> None:
-    """
-    Main driver function for testing the implementation with doctests.
-    """
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
-if __name__ == "__main__":
-    main()
