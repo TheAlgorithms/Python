@@ -250,7 +250,7 @@ def tabu_search(
     return best_solution_ever, best_cost
 
 
-def main(args=None):
+def main(args=None) -> None:
     dict_of_neighbours = generate_neighbours(args.File)
 
     first_solution, distance_of_first_solution = generate_first_solution(
