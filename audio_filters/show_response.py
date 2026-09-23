@@ -1,3 +1,9 @@
+"""
+Plot the magnitude and phase response of an audio filter.
+
+https://en.wikipedia.org/wiki/Frequency_response
+"""
+
 from __future__ import annotations
 
 from abc import abstractmethod
