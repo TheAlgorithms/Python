@@ -103,7 +103,9 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
     ValueError: math domain error, radicand must be nonnegative for even index
     """
     if not isinstance(radicand, (int, float)):
-        error_message = f"radicand must be a real number, not a {type(radicand).__name__}"
+        error_message = (
+            f"radicand must be a real number, not a {type(radicand).__name__}"
+        )
         raise TypeError(error_message)
 
     if not isinstance(index, int):
@@ -115,7 +117,9 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
         raise ValueError(error_message)
 
     if not isinstance(tolerance, (int, float)):
-        error_message = f"tolerance must be a real number, not {type(tolerance).__name__}"
+        error_message = (
+            f"tolerance must be a real number, not {type(tolerance).__name__}"
+        )
         raise TypeError(error_message)
 
     if tolerance <= 0:
