@@ -27,7 +27,7 @@ digits?
 from collections.abc import Generator
 
 
-def fibonacci_generator() -> Generator[int, None, None]:
+def fibonacci_generator() -> Generator[int]:
     """
     A generator that produces numbers in the Fibonacci sequence
 
