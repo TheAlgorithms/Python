@@ -264,6 +264,7 @@
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
+    * [Gas Station](data_structures/arrays/gas_station.py)
     * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
     * [Kth Largest Element](data_structures/arrays/kth_largest_element.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
@@ -639,7 +640,9 @@
   * [Gale Shapley Bigraph](graphs/gale_shapley_bigraph.py)
   * [Graph Adjacency List](graphs/graph_adjacency_list.py)
   * [Graph Adjacency Matrix](graphs/graph_adjacency_matrix.py)
+  * [Graph Centrality](graphs/graph_centrality.py)
   * [Graph List](graphs/graph_list.py)
+  * [Graph Peripherality](graphs/graph_peripherality.py)
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
