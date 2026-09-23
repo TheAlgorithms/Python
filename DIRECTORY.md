@@ -631,6 +631,7 @@
   * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected Weighted Graph](graphs/directed_and_undirected_weighted_graph.py)
+  * [Edmonds Blossom Algorithm](graphs/edmonds_blossom_algorithm.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
   * [Eulerian Path And Circuit For Undirected Graph](graphs/eulerian_path_and_circuit_for_undirected_graph.py)
   * [Even Tree](graphs/even_tree.py)
@@ -668,6 +669,7 @@
   * [Strongly Connected Components](graphs/strongly_connected_components.py)
   * [Tarjans Scc](graphs/tarjans_scc.py)
   * Tests
+    * [Test Edmonds Blossom Algorithm](graphs/tests/test_edmonds_blossom_algorithm.py)
     * [Test Graphs Floyd Warshall](graphs/tests/test_graphs_floyd_warshall.py)
     * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
@@ -966,6 +968,7 @@
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
+    * [Jacobsthal Number](maths/special_numbers/jacobsthal_number.py)
     * [Kaprekar Constant](maths/special_numbers/kaprekar_constant.py)
     * [Kaprekar Number](maths/special_numbers/kaprekar_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
