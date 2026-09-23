@@ -324,10 +324,10 @@ class PokerHand:
         card_suit = {card[-1] for card in new_hand}
         return sorted(card_values, reverse=True), card_suit
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'{self.__class__}("{self._hand}")'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self._hand
 
     # Rich comparison operators (used in list.sort() and sorted() builtin functions)

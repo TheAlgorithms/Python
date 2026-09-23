@@ -38,6 +38,14 @@ def power(base: int, exponent: int) -> float:
     Traceback (most recent call last):
         ...
     RecursionError: maximum recursion depth exceeded
+    >>> power(0, 0)
+    1
+    >>> power(0, 1)
+    0
+    >>> power(5,6)
+    15625
+    >>> power(23, 12)
+    21914624432020321
     """
     return base * power(base, (exponent - 1)) if exponent else 1
 

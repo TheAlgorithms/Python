@@ -3,7 +3,7 @@ In a multi-threaded download, this algorithm could be used to provide
 each worker thread with a block of non-overlapping bytes to download.
 For example:
     for i in allocation_list:
-        requests.get(url,headers={'Range':f'bytes={i}'})
+        httpx2.get(url, headers={"Range": f"bytes={i}"})
 """
 
 from __future__ import annotations
