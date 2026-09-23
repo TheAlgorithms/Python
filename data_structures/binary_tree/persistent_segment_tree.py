@@ -36,7 +36,6 @@ class PersistentSegmentTree:
         right = self._build(arr, mid + 1, end)
         return Node(value=left.value + right.value, left=left, right=right)
 
-
     def update(self, version: int, index: int, value: int) -> int:
         """
         Updates the value at the given index and returns the new version.
