@@ -1,7 +1,7 @@
 """
 The Activity Selection Problem is a classic problem in which a set of activities,
-each with a start and end time, needs to be scheduled in such a way that
-the maximum number of non-overlapping activities is selected.
+each with a start and end time, needs to be scheduled in such a way that the
+maximum number of non-overlapping activities is selected.
 This is a greedy algorithm where at each step,
 we choose the activity that finishes the earliest
 and does not conflict with previously selected activities.
@@ -34,7 +34,12 @@ def activity_selection(activities: list[tuple[int, int]]) -> list[tuple[int, int
 
     >>> activity_selection([(5, 9), (1, 2), (3, 4), (0, 6)])
     [(1, 2), (3, 4), (5, 9)]
+
+    >>> all(activity_selection == [] for x in ([], {}, None, False, 0, 0.0))
+    True
     """
+    if not activities:
+        return []
 
     # Step 1: Sort the activities by their end time
     sorted_activities = sorted(activities, key=lambda activity: activity[1])
