@@ -41,6 +41,7 @@ from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
 from sorts.recursive_insertion_sort import rec_insertion_sort
+from sorts.recursive_mergesort_array import merge
 from sorts.reversort import reversort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
@@ -70,6 +71,7 @@ SORTS = (
     heap_sort,
     insertion_sort,
     iter_merge_sort,
+    merge,
     merge_sort,
     odd_even_sort,
     pancake_sort,
@@ -140,6 +142,7 @@ def test_rec_insertion_sort(case) -> None:
         exchange_sort,
         gnome_sort,
         insertion_sort,
+        merge,
         merge_sort,
         odd_even_sort,
         pancake_sort,
