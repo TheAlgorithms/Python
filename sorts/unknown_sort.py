@@ -5,8 +5,14 @@ Worst Case Scenario : O(n^2) because native Python functions:min, max and remove
 already O(n)
 """
 
+from typing import Any, Protocol
 
-def merge_sort(collection: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def merge_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of the fastest merge sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -22,8 +28,20 @@ def merge_sort(collection: list) -> list:
 
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    >>> merge_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+
+    >>> merge_sort([3.14, 1.5, 2.7])
+    [1.5, 2.7, 3.14]
+
+    >>> merge_sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
-    start, end = [], []
+    start: list[T] = []
+    end: list[T] = []
     while len(collection) > 1:
         min_one, max_one = min(collection), max(collection)
         start.append(min_one)
