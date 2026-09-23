@@ -1,5 +1,5 @@
 """
-Approximate the nth root of a real number using the Newton's Method.
+Approximate the nth root of a real number using Newton's Method.
 
 The nth root of a real number R can be computed with Newton's method,
 which starts with an initial guess x_0 and then iterates using the
@@ -21,7 +21,7 @@ References:
     USA. Addison-Wesley Publishing Company.
 """
 
-from math import pow
+from math import pow  # noqa: A004
 
 
 def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
@@ -34,15 +34,15 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
         tolerance: positive real number that establishes the stopping criterion
 
     Returns:
-        new_aproximation: approximation of the nth root of the radicand for the
+        new_approximation: approximation of the nth root of the radicand for the
         given index
 
     Raises:
-        TypeError: radicand is not real number
-        TypeError: index is not integer
-        ValueError: index is not positive integer
-        TypeError: tolerance is not real number
-        ValueError: tolerance is not positive real number
+        TypeError: radicand is not a real number
+        TypeError: index is not an integer
+        ValueError: index is not a positive integer
+        TypeError: tolerance is not a real number
+        ValueError: tolerance is not a positive real number
         ValueError: math domain error
 
     >>> round(nth_root(9, 2),1)
@@ -75,27 +75,27 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
     >>> nth_root('invalid input', 3, 0.0001)
     Traceback (most recent call last):
         ...
-    TypeError: radicand must be real number, not str
+    TypeError: radicand must be a real number, not a str
 
     >>> nth_root(4, 0.5, 0.0001)
     Traceback (most recent call last):
         ...
-    TypeError: index must be integer, not float
+    TypeError: index must be an integer, not a float
 
     >>> nth_root(16, -4, 0.001)
     Traceback (most recent call last):
         ...
-    ValueError: index must be positive integer, -4 <= 0
+    ValueError: index must be a positive integer, -4 <= 0
 
     >>> nth_root(4, 2, '0.000001')
     Traceback (most recent call last):
         ...
-    TypeError: tolerance must be real number, not str
+    TypeError: tolerance must be a real number, not str
 
     >>> nth_root(9, 2, -0.01)
     Traceback (most recent call last):
         ...
-    ValueError: tolerance must be positive real number, -0.01 <= 0
+    ValueError: tolerance must be a positive real number, -0.01 <= 0
 
     >>> nth_root(-256, 4, 0.0001)
     Traceback (most recent call last):
@@ -103,23 +103,23 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
     ValueError: math domain error, radicand must be nonnegative for even index
     """
     if not isinstance(radicand, (int, float)):
-        error_message = f"radicand must be real number, not {type(radicand).__name__}"
+        error_message = f"radicand must be a real number, not a {type(radicand).__name__}"
         raise TypeError(error_message)
 
     if not isinstance(index, int):
-        error_message = f"index must be integer, not {type(index).__name__}"
+        error_message = f"index must be an integer, not a {type(index).__name__}"
         raise TypeError(error_message)
 
     if index <= 0:
-        error_message = f"index must be positive integer, {index} <= 0"
+        error_message = f"index must be a positive integer, {index} <= 0"
         raise ValueError(error_message)
 
     if not isinstance(tolerance, (int, float)):
-        error_message = f"tolerance must be real number, not {type(tolerance).__name__}"
+        error_message = f"tolerance must be a real number, not {type(tolerance).__name__}"
         raise TypeError(error_message)
 
     if tolerance <= 0:
-        error_message = f"tolerance must be positive real number, {tolerance} <= 0"
+        error_message = f"tolerance must be a positive real number, {tolerance} <= 0"
         raise ValueError(error_message)
 
     if radicand < 0 and index % 2 == 0:
@@ -130,19 +130,19 @@ def nth_root(radicand: float, index: int, tolerance: float = 0.0001) -> float:
         return 0.0
 
     # Set initial guess
-    new_aproximation = radicand
-    # Set old_aproximation to enter the loop
-    old_aproximation = new_aproximation + tolerance + 0.1
+    new_approximation = radicand
+    # Set old_approximation to enter the loop
+    old_approximation = new_approximation + tolerance + 0.1
 
     # Iterate as long as the stop criterion is not satisfied
-    while tolerance <= abs(old_aproximation - new_aproximation):
-        old_aproximation = new_aproximation
+    while tolerance <= abs(old_approximation - new_approximation):
+        old_approximation = new_approximation
         # Compute new_approximation with the recurrence relation described above
-        first_summand = (index - 1) / index * old_aproximation
-        second_summand = radicand / (index * pow(old_aproximation, index - 1))
-        new_aproximation = first_summand + second_summand
+        first_summand = (index - 1) / index * old_approximation
+        second_summand = radicand / (index * pow(old_approximation, index - 1))
+        new_approximation = first_summand + second_summand
 
-    return new_aproximation
+    return new_approximation
 
 
 if __name__ == "__main__":
