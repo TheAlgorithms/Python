@@ -144,6 +144,7 @@ def test_rec_insertion_sort(case) -> None:
         exchange_sort,
         gnome_sort,
         insertion_sort,
+        iter_merge_sort,
         merge,
         merge_sort,
         odd_even_sort,
