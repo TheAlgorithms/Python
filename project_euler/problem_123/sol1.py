@@ -43,7 +43,7 @@ from __future__ import annotations
 from collections.abc import Generator
 
 
-def sieve() -> Generator[int, None, None]:
+def sieve() -> Generator[int]:
     """
     Returns a prime number generator using sieve method.
     >>> type(sieve())
