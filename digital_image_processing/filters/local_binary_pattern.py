@@ -19,7 +19,7 @@ def get_neighbors_pixel(
 
     try:
         return int(image[x_coordinate][y_coordinate] >= center)
-    except (IndexError, TypeError):
+    except IndexError, TypeError:
         return 0
 
 

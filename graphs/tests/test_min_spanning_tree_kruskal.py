@@ -1,7 +1,7 @@
 from graphs.minimum_spanning_tree_kruskal import kruskal
 
 
-def test_kruskal_successful_result():
+def test_kruskal_successful_result() -> None:
     num_nodes = 9
     edges = [
         [0, 1, 4],

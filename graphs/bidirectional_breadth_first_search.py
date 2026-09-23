@@ -24,7 +24,7 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
 class Node:
     def __init__(
         self, pos_x: int, pos_y: int, goal_x: int, goal_y: int, parent: Node | None
-    ):
+    ) -> None:
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.pos = (pos_y, pos_x)
@@ -52,7 +52,7 @@ class BreadthFirstSearch:
      (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
-    def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
+    def __init__(self, start: tuple[int, int], goal: tuple[int, int]) -> None:
         self.start = Node(start[1], start[0], goal[1], goal[0], None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], None)
 
@@ -122,7 +122,7 @@ class BidirectionalBreadthFirstSearch:
      (2, 4), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6), (6, 6)]
     """
 
-    def __init__(self, start, goal):
+    def __init__(self, start, goal) -> None:
         self.fwd_bfs = BreadthFirstSearch(start, goal)
         self.bwd_bfs = BreadthFirstSearch(goal, start)
         self.reached = False
