@@ -262,6 +262,7 @@
 
 ## [Data Structures](data_structures)
   * Arrays
+    * [Dynamic Array](data_structures/arrays/dynamic_array.py)
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Gas Station](data_structures/arrays/gas_station.py)
