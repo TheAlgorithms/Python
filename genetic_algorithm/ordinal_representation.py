@@ -18,6 +18,9 @@ def ordinal_representation_closed(path: list[str], nodes: list[str]) -> Iterator
     of the corresponding city in the current reference list,
     which shrinks as cities are removed.
 
+    https://en.wikipedia.org/wiki/Hamiltonian_path
+    https://en.wikipedia.org/wiki/Hamiltonian_path_problem
+
     Parameters
     ----------
     path:
