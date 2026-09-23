@@ -13,7 +13,6 @@ missing (the amount of data that u expected are not supposed to be)
 
 from warnings import simplefilter
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -145,22 +144,6 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
     return safe > not_safe
 
 
-def plot_forecast(actual, predictions):
-    plt.figure(figsize=(10, 5))
-    plt.plot(range(len(actual)), actual, label="Actual")
-    plt.plot(len(actual), predictions[0], "ro", label="Linear Reg")
-    plt.plot(len(actual), predictions[1], "go", label="SARIMAX")
-    plt.plot(len(actual), predictions[2], "bo", label="SVR")
-    plt.plot(len(actual), predictions[3], "yo", label="RF")
-    plt.legend()
-    plt.title("Data Safety Forecast")
-    plt.xlabel("Days")
-    plt.ylabel("Normalized User Count")
-    plt.grid(True)
-    plt.tight_layout()
-    plt.show()
-
-
 if __name__ == "__main__":
     """
     data column = total user in a day, how much online event held in one day,
@@ -202,5 +185,3 @@ if __name__ == "__main__":
     # check the safety of today's data
     not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
     print(f"Today's data is {not_str}safe.")
-
-    plot_forecast(train_user, res_vote)
