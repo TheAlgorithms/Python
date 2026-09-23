@@ -1,11 +1,11 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
-import httpx
+import httpx2
 
 
 # Function to get geolocation data for an IP address
@@ -15,7 +15,7 @@ def get_ip_geolocation(ip_address: str) -> str:
         url = f"https://ipinfo.io/{ip_address}/json"
 
         # Send a GET request to the API
-        response = httpx.get(url, timeout=10)
+        response = httpx2.get(url, timeout=10)
 
         # Check if the HTTP request was successful
         response.raise_for_status()
@@ -30,7 +30,7 @@ def get_ip_geolocation(ip_address: str) -> str:
             location = "Location data not found."
 
         return location
-    except httpx.RequestError as e:
+    except httpx2.RequestError as e:
         # Handle network-related exceptions
         return f"Request error: {e}"
     except ValueError as e:
