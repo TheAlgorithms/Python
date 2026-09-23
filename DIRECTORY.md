@@ -542,9 +542,8 @@
   * Tests
     * [Test Send File](file_transfer/tests/test_send_file.py)
 
-## Financial
-  * [Annuity Due Future Value](financial/annuity_due_future_value.py)
 ## [Financial](financial)
+  * [Annuity Due Future Value](financial/annuity_due_future_value.py)
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Expected Shortfall](financial/expected_shortfall.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
