@@ -10,7 +10,7 @@ class NearestNeighbour:
     Source: https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation
     """
 
-    def __init__(self, img, dst_width: int, dst_height: int):
+    def __init__(self, img, dst_width: int, dst_height: int) -> None:
         if dst_width < 0 or dst_height < 0:
             raise ValueError("Destination width/height should be > 0")
 
@@ -27,7 +27,7 @@ class NearestNeighbour:
             np.ones((self.dst_h, self.dst_w, 3), np.uint8) * 255
         )
 
-    def process(self):
+    def process(self) -> None:
         for i in range(self.dst_h):
             for j in range(self.dst_w):
                 self.output[i][j] = self.img[self.get_y(i)][self.get_x(j)]
