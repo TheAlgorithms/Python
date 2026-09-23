@@ -133,7 +133,7 @@ class PersistentSegmentTree:
 
 # Running the doctests
 if __name__ == "__main__":
-    from doctest
+    import doctest
 
     print("Running doctests...")
     result = doctest.testmod()
