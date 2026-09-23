@@ -410,7 +410,7 @@ class Matrix:
             raise Exception("Matrix is not square")
         if self.__height < 1:
             raise Exception("Matrix has no element")
-        elif self.__height == 1:
+        if self.__height == 1:
             return self.__matrix[0][0]
         elif self.__height == 2:
             return (
