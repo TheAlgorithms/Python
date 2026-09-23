@@ -32,11 +32,10 @@ class PersistentSegmentTree:
         if start == end:
             return Node(arr[start])
         mid = (start + end) // 2
-        node = Node()
-        node.left = self._build(arr, start, mid)
-        node.right = self._build(arr, mid + 1, end)
-        node.value = node.left.value + node.right.value
-        return node
+        left = self._build(arr, start, mid)
+        right = self._build(arr, mid + 1, end)
+        return Node(value=left.value + right.value, left=left, right=right)
+
 
     def update(self, version: int, index: int, value: int) -> int:
         """
