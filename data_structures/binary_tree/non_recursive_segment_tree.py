@@ -39,12 +39,12 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Generic, TypeVar
+from typing import TypeVar, cast
 
 T = TypeVar("T")
 
 
-class SegmentTree(Generic[T]):
+class SegmentTree[T]:
     def __init__(self, arr: list[T], fnc: Callable[[T, T], T]) -> None:
         """
         Segment Tree constructor, it works just with commutative combiner.
@@ -57,10 +57,9 @@ class SegmentTree(Generic[T]):
         ...             lambda a, b: (a[0] + b[0], a[1] + b[1])).query(0, 2)
         (6, 9)
         """
-        any_type: Any | T = None
 
         self.N: int = len(arr)
-        self.st: list[T] = [any_type for _ in range(self.N)] + arr
+        self.st: list[T] = [cast(T, None) for _ in range(self.N)] + arr
         self.fn = fnc
         self.build()
 

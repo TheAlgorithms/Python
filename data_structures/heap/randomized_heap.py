@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import random
 from collections.abc import Iterable
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 T = TypeVar("T", bound=bool)
 
 
-class RandomizedHeapNode(Generic[T]):
+class RandomizedHeapNode[T: bool]:
     """
     One node of the randomized heap. Contains the value and references to
     two children.
@@ -73,7 +73,7 @@ class RandomizedHeapNode(Generic[T]):
         return root1
 
 
-class RandomizedHeap(Generic[T]):
+class RandomizedHeap[T: bool]:
     """
     A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the
