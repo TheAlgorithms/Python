@@ -25,7 +25,6 @@ class Stack(list):
     def __eq__(self, other):
         return self[-1] == other[-1]
 
-
 def patience_sort(collection: list) -> list:
     """A pure implementation of patience sort algorithm in Python
 
@@ -52,9 +51,35 @@ def patience_sort(collection: list) -> list:
             stacks[i].append(element)
         else:
             stacks.append(new_stacks)
-
+            
     # use a heap-based merge to merge stack efficiently
     collection[:] = merge(*(reversed(stack) for stack in stacks))
+    return collection
+    
+def mixed_patience_sort(collection: list) -> list:
+    """
+    With this block of code, numbers are sorted according to their
+    magnitude, the strings are arranged in alphbetical order. And the numbers
+    are arranged before the alphabets.
+    """
+
+    number_items = []
+    string_items = []
+
+    for element in collection:
+        if isinstance(element, (int, float)):
+            number_items.append(element)
+        elif isinstance(element, str):
+            string_items.append(element)
+        else:
+            print("Only integers, floats, and strings are allowed.")
+
+    # The user input is sort by using the patience sort algorithm
+    sorted_numbers = patience_sort(number_items)
+    sorted_strings = patience_sort(string_items)
+
+    # use a heap-based merge to merge stack efficiently
+    collection[:] = sorted_numbers + sorted_strings
     return collection
 
 def convert_item(item):
@@ -70,4 +95,4 @@ def convert_item(item):
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [convert_item(item) for item in user_input.split(",")]
-    print(unsorted)
+    print(mixed_patience_sort(unsorted))
