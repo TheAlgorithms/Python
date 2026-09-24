@@ -42,8 +42,8 @@ def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
         ValueError: nums = [1, -1] is not sorted
     """
     for nums in (nums1, nums2):
-        if list(nums1) != sorted(nums1):
-            msg = f"{nums1 = } is not sorted"
+        if list(nums) != sorted(nums):
+            msg = f"{nums = } is not sorted"
             raise ValueError(msg)
     # If one array is empty, simply return the other.
     if not nums1:
