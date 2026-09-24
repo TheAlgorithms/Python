@@ -5,6 +5,8 @@ there exists an invertible matrix :math:`P` such that :math:`P^{-1} A P = B`.
 This implementation relies on SymPy to compute the Jordan canonical form of
 both matrices.  Two matrices are similar precisely when their Jordan forms are
 equal up to permutation of the Jordan blocks.
+* https://en.wikipedia.org/wiki/Jordan_matrix
+* https://en.wikipedia.org/wiki/Jordan_normal_form
 
 Examples
 --------
@@ -109,7 +111,7 @@ def are_similar_matrices(
     matrix_a, matrix_b:
         Square matrices represented as nested sequences (or SymPy matrices).
     simplify_entries:
-        If ``True`` (default) the function attempts to simplify each entry so
+        If ``True`` (default), the function attempts to simplify each entry so
         that values that are algebraically equal are treated as such. Set this
         to ``False`` to skip simplification when working with symbolic inputs
         that should remain untouched.
