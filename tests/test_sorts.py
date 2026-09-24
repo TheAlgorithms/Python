@@ -173,6 +173,7 @@ def test_bogo_sort_comparable_items() -> None:
     with pytest.raises(TypeError):
         bogo_sort([1, "a"])
 
+
 def test_bitonic_sort_comparable_items() -> None:
     from sorts.bitonic_sort import bitonic_sort
 
