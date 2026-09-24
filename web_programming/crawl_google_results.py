@@ -3,21 +3,21 @@
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 import sys
 import webbrowser
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 if __name__ == "__main__":
     print("Googling.....")
     url = "https://www.google.com/search?q=" + " ".join(sys.argv[1:])
-    res = httpx.get(
+    res = httpx2.get(
         url,
         headers={"UserAgent": UserAgent().random},
         timeout=10,

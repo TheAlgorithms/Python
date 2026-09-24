@@ -2,13 +2,13 @@
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
 from datetime import UTC, datetime
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 
@@ -23,9 +23,9 @@ def download_image(url: str) -> str:
         A message indicating the result of the operation.
     """
     try:
-        response = httpx.get(url, timeout=10)
+        response = httpx2.get(url, timeout=10)
         response.raise_for_status()
-    except httpx.RequestError as e:
+    except httpx2.RequestError as e:
         return f"An error occurred during the HTTP request to {url}: {e!r}"
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -38,8 +38,8 @@ def download_image(url: str) -> str:
         return f"Image URL not found in meta tag {image_meta_tag}."
 
     try:
-        image_data = httpx.get(image_url, timeout=10).content
-    except httpx.RequestError as e:
+        image_data = httpx2.get(image_url, timeout=10).content
+    except httpx2.RequestError as e:
         return f"An error occurred during the HTTP request to {image_url}: {e!r}"
     if not image_data:
         return f"Failed to download the image from {image_url}."
