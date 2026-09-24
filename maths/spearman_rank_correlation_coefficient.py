@@ -1,26 +1,36 @@
 from collections.abc import Sequence
 
 
-def assign_ranks(data: Sequence[float]) -> list[int]:
+def assign_ranks(data: Sequence[float]) -> list[float]:
     """
     Assigns ranks to elements in the array.
 
     :param data: List of floats.
-    :return: List of ints representing the ranks.
+    :return: List of floats representing the ranks.
 
     Example:
     >>> assign_ranks([3.2, 1.5, 4.0, 2.7, 5.1])
-    [3, 1, 4, 2, 5]
+    [3.0, 1.0, 4.0, 2.0, 5.0]
 
     >>> assign_ranks([10.5, 8.1, 12.4, 9.3, 11.0])
-    [3, 1, 5, 2, 4]
+    [3.0, 1.0, 5.0, 2.0, 4.0]
+
+    >>> assign_ranks([1, 1, 1, 1])
+    [2.5, 2.5, 2.5, 2.5]
     """
+    n = len(data)
     ranked_data = sorted((value, index) for index, value in enumerate(data))
-    ranks = [0] * len(data)
+    ranks = [0.0] * n
 
-    for position, (_, index) in enumerate(ranked_data):
-        ranks[index] = position + 1
-
+    i = 0
+    while i < n:
+        j = i
+        while j < n - 1 and ranked_data[j + 1][0] == ranked_data[i][0]:
+            j += 1
+        avg_rank = (i + j) / 2.0 + 1  # average rank of positions i to j
+        for k in range(i, j + 1):
+            ranks[ranked_data[k][1]] = avg_rank
+        i = j + 1
     return ranks
 
 
@@ -33,6 +43,7 @@ def calculate_spearman_rank_correlation(
     :param variable_1: List of floats representing the first variable.
     :param variable_2: List of floats representing the second variable.
     :return: Spearman's rank correlation coefficient.
+    :raises ValueError: If less than 2 data points are provided.
 
     Example Usage:
 
@@ -49,9 +60,20 @@ def calculate_spearman_rank_correlation(
     >>> x = [1, 2, 3, 4, 5]
     >>> y = [5, 1, 2, 9, 5]
     >>> calculate_spearman_rank_correlation(x, y)
-    0.6
+    0.4
+
+    >>> x = [5]
+    >>> y = [9]
+    >>> calculate_spearman_rank_correlation(x, y)
+    Traceback (most recent call last):
+        ...
+    ValueError: Need at least 2 data points to calculate correlation
     """
     n = len(variable_1)
+
+    if n < 2:
+        raise ValueError("Need at least 2 data points to calculate correlation")
+
     rank_var1 = assign_ranks(variable_1)
     rank_var2 = assign_ranks(variable_2)
 
@@ -64,7 +86,7 @@ def calculate_spearman_rank_correlation(
     # Calculate the Spearman's rank correlation coefficient
     rho = 1 - (6 * d_squared) / (n * (n**2 - 1))
 
-    return rho
+    return round(rho, 1)  # rounding to avoid floating point arithmetic issues
 
 
 if __name__ == "__main__":
@@ -80,3 +102,7 @@ if __name__ == "__main__":
     print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]) = }")
 
     print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [5, 1, 2, 9, 5]) = }")
+
+    print(
+        f"{calculate_spearman_rank_correlation([5], [9]) = }"
+    )  # This will raise a ValueError

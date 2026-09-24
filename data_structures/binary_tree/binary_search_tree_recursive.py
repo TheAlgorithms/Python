@@ -105,7 +105,7 @@ class BinarySearchTree:
         if node is None:
             msg = f"Node with label {label} does not exist"
             raise ValueError(msg)
-        elif label < node.label:
+        if label < node.label:
             node = self._search(node.left, label)
         elif label > node.label:
             node = self._search(node.right, label)
