@@ -27,12 +27,15 @@ def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
 
         >>> merge_sorted_arrays([-5, -3, -1], [-2, -2])
         [-5, -3, -2, -2, -1]
+
         >>> merge_sorted_arrays(range(5), range(5))
         [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
+
         >>> merge_sorted_arrays([1, -1], [])
         Traceback (most recent call last):
             ...
         ValueError: nums = [1, -1] is not sorted
+
         >>> merge_sorted_arrays([], [1, -1])
         Traceback (most recent call last):
             ...
@@ -40,7 +43,7 @@ def merge_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
     """
     for nums in (nums1, nums2):
         if list(nums1) != sorted(nums1):
-            msg f"{nums1 = } is not sorted"
+            msg = f"{nums1 = } is not sorted"
             raise ValueError(msg)
     # If one array is empty, simply return the other.
     if not nums1:
