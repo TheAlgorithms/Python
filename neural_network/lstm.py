@@ -190,7 +190,7 @@ class LongShortTermMemory:
         :return: The sigmoid activation or its derivative.
 
         >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
-        >>> output = lstm.sigmoid(np.array([[1, 2, 3]]))
+        >>> output = lstm.sigmoid(input_array=np.array([[1, 2, 3]]))
         >>> isinstance(output, np.ndarray)
         True
         >>> np.round(output, 3)
@@ -212,7 +212,7 @@ class LongShortTermMemory:
         :return: The tanh activation or its derivative.
 
         >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
-        >>> output = lstm.tanh(np.array(input_array=[[1, 2, 3]]))
+        >>> output = lstm.tanh(input_array=np.array([[1, 2, 3]]))
         >>> isinstance(output, np.ndarray)
         True
         >>> np.round(output, 3)
