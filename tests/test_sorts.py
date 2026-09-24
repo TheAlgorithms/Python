@@ -34,8 +34,8 @@ from sorts.exchange_sort import exchange_sort
 from sorts.gnome_sort import gnome_sort
 from sorts.heap_sort import heap_sort
 from sorts.insertion_sort import insertion_sort
-from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.intro_sort import sort as intro_sort
+from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
 from sorts.odd_even_transposition_single_threaded import odd_even_transposition
