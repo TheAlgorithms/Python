@@ -505,7 +505,7 @@ def test_with_sample_data() -> None:
         refined and "
         "popularized by many people in following work."""
 
-    stm_model = LongShortTermMemory(
+    lstm_model = LongShortTermMemory(
         input_data=sample_data,
         hidden_layer_size=25,
         training_epochs=100,
