@@ -37,14 +37,14 @@ def covid_stats(
 ) -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
     try:
-        response = httpx.get(url, timeout=10).raise_for_status()
-    except httpx.TimeoutException:
+        response = httpx2.get(url, timeout=10).raise_for_status()
+    except httpx2.TimeoutException:
         logging.error(
             "Request timed out. Please check your network connection "
             "or try again later."
         )
         return CovidData("N/A", "N/A", "N/A")
-    except httpx.HTTPStatusError as e:
+    except httpx2.HTTPStatusError as e:
         logging.error(f"HTTP error occurred: {e}")
         return CovidData("N/A", "N/A", "N/A")
     data: list[str] = html.fromstring(response.content).xpath(xpath_str)
