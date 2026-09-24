@@ -25,6 +25,9 @@ from itertools import pairwise
 from timeit import timeit
 from typing import Protocol
 
+class SortFunction(Protocol):
+    def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
+
 from sorts.bubble_sort import bubble_sort_iterative
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
 from sorts.comb_sort import comb_sort
@@ -38,7 +41,7 @@ from sorts.shell_sort import shell_sort
 from sorts.tim_sort import tim_sort
 
 # name -> callable.  Every callable accepts a list and returns the sorted list.
-SORTS: dict[str, Callable[[list[int]], Sequence[int]]] = {
+SORTS: dict[str, SortFunction] = {
     "bubble_sort": bubble_sort_iterative,
     "cocktail_shaker_sort": cocktail_shaker_sort,
     "comb_sort": comb_sort,

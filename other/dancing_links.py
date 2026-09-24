@@ -21,6 +21,12 @@ True
 class DLXNode:
     """Represents a node in the Dancing Links structure."""
 
+    left: "DLXNode"
+    right: "DLXNode"
+    up: "DLXNode"
+    down: "DLXNode"
+    column: "ColumnNode | None"
+
     def __init__(self) -> None:
         self.left = self.right = self.up = self.down = self
         self.column = None
