@@ -6,6 +6,7 @@ Flask).
 
 uv run --script web_programming/covid_stats_via_xpath.py
 """
+
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
