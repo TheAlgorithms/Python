@@ -1028,6 +1028,7 @@
   * [Rotate Matrix](matrix/rotate_matrix.py)
   * [Searching In Sorted Matrix](matrix/searching_in_sorted_matrix.py)
   * [Sherman Morrison](matrix/sherman_morrison.py)
+  * [Similar Matrices](matrix/similar_matrices.py)
   * [Spiral Print](matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
