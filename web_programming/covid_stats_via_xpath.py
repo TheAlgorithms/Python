@@ -9,7 +9,7 @@ uv run --script web_programming/covid_stats_via_xpath.py
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
-#     "httpx",
+#     "httpx2",
 #     "lxml",
 # ]
 # ///
@@ -19,7 +19,7 @@ import argparse
 import logging
 from typing import NamedTuple
 
-import httpx
+import httpx2
 from lxml import html
 
 
@@ -37,8 +37,7 @@ def covid_stats(
 ) -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
     try:
-        response = httpx.get(url, timeout=10)
-        response.raise_for_status()
+        response = httpx.get(url, timeout=10).raise_for_status()
     except httpx.TimeoutException:
         logging.error(
             "Request timed out. Please check your network connection "
