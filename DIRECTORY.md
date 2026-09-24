@@ -268,6 +268,7 @@
     * [Gas Station](data_structures/arrays/gas_station.py)
     * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
     * [Kth Largest Element](data_structures/arrays/kth_largest_element.py)
+    * [List Maximum Depth Sum](data_structures/arrays/list_maximum_depth_sum.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Merge Sorted](data_structures/arrays/merge_sorted.py)
     * [Monotonic Array](data_structures/arrays/monotonic_array.py)
