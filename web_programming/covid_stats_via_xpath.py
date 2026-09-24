@@ -3,8 +3,9 @@ This script demonstrates fetching simple COVID-19 statistics from the
 Worldometers archive site using lxml. lxml is chosen over BeautifulSoup
 for its speed and convenience in Python web projects (such as Django or
 Flask).
-"""
 
+uv run --script web_programming/covid_stats_via_xpath.py
+"""
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
