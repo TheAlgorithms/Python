@@ -1,3 +1,4 @@
+from random import randrange
 from typing import Any, Protocol
 
 
@@ -9,8 +10,8 @@ def quick_sort_3partition[T: Comparable](
     sorting: list[T], left: int, right: int
 ) -> None:
     """ "
-    Python implementation of quick sort algorithm with 3-way partition.
-    The idea of 3-way quick sort is based on "Dutch National Flag algorithm".
+    Python implementation of the quicksort algorithm with 3-way partition.
+    The idea of 3-way quicksort is based on "Dutch National Flag algorithm".
 
     :param sorting: sort list
     :param left: left endpoint of sorting
@@ -30,10 +31,6 @@ def quick_sort_3partition[T: Comparable](
     >>> quick_sort_3partition(array3, 0, 0)
     >>> array3
     []
-    >>> array4 = ["pear", "apple", "fig"]
-    >>> quick_sort_3partition(array4, 0, 2)
-    >>> array4
-    ['apple', 'fig', 'pear']
     """
     if right <= left:
         return
@@ -58,7 +55,7 @@ def quick_sort_lomuto_partition[T: Comparable](
     sorting: list[T], left: int, right: int
 ) -> None:
     """
-    A pure Python implementation of quick sort algorithm(in-place)
+    A pure Python implementation of the quicksort algorithm(in-place)
     with Lomuto partition scheme:
     https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme
 
@@ -80,10 +77,6 @@ def quick_sort_lomuto_partition[T: Comparable](
     >>> quick_sort_lomuto_partition(nums3, 0, 3)
     >>> nums3
     [-4, -2, 0, 5]
-    >>> nums4 = ["pear", "apple", "fig"]
-    >>> quick_sort_lomuto_partition(nums4, 0, 2)
-    >>> nums4
-    ['apple', 'fig', 'pear']
     """
     if left < right:
         pivot_index = lomuto_partition(sorting, left, right)
@@ -96,8 +89,6 @@ def lomuto_partition[T: Comparable](sorting: list[T], left: int, right: int) -> 
     Example:
     >>> lomuto_partition([1,5,7,6], 0, 3)
     2
-    >>> lomuto_partition(["b", "a"], 0, 1)
-    0
     """
     pivot = sorting[right]
     store_index = left
@@ -107,6 +98,142 @@ def lomuto_partition[T: Comparable](sorting: list[T], left: int, right: int) -> 
             store_index += 1
     sorting[right], sorting[store_index] = sorting[store_index], sorting[right]
     return store_index
+
+
+def hoare_partition_by_value[T: Comparable](
+    array: list[T], pivot_value: T, start: int = 0, end: int | None = None
+) -> int:
+    """
+    Returns the starting index of the right subarray, which contains the
+    elements greater than or equal to `pivot_value`
+
+    >>> list_unsorted = [7, 3, 5, 4, 1, 8, 6]
+    >>> array = list_unsorted.copy()
+    >>> hoare_partition_by_value(array, 5)
+    3
+    >>> array
+    [1, 3, 4, 5, 7, 8, 6]
+
+    Edge cases:
+    >>> hoare_partition_by_value(list_unsorted.copy(), 0)
+    0
+    >>> hoare_partition_by_value(list_unsorted.copy(), 1)
+    0
+    >>> hoare_partition_by_value(list_unsorted.copy(), 2)
+    1
+    >>> hoare_partition_by_value(list_unsorted.copy(), 8)
+    6
+    >>> hoare_partition_by_value(list_unsorted.copy(), 9)
+    7
+
+    """
+    if end is None:
+        end = len(array) - 1
+
+    left = start
+    right = end
+
+    while True:
+        """
+        In an intermediate iteration, state could look like this:
+
+            lllluuuuuuuuuurrrrr
+                ^        ^
+                |        |
+              left      right
+
+        Where the middle values are unknown (u), since they are not yet traversed.
+        `left-1` points to the end of the left subarray.
+        `right+1` points to the start of the right subarray.
+        """
+
+        while array[left] < pivot_value:
+            left += 1
+            if left > end:
+                # Right subarray is empty.
+                # Signal it by returning an index out of bounds.
+                return end + 1
+        while array[right] >= pivot_value:
+            right -= 1
+            if right < start:
+                # Left subarray is empty
+                return start
+
+        if left > right:
+            break
+
+        # Invariants:
+        assert all(i < pivot_value for i in array[start:left])
+        assert all(i >= pivot_value for i in array[right + 1 : end])
+        """
+            llllllruuuuulrrrrrr
+                  ^     ^
+                  |     |
+                left   right
+        """
+
+        # Swap
+        array[left], array[right] = array[right], array[left]
+
+        left += 1
+        right -= 1
+
+    return right + 1
+
+
+def hoare_partition_by_pivot[T: Comparable](
+    array: list[T], pivot_index: int, start=0, end: int | None = None
+) -> int:
+    """
+    Returns the new pivot index after partitioning
+
+    >>> array = [7, 3, 5, 4, 1, 8, 6]
+    >>> array[3]
+    4
+    >>> hoare_partition_by_pivot(array, 3)
+    2
+    >>> array
+    [1, 3, 4, 6, 7, 8, 5]
+    """
+    if end is None:
+        end = len(array) - 1
+
+    def swap(i1, i2):
+        array[i1], array[i2] = array[i2], array[i1]
+
+    pivot_value = array[pivot_index]
+    swap(pivot_index, end)
+    greater_or_equal = hoare_partition_by_value(
+        array, pivot_value, start=start, end=end - 1
+    )
+    swap(end, greater_or_equal)
+    return greater_or_equal
+
+
+def quicksort_hoare[T: Comparable](
+    array: list[T], start: int = 0, end: int | None = None
+) -> None:
+    """
+    Quicksort using the Hoare partition scheme:
+    - https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
+    - The Art of Computer Programming, Volume 3: Sorting and Searching
+
+    >>> array = [2, 2, 8, 0, 3, 7, 2, 1, 8, 8]
+    >>> quicksort_hoare(array)
+    >>> array
+    [0, 1, 2, 2, 2, 3, 7, 8, 8, 8]
+    """
+    if end is None:
+        end = len(array) - 1
+
+    if end + 1 - start <= 1:
+        return
+
+    pivot_index_final = hoare_partition_by_pivot(
+        array, randrange(start, end), start, end
+    )
+    quicksort_hoare(array, start, pivot_index_final - 1)
+    quicksort_hoare(array, pivot_index_final + 1, end)
 
 
 def three_way_radix_quicksort[T: Comparable](sorting: list[T]) -> list[T]:
@@ -124,8 +251,6 @@ def three_way_radix_quicksort[T: Comparable](sorting: list[T]) -> list[T]:
     [-5, -2, -2, 0, 1, 1]
     >>> three_way_radix_quicksort([1, 2, 5, 1, 2, 0, 0, 5, 2, -1])
     [-1, 0, 0, 1, 1, 2, 2, 2, 5, 5]
-    >>> three_way_radix_quicksort(["pear", "apple", "fig"])
-    ['apple', 'fig', 'pear']
     """
     if len(sorting) <= 1:
         return sorting
