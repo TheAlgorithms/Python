@@ -32,7 +32,6 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
     False
     >>> is_bipartite_dfs({7: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]})
     False
-
     >>> is_bipartite_dfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
     False
     >>> is_bipartite_dfs({0: [-1, 3], 1: [0, -2]})
@@ -41,7 +40,6 @@ def is_bipartite_dfs(graph: dict[int, list[int]]) -> bool:
     True
     >>> is_bipartite_dfs({0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
     True
-
     >>> is_bipartite_dfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_dfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})
@@ -109,7 +107,6 @@ def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
     False
     >>> is_bipartite_bfs({7: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]})
     False
-
     >>> is_bipartite_bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]})
     False
     >>> is_bipartite_bfs({0: [-1, 3], 1: [0, -2]})
@@ -118,7 +115,6 @@ def is_bipartite_bfs(graph: dict[int, list[int]]) -> bool:
     True
     >>> is_bipartite_bfs({0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
     True
-
     >>> is_bipartite_bfs({0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]})
     True
     >>> is_bipartite_bfs({"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]})

@@ -30,7 +30,7 @@ def dfs(start: int) -> int:
     return ret
 
 
-def even_tree():
+def even_tree() -> None:
     """
     2 1
     3 1
