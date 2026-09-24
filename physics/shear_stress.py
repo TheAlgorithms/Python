@@ -30,13 +30,13 @@ def shear_stress(
     """
     if (stress, tangential_force, area).count(0) != 1:
         raise ValueError("You cannot supply more or less than 2 values")
-    elif stress < 0:
+    if stress < 0:
         raise ValueError("Stress cannot be negative")
-    elif tangential_force < 0:
+    if tangential_force < 0:
         raise ValueError("Tangential Force cannot be negative")
-    elif area < 0:
+    if area < 0:
         raise ValueError("Area cannot be negative")
-    elif stress == 0:
+    if stress == 0:
         return (
             "stress",
             tangential_force / area,
