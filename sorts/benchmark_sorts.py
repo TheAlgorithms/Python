@@ -25,8 +25,10 @@ from itertools import pairwise
 from timeit import timeit
 from typing import Protocol
 
+
 class SortFunction(Protocol):
     def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
+
 
 from sorts.bubble_sort import bubble_sort_iterative
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
