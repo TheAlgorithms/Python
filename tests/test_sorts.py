@@ -149,6 +149,7 @@ def test_rec_insertion_sort(case) -> None:
         odd_even_sort,
         odd_even_transposition,
         pancake_sort,
+        patience_sort,
         reversort,
         selection_sort,
         shrink_shell_sort,
