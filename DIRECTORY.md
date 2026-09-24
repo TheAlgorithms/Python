@@ -106,6 +106,7 @@
   * [Rotate Bits](bit_manipulation/rotate_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
+  * [Xor Swap Two Integers](bit_manipulation/xor_swap_two_integers.py)
 
 ## [Blockchain](blockchain)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
@@ -194,7 +195,6 @@
   * [Xtea](ciphers/xtea.py)
 
 ## [Computer Vision](computer_vision)
-  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Gramian](computer_vision/gramian.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
@@ -262,6 +262,7 @@
 
 ## [Data Structures](data_structures)
   * Arrays
+    * [Dynamic Array](data_structures/arrays/dynamic_array.py)
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Gas Station](data_structures/arrays/gas_station.py)
@@ -304,6 +305,7 @@
     * [Mirror Binary Tree](data_structures/binary_tree/mirror_binary_tree.py)
     * [Non Recursive Segment Tree](data_structures/binary_tree/non_recursive_segment_tree.py)
     * [Number Of Possible Binary Trees](data_structures/binary_tree/number_of_possible_binary_trees.py)
+    * [Persistent Segment Tree](data_structures/binary_tree/persistent_segment_tree.py)
     * [Red Black Tree](data_structures/binary_tree/red_black_tree.py)
     * [Segment Tree](data_structures/binary_tree/segment_tree.py)
     * [Segment Tree Other](data_structures/binary_tree/segment_tree_other.py)
@@ -471,7 +473,6 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Largest Divisible Subset](dynamic_programming/largest_divisible_subset.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
@@ -480,6 +481,7 @@
   * [Longest Increasing Subsequence Iterative](dynamic_programming/longest_increasing_subsequence_iterative.py)
   * [Longest Increasing Subsequence O Nlogn](dynamic_programming/longest_increasing_subsequence_o_nlogn.py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
+  * [Longest Repeating Subsequence](dynamic_programming/longest_repeating_subsequence.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
@@ -541,6 +543,7 @@
     * [Test Send File](file_transfer/tests/test_send_file.py)
 
 ## [Financial](financial)
+  * [Annuity Due Future Value](financial/annuity_due_future_value.py)
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Expected Shortfall](financial/expected_shortfall.py)
   * [Exponential Moving Average](financial/exponential_moving_average.py)
@@ -548,6 +551,7 @@
   * [Interest](financial/interest.py)
   * [Kelly Criterion](financial/kelly_criterion.py)
   * [Macaulay Duration](financial/macaulay_duration.py)
+  * [Ordinary Annuity Future Value](financial/ordinary_annuity_future_value.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
   * [Sharpe Ratio](financial/sharpe_ratio.py)
@@ -631,6 +635,7 @@
   * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected Weighted Graph](graphs/directed_and_undirected_weighted_graph.py)
+  * [Edmonds Blossom Algorithm](graphs/edmonds_blossom_algorithm.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
   * [Eulerian Path And Circuit For Undirected Graph](graphs/eulerian_path_and_circuit_for_undirected_graph.py)
   * [Even Tree](graphs/even_tree.py)
@@ -668,6 +673,7 @@
   * [Strongly Connected Components](graphs/strongly_connected_components.py)
   * [Tarjans Scc](graphs/tarjans_scc.py)
   * Tests
+    * [Test Edmonds Blossom Algorithm](graphs/tests/test_edmonds_blossom_algorithm.py)
     * [Test Graphs Floyd Warshall](graphs/tests/test_graphs_floyd_warshall.py)
     * [Test Johnson](graphs/tests/test_johnson.py)
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
@@ -697,6 +703,7 @@
   * [Enigma Machine](hashes/enigma_machine.py)
   * [Fletcher16](hashes/fletcher16.py)
   * [Hamming Code](hashes/hamming_code.py)
+  * [Jenkins One At A Time](hashes/jenkins_one_at_a_time.py)
   * [Luhn](hashes/luhn.py)
   * [Md5](hashes/md5.py)
   * [Sdbm](hashes/sdbm.py)
@@ -759,8 +766,6 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
-  * Lstm
-    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mab](machine_learning/mab.py)
   * [Mean Shift](machine_learning/mean_shift.py)
   * [Mfcc](machine_learning/mfcc.py)
@@ -966,6 +971,7 @@
     * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
+    * [Jacobsthal Number](maths/special_numbers/jacobsthal_number.py)
     * [Kaprekar Constant](maths/special_numbers/kaprekar_constant.py)
     * [Kaprekar Number](maths/special_numbers/kaprekar_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
@@ -1022,9 +1028,11 @@
   * [Rotate Matrix](matrix/rotate_matrix.py)
   * [Searching In Sorted Matrix](matrix/searching_in_sorted_matrix.py)
   * [Sherman Morrison](matrix/sherman_morrison.py)
+  * [Similar Matrices](matrix/similar_matrices.py)
   * [Spiral Print](matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
+  * [Transitive Closure](matrix/transitive_closure.py)
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## [Networking Flow](networking_flow)
@@ -1049,7 +1057,7 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Input Data](neural_network/input_data.py)
+  * [Lstm](neural_network/lstm.py)
   * Optimizers
     * [Adagrad](neural_network/optimizers/adagrad.py)
     * [Adam Optimizer](neural_network/optimizers/adam_optimizer.py)
@@ -1058,6 +1066,7 @@
     * [Nesterov Accelerated Sgd](neural_network/optimizers/nesterov_accelerated_sgd.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
+  * [Sliding Window Attention](neural_network/sliding_window_attention.py)
   * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
 
 ## [Other](other)
@@ -1602,6 +1611,7 @@
   * [Lower](strings/lower.py)
   * [Manacher](strings/manacher.py)
   * [Min Cost String Conversion](strings/min_cost_string_conversion.py)
+  * [Min Window Substring](strings/min_window_substring.py)
   * [Naive String Search](strings/naive_string_search.py)
   * [Ngram](strings/ngram.py)
   * [Palindrome](strings/palindrome.py)
