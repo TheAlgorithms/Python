@@ -703,6 +703,7 @@
   * [Enigma Machine](hashes/enigma_machine.py)
   * [Fletcher16](hashes/fletcher16.py)
   * [Hamming Code](hashes/hamming_code.py)
+  * [Jenkins One At A Time](hashes/jenkins_one_at_a_time.py)
   * [Luhn](hashes/luhn.py)
   * [Md5](hashes/md5.py)
   * [Sdbm](hashes/sdbm.py)
