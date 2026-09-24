@@ -1,5 +1,5 @@
 """
-In-place array reversal.
+In-place array reversal that also returns the list to the caller.
 This algorithm reverses the elements of a list without using extra space.
 """
 
@@ -34,6 +34,12 @@ def reverse_array(arr: list[Any]) -> list[Any]:
     [1]
     >>> reverse_array([])
     []
+    >>> reverse_array(list(range(5)))
+    [0, 1, 2, 3, 4]
+    >>> reverse_array(tuple(range(5)))
+    [0, 1, 2, 3, 4]
+    >>> reverse_array(range(5))
+    [0, 1, 2, 3, 4]
     """
     left = 0
     right = len(arr) - 1
