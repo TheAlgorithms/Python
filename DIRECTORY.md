@@ -195,7 +195,6 @@
   * [Xtea](ciphers/xtea.py)
 
 ## [Computer Vision](computer_vision)
-  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Gramian](computer_vision/gramian.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
@@ -474,7 +473,6 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Largest Divisible Subset](dynamic_programming/largest_divisible_subset.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
@@ -766,8 +764,6 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
-  * Lstm
-    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mab](machine_learning/mab.py)
   * [Mean Shift](machine_learning/mean_shift.py)
   * [Mfcc](machine_learning/mfcc.py)
@@ -1058,7 +1054,6 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Input Data](neural_network/input_data.py)
   * Optimizers
     * [Adagrad](neural_network/optimizers/adagrad.py)
     * [Adam Optimizer](neural_network/optimizers/adam_optimizer.py)
