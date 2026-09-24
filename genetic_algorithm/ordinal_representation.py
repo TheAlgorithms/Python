@@ -10,7 +10,9 @@ representation based on a fixed alphabetical node reference.
 from collections.abc import Iterator, Sequence
 
 
-def ordinal_representation_closed(path: Sequence[str], nodes: Sequence[str]) -> Iterator[int]:
+def ordinal_representation_closed(
+    path: Sequence[str], nodes: Sequence[str]
+) -> Iterator[int]:
     """
     Generate the ordinal representation for a closed path.
 
