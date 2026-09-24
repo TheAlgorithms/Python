@@ -1,5 +1,5 @@
 """
-In-place array reversal that also returns the list to the caller.
+In-place array reversal that also returns the reversed list to the caller.
 This algorithm reverses the elements of a list without using extra space.
 """
 
@@ -35,11 +35,15 @@ def reverse_array(arr: list[Any]) -> list[Any]:
     >>> reverse_array([])
     []
     >>> reverse_array(list(range(5)))
-    [0, 1, 2, 3, 4]
+    [4, 3, 2, 1, 0]
     >>> reverse_array(tuple(range(5)))
-    [0, 1, 2, 3, 4]
+    Traceback (most recent call last):
+        ...
+    TypeError: 'tuple' object does not support item assignment
     >>> reverse_array(range(5))
-    [0, 1, 2, 3, 4]
+    Traceback (most recent call last):
+        ...
+    TypeError: 'range' object does not support item assignment
     """
     left = 0
     right = len(arr) - 1
@@ -64,6 +68,5 @@ if __name__ == "__main__":
     # Example usage:
     print("\n--- Example Usage ---")
     sample_array = [10, 20, 30, 40, 50, 60]
-    print(f"Original array: {sample_array}")
-    reverse_array(sample_array)
-    print(f"Reversed array: {sample_array}")
+    print(f"{sample_array = }")
+    print(f"{reverse_array(sample_array) = }")
