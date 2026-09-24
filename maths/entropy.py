@@ -108,7 +108,7 @@ def analyze_text(text: str) -> tuple[dict, dict]:
     return single_char_strings, two_char_strings
 
 
-def main():
+def main() -> None:
     import doctest
 
     doctest.testmod()
