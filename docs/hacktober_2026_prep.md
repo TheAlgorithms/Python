@@ -84,7 +84,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 70. [x] #14939 merged
 71. [x] #14938 closed by close_pull_requests_with_failing_tests.sh
 72. [x] #14925 merged
-73. [ ] #14923 enhancement, awaiting reviews
+73. [x] #14923 closed
 74. [x] #14920 closed
 75. [x] #14914 closed
 76. [x] #14909 closed
@@ -363,7 +363,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 349. [x] #14021 closed
 350. [x] #14019 closed by close_pull_requests_with_require_tests.sh
 351. [x] #14016 closed
-352. [ ] #14015 awaiting reviews
+352. [x] #14015 closed
 353. [x] #14014 closed by close_pull_requests_with_require_type_hints.sh
 354. [ ] #14009 awaiting reviews
 355. [ ] #14008 awaiting reviews
@@ -681,7 +681,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 667. [x] #13009 closed by close_pull_requests_with_failing_tests.sh
 668. [x] #13007 closed
 669. [x] #13002 closed
-670. [ ] #13000 awaiting reviews
+670. [x] #13000 merged
 671. [x] #12999 merged
 672. [x] #12998 closed
 673. [x] #12989 closed
@@ -785,7 +785,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 771. [x] #12104 merged
 772. [x] #12100 closed
 773. [x] #12091 merged
-774. [ ] #12082 awaiting reviews
+774. [x] #12082 merged
 775. [x] #12066 merged
 776. [x] #12056 merged
 777. [x] #12042 closed
@@ -1129,7 +1129,7 @@ data_structures:
 45. [x] #13802 closed
 46. [ ] #14008
 47. [ ] #14009
-48. [ ] #14015
+48. [x] #14015 closed
 49. [ ] #14026
 50. [x] #14048 closed
 51. [x] #14186 merged
@@ -1361,7 +1361,7 @@ machine_learning:
 55. [x] #14853 closed
 56. [x] #14858 merged
 57. [x] #14874 closed
-58. [ ] #14923
+58. [x] #14923 closed
 
 maths:
 1. [x] #9927 merged
@@ -1488,7 +1488,7 @@ networking_flow:
 1. [x] #13128 merged
 
 neural_network:
-1. [ ] #12082
+1. [x] #12082 merged
 2. [x] #12214 merged
 3. [x] #12421 closed
 4. [x] #13133 merged
@@ -1730,7 +1730,7 @@ triage:
 web_programming:
 1. [x] #11193 closed
 2. [x] #11655 merged
-3. [ ] #13000
+3. [x] #13000 merged
 4. [x] #13016 merged
 5. [x] #13797 merged
 
@@ -2063,16 +2063,16 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 _Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-24 (UTC)._
 
-- **Open issues:** 10
+- **Open issues:** 9
 - **Open pull requests:** 120
-- **Open PRs labelled `awaiting reviews`:** 87
+- **Open PRs labelled `awaiting reviews`:** 88
 - **Days until Hacktoberfest (2026-10-01):** 7
 - **Issues to close per day to clear the backlog:** 2 per day (over 7 days)
 - **Pull requests to merge or close per day to clear the backlog:** 18 per day (over 7 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
-1. `data_structures/` — 14 awaiting-reviews PRs
+1. `data_structures/` — 13 awaiting-reviews PRs
 2. `maths/` — 12 awaiting-reviews PRs
-3. `dynamic_programming/` — 9 awaiting-reviews PRs
+3. `sorts/` — 10 awaiting-reviews PRs
 
