@@ -1,11 +1,14 @@
-"""In linear algebra, a QR decomposition, also known as a QR factorization
-or Q factorization,
-is a decomposition of a matrix a into a product matrix_a = QR
-of an orthonormal matrix Q and an upper triangular matrix R.
-QR decomposition is often used to solve the linear least squares (LLS) problem
-and is the basis for a particular eigenvalue algorithm, the QR algorithm.
+"""
+In linear algebra, a QR decomposition, also known as a QR factorization or
+Q factorization, is a decomposition of a matrix A into a product matrix_a = QR of an
+orthonormal matrix Q and an upper triangular matrix R.
+
+QR decomposition is often used to solve the linear least squares (LLS) problem and is
+the basis for a particular eigenvalue algorithm, the QR algorithm.
+
 This algorithm will simply attempt to perform QR decomposition on any square matrix.
-Reference: https://en.wikipedia.org/wiki/QR_decomposition"""
+https://en.wikipedia.org/wiki/QR_decomposition
+"""
 
 import numpy as np
 from scipy.linalg import qr
@@ -13,11 +16,11 @@ from scipy.linalg import qr
 
 def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
-    Perform QR decomposition on a given matrix and raises an error if in
+    Perform QR decomposition on a given matrix and raise an error if in
     rowXcolumn matrix a if row is smaller than column or row,column is less than 2
 
     >>> matrix_a = np.array([[1, 2, 3], [4, 5, 9], [7, 8, 15]])
-    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> (matrix_q, matrix_r) = qr_decomposition(matrix_a)
     >>> matrix_q
     array([[-0.17,  0.9 ,  0.41],
            [-0.51,  0.28, -0.82],
@@ -27,7 +30,7 @@ def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
            [  0.  ,   0.41,  -0.41],
            [  0.  ,   0.  ,   0.  ]])
     >>> matrix_a = np.array([[1, 2], [4, 5], [7, 8]])
-    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> (matrix_q, matrix_r) = qr_decomposition(matrix_a)
     >>> matrix_q
     array([[-0.21,  0.89,  0.41],
            [-0.52,  0.25, -0.82],
@@ -37,17 +40,17 @@ def qr_decomposition(matrix_a: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
            [ 0.  , -0.76],
            [ 0.  ,  0.  ]])
     >>> matrix_a = np.array([[1, 2, 3], [4, 5, 6]])
-    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> (matrix_q, matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size should be greater than column size
     >>> matrix_a = np.array([[1], [4]])
-    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> (matrix_q, matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size and column size should be greater than 2
     >>> matrix_a = np.array([[1,4]])
-    >>> (matrix_q,matrix_r) = qr_decomposition(matrix_a)
+    >>> (matrix_q, matrix_r) = qr_decomposition(matrix_a)
     Traceback (most recent call last):
         ...
     ValueError: row size should be greater than column size
