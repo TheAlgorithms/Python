@@ -13,7 +13,9 @@ class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
 
 
-def comp_and_swap[T: Coparable](array: list[T], index1: int, index2: int, direction: int) -> None:
+def comp_and_swap[T: Comparable](
+    array: list[T], index1: int, index2: int, direction: int
+) -> None:
     """Compare the value at given index1 and index2 of the array and swap them as per
     the given direction.
 
@@ -38,13 +40,15 @@ def comp_and_swap[T: Coparable](array: list[T], index1: int, index2: int, direct
     >>> arr
     [12, 42, -21, 1]
     """
-    if (direction == 1 and array[index1] > array[index2]) or (
+    if (direction == 1 and array[index2] < array[index1]) or (
         direction == 0 and array[index1] < array[index2]
     ):
         array[index1], array[index2] = array[index2], array[index1]
 
 
-def bitonic_merge[T: Comparable](array: list[T], low: int, length: int, direction: int) -> None:
+def bitonic_merge[T: Comparable](
+    array: list[T], low: int, length: int, direction: int
+) -> None:
     """
     It recursively sorts a bitonic sequence in ascending order, if direction = 1, and in
     descending if direction = 0.
@@ -68,7 +72,9 @@ def bitonic_merge[T: Comparable](array: list[T], low: int, length: int, directio
         bitonic_merge(array, low + middle, middle, direction)
 
 
-def bitonic_sort[T: Comparable](array: list[T], low: int, length: int, direction: int) -> None:
+def bitonic_sort[T: Comparable](
+    array: list[T], low: int, length: int, direction: int
+) -> None:
     """
     This function first produces a bitonic sequence by recursively sorting its two
     halves in opposite sorting orders, and then calls bitonic_merge to make them in the
@@ -83,7 +89,7 @@ def bitonic_sort[T: Comparable](array: list[T], low: int, length: int, direction
     >>> arr
     [145, 92, 34, 12, 0, -23, -121, -167]
 
-    >>> arr = ["banana", "apple", "cherry","date"]
+    >>> arr = ["banana", "apple", "cherry", "date"]
     >>> bitonic_sort(arr, 0, 4, 1)
     >>> arr
     ['apple', 'banana', 'cherry', 'date']
@@ -97,7 +103,7 @@ def bitonic_sort[T: Comparable](array: list[T], low: int, length: int, direction
     >>> bitonic_sort(arr, 0, 4, 1)
     Traceback (most recent call last):
     ...
-    TypeError: '>' not supported between instances of 'int' and 'str'
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     if length > 1:
         middle = int(length / 2)

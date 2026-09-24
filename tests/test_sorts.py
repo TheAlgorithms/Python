@@ -172,3 +172,17 @@ def test_bogo_sort_comparable_items() -> None:
 
     with pytest.raises(TypeError):
         bogo_sort([1, "a"])
+
+def test_bitonic_sort_comparable_items() -> None:
+    from sorts.bitonic_sort import bitonic_sort
+
+    strings = ["banana", "apple", "cherry", "date"]
+    bitonic_sort(strings, 0, len(strings), 1)
+    assert strings == ["apple", "banana", "cherry", "date"]
+
+    numbers = [3, 1.5, 2, 4.5]
+    bitonic_sort(numbers, 0, len(numbers), 1)
+    assert numbers == [1.5, 2, 3, 4.5]
+
+    with pytest.raises(TypeError):
+        bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
