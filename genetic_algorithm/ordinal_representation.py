@@ -7,10 +7,10 @@ representation based on a fixed alphabetical node reference.
 
 """
 
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 
 
-def ordinal_representation_closed(path: list[str], nodes: list[str]) -> Iterator[int]:
+def ordinal_representation_closed(path: Sequence[str], nodes: Sequence[str]) -> Iterator[int]:
     """
     Generate the ordinal representation for a closed path.
 
@@ -52,15 +52,32 @@ def ordinal_representation_closed(path: list[str], nodes: list[str]) -> Iterator
         msg = "path and nodes must contain the same values"
         raise ValueError(msg)
 
-    reference = nodes.copy()
+    reference = list(nodes)
     for city in path:
         yield (index := reference.index(city) + 1)  # 1-based index
         reference.pop(index - 1)
 
 
+def tour_from_ordinal(ordinal: list[int], nodes: list[str]) -> list[str]:
+    """
+    Decode an ordinal representation back into a tour.
+
+    This is the exact inverse of ``ordinal_representation_closed``. It is what
+    makes ordinal encoding useful in a genetic algorithm: an ordinary one-point
+    crossover of two ordinal vectors always decodes to a valid tour, with no
+    repair step needed.
+
+    >>> nodes = list("ABCDEFGHIJKL")
+    >>> path = list("GLADBIKEHJFC")
+    >>> encoded = list(ordinal_representation_closed(path, nodes))
+    >>> tour_from_ordinal(encoded, nodes) == path
+    True
+    """
+    reference = nodes.copy()
+    return [reference.pop(index - 1) for index in ordinal]
+
+
 if __name__ == "__main__":
-    sample_path = list("ODGLAHKMBJFCNIE")
-    all_nodes = sorted(set(sample_path))
-    print("Ordinal Representation:")
-    ordinal_values = ordinal_representation_closed(sample_path, all_nodes)
-    print(" ".join(map(str, ordinal_values)))
+    import doctest
+
+    doctest.testmod()
