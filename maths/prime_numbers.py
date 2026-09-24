@@ -90,7 +90,7 @@ def fast_primes(max_n: int) -> Generator[int]:
             yield i
 
 
-def benchmark():
+def benchmark() -> None:
     """
     Let's benchmark our functions side-by-side...
     """
