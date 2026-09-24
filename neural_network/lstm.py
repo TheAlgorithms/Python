@@ -1,6 +1,7 @@
 """
 A simple implementation of Long Short-Term Memory (LSTM) networks in Python.
 """
+
 import numpy as np
 from numpy.random import Generator
 
