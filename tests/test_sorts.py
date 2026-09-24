@@ -51,6 +51,7 @@ from sorts.shell_sort import shell_sort
 from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
+from sorts.tim_sort import tim_sort
 from sorts.unknown_sort import merge_sort as unknown_sort
 
 
@@ -90,6 +91,7 @@ SORTS = (
     shrink_shell_sort,
     stooge_sort,
     strand_sort,
+    tim_sort,
     unknown_sort,
 )
 
@@ -163,6 +165,7 @@ def test_rec_insertion_sort(case) -> None:
         selection_sort,
         shrink_shell_sort,
         strand_sort,
+        tim_sort,
         unknown_sort,
     ],
     ids=lambda f: f.__name__,
