@@ -2,19 +2,19 @@
 The Bob Jenkins hash is a fast, non-cryptographic hash function
 designed for general-purpose use, such as hash table lookups.
 
-source: https://en.wikipedia.org/wiki/Jenkins_hash_function
+https://en.wikipedia.org/wiki/Jenkins_hash_function
 """
 
 
-def joaat(key: str) -> int:
+def jenkins_one_at_a_time(key: str) -> int:
     """
     Calculate Jenkins One-at-a-Time hash for a key.
 
-    >>> joaat("apple")
+    >>> jenkins_one_at_a_time("apple")
     2297466611
-    >>> joaat("test")
+    >>> jenkins_one_at_a_time("test")
     1064684737
-    >>> joaat("")
+    >>> jenkins_one_at_a_time("")
     0
     """
     hash_value = 0
