@@ -11,13 +11,19 @@ python3 iterative_merge_sort.py
 
 from __future__ import annotations
 
+from typing import Any, Protocol
 
-def merge(input_list: list, low: int, mid: int, high: int) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def merge[T: Comparable](input_list: list[T], low: int, mid: int, high: int) -> list[T]:
     """
     sorting left-half and right-half individually
     then merging them into result
     """
-    result = []
+    result: list[T] = []
     left, right = input_list[low:mid], input_list[mid : high + 1]
     while left and right:
         result.append((left if left[0] <= right[0] else right).pop(0))
@@ -26,7 +32,7 @@ def merge(input_list: list, low: int, mid: int, high: int) -> list:
 
 
 # iteration over the unsorted list
-def iter_merge_sort(input_list: list) -> list:
+def iter_merge_sort[T: Comparable](input_list: list[T]) -> list[T]:
     """
     Return a sorted copy of the input list
 
@@ -58,8 +64,12 @@ def iter_merge_sort(input_list: list) -> list:
     [-1.1, -1, 0.0, 1, 1.1]
     >>> iter_merge_sort(['c', 'b', 'a'])
     ['a', 'b', 'c']
-    >>> iter_merge_sort('cba')
+    >>> iter_merge_sort(list('cba'))
     ['a', 'b', 'c']
+    >>> iter_merge_sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     if len(input_list) <= 1:
         return input_list
