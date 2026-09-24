@@ -10,22 +10,19 @@ def split(string: str, separator: str = " ") -> list[str]:
 
     >>> split("apple#banana#cherry#orange", separator='#')
     ['apple', 'banana', 'cherry', 'orange']
-
     >>> split("Hello there")
     ['Hello', 'there']
-
     >>> split("11/22/63", separator='/')
     ['11', '22', '63']
-
     >>> split("12:43:39", separator=":")
     ['12', '43', '39']
-
     >>> split(";abbb;;c;", separator=';')
     ['', 'abbb', '', 'c', '']
+    >>> split("")
+    ['']
     """
     split_words = []
     last_index = 0
-
     for index, char in enumerate(string):
         if char == separator:
             split_words.append(string[last_index:index])
