@@ -52,6 +52,7 @@ from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 from sorts.tim_sort import tim_sort
+from sorts.unknown_sort import merge_sort as unknown_sort
 
 
 def test_heap_sort() -> None:
@@ -91,6 +92,7 @@ SORTS = (
     stooge_sort,
     strand_sort,
     tim_sort,
+    unknown_sort,
 )
 
 
@@ -158,11 +160,13 @@ def test_rec_insertion_sort(case) -> None:
         odd_even_sort,
         odd_even_transposition,
         pancake_sort,
+        patience_sort,
         reversort,
         selection_sort,
         shrink_shell_sort,
         strand_sort,
         tim_sort,
+        unknown_sort,
     ],
     ids=lambda f: f.__name__,
 )
@@ -182,3 +186,18 @@ def test_bogo_sort_comparable_items() -> None:
 
     with pytest.raises(TypeError):
         bogo_sort([1, "a"])
+
+
+def test_bitonic_sort_comparable_items() -> None:
+    from sorts.bitonic_sort import bitonic_sort
+
+    strings = ["banana", "apple", "cherry", "date"]
+    bitonic_sort(strings, 0, len(strings), 1)
+    assert strings == ["apple", "banana", "cherry", "date"]
+
+    numbers = [3, 1.5, 2, 4.5]
+    bitonic_sort(numbers, 0, len(numbers), 1)
+    assert numbers == [1.5, 2, 3, 4.5]
+
+    with pytest.raises(TypeError):
+        bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
