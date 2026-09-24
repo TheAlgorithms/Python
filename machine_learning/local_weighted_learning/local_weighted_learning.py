@@ -50,13 +50,13 @@ def weight_matrix(point: np.ndarray, x_train: np.ndarray, tau: float) -> np.ndar
         m x m weight matrix around the prediction point, where m is the size of
         the training set
     >>> weight_matrix(
-    ...     np.array([1., 1.]),
-    ...     np.array([[16.99, 10.34], [21.01,23.68], [24.59,25.69]]),
-    ...     0.6
-    ... )
-    array([[1.43807972e-207, 0.00000000e+000, 0.00000000e+000],
-           [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
-           [0.00000000e+000, 0.00000000e+000, 0.00000000e+000]])
+    ...     np.array([16.99, 10.34]),
+    ...     np.array([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
+    ...     5,
+    ... ).round(4)
+    array([[1.    , 0.    , 0.    ],
+           [0.    , 0.0206, 0.    ],
+           [0.    , 0.    , 0.0028]])
     """
     m = len(x_train)  # Number of training samples
     weights = np.eye(m)  # Initialize weights as identity matrix
@@ -83,13 +83,13 @@ def local_weight(
     Returns:
         ndarray of local weights
     >>> local_weight(
-    ...     np.array([1., 1.]),
-    ...     np.array([[16.99, 10.34], [21.01,23.68], [24.59,25.69]]),
+    ...     np.array([16.99, 10.34]),
+    ...     np.array([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
     ...     np.array([[1.01, 1.66, 3.5]]),
-    ...     0.6
-    ... )
-    array([[0.00873174],
-           [0.08272556]])
+    ...     5,
+    ... ).round(5)
+    array([[0.02572],
+           [0.05552]])
     """
     weight_mat = weight_matrix(point, x_train, tau)
     weight = np.linalg.inv(x_train.T @ weight_mat @ x_train) @ (
@@ -116,9 +116,9 @@ def local_weight_regression(
     >>> local_weight_regression(
     ...     np.array([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
     ...     np.array([[1.01, 1.66, 3.5]]),
-    ...     0.6
-    ... )
-    array([1.07173261, 1.65970737, 3.50160179])
+    ...     5,
+    ... ).round(5)
+    array([1.01094, 1.98589, 3.42233])
     """
     y_pred = np.zeros(len(x_train))  # Initialize array of predictions
     for i, item in enumerate(x_train):

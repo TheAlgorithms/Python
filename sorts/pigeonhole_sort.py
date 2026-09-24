@@ -3,7 +3,7 @@
 # Algorithm for the pigeonhole sorting
 
 
-def pigeonhole_sort(a):
+def pigeonhole_sort(a) -> None:
     """
     >>> a = [8, 3, 2, 7, 4, 6, 8]
     >>> b = sorted(a)  # a nondestructive sort
@@ -39,7 +39,7 @@ def pigeonhole_sort(a):
             i += 1
 
 
-def main():
+def main() -> None:
     a = [8, 3, 2, 7, 4, 6, 8]
     pigeonhole_sort(a)
     print("Sorted order is:", *a)

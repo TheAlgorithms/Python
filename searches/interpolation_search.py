@@ -99,16 +99,24 @@ def interpolation_search_by_recursion(
     1
     >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 100) is None
     True
+    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 16) is None
+    True
+    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], -1) is None
+    True
+    >>> interpolation_search_by_recursion([0, 3, 6, 12, 14, 15, 20], 10) is None
+    True
+    >>> interpolation_search_by_recursion([], 1) is None
+    True
     >>> interpolation_search_by_recursion([5, 5, 5, 5, 5], 3) is None
     True
     """
     if right is None:
         right = len(sorted_collection) - 1
+    if left > right:
+        return None
     # avoid divided by 0 during interpolation
     if sorted_collection[left] == sorted_collection[right]:
-        if sorted_collection[left] == item:
-            return left
-        return None
+        return left if sorted_collection[left] == item else None
 
     point = left + ((item - sorted_collection[left]) * (right - left)) // (
         sorted_collection[right] - sorted_collection[left]
