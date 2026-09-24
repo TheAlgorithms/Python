@@ -1,12 +1,8 @@
+"""
+A simple implementation of Long Short-Term Memory (LSTM) networks in Python.
+"""
 import numpy as np
 from numpy.random import Generator
-
-"""
-Author : Shashank Tyagi
-Email : tyagishashank118@gmail.com
-Description : This is a simple implementation of Long Short-Term Memory (LSTM)
-networks in Python.
-"""
 
 
 class LongShortTermMemory:
@@ -45,10 +41,6 @@ class LongShortTermMemory:
         self.unique_chars: set = set(self.input_data)
         self.data_length: int = len(self.input_data)
         self.vocabulary_size: int = len(self.unique_chars)
-
-        # print(
-        #    f"Data length: {self.data_length}, Vocabulary size: {self.vocabulary_size}"
-        # )
 
         self.char_to_index: dict[str, int] = {
             c: i for i, c in enumerate(self.unique_chars)
@@ -192,7 +184,7 @@ class LongShortTermMemory:
         """
         Sigmoid activation function.
 
-        :param x: The input array.
+        :param input_array: The input array.
         :param derivative: Whether to compute the derivative.
         :return: The sigmoid activation or its derivative.
 
@@ -202,7 +194,7 @@ class LongShortTermMemory:
         True
         >>> np.round(output, 3)
         array([[0.731, 0.881, 0.953]])
-        >>> derivative_output = lstm.sigmoid(output, derivative=True)
+        >>> derivative_output = lstm.sigmoid(input_array=output, derivative=True)
         >>> np.round(derivative_output, 3)
         array([[0.197, 0.105, 0.045]])
         """
@@ -214,17 +206,17 @@ class LongShortTermMemory:
         """
         Tanh activation function.
 
-        :param x: The input array.
+        :param input_array: The input array.
         :param derivative: Whether to compute the derivative.
         :return: The tanh activation or its derivative.
 
         >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
-        >>> output = lstm.tanh(np.array([[1, 2, 3]]))
+        >>> output = lstm.tanh(np.array(input_array=[[1, 2, 3]]))
         >>> isinstance(output, np.ndarray)
         True
         >>> np.round(output, 3)
         array([[0.762, 0.964, 0.995]])
-        >>> derivative_output = lstm.tanh(output, derivative=True)
+        >>> derivative_output = lstm.tanh(input_array=output, derivative=True)
         >>> np.round(derivative_output, 3)
         array([[0.42 , 0.071, 0.01 ]])
         """
@@ -236,11 +228,11 @@ class LongShortTermMemory:
         """
         Softmax activation function.
 
-        :param x: The input array.
+        :param input_array: The input array.
         :return: The softmax activation.
 
         >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
-        >>> output = lstm.softmax(np.array([1, 2, 3]))
+        >>> output = lstm.softmax(input_array=np.array([1, 2, 3]))
         >>> isinstance(output, np.ndarray)
         True
         >>> np.round(output, 3)
@@ -496,14 +488,13 @@ class LongShortTermMemory:
             if prediction == self.target_sequence[t]:
                 accuracy += 1
 
-        # print(f"Ground Truth:\n{self.target_sequence}\n")
-        # print(f"Predictions:\n{output}\n")
-        # print(f"Accuracy: {round(accuracy * 100 / len(self.input_sequence), 2)}%")
-
         return output
 
 
-if __name__ == "__main__":
+def test_with_sample_data() -> None:
+    """
+    >>> test_with_sample_data()
+    """
     sample_data = """Long Short-Term Memory (LSTM) networks are a type
          of recurrent neural network (RNN) capable of learning "
         "order dependence in sequence prediction problems.
@@ -512,19 +503,18 @@ if __name__ == "__main__":
         LSTMs were introduced by Hochreiter and Schmidhuber in 1997, and were
         refined and "
         "popularized by many people in following work."""
+
+    stm_model = LongShortTermMemory(
+        input_data=sample_data,
+        hidden_layer_size=25,
+        training_epochs=100,
+        learning_rate=0.05,
+    )
+    lstm_model.train()
+    lstm_model.test()
+
+
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    # lstm_model = LongShortTermMemory(
-    #     input_data=sample_data,
-    #     hidden_layer_size=25,
-    #     training_epochs=100,
-    #     learning_rate=0.05,
-    # )
-
-    # #### Training #####
-    # lstm_model.train()
-
-    # #### Testing #####
-    # lstm_model.test()
