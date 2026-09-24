@@ -145,7 +145,7 @@ def compute(a_i, k, i, n):
     return diff, i - start_i
 
 
-def add(digits, k, addend):
+def add(digits, k, addend) -> None:
     """
     adds addend to digit array given in digits
     starting at index k

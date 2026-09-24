@@ -41,7 +41,7 @@ units = {s: [u for u in unitlist if s in u] for s in squares}
 peers = {s: {x for u in units[s] for x in u} - {s} for s in squares}
 
 
-def test():
+def test() -> None:
     """A set of unit tests."""
     assert len(squares) == 81
     assert len(unitlist) == 27
@@ -121,7 +121,7 @@ def eliminate(values, s, d):
     return values
 
 
-def display(values):
+def display(values) -> None:
     """
     Display these values as a 2-D grid.
     """
@@ -166,7 +166,7 @@ def search(values):
     return some(search(assign(values.copy(), s, d)) for d in values[s])
 
 
-def solve_all(grids, name="", showif=0.0):
+def solve_all(grids, name="", showif=0.0) -> None:
     """
     Attempt to solve a sequence of grids. Report results.
     When showif is a number of seconds, display puzzles that take longer.

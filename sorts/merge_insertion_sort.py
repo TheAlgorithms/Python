@@ -13,8 +13,14 @@ python3 merge_insertion_sort.py
 
 from __future__ import annotations
 
+from typing import Any, Protocol
 
-def binary_search_insertion(sorted_list, item):
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def binary_search_insertion[T: Comparable](sorted_list: list[T], item: T) -> list[T]:
     """
     >>> binary_search_insertion([1, 2, 7, 9, 10], 4)
     [1, 2, 4, 7, 9, 10]
@@ -27,7 +33,7 @@ def binary_search_insertion(sorted_list, item):
             if sorted_list[middle] < item:
                 left = middle + 1
             break
-        elif sorted_list[middle] < item:
+        if sorted_list[middle] < item:
             left = middle + 1
         else:
             right = middle - 1
@@ -35,7 +41,7 @@ def binary_search_insertion(sorted_list, item):
     return sorted_list
 
 
-def merge(left, right):
+def merge[T: Comparable](left: list[list[T]], right: list[list[T]]) -> list[list[T]]:
     """
     >>> merge([[1, 6], [9, 10]], [[2, 3], [4, 5], [7, 8]])
     [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
@@ -49,7 +55,7 @@ def merge(left, right):
     return result + left + right
 
 
-def sortlist_2d(list_2d):
+def sortlist_2d[T: Comparable](list_2d: list[list[T]]) -> list[list[T]]:
     """
     >>> sortlist_2d([[9, 10], [1, 6], [7, 8], [2, 3], [4, 5]])
     [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
@@ -61,7 +67,7 @@ def sortlist_2d(list_2d):
     return merge(sortlist_2d(list_2d[:middle]), sortlist_2d(list_2d[middle:]))
 
 
-def merge_insertion_sort(collection: list[int]) -> list[int]:
+def merge_insertion_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of merge-insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
