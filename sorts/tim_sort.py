@@ -1,7 +1,12 @@
-from typing import Any
+from collections.abc import Sequence
+from typing import Any, Protocol
 
 
-def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def binary_search[T: Comparable](lst: list[T], item: T, start: int, end: int) -> int:
     """>>> binary_search([1, 3, 5], 4, 0, 2)
     2
     >>> binary_search([1, 3, 5], 0, 0, 2)
@@ -30,20 +35,20 @@ def binary_search(lst: list[Any], item: Any, start: int, end: int) -> int:
         Space: ``O(log n)`` due to recursion depth.
     """
     if start == end:
-        return start if lst[start] > item else start + 1
+        return start if item < lst[start] else start + 1
     if start > end:
         return start
 
     mid = (start + end) // 2
     if lst[mid] < item:
         return binary_search(lst, item, mid + 1, end)
-    elif lst[mid] > item:
+    elif item < lst[mid]:
         return binary_search(lst, item, start, mid - 1)
     else:
         return mid
 
 
-def insertion_sort(lst: list[Any]) -> list[Any]:
+def insertion_sort[T: Comparable](lst: list[T]) -> list[T]:
     """>>> insertion_sort([3, 2, 1])
     [1, 2, 3]
 
@@ -74,7 +79,7 @@ def insertion_sort(lst: list[Any]) -> list[Any]:
     return lst
 
 
-def merge(left: list[Any], right: list[Any]) -> list[Any]:
+def merge[T: Comparable](left: list[T], right: list[T]) -> list[T]:
     """>>> merge([1, 4], [2, 3])
     [1, 2, 3, 4]
 
@@ -104,7 +109,7 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
     return [right[0], *merge(left, right[1:])]
 
 
-def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
+def tim_sort[T: Comparable](lst: Sequence[T]) -> list[T]:
     """
     Sort and return the input using a TimSort-like approach: detect
     runs, sort each run with insertion sort, then merge the runs.
@@ -125,6 +130,10 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     True
     >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
     True
+    >>> tim_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
 
     """
     if not lst:
@@ -132,7 +141,7 @@ def tim_sort(lst: list[Any] | tuple[Any, ...] | str) -> list[Any]:
     length = len(lst)
     runs, sorted_runs = [], []
     new_run = [lst[0]]
-    sorted_array: list[Any] = []
+    sorted_array: list[T] = []
     i = 1
     while i < length:
         if lst[i] < lst[i - 1]:
