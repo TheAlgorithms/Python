@@ -5,17 +5,14 @@ A recursive implementation of the insertion sort algorithm
 from __future__ import annotations
 
 from collections.abc import MutableSequence
-from typing import Any, Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
-    def __lt__(self, other: Any, /) -> bool: ...
+    def __lt__(self, other: object, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def rec_insertion_sort[T](collection: MutableSequence[T], n: int) -> None:
+def rec_insertion_sort[T: Comparable](collection: MutableSequence[T], n: int) -> None:
     """
     Given a collection of comparable elements and its length, sorts the
     collection in place in ascending order.
@@ -51,7 +48,7 @@ def rec_insertion_sort[T](collection: MutableSequence[T], n: int) -> None:
     rec_insertion_sort(collection, n - 1)
 
 
-def insert_next[T](collection: MutableSequence[T], index: int) -> None:
+def insert_next[T: Comparable](collection: MutableSequence[T], index: int) -> None:
     """
     Inserts the '(index-1)th' element into place
 
@@ -71,7 +68,7 @@ def insert_next[T](collection: MutableSequence[T], index: int) -> None:
     []
     """
     # Checks order between adjacent elements
-    if index >= len(collection) or collection[index - 1] <= collection[index]:
+    if index >= len(collection) or not collection[index] < collection[index - 1]:
         return
 
     # Swaps adjacent elements since they are not in ascending order

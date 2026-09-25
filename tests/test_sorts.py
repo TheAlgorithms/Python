@@ -186,6 +186,20 @@ def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
         rec_insertion_sort([1, "a"], 2)
 
 
+def test_rec_insertion_sort_lt_only_items() -> None:
+    class LessOnly:
+        def __init__(self, value: int) -> None:
+            self.value = value
+
+        def __lt__(self, other: object) -> bool:
+            assert isinstance(other, LessOnly)
+            return self.value < other.value
+
+    collection = [LessOnly(3), LessOnly(1), LessOnly(2)]
+    rec_insertion_sort(collection, len(collection))
+    assert [item.value for item in collection] == [1, 2, 3]
+
+
 def test_bogo_sort_comparable_items() -> None:
     assert bogo_sort(["c", "a", "b"]) == ["a", "b", "c"]
     assert bogo_sort([2.5, -1.0, 0.0]) == [-1.0, 0.0, 2.5]
