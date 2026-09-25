@@ -27,8 +27,12 @@ python power_sort.py
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from typing import Any
+from collections.abc import Callable, Iterable
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
 
 
 def _find_run(
@@ -79,7 +83,7 @@ def _find_run(
         arr[start:run_end] = reversed(arr[start:run_end])
     else:
         # Ascending run
-        while run_end < end and key_func(arr[run_end]) >= key_func(arr[run_end - 1]):
+        while run_end < end and not (key_func(arr[run_end]) < key_func(arr[run_end - 1])):
             run_end += 1
 
     return run_end
@@ -176,7 +180,7 @@ def _merge(
 
     # Merge the two runs
     while i < len(left) and j < len(right):
-        if key_func(left[i]) <= key_func(right[j]):
+        if not key_func(right[j]) < key_func(left[i]):
             arr[k] = left[i]
             i += 1
         else:
@@ -196,12 +200,12 @@ def _merge(
         k += 1
 
 
-def power_sort(
-    collection: list,
+def power_sort[T: Comparable](
+    collection: Iterable[T],
     *,
-    key: Callable[[Any], Any] | None = None,
+    key: Callable[[T], Any] | None = None,
     reverse: bool = False,
-) -> list:
+) -> list[T]:
     """
     Sort a list using the PowerSort algorithm.
 
@@ -247,6 +251,10 @@ def power_sort(
     [9, 8, 5, 2, 1]
     >>> power_sort(['apple', 'pie', 'a', 'longer'], key=len)
     ['a', 'pie', 'apple', 'longer']
+    >>> power_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> power_sort([(1, 'b'), (2, 'a'), (1, 'a')], key=lambda x: x[0])
     [(1, 'b'), (1, 'a'), (2, 'a')]
     >>> power_sort([1, 2, 3, 2, 1, 2, 3, 4])
