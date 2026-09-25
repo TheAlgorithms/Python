@@ -6,26 +6,53 @@ https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebra
 
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
-    Simplify the Karnaugh map.
+    Simplify a 2 variable Karnaugh map.
+
+    Args:
+        kmap (List[List[]]): The kmap as a 2D array
+
+    Returns:
+        str: The most simplified expression of the kmap
+
+    >>> simplify_kmap(kmap = [[1,1], [1,1]])
+    '1'
     >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
-    "A'B + AB' + AB"
-    >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
-    ''
-    >>> simplify_kmap(kmap=[[0, 1], [1, -1]])
-    "A'B + AB' + AB"
+    'A + B'
     >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
-    "A'B + AB' + AB"
-    >>> simplify_kmap(kmap=[[0, 1], [1, 1.1]])
-    "A'B + AB' + AB"
-    >>> simplify_kmap(kmap=[[0, 1], [1, 'a']])
-    "A'B + AB' + AB"
+    'A + B'
+    >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
+    '0'
+    >>> simplify_kmap(kmap=[[0, 1], [1, 0]])
+    "A'B + AB'"
+    >>> simplify_kmap(kmap=[[0, 1], [0, 0]])
+    "A'B"
     """
     simplified_f = []
-    for a, row in enumerate(kmap):
-        for b, item in enumerate(row):
-            if item:
-                term = ("A" if a else "A'") + ("B" if b else "B'")
-                simplified_f.append(term)
+    # 4 sized boxes - There is only 1
+    if kmap[0][0] and kmap[0][1] and kmap[1][0] and kmap[1][1]:
+        return "1"
+
+    # 2 sized boxes - There are 4 (2 vertical and 2 horizontal)
+    # check horizontal
+    for i in range(2):
+        if kmap[i][0] and kmap[i][1]:
+            simplified_f.append("A" if i else "A'")
+    # check vertical
+    for i in range(2):
+        if kmap[0][i] and kmap[1][i]:
+            simplified_f.append("B" if i else "B'")
+
+    # 1 sized boxes - There are 4 (check individual boxes)
+    if not (simplified_f):
+        for a, row in enumerate(kmap):
+            for b, item in enumerate(row):
+                if item:
+                    term = ("A" if a else "A'") + ("B" if b else "B'")
+                    simplified_f.append(term)
+
+    if not (simplified_f):
+        simplified_f.append("0")
+
     return " + ".join(simplified_f)
 
 
@@ -37,7 +64,7 @@ def main() -> None:
     [0, 1]
     [1, 1]
     Simplified Expression:
-    A'B + AB' + AB
+    A + B
     """
     kmap = [[0, 1], [1, 1]]
 
@@ -52,4 +79,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    print(f"{simplify_kmap(kmap=[[0, 1], [1, 1]]) = }")
+    print(f"{simplify_kmap(kmap=[[1, 1], [1, 1]]) = }")
