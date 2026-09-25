@@ -1,8 +1,3 @@
-from __future__ import annotations
-
-import math
-from collections import Counter
-
 """
 In information theory, entropy is a measure of the uncertainty or randomness of a
 source of data. It quantifies the expected amount of information contained in each
@@ -18,6 +13,10 @@ for data compression.
 
 Reference: https://en.wikipedia.org/wiki/Entropy_(information_theory)
 """
+from __future__ import annotations
+
+import math
+from collections import Counter
 
 
 def shannon_entropy(probabilities: list[float]) -> float:
