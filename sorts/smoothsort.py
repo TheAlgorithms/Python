@@ -10,6 +10,16 @@ Reference:
     https://www.cs.utexas.edu/~EWD/ewd07xx/EWD796a.PDF
 """
 
+from typing import Any, Protocol, TypeVar
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
 # Precomputed Leonardo numbers: L(0)=1, L(1)=1, L(k)=L(k-1)+L(k-2)+1.
 # 46 values comfortably cover all practical list sizes.
 _LEONARDO: list[int] = [1, 1]
@@ -17,7 +27,7 @@ while _LEONARDO[-1] < 2**31:
     _LEONARDO.append(_LEONARDO[-1] + _LEONARDO[-2] + 1)
 
 
-def _sift(seq: list[int], root: int, order: int) -> None:
+def _sift[T: Comparable](seq: list[T], root: int, order: int) -> None:
     """
     Restore the max-heap property within a Leonardo tree of the given ``order``.
 
@@ -59,11 +69,11 @@ def _sift(seq: list[int], root: int, order: int) -> None:
         right = root - 1  # right child root
         left = root - 1 - _LEONARDO[order - 2]  # left child root
 
-        if seq[left] >= seq[right] and seq[left] > seq[root]:
+        if not (seq[left] < seq[right]) and seq[root] < seq[left]:
             seq[root], seq[left] = seq[left], seq[root]
             root = left
             order -= 1
-        elif seq[right] > seq[left] and seq[right] > seq[root]:
+        elif seq[left] < seq[right] and seq[root] < seq[right]:
             seq[root], seq[right] = seq[right], seq[root]
             root = right
             order -= 2
@@ -71,8 +81,8 @@ def _sift(seq: list[int], root: int, order: int) -> None:
             break
 
 
-def _trinkle(
-    seq: list[int],
+def _trinkle[T: Comparable](
+    seq: list[T],
     pos: int,
     heap_sizes: list[int],
     idx: int,
@@ -105,14 +115,14 @@ def _trinkle(
     """
     while idx > 0:
         prev_root = pos - _LEONARDO[heap_sizes[idx]]
-        if seq[pos] >= seq[prev_root]:
+        if not (seq[pos] < seq[prev_root]):
             break
-        # Only swap if prev_root is also >= its own children; otherwise
+        # Only swap if prev_root is also > its own children; otherwise
         # moving it would break the heap on the left side.
         if heap_sizes[idx] > 1:
             right = pos - 1
             left = pos - 1 - _LEONARDO[heap_sizes[idx] - 2]
-            if seq[prev_root] <= seq[right] or seq[prev_root] <= seq[left]:
+            if not (seq[right] < seq[prev_root]) or not (seq[left] < seq[prev_root]):
                 break
         seq[pos], seq[prev_root] = seq[prev_root], seq[pos]
         pos = prev_root
@@ -121,7 +131,7 @@ def _trinkle(
     _sift(seq, pos, heap_sizes[idx])
 
 
-def smoothsort(seq: list[int]) -> list[int]:
+def smoothsort[T: Comparable](seq: list[T]) -> list[T]:
     """
     Sort a list in-place using the Smoothsort algorithm and return it.
 
@@ -131,7 +141,7 @@ def smoothsort(seq: list[int]) -> list[int]:
     whose structure mirrors the sorted prefix of the sequence.
 
     Args:
-        seq: A list of integers to sort.
+        seq: A list of mutually comparable items to sort.
 
     Returns:
         The same list object, sorted in ascending order.
@@ -147,10 +157,18 @@ def smoothsort(seq: list[int]) -> list[int]:
         [1, 2, 3, 4, 5]
         >>> smoothsort([3, 3, 2, 1, 2])
         [1, 2, 2, 3, 3]
+        >>> smoothsort(["d", "a", "c", "b"])
+        ['a', 'b', 'c', 'd']
+        >>> smoothsort([2.5, -1, 0.0])
+        [-1, 0.0, 2.5]
         >>> smoothsort([1, 2, 3, 4, 5])
         [1, 2, 3, 4, 5]
         >>> smoothsort([-3, 0, -1, 5, 2])
         [-3, -1, 0, 2, 5]
+        >>> smoothsort([1, "a"])
+        Traceback (most recent call last):
+            ...
+        TypeError: '<' not supported between instances of 'str' and 'int'
     """
     n = len(seq)
     if n < 2:
