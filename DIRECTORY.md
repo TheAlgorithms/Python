@@ -561,6 +561,7 @@
   * [Sharpe Ratio](financial/sharpe_ratio.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
   * [Straight Line Depreciation](financial/straight_line_depreciation.py)
+  * [Streaming Moving Average](financial/streaming_moving_average.py)
   * [Time And Half Pay](financial/time_and_half_pay.py)
   * [Value At Risk](financial/value_at_risk.py)
 
