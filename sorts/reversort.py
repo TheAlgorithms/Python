@@ -17,10 +17,14 @@ For manual testing run:
 python reversort.py
 """
 
-from typing import Any
+from typing import Any, Protocol
 
 
-def reversort(collection: list[Any]) -> list[Any]:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def reversort[T: Comparable](collection: list[T]) -> list[T]:
     """
     Sort a list using the Reversort algorithm.
 
@@ -78,6 +82,10 @@ def reversort(collection: list[Any]) -> list[Any]:
     >>> collection_arg = random.choices(string.ascii_letters + string.digits, k=100)
     >>> reversort(collection_arg) == sorted(collection_arg)
     True
+    >>> reversort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     arr = collection[:]  # Create a copy to avoid modifying the original
     n = len(arr)
@@ -96,7 +104,7 @@ def reversort(collection: list[Any]) -> list[Any]:
     return arr
 
 
-def reversort_cost(collection: list[Any]) -> int:
+def reversort_cost[T: Comparable](collection: list[T]) -> int:
     """
     Calculate the cost of sorting using Reversort.
 
@@ -119,6 +127,10 @@ def reversort_cost(collection: list[Any]) -> int:
     0
     >>> reversort_cost([])
     0
+    >>> reversort_cost([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     arr = collection[:]  # Create a copy to avoid modifying the original
     n = len(arr)

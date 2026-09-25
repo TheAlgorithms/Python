@@ -23,6 +23,7 @@ from typing import NamedTuple
 import pytest
 
 from sorts.binary_insertion_sort import binary_insertion_sort
+from sorts.bogo_sort import bogo_sort
 from sorts.bubble_sort import bubble_sort_iterative, bubble_sort_recursive
 from sorts.circle_sort import circle_sort
 from sorts.cocktail_shaker_sort import cocktail_shaker_sort
@@ -33,18 +34,27 @@ from sorts.exchange_sort import exchange_sort
 from sorts.gnome_sort import gnome_sort
 from sorts.heap_sort import heap_sort
 from sorts.insertion_sort import insertion_sort
+from sorts.intro_sort import sort as intro_sort
 from sorts.iterative_merge_sort import iter_merge_sort
+from sorts.merge_insertion_sort import merge_insertion_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.odd_even_transposition_single_threaded import odd_even_transposition
 from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
 from sorts.quick_sort import quick_sort
+from sorts.quick_sort_3_partition import three_way_radix_quicksort
 from sorts.recursive_insertion_sort import rec_insertion_sort
+from sorts.recursive_mergesort_array import merge
+from sorts.reverse_selection import reverse_selection_sort
+from sorts.reversort import reversort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
+from sorts.tim_sort import tim_sort
+from sorts.unknown_sort import merge_sort as unknown_sort
 
 
 def test_heap_sort() -> None:
@@ -67,17 +77,26 @@ SORTS = (
     gnome_sort,
     heap_sort,
     insertion_sort,
+    intro_sort,
     iter_merge_sort,
+    merge,
+    merge_insertion_sort,
     merge_sort,
     odd_even_sort,
+    odd_even_transposition,
     pancake_sort,
     patience_sort,
     quick_sort,
+    reverse_selection_sort,
+    reversort,
     selection_sort,
     shell_sort,
     shrink_shell_sort,
     stooge_sort,
     strand_sort,
+    three_way_radix_quicksort,
+    tim_sort,
+    unknown_sort,
 )
 
 
@@ -137,12 +156,23 @@ def test_rec_insertion_sort(case) -> None:
         exchange_sort,
         gnome_sort,
         insertion_sort,
+        intro_sort,
+        iter_merge_sort,
+        merge,
+        merge_insertion_sort,
         merge_sort,
         odd_even_sort,
+        odd_even_transposition,
         pancake_sort,
+        patience_sort,
+        reverse_selection_sort,
+        reversort,
         selection_sort,
         shrink_shell_sort,
         strand_sort,
+        three_way_radix_quicksort,
+        tim_sort,
+        unknown_sort,
     ],
     ids=lambda f: f.__name__,
 )
@@ -154,3 +184,26 @@ def test_sort_rejects_non_comparable_items(sort) -> None:
 def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
     with pytest.raises(TypeError):
         rec_insertion_sort([1, "a"], 2)
+
+
+def test_bogo_sort_comparable_items() -> None:
+    assert bogo_sort(["c", "a", "b"]) == ["a", "b", "c"]
+    assert bogo_sort([2.5, -1.0, 0.0]) == [-1.0, 0.0, 2.5]
+
+    with pytest.raises(TypeError):
+        bogo_sort([1, "a"])
+
+
+def test_bitonic_sort_comparable_items() -> None:
+    from sorts.bitonic_sort import bitonic_sort
+
+    strings = ["banana", "apple", "cherry", "date"]
+    bitonic_sort(strings, 0, len(strings), 1)
+    assert strings == ["apple", "banana", "cherry", "date"]
+
+    numbers = [3, 1.5, 2, 4.5]
+    bitonic_sort(numbers, 0, len(numbers), 1)
+    assert numbers == [1.5, 2, 3, 4.5]
+
+    with pytest.raises(TypeError):
+        bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
