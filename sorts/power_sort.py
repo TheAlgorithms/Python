@@ -83,7 +83,9 @@ def _find_run(
         arr[start:run_end] = reversed(arr[start:run_end])
     else:
         # Ascending run
-        while run_end < end and not (key_func(arr[run_end]) < key_func(arr[run_end - 1])):
+        while run_end < end and not (
+            key_func(arr[run_end]) < key_func(arr[run_end - 1])
+        ):
             run_end += 1
 
     return run_end
