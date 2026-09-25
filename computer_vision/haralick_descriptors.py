@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/Co-occurrence_matrix#Application_to_image_analysis
 
 import imageio.v2 as imageio
 import numpy as np
+import numpy.typing as npt
 
 
 def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float:
@@ -23,7 +24,7 @@ def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float
 
 
 def normalize_image(
-    image: np.ndarray, cap: float = 255.0, data_type: np.dtype = np.uint8
+    image: np.ndarray, cap: float = 255.0, data_type: npt.DTypeLike = np.uint8
 ) -> np.ndarray:
     """
     Normalizes image in Numpy 2D array format, between ranges 0-cap,

@@ -25,7 +25,7 @@ def proper_fractions(denominator: int) -> list[str]:
 
     if denominator < 0:
         raise ValueError("The Denominator Cannot be less than 0")
-    elif isinstance(denominator, float):
+    if isinstance(denominator, float):
         raise ValueError("The Denominator must be an integer")
     return [
         f"{numerator}/{denominator}"
