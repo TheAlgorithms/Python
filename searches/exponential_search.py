@@ -99,6 +99,7 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     >>> exponential_search([], 1)
     -1
     >>> exponential_search([1, 1], -1)
+    -1
     >>> exponential_search([0, 5, 7, 10, 15], -3)
     -1
     >>> exponential_search([0, 5, 7, 10, 15], 20)
