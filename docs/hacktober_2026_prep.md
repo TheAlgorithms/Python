@@ -147,8 +147,8 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 133. [ ] #14777 enhancement, awaiting reviews
 134. [x] #14775 merged
 135. [x] #14770 merged
-136. [ ] #14769 enhancement, awaiting reviews
-137. [ ] #14768 enhancement, awaiting reviews
+136. [x] #14769 merged
+137. [x] #14768 merged
 138. [x] #14767 merged
 139. [x] #14759 closed
 140. [x] #14753 merged
@@ -162,20 +162,20 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 148. [x] #14733 merged
 149. [x] #14732 closed by close_pull_requests_with_require_tests.sh
 150. [x] #14731 closed by close_pull_requests_with_failing_tests.sh
-151. [ ] #14729 enhancement, awaiting reviews
+151. [x] #14729 closed
 152. [x] #14728 merged
 153. [x] #14727 closed by close_pull_requests_with_failing_tests.sh
 154. [x] #14726 closed by close_pull_requests_with_require_type_hints.sh
 155. [x] #14724 closed
 156. [x] #14723 closed by close_pull_requests_with_failing_tests.sh
 157. [x] #14721 closed
-158. [ ] #14718 enhancement, awaiting reviews
+158. [x] #14718 closed
 159. [x] #14717 closed by close_pull_requests_with_failing_tests.sh
 160. [x] #14714 closed
 161. [x] #14713 closed
 162. [x] #14712 closed
 163. [x] #14708 closed
-164. [ ] #14702 enhancement, awaiting reviews
+164. [x] #14702 closed
 165. [x] #14701 merged
 166. [x] #14700 closed by close_pull_requests_with_failing_tests.sh
 167. [x] #14694 closed
@@ -183,16 +183,16 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 169. [x] #14685 merged
 170. [x] #14680 closed by close_pull_requests_with_failing_tests.sh
 171. [x] #14677 closed by close_pull_requests_with_require_descriptive_names.sh
-172. [ ] #14673 enhancement, awaiting reviews
+172. [x] #14673 closed
 173. [x] #14668 closed
 174. [x] #14665 merged
 175. [x] #14663 merged
 176. [x] #14660 closed by close_pull_requests_with_require_type_hints.sh
 177. [x] #14657 closed
 178. [x] #14655 closed
-179. [ ] #14654 enhancement, awaiting reviews
+179. [x] #14654 merged
 180. [x] #14652 merged
-181. [ ] #14647 awaiting reviews
+181. [x] #14647 closed
 182. [x] #14641 merged
 183. [x] #14637 merged
 184. [x] #14635 merged
@@ -224,7 +224,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 210. [x] #14568 merged
 211. [x] #14563 closed
 212. [x] #14562 merged
-213. [ ] #14560 awaiting reviews
+213. [x] #14560 merged
 214. [x] #14555 merged
 215. [x] #14554 merged
 216. [ ] #14539 enhancement, awaiting reviews
@@ -257,7 +257,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 243. [x] #14432 merged
 244. [x] #14415 closed
 245. [x] #14414 merged
-246. [ ] #14410 enhancement, awaiting reviews
+246. [x] #14410 closed
 247. [ ] #14409 enhancement, awaiting reviews
 248. [x] #14402 closed by close_pull_requests_with_require_type_hints.sh
 249. [ ] #14398 enhancement, awaiting reviews
@@ -321,7 +321,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 307. [x] #14143 merged
 308. [ ] #14142 awaiting reviews
 309. [x] #14138 closed by close_pull_requests_with_require_type_hints.sh
-310. [ ] #14134 no labels
+310. [x] #14134 closed
 311. [x] #14099 closed
 312. [x] #14098 closed by close_pull_requests_with_failing_tests.sh
 313. [x] #14096 closed by close_pull_requests_with_failing_tests.sh
@@ -336,7 +336,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 322. [x] #14079 closed
 323. [x] #14065 closed
 324. [x] #14061 closed by close_pull_requests_with_require_descriptive_names.sh
-325. [ ] #14059 no labels
+325. [x] #14059 merged
 326. [ ] #14058 enhancement, awaiting reviews
 327. [x] #14057 closed by close_pull_requests_with_failing_tests.sh
 328. [ ] #14056 awaiting reviews
@@ -357,7 +357,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 343. [x] #14029 merged
 344. [x] #14028 closed by close_pull_requests_with_require_descriptive_names.sh
 345. [x] #14027 closed by close_pull_requests_with_require_tests.sh
-346. [ ] #14026 awaiting reviews
+346. [x] #14026 closed
 347. [ ] #14023 no labels
 348. [x] #14022 closed by close_pull_requests_with_require_descriptive_names.sh
 349. [x] #14021 closed
@@ -365,8 +365,8 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 351. [x] #14016 closed
 352. [x] #14015 closed
 353. [x] #14014 closed by close_pull_requests_with_require_type_hints.sh
-354. [ ] #14009 awaiting reviews
-355. [ ] #14008 awaiting reviews
+354. [x] #14009 merged
+355. [x] #14008 closed
 356. [x] #14004 closed by close_pull_requests_with_require_tests.sh
 357. [x] #14001 merged
 358. [x] #14000 closed by close_pull_requests_with_failing_tests.sh
@@ -403,7 +403,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 389. [x] #13916 closed by close_pull_requests_with_failing_tests.sh
 390. [x] #13915 closed
 391. [x] #13912 closed by close_pull_requests_with_require_descriptive_names.sh
-392. [ ] #13911 no labels
+392. [x] #13911 closed
 393. [x] #13909 closed
 394. [x] #13907 closed
 395. [x] #13906 merged
@@ -493,7 +493,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 479. [x] #13676 closed by close_pull_requests_with_require_descriptive_names.sh
 480. [x] #13675 closed by close_pull_requests_with_require_descriptive_names.sh
 481. [x] #13671 closed by close_pull_requests_with_failing_tests.sh
-482. [ ] #13661 awaiting reviews
+482. [x] #13661 closed
 483. [x] #13658 closed by close_pull_requests_with_require_type_hints.sh
 484. [x] #13655 closed by close_pull_requests_with_require_tests.sh
 485. [x] #13653 closed by close_pull_requests_with_failing_tests.sh
@@ -523,7 +523,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 509. [x] #13597 closed
 510. [x] #13595 closed by close_pull_requests_with_failing_tests.sh
 511. [x] #13593 closed
-512. [ ] #13589 awaiting reviews
+512. [x] #13589 merged
 513. [x] #13588 merged
 514. [x] #13586 closed
 515. [x] #13585 closed by close_pull_requests_with_failing_tests.sh
@@ -531,7 +531,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 517. [x] #13555 closed
 518. [x] #13554 closed
 519. [x] #13552 closed by close_pull_requests_with_failing_tests.sh
-520. [ ] #13551 no labels
+520. [x] #13551 closed
 521. [x] #13550 merged
 522. [x] #13544 closed by close_pull_requests_with_failing_tests.sh
 523. [x] #13541 closed by close_pull_requests_with_failing_tests.sh
@@ -551,7 +551,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 537. [ ] #13514 awaiting reviews
 538. [x] #13510 merged
 539. [x] #13506 closed by close_pull_requests_with_failing_tests.sh
-540. [ ] #13502 no labels
+540. [x] #13502 closed
 541. [x] #13487 closed
 542. [x] #13485 closed by close_pull_requests_with_failing_tests.sh
 543. [x] #13484 merged
@@ -578,15 +578,15 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 564. [ ] #13395 awaiting reviews
 565. [ ] #13378 awaiting reviews
 566. [ ] #13371 awaiting reviews
-567. [ ] #13370 awaiting reviews
-568. [ ] #13369 awaiting reviews
+567. [x] #13370 merged
+568. [x] #13369 merged
 569. [ ] #13364 awaiting reviews
 570. [x] #13363 closed
 571. [ ] #13361 awaiting reviews
 572. [ ] #13360 enhancement, awaiting reviews
 573. [x] #13357 closed
 574. [x] #13355 merged
-575. [ ] #13345 awaiting reviews
+575. [x] #13345 closed
 576. [x] #13343 merged
 577. [x] #13342 merged
 578. [x] #13341 merged
@@ -648,7 +648,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 634. [x] #13118 closed
 635. [x] #13114 merged
 636. [ ] #13113 awaiting reviews
-637. [ ] #13112 no labels
+637. [x] #13112 closed
 638. [ ] #13110 enhancement, awaiting reviews
 639. [x] #13106 closed
 640. [x] #13105 closed
@@ -669,10 +669,10 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 655. [x] #13033 closed
 656. [x] #13026 merged
 657. [ ] #13023 awaiting reviews
-658. [ ] #13022 awaiting reviews
+658. [x] #13022 merged
 659. [x] #13019 closed
 660. [x] #13018 merged
-661. [ ] #13017 awaiting reviews
+661. [x] #13017 merged
 662. [x] #13016 merged
 663. [x] #13015 closed
 664. [x] #13014 merged
@@ -1109,31 +1109,31 @@ data_structures:
 25. [x] #12522 closed
 26. [x] #13019 closed
 27. [x] #13093 closed
-28. [ ] #13112
+28. [x] #13112 closed
 29. [x] #13164 closed
 30. [x] #13191 closed
 31. [x] #13192 closed
 32. [x] #13322 merged
 33. [x] #13325 merged
 34. [ ] #13327
-35. [ ] #13345
-36. [ ] #13369
-37. [ ] #13370
+35. [x] #13345 closed
+36. [x] #13369 merged
+37. [x] #13370 merged
 38. [x] #13419 closed
 39. [x] #13468 closed
-40. [ ] #13502
-41. [ ] #13589
+40. [x] #13502 closed
+41. [x] #13589 merged
 42. [x] #13619 merged
-43. [ ] #13661
+43. [x] #13661 closed
 44. [x] #13699 merged
 45. [x] #13802 closed
-46. [ ] #14008
-47. [ ] #14009
+46. [x] #14008 closed
+47. [x] #14009 merged
 48. [x] #14015 closed
-49. [ ] #14026
+49. [x] #14026 closed
 50. [x] #14048 closed
 51. [x] #14186 merged
-52. [ ] #14410
+52. [x] #14410 closed
 53. [ ] #14492
 54. [ ] #14527
 55. [x] #14712 closed
@@ -1172,7 +1172,7 @@ dynamic_programming:
 14. [ ] #14472
 15. [ ] #14525
 16. [ ] #14526
-17. [ ] #14702
+17. [x] #14702 closed
 18. [x] #14856 merged
 
 electronics:
@@ -1249,8 +1249,8 @@ graphs:
 17. [ ] #13023
 18. [x] #13036 merged
 19. [ ] #13249
-20. [ ] #14718
-21. [ ] #14729
+20. [x] #14718 closed
+21. [x] #14729 closed
 22. [x] #14894 merged
 23. [x] #15024 closed
 24. [x] #15072 merged
@@ -1277,7 +1277,7 @@ hashes:
 6. [ ] #14036
 7. [ ] #14037
 8. [x] #14415 closed
-9. [ ] #14560
+9. [x] #14560 merged
 10. [ ] #14777
 11. [x] #14814 merged
 
@@ -1293,7 +1293,7 @@ knapsack:
 
 linear_algebra:
 1. [x] #12876 merged
-2. [ ] #14647
+2. [x] #14647 closed
 3. [x] #14826 closed
 4. [x] #14827 closed
 5. [x] #15044 merged
@@ -1386,7 +1386,7 @@ maths:
 20. [x] #12852 closed
 21. [x] #12875 merged
 22. [x] #12974 merged
-23. [ ] #13017
+23. [x] #13017 merged
 24. [x] #13055 merged
 25. [x] #13063 merged
 26. [ ] #13110
@@ -1422,10 +1422,10 @@ maths:
 56. [x] #13994 closed
 57. [x] #14001 merged
 58. [x] #14052 closed
-59. [ ] #14059
+59. [x] #14059 merged
 60. [ ] #14089
 61. [x] #14099 closed
-62. [ ] #14134
+62. [x] #14134 closed
 63. [ ] #14142
 64. [ ] #14153
 65. [x] #14158 merged
@@ -1448,8 +1448,8 @@ maths:
 82. [x] #14736 closed
 83. [x] #14742 merged
 84. [x] #14767 merged
-85. [ ] #14768
-86. [ ] #14769
+85. [x] #14768 merged
+86. [x] #14769 merged
 87. [x] #14779 merged
 88. [x] #14812 closed
 89. [x] #14845 merged
@@ -1475,7 +1475,7 @@ matrix:
 2. [x] #12555 merged
 3. [x] #12691 closed
 4. [x] #12940 merged
-5. [ ] #13022
+5. [x] #13022 merged
 6. [x] #13187 closed
 7. [ ] #13482
 8. [x] #13716 merged
@@ -1625,11 +1625,11 @@ sorts:
 17. [x] #13316 merged
 18. [x] #13424 merged
 19. [x] #13534 merged
-20. [ ] #13551
+20. [x] #13551 closed
 21. [x] #13641 closed
 22. [x] #13688 merged
 23. [x] #13758 closed
-24. [ ] #13911
+24. [x] #13911 closed
 25. [x] #13960 merged
 26. [x] #13962 closed
 27. [x] #13963 closed
@@ -1703,9 +1703,9 @@ strings:
 26. [x] #14188 closed
 27. [x] #14219 closed
 28. [x] #14630 merged
-29. [ ] #14654
+29. [x] #14654 merged
 30. [x] #14655 closed
-31. [ ] #14673
+31. [x] #14673 closed
 32. [x] #14685 merged
 33. [x] #14721 closed
 34. [x] #14751 closed
@@ -2061,18 +2061,18 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 ## Automated statistics
 
-_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-24 (UTC)._
+_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-25 (UTC)._
 
-- **Open issues:** 9
-- **Open pull requests:** 120
-- **Open PRs labelled `awaiting reviews`:** 88
-- **Days until Hacktoberfest (2026-10-01):** 7
-- **Issues to close per day to clear the backlog:** 2 per day (over 7 days)
-- **Pull requests to merge or close per day to clear the backlog:** 18 per day (over 7 days)
+- **Open issues:** 10
+- **Open pull requests:** 90
+- **Open PRs labelled `awaiting reviews`:** 66
+- **Days until Hacktoberfest (2026-10-01):** 6
+- **Issues to close per day to clear the backlog:** 2 per day (over 6 days)
+- **Pull requests to merge or close per day to clear the backlog:** 15 per day (over 6 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
-1. `data_structures/` — 13 awaiting-reviews PRs
-2. `maths/` — 12 awaiting-reviews PRs
-3. `sorts/` — 10 awaiting-reviews PRs
+1. `maths/` — 9 awaiting-reviews PRs
+2. `dynamic_programming/` — 8 awaiting-reviews PRs
+3. `strings/` — 8 awaiting-reviews PRs
 
