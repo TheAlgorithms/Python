@@ -744,6 +744,7 @@
   * [Simplex](linear_programming/simplex.py)
 
 ## [Machine Learning](machine_learning)
+  * [Adaboost](machine_learning/adaboost.py)
   * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
   * [Astar](machine_learning/astar.py)
   * [Automatic Differentiation](machine_learning/automatic_differentiation.py)
