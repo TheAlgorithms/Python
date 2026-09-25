@@ -48,17 +48,17 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
             raise ValueError(msg)
 
     # Sort intervals based on the start time
-    intervals.sort(key=lambda interval: interval[0])
+    # Sort a copy so the caller's list (and its inner lists) are never mutated
+    sorted_intervals = sorted(intervals, key=lambda interval: interval[0])
 
-    merged: list[list[int]] = [intervals[0]]
+    merged: list[list[int]] = [sorted_intervals[0][:]]
 
-    for current in intervals[1:]:
+    for current in sorted_intervals[1:]:
         last = merged[-1]
 
         # If current interval overlaps with the last merged interval
         if current[0] <= last[1]:
             last[1] = max(last[1], current[1])
         else:
-            merged.append(current)
-
+            merged.append(current[:])
     return merged
