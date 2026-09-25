@@ -187,7 +187,8 @@ def intro_sort[T: Comparable](
     """
     while end - start > size_threshold:
         if max_depth == 0:
-            return heap_sort(array)
+            array[start:end] = heap_sort(array[start:end])
+            return array
         max_depth -= 1
         pivot = median_of_3(array, start, start + ((end - start) // 2) + 1, end - 1)
         p = partition(array, start, end, pivot)
