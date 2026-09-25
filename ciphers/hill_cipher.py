@@ -203,14 +203,15 @@ def main() -> None:
 
     print("Would you like to encrypt or decrypt some text? (1 or 2)")
     option = input("\n1. Encrypt\n2. Decrypt\n")
-    if option == "1":
-        text_e = input("What text would you like to encrypt?: ")
-        print("Your encrypted text is:")
-        print(hc.encrypt(text_e))
-    elif option == "2":
-        text_d = input("What text would you like to decrypt?: ")
-        print("Your decrypted text is:")
-        print(hc.decrypt(text_d))
+    match option:
+        case "1":
+            text_e = input("What text would you like to encrypt?: ")
+            print("Your encrypted text is:")
+            print(hc.encrypt(text_e))
+        case "2":
+            text_d = input("What text would you like to decrypt?: ")
+            print("Your decrypted text is:")
+            print(hc.decrypt(text_d))
 
 
 if __name__ == "__main__":

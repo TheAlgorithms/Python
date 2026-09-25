@@ -126,14 +126,15 @@ class ExternalSort:
 
 
 def parse_memory(string):
-    if string[-1].lower() == "k":
-        return int(string[:-1]) * 1024
-    elif string[-1].lower() == "m":
-        return int(string[:-1]) * 1024 * 1024
-    elif string[-1].lower() == "g":
-        return int(string[:-1]) * 1024 * 1024 * 1024
-    else:
-        return int(string)
+    match string[-1].lower():
+        case "k":
+            return int(string[:-1]) * 1024
+        case "m":
+            return int(string[:-1]) * 1024 * 1024
+        case "g":
+            return int(string[:-1]) * 1024 * 1024 * 1024
+        case _:
+            return int(string)
 
 
 def main() -> None:

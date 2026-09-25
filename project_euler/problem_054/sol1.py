@@ -211,17 +211,18 @@ class PokerHand:
         high = PokerHand._CARD_NAME[self._high_card]
         pair1 = PokerHand._CARD_NAME[self._first_pair]
         pair2 = PokerHand._CARD_NAME[self._second_pair]
-        if self._hand_type in [22, 19, 18]:
-            return name + f", {high}-high"
-        elif self._hand_type in [21, 17, 15]:
-            return name + f", {pair1}s"
-        elif self._hand_type in [20, 16]:
-            join = "over" if self._hand_type == 20 else "and"
-            return name + f", {pair1}s {join} {pair2}s"
-        elif self._hand_type == 23:
-            return name
-        else:
-            return name + f", {high}"
+        match self._hand_type:
+            case 22 | 19 | 18:
+                return name + f", {high}-high"
+            case 21 | 17 | 15:
+                return name + f", {pair1}s"
+            case 20 | 16:
+                join = "over" if self._hand_type == 20 else "and"
+                return name + f", {pair1}s {join} {pair2}s"
+            case 23:
+                return name
+            case _:
+                return name + f", {high}"
 
     def _compare_cards(self, other: PokerHand) -> str:
         # Enumerate gives us the index as well as the element of a list

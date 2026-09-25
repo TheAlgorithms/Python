@@ -47,12 +47,13 @@ def fibonacci(k: int) -> int:
         raise TypeError("k must be an integer.")
     if k < 0:
         raise ValueError("k integer must be greater or equal to zero.")
-    if k == 0:
-        return 0
-    elif k == 1:
-        return 1
-    else:
-        return fibonacci(k - 1) + fibonacci(k - 2)
+    match k:
+        case 0:
+            return 0
+        case 1:
+            return 1
+        case _:
+            return fibonacci(k - 1) + fibonacci(k - 2)
 
 
 def fibonacci_search(arr: list, val: int) -> int:

@@ -155,26 +155,27 @@ def boyles_law(values: dict[str, float]) -> dict[str, str]:
     check_validity(values)
     target = find_target_variable(values)
     float_precision = ".3f"
-    if target == "p1":
-        p1 = float(
-            format((values["p2"] * values["v2"]) / values["v1"], float_precision)
-        )
-        return {"p1": f"{p1} Pa"}
-    elif target == "v1":
-        v1 = float(
-            format((values["p2"] * values["v2"]) / values["p1"], float_precision)
-        )
-        return {"v1": f"{v1} L"}
-    elif target == "p2":
-        p2 = float(
-            format((values["p1"] * values["v1"]) / values["v2"], float_precision)
-        )
-        return {"p2": f"{p2} Pa"}
-    else:
-        v2 = float(
-            format((values["p1"] * values["v1"]) / values["p2"], float_precision)
-        )
-        return {"v2": f"{v2} L"}
+    match target:
+        case "p1":
+            p1 = float(
+                format((values["p2"] * values["v2"]) / values["v1"], float_precision)
+            )
+            return {"p1": f"{p1} Pa"}
+        case "v1":
+            v1 = float(
+                format((values["p2"] * values["v2"]) / values["p1"], float_precision)
+            )
+            return {"v1": f"{v1} L"}
+        case "p2":
+            p2 = float(
+                format((values["p1"] * values["v1"]) / values["v2"], float_precision)
+            )
+            return {"p2": f"{p2} Pa"}
+        case _:
+            v2 = float(
+                format((values["p1"] * values["v1"]) / values["p2"], float_precision)
+            )
+            return {"v2": f"{v2} L"}
 
 
 if __name__ == "__main__":

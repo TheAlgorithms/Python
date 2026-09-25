@@ -41,10 +41,11 @@ def translate_message(key: str, message: str, mode: str) -> str:
     for symbol in message:
         num = LETTERS.find(symbol.upper())
         if num != -1:
-            if mode == "encrypt":
-                num += LETTERS.find(key[key_index])
-            elif mode == "decrypt":
-                num -= LETTERS.find(key[key_index])
+            match mode:
+                case "encrypt":
+                    num += LETTERS.find(key[key_index])
+                case "decrypt":
+                    num -= LETTERS.find(key[key_index])
 
             num %= len(LETTERS)
 

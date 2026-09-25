@@ -65,10 +65,11 @@ def output(example_no, data_set):
     >>> output(0, "unknown") is None
     True
     """
-    if data_set == "train":
-        return train_data[example_no][1]
-    elif data_set == "test":
-        return test_data[example_no][1]
+    match data_set:
+        case "train":
+            return train_data[example_no][1]
+        case "test":
+            return test_data[example_no][1]
     return None
 
 
@@ -86,10 +87,11 @@ def calculate_hypothesis_value(example_no, data_set):
     >>> calculate_hypothesis_value(0, "unknown") is None
     True
     """
-    if data_set == "train":
-        return _hypothesis_value(train_data[example_no][0])
-    elif data_set == "test":
-        return _hypothesis_value(test_data[example_no][0])
+    match data_set:
+        case "train":
+            return _hypothesis_value(train_data[example_no][0])
+        case "test":
+            return _hypothesis_value(test_data[example_no][0])
     return None
 
 
