@@ -8,7 +8,10 @@ https://en.wikipedia.org/wiki/Bitwise_operation
 
 def add(first: int, second: int) -> int:
     """
-    Implementation of addition of integer
+    Add two integers using bitwise operations instead of arithmetic operators.
+    - XOR (^) to add bits without carrying
+    - AND (&) to calculate carry bits
+    - Left shift (<<) to move the carry to the correct position
 
     Examples:
     >>> add(3, 5)
@@ -19,17 +22,8 @@ def add(first: int, second: int) -> int:
     -5
     >>> add(0, -7)
     -7
-    >>> add(-321, 0)
-    -321
-    """
-
-    """
-    Add two integers without using arithmetic operators.
-
-    This method uses bitwise operations:
-    - XOR (^) to add bits without carrying
-    - AND (&) to calculate carry bits
-    - Left shift (<<) to move the carry to the correct position
+    >>> add(-321, 1)
+    -320
     """
 
     while second != 0:  # Continue until there is no carry left
@@ -46,4 +40,4 @@ if __name__ == "__main__":
 
     first = int(input("Enter the first number: ").strip())
     second = int(input("Enter the second number: ").strip())
-    print(f"{add(first, second) = }")
+    print(f"{first = }, {second = }, {add(first, second) = }")
