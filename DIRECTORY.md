@@ -580,6 +580,7 @@
 
 ## [Genetic Algorithm](genetic_algorithm)
   * [Basic String](genetic_algorithm/basic_string.py)
+  * [Ordinal Representation](genetic_algorithm/ordinal_representation.py)
   * [Travelling Salesman Problem](genetic_algorithm/travelling_salesman_problem.py)
 
 ## [Geodesy](geodesy)
