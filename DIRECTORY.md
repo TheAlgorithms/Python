@@ -512,6 +512,7 @@
   * [Trapped Water](dynamic_programming/trapped_water.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
+  * [Weighted Job Scheduling](dynamic_programming/weighted_job_scheduling.py)
   * [Wildcard Matching](dynamic_programming/wildcard_matching.py)
   * [Word Break](dynamic_programming/word_break.py)
 
