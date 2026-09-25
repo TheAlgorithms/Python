@@ -7,12 +7,9 @@ Binary Search is a divide-and-conquer algorithm that works on sorted lists.
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
-def binary_search_recursive(
+def binary_search_recursive[T](
     arr: Sequence[T],
     target: T,
     left: int = 0,
