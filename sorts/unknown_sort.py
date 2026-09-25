@@ -5,8 +5,14 @@ Worst Case Scenario : O(n^2) because native Python functions:min, max and remove
 already O(n)
 """
 
+from typing import Protocol
 
-def merge_sort(collection):
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def merge_sort[T: Comparable](collection: list[T]) -> list[T]:
     """Pure implementation of the fastest merge sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -22,6 +28,17 @@ def merge_sort(collection):
 
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    >>> merge_sort(['d', 'a', 'b', 'e']) == sorted(['d', 'a', 'b', 'e'])
+    True
+
+    >>> merge_sort([1.1, 3.3, 5.5, 2.2, 4.4])
+    [1.1, 2.2, 3.3, 4.4, 5.5]
+
+    >>> merge_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     start, end = [], []
     while len(collection) > 1:

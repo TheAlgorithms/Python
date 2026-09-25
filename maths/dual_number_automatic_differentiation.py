@@ -9,14 +9,14 @@ Note this only works for basic functions, f(x) where the power of x is positive.
 
 
 class Dual:
-    def __init__(self, real, rank):
+    def __init__(self, real, rank) -> None:
         self.real = real
         if isinstance(rank, int):
             self.duals = [1] * rank
         else:
             self.duals = rank
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         s = "+".join(f"{dual}E{n}" for n, dual in enumerate(self.duals, 1))
         return f"{self.real}+{s}"
 
