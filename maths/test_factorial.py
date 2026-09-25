@@ -11,30 +11,30 @@ from maths.factorial import factorial, factorial_recursive
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_zero(function):
+def test_zero(function) -> None:
     assert function(0) == 1
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_positive_integers(function):
+def test_positive_integers(function) -> None:
     assert function(1) == 1
     assert function(5) == 120
     assert function(7) == 5040
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_large_number(function):
+def test_large_number(function) -> None:
     assert function(10) == 3628800
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_negative_number(function):
+def test_negative_number(function) -> None:
     with pytest.raises(ValueError):
         function(-3)
 
 
 @pytest.mark.parametrize("function", [factorial, factorial_recursive])
-def test_float_number(function):
+def test_float_number(function) -> None:
     with pytest.raises(ValueError):
         function(1.5)
 

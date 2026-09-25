@@ -36,6 +36,6 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print("Probability of 2 successes out of 4 trails")
+    print("Probability of 2 successes out of 4 trials")
     print("with probability of 0.75 is:", end=" ")
     print(binomial_distribution(2, 4, 0.75))

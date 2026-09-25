@@ -23,11 +23,11 @@ from random import randint
 class Node:
     """Binary Search Tree Node"""
 
-    def __init__(self, key, freq):
+    def __init__(self, key, freq) -> None:
         self.key = key
         self.freq = freq
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         >>> str(Node(1, 2))
         'Node(key=1, freq=2)'
@@ -35,7 +35,7 @@ class Node:
         return f"Node(key={self.key}, freq={self.freq})"
 
 
-def print_binary_search_tree(root, key, i, j, parent, is_left):
+def print_binary_search_tree(root, key, i, j, parent, is_left) -> None:
     """
     Recursive function to print a BST from a root table.
 
@@ -65,7 +65,7 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
     print_binary_search_tree(root, key, node + 1, j, key[node], False)
 
 
-def find_optimal_binary_search_tree(nodes):
+def find_optimal_binary_search_tree(nodes) -> None:
     """
     This function calculates and prints the optimal binary search tree.
     The dynamic programming algorithm below runs in O(n^2) time.
@@ -102,7 +102,7 @@ def find_optimal_binary_search_tree(nodes):
     # This 2D array stores the overall tree cost (which's as minimized as possible);
     # for a single key, cost is equal to frequency of the key.
     dp = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
-    # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes
+    # total[i][j] stores the sum of key frequencies between i and j inclusive in nodes
     # array
     total = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
     # stores tree roots that will be used later for constructing binary search tree
@@ -115,11 +115,17 @@ def find_optimal_binary_search_tree(nodes):
             dp[i][j] = sys.maxsize  # set the value to "infinity"
             total[i][j] = total[i][j - 1] + freqs[j]
 
-            # Apply Knuth's optimization
-            # Loop without optimization: for r in range(i, j + 1):
-            for r in range(root[i][j - 1], root[i + 1][j] + 1):  # r is a temporal root
-                left = dp[i][r - 1] if r != i else 0  # optimal cost for left subtree
-                right = dp[r + 1][j] if r != j else 0  # optimal cost for right subtree
+            # Apply Knuth's optimization with safe boundary handling
+            r_start = root[i][j - 1] if j > i else i
+            r_end = root[i + 1][j] if i < j else j
+
+            # Ensure r_start and r_end are within valid bounds
+            r_start = max(i, min(r_start, j))
+            r_end = min(j, max(r_end, i))
+
+            for r in range(r_start, r_end + 1):
+                left = dp[i][r - 1] if r > i else 0  # optimal cost for left subtree
+                right = dp[r + 1][j] if r < j else 0  # optimal cost for right subtree
                 cost = left + total[i][j] + right
 
                 if dp[i][j] > cost:
@@ -134,7 +140,7 @@ def find_optimal_binary_search_tree(nodes):
     print_binary_search_tree(root, keys, 0, n - 1, -1, False)
 
 
-def main():
+def main() -> None:
     # A sample binary search tree
     nodes = [Node(i, randint(1, 50)) for i in range(10, 0, -1)]
     find_optimal_binary_search_tree(nodes)
