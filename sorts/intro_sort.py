@@ -5,9 +5,16 @@ https://en.wikipedia.org/wiki/Introsort
 """
 
 import math
+from typing import Any, Protocol
 
 
-def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def insertion_sort[T: Comparable](
+    array: list[T], start: int = 0, end: int = 0
+) -> list[T]:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> insertion_sort(array, 0, len(array))
@@ -36,7 +43,9 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     return array
 
 
-def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
+def heapify[T: Comparable](
+    array: list[T], index: int, heap_size: int
+) -> None:  # Max Heap
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> heapify(array, len(array) // 2, len(array))
@@ -56,7 +65,7 @@ def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
         heapify(array, largest, heap_size)
 
 
-def heap_sort(array: list) -> list:
+def heap_sort[T: Comparable](array: list[T]) -> list[T]:
     """
     >>> heap_sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
@@ -79,9 +88,9 @@ def heap_sort(array: list) -> list:
     return array
 
 
-def median_of_3(
-    array: list, first_index: int, middle_index: int, last_index: int
-) -> int:
+def median_of_3[T: Comparable](
+    array: list[T], first_index: int, middle_index: int, last_index: int
+) -> T:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> median_of_3(array, 0, ((len(array) - 0) // 2) + 1, len(array) - 1)
@@ -93,19 +102,19 @@ def median_of_3(
     >>> median_of_3(array, 0, ((len(array) - 0) // 2) + 1, len(array) - 1)
     14
     """
-    if (array[first_index] > array[middle_index]) != (
-        array[first_index] > array[last_index]
+    if (array[middle_index] < array[first_index]) != (
+        array[last_index] < array[first_index]
     ):
         return array[first_index]
-    elif (array[middle_index] > array[first_index]) != (
-        array[middle_index] > array[last_index]
+    elif (array[first_index] < array[middle_index]) != (
+        array[last_index] < array[middle_index]
     ):
         return array[middle_index]
     else:
         return array[last_index]
 
 
-def partition(array: list, low: int, high: int, pivot: int) -> int:
+def partition[T: Comparable](array: list[T], low: int, high: int, pivot: T) -> int:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> partition(array, 0, len(array), 12)
@@ -134,7 +143,7 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
         i += 1
 
 
-def sort(array: list) -> list:
+def sort[T: Comparable](array: list[T]) -> list[T]:
     """
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -155,6 +164,10 @@ def sort(array: list) -> list:
     [0.3, 1.0, 1.7, 2.1, 3.3]
     >>> sort(['d', 'a', 'b', 'e', 'c'])
     ['a', 'b', 'c', 'd', 'e']
+    >>> sort([1, 'a'])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     if len(array) == 0:
         return array
@@ -163,9 +176,9 @@ def sort(array: list) -> list:
     return intro_sort(array, 0, len(array), size_threshold, max_depth)
 
 
-def intro_sort(
-    array: list, start: int, end: int, size_threshold: int, max_depth: int
-) -> list:
+def intro_sort[T: Comparable](
+    array: list[T], start: int, end: int, size_threshold: int, max_depth: int
+) -> list[T]:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> max_depth = 2 * math.ceil(math.log2(len(array)))

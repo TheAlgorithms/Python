@@ -16,7 +16,6 @@ dependencies = [
   "fake-useragent>=1.5.1",
   "httpx2>=2.0.1",
   "imageio>=2.36.1",
-  "keras>=3.7",
   "lxml>=6",
   "matplotlib>=3.9.3",
   "numpy>=2.1.3",
@@ -66,8 +65,9 @@ quantum = [
 target-version = "py314"
 output-format = "full"
 lint.select = [
-  # https://beta.ruff.rs/docs/rules
+  # https://docs.astral.sh/ruff/rules
   "A",     # flake8-builtins
+  "ANN",   # flake8-annotations
   "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
   "B",     # flake8-bugbear
@@ -96,6 +96,8 @@ lint.select = [
   "PL",    # Pylint
   "PT",    # flake8-pytest-style
   "PYI",   # flake8-pyi
+  "Q",     # flake8-quotes
+  "RET",   # flake8-return
   "RSE",   # flake8-raise
   "RUF",   # Ruff-specific rules
   "S",     # flake8-bandit
@@ -107,14 +109,11 @@ lint.select = [
   "UP",    # pyupgrade
   "W",     # pycodestyle
   "YTT",   # flake8-2020
-  # "ANN",  # flake8-annotations -- FIX ME?
   # "COM",  # flake8-commas -- DO NOT FIX
   # "D",    # pydocstyle -- FIX ME?
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
   # "PTH",  # flake8-use-pathlib  # FIX ME
-  # "Q",    # flake8-quotes
-  # "RET",  # flake8-return  # FIX ME?
   # "T20",  # flake8-print
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
@@ -135,32 +134,172 @@ lint.ignore = [
   "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",   # Assertion should be broken down into multiple parts
   "PT028",   # pytest-parameter-with-default-argument
+  "RET504",  # unnecessary-assign -- FIX ME
+  "RET505",  # superfluous-else-return -- FIX ME
   "S101",    # Use of `assert` detected -- DO NOT FIX
   "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SIM905",  # Consider using a list literal instead of `str.split` -- DO NOT FIX
   "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
   "UP037",   # FIX ME
 ]
+lint.per-file-ignores."data_structures/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+  "ANN204", # Missing return type annotation for special method
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
+lint.per-file-ignores."data_structures/binary_tree/binary_search_tree.py" = [
+  "ANN002", # Missing type annotation for `*values`
+]
+lint.per-file-ignores."data_structures/hash*" = [
+  "ANN002", # Missing type annotation for `*args`
+  "ANN003", # Missing type annotation for `**kwargs`
+]
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
   "BLE001",
+]
+lint.per-file-ignores."digital_image_processing/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."divide_and_conquer/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."dynamic_programming/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
+lint.per-file-ignores."dynamic_programming/rod_cutting.py" = [
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."file_transfer/tests/test_send_file.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."fractals/julia_sets.py" = [
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
+lint.per-file-ignores."fractals/vicsek.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."fuzzy_logic/fuzzy_operations.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."graphs/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."greedy_methods/fractional_knapsack.py" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+]
+lint.per-file-ignores."hashes/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
 ]
 lint.per-file-ignores."hashes/enigma_machine.py" = [
   "BLE001",
 ]
+lint.per-file-ignores."knapsack/knapsack.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."linear_algebra/src/*" = [
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
+lint.per-file-ignores."machine_learning/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."machine_learning/automatic_differentiation.py" = [
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
 lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
+  "ANN002", # Missing type annotation for `*args`
+  "ANN003", # Missing type annotation for `**kwargs`
+  "ANN204", # Missing return type annotation for special method
   "SIM115",
 ]
+lint.per-file-ignores."maths/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+]
+lint.per-file-ignores."maths/dual_number_automatic_differentiation.py" = [
+  "ANN204", # Missing return type annotation for special method
+]
+lint.per-file-ignores."maths/fibonacci.py" = [
+  "ANN002", # Missing type annotation for `*args`
+  "ANN003", # Missing type annotation for `**kwargs`
+]
+lint.per-file-ignores."maths/radix2_fft.py" = [
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."matrix/matrix_operation.py" = [
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
 lint.per-file-ignores."matrix/sherman_morrison.py" = [
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
   "SIM103",
+]
+lint.per-file-ignores."matrix/tests/test_matrix_operation.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."neural_network/activation_functions/rectified_linear_unit.py" = [
+  "ANN201", # Missing return type annotation for public function
+]
+lint.per-file-ignores."neural_network/back_propagation_neural_network.py" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+]
+lint.per-file-ignores."neural_network/convolution_neural_network.py" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+]
+lint.per-file-ignores."other/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+]
+lint.per-file-ignores."other/bankers_algorithm.py" = [
+  "ANN003", # Missing type annotation for `**kwargs`
+]
+lint.per-file-ignores."other/pipeline.py" = [
+  "ANN401",
 ]
 lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
   "BLE001",
 ]
+lint.per-file-ignores."project_euler/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+]
 lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
   "SIM115",
 ]
+lint.per-file-ignores."searches/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
+lint.per-file-ignores."sorts/*" = [
+  "ANN001", # Missing type annotation for function argument
+  "ANN201", # Missing return type annotation for public function
+  "ANN202", # Missing return type annotation for private function
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+]
 lint.per-file-ignores."sorts/external_sort.py" = [
   "SIM115",
+]
+lint.per-file-ignores."tests/test_sorts.py" = [
+  "ANN001", # Missing type annotation for function argument
+]
+lint.per-file-ignores."web_programming/*" = [
+  "ANN001", # Missing type annotation for function argument
 ]
 lint.mccabe.max-complexity = 17  # default: 10
 lint.pylint.allow-magic-value-types = [
@@ -194,8 +333,6 @@ rules.call-non-callable = "ignore"
 rules.deprecated = "ignore"
 rules.invalid-argument-type = "ignore"
 rules.invalid-return-type = "ignore"
-rules.invalid-type-arguments = "ignore"
-rules.invalid-type-form = "ignore"
 rules.no-matching-overload = "ignore"
 rules.not-iterable = "ignore"
 rules.not-subscriptable = "ignore"
@@ -231,3 +368,4 @@ disable = [
 exclude = [ "DIRECTORY.md", "docs/hacktober_2026_prep.md" ]
 flavor = "gfm"
 line-length = 350
+per-file-ignores."index.md" = [ "MD040" ]

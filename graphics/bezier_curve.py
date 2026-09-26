@@ -12,7 +12,7 @@ class BezierCurve:
     This implementation works only for 2d coordinates in the xy plane.
     """
 
-    def __init__(self, list_of_points: list[tuple[float, float]]):
+    def __init__(self, list_of_points: list[tuple[float, float]]) -> None:
         """
         list_of_points: Control points in the xy plane on which to interpolate. These
             points control the behavior (shape) of the Bezier curve.
@@ -92,7 +92,7 @@ class BezierCurve:
             dy += coeff * delta_y * n
         return (dx, dy)
 
-    def plot_curve(self, step_size: float = 0.01):
+    def plot_curve(self, step_size: float = 0.01) -> None:
         """
         Plots the Bezier curve using matplotlib plotting capabilities.
             step_size: defines the step(s) at which to evaluate the Bezier curve.

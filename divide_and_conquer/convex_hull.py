@@ -45,43 +45,43 @@ class Point:
     ValueError: could not convert string to float: 'pi'
     """
 
-    def __init__(self, x, y):
+    def __init__(self, x, y) -> None:
         self.x, self.y = float(x), float(y)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.x == other.x and self.y == other.y
 
-    def __ne__(self, other):
+    def __ne__(self, other) -> bool:
         return not self == other
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         if self.x > other.x:
             return True
         elif self.x == other.x:
             return self.y > other.y
         return False
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return not self > other
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> bool:
         if self.x > other.x:
             return True
         elif self.x == other.x:
             return self.y >= other.y
         return False
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         if self.x < other.x:
             return True
         elif self.x == other.x:
             return self.y <= other.y
         return False
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.x)
 
 
@@ -451,11 +451,10 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
         if det > 0:
             convex_hull.insert(0, points[i])
             break
-        elif det < 0:
+        if det < 0:
             convex_hull.append(points[i])
             break
-        else:
-            convex_hull[1] = points[i]
+        convex_hull[1] = points[i]
     i += 1
 
     for j in range(i, n):
@@ -477,7 +476,7 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
     return sorted(convex_hull[1:] if len(convex_hull) > 3 else convex_hull)
 
 
-def main():
+def main() -> None:
     points = [
         (0, 3),
         (2, 2),

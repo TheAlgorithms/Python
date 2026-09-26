@@ -38,7 +38,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Create and initialize LinkedList class instance.
         >>> linked_list = LinkedList()
@@ -498,7 +498,7 @@ def test_singly_linked_list_2() -> None:
     )
 
 
-def main():
+def main() -> None:
     from doctest import testmod
 
     testmod()
