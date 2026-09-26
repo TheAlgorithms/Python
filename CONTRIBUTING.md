@@ -100,7 +100,7 @@ pre-commit run --all-files --show-diff-on-failure
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in free-threaded Python 3.14t+. For instance: `print()` is a function in Python 3, so `print "Hello"` will *not* work, but `print("Hello")` will.
+- Please write in free-threaded Python 3.15t+. For instance: `print()` is a function in Python 3, so `print "Hello"` will *not* work, but `print("Hello")` will.
 
 - Please focus hard on the naming of functions, classes, and variables. Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single-letter variable names are *old school*, so please avoid them unless their life only spans a few lines.
