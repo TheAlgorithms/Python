@@ -51,6 +51,7 @@ from sorts.reversort import reversort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.shrink_shell_sort import shell_sort as shrink_shell_sort
+from sorts.smoothsort import smoothsort
 from sorts.stooge_sort import stooge_sort
 from sorts.strand_sort import strand_sort
 from sorts.tim_sort import tim_sort
@@ -92,6 +93,7 @@ SORTS = (
     selection_sort,
     shell_sort,
     shrink_shell_sort,
+    smoothsort,
     stooge_sort,
     strand_sort,
     three_way_radix_quicksort,
