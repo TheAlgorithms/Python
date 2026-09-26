@@ -44,28 +44,30 @@ def insertion_sort[T: Comparable](
 
 
 def heapify[T: Comparable](
-    array: list[T], index: int, heap_size: int
+    array: list[T], index: int, heap_size: int, start: int = 0
 ) -> None:  # Max Heap
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> heapify(array, len(array) // 2, len(array))
     """
     largest = index
-    left_index = 2 * index + 1  # Left Node
-    right_index = 2 * index + 2  # Right Node
+    left_index = 2 * (index - start) + 1 + start
+    right_index = 2 * (index - start) + 2 + start
 
-    if left_index < heap_size and array[largest] < array[left_index]:
+    if left_index < start + heap_size and array[largest] < array[left_index]:
         largest = left_index
 
-    if right_index < heap_size and array[largest] < array[right_index]:
+    if right_index < start + heap_size and array[largest] < array[right_index]:
         largest = right_index
 
     if largest != index:
         array[index], array[largest] = array[largest], array[index]
-        heapify(array, largest, heap_size)
+        heapify(array, largest, heap_size, start)
 
 
-def heap_sort[T: Comparable](array: list[T]) -> list[T]:
+def heap_sort[T: Comparable](
+    array: list[T], start: int = 0, end: int | None = None
+) -> list[T]:
     """
     >>> heap_sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
@@ -76,14 +78,16 @@ def heap_sort[T: Comparable](array: list[T]) -> list[T]:
     >>> heap_sort([6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7])
     [-457.0, -45.54, 0, 1, 1.7, 2.879, 6.2, 11.7, 758.56, 8465.2]
     """
-    n = len(array)
+    if end is None:
+        end = len(array)
+    n = end - start
 
-    for i in range(n // 2, -1, -1):
-        heapify(array, i, n)
+    for i in range(start + n // 2, start - 1, -1):
+        heapify(array, i, n, start)
 
-    for i in range(n - 1, 0, -1):
-        array[i], array[0] = array[0], array[i]
-        heapify(array, 0, i)
+    for i in range(start + n - 1, start, -1):
+        array[i], array[start] = array[start], array[i]
+        heapify(array, start, i - start, start)
 
     return array
 
@@ -187,7 +191,7 @@ def intro_sort[T: Comparable](
     """
     while end - start > size_threshold:
         if max_depth == 0:
-            return heap_sort(array)
+            return heap_sort(array, start, end)
         max_depth -= 1
         pivot = median_of_3(array, start, start + ((end - start) // 2) + 1, end - 1)
         p = partition(array, start, end, pivot)
