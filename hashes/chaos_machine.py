@@ -1,4 +1,13 @@
-"""example of simple chaos machine"""
+"""Example of a simple chaos machine (chaos-based PRNG).
+
+A chaos machine uses chaotic dynamical systems to generate
+pseudo-random numbers.  This implementation combines a logistic map
+with a Xorshift PRNG.
+
+References:
+    - https://en.wikipedia.org/wiki/Chaos_theory
+    - https://en.wikipedia.org/wiki/Xorshift
+"""
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]
@@ -13,7 +22,15 @@ params_space: list[float] = []
 machine_time = 0
 
 
-def push(seed) -> None:
+def push(seed: float) -> None:
+    """Push a seed value into the chaos machine.
+
+    Updates the internal buffer and parameter spaces using a logistic-map
+    transition function.
+
+    Args:
+        seed: A numeric seed to push into the machine.
+    """
     global buffer_space, params_space, machine_time
 
     # Choosing Dynamical Systems (All)
@@ -39,8 +56,28 @@ def push(seed) -> None:
     machine_time += 1
 
 
-def pull():
+def pull() -> int:
+    """Pull a pseudo-random number from the chaos machine.
+
+    Uses a Xorshift PRNG seeded by the current chaotic state.
+
+    Returns:
+        A 32-bit unsigned integer.
+
+    >>> reset()
+    >>> isinstance(pull(), int)
+    True
+    >>> 0 <= pull() <= 0xFFFFFFFF
+    True
+    """
     global buffer_space, params_space, machine_time
+
+    # PRNG (Xorshift by George Marsaglia)
+    def xorshift(x: int, y: int) -> int:
+        x ^= y >> 13
+        y ^= x << 17
+        x ^= y >> 5
+        return x
 
     # Choosing Dynamical Systems (Increment)
     key = machine_time % m
@@ -70,9 +107,10 @@ def pull():
 
 
 def reset() -> None:
+    """Reset the chaos machine to its initial state."""
     global buffer_space, params_space, machine_time
 
-    buffer_space = K
+    buffer_space = K.copy()
     params_space = [0] * m
     machine_time = 0
 
