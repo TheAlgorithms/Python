@@ -9,12 +9,12 @@
 	//
 	// This repo tracks the latest-and-greatest CPython on the newest stable
 	// Debian. Images are published per CPython minor version on Debian 13
-	// "Trixie" (3.11-trixie ... 3.14-trixie); bump this to the newest available
+	// "Trixie" (3.11-trixie ... 3.15-trixie); bump this to the newest available
 	// when a new stable CPython ships.
-	// NOTE: these images do not publish free-threaded (`t`) variants, so 3.14t
+	// NOTE: these images do not publish free-threaded (`t`) variants, so 3.15t
 	// cannot be selected via the tag alone -- but the repo's `.python-version`
-	// pins 3.14t, and `uv run`/`uv sync` in the container honor it, so uv gives
-	// contributors free-threaded 3.14t regardless of the base tag.
+	// pins 3.15t, and `uv run`/`uv sync` in the container honor it, so uv gives
+	// contributors free-threaded 3.15t regardless of the base tag.
 	"image": "mcr.microsoft.com/devcontainers/python:latest",
 
 	// Install the tools post_install and CI expect (pre-commit + ruff), plus uv

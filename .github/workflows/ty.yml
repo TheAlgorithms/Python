@@ -28,16 +28,16 @@ jobs:
       # [build-system], so uv treats the project as virtual and installs only
       # its dependencies -- no "Multiple top-level packages discovered in a
       # flat-layout" error and no need for a src-layout. (`uv pip install .`
-      # would force that wheel build and fail.) Pin a regular GIL 3.14 so typed
-      # third-party dependencies resolve; the free-threaded 3.14t interpreter the
+      # would force that wheel build and fail.) Pin a regular GIL 3.15 so typed
+      # third-party dependencies resolve; the free-threaded 3.15t interpreter the
       # test matrix uses lacks wheels for several of them. ty itself is pulled in
       # ephemerally with `--with` so it needn't be added to the lockfile.
-      - run: uv sync --python 3.14
-      # Pin the *run* to the same regular-GIL 3.14 too. Without `--python 3.14`
+      - run: uv sync --python 3.15
+      # Pin the *run* to the same regular-GIL 3.15 too. Without `--python 3.15`
       # here, `uv run` re-resolved the project's default interpreter -- the
-      # free-threaded 3.14t used by the test matrix -- so ty type-checked against
+      # free-threaded 3.15t used by the test matrix -- so ty type-checked against
       # an env where many third-party stubs don't resolve, drowning real findings
-      # in `unresolved-import` / `unresolved-attribute` noise. Pinning 3.14 lets
+      # in `unresolved-import` / `unresolved-attribute` noise. Pinning 3.15 lets
       # ty see the synced dependencies, so the `[tool.ty.rules]` severities in
       # pyproject.toml apply to a meaningful baseline.
       #
@@ -50,4 +50,4 @@ jobs:
       # to make ty a required gate once the [tool.ty] baseline is clean.
       # `continue-on-error: true` above stays as a belt-and-suspenders guard so a
       # ty *crash* (not a diagnostic) can never block a merge either.
-      - run: uv run --python 3.14 --with ty ty check --output-format=github --exit-zero
+      - run: uv run --python 3.15 --with ty ty check --output-format=github --exit-zero
