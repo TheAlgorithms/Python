@@ -8,7 +8,7 @@ import numpy as np
 
 
 class DecisionTree:
-    def __init__(self, depth=5, min_leaf_size=5):
+    def __init__(self, depth=5, min_leaf_size=5) -> None:
         self.depth = depth
         self.decision_boundary = 0
         self.left = None
@@ -42,7 +42,7 @@ class DecisionTree:
 
         return np.mean((labels - prediction) ** 2)
 
-    def train(self, x, y):
+    def train(self, x, y) -> None:
         """
         train:
         @param x: a one-dimensional numpy array
@@ -105,17 +105,14 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
+            if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
-            elif len(x[i:]) < self.min_leaf_size:
-                continue
-            else:
-                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
-                error = error_left + error_right
-                if error < min_error:
-                    best_split = i
-                    min_error = error
+            error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
+            error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
+            error = error_left + error_right
+            if error < min_error:
+                best_split = i
+                min_error = error
 
         if best_split != 0:
             left_x = x[:best_split]
@@ -173,7 +170,7 @@ class TestDecisionTree:
         return float(squared_error_sum / labels.size)
 
 
-def main():
+def main() -> None:
     """
     In this demonstration we're generating a sample data set from the sin function in
     numpy.  We then train a decision tree on the data set and use the decision tree to
