@@ -5,15 +5,15 @@ def check_min_intensity(
     slit_width: float = 1.0, diff_angle: float = 0.0, wavelength: float = 100.0
 ) -> bool:
     """
-    Checks for the condition of minimum intensity in a diffraction pattern.
+    Checks whether the intensity is at a minimum in a diffraction pattern.
 
     Args:
-        slit_width (float): The width of the slit in millimeters.
-        diff_angle (float): The diffraction angle in radians.
-        wavelength (float): The wavelength of light in nanometers.
+        slit_width: The width of the slit in millimeters.
+        diff_angle: The diffraction angle in radians.
+        wavelength: The wavelength of light in nanometers.
 
     Returns:
-        True if minimum intensity is met, otherwise False.
+        True if minimum intensity is met; otherwise, False.
 
     >>> check_min_intensity(4, 0.25, 300)
     False
@@ -30,7 +30,7 @@ def check_max_intensity(
     slit_width: float = 1.0, diff_angle: float = 0.0, wavelength: float = 100.0
 ) -> bool:
     """
-    Checks for the condition of maximum intensity in a diffraction pattern.
+    Checks whether the intensity is at a maximum in a diffraction pattern.
 
     Args:
         slit_width: The width of the slit in millimeters.
@@ -38,7 +38,7 @@ def check_max_intensity(
         wavelength: The wavelength of light in nanometers.
 
     Returns:
-        True if maximum intensity is met, otherwise False.
+        True if maximum intensity is met; otherwise, False.
 
     >>> check_max_intensity(1, 0.001, 100)
     False
@@ -54,7 +54,7 @@ def intensity_single_slit(
     slit_width: float = 1.0, diff_angle: float = 0.0, wavelength: float = 100.0
 ) -> float:
     """
-    Computes the intensity for a single slit diffraction pattern.
+    Computes the intensity for a single-slit diffraction pattern.
 
     Args:
         slit_width: The width of the slit in millimeters.
@@ -73,7 +73,7 @@ def intensity_single_slit(
 
 def intensity_double_slit(path_diff: float = 0, intensity_max: float = 1.0) -> float:
     """
-    Computes the intensity for a double slit diffraction pattern.
+    Computes the intensity for a double-slit diffraction pattern.
 
     Args:
         path_diff: The path difference in the two waves.
