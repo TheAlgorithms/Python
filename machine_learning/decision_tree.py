@@ -156,7 +156,7 @@ class TestDecisionTree:
     """Decision Tres test class"""
 
     @staticmethod
-    def helper_mean_squared_error_test(labels, prediction):
+    def helper_mean_squared_error_test(labels, prediction) -> float:
         """
         helper_mean_squared_error_test:
         @param labels: a one dimensional numpy array
