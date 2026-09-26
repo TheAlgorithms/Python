@@ -48,30 +48,30 @@ class Point:
     def __init__(self, x, y) -> None:
         self.x, self.y = float(x), float(y)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.x == other.x and self.y == other.y
 
-    def __ne__(self, other):
+    def __ne__(self, other) -> bool:
         return not self == other
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         if self.x > other.x:
             return True
         elif self.x == other.x:
             return self.y > other.y
         return False
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return not self > other
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> bool:
         if self.x > other.x:
             return True
         elif self.x == other.x:
             return self.y >= other.y
         return False
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         if self.x < other.x:
             return True
         elif self.x == other.x:
@@ -81,7 +81,7 @@ class Point:
     def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.x)
 
 

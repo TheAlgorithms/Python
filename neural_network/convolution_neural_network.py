@@ -76,7 +76,7 @@ class CNN:
         print(f"Model saved: {save_path}")
 
     @classmethod
-    def read_model(cls, model_path):
+    def read_model(cls, model_path) -> "CNN":
         # read saved model
         with open(model_path, "rb") as f:
             model_dic = pickle.load(f)  # noqa: S301

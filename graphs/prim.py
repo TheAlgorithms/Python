@@ -27,7 +27,7 @@ class Vertex:
         self.neighbors = []
         self.edges = {}  # {vertex:distance}
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         """Comparison rule to < operator."""
         return self.key < other.key
 
