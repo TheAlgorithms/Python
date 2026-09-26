@@ -50,7 +50,7 @@ class SHA1Hash:
         self.h = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
 
     @staticmethod
-    def rotate(n, b):
+    def rotate(n, b) -> int:
         """
         Static method to be used inside other methods. Left rotates n by b.
         >>> SHA1Hash('').rotate(12,2)

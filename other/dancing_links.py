@@ -92,7 +92,7 @@ class DancingLinks:
                 node = node.right
             row = row.down
 
-    def _uncover(self, col: ColumnNode):
+    def _uncover(self, col: ColumnNode) -> None:
         """Uncovers a column (reverses _cover)."""
         row = col.up
         while row != col:
@@ -153,7 +153,7 @@ class DancingLinks:
 
         self._uncover(col)
 
-    def solve(self) -> list:
+    def solve(self) -> list[list[int]]:
         """Find all exact cover solutions."""
         self._search()
         return self.solutions
