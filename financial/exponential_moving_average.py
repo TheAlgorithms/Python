@@ -19,6 +19,8 @@ def exponential_moving_average(
     Yields exponential moving averages of the given stock prices.
     >>> tuple(exponential_moving_average(iter([2, 5, 3, 8.2, 6, 9, 10]), 3))
     (2, 3.5, 3.25, 5.725, 5.8625, 7.43125, 8.715625)
+    >>> tuple(exponential_moving_average(iter([10.0, 20.0, 30.0]), 1))
+    (10.0, 20.0, 30.0)
 
     :param stock_prices: A stream of stock prices
     :param window_size: The number of stock prices that will trigger a new calculation
@@ -49,7 +51,7 @@ def exponential_moving_average(
     moving_average = 0.0
 
     for i, stock_price in enumerate(stock_prices):
-        if i <= window_size:
+        if i < window_size:
             # Assigning simple moving average till the window_size for the first time
             # is reached
             moving_average = (moving_average + stock_price) * 0.5 if i else stock_price
