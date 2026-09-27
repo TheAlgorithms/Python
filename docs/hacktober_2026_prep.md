@@ -17,12 +17,12 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 3. [x] #15147 closed
 4. [x] #15146 closed by maintainer
 5. [x] #15144 closed
-6. [ ] #15142 enhancement, awaiting reviews
+6. [x] #15142 closed
 7. [x] #15128 closed by close_pull_requests_with_failing_tests.sh
 8. [x] #15117 merged
 9. [x] #15108 merged
 10. [x] #15107 merged
-11. [ ] #15105 no labels
+11. [x] #15105 merged
 12. [x] #15103 closed
 13. [x] #15102 closed
 14. [x] #15101 closed
@@ -1822,8 +1822,8 @@ Modifies no algorithm directories:
 30. [x] #14221 closed
 31. [x] #14663 merged
 32. [x] #14878 closed
-33. [ ] #15105
-34. [ ] #15142
+33. [x] #15105 merged
+34. [x] #15142 closed
 35. [x] #15180 merged
 36. [x] #15182 merged
 
@@ -2061,18 +2061,18 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 ## Automated statistics
 
-_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-26 (UTC)._
+_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-27 (UTC)._
 
 - **Open issues:** 10
-- **Open pull requests:** 91
-- **Open PRs labelled `awaiting reviews`:** 69
-- **Days until Hacktoberfest (2026-10-01):** 5
-- **Issues to close per day to clear the backlog:** 2 per day (over 5 days)
-- **Pull requests to merge or close per day to clear the backlog:** 19 per day (over 5 days)
+- **Open pull requests:** 88
+- **Open PRs labelled `awaiting reviews`:** 68
+- **Days until Hacktoberfest (2026-10-01):** 4
+- **Issues to close per day to clear the backlog:** 3 per day (over 4 days)
+- **Pull requests to merge or close per day to clear the backlog:** 22 per day (over 4 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
 1. `maths/` — 9 awaiting-reviews PRs
 2. `dynamic_programming/` — 8 awaiting-reviews PRs
-3. `strings/` — 8 awaiting-reviews PRs
+3. `sorts/` — 8 awaiting-reviews PRs
 
