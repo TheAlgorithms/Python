@@ -34,6 +34,8 @@ from sorts.exchange_sort import exchange_sort
 from sorts.gnome_sort import gnome_sort
 from sorts.heap_sort import heap_sort
 from sorts.insertion_sort import insertion_sort
+from sorts.intro_sort import heap_sort as intro_heap_sort
+from sorts.intro_sort import intro_sort as intro_sort_range
 from sorts.intro_sort import sort as intro_sort
 from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_insertion_sort import merge_insertion_sort
@@ -64,6 +66,33 @@ def test_heap_sort() -> None:
     assert heap_sort([5, 2, 5, 1]) == [1, 2, 5, 5]
     assert heap_sort([1, 2, 3, 4]) == [1, 2, 3, 4]
     assert heap_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+
+
+@pytest.mark.parametrize(
+    ("start", "end"),
+    [(start, end) for start in range(7) for end in [None, *range(start, 7)]],
+)
+def test_intro_heap_sort_range(start: int, end: int | None) -> None:
+    collection = [100, 4, 1, 3, 1, -100]
+    expected = collection[:start] + sorted(collection[start:end])
+    if end is not None:
+        expected += collection[end:]
+
+    result = intro_heap_sort(collection, start, end)
+
+    assert result is collection
+    assert collection == expected
+
+
+@pytest.mark.parametrize("max_depth", [0, 1])
+def test_intro_sort_heap_fallback_preserves_surrounding_items(max_depth: int) -> None:
+    collection = [100, *range(40, 0, -1), -100]
+    expected = [100, *range(1, 41), -100]
+
+    result = intro_sort_range(collection, 1, 41, 16, max_depth)
+
+    assert result is collection
+    assert collection == expected
 
 
 SORTS = (
