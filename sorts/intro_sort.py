@@ -197,6 +197,26 @@ def intro_sort[T: Comparable](
     >>> max_depth = 2 * math.ceil(math.log2(len(array)))
     >>> intro_sort(array, 0, len(array), 16, max_depth)
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+
+    The heap-sort fallback must preserve elements outside the requested range
+    and return the original list, even when the depth limit is already reached.
+
+    >>> array = [100, *range(40, 0, -1), -100]
+    >>> expected = [100, *range(1, 41), -100]
+    >>> result = intro_sort(array, 1, 41, 16, 0)
+    >>> result is array
+    True
+    >>> result == expected
+    True
+
+    The same boundaries must be respected when the fallback occurs after a partition.
+
+    >>> array = [100, *range(40, 0, -1), -100]
+    >>> result = intro_sort(array, 1, 41, 16, 1)
+    >>> result is array
+    True
+    >>> result == expected
+    True
     """
     while end - start > size_threshold:
         if max_depth == 0:
