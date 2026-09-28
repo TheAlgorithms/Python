@@ -48,10 +48,12 @@ Usage:
 """
 
 import warnings
+from typing import cast
 
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 from sklearn.metrics import pairwise_distances
 
 warnings.filterwarnings("ignore")
@@ -157,7 +159,10 @@ def plot_heterogeneity(heterogeneity, k) -> None:
 
 
 def plot_kmeans(data, centroids, cluster_assignment) -> None:
-    ax = plt.axes(projection="3d")
+    # plt.axes() is typed to return the base 2D Axes, but projection="3d" makes
+    # it an Axes3D at runtime; cast so ty resolves Axes3D.scatter's (xs, ys, zs)
+    # signature instead of colliding its 3rd positional arg with the `s` kwarg.
+    ax = cast(Axes3D, plt.axes(projection="3d"))
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
     ax.scatter(
         centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x"
