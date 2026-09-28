@@ -17,9 +17,9 @@ def abs_val(num: float) -> float:
 
 def abs_min(x: list[int]) -> int:
     """
-    >>> abs_min([0,5,1,11])
+    >>> abs_min([0, 5, 1, 11])
     0
-    >>> abs_min([3,-10,-2])
+    >>> abs_min([3, -10, -2])
     -2
     >>> abs_min([])
     Traceback (most recent call last):
@@ -30,16 +30,16 @@ def abs_min(x: list[int]) -> int:
         raise ValueError("abs_min() arg is an empty sequence")
     j = x[0]
     for i in x:
-        if abs_val(i) < abs_val(j):
+        if abs(i) < abs(j):
             j = i
     return j
 
 
 def abs_max(x: list[int]) -> int:
     """
-    >>> abs_max([0,5,1,11])
+    >>> abs_max([0, 5, 1, 11])
     11
-    >>> abs_max([3,-10,-2])
+    >>> abs_max([3, -10, -2])
     -10
     >>> abs_max([])
     Traceback (most recent call last):
@@ -57,9 +57,9 @@ def abs_max(x: list[int]) -> int:
 
 def abs_max_sort(x: list[int]) -> int:
     """
-    >>> abs_max_sort([0,5,1,11])
+    >>> abs_max_sort([0, 5, 1, 11])
     11
-    >>> abs_max_sort([3,-10,-2])
+    >>> abs_max_sort([3, -10, -2])
     -10
     >>> abs_max_sort([])
     Traceback (most recent call last):
@@ -89,6 +89,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    test_abs_val()
-    print(abs_val(-34))  # --> 34
