@@ -63,14 +63,12 @@ def choose_action(state: State, available_actions: list[int]) -> int:
     """
     Choose action using epsilon-greedy policy.
 
+    >>> from unittest.mock import patch
     >>> q_table.clear()
-    >>> old_epsilon = EPSILON
-    >>> EPSILON = 0.0
     >>> q_table[(0, 0)][1] = 1.0
     >>> q_table[(0, 0)][2] = 0.5
-    >>> result = choose_action((0, 0), [1, 2])
-    >>> EPSILON = old_epsilon  # Restore
-    >>> result
+    >>> with patch.object(random, "random", return_value=0.99):  # never explore
+    ...     choose_action((0, 0), [1, 2])
     1
     """
     global EPSILON
