@@ -67,7 +67,7 @@ def power_iteration(
         lambda_ = np.dot(vector_h, np.dot(input_matrix, vector))
 
         # Check convergence.
-        error = np.abs(lambda_ - lambda_previous) / lambda_
+        error = np.abs(lambda_ - lambda_previous) / np.abs(lambda_)
         iterations += 1
 
         if error <= error_tol or iterations >= max_iterations:
