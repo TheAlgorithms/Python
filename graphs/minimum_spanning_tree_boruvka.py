@@ -82,7 +82,7 @@ class Graph:
         return self.adjacency.keys()
 
     @staticmethod
-    def build(vertices=None, edges=None):
+    def build(vertices=None, edges=None) -> "Graph":
         """
         Builds a graph from the given set of vertices and edges
 
@@ -91,7 +91,7 @@ class Graph:
         if vertices is None:
             vertices = []
         if edges is None:
-            edge = []
+            edges = []
         for vertex in vertices:
             g.add_vertex(vertex)
         for edge in edges:
@@ -147,7 +147,7 @@ class Graph:
             return None
 
     @staticmethod
-    def boruvka_mst(graph):
+    def boruvka_mst(graph) -> "Graph":
         """
         Implementation of Boruvka's algorithm
         >>> g = Graph()

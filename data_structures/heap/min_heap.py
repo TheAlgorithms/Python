@@ -10,7 +10,7 @@ class Node:
     def __str__(self) -> str:
         return f"{self.__class__.__name__}({self.name}, {self.val})"
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return self.val < other.val
 
 

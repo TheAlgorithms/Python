@@ -334,32 +334,32 @@ class PokerHand:
     # Note that this is not part of the problem but another extra feature where
     # if you have a list of PokerHand objects, you can sort them just through
     # the builtin functions.
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self.compare_with(other) == "Tie"
         return NotImplemented
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self.compare_with(other) == "Loss"
         return NotImplemented
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self < other or self == other
         return NotImplemented
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return not self < other and self != other
         return NotImplemented
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return not self < other
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return object.__hash__(self)
 
 

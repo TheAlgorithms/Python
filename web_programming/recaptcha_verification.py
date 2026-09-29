@@ -43,12 +43,14 @@ import httpx2
 
 try:
     from django.contrib.auth import authenticate, login
+    from django.http import HttpResponse
     from django.shortcuts import redirect, render
 except ImportError:
     authenticate = login = render = redirect = print
+    HttpResponse = None
 
 
-def login_using_recaptcha(request):
+def login_using_recaptcha(request) -> HttpResponse:
     # Enter your recaptcha secret key here
     secret_key = "secretKey"  # noqa: S105
     url = "https://www.google.com/recaptcha/api/siteverify"

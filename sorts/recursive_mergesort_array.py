@@ -1,12 +1,23 @@
-"""A merge sort which accepts an array as input and recursively
-splits an array in half and sorts and combines them.
+"""A merge sort which accepts comparable items and recursively
+splits them in half, then sorts and combines the halves.
+
+https://en.wikipedia.org/wiki/Merge_sort
 """
 
-"""https://en.wikipedia.org/wiki/Merge_sort """
+from collections.abc import Iterable
+from typing import Protocol
 
 
-def merge(arr: list[int]) -> list[int]:
-    """Return a sorted array.
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def merge[T: Comparable](collection: Iterable[T]) -> list[T]:
+    """Return a new list of ``collection`` sorted in ascending order.
+
+    The input is copied, so the original iterable is left unchanged.
+    Items must be mutually comparable with ``<``.
+
     >>> merge([10,9,8,7,6,5,4,3,2,1])
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     >>> merge([1,2,3,4,5,6,7,8,9,10])
@@ -17,19 +28,30 @@ def merge(arr: list[int]) -> list[int]:
     [100]
     >>> merge([])
     []
+    >>> merge(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> merge([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> values = [3, 1, 2]
+    >>> merge(values)
+    [1, 2, 3]
+    >>> values
+    [3, 1, 2]
+    >>> merge(("b", "c", "a"))
+    ['a', 'b', 'c']
+    >>> merge([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'int' and 'str'
     """
+    arr = list(collection)
     if len(arr) > 1:
         middle_length = len(arr) // 2  # Finds the middle of the array
-        left_array = arr[
-            :middle_length
-        ]  # Creates an array of the elements in the first half.
-        right_array = arr[
-            middle_length:
-        ]  # Creates an array of the elements in the second half.
+        # Sort each half into a new list, then combine those halves in ``arr``.
+        left_array = merge(arr[:middle_length])
+        right_array = merge(arr[middle_length:])
         left_size = len(left_array)
         right_size = len(right_array)
-        merge(left_array)  # Starts sorting the left.
-        merge(right_array)  # Starts sorting the right
         left_index = 0  # Left Counter
         right_index = 0  # Right Counter
         index = 0  # Position Counter
