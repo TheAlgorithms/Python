@@ -544,14 +544,18 @@ if __name__ == "__main__":
                 print(f"Generated key: {Des.generate_key()}")
             case "e":
                 key = input("Enter the key: ").strip()
-                if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
+                if len(key) != 16 and not all(
+                    char in "0123456789abcdef" for char in key
+                ):
                     print("Invalid key. Please try again.")
                     continue
                 input_string = input("Enter the string to encrypt: ").strip()
                 print(f"Encrypted string: {Des.encrypt(key, input_string)}")
             case "d":
                 key = input("Enter the key: ").strip()
-                if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
+                if len(key) != 16 and not all(
+                    char in "0123456789abcdef" for char in key
+                ):
                     print("Invalid key. Please try again.")
                     continue
                 cipher_text = input("Enter the cipher text to decrypt: ").strip()
