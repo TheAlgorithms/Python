@@ -156,12 +156,13 @@ class CNN:
                         i_focus : i_focus + size_pooling,
                         j_focus : j_focus + size_pooling,
                     ]
-                    if pooling_type == "average_pool":
-                        # average pooling
-                        map_pooled.append(np.average(focus))
-                    elif pooling_type == "max_pooling":
-                        # max pooling
-                        map_pooled.append(np.max(focus))
+                    match pooling_type:
+                        case "average_pool":
+                            # average pooling
+                            map_pooled.append(np.average(focus))
+                        case "max_pooling":
+                            # max pooling
+                            map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled, size_pooled)
             featuremap_pooled.append(map_pooled)
         return featuremap_pooled
