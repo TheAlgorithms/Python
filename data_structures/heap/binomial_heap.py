@@ -128,6 +128,18 @@ class BinomialHeap:
         self.bottom_root = bottom_root
         self.min_node = min_node
 
+    def _update_min_node(self) -> None:
+        """
+        Update min_node to refer to the root with minimum value in the root list.
+        """
+        curr = self.bottom_root
+        min_node = curr
+        while curr:
+            if curr.val < min_node.val:
+                min_node = curr
+            curr = curr.parent
+        self.min_node = min_node
+
     def merge_heaps(self, other):
         """
         In-place merge of two binomial heaps.
@@ -136,19 +148,17 @@ class BinomialHeap:
 
         # Empty heaps corner cases
         if other.size == 0:
-            return None
+            return self
         if self.size == 0:
             self.size = other.size
             self.bottom_root = other.bottom_root
             self.min_node = other.min_node
-            return None
+            other.size = self.size
+            other.bottom_root = self.bottom_root
+            other.min_node = self.min_node
+            return self
         # Update size
         self.size = self.size + other.size
-
-        # Update min.node
-        if self.min_node.val > other.min_node.val:
-            self.min_node = other.min_node
-        # Merge
 
         # Order roots by left_subtree_size
         combined_roots_list = []
@@ -161,10 +171,12 @@ class BinomialHeap:
                 combined_roots_list.append((j, False))
                 j = j.parent
         # Insert links between them
-        for i in range(len(combined_roots_list) - 1):
-            if combined_roots_list[i][1] != combined_roots_list[i + 1][1]:
-                combined_roots_list[i][0].parent = combined_roots_list[i + 1][0]
-                combined_roots_list[i + 1][0].left = combined_roots_list[i][0]
+        for k in range(len(combined_roots_list) - 1):
+            combined_roots_list[k][0].parent = combined_roots_list[k + 1][0]
+            combined_roots_list[k + 1][0].left = combined_roots_list[k][0]
+        combined_roots_list[0][0].left = None
+        combined_roots_list[-1][0].parent = None
+
         # Consecutively merge roots with same left_tree_size
         i = combined_roots_list[0][0]
         while i.parent:
@@ -194,6 +206,8 @@ class BinomialHeap:
         while i.left:
             i = i.left
         self.bottom_root = i
+
+        self._update_min_node()
 
         # Update other
         other.size = self.size
@@ -245,10 +259,20 @@ class BinomialHeap:
                 if next_node:
                     next_node.left = self.bottom_root
 
+            self._update_min_node()
+
     def peek(self):
         """
         return min element without deleting it
+
+        >>> h = BinomialHeap()
+        >>> h.insert(42)
+        >>> h.insert(10)
+        >>> h.peek()
+        10
         """
+        if self.is_empty():
+            raise IndexError("peek from an empty heap")
         return self.min_node.val
 
     def is_empty(self) -> bool:
@@ -257,8 +281,23 @@ class BinomialHeap:
     def delete_min(self):
         """
         delete min element and return it
+
+        >>> h = BinomialHeap()
+        >>> for value in [1, 1, 1, 1, 1]:
+        ...     h.insert(value)
+        >>> [h.delete_min() for _ in range(5)]
+        [1, 1, 1, 1, 1]
+        >>> h.is_empty()
+        True
+        >>> h.size
+        0
+        >>> h.delete_min()
+        Traceback (most recent call last):
+            ...
+        IndexError: delete_min from an empty heap
         """
-        # assert not self.isEmpty(), "Empty Heap"
+        if self.is_empty():
+            raise IndexError("delete_min from an empty heap")
 
         # Save minimal value
         min_value = self.min_node.val
@@ -288,12 +327,7 @@ class BinomialHeap:
             self.bottom_root.left = None
 
             # Update min_node
-            self.min_node = self.bottom_root
-            i = self.bottom_root.parent
-            while i:
-                if i.val < self.min_node.val:
-                    self.min_node = i
-                i = i.parent
+            self._update_min_node()
             return min_value
         # General case
         # Find the BinomialHeap of the right subtree of min_node
@@ -328,35 +362,25 @@ class BinomialHeap:
         previous_node = self.min_node.left
         next_node = self.min_node.parent
 
-        # Initialize new bottom_root and min_node
-        self.min_node = previous_node or next_node
-        self.bottom_root = next_node
-
-        # Update links of previous_node and search below for new min_node and
-        # bottom_root
+        # Unlink min_node from root list
         if previous_node:
             previous_node.parent = next_node
+            curr = previous_node
+            while curr.left:
+                curr = curr.left
+            self.bottom_root = curr
+        else:
+            self.bottom_root = next_node
 
-            # Update bottom_root and search for min_node below
-            self.bottom_root = previous_node
-            self.min_node = previous_node
-            while self.bottom_root.left:
-                self.bottom_root = self.bottom_root.left
-                if self.bottom_root.val < self.min_node.val:
-                    self.min_node = self.bottom_root
         if next_node:
             next_node.left = previous_node
 
-            # Search for new min_node above min_node
-            i = next_node
-            while i:
-                if i.val < self.min_node.val:
-                    self.min_node = i
-                i = i.parent
+        self._update_min_node()
+
         # Merge heaps
         self.merge_heaps(new_heap)
 
-        return int(min_value)
+        return min_value
 
     def pre_order(self):
         """
