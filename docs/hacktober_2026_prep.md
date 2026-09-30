@@ -144,7 +144,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 130. [x] #14786 merged
 131. [x] #14785 closed
 132. [x] #14779 merged
-133. [ ] #14777 enhancement, awaiting reviews
+133. [x] #14777 merged
 134. [x] #14775 merged
 135. [x] #14770 merged
 136. [x] #14769 merged
@@ -639,7 +639,7 @@ Notation: `<index>. [ ] #<pr_id> <labels>`
 625. [x] #13136 closed
 626. [x] #13135 closed
 627. [x] #13133 merged
-628. [ ] #13132 awaiting reviews
+628. [x] #13132 closed
 629. [ ] #13131 enhancement, awaiting reviews
 630. [ ] #13129 awaiting reviews
 631. [x] #13128 merged
@@ -978,7 +978,7 @@ bit_manipulation:
 7. [x] #13018 merged
 8. [ ] #13121
 9. [ ] #13129
-10. [ ] #13132
+10. [x] #13132 closed
 11. [x] #13157 merged
 12. [ ] #13216
 13. [x] #13483 merged
@@ -1278,7 +1278,7 @@ hashes:
 7. [ ] #14037
 8. [x] #14415 closed
 9. [x] #14560 merged
-10. [ ] #14777
+10. [x] #14777 merged
 11. [x] #14814 merged
 
 haversine_calculation:
@@ -2061,18 +2061,18 @@ I can take a second pass through the remaining `awaiting triage` items (relabel 
 
 ## Automated statistics
 
-_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-27 (UTC)._
+_Generated automatically by `scripts/hacktoberfest_prep_update.py` on 2026-09-30 (UTC)._
 
 - **Open issues:** 10
-- **Open pull requests:** 88
-- **Open PRs labelled `awaiting reviews`:** 68
-- **Days until Hacktoberfest (2026-10-01):** 4
-- **Issues to close per day to clear the backlog:** 3 per day (over 4 days)
-- **Pull requests to merge or close per day to clear the backlog:** 22 per day (over 4 days)
+- **Open pull requests:** 95
+- **Open PRs labelled `awaiting reviews`:** 72
+- **Days until Hacktoberfest (2026-10-01):** 1
+- **Issues to close per day to clear the backlog:** 10 per day (over 1 days)
+- **Pull requests to merge or close per day to clear the backlog:** 95 per day (over 1 days)
 
 **Top three directories to work on** (most open pull requests labelled `awaiting reviews`):
 
-1. `maths/` — 9 awaiting-reviews PRs
-2. `dynamic_programming/` — 8 awaiting-reviews PRs
-3. `sorts/` — 8 awaiting-reviews PRs
+1. `dynamic_programming/` — 9 awaiting-reviews PRs
+2. `maths/` — 9 awaiting-reviews PRs
+3. `strings/` — 9 awaiting-reviews PRs
 
