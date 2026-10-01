@@ -109,18 +109,19 @@ class Polynomial:
         for i in range(self.degree, -1, -1):
             if self.coefficients[i] == 0:
                 continue
-            elif self.coefficients[i] > 0:
+            if self.coefficients[i] > 0:
                 if polynomial:
                     polynomial += " + "
             else:
                 polynomial += " - "
 
-            if i == 0:
-                polynomial += str(abs(self.coefficients[i]))
-            elif i == 1:
-                polynomial += str(abs(self.coefficients[i])) + "x"
-            else:
-                polynomial += str(abs(self.coefficients[i])) + "x^" + str(i)
+            match i:
+                case 0:
+                    polynomial += str(abs(self.coefficients[i]))
+                case 1:
+                    polynomial += str(abs(self.coefficients[i])) + "x"
+                case _:
+                    polynomial += str(abs(self.coefficients[i])) + "x^" + str(i)
 
         return polynomial
 

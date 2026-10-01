@@ -16,7 +16,7 @@ class BinaryHeap:
     2
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__heap = [0]
         self.__size = 0
 
@@ -60,10 +60,10 @@ class BinaryHeap:
         return max_value
 
     @property
-    def get_list(self):
+    def get_list(self) -> list:
         return self.__heap[1:]
 
-    def __len__(self):
+    def __len__(self) -> int:
         """Length of the array"""
         return self.__size
 

@@ -4,7 +4,7 @@
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
-    def __init__(self, n: int):
+    def __init__(self, n: int) -> None:
         self.n = n
         self.array = [None] * self.n
         self.front = 0  # index of the first element
@@ -47,7 +47,7 @@ class CircularQueue:
         """
         return False if self.is_empty() else self.array[self.front]
 
-    def enqueue(self, data):
+    def enqueue(self, data) -> "CircularQueue":
         """
         This function inserts an element at the end of the queue using self.rear value
         as an index.

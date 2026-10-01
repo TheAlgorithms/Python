@@ -5,7 +5,7 @@ from file_transfer.send_file import send_file
 
 @patch("socket.socket")
 @patch("builtins.open")
-def test_send_file_running_as_expected(file, sock):
+def test_send_file_running_as_expected(file, sock) -> None:
     # ===== initialization =====
     conn = Mock()
     sock.return_value.accept.return_value = conn, Mock()

@@ -12,6 +12,21 @@ from typing import Any
 
 
 def generate_all_subsequences(sequence: list[Any]) -> None:
+    """
+    Generate and print all possible subsequences of the given sequence.
+
+    >>> generate_all_subsequences([1, 2])
+    []
+    [2]
+    [1]
+    [1, 2]
+    >>> generate_all_subsequences(["A", "B"])
+    []
+    ['B']
+    ['A']
+    ['A', 'B']
+    """
+
     create_state_space_tree(sequence, [], 0)
 
 

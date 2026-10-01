@@ -4,8 +4,15 @@ Odd even sort implementation.
 https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort
 """
 
+from collections.abc import MutableSequence
+from typing import Any, Protocol
 
-def odd_even_sort(input_list: list) -> list:
+
+class Comparable(Protocol):
+    def __gt__(self, other: Any, /) -> bool: ...
+
+
+def odd_even_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
     """
     Sort input with odd even sort.
 
@@ -24,22 +31,30 @@ def odd_even_sort(input_list: list) -> list:
     [-10, -1, 2, 10]
     >>> odd_even_sort([1 ,2 ,3 ,4])
     [1, 2, 3, 4]
+    >>> odd_even_sort(["c","a","b"])
+    ['a', 'b', 'c']
+    >>> odd_even_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> odd_even_sort([1,"a"])
+    Traceback (most recent call last):
+       ...
+    TypeError: '>' not supported between instances of 'int' and 'str'
     """
     is_sorted = False
     while is_sorted is False:  # Until all the indices are traversed keep looping
         is_sorted = True
-        for i in range(0, len(input_list) - 1, 2):  # iterating over all even indices
-            if input_list[i] > input_list[i + 1]:
-                input_list[i], input_list[i + 1] = input_list[i + 1], input_list[i]
+        for i in range(0, len(collection) - 1, 2):  # iterating over all even indices
+            if collection[i] > collection[i + 1]:
+                collection[i], collection[i + 1] = collection[i + 1], collection[i]
                 # swapping if elements not in order
                 is_sorted = False
 
-        for i in range(1, len(input_list) - 1, 2):  # iterating over all odd indices
-            if input_list[i] > input_list[i + 1]:
-                input_list[i], input_list[i + 1] = input_list[i + 1], input_list[i]
+        for i in range(1, len(collection) - 1, 2):  # iterating over all odd indices
+            if collection[i] > collection[i + 1]:
+                collection[i], collection[i + 1] = collection[i + 1], collection[i]
                 # swapping if elements not in order
                 is_sorted = False
-    return input_list
+    return collection
 
 
 if __name__ == "__main__":

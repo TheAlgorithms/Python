@@ -91,7 +91,7 @@ class AStar:
      (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
-    def __init__(self, start: TPosition, goal: TPosition):
+    def __init__(self, start: TPosition, goal: TPosition) -> None:
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
 

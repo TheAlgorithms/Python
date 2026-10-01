@@ -45,7 +45,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     And our shift is ``2``
 
     We can then encode the message, one letter at a time. ``H`` would become ``J``,
-    since ``J`` is two letters away, and so on. If the shift is ever two large, or
+    since ``J`` is two letters away, and so on. If the shift is ever too large, or
     our letter is at the end of the alphabet, we just start at the beginning
     (``Z`` would shift to ``a`` then ``b`` and so on).
 

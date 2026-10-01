@@ -55,6 +55,7 @@ def generate_image(cells: list[list[int]]) -> Image.Image:
     # Create the output image
     img = Image.new("RGB", (len(cells[0]), len(cells)))
     pixels = img.load()
+    assert pixels is not None
     # Generates image
     for w in range(img.width):
         for h in range(img.height):

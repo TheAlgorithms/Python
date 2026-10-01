@@ -62,24 +62,25 @@ if __name__ == "__main__":
 
         choice = input("Enter choice (1/2/3/4): ")
 
-        if choice == "1":
-            element = int(input("Enter an integer to push: ").strip())
-            stack.push(element)
-            print(f"{element} pushed onto the stack.")
-        elif choice == "2":
-            popped_element = stack.pop()
-            if popped_element is not None:
-                print(f"Popped element: {popped_element}")
-            else:
-                print("Stack is empty.")
-        elif choice == "3":
-            peeked_element = stack.peek()
-            if peeked_element is not None:
-                print(f"Top element: {peeked_element}")
-            else:
-                print("Stack is empty.")
-        elif choice == "4":
-            del stack
-            stack = None
-        else:
-            print("Invalid choice. Please try again.")
+        match choice:
+            case "1":
+                element = int(input("Enter an integer to push: ").strip())
+                stack.push(element)
+                print(f"{element} pushed onto the stack.")
+            case "2":
+                popped_element = stack.pop()
+                if popped_element is not None:
+                    print(f"Popped element: {popped_element}")
+                else:
+                    print("Stack is empty.")
+            case "3":
+                peeked_element = stack.peek()
+                if peeked_element is not None:
+                    print(f"Top element: {peeked_element}")
+                else:
+                    print("Stack is empty.")
+            case "4":
+                del stack
+                stack = None
+            case _:
+                print("Invalid choice. Please try again.")

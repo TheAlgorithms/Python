@@ -79,7 +79,7 @@ def f(x):
     return x**2
 
 
-def main():
+def main() -> None:
     """
     Main function to test the trapezoidal rule.
     :a: Lower bound of integration

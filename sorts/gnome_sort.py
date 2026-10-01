@@ -10,10 +10,26 @@ python3 -m doctest -v gnome_sort.py
 
 For manual testing run:
 python3 gnome_sort.py
+Gnome Sort Algorithm implementation in Python.
+
+Gnome sort (also called Stupid Sort) works by comparing the current element
+with the previous one. If they are in the wrong order, it swaps them and
+moves one step back. Otherwise it moves one step forward.
+
+Time Complexity:  O(n^2) in the worst case
+Space Complexity: O(1)
+
+Reference: https://en.wikipedia.org/wiki/Gnome_sort
 """
 
+from typing import Protocol
 
-def gnome_sort(lst: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def gnome_sort[T: Comparable](lst: list[T]) -> list[T]:
     """
     Pure implementation of the gnome sort algorithm in Python
 
@@ -39,7 +55,7 @@ def gnome_sort(lst: list) -> list:
     i = 1
 
     while i < len(lst):
-        if lst[i - 1] <= lst[i]:
+        if not lst[i] < lst[i - 1]:
             i += 1
         else:
             lst[i - 1], lst[i] = lst[i], lst[i - 1]
@@ -51,6 +67,9 @@ def gnome_sort(lst: list) -> list:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(gnome_sort(unsorted))

@@ -31,7 +31,7 @@ def sum_of_digits_recursion(n: int) -> int:
     0
     """
     n = abs(n)
-    return n if n < 10 else n % 10 + sum_of_digits(n // 10)
+    return n if n < 10 else n % 10 + sum_of_digits_recursion(n // 10)
 
 
 def sum_of_digits_compact(n: int) -> int:

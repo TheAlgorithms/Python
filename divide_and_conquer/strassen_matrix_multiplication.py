@@ -1,3 +1,7 @@
+"""
+https://en.wikipedia.org/wiki/Strassen_algorithm
+"""
+
 from __future__ import annotations
 
 import math
@@ -32,7 +36,7 @@ def matrix_subtraction(matrix_a: list, matrix_b: list):
 
 def split_matrix(a: list) -> tuple[list, list, list, list]:
     """
-    Given an even length matrix, returns the top_left, top_right, bot_left, bot_right
+    Given an even-length matrix, returns the top_left, top_right, bot_left, bot_right
     quadrant.
 
     >>> split_matrix([[4,3,2,4],[2,3,1,1],[6,5,4,3],[8,4,1,6]])
@@ -49,18 +53,20 @@ def split_matrix(a: list) -> tuple[list, list, list, list]:
     if len(a) % 2 != 0 or len(a[0]) % 2 != 0:
         raise Exception("Odd matrices are not supported!")
 
-    matrix_length = len(a)
-    mid = matrix_length // 2
+    def extract_submatrix(rows, cols):
+        return [[a[i][j] for j in cols] for i in rows]
 
-    top_right = [[a[i][j] for j in range(mid, matrix_length)] for i in range(mid)]
-    bot_right = [
-        [a[i][j] for j in range(mid, matrix_length)] for i in range(mid, matrix_length)
-    ]
+    mid = len(a) // 2
 
-    top_left = [[a[i][j] for j in range(mid)] for i in range(mid)]
-    bot_left = [[a[i][j] for j in range(mid)] for i in range(mid, matrix_length)]
+    rows_top, rows_bot = range(mid), range(mid, len(a))
+    cols_left, cols_right = range(mid), range(mid, len(a))
 
-    return top_left, top_right, bot_left, bot_right
+    return (
+        extract_submatrix(rows_top, cols_left),  # Top-left
+        extract_submatrix(rows_top, cols_right),  # Top-right
+        extract_submatrix(rows_bot, cols_left),  # Bottom-left
+        extract_submatrix(rows_bot, cols_right),  # Bottom-right
+    )
 
 
 def matrix_dimensions(matrix: list) -> tuple[int, int]:
@@ -74,7 +80,36 @@ def print_matrix(matrix: list) -> None:
 def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
-    Algorithm. It only supports square matrices of any size that is a power of 2.
+    Algorithm.
+
+    Time complexity:
+        The recurrence is T(n) = 7 T(n/2) + \u0398(n^2), which solves to
+        T(n) = \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074}). This is asymptotically
+        faster than the naive \u0398(n^3) algorithm for sufficiently large n.
+
+    Space complexity:
+        Uses additional memory for temporary submatrices and padding; overall
+        space complexity is O(n^2).
+
+    Notes:
+        This function expects square matrices whose size is a power of two.
+        Matrices of other sizes are handled by `strassen` which pads to the
+        next power of two.
+
+    It only supports square matrices of any size that is a power of 2.
+
+    Strassen's algorithm reduces the number of recursive multiplications needed to
+    multiply two n x n matrices from the 8 required by the naive divide-and-conquer
+    approach down to 7, at the cost of a few extra matrix additions/subtractions
+    (which are cheaper, O(n^2), operations). Each matrix is split into four
+    (n/2) x (n/2) quadrants; 7 products of quadrant combinations are computed
+    recursively, and those products are combined with additions/subtractions to
+    form the four quadrants of the result.
+
+    Time complexity: O(n^log2(7)) ~= O(n^2.807), an improvement over the O(n^3) of
+    the standard/naive matrix multiplication algorithm.
+    Space complexity: O(n^2) for storing the intermediate quadrant matrices, plus
+    O(log n) recursion stack depth.
     """
     if matrix_dimensions(matrix_a) == (2, 2):
         return default_matrix_multiplication(matrix_a, matrix_b)
@@ -106,6 +141,24 @@ def actual_strassen(matrix_a: list, matrix_b: list) -> list:
 
 def strassen(matrix1: list, matrix2: list) -> list:
     """
+    Multiply two matrices using Strassen's divide-and-conquer algorithm.
+
+    Time complexity:
+        \u0398(n^{log_2 7}) \u2248 \u0398(n^{2.8074})
+        (recurrence T(n) = 7 T(n/2) + \u0398(n^2)).
+
+    Space complexity:
+        O(n^2) due to padding and temporary matrices used during recursion.
+
+    Multiply two matrices using Strassen's algorithm, which runs in
+    O(n^log2(7)) ~= O(n^2.807) time, compared to O(n^3) for naive matrix
+    multiplication. This implementation pads both input matrices with zeros
+    until they are square matrices whose dimension is a power of 2 (required
+    by the divide-and-conquer recursion in actual_strassen), performs the
+    multiplication, then trims the padding back off the result.
+
+    Examples:
+
     >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
     [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
     >>> strassen([[3,7,5,6,9],[1,5,3,7,8],[1,4,4,5,7]], [[2,4],[5,2],[1,7],[5,5],[7,8]])

@@ -17,9 +17,6 @@
   <a href="https://the-algorithms.com/discord">
     <img src="https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square" height="20" alt="Discord chat">
   </a>
-  <a href="https://gitter.im/TheAlgorithms/community">
-    <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
-  </a>
 
   <!-- Second row: -->
   <br>
@@ -45,7 +42,7 @@ Implementations are for learning purposes only. They may be less efficient than 
 
 ## 🌐 Community Channels
 
-We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
+We are on [Discord](https://the-algorithms.com/discord)! Community channels are a great way for you to ask questions and get help. Please join us!
 
 ## 📜 List of Algorithms
 

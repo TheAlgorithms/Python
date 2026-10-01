@@ -18,7 +18,7 @@ visited = [0 for x in range(len(graph))]
 stack = []
 
 
-def print_stack(stack, clothes):
+def print_stack(stack, clothes) -> None:
     order = 1
     while stack:
         current_clothing = stack.pop()
@@ -26,7 +26,7 @@ def print_stack(stack, clothes):
         order += 1
 
 
-def depth_first_search(u, visited, graph):
+def depth_first_search(u, visited, graph) -> None:
     visited[u] = 1
     for v in graph[u]:
         if not visited[v]:
@@ -35,7 +35,7 @@ def depth_first_search(u, visited, graph):
     stack.append(u)
 
 
-def topological_sort(graph, visited):
+def topological_sort(graph, visited) -> None:
     for v in range(len(graph)):
         if not visited[v]:
             depth_first_search(v, visited, graph)

@@ -66,7 +66,7 @@ class FixedPriorityQueue:
     Priority 2: []
     """  # noqa: E501
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.queues = [
             [],
             [],
@@ -146,7 +146,7 @@ class ElementPriorityQueue:
     []
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.queue = []
 
     def enqueue(self, data: int) -> None:
@@ -165,10 +165,9 @@ class ElementPriorityQueue:
         """
         if not self.queue:
             raise UnderFlowError("The queue is empty")
-        else:
-            data = min(self.queue)
-            self.queue.remove(data)
-            return data
+        data = min(self.queue)
+        self.queue.remove(data)
+        return data
 
     def __str__(self) -> str:
         """
@@ -177,7 +176,7 @@ class ElementPriorityQueue:
         return str(self.queue)
 
 
-def fixed_priority_queue():
+def fixed_priority_queue() -> None:
     fpq = FixedPriorityQueue()
     fpq.enqueue(0, 10)
     fpq.enqueue(1, 70)
@@ -202,7 +201,7 @@ def fixed_priority_queue():
     print(fpq.dequeue())
 
 
-def element_priority_queue():
+def element_priority_queue() -> None:
     epq = ElementPriorityQueue()
     epq.enqueue(10)
     epq.enqueue(70)

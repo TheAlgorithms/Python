@@ -10,11 +10,11 @@ import os
 class FileSplitter:
     BLOCK_FILENAME_FORMAT = "block_{0}.dat"
 
-    def __init__(self, filename):
+    def __init__(self, filename) -> None:
         self.filename = filename
         self.block_filenames = []
 
-    def write_block(self, data, block_number):
+    def write_block(self, data, block_number) -> None:
         filename = self.BLOCK_FILENAME_FORMAT.format(block_number)
         with open(filename, "w") as file:
             file.write(data)
@@ -23,7 +23,7 @@ class FileSplitter:
     def get_block_filenames(self):
         return self.block_filenames
 
-    def split(self, block_size, sort_key=None):
+    def split(self, block_size, sort_key=None) -> None:
         i = 0
         with open(self.filename) as file:
             while True:
@@ -40,7 +40,7 @@ class FileSplitter:
                 self.write_block("".join(lines), i)
                 i += 1
 
-    def cleanup(self):
+    def cleanup(self) -> None:
         map(os.remove, self.block_filenames)
 
 
@@ -57,7 +57,7 @@ class NWayMerge:
 
 
 class FilesArray:
-    def __init__(self, files):
+    def __init__(self, files) -> None:
         self.files = files
         self.empty = set()
         self.num_buffers = len(files)
@@ -87,10 +87,10 @@ class FilesArray:
 
 
 class FileMerger:
-    def __init__(self, merge_strategy):
+    def __init__(self, merge_strategy) -> None:
         self.merge_strategy = merge_strategy
 
-    def merge(self, filenames, outfilename, buffer_size):
+    def merge(self, filenames, outfilename, buffer_size) -> None:
         buffers = FilesArray(self.get_file_handles(filenames, buffer_size))
         with open(outfilename, "w", buffer_size) as outfile:
             while buffers.refresh():
@@ -107,10 +107,10 @@ class FileMerger:
 
 
 class ExternalSort:
-    def __init__(self, block_size):
+    def __init__(self, block_size) -> None:
         self.block_size = block_size
 
-    def sort(self, filename, sort_key=None):
+    def sort(self, filename, sort_key=None) -> None:
         num_blocks = self.get_number_blocks(filename, self.block_size)
         splitter = FileSplitter(filename)
         splitter.split(self.block_size, sort_key)
@@ -126,17 +126,18 @@ class ExternalSort:
 
 
 def parse_memory(string):
-    if string[-1].lower() == "k":
-        return int(string[:-1]) * 1024
-    elif string[-1].lower() == "m":
-        return int(string[:-1]) * 1024 * 1024
-    elif string[-1].lower() == "g":
-        return int(string[:-1]) * 1024 * 1024 * 1024
-    else:
-        return int(string)
+    match string[-1].lower():
+        case "k":
+            return int(string[:-1]) * 1024
+        case "m":
+            return int(string[:-1]) * 1024 * 1024
+        case "g":
+            return int(string[:-1]) * 1024 * 1024 * 1024
+        case _:
+            return int(string)
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-m", "--mem", help="amount of memory to use for sorting", default="100M"

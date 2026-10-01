@@ -13,7 +13,7 @@ This is **Devcontainer** configuration to provide a consistent development envir
 
 ## Usage
 
-1. Install [**Docker** ](https://www.docker.com/get-started/) and [**Visual Studio Code**](https://code.visualstudio.com/)
+1. Install [**Docker**](https://www.docker.com/get-started/) and [**Visual Studio Code**](https://code.visualstudio.com/)
 2. Install the **Remote - Containers** extension in VS Code
 
     - Do `CTRL+P`, paste this command and press `Enter`
@@ -21,6 +21,7 @@ This is **Devcontainer** configuration to provide a consistent development envir
         ```shell
         ext install ms-vscode-remote.remote-containers
         ```
+
 3. Open this repository in VS Code
 4. When prompted, click **"Reopen in Container"**
 5. Wait for the environment to build and initialize

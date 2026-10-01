@@ -23,7 +23,7 @@ from matplotlib import pyplot as plt
 class CNN:
     def __init__(
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
-    ):
+    ) -> None:
         """
         :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size
@@ -52,7 +52,7 @@ class CNN:
         self.thre_bp2 = -2 * rng.random(self.num_bp2) + 1
         self.thre_bp3 = -2 * rng.random(self.num_bp3) + 1
 
-    def save_model(self, save_path):
+    def save_model(self, save_path) -> None:
         # save model dict with pickle
         model_dic = {
             "num_bp1": self.num_bp1,
@@ -76,7 +76,7 @@ class CNN:
         print(f"Model saved: {save_path}")
 
     @classmethod
-    def read_model(cls, model_path):
+    def read_model(cls, model_path) -> "CNN":
         # read saved model
         with open(model_path, "rb") as f:
             model_dic = pickle.load(f)  # noqa: S301
@@ -156,12 +156,13 @@ class CNN:
                         i_focus : i_focus + size_pooling,
                         j_focus : j_focus + size_pooling,
                     ]
-                    if pooling_type == "average_pool":
-                        # average pooling
-                        map_pooled.append(np.average(focus))
-                    elif pooling_type == "max_pooling":
-                        # max pooling
-                        map_pooled.append(np.max(focus))
+                    match pooling_type:
+                        case "average_pool":
+                            # average pooling
+                            map_pooled.append(np.average(focus))
+                        case "max_pooling":
+                            # max pooling
+                            map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled, size_pooled)
             featuremap_pooled.append(map_pooled)
         return featuremap_pooled
@@ -295,7 +296,7 @@ class CNN:
             mse = error_count / patterns
             all_mse.append(mse)
 
-        def draw_error():
+        def draw_error() -> None:
             yplot = [error_accuracy for i in range(int(n_repeat * 1.2))]
             plt.plot(all_mse, "+-")
             plt.plot(yplot, "r--")

@@ -1,0 +1,109 @@
+# Daily refresh of the Hacktoberfest 2026 open-PR cleanup tracker.
+# Ticks off any tracked pull request that has since been merged/closed, and
+# rewrites the "Automated statistics" section (open issue/PR counts + the top
+# three `awaiting reviews` directories). The job fails on purpose once
+# Hacktoberfest 2026 has begun (>= 2026-10-01), which is the signal to retire it.
+name: hacktoberfest_prep
+
+on:
+  push:
+    paths:
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
+  pull_request:
+    paths:
+      - ".github/workflows/hacktoberfest_prep.yml"
+      - "scripts/hacktoberfest_prep_update.py"
+  schedule:
+    - cron: "50 11 * * *" # 11:50 UTC every day
+  workflow_dispatch: # allow a manual run while testing
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  hacktoberfest-prep:
+    # No point running on forks — this pushes to the repo's own docs file.
+    if: github.repository == 'TheAlgorithms/Python'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version-file: .python-version
+          allow-prereleases: true
+      - name: Install dependencies
+        run: python -m pip install --upgrade "httpx2>=2.0.1"
+      - name: Update the tracker
+        id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        # Don't let the intentional post-Oct-1 failure stop the commit step;
+        # capture the exit code and re-raise it after pushing any changes.
+        run: |
+          set +e
+          python scripts/hacktoberfest_prep_update.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+      # Dry run on push / pull_request: show the diff the script produced but
+      # do NOT commit or push. This lets a PR prove the tracker still gathers
+      # its data and rewrites docs/hacktober_2026_prep.md correctly without
+      # leaving a permanent commit. Only the schedule/manual runs persist.
+      - name: Show changes (dry run)
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: |
+          echo "Dry run (${{ github.event_name }}): showing git diff, not committing."
+          git --no-pager diff -- docs/hacktober_2026_prep.md
+          if git diff --quiet -- docs/hacktober_2026_prep.md; then
+            echo "No changes to docs/hacktober_2026_prep.md."
+          fi
+      # `master` is a protected branch: direct pushes are rejected with
+      # `GH006: Protected branch update failed ... Changes must be made through
+      # a pull request`. So instead of committing straight to master, persist
+      # the refreshed tracker on a single rolling branch and open — or, since
+      # re-pushing the branch updates the existing PR in place, leave open — one
+      # pull request. Uses the bundled `gh` CLI rather than a third-party
+      # action (see zizmor's "superfluous actions" audit).
+      - name: Open or update the tracker pull request
+        if: github.event_name != 'push' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: chore/hacktoberfest-2026-prep-refresh
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/hacktober_2026_prep.md; then
+            echo "No changes to docs/hacktober_2026_prep.md; nothing to persist."
+            exit 0
+          fi
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          # `actions/checkout` runs with `persist-credentials: false`, so git has
+          # no token to authenticate the push below (it fails with
+          # `fatal: could not read Username for 'https://github.com'`). Wire the
+          # bundled `gh` in as git's credential helper so `git push` reuses
+          # GH_TOKEN — no third-party action and no token baked into the remote URL.
+          gh auth setup-git
+          git switch -c "$BRANCH"
+          git add docs/hacktober_2026_prep.md
+          git commit -m "chore: refresh Hacktoberfest 2026 prep tracker"
+          # Force-push so the rolling branch always carries just the latest
+          # snapshot on top of master; this also updates any open PR in place.
+          git push --force origin "$BRANCH"
+          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            gh pr create \
+              --base master \
+              --head "$BRANCH" \
+              --title "chore: refresh Hacktoberfest 2026 prep tracker" \
+              --body "Automated daily refresh of the Hacktoberfest 2026 open-PR cleanup tracker (\`docs/hacktober_2026_prep.md\`): ticks off any tracked pull request that has since been merged/closed and rewrites the **Automated statistics** section.
+
+          This PR is updated in place by the \`hacktoberfest_prep\` workflow, so it always reflects the latest scheduled run. Merge it whenever you want to capture the current snapshot."
+          else
+            echo "Open tracker PR already exists; force-push updated it in place."
+          fi
+      - name: Propagate the script's exit code
+        env:
+          UPDATE_EXIT_CODE: ${{ steps.update.outputs.exit_code }}
+        run: exit ${UPDATE_EXIT_CODE}

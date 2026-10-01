@@ -38,14 +38,14 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Create and initialize LinkedList class instance.
         >>> linked_list = LinkedList()
         >>> linked_list.head is None
         True
         """
-        self.head = None
+        self.head: Node | None = None
 
     def __iter__(self) -> Iterator[Any]:
         """
@@ -153,8 +153,10 @@ class LinkedList:
         if not 0 <= index < len(self):
             raise ValueError("list index out of range.")
         current = self.head
+        assert current is not None
         for _ in range(index):
             current = current.next_node
+            assert current is not None
         current.data = data
 
     def insert_tail(self, data: Any) -> None:
@@ -215,8 +217,10 @@ class LinkedList:
             self.head = new_node
         else:
             temp = self.head
+            assert temp is not None
             for _ in range(index - 1):
                 temp = temp.next_node
+                assert temp is not None
             new_node.next_node = temp.next_node
             temp.next_node = new_node
 
@@ -316,10 +320,13 @@ class LinkedList:
             self.head = self.head.next_node
         else:
             temp = self.head
+            assert temp is not None
             for _ in range(index - 1):
                 temp = temp.next_node
+                assert temp is not None
             delete_node = temp.next_node
-            temp.next_node = temp.next_node.next_node
+            assert delete_node is not None
+            temp.next_node = delete_node.next_node
         return delete_node.data
 
     def is_empty(self) -> bool:
@@ -491,7 +498,7 @@ def test_singly_linked_list_2() -> None:
     )
 
 
-def main():
+def main() -> None:
     from doctest import testmod
 
     testmod()

@@ -1,5 +1,5 @@
 class FlowNetwork:
-    def __init__(self, graph, sources, sinks):
+    def __init__(self, graph, sources, sinks) -> None:
         self.source_index = None
         self.sink_index = None
         self.graph = graph
@@ -9,7 +9,7 @@ class FlowNetwork:
         self.maximum_flow_algorithm = None
 
     # make only one source and one sink
-    def _normalize_graph(self, sources, sinks):
+    def _normalize_graph(self, sources, sinks) -> None:
         if sources is int:
             sources = [sources]
         if sinks is int:
@@ -53,12 +53,12 @@ class FlowNetwork:
         self.maximum_flow_algorithm.execute()
         return self.maximum_flow_algorithm.getMaximumFlow()
 
-    def set_maximum_flow_algorithm(self, algorithm):
+    def set_maximum_flow_algorithm(self, algorithm) -> None:
         self.maximum_flow_algorithm = algorithm(self)
 
 
 class FlowNetworkAlgorithmExecutor:
-    def __init__(self, flow_network):
+    def __init__(self, flow_network) -> None:
         self.flow_network = flow_network
         self.verticies_count = flow_network.verticesCount
         self.source_index = flow_network.sourceIndex
@@ -68,18 +68,18 @@ class FlowNetworkAlgorithmExecutor:
         self.graph = flow_network.graph
         self.executed = False
 
-    def execute(self):
+    def execute(self) -> None:
         if not self.executed:
             self._algorithm()
             self.executed = True
 
     # You should override it
-    def _algorithm(self):
+    def _algorithm(self) -> None:
         pass
 
 
 class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
-    def __init__(self, flow_network):
+    def __init__(self, flow_network) -> None:
         super().__init__(flow_network)
         # use this to save your result
         self.maximum_flow = -1
@@ -92,7 +92,7 @@ class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
 
 
 class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
-    def __init__(self, flow_network):
+    def __init__(self, flow_network) -> None:
         super().__init__(flow_network)
 
         self.preflow = [[0] * self.verticies_count for i in range(self.verticies_count)]
@@ -100,7 +100,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         self.heights = [0] * self.verticies_count
         self.excesses = [0] * self.verticies_count
 
-    def _algorithm(self):
+    def _algorithm(self) -> None:
         self.heights[self.source_index] = self.verticies_count
 
         # push some substance to graph
@@ -132,7 +132,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
 
         self.maximum_flow = sum(self.preflow[self.source_index])
 
-    def process_vertex(self, vertex_index):
+    def process_vertex(self, vertex_index) -> None:
         while self.excesses[vertex_index] > 0:
             for neighbour_index in range(self.verticies_count):
                 # if it's neighbour and current vertex is higher
@@ -146,7 +146,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
 
             self.relabel(vertex_index)
 
-    def push(self, from_index, to_index):
+    def push(self, from_index, to_index) -> None:
         preflow_delta = min(
             self.excesses[from_index],
             self.graph[from_index][to_index] - self.preflow[from_index][to_index],
@@ -156,7 +156,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         self.excesses[from_index] -= preflow_delta
         self.excesses[to_index] += preflow_delta
 
-    def relabel(self, vertex_index):
+    def relabel(self, vertex_index) -> None:
         min_height = None
         for to_index in range(self.verticies_count):
             if (

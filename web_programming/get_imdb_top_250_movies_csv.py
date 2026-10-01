@@ -2,7 +2,7 @@
 # requires-python = ">=3.13"
 # dependencies = [
 #     "beautifulsoup4",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
@@ -10,13 +10,13 @@ from __future__ import annotations
 
 import csv
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 
 
 def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
     url = url or "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
-    soup = BeautifulSoup(httpx.get(url, timeout=10).text, "html.parser")
+    soup = BeautifulSoup(httpx2.get(url, timeout=10).text, "html.parser")
     titles = soup.find_all("h3", class_="ipc-title__text")
     ratings = soup.find_all("span", class_="ipc-rating-star--rating")
     return {

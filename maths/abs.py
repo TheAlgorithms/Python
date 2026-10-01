@@ -71,7 +71,7 @@ def abs_max_sort(x: list[int]) -> int:
     return sorted(x, key=abs)[-1]
 
 
-def test_abs_val():
+def test_abs_val() -> None:
     """
     >>> test_abs_val()
     """

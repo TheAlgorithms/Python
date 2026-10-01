@@ -8,8 +8,17 @@ For manual testing run:
 python3 circle_sort.py
 """
 
+from collections.abc import MutableSequence
+from typing import Any, Protocol
 
-def circle_sort(collection: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def circle_sort[T: Comparable](
+    collection: MutableSequence[T],
+) -> MutableSequence[T]:
     """A pure Python implementation of circle sort algorithm
 
     :param collection: a mutable collection of comparable items in any order
@@ -22,6 +31,14 @@ def circle_sort(collection: list) -> list:
     []
     >>> circle_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
+    >>> circle_sort(["d", "a", "c", "b"])
+    ['a', 'b', 'c', 'd']
+    >>> circle_sort([2.5, -1.0, 0.0])
+    [-1.0, 0.0, 2.5]
+    >>> circle_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> collections = ([], [0, 5, 3, 2, 2], [-2, 5, 0, -45])
     >>> all(sorted(collection) == circle_sort(collection) for collection in collections)
     True
@@ -30,10 +47,10 @@ def circle_sort(collection: list) -> list:
     if len(collection) < 2:
         return collection
 
-    def circle_sort_util(collection: list, low: int, high: int) -> bool:
+    def circle_sort_util(collection: MutableSequence[T], low: int, high: int) -> bool:
         """
         >>> arr = [5,4,3,2,1]
-        >>> circle_sort_util(lst, 0, 2)
+        >>> circle_sort_util(arr, 0, 2)
         True
         >>> arr
         [3, 4, 5, 2, 1]
@@ -48,7 +65,7 @@ def circle_sort(collection: list) -> list:
         right = high
 
         while left < right:
-            if collection[left] > collection[right]:
+            if collection[right] < collection[left]:
                 collection[left], collection[right] = (
                     collection[right],
                     collection[left],
@@ -58,7 +75,7 @@ def circle_sort(collection: list) -> list:
             left += 1
             right -= 1
 
-        if left == right and collection[left] > collection[right + 1]:
+        if left == right and collection[right + 1] < collection[left]:
             collection[left], collection[right + 1] = (
                 collection[right + 1],
                 collection[left],

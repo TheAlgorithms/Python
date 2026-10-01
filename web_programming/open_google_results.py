@@ -3,7 +3,7 @@
 # dependencies = [
 #     "beautifulsoup4",
 #     "fake-useragent",
-#     "httpx",
+#     "httpx2",
 # ]
 # ///
 
@@ -11,7 +11,7 @@ import webbrowser
 from sys import argv
 from urllib.parse import parse_qs, quote
 
-import httpx
+import httpx2
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     url = f"https://www.google.com/search?q={query}&num=100"
 
-    res = httpx.get(
+    res = httpx2.get(
         url,
         headers={"User-Agent": str(UserAgent().random)},
         timeout=10,

@@ -194,7 +194,7 @@ class BankersAlgorithm:
                 print("System in unsafe state. Aborting...\n")
                 break
 
-    def __pretty_data(self):
+    def __pretty_data(self) -> None:
         """
         Properly align display of the algorithm's solution
         """

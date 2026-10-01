@@ -10,7 +10,7 @@ import sys
 
 class PriorityQueue:
     # Based on Min Heap
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Priority queue class constructor method.
 
@@ -41,7 +41,7 @@ class PriorityQueue:
         """
         return self.cur_size == 0
 
-    def min_heapify(self, idx):
+    def min_heapify(self, idx) -> None:
         """
         Sorts the queue array so that the minimum element is root.
 
@@ -84,7 +84,7 @@ class PriorityQueue:
             self.swap(idx, smallest)
             self.min_heapify(smallest)
 
-    def insert(self, tup):
+    def insert(self, tup) -> None:
         """
         Inserts a node into the Priority Queue.
 
@@ -168,7 +168,7 @@ class PriorityQueue:
         """
         return math.floor(i / 2)
 
-    def swap(self, i, j):
+    def swap(self, i, j) -> None:
         """
         Swaps array elements at indices i and j, update the pos{}
 
@@ -189,7 +189,7 @@ class PriorityQueue:
         self.array[i] = self.array[j]
         self.array[j] = temp
 
-    def decrease_key(self, tup, new_d):
+    def decrease_key(self, tup, new_d) -> None:
         """
         Decrease the key value for a given tuple, assuming the new_d is at most old_d.
 
@@ -211,7 +211,7 @@ class PriorityQueue:
 
 
 class Graph:
-    def __init__(self, num):
+    def __init__(self, num) -> None:
         """
         Graph class constructor
 
@@ -232,7 +232,7 @@ class Graph:
         self.dist = [0] * self.num_nodes
         self.par = [-1] * self.num_nodes  # To store the path
 
-    def add_edge(self, u, v, w):
+    def add_edge(self, u, v, w) -> None:
         """
         Add edge going from node u to v and v to u with weight w: u (w)-> v, v (w) -> u
 
@@ -255,7 +255,7 @@ class Graph:
         else:
             self.adjList[v] = [(u, w)]
 
-    def show_graph(self):
+    def show_graph(self) -> None:
         """
         Show the graph: u -> v(w)
 
@@ -274,7 +274,7 @@ class Graph:
         for u in self.adjList:
             print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]))
 
-    def dijkstra(self, src):
+    def dijkstra(self, src) -> None:
         """
         Dijkstra algorithm
 
@@ -377,7 +377,7 @@ class Graph:
         # Show the shortest distances from src
         self.show_distances(src)
 
-    def show_distances(self, src):
+    def show_distances(self, src) -> None:
         """
         Show the distances from src to all other nodes in a graph
 
@@ -391,7 +391,7 @@ class Graph:
         for u in range(self.num_nodes):
             print(f"Node {u} has distance: {self.dist[u]}")
 
-    def show_path(self, src, dest):
+    def show_path(self, src, dest) -> None:
         """
         Shows the shortest path from src to dest.
         WARNING: Use it *after* calling dijkstra.

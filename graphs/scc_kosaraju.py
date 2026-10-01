@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def dfs(u):
+def dfs(u) -> None:
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
         return
@@ -11,7 +11,7 @@ def dfs(u):
     stack.append(u)
 
 
-def dfs2(u):
+def dfs2(u) -> None:
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
         return

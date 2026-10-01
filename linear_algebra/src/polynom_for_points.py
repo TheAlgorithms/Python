@@ -33,6 +33,8 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
+    >>> points_to_polynomial([[0, 1], [1, 2], [2, 5]])
+    'f(x)=x^2*1.0+x^1*0.0+x^0*1.0'
     """
     if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
         raise ValueError("The program cannot work out a fitting polynomial.")
@@ -62,6 +64,17 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
 
     for count in range(x):
+        # Only swap when the current pivot is zero (e.g. a point with x = 0),
+        # so existing exact arithmetic is preserved for well-behaved inputs.
+        if matrix[count][count] == 0:
+            pivot_row = max(
+                range(count + 1, x), key=lambda row: abs(matrix[row][count])
+            )
+            if pivot_row == count or matrix[pivot_row][count] == 0:
+                raise ValueError("The program cannot work out a fitting polynomial.")
+            matrix[count], matrix[pivot_row] = matrix[pivot_row], matrix[count]
+            vector[count], vector[pivot_row] = vector[pivot_row], vector[count]
+
         for number in range(x):
             if count == number:
                 continue

@@ -1,4 +1,4 @@
-def gray_code(bit_count: int) -> list:
+def gray_code(bit_count: int) -> list[int]:
     """
     Takes in an integer n and returns a n-bit
     gray code sequence
@@ -7,11 +7,14 @@ def gray_code(bit_count: int) -> list:
 
     a) Every integer is between [0,2^n -1] inclusive
     b) The sequence begins with 0
-    c) An integer appears at most one times in the sequence
-    d)The binary representation of every pair of integers differ
+    c) An integer appears at most one time in the sequence
+    d) The binary representation of every pair of integers differ
        by exactly one bit
     e) The binary representation of first and last bit also
        differ by exactly one bit
+
+    >>> gray_code(0)
+    [0]
 
     >>> gray_code(2)
     [0, 1, 3, 2]
@@ -37,20 +40,18 @@ def gray_code(bit_count: int) -> list:
     if bit_count < 0:
         raise ValueError("The given input must be positive")
 
-    # get the generated string sequence
+    # get the generated string sequence and convert them to integers
     sequence = gray_code_sequence_string(bit_count)
-    #
-    # convert them to integers
-    for i in range(len(sequence)):
-        sequence[i] = int(sequence[i], 2)
-
-    return sequence
+    return [int(code, 2) for code in sequence]
 
 
-def gray_code_sequence_string(bit_count: int) -> list:
+def gray_code_sequence_string(bit_count: int) -> list[str]:
     """
-    Will output the n-bit grey sequence as a
+    Will output the n-bit Gray code sequence as a
     string of bits
+
+    >>> gray_code_sequence_string(0)
+    ['0']
 
     >>> gray_code_sequence_string(2)
     ['00', '01', '11', '10']
@@ -73,7 +74,7 @@ def gray_code_sequence_string(bit_count: int) -> list:
     # recursive answer will generate answer for n-1 bits
     smaller_sequence = gray_code_sequence_string(bit_count - 1)
 
-    sequence = []
+    sequence: list[str] = []
 
     # append 0 to first half of the smaller sequence generated
     for i in range(seq_len // 2):

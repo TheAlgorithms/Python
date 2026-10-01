@@ -1,27 +1,28 @@
 import json
+from typing import Any
 
-import httpx
+import httpx2
 
 from .fetch_github_info import AUTHENTICATED_USER_ENDPOINT, fetch_github_info
 
 
-def test_fetch_github_info(monkeypatch):
+def test_fetch_github_info(monkeypatch) -> None:
     class FakeResponse:
         def __init__(self, content) -> None:
             assert isinstance(content, (bytes, str))
             self.content = content
 
-        def json(self):
+        def json(self) -> Any:  # noqa: ANN401
             return json.loads(self.content)
 
-    def mock_response(*args, **kwargs):
+    def mock_response(*args, **kwargs) -> FakeResponse:  # noqa: ANN002,ANN003
         assert args[0] == AUTHENTICATED_USER_ENDPOINT
         assert "Authorization" in kwargs["headers"]
         assert kwargs["headers"]["Authorization"].startswith("token ")
         assert "Accept" in kwargs["headers"]
         return FakeResponse(b'{"login":"test","id":1}')
 
-    monkeypatch.setattr(httpx, "get", mock_response)
+    monkeypatch.setattr(httpx2, "get", mock_response)
     result = fetch_github_info("token")
     assert result["login"] == "test"
     assert result["id"] == 1

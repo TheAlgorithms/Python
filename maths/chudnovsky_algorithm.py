@@ -38,7 +38,7 @@ def pi(precision: int) -> str:
 
     if not isinstance(precision, int):
         raise TypeError("Undefined for non-integers")
-    elif precision < 1:
+    if precision < 1:
         raise ValueError("Undefined for non-natural numbers")
 
     getcontext().prec = precision

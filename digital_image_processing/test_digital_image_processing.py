@@ -24,14 +24,14 @@ gray = cvtColor(img, COLOR_BGR2GRAY)
 
 
 # Test: convert_to_negative()
-def test_convert_to_negative():
+def test_convert_to_negative() -> None:
     negative_img = cn.convert_to_negative(img)
     # assert negative_img array for at least one True
     assert negative_img.any()
 
 
 # Test: change_contrast()
-def test_change_contrast():
+def test_change_contrast() -> None:
     with Image.open("digital_image_processing/image_data/lena_small.jpg") as img:
         # Work around assertion for response
         assert str(cc.change_contrast(img, 110)).startswith(
@@ -40,14 +40,14 @@ def test_change_contrast():
 
 
 # canny.gen_gaussian_kernel()
-def test_gen_gaussian_kernel():
+def test_gen_gaussian_kernel() -> None:
     resp = canny.gen_gaussian_kernel(9, sigma=1.4)
     # Assert ambiguous array
     assert resp.all()
 
 
 # canny.py
-def test_canny():
+def test_canny() -> None:
     canny_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
     # assert ambiguous array for all == True
     assert canny_img.all()
@@ -57,33 +57,35 @@ def test_canny():
 
 
 # filters/gaussian_filter.py
-def test_gen_gaussian_kernel_filter():
+def test_gen_gaussian_kernel_filter() -> None:
     assert gg.gaussian_filter(gray, 5, sigma=0.9).all()
 
 
-def test_convolve_filter():
+def test_convolve_filter() -> None:
     # laplace diagonals
     laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
     res = conv.img_convolve(gray, laplace).astype(uint8)
     assert res.any()
 
 
-def test_median_filter():
+def test_median_filter() -> None:
     assert med.median_filter(gray, 3).any()
 
 
-def test_sobel_filter():
+def test_sobel_filter() -> None:
     grad, theta = sob.sobel_filter(gray)
     assert grad.any()
     assert theta.any()
 
 
-def test_sepia():
+def test_sepia() -> None:
     sepia = sp.make_sepia(img, 20)
     assert sepia.all()
 
 
-def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small.jpg"):
+def test_burkes(
+    file_path: str = "digital_image_processing/image_data/lena_small.jpg",
+) -> None:
     burkes = bs.Burkes(imread(file_path, 1), 120)
     burkes.process()
     assert burkes.output_img.any()
@@ -91,13 +93,13 @@ def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small
 
 def test_nearest_neighbour(
     file_path: str = "digital_image_processing/image_data/lena_small.jpg",
-):
+) -> None:
     nn = rs.NearestNeighbour(imread(file_path, 1), 400, 200)
     nn.process()
     assert nn.output.any()
 
 
-def test_local_binary_pattern():
+def test_local_binary_pattern() -> None:
     # pull request 10161 before:
     # "digital_image_processing/image_data/lena.jpg"
     # after: "digital_image_processing/image_data/lena_small.jpg"

@@ -1,4 +1,13 @@
-"""example of simple chaos machine"""
+"""Example of a simple chaos machine (chaos-based PRNG).
+
+A chaos machine uses chaotic dynamical systems to generate
+pseudo-random numbers.  This implementation combines a logistic map
+with a Xorshift PRNG.
+
+References:
+    - https://en.wikipedia.org/wiki/Chaos_theory
+    - https://en.wikipedia.org/wiki/Xorshift
+"""
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]
@@ -13,8 +22,16 @@ params_space: list[float] = []
 machine_time = 0
 
 
-def push(seed):
-    global buffer_space, params_space, machine_time, K, m, t
+def push(seed: float) -> None:
+    """Push a seed value into the chaos machine.
+
+    Updates the internal buffer and parameter spaces using a logistic-map
+    transition function.
+
+    Args:
+        seed: A numeric seed to push into the machine.
+    """
+    global buffer_space, params_space, machine_time
 
     # Choosing Dynamical Systems (All)
     for key, value in enumerate(buffer_space):
@@ -39,11 +56,24 @@ def push(seed):
     machine_time += 1
 
 
-def pull():
-    global buffer_space, params_space, machine_time, K, m, t
+def pull() -> int:
+    """Pull a pseudo-random number from the chaos machine.
+
+    Uses a Xorshift PRNG seeded by the current chaotic state.
+
+    Returns:
+        A 32-bit unsigned integer.
+
+    >>> reset()
+    >>> isinstance(pull(), int)
+    True
+    >>> 0 <= pull() <= 0xFFFFFFFF
+    True
+    """
+    global buffer_space, params_space, machine_time
 
     # PRNG (Xorshift by George Marsaglia)
-    def xorshift(x, y):
+    def xorshift(x: int, y: int) -> int:
         x ^= y >> 13
         y ^= x << 17
         x ^= y >> 5
@@ -69,13 +99,18 @@ def pull():
     # Machine Time
     machine_time += 1
 
-    return xorshift(x, y) % 0xFFFFFFFF
+    # PRNG (Xorshift by George Marsaglia)
+    x ^= y >> 13
+    y ^= x << 17
+    x ^= y >> 5
+    return x & 0xFFFFFFFF
 
 
-def reset():
-    global buffer_space, params_space, machine_time, K, m, t
+def reset() -> None:
+    """Reset the chaos machine to its initial state."""
+    global buffer_space, params_space, machine_time
 
-    buffer_space = K
+    buffer_space = K.copy()
     params_space = [0] * m
     machine_time = 0
 
@@ -95,7 +130,7 @@ if __name__ == "__main__":
     inp = ""
 
     # Pulling Data (Output)
-    while inp in ("e", "E"):
+    while inp not in ("e", "E"):
         print(f"{format(pull(), '#04x')}")
         print(buffer_space)
         print(params_space)

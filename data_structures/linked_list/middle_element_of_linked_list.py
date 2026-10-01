@@ -8,7 +8,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
 
     def push(self, new_data: int) -> int:

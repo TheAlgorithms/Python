@@ -1,16 +1,18 @@
 # Project Euler
 
-Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
+Problems are taken from <https://projecteuler.net/>, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
 
 Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
 The solutions will be checked by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on GitHub Actions logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
 
-
 ## Solution Guidelines
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before reading the solution guidelines, make sure you read the whole [Contributing Guidelines](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md) as it won't be repeated in here. If you have any doubt on the guidelines, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community). You can use the [template](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#solution-template) we have provided below as your starting point but be sure to read the [Coding Style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) part first.
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before reading the solution guidelines, make sure you read the whole [Contributing Guidelines](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md) as it won't be repeated in here.
+
+If you have any doubt on the guidelines, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
+You can use the [template](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#solution-template) we have provided below as your starting point but be sure to read the [Coding Style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) part first.
 
 ### Coding Style
 

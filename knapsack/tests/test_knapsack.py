@@ -13,7 +13,7 @@ from knapsack import knapsack as k
 
 
 class Test(unittest.TestCase):
-    def test_base_case(self):
+    def test_base_case(self) -> None:
         """
         test for the base case
         """
@@ -28,7 +28,7 @@ class Test(unittest.TestCase):
         c = len(val)
         assert k.knapsack(cap, w, val, c) == 0
 
-    def test_easy_case(self):
+    def test_easy_case(self) -> None:
         """
         test for the easy case
         """
@@ -38,7 +38,7 @@ class Test(unittest.TestCase):
         c = len(val)
         assert k.knapsack(cap, w, val, c) == 5
 
-    def test_knapsack(self):
+    def test_knapsack(self) -> None:
         """
         test for the knapsack
         """
@@ -48,7 +48,7 @@ class Test(unittest.TestCase):
         c = len(val)
         assert k.knapsack(cap, w, val, c) == 220
 
-    def test_knapsack_repetition(self):
+    def test_knapsack_repetition(self) -> None:
         """
         test for the knapsack repetition
         """

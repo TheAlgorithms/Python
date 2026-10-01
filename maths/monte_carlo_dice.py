@@ -6,7 +6,7 @@ import random
 class Dice:
     NUM_SIDES = 6
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize a six sided dice"""
         self.sides = list(range(1, Dice.NUM_SIDES + 1))
 

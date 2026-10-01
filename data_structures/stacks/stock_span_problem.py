@@ -58,7 +58,7 @@ def calculate_span(price: list[int]) -> list[int]:
 
 
 # A utility function to print elements of array
-def print_array(arr, n):
+def print_array(arr, n) -> None:
     for i in range(n):
         print(arr[i], end=" ")
 
