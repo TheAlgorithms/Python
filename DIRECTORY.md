@@ -1479,7 +1479,6 @@
     * [Sol1](project_euler/problem_800/sol1.py)
 
 ## [Quantum](quantum)
-  * [Q Fourier Transform](quantum/q_fourier_transform.py)
   * [Shor Algorithm](quantum/shor_algorithm.py)
 
 ## [Scheduling](scheduling)
