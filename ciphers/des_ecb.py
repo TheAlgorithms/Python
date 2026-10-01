@@ -537,21 +537,22 @@ if __name__ == "__main__":
         if mode not in ["e", "d", "k", "q"]:
             print("Invalid option. Please try again.")
             continue
-        if mode == "q":
-            break
-        elif mode == "k":
-            print(f"Generated key: {Des.generate_key()}")
-        elif mode == "e":
-            key = input("Enter the key: ").strip()
-            if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
-                print("Invalid key. Please try again.")
-                continue
-            input_string = input("Enter the string to encrypt: ").strip()
-            print(f"Encrypted string: {Des.encrypt(key, input_string)}")
-        elif mode == "d":
-            key = input("Enter the key: ").strip()
-            if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
-                print("Invalid key. Please try again.")
-                continue
-            cipher_text = input("Enter the cipher text to decrypt: ").strip()
-            print(f"Decrypted string: {Des.decrypt(key, cipher_text)}")
+        match mode:
+            case "q":
+                break
+            case "k":
+                print(f"Generated key: {Des.generate_key()}")
+            case "e":
+                key = input("Enter the key: ").strip()
+                if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
+                    print("Invalid key. Please try again.")
+                    continue
+                input_string = input("Enter the string to encrypt: ").strip()
+                print(f"Encrypted string: {Des.encrypt(key, input_string)}")
+            case "d":
+                key = input("Enter the key: ").strip()
+                if len(key) != 16 and not all(char in "0123456789abcdef" for char in key):
+                    print("Invalid key. Please try again.")
+                    continue
+                cipher_text = input("Enter the cipher text to decrypt: ").strip()
+                print(f"Decrypted string: {Des.decrypt(key, cipher_text)}")
