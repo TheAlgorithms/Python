@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 import httpx2
 
@@ -11,10 +12,10 @@ def test_fetch_github_info(monkeypatch) -> None:
             assert isinstance(content, (bytes, str))
             self.content = content
 
-        def json(self):
+        def json(self) -> Any:  # noqa: ANN401
             return json.loads(self.content)
 
-    def mock_response(*args, **kwargs):
+    def mock_response(*args, **kwargs) -> FakeResponse:  # noqa: ANN002,ANN003
         assert args[0] == AUTHENTICATED_USER_ENDPOINT
         assert "Authorization" in kwargs["headers"]
         assert kwargs["headers"]["Authorization"].startswith("token ")

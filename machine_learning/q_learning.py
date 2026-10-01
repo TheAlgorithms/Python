@@ -161,14 +161,15 @@ def step_env(action: int) -> tuple[State, float, bool]:
     """
     global current_state
     x, y = current_state
-    if action == 0:  # up
-        x = max(0, x - 1)
-    elif action == 1:  # right
-        y = min(SIZE - 1, y + 1)
-    elif action == 2:  # down
-        x = min(SIZE - 1, x + 1)
-    elif action == 3:  # left
-        y = max(0, y - 1)
+    match action:
+        case 0:  # up
+            x = max(0, x - 1)
+        case 1:  # right
+            y = min(SIZE - 1, y + 1)
+        case 2:  # down
+            x = min(SIZE - 1, x + 1)
+        case 3:  # left
+            y = max(0, y - 1)
     next_state = (x, y)
     reward = 10.0 if next_state == GOAL else -1.0
     done = next_state == GOAL

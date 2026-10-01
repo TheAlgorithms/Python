@@ -35,26 +35,27 @@ def proth(number: int) -> int:
     if number < 1:
         msg = f"Input value of [number={number}] must be > 0"
         raise ValueError(msg)
-    if number == 1:
-        return 3
-    elif number == 2:
-        return 5
-    else:
-        """
+    match number:
+        case 1:
+            return 3
+        case 2:
+            return 5
+        case _:
+            """
         +1 for binary starting at 0 i.e. 2^0, 2^1, etc.
         +1 to start the sequence at the 3rd Proth number
         Hence, we have a +2 in the below statement
         """
-        block_index = int(math.log(number // 3, 2)) + 2
+            block_index = int(math.log(number // 3, 2)) + 2
 
-        proth_list = [3, 5]
-        proth_index = 2
-        increment = 3
-        for block in range(1, block_index):
-            for _ in range(increment):
-                proth_list.append(2 ** (block + 1) + proth_list[proth_index - 1])
-                proth_index += 1
-            increment *= 2
+            proth_list = [3, 5]
+            proth_index = 2
+            increment = 3
+            for block in range(1, block_index):
+                for _ in range(increment):
+                    proth_list.append(2 ** (block + 1) + proth_list[proth_index - 1])
+                    proth_index += 1
+                increment *= 2
 
     return proth_list[number - 1]
 

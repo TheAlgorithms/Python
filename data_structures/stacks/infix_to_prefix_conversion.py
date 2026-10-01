@@ -173,10 +173,11 @@ def infix_2_prefix(infix: str) -> str:
     reversed_infix = list(infix[::-1])  # reverse the infix equation
 
     for i in range(len(reversed_infix)):
-        if reversed_infix[i] == "(":
-            reversed_infix[i] = ")"  # change "(" to ")"
-        elif reversed_infix[i] == ")":
-            reversed_infix[i] = "("  # change ")" to "("
+        match reversed_infix[i]:
+            case "(":
+                reversed_infix[i] = ")"  # change "(" to ")"
+            case ")":
+                reversed_infix[i] = "("  # change ")" to "("
 
     # call infix_2_postfix on Infix, return reverse of Postfix
     return (infix_2_postfix("".join(reversed_infix)))[::-1]

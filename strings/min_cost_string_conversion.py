@@ -133,36 +133,37 @@ if __name__ == "__main__":
         for op in sequence:
             print("".join(string))
 
-            if op[0] == "C":
-                file.write("%-16s" % "Copy %c" % op[1])  # noqa: UP031
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+            match op[0]:
+                case "C":
+                    file.write("%-16s" % "Copy %c" % op[1])  # noqa: UP031
+                    file.write("\t\t\t" + "".join(string))
+                    file.write("\r\n")
 
-                cost -= 1
-            elif op[0] == "R":
-                string[i] = op[2]
+                    cost -= 1
+                case "R":
+                    string[i] = op[2]
 
-                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))  # noqa: UP031
-                file.write("\t\t" + "".join(string))
-                file.write("\r\n")
+                    file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))  # noqa: UP031
+                    file.write("\t\t" + "".join(string))
+                    file.write("\r\n")
 
-                cost += 1
-            elif op[0] == "D":
-                string.pop(i)
+                    cost += 1
+                case "D":
+                    string.pop(i)
 
-                file.write("%-16s" % "Delete %c" % op[1])  # noqa: UP031
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+                    file.write("%-16s" % "Delete %c" % op[1])  # noqa: UP031
+                    file.write("\t\t\t" + "".join(string))
+                    file.write("\r\n")
 
-                cost += 2
-            else:
-                string.insert(i, op[1])
+                    cost += 2
+                case _:
+                    string.insert(i, op[1])
 
-                file.write("%-16s" % "Insert %c" % op[1])  # noqa: UP031
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+                    file.write("%-16s" % "Insert %c" % op[1])  # noqa: UP031
+                    file.write("\t\t\t" + "".join(string))
+                    file.write("\r\n")
 
-                cost += 2
+                    cost += 2
 
             i += 1
 

@@ -36,7 +36,7 @@ class Cell:
     wrong results.
     """
 
-    def __eq__(self, cell):
+    def __eq__(self, cell) -> bool:
         return self.position == cell.position
 
     def showcell(self) -> None:

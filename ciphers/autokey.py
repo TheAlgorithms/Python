@@ -139,12 +139,13 @@ if __name__ == "__main__":
 
     doctest.testmod()
     operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
-    if operation == 1:
-        plaintext = input("Typeplaintext to be encrypted:\n")
-        key = input("Type the key:\n")
-        print(encrypt(plaintext, key))
-    elif operation == 2:
-        ciphertext = input("Type the ciphertext to be decrypted:\n")
-        key = input("Type the key:\n")
-        print(decrypt(ciphertext, key))
+    match operation:
+        case 1:
+            plaintext = input("Typeplaintext to be encrypted:\n")
+            key = input("Type the key:\n")
+            print(encrypt(plaintext, key))
+        case 2:
+            ciphertext = input("Type the ciphertext to be decrypted:\n")
+            key = input("Type the key:\n")
+            print(decrypt(ciphertext, key))
     decrypt("jsqqs avvwo", "coffee")

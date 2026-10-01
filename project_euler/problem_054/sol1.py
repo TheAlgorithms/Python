@@ -211,17 +211,18 @@ class PokerHand:
         high = PokerHand._CARD_NAME[self._high_card]
         pair1 = PokerHand._CARD_NAME[self._first_pair]
         pair2 = PokerHand._CARD_NAME[self._second_pair]
-        if self._hand_type in [22, 19, 18]:
-            return name + f", {high}-high"
-        elif self._hand_type in [21, 17, 15]:
-            return name + f", {pair1}s"
-        elif self._hand_type in [20, 16]:
-            join = "over" if self._hand_type == 20 else "and"
-            return name + f", {pair1}s {join} {pair2}s"
-        elif self._hand_type == 23:
-            return name
-        else:
-            return name + f", {high}"
+        match self._hand_type:
+            case 22 | 19 | 18:
+                return name + f", {high}-high"
+            case 21 | 17 | 15:
+                return name + f", {pair1}s"
+            case 20 | 16:
+                join = "over" if self._hand_type == 20 else "and"
+                return name + f", {pair1}s {join} {pair2}s"
+            case 23:
+                return name
+            case _:
+                return name + f", {high}"
 
     def _compare_cards(self, other: PokerHand) -> str:
         # Enumerate gives us the index as well as the element of a list
@@ -334,32 +335,32 @@ class PokerHand:
     # Note that this is not part of the problem but another extra feature where
     # if you have a list of PokerHand objects, you can sort them just through
     # the builtin functions.
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self.compare_with(other) == "Tie"
         return NotImplemented
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self.compare_with(other) == "Loss"
         return NotImplemented
 
-    def __le__(self, other):
+    def __le__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return self < other or self == other
         return NotImplemented
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return not self < other and self != other
         return NotImplemented
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> bool:
         if isinstance(other, PokerHand):
             return not self < other
         return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return object.__hash__(self)
 
 
