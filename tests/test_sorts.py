@@ -48,6 +48,7 @@ from sorts.quick_sort import quick_sort
 from sorts.quick_sort_3_partition import three_way_radix_quicksort
 from sorts.recursive_insertion_sort import rec_insertion_sort
 from sorts.recursive_mergesort_array import merge
+from sorts.recursive_quick_sort import quick_sort as recursive_quick_sort
 from sorts.reverse_selection import reverse_selection_sort
 from sorts.reversort import reversort
 from sorts.selection_sort import selection_sort
@@ -117,6 +118,7 @@ SORTS = (
     pancake_sort,
     patience_sort,
     quick_sort,
+    recursive_quick_sort,
     reverse_selection_sort,
     reversort,
     selection_sort,
@@ -196,6 +198,7 @@ def test_rec_insertion_sort(case) -> None:
         odd_even_transposition,
         pancake_sort,
         patience_sort,
+        recursive_quick_sort,
         reverse_selection_sort,
         reversort,
         selection_sort,
@@ -215,6 +218,18 @@ def test_sort_rejects_non_comparable_items(sort) -> None:
 def test_rec_insertion_sort_rejects_non_comparable_items() -> None:
     with pytest.raises(TypeError):
         rec_insertion_sort([1, "a"], 2)
+
+
+def test_recursive_quick_sort_mixed_types() -> None:
+    """``recursive_quick_sort`` handles comparable non-int items.
+
+    It rejects mixed non-comparable types.
+    """
+    assert recursive_quick_sort(["c", "a", "b"]) == ["a", "b", "c"]
+    assert recursive_quick_sort([2.5, -1, 0.0]) == [-1, 0.0, 2.5]
+
+    with pytest.raises(TypeError):
+        recursive_quick_sort([1, "a"])
 
 
 def test_bogo_sort_comparable_items() -> None:
