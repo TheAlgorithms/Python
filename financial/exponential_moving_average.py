@@ -22,7 +22,7 @@ def exponential_moving_average(
     >>> tuple(exponential_moving_average(iter([10.0, 20.0, 30.0]), 1))
     (10.0, 20.0, 30.0)
 
-    
+
     :param stock_prices: A stream of stock prices
     :param window_size: The number of stock prices that will trigger a new calculation
                         of the exponential average (window_size > 0)
