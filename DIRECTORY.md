@@ -106,6 +106,7 @@
   * [Rotate Bits](bit_manipulation/rotate_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
+  * [Xor Swap Two Integers](bit_manipulation/xor_swap_two_integers.py)
 
 ## [Blockchain](blockchain)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
@@ -194,7 +195,6 @@
   * [Xtea](ciphers/xtea.py)
 
 ## [Computer Vision](computer_vision)
-  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Gramian](computer_vision/gramian.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
@@ -269,13 +269,17 @@
     * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
     * [Kth Largest Element](data_structures/arrays/kth_largest_element.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
+    * [Merge Intervals](data_structures/arrays/merge_intervals.py)
+    * [Merge Sorted](data_structures/arrays/merge_sorted.py)
     * [Monotonic Array](data_structures/arrays/monotonic_array.py)
     * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
     * [Pairwise Iteration](data_structures/arrays/pairwise_iteration.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Reverse Array](data_structures/arrays/reverse_array.py)
     * [Rotate Array](data_structures/arrays/rotate_array.py)
+    * [Set Matrix Zeroes](data_structures/arrays/set_matrix_zeroes.py)
     * [Sparse Table](data_structures/arrays/sparse_table.py)
     * [Sudoku Solver](data_structures/arrays/sudoku_solver.py)
   * Binary Tree
@@ -473,7 +477,6 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Largest Divisible Subset](dynamic_programming/largest_divisible_subset.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
@@ -482,6 +485,7 @@
   * [Longest Increasing Subsequence Iterative](dynamic_programming/longest_increasing_subsequence_iterative.py)
   * [Longest Increasing Subsequence O Nlogn](dynamic_programming/longest_increasing_subsequence_o_nlogn.py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
+  * [Longest Repeating Subsequence](dynamic_programming/longest_repeating_subsequence.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
@@ -557,6 +561,7 @@
   * [Sharpe Ratio](financial/sharpe_ratio.py)
   * [Simple Moving Average](financial/simple_moving_average.py)
   * [Straight Line Depreciation](financial/straight_line_depreciation.py)
+  * [Streaming Moving Average](financial/streaming_moving_average.py)
   * [Time And Half Pay](financial/time_and_half_pay.py)
   * [Value At Risk](financial/value_at_risk.py)
 
@@ -703,6 +708,7 @@
   * [Enigma Machine](hashes/enigma_machine.py)
   * [Fletcher16](hashes/fletcher16.py)
   * [Hamming Code](hashes/hamming_code.py)
+  * [Jenkins One At A Time](hashes/jenkins_one_at_a_time.py)
   * [Luhn](hashes/luhn.py)
   * [Md5](hashes/md5.py)
   * [Sdbm](hashes/sdbm.py)
@@ -765,8 +771,6 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
-  * Lstm
-    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mab](machine_learning/mab.py)
   * [Mean Shift](machine_learning/mean_shift.py)
   * [Mfcc](machine_learning/mfcc.py)
@@ -1029,9 +1033,11 @@
   * [Rotate Matrix](matrix/rotate_matrix.py)
   * [Searching In Sorted Matrix](matrix/searching_in_sorted_matrix.py)
   * [Sherman Morrison](matrix/sherman_morrison.py)
+  * [Similar Matrices](matrix/similar_matrices.py)
   * [Spiral Print](matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
+  * [Transitive Closure](matrix/transitive_closure.py)
   * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## [Networking Flow](networking_flow)
@@ -1056,7 +1062,7 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Input Data](neural_network/input_data.py)
+  * [Lstm](neural_network/lstm.py)
   * Optimizers
     * [Adagrad](neural_network/optimizers/adagrad.py)
     * [Adam Optimizer](neural_network/optimizers/adam_optimizer.py)
@@ -1474,7 +1480,6 @@
     * [Sol1](project_euler/problem_800/sol1.py)
 
 ## [Quantum](quantum)
-  * [Q Fourier Transform](quantum/q_fourier_transform.py)
   * [Shor Algorithm](quantum/shor_algorithm.py)
 
 ## [Scheduling](scheduling)

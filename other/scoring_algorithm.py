@@ -53,24 +53,25 @@ def calculate_each_score(
 
         score: list[float] = []
         # for weight 0 score is 1 - actual score
-        if weight == 0:
-            for item in dlist:
-                try:
-                    score.append(1 - ((item - mind) / (maxd - mind)))
-                except ZeroDivisionError:
-                    score.append(1)
+        match weight:
+            case 0:
+                for item in dlist:
+                    try:
+                        score.append(1 - ((item - mind) / (maxd - mind)))
+                    except ZeroDivisionError:
+                        score.append(1)
 
-        elif weight == 1:
-            for item in dlist:
-                try:
-                    score.append((item - mind) / (maxd - mind))
-                except ZeroDivisionError:
-                    score.append(0)
+            case 1:
+                for item in dlist:
+                    try:
+                        score.append((item - mind) / (maxd - mind))
+                    except ZeroDivisionError:
+                        score.append(0)
 
-        # weight not 0 or 1
-        else:
-            msg = f"Invalid weight of {weight:f} provided"
-            raise ValueError(msg)
+            # weight not 0 or 1
+            case _:
+                msg = f"Invalid weight of {weight:f} provided"
+                raise ValueError(msg)
 
         score_lists.append(score)
 

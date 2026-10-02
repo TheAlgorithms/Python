@@ -1,7 +1,14 @@
 from random import randrange
+from typing import Any, Protocol
 
 
-def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def quick_sort_3partition[T: Comparable](
+    sorting: list[T], left: int, right: int
+) -> None:
     """ "
     Python implementation of the quicksort algorithm with 3-way partition.
     The idea of 3-way quicksort is based on "Dutch National Flag algorithm".
@@ -44,7 +51,9 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
     quick_sort_3partition(sorting, b + 1, right)
 
 
-def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
+def quick_sort_lomuto_partition[T: Comparable](
+    sorting: list[T], left: int, right: int
+) -> None:
     """
     A pure Python implementation of the quicksort algorithm(in-place)
     with Lomuto partition scheme:
@@ -75,7 +84,7 @@ def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
         quick_sort_lomuto_partition(sorting, pivot_index + 1, right)
 
 
-def lomuto_partition(sorting: list, left: int, right: int) -> int:
+def lomuto_partition[T: Comparable](sorting: list[T], left: int, right: int) -> int:
     """
     Example:
     >>> lomuto_partition([1,5,7,6], 0, 3)
@@ -91,8 +100,8 @@ def lomuto_partition(sorting: list, left: int, right: int) -> int:
     return store_index
 
 
-def hoare_partition_by_value(
-    array: list, pivot_value: int, start: int = 0, end: int | None = None
+def hoare_partition_by_value[T: Comparable](
+    array: list[T], pivot_value: T, start: int = 0, end: int | None = None
 ) -> int:
     """
     Returns the starting index of the right subarray, which contains the
@@ -172,8 +181,8 @@ def hoare_partition_by_value(
     return right + 1
 
 
-def hoare_partition_by_pivot(
-    array: list, pivot_index: int, start=0, end: int | None = None
+def hoare_partition_by_pivot[T: Comparable](
+    array: list[T], pivot_index: int, start=0, end: int | None = None
 ) -> int:
     """
     Returns the new pivot index after partitioning
@@ -201,7 +210,9 @@ def hoare_partition_by_pivot(
     return greater_or_equal
 
 
-def quicksort_hoare(array: list, start: int = 0, end: int | None = None):
+def quicksort_hoare[T: Comparable](
+    array: list[T], start: int = 0, end: int | None = None
+) -> None:
     """
     Quicksort using the Hoare partition scheme:
     - https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
@@ -225,7 +236,7 @@ def quicksort_hoare(array: list, start: int = 0, end: int | None = None):
     quicksort_hoare(array, pivot_index_final + 1, end)
 
 
-def three_way_radix_quicksort(sorting: list) -> list:
+def three_way_radix_quicksort[T: Comparable](sorting: list[T]) -> list[T]:
     """
     Three-way radix quicksort:
     https://en.wikipedia.org/wiki/Quicksort#Three-way_radix_quicksort

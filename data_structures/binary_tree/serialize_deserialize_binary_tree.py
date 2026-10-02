@@ -19,7 +19,7 @@ class TreeNode:
     left: TreeNode | None = None
     right: TreeNode | None = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not isinstance(self.value, int):
             raise TypeError("Value must be an integer.")
 

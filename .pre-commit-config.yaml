@@ -63,3 +63,9 @@ repos:
     rev: "0.26"
     hooks:
       - id: validate-pyproject
+
+  - repo: https://github.com/15r10nk/matchify
+    rev: v0.2.0
+    hooks:
+      - id: matchify
+        exclude: ^data_structures/linked_list/doubly_linked_list\.py$
