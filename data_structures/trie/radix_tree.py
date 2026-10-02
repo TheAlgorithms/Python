@@ -167,8 +167,8 @@ class RadixNode:
                 # We delete the nodes if no edges go from it
                 if len(incoming_node.nodes) == 0:
                     del self.nodes[word[0]]
-                    # We merge the current node with its only child
-                    if len(self.nodes) == 1 and not self.is_leaf:
+                    # Merge non-root nodes with their only child.
+                    if self.prefix and len(self.nodes) == 1 and not self.is_leaf:
                         merging_node = next(iter(self.nodes.values()))
                         self.is_leaf = merging_node.is_leaf
                         self.prefix += merging_node.prefix
