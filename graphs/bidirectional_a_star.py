@@ -187,7 +187,7 @@ class BidirectionalAStar:
         self.reached = False
 
     def search(self) -> list[TPosition]:
-        while self.fwd_astar.open_nodes or self.bwd_astar.open_nodes:
+        while self.fwd_astar.open_nodes and self.bwd_astar.open_nodes:
             self.fwd_astar.open_nodes.sort()
             self.bwd_astar.open_nodes.sort()
             current_fwd_node = self.fwd_astar.open_nodes.pop(0)
