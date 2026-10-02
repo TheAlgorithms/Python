@@ -92,9 +92,9 @@ class Heap:
         if item not in self.pos_map:
             return
         index = self.pos_map[item]
-        del self.pos_map[item]
         self.arr[index] = self.arr[self.size - 1]
         self.pos_map[self.arr[self.size - 1][0]] = index
+        del self.pos_map[item]
         self.size -= 1
         # Make sure heap is right in both up and down direction. Ideally only one
         # of them will make any change- so no performance loss in calling both.
