@@ -68,8 +68,8 @@ def patience_sort(collection: list) -> list:
     # Place each element on the first suitable stack, following
     # the rules of the patience sort algorithm.
     for element in collection:
-        new_stack:  list = Stack([element])
-        stack_index:  list = bisect_left(stacks, new_stack)
+        new_stack: list = Stack([element])
+        stack_index: list = bisect_left(stacks, new_stack)
 
         if stack_index != len(stacks):
             stacks[stack_index].append(element)
@@ -113,15 +113,16 @@ def mixed_patience_sort(collection: list) -> list:
     string_items: list[str] = []
 
     for element in collection:
-        if isinstance(element, (int, float)):
-            number_items.append(element)
-        elif isinstance(element, str):
-            string_items.append(element)
-        else:
-            raise ValueError("Only integers, floats, and strings are allowed.")
+        match element:
+            case int() | float():
+                number_items.append(element)
+            case str():
+                string_items.append(element)
+            case _:
+                raise ValueError("Only integers, floats, and strings are allowed.")
 
-    sorted_numbers:  int = patience_sort(number_items)
-    sorted_strings:  str = patience_sort(string_items)
+    sorted_numbers: int = patience_sort(number_items)
+    sorted_strings: str = patience_sort(string_items)
 
     collection[:] = sorted_numbers + sorted_strings
     return collection
@@ -155,6 +156,8 @@ def convert_item(item: str) -> int | float | str:
 
 
 if __name__ == "__main__":
-    user_input:  str| int|float = input("Enter integers, floats, and strings separated by commas:\n").strip()
-    unsorted: str| int|float = [convert_item(item) for item in user_input.split(",")]
+    user_input: str | int | float = input(
+        "Enter integers, floats, and strings separated by commas:\n"
+    ).strip()
+    unsorted: str | int | float = [convert_item(item) for item in user_input.split(",")]
     print(mixed_patience_sort(unsorted))
