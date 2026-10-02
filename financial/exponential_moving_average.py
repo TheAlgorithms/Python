@@ -62,15 +62,11 @@ def exponential_moving_average(
         if i < window_size:
             # Assigning simple moving average till the window_size for the first time
             # is reached
-            moving_average = (
-                (moving_average + stock_price) * 0.5 if i else stock_price
-            )
+            moving_average = (moving_average + stock_price) * 0.5 if i else stock_price
         else:
             # Calculating exponential moving average based on current timestamp data
             # point and previous exponential average value
-            moving_average = (alpha * stock_price) + (
-                (1 - alpha) * moving_average
-            )
+            moving_average = (alpha * stock_price) + ((1 - alpha) * moving_average)
 
         yield moving_average
 
