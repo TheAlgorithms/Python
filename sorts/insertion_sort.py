@@ -56,6 +56,22 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     True
     >>> values
     [1, 2, 4, 7]
+
+    Equal-priority items retain their original relative order:
+    >>> from dataclasses import dataclass, field
+    >>> @dataclass(order=True)
+    ... class Item:
+    ...     priority: int
+    ...     label: str = field(compare=False)
+    >>> items = [Item(2, "A"), Item(1, "X"), Item(2, "B"), Item(1, "Y")]
+    >>> insertion_sort(items)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='X'), Item(priority=1, label='Y'),
+     Item(priority=2, label='A'), Item(priority=2, label='B')]
+    >>> other = [Item(2, "B"), Item(1, "Y"), Item(2, "A"), Item(1, "X")]
+    >>> insertion_sort(other)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='Y'), Item(priority=1, label='X'),
+     Item(priority=2, label='B'), Item(priority=2, label='A')]
+
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
     >>> insertion_sort(collection) == sorted(collection)
