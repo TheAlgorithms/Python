@@ -67,6 +67,10 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     >>> insertion_sort(items)  # doctest: +NORMALIZE_WHITESPACE
     [Item(priority=1, label='X'), Item(priority=1, label='Y'),
      Item(priority=2, label='A'), Item(priority=2, label='B')]
+    >>> other = [Item(2, "B"), Item(1, "Y"), Item(2, "A"), Item(1, "X")]
+    >>> insertion_sort(other)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='Y'), Item(priority=1, label='X'),
+     Item(priority=2, label='B'), Item(priority=2, label='A')]
 
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
