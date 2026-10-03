@@ -64,8 +64,9 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     ...     priority: int
     ...     label: str = field(compare=False)
     >>> items = [Item(2, "A"), Item(1, "X"), Item(2, "B"), Item(1, "Y")]
-    >>> [(item.priority, item.label) for item in insertion_sort(items)]
-    [(1, 'X'), (1, 'Y'), (2, 'A'), (2, 'B')]
+    >>> insertion_sort(items)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='X'), Item(priority=1, label='Y'),
+     Item(priority=2, label='A'), Item(priority=2, label='B')]
 
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
