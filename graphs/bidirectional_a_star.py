@@ -1,5 +1,8 @@
 """
 https://en.wikipedia.org/wiki/Bidirectional_search
+
+Run this file with --benchmark to time a search on a 45 by 45 grid.
+The grid has 2,025 cells, with a single 89-cell staircase corridor.
 """
 
 from __future__ import annotations
@@ -179,6 +182,25 @@ class BidirectionalAStar:
     >>> bd_astar.search()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (2, 4),
      (2, 5), (3, 5), (4, 5), (5, 5), (5, 6), (6, 6)]
+
+    An isolated endpoint exhausts one frontier before the other.
+    >>> original_grid = grid[:]
+    >>> grid[:] = [[0, 1, 0], [1, 1, 0]]
+    >>> BidirectionalAStar((0, 0), (0, 2)).search()
+    [(0, 0)]
+    >>> BidirectionalAStar((0, 2), (0, 0)).search()
+    [(0, 2)]
+
+    Both frontiers can also empty together, without a path.
+    >>> grid[:] = [[0, 1, 0]]
+    >>> BidirectionalAStar((0, 0), (0, 2)).search()
+    [(0, 0)]
+
+    A reachable corridor still returns the complete path.
+    >>> grid[:] = [[0, 0, 0]]
+    >>> BidirectionalAStar((0, 0), (0, 2)).search()
+    [(0, 0), (0, 1), (0, 2)]
+    >>> grid[:] = original_grid
     """
 
     def __init__(self, start: TPosition, goal: TPosition) -> None:
@@ -187,7 +209,7 @@ class BidirectionalAStar:
         self.reached = False
 
     def search(self) -> list[TPosition]:
-        while self.fwd_astar.open_nodes or self.bwd_astar.open_nodes:
+        while self.fwd_astar.open_nodes and self.bwd_astar.open_nodes:
             self.fwd_astar.open_nodes.sort()
             self.bwd_astar.open_nodes.sort()
             current_fwd_node = self.fwd_astar.open_nodes.pop(0)
@@ -257,3 +279,33 @@ if __name__ == "__main__":
     bidir_astar = BidirectionalAStar(init, goal)
     bd_end_time = time.time() - bd_start_time
     print(f"BidirectionalAStar execution time = {bd_end_time:f} seconds")
+
+    import sys
+
+    if "--benchmark" in sys.argv:
+        from timeit import repeat
+
+        # A single staircase corridor gives both versions the same reachable path.
+        # Keep grid construction and the correctness check outside the timing.
+        size = 45
+        grid = [[1] * size for _ in range(size)]
+        expected_path = []
+        for offset in range(size):
+            grid[offset][offset] = 0
+            expected_path.append((offset, offset))
+            if offset < size - 1:
+                grid[offset][offset + 1] = 0
+                expected_path.append((offset, offset + 1))
+        init, goal = (0, 0), (size - 1, size - 1)
+        assert BidirectionalAStar(init, goal).search() == expected_path
+
+        searches = 100
+        samples = repeat(
+            "BidirectionalAStar(init, goal).search()",
+            globals=globals(),
+            number=searches,
+            repeat=5,
+        )
+        print(f"Benchmark: {size * size} cells, {len(expected_path)} traversable")
+        print(f"Seconds per search ({searches} searches per sample):")
+        print([sample / searches for sample in samples])
