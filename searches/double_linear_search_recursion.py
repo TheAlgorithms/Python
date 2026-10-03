@@ -1,4 +1,6 @@
-from typing import Any 
+from typing import Any
+
+
 def search(list_data: list[Any], key: Any, left: int = 0, right: int = 0) -> int:
     """
     Iterate through the array to find the index of key using recursion.
