@@ -1,5 +1,7 @@
 """https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance"""
 
+from collections import defaultdict, deque
+
 
 def jaro_winkler(str1: str, str2: str) -> float:
     """
@@ -23,19 +25,37 @@ def jaro_winkler(str1: str, str2: str) -> float:
     0.4666666666666666
     >>> jaro_winkler("hell**o", "*world")
     0.4365079365079365
+
+    Matched positions cannot be reused as literal spaces.
+    >>> round(jaro_winkler("aa ", "aa"), 6)
+    0.911111
+    >>> round(jaro_winkler("a a", "aa"), 6)
+    0.9
+
+    Repeated characters must be consumed inside the matching window.
+    >>> round(jaro_winkler("aabb", "bab"), 6)
+    0.722222
     """
 
     def get_matched_characters(_str1: str, _str2: str) -> str:
         matched = []
+        character_positions: defaultdict[str, deque[int]] = defaultdict(deque)
+        for index, char in enumerate(_str2):
+            character_positions[char].append(index)
+
         limit = min(len(_str1), len(_str2)) // 2
         for i, char in enumerate(_str1):
+            positions = character_positions.get(char)
+            if not positions:
+                continue
             left = int(max(0, i - limit))
             right = int(min(i + limit + 1, len(_str2)))
-            if char in _str2[left:right]:
+            # Left edges only advance, so earlier positions cannot match later.
+            while positions and positions[0] < left:
+                positions.popleft()
+            if positions and positions[0] < right:
                 matched.append(char)
-                _str2 = (
-                    f"{_str2[0 : _str2.index(char)]} {_str2[_str2.index(char) + 1 :]}"
-                )
+                positions.popleft()
 
         return "".join(matched)
 
@@ -75,6 +95,26 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
 if __name__ == "__main__":
     import doctest
+    import sys
+    from timeit import repeat
 
     doctest.testmod()
     print(jaro_winkler("hello", "world"))
+
+    # Run with --benchmark on each revision using the same 2,000-character inputs.
+    if "--benchmark" in sys.argv:
+        size = 2000
+        cases = (
+            ("identical", "a" * size, "a" * size),
+            ("no matches", "a" * size, "b" * size),
+            ("trailing space", "a" * (size - 1) + " ", "a" * (size - 1)),
+        )
+        for name, first, second in cases:
+            score = jaro_winkler(first, second)
+            timings = repeat(
+                "jaro_winkler(first, second)", repeat=5, number=1, globals=globals()
+            )
+            print(
+                f"{name}, {len(first)}/{len(second)} characters: "
+                f"{min(timings):.6f} seconds (best of 5), score={score}"
+            )
