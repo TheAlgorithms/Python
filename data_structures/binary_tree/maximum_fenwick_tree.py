@@ -95,15 +95,32 @@ class MaxFenwickTree:
         Returns:
             None
         """
+        old_value = self.arr[index]
+        if value == old_value:
+            return
         self.arr[index] = value
         while index < self.size:
-            current_left_border = self.get_prev(index) + 1
-            if current_left_border == index:
+            old_maximum = self.tree[index]
+            if value > old_maximum:
                 self.tree[index] = value
+            elif old_value == old_maximum:
+                current_left_border = self.get_prev(index) + 1
+                maximum = self.arr[index]
+                if current_left_border != index:
+                    maximum = max(0, maximum)
+                child = index - 1
+                # These disjoint child buckets cover the rest of this bucket.
+                while child >= current_left_border:
+                    maximum = max(maximum, self.tree[child])
+                    if maximum == old_maximum:
+                        break
+                    child = self.get_prev(child)
+                self.tree[index] = maximum
+                if maximum == old_maximum:
+                    break
             else:
-                self.tree[index] = max(
-                    self.arr[index], self.query(current_left_border, index)
-                )
+                # An unchanged bucket maximum leaves all its ancestors unchanged.
+                break
             index = self.get_next(index)
 
     def query(self, left: int, right: int) -> int:
