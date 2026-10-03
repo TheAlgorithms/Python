@@ -27,12 +27,12 @@ python power_sort.py
 
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from typing import Any
 
 
-def _find_run(
-    arr: list, start: int, end: int, key: Callable[[Any], Any] | None = None
+def _find_run[T](
+    arr: list[T], start: int, end: int, key: Callable[[Any], Any] | None = None
 ) -> int:
     """
     Detect a run (ascending or descending sequence) starting at 'start'.
@@ -134,8 +134,8 @@ def _node_power(total_length: int, b1: int, n1: int, b2: int, n2: int) -> int:
     return power
 
 
-def _merge(
-    arr: list,
+def _merge[T](
+    arr: list[T],
     start1: int,
     end1: int,
     end2: int,
@@ -196,12 +196,12 @@ def _merge(
         k += 1
 
 
-def power_sort(
-    collection: list,
+def power_sort[T](
+    collection: Iterable[T],
     *,
     key: Callable[[Any], Any] | None = None,
     reverse: bool = False,
-) -> list:
+) -> list[T]:
     """
     Sort a list using the PowerSort algorithm.
 
@@ -243,6 +243,8 @@ def power_sort(
     ['apple', 'banana', 'cherry']
     >>> power_sort([3.14, 2.71, 1.41, 1.73])
     [1.41, 1.73, 2.71, 3.14]
+    >>> power_sort(value for value in [3, 1, 2])
+    [1, 2, 3]
     >>> power_sort([5, 2, 8, 1, 9], reverse=True)
     [9, 8, 5, 2, 1]
     >>> power_sort(['apple', 'pie', 'a', 'longer'], key=len)
@@ -257,12 +259,16 @@ def power_sort(
     >>> result = power_sort(list(reversed(range(50))))
     >>> result == list(range(50))
     True
+    >>> power_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
-    if len(collection) <= 1:
-        return collection
-
-    # Make a copy to avoid modifying the original if it's immutable
+    # Make a copy so any iterable is accepted and the original is not modified.
     arr = list(collection)
+    if len(arr) <= 1:
+        return arr
+
     total_length = len(arr)
 
     # Adjust key function for reverse sorting
