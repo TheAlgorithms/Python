@@ -1,5 +1,7 @@
 """https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance"""
 
+from collections import defaultdict, deque
+
 
 def jaro_winkler(str1: str, str2: str) -> float:
     """
@@ -37,16 +39,23 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
     def get_matched_characters(_str1: str, _str2: str) -> str:
         matched = []
-        matched_indices: set[int] = set()
+        character_positions: defaultdict[str, deque[int]] = defaultdict(deque)
+        for index, char in enumerate(_str2):
+            character_positions[char].append(index)
+
         limit = min(len(_str1), len(_str2)) // 2
         for i, char in enumerate(_str1):
+            positions = character_positions.get(char)
+            if not positions:
+                continue
             left = int(max(0, i - limit))
             right = int(min(i + limit + 1, len(_str2)))
-            for index in range(left, right):
-                if index not in matched_indices and char == _str2[index]:
-                    matched.append(char)
-                    matched_indices.add(index)
-                    break
+            # Left edges only advance, so earlier positions cannot match later.
+            while positions and positions[0] < left:
+                positions.popleft()
+            if positions and positions[0] < right:
+                matched.append(char)
+                positions.popleft()
 
         return "".join(matched)
 
