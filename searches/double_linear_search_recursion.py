@@ -1,5 +1,5 @@
-from __future__ import annotations 
-def search(list_data: list[int], key: int, left: int = 0, right: int = 0) -> int:
+from typing import Any 
+def search(list_data: list[Any], key: Any, left: int = 0, right: int = 0) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
