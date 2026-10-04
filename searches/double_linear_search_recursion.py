@@ -5,11 +5,9 @@ from typing import Protocol, TypeVar
 
 
 class Comparable(Protocol):
-    def __gt__(self, other: Comparable) -> bool:
-        ...
+    def __gt__(self, other: Comparable) -> bool: ...
 
-    def __eq__(self, other: object) -> bool:
-        ...
+    def __eq__(self, other: object) -> bool: ...
 
 
 T = TypeVar("T", bound=Comparable)
