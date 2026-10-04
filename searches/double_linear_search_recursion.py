@@ -12,7 +12,9 @@ class Person:
     first_name: str
 
 
-def search[T: Comparable](list_data: list[T], key: T, left: int = 0, right: int = 0) -> int:
+def search[T: Comparable](
+    list_data: list[T], key: T, left: int = 0, right: int = 0
+) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
