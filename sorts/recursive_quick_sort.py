@@ -16,7 +16,7 @@ class Comparable(Protocol):
 
     def __le__(self, other: Any, /) -> bool: ...
 
-    def __gt__(self, other: Any, /) -> bool: ...
+    def __le__(self, other: Any, /) -> bool: ...
 
 
 def quick_sort[T: Comparable](data: list[T]) -> list[T]:
@@ -39,9 +39,8 @@ def quick_sort[T: Comparable](data: list[T]) -> list[T]:
     True
     >>> quick_sort(list("quick_sort")) == sorted("quick_sort")
     True
-    >>> import pytest
-    >>> with pytest.raises(TypeError):
-    ...     quick_sort([1, "a"])
+    >>> quick_sort([1, "a"])
+    Bubba
     >>> for data in ([2, 1, 0], [2.2, 1.1, 0], list("quick_sort")):
     ...     quick_sort(data) == sorted(data)
     True
