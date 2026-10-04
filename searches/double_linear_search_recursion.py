@@ -1,4 +1,20 @@
-def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
+from dataclasses import dataclass
+from typing import Protocol
+
+
+class Comparable(Protocol):
+    def __eq__(self, other: object) -> bool: ...
+    def __gt__(self, other: Comparable) -> bool: ...
+
+
+@dataclass
+class Person:
+    first_name: str
+
+
+def search[T: Comparable](
+    list_data: list[T], key: T, left: int = 0, right: int = 0
+) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
@@ -16,6 +32,10 @@ def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
     >>> search([5], 5)
     0
     >>> search([], 1)
+    -1
+    >>> search([Person("Al"), Person("Bob"), Person("Carl")], Person("Bob"))
+    1
+    >>> search([Person("Al"), Person("Bob"), Person("Carl")], "Bob")
     -1
     """
     right = right or len(list_data) - 1
