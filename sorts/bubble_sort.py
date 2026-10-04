@@ -1,11 +1,8 @@
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def bubble_sort_iterative[T: Comparable](collection: list[T]) -> list[T]:
