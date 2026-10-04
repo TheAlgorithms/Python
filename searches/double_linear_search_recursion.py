@@ -1,16 +1,10 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
-    def __gt__(self, other: Comparable) -> bool: ...
-
     def __eq__(self, other: object) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
+    def __gt__(self, other: Comparable) -> bool: ...
 
 
 @dataclass
@@ -18,7 +12,7 @@ class Person:
     first_name: str
 
 
-def search(list_data: list[T], key: T, left: int = 0, right: int = 0) -> int:
+def search[T: Comparable](list_data: list[T], key: T, left: int = 0, right: int = 0) -> int:
     """
     Iterate through the array to find the index of key using recursion.
     :param list_data: the list to be searched
