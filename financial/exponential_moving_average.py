@@ -51,9 +51,7 @@ def exponential_moving_average(
     moving_average = 0.0
 
     for i, stock_price in enumerate(stock_prices):
-        if i == 0:
-            moving_average = stock_price
-        elif window_size == 1:
+        if i == 0 or window_size == 1:
             moving_average = stock_price
         elif i <= window_size:
             # Assigning simple moving average till the window_size for the first time
