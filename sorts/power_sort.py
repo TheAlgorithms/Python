@@ -243,7 +243,9 @@ def power_sort[T](
     ['apple', 'banana', 'cherry']
     >>> power_sort([3.14, 2.71, 1.41, 1.73])
     [1.41, 1.73, 2.71, 3.14]
-    >>> power_sort(value for value in [3, 1, 2])
+    >>> power_sort(value for value in [3, 1, 2])  # list
+    [1, 2, 3]
+    >>> power_sort(value for value in (3, 1, 2))  # tuple
     [1, 2, 3]
     >>> power_sort([5, 2, 8, 1, 9], reverse=True)
     [9, 8, 5, 2, 1]
