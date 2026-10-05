@@ -17,6 +17,9 @@ returns ``None`` rather than the sorted collection, so it is exercised
 separately below.
 """
 
+import multiprocessing as mp
+import os
+import signal
 from dataclasses import dataclass
 from typing import NamedTuple
 
@@ -41,6 +44,9 @@ from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_insertion_sort import merge_insertion_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.odd_even_transposition_parallel import (
+    odd_even_transposition as parallel_odd_even_transposition,
+)
 from sorts.odd_even_transposition_single_threaded import odd_even_transposition
 from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
@@ -241,3 +247,52 @@ def test_bitonic_sort_comparable_items() -> None:
 
     with pytest.raises(TypeError):
         bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
+
+
+def _check_parallel_odd_even_transposition(case: list[object], rejects: bool) -> None:
+    # Give this probe and its workers a process group that the test alone owns.
+    os.setsid()
+    collection = list(case)
+    if rejects:
+        with pytest.raises(TypeError):
+            parallel_odd_even_transposition(collection)
+        assert collection == case
+    else:
+        assert parallel_odd_even_transposition(collection) is collection
+        assert collection == sorted(case)
+    assert not mp.active_children()
+
+
+@pytest.mark.skipif(
+    os.name != "posix", reason="timeout cleanup requires process groups"
+)
+@pytest.mark.parametrize(
+    ("case", "rejects"),
+    [
+        (["c", "a", "b"], False),
+        ([2.5, -1, 0.0], False),
+        ([Person(cost=100.0), Person(cost=-100.0), Person(name="Al")], False),
+        ([Dog(weight=15.5), Dog(weight=15.1), Dog(name="Buddy")], False),
+        ([1, "a"], True),
+        ([3, 2, "a", 1], True),
+    ],
+)
+def test_parallel_odd_even_transposition(case: list[object], rejects: bool) -> None:
+    process = mp.get_context("spawn").Process(
+        target=_check_parallel_odd_even_transposition, args=(case, rejects)
+    )
+    process.start()
+    try:
+        process.join(timeout=10)
+        assert not process.is_alive(), (
+            "parallel sorting did not finish within 10 seconds"
+        )
+        assert process.exitcode == 0
+    finally:
+        if process.is_alive():
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                process.kill()
+            process.join()
+        process.close()
