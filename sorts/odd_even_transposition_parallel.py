@@ -13,6 +13,7 @@ synchronization could be used.
 
 import multiprocessing as mp
 from multiprocessing.connection import Connection, wait
+from multiprocessing.reduction import ForkingPickler
 from typing import Any, Protocol
 
 """
@@ -66,7 +67,12 @@ def oe_process[T: Comparable](
         # after all swaps are performed, send the values back to main
         result_pipe[1].send((value, None))
     except Exception as error:  # noqa: BLE001 -- propagate worker errors to the caller
-        result_pipe[1].send((None, error))
+        try:
+            payload = ForkingPickler.dumps((None, error))
+        except Exception:  # noqa: BLE001 -- user exceptions can fail to pickle
+            fallback = RuntimeError(f"{type(error).__name__}: {error}")
+            payload = ForkingPickler.dumps((None, fallback))
+        result_pipe[1].send_bytes(payload)
     finally:
         for pipe in (l_send, r_send, lr_cv, rr_cv, result_pipe):
             if pipe is not None:
@@ -83,6 +89,14 @@ arr = the list to be sorted
 
 def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
     """
+    Sort in place, propagating worker errors to the caller. Unpickleable
+    exceptions become RuntimeError with the original type name and message.
+
+    >>> odd_even_transposition([])
+    []
+    >>> values = [42]
+    >>> odd_even_transposition(values) is values
+    True
     >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     True
     >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
@@ -113,6 +127,9 @@ def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
+    if len(arr) < 2:
+        return arr
+
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
 

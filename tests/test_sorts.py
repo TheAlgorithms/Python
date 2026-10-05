@@ -22,6 +22,7 @@ import os
 import signal
 from dataclasses import dataclass
 from typing import NamedTuple
+from unittest.mock import patch
 
 import pytest
 
@@ -252,14 +253,36 @@ def test_bitonic_sort_comparable_items() -> None:
         bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
 
 
-def _check_parallel_odd_even_transposition(case: list[object], rejects: bool) -> None:
+@dataclass
+class UnpicklableComparison:
+    value: int
+
+    def __lt__(self, _other: object, /) -> bool:
+        class LocalComparisonError(TypeError):
+            pass
+
+        raise LocalComparisonError("comparison failed")
+
+
+def _check_parallel_odd_even_transposition(
+    case: list[object], error: type[Exception] | None
+) -> None:
     # Give this probe and its workers a process group that the test alone owns.
     os.setsid()
     collection = list(case)
-    if rejects:
-        with pytest.raises(TypeError):
+    if error is not None:
+        with pytest.raises(error) as caught:
             parallel_odd_even_transposition(collection)
+        if isinstance(case[0], UnpicklableComparison):
+            assert "LocalComparisonError: comparison failed" in str(caught.value)
         assert collection == case
+    elif len(collection) < 2:
+        with patch(
+            "multiprocessing.process.BaseProcess.start",
+            side_effect=AssertionError("trivial input must not start a worker"),
+        ):
+            assert parallel_odd_even_transposition(collection) is collection
+        assert all(item is original for item, original in zip(collection, case))
     else:
         assert parallel_odd_even_transposition(collection) is collection
         assert collection == sorted(case)
@@ -270,19 +293,25 @@ def _check_parallel_odd_even_transposition(case: list[object], rejects: bool) ->
     os.name != "posix", reason="timeout cleanup requires process groups"
 )
 @pytest.mark.parametrize(
-    ("case", "rejects"),
+    ("case", "error"),
     [
-        (["c", "a", "b"], False),
-        ([2.5, -1, 0.0], False),
-        ([Person(cost=100.0), Person(cost=-100.0), Person(name="Al")], False),
-        ([Dog(weight=15.5), Dog(weight=15.1), Dog(name="Buddy")], False),
-        ([1, "a"], True),
-        ([3, 2, "a", 1], True),
+        ([], None),
+        ([1], None),
+        ([Person()], None),
+        (["c", "a", "b"], None),
+        ([2.5, -1, 0.0], None),
+        ([Person(cost=100.0), Person(cost=-100.0), Person(name="Al")], None),
+        ([Dog(weight=15.5), Dog(weight=15.1), Dog(name="Buddy")], None),
+        ([1, "a"], TypeError),
+        ([3, 2, "a", 1], TypeError),
+        ([UnpicklableComparison(3), UnpicklableComparison(2)], RuntimeError),
     ],
 )
-def test_parallel_odd_even_transposition(case: list[object], rejects: bool) -> None:
+def test_parallel_odd_even_transposition(
+    case: list[object], error: type[Exception] | None
+) -> None:
     process = mp.get_context("spawn").Process(
-        target=_check_parallel_odd_even_transposition, args=(case, rejects)
+        target=_check_parallel_odd_even_transposition, args=(case, error)
     )
     process.start()
     try:
