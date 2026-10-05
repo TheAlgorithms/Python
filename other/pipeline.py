@@ -1,7 +1,5 @@
 from collections.abc import Callable, Sequence
-from typing import Any, TypeVar
-
-T = TypeVar("T")
+from typing import Any
 
 
 class Pipeline:
@@ -33,7 +31,7 @@ class Pipeline:
     def __or__(self, other: Callable) -> "Pipeline":
         return Pipeline(f_ls=[*self._f_ls, other])
 
-    def __call__(self, input_object: T, f_ls_: Sequence[Callable] | None = None) -> Any:
+    def __call__[T](self, input_object: T, f_ls_: Sequence[Callable] | None = None) -> Any:
         f_ls = f_ls_ or self._f_ls
         if len(f_ls) == 1:
             return f_ls[0](input_object)

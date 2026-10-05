@@ -10,9 +10,6 @@ connection from the tree to another vertex.
 from __future__ import annotations
 
 from sys import maxsize
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
 def get_parent_position(position: int) -> int:

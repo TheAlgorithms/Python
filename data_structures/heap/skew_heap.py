@@ -3,9 +3,6 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
-from typing import Any, TypeVar
-
-T = TypeVar("T", bound=bool)
 
 
 class SkewNode[T: bool]:
