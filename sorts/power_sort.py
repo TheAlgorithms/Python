@@ -24,9 +24,6 @@ python -m doctest -v power_sort.py
 For manual testing run:
 python power_sort.py
 """
-
-from __future__ import annotations
-
 from collections.abc import Callable, Iterable
 from typing import Any
 
@@ -67,7 +64,7 @@ def _find_run[T](
     if start >= end - 1:
         return start + 1
 
-    key_func = key if key else lambda element: element
+    key_func = key or (lambda element: element)
     run_end = start + 1
 
     # Check if run is ascending or descending
@@ -165,7 +162,7 @@ def _merge[T](
     >>> arr
     [1, 2, 3, 5, 6, 7]
     """
-    key_func = key if key else lambda element: element
+    key_func = key or (lambda element: element)
 
     # Copy the runs to temporary storage
     left = arr[start1:end1]
@@ -249,19 +246,23 @@ def power_sort[T](
     [1, 2, 3]
     >>> power_sort([5, 2, 8, 1, 9], reverse=True)
     [9, 8, 5, 2, 1]
+    >>> power_sort(['apple', 'pie', 'a', 'longer'])
+    ['a', 'apple', 'longer', 'pie']
     >>> power_sort(['apple', 'pie', 'a', 'longer'], key=len)
+    ['a', 'pie', 'apple', 'longer']
+    >>> power_sort(['apple', 'pie', 'a', 'longer'], reverse=True)
+    ['pie', 'longer', 'apple', 'a']
+    >>> power_sort(['apple', 'pie', 'a', 'longer'], key=len, reverse=True)  # Fix me!
     ['a', 'pie', 'apple', 'longer']
     >>> power_sort([(1, 'b'), (2, 'a'), (1, 'a')], key=lambda x: x[0])
     [(1, 'b'), (1, 'a'), (2, 'a')]
     >>> power_sort([1, 2, 3, 2, 1, 2, 3, 4])
     [1, 1, 2, 2, 2, 3, 3, 4]
-    >>> result = power_sort(list(range(100)))
-    >>> result == list(range(100))
+    >>> power_sort(list(range(100))) == list(range(100))
     True
-    >>> result = power_sort(list(reversed(range(50))))
-    >>> result == list(range(50))
+    >>> power_sort(list(reversed(range(50)))) == list(range(50))
     True
-    >>> power_sort([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    >>> power_sort([1, "a"])
     Traceback (most recent call last):
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
