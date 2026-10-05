@@ -24,6 +24,7 @@ python -m doctest -v power_sort.py
 For manual testing run:
 python power_sort.py
 """
+
 from collections.abc import Callable, Iterable
 from typing import Any
 
