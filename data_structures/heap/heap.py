@@ -2,12 +2,14 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from collections.abc import Iterable
-from typing import Protocol
+from typing import Protocol, TypeVar
+
+T = TypeVar("T")
 
 
 class Comparable(Protocol):
     @abstractmethod
-    def __gt__(self, other: object, /) -> bool:
+    def __gt__(self: T, other: T, /) -> bool:
         pass
 
 
