@@ -12,10 +12,7 @@ from typing import Any, Protocol
 
 
 class Comparable(Protocol):
-    def __lt__(self, other: Any, /) -> bool: ...
-
-    def __le__(self, other: Any, /) -> bool: ...
-
+    def __ge__(self, other: Any, /) -> bool: ...
     def __le__(self, other: Any, /) -> bool: ...
 
 
@@ -35,12 +32,16 @@ def quick_sort[T: Comparable](data: list[T]) -> list[T]:
     ['a', 'b', 'c']
     >>> quick_sort([])
     []
+    >>> quick_sort([0])
+    [0]
     >>> quick_sort([2.5, -1, 0.0]) == sorted([2.5, -1, 0.0])
     True
     >>> quick_sort(list("quick_sort")) == sorted("quick_sort")
     True
     >>> quick_sort([1, "a"])
-    Bubba
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'str' and 'int'
     >>> for data in ([2, 1, 0], [2.2, 1.1, 0], list("quick_sort")):
     ...     quick_sort(data) == sorted(data)
     True
