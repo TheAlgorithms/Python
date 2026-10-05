@@ -5,14 +5,11 @@ A recursive implementation of the insertion sort algorithm
 from __future__ import annotations
 
 from collections.abc import MutableSequence
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def rec_insertion_sort[T: Comparable](collection: MutableSequence[T], n: int) -> None:
