@@ -10,9 +10,7 @@
 """
 
 from dataclasses import dataclass
-from typing import Self, TypeVar
-
-DataType = TypeVar("DataType")
+from typing import Self
 
 
 @dataclass
