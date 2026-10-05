@@ -39,9 +39,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import TypeVar, cast
-
-T = TypeVar("T")
+from typing import cast
 
 
 class SegmentTree[T]:
