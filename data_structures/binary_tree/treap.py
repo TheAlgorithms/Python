@@ -3,17 +3,17 @@ from __future__ import annotations
 from random import random
 
 
-class Node:
+class Node[T]:
     """
     Treap's node
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int | None = None) -> None:
+    def __init__(self, value: T | None = None) -> None:
         self.value = value
         self.prior = random()
-        self.left: Node | None = None
-        self.right: Node | None = None
+        self.left: Node[T] | None = None
+        self.right: Node[T] | None = None
 
     def __repr__(self) -> str:
         from pprint import pformat

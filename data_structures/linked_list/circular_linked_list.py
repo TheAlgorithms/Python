@@ -6,17 +6,17 @@ from typing import Any
 
 
 @dataclass
-class Node:
-    data: Any
-    next_node: Node | None = None
+class Node[T]:
+    data: T
+    next_node: Node[T] | None = None
 
 
 @dataclass
-class CircularLinkedList:
-    head: Node | None = None  # Reference to the head (first node)
-    tail: Node | None = None  # Reference to the tail (last node)
+class CircularLinkedList[T]:
+    head: Node[T] | None = None  # Reference to the head (first node)
+    tail: Node[T] | None = None  # Reference to the tail (last node)
 
-    def __iter__(self) -> Iterator[Any]:
+    def __iter__(self) -> Iterator[T]:
         """
         Iterate through all nodes in the Circular Linked List yielding their data.
         Yields:
@@ -43,19 +43,19 @@ class CircularLinkedList:
         """
         return "->".join(str(item) for item in iter(self))
 
-    def insert_tail(self, data: Any) -> None:
+    def insert_tail(self, data: T) -> None:
         """
         Insert a node with the given data at the end of the Circular Linked List.
         """
         self.insert_nth(len(self), data)
 
-    def insert_head(self, data: Any) -> None:
+    def insert_head(self, data: T) -> None:
         """
         Insert a node with the given data at the beginning of the Circular Linked List.
         """
         self.insert_nth(0, data)
 
-    def insert_nth(self, index: int, data: Any) -> None:
+    def insert_nth(self, index: int, data: T) -> None:
         """
         Insert the data of the node at the nth pos in the Circular Linked List.
         Args:
@@ -86,7 +86,7 @@ class CircularLinkedList:
             if index == len(self) - 1:  # Insert at the tail
                 self.tail = new_node
 
-    def delete_front(self) -> Any:
+    def delete_front(self) -> T:
         """
         Delete and return the data of the node at the front of the Circular Linked List.
         Raises:
@@ -94,17 +94,17 @@ class CircularLinkedList:
         """
         return self.delete_nth(0)
 
-    def delete_tail(self) -> Any:
+    def delete_tail(self) -> T:
         """
         Delete and return the data of the node at the end of the Circular Linked List.
         Returns:
-            Any: The data of the deleted node.
+            T: The data of the deleted node.
         Raises:
             IndexError: If the index is out of range.
         """
         return self.delete_nth(len(self) - 1)
 
-    def delete_nth(self, index: int = 0) -> Any:
+    def delete_nth(self, index: int = 0) -> T:
         """
         Delete and return the data of the node at the nth pos in Circular Linked List.
         Args:
