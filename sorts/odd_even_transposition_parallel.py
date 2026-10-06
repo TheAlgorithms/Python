@@ -12,33 +12,38 @@ synchronization could be used.
 """
 
 import multiprocessing as mp
+from typing import Any, Protocol
 
 # lock used to ensure that two processes do not access a pipe at the same time
 # NOTE This breaks testing on build runner. May work better locally
 # process_lock = mp.Lock()
 
-"""
-The function run by the processes that sorts the list
 
-position = the position in the list the process represents, used to know which
-            neighbor we pass our value to
-value = the initial value at list[position]
-LSend, RSend = the pipes we use to send to our left and right neighbors
-LRcv, RRcv = the pipes we use to receive from our left and right neighbors
-resultPipe = the pipe used to send results back to main
-"""
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
 
 
-def oe_process(
-    position,
-    value,
-    l_send,
-    r_send,
-    lr_cv,
-    rr_cv,
-    result_pipe,
-    multiprocessing_context,
+def oe_process[T: Comparable](
+    position: int,
+    value: T,
+    l_send: tuple[mp.connection.Connection, mp.connection.Connection] | None,
+    r_send: tuple[mp.connection.Connection, mp.connection.Connection] | None,
+    lr_cv: tuple[mp.connection.Connection, mp.connection.Connection] | None,
+    rr_cv: tuple[mp.connection.Connection, mp.connection.Connection] | None,
+    result_pipe: tuple[mp.connection.Connection, mp.connection.Connection],
+    multiprocessing_context: Any,
 ) -> None:
+    """
+    The function run by the processes that sorts the list.
+
+    position = the position in the list the process represents, used to know
+               which neighbor we pass our value to
+    value    = the initial value at list[position]
+    l_send, r_send  = the pipes we use to send to our left and right neighbors
+    lr_cv,  rr_cv   = the pipes we use to receive from our left and right
+                      neighbors
+    result_pipe     = the pipe used to send results back to main
+    """
     process_lock = multiprocessing_context.Lock()
 
     # we perform n swaps since after n swaps we know we are sorted
@@ -71,33 +76,34 @@ def oe_process(
     result_pipe[1].send(value)
 
 
-"""
-the function which creates the processes that perform the parallel swaps
-
-arr = the list to be sorted
-"""
-
-
-def odd_even_transposition(arr):
+def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
     """
-    >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
-    True
-    >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
-    True
-    >>> odd_even_transposition([1.9, 42.0, 2.8]) == sorted([1.9, 42.0, 2.8])
-    True
-    >>> odd_even_transposition([False, True, False]) == sorted([False, False, True])
-    True
-    >>> odd_even_transposition([1, 32.0, 9]) == sorted([False, False, True])
-    False
-    >>> odd_even_transposition([1, 32.0, 9]) == sorted([1.0, 32, 9.0])
+    Sort a list of comparable items using the parallel odd-even transposition
+    sort algorithm.
+
+    Each element is represented by a separate process; neighboring processes
+    exchange values in alternating odd/even rounds via message-passing pipes.
+    Items must be mutually comparable (support ``<``); passing a list whose
+    elements cannot be compared with each other (e.g. mixing ``int`` and
+    ``str``) raises ``TypeError`` inside the worker processes.
+
+    :param arr: a list of mutually comparable items
+    :return: the same list sorted in ascending order
+
+    Examples:
+    >>> odd_even_transposition([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+    >>> odd_even_transposition([3, 3, 1, 2, 2, 1])
+    [1, 1, 2, 2, 3, 3]
+    >>> odd_even_transposition(['c', 'a', 'b'])
+    ['a', 'b', 'c']
+    >>> odd_even_transposition([3.3, 1.1, 2.2])
+    [1.1, 2.2, 3.3]
+    >>> odd_even_transposition(list(range(10)[::-1])) == sorted(range(10))
     True
     >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list)
     True
-    >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
-    >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
-    False
     """
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
