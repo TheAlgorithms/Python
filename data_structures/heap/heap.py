@@ -4,14 +4,13 @@ from abc import abstractmethod
 from collections.abc import Iterable
 from typing import Protocol, TypeVar
 
+T = TypeVar("T")
+
 
 class Comparable(Protocol):
     @abstractmethod
     def __gt__(self: T, other: T, /) -> bool:
         pass
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 class Heap[T: Comparable]:
