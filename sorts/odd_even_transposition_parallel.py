@@ -11,11 +11,19 @@ They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
 
+from __future__ import annotations
+
 import multiprocessing as mp
+from typing import Protocol
 
 # lock used to ensure that two processes do not access a pipe at the same time
 # NOTE This breaks testing on build runner. May work better locally
 # process_lock = mp.Lock()
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
 
 """
 The function run by the processes that sorts the list
@@ -30,14 +38,14 @@ resultPipe = the pipe used to send results back to main
 
 
 def oe_process(
-    position,
-    value,
-    l_send,
-    r_send,
-    lr_cv,
-    rr_cv,
-    result_pipe,
-    multiprocessing_context,
+    position: int,
+    value: Comparable,
+    l_send: tuple | None,
+    r_send: tuple | None,
+    lr_cv: tuple | None,
+    rr_cv: tuple | None,
+    result_pipe: tuple,
+    multiprocessing_context: mp.context.BaseContext,
 ) -> None:
     process_lock = multiprocessing_context.Lock()
 
@@ -78,7 +86,7 @@ arr = the list to be sorted
 """
 
 
-def odd_even_transposition(arr):
+def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
     """
     >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     True
@@ -98,6 +106,10 @@ def odd_even_transposition(arr):
     >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
     False
+    >>> odd_even_transposition([1, "a"])  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
