@@ -2,9 +2,6 @@ from __future__ import annotations
 
 import sys
 from collections import deque
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
 class LRUCache[T]:
