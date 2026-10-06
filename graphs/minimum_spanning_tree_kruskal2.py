@@ -1,9 +1,5 @@
 from __future__ import annotations
 
-from typing import TypeVar
-
-T = TypeVar("T")
-
 
 class DisjointSetTreeNode[T]:
     # Disjoint Set Node to store the parent and rank

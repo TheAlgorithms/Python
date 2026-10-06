@@ -6,9 +6,6 @@
 from __future__ import annotations
 
 from pprint import pformat
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
 class GraphAdjacencyList[T]:

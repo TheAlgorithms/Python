@@ -21,11 +21,8 @@ from __future__ import annotations
 import random
 import unittest
 from pprint import pformat
-from typing import TypeVar
 
 import pytest
-
-T = TypeVar("T")
 
 
 class GraphAdjacencyMatrix[T]:
