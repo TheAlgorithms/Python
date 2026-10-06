@@ -3,15 +3,25 @@
 # Algorithm for the pigeonhole sorting
 
 
-def pigeonhole_sort(a) -> None:
+def pigeonhole_sort(a: list[int]) -> None:
     """
+    Sort a list of integers destructively using pigeonhole sort.
+
     >>> a = [8, 3, 2, 7, 4, 6, 8]
     >>> b = sorted(a)  # a nondestructive sort
     >>> pigeonhole_sort(a)  # a destructive sort
     >>> a == b
     True
 
-    >>> pigeonhole_sort([])
+    >>> a = [-4, -1, -9, 0, 5, 2]
+    >>> pigeonhole_sort(a)
+    >>> a
+    [-9, -4, -1, 0, 2, 5]
+
+    >>> a = []
+    >>> pigeonhole_sort(a)
+    >>> a
+    []
     """
     if not a:
         return
