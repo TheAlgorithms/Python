@@ -3,10 +3,6 @@
 
 from __future__ import annotations
 
-from typing import TypeVar
-
-T = TypeVar("T")
-
 
 class Node[T]:
     def __init__(self, data: T) -> None:
