@@ -98,7 +98,11 @@ def odd_even_transposition(arr):
     >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
     False
+    >>> odd_even_transposition([])
+    []
     """
+    if not arr:
+        return arr
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
 
