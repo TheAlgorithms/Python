@@ -244,3 +244,13 @@ def test_bitonic_sort_comparable_items() -> None:
 
     with pytest.raises(TypeError):
         bitonic_sort([1, "two", 3, "four"], 0, 4, 1)
+
+
+def test_stalin_sort_comparable_items() -> None:
+    from sorts.stalin_sort import stalin_sort
+
+    assert stalin_sort(["d", "a", "e", "c", "f"]) == ["d", "e", "f"]
+    assert stalin_sort([2.5, -1.0, 0.0, 3.2]) == [2.5, 3.2]
+
+    with pytest.raises(TypeError):
+        stalin_sort([1, "a"])
