@@ -19,9 +19,6 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import TypeVar
-
-T = TypeVar("T", bound="Point")
 
 
 @dataclass
