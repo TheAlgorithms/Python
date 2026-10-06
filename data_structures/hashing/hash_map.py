@@ -10,10 +10,6 @@ https://www.youtube.com/watch?v=p33CVV29OG8
 
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
-from typing import TypeVar
-
-KEY = TypeVar("KEY")
-VAL = TypeVar("VAL")
 
 
 @dataclass(slots=True)
@@ -33,7 +29,7 @@ class _DeletedItem(_Item):
 _deleted = _DeletedItem()
 
 
-class HashMap(MutableMapping[KEY, VAL]):
+class HashMap[KEY, VAL](MutableMapping[KEY, VAL]):
     """
     Hash map with open addressing.
     """
