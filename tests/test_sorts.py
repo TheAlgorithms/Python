@@ -41,6 +41,9 @@ from sorts.iterative_merge_sort import iter_merge_sort
 from sorts.merge_insertion_sort import merge_insertion_sort
 from sorts.merge_sort import merge_sort
 from sorts.odd_even_sort import odd_even_sort
+from sorts.odd_even_transposition_parallel import (
+    odd_even_transposition as odd_even_transposition_parallel,
+)
 from sorts.odd_even_transposition_single_threaded import odd_even_transposition
 from sorts.pancake_sort import pancake_sort
 from sorts.patience_sort import patience_sort
@@ -116,6 +119,7 @@ SORTS = (
     merge_sort,
     odd_even_sort,
     odd_even_transposition,
+    odd_even_transposition_parallel,
     pancake_sort,
     patience_sort,
     power_sort,
@@ -198,6 +202,7 @@ def test_rec_insertion_sort(case) -> None:
         merge_sort,
         odd_even_sort,
         odd_even_transposition,
+        odd_even_transposition_parallel,
         pancake_sort,
         patience_sort,
         power_sort,

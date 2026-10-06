@@ -49,31 +49,34 @@ def oe_process[T: Comparable](
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(10):
-        if (i + position) % 2 == 0 and r_send is not None:
-            # send your value to your right neighbor
-            with process_lock:
-                r_send[1].send(value)
+    try:
+        for i in range(10):
+            if (i + position) % 2 == 0 and r_send is not None:
+                # send your value to your right neighbor
+                with process_lock:
+                    r_send[1].send(value)
 
-            # receive your right neighbor's value
-            with process_lock:
-                temp = rr_cv[0].recv()
+                # receive your right neighbor's value
+                with process_lock:
+                    temp = rr_cv[0].recv()
 
-            # take the lower value since you are on the left
-            value = min(value, temp)
-        elif (i + position) % 2 != 0 and l_send is not None:
-            # send your value to your left neighbor
-            with process_lock:
-                l_send[1].send(value)
+                # take the lower value since you are on the left
+                value = min(value, temp)
+            elif (i + position) % 2 != 0 and l_send is not None:
+                # send your value to your left neighbor
+                with process_lock:
+                    l_send[1].send(value)
 
-            # receive your left neighbor's value
-            with process_lock:
-                temp = lr_cv[0].recv()
+                # receive your left neighbor's value
+                with process_lock:
+                    temp = lr_cv[0].recv()
 
-            # take the higher value since you are on the right
-            value = max(value, temp)
-    # after all swaps are performed, send the values back to main
-    result_pipe[1].send(value)
+                # take the higher value since you are on the right
+                value = max(value, temp)
+        # after all swaps are performed, send the value back to main
+        result_pipe[1].send((False, value))
+    except Exception as e:  # noqa: BLE001
+        result_pipe[1].send((True, e))
 
 
 def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
@@ -105,6 +108,9 @@ def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list)
     True
     """
+    if not arr:
+        return arr
+
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
 
@@ -179,7 +185,12 @@ def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
 
     # wait for the processes to end and write their values to the list
     for p in range(len(result_pipe)):
-        arr[p] = result_pipe[p][0].recv()
+        is_error, result = result_pipe[p][0].recv()
+        if is_error:
+            for proc in process_array_:
+                proc.terminate()
+            raise result
+        arr[p] = result
         process_array_[p].join()
     return arr
 
