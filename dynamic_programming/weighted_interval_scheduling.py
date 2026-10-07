@@ -51,6 +51,20 @@ class Interval:
     weight: float
 
     def __post_init__(self) -> None:
+        """
+        Validate interval parameters after initialization.
+
+        >>> Interval(0, 5, 10)
+        Interval(start=0, end=5, weight=10)
+        >>> Interval(5, 2, 10)
+        Traceback (most recent call last):
+            ...
+        ValueError: Start time (5) must be strictly less than end time (2).
+        >>> Interval(1, 5, -3)
+        Traceback (most recent call last):
+            ...
+        ValueError: Weight (-3) must be non-negative.
+        """
         if self.start >= self.end:
             msg = (
                 f"Start time ({self.start}) must be strictly less than "
@@ -171,6 +185,33 @@ def weighted_interval_scheduling(
 
     selected.reverse()
     return dp[n], selected
+
+
+def test_weighted_interval_scheduling() -> None:
+    """
+    Test suite for weighted interval scheduling function and Interval dataclass.
+
+    >>> test_weighted_interval_scheduling()
+    """
+    intervals = [
+        Interval(0, 3, 3),
+        Interval(1, 5, 4),
+        Interval(4, 6, 2),
+        Interval(6, 8, 5),
+    ]
+    max_weight, selected = weighted_interval_scheduling(intervals)
+    assert max_weight == 10.0
+    assert len(selected) == 3
+    assert selected == [Interval(0, 3, 3), Interval(4, 6, 2), Interval(6, 8, 5)]
+
+    # Disjoint intervals
+    disjoint = [Interval(1, 2, 5), Interval(3, 4, 6), Interval(5, 6, 7)]
+    max_weight, selected = weighted_interval_scheduling(disjoint)
+    assert max_weight == 18.0
+    assert selected == disjoint
+
+    # Empty list
+    assert weighted_interval_scheduling([]) == (0.0, [])
 
 
 if __name__ == "__main__":
