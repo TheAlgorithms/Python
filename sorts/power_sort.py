@@ -28,11 +28,15 @@ python power_sort.py
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any
+from typing import Any, Protocol
 
 
-def _find_run(
-    arr: list, start: int, end: int, key: Callable[[Any], Any] | None = None
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def _find_run[T: Comparable](
+    arr: list[T], start: int, end: int, key: Callable[[T], Any] | None = None
 ) -> int:
     """
     Detect a run (ascending or descending sequence) starting at 'start'.
@@ -134,12 +138,12 @@ def _node_power(total_length: int, b1: int, n1: int, b2: int, n2: int) -> int:
     return power
 
 
-def _merge(
-    arr: list,
+def _merge[T: Comparable](
+    arr: list[T],
     start1: int,
     end1: int,
     end2: int,
-    key: Callable[[Any], Any] | None = None,
+    key: Callable[[T], Any] | None = None,
 ) -> None:
     """
     Merge two adjacent sorted runs in-place using auxiliary space.
@@ -196,12 +200,12 @@ def _merge(
         k += 1
 
 
-def power_sort(
-    collection: list,
+def power_sort[T: Comparable](
+    collection: list[T],
     *,
-    key: Callable[[Any], Any] | None = None,
+    key: Callable[[T], Any] | None = None,
     reverse: bool = False,
-) -> list:
+) -> list[T]:
     """
     Sort a list using the PowerSort algorithm.
 
@@ -257,6 +261,12 @@ def power_sort(
     >>> result = power_sort(list(reversed(range(50))))
     >>> result == list(range(50))
     True
+    >>> power_sort(["z", "a", "m"]) == sorted(["z", "a", "m"])
+    True
+    >>> power_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     if len(collection) <= 1:
         return collection
