@@ -14,6 +14,8 @@ For manual testing run:
 python3 library_sort.py
 """
 
+from typing import Any
+
 _EMPTY = object()
 
 
@@ -33,7 +35,7 @@ def _spread(slots: list) -> None:
         slots[i * len(slots) // len(items)] = item
 
 
-def _insert(slots: list, item) -> None:
+def _insert(slots: list, item: Any) -> None:
     """
     Insert item into the gapped array, keeping the stored items in sorted order.
 
