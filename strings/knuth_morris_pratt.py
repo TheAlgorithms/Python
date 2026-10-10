@@ -20,6 +20,10 @@ def knuth_morris_pratt(text: str, pattern: str) -> int:
     ...    for s in ("kn", "h_m", "rr", "tt", "not there")
     ... )
     True
+    >>> knuth_morris_pratt("abc", "")
+    0
+    >>> knuth_morris_pratt("", "")
+    0
     """
 
     # 1) Construct the failure array
@@ -47,6 +51,11 @@ def get_failure_array(pattern: str) -> list[int]:
     Calculates the new index we should go to if we fail a comparison
     :param pattern:
     :return:
+
+    >>> get_failure_array("abc")
+    [0, 0, 0]
+    >>> get_failure_array("aabaabaaa")
+    [0, 1, 0, 1, 2, 3, 4, 5, 2]
     """
     failure = [0]
     i = 0
