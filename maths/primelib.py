@@ -417,7 +417,7 @@ def goldbach(number: int) -> list[int]:
     loop = True
 
     while i < len_pn and loop:
-        j = i + 1
+        j = i
 
         while j < len_pn and loop:
             if prime_numbers[i] + prime_numbers[j] == number:
