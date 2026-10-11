@@ -3,7 +3,7 @@ Fetch the current price of a cryptocurrency in USD using CoinGecko API.
 """
 
 # /// script
-# requires-python = ">=3.11"
+# requires-python = ">=3.14"
 # dependencies = [
 #     "httpx2",
 # ]
