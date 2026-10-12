@@ -140,12 +140,13 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
         number = get_avg(last_lowest, last_highest)
         last_numbers.append(number)
 
-        if answer(number) == "low":
-            last_lowest = number
-        elif answer(number) == "high":
-            last_highest = number
-        else:
-            break
+        match answer(number):
+            case "low":
+                last_lowest = number
+            case "high":
+                last_highest = number
+            case _:
+                break
 
     print(f"guess the number : {last_numbers[-1]}")
     print(f"details : {last_numbers!s}")

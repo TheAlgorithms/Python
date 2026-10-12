@@ -39,18 +39,19 @@ class SchedulerEngine:
         [(0, 'P1', []), (1, 'P1', [])]
         """
         algo = self.algorithm.lower()
-        if algo == "fcfs":
-            yield from self._simulate_fcfs()
-        elif algo == "sjf (non-preemptive)":
-            yield from self._simulate_sjf_np()
-        elif algo == "sjf (preemptive)":
-            yield from self._simulate_sjf_p()
-        elif algo == "priority (non-preemptive)":
-            yield from self._simulate_priority_np()
-        elif algo == "priority (preemptive)":
-            yield from self._simulate_priority_p()
-        elif algo == "round robin":
-            yield from self._simulate_rr()
+        match algo:
+            case "fcfs":
+                yield from self._simulate_fcfs()
+            case "sjf (non-preemptive)":
+                yield from self._simulate_sjf_np()
+            case "sjf (preemptive)":
+                yield from self._simulate_sjf_p()
+            case "priority (non-preemptive)":
+                yield from self._simulate_priority_np()
+            case "priority (preemptive)":
+                yield from self._simulate_priority_p()
+            case "round robin":
+                yield from self._simulate_rr()
         self._calculate_stats()
 
     # first come first serve

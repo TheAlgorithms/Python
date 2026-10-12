@@ -94,12 +94,13 @@ def test_power_iteration() -> None:
     complex_vector = np.array([41, 4, 20]).astype(np.complex128)
 
     for problem_type in ["real", "complex"]:
-        if problem_type == "real":
-            input_matrix = real_input_matrix
-            vector = real_vector
-        elif problem_type == "complex":
-            input_matrix = complex_input_matrix
-            vector = complex_vector
+        match problem_type:
+            case "real":
+                input_matrix = real_input_matrix
+                vector = real_vector
+            case "complex":
+                input_matrix = complex_input_matrix
+                vector = complex_vector
 
         # Our implementation.
         eigen_value, eigen_vector = power_iteration(input_matrix, vector)

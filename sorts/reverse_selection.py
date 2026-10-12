@@ -4,14 +4,20 @@ A pure Python implementation of the Reverse Selection Sort algorithm
 This algorithm progressively sorts the array by reversing subarrays
 
 For doctests run following command:
-python3 -m doctest -v reverse_selection_sort.py
+python3 -m doctest -v reverse_selection.py
 
 For manual testing run:
-python3 reverse_selection_sort.py
+python3 reverse_selection.py
 """
 
+from typing import Any, Protocol
 
-def reverse_subarray(arr: list, start: int, end: int) -> None:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
+
+def reverse_subarray[T](arr: list[T], start: int, end: int) -> None:
     """
     Reverse a subarray in-place.
 
@@ -41,7 +47,7 @@ def reverse_subarray(arr: list, start: int, end: int) -> None:
         end -= 1
 
 
-def reverse_selection_sort(collection: list) -> list:
+def reverse_selection_sort[T: Comparable](collection: list[T]) -> list[T]:
     """
     A pure implementation of reverse selection sort algorithm in Python
 
@@ -64,6 +70,17 @@ def reverse_selection_sort(collection: list) -> list:
 
     >>> reverse_selection_sort([5, 4, 3, 2, 1])
     [1, 2, 3, 4, 5]
+
+    >>> reverse_selection_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+
+    >>> reverse_selection_sort([3.14, 1.5, 2.7])
+    [1.5, 2.7, 3.14]
+
+    >>> reverse_selection_sort([1, "a"])  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: ...
     """
     n = len(collection)
     for i in range(n - 1):

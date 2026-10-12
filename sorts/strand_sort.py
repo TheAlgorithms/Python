@@ -1,7 +1,16 @@
 import operator
+from typing import Protocol
 
 
-def strand_sort(arr: list, reverse: bool = False, solution: list | None = None) -> list:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+    def __gt__(self, other: object, /) -> bool: ...
+
+
+def strand_sort[T: Comparable](
+    arr: list[T], reverse: bool = False, solution: list[T] | None = None
+) -> list[T]:
     """
     Strand sort implementation
     source: https://en.wikipedia.org/wiki/Strand_sort
@@ -16,6 +25,10 @@ def strand_sort(arr: list, reverse: bool = False, solution: list | None = None) 
 
     >>> strand_sort([4, 2, 5, 3, 0, 1], reverse=True)
     [5, 4, 3, 2, 1, 0]
+
+    >>> strand_sort(["banana", "apple", "cherry"])
+    ['apple', 'banana', 'cherry']
+
     """
     _operator = operator.lt if reverse else operator.gt
     solution = solution or []

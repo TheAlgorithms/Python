@@ -8,6 +8,7 @@ frequent subgraphs and maximum common subgraphs.
 
 URL: https://www.researchgate.net/publication/235255851
 """
+# ruff: noqa: Q000
 
 # fmt: off
 edge_array = [

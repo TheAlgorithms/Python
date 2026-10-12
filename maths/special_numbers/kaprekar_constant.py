@@ -172,13 +172,14 @@ def main() -> None:
             continue
 
         iterations, sequence = kaprekar_constant(num)
-        if iterations == -1:
-            print(f"  ❌ Did not reach 6174. Sequence: {sequence}")
-        elif iterations == 0:
-            print("  ✓ Already at Kaprekar's constant!")
-        else:
-            print(f"  ✓ Reached 6174 in {iterations} iteration(s)")
-            print(f"  Sequence: {' -> '.join(str(n) for n in sequence)}")
+        match iterations:
+            case -1:
+                print(f"  ❌ Did not reach 6174. Sequence: {sequence}")
+            case 0:
+                print("  ✓ Already at Kaprekar's constant!")
+            case _:
+                print(f"  ✓ Reached 6174 in {iterations} iteration(s)")
+                print(f"  Sequence: {' -> '.join(str(n) for n in sequence)}")
 
     # Interactive mode
     print("\n" + "=" * 50)

@@ -7,15 +7,20 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
 
 
 @dataclass
-class Node:
-    val: int
-    left: Node | None = None
-    right: Node | None = None
+class Node[T: Comparable]:
+    val: T
+    left: Node[T] | None = None
+    right: Node[T] | None = None
 
-    def __iter__(self) -> Iterator[int]:
+    def __iter__(self) -> Iterator[T]:
         if self.left:
             yield from self.left
         yield self.val
@@ -25,20 +30,20 @@ class Node:
     def __len__(self) -> int:
         return sum(1 for _ in self)
 
-    def insert(self, val: int) -> None:
+    def insert(self, val: T) -> None:
         if val < self.val:
             if self.left is None:
                 self.left = Node(val)
             else:
                 self.left.insert(val)
-        elif val > self.val:
-            if self.right is None:
-                self.right = Node(val)
-            else:
-                self.right.insert(val)
+        # Equal values go to the right so that duplicates are kept.
+        elif self.right is None:
+            self.right = Node(val)
+        else:
+            self.right.insert(val)
 
 
-def tree_sort(arr: Iterable[int]) -> tuple[int, ...]:
+def tree_sort[T: Comparable](arr: Iterable[T]) -> tuple[T, ...]:
     """
     >>> tree_sort([])
     ()
@@ -54,6 +59,18 @@ def tree_sort(arr: Iterable[int]) -> tuple[int, ...]:
     (-1, 1, 2, 4, 5, 6, 7, 37)
     >>> tree_sort(range(10, -10, -1)) == tuple(sorted(range(10, -10, -1)))
     True
+    >>> tree_sort(["c", "a", "b"])
+    ('a', 'b', 'c')
+    >>> tree_sort([2.5, -1, 0.0])
+    (-1, 0.0, 2.5)
+    >>> tree_sort([3, 1, 3, 2, 1])
+    (1, 1, 2, 3, 3)
+    >>> tree_sort([2, 2, 2])
+    (2, 2, 2)
+    >>> tree_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     iterator = iter(arr)
     try:

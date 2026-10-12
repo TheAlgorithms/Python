@@ -81,6 +81,58 @@ def find_triplets_with_0_sum_hashing(arr: list[int]) -> list[list[int]]:
     return output_arr
 
 
+def find_triplets_with_0_sum_two_pointers(nums: list[int]) -> list[list[int]]:
+    """
+    Finds all unique triplets in the array which gives the sum of zero
+    using the two-pointer technique.
+
+    Args:
+        nums: list of integers
+    Returns:
+        list of lists of integers where sum(each_list) == 0
+
+    Examples:
+        >>> find_triplets_with_0_sum_two_pointers([-1, 0, 1, 2, -1, -4])
+        [[-1, -1, 2], [-1, 0, 1]]
+        >>> find_triplets_with_0_sum_two_pointers([])
+        []
+        >>> find_triplets_with_0_sum_two_pointers([0, 0, 0, 0])
+        [[0, 0, 0]]
+
+    Time Complexity: O(N^2)
+    Auxiliary Space: O(1) (excluding output)
+    """
+    nums.sort()
+    result = []
+    n = len(nums)
+
+    for i in range(n - 2):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
+        left, right = i + 1, n - 1
+
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+
+            if total == 0:
+                result.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+
+            elif total < 0:
+                left += 1
+            else:
+                right -= 1
+
+    return result
+
+
 if __name__ == "__main__":
     from doctest import testmod
 

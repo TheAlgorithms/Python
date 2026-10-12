@@ -5,7 +5,17 @@
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_little_theorem
 
 
-def binary_exponentiation(a: int, n: float, mod: int) -> int:
+def binary_exponentiation(a: int, n: int, mod: int) -> int:
+    """
+    Calculate (a ** n) % mod using binary exponentiation, which runs in O(log n) time.
+
+    >>> binary_exponentiation(2, 10, 17)
+    4
+    >>> binary_exponentiation(3, 0, 5)
+    1
+    >>> binary_exponentiation(5, 3, 13)
+    8
+    """
     if n == 0:
         return 1
 
@@ -13,7 +23,7 @@ def binary_exponentiation(a: int, n: float, mod: int) -> int:
         return (binary_exponentiation(a, n - 1, mod) * a) % mod
 
     else:
-        b = binary_exponentiation(a, n / 2, mod)
+        b = binary_exponentiation(a, n // 2, mod)
         return (b * b) % mod
 
 

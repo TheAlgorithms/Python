@@ -62,6 +62,10 @@ def flash_sort(arr: list[int | float]) -> list[int | float]:
     [42]
     >>> flash_sort([2.5, 1.1, 3.3, 2.5, 1.1])
     [1.1, 1.1, 2.5, 2.5, 3.3]
+    >>> flash_sort([6, 6, 4, 4, 6])
+    [4, 4, 6, 6, 6]
+    >>> flash_sort([8, 3, 8, 6, 8])
+    [3, 6, 8, 8, 8]
     """
     if len(arr) <= 1:
         return arr.copy()
@@ -97,32 +101,25 @@ def flash_sort(arr: list[int | float]) -> list[int | float]:
     for i in range(1, m):
         class_sizes[i] += class_sizes[i - 1]
 
-    # Permutation phase
-    hold = result[0]
+    # Permutation phase: move every element into its class using cycle leaders.
+    # class_sizes[k] is now the (exclusive) end position of class k and is
+    # decremented as elements are placed at the end of their class.
+    def class_of(value: float) -> int:
+        return min(int(c1 * (value - min_val)), m - 1)
+
+    moves = 0
     j = 0
     k = m - 1
-
-    while j < n - 1:
-        while j >= class_sizes[k]:
-            k -= 1
-
-        flash = int(c1 * (hold - min_val))
-        if flash >= m:
-            flash = m - 1
-
-        while j < class_sizes[flash]:
-            k = flash
-            class_sizes[k] -= 1
-            result[j], result[class_sizes[k]] = result[class_sizes[k]], result[j]
-            hold = result[j]
+    while moves < n - 1:
+        while j > class_sizes[k] - 1:
             j += 1
-            flash = int(c1 * (hold - min_val))
-            if flash >= m:
-                flash = m - 1
-
-        j += 1
-        if j < n:
-            hold = result[j]
+            k = class_of(result[j])
+        flash = result[j]
+        while j != class_sizes[k]:
+            k = class_of(flash)
+            class_sizes[k] -= 1
+            result[class_sizes[k]], flash = flash, result[class_sizes[k]]
+            moves += 1
 
     # Insertion sort for final sorting within classes
     for i in range(1, n):

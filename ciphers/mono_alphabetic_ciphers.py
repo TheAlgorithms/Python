@@ -49,10 +49,11 @@ def main() -> None:
     key = "QWERTYUIOPASDFGHJKLZXCVBNM"
     mode = "decrypt"  # set to 'encrypt' or 'decrypt'
 
-    if mode == "encrypt":
-        translated = encrypt_message(key, message)
-    elif mode == "decrypt":
-        translated = decrypt_message(key, message)
+    match mode:
+        case "encrypt":
+            translated = encrypt_message(key, message)
+        case "decrypt":
+            translated = decrypt_message(key, message)
     print(f"Using the key {key}, the {mode}ed message is: {translated}")
 
 

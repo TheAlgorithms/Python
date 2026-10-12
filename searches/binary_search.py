@@ -42,6 +42,12 @@ def bisect_left(
     3
     >>> bisect_left([0, 5, 7, 10, 15], 6, 2)
     2
+    >>> bisect_left([], 2)
+    0
+    >>> bisect_left([2, 2, 2], 2)
+    0
+    >>> bisect_left([1, 2, 2, 2, 4], 2)
+    1
     """
     if hi < 0:
         hi = len(sorted_collection)
@@ -83,6 +89,12 @@ def bisect_right(
     3
     >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
     2
+    >>> bisect_right([], 2)
+    0
+    >>> bisect_right([2, 2, 2], 2)
+    3
+    >>> bisect_right([1, 2, 2, 2, 4], 2)
+    4
     """
     if hi < 0:
         hi = len(sorted_collection)

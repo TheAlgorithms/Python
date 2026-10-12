@@ -1,11 +1,15 @@
-from typing import Any
+from typing import Protocol
 
 
-def double_sort(collection: list[Any]) -> list[Any]:
+class Comparable(Protocol):
+    def __lt__(self, other: object, /) -> bool: ...
+
+
+def double_sort[T: Comparable](collection: list[T]) -> list[T]:
     """This sorting algorithm sorts an array using the principle of bubble sort,
     but does it both from left to right and right to left.
     Hence, it's called "Double sort"
-    :param collection: mutable ordered sequence of elements
+    :param collection: mutable ordered sequence of comparable elements
     :return: the same collection in ascending order
     Examples:
     >>> double_sort([-1 ,-2 ,-3 ,-4 ,-5 ,-6 ,-7])
@@ -16,6 +20,14 @@ def double_sort(collection: list[Any]) -> list[Any]:
     [-6, -5, -4, -3, -2, -1]
     >>> double_sort([-3, 10, 16, -42, 29]) == sorted([-3, 10, 16, -42, 29])
     True
+    >>> double_sort(["c", "a", "b"])
+    ['a', 'b', 'c']
+    >>> double_sort([2.5, -1, 0.0])
+    [-1, 0.0, 2.5]
+    >>> double_sort([1, "a"])
+    Traceback (most recent call last):
+    ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     no_of_elements = len(collection)
     for _ in range(

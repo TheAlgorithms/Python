@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Iterator
 from typing import Any
 
 
@@ -12,7 +13,7 @@ class Node:
         self.data: Any = data
         self.next_node: Node | None = None
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         node = self
         visited = set()
         while node:

@@ -44,14 +44,15 @@ def gauss_easter(year: int) -> datetime:
         + century_starting_point
     ) % 7
 
-    if days_to_add == 29 and days_from_phm_to_sunday == 6:
-        return datetime(year, 4, 19, tzinfo=UTC)
-    elif days_to_add == 28 and days_from_phm_to_sunday == 6:
-        return datetime(year, 4, 18, tzinfo=UTC)
-    else:
-        return datetime(year, 3, 22, tzinfo=UTC) + timedelta(
-            days=int(days_to_add + days_from_phm_to_sunday)
-        )
+    match days_to_add:
+        case 29 if days_from_phm_to_sunday == 6:
+            return datetime(year, 4, 19, tzinfo=UTC)
+        case 28 if days_from_phm_to_sunday == 6:
+            return datetime(year, 4, 18, tzinfo=UTC)
+        case _:
+            return datetime(year, 3, 22, tzinfo=UTC) + timedelta(
+                days=int(days_to_add + days_from_phm_to_sunday)
+            )
 
 
 if __name__ == "__main__":

@@ -2,24 +2,13 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from collections.abc import Iterable
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
     @abstractmethod
-    def __lt__(self: T, other: T) -> bool:
+    def __gt__(self, other: object, /) -> bool:
         pass
-
-    @abstractmethod
-    def __gt__(self: T, other: T) -> bool:
-        pass
-
-    @abstractmethod
-    def __eq__(self: T, other: object) -> bool:
-        pass
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 class Heap[T: Comparable]:
@@ -54,7 +43,7 @@ class Heap[T: Comparable]:
 
     def parent_index(self, child_idx: int) -> int | None:
         """
-        returns the parent index based on the given child index
+        Returns the parent index based on the given child index
 
         >>> h = Heap()
         >>> h.build_max_heap([103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5])
@@ -90,8 +79,8 @@ class Heap[T: Comparable]:
 
     def left_child_idx(self, parent_idx: int) -> int | None:
         """
-        return the left child index if the left child exists.
-        if not, return None.
+        Return the left child index if the left child exists.
+        If not, return None.
         """
         left_child_index = 2 * parent_idx + 1
         if left_child_index < self.heap_size:
@@ -100,8 +89,8 @@ class Heap[T: Comparable]:
 
     def right_child_idx(self, parent_idx: int) -> int | None:
         """
-        return the right child index if the right child exists.
-        if not, return None.
+        Return the right child index if the right child exists.
+        If not, return None.
         """
         right_child_index = 2 * parent_idx + 2
         if right_child_index < self.heap_size:
@@ -110,10 +99,10 @@ class Heap[T: Comparable]:
 
     def max_heapify(self, index: int) -> None:
         """
-        correct a single violation of the heap property in a subtree's root.
+        Correct a single violation of the heap property in a subtree's root.
 
         It is the function that is responsible for restoring the property
-        of Max heap i.e the maximum element is always at top.
+        of a max heap, i.e the maximum element is always at the top.
         """
         if index < self.heap_size:
             violation: int = index
@@ -133,7 +122,7 @@ class Heap[T: Comparable]:
 
     def build_max_heap(self, collection: Iterable[T]) -> None:
         """
-        build max heap from an unsorted array
+        Build a max heap from an unsorted array
 
         >>> h = Heap()
         >>> h.build_max_heap([20,40,50,20,10])
@@ -164,7 +153,7 @@ class Heap[T: Comparable]:
 
     def extract_max(self) -> T:
         """
-        get and remove max from heap
+        Get and remove max from heap
 
         >>> h = Heap()
         >>> h.build_max_heap([20,40,50,20,10])
@@ -195,7 +184,7 @@ class Heap[T: Comparable]:
 
     def insert(self, value: T) -> None:
         """
-        insert a new value into the max heap
+        Insert a new value into the max heap
 
         >>> h = Heap()
         >>> h.insert(10)
@@ -241,7 +230,6 @@ class Heap[T: Comparable]:
 if __name__ == "__main__":
     import doctest
 
-    # run doc test
     doctest.testmod()
 
     # demo

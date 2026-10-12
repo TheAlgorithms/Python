@@ -14,14 +14,11 @@ python3 insertion_sort.py
 """
 
 from collections.abc import MutableSequence
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequence[T]:
@@ -50,6 +47,28 @@ def insertion_sort[T: Comparable](collection: MutableSequence[T]) -> MutableSequ
     True
     >>> insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
     True
+    >>> values = [4, 2, 7, 1]
+    >>> result = insertion_sort(values)
+    >>> result is values
+    True
+    >>> values
+    [1, 2, 4, 7]
+
+    Equal-priority items retain their original relative order:
+    >>> from dataclasses import dataclass, field
+    >>> @dataclass(order=True)
+    ... class Item:
+    ...     priority: int
+    ...     label: str = field(compare=False)
+    >>> items = [Item(2, "A"), Item(1, "X"), Item(2, "B"), Item(1, "Y")]
+    >>> insertion_sort(items)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='X'), Item(priority=1, label='Y'),
+     Item(priority=2, label='A'), Item(priority=2, label='B')]
+    >>> other = [Item(2, "B"), Item(1, "Y"), Item(2, "A"), Item(1, "X")]
+    >>> insertion_sort(other)  # doctest: +NORMALIZE_WHITESPACE
+    [Item(priority=1, label='Y'), Item(priority=1, label='X'),
+     Item(priority=2, label='B'), Item(priority=2, label='A')]
+
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
     >>> insertion_sort(collection) == sorted(collection)

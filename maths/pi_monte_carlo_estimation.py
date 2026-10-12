@@ -15,7 +15,7 @@ class Point:
         return (self.x**2 + self.y**2) <= 1
 
     @classmethod
-    def random_unit_square(cls, ran: random.Random):
+    def random_unit_square(cls, ran: random.Random) -> "Point":
         """
         Generates a point randomly drawn from the unit square [0, 1) x [0, 1),
         using 'ran' random number generator

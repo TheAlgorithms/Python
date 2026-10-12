@@ -53,7 +53,7 @@ class Angle:
 @dataclass
 class Side:
     """
-    A side of a two dimensional Shape such as Polygon, etc.
+    A side of a two-dimensional shape such as Polygon, etc.
     adjacent_sides: a list of sides which are adjacent to the current side
     angle: the angle in degrees between each adjacent side
     length: the length of the current side in meters
@@ -118,15 +118,16 @@ class Ellipse:
     @property
     def perimeter(self) -> float:
         """
-        >>> round(Ellipse(5, 10).perimeter, 10)
-        48.4422410807
+        Use Ramanujan's first approximation for ellipse perimeter.
+        https://en.wikipedia.org/wiki/Perimeter_of_an_ellipse#First_approximation
+
+        >>> Ellipse(5, 10).perimeter
+        48.44210548835644
+        >>> Ellipse(1, 10).perimeter
+        40.60552518514097
         """
-        a, b = (
-            max(self.major_radius, self.minor_radius),
-            min(self.major_radius, self.minor_radius),
-        )
-        h = ((a - b) ** 2) / ((a + b) ** 2)
-        return math.pi * (a + b) * (1 + 3 * h / (10 + math.sqrt(4 - 3 * h)))
+        a, b = self.major_radius, self.minor_radius
+        return math.pi * (3 * (a + b) - ((3 * a + b) * (a + 3 * b)) ** 0.5)
 
     @property
     def eccentricity(self) -> float:

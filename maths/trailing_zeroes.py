@@ -30,7 +30,7 @@ def trailing_zeroes(num: int) -> int:
             ans += 1
         else:
             break
-        num /= 10
+        num //= 10
     return ans
 
 
