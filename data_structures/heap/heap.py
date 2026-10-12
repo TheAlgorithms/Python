@@ -7,7 +7,7 @@ from typing import Protocol
 
 class Comparable(Protocol):
     @abstractmethod
-    def __gt__(self: T, other: T, /) -> bool:
+    def __gt__(self, other: object, /) -> bool:
         pass
 
 
