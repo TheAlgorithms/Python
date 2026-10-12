@@ -53,8 +53,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
-if TYPE_CHECKING:
-    from mpl_toolkits.mplot3d.axes3d import Axes3D
+
 warnings.filterwarnings("ignore")
 
 TAG = "K-MEANS-CLUST/ "
@@ -158,10 +157,15 @@ def plot_heterogeneity(heterogeneity, k) -> None:
 
 
 def plot_kmeans(data, centroids, cluster_assignment) -> None:
-    ax = cast("Axes3D", plt.axes(projection="3d"))
+    ax = plt.axes(projection="3d")
     ax.scatter(data[:, 0], data[:, 1], data[:, 2], c=cluster_assignment, cmap="viridis")
     ax.scatter(
-        centroids[:, 0], centroids[:, 1], centroids[:, 2], c="red", s=100, marker="x"
+        centroids[:, 0], 
+        centroids[:, 1], 
+        zs=centroids[:, 2], 
+        c="red", 
+        s=100, 
+        marker="x"
     )
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
