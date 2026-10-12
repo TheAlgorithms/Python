@@ -1,5 +1,5 @@
 import argparse
-import datetime as dt
+from datetime import date
 
 
 def zeller(date_input: str) -> str:
@@ -119,8 +119,8 @@ def zeller(date_input: str) -> str:
             "Year out of range. There has to be some sort of limit...right?"
         )
 
-    # Get datetime obj for validation
-    dt_ck = dt.date(int(y), int(m), int(d))
+    # Get date obj for validation
+    dt_ck = date(int(y), int(m), int(d))
 
     # Start math
     if m <= 2:
