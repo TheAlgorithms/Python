@@ -98,7 +98,14 @@ def make_linked_list(elements_list: Iterable[int]) -> LinkedList:
     abc
     >>> make_linked_list([7, 25])
     7 -> 25
+    >>> make_linked_list(x for x in [7, 25])
+    7 -> 25
+    >>> make_linked_list(x for x in range(0))
+    Traceback (most recent call last):
+        ...
+    Exception: The Elements List is empty
     """
+    elements_list = list(elements_list)
     if not elements_list:
         raise Exception("The Elements List is empty")
 
