@@ -1,5 +1,5 @@
 import argparse
-import datetime
+import datetime as dt
 
 
 def zeller(date_input: str) -> str:
@@ -120,7 +120,7 @@ def zeller(date_input: str) -> str:
         )
 
     # Get datetime obj for validation
-    dt_ck = datetime.date(int(y), int(m), int(d))
+    dt_ck = dt.date(int(y), int(m), int(d))
 
     # Start math
     if m <= 2:
