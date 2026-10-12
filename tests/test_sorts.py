@@ -216,6 +216,8 @@ def test_rec_insertion_sort(case) -> None:
 def test_sort_rejects_non_comparable_items(sort) -> None:
     with pytest.raises(TypeError):
         sort([1, "a"])
+
+
 import pytest
 from sorts.slowsort import slowsort
 

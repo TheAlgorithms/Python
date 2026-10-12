@@ -15,9 +15,7 @@ from typing import Protocol, TypeVar
 
 
 class Comparable(Protocol):
-
-    def __lt__(self, other: object, /) -> bool:
-        ...
+    def __lt__(self, other: object, /) -> bool: ...
 
 
 T = TypeVar("T", bound=Comparable)
