@@ -20,7 +20,7 @@ re-implements a sort.
 
 import random
 import sys
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from itertools import pairwise
 from timeit import timeit
 from typing import Protocol
@@ -37,8 +37,13 @@ from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.tim_sort import tim_sort
 
+
+class SortFunction(Protocol):
+    def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
+
+
 # name -> callable.  Every callable accepts a list and returns the sorted list.
-SORTS: dict[str, Callable[[list[int]], Sequence[int]]] = {
+SORTS: dict[str, SortFunction] = {
     "bubble_sort": bubble_sort_iterative,
     "cocktail_shaker_sort": cocktail_shaker_sort,
     "comb_sort": comb_sort,
