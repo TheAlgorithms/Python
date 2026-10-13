@@ -10,14 +10,11 @@ For manual testing run:
 python binary_insertion_sort.py
 """
 
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: object, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def binary_insertion_sort[T: Comparable](collection: list[T]) -> list[T]:

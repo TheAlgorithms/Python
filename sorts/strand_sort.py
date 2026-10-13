@@ -1,5 +1,5 @@
 import operator
-from typing import Protocol, TypeVar
+from typing import Protocol
 
 
 class Comparable(Protocol):
@@ -8,10 +8,7 @@ class Comparable(Protocol):
     def __gt__(self, other: object, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
-
-
-def strand_sort[T](
+def strand_sort[T: Comparable](
     arr: list[T], reverse: bool = False, solution: list[T] | None = None
 ) -> list[T]:
     """

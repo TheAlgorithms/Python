@@ -29,18 +29,18 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: v2.29.4
+    rev: v2.30.1
     hooks:
       - id: pyproject-fmt
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.7
+    rev: v0.16.10
     hooks:
       - id: ruff-check
       - id: ruff-format
 
   - repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.2.73
+    rev: v0.2.78
     hooks:
       - id: rumdl-fmt
       - id: rumdl
@@ -55,7 +55,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.13
+    rev: 0.12.23
     hooks:
       - id: uv-lock
 
@@ -65,7 +65,7 @@ repos:
       - id: validate-pyproject
 
   - repo: https://github.com/15r10nk/matchify
-    rev: v0.2.0
+    rev: v0.3.0
     hooks:
       - id: matchify
         exclude: ^data_structures/linked_list/doubly_linked_list\.py$

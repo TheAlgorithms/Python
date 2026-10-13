@@ -21,14 +21,11 @@ For manual testing run:
 """
 
 from collections.abc import Sequence
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol
 
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
-
-
-T = TypeVar("T", bound=Comparable)
 
 
 def pancake_sort[T: Comparable](arr: Sequence[T]) -> list[T]:
