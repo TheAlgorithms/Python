@@ -1,0 +1,3 @@
+body {
+    margin: 0;
+}
