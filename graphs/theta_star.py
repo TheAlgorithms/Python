@@ -12,7 +12,7 @@ import logging
 from itertools import count, pairwise
 from math import hypot, inf
 
-Point = tuple[int, int]
+grid_point = tuple[int, int]
 logger = logging.getLogger(__name__)
 
 
@@ -39,17 +39,17 @@ class CornerGrid:
         self.cells = rows
         self.height, self.width = len(rows), len(rows[0])
 
-    def blocked(self, x: int, y: int) -> bool:
+    def blocked(self, column: int, row: int) -> bool:
         """Treat cells outside the grid as blocked.
 
         >>> CornerGrid([[0]]).blocked(-1, 0)
         True
         """
-        return not (0 <= x < self.width and 0 <= y < self.height) or bool(
-            self.cells[y][x]
+        return not (0 <= column < self.width and 0 <= row < self.height) or bool(
+            self.cells[row][column]
         )
 
-    def valid_corner(self, point: Point) -> bool:
+    def valid_corner(self, point: grid_point) -> bool:
         """A usable corner touches at least one free cell.
 
         >>> CornerGrid([[1]]).valid_corner((0, 0))
@@ -66,7 +66,7 @@ class CornerGrid:
             and any(not self.blocked(cx, cy) for cx in (x - 1, x) for cy in (y - 1, y))
         )
 
-    def line_of_sight(self, a: Point, b: Point) -> bool:
+    def line_of_sight(self, start: grid_point, end: grid_point) -> bool:
         """Test visibility with integer grid traversal, as in the paper.
 
         Diagonal contact at one corner is allowed, but moving along an edge
@@ -77,16 +77,16 @@ class CornerGrid:
         >>> CornerGrid([[1], [1]]).line_of_sight((0, 0), (0, 2))
         False
         """
-        if not self.valid_corner(a) or not self.valid_corner(b):
+        if not self.valid_corner(start) or not self.valid_corner(end):
             return False
-        x, y = a
-        dx, dy = abs(b[0] - x), abs(b[1] - y)
-        sx = 1 if b[0] >= x else -1
-        sy = 1 if b[1] >= y else -1
+        x, y = start
+        dx, dy = abs(end[0] - x), abs(end[1] - y)
+        sx = 1 if end[0] >= x else -1
+        sy = 1 if end[1] >= y else -1
         ox, oy = (sx - 1) // 2, (sy - 1) // 2
         error = 0
         if dx >= dy:
-            while x != b[0]:
+            while x != end[0]:
                 error += dy
                 if error >= dx:
                     if self.blocked(x + ox, y + oy):
@@ -99,7 +99,7 @@ class CornerGrid:
                     return False
                 x += sx
         else:
-            while y != b[1]:
+            while y != end[1]:
                 error += dx
                 if error >= dy:
                     if self.blocked(x + ox, y + oy):
@@ -113,7 +113,7 @@ class CornerGrid:
                 y += sy
         return True
 
-    def neighbors(self, point: Point) -> list[Point]:
+    def neighbors(self, point: grid_point) -> list[grid_point]:
         """Return visible neighboring corners in a fixed order.
 
         >>> CornerGrid([[0]]).neighbors((0, 0))
@@ -124,16 +124,16 @@ class CornerGrid:
         return [q for q in candidates if q != point and self.line_of_sight(point, q)]
 
 
-def distance(a: Point, b: Point) -> float:
+def distance(first: grid_point, second: grid_point) -> float:
     """Euclidean distance ``c(a,b)`` from the paper.
 
     >>> distance((0, 0), (3, 4))
     5.0
     """
-    return hypot(a[0] - b[0], a[1] - b[1])
+    return hypot(first[0] - second[0], first[1] - second[1])
 
 
-def path_length(path: list[Point]) -> float:
+def path_length(path: list[grid_point]) -> float:
     """Add the lengths of the path segments.
 
     >>> path_length([(0, 0), (3, 4), (6, 4)])
@@ -142,7 +142,9 @@ def path_length(path: list[Point]) -> float:
     return sum(distance(a, b) for a, b in pairwise(path))
 
 
-def reconstruct_path(parent: dict[Point, Point], goal: Point) -> list[Point]:
+def reconstruct_path(
+    parent: dict[grid_point, grid_point], goal: grid_point
+) -> list[grid_point]:
     """Follow parent pointers from the goal back to the start.
 
     >>> reconstruct_path({(0, 0): (0, 0), (1, 1): (0, 0)}, (1, 1))
@@ -154,7 +156,9 @@ def reconstruct_path(parent: dict[Point, Point], goal: Point) -> list[Point]:
     return path[::-1]
 
 
-def theta_star(grid: list[list[int]], start: Point, goal: Point) -> list[Point]:
+def theta_star(
+    grid: list[list[int]], start: grid_point, goal: grid_point
+) -> list[grid_point]:
     """Find an any-angle path through a grid using Basic Theta* (Algorithms 1-2).
 
     ``grid[y][x]`` is 0 for a free cell and 1 for an obstacle. The first row
@@ -223,7 +227,9 @@ def theta_star(grid: list[list[int]], start: Point, goal: Point) -> list[Point]:
     return _search(corner_grid, start, goal)
 
 
-def _search(corner_grid: CornerGrid, start: Point, goal: Point) -> list[Point]:
+def _search(
+    corner_grid: CornerGrid, start: grid_point, goal: grid_point
+) -> list[grid_point]:
     """Run Basic Theta* on a validated grid (shared with the cache experiment).
 
     >>> _search(CornerGrid([[0]]), (0, 0), (1, 1))
@@ -234,7 +240,7 @@ def _search(corner_grid: CornerGrid, start: Point, goal: Point) -> list[Point]:
     # h is the Euclidean distance to goal. Equal f prefers smaller g.
     g = {start: 0.0}
     parent = {start: start}
-    closed: set[Point] = set()
+    closed: set[grid_point] = set()
     serial = count()
     opened = [(distance(start, goal), 0.0, next(serial), start)]
 
