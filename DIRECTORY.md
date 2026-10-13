@@ -1644,6 +1644,7 @@
   * [Z Function](strings/z_function.py)
 
 ## [Tests](tests)
+  * [Test Find And Fix Pep798](tests/test_find_and_fix_pep798.py)
   * [Test Sorts](tests/test_sorts.py)
 
 ## [Web Programming](web_programming)
