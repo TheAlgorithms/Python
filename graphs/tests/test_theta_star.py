@@ -1,4 +1,9 @@
-"""Tests for the Basic Theta* examples from assignment 1."""
+"""Tests for "Theta*: Any-Angle Path Planning on Grids".
+
+Alex Nash, Kenny Daniel, Sven Koenig, Ariel Felner (2007).
+https://cdn.aaai.org/AAAI/2007/AAAI07-187.pdf
+Programmer: Uzia Peer. Date: 2026-10-12.
+"""
 
 from fractions import Fraction
 from itertools import pairwise
