@@ -34,7 +34,7 @@ def find_secret_passcode(logins: list[str]) -> int:
     # Split each login by character e.g. '319' -> ('3', '1', '9')
     split_logins = [tuple(login) for login in logins]
 
-    unique_chars = {char for login in split_logins for char in login}
+    unique_chars = {*login for login in split_logins}
 
     for permutation in itertools.permutations(unique_chars):
         satisfied = True

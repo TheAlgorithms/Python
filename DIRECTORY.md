@@ -867,6 +867,7 @@
   * [Josephus Problem](maths/josephus_problem.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
   * [Karatsuba](maths/karatsuba.py)
+  * [Keith Number](maths/keith_number.py)
   * [Kth Lexicographic Permutation](maths/kth_lexicographic_permutation.py)
   * [Laplace Transformation](maths/laplace_transformation.py)
   * [Largest Of Very Large Numbers](maths/largest_of_very_large_numbers.py)
@@ -1492,6 +1493,7 @@
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
   * [Shortest Job First](scheduling/shortest_job_first.py)
+  * [Weighted Interval Scheduling](scheduling/weighted_interval_scheduling.py)
 
 ## [Searches](searches)
   * [Binary Search](searches/binary_search.py)
@@ -1642,6 +1644,7 @@
   * [Z Function](strings/z_function.py)
 
 ## [Tests](tests)
+  * [Test Find And Fix Pep798](tests/test_find_and_fix_pep798.py)
   * [Test Sorts](tests/test_sorts.py)
 
 ## [Web Programming](web_programming)

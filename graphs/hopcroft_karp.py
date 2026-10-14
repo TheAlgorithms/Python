@@ -84,11 +84,7 @@ class HopcroftKarp[T]:
         self.graph = graph
         self.left_vertices = list(graph.keys())
         self.right_vertices = sorted(
-            {
-                right_vertex
-                for neighbors in graph.values()
-                for right_vertex in neighbors
-            },
+            {*neighbors for neighbors in graph.values()},
             key=repr,
         )
 

@@ -102,7 +102,7 @@ def bucket_sort(
         index = min(int((val - min_value) / bucket_size), bucket_count - 1)
         buckets[index].append(val)
 
-    return [val for bucket in buckets for val in sorted(bucket)]
+    return [*sorted(bucket) for bucket in buckets]
 
 
 if __name__ == "__main__":
