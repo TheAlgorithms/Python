@@ -23,7 +23,7 @@ def median(matrix: list[list[int]]) -> int:
         3
     """
     # Flatten the matrix into a sorted 1D list
-    linear = sorted(num for row in matrix for num in row)
+    linear = sorted(*row for row in matrix)
 
     # Calculate the middle index
     mid = (len(linear) - 1) // 2
