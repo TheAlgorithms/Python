@@ -317,7 +317,6 @@ skip = """\
 # free-threaded 3.15t test venv would otherwise leave several stubs unresolved.
 environment.python-version = "3.15"
 rules.call-non-callable = "ignore"
-rules.deprecated = "ignore"
 rules.invalid-argument-type = "ignore"
 rules.invalid-return-type = "ignore"
 rules.no-matching-overload = "ignore"
