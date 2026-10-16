@@ -18,6 +18,8 @@ Date: 2017.11.23
 
 """
 
+from collections.abc import Callable
+
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -32,18 +34,29 @@ class DenseLayer:
     """
 
     def __init__(
-        self, units, activation=None, learning_rate=None, is_input_layer=False
+        self,
+        units,
+        activation: Callable[[np.ndarray], np.ndarray] | None = None,
+        learning_rate=None,
+        is_input_layer=False,
     ) -> None:
         """
         common connected layer of bp network
         :param units: numbers of neural units
-        :param activation: activation function
+        :param activation: activation function, sigmoid if not given
         :param learning_rate: learning rate for paras
         :param is_input_layer: whether it is input layer or not
+
+        >>> DenseLayer(3).activation is sigmoid
+        True
+        >>> DenseLayer(3, activation=np.tanh).activation is np.tanh
+        True
         """
         self.units = units
         self.weight = None
         self.bias = None
+        if activation is None:
+            activation = sigmoid
         self.activation = activation
         if learning_rate is None:
             learning_rate = 0.3
@@ -54,8 +67,6 @@ class DenseLayer:
         rng = np.random.default_rng()
         self.weight = np.asmatrix(rng.normal(0, 0.5, (self.units, back_units)))
         self.bias = np.asmatrix(rng.normal(0, 0.5, self.units)).T
-        if self.activation is None:
-            self.activation = sigmoid
 
     def cal_gradient(self):
         # activation function may be sigmoid or linear
