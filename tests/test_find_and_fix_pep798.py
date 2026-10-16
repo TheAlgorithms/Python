@@ -97,13 +97,16 @@ def test_multiline_comprehension() -> None:
 
 def test_iter_python_files(tmp_path: Path) -> None:
     (tmp_path / "sub").mkdir()
+    (tmp_path / ".hidden").mkdir()
     first = tmp_path / "a.py"
     second = tmp_path / "sub" / "b.py"
     other = tmp_path / "c.txt"
-    for path in (first, second, other):
+    hidden = tmp_path / ".hidden" / "hidden.py"
+    for path in (first, second, other, hidden):
         path.write_text("")
     assert list(iter_python_files([tmp_path])) == [first, second]
-    assert list(iter_python_files([other])) == [other]
+    assert list(iter_python_files([other])) == []
+    assert list(iter_python_files([hidden])) == []
 
 
 def test_main_reports_without_fixing(
@@ -135,6 +138,18 @@ def test_main_clean_file_returns_zero(
     path.write_text("a = [y for y in ys]\n")
     assert main([str(path)]) == 0
     assert "0 PEP 798 opportunities found" in capsys.readouterr().out
+
+
+def test_main_defaults_to_current_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    path = tmp_path / "mod.py"
+    path.write_text("a = [y for x in xs for y in x]\n")
+    monkeypatch.chdir(tmp_path)
+    assert main([]) == 1
+    output = capsys.readouterr().out
+    assert f"{path}:1:" in output
+    assert "1 PEP 798 opportunity found" in output
 
 
 def test_main_skips_syntax_errors(
