@@ -14,12 +14,14 @@ https://en.wikipedia.org/wiki/Digital_root
 
 def digital_root(number: int) -> int:
     """
-    Return the digital root of a non-negative integer number.
+    Return the digital root of a non-negative integer.
 
     The digital root is the single-digit value obtained by repeatedly summing
-    the decimal digits of number until only one digit remains. The input is taken by
-    its absolute value, so negative numbers behave like their positive
-    counterpart.
+    the decimal digits of ``number`` until only one digit remains. Zero has a
+    digital root of zero. The input must be an integer greater than or equal to
+    zero.
+
+    See https://en.wikipedia.org/wiki/Digital_root for more information.
 
     >>> digital_root(0)
     0
@@ -29,12 +31,22 @@ def digital_root(number: int) -> int:
     2
     >>> digital_root(12345)
     6
-    >>> digital_root(-45)
-    9
     >>> digital_root(999999999999)
     9
+    >>> digital_root(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: number must be non-negative
+    >>> digital_root(1.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: number must be an integer
     """
-    number = abs(number)
+    if not isinstance(number, int):
+        raise TypeError("number must be an integer")
+    if number < 0:
+        raise ValueError("number must be non-negative")
+
     while number >= 10:
         number = sum(int(digit) for digit in str(number))
     return number
