@@ -45,7 +45,7 @@ output:
     ``26000``
 """
 
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from functools import cache
 from sys import maxsize
@@ -128,7 +128,7 @@ def matrix_chain_order(dims: list[int]) -> int:
 
 
 @contextmanager
-def elapsed_time(msg: str) -> Iterator:
+def elapsed_time(msg: str) -> Generator[None]:
     # print(f"Starting: {msg}")
     from time import perf_counter_ns
 
