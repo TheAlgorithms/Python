@@ -24,7 +24,9 @@ candidates are fixed innermost first; re-run the script to catch any leftovers.
 The rewritten source uses Python 3.15+ syntax, so fixed files need 3.15+.
 
 Usage:
-    scripts/find_and_fix_pep798.py [--fix] PATH [PATH ...]
+    scripts/find_and_fix_pep798.py [--fix] [PATH ...]
+
+If no path is provided, the current working directory is searched.
 
 Without ``--fix`` the script only reports and exits with status 1 if any
 opportunities were found.
@@ -213,14 +215,26 @@ def fix_source(source: str) -> str:
 def iter_python_files(paths: Iterable[Path]) -> Iterator[Path]:
     for path in paths:
         if path.is_dir():
-            yield from sorted(path.rglob("*.py"))
-        else:
+            yield from sorted(
+                candidate
+                for candidate in path.rglob("*.py")
+                if not any(part.startswith(".") for part in candidate.parent.parts)
+            )
+        elif path.suffix == ".py" and not any(
+            part.startswith(".") for part in path.parent.parts
+        ):
             yield path
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("paths", nargs="+", type=Path, help="files or directories")
+    parser.add_argument(
+        "paths",
+        nargs="*",
+        type=Path,
+        default=[Path.cwd()],
+        help="Python files or directories (defaults to the current directory)",
+    )
     parser.add_argument("--fix", action="store_true", help="rewrite files in place")
     args = parser.parse_args(argv)
 
