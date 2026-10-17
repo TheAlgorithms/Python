@@ -1,14 +1,16 @@
 """
-Find the area of various geometric shapes
+Calculate the area of various geometric 2D and 3D shapes
 Wikipedia reference: https://en.wikipedia.org/wiki/Area
 """
 
-from math import pi, sqrt, tan
+from math import pi, radians, sin, sqrt, tan
 
 
 def surface_area_cube(side_length: float) -> float:
     """
-    Calculate the Surface Area of a Cube.
+    Calculate the surface area of a cube.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cube
+    Formula: 6 * side_length^2
 
     >>> surface_area_cube(1)
     6
@@ -30,7 +32,9 @@ def surface_area_cube(side_length: float) -> float:
 
 def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
     """
-    Calculate the Surface Area of a Cuboid.
+    Calculate the surface area of a rectangular cuboid.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cuboid
+    Formula: 2 * (l*b + b*h + h*l)
 
     >>> surface_area_cuboid(1, 2, 3)
     22
@@ -58,7 +62,7 @@ def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
 
 def surface_area_sphere(radius: float) -> float:
     """
-    Calculate the Surface Area of a Sphere.
+    Calculate the surface area of a sphere.
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     Formula: 4 * pi * r^2
 
@@ -82,7 +86,8 @@ def surface_area_sphere(radius: float) -> float:
 
 def surface_area_hemisphere(radius: float) -> float:
     """
-    Calculate the Surface Area of a Hemisphere.
+    Calculate the surface area of a hemisphere.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     Formula: 3 * pi * r^2
 
     >>> surface_area_hemisphere(5)
@@ -103,9 +108,33 @@ def surface_area_hemisphere(radius: float) -> float:
     return 3 * pi * radius**2
 
 
+def lateral_surface_area_hemisphere(radius: float) -> float:
+    """
+    Calculate the lateral surface area of a hemisphere.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
+    Formula: 2 * pi * r^2
+
+    >>> lateral_surface_area_hemisphere(5)
+    157.07963267948966
+    >>> lateral_surface_area_hemisphere(1)
+    6.283185307179586
+    >>> lateral_surface_area_hemisphere(0)
+    0.0
+    >>> lateral_surface_area_hemisphere(1.1)
+    7.602654221687301
+    >>> lateral_surface_area_hemisphere(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_hemisphere() only accepts non-negative values
+    """
+    if radius < 0:
+        raise ValueError("surface_area_hemisphere() only accepts non-negative values")
+    return 2 * pi * radius**2
+
+
 def surface_area_cone(radius: float, height: float) -> float:
     """
-    Calculate the Surface Area of a Cone.
+    Calculate the surface area of a cone.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
 
@@ -137,7 +166,7 @@ def surface_area_cone(radius: float, height: float) -> float:
 
 def lateral_surface_cone(radius: float, height: float) -> float:
     """
-    Calculate the Lateral Surface Area of a Cone.
+    Calculate the lateral surface area of a cone.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     Formula: pi * r * (h ** 2 + r ** 2) ** 0.5
 
@@ -165,7 +194,9 @@ def surface_area_conical_frustum(
     radius_1: float, radius_2: float, height: float
 ) -> float:
     """
-    Calculate the Surface Area of a Conical Frustum.
+    Calculate the surface area of a conical frustum.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Frustum#Surface_area
+    Formula: pi * (r1 + r2) * (r1 - r2)^2 + pi * (r1^2 + r2^2)
 
     >>> surface_area_conical_frustum(1, 2, 3)
     45.511728065337266
@@ -196,9 +227,46 @@ def surface_area_conical_frustum(
     return pi * ((slant_height * (radius_1 + radius_2)) + radius_1**2 + radius_2**2)
 
 
+def lateral_surface_area_conical_frustum(
+    radius_1: float, radius_2: float, height: float
+) -> float:
+    """
+    Calculate the lateral surface area of a conical frustum.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Frustum#Surface_area
+    Formula: pi * (radius_1 + radius_2) * (radius_1 - radius_2)^2
+
+    >>> lateral_surface_area_conical_frustum(1, 2, 3)
+    29.803764797388304
+    >>> lateral_surface_area_conical_frustum(4, 5, 6)
+    171.98605870844534
+    >>> lateral_surface_area_conical_frustum(0, 0, 0)
+    0.0
+    >>> lateral_surface_area_conical_frustum(1.6, 2.6, 3.6)
+    49.2994270760586
+    >>> lateral_surface_area_conical_frustum(-1, 2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    >>> lateral_surface_area_conical_frustum(1, -2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    >>> lateral_surface_area_conical_frustum(1, 2, -3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    """
+    if radius_1 < 0 or radius_2 < 0 or height < 0:
+        raise ValueError(
+            "surface_area_conical_frustum() only accepts non-negative values"
+        )
+    slant_height = (height**2 + (radius_1 - radius_2) ** 2) ** 0.5
+    return pi * slant_height * (radius_1 + radius_2)
+
+
 def surface_area_cylinder(radius: float, height: float) -> float:
     """
-    Calculate the Surface Area of a Cylinder.
+    Calculate the surface area of a cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     Formula: 2 * pi * r * (h + r)
 
@@ -230,7 +298,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
 
 def lateral_surface_cylinder(radius: float, height: float) -> float:
     """
-    Calculate the Lateral Surface Area of a Cylinder.
+    Calculate the lateral surface area of a cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     Formula: 2 * pi * r * h
 
@@ -255,9 +323,10 @@ def lateral_surface_cylinder(radius: float, height: float) -> float:
 
 
 def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
-    """Calculate the Area of a Torus.
+    """
+    Calculate the area of a torus.
     Wikipedia reference: https://en.wikipedia.org/wiki/Torus
-    :return 4pi^2 * torus_radius * tube_radius
+    Formula: 4 * pi^2 * torus_radius * tube_radius
     >>> surface_area_torus(1, 1)
     39.47841760435743
     >>> surface_area_torus(4, 3)
@@ -291,6 +360,7 @@ def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
 def area_rectangle(length: float, width: float) -> float:
     """
     Calculate the area of a rectangle.
+    Formula: l * w
 
     >>> area_rectangle(10, 20)
     200
@@ -319,6 +389,7 @@ def area_rectangle(length: float, width: float) -> float:
 def area_square(side_length: float) -> float:
     """
     Calculate the area of a square.
+    Formula: s^2
 
     >>> area_square(10)
     100
@@ -339,6 +410,7 @@ def area_square(side_length: float) -> float:
 def area_triangle(base: float, height: float) -> float:
     """
     Calculate the area of a triangle given the base and height.
+    Formula: (b * h) / 2
 
     >>> area_triangle(10, 10)
     50.0
@@ -366,8 +438,11 @@ def area_triangle(base: float, height: float) -> float:
 
 def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
     """
-    Calculate area of triangle when the length of 3 sides are known.
-    This function uses Heron's formula: https://en.wikipedia.org/wiki/Heron%27s_formula
+    Calculate the area of triangle given the length of 3 sides.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Heron%27s_formula
+    This function uses Heron's formula:
+    s = (s1 + s2 + s3) / 2
+    Formula: s(s-s1)(s-s2)(s-s3)^0.5
 
     >>> area_triangle_three_sides(5, 12, 13)
     30.0
@@ -412,9 +487,103 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
     return area
 
 
+def area_triangle_side_angle_side(
+    side1: float, angle_in_degrees: float, side2: float
+) -> float:
+    """
+    Calculate the area of a triangle given 2 sides and the enclosing angle.
+    Wikipedia source: https://en.wikipedia.org/wiki/Area_of_a_triangle
+    Formula: s1 * s2 * sin(a)
+
+    >>> area_triangle_side_angle_side(1, 30, 2)
+    0.49999999999999994
+    >>> area_triangle_side_angle_side(12, 60, 9)
+    46.76537180435968
+    >>> area_triangle_side_angle_side(0, 0, 0)
+    0.0
+    >>> area_triangle_side_angle_side(4.7, 37.5, 8.2)
+    11.730832736998046
+    >>> area_triangle_side_angle_side(-1, -2, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_side_angle_side() only accepts non-negative values
+    >>> area_triangle_side_angle_side(1, -2, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_side_angle_side() only accepts non-negative values
+    >>> area_triangle_side_angle_side(2, 183, 7)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given angle does not form a triangle: must be less than 180 degrees
+    """
+    if side1 < 0 or side2 < 0 or angle_in_degrees < 0:
+        raise ValueError(
+            "area_triangle_side_angle_side() only accepts non-negative values"
+        )
+    if angle_in_degrees > 180:
+        raise ValueError(
+            "Given angle does not form a triangle: must be less than 180 degrees"
+        )
+    area = side1 * side2 * sin(radians(angle_in_degrees)) / 2
+    return area
+
+
+def area_triangle_angle_side_angle(
+    angle_in_degrees1: float, side: float, angle_in_degrees2: float
+) -> float:
+    """
+    Calculate the area of a triangle given 2 angles and the enclosing side.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Area_of_a_triangle
+    Formula: s^2 sin(a1)*sin(a2) / (2 * sin(a1 + a2))
+
+    >>> area_triangle_angle_side_angle(45, 10, 60)
+    31.698729810778065
+    >>> area_triangle_angle_side_angle(37.5, 7.8, 81.3)
+    20.889315201325292
+    >>> area_triangle_angle_side_angle(0, 0, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given angles do not form a triangle: sum must be between \
+0 and 180 degrees
+    >>> area_triangle_angle_side_angle(-1, -2, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_angle_side_angle() only accepts non-negative values
+    >>> area_triangle_angle_side_angle(1, -2, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_triangle_angle_side_angle() only accepts non-negative values
+    >>> area_triangle_angle_side_angle(92, 18, 99)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given angles do not form a triangle: sum must be between \
+0 and 180 degrees
+    """
+    if side < 0 or angle_in_degrees1 < 0 or angle_in_degrees1 < 0:
+        raise ValueError(
+            "area_triangle_angle_side_angle() only accepts non-negative values"
+        )
+
+    if not 0 < angle_in_degrees1 + angle_in_degrees2 < 180:
+        raise ValueError(
+            "Given angles do not form a triangle: sum must be between 0 and 180 degrees"
+        )
+
+    angle_in_rad1 = radians(angle_in_degrees1)
+    angle_in_rad2 = radians(angle_in_degrees2)
+    area = (
+        (side**2)
+        * sin(angle_in_rad1)
+        * sin(angle_in_rad2)
+        / (2 * sin(angle_in_rad1 + angle_in_rad2))
+    )
+    return area
+
+
 def area_parallelogram(base: float, height: float) -> float:
     """
     Calculate the area of a parallelogram.
+    Formula: base * height
 
     >>> area_parallelogram(10, 20)
     200
@@ -443,6 +612,7 @@ def area_parallelogram(base: float, height: float) -> float:
 def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     Calculate the area of a trapezium.
+    Formula: (base1 + base2) * height / 2
 
     >>> area_trapezium(10, 20, 30)
     450.0
@@ -481,12 +651,13 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     if base1 < 0 or base2 < 0 or height < 0:
         raise ValueError("area_trapezium() only accepts non-negative values")
-    return 1 / 2 * (base1 + base2) * height
+    return (base1 + base2) * height / 2
 
 
 def area_circle(radius: float) -> float:
     """
     Calculate the area of a circle.
+    Formula: pi * r^2
 
     >>> area_circle(20)
     1256.6370614359173
@@ -506,7 +677,8 @@ def area_circle(radius: float) -> float:
 
 def area_ellipse(radius_x: float, radius_y: float) -> float:
     """
-    Calculate the area of a ellipse.
+    Calculate the area of an ellipse.
+    Formula: pi * r1 * r2
 
     >>> area_ellipse(10, 10)
     314.1592653589793
@@ -537,6 +709,7 @@ def area_ellipse(radius_x: float, radius_y: float) -> float:
 def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
     Calculate the area of a rhombus.
+    Formula: d1 * d2 / 2
 
     >>> area_rhombus(10, 20)
     100.0
@@ -559,7 +732,7 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
     if diagonal_1 < 0 or diagonal_2 < 0:
         raise ValueError("area_rhombus() only accepts non-negative values")
-    return 1 / 2 * diagonal_1 * diagonal_2
+    return diagonal_1 * diagonal_2 / 2
 
 
 def area_reg_polygon(sides: int, length: float) -> float:
@@ -576,12 +749,12 @@ def area_reg_polygon(sides: int, length: float) -> float:
     Traceback (most recent call last):
         ...
     ValueError: area_reg_polygon() only accepts integers greater than or equal to \
-three as number of sides
+three as the number of sides
     >>> area_reg_polygon(-1, -2)
     Traceback (most recent call last):
         ...
     ValueError: area_reg_polygon() only accepts integers greater than or equal to \
-three as number of sides
+three as the number of sides
     >>> area_reg_polygon(5, -2)
     Traceback (most recent call last):
         ...
@@ -591,12 +764,12 @@ length of a side
     Traceback (most recent call last):
         ...
     ValueError: area_reg_polygon() only accepts integers greater than or equal to \
-three as number of sides
+three as the number of sides
     """
     if not isinstance(sides, int) or sides < 3:
         raise ValueError(
             "area_reg_polygon() only accepts integers greater than or \
-equal to three as number of sides"
+equal to three as the number of sides"
         )
     if length < 0:
         raise ValueError(
@@ -620,7 +793,7 @@ def surface_area_reg_prism(sides: int, edge: float, height: float) -> float:
     Traceback (most recent call last):
         ...
     ValueError: surface_area_reg_prism() only accepts integers greater than or equal \
-to three as number of sides
+to three as the number of sides
     >>> surface_area_reg_prism(5, -2, 3)
     Traceback (most recent call last):
         ...
@@ -635,12 +808,12 @@ length of an edge or height
     Traceback (most recent call last):
         ...
     ValueError: surface_area_reg_prism() only accepts integers greater than or equal \
-to three as number of sides
+to three as the number of sides
     """
     if not isinstance(sides, int) or sides < 3:
         raise ValueError(
             "surface_area_reg_prism() only accepts integers greater than or \
-equal to three as number of sides"
+equal to three as the number of sides"
         )
     if edge < 0 or height < 0:
         raise ValueError(
@@ -660,6 +833,8 @@ if __name__ == "__main__":
     print(f"Square: {area_square(10) = }")
     print(f"Triangle: {area_triangle(10, 10) = }")
     print(f"Triangle: {area_triangle_three_sides(5, 12, 13) = }")
+    print(f"Triangle: {area_triangle_side_angle_side(5, 45, 13) = }")
+    print(f"Triangle: {area_triangle_angle_side_angle(5, 12, 103) = }")
     print(f"Parallelogram: {area_parallelogram(10, 20) = }")
     print(f"Rhombus: {area_rhombus(10, 20) = }")
     print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
@@ -670,13 +845,18 @@ if __name__ == "__main__":
     print(f"Cuboid: {surface_area_cuboid(10, 20, 30) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
     print(f"Hemisphere: {surface_area_hemisphere(20) = }")
+    print(f"Hemisphere, lateral: {lateral_surface_area_hemisphere(20) = }")
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Cone, lateral: {lateral_surface_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
+    print(
+        f"Conical Frustum, lateral: "
+        f"{lateral_surface_area_conical_frustum(10, 20, 30) = }"
+    )
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
     print(f"Cylinder, lateral: {lateral_surface_cylinder(10, 20) = }")
     print(f"Torus: {surface_area_torus(20, 10) = }")
     print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
     print(f"Square: {area_reg_polygon(4, 10) = }")
-    print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")
+    print(f"Regular Pentagon: {area_reg_polygon(5, 10) = }")
     print(f"Regular Pentagonal Prism: {surface_area_reg_prism(5, 10, 15) = }")
