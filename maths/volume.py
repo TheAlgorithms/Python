@@ -1,18 +1,19 @@
 """
 Find the volume of various shapes.
 
-* https://en.wikipedia.org/wiki/Volume
-* https://en.wikipedia.org/wiki/Spherical_cap
+Wikipedia references:
+    https://en.wikipedia.org/wiki/Volume
+    https://en.wikipedia.org/wiki/Spherical_cap
 """
 
 from __future__ import annotations
 
-from math import pi, pow  # noqa: A004
+from math import pi
 
 
 def vol_cube(side_length: float) -> float:
     """
-    Calculate the Volume of a Cube.
+    Calculate the volume of a cube.
 
     >>> vol_cube(1)
     1.0
@@ -29,7 +30,7 @@ def vol_cube(side_length: float) -> float:
     """
     if side_length < 0:
         raise ValueError("vol_cube() only accepts non-negative values")
-    return pow(side_length, 3)
+    return side_length**3.0
 
 
 def vol_spherical_cap(height: float, radius: float) -> float:
@@ -37,7 +38,7 @@ def vol_spherical_cap(height: float, radius: float) -> float:
     Calculate the volume of the spherical cap.
 
     >>> vol_spherical_cap(1, 2)
-    5.235987755982988
+    5.235987755982989
     >>> vol_spherical_cap(1.6, 2.6)
     16.621119532592402
     >>> vol_spherical_cap(0, 0)
@@ -54,7 +55,7 @@ def vol_spherical_cap(height: float, radius: float) -> float:
     if height < 0 or radius < 0:
         raise ValueError("vol_spherical_cap() only accepts non-negative values")
     # Volume is 1/3 pi * height squared * (3 * radius - height)
-    return 1 / 3 * pi * pow(height, 2) * (3 * radius - height)
+    return pi * height**2 * (3 * radius - height) / 3
 
 
 def vol_spheres_intersect(
@@ -63,10 +64,10 @@ def vol_spheres_intersect(
     r"""
     Calculate the volume of the intersection of two spheres.
 
-    The intersection is composed by two spherical caps and therefore its volume is the
-    sum of the volumes of the spherical caps.
+    The intersection is composed of two spherical caps.
+    Therefore its volume is the sum of the volumes of the spherical caps.
     First, it calculates the heights :math:`(h_1, h_2)` of the spherical caps,
-    then the two volumes and it returns the sum.
+    then the two volumes, and it returns the sum.
     The height formulas are
 
     .. math::
@@ -78,7 +79,7 @@ def vol_spheres_intersect(
                     \cdot (radius_2 + radius_1 - centers\_distance)}
                    {2 \cdot centers\_distance}
 
-    if `centers_distance` is 0 then it returns the volume of the smallers sphere
+    If `centers_distance` is 0, then it returns the volume of the smallers sphere
 
     :return: ``vol_spherical_cap`` (:math:`h_1`, :math:`radius_2`)
              + ``vol_spherical_cap`` (:math:`h_2`, :math:`radius_1`)
@@ -86,7 +87,7 @@ def vol_spheres_intersect(
     >>> vol_spheres_intersect(2, 2, 1)
     21.205750411731103
     >>> vol_spheres_intersect(2.6, 2.6, 1.6)
-    40.71504079052372
+    40.71504079052373
     >>> vol_spheres_intersect(0, 0, 0)
     0.0
     >>> vol_spheres_intersect(-2, 2, 1)
@@ -131,7 +132,7 @@ def vol_spheres_union(
     First, it calculates the volumes :math:`(v_1, v_2)` of the spheres,
     then the volume of the intersection :math:`i` and
     it returns the sum :math:`v_1 + v_2 - i`.
-    If `centers_distance` is 0 then it returns the volume of the larger sphere
+    If `centers_distance` is 0, then it returns the volume of the larger sphere.
 
     :return: ``vol_sphere`` (:math:`radius_1`) + ``vol_sphere`` (:math:`radius_2`)
              - ``vol_spheres_intersect``
@@ -172,7 +173,7 @@ def vol_spheres_union(
 
 def vol_cuboid(width: float, height: float, length: float) -> float:
     """
-    Calculate the Volume of a Cuboid.
+    Calculate the volume of a cuboid.
 
     :return: multiple of `width`, `length` and `height`
 
@@ -204,8 +205,8 @@ def vol_cuboid(width: float, height: float, length: float) -> float:
 
 def vol_cone(area_of_base: float, height: float) -> float:
     r"""
-    | Calculate the Volume of a Cone.
-    | Wikipedia reference: https://en.wikipedia.org/wiki/Cone
+    Calculate the volume of a cone.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cone
 
     :return: :math:`\frac{1}{3} \cdot area\_of\_base \cdot height`
 
@@ -255,7 +256,7 @@ def vol_right_circ_cone(radius: float, height: float) -> float:
     """
     if height < 0 or radius < 0:
         raise ValueError("vol_right_circ_cone() only accepts non-negative values")
-    return pi * pow(radius, 2) * height / 3.0
+    return pi * radius**2 * height / 3.0
 
 
 def vol_prism(area_of_base: float, height: float) -> float:
@@ -339,14 +340,14 @@ def vol_sphere(radius: float) -> float:
     if radius < 0:
         raise ValueError("vol_sphere() only accepts non-negative values")
     # Volume is 4/3 * pi * radius cubed
-    return 4 / 3 * pi * pow(radius, 3)
+    return 4 / 3 * pi * radius**3
 
 
 def vol_hemisphere(radius: float) -> float:
     r"""
-    | Calculate the volume of a hemisphere
-    | Wikipedia reference: https://en.wikipedia.org/wiki/Hemisphere
-    | Other references: https://www.cuemath.com/geometry/hemisphere
+    Calculate the volume of a hemisphere
+    Wikipedia reference: https://en.wikipedia.org/wiki/Hemisphere
+    Other references: https://www.cuemath.com/geometry/hemisphere
 
     :return: :math:`\frac{2}{3} \cdot \pi \cdot radius^3`
 
@@ -366,12 +367,12 @@ def vol_hemisphere(radius: float) -> float:
     if radius < 0:
         raise ValueError("vol_hemisphere() only accepts non-negative values")
     # Volume is radius cubed * pi * 2/3
-    return pow(radius, 3) * pi * 2 / 3
+    return radius**3 * pi * 2 / 3
 
 
 def vol_circular_cylinder(radius: float, height: float) -> float:
     r"""
-    | Calculate the Volume of a Circular Cylinder.
+    Calculate the volume of a circular cylinder.
     | Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
 
     :return: :math:`\pi \cdot radius^2 \cdot height`
@@ -396,14 +397,14 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     if height < 0 or radius < 0:
         raise ValueError("vol_circular_cylinder() only accepts non-negative values")
     # Volume is radius squared * height * pi
-    return pow(radius, 2) * height * pi
+    return radius**2 * height * pi
 
 
 def vol_hollow_circular_cylinder(
     inner_radius: float, outer_radius: float, height: float
 ) -> float:
     """
-    Calculate the Volume of a Hollow Circular Cylinder.
+    Calculate the volume of a hollow circular cylinder.
 
     >>> vol_hollow_circular_cylinder(1, 2, 3)
     28.274333882308138
@@ -437,20 +438,20 @@ def vol_hollow_circular_cylinder(
         )
     if outer_radius <= inner_radius:
         raise ValueError("outer_radius must be greater than inner_radius")
-    return pi * (pow(outer_radius, 2) - pow(inner_radius, 2)) * height
+    return pi * (outer_radius**2 - inner_radius**2) * height
 
 
 def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> float:
     """
-    | Calculate the Volume of a Conical Frustum.
-    | Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
+    Calculate the volume of a conical frustum.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
 
     >>> vol_conical_frustum(45, 7, 28)
-    48490.482608158454
+    48490.48260815846
     >>> vol_conical_frustum(1, 1, 2)
     7.330382858376184
     >>> vol_conical_frustum(1.6, 2.6, 3.6)
-    48.7240076620753
+    48.72400766207531
     >>> vol_conical_frustum(0, 0, 0)
     0.0
     >>> vol_conical_frustum(-2, 2, 1)
@@ -470,18 +471,12 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
     #           (radius_1 squared + radius_2 squared + radius_1 * radius_2)
     if radius_1 < 0 or radius_2 < 0 or height < 0:
         raise ValueError("vol_conical_frustum() only accepts non-negative values")
-    return (
-        1
-        / 3
-        * pi
-        * height
-        * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
-    )
+    return pi * height * (radius_1**2 + radius_2**2 + radius_1 * radius_2) / 3
 
 
 def vol_torus(torus_radius: float, tube_radius: float) -> float:
     r"""
-    | Calculate the Volume of a Torus.
+    | Calculate the volume of a torus.
     | Wikipedia reference: https://en.wikipedia.org/wiki/Torus
 
     :return: :math:`2 \pi^2 \cdot torus\_radius \cdot tube\_radius^2`
@@ -507,7 +502,7 @@ def vol_torus(torus_radius: float, tube_radius: float) -> float:
     """
     if torus_radius < 0 or tube_radius < 0:
         raise ValueError("vol_torus() only accepts non-negative values")
-    return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
+    return 2 * pi**2 * torus_radius * tube_radius**2
 
 
 def vol_octahedron(oct_side: float) -> float:
@@ -538,8 +533,8 @@ def vol_octahedron(oct_side: float) -> float:
 
 def vol_icosahedron(tri_side: float) -> float:
     """
-    | Calculate the Volume of an Icosahedron.
-    | Wikipedia reference: https://en.wikipedia.org/wiki/Regular_icosahedron
+    Calculate the volume of an icosahedron.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Regular_icosahedron
 
     >>> from math import isclose
     >>> isclose(vol_icosahedron(2.5), 34.088984228514256)
