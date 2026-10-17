@@ -537,8 +537,8 @@ def area_triangle_angle_side_angle(
     Wikipedia reference: https://en.wikipedia.org/wiki/Area_of_a_triangle
     Formula: s^2 sin(a1)*sin(a2) / (2 * sin(a1 + a2))
 
-    >>> area_triangle_angle_side_angle(45, 10, 70)
-    36.65769145387496
+    >>> area_triangle_angle_side_angle(45, 10, 45)
+    25.000000000000004
     >>> area_triangle_angle_side_angle(37.5, 7.8, 81.3)
     20.889315201325292
     >>> area_triangle_angle_side_angle(0, 0, 0)
