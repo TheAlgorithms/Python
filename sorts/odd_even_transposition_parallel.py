@@ -99,6 +99,8 @@ def odd_even_transposition(arr):
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
     False
     """
+    if not arr:
+        return arr
     # spawn method is considered safer than fork
     multiprocessing_context = mp.get_context("spawn")
 
