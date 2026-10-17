@@ -1,24 +1,25 @@
 """
-Calculate sin function.
-
-It's not a perfect function so I am rounding the result to 10 decimal places by default.
+Calculate the sine function, approximated by Taylor series expansion
 
 Formula: sin(x) = x - x^3/3! + x^5/5! - x^7/7! + ...
-Where: x = angle in randians.
+  Where: x = angle in randians.
 
 Source:
     https://www.homeschoolmath.net/teaching/sine_calculator.php
-
+    Wikipedia reference: https://en.wikipedia.org/wiki/Taylor_series
 """
 
-from math import factorial, radians
+from math import radians
 
 
-def sin(
-    angle_in_degrees: float, accuracy: int = 18, rounded_values_count: int = 10
-) -> float:
+def sin(angle_in_degrees: float, rounded_values_count: int = 10) -> float:
     """
-    Implement sin function.
+    Calculate the sine function, approximated by Taylor series expansion
+
+    For trigonometry calculations the expected precision is about 10 digits.
+    Python has floating precision of about 15 digits.
+    Using operation ** and / iteratively, precision is lost quickly
+    This method rounds to 10 digits by default, to be safe.
 
     >>> sin(0.0)
     0.0
@@ -41,21 +42,25 @@ def sin(
     >>> sin(89.7)
     0.9999862922
     """
-    # Simplify the angle to be between 360 and -360 degrees.
-    angle_in_degrees = angle_in_degrees - ((angle_in_degrees // 360.0) * 360.0)
 
-    # Converting from degrees to radians
+    # Simplify the angle to be between 360 and -360 degrees.
+    angle_in_degrees %= 360.0
+
     angle_in_radians = radians(angle_in_degrees)
 
     result = angle_in_radians
-    a = 3
-    b = -1
+    power_x = 3
+    fac = -6  # - factorial(power_x)
+    result_old = 2  # any impossible sine result will do
 
-    for _ in range(accuracy):
-        result += (b * (angle_in_radians**a)) / factorial(a)
-
-        b = -b  # One positive term and the next will be negative and so on...
-        a += 2  # Increased by 2 for every term.
+    # Keep adding the next Tayler term until the result stops changing.
+    while True:
+        result += angle_in_radians**power_x / fac
+        power_x += 2  # Increased by 2 for every term.
+        fac *= -power_x * (power_x - 1)
+        if result == result_old:
+            break
+        result_old = result
 
     return round(result, rounded_values_count)
 
