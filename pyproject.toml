@@ -325,7 +325,6 @@ rules.not-subscriptable = "ignore"
 rules.parameter-already-assigned = "ignore"
 rules.unresolved-attribute = "ignore"
 rules.unresolved-import = "ignore"
-rules.unsupported-operator = "ignore"
 
 [tool.pytest]
 ini_options.addopts = [

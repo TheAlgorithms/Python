@@ -16,6 +16,7 @@ from typing import Any, Protocol
 
 class Comparable(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
+    def __le__(self, other: Any, /) -> bool: ...
 
 
 def merge[T: Comparable](input_list: list[T], low: int, mid: int, high: int) -> list[T]:

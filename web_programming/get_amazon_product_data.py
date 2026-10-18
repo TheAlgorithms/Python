@@ -57,7 +57,7 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
     ):
         try:
             product_title = item.h2.text
-            product_link = "https://www.amazon.in/" + item.h2.a["href"]
+            product_link = f"https://www.amazon.in/{item.h2.a['href']}"
             product_price = item.find("span", attrs={"class": "a-offscreen"}).text
             try:
                 product_rating = item.find("span", attrs={"class": "a-icon-alt"}).text
