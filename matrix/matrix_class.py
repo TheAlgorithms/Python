@@ -8,7 +8,7 @@ class Matrix:
     Matrix object generated from a 2D array where each element is an array representing
     a row.
     Rows can contain type int or float.
-    Common operations and information available.
+    Common operations and properties are available.
     >>> rows = [
     ...     [1, 2, 3],
     ...     [4, 5, 6],
@@ -145,14 +145,296 @@ class Matrix:
 
     @property
     def is_square(self) -> bool:
-        return self.order[0] == self.order[1]
+        """
+        Returns True if the matrix is square, False otherwise.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Square_matrix
+        >>> print(Matrix([[1, 2], [3, 4]]).is_square)
+        True
+        >>> print(Matrix([[1, 2, 3], [3, 4, 5]]).is_square)
+        False
+        >>> print(Matrix([[1]]).is_square)
+        True
+        >>> print(Matrix([[1, 2], [3,4], [5,6]]).is_square)
+        False
+        """
+        return self.num_rows == self.num_columns
 
     def identity(self) -> Matrix:
+        """
+        Returns the identity matrix of the same order as the matrix.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Identity_matrix
+        >>> print(Matrix([[1, 2], [3, 4]]).identity())
+        [[1. 0.]
+         [0. 1.]]
+        >>> print(Matrix([[1, 2, 3], [3, 4, 5]]).identity())
+        Traceback (most recent call last):
+        ...
+        ValueError: Only square matrices have an identity matrix
+        """
+        if not self.is_square:
+            raise ValueError("Only square matrices have an identity matrix")
         values = [
             [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
             for row_num in range(self.num_rows)
         ]
         return Matrix(values)
+
+    @property
+    def is_identy(self) -> bool:
+        """
+        Returns True if the matrix is an identity matrix, False otherwise.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Identity_matrix
+        >>> print(Matrix([[1, 0], [0, 1]]).is_identy)
+        True
+        >>> print(Matrix([[1, 2], [1, 4]]).is_identy)
+        False
+        >>> print(Matrix([[1, 0, 0], [0, 0, 1]]).is_identy)
+        Traceback (most recent call last):
+        ...
+        ValueError: Only square matrices can be identity matrices
+        """
+        if not self.is_square:
+            raise ValueError("Only square matrices can be identity matrices")
+        for row in range(self.num_rows):
+            for col in range(self.num_columns):
+                if self.rows[row][col] != (0 if row != col else 1):
+                    return False
+        return True
+
+    @property
+    def is_zero_matrix(self) -> bool:
+        """
+        Returns True if all elements of the matrix are zero, False otherwise.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Zero_matrix
+        >>> print(Matrix([[1, 2, 3], [3, 4, 5]]).is_zero_matrix)
+        False
+        >>> print(Matrix([[0,0,0],[0,0,0],]).is_zero_matrix)
+        True
+        >>> print(Matrix([[0]]).is_zero_matrix)
+        True
+        >>> print(Matrix([[1]]).is_zero_matrix)
+        False
+        """
+        for row in range(self.num_rows):
+            for col in range(self.num_columns):
+                if self.rows[row][col] != 0:
+                    return False
+        return True
+
+    @property
+    def is_ones_matrix(self) -> bool:
+        """
+        Returns True if all elements of the matrix are 1, False otherwise.
+        Wikipedia: https://en.wikipedia.org/wiki/Matrix_of_ones
+        >>> print(Matrix([[1, 2, 3], [3, 4, 5]]).is_ones_matrix)
+        False
+        >>> print(Matrix([[1,1,1],[1,1,1]]).is_ones_matrix)
+        True
+        >>> print(Matrix([[0]]).is_ones_matrix)
+        False
+        >>> print(Matrix([[1]]).is_ones_matrix)
+        True
+        """
+
+        for row in range(self.num_rows):
+            for col in range(self.num_columns):
+                if self.rows[row][col] != 1:
+                    return False
+        return True
+
+    @property
+    def is_binary(self) -> bool:
+        """
+        Returns True if all elements of the matrix are either 0 or 1, False otherwise.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Logical_matrix
+        >>> print(Matrix([[1, 0], [0, 1]]).is_binary)
+        True
+        >>> print(Matrix([[1, 2], [3, 4]]).is_binary)
+        False
+        """
+        return all(element in (0, 1) for row in self.rows for element in row)
+
+    def diagonal(self) -> list[int]:
+        """
+        Returns a list containing the values on the diagonal of the matrix.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Main_diagonal
+        >>> print(Matrix([[1,2,3], [4,5,6], [7,8,9]]).diagonal())
+        [1, 5, 9]
+        >>> print(Matrix([[2]]).diagonal())
+        [2]
+        >>> print(Matrix([[1,2,3,4], [5,6,7,8], [9,10,11,12]]).diagonal())
+        [1, 6, 11]
+        >>> print(Matrix([[1,2,3], [4,5,6], [7,8,9] ,[10,11,12]]).diagonal())
+        [1, 5, 9]
+        """
+        return [self.rows[i][i] for i in range(min(self.num_rows, self.num_columns))]
+
+    def anti_diagonal(self) -> list[int]:
+        """
+        Returns a list containing the anti-diagonal elements of the matrix.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Anti-diagonal_matrix
+        >>> print(Matrix([[1,2,3], [4,5,6], [7,8,9]]).anti_diagonal())
+        [3, 5, 7]
+        >>> print(Matrix([[1,2,3,4], [5,6, 7, 8]]).anti_diagonal())
+        [4, 7]
+        >>> print(Matrix([[1,2], [3,4], [5,6]]).anti_diagonal())
+        [2, 3]
+        >>> print(Matrix([[2]]).anti_diagonal())
+        [2]
+        """
+        return [
+            self.rows[i][-1 - i] for i in range(min(self.num_rows, self.num_columns))
+        ]
+
+    @property
+    def is_diagonal(self) -> bool:
+        """
+        Returns True if the matrix is diagonal, False otherwise.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Main_diagonal
+
+        >>> print(Matrix([[2, 0], [0, 1]]).is_diagonal)
+        True
+        >>> print(Matrix([[2, 0, 0], [0, 1, 0]]).is_diagonal)
+        True
+        >>> print(Matrix([[2, 0, 0], [0, 1, 0], [0, 0, 3], [0,0,0]]).is_diagonal)
+        True
+        >>> print(Matrix([[1, 2], [3, 4]]).is_diagonal)
+        False
+        >>> print(Matrix([[1,2,3,4], [5,6,7,8], [9,10,11,12]]).is_diagonal)
+        False
+        """
+        size = min(self.num_rows, self.num_columns)
+        return (
+            sum(
+                self.rows[r][c] if r != c else 0
+                for r in range(size)
+                for c in range(size)
+            )
+            == 0
+        )
+
+    @property
+    def is_exchange(self) -> bool:
+        """
+        Returns True if the matrix is an exchange matrix, False otherwise.
+        Wikipedia: https://en.wikipedia.org/wiki/Exchange_matrix
+
+        >>> print(Matrix([[1, 0], [0, 1]]).is_exchange)
+        False
+        >>> print(Matrix([[0, 1], [1, 0]]).is_exchange)
+        True
+        >>> print(Matrix([[0, 2], [3, 0]]).is_exchange)
+        True
+        >>> print(Matrix([[1, 2], [3, 4]]).is_exchange)
+        False
+        >>> print(Matrix([[1,2,3,4], [5,6,7,8], [9,10,11,12]]).is_exchange)
+        Traceback (most recent call last):
+        ...
+        ValueError: Only square matrices can be exchange matrices
+        """
+        if not self.is_square:
+            raise ValueError("Only square matrices can be exchange matrices")
+
+        size = self.num_rows
+        return (
+            sum(
+                self.rows[r][c] if r != size - c - 1 else 0
+                for r in range(size)
+                for c in range(size)
+            )
+            == 0
+        )
+
+    @property
+    def is_elementary(self) -> bool:
+        """
+        An elementary matrix is a matrix that can be obtained from the identity matrix
+        by exactly one elementary row operation.
+        Wikipedia reference: https://en.wikipedia.org/wiki/Elementary_matrix
+
+        For a square matrix, there are only three possibilities:
+        Row swapping:  A row can be swapped with another row.
+        Row multiplication: A row can be multiplied by a value other than 0 or 1.
+        Row addition: A row can be replaced by the sum of that row and
+                      a non-zero multiple of another row.
+
+        >>> print(Matrix([[0]]).is_elementary)
+        False
+        >>> print(Matrix([[1]]).is_elementary)
+        False
+        >>> print(Matrix([[2]]).is_elementary)
+        True
+        >>> print(Matrix([[1,0,0], [0,1,0], [0,0,1]]).is_elementary)
+        False
+        >>> print(Matrix([[1,0,0], [0,0,1], [0,1,0]]).is_elementary)
+        True
+        >>> print(Matrix([[0,0,1], [1,0,0], [1,0,0]]).is_elementary)
+        False
+        >>> print(Matrix([[2,0,0], [0,1,0], [0,0,1]]).is_elementary)
+        True
+        >>> print(Matrix([[1,0,0], [0,2,0], [0,0,1]]).is_elementary)
+        True
+        >>> print(Matrix([[2,0,0], [0,2,0], [0,0,1]]).is_elementary)
+        False
+        >>> print(Matrix([[1,2,0], [0,1,0], [0,0,1]]).is_elementary)
+        True
+        >>> print(Matrix([[1,2,0], [0,1,0], [0,0,1]]).is_elementary)
+        True
+        >>> print(Matrix([[1,2,0], [0,2,0], [0,0,1]]).is_elementary)
+        False
+        >>> print(Matrix([[1,0,0], [0,1,0], [0,3,1]]).is_elementary)
+        True
+        >>> print(Matrix([[1,0,3], [0,1,0], [0,3,1]]).is_elementary)
+        False
+        >>> print(Matrix([[1,0], [0,1], [0,3]]).is_elementary)
+        Traceback (most recent call last):
+        ...
+        ValueError: Only square matrices can be elementary
+        """
+        if not self.is_square:
+            raise ValueError("Only square matrices can be elementary")
+        size = self.order[0]
+        if size == 1:
+            # Special case:
+            # A 1 x 1 matrix is elementary if its value is different from 0 or 1
+            return self.rows[0][0] not in [0, 1]
+
+        # Check row swapping
+        # True when:
+        #    matrix is binary
+        #    matrix is not the identity matrix
+        #    exactly 2 values are not on the diagonal
+        if (
+            self.is_binary
+            and self != self.identity()
+            and sum(
+                1 if r == c and self.rows[r][c] == 0 else 0
+                for r in range(size)
+                for c in range(size)
+            )
+            == 2
+        ):
+            return True
+        # Type 2: row multiplication
+        # True when:
+        #    matrix is diagonal
+        #    only 1 value differs from 1
+        if self.is_diagonal and sum(x != 1 for x in self.diagonal()) == 1:
+            return True
+
+        # Type 3: row addition
+        # True when:
+        #    values on diagonal are all 1
+        #    only 1 value not on the diagonal differs from 0
+        return (
+            all(v == 1 for v in self.diagonal())
+            and sum(
+                0 if r == c or self.rows[r][c] == 0 else 1
+                for r in range(size)
+                for c in range(size)
+            )
+            == 1
+        )
 
     def determinant(self) -> int:
         if not self.is_square:
