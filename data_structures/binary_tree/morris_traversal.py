@@ -1,4 +1,4 @@
-# Implementation of Morris Traversal for binary trees in O(n) time and O(1) auxiliary space.
+# Morris Traversal for binary trees in O(n) time and O(1) auxiliary space.
 """
 Morris Traversal is an algorithm that allows traversing a binary tree
 (both In-Order and Pre-Order) in O(n) time complexity and O(1) auxiliary space,
@@ -21,7 +21,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    """A binary tree node containing an integer value and optional left/right children."""
+    """
+    A binary tree node containing an integer value and optional left/right children.
+    """
 
     data: int
     left: Node | None = None
