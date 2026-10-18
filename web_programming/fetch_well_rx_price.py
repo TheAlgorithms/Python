@@ -56,7 +56,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
                 pharmacy_name = grid.find("p", {"class": "list-title"}).text
 
                 # Get the price of the drug.
-                price = grid.find("span", {"p", "price price-large"}).text
+                price = grid.find("span", {"class": "price price-large"}).text
 
                 pharmacy_price_list.append(
                     {
