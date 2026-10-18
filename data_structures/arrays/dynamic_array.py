@@ -2,7 +2,8 @@ class DynamicArray:
     def __init__(self) -> None:
         self.size = 0  # Number of elements in the array
         self.capacity = 1  # Initial capacity of the array
-        self.array = [None] * self.capacity  # Create an array with initial capacity
+        # Create an array with initial capacity
+        self.array: list[int | None] = [None] * self.capacity
 
     def append(self, item: int) -> None:
         """
@@ -77,7 +78,9 @@ class DynamicArray:
         """
         if index < 0 or index >= self.size:
             raise IndexError("index out of range")
-        return self.array[index]
+        value = self.array[index]
+        assert value is not None  # every filled slot holds an int
+        return value
 
     def __setitem__(self, index: int, value: int) -> None:
         if index < 0 or index >= self.size:

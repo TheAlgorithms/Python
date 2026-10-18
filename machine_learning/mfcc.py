@@ -58,6 +58,7 @@ Author: Amir Lavasani
 """
 
 import logging
+from typing import overload
 
 import numpy as np
 import scipy.fftpack as fft
@@ -289,7 +290,11 @@ def freq_to_mel(freq: float) -> float:
     return 2595.0 * np.log10(1.0 + freq / 700.0)
 
 
-def mel_to_freq(mels: float) -> float:
+@overload
+def mel_to_freq(mels: float) -> float: ...
+@overload
+def mel_to_freq(mels: np.ndarray) -> np.ndarray: ...
+def mel_to_freq(mels: float | np.ndarray) -> float | np.ndarray:
     """
     Convert a frequency in the mel scale to Hertz.
 

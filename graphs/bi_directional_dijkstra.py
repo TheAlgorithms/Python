@@ -46,7 +46,7 @@ def pass_and_relaxation(
 
 def bidirectional_dij(
     source: str, destination: str, graph_forward: dict, graph_backward: dict
-) -> int:
+) -> float:
     """
     Bi-directional Dijkstra's algorithm.
 

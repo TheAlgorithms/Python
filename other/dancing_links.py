@@ -106,7 +106,7 @@ class DancingLinks:
         col.right.left = col
         col.left.right = col
 
-    def _choose_column(self) -> ColumnNode:
+    def _choose_column(self) -> ColumnNode | None:
         """Select the column with the smallest size (heuristic)."""
         min_size = float("inf")
         chosen = None

@@ -49,6 +49,7 @@ from __future__ import annotations
 
 import math
 from collections import deque
+from typing import cast
 
 _NIL = object()
 
@@ -228,11 +229,14 @@ class HopcroftKarp[T]:
                 if self.pair_left[left_vertex] is _NIL:
                     self.depth_first_search(left_vertex)
 
-        return {
-            left_vertex: matched_right  # type: ignore[misc]
-            for left_vertex, matched_right in self.pair_left.items()
-            if matched_right is not _NIL
-        }
+        return cast(
+            "dict[T, T]",
+            {
+                left_vertex: matched_right
+                for left_vertex, matched_right in self.pair_left.items()
+                if matched_right is not _NIL
+            },
+        )
 
 
 def hopcroft_karp[T](graph: dict[T, list[T]]) -> dict[T, T]:
