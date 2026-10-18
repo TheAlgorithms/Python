@@ -58,7 +58,7 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
     return visited[sink]
 
 
-def ford_fulkerson(graph: list, source: int, sink: int) -> int:
+def ford_fulkerson(graph: list, source: int, sink: int) -> int | float:
     """
     This function returns the maximum flow from source to sink in the given graph.
 

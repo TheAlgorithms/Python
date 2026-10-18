@@ -91,7 +91,7 @@ def update_image_and_anno(
     output_size: tuple[int, int],
     scale_range: tuple[float, float],
     filter_scale: float = 0.0,
-) -> tuple[list, list, str]:
+) -> tuple[np.ndarray, list, str]:
     """
     - all_img_list <type: list>: list of all images
     - all_annos <type: list>: list of all annotations of specific image
@@ -111,7 +111,7 @@ def update_image_and_anno(
     divid_point_y = int(scale_y * output_size[0])
 
     new_anno = []
-    path_list = []
+    path_list: list[str] = []
     for i, index in enumerate(idxs):
         path = all_img_list[index]
         path_list.append(path)

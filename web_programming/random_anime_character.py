@@ -34,6 +34,7 @@ def random_anime_character() -> tuple[str, str, str]:
         httpx2.get(URL, headers=headers, timeout=10).text, "html.parser"
     )
     title = soup.find("meta", attrs={"property": "og:title"}).attrs["content"]
+    assert isinstance(title, str)
     image_url = soup.find("meta", attrs={"property": "og:image"}).attrs["content"]
     description = soup.find("p", id="description").get_text()
     _, image_extension = os.path.splitext(os.path.basename(image_url))
