@@ -43,7 +43,7 @@ def bogo_sort[T: Comparable](collection: list[T]) -> list[T]:
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
 
-    def is_sorted[T: Comparable](collection: list[T]) -> bool:
+    def is_sorted(collection: list[T]) -> bool:
         for i in range(len(collection) - 1):
             if collection[i + 1] < collection[i]:
                 return False
