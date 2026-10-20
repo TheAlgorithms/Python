@@ -38,13 +38,14 @@ def oe_process(
     rr_cv,
     result_pipe,
     multiprocessing_context,
+    phases: int,
 ) -> None:
     process_lock = multiprocessing_context.Lock()
 
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(10):
+    for i in range(phases):
         if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
             with process_lock:
@@ -124,6 +125,7 @@ def odd_even_transposition(arr):
                 temp_rr,
                 result_pipe[0],
                 multiprocessing_context,
+                len(arr),
             ),
         )
     )
@@ -145,6 +147,7 @@ def odd_even_transposition(arr):
                     temp_rr,
                     result_pipe[i],
                     multiprocessing_context,
+                    len(arr),
                 ),
             )
         )
@@ -163,6 +166,7 @@ def odd_even_transposition(arr):
                 None,
                 result_pipe[len(arr) - 1],
                 multiprocessing_context,
+                len(arr),
             ),
         )
     )
