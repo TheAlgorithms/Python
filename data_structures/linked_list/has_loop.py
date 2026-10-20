@@ -36,12 +36,28 @@ class Node:
         >>> root_node.next_node.next_node.next_node = root_node.next_node
         >>> root_node.has_loop
         True
+        >>> single_node = Node(1)
+        >>> single_node.next_node = single_node
+        >>> single_node.has_loop
+        True
+        >>> loop_to_root = Node(1)
+        >>> loop_to_root.next_node = Node(2)
+        >>> loop_to_root.next_node.next_node = loop_to_root
+        >>> loop_to_root.has_loop
+        True
+        >>> dup_node = Node(5)
+        >>> dup_node.next_node = Node(5)
+        >>> dup_node.has_loop
+        False
         """
-        try:
-            list(self)
-            return False
-        except ContainsLoopError:
-            return True
+        slow: Node | None = self
+        fast: Node | None = self
+        while fast and fast.next_node and slow:
+            slow = slow.next_node
+            fast = fast.next_node.next_node
+            if slow is fast:
+                return True
+        return False
 
 
 if __name__ == "__main__":
@@ -61,3 +77,6 @@ if __name__ == "__main__":
 
     root_node = Node(1)
     print(root_node.has_loop)  # False
+
+    root_node.next_node = root_node
+    print(root_node.has_loop)  # True
