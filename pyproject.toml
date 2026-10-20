@@ -316,7 +316,6 @@ skip = """\
 # assumptions consistent with the CI job in .github/workflows/ty.yml, where the
 # free-threaded 3.15t test venv would otherwise leave several stubs unresolved.
 environment.python-version = "3.15"
-rules.call-non-callable = "ignore"
 rules.invalid-argument-type = "ignore"
 rules.invalid-return-type = "ignore"
 rules.no-matching-overload = "ignore"
