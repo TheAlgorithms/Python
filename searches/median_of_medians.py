@@ -74,10 +74,14 @@ def quick_select(arr: list, target: int) -> int:
     3
     >>> quick_select([3, 5, 7, 10, 2, 12], 3)
     5
+    >>> quick_select([2, 4, 5, 7, 899, 54, 32], 0)
+    -1
+    >>> quick_select([2, 4, 5, 7, 899, 54, 32], -1)
+    -1
     """
 
     # Invalid Input
-    if target > len(arr):
+    if target <= 0 or target > len(arr):
         return -1
 
     # x is the estimated pivot by median of medians algorithm
