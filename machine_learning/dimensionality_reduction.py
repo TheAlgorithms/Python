@@ -143,7 +143,7 @@ def linear_discriminant_analysis(
     assert classes > dimensions
 
     # Check if features have been already loaded
-    if features.any:
+    if features.any():
         _, eigenvectors = eigh(
             covariance_between_classes(features, labels, classes),
             covariance_within_classes(features, labels, classes),
@@ -362,6 +362,11 @@ def test_linear_discriminant_analysis() -> None:
                 "Did not raise AssertionError for dimensions > classes"
             )
         assert error_info.type is AssertionError
+
+    with pytest.raises(AssertionError):
+        linear_discriminant_analysis(
+            np.array([]), np.array([]), classes=2, dimensions=1
+        )
 
 
 def test_principal_component_analysis() -> None:
