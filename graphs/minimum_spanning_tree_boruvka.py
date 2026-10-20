@@ -167,9 +167,9 @@ class Graph:
         union_find = Graph.UnionFind()
         mst_edges = []
         while num_components > 1:
-            cheap_edge = {}
-            for vertex in graph.get_vertices():
-                cheap_edge[vertex] = -1
+            cheap_edge: dict[int, list[int] | None] = dict.fromkeys(
+                graph.get_vertices()
+            )
 
             edges = graph.get_edges()
             for edge in edges:
@@ -180,13 +180,12 @@ class Graph:
                 set1 = union_find.find(head)
                 set2 = union_find.find(tail)
                 if set1 != set2:
-                    if cheap_edge[set1] == -1 or cheap_edge[set1][2] > weight:
-                        cheap_edge[set1] = [head, tail, weight]
-
-                    if cheap_edge[set2] == -1 or cheap_edge[set2][2] > weight:
-                        cheap_edge[set2] = [head, tail, weight]
+                    for component in (set1, set2):
+                        current = cheap_edge[component]
+                        if current is None or current[2] > weight:
+                            cheap_edge[component] = [head, tail, weight]
             for head_tail_weight in cheap_edge.values():
-                if head_tail_weight != -1:
+                if head_tail_weight is not None:
                     head, tail, weight = head_tail_weight
                     if union_find.find(head) != union_find.find(tail):
                         union_find.union(head, tail)
