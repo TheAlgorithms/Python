@@ -30,7 +30,14 @@ def simple_moving_average(
     Traceback (most recent call last):
     ...
     ValueError: Window size must be a positive integer
+    >>> simple_moving_average([10, 12, 15], 2.5)
+    Traceback (most recent call last):
+    ...
+    TypeError: Window size must be a positive integer
     """
+    if not isinstance(window_size, int) or isinstance(window_size, bool):
+        raise TypeError("Window size must be a positive integer")
+    
     if window_size < 1:
         raise ValueError("Window size must be a positive integer")
 
