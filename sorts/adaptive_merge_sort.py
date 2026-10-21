@@ -28,6 +28,10 @@ def adaptive_merge_sort[T: Comparable](sequence: list[T]) -> list[T]:
     ['a', 'b', 'c']
     >>> adaptive_merge_sort([2.5, -1.0, 0.0])
     [-1.0, 0.0, 2.5]
+    >>> adaptive_merge_sort([1, "a"])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     if len(sequence) < 2:
         return sequence
