@@ -29,7 +29,7 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
     """
 
     def backtrack(start: int) -> None:
-        if start == len(nums) - 1:
+        if start == len(nums) - 1 or len(nums) == 0:
             output.append(nums[:])
         else:
             for i in range(start, len(nums)):
