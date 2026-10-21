@@ -24,6 +24,8 @@ def is_palindrome(s: str) -> bool:
 
     >>> all(is_palindrome(key) == value for key, value in test_data.items())
     True
+    >>> is_palindrome("")
+    True
     """
 
     start_i = 0
@@ -42,6 +44,8 @@ def is_palindrome_traversal(s: str) -> bool:
     Return True if s is a palindrome otherwise return False.
 
     >>> all(is_palindrome_traversal(key) == value for key, value in test_data.items())
+    True
+    >>> is_palindrome_traversal("")
     True
     """
     end = len(s) // 2
@@ -62,6 +66,8 @@ def is_palindrome_recursive(s: str) -> bool:
 
     >>> all(is_palindrome_recursive(key) == value for key, value in test_data.items())
     True
+    >>> is_palindrome_recursive("")
+    True
     """
     if len(s) <= 1:
         return True
@@ -76,6 +82,8 @@ def is_palindrome_slice(s: str) -> bool:
     Return True if s is a palindrome otherwise return False.
 
     >>> all(is_palindrome_slice(key) == value for key, value in test_data.items())
+    True
+    >>> is_palindrome_slice("")
     True
     """
     return s == s[::-1]
@@ -96,6 +104,10 @@ def is_palindrome_ignore_case_and_spaces(s: str) -> bool:
     True
     >>> is_palindrome_ignore_case_and_spaces("")
     True
+    >>> is_palindrome_ignore_case_and_spaces(" !?. ")
+    True
+    >>> is_palindrome_ignore_case_and_spaces("1a2")
+    False
     """
     s = "".join(char.lower() for char in s if char.isalnum())
     return s == s[::-1]
