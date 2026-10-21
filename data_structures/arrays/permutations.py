@@ -48,7 +48,3 @@ if __name__ == "__main__":
     result = permute_backtrack([1, 2, 3])
     print(result)
     doctest.testmod()
-
-
-
-
