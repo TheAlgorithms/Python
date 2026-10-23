@@ -49,6 +49,9 @@ def bisect_left(
     >>> bisect_left([1, 2, 2, 2, 4], 2)
     1
     """
+    if lo < 0:
+        raise ValueError("lo must be non-negative")
+
     if hi < 0:
         hi = len(sorted_collection)
 
@@ -96,6 +99,9 @@ def bisect_right(
     >>> bisect_right([1, 2, 2, 2, 4], 2)
     4
     """
+    if lo < 0:
+        raise ValueError("lo must be non-negative")
+
     if hi < 0:
         hi = len(sorted_collection)
 
