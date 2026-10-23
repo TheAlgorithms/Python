@@ -19,6 +19,8 @@ def hex_to_bin(hex_num: str) -> int:
     1111111111111111
     >>> hex_to_bin("-fFfF")
     -1111111111111111
+    >>> hex_to_bin("0")
+    0
     >>> hex_to_bin("F-f")
     Traceback (most recent call last):
         ...
@@ -46,6 +48,7 @@ def hex_to_bin(hex_num: str) -> int:
     while int_num > 0:
         bin_str = str(int_num % 2) + bin_str
         int_num >>= 1
+    bin_str = bin_str or "0"
 
     return int(("-" + bin_str) if is_negative else bin_str)
 
