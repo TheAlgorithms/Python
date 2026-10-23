@@ -31,6 +31,18 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
 
     >>> sparse_cycle = {10: [20], 20: [10]}
     >>> topological_sort(sparse_cycle)
+
+    >>> topological_sort({})
+    []
+    >>> topological_sort({42: []})
+    [42]
+    >>> order = topological_sort({10: [20], 20: [], 30: [40], 40: []})
+    >>> sorted(order)
+    [10, 20, 30, 40]
+    >>> order.index(10) < order.index(20) and order.index(30) < order.index(40)
+    True
+    >>> topological_sort({7: [7]}) is None
+    True
     """
 
     indegree = dict.fromkeys(graph, 0)
