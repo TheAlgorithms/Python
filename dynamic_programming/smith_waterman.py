@@ -162,7 +162,7 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
     # guard against empty query or subject
     if i == 0 or j == 0:
         return ""
-    while i > 0 and j > 0:
+    while i > 0 and j > 0 and score[i][j] > 0:
         if score[i][j] == score[i - 1][j - 1] + score_function(
             query[i - 1], subject[j - 1]
         ):
