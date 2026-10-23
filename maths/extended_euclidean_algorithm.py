@@ -30,6 +30,9 @@ def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:
     >>> extended_euclidean_algorithm(8, 14)
     (2, -1)
 
+    >>> extended_euclidean_algorithm(8, -14)
+    (2, 1)
+
     >>> extended_euclidean_algorithm(240, 46)
     (-9, 47)
 
@@ -52,7 +55,7 @@ def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:
     elif abs(b) == 1:
         return 0, b
 
-    old_remainder, remainder = a, b
+    old_remainder, remainder = abs(a), abs(b)
     old_coeff_a, coeff_a = 1, 0
     old_coeff_b, coeff_b = 0, 1
 
