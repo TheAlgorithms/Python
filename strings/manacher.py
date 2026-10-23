@@ -7,25 +7,19 @@ def palindromic_string(input_string: str) -> str:
 
     Manacher's algorithm which finds Longest palindromic Substring in linear time.
 
-    1. first this convert input_string("xyx") into new_string("x|y|x") where odd
+    1. first this convert input_string("xyx") into new_string("|x|y|x|") where odd
         positions are actual input characters.
     2. for each character in new_string it find corresponding length and
         store the length and left,right to store previously calculated info.
         (please look the explanation for details)
 
-    3. return corresponding output_string by removing all "|"
+    3. return the corresponding slice of the original input string
     """
     max_length = 0
 
-    # if input_string is "aba" than new_input_string become "a|b|a"
-    new_input_string = ""
-    output_string = ""
-
-    # append each character + "|" in new_string for range(0, length-1)
-    for i in input_string[: len(input_string) - 1]:
-        new_input_string += i + "|"
-    # append last character
-    new_input_string += input_string[-1]
+    # Surround each character with separators so boundary palindromes have the
+    # same representation as interior palindromes.
+    new_input_string = "|" + "|".join(input_string) + "|"
 
     # we will store the starting and ending of previous furthest ending palindromic
     # substring
@@ -58,13 +52,11 @@ def palindromic_string(input_string: str) -> str:
             max_length = length[j]
             start = j
 
-    # create that string
-    s = new_input_string[start - max_length // 2 : start + max_length // 2 + 1]
-    for i in s:
-        if i != "|":
-            output_string += i
-
-    return output_string
+    # Map the transformed bounds back to the input. Removing separators by value
+    # would also remove literal "|" characters from the palindrome.
+    palindrome_start = (start - max_length // 2) // 2
+    palindrome_end = (start + max_length // 2) // 2
+    return input_string[palindrome_start:palindrome_end]
 
 
 if __name__ == "__main__":
