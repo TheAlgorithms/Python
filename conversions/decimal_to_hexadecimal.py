@@ -25,6 +25,8 @@ def decimal_to_hexadecimal(decimal: float) -> str:
     """
     take integer decimal value, return hexadecimal representation as str beginning
     with 0x
+    >>> decimal_to_hexadecimal(0)
+    '0x0'
     >>> decimal_to_hexadecimal(5)
     '0x5'
     >>> decimal_to_hexadecimal(15)
@@ -68,7 +70,7 @@ def decimal_to_hexadecimal(decimal: float) -> str:
     while decimal > 0:
         decimal, remainder = divmod(decimal, 16)
         hexadecimal = values[remainder] + hexadecimal
-    hexadecimal = "0x" + hexadecimal
+    hexadecimal = "0x" + (hexadecimal or "0")
     if negative:
         hexadecimal = "-" + hexadecimal
     return hexadecimal
