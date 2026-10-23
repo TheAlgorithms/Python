@@ -7,6 +7,8 @@ def octal_to_hex(octal: str) -> str:
     '0x40'
     >>> octal_to_hex("235")
     '0x9D'
+    >>> octal_to_hex("0")
+    '0x0'
     >>> octal_to_hex(17)
     Traceback (most recent call last):
         ...
@@ -42,7 +44,7 @@ def octal_to_hex(octal: str) -> str:
         revhex += hex_char[decimal & 15]
         decimal >>= 4
 
-    return "0x" + revhex[::-1]
+    return "0x" + (revhex[::-1] or "0")
 
 
 if __name__ == "__main__":
