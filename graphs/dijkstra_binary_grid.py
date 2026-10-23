@@ -44,6 +44,9 @@ def dijkstra(
     (4.0, [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)])
     """
     rows, cols = grid.shape
+    if grid[source] != 1 or grid[destination] != 1:
+        return np.inf, []
+
     dx = [-1, 1, 0, 0]
     dy = [0, 0, -1, 1]
     if allow_diagonal:
