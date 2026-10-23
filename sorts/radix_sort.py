@@ -39,7 +39,7 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
         buckets: list[list] = [[] for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
-            tmp = int((i / placement) % RADIX)
+            tmp = (i // placement) % RADIX
             buckets[tmp].append(i)
         # put each buckets' contents into list_of_ints
         a = 0
