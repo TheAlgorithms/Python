@@ -1615,6 +1615,7 @@
   * [Levenshtein Distance](strings/levenshtein_distance.py)
   * [Longest Word In Sentence](strings/longest_word_in_sentence.py)
   * [Lower](strings/lower.py)
+  * [Lyndon Factorization](strings/lyndon_factorization.py)
   * [Manacher](strings/manacher.py)
   * [Min Cost String Conversion](strings/min_cost_string_conversion.py)
   * [Min Window Substring](strings/min_window_substring.py)
