@@ -21,7 +21,7 @@ def modular_exponential(base: int, power: int, mod: int):
     if power < 0:
         return -1
     base %= mod
-    result = 1
+    result = 1 % mod
 
     while power > 0:
         if power & 1:
