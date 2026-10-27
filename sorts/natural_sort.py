@@ -22,10 +22,17 @@ def natural_sort(input_list: list[str]) -> list[str]:
     ['Elm11', 'Elm12', 'Elm2', 'elm0', 'elm1', 'elm10', 'elm13', 'elm9']
     >>> natural_sort(example2)
     ['elm0', 'elm1', 'Elm2', 'elm9', 'elm10', 'Elm11', 'Elm12', 'elm13']
+
+    >>> natural_sort(['a2', 'aB', 'a10'])
+    ['a2', 'a10', 'aB']
     """
 
-    def alphanum_key(key):
-        return [int(s) if s.isdigit() else s.lower() for s in re.split("([0-9]+)", key)]
+    def alphanum_key(key: str):
+        return [
+            (0, int(part)) if part.isdigit() else (1, part.lower())
+            for part in re.split(r"(\d+)", key)
+            if part
+        ]
 
     return sorted(input_list, key=alphanum_key)
 
