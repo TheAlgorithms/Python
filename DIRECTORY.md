@@ -1508,6 +1508,7 @@
   * [Linear Search](searches/linear_search.py)
   * [Median Of Medians](searches/median_of_medians.py)
   * [Quick Select](searches/quick_select.py)
+  * [Radix Binary Search](searches/radix_binary_search.py)
   * [Sentinel Linear Search](searches/sentinel_linear_search.py)
   * [Simple Binary Search](searches/simple_binary_search.py)
   * [Simulated Annealing](searches/simulated_annealing.py)
