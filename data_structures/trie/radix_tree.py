@@ -118,6 +118,9 @@ class RadixNode:
         >>> RadixNode("myprefix").find("mystring")
         False
         """
+        if word == "":
+            return self.is_leaf
+
         incoming_node = self.nodes.get(word[0], None)
         if not incoming_node:
             return False
@@ -147,6 +150,11 @@ class RadixNode:
         >>> RadixNode("myprefix").delete("mystring")
         False
         """
+        if word == "":
+            was_present = self.is_leaf
+            self.is_leaf = False
+            return was_present
+
         incoming_node = self.nodes.get(word[0], None)
         if not incoming_node:
             return False
