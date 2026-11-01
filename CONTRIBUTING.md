@@ -53,7 +53,7 @@ An algorithm is one or more functions (or classes) that:
 
 Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
-Algorithms should:
+#### Algorithms should:
 
 - have intuitive class and function names that make their purpose clear to readers,
 - use Python naming conventions and intuitive variable names to ease comprehension,
@@ -66,20 +66,6 @@ Algorithms should:
 
 Algorithms in this repo should not be simple how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values.
 These calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
-
-#### Pre-Commit Plugin
-
-- have intuitive class and function names that make their purpose clear to readers
-- use Python naming conventions and intuitive variable names to ease comprehension
-- be flexible to take different input values
-- have Python type hints for their input parameters and return values
-- raise Python exceptions (`ValueError`, etc.) on erroneous input values
-- have docstrings with clear explanations and/or URLs to source materials
-- contain doctests that test both valid and erroneous input values
-- return all calculation results instead of printing or plotting them
-
-Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values.
-Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
 #### Pre-commit
 
