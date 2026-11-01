@@ -53,7 +53,7 @@ An algorithm is one or more functions (or classes) that:
 
 Algorithms should be packaged in a way that would make it easy for readers to integrate them into larger programs.
 
-#### Algorithms should:
+#### Algorithms should
 
 - have intuitive class and function names that make their purpose clear to readers,
 - use Python naming conventions and intuitive variable names to ease comprehension,
