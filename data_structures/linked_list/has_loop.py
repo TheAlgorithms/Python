@@ -27,6 +27,7 @@ class Node:
     def has_loop(self) -> bool:
         """
         A loop is when the exact same Node appears more than once in a linked list.
+        Detect loops in O(n) time and O(1) auxiliary space using Floyd's algorithm.
         >>> root_node = Node(1)
         >>> root_node.next_node = Node(2)
         >>> root_node.next_node.next_node = Node(3)
@@ -37,11 +38,14 @@ class Node:
         >>> root_node.has_loop
         True
         """
-        try:
-            list(self)
-            return False
-        except ContainsLoopError:
-            return True
+        slow: Node | None = self
+        fast: Node | None = self
+        while fast is not None and fast.next_node is not None:
+            slow = slow.next_node
+            fast = fast.next_node.next_node
+            if slow is fast:
+                return True
+        return False
 
 
 if __name__ == "__main__":
