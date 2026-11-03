@@ -102,20 +102,20 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> assemble_transformation(ops2, x2, y2)
     ['C1', 'I2', 'R23']
     """
-    if i == 0 and j == 0:
-        return []
-    elif ops[i][j][0] in {"C", "R"}:
-        seq = assemble_transformation(ops, i - 1, j - 1)
-        seq.append(ops[i][j])
-        return seq
-    elif ops[i][j][0] == "D":
-        seq = assemble_transformation(ops, i - 1, j)
-        seq.append(ops[i][j])
-        return seq
-    else:
-        seq = assemble_transformation(ops, i, j - 1)
-        seq.append(ops[i][j])
-        return seq
+    sequence = []
+    # Trace backwards without consuming one Python stack frame per operation.
+    while i != 0 or j != 0:
+        operation = ops[i][j]
+        sequence.append(operation)
+        if operation[0] in {"C", "R"}:
+            i -= 1
+            j -= 1
+        elif operation[0] == "D":
+            i -= 1
+        else:
+            j -= 1
+    sequence.reverse()
+    return sequence
 
 
 if __name__ == "__main__":
