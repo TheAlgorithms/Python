@@ -12,6 +12,12 @@ synchronization could be used.
 """
 
 import multiprocessing as mp
+from typing import Any, Protocol
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+
 
 # lock used to ensure that two processes do not access a pipe at the same time
 # NOTE This breaks testing on build runner. May work better locally
@@ -78,7 +84,7 @@ arr = the list to be sorted
 """
 
 
-def odd_even_transposition(arr):
+def odd_even_transposition[T: Comparable](arr: list[T]) -> list[T]:
     """
     >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     True
