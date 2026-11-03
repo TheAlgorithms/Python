@@ -38,14 +38,22 @@ def suffix_array(text: str) -> list[int]:
         return []
 
     suffixes = list(range(n))
+    # Ranking by code point is enough to start: Python orders strings by code
+    # point too, so one comparison of the first character is already right.
     rank = list(map(ord, text))
     k = 1
 
     while k < n:
+        # Sort by the first 2k characters of each suffix, which are exactly the
+        # pair (rank of the first k, rank of the next k). A second half that
+        # runs past the end gets -1: ranks are never negative, so a shorter
+        # suffix sorts before a longer one that shares its prefix.
         keys = [(rank[i], rank[i + k] if i + k < n else -1, i) for i in range(n)]
         keys.sort()
         suffixes = [i for _, _, i in keys]
 
+        # Renumber so that equal 2k-prefixes share a rank and every distinct
+        # prefix gets the next one. This keeps ranks dense in range(n).
         new_rank = [0] * n
         for position in range(1, n):
             previous, current = suffixes[position - 1], suffixes[position]
@@ -60,6 +68,9 @@ def suffix_array(text: str) -> list[int]:
             new_rank[current] = new_rank[previous] + int(previous_key != current_key)
 
         rank = new_rank
+        # Dense ranks ending at n - 1 means every suffix has a unique rank, so
+        # the 2k-prefixes already order them completely; doubling cannot change
+        # the order, and the next round always breaks too, since 2k >= n.
         if rank[suffixes[-1]] == n - 1:
             break
         k *= 2
