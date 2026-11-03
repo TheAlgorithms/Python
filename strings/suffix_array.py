@@ -42,10 +42,7 @@ def suffix_array(text: str) -> list[int]:
     k = 1
 
     while k < n:
-        keys = [
-            (rank[i], rank[i + k] if i + k < n else -1, i)
-            for i in range(n)
-        ]
+        keys = [(rank[i], rank[i + k] if i + k < n else -1, i) for i in range(n)]
         keys.sort()
         suffixes = [i for _, _, i in keys]
 
