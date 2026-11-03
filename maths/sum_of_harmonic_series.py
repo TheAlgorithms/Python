@@ -12,7 +12,19 @@ def sum_of_harmonic_progression(
     0.75
     >>> sum_of_harmonic_progression(1 / 5, 5, 5)
     0.45666666666666667
+    >>> sum_of_harmonic_progression(0,2,5)
+    Traceback (most recent call last):
+        ...
+    ValueError: first_term cannot be zero
+    >>> sum_of_harmonic_progression(1/2,2,0)
+    Traceback (most recent call last):
+        ...
+    ValueError: number_of_terms must be greater than zero
     """
+    if first_term == 0:
+        raise ValueError("first_term cannot be zero")
+    if number_of_terms <= 0:
+        raise ValueError("number_of_terms must be greater than zero")
     arithmetic_progression = [1 / first_term]
     first_term = 1 / first_term
     for _ in range(number_of_terms - 1):
