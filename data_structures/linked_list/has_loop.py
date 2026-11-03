@@ -37,11 +37,14 @@ class Node:
         >>> root_node.has_loop
         True
         """
-        try:
-            list(self)
-            return False
-        except ContainsLoopError:
-            return True
+        slow_node = self
+        fast_node = self
+        while fast_node and fast_node.next_node:
+            slow_node = slow_node.next_node
+            fast_node = fast_node.next_node.next_node
+            if slow_node is fast_node:
+                return True
+        return False
 
 
 if __name__ == "__main__":
