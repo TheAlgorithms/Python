@@ -67,6 +67,14 @@ def sum_of_divisors(n: int) -> int:
     """Calculate Sum of Divisors.
     >>> sum_of_divisors(100)
     217
+    >>> sum_of_divisors(12)
+    28
+    >>> sum_of_divisors(7)
+    8
+    >>> sum_of_divisors(2**40)
+    2199023255551
+    >>> sum_of_divisors(2**62)
+    9223372036854775807
     >>> sum_of_divisors(0)
     Traceback (most recent call last):
         ...
@@ -82,17 +90,21 @@ def sum_of_divisors(n: int) -> int:
     temp = 1
     while n % 2 == 0:
         temp += 1
-        n = int(n / 2)
+        n //= 2
     if temp > 1:
-        s *= (2**temp - 1) / (2 - 1)
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        s *= (2**temp - 1) // (2 - 1)
+    for i in range(3, math.isqrt(n) + 1, 2):
         temp = 1
         while n % i == 0:
             temp += 1
-            n = int(n / i)
+            n //= i
         if temp > 1:
-            s *= (i**temp - 1) / (i - 1)
-    return int(s)
+            s *= (i**temp - 1) // (i - 1)
+    # Whatever is left is a single prime factor above the trial-division
+    # bound, so it contributes 1 + n to the sum.
+    if n > 1:
+        s *= n + 1
+    return s
 
 
 def euler_phi(n: int) -> int:
