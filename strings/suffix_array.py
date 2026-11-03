@@ -9,14 +9,15 @@ search and for the LCP-based algorithms built on top of it.
 
 Construction here uses prefix doubling (Manber-Myers).
 
-Time Complexity: O(n * log(n)^2) - where n is the length of the text
+Time Complexity: O(n log² n) - where n is the length of the text
 Space Complexity: O(n)
 """
 
 
 def suffix_array(text: str) -> list[int]:
     """
-    Return the starting indices of all suffixes of `text`, sorted.
+    Return the starting indices of all suffixes of `text`, in lexicographic
+    order.
 
     >>> suffix_array("banana")
     [5, 3, 1, 0, 4, 2]
