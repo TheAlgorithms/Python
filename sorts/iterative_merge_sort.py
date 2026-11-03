@@ -26,7 +26,7 @@ def merge[T: Comparable](input_list: list[T], low: int, mid: int, high: int) -> 
     result: list[T] = []
     left, right = input_list[low:mid], input_list[mid : high + 1]
     while left and right:
-        result.append((left if left[0] <= right[0] else right).pop(0))
+        result.append((right if right[0] < left[0] else left).pop(0))
     input_list[low : high + 1] = result + left + right
     return input_list
 
