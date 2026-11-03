@@ -47,3 +47,19 @@ We are on [Discord](https://the-algorithms.com/discord)! Community channels are 
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+## Contribution Workflow Demo
+
+This section demonstrates the GitHub Fork and Pull Request workflow.
+
+### Steps to Contribute
+
+1. Fork the original repository.
+2. Create a new feature branch.
+3. Make the required changes.
+4. Commit the changes.
+5. Submit a Pull Request.
+6. Review and provide feedback.
+7. Merge the approved changes.
+
+This workflow helps developers collaborate
+and contribute to open-source projects.
