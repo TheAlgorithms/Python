@@ -66,8 +66,10 @@ def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
     >>> multiply([[1, 2, 3]], [[2], [3], [4]])
     [[20]]
     """
-    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
-        rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
+    if not (_check_not_integer(matrix_a) and _check_not_integer(matrix_b)):
+        raise TypeError("Expected a matrix, got int/list instead")
+
+    rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
 
     if cols[0] != rows[1]:
         msg = (
