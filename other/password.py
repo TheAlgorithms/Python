@@ -26,14 +26,30 @@ def password_generator(length: int = 8) -> str:
 # chars_incl= characters that must be in password
 # i= how many letters or characters the password length will be
 def alternative_password_generator(chars_incl: str, i: int) -> str:
-    # Password Generator = full boot with random_number, random_letters, and
-    # random_character FUNCTIONS
-    # Put your code here...
+    """
+    Generate a password of length i that includes all characters in chars_incl.
+
+    >>> len(alternative_password_generator("aA1!", 10))
+    10
+    >>> all(c in alternative_password_generator("test", 12) for c in "test")
+    True
+    >>> len(alternative_password_generator("abcd", 4))
+    4
+    >>> alternative_password_generator("abcdefgh", 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: Requested length (5) cannot be less than required characters (8)
+    """
+    if i < len(chars_incl):
+        msg = (
+            f"Requested length ({i}) cannot be less than "
+            f"required characters ({len(chars_incl)})"
+        )
+        raise ValueError(msg)
+
     i -= len(chars_incl)
     quotient = i // 3
     remainder = i % 3
-    # chars = chars_incl + random_letters(ascii_letters, i / 3 + remainder) +
-    #     random_number(digits, i / 3) + random_characters(punctuation, i / 3)
     chars = (
         chars_incl
         + random(ascii_letters, quotient + remainder)
@@ -44,10 +60,18 @@ def alternative_password_generator(chars_incl: str, i: int) -> str:
     shuffle(list_of_chars)
     return "".join(list_of_chars)
 
-    # random is a generalised function for letters, characters and numbers
-
 
 def random(chars_incl: str, i: int) -> str:
+    """
+    Generate a random string of length i from characters in chars_incl.
+
+    >>> len(random("abc", 5))
+    5
+    >>> all(c in "abc" for c in random("abc", 10))
+    True
+    >>> random("xyz", 0)
+    ''
+    """
     return "".join(secrets.choice(chars_incl) for _ in range(i))
 
 
@@ -68,7 +92,6 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     >>> is_strong_password('0')
     False
     """
-
     if len(password) < min_length:
         return False
 
