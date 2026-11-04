@@ -68,6 +68,7 @@ def test_heap_sort() -> None:
     assert heap_sort([5, 2, 5, 1]) == [1, 2, 5, 5]
     assert heap_sort([1, 2, 3, 4]) == [1, 2, 3, 4]
     assert heap_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert heap_sort([-2, -5, -45]) == [-45, -5, -2]
 
 
 @pytest.mark.parametrize(
