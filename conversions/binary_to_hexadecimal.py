@@ -36,6 +36,14 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     Traceback (most recent call last):
         ...
     ValueError: Empty string was passed to the function
+    >>> bin_to_hexadecimal('-')
+    Traceback (most recent call last):
+        ...
+    ValueError: Non-binary value was passed to the function
+    >>> bin_to_hexadecimal(' - ')
+    Traceback (most recent call last):
+        ...
+    ValueError: Non-binary value was passed to the function
     """
     # Sanitising parameter
     binary_str = str(binary_str).strip()
@@ -45,7 +53,7 @@ def bin_to_hexadecimal(binary_str: str) -> str:
         raise ValueError("Empty string was passed to the function")
     is_negative = binary_str[0] == "-"
     binary_str = binary_str[1:] if is_negative else binary_str
-    if not all(char in "01" for char in binary_str):
+    if not binary_str or not all(char in "01" for char in binary_str):
         raise ValueError("Non-binary value was passed to the function")
 
     binary_str = (
