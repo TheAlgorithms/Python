@@ -4,14 +4,14 @@ Plot the magnitude and phase response of an audio filter.
 https://en.wikipedia.org/wiki/Frequency_response
 """
 
-from __future__ import annotations
+class FilterType(Protocol):
+    def process(self, sample: float) -> float:
+        """
+        Calculate y[n]
 
-from abc import abstractmethod
-from math import pi
-from typing import Protocol
-
-import matplotlib.pyplot as plt
-import numpy as np
+        >>> issubclass(FilterType, Protocol)
+        True
+        """
 
 
 class FilterType(Protocol):
@@ -51,7 +51,7 @@ def show_frequency_response(filter_type: FilterType, samplerate: int) -> None:
     """
 
     size = 512
-    inputs = [1] + [0] * (size - 1)
+   inputs: list[float] = [1.0] + [0.0] * (size - 1)
     outputs = [filter_type.process(item) for item in inputs]
 
     filler = [0] * (samplerate - size)  # zero-padding
