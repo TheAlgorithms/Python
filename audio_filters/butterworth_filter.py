@@ -288,6 +288,8 @@ def make_notch(
     samplerate: int,
     q_factor: float = 1 / sqrt(2),
 ) -> IIRFilter:
+    _validate_frequency(frequency, samplerate, q_factor)  # <-- Add this line
+    w0 = tau * frequency / samplerate
     """
     Creates a notch (band-reject) filter that strongly attenuates a narrow band
     of frequencies around ``frequency`` while leaving the rest of the spectrum
