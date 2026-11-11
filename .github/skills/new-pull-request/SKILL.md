@@ -61,6 +61,7 @@ often unreliable, so it is far better to get it right the first time.
 - [ ] At least one **Wikipedia (or equivalent) URL** documenting the algorithm.
 - [ ] Docstring explains what the function does and its parameters/returns.
 - [ ] No unnecessary third-party dependencies.
+- [ ] The PR is NEVER targeting the TheAlgorithms/Python repository. Pull requests should only ever target the forked jonahh05/Algorithms-Python repository.
 
 ## Before you click "Create pull request"
 
@@ -73,3 +74,4 @@ This is the final gate. Do not open the pull request until every item here is tr
       all-empty checklist, even for a CI, docs, or tooling PR.
 - [ ] The branch is not `master`, and `master` is synced with `upstream/master`.
 - [ ] `uv.lock` was not hand-edited.
+
