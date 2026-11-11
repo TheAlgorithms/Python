@@ -5,10 +5,16 @@ on:
     paths:
       - ".devcontainer/**"
       - ".github/workflows/devcontainer_ci.yml"
+      - ".python-version"
+      - "pyproject.toml"
+      - "uv.lock"
   pull_request:
     paths:
       - ".devcontainer/**"
       - ".github/workflows/devcontainer_ci.yml"
+      - ".python-version"
+      - "pyproject.toml"
+      - "uv.lock"
 
 jobs:
   build:
@@ -20,4 +26,4 @@ jobs:
       - uses: devcontainers/ci@v0.3
         with:
           push: never
-          runCmd: "true"
+          runCmd: "uv --version"
