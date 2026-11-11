@@ -24,6 +24,10 @@ def hex_to_decimal(hex_string: str) -> int:
     Traceback (most recent call last):
         ...
     ValueError: Empty string was passed to the function
+    >>> hex_to_decimal("-")
+    Traceback (most recent call last):
+        ...
+    ValueError: Non-hexadecimal value was passed to the function
     >>> hex_to_decimal("12m")
     Traceback (most recent call last):
         ...
@@ -35,7 +39,7 @@ def hex_to_decimal(hex_string: str) -> int:
     is_negative = hex_string[0] == "-"
     if is_negative:
         hex_string = hex_string[1:]
-    if not all(char in hex_table for char in hex_string):
+    if not hex_string or not all(char in hex_table for char in hex_string):
         raise ValueError("Non-hexadecimal value was passed to the function")
     decimal_number = 0
     for char in hex_string:
