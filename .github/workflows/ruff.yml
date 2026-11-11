@@ -1,4 +1,4 @@
-# https://beta.ruff.rs
+# https://docs.astral.sh/ruff
 name: ruff
 on:
   push:
@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+permissions:
+  contents: read
 jobs:
   ruff:
     runs-on: ubuntu-latest
@@ -16,3 +18,12 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@v7
       - run: uvx ruff check --output-format=github .
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v7
+      # Configuration lives in .github/zizmor.yml
+      - run: uvx zizmor --offline --format=github .

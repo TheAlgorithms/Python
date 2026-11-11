@@ -1,3 +1,4 @@
+# https://docs.zizmor.sh/configuration/
 rules:
   excessive-permissions:
     disable: true
