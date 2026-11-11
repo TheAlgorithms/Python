@@ -24,6 +24,9 @@ mat_d = [[3, 0, -2], [2, 0, 2], [0, 1, 1]]
 mat_e = [[3, 0, 2], [2, 0, -2], [0, 1, 1], [2, 0, -2]]
 mat_f = [1]
 mat_h = [2]
+mat_rect_a = [[1, 2, 3], [4, 5, 6]]
+mat_rect_b = [[7, 8, 9], [10, 11, 12]]
+mat_rect_mult = [[1, 2], [3, 4], [5, 6]]
 
 logger = logging.getLogger()
 logger.level = logging.DEBUG
@@ -33,7 +36,14 @@ logger.addHandler(stream_handler)
 
 @pytest.mark.mat_ops
 @pytest.mark.parametrize(
-    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+    ("mat1", "mat2"),
+    [
+        (mat_a, mat_b),
+        (mat_c, mat_d),
+        (mat_rect_a, mat_rect_b),
+        (mat_d, mat_e),
+        (mat_f, mat_h),
+    ],
 )
 def test_addition(mat1, mat2) -> None:
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
@@ -53,7 +63,14 @@ def test_addition(mat1, mat2) -> None:
 
 @pytest.mark.mat_ops
 @pytest.mark.parametrize(
-    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+    ("mat1", "mat2"),
+    [
+        (mat_a, mat_b),
+        (mat_c, mat_d),
+        (mat_rect_a, mat_rect_b),
+        (mat_d, mat_e),
+        (mat_f, mat_h),
+    ],
 )
 def test_subtraction(mat1, mat2) -> None:
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
@@ -68,19 +85,26 @@ def test_subtraction(mat1, mat2) -> None:
     else:
         logger.info(f"\n\t{test_subtraction.__name__} with different matrix dims")
         with pytest.raises(ValueError):
-            assert matop.subtract(mat1, mat2)
+            matop.subtract(mat1, mat2)
 
 
 @pytest.mark.mat_ops
 @pytest.mark.parametrize(
-    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+    ("mat1", "mat2"),
+    [
+        (mat_a, mat_b),
+        (mat_c, mat_d),
+        (mat_rect_a, mat_rect_mult),
+        (mat_d, mat_e),
+        (mat_f, mat_h),
+    ],
 )
 def test_multiplication(mat1, mat2) -> None:
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
         logger.info(f"\n\t{test_multiplication.__name__} returned integer")
         with pytest.raises(TypeError):
-            matop.add(mat1, mat2)
-    elif (np.array(mat1)).shape == (np.array(mat2)).shape:
+            matop.multiply(mat1, mat2)
+    elif np.array(mat1).shape[1] == np.array(mat2).shape[0]:
         logger.info(f"\n\t{test_multiplication.__name__} meets dim requirements")
         act = (np.matmul(mat1, mat2)).tolist()
         theo = matop.multiply(mat1, mat2)
@@ -90,7 +114,7 @@ def test_multiplication(mat1, mat2) -> None:
             f"\n\t{test_multiplication.__name__} does not meet dim requirements"
         )
         with pytest.raises(ValueError):
-            assert matop.subtract(mat1, mat2)
+            matop.multiply(mat1, mat2)
 
 
 @pytest.mark.mat_ops

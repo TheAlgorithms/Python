@@ -9,12 +9,14 @@ from typing import Any
 
 def add(*matrix_s: list[list[int]]) -> list[list[int]]:
     """
-    >>> add([[1,2],[3,4]],[[2,3],[4,5]])
+    >>> add([[1, 2], [3, 4]], [[2, 3], [4, 5]])
     [[3, 5], [7, 9]]
-    >>> add([[1.2,2.4],[3,4]],[[2,3],[4,5]])
+    >>> add([[1.2, 2.4], [3, 4]], [[2, 3], [4, 5]])
     [[3.2, 5.4], [7, 9]]
     >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
+    >>> add([[1, 2, 3], [4, 5, 6]], [[2, 3, 4], [5, 6, 7]])
+    [[3, 5, 7], [9, 11, 13]]
     >>> add([3], [4, 5])
     Traceback (most recent call last):
       ...
@@ -29,29 +31,28 @@ def add(*matrix_s: list[list[int]]) -> list[list[int]]:
 
 def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
-    >>> subtract([[1,2],[3,4]],[[2,3],[4,5]])
+    >>> subtract([[1, 2], [3, 4]], [[2, 3], [4, 5]])
     [[-1, -1], [-1, -1]]
-    >>> subtract([[1,2.5],[3,4]],[[2,3],[4,5.5]])
+    >>> subtract([[1, 2.5], [3, 4]], [[2, 3], [4, 5.5]])
     [[-1, -0.5], [-1, -1.5]]
+    >>> subtract([[3, 4, 5], [6, 7, 8]], [[1, 2, 3], [4, 5, 6]])
+    [[2, 2, 2], [2, 2, 2]]
     >>> subtract([3], [4, 5])
     Traceback (most recent call last):
       ...
     TypeError: Expected a matrix, got int/list instead
     """
-    if (
-        _check_not_integer(matrix_a)
-        and _check_not_integer(matrix_b)
-        and _verify_matrix_sizes(matrix_a, matrix_b)
-    ):
+    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
+        _verify_matrix_sizes(matrix_a, matrix_b)
         return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
     raise TypeError("Expected a matrix, got int/list instead")
 
 
 def scalar_multiply(matrix: list[list[int]], n: float) -> list[list[float]]:
     """
-    >>> scalar_multiply([[1,2],[3,4]],5)
+    >>> scalar_multiply([[1, 2], [3, 4]], 5)
     [[5, 10], [15, 20]]
-    >>> scalar_multiply([[1.4,2.3],[3,4]],5)
+    >>> scalar_multiply([[1.4, 2.3], [3, 4]], 5)
     [[7.0, 11.5], [15, 20]]
     """
     return [[x * n for x in row] for row in matrix]
@@ -59,25 +60,32 @@ def scalar_multiply(matrix: list[list[int]], n: float) -> list[list[float]]:
 
 def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
-    >>> multiply([[1,2],[3,4]],[[5,5],[7,5]])
+    >>> multiply([[1, 2], [3, 4]], [[5, 5], [7, 5]])
     [[19, 15], [43, 35]]
-    >>> multiply([[1,2.5],[3,4.5]],[[5,5],[7,5]])
+    >>> multiply([[1, 2.5], [3, 4.5]], [[5, 5], [7, 5]])
     [[22.5, 17.5], [46.5, 37.5]]
     >>> multiply([[1, 2, 3]], [[2], [3], [4]])
     [[20]]
+    >>> multiply([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4], [5, 6]])
+    [[22, 28], [49, 64]]
+    >>> multiply([3], [4, 5])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
-        rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
-
-    if cols[0] != rows[1]:
-        msg = (
-            "Cannot multiply matrix of dimensions "
-            f"({rows[0]},{cols[0]}) and ({rows[1]},{cols[1]})"
-        )
-        raise ValueError(msg)
-    return [
-        [sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a
-    ]
+        rows_a, cols_a = _shape(matrix_a)
+        rows_b, cols_b = _shape(matrix_b)
+        if cols_a != rows_b:
+            msg = (
+                "Cannot multiply matrix of dimensions "
+                f"({rows_a},{cols_a}) and ({rows_b},{cols_b})"
+            )
+            raise ValueError(msg)
+        return [
+            [sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a
+        ]
+    raise TypeError("Expected a matrix, got int/list instead")
 
 
 def identity(n: int) -> list[list[int]]:
@@ -187,7 +195,7 @@ def _verify_matrix_sizes(
     matrix_a: list[list[int]], matrix_b: list[list[int]]
 ) -> tuple[tuple[int, int], tuple[int, int]]:
     shape = _shape(matrix_a) + _shape(matrix_b)
-    if shape[0] != shape[3] or shape[1] != shape[2]:
+    if shape[0] != shape[2] or shape[1] != shape[3]:
         msg = (
             "operands could not be broadcast together with shape "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
