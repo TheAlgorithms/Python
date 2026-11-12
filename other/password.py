@@ -26,6 +26,19 @@ def password_generator(length: int = 8) -> str:
 # chars_incl= characters that must be in password
 # i= how many letters or characters the password length will be
 def alternative_password_generator(chars_incl: str, i: int) -> str:
+    """
+    Generate a password of length ``i`` containing all characters in ``chars_incl``.
+
+    >>> len(alternative_password_generator("ab", 8))
+    8
+    >>> alternative_password_generator("abcd", 3)
+    Traceback (most recent call last):
+    ...
+    ValueError: requested length is shorter than the required characters
+    """
+    if i < len(chars_incl):
+        raise ValueError("requested length is shorter than the required characters")
+
     # Password Generator = full boot with random_number, random_letters, and
     # random_character FUNCTIONS
     # Put your code here...
