@@ -22,6 +22,9 @@ def knuth_morris_pratt(text: str, pattern: str) -> int:
     True
     """
 
+    if not pattern:
+        return 0
+
     # 1) Construct the failure array
     failure = get_failure_array(pattern)
 
