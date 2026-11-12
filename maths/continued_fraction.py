@@ -38,6 +38,7 @@ def continued_fraction(num: Fraction) -> list[int]:
     #Test precision on large integers
     >>> continued_fraction(Fraction(10**300 + 1, 10**300)) == [1, 10**300]
     True
+    
     #Test precision on negative integers
     >>> continued_fraction(Fraction(-7, 3))
     [-3, 1, 2]
