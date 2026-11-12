@@ -13,8 +13,8 @@ MOD_ADLER = 65521
 
 def adler32(plain_text: str) -> int:
     """
-    Function implements adler-32 hash.
-    Iterates and evaluates a new value for each character
+    Compute the Adler-32 checksum of the text's UTF-8 bytes.
+    Text that cannot be encoded as UTF-8 raises UnicodeEncodeError.
 
     >>> adler32('Algorithms')
     363791387
@@ -24,7 +24,7 @@ def adler32(plain_text: str) -> int:
     """
     a = 1
     b = 0
-    for plain_chr in plain_text:
-        a = (a + ord(plain_chr)) % MOD_ADLER
+    for byte in plain_text.encode("utf-8"):
+        a = (a + byte) % MOD_ADLER
         b = (b + a) % MOD_ADLER
     return (b << 16) | a
