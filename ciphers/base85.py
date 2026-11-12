@@ -21,13 +21,17 @@ def ascii85_encode(data: bytes) -> bytes:
     b'0etOA2#'
     >>> ascii85_encode(b"base 85")
     b'@UX=h+?24'
+    >>> list(ascii85_encode(bytes([104, 233, 108, 108, 111])))
+    [66, 94, 39, 62, 76, 68, 90]
+    >>> list(ascii85_encode(bytes([255, 254, 1])))
+    [115, 56, 69, 36]
     """
-    binary_data = "".join(bin(ord(d))[2:].zfill(8) for d in data.decode("utf-8"))
+    binary_data = "".join(bin(byte)[2:].zfill(8) for byte in data)
     null_values = (32 * ((len(binary_data) // 32) + 1) - len(binary_data)) // 8
     binary_data = binary_data.ljust(32 * ((len(binary_data) // 32) + 1), "0")
     b85_chunks = [int(_s, 2) for _s in map("".join, zip(*[iter(binary_data)] * 32))]
     result = "".join(_base10_to_85(chunk)[::-1] for chunk in b85_chunks)
-    return bytes(result[:-null_values] if null_values % 4 != 0 else result, "utf-8")
+    return bytes(result[:-null_values] if null_values % 4 != 0 else result, "ascii")
 
 
 def ascii85_decode(data: bytes) -> bytes:
@@ -40,16 +44,18 @@ def ascii85_decode(data: bytes) -> bytes:
     b'base 85'
     """
     null_values = 5 * ((len(data) // 5) + 1) - len(data)
-    binary_data = data.decode("utf-8") + "u" * null_values
+    binary_data = data.decode("ascii") + "u" * null_values
     b85_chunks = map("".join, zip(*[iter(binary_data)] * 5))
     b85_segments = [[ord(_s) - 33 for _s in chunk] for chunk in b85_chunks]
-    results = [bin(_base85_to_10(chunk))[2::].zfill(32) for chunk in b85_segments]
-    char_chunks = [
-        [chr(int(_s, 2)) for _s in map("".join, zip(*[iter(r)] * 8))] for r in results
+    results = [bin(_base85_to_10(chunk))[2:].zfill(32) for chunk in b85_segments]
+    byte_chunks = [
+        [int(_s, 2) for _s in map("".join, zip(*[iter(r)] * 8))] for r in results
     ]
-    result = "".join("".join(char) for char in char_chunks)
+    result = bytearray()
+    for chunk in byte_chunks:
+        result.extend(chunk)
     offset = int(null_values % 5 == 0)
-    return bytes(result[: offset - null_values], "utf-8")
+    return bytes(result[: offset - null_values])
 
 
 if __name__ == "__main__":
