@@ -11,7 +11,23 @@ def is_isogram(string: str) -> bool:
     True
     >>> is_isogram('allowance')
     False
+    >>> is_isogram('')
+    True
+    >>> is_isogram('a')
+    True
+    >>> is_isogram('Alphabet')
+    False
+    >>> is_isogram('subdermatoglyphic')
+    True
     >>> is_isogram('copy1')
+    Traceback (most recent call last):
+     ...
+    ValueError: String must only contain alphabetic characters.
+    >>> is_isogram('hello world')
+    Traceback (most recent call last):
+     ...
+    ValueError: String must only contain alphabetic characters.
+    >>> is_isogram('isogram!')
     Traceback (most recent call last):
      ...
     ValueError: String must only contain alphabetic characters.
