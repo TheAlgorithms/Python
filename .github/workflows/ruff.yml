@@ -7,8 +7,14 @@ on:
   pull_request:
     branches:
       - master
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
   ruff:
+    name: Ruff
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
