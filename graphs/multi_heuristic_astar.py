@@ -79,10 +79,7 @@ def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
 
 
 def do_something(back_pointer, goal, start) -> None:
-    grid = np.char.chararray((n, n))
-    for i in range(n):
-        for j in range(n):
-            grid[i][j] = "*"
+    grid = np.full((n, n), "*", dtype="<U1")
 
     for i in range(n):
         for j in range(n):
