@@ -130,25 +130,29 @@ PC2 = [14, 17, 11, 24, 1, 5,
 
 class Operations:
     @staticmethod
-    def string_to_bitset(string: str) -> list:
+    def string_to_bitset(data: bytes) -> list:
         """
-        Converts a string into a list of binary digits (bitset).
+        Converts a bytes object into a list of binary digits (bitset).
+
+        Each byte is represented by exactly 8 bits.
 
         Args:
-            string (str): The input string to be converted.
+            data (bytes): The input bytes to be converted.
 
         Returns:
-            list: A list of binary digits representing the string.
+            list: A list of binary digits representing the bytes.
 
         Examples:
-            >>> Operations.string_to_bitset('A')
+            >>> Operations.string_to_bitset(b'A')
             ['0', '1', '0', '0', '0', '0', '0', '1']
-            >>> len(Operations.string_to_bitset('ab'))
+            >>> len(Operations.string_to_bitset(b'ab'))
             16
-            >>> Operations.string_to_bitset(' ')
+            >>> Operations.string_to_bitset(b' ')
             ['0', '0', '1', '0', '0', '0', '0', '0']
+            >>> "".join(Operations.string_to_bitset(bytes([230, 132, 170])))
+            '111001101000010010101010'
         """
-        return list("".join(format(ord(char), "08b") for char in string))
+        return list("".join(format(byte, "08b") for byte in data))
 
     @staticmethod
     def pad_right_to_multiple_of_n(bitset: list, length: int) -> list:
@@ -245,25 +249,25 @@ class Operations:
         )
 
     @staticmethod
-    def bitset_to_string(bitset: list) -> str:
+    def bitset_to_string(bitset: list) -> bytes:
         """
-        Converts a bitset into a string by interpreting every 8 bits as a character.
+        Converts a bitset into a bytes object by interpreting every 8 bits as a byte.
 
         Args:
             bitset (list): The list of binary digits (bitset).
 
         Returns:
-            str: The decoded string.
+            bytes: The decoded bytes.
 
         Examples:
             >>> Operations.bitset_to_string(['0', '1', '0', '0', '0', '0', '0', '1'])
-            'A'
+            b'A'
             >>> Operations.bitset_to_string(['0', '1', '0', '0', '0', '1',\
 '0', '0', '0', '1', '0', '1', '0', '1', '1', '0'])
-            'DV'
+            b'DV'
         """
-        return "".join(
-            chr(int("".join(bitset[i : i + 8]), 2)) for i in range(0, len(bitset), 8)
+        return bytes(
+            int("".join(bitset[i : i + 8]), 2) for i in range(0, len(bitset), 8)
         )
 
     @staticmethod
@@ -424,7 +428,7 @@ class Des:
             list: The encrypted bitset.
 
         Examples:
-            >>> plain_bitset = Operations.string_to_bitset("Test string")
+            >>> plain_bitset = Operations.string_to_bitset(b"Test string")
             >>> plain_bitset = Operations.pad_right_to_multiple_of_n(plain_bitset, 64)
             >>> keys = Des.key_schedule(Des.generate_key())
             >>> cipher_bitset = Des.des(keys, plain_bitset)
@@ -474,6 +478,9 @@ class Des:
         """
         Encrypts a given input string using the DES encryption algorithm.
 
+        The input string is encoded as UTF-8 bytes before encryption, so any
+        Unicode text round-trips correctly.
+
         Args:
             key (str): A 16-character hexadecimal string representing a 64-bit key.
             input_string (str): The plain text string to be encrypted.
@@ -488,7 +495,7 @@ class Des:
             >>> encrypted  # Checking the cipher to ensure consistency
             'c84e3c8fb646872720b224896db4f60'
         """
-        plain_bitset = Operations.string_to_bitset(input_string)
+        plain_bitset = Operations.string_to_bitset(input_string.encode("utf-8"))
         padded_bitset = Operations.pad_right_to_multiple_of_n(plain_bitset, 64)
         keys = Des.key_schedule(key)
         cipher_bitset = Des.des(keys, padded_bitset)
@@ -498,6 +505,9 @@ class Des:
     def decrypt(key: str, cipher_text: str) -> str:
         """
         Decrypts the given cipher text using DES decryption.
+
+        The decrypted bytes are decoded as UTF-8, so any Unicode text
+        round-trips correctly.
 
         Args:
             key (str): A 16-character hexadecimal string representing a 64-bit key.
@@ -516,7 +526,11 @@ class Des:
         cipher_bitset = Operations.hex_to_bitset(cipher_text, 64)
         keys = Des.key_schedule(key)[::-1]
         plain_bitset = Des.des(keys, cipher_bitset)
-        return Operations.bitset_to_string(plain_bitset).replace("\x00", "")
+        return (
+            Operations.bitset_to_string(plain_bitset)
+            .replace(b"\x00", b"")
+            .decode("utf-8")
+        )
 
 
 if __name__ == "__main__":
