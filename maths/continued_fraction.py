@@ -5,7 +5,6 @@ https://en.wikipedia.org/wiki/Continued_fraction
 """
 
 from fractions import Fraction
-from math import floor
 
 
 def continued_fraction(num: Fraction) -> list[int]:
@@ -35,11 +34,19 @@ def continued_fraction(num: Fraction) -> list[int]:
     [0, 1, 3]
     >>> continued_fraction(Fraction("-2.25"))    # -2.25 = -3 + 0.75
     [-3, 1, 3]
+
+    #Test precision on large integers
+    >>> continued_fraction(Fraction(10**300 + 1, 10**300)) == [1, 10**300]
+    True
+    #Test precision on negative integers
+    >>> continued_fraction(Fraction(-7, 3))
+    [-3, 1, 2]
+    
     """
     numerator, denominator = num.as_integer_ratio()
     continued_fraction_list: list[int] = []
     while True:
-        integer_part = floor(numerator / denominator)
+        integer_part = numerator // denominator
         continued_fraction_list.append(integer_part)
         numerator -= integer_part * denominator
         if numerator == 0:
