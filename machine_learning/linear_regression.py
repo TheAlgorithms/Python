@@ -97,7 +97,7 @@ def run_linear_regression(data_x, data_y):
     alpha = 0.0001550
 
     no_features = data_x.shape[1]
-    len_data = data_x.shape[0] - 1
+    len_data = data_x.shape[0]
 
     theta = np.zeros((1, no_features))
 
