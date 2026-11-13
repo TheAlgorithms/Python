@@ -474,6 +474,8 @@ class Des:
         """
         Encrypts a given input string using the DES encryption algorithm.
 
+        The input text is encoded as UTF-8 before encryption.
+
         Args:
             key (str): A 16-character hexadecimal string representing a 64-bit key.
             input_string (str): The plain text string to be encrypted.
@@ -488,7 +490,9 @@ class Des:
             >>> encrypted  # Checking the cipher to ensure consistency
             'c84e3c8fb646872720b224896db4f60'
         """
-        plain_bitset = Operations.string_to_bitset(input_string)
+        plain_bitset = [
+            bit for byte in input_string.encode("utf-8") for bit in format(byte, "08b")
+        ]
         padded_bitset = Operations.pad_right_to_multiple_of_n(plain_bitset, 64)
         keys = Des.key_schedule(key)
         cipher_bitset = Des.des(keys, padded_bitset)
@@ -498,6 +502,10 @@ class Des:
     def decrypt(key: str, cipher_text: str) -> str:
         """
         Decrypts the given cipher text using DES decryption.
+
+        The decrypted bytes are decoded as UTF-8.
+        Ciphertext generated using the previous character-based encoding
+        may not be compatible with this implementation.
 
         Args:
             key (str): A 16-character hexadecimal string representing a 64-bit key.
@@ -516,7 +524,11 @@ class Des:
         cipher_bitset = Operations.hex_to_bitset(cipher_text, 64)
         keys = Des.key_schedule(key)[::-1]
         plain_bitset = Des.des(keys, cipher_bitset)
-        return Operations.bitset_to_string(plain_bitset).replace("\x00", "")
+        plain_bytes = bytes(
+            int("".join(plain_bitset[i : i + 8]), 2)
+            for i in range(0, len(plain_bitset), 8)
+        )
+        return plain_bytes.rstrip(b"\x00").decode("utf-8")
 
 
 if __name__ == "__main__":
