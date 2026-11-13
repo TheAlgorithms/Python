@@ -1,0 +1,4 @@
+
+ollama
+python-dotenv
+ruff
