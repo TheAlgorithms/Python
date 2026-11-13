@@ -75,11 +75,6 @@ def binary_and(a: int, b: int) -> str:
     if a < 0 or b < 0:
         raise ValueError("inputs must be non-negative integers")
 
-    a_binary = format(a, "b")
-    b_binary = format(b, "b")
-
-    max_len = max(len(a_binary), len(b_binary))
-
     max_len = max(a.bit_length(), b.bit_length())
     return f"0b{(a & b):0{max_len}b}"
 
