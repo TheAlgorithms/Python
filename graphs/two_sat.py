@@ -19,6 +19,94 @@ References:
 from itertools import combinations, combinations_with_replacement, product
 
 
+def _implication_graph(
+    number_of_variables: int, clauses: list[tuple[int, int]]
+) -> tuple[list[list[int]], list[list[int]]]:
+    """Build the forward and reverse graphs for the clauses.
+
+    Each variable has two vertices: the positive literal at an even index
+    and the negative literal at the next odd index. XOR 1 negates a literal.
+
+    >>> _implication_graph(1, [(1, 1)])
+    ([[], [0, 0]], [[1, 1], []])
+    """
+    vertex_count = 2 * number_of_variables
+    graph: list[list[int]] = [[] for _ in range(vertex_count)]
+    reversed_graph: list[list[int]] = [[] for _ in range(vertex_count)]
+
+    for first, second in clauses:
+        for literal in (first, second):
+            if isinstance(literal, bool) or not isinstance(literal, int):
+                msg = "Literals must be integers"
+                raise TypeError(msg)
+            if literal == 0 or abs(literal) > number_of_variables:
+                msg = f"Literal {literal} is outside the range 1..{number_of_variables}"
+                raise ValueError(msg)
+
+        first_vertex = 2 * (abs(first) - 1) + (first < 0)
+        second_vertex = 2 * (abs(second) - 1) + (second < 0)
+        for source, target in (
+            (first_vertex ^ 1, second_vertex),
+            (second_vertex ^ 1, first_vertex),
+        ):
+            graph[source].append(target)
+            reversed_graph[target].append(source)
+
+    return graph, reversed_graph
+
+
+def _kosaraju_components(
+    graph: list[list[int]], reversed_graph: list[list[int]]
+) -> list[int]:
+    """Find strongly connected components using two iterative DFS passes.
+
+    Both graphs must contain the same vertices and reversed edges.
+
+    >>> _kosaraju_components([[1], [0]], [[1], [0]])
+    [0, 0]
+    """
+    vertex_count = len(graph)
+    visited = [False] * vertex_count
+    finishing_order: list[int] = []
+
+    # First pass: DFS finishing order in the original graph.
+    # The explicit stack prevents recursion errors on long paths.
+    for start in range(vertex_count):
+        if visited[start]:
+            continue
+        visited[start] = True
+        stack = [(start, 0)]
+        while stack:
+            vertex, edge_index = stack[-1]
+            if edge_index == len(graph[vertex]):
+                finishing_order.append(vertex)
+                stack.pop()
+                continue
+
+            stack[-1] = (vertex, edge_index + 1)
+            neighbor = graph[vertex][edge_index]
+            if not visited[neighbor]:
+                visited[neighbor] = True
+                stack.append((neighbor, 0))
+
+    # Second pass: visit the reversed graph in decreasing finishing order.
+    components = [-1] * vertex_count
+    component_id = 0
+    for start in reversed(finishing_order):
+        if components[start] != -1:
+            continue
+        components[start] = component_id
+        stack_vertices = [start]
+        while stack_vertices:
+            vertex = stack_vertices.pop()
+            for neighbor in reversed_graph[vertex]:
+                if components[neighbor] == -1:
+                    components[neighbor] = component_id
+                    stack_vertices.append(neighbor)
+        component_id += 1
+    return components
+
+
 def two_sat(
     number_of_variables: int, clauses: list[tuple[int, int]]
 ) -> list[bool] | None:
@@ -69,68 +157,8 @@ def two_sat(
         msg = "Number of variables must be nonnegative"
         raise ValueError(msg)
 
-    vertex_count = 2 * number_of_variables
-    graph: list[list[int]] = [[] for _ in range(vertex_count)]
-    reversed_graph: list[list[int]] = [[] for _ in range(vertex_count)]
-
-    for first, second in clauses:
-        for literal in (first, second):
-            if isinstance(literal, bool) or not isinstance(literal, int):
-                msg = "Literals must be integers"
-                raise TypeError(msg)
-            if literal == 0 or abs(literal) > number_of_variables:
-                msg = f"Literal {literal} is outside the range 1..{number_of_variables}"
-                raise ValueError(msg)
-
-        # Positive and negative literals have consecutive indices; XOR 1
-        # switches between a literal and its negation.
-        first_vertex = 2 * (abs(first) - 1) + (first < 0)
-        second_vertex = 2 * (abs(second) - 1) + (second < 0)
-
-        for source, target in (
-            (first_vertex ^ 1, second_vertex),
-            (second_vertex ^ 1, first_vertex),
-        ):
-            graph[source].append(target)
-            reversed_graph[target].append(source)
-
-    # Kosaraju pass 1: collect vertices in DFS finishing order.
-    # Explicit stacks avoid Python's recursion limit for large formulas.
-    visited = [False] * vertex_count
-    finishing_order: list[int] = []
-    for start in range(vertex_count):
-        if visited[start]:
-            continue
-        visited[start] = True
-        stack = [(start, 0)]  # (vertex, index of next outgoing edge)
-        while stack:
-            vertex, edge_index = stack[-1]
-            if edge_index == len(graph[vertex]):
-                finishing_order.append(vertex)
-                stack.pop()
-                continue
-
-            stack[-1] = (vertex, edge_index + 1)
-            neighbor = graph[vertex][edge_index]
-            if not visited[neighbor]:
-                visited[neighbor] = True
-                stack.append((neighbor, 0))
-
-    # Kosaraju pass 2: label components in the reversed graph.
-    components = [-1] * vertex_count
-    component_id = 0
-    for start in reversed(finishing_order):
-        if components[start] != -1:
-            continue
-        components[start] = component_id
-        stack_vertices = [start]
-        while stack_vertices:
-            vertex = stack_vertices.pop()
-            for neighbor in reversed_graph[vertex]:
-                if components[neighbor] == -1:
-                    components[neighbor] = component_id
-                    stack_vertices.append(neighbor)
-        component_id += 1
+    graph, reversed_graph = _implication_graph(number_of_variables, clauses)
+    components = _kosaraju_components(graph, reversed_graph)
 
     assignment: list[bool] = []
     for variable in range(number_of_variables):
