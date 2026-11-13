@@ -26,11 +26,16 @@ python power_sort.py
 """
 
 from collections.abc import Callable, Iterable
-from typing import Any
+from typing import Any, Protocol
 
 
-def _find_run[T](
-    arr: list[T], start: int, end: int, key: Callable[[Any], Any] | None = None
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool: ...
+    def __le__(self, other: Any, /) -> bool: ...
+
+
+def _find_run[T: Comparable](
+    arr: list[T], start: int, end: int, key: Callable[[T], Comparable] | None = None
 ) -> int:
     """
     Detect a run (ascending or descending sequence) starting at 'start'.
@@ -132,12 +137,12 @@ def _node_power(total_length: int, b1: int, n1: int, b2: int, n2: int) -> int:
     return power
 
 
-def _merge[T](
+def _merge[T: Comparable](
     arr: list[T],
     start1: int,
     end1: int,
     end2: int,
-    key: Callable[[Any], Any] | None = None,
+    key: Callable[[T], Comparable] | None = None,
 ) -> None:
     """
     Merge two adjacent sorted runs in-place using auxiliary space.
@@ -194,10 +199,10 @@ def _merge[T](
         k += 1
 
 
-def power_sort[T](
+def power_sort[T: Comparable](
     collection: Iterable[T],
     *,
-    key: Callable[[Any], Any] | None = None,
+    key: Callable[[T], Comparable] | None = None,
     reverse: bool = False,
 ) -> list[T]:
     """
@@ -281,7 +286,7 @@ def power_sort[T](
         if key:
             original_key = key
 
-            def reverse_key(element: Any) -> Any:
+            def reverse_key(element: T) -> Comparable:
                 """
                 Reverse key function for numeric values.
 
@@ -305,7 +310,7 @@ def power_sort[T](
             needs_final_reverse = True
         else:
 
-            def reverse_cmp(element: Any) -> Any:
+            def reverse_cmp(element: T) -> Comparable:
                 """
                 Reverse comparison function for numeric values.
 
