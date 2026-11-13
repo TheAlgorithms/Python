@@ -15,4 +15,6 @@ jobs:
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@v7
-      - run: uvx ruff check --output-format=github .
+      # Use the same pinned Ruff version as the local pre-commit hook.
+      - name: Lint with Ruff (pre-commit)
+        run: uvx pre-commit run ruff-check --all-files
