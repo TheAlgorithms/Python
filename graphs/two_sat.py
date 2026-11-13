@@ -79,10 +79,7 @@ def two_sat(
                 msg = "Literals must be integers"
                 raise TypeError(msg)
             if literal == 0 or abs(literal) > number_of_variables:
-                msg = (
-                    f"Literal {literal} is outside the range "
-                    f"1..{number_of_variables}"
-                )
+                msg = f"Literal {literal} is outside the range 1..{number_of_variables}"
                 raise ValueError(msg)
 
         # Positive and negative literals have consecutive indices; XOR 1
@@ -162,8 +159,7 @@ def test_two_sat_against_brute_force() -> None:
                 actual = two_sat(variable_count, clauses)
                 expected_satisfiable = any(
                     all(
-                        values[abs(a) - 1] == (a > 0)
-                        or values[abs(b) - 1] == (b > 0)
+                        values[abs(a) - 1] == (a > 0) or values[abs(b) - 1] == (b > 0)
                         for a, b in clauses
                     )
                     for values in product((False, True), repeat=variable_count)
@@ -171,8 +167,7 @@ def test_two_sat_against_brute_force() -> None:
                 assert (actual is not None) == expected_satisfiable
                 if actual is not None:
                     assert all(
-                        actual[abs(a) - 1] == (a > 0)
-                        or actual[abs(b) - 1] == (b > 0)
+                        actual[abs(a) - 1] == (a > 0) or actual[abs(b) - 1] == (b > 0)
                         for a, b in clauses
                     )
 
