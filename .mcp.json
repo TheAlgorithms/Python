@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "algodev": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--network",
+        "none",
+        "--user",
+        "1000:1000",
+        "-v",
+        "${PWD}:/repo:ro",
+        "algodev-mcp"
+      ]
+    }
+  }
+}
