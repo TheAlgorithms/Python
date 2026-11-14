@@ -67,11 +67,11 @@ def greedy_set_cover(
     while elements_to_take:
         # forget the subsets that cover nothing new, so we never divide by 0
         not_chosen_subsets = {
-            i for i in not_chosen_subsets if subsets[i] & elements_to_take
+            index for index in not_chosen_subsets if subsets[index] & elements_to_take
         }
         index = min(
             not_chosen_subsets,
-            key=lambda i: costs[i] / len(subsets[i] & elements_to_take),
+            key=lambda index: costs[index] / len(subsets[index] & elements_to_take),
         )
         not_chosen_subsets.remove(index)
         chosen_subsets_indexes.add(index)
