@@ -17,6 +17,10 @@ def bubble_sort_iterative[T: Comparable](collection: list[T]) -> list[T]:
 
     Time complexity: O(n) best case (already sorted, thanks to the
     early-exit optimization), O(n^2) average and worst case.
+
+    >>> bubble_sort_iterative([1, 2, 3])
+    [1, 2, 3]
+
     Space complexity: O(1) auxiliary (sorts in place).
 
     :param collection: some mutable ordered collection with heterogeneous
