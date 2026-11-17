@@ -1,25 +1,22 @@
 """
-Normalization.
+Data transformations are useful for preparing data for machine learning algorithms.
+Different algorithms perform better with different data transformations.
+Two common data transformations are normalization and standardization.
 
-Wikipedia: https://en.wikipedia.org/wiki/Normalization
-Normalization is the process of converting numerical data to a standard range of values.
-This range is typically between [0, 1] or [-1, 1]. The equation for normalization is
-x_norm = (x - x_min)/(x_max - x_min) where x_norm is the normalized value, x is the
-value, x_min is the minimum value within the column or list of data, and x_max is the
-maximum value within the column or list of data. Normalization is used to speed up the
-training of data and put all of the data on a similar scale. This is useful because
-variance in the range of values of a dataset can heavily impact optimization
-(particularly Gradient Descent).
+Normalization:
+    Normalization scales all numeric variables in the range [0, 1].
+    One possible formula is given below:
+    x_norm = (x - x_min) / (x_max - x_min)
+    Source: https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)
 
-Standardization Wikipedia: https://en.wikipedia.org/wiki/Standardization
-Standardization is the process of converting numerical data to a normally distributed
-range of values. This range will have a mean of 0 and standard deviation of 1. This is
-also known as z-score normalization. The equation for standardization is
-x_std = (x - mu)/(sigma) where mu is the mean of the column or list of values and sigma
-is the standard deviation of the column or list of values.
+Standardization:
+    Standardization transforms data to have a mean of 0 and a standard deviation of 1.
+    One possible formula is given below:
+    x_std = (x - mean) / standard_deviation
+    Source: https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)
 
-Choosing between Normalization & Standardization is more of an art of a science, but it
-is often recommended to run experiments with both to see which performs better.
+Choosing between Normalization & Standardization is more of an art than a science, but
+it is often recommended to run experiments with both to see which performs better.
 Additionally, a few rules of thumb are:
     1. gaussian (normal) distributions work better with standardization
     2. non-gaussian (non-normal) distributions work better with normalization
@@ -29,7 +26,7 @@ Additionally, a few rules of thumb are:
 from statistics import mean, stdev
 
 
-def normalization(data: list, ndigits: int = 3) -> list:
+def normalization(data: list[float], ndigits: int = 3) -> list[float]:
     """
     Return a normalized list of values.
 
@@ -40,15 +37,28 @@ def normalization(data: list, ndigits: int = 3) -> list:
     [0.0, 0.104, 0.167, 0.375, 0.583, 1.0]
     >>> normalization([5, 10, 15, 20, 25])
     [0.0, 0.25, 0.5, 0.75, 1.0]
+    >>> normalization([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input data list cannot be empty.
+    >>> normalization([5, 5, 5])
+    Traceback (most recent call last):
+        ...
+    ValueError: Cannot normalize data where all values are identical.
     """
-    # variables for calculation
+    if not data:
+        raise ValueError("Input data list cannot be empty.")
+
     x_min = min(data)
     x_max = max(data)
-    # normalize data
+
+    if x_max == x_min:
+        raise ValueError("Cannot normalize data where all values are identical.")
+
     return [round((x - x_min) / (x_max - x_min), ndigits) for x in data]
 
 
-def standardization(data: list, ndigits: int = 3) -> list:
+def standardization(data: list[float], ndigits: int = 3) -> list[float]:
     """
     Return a standardized list of values.
 
@@ -59,9 +69,28 @@ def standardization(data: list, ndigits: int = 3) -> list:
     [-0.999, -0.719, -0.551, 0.009, 0.57, 1.69]
     >>> standardization([5, 10, 15, 20, 25])
     [-1.265, -0.632, 0.0, 0.632, 1.265]
+    >>> standardization([5])
+    Traceback (most recent call last):
+        ...
+    ValueError: Input data list must contain at least two values.
+    >>> standardization([5, 5, 5])
+    Traceback (most recent call last):
+        ...
+    ValueError: Cannot standardize data where all values are identical.
     """
-    # variables for calculation
+    if len(data) < 2:
+        raise ValueError("Input data list must contain at least two values.")
+
     mu = mean(data)
     sigma = stdev(data)
-    # standardize data
-    return [round((x - mu) / (sigma), ndigits) for x in data]
+
+    if sigma == 0:
+        raise ValueError("Cannot standardize data where all values are identical.")
+
+    return [round((x - mu) / sigma, ndigits) for x in data]
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
