@@ -13,9 +13,9 @@ Reference:
 """
 
 
-def cullen_number(n: int) -> int:
+def cullen_number(index: int) -> int:
     """
-    Returns the n-th Cullen number: n * 2^n + 1.
+    Returns the index-th Cullen number: index * 2^index + 1.
 
     >>> cullen_number(1)
     3
@@ -30,21 +30,21 @@ def cullen_number(n: int) -> int:
     >>> cullen_number(0)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a positive integer (n >= 1).
+    ValueError: Input must be a positive integer (index >= 1).
     >>> cullen_number(-3)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a positive integer (n >= 1).
+    ValueError: Input must be a positive integer (index >= 1).
     >>> cullen_number(2.5)  # type: ignore
     Traceback (most recent call last):
         ...
     TypeError: Input must be an integer.
     """
-    if not isinstance(n, int):
+    if not isinstance(index, int):
         raise TypeError("Input must be an integer.")
-    if n < 1:
-        raise ValueError("Input must be a positive integer (n >= 1).")
-    return n * (1 << n) + 1
+    if index < 1:
+        raise ValueError("Input must be a positive integer (index >= 1).")
+    return index * (1 << index) + 1
 
 
 def is_cullen_number(number: int) -> bool:
@@ -79,14 +79,14 @@ def is_cullen_number(number: int) -> bool:
     if number < 3:
         return False
 
-    n = 1
+    current_index = 1
     while True:
-        cullen = cullen_number(n)
+        cullen = cullen_number(current_index)
         if cullen == number:
             return True
         if cullen > number:
             return False
-        n += 1
+        current_index += 1
 
 
 if __name__ == "__main__":
