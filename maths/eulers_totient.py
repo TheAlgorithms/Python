@@ -22,7 +22,7 @@ def totient(n: int) -> list:
         if is_prime[i]:
             primes.append(i)
         for j in range(len(primes)):
-            if i * primes[j] >= n:
+            if i * primes[j] > n:
                 break
             is_prime[i * primes[j]] = False
 
