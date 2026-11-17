@@ -69,13 +69,14 @@ def fnv1a_32(data: bytes | str) -> int:
             ...
         TypeError: data must be bytes or str, not int
     """
-    if isinstance(data, str):
-        byte_data: bytes | bytearray = data.encode("utf-8")
-    elif isinstance(data, (bytes, bytearray)):
-        byte_data = data
-    else:
-        msg = f"data must be bytes or str, not {type(data).__name__}"
-        raise TypeError(msg)
+    match data:
+        case str():
+            byte_data: bytes | bytearray = data.encode("utf-8")
+        case bytes() | bytearray():
+            byte_data = data
+        case _:
+            msg = f"data must be bytes or str, not {type(data).__name__}"
+            raise TypeError(msg)
 
     hash_value = FNV_32_OFFSET_BASIS
     for byte in byte_data:
@@ -123,13 +124,14 @@ def fnv1a_64(data: bytes | str) -> int:
             ...
         TypeError: data must be bytes or str, not int
     """
-    if isinstance(data, str):
-        byte_data: bytes | bytearray = data.encode("utf-8")
-    elif isinstance(data, (bytes, bytearray)):
-        byte_data = data
-    else:
-        msg = f"data must be bytes or str, not {type(data).__name__}"
-        raise TypeError(msg)
+    match data:
+        case str():
+            byte_data: bytes | bytearray = data.encode("utf-8")
+        case bytes() | bytearray():
+            byte_data = data
+        case _:
+            msg = f"data must be bytes or str, not {type(data).__name__}"
+            raise TypeError(msg)
 
     hash_value = FNV_64_OFFSET_BASIS
     for byte in byte_data:
