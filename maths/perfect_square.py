@@ -18,7 +18,7 @@ def perfect_square(num: int) -> bool:
     >>> perfect_square(10)
     False
     """
-    return math.sqrt(num) * math.sqrt(num) == num
+    return num >= 0 and math.isqrt(num) ** 2 == num
 
 
 def perfect_square_binary_search(n: int) -> bool:
