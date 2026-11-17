@@ -65,9 +65,7 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
     result[positive_mask] = 1 / (1 + np.exp(-vector[positive_mask]))
 
     negative_exponentials = np.exp(vector[~positive_mask])
-    result[~positive_mask] = negative_exponentials / (
-        1 + negative_exponentials
-    )
+    result[~positive_mask] = negative_exponentials / (1 + negative_exponentials)
 
     return result
 
