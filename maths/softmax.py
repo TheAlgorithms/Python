@@ -33,14 +33,9 @@ def softmax(vector: np.ndarray, axis: int | None = -1) -> np.ndarray:
         probability distribution that sums to 1.
 
     Raises:
-        ValueError: If ``vector`` is empty or cannot be converted to a numeric
-            float array (for example a string or a dict).
+        ValueError: If ``vector`` is empty, cannot be converted to a numeric
+            float array, or contains non-finite values.
         numpy.exceptions.AxisError: If ``axis`` is out of bounds for the input.
-
-    Note:
-        If the input contains ``NaN`` or ``inf`` the result will contain
-        ``NaN`` along the affected axis; softmax is only meaningful for finite
-        real inputs.
 
     The softmax vector adds up to one. We need to ceil to mitigate precision.
 
@@ -77,7 +72,7 @@ def softmax(vector: np.ndarray, axis: int | None = -1) -> np.ndarray:
     >>> float(np.round(np.sum(softmax(mat, axis=None)), 6))
     1.0
 
-    Empty, non-numeric and out-of-bounds inputs raise clear errors:
+    Empty, non-numeric, non-finite and out-of-bounds inputs raise clear errors:
 
     >>> softmax([])
     Traceback (most recent call last):
@@ -91,6 +86,10 @@ def softmax(vector: np.ndarray, axis: int | None = -1) -> np.ndarray:
     Traceback (most recent call last):
         ...
     numpy.exceptions.AxisError: axis 3 is out of bounds for array of dimension 1
+    >>> softmax([1.0, np.nan])
+    Traceback (most recent call last):
+        ...
+    ValueError: softmax input must contain only finite values
     """
     # Convert input to a float numpy array, turning numpy's terse conversion
     # errors into a clear message about the unsupported input type.
@@ -100,9 +99,11 @@ def softmax(vector: np.ndarray, axis: int | None = -1) -> np.ndarray:
         error_message = f"softmax input must be numeric, got {type(vector).__name__}"
         raise ValueError(error_message) from exc
 
-    # Handle empty input
+    # Handle empty and non-finite input
     if vector.size == 0:
         raise ValueError("softmax input must be non-empty")
+    if not np.all(np.isfinite(vector)):
+        raise ValueError("softmax input must contain only finite values")
 
     # Validate axis (None means "treat the whole array as one distribution")
     if axis is not None:
