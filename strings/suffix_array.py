@@ -3,11 +3,13 @@ https://en.wikipedia.org/wiki/Suffix_array
 https://cp-algorithms.com/string/suffix-array.html
 
 A suffix array lists the starting positions of every suffix of a string in
-lexicographic order. It needs one integer per suffix, where a suffix tree
-needs a node per character, so it is the compact structure used for pattern
-search and for the LCP-based algorithms built on top of it.
+lexicographic order. It needs one integer per suffix, while a suffix tree
+needs up to 2n nodes, so it is the compact structure used for pattern search
+and for the LCP-based algorithms built on top of it.
 
-Construction here uses prefix doubling (Manber-Myers).
+Construction here uses prefix doubling (Manber-Myers). It is simpler and much
+lighter in memory than the linear-time constructions (Ukkonen for suffix
+trees, SA-IS for suffix arrays), but runs slower: O(n log² n) instead of O(n).
 
 Time Complexity: O(n log² n) - where n is the length of the text
 Space Complexity: O(n)
@@ -33,6 +35,11 @@ def suffix_array(text: str) -> list[int]:
     [0]
     >>> suffix_array("")
     []
+    >>> all(
+    ...     suffix_array(s) == sorted(range(len(s)), key=lambda i: s[i:])
+    ...     for s in ("aaaa", "abab", "banana", "mississippi", "abracadabra")
+    ... )
+    True
     """
     n = len(text)
     if n == 0:
@@ -48,25 +55,22 @@ def suffix_array(text: str) -> list[int]:
         # Sort by the first 2k characters of each suffix, which are exactly the
         # pair (rank of the first k, rank of the next k). A second half that
         # runs past the end gets -1: ranks are never negative, so a shorter
-        # suffix sorts before a longer one that shares its prefix.
+        # suffix sorts before a longer one that shares its prefix. The index i
+        # only breaks ties so the order stays deterministic; tied suffixes are
+        # given the same rank in the renumbering below.
         keys = [(rank[i], rank[i + k] if i + k < n else -1, i) for i in range(n)]
         keys.sort()
         suffixes = [i for _, _, i in keys]
 
         # Renumber so that equal 2k-prefixes share a rank and every distinct
         # prefix gets the next one. This keeps ranks dense in range(n).
+        # `keys` is already in the same order as `suffixes`, so the first two
+        # entries of neighbouring keys are the pairs to compare.
         new_rank = [0] * n
         for position in range(1, n):
             previous, current = suffixes[position - 1], suffixes[position]
-            previous_key = (
-                rank[previous],
-                rank[previous + k] if previous + k < n else -1,
-            )
-            current_key = (
-                rank[current],
-                rank[current + k] if current + k < n else -1,
-            )
-            new_rank[current] = new_rank[previous] + int(previous_key != current_key)
+            same_prefix = keys[position - 1][:2] == keys[position][:2]
+            new_rank[current] = new_rank[previous] + int(not same_prefix)
 
         rank = new_rank
         # Dense ranks ending at n - 1 means every suffix has a unique rank, so
@@ -77,3 +81,9 @@ def suffix_array(text: str) -> list[int]:
         k *= 2
 
     return suffixes
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
