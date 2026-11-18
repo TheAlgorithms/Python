@@ -1,10 +1,11 @@
 """
 This script demonstrates the implementation of the Sigmoid function.
 
-The function takes a vector of K real numbers as input and then 1 / (1 + exp(-x)).
-After through Sigmoid, the element of the vector mostly 0 between 1. or 1 between -1.
+The sigmoid function maps real-valued inputs to the interval (0, 1).
+Its implementation uses separate formulas for positive and negative inputs
+to avoid overflow warnings when evaluating large-magnitude values.
 
-Script inspired from its corresponding Wikipedia article
+Script inspired from its corresponding Wikipedia article:
 https://en.wikipedia.org/wiki/Sigmoid_function
 """
 
@@ -13,15 +14,17 @@ import numpy as np
 
 def sigmoid(vector: np.ndarray) -> np.ndarray:
     """
-    Implements the sigmoid function
+    Implement the sigmoid function in a numerically stable way.
 
     Parameters:
-        vector (np.array): A  numpy array of shape (1,n)
-        consisting of real values
+        vector (np.ndarray): An array of real-valued inputs.
 
     Returns:
-        sigmoid_vec (np.array): The input numpy array, after applying
-        sigmoid.
+        np.ndarray: The input array after applying the sigmoid function.
+
+    Raises:
+        ValueError: If the input cannot be converted to a float array or
+            contains NaN values.
 
     Examples:
     >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
@@ -29,8 +32,46 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
 
     >>> sigmoid(np.array([0.0]))
     array([0.5])
+
+    Large positive and negative values are handled without overflow warnings:
+    >>> sigmoid(np.array([-1000.0, 1000.0]))
+    array([0., 1.])
+
+    Infinite values are supported:
+    >>> sigmoid(np.array([np.inf, -np.inf]))
+    array([1., 0.])
+
+    Scalar arrays are supported:
+    >>> sigmoid(np.array(0.0))
+    array(0.5)
+
+    Non-numeric and NaN inputs are rejected:
+    >>> sigmoid(np.array(["invalid"]))
+    Traceback (most recent call last):
+        ...
+    ValueError: sigmoid input must be numeric
+    >>> sigmoid(np.array([np.nan]))
+    Traceback (most recent call last):
+        ...
+    ValueError: sigmoid input must not contain NaN values
     """
-    return 1 / (1 + np.exp(-vector))
+    try:
+        vector = np.asarray(vector, dtype=float)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("sigmoid input must be numeric") from exc
+
+    if np.any(np.isnan(vector)):
+        raise ValueError("sigmoid input must not contain NaN values")
+
+    result = np.empty_like(vector)
+    positive_mask = vector >= 0
+
+    result[positive_mask] = 1 / (1 + np.exp(-vector[positive_mask]))
+
+    negative_exponentials = np.exp(vector[~positive_mask])
+    result[~positive_mask] = negative_exponentials / (1 + negative_exponentials)
+
+    return result
 
 
 if __name__ == "__main__":
