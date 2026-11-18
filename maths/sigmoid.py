@@ -3,7 +3,7 @@ This script demonstrates the implementation of the Sigmoid function.
 
 The sigmoid function maps real-valued inputs to the interval (0, 1).
 Its implementation uses separate formulas for positive and negative inputs
-to avoid overflow when evaluating large-magnitude values.
+to avoid overflow warnings when evaluating large-magnitude values.
 
 Script inspired from its corresponding Wikipedia article:
 https://en.wikipedia.org/wiki/Sigmoid_function
@@ -24,7 +24,7 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
 
     Raises:
         ValueError: If the input cannot be converted to a float array or
-            contains non-finite values.
+            contains NaN values.
 
     Examples:
     >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
@@ -37,27 +37,31 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
     >>> sigmoid(np.array([-1000.0, 1000.0]))
     array([0., 1.])
 
+    Infinite values are supported:
+    >>> sigmoid(np.array([np.inf, -np.inf]))
+    array([1., 0.])
+
     Scalar arrays are supported:
     >>> sigmoid(np.array(0.0))
     array(0.5)
 
-    Non-numeric and non-finite inputs are rejected:
+    Non-numeric and NaN inputs are rejected:
     >>> sigmoid(np.array(["invalid"]))
     Traceback (most recent call last):
         ...
     ValueError: sigmoid input must be numeric
-    >>> sigmoid(np.array([np.inf]))
+    >>> sigmoid(np.array([np.nan]))
     Traceback (most recent call last):
         ...
-    ValueError: sigmoid input must contain only finite values
+    ValueError: sigmoid input must not contain NaN values
     """
     try:
         vector = np.asarray(vector, dtype=float)
     except (TypeError, ValueError) as exc:
         raise ValueError("sigmoid input must be numeric") from exc
 
-    if not np.all(np.isfinite(vector)):
-        raise ValueError("sigmoid input must contain only finite values")
+    if np.any(np.isnan(vector)):
+        raise ValueError("sigmoid input must not contain NaN values")
 
     result = np.empty_like(vector)
     positive_mask = vector >= 0
