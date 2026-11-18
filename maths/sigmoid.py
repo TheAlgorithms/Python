@@ -33,7 +33,7 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
     >>> sigmoid(np.array([0.0]))
     array([0.5])
 
-    Large positive and negative values do not overflow:
+    Large positive and negative values are handled without overflow warnings:
     >>> sigmoid(np.array([-1000.0, 1000.0]))
     array([0., 1.])
 
