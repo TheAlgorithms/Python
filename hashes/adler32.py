@@ -16,6 +16,9 @@ def adler32(data: bytes) -> int:
     Function implements adler-32 hash.
     Iterates and evaluates a new value for each byte of the input.
 
+    Unlike the former str API, this function requires bytes. Encode text explicitly
+    (for example, with text.encode("utf-8")) before calling it.
+
     Args:
         data: Byte data to calculate the hash for
 
@@ -25,14 +28,20 @@ def adler32(data: bytes) -> int:
     Raises:
         TypeError: If data is not of type bytes
 
-    >>> import zlib
-    >>> adler32(b'Algorithms') == zlib.adler32(b'Algorithms')
+    >>> adler32(b'Algorithms')
+    363791387
+
+    >>> adler32(b'Wikipedia') == 0x11E60398
     True
+
+    >>> import zlib
 
     >>> adler32(b'go adler em all') == zlib.adler32(b'go adler em all')
     True
 
-    >>> data = bytes([226, 130, 172, 49, 48, 48])
+    The previous implementation summed Unicode code points instead of UTF-8 bytes.
+
+    >>> data = '€100'.encode('utf-8')
     >>> adler32(data) == zlib.adler32(data)
     True
 
@@ -43,6 +52,11 @@ def adler32(data: bytes) -> int:
     Traceback (most recent call last):
       ...
     TypeError: data must be bytes, not str
+
+    >>> adler32(123)
+    Traceback (most recent call last):
+      ...
+    TypeError: data must be bytes, not int
     """
     if not isinstance(data, bytes):
         msg = f"data must be bytes, not {type(data).__name__}"
