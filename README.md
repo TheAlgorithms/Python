@@ -47,3 +47,14 @@ We are on [Discord](https://the-algorithms.com/discord)! Community channels are 
 ## 📜 List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+## GitHub Collaboration Practical
+
+This project demonstrates collaborative development using Git and GitHub.
+
+### Workflow
+- Fork a repository
+- Clone the repository
+- Create a feature branch
+- Commit and push changes
+- Create a Pull Request
+- Review and merge changes
