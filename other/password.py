@@ -30,8 +30,9 @@ def alternative_password_generator(chars_incl: str, i: int) -> str:
     # random_character FUNCTIONS
     # Put your code here...
     if i < len(chars_incl):
-        msg = "password length must be greater than or equal to the lenght of included characters."
-        raise ValueError(msg)
+        raise ValueError(
+            "password length must be greater than or equal to the length of included characters."
+            )
     i -= len(chars_incl)
     quotient = i // 3
     remainder = i % 3
