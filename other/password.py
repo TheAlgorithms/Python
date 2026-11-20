@@ -32,7 +32,7 @@ def alternative_password_generator(chars_incl: str, i: int) -> str:
     if i < len(chars_incl):
         raise ValueError(
             "password length must be greater than or equal to the length of included characters."
-            )
+        )
     i -= len(chars_incl)
     quotient = i // 3
     remainder = i % 3
