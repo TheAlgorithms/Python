@@ -29,7 +29,11 @@ def alternative_password_generator(chars_incl: str, i: int) -> str:
     # Password Generator = full boot with random_number, random_letters, and
     # random_character FUNCTIONS
     # Put your code here...
-    i -= len(chars_incl)
+    if i < len(chars_incl):
+        raise ValueError(
+            "password length must be greater than or "
+            "equal to the length of included characters."
+        )
     quotient = i // 3
     remainder = i % 3
     # chars = chars_incl + random_letters(ascii_letters, i / 3 + remainder) +
