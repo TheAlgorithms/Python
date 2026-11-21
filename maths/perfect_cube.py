@@ -2,13 +2,33 @@ def perfect_cube(n: int) -> bool:
     """
     Check if a number is a perfect cube or not.
 
+    The float cube root is rounded to the nearest integer, which is then cubed and
+    compared with the number. Cubing the float itself is not exact: ``64 ** (1 / 3)``
+    is ``3.9999999999999996``.
+
     >>> perfect_cube(27)
+    True
+    >>> perfect_cube(64)
     True
     >>> perfect_cube(4)
     False
+    >>> perfect_cube(0)
+    True
+    >>> perfect_cube(-27)
+    True
+    >>> perfect_cube(-64)
+    True
+    >>> perfect_cube(-24)
+    False
+    >>> all(perfect_cube(i**3) for i in range(-100, 101))
+    True
+    >>> perfect_cube(10**18)
+    True
+    >>> perfect_cube(10**18 + 1)
+    False
     """
-    val = n ** (1 / 3)
-    return (val * val * val) == n
+    n = abs(n)
+    return round(n ** (1 / 3)) ** 3 == n
 
 
 def perfect_cube_binary_search(n: int) -> bool:
