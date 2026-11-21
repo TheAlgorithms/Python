@@ -67,6 +67,12 @@ def fast_primes(max_n: int) -> Generator[int]:
     []
     >>> list(fast_primes(-10))
     []
+    >>> list(fast_primes(1))
+    []
+    >>> list(fast_primes(2))
+    [2]
+    >>> list(fast_primes(3))
+    [2, 3]
     >>> list(fast_primes(25))
     [2, 3, 5, 7, 11, 13, 17, 19, 23]
     >>> list(fast_primes(11))
@@ -78,7 +84,7 @@ def fast_primes(max_n: int) -> Generator[int]:
     """
     numbers: Generator = (i for i in range(1, (max_n + 1), 2))
     # It's useless to test even numbers as they will not be prime
-    if max_n > 2:
+    if max_n >= 2:
         yield 2  # Because 2 will not be tested, it's necessary to yield it now
     for i in (n for n in numbers if n > 1):
         bound = int(math.sqrt(i)) + 1
