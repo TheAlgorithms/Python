@@ -24,12 +24,12 @@ References:
 """
 
 
-def woodall_number(n: int) -> int:
+def woodall_number(index: int) -> int:
     """
-    Return the nth Woodall number: n * 2^n - 1.
+    Return the index-th Woodall number: index * 2^index - 1.
 
-    :param n: index of the Woodall number, must be a positive integer (n >= 1)
-    :return: the nth Woodall number
+    :param index: index of the Woodall number, must be a positive integer (index >= 1)
+    :return: the index-th Woodall number
 
     >>> woodall_number(1)
     1
@@ -57,32 +57,32 @@ def woodall_number(n: int) -> int:
     >>> woodall_number(0)
     Traceback (most recent call last):
         ...
-    ValueError: n must be a positive integer (n >= 1), got 0
+    ValueError: index must be a positive integer (index >= 1), got 0
     >>> woodall_number(-5)
     Traceback (most recent call last):
         ...
-    ValueError: n must be a positive integer (n >= 1), got -5
+    ValueError: index must be a positive integer (index >= 1), got -5
     >>> woodall_number(2.5)
     Traceback (most recent call last):
         ...
-    TypeError: n must be an integer, got 2.5
+    TypeError: index must be an integer, got 2.5
     >>> woodall_number("3")
     Traceback (most recent call last):
         ...
-    TypeError: n must be an integer, got '3'
+    TypeError: index must be an integer, got '3'
     >>> woodall_number(True)
     Traceback (most recent call last):
         ...
-    TypeError: n must be an integer, got True
+    TypeError: index must be an integer, got True
     """
-    if not isinstance(n, int) or isinstance(n, bool):
-        msg = f"n must be an integer, got {n!r}"
+    if not isinstance(index, int) or isinstance(index, bool):
+        msg = f"index must be an integer, got {index!r}"
         raise TypeError(msg)
-    if n < 1:
-        msg = f"n must be a positive integer (n >= 1), got {n!r}"
+    if index < 1:
+        msg = f"index must be a positive integer (index >= 1), got {index!r}"
         raise ValueError(msg)
 
-    return (n << n) - 1
+    return (index << index) - 1
 
 
 def is_woodall_number(number: int) -> bool:
