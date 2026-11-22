@@ -24,10 +24,14 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
 
     >>> permute_backtrack([1, 2, 3])
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
+    >>> permute_backtrack([])
+    [[]]
+    >>> permute_backtrack([7])
+    [[7]]
     """
 
     def backtrack(start: int) -> None:
-        if start == len(nums) - 1:
+        if start >= len(nums) - 1:
             output.append(nums[:])
         else:
             for i in range(start, len(nums)):
