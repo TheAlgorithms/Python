@@ -11,22 +11,22 @@ source: https://en.wikipedia.org/wiki/Adler-32
 MOD_ADLER = 65521
 
 
-def adler32(data: bytes) -> int:
+def adler32(data: bytes | bytearray | memoryview) -> int:
     """
     Function implements adler-32 hash.
     Iterates and evaluates a new value for each byte of the input.
 
-    Unlike the former str API, this function requires bytes. Encode text explicitly
-    (for example, with text.encode("utf-8")) before calling it.
+    Unlike the former str API, this function requires bytes-like data. Encode text
+    explicitly (for example, with text.encode("utf-8")) before calling it.
 
     Args:
-        data: Byte data to calculate the hash for
+        data: Byte data to calculate the hash for (bytes, bytearray, or memoryview)
 
     Returns:
         Adler-32 checksum as a 32-bit integer
 
     Raises:
-        TypeError: If data is not of type bytes
+        TypeError: If data is not a bytes-like object
 
     >>> adler32(b'Algorithms')
     363791387
@@ -48,18 +48,24 @@ def adler32(data: bytes) -> int:
     >>> adler32(b'') == zlib.adler32(b'')
     True
 
+    >>> adler32(bytearray(b'Algorithms'))
+    363791387
+
+    >>> adler32(memoryview(b'Algorithms'))
+    363791387
+
     >>> adler32('not bytes')
     Traceback (most recent call last):
       ...
-    TypeError: data must be bytes, not str
+    TypeError: data must be bytes-like, not str
 
     >>> adler32(123)
     Traceback (most recent call last):
       ...
-    TypeError: data must be bytes, not int
+    TypeError: data must be bytes-like, not int
     """
-    if not isinstance(data, bytes):
-        msg = f"data must be bytes, not {type(data).__name__}"
+    if not isinstance(data, (bytes, bytearray, memoryview)):
+        msg = f"data must be bytes-like, not {type(data).__name__}"
         raise TypeError(msg)
 
     a = 1
