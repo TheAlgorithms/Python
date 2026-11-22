@@ -31,6 +31,12 @@ def recursive_match(text: str, pattern: str) -> bool:
     False
     >>> recursive_match('aa', '.*')
     True
+    >>> recursive_match('abbb', 'a*')
+    False
+    >>> recursive_match('ab', 'ac*')
+    False
+    >>> recursive_match('aab', 'a*b')
+    True
     """
     if not pattern:
         return not text
@@ -42,9 +48,9 @@ def recursive_match(text: str, pattern: str) -> bool:
         return recursive_match(text[:-1], pattern[:-1])
 
     if pattern[-1] == "*":
-        return recursive_match(text[:-1], pattern) or recursive_match(
-            text, pattern[:-2]
-        )
+        return (
+            pattern[-2] in (text[-1], ".") and recursive_match(text[:-1], pattern)
+        ) or recursive_match(text, pattern[:-2])
 
     return False
 
