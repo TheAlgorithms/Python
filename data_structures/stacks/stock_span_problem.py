@@ -28,8 +28,12 @@ def calculate_span(price: list[int]) -> list[int]:
     [1, 2, 3, 4, 5]
     >>> calculate_span([100, 80, 60, 70, 60, 75, 85])
     [1, 1, 1, 2, 1, 4, 6]
+    >>> calculate_span([])
+    []
     """
     n = len(price)
+    if n == 0:
+        return []
     s = [0] * n
     # Create a stack and push index of fist element to it
     st = []
