@@ -36,7 +36,7 @@ def knapsack(w, wt, val, n):
             else:
                 dp[i][w_] = dp[i - 1][w_]
 
-    return dp[n][w_], dp
+    return dp[n][w], dp
 
 
 def knapsack_with_example_solution(w: int, wt: list, val: list):
@@ -72,6 +72,10 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
         ...
     ValueError: The number of weights must be the same as the number of values.
     But got 4 weights and 3 values
+    >>> knapsack_with_example_solution(0, [1], [5])
+    (0, set())
+    >>> knapsack_with_example_solution(5, [], [])
+    (0, set())
     """
     if not (isinstance(wt, (list, tuple)) and isinstance(val, (list, tuple))):
         raise ValueError(
