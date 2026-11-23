@@ -51,6 +51,15 @@ class TrieNode:
         Deletes a word in a Trie
         :param word: word to delete
         :return: None
+
+        >>> root = TrieNode()
+        >>> root.insert_many(["a", "ab"])
+        >>> root.delete("ab")
+        >>> root.find("a"), root.find("ab")
+        (True, False)
+        >>> root.delete("a")
+        >>> root.find("a"), root.nodes
+        (False, {})
         """
 
         def _delete(curr: TrieNode, word: str, index: int) -> bool:
@@ -69,7 +78,7 @@ class TrieNode:
             delete_curr = _delete(char_node, word, index + 1)
             if delete_curr:
                 del curr.nodes[char]
-                return len(curr.nodes) == 0
+                return len(curr.nodes) == 0 and not curr.is_leaf
             return delete_curr
 
         _delete(self, word, 0)
