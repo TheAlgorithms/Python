@@ -26,12 +26,18 @@ class CircularLinkedList:
         while node:
             yield node.data
             node = node.next_node
-            if node == self.head:
+            if node is self.head:
                 break
 
     def __len__(self) -> int:
         """
         Get the length (number of nodes) in the Circular Linked List.
+
+        >>> linked_list = CircularLinkedList()
+        >>> linked_list.insert_tail(5)
+        >>> linked_list.insert_tail(5)
+        >>> len(linked_list)
+        2
         """
         return sum(1 for _ in self)
 
@@ -113,6 +119,16 @@ class CircularLinkedList:
             Any: The data of the deleted node.
         Raises:
             IndexError: If the index is out of range.
+
+        >>> linked_list = CircularLinkedList()
+        >>> linked_list.insert_tail(1)
+        >>> linked_list.insert_tail(2)
+        >>> linked_list.delete_tail()
+        2
+        >>> linked_list.delete_front()
+        1
+        >>> linked_list.is_empty()
+        True
         """
         if not 0 <= index < len(self):
             raise IndexError("list index out of range.")
@@ -120,7 +136,7 @@ class CircularLinkedList:
         assert self.head is not None
         assert self.tail is not None
         delete_node: Node = self.head
-        if self.head == self.tail:  # Just one node
+        if self.head is self.tail:  # Just one node
             self.head = self.tail = None
         elif index == 0:  # Delete head node
             assert self.tail.next_node is not None
@@ -135,7 +151,7 @@ class CircularLinkedList:
             assert temp.next_node is not None
             delete_node = temp.next_node
             temp.next_node = temp.next_node.next_node
-            if index == len(self) - 1:  # Delete at tail
+            if delete_node is self.tail:  # Delete at tail
                 self.tail = temp
         return delete_node.data
 
