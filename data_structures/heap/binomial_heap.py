@@ -179,7 +179,11 @@ class BinomialHeap:
                 next_node = i.parent.parent
 
                 # Merging trees
+                pair = (i, i.parent)
                 i = i.merge_trees(i.parent)
+                # With equal values the old min_node can lose its place as a root
+                if self.min_node in pair:
+                    self.min_node = i
 
                 # Updating links
                 i.left = previous_node
@@ -237,7 +241,11 @@ class BinomialHeap:
                 next_node = self.bottom_root.parent.parent
 
                 # Merge
+                pair = (self.bottom_root, self.bottom_root.parent)
                 self.bottom_root = self.bottom_root.merge_trees(self.bottom_root.parent)
+                # With equal values the old min_node can lose its place as a root
+                if self.min_node in pair:
+                    self.min_node = self.bottom_root
 
                 # Update Links
                 self.bottom_root.parent = next_node
@@ -257,6 +265,14 @@ class BinomialHeap:
     def delete_min(self):
         """
         delete min element and return it
+
+        >>> heap = BinomialHeap()
+        >>> for value in [4, 1, 8, 2, 2]:
+        ...     heap.insert(value)
+        >>> heap.delete_min(), heap.delete_min(), heap.peek()
+        (1, 2, 2)
+        >>> heap.delete_min(), heap.delete_min(), heap.delete_min()
+        (2, 4, 8)
         """
         # assert not self.isEmpty(), "Empty Heap"
 
