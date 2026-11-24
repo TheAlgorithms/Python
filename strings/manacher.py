@@ -4,6 +4,14 @@ def palindromic_string(input_string: str) -> str:
     'abbba'
     >>> palindromic_string('ababa')
     'ababa'
+    >>> palindromic_string('abb')
+    'bb'
+    >>> palindromic_string('caccaaac')
+    'caaac'
+    >>> palindromic_string('abcbbaab')
+    'baab'
+    >>> palindromic_string('')
+    ''
 
     Manacher's algorithm which finds Longest palindromic Substring in linear time.
 
@@ -14,12 +22,19 @@ def palindromic_string(input_string: str) -> str:
         (please look the explanation for details)
 
     3. return corresponding output_string by removing all "|"
+
+    Note that lengths in new_input_string are not proportional to lengths in
+    input_string: the palindrome of center j and radius k spans the new indices
+    [j - k + 1, j + k - 1] and covers only the even ones, so its original length
+    is (2 * k - 1) // 2 or (2 * k - 1) // 2 + 1. Comparing transformed lengths
+    directly makes even-length palindromes lose ties against odd-length ones,
+    which is why the best palindrome is tracked in original coordinates.
     """
-    max_length = 0
+    if not input_string:
+        return ""
 
     # if input_string is "aba" than new_input_string become "a|b|a"
     new_input_string = ""
-    output_string = ""
 
     # append each character + "|" in new_string for range(0, length-1)
     for i in input_string[: len(input_string) - 1]:
@@ -34,8 +49,11 @@ def palindromic_string(input_string: str) -> str:
     # length[i] shows the length of palindromic substring with center i
     length = [1 for i in range(len(new_input_string))]
 
-    # for each character in new_string find corresponding palindromic string
+    # best palindrome found so far, in coordinates of input_string
+    max_length = 0
     start = 0
+
+    # for each character in new_string find corresponding palindromic string
     for j in range(len(new_input_string)):
         k = 1 if j > right else min(length[left + right - j] // 2, right - j + 1)
         while (
@@ -53,18 +71,18 @@ def palindromic_string(input_string: str) -> str:
             left = j - k + 1
             right = j + k - 1
 
-        # update max_length and start position
-        if max_length < length[j]:
-            max_length = length[j]
-            start = j
+        # update max_length and start position using the length in input_string:
+        # only even indices of new_input_string hold original characters
+        first = j - k + 1 if (j - k + 1) % 2 == 0 else j - k + 2
+        last = j + k - 1 if (j + k - 1) % 2 == 0 else j + k - 2
+        if first > last:
+            continue
+        original_length = (last - first) // 2 + 1
+        if max_length < original_length:
+            max_length = original_length
+            start = first // 2
 
-    # create that string
-    s = new_input_string[start - max_length // 2 : start + max_length // 2 + 1]
-    for i in s:
-        if i != "|":
-            output_string += i
-
-    return output_string
+    return input_string[start : start + max_length]
 
 
 if __name__ == "__main__":
