@@ -18,6 +18,7 @@ The individual algorithms are imported from their own modules, so this file neve
 re-implements a sort.
 """
 
+
 import random
 import sys
 from collections.abc import Sequence
@@ -36,9 +37,14 @@ from sorts.quick_sort import quick_sort
 from sorts.selection_sort import selection_sort
 from sorts.shell_sort import shell_sort
 from sorts.tim_sort import tim_sort
+
+
 class SortFunction(Protocol):
-    def __call__[T](self, collection: list[T], /) -> Sequence[T]: ...
-# name -> callable.  Every callable accepts a list and returns the sorted list.
+    def __call__[T](self, collection: list[T], /) -> Sequence[T]:
+        ...
+
+
+# Store sorting algorithms in a dictionary
 SORTS: dict[str, SortFunction] = {
     "bubble_sort": bubble_sort_iterative,
     "cocktail_shaker_sort": cocktail_shaker_sort,
@@ -55,92 +61,88 @@ SORTS: dict[str, SortFunction] = {
 
 
 def is_sorted(collection: Sequence[int]) -> bool:
-    """
-    Return True if every element is less than or equal to the next one.
-
-    >>> is_sorted([1, 2, 2, 3])
-    True
-    >>> is_sorted([1, 3, 2])
-    False
-    >>> is_sorted([])
-    True
-    """
+    """Check whether the collection is sorted."""
     return all(a <= b for a, b in pairwise(collection))
 
 
 def all_sorts_agree(data: list[int]) -> bool:
-    """
-    Return True if every algorithm in ``SORTS`` sorts ``data`` correctly.
-
-    Each algorithm is given a fresh copy of the data (some sort in place), and its
-    result is checked against Python's built-in ``sorted`` as the ground truth.
-
-    >>> all_sorts_agree([5, 1, 4.2, 2, 8.5, 0, 2])
-    True
-    >>> all_sorts_agree([])
-    True
-    >>> all_sorts_agree([42])
-    True
-    >>> all_sorts_agree(list(range(5, -6, -1)))
-    True
-    >>> all_sorts_agree(list("Python"))
-    True
-    """
+    """Check whether all sorting algorithms produce correct results."""
     expected = sorted(data)
-    return all(list(sort_fn(data.copy())) == expected for sort_fn in SORTS.values())
+
+    for sort_fn in SORTS.values():
+        result = list(sort_fn(data.copy()))
+
+        if result != expected:
+            return False
+
+    return True
 
 
 class Comparable(Protocol):
-    def __lt__(self, other: object, /) -> bool: ...
-
-
-def benchmark[T: Comparable](data: list[T], number: int = 1) -> dict[str, float]:
-    """
-    Time every algorithm in ``SORTS`` on a copy of ``data``.
-
-    Returns a mapping of algorithm name to the elapsed seconds for ``number``
-    repetitions.  Each timed call receives its own fresh copy so in-place sorts do
-    not hand an already-sorted list to the next repetition.
-
-    >>> benchmark([])
-    Traceback (most recent call last):
+    def __lt__(self, other: object, /) -> bool:
         ...
-    ValueError: Please provide a non-empty dataset
-    >>> benchmark([1], number=0)
-    Traceback (most recent call last):
-        ...
-    ValueError: Number of repetitions must be positive
-    """
+
+
+def benchmark[T: Comparable](
+    data: list[T], number: int = 1
+) -> dict[str, float]:
+
     if not data:
         raise ValueError("Please provide a non-empty dataset")
+
     if number <= 0:
         raise ValueError("Number of repetitions must be positive")
-    timings: dict[str, float] = {}
+
+    timings = {}
+
     for name, sort_fn in SORTS.items():
-        timings[name] = timeit(lambda fn=sort_fn: fn(data.copy()), number=number)
+        elapsed = timeit(
+            lambda fn=sort_fn: fn(data.copy()),
+            number=number
+        )
+
+        timings[name] = elapsed
+
     return timings
 
 
 def main() -> None:
-    # A couple of the imported algorithms (e.g. tim_sort) merge recursively, so
-    # give them headroom to sort the largest dataset without hitting the limit.
-    sys.setrecursionlimit(10_000)
-    sizes = (100, 1_000, 3_000)
-    random.seed(0)
-    datasets = {size: [random.randint(0, size) for _ in range(size)] for size in sizes}
+    sys.setrecursionlimit(10000)
 
-    header = "algorithm".ljust(22) + "".join(f"{size:>12}" for size in sizes)
+    sizes = (100, 1000, 3000)
+
+    random.seed(0)
+
+    datasets = {
+        size: [random.randint(0, size) for _ in range(size)]
+        for size in sizes
+    }
+
+    header = "Algorithm".ljust(22)
+
+    for size in sizes:
+        header += f"{size:>12}"
+
     print(header)
     print("-" * len(header))
 
-    per_size = {size: benchmark(data) for size, data in datasets.items()}
+    results = {
+        size: benchmark(data)
+        for size, data in datasets.items()
+    }
+
     for name in SORTS:
         row = name.ljust(22)
-        row += "".join(f"{per_size[size][name]:>12.4f}" for size in sizes)
+
+        for size in sizes:
+            row += f"{results[size][name]:>12.4f}"
+
         print(row)
 
-    print("\nseconds per sort (lower is better); dataset = uniform random ints")
+    print("\nExecution time in seconds (lower is better)")
+    print("Dataset: Random integers")
 
 
 if __name__ == "__main__":
     main()
+
