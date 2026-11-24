@@ -141,8 +141,9 @@ def merge_sort_linked_list(head: Node | None) -> Node | None:
     >>> head.next = Node(1)
     >>> head.next.next = Node(2)
     >>> head.next.next.next = Node(1)
+    >>> head.next.next.next.next = Node(2)
     >>> tuple(iter_linked_list(merge_sort_linked_list(head)))
-    (1, 1, 2, 2)
+    (1, 1, 2, 2, 2)
     """
 
     # Base Case: 0 or 1 node
