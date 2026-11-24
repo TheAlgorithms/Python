@@ -29,6 +29,13 @@ def tokenize(text: str) -> list[str]:
 
 
 def _hash_token(token: str, bit_width: int) -> int:
+    """
+    Return a deterministic bit_width-bit integer digest for token.
+
+    >>> digest = _hash_token("simhash", 8)
+    >>> 0 <= digest < 256 and digest == _hash_token("simhash", 8)
+    True
+    """
     # Use blake2b instead of built-in hash() so fingerprints are deterministic
     # across Python processes regardless of PYTHONHASHSEED.
     digest_bytes = (bit_width + 7) // 8
@@ -38,6 +45,15 @@ def _hash_token(token: str, bit_width: int) -> int:
 
 
 def _validate_bit_width(bit_width: int) -> None:
+    """
+    Validate that bit_width is within [1, 512].
+
+    >>> _validate_bit_width(64)
+    >>> _validate_bit_width(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: bit_width must be between 1 and 512, got 0
+    """
     if not 1 <= bit_width <= _MAX_BIT_WIDTH:
         msg = f"bit_width must be between 1 and {_MAX_BIT_WIDTH}, got {bit_width}"
         raise ValueError(msg)
