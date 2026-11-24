@@ -169,7 +169,28 @@ class HashMap(MutableMapping[KEY, VAL]):
         >>> hm._add_item(1, 20)
         >>> hm
         HashMap(1: 20)
+
+        6. Setting a key again after an earlier colliding key was deleted
+        >>> hm = HashMap(8)
+        >>> hm[0] = 1
+        >>> hm[8] = 2
+        >>> del hm[0]
+        >>> hm[8] = 3
+        >>> len(hm), hm[8]
+        (1, 3)
+        >>> del hm[8]
+        >>> 8 in hm
+        False
         """
+        # A deleted slot can sit before the slot that still holds the key,
+        # so look for the key first and only then take the first free slot.
+        for ind in self._iterate_buckets(key):
+            stored = self._buckets[ind]
+            if stored is None:
+                break
+            if stored and stored.key == key:
+                stored.val = val
+                return
         for ind in self._iterate_buckets(key):
             if self._try_set(ind, key, val):
                 break
@@ -230,6 +251,19 @@ class HashMap(MutableMapping[KEY, VAL]):
         ...
         KeyError: 4
 
+        # Trying to remove a missing item when every bucket is in use or deleted
+        >>> hm = HashMap()
+        >>> for key in (3, 2, 5, 4, 6, 7):
+        ...     hm[key] = key
+        >>> del hm[5]
+        >>> hm[9] = 9
+        >>> del hm[9]
+        >>> hm[0] = 0
+        >>> del hm[9]
+        Traceback (most recent call last):
+        ...
+        KeyError: 9
+
         # Test resize down when sparse
         ## Setup: resize up
         >>> hm = HashMap(initial_block_size=100, capacity_factor=0.75)
@@ -261,6 +295,9 @@ class HashMap(MutableMapping[KEY, VAL]):
                 self._buckets[ind] = _deleted
                 self._len -= 1
                 break
+        else:
+            # Every bucket was visited without finding the key
+            raise KeyError(key)
         if self._is_sparse():
             self._size_down()
 
