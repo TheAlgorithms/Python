@@ -146,6 +146,12 @@ class RadixNode:
 
         >>> RadixNode("myprefix").delete("mystring")
         False
+        >>> root = RadixNode()
+        >>> root.insert_many(["c", "abcd"])
+        >>> root.delete("c")
+        True
+        >>> root.find("abcd")
+        True
         """
         incoming_node = self.nodes.get(word[0], None)
         if not incoming_node:
@@ -168,7 +174,7 @@ class RadixNode:
                 if len(incoming_node.nodes) == 0:
                     del self.nodes[word[0]]
                     # We merge the current node with its only child
-                    if len(self.nodes) == 1 and not self.is_leaf:
+                    if len(self.nodes) == 1 and not self.is_leaf and self.prefix:
                         merging_node = next(iter(self.nodes.values()))
                         self.is_leaf = merging_node.is_leaf
                         self.prefix += merging_node.prefix
