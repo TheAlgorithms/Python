@@ -104,7 +104,7 @@ def merge(left: Node | None, right: Node | None) -> Node | None:
     if right is None:
         return left
 
-    if left <= right:
+    if left.data <= right.data:
         result = left
         result.next = merge(left.next, right)
     else:
@@ -134,6 +134,15 @@ def merge_sort_linked_list(head: Node | None) -> Node | None:
     >>> sorted_head = merge_sort_linked_list(head)
     >>> tuple(iter_linked_list(sorted_head))
     (1, 2, 3, 4)
+
+    Equal values are fine as well:
+
+    >>> head = Node(2)
+    >>> head.next = Node(1)
+    >>> head.next.next = Node(2)
+    >>> head.next.next.next = Node(1)
+    >>> tuple(iter_linked_list(merge_sort_linked_list(head)))
+    (1, 1, 2, 2)
     """
 
     # Base Case: 0 or 1 node
