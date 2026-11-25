@@ -11,6 +11,9 @@ def is_neon_number(number: int) -> bool:
     False
     >>> is_neon_number(0)
     True
+
+    Reference:
+    https://www.codewithvenu.com/blog/Interview-Tracks/java-coding/02-Number-Logic/07-Neon-Number
     """
     if number < 0:
         raise ValueError("Number must be non-negative")
