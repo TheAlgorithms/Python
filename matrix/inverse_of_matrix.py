@@ -68,8 +68,8 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     match matrix:
         case [_, _], [_, _]:
             # Calculate the determinant of the matrix
-            determinant = float(
-                d(matrix[0][0]) * d(matrix[1][1]) - d(matrix[1][0]) * d(matrix[0][1])
+            determinant = d(matrix[0][0]) * d(matrix[1][1]) - d(matrix[1][0]) * d(
+                matrix[0][1]
             )
             if determinant == 0:
                 raise ValueError("This matrix has no inverse.")
@@ -81,7 +81,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
             # Calculate the inverse of the matrix
             return [
-                [(float(d(n)) / determinant) or 0.0 for n in row]
+                [float(d(n) / determinant) or 0.0 for n in row]
                 for row in swapped_matrix
             ]
         case _ if (
@@ -91,17 +91,14 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
             and len(matrix[2]) == 3
         ):
             # Calculate the determinant of the matrix using Sarrus rule
-            determinant = float(
-                (
-                    (d(matrix[0][0]) * d(matrix[1][1]) * d(matrix[2][2]))
-                    + (d(matrix[0][1]) * d(matrix[1][2]) * d(matrix[2][0]))
-                    + (d(matrix[0][2]) * d(matrix[1][0]) * d(matrix[2][1]))
-                )
-                - (
-                    (d(matrix[0][2]) * d(matrix[1][1]) * d(matrix[2][0]))
-                    + (d(matrix[0][1]) * d(matrix[1][0]) * d(matrix[2][2]))
-                    + (d(matrix[0][0]) * d(matrix[1][2]) * d(matrix[2][1]))
-                )
+            determinant = (
+                (d(matrix[0][0]) * d(matrix[1][1]) * d(matrix[2][2]))
+                + (d(matrix[0][1]) * d(matrix[1][2]) * d(matrix[2][0]))
+                + (d(matrix[0][2]) * d(matrix[1][0]) * d(matrix[2][1]))
+            ) - (
+                (d(matrix[0][2]) * d(matrix[1][1]) * d(matrix[2][0]))
+                + (d(matrix[0][1]) * d(matrix[1][0]) * d(matrix[2][2]))
+                + (d(matrix[0][0]) * d(matrix[1][2]) * d(matrix[2][1]))
             )
             if determinant == 0:
                 raise ValueError("This matrix has no inverse.")
