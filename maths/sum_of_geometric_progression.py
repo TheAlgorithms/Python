@@ -23,6 +23,8 @@ def sum_of_geometric_progression(
     if common_ratio == 1:
         # Formula for sum if common ratio is 1
         return num_of_terms * first_term
+    if first_term == 0:
+        return 0.0
 
     # Formula for finding sum of n terms of a GeometricProgression
-    return (first_term / (1 - common_ratio)) * (1 - common_ratio**num_of_terms)
+    return first_term * (1 - common_ratio**num_of_terms) / (1 - common_ratio)
