@@ -29,7 +29,7 @@ class FromTo(NamedTuple):
 
 PRESSURE_CONVERSION = {
     "atm": FromTo(1, 1),
-    "pascal": FromTo(0.0000098, 101325),
+    "pascal": FromTo(0.00000986923, 101325),
     "bar": FromTo(0.986923, 1.01325),
     "kilopascal": FromTo(0.00986923, 101.325),
     "megapascal": FromTo(9.86923, 0.101325),
@@ -45,7 +45,9 @@ def pressure_conversion(value: float, from_type: str, to_type: str) -> float:
     >>> pressure_conversion(4, "atm", "pascal")
     405300
     >>> pressure_conversion(1, "pascal", "psi")
-    0.00014401981999999998
+    0.000145037217157
+    >>> round(pressure_conversion(101325, "pascal", "atm"), 5)
+    1.0
     >>> pressure_conversion(1, "bar", "atm")
     0.986923
     >>> pressure_conversion(3, "kilopascal", "bar")
