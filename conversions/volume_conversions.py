@@ -30,9 +30,9 @@ METRIC_CONVERSION = {
     "cubic meter": FromTo(1, 1),
     "litre": FromTo(0.001, 1000),
     "kilolitre": FromTo(1, 1),
-    "gallon": FromTo(0.00454, 264.172),
+    "gallon": FromTo(0.00378541, 264.172),
     "cubic yard": FromTo(0.76455, 1.30795),
-    "cubic foot": FromTo(0.028, 35.3147),
+    "cubic foot": FromTo(0.0283168, 35.3147),
     "cup": FromTo(0.000236588, 4226.75),
 }
 
@@ -44,14 +44,18 @@ def volume_conversion(value: float, from_type: str, to_type: str) -> float:
     4000
     >>> volume_conversion(1, "litre", "gallon")
     0.264172
+    >>> round(volume_conversion(1, "gallon", "litre"), 3)
+    3.785
+    >>> round(volume_conversion(1, "cubic foot", "litre"), 3)
+    28.317
     >>> volume_conversion(1, "kilolitre", "cubic meter")
     1
     >>> volume_conversion(3, "gallon", "cubic yard")
-    0.017814279
+    0.0148533810285
     >>> volume_conversion(2, "cubic yard", "litre")
     1529.1
     >>> volume_conversion(4, "cubic foot", "cup")
-    473.396
+    478.75213759999997
     >>> volume_conversion(1, "cup", "kilolitre")
     0.000236588
     >>> volume_conversion(4, "wrongUnit", "litre")
