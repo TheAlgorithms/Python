@@ -24,11 +24,13 @@ def get_altitude_at_pressure(pressure: float) -> float:
 
     Examples:
     >>> get_altitude_at_pressure(pressure=100_000)
-    105.47836610778828
+    110.90104538806403
     >>> get_altitude_at_pressure(pressure=101_325)
     0.0
     >>> get_altitude_at_pressure(pressure=80_000)
-    1855.873388064995
+    1949.2730319847738
+    >>> round(get_altitude_at_pressure(pressure=50_000))
+    5575
     >>> get_altitude_at_pressure(pressure=201_325)
     Traceback (most recent call last):
       ...
@@ -43,7 +45,7 @@ def get_altitude_at_pressure(pressure: float) -> float:
         raise ValueError("Value Higher than Pressure at Sea Level !")
     if pressure < 0:
         raise ValueError("Atmospheric Pressure can not be negative !")
-    return 44_330 * (1 - (pressure / 101_325) ** (1 / 5.5255))
+    return 44_330 * (1 - (pressure / 101_325) ** (1 / 5.255))
 
 
 if __name__ == "__main__":
