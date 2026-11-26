@@ -5,7 +5,7 @@ class BoothsAlgorithm:
     Time Complexity: O(n) - Linear time where n is the length of input string
     Space Complexity: O(n) - Linear space for failure function array
 
-    For More Visit - https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm
+    Reference: https://www.cs.ubc.ca/~ksbooth/PUB/LCS.shtml
     """
 
     def find_minimal_rotation(self, string: str) -> str:
