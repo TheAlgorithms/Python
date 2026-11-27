@@ -55,7 +55,7 @@ class RedBlackTree:
         self.parent = right
         right.left = self
         if parent is not None:
-            if parent.left == self:
+            if parent.left is self:
                 parent.left = right
             else:
                 parent.right = right
@@ -84,6 +84,13 @@ class RedBlackTree:
         left.parent = parent
         return left
 
+    def _find_root(self) -> RedBlackTree:
+        """Walk parent pointers up to the root of the tree."""
+        root = self
+        while root.parent is not None:
+            root = root.parent
+        return root
+
     def insert(self, label: int) -> RedBlackTree:
         """Inserts label into the subtree rooted at self, performs any
         rotations necessary to maintain balance, and then returns the
@@ -94,6 +101,7 @@ class RedBlackTree:
             # Only possible with an empty tree
             self.label = label
             return self
+        was_root = self.parent is None
         if self.label == label:
             return self
         elif self.label > label:
@@ -107,7 +115,7 @@ class RedBlackTree:
         else:
             self.right = RedBlackTree(label, 1, self)
             self.right._insert_repair()
-        return self.parent or self
+        return self._find_root() if was_root else (self.parent or self)
 
     def _insert_repair(self) -> None:
         """Repair the coloring from inserting into a tree."""
@@ -148,7 +156,16 @@ class RedBlackTree:
                     self.grandparent._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
-        """Remove label from this tree."""
+        """Remove label from this tree.
+
+        >>> tree = RedBlackTree(10).insert(5).insert(15).insert(20)
+        >>> tree = tree.remove(5)
+        >>> tree.parent is None and tree.check_color_properties()
+        True
+        >>> list(tree.inorder_traverse())
+        [10, 15, 20]
+        """
+        was_root = self.parent is None
         if self.label == label:
             if self.left and self.right:
                 # It's easier to balance a node with at most one child,
@@ -200,16 +217,11 @@ class RedBlackTree:
                 self.left.remove(label)
         elif self.right:
             self.right.remove(label)
-        return self.parent or self
+        return self._find_root() if was_root else (self.parent or self)
 
     def _remove_repair(self) -> None:
         """Repair the coloring of the tree that may have been messed up."""
-        if (
-            self.parent is None
-            or self.sibling is None
-            or self.parent.sibling is None
-            or self.grandparent is None
-        ):
+        if self.parent is None or self.sibling is None:
             return
         if color(self.sibling) == 1:
             self.sibling.color = 0
@@ -218,62 +230,67 @@ class RedBlackTree:
                 self.parent.rotate_left()
             else:
                 self.parent.rotate_right()
+        sibling = self.sibling
+        if sibling is None:
+            return
         if (
             color(self.parent) == 0
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 0
-            and color(self.sibling.right) == 0
+            and color(sibling) == 0
+            and color(sibling.left) == 0
+            and color(sibling.right) == 0
         ):
-            self.sibling.color = 1
+            sibling.color = 1
             self.parent._remove_repair()
             return
         if (
             color(self.parent) == 1
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 0
-            and color(self.sibling.right) == 0
+            and color(sibling) == 0
+            and color(sibling.left) == 0
+            and color(sibling.right) == 0
         ):
-            self.sibling.color = 1
+            sibling.color = 1
             self.parent.color = 0
             return
         if (
             self.is_left()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 0
-            and color(self.sibling.left) == 1
+            and color(sibling) == 0
+            and color(sibling.right) == 0
+            and color(sibling.left) == 1
         ):
-            self.sibling.rotate_right()
-            self.sibling.color = 0
-            if self.sibling.right:
-                self.sibling.right.color = 1
-        if (
+            new_sibling = sibling.rotate_right()
+            new_sibling.color = 0
+            sibling.color = 1
+            sibling = new_sibling
+        elif (
             self.is_right()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 1
-            and color(self.sibling.left) == 0
+            and color(sibling) == 0
+            and color(sibling.right) == 1
+            and color(sibling.left) == 0
         ):
-            self.sibling.rotate_left()
-            self.sibling.color = 0
-            if self.sibling.left:
-                self.sibling.left.color = 1
+            new_sibling = sibling.rotate_left()
+            new_sibling.color = 0
+            sibling.color = 1
+            sibling = new_sibling
         if (
             self.is_left()
-            and color(self.sibling) == 0
-            and color(self.sibling.right) == 1
+            and color(sibling) == 0
+            and sibling.right is not None
+            and sibling.right.color == 1
         ):
+            sibling.color = self.parent.color
+            self.parent.color = 0
+            sibling.right.color = 0
             self.parent.rotate_left()
-            self.grandparent.color = self.parent.color
-            self.parent.color = 0
-            self.parent.sibling.color = 0
-        if (
+        elif (
             self.is_right()
-            and color(self.sibling) == 0
-            and color(self.sibling.left) == 1
+            and color(sibling) == 0
+            and sibling.left is not None
+            and sibling.left.color == 1
         ):
-            self.parent.rotate_right()
-            self.grandparent.color = self.parent.color
+            sibling.color = self.parent.color
             self.parent.color = 0
-            self.parent.sibling.color = 0
+            sibling.left.color = 0
+            self.parent.rotate_right()
 
     def check_color_properties(self) -> bool:
         """Check the coloring of the tree, and return True iff the tree
@@ -322,17 +339,21 @@ class RedBlackTree:
         """Returns the number of black nodes from this node to the
         leaves of the tree, or None if there isn't one such value (the
         tree is color incorrectly).
+
+        >>> RedBlackTree(10).black_height()
+        1
+        >>> tree = RedBlackTree(20).insert(-19).insert(-3).insert(-6).insert(-12)
+        >>> tree.black_height()
+        2
+        >>> bad = RedBlackTree(10, color=0)
+        >>> bad.right = RedBlackTree(20, color=0, parent=bad)
+        >>> bad.black_height() is None
+        True
         """
-        if self is None or self.left is None or self.right is None:
-            # If we're already at a leaf, there is no path
-            return 1
-        left = RedBlackTree.black_height(self.left)
-        right = RedBlackTree.black_height(self.right)
-        if left is None or right is None:
+        left = 0 if self.left is None else self.left.black_height()
+        right = 0 if self.right is None else self.right.black_height()
+        if left is None or right is None or left != right:
             # There are issues with coloring below children nodes
-            return None
-        if left != right:
-            # The two children have unequal depths
             return None
         # Return the black depth of children, plus one if this node is
         # black
