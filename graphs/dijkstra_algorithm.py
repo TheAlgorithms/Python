@@ -126,6 +126,7 @@ class PriorityQueue:
         del self.pos[min_node]
         if self.cur_size:
             self.array[0] = last_node
+            self.pos[last_node[1]] = 0
             self.min_heapify(0)
         return min_node
 
