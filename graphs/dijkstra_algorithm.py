@@ -105,7 +105,7 @@ class PriorityQueue:
         self.array.append((sys.maxsize, tup[1]))
         self.decrease_key((sys.maxsize, tup[1]), tup[0])
 
-    def extract_min(self):
+    def extract_min(self) -> int | str:
         """
         Removes and returns the min element at top of priority queue.
 
@@ -121,10 +121,12 @@ class PriorityQueue:
         (10, 'A')
         """
         min_node = self.array[0][1]
-        self.array[0] = self.array[self.cur_size - 1]
+        last_node = self.array.pop()
         self.cur_size -= 1
-        self.min_heapify(0)
         del self.pos[min_node]
+        if self.cur_size:
+            self.array[0] = last_node
+            self.min_heapify(0)
         return min_node
 
     def left(self, i):
