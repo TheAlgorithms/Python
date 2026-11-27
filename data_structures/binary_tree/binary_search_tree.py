@@ -219,13 +219,22 @@ class BinarySearchTree:
         Traceback (most recent call last):
             ...
         IndexError: Warning: Tree is empty! please use another.
+
+        Values are compared by equality, not identity, so equal ints that are
+        different objects (and equal floats) are found:
+
+        >>> tree = BinarySearchTree().insert(int("1000"), int("2000"))
+        >>> tree.search(int("2000")).value
+        2000
+        >>> BinarySearchTree().insert(1.5, 2.5).search(float("2.5")).value
+        2.5
         """
 
         if self.empty():
             raise IndexError("Warning: Tree is empty! please use another.")
         node = self.root
         # use lazy evaluation here to avoid NoneType Attribute error
-        while node is not None and node.value is not value:
+        while node is not None and node.value != value:
             node = node.left if value < node.value else node.right
         return node
 
