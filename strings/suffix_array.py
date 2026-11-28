@@ -14,6 +14,30 @@ https://en.wikipedia.org/wiki/LCP_array
 https://cp-algorithms.com/string/suffix-array.html
 """
 
+from functools import partial
+
+
+def rank_pair(ranks: list[int], index: int, half: int) -> tuple[int, int]:
+    """
+    Return the sort key of the suffix starting at ``index`` for one round of
+    prefix doubling: the rank of its first ``half`` characters and the rank of
+    the next ``half`` characters.
+
+    A suffix shorter than ``half`` has an empty second half, ranked -1 so that it
+    sorts before every non-empty one.
+
+    >>> rank_pair([1, 0, 2, 0, 2, 0], 0, 1)
+    (1, 0)
+    >>> rank_pair([1, 0, 2, 0, 2, 0], 5, 1)
+    (0, -1)
+    >>> rank_pair([3, 2, 1, 0], 2, 2)
+    (1, -1)
+    """
+    second_half = index + half
+    if second_half >= len(ranks):
+        return ranks[index], -1
+    return ranks[index], ranks[second_half]
+
 
 def build_suffix_array(text: str) -> list[int]:
     """
@@ -50,24 +74,13 @@ def build_suffix_array(text: str) -> list[int]:
     length = 1
 
     while length < text_length:
-
-        def sort_key(
-            index: int, half: int = length, current_ranks: list[int] = ranks
-        ) -> tuple[int, int]:
-            # A suffix shorter than ``half`` has an empty second half, which must
-            # sort before every non-empty one
-            second_half = index + half
-            if second_half >= text_length:
-                return current_ranks[index], -1
-            return current_ranks[index], current_ranks[second_half]
-
-        suffix_array.sort(key=sort_key)
+        suffix_array.sort(key=partial(rank_pair, ranks, half=length))
 
         new_ranks = [0] * text_length
         for position in range(1, text_length):
             current, previous = suffix_array[position], suffix_array[position - 1]
             new_ranks[current] = new_ranks[previous] + (
-                sort_key(current) != sort_key(previous)
+                rank_pair(ranks, current, length) != rank_pair(ranks, previous, length)
             )
         ranks = new_ranks
 
@@ -165,26 +178,46 @@ def find_pattern(
     """
     if suffix_array is None:
         suffix_array = build_suffix_array(text)
-    pattern_length = len(pattern)
-
-    def first_position(*, strictly_greater: bool) -> int:
-        """
-        First position whose suffix prefix is >= pattern (or > pattern).
-        """
-        low, high = 0, len(suffix_array)
-        while low < high:
-            middle = (low + high) // 2
-            start = suffix_array[middle]
-            prefix = text[start : start + pattern_length]
-            if prefix < pattern or (strictly_greater and prefix == pattern):
-                low = middle + 1
-            else:
-                high = middle
-        return low
-
-    block_start = first_position(strictly_greater=False)
-    block_end = first_position(strictly_greater=True)
+    block_start = first_suffix_position(
+        text, suffix_array, pattern, strictly_greater=False
+    )
+    block_end = first_suffix_position(
+        text, suffix_array, pattern, strictly_greater=True
+    )
     return sorted(suffix_array[block_start:block_end])
+
+
+def first_suffix_position(
+    text: str, suffix_array: list[int], pattern: str, *, strictly_greater: bool
+) -> int:
+    """
+    Binary search the suffix array for the first position whose suffix, cut to
+    the pattern length, is >= ``pattern`` (or > ``pattern`` when
+    ``strictly_greater`` is True).
+
+    >>> suffix_array = build_suffix_array("banana")
+    >>> suffix_array
+    [5, 3, 1, 0, 4, 2]
+    >>> first_suffix_position("banana", suffix_array, "ana", strictly_greater=False)
+    1
+    >>> first_suffix_position("banana", suffix_array, "ana", strictly_greater=True)
+    3
+    >>> first_suffix_position("banana", suffix_array, "z", strictly_greater=False)
+    6
+    >>> first_suffix_position("", [], "a", strictly_greater=False)
+    0
+    """
+    pattern_length = len(pattern)
+    low, high = 0, len(suffix_array)
+    while low < high:
+        middle = (low + high) // 2
+        start = suffix_array[middle]
+        prefix = text[start : start + pattern_length]
+        if prefix < pattern or (strictly_greater and prefix == pattern):
+            low = middle + 1
+        else:
+            high = middle
+    return low
 
 
 def longest_repeated_substring(text: str) -> str:
