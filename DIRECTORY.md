@@ -1632,6 +1632,7 @@
   * [String Is Valid Number](strings/string_is_valid_number.py)
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
+  * [Suffix Array](strings/suffix_array.py)
   * [Suffix Automaton](strings/suffix_automaton.py)
   * [Text Justification](strings/text_justification.py)
   * [Title](strings/title.py)
